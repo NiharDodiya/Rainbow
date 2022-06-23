@@ -76,4 +76,8 @@ class Strings {
   static const privacyPolicyText =
       'By continuing you agree Rainbow’s Terms of Services & Privacy Policy.';
   static const errorText = 'Error !';
+  static const single = 'Single';
+  static const married = 'Married';
+  static const british = 'British';
+  static const indian = 'Indian';
 }

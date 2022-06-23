@@ -1,3 +1,4 @@
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
@@ -19,34 +20,89 @@ class RegisterController extends GetxController {
   TextEditingController dobController = TextEditingController();
   TextEditingController kidsController = TextEditingController();
 
-  String countryCode = '+1';
+  List<String> martialStatusList = [
+    Strings.single,
+    Strings.married,
+  ];
+  List<String> ethnicityList = [
+    Strings.single,
+    Strings.married,
+  ];
+  bool martialStatusDropdown = false;
+  bool ethnicityDropdown = false;
+  bool kidsDropdown = false;
 
-  void onCountryTap() {}
+  Country countryModel = Country.from(json: {
+    "e164_cc": "1",
+    "iso2_cc": "CA",
+    "e164_sc": 0,
+    "geographic": true,
+    "level": 2,
+    "name": "Canada",
+    "example": "2042345678",
+    "display_name": "Canada (CA) [+1]",
+    "full_example_with_plus_sign": "+12042345678",
+    "display_name_no_e164_cc": "Canada (CA)",
+    "e164_key": "1-CA-0"
+  });
 
-  void onStatusSelect() {}
+  void onCountryTap(BuildContext context) {
+    showCountryPicker(
+      context: context,
+      showPhoneCode: true,
+      onSelect: (Country country) {
+        countryModel = country;
+        update(['phone_filed']);
+      },
+    );
+  }
 
-  void onEthnicitySelect() {}
+  void onStatusSelect() {
+    martialStatusDropdown = true;
+    update(['register_screen']);
+  }
+
+  void onStatusChange(String value) {
+    statusController.text = value;
+    update(['register_screen']);
+  }
+
+  void onEthnicitySelect() {
+    ethnicityDropdown = true;
+    update(['register_screen']);
+  }
+
+  void onEthnicityChange(String value) {
+    ethnicityController.text = value;
+    update(['register_screen']);
+  }
 
   void onBODSelect() {}
 
-  void onKidsSelect() {}
+  void onKidsSelect() {
+    kidsDropdown = true;
+    update(['register_screen']);
+  }
 
-  void onAddress1Change(String str){
-    if(str.length > 440 && str.length < 460){
+  void onKidsChange(String value) {
+    kidsController.text = value;
+    update(['register_screen']);
+  }
+
+  void onAddress1Change(String str) {
+    if (str.length > 440 && str.length < 460) {
       update(['address1']);
     }
   }
 
-  void onAddress2Change(String str){
-    if(str.length > 440 && str.length < 460){
+  void onAddress2Change(String str) {
+    if (str.length > 440 && str.length < 460) {
       update(['address2']);
     }
   }
 
   void onRegisterTap() {
-    if(validation()){
-
-    }
+    if (validation()) {}
   }
 
   void onSignInTap() {}
