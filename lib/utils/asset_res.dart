@@ -17,5 +17,7 @@ class AssetRes {
   static const sp1 = '${images}sp1.png';
   static const sp2 = '${images}sp2.png';
   static const sp3 = '${images}sp-3.png';
+  static const frontPicture = '${images}frontPicture.png';
+  static const backPicture = '${images}backPicture.png';
 
 }

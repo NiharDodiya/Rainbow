@@ -80,4 +80,6 @@ class Strings {
   static const married = 'Married';
   static const british = 'British';
   static const indian = 'Indian';
+  static const selfie = 'Selfie Verification';
+  static const prepareScan = 'Prepare to scan your face';
 }

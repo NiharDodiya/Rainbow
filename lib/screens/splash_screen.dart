@@ -10,14 +10,14 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: GestureDetector(
-        onTap: () {
-          Get.to(() => const AuthDashboard());
-        },
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          body: Column(
+    return GestureDetector(
+      onTap: () {
+        Get.to(() => const AuthDashboard());
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: Column(
             children: [
               Stack(
                 children: [

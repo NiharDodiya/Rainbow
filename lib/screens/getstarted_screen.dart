@@ -3,8 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
-import 'package:rainbow/screens/auth/signin/signin_screen.dart';
 import 'package:rainbow/screens/idVerification/idverification_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -111,7 +109,7 @@ class GetStartedScreens extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: height * 0.38),
+              padding: EdgeInsets.only(top: Get.height * 0.38),
               child: Center(
                   child: Text(
                 Strings.notVerified,
@@ -120,7 +118,7 @@ class GetStartedScreens extends StatelessWidget {
               )),
             ),
             Padding(
-              padding: EdgeInsets.only(top: height * 0.51),
+              padding: EdgeInsets.only(top:  Get.height * 0.51),
               child: Center(
                   child: Text(
                 Strings.completeYourProfile,
@@ -144,8 +142,8 @@ class GetStartedScreens extends StatelessWidget {
             alertBoxPopUp(context);
           },
           child: Container(
-            width: width * 0.80,
-            height: height * 0.073,
+            width: Get.width * 0.80,
+            height: Get.height * 0.073,
             decoration: BoxDecoration(
                 color: ColorRes.color_E7D01F,
                 borderRadius: BorderRadius.circular(15)),
@@ -185,8 +183,8 @@ class GetStartedScreens extends StatelessWidget {
                     height: 15,
                   ),
                   SizedBox(
-                    height: height * 0.057,
-                    width: width * 0.73,
+                    height:  Get.height * 0.057,
+                    width: Get.width * 0.73,
                     child: Center(
                         child: Text(
                       Strings.smoothProcess,
@@ -216,8 +214,8 @@ class GetStartedScreens extends StatelessWidget {
                     height: 12,
                   ),
                   SizedBox(
-                    width: width * 0.78,
-                    height: height * 0.057,
+                    width: Get.width * 0.78,
+                    height: Get.height * 0.057,
                     child: Center(
                         child: Text(
                       Strings.allow,
@@ -229,8 +227,8 @@ class GetStartedScreens extends StatelessWidget {
                     height: 12,
                   ),
                   SizedBox(
-                    width: width * 0.78,
-                    height: height * 0.085,
+                    width: Get.width * 0.78,
+                    height:  Get.height * 0.085,
                     child: Center(
                         child: Text(
                       Strings.update,
@@ -253,7 +251,7 @@ class GetStartedScreens extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(12),
                         child: GestureDetector(onTap: () {
-                          Get.to(const IdVerificationScreen());
+                          Get.to( const IdVerificationScreen());
                         },
                           child: Text(
                             Strings.gotIt,
