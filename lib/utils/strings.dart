@@ -1,26 +1,17 @@
 class Strings {
   ///---------------------------------------- Utils ----------------------------------------
-  static const prefsError = 'Send valid value for store data in prefs';
 
-  static const continueWithEmail = "Continue with Email";
   static const buildingFamilies = "Building families and bridging dreams";
 
-  ///---------------------------------------- Splash screen ----------------------------------------
-  static const weather = 'Weather';
+///-----------------------------------------auth------------------------------------------------
+  static const continueWithEmail = "Continue with Email";
+  static const alreadyHaveAccount = "Already have an account? ";
   static const google = 'Google';
   static const facebook = 'FaceBook';
+  static const signIn = 'Sign in';
+  static const signUp = 'Sign Up';
+  static const forAdvertise = " for advertiser's account";
+  static const termsServices = 'By continuing you agree Rainbow’s Terms of Services & Privacy Policy.' ;
 
-  ///---------------------------------------- Home screen ----------------------------------------
-  static const temp = 'Temp';
-  static const wind = 'Wind';
-  static const humidity = 'Humidity';
-  static const today = 'Today';
-  static const viewFullReport = 'View full report';
 
-  ///---------------------------------------- Forecast screen ----------------------------------------
-  static const forecastReport = 'Forecast report';
-  static const nextForecast = 'Next forecast';
-
-  ///---------------------------------------- History screen ----------------------------------------
-  static const historicalWeather = 'Historical weather';
 }
