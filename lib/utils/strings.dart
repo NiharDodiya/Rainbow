@@ -47,7 +47,23 @@ class Strings {
   static const ethnicity = 'Ethnicity';
   static const birthDate = 'Birth Date';
   static const noOfKids = 'No of Kids';
+  static const fullNameError = 'Full Name is required';
+  static const emailError = 'Email is required';
+  static const emailValidError = 'Email is invalid';
+  static const passwordError = 'Password is required';
+  static const passwordValidError = 'Password is invalid';
+  static const reTypePasswordError = 'Re-Type Password is required';
+  static const reTypePasswordValidError = 'Re-Type Password is Mismatch';
+  static const addressLine1Error = 'Address Line 1 is required';
+  static const addressLine2Error = 'Address Line 2 is required';
+  static const phoneNumberError = 'Phone Number is required';
+  static const phoneNumberValidError = 'Phone Number is invalid';
+  static const maritalStatusError = 'Marital Status is required';
+  static const ethnicityError = 'Ethnicity is required';
+  static const birthDateError = 'Birth Date is required';
+  static const noOfKidsError = 'No of Kids is required';
   static const alreadyHaveAnAccount = 'Already have an account? ';
   static const privacyPolicyText =
       'By continuing you agree Rainbow’s Terms of Services & Privacy Policy.';
+  static const errorText = 'Error !';
 }
