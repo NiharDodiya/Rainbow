@@ -2,8 +2,13 @@ class Strings {
   ///---------------------------------------- Utils ----------------------------------------
   static const prefsError = 'Send valid value for store data in prefs';
 
+  static const continueWithEmail = "Continue with Email";
+  static const buildingFamilies = "Building families and bridging dreams";
+
   ///---------------------------------------- Splash screen ----------------------------------------
   static const weather = 'Weather';
+  static const google = 'Google';
+  static const facebook = 'FaceBook';
 
   ///---------------------------------------- Home screen ----------------------------------------
   static const temp = 'Temp';

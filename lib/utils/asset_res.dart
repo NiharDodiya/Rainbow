@@ -7,6 +7,7 @@ class AssetRes {
   ///--------------------------------------------- images ---------------------------------------------
   static const rainBowLogo = images + 'rainbow_logo.png';
   static const googleIcon = images + 'google.png';
+  static const facebook = images + 'facebook.png';
   static const greyCircle = images + 'grey_round.png';
   static const whiteCircle = images + 'white_round.png';
   static const splashScreen = images + 'splashScreen.png';

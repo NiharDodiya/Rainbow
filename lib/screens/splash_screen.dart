@@ -126,8 +126,8 @@ class SplashScreen extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                      height: Get.height *0.145,
-                      width: Get.height *0.145,
+                      height: Get.height * 0.145,
+                      width: Get.height * 0.145,
                       decoration: BoxDecoration(
                         border: Border.all(color: ColorRes.color_4F359B),
                         shape: BoxShape.circle,
@@ -139,15 +139,16 @@ class SplashScreen extends StatelessWidget {
                   padding: EdgeInsets.only(top: Get.height * 0.65),
                   child: Align(
                     alignment: Alignment.bottomCenter,
-                    child: GestureDetector(onTap: () {
-                      Get.to(const SignInScreen());
-
-                    },
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.to(const SignInScreen());
+                      },
                       child: Container(
-                        height:  Get.height *0.180,
-                        width: Get.height *0.180,
+                        height: Get.height * 0.180,
+                        width: Get.height * 0.180,
                         decoration: BoxDecoration(
-                          border: Border.all(color: const Color(0XFF4F359B).withOpacity(0.3)),
+                          border: Border.all(
+                              color: const Color(0XFF4F359B).withOpacity(0.3)),
                           shape: BoxShape.circle,
                         ),
                       ),
