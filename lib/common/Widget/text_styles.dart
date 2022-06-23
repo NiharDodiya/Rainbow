@@ -116,7 +116,7 @@ TextStyle textStyleFont16Alert = TextStyle(
 TextStyle textStyleFont14Alert = TextStyle(
   color: ColorRes.color_656F85.withOpacity(0.5),
   fontSize: 14,
-  fontFamily: "Gilroy-Light",
+  fontFamily: "Gilroy-Medium",
   fontWeight: FontWeight.w500,
 );
 TextStyle textStyleFont16Grey = TextStyle(

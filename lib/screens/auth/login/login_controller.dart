@@ -8,6 +8,6 @@ class LoginController extends GetxController {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   void onSignUpTap(){
-    Get.to(() => const RegisterScreen());
+    Get.to(() => RegisterScreen());
   }
 }
