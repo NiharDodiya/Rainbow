@@ -76,7 +76,8 @@ class SignInScreen extends StatelessWidget {
             height: height * 0.076,
             width: width * 0.85,
             decoration: BoxDecoration(
-                color: Colors.yellow, borderRadius: BorderRadius.circular(15)),
+                color: ColorRes.color_E7D01F,
+                borderRadius: BorderRadius.circular(15)),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
