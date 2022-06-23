@@ -107,14 +107,14 @@ TextStyle textStyleFont16WhitLight = const TextStyle(
   fontFamily: "Gilroy-Light",
   fontWeight: FontWeight.w600,
 );
-TextStyle textStyleFont16Alert = TextStyle(
-  color: ColorRes.color_656F85.withOpacity(0.5),
+TextStyle textStyleFont16Alert = const TextStyle(
+  color: ColorRes.color_656F85,
   fontSize: 16,
   fontFamily: "Gilroy-Light",
   fontWeight: FontWeight.w500,
 );
-TextStyle textStyleFont14Alert = TextStyle(
-  color: ColorRes.color_656F85.withOpacity(0.5),
+TextStyle textStyleFont14Alert = const TextStyle(
+  color: ColorRes.color_656F85,
   fontSize: 14,
   fontFamily: "Gilroy-Light",
   fontWeight: FontWeight.w500,

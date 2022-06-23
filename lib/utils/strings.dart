@@ -32,6 +32,17 @@ class Strings {
   static const success = 'Success!';
   static const allow =
       'Please allow up to 1 business day for our team to review your ID submission';
+  static const update =
+      'We’ll update you on the status of your verification by email and on your account limits page';
+  static const gotIt= "OK, GOT IT";
+  static const cancel= "CANCEL";
+  static const idVerification= "ID Verification";
+  static const idType= "ID Type";
+  static const idNo= "ID No.";
+  static const uploadFrontPicture= "Upload front picture of ID";
+  static const uploadBackPicture= "Upload back picture of ID";
+  static const next= "Next";
+  static const permanentResident= "Permanent Resident Card";
 
   ///---------------------------------------- Register ----------------------------------------
   static const register = 'Register';

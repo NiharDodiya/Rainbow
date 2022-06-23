@@ -16,33 +16,33 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: height * 0.86,
-                width: width,
-                decoration: const BoxDecoration(
-                    color: ColorRes.color_4F359B,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(36),
-                        bottomRight: Radius.circular(36))),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Stack(
-                      children: [
-                        logoRainbow(),
-                        textFields(loginController),
-                        loginButton(loginController)
-                      ],
-                    ),
-                  ],
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  height: height * 0.81,
+                  width: width, margin: EdgeInsets.all(Get.width * 0.02669),
+                  decoration:  BoxDecoration(
+                      color: ColorRes.color_4F359B,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Stack(
+                        children: [
+                          logoRainbow(),
+                          textFields(loginController),
+                          loginButton(loginController)
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              signUp()
-            ],
+                signUp()
+              ],
+            ),
           ),
         ));
   }
@@ -53,7 +53,7 @@ class LoginScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(
-          height: height * 0.10,
+          height: height * 0.08,
         ),
         Center(
           child: Container(
@@ -65,7 +65,7 @@ class LoginScreen extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: height * 0.05,
+          height: height * 0.04,
         ),
         Padding(
             padding: const EdgeInsets.only(left: 20),
@@ -85,7 +85,7 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: height * 0.03,
+              height: height * 0.01,
             ),
             Align(
               alignment: Alignment.topLeft,
@@ -185,7 +185,7 @@ class LoginScreen extends StatelessWidget {
   Widget loginButton(LoginController loginController) {
     return Center(
       child: Padding(
-        padding: EdgeInsets.only(top: height * 0.70),
+        padding: EdgeInsets.only(top: height * 0.66),
         child: Column(
           children: [
             GestureDetector(

@@ -16,4 +16,6 @@ class AssetRes {
   static const splashScreen = '${images}splashScreen.png';
   static const sp1 = '${images}sp1.png';
   static const sp2 = '${images}sp2.png';
+  static const sp3 = '${images}sp-3.png';
+
 }

@@ -1,7 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
+import 'package:rainbow/screens/auth/signin/signin_screen.dart';
+import 'package:rainbow/screens/idVerification/idverification_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -39,6 +43,18 @@ class GetStartedScreens extends StatelessWidget {
                         AssetRes.sp1,
                       ),
                       height: Get.height * 0.35,
+                    ),
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 90,),
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Image(
+                      image: AssetImage(
+                        AssetRes.sp3,
+                      ),
+                      height: 12,
                     ),
                   ),
                 ),
@@ -148,34 +164,125 @@ class GetStartedScreens extends StatelessWidget {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
-        return SizedBox(
-          height: height * 0.46,
-          width: width * 0.84,
+        return BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
           child: AlertDialog(
             backgroundColor: Colors.white,
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15))),
             actions: [
-              Center(
-                  child: Text(
-                Strings.important,
-                style: textStyleFont18Black,
-              )),
-              const SizedBox(
-                height: 10,
-              ),
-              Center(
-                  child: Text(
-                Strings.smoothProcess,
-                style: textStyleFont16Alert,
-                textAlign: TextAlign.center,
-              )),
-              const SizedBox(
-                height: 10,
-              ),
-              Center(
-                  child: Text(
-                Strings.prepare,
-                style: textStyleFont14Alert,
-              )),
+              Column(
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Center(
+                      child: Text(
+                    Strings.important,
+                    style: textStyleFont18Black,
+                  )),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  SizedBox(
+                    height: height * 0.057,
+                    width: width * 0.73,
+                    child: Center(
+                        child: Text(
+                      Strings.smoothProcess,
+                      style: textStyleFont16Alert,
+                      textAlign: TextAlign.center,
+                    )),
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  Center(
+                      child: Text(
+                    Strings.prepare,
+                    style: textStyleFont14Alert,
+                  )),
+                  const SizedBox(
+                    height: 18,
+                  ),
+                  Center(
+                    child: Text(
+                      Strings.success,
+                      style: textStyleFont18Black,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  SizedBox(
+                    width: width * 0.78,
+                    height: height * 0.057,
+                    child: Center(
+                        child: Text(
+                      Strings.allow,
+                      style: textStyleFont14Alert,
+                      textAlign: TextAlign.center,
+                    )),
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  SizedBox(
+                    width: width * 0.78,
+                    height: height * 0.085,
+                    child: Center(
+                        child: Text(
+                      Strings.update,
+                      style: textStyleFont14Alert,
+                      textAlign: TextAlign.center,
+                    )),
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  const Divider(
+                    thickness: 1,
+                    height: 1,
+                    color: ColorRes.color_CACACA,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: GestureDetector(onTap: () {
+                          Get.to(const IdVerificationScreen());
+                        },
+                          child: Text(
+                            Strings.gotIt,
+                            style: textStyleFont18Black,
+                          ),
+                        ),
+                      ),
+                      const Spacer(),
+                      Container(
+                        height: 30,
+                        width: 1,
+                        color: ColorRes.color_CACACA,
+                      ),
+                      const Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: GestureDetector(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Text(
+                              Strings.cancel,
+                              style: textStyleFont18Black,
+                            )),
+                      ),
+                    ],
+                  )
+                ],
+              )
             ],
           ),
         );
