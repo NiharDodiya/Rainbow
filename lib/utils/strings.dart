@@ -23,4 +23,21 @@ class Strings {
 
   ///---------------------------------------- History screen ----------------------------------------
   static const historicalWeather = 'Historical weather';
+
+  ///---------------------------------------- Register ----------------------------------------
+  static const register = 'Register';
+  static const fullName = 'Full Name';
+  static const email = 'Email';
+  static const password = 'Password';
+  static const reTypePassword = 'Re-Type Password';
+  static const addressLine1 = 'Address Line 1';
+  static const addressLine2 = 'Address Line 2';
+  static const phoneNumber = 'Phone Number';
+  static const maritalStatus = 'Marital Status';
+  static const ethnicity = 'Ethnicity';
+  static const birthDate = 'Birth Date';
+  static const noOfKids = 'No of Kids';
+  static const alreadyHaveAnAccount = 'Already have an account? ';
+  static const signIn = 'Sign in';
+  static const privacyPolicyText = 'By continuing you agree Rainbow’s Terms of Services & Privacy Policy.';
 }
