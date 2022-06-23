@@ -16,7 +16,6 @@ class Strings {
       'By continuing you agree Rainbow’s Terms of Services & Privacy Policy.';
   static const welcomeBack = 'Welcome Back!';
   static const userName = 'User name';
-  static const passWord = 'Password';
   static const forgotPassword = 'Forgot password?';
   static const login = 'Login';
   static const log_in = 'Log in';

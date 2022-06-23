@@ -3,6 +3,9 @@ class AssetRes {
   static const images = 'assets/images/';
 
   ///--------------------------------------------- icons ---------------------------------------------
+  static const dropdown = '${icons}dropdown.png';
+  static const arrowDown = '${icons}arrow_down.png';
+  static const calendar = '${icons}calendar.png';
 
   ///--------------------------------------------- images ---------------------------------------------
   static const rainBowLogo = '${images}rainbow_logo.png';

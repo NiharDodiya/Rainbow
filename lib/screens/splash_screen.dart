@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/auth/signin/signin_screen.dart';
+import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
@@ -13,7 +13,7 @@ class SplashScreen extends StatelessWidget {
     return SafeArea(
       child: GestureDetector(
         onTap: () {
-          Get.to(SignInScreen());
+          Get.to(() => const AuthDashboard());
         },
         child: Scaffold(
           backgroundColor: Colors.white,

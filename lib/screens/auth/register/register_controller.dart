@@ -31,6 +31,18 @@ class RegisterController extends GetxController {
 
   void onKidsSelect() {}
 
+  void onAddress1Change(String str){
+    if(str.length > 440 && str.length < 460){
+      update(['address1']);
+    }
+  }
+
+  void onAddress2Change(String str){
+    if(str.length > 440 && str.length < 460){
+      update(['address2']);
+    }
+  }
+
   void onRegisterTap() {
     if(validation()){
 

@@ -9,8 +9,8 @@ import 'package:rainbow/utils/strings.dart';
 var height = Get.height;
 var width = Get.width;
 
-class SignInScreen extends StatelessWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+class AuthDashboard extends StatelessWidget {
+  const AuthDashboard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ class SignInScreen extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            Get.to(const LoginScreen());
+            Get.to(() => LoginScreen());
           },
           child: Container(
             height: height * 0.076,

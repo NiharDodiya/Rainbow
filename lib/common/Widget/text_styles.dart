@@ -70,6 +70,12 @@ TextStyle textStyleFont30WhiteBold = const TextStyle(
   fontFamily: "Gilroy-Light",
   fontWeight: FontWeight.w600,
 );
+TextStyle textStyleFont30WhiteExtraBold = const TextStyle(
+  color: ColorRes.white,
+  fontSize: 30,
+  fontFamily: "Gilroy-Light",
+  fontWeight: FontWeight.w900,
+);
 TextStyle textFields = TextStyle(
   color: ColorRes.color_656F85..withOpacity(0.5),
   fontSize: 10,
@@ -111,5 +117,11 @@ TextStyle textStyleFont14Alert = TextStyle(
   color: ColorRes.color_656F85.withOpacity(0.5),
   fontSize: 14,
   fontFamily: "Gilroy-Light",
+  fontWeight: FontWeight.w500,
+);
+TextStyle textStyleFont16Grey = TextStyle(
+  color: ColorRes.black2.withOpacity(0.5),
+  fontSize: 14,
+  fontFamily: "Gilroy-Medium",
   fontWeight: FontWeight.w500,
 );

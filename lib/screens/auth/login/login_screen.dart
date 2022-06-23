@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/screens/auth/login/login_controller.dart';
-import 'package:rainbow/screens/auth/signin/signin_screen.dart';
 import 'package:rainbow/screens/getstarted_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  LoginScreen({Key? key}) : super(key: key);
 
+  final LoginController loginController = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
-    LoginController loginController = Get.put(LoginController());
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
@@ -125,7 +125,7 @@ class LoginScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: Text(
-                  Strings.passWord,
+                  Strings.password,
                   style: textStyleFont14White600,
                 ),
               ),
@@ -242,9 +242,12 @@ class LoginScreen extends StatelessWidget {
               Strings.dontHaveAccount,
               style: textStyleFont14Black,
             ),
-            Text(
-              Strings.sign_Up,
-              style: textStyleFont14,
+            InkWell(
+              onTap: loginController.onSignUpTap,
+              child: Text(
+                Strings.sign_Up,
+                style: textStyleFont14,
+              ),
             ),
           ],
         ),
