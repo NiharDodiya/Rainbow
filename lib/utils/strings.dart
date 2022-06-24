@@ -9,18 +9,18 @@ class Strings {
   static const google = 'Google';
   static const facebook = 'FaceBook';
   static const signIn = 'Sign in';
-  static const signUp = 'Sign Up';
-  static const sign_Up = 'SignUp';
+  static const signUp = 'Sign up';
+  static const sign_Up = 'Signup';
   static const forAdvertise = " for advertiser's account";
   static const termsServices =
-      'By continuing you agree Rainbow’s Terms of Services & Privacy Policy.';
+      'By continuing you agree Rainbow’s Terms of Services \n& Privacy Policy.';
   static const welcomeBack = 'Welcome Back!';
   static const userName = 'User name';
   static const forgotPassword = 'Forgot password?';
   static const login = 'Login';
   static const log_in = 'Log in';
   static const loginAsAdvertiser = ' as advertiser';
-  static const dontHaveAccount = ' Don’t have an account';
+  static const dontHaveAccount = ' Don’t have an account ';
   static const getStarted = 'Get Started';
   static const notVerified = 'Your Account \nis not yet verified';
   static const completeYourProfile =
@@ -48,18 +48,23 @@ class Strings {
   static const register = 'Register';
   static const fullName = 'Full Name';
   static const email = 'Email';
+  static const emailExample = 'example@email.com';
   static const password = 'Password';
+  static const passwordExample = '• • • • • • • • •';
   static const reTypePassword = 'Re-Type Password';
   static const addressLine1 = 'Address Line 1';
   static const addressLine2 = 'Address Line 2';
   static const phoneNumber = 'Phone Number';
   static const maritalStatus = 'Marital Status';
   static const ethnicity = 'Ethnicity';
+  static const idNoT = '123456';
   static const birthDate = 'Birth Date';
   static const noOfKids = 'No of Kids';
   static const fullNameError = 'Full Name is required';
   static const emailError = 'Email is required';
+  static const emailError1 = 'Email is required';
   static const emailValidError = 'Email is invalid';
+  static const emailValidError1 = 'Email is invalid';
   static const passwordError = 'Password is required';
   static const passwordValidError = 'Password is invalid';
   static const reTypePasswordError = 'Re-Type Password is required';
@@ -81,5 +86,12 @@ class Strings {
   static const british = 'British';
   static const indian = 'Indian';
   static const selfie = 'Selfie Verification';
+  static const accCon = 'Accept and Continue';
   static const prepareScan = 'Prepare to scan your face';
+  static const termsConditions = 'Terms and Conditions';
+  static const makeSure = 'Make sure you are in a well-lit room \nand hold the phone as shown in the picture';
+  static const privacyPolicy = 'By using Rainbow™, you agree to\nour Terms and Condition and Privacy Policy';
+  static const agreementTerms = 'By tapping accept and continue , I agree to the Terms and Condition and Privacy Policy and i am giving flighteno my concent to use my personal data to: facilitate my transaction and avail of products and services industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\nIt has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\nIt was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.';
+
+
 }

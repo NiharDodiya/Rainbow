@@ -1,24 +1,27 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
+import 'package:rainbow/screens/getstarted_screen.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class RegisterController extends GetxController {
   void init() {}
+  DateTime selectedDate = DateTime.now();
 
-  TextEditingController fullNameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController pwdController = TextEditingController();
-  TextEditingController confirmPwdController = TextEditingController();
-  TextEditingController address1Controller = TextEditingController();
-  TextEditingController address2Controller = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController statusController = TextEditingController();
-  TextEditingController ethnicityController = TextEditingController();
-  TextEditingController dobController = TextEditingController();
-  TextEditingController kidsController = TextEditingController();
+  TextEditingController fullNameController = TextEditingController(/*text: "ravi"*/);
+  TextEditingController emailController = TextEditingController(/*text: "ravi@gmail.com"*/);
+  TextEditingController pwdController = TextEditingController(/*text: "123456"*/);
+  TextEditingController confirmPwdController = TextEditingController(/*text: "123456"*/);
+  TextEditingController address1Controller = TextEditingController(/*text: "csasdd"*/);
+  TextEditingController address2Controller = TextEditingController(/*text: "dfdfwdfdw"*/);
+  TextEditingController phoneController = TextEditingController(/*text: "7878787878"*/);
+  TextEditingController statusController = TextEditingController(/*text: "single"*/);
+  TextEditingController ethnicityController = TextEditingController(/*text: "single"*/);
+  TextEditingController dobController = TextEditingController(/*text: "07-06-1999"*/);
+  TextEditingController kidsController = TextEditingController(/*text: "1"*/);
 
   List<String> martialStatusList = [
     Strings.single,
@@ -27,6 +30,8 @@ class RegisterController extends GetxController {
   List<String> ethnicityList = [
     Strings.single,
     Strings.married,
+  ];  List<String> noOfKids = [
+    "0","1","2","3","4","5","6"
   ];
   bool martialStatusDropdown = false;
   bool ethnicityDropdown = false;
@@ -58,7 +63,16 @@ class RegisterController extends GetxController {
   }
 
   void onStatusSelect() {
-    martialStatusDropdown = true;
+    // martialStatusDropdown = true;
+    if(martialStatusDropdown == false)
+      {
+        martialStatusDropdown=true;
+      }
+    else
+      {
+        martialStatusDropdown=false;
+      }
+
     update(['register_screen']);
   }
 
@@ -68,7 +82,14 @@ class RegisterController extends GetxController {
   }
 
   void onEthnicitySelect() {
-    ethnicityDropdown = true;
+    if(ethnicityDropdown == false)
+    {
+      ethnicityDropdown=true;
+    }
+    else
+    {
+      ethnicityDropdown=false;
+    }
     update(['register_screen']);
   }
 
@@ -80,7 +101,15 @@ class RegisterController extends GetxController {
   void onBODSelect() {}
 
   void onKidsSelect() {
-    kidsDropdown = true;
+    // kidsDropdown = true;
+    if(kidsDropdown == false)
+    {
+      kidsDropdown=true;
+    }
+    else
+    {
+      kidsDropdown=false;
+    }
     update(['register_screen']);
   }
 
@@ -102,7 +131,9 @@ class RegisterController extends GetxController {
   }
 
   void onRegisterTap() {
-    if (validation()) {}
+    if (validation()) {
+      Get.to(()=>GetStartedScreens());
+    }
   }
 
   void onSignInTap() {}
@@ -114,7 +145,7 @@ class RegisterController extends GetxController {
     } else if (emailController.text.isEmpty) {
       errorToast(Strings.emailError);
       return false;
-    } else if (!GetUtils.isPassport(emailController.text)) {
+    } else if (!GetUtils.isEmail(emailController.text)) {
       errorToast(Strings.emailValidError);
       return false;
     } else if (pwdController.text.isEmpty) {
@@ -153,4 +184,20 @@ class RegisterController extends GetxController {
     }
     return true;
   }
+
+
+String? bDateStore;
+  Future<void> selectDate(BuildContext context) async {
+    DatePicker.showDatePicker(context,
+        showTitleActions: true,
+        minTime: DateTime(1970, 3, 5),
+        maxTime: DateTime(2019, 6, 7), onChanged: (date) {
+          print('change $date');
+        }, onConfirm: (date) {
+          print('confirm $date');
+          var formattedDate = "${date.day}-${date.month}-${date.year}";
+          dobController.text = formattedDate;
+        }, currentTime: DateTime.now(), locale: LocaleType.en);
+  }
+
 }

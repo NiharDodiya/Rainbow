@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/auth/login/login_screen.dart';
+import 'package:rainbow/screens/auth/register/register_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -19,7 +20,8 @@ class AuthDashboard extends StatelessWidget {
         child: Center(
           child: Container(
             margin: EdgeInsets.all(Get.width * 0.02669),
-            decoration:  BoxDecoration(color: ColorRes.color_4F359B,borderRadius: BorderRadius.circular(25)),
+            decoration:  BoxDecoration(color: ColorRes.color_4F359B,borderRadius: BorderRadius.circular(
+                25),),
             child: Column(
               children: [
                 Stack(
@@ -47,14 +49,14 @@ class AuthDashboard extends StatelessWidget {
         Center(
           child: Container(
             height: Get.height * 0.120,
-            width: Get.width * 0.8,
+            width: Get.width * 0.845,
             decoration: const BoxDecoration(
                 image:
-                    DecorationImage(image: AssetImage(AssetRes.rainBowLogo))),
+                    DecorationImage(image: AssetImage(AssetRes.rainBowLogo),fit: BoxFit.fill)),
           ),
         ),
         const SizedBox(
-          height: 10,
+          height: 13,
         ),
         Center(
             child: Text(
@@ -82,7 +84,8 @@ class AuthDashboard extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Get.to(() => LoginScreen());
+                // Get.to(() => LoginScreen());
+                Get.to(() => RegisterScreen());
               },
               child: Container(
                 height: height * 0.076,
@@ -130,7 +133,7 @@ class AuthDashboard extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(
-              height: 20,
+              height: 8,
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -211,7 +214,7 @@ class AuthDashboard extends StatelessWidget {
   Widget alreadyHaveAccount() {
     return Center(
       child: Padding(
-        padding:EdgeInsets.only(top: Get.height *0.71),
+        padding:EdgeInsets.only(top: Get.height *0.70),
         child: Column(
           children: [
             Row(
@@ -222,8 +225,12 @@ class AuthDashboard extends StatelessWidget {
                   Strings.alreadyHaveAccount,
                   style: textStyleFont14White,
                 ),
-                Text(Strings.signIn,
-                    style: textStyleFont14WhiteBold, textAlign: TextAlign.center),
+                GestureDetector(onTap:  () {
+                  Get.to(()=> LoginScreen());
+                },
+                  child: Text(Strings.signIn,
+                      style: textStyleFont14WhiteBold, textAlign: TextAlign.center),
+                ),
               ],
             ),
             sizedBox14(),
@@ -242,15 +249,17 @@ class AuthDashboard extends StatelessWidget {
               ],
             ),
             sizedBox14(),
-            Center(
-              child: SizedBox(
-                  height: height * 0.040,
-                  width: width * 0.67,
-                  child: Text(
-                    Strings.termsServices,
-                    style: textStyleFont10White,
-                    textAlign: TextAlign.center,
-                  )),
+            SizedBox(width: Get.width*0.67,height: Get.height * 0.040,
+              child: Center(
+                child: SizedBox(
+                    height: height * 0.040,
+                    width: width * 0.67,
+                    child: Text(
+                      Strings.termsServices,
+                      style: textStyleFont10White,
+                      textAlign: TextAlign.center,
+                    )),
+              ),
             )
           ],
         ),

@@ -42,7 +42,7 @@ class AppTextFiled extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(title, style: textStyleFont14White600),
-        const SizedBox(height: 5),
+         SizedBox(height: Get.height*0.012),
         Container(
           width: Get.width,
           constraints: BoxConstraints(
@@ -63,7 +63,7 @@ class AppTextFiled extends StatelessWidget {
                   child: TextField(
                     controller: controller,
                     obscureText: obscure ?? false,
-                    style: textStyleFont16Grey,
+                    style: textFieldText,
                     keyboardType: textInputType,
                     enabled: enable,
                     obscuringCharacter: '*',
@@ -85,7 +85,7 @@ class AppTextFiled extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: bottomPadding ?? 15),
+        SizedBox(height: bottomPadding ?? 13),
       ],
     );
   }

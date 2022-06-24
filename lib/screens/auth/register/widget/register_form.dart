@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/app_dropdown.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/auth/register/register_controller.dart';
@@ -78,33 +80,50 @@ class RegisterForm extends StatelessWidget {
                 );
               },
             ),
-            AppTextFiled(
-              controller: controller.statusController,
-              title: Strings.maritalStatus,
-              hintText: Strings.maritalStatus,
-              suffix: Image.asset(AssetRes.arrowDown, height: 17),
-              enable: false,
+            GestureDetector(
+              onTap: () {
+                controller.onStatusSelect();
+                },
+              child: AppTextFiled(
+                controller: controller.statusController,
+                title: Strings.maritalStatus,
+                hintText: Strings.maritalStatus,
+                suffix: Image.asset(AssetRes.arrowDown, height: 17),
+                enable: false,
+              ),
             ),
-            AppTextFiled(
-              controller: controller.ethnicityController,
-              title: Strings.ethnicity,
-              hintText: Strings.ethnicity,
-              suffix: Image.asset(AssetRes.arrowDown, height: 17),
-              enable: false,
+            GestureDetector(onTap: () {
+              controller.onEthnicitySelect();
+            },
+              child: AppTextFiled(
+                controller: controller.ethnicityController,
+                title: Strings.ethnicity,
+                hintText: Strings.ethnicity,
+                suffix: Image.asset(AssetRes.arrowDown, height: 17),
+                enable: false,
+              ),
             ),
-            AppTextFiled(
-              controller: controller.dobController,
-              title: Strings.birthDate,
-              hintText: Strings.birthDate,
-              suffix: Image.asset(AssetRes.calendar, height: 17),
-              enable: false,
+            GestureDetector(onTap: () {
+               controller.selectDate(context);
+               },
+              child: AppTextFiled(
+                controller: controller.dobController,
+                title: Strings.birthDate,
+                hintText: Strings.birthDate,
+                suffix: Image.asset(AssetRes.calendar, height: 17),
+                enable: false,
+              ),
             ),
-            AppTextFiled(
-              controller: controller.kidsController,
-              title: Strings.noOfKids,
-              hintText: Strings.noOfKids,
-              suffix: Image.asset(AssetRes.arrowDown, height: 17),
-              enable: false,
+            GestureDetector(onTap: () {
+              controller.onKidsSelect();
+            },
+              child: AppTextFiled(
+                controller: controller.kidsController,
+                title: Strings.noOfKids,
+                hintText: Strings.noOfKids,
+                suffix: Image.asset(AssetRes.arrowDown, height: 17),
+                enable: false,
+              ),
             ),
           ],
         );
