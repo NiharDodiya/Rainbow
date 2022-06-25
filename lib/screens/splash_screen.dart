@@ -2,89 +2,78 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
+import 'package:rainbow/screens/splash/splash_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
-class SplashScreen extends StatefulWidget {
+
+class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  late PageController _pageController;
-  int currentIndex = 0;
-  @override
-  void initState() {
-    _pageController = PageController(initialPage: 0);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Get.to(() => const AuthDashboard());
-      },
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body:  SafeArea(
-          child: Stack(
-            alignment: Alignment.bottomCenter,
-            children: <Widget>[
-              PageView(
-                onPageChanged: (int page) {
-                  setState(() {
-                    currentIndex = page;
-                  });
-                },
-                controller: _pageController,
-                children: <Widget>[
-                  aniMation(),
-                  aniMation(),
-                  aniMation(),
-                  aniMation(),
+    SplashController controller =Get.put(SplashController());
+    return GetBuilder<SplashController>(id: "splash",builder: (controller) {
+      return GestureDetector(
+        onTap: () {
+          Get.to(() => const AuthDashboard());
+        },
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          body:  SafeArea(
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              children: <Widget>[
+                PageView(
+                  onPageChanged: (int page) {
+                    /*   setState(() {
+                      currentIndex = page;
+                    });*/
+                    controller.onChanged(page);
+                  },
+                  controller: controller.pageController,
+                  children: <Widget>[
+                    aniMation(),
+                    aniMation(),
+                    aniMation(),
+                    aniMation(),
 
-                ],
-              ),
-              Padding(padding: EdgeInsets.only(top: 550),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Padding(padding: EdgeInsets.only(left: 15,top: 30),
-                            child: Text(Strings.next,style: textStyleFont12,)),
-                        Spacer(),
-
-                        Padding(padding: EdgeInsets.only(top: 30),
-                          child: Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: _buildIndicator(),
-                            ),
-                          ),
-                        ),
-                        Spacer(),
-
-                        Padding(padding: EdgeInsets.only(left: 15,top: 30,right: 15),
-                            child: Text("Skip",style: textStyleFont12,)),
-                      ],
-                    ),
                   ],
                 ),
-              ),
-            ],
+                Padding(padding: const EdgeInsets.only(top: 550),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Padding(padding: const EdgeInsets.only(left: 15,top: 30),
+                              child: Text(Strings.next,style: textStyleFont12,)),
+                          const Spacer(),
+
+                          Padding(padding: const EdgeInsets.only(top: 30),
+                            child: Container(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: _buildIndicator(controller),
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+
+                          Padding(padding: const EdgeInsets.only(left: 15,top: 30,right: 15),
+                              child: Text("Skip",style: textStyleFont12,)),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
+      );
+    },
+
     );
   }
 
@@ -99,10 +88,10 @@ class _SplashScreenState extends State<SplashScreen> {
           borderRadius: BorderRadius.circular(5)),
     );
   }
-  List<Widget> _buildIndicator() {
+  List<Widget> _buildIndicator(SplashController controller) {
     List<Widget> indicators = [];
     for (int i = 0; i < 4; i++) {
-      if (currentIndex == i) {
+      if (controller.currentIndex == i) {
         indicators.add(_indicator(true));
       } else {
         indicators.add(_indicator(false));
@@ -240,12 +229,34 @@ class _SplashScreenState extends State<SplashScreen> {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class RPSCustomPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
 
     Paint paint_0_stroke = Paint()..style=PaintingStyle.stroke..strokeWidth=1;
-    paint_0_stroke.color=Color(0xff4F359B).withOpacity(1);
+    paint_0_stroke.color=const Color(0xff4F359B).withOpacity(1);
     canvas.drawCircle(Offset(size.width*0.4986667,size.height*0.8957143),size.width*0.1560000,paint_0_stroke);
 
     // Paint paint_0_fill = Paint()..style=PaintingStyle.fill;
@@ -253,7 +264,7 @@ class RPSCustomPainter extends CustomPainter {
     // canvas.drawCircle(Offset(size.width*0.4986667,size.height*0.8957143),size.width*0.1560000,paint_0_fill);
 
     Paint paint_1_stroke = Paint()..style=PaintingStyle.stroke..strokeWidth=1;
-    paint_1_stroke.color=Color(0xff4F359B).withOpacity(0.5);
+    paint_1_stroke.color=const Color(0xff4F359B).withOpacity(0.5);
     canvas.drawCircle(Offset(size.width*0.4986667,size.height*0.8957143),size.width*0.1933333,paint_1_stroke);
 
     // Paint paint_1_fill = Paint()..style=PaintingStyle.fill;
@@ -276,7 +287,7 @@ class RPSCustomPainter extends CustomPainter {
     path_2.close();
 
     Paint paint_2_fill = Paint()..style=PaintingStyle.fill;
-    paint_2_fill.color = Color(0xff4F359B).withOpacity(1.0);
+    paint_2_fill.color = const Color(0xff4F359B).withOpacity(1.0);
     canvas.drawPath(path_2,paint_2_fill);
 
   }

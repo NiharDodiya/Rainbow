@@ -16,12 +16,12 @@ class RegisterController extends GetxController {
   TextEditingController pwdController = TextEditingController(/*text: "123456"*/);
   TextEditingController confirmPwdController = TextEditingController(/*text: "123456"*/);
   TextEditingController address1Controller = TextEditingController(/*text: "csasdd"*/);
-  TextEditingController address2Controller = TextEditingController(/*text: "dfdfwdfdw"*/);
-  TextEditingController phoneController = TextEditingController(/*text: "7878787878"*/);
-  TextEditingController statusController = TextEditingController(/*text: "single"*/);
-  TextEditingController ethnicityController = TextEditingController(/*text: "single"*/);
-  TextEditingController dobController = TextEditingController(/*text: "07-06-1999"*/);
-  TextEditingController kidsController = TextEditingController(/*text: "1"*/);
+  TextEditingController address2Controller = TextEditingController(text: "dfdfwdfdw");
+  TextEditingController phoneController = TextEditingController(text: "7878787878");
+  TextEditingController statusController = TextEditingController(text: "single");
+  TextEditingController ethnicityController = TextEditingController(text: "single");
+  TextEditingController dobController = TextEditingController(text: "07-06-1999");
+  TextEditingController kidsController = TextEditingController(text: "1");
 
   List<String> martialStatusList = [
     Strings.single,
