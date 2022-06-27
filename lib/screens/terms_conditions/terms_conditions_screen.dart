@@ -31,7 +31,8 @@ class TermsConditionsScreen extends StatelessWidget {
                     onTap: () {
                       Get.back();
                     },
-                    child: const Padding(padding: EdgeInsets.only(left: 15),
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 15),
                       child: Icon(
                         Icons.arrow_back_ios_outlined,
                         size: 16.72,
@@ -41,7 +42,8 @@ class TermsConditionsScreen extends StatelessWidget {
                   SizedBox(
                     height: Get.height * 0.05,
                   ),
-                  Padding(padding: const EdgeInsets.only(left: 15),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
                     child: Text(Strings.termsConditions,
                         style: textStyleFont30WhiteExtraBold,
                         textAlign: TextAlign.center),
@@ -49,27 +51,39 @@ class TermsConditionsScreen extends StatelessWidget {
                   SizedBox(
                     height: Get.height * 0.042,
                   ),
-                  Padding(padding: const EdgeInsets.only(left: 6),
-                    child: SizedBox(width: Get.width*1,height: Get.height*0.058,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 6),
+                    child: SizedBox(
+                      width: Get.width * 1,
+                      height: Get.height * 0.058,
                       child: Text(Strings.privacyPolicy,
-                          style: textStyleFont16Whit, textAlign: TextAlign.center),
+                          style: textStyleFont16Whit,
+                          textAlign: TextAlign.center),
                     ),
                   ),
                   SizedBox(
                     height: Get.height * 0.035,
                   ),
-                  Padding(padding: const EdgeInsets.only(left: 15),
-                    child: SizedBox(height: Get.height * 0.60,width: Get.width * 0.85,
-                      child: Text(Strings.agreementTerms,
-                          style: textStyleFont16Whit, ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: SizedBox(
+                      height: Get.height * 0.60,
+                      width: Get.width * 0.85,
+                      child: Text(
+                        Strings.agreementTerms,
+                        style: textStyleFont16Whit,
+                      ),
                     ),
                   ),
-                 const SizedBox(height: 9,),
-                  Padding(padding: const EdgeInsets.only(left: 15),
+                  const SizedBox(
+                    height: 9,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
                     child: GestureDetector(
-                     onTap: () {
-                       Get.to(()=>const IdVerificationScreen());
-                     },
+                      onTap: () {
+                        Get.to(() => const IdVerificationScreen());
+                      },
                       child: Container(
                         width: Get.width * 0.84,
                         height: Get.height * 0.073,

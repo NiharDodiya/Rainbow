@@ -3,13 +3,13 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/scanyour_face/scanyourface_screen.dart';
+import 'package:rainbow/screens/auth/verify_phone/verifyphone_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
-class SelfieVerificationScreen extends StatelessWidget {
-  const SelfieVerificationScreen({Key? key}) : super(key: key);
+class ScanYourFaceScreen extends StatelessWidget {
+  const ScanYourFaceScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +18,8 @@ class SelfieVerificationScreen extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 10, bottom: 10),
@@ -58,7 +60,7 @@ class SelfieVerificationScreen extends StatelessWidget {
                               style: textStyleFont26WhiteBold,
                             )),
                         SizedBox(
-                          height: Get.height * 0.005,
+                          height: Get.height * 0.009,
                         ),
                         Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -99,25 +101,28 @@ class SelfieVerificationScreen extends StatelessWidget {
                         SizedBox(
                           height: Get.height * 0.03,
                         ),
-                        Center(
+                        Padding(
+                          padding: EdgeInsets.only(left: Get.height * 0.028),
                           child: SizedBox(
-                            height: Get.height * 0.040,
+                            height: Get.height * 0.046,
                             width: Get.width * 0.836619,
-                            child: Text(
-                              Strings.prepareScan,
-                              style: textStyleFont26WhiteBold,
+                            child: Center(
+                              child: Text(
+                                Strings.scanYourFace,
+                                style: textStyleFont26WhiteBold,
+                              ),
                             ),
                           ),
                         ),
                         SizedBox(
-                          height: Get.height * 0.035,
+                          height: Get.height * 0.03,
                         ),
                         Center(
                           child: SizedBox(
                               height: Get.height * 0.06060,
                               width: Get.width * 0.901408,
                               child: Text(
-                                Strings.makeSure,
+                                Strings.pleaseBlink,
                                 style: textStyleFont16Whit,
                                 textAlign: TextAlign.center,
                               )),
@@ -133,20 +138,16 @@ class SelfieVerificationScreen extends StatelessWidget {
                               width: 313,
                               child: Stack(
                                 children: [
-                                  Positioned(
-                                    top: Get.height * 0.159,
-                                    left: Get.width * 0.2,
-                                    child: Center(
-                                      child: Container(
-                                        height: Get.height * 0.2866,
-                                        width: Get.width * 0.445014,
-                                        decoration: const BoxDecoration(
-                                            image: DecorationImage(
-                                                image: AssetImage(
-                                                    AssetRes.posterProfile),
-                                                fit: BoxFit.fitHeight),
-                                            shape: BoxShape.circle),
-                                      ),
+                                  Center(
+                                    child: Container(
+                                      height: 225,
+                                      width: 225,
+                                      decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                              image: AssetImage(
+                                                  AssetRes.selfiePicture),
+                                              fit: BoxFit.cover),
+                                          shape: BoxShape.circle),
                                     ),
                                   ),
                                 ],
@@ -155,11 +156,11 @@ class SelfieVerificationScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: Get.height * 0.03,
+                          height: Get.height * 0.028,
                         ),
                         GestureDetector(
                           onTap: () {
-                            Get.to(() => const ScanYourFaceScreen());
+                            Get.to(() => const VerifyPhoneScreen());
                           },
                           child: Center(
                             child: Container(
@@ -175,9 +176,6 @@ class SelfieVerificationScreen extends StatelessWidget {
                               )),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: Get.height * 0.01,
                         ),
                       ],
                     ),

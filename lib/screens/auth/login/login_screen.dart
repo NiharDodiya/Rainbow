@@ -12,11 +12,13 @@ class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
 
   final LoginController loginController = Get.put(LoginController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: GetBuilder<LoginController>(id: "Login",
+        body: GetBuilder<LoginController>(
+          id: "Login",
           builder: (controller) {
             return SafeArea(
               child: SingleChildScrollView(
@@ -24,8 +26,9 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     Container(
                       height: height * 0.81,
-                      width: width, margin: EdgeInsets.all(Get.width * 0.02669),
-                      decoration:  BoxDecoration(
+                      width: width,
+                      margin: EdgeInsets.all(Get.width * 0.02669),
+                      decoration: BoxDecoration(
                           color: ColorRes.color_4F359B,
                           borderRadius: BorderRadius.circular(25)),
                       child: Column(
@@ -64,15 +67,18 @@ class LoginScreen extends StatelessWidget {
             height: height * 0.13,
             width: width * 0.84,
             decoration: const BoxDecoration(
-                image:
-                    DecorationImage(image: AssetImage(AssetRes.rainBowLogo),fit: BoxFit.fill)),
+                image: DecorationImage(
+                    image: AssetImage(AssetRes.rainBowLogo), fit: BoxFit.fill)),
           ),
         ),
         SizedBox(
           height: height * 0.06,
         ),
-        Padding(padding: EdgeInsets.only(left: 15),
-          child: SizedBox(height: Get.height*0.0514,width: Get.width * 0.6028,
+        Padding(
+          padding: EdgeInsets.only(left: 15),
+          child: SizedBox(
+            height: Get.height * 0.0514,
+            width: Get.width * 0.6028,
             child: Text(
               Strings.welcomeBack,
               style: textStyleFont30WhiteBold,
@@ -85,13 +91,13 @@ class LoginScreen extends StatelessWidget {
 
   Widget textFields(LoginController loginController) {
     return Padding(
-      padding: EdgeInsets.only(top: height * 0.35,left: 5),
+      padding: EdgeInsets.only(top: height * 0.35, left: 5),
       child: Column(
         children: [
           SizedBox(
             height: height * 0.02,
           ),
-    /*      Align(
+          /*      Align(
             alignment: Alignment.topLeft,
             child: Padding(
               padding: const EdgeInsets.only(left: 20),
@@ -105,7 +111,7 @@ class LoginScreen extends StatelessWidget {
           Center(
             child: SizedBox(
               width: width * 0.85,
-              child:  AppTextFiled(
+              child: AppTextFiled(
                 controller: loginController.emailController,
                 title: Strings.userName,
                 hintText: Strings.emailExample,
@@ -114,7 +120,7 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
 
-      /*    Align(
+          /*    Align(
             alignment: Alignment.topLeft,
             child: Padding(
               padding: const EdgeInsets.only(left: 20),
@@ -128,7 +134,7 @@ class LoginScreen extends StatelessWidget {
           Center(
             child: SizedBox(
               width: width * 0.85,
-              child:AppTextFiled(
+              child: AppTextFiled(
                 controller: loginController.passwordController,
                 title: Strings.password,
                 hintText: Strings.passwordExample,
@@ -136,7 +142,6 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
           ),
-
           Align(
             alignment: Alignment.topRight,
             child: Padding(
@@ -195,7 +200,6 @@ class LoginScreen extends StatelessWidget {
                   Strings.loginAsAdvertiser,
                   style: textStyleFont14White,
                 ),
-
               ],
             )
           ],

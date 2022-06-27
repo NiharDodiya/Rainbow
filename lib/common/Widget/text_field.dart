@@ -42,7 +42,7 @@ class AppTextFiled extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(title, style: textStyleFont14White600),
-         SizedBox(height: Get.height*0.012),
+        SizedBox(height: Get.height * 0.012),
         Container(
           width: Get.width,
           constraints: BoxConstraints(

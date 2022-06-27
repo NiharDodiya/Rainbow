@@ -1,6 +1,6 @@
 import 'package:country_picker/country_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
@@ -11,16 +11,25 @@ class RegisterController extends GetxController {
   void init() {}
   DateTime selectedDate = DateTime.now();
 
-  TextEditingController fullNameController = TextEditingController(/*text: "ravi"*/);
-  TextEditingController emailController = TextEditingController(/*text: "ravi@gmail.com"*/);
-  TextEditingController pwdController = TextEditingController(/*text: "123456"*/);
-  TextEditingController confirmPwdController = TextEditingController(/*text: "123456"*/);
-  TextEditingController address1Controller = TextEditingController(/*text: "csasdd"*/);
-  TextEditingController address2Controller = TextEditingController(text: "dfdfwdfdw");
-  TextEditingController phoneController = TextEditingController(text: "7878787878");
-  TextEditingController statusController = TextEditingController(text: "single");
-  TextEditingController ethnicityController = TextEditingController(text: "single");
-  TextEditingController dobController = TextEditingController(text: "07-06-1999");
+  TextEditingController fullNameController =
+      TextEditingController(text: "ravi");
+  TextEditingController emailController =
+      TextEditingController(text: "ravi@gmail.com");
+  TextEditingController pwdController = TextEditingController(text: "123456");
+  TextEditingController confirmPwdController =
+      TextEditingController(text: "123456");
+  TextEditingController address1Controller =
+      TextEditingController(text: "csasdd");
+  TextEditingController address2Controller =
+      TextEditingController(text: "dfdfwdfdw");
+  TextEditingController phoneController =
+      TextEditingController(text: "7878787878");
+  TextEditingController statusController =
+      TextEditingController(text: "single");
+  TextEditingController ethnicityController =
+      TextEditingController(text: "single");
+  TextEditingController dobController =
+      TextEditingController(/*text: "07-06-1999"*/);
   TextEditingController kidsController = TextEditingController(text: "1");
 
   List<String> martialStatusList = [
@@ -30,9 +39,8 @@ class RegisterController extends GetxController {
   List<String> ethnicityList = [
     Strings.single,
     Strings.married,
-  ];  List<String> noOfKids = [
-    "0","1","2","3","4","5","6"
   ];
+  List<String> noOfKids = ["0", "1", "2", "3", "4", "5", "6"];
   bool martialStatusDropdown = false;
   bool ethnicityDropdown = false;
   bool kidsDropdown = false;
@@ -64,14 +72,11 @@ class RegisterController extends GetxController {
 
   void onStatusSelect() {
     // martialStatusDropdown = true;
-    if(martialStatusDropdown == false)
-      {
-        martialStatusDropdown=true;
-      }
-    else
-      {
-        martialStatusDropdown=false;
-      }
+    if (martialStatusDropdown == false) {
+      martialStatusDropdown = true;
+    } else {
+      martialStatusDropdown = false;
+    }
 
     update(['register_screen']);
   }
@@ -82,13 +87,10 @@ class RegisterController extends GetxController {
   }
 
   void onEthnicitySelect() {
-    if(ethnicityDropdown == false)
-    {
-      ethnicityDropdown=true;
-    }
-    else
-    {
-      ethnicityDropdown=false;
+    if (ethnicityDropdown == false) {
+      ethnicityDropdown = true;
+    } else {
+      ethnicityDropdown = false;
     }
     update(['register_screen']);
   }
@@ -102,13 +104,10 @@ class RegisterController extends GetxController {
 
   void onKidsSelect() {
     // kidsDropdown = true;
-    if(kidsDropdown == false)
-    {
-      kidsDropdown=true;
-    }
-    else
-    {
-      kidsDropdown=false;
+    if (kidsDropdown == false) {
+      kidsDropdown = true;
+    } else {
+      kidsDropdown = false;
     }
     update(['register_screen']);
   }
@@ -132,7 +131,7 @@ class RegisterController extends GetxController {
 
   void onRegisterTap() {
     if (validation()) {
-      Get.to(()=>GetStartedScreens());
+      Get.to(() => GetStartedScreens());
     }
   }
 
@@ -185,19 +184,49 @@ class RegisterController extends GetxController {
     return true;
   }
 
-
+/*
 String? bDateStore;
   Future<void> selectDate(BuildContext context) async {
     DatePicker.showDatePicker(context,
         showTitleActions: true,
         minTime: DateTime(1970, 3, 5),
         maxTime: DateTime(2019, 6, 7), onChanged: (date) {
-          print('change $date');
         }, onConfirm: (date) {
-          print('confirm $date');
           var formattedDate = "${date.day}-${date.month}-${date.year}";
           dobController.text = formattedDate;
         }, currentTime: DateTime.now(), locale: LocaleType.en);
   }
+*/
 
+  void showDatePicker(ctx) {
+    // showCupertinoModalPopup is a built-in function of the cupertino library
+    showCupertinoModalPopup(
+        context: ctx,
+        builder: (_) => Container(
+              height: 500,
+              color: const Color.fromARGB(255, 255, 255, 255),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 400,
+                    child: CupertinoDatePicker(
+                        mode: CupertinoDatePickerMode.date,
+                        initialDateTime: DateTime.now(),
+                        onDateTimeChanged: (val) {
+                          /*    bDateStore = val.toString();*/
+                          var formattedDate =
+                              "${val.day}-${val.month}-${val.year}";
+                          dobController.text = formattedDate;
+                        }),
+                  ),
+
+                  // Close the modal
+                  CupertinoButton(
+                    child: const Text('OK'),
+                    onPressed: () => Navigator.of(ctx).pop(),
+                  )
+                ],
+              ),
+            ));
+  }
 }

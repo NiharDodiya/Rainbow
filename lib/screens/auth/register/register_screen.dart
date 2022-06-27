@@ -56,7 +56,7 @@ class RegisterScreen extends StatelessWidget {
                     !controller.martialStatusDropdown
                         ? const SizedBox()
                         : Positioned(
-                            top: Get.height*1.23,
+                            top: Get.height * 1.23,
                             child: AppDropdown(
                               paramList: controller.martialStatusList,
                               onTap: controller.onStatusChange,
@@ -65,15 +65,16 @@ class RegisterScreen extends StatelessWidget {
                     !controller.ethnicityDropdown
                         ? const SizedBox()
                         : Positioned(
-                            top: Get.height*1.359,
+                            top: Get.height * 1.359,
                             child: AppDropDownEthnicity(
                               paramList: controller.ethnicityList,
                               onTap: controller.onEthnicityChange,
                             ),
-                          ),  !controller.kidsDropdown
+                          ),
+                    !controller.kidsDropdown
                         ? const SizedBox()
                         : Positioned(
-                            top: Get.height*1.612,
+                            top: Get.height * 1.612,
                             child: AppDropDownNoOfKids(
                               paramList: controller.noOfKids,
                               onTap: controller.onKidsChange,
@@ -94,11 +95,13 @@ class RegisterScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(height: Get.height * 0.02,),
-        GestureDetector(onTap: () {
-          controller.onRegisterTap();
-
-        },
+        SizedBox(
+          height: Get.height * 0.02,
+        ),
+        GestureDetector(
+          onTap: () {
+            controller.onRegisterTap();
+          },
           child: Container(
             height: Get.height * 0.076,
             width: Get.width * 0.85,
@@ -116,18 +119,23 @@ class RegisterScreen extends StatelessWidget {
         SizedBox(
           height: Get.height * 0.055,
         ),
-        Row(crossAxisAlignment: CrossAxisAlignment.center,mainAxisAlignment: MainAxisAlignment.center,
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               Strings.alreadyHaveAccount,
-              style: textStyleFont14WhiteW500, textAlign: TextAlign.center,
+              style: textStyleFont14WhiteW500,
+              textAlign: TextAlign.center,
             ),
-            GestureDetector(onTap: () {
-              Get.to(()=> LoginScreen());
+            GestureDetector(
+              onTap: () {
+                Get.to(() => LoginScreen());
               },
               child: Text(
                 Strings.signIn,
-                style: textStyleFont14WhiteBold, textAlign: TextAlign.center,
+                style: textStyleFont14WhiteBold,
+                textAlign: TextAlign.center,
               ),
             ),
           ],
@@ -136,11 +144,14 @@ class RegisterScreen extends StatelessWidget {
           height: Get.height * 0.06,
         ),
         SizedBox(
-            height: Get.height * 0.036,
-            width: Get.width * 0.69,
-            child: Text(
-              Strings.termsServices,
-              style: textStyleFont10White, textAlign: TextAlign.center,),),
+          height: Get.height * 0.036,
+          width: Get.width * 0.69,
+          child: Text(
+            Strings.termsServices,
+            style: textStyleFont10White,
+            textAlign: TextAlign.center,
+          ),
+        ),
         SizedBox(
           height: Get.height * 0.060,
         ),

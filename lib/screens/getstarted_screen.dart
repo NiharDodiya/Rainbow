@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/idVerification/idverification_screen.dart';
 import 'package:rainbow/screens/terms_conditions/terms_conditions_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -46,7 +45,9 @@ class GetStartedScreens extends StatelessWidget {
                   ),
                 ),
                 const Padding(
-                  padding: EdgeInsets.only(left: 90,),
+                  padding: EdgeInsets.only(
+                    left: 90,
+                  ),
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: Image(
@@ -72,7 +73,9 @@ class GetStartedScreens extends StatelessWidget {
                 ),
               ],
             ),
-            Positioned(top: Get.height*0.08,left: 11,
+            Positioned(
+              top: Get.height * 0.08,
+              left: 11,
               child: GestureDetector(
                 onTap: () {
                   Get.back();
@@ -91,7 +94,8 @@ class GetStartedScreens extends StatelessWidget {
                 width: Get.width * 0.8,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage(AssetRes.rainBowLogo),fit: BoxFit.contain)),
+                        image: AssetImage(AssetRes.rainBowLogo),
+                        fit: BoxFit.contain)),
               ),
             ),
             Padding(
@@ -130,7 +134,7 @@ class GetStartedScreens extends StatelessWidget {
               )),
             ),
             Padding(
-              padding: EdgeInsets.only(top:  Get.height * 0.51),
+              padding: EdgeInsets.only(top: Get.height * 0.51),
               child: Center(
                   child: Text(
                 Strings.completeYourProfile,
@@ -181,7 +185,9 @@ class GetStartedScreens extends StatelessWidget {
             shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(15))),
             actions: [
-              SizedBox(height:Get.height * 0.52,width: Get.width* 0.86,
+              SizedBox(
+                height: Get.height * 0.52,
+                width: Get.width * 0.86,
                 child: Column(
                   children: [
                     const SizedBox(
@@ -196,7 +202,7 @@ class GetStartedScreens extends StatelessWidget {
                       height: 15,
                     ),
                     SizedBox(
-                      height:  Get.height * 0.05755,
+                      height: Get.height * 0.05755,
                       width: Get.width * 0.74,
                       child: Center(
                           child: Text(
@@ -241,7 +247,7 @@ class GetStartedScreens extends StatelessWidget {
                     ),
                     SizedBox(
                       width: Get.width * 0.9303,
-                      height:  Get.height * 0.08561,
+                      height: Get.height * 0.08561,
                       child: Center(
                           child: Text(
                         Strings.update,
@@ -263,9 +269,10 @@ class GetStartedScreens extends StatelessWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(12),
-                          child: GestureDetector(onTap: () {
-                            Get.to( const TermsConditionsScreen());
-                          },
+                          child: GestureDetector(
+                            onTap: () {
+                              Get.to(const TermsConditionsScreen());
+                            },
                             child: Text(
                               Strings.gotIt,
                               style: textStyleFont18Black,

@@ -34,15 +34,26 @@ class Strings {
       'Please allow up to 1 business day for our team to review your ID submission';
   static const update =
       'We’ll update you on the status of your verification by email and on your account limits page';
-  static const gotIt= "OK, GOT IT";
-  static const cancel= "CANCEL";
-  static const idVerification= "ID Verification";
-  static const idType= "ID Type";
-  static const idNo= "ID No.";
-  static const uploadFrontPicture= "Upload front picture of ID";
-  static const uploadBackPicture= "Upload back picture of ID";
-  static const next= "Next";
-  static const permanentResident= "Permanent Resident Card";
+  static const gotIt = "OK, GOT IT";
+  static const cancel = "CANCEL";
+  static const idVerification = "ID Verification";
+  static const idType = "ID Type";
+  static const idNo = "ID No.";
+  static const uploadFrontPicture = "Upload front picture of ID";
+  static const uploadBackPicture = "Upload back picture of ID";
+  static const next = "Next";
+  static const permanentResident = "Permanent Resident Card";
+  static const verifyPhone = "Verify Phone";
+  static const verifyAccount = "Verify Account";
+  static const reciveCode = "Didn’t recive code?";
+  static const resendOtp = "Resend OTP";
+  static const newPassword = "New Password";
+  static const newPasswordChange =
+      "Your new password must be different\nfrom previous used password";
+  static const confirmPassword = "Confirm New Password";
+  static const submit = "Submit";
+
+  static const codeSent = "Code is sent to +1 234 567 8901";
 
   ///---------------------------------------- Register ----------------------------------------
   static const register = 'Register';
@@ -63,9 +74,12 @@ class Strings {
   static const fullNameError = 'Full Name is required';
   static const emailError = 'Email is required';
   static const emailError1 = 'Email is required';
+  static const enterYourOtp = 'Enter your Otp';
   static const emailValidError = 'Email is invalid';
   static const emailValidError1 = 'Email is invalid';
   static const passwordError = 'Password is required';
+  static const newPasswordError = 'NewPassword is required';
+  static const ConfirmPasswordError = 'ConfirmPassword is required';
   static const passwordValidError = 'Password is invalid';
   static const reTypePasswordError = 'Re-Type Password is required';
   static const reTypePasswordValidError = 'Re-Type Password is Mismatch';
@@ -86,12 +100,19 @@ class Strings {
   static const british = 'British';
   static const indian = 'Indian';
   static const selfie = 'Selfie Verification';
+  static const permanentResidentCard = 'Permanent Resident Card (Front)';
+  static const placeYourId = '-Place your ID within the frame';
+  static const pleaseMakeSure =
+      '-Please make sure it is clear and has no glare';
   static const accCon = 'Accept and Continue';
   static const prepareScan = 'Prepare to scan your face';
+  static const scanYourFace = 'Scan your face';
   static const termsConditions = 'Terms and Conditions';
-  static const makeSure = 'Make sure you are in a well-lit room \nand hold the phone as shown in the picture';
-  static const privacyPolicy = 'By using Rainbow™, you agree to\nour Terms and Condition and Privacy Policy';
-  static const agreementTerms = 'By tapping accept and continue , I agree to the Terms and Condition and Privacy Policy and i am giving flighteno my concent to use my personal data to: facilitate my transaction and avail of products and services industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\nIt has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\nIt was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.';
-
-
+  static const pleaseBlink = 'Please Blink';
+  static const makeSure =
+      'Make sure you are in a well-lit room \nand hold the phone as shown in the picture';
+  static const privacyPolicy =
+      'By using Rainbow™, you agree to\nour Terms and Condition and Privacy Policy';
+  static const agreementTerms =
+      'By tapping accept and continue , I agree to the Terms and Condition and Privacy Policy and i am giving flighteno my concent to use my personal data to: facilitate my transaction and avail of products and services industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\nIt has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\nIt was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.';
 }

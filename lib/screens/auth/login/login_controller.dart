@@ -1,24 +1,24 @@
-
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
 import 'package:rainbow/screens/auth/register/register_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class LoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
-  TextEditingController  passwordController= TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
-
-  void onSignUpTap(){
+  void onSignUpTap() {
     Get.to(() => RegisterScreen());
   }
+
   void onRegisterTap() {
     if (validation()) {}
   }
+
   bool validation() {
-  if (emailController.text.isEmpty) {
+    if (emailController.text.isEmpty) {
       errorToast(Strings.emailError1);
       return false;
     } else if (!GetUtils.isEmail(emailController.text)) {

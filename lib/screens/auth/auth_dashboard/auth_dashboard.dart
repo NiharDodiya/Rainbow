@@ -15,13 +15,16 @@ class AuthDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.white,
+    return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: Container(
             margin: EdgeInsets.all(Get.width * 0.02669),
-            decoration:  BoxDecoration(color: ColorRes.color_4F359B,borderRadius: BorderRadius.circular(
-                25),),
+            decoration: BoxDecoration(
+              color: ColorRes.color_4F359B,
+              borderRadius: BorderRadius.circular(25),
+            ),
             child: Column(
               children: [
                 Stack(
@@ -51,8 +54,8 @@ class AuthDashboard extends StatelessWidget {
             height: Get.height * 0.120,
             width: Get.width * 0.845,
             decoration: const BoxDecoration(
-                image:
-                    DecorationImage(image: AssetImage(AssetRes.rainBowLogo),fit: BoxFit.fill)),
+                image: DecorationImage(
+                    image: AssetImage(AssetRes.rainBowLogo), fit: BoxFit.fill)),
           ),
         ),
         const SizedBox(
@@ -79,7 +82,7 @@ class AuthDashboard extends StatelessWidget {
   Widget continueWithEmail() {
     return Center(
       child: Padding(
-        padding:  EdgeInsets.only(top: Get.height *0.39),
+        padding: EdgeInsets.only(top: Get.height * 0.39),
         child: Column(
           children: [
             GestureDetector(
@@ -129,7 +132,7 @@ class AuthDashboard extends StatelessWidget {
   Widget googleFacebook() {
     return Center(
       child: Padding(
-        padding: EdgeInsets.only(top: Get.height *0.51),
+        padding: EdgeInsets.only(top: Get.height * 0.51),
         child: Column(
           children: [
             const SizedBox(
@@ -214,7 +217,7 @@ class AuthDashboard extends StatelessWidget {
   Widget alreadyHaveAccount() {
     return Center(
       child: Padding(
-        padding:EdgeInsets.only(top: Get.height *0.70),
+        padding: EdgeInsets.only(top: Get.height * 0.70),
         child: Column(
           children: [
             Row(
@@ -225,11 +228,13 @@ class AuthDashboard extends StatelessWidget {
                   Strings.alreadyHaveAccount,
                   style: textStyleFont14White,
                 ),
-                GestureDetector(onTap:  () {
-                  Get.to(()=> LoginScreen());
-                },
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => LoginScreen());
+                  },
                   child: Text(Strings.signIn,
-                      style: textStyleFont14WhiteBold, textAlign: TextAlign.center),
+                      style: textStyleFont14WhiteBold,
+                      textAlign: TextAlign.center),
                 ),
               ],
             ),
@@ -249,7 +254,9 @@ class AuthDashboard extends StatelessWidget {
               ],
             ),
             sizedBox14(),
-            SizedBox(width: Get.width*0.67,height: Get.height * 0.040,
+            SizedBox(
+              width: Get.width * 0.67,
+              height: Get.height * 0.040,
               child: Center(
                 child: SizedBox(
                     height: height * 0.040,
