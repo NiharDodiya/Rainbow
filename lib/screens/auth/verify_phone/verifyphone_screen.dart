@@ -95,8 +95,8 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                   fontWeight: FontWeight.bold,
                                 ),
                                 length: 4,
-                                obscureText: true,
-                                obscuringCharacter: '*',
+                                // obscureText: true,
+                                // obscuringCharacter: '*',
                                 blinkWhenObscuring: true,
                                 animationType: AnimationType.fade,
                                 validator: (v) {

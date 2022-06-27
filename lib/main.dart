@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:rainbow/screens/auth/idScanner/idscaneer_screen.dart';
+import 'package:rainbow/screens/splash_screen.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/color_res.dart';
 
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home:  IdScannerScreen(),
+      home:  const SplashScreen(),
     );
   }
 }

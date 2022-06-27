@@ -15,7 +15,7 @@ class NewPasswordController extends GetxController {
 
   void onRegisterTap() {
     if (validation()) {
-      // Get.to(() => IdScannerScreen());
+      Get.to(() => IdScannerScreen());
     }
   }
 
@@ -23,13 +23,13 @@ class NewPasswordController extends GetxController {
     if (newPasswordController.text.isEmpty) {
       errorToast(Strings.newPasswordError);
       return false;
-    } else if (validatePassword(newPasswordController.text)) {
+    } else if (validatePassword(newPasswordController.text) == false) {
       errorToast(Strings.newPasswordError);
       return false;
     } else if (confirmPasswordController.text.isEmpty) {
       errorToast(Strings.confirmPassword);
       return false;
-    } else if (validatePassword(confirmPasswordController.text)) {
+    } else if (validatePassword(confirmPasswordController.text) == false) {
       errorToast(Strings.confirmPassword);
       return false;
     }

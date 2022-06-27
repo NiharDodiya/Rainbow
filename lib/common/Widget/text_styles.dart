@@ -104,7 +104,7 @@ TextStyle textStyleFont14 = const TextStyle(
 TextStyle textStyleFont26WhiteBold = const TextStyle(
   color: ColorRes.white,
   fontSize: 26,
-  fontFamily: "Gilroy-Medium",
+  fontFamily: "Gilroy-ExtraBold",
   fontWeight: FontWeight.w600,
 );
 TextStyle textStyleFont16WhitLight = const TextStyle(
@@ -161,4 +161,10 @@ TextStyle textStyleFont20W700 = const TextStyle(
   fontSize: 20,
   fontFamily: "Gilroy-ExtraBold",
   fontWeight: FontWeight.w700,
+);
+TextStyle textStyleFont18Grey = const TextStyle(
+  color: ColorRes.color_B4B4B4,
+  fontSize: 18,
+  fontFamily: "Gilroy-Medium",
+
 );

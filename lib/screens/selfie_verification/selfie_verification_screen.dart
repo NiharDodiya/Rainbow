@@ -133,11 +133,10 @@ class SelfieVerificationScreen extends StatelessWidget {
                               width: 313,
                               child: Stack(
                                 children: [
-                                  Positioned(
-                                    top: Get.height * 0.159,
-                                    left: Get.width * 0.2,
-                                    child: Center(
-                                      child: Container(
+                                  Positioned(left: Get.width * 0.11,top: Get.height *0.055,
+                                    child: Container(height: 230,width: 230,
+                                      decoration: const BoxDecoration(shape: BoxShape.circle
+                                      ),child:  Container(
                                         height: Get.height * 0.2866,
                                         width: Get.width * 0.445014,
                                         decoration: const BoxDecoration(

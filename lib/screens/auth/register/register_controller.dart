@@ -15,9 +15,9 @@ class RegisterController extends GetxController {
       TextEditingController(text: "ravi");
   TextEditingController emailController =
       TextEditingController(text: "ravi@gmail.com");
-  TextEditingController pwdController = TextEditingController(text: "123456");
+  TextEditingController pwdController = TextEditingController(text: "Test@123");
   TextEditingController confirmPwdController =
-      TextEditingController(text: "123456");
+      TextEditingController(text: "Test@123");
   TextEditingController address1Controller =
       TextEditingController(text: "csasdd");
   TextEditingController address2Controller =
@@ -150,7 +150,7 @@ class RegisterController extends GetxController {
     } else if (pwdController.text.isEmpty) {
       errorToast(Strings.passwordError);
       return false;
-    } else if (validatePassword(pwdController.text)) {
+    } else if (validatePassword(pwdController.text) == false) {
       errorToast(Strings.passwordValidError);
       return false;
     } else if (confirmPwdController.text.isEmpty) {

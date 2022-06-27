@@ -13,6 +13,7 @@ class AssetRes {
   static const bottomLeft = '${icons}bottomleft.png';
   static const topRight = '${icons}topright.png';
   static const topLeft = '${icons}topleft.png';
+  static const camera_icon = '${icons}camera_icon.png';
 
   ///--------------------------------------------- images ---------------------------------------------
   static const rainBowLogo = '${images}rainbow_logo.png';

@@ -27,7 +27,7 @@ class LoginController extends GetxController {
     } else if (passwordController.text.isEmpty) {
       errorToast(Strings.passwordError);
       return false;
-    } else if (validatePassword(passwordController.text)) {
+    } else if (validatePassword(passwordController.text) == false) {
       errorToast(Strings.passwordValidError);
       return false;
     }
