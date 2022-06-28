@@ -10,7 +10,7 @@ class LoginController extends GetxController {
   TextEditingController passwordController = TextEditingController();
 
   void onSignUpTap() {
-    Get.to(() => RegisterScreen());
+    Get.off(() => RegisterScreen(),transition: Transition.cupertino);
   }
 
   void onRegisterTap() {

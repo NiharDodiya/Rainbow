@@ -2,12 +2,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:rainbow/screens/splash_screen.dart';
+import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
+import 'package:rainbow/screens/splash/splash_screen.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/color_res.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   await Firebase.initializeApp();
   await PrefService.init();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -32,7 +36,9 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+      home: PrefService.getBool(PrefKeys.skipBoardingScreen)
+          ? AuthDashboard()
+          : SplashScreen(),
     );
   }
 }

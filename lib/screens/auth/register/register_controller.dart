@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
+import 'package:rainbow/screens/auth/login/login_screen.dart';
 import 'package:rainbow/screens/getstarted_screen.dart';
 import 'package:rainbow/utils/strings.dart';
 
@@ -131,7 +132,7 @@ class RegisterController extends GetxController {
 
   void onRegisterTap() {
     if (validation()) {
-      Get.to(() => GetStartedScreens());
+      Get.to(() => const GetStartedScreens());
     }
   }
 
@@ -184,49 +185,41 @@ class RegisterController extends GetxController {
     return true;
   }
 
-/*
-String? bDateStore;
-  Future<void> selectDate(BuildContext context) async {
-    DatePicker.showDatePicker(context,
-        showTitleActions: true,
-        minTime: DateTime(1970, 3, 5),
-        maxTime: DateTime(2019, 6, 7), onChanged: (date) {
-        }, onConfirm: (date) {
-          var formattedDate = "${date.day}-${date.month}-${date.year}";
-          dobController.text = formattedDate;
-        }, currentTime: DateTime.now(), locale: LocaleType.en);
-  }
-*/
-
   void showDatePicker(ctx) {
     // showCupertinoModalPopup is a built-in function of the cupertino library
     showCupertinoModalPopup(
-        context: ctx,
-        builder: (_) => Container(
-              height: 500,
-              color: const Color.fromARGB(255, 255, 255, 255),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 400,
-                    child: CupertinoDatePicker(
-                        mode: CupertinoDatePickerMode.date,
-                        initialDateTime: DateTime.now(),
-                        onDateTimeChanged: (val) {
-                          /*    bDateStore = val.toString();*/
-                          var formattedDate =
-                              "${val.day}-${val.month}-${val.year}";
-                          dobController.text = formattedDate;
-                        }),
-                  ),
-
-                  // Close the modal
-                  CupertinoButton(
-                    child: const Text('OK'),
-                    onPressed: () => Navigator.of(ctx).pop(),
-                  )
-                ],
+      context: ctx,
+      builder: (_) => Container(
+        height: 500,
+        color: const Color.fromARGB(255, 255, 255, 255),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 400,
+              child: CupertinoDatePicker(
+                mode: CupertinoDatePickerMode.date,
+                initialDateTime: DateTime(2001),
+                maximumDate: DateTime.now(),
+                maximumYear: DateTime.now().year,
+                onDateTimeChanged: (val) {
+                  var formattedDate = "${val.day}-${val.month}-${val.year}";
+                  dobController.text = formattedDate;
+                },
               ),
-            ));
+            ),
+
+            // Close the modal
+            CupertinoButton(
+              child: const Text('OK'),
+              onPressed: () => Navigator.of(ctx).pop(),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  void onLoginTap() {
+    Get.off(() => LoginScreen(), transition: Transition.cupertino);
   }
 }

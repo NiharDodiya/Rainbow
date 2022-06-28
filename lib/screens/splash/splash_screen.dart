@@ -1,83 +1,82 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/screens/splash/splash_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  SplashScreen({Key? key}) : super(key: key);
+
+  final SplashController controller = Get.put(SplashController());
 
   @override
   Widget build(BuildContext context) {
-    SplashController controller = Get.put(SplashController());
     return GetBuilder<SplashController>(
       id: "splash",
       builder: (controller) {
-        return GestureDetector(
-          onTap: () {
-            Get.to(() => const AuthDashboard());
-
-          },
-          child: Scaffold(
-            backgroundColor: Colors.white,
-            body: SafeArea(
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                children: <Widget>[
-                  PageView(
-                    onPageChanged: (int page) {
-                      /*   setState(() {
-                      currentIndex = page;
-                    });*/
-                      controller.onChanged(page);
-                    },
-                    controller: controller.pageController,
-                    children: <Widget>[
-                      aniMation(),
-                      aniMation(),
-                      aniMation(),
-                      aniMation(),
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: Get.height * 0.8),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    left: 15, top: Get.height * 0.1),
-                                child: Text(
-                                  Strings.next,
-                                  style: textStyleFont12,
-                                )),
-                            const Spacer(),
-                            Padding(
-                              padding: EdgeInsets.only(top: Get.height * 0.1),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: _buildIndicator(controller),
+        return Scaffold(
+          backgroundColor: Colors.white,
+          body: SafeArea(
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              children: <Widget>[
+                PageView(
+                  onPageChanged: controller.onChanged,
+                  controller: controller.pageController,
+                  children: <Widget>[
+                    animation(),
+                    animation(),
+                    animation(),
+                    animation(),
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: Get.height * 0.8),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: 15,
+                              top: Get.height * 0.1,
+                            ),
+                            child: InkWell(
+                              onTap: controller.onNextBtnTap,
+                              child: Text(
+                                Strings.next,
+                                style: textStyleFont12,
                               ),
                             ),
-                            const Spacer(),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    left: 15, top: Get.height * 0.1, right: 15),
-                                child: Text(
-                                  "Skip",
-                                  style: textStyleFont12,
-                                )),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: EdgeInsets.only(top: Get.height * 0.1),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: _buildIndicator(controller),
+                            ),
+                          ),
+                          const Spacer(),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: 15, top: Get.height * 0.1, right: 15),
+                            child: InkWell(
+                              onTap: controller.onSkipTap,
+                              child: Text(
+                                "Skip",
+                                style: textStyleFont12,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         );
@@ -92,8 +91,9 @@ class SplashScreen extends StatelessWidget {
       width: isActive ? 6 : 6,
       margin: const EdgeInsets.only(right: 5),
       decoration: BoxDecoration(
-          color: isActive ? ColorRes.color_4F359B : ColorRes.color_656F85,
-          borderRadius: BorderRadius.circular(5)),
+        color: isActive ? ColorRes.color_4F359B : ColorRes.color_656F85,
+        borderRadius: BorderRadius.circular(5),
+      ),
     );
   }
 
@@ -110,7 +110,7 @@ class SplashScreen extends StatelessWidget {
     return indicators;
   }
 
-  Widget aniMation() {
+  Widget animation() {
     return Stack(
       children: [
         SizedBox(
@@ -128,9 +128,7 @@ class SplashScreen extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.topLeft,
                         child: Image(
-                          image: const AssetImage(
-                            AssetRes.sp1,
-                          ),
+                          image: const AssetImage(AssetRes.sp1),
                           height: Get.height * 0.35,
                         ),
                       ),
@@ -140,9 +138,7 @@ class SplashScreen extends StatelessWidget {
                       child: const Align(
                         alignment: Alignment.topCenter,
                         child: Image(
-                          image: AssetImage(
-                            AssetRes.sp3,
-                          ),
+                          image: AssetImage(AssetRes.sp3),
                           height: 12,
                         ),
                       ),
@@ -153,9 +149,7 @@ class SplashScreen extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.topRight,
                         child: Image(
-                          image: const AssetImage(
-                            AssetRes.sp2,
-                          ),
+                          image: const AssetImage(AssetRes.sp2),
                           height: Get.height * 0.27,
                         ),
                       ),
@@ -169,14 +163,14 @@ class SplashScreen extends StatelessWidget {
                     height: Get.height * 0.120,
                     width: Get.width * 0.8,
                     decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(AssetRes.rainBowLogo))),
+                      image: DecorationImage(
+                        image: AssetImage(AssetRes.rainBowLogo),
+                      ),
+                    ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(
-                    bottom: Get.height * 0.1,
-                  ),
+                  padding: EdgeInsets.only(bottom: Get.height * 0.1),
                   child: Center(
                     child: Text(
                       "Help, Support & Solutions For Families",
@@ -189,9 +183,7 @@ class SplashScreen extends StatelessWidget {
                   child: const Align(
                     alignment: Alignment.topLeft,
                     child: Image(
-                      image: AssetImage(
-                        AssetRes.greyCircle,
-                      ),
+                      image: AssetImage(AssetRes.greyCircle),
                       height: 42,
                       width: 42,
                     ),
@@ -202,9 +194,7 @@ class SplashScreen extends StatelessWidget {
                   child: const Align(
                     alignment: Alignment.topRight,
                     child: Image(
-                      image: AssetImage(
-                        AssetRes.whiteCircle,
-                      ),
+                      image: AssetImage(AssetRes.whiteCircle),
                       height: 59,
                       width: 59,
                     ),
@@ -212,16 +202,21 @@ class SplashScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: Get.height * 0.62),
-                  child: Center(
-                    child: Container(
-                      height: 64,
-                      width: 64,
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle, color: Colors.yellow),
-                      child: const Icon(
-                        Icons.arrow_forward_sharp,
-                        color: Colors.black,
-                        size: 30,
+                  child: InkWell(
+                    onTap: controller.onNextBtnTap,
+                    child: Center(
+                      child: Container(
+                        height: 64,
+                        width: 64,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.yellow,
+                        ),
+                        child: const Icon(
+                          Icons.arrow_forward_sharp,
+                          color: Colors.black,
+                          size: 30,
+                        ),
                       ),
                     ),
                   ),
@@ -238,23 +233,23 @@ class SplashScreen extends StatelessWidget {
 class RPSCustomPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    Paint paint_0_stroke = Paint()
+    Paint paint0Stroke = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1;
-    paint_0_stroke.color = const Color(0xff4F359B).withOpacity(1);
+    paint0Stroke.color = const Color(0xff4F359B).withOpacity(1);
     canvas.drawCircle(Offset(size.width * 0.4986667, size.height * 0.8957143),
-        size.width * 0.1560000, paint_0_stroke);
+        size.width * 0.1560000, paint0Stroke);
 
     // Paint paint_0_fill = Paint()..style=PaintingStyle.fill;
     // paint_0_fill.color = Color(0xff000000).withOpacity(1.0);
     // canvas.drawCircle(Offset(size.width*0.4986667,size.height*0.8957143),size.width*0.1560000,paint_0_fill);
 
-    Paint paint_1_stroke = Paint()
+    Paint paint1Stroke = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1;
-    paint_1_stroke.color = const Color(0xff4F359B).withOpacity(0.5);
+    paint1Stroke.color = const Color(0xff4F359B).withOpacity(0.5);
     canvas.drawCircle(Offset(size.width * 0.4986667, size.height * 0.8957143),
-        size.width * 0.1933333, paint_1_stroke);
+        size.width * 0.1933333, paint1Stroke);
 
     // Paint paint_1_fill = Paint()..style=PaintingStyle.fill;
     // paint_1_fill.color = Color(0xff000000).withOpacity(1.0);
@@ -306,9 +301,9 @@ class RPSCustomPainter extends CustomPainter {
     path_2.lineTo(size.width, 0);
     path_2.close();
 
-    Paint paint_2_fill = Paint()..style = PaintingStyle.fill;
-    paint_2_fill.color = const Color(0xff4F359B).withOpacity(1.0);
-    canvas.drawPath(path_2, paint_2_fill);
+    Paint paint2Fill = Paint()..style = PaintingStyle.fill;
+    paint2Fill.color = const Color(0xff4F359B).withOpacity(1.0);
+    canvas.drawPath(path_2, paint2Fill);
   }
 
   @override

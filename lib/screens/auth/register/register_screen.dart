@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/app_dropdown.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/auth/login/login_screen.dart';
 import 'package:rainbow/screens/auth/register/register_controller.dart';
 import 'package:rainbow/screens/auth/register/widget/register_form.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -95,9 +94,7 @@ class RegisterScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(
-          height: Get.height * 0.02,
-        ),
+        SizedBox(height: Get.height * 0.02),
         GestureDetector(
           onTap: () {
             controller.onRegisterTap();
@@ -116,9 +113,7 @@ class RegisterScreen extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
-          height: Get.height * 0.055,
-        ),
+        SizedBox(height: Get.height * 0.055),
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -129,9 +124,7 @@ class RegisterScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             GestureDetector(
-              onTap: () {
-                Get.to(() => LoginScreen());
-              },
+              onTap: controller.onLoginTap,
               child: Text(
                 Strings.signIn,
                 style: textStyleFont14WhiteBold,
@@ -140,9 +133,7 @@ class RegisterScreen extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(
-          height: Get.height * 0.06,
-        ),
+        SizedBox(height: Get.height * 0.06),
         SizedBox(
           height: Get.height * 0.036,
           width: Get.width * 0.69,
@@ -152,9 +143,7 @@ class RegisterScreen extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        SizedBox(
-          height: Get.height * 0.060,
-        ),
+        SizedBox(height: Get.height * 0.060),
       ],
     );
   }
