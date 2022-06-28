@@ -4,6 +4,7 @@ import 'package:rainbow/common/Widget/text_field.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/screens/auth/login/login_controller.dart';
+import 'package:rainbow/screens/auth/newpassword/newpassword_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -75,7 +76,7 @@ class LoginScreen extends StatelessWidget {
           height: height * 0.06,
         ),
         Padding(
-          padding: EdgeInsets.only(left: 15),
+          padding: const EdgeInsets.only(left: 15),
           child: SizedBox(
             height: Get.height * 0.0514,
             width: Get.width * 0.6028,
@@ -146,13 +147,15 @@ class LoginScreen extends StatelessWidget {
             alignment: Alignment.topRight,
             child: Padding(
               padding: const EdgeInsets.only(right: 20),
-              child: Text(
-                Strings.forgotPassword,
-                style: TextStyle(
-                    color: ColorRes.white.withOpacity(0.5),
-                    fontSize: 14,
-                    fontFamily: "Gilroy-Light",
-                    fontWeight: FontWeight.w600),
+              child: GestureDetector(onTap:loginController.onForgotPassword,
+                child: Text(
+                  Strings.forgotPassword,
+                  style: TextStyle(
+                      color: ColorRes.white.withOpacity(0.5),
+                      fontSize: 14,
+                      fontFamily: "Gilroy-Light",
+                      fontWeight: FontWeight.w600),
+                ),
               ),
             ),
           ),

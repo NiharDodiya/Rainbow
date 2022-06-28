@@ -6,8 +6,8 @@ import 'package:rainbow/screens/auth/idScanner/idscaneer_screen.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class NewPasswordController extends GetxController {
-  TextEditingController newPasswordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController newPasswordController = TextEditingController(text: "123Test@");
+  TextEditingController confirmPasswordController = TextEditingController(text: "123Test@");
 
   void onSignUpTap() {
     // Get.to(() => RegisterScreen());

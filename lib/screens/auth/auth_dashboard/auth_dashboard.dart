@@ -21,27 +21,34 @@ class AuthDashboard extends StatelessWidget {
       builder: (controller) {
       return Scaffold(
         backgroundColor: Colors.white,
-        body: controller.loading == true?Center(child: CircularProgressIndicator(color: Colors.black,),):SafeArea(
-          child: Center(
-            child: Container(
-              margin: EdgeInsets.all(Get.width * 0.02669),
-              decoration: BoxDecoration(
-                color: ColorRes.color_4F359B,
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child: Column(
-                children: [
-                  Stack(
+        body: SafeArea(
+          child: Obx(
+            (){
+              if(controller.loading.isTrue){
+                return Center(child: CircularProgressIndicator());
+              }
+              return Center(
+                child: Container(
+                  margin: EdgeInsets.all(Get.width * 0.02669),
+                  decoration: BoxDecoration(
+                    color: ColorRes.color_4F359B,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: Column(
                     children: [
-                      logoRainbow(),
-                      continueWithEmail(),
-                      googleFacebook(controller),
-                      alreadyHaveAccount(controller),
+                      Stack(
+                        children: [
+                          logoRainbow(),
+                          continueWithEmail(),
+                          googleFacebook(controller),
+                          alreadyHaveAccount(controller),
+                        ],
+                      )
                     ],
-                  )
-                ],
-              ),
-            ),
+                  ),
+                ),
+              );
+            }
           ),
         ),
       );
@@ -188,7 +195,7 @@ class AuthDashboard extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-
+                      controller.faceBookSignIn();
                   },
                   child: Container(
                     height: height * 0.076,

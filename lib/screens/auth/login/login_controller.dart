@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
+import 'package:rainbow/screens/auth/newpassword/newpassword_screen.dart';
 import 'package:rainbow/screens/auth/register/register_screen.dart';
 import 'package:rainbow/utils/strings.dart';
 
@@ -16,6 +17,11 @@ class LoginController extends GetxController {
   void onRegisterTap() {
     if (validation()) {}
   }
+  void onForgotPassword()
+  {
+    Get.to(()=>const NewPasswordScreen());
+  }
+
 
   bool validation() {
     if (emailController.text.isEmpty) {

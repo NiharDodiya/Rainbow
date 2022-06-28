@@ -4,6 +4,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/auth/newpassword/newpassword_screen.dart';
 import 'package:rainbow/screens/auth/verify_phone/verify_controller.dart';
+import 'package:rainbow/screens/idVerification/idverification_screen.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
@@ -170,7 +171,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                         GestureDetector(
                           onTap: () {
                             if (formKey.currentState!.validate()) {
-                              Get.to(() => const NewPasswordScreen());
+                              Get.to(() => const IdVerificationScreen());
                             }
                           },
                           child: Center(
