@@ -23,9 +23,9 @@ class SelfieVerificationScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 10, bottom: 10),
                 child: Center(
                   child: Container(
-                    height: Get.height * 0.975369,
+                /*    height: Get.height * 0.975369,*/
                     width: Get.width * 0.946666,
-                    /*  margin: EdgeInsets.all(Get.width * 0.02669),*/
+                      margin: EdgeInsets.all(Get.width * 0.02669),
                     decoration: BoxDecoration(
                         color: ColorRes.color_4F359B,
                         borderRadius: BorderRadius.circular(25)),
@@ -101,7 +101,7 @@ class SelfieVerificationScreen extends StatelessWidget {
                         ),
                         Center(
                           child: SizedBox(
-                            height: Get.height * 0.040,
+                            height: Get.height * 0.048,
                             width: Get.width * 0.836619,
                             child: Text(
                               Strings.prepareScan,
@@ -134,8 +134,8 @@ class SelfieVerificationScreen extends StatelessWidget {
                               child: Stack(
                                 children: [
                                   Positioned(
-                                    left: Get.width * 0.11,
-                                    top: Get.height * 0.055,
+                                    left: Get.width * 0.12,
+                                    top: Get.height * 0.065,
                                     child: Container(
                                       height: 230,
                                       width: 230,
@@ -181,7 +181,7 @@ class SelfieVerificationScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: Get.height * 0.01,
+                          height: Get.height * 0.03,
                         ),
                       ],
                     ),

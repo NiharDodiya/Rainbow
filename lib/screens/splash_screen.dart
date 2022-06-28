@@ -12,12 +12,14 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SplashController controller = Get.put(SplashController());
     return GetBuilder<SplashController>(
       id: "splash",
       builder: (controller) {
         return GestureDetector(
           onTap: () {
             Get.to(() => const AuthDashboard());
+
           },
           child: Scaffold(
             backgroundColor: Colors.white,

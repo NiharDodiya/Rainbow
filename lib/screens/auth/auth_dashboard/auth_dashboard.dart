@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/auth/auth_dashboard/auth_dashbord_controller.dart';
 import 'package:rainbow/screens/auth/login/login_screen.dart';
 import 'package:rainbow/screens/auth/register/register_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -15,31 +16,36 @@ class AuthDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Center(
-          child: Container(
-            margin: EdgeInsets.all(Get.width * 0.02669),
-            decoration: BoxDecoration(
-              color: ColorRes.color_4F359B,
-              borderRadius: BorderRadius.circular(25),
-            ),
-            child: Column(
-              children: [
-                Stack(
-                  children: [
-                    logoRainbow(),
-                    continueWithEmail(),
-                    googleFacebook(),
-                    alreadyHaveAccount(),
-                  ],
-                )
-              ],
+    AuthDashBordController controller =Get.put(AuthDashBordController());
+    return GetBuilder<AuthDashBordController>(id: "auth",
+      builder: (controller) {
+      return Scaffold(
+        backgroundColor: Colors.white,
+        body: controller.loading == true?Center(child: CircularProgressIndicator(color: Colors.black,),):SafeArea(
+          child: Center(
+            child: Container(
+              margin: EdgeInsets.all(Get.width * 0.02669),
+              decoration: BoxDecoration(
+                color: ColorRes.color_4F359B,
+                borderRadius: BorderRadius.circular(25),
+              ),
+              child: Column(
+                children: [
+                  Stack(
+                    children: [
+                      logoRainbow(),
+                      continueWithEmail(),
+                      googleFacebook(controller),
+                      alreadyHaveAccount(controller),
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),
-      ),
+      );
+    },
     );
   }
 
@@ -129,7 +135,7 @@ class AuthDashboard extends StatelessWidget {
     );
   }
 
-  Widget googleFacebook() {
+  Widget googleFacebook(AuthDashBordController controller) {
     return Center(
       child: Padding(
         padding: EdgeInsets.only(top: Get.height * 0.51),
@@ -142,65 +148,76 @@ class AuthDashboard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  height: height * 0.076,
-                  width: width * 0.40,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white, width: 1.5),
-                      color: ColorRes.color_4F359B,
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                          height: 14,
-                          child: Image.asset(
-                            AssetRes.googleIcon,
-                          )),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      SizedBox(
-                          height: 14,
-                          width: 42,
-                          child: Text(
-                            Strings.google,
-                            style: textStyleFont12White,
-                          ))
-                    ],
+                GestureDetector(
+                  onTap: () {
+                    controller.signWithGoogle();
+
+                  },
+                  child: Container(
+                    height: height * 0.076,
+                    width: width * 0.40,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white, width: 1.5),
+                        color: ColorRes.color_4F359B,
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                            height: 14,
+                            child: Image.asset(
+                              AssetRes.googleIcon,
+                            )),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        SizedBox(
+                            height: 14,
+                            width: 42,
+                            child: Text(
+                              Strings.google,
+                              style: textStyleFont12White,
+                            ))
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(
                   width: 25,
                 ),
-                Container(
-                  height: height * 0.076,
-                  width: width * 0.40,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white, width: 1.5),
-                      color: ColorRes.color_4F359B,
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                          height: 14,
-                          child: Image.asset(
-                            AssetRes.facebook,
-                          )),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      SizedBox(
-                          height: 14,
-                          width: 56,
-                          child: Text(
-                            Strings.facebook,
-                            style: textStyleFont12White,
-                          ))
-                    ],
+                GestureDetector(
+                  onTap: () {
+
+                  },
+                  child: Container(
+                    height: height * 0.076,
+                    width: width * 0.40,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white, width: 1.5),
+                        color: ColorRes.color_4F359B,
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                            height: 14,
+                            child: Image.asset(
+                              AssetRes.facebook,
+                            )),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        SizedBox(
+                            height: 14,
+                            width: 56,
+                            child: Text(
+                              Strings.facebook,
+                              style: textStyleFont12White,
+                            ))
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -214,7 +231,7 @@ class AuthDashboard extends StatelessWidget {
     );
   }
 
-  Widget alreadyHaveAccount() {
+  Widget alreadyHaveAccount(AuthDashBordController controller) {
     return Center(
       child: Padding(
         padding: EdgeInsets.only(top: Get.height * 0.70),
@@ -267,7 +284,11 @@ class AuthDashboard extends StatelessWidget {
                       textAlign: TextAlign.center,
                     )),
               ),
-            )
+            ),
+            GestureDetector(onTap: () {
+              controller.signOutGoogle();
+            },
+                child: Text("logout"))
           ],
         ),
       ),
