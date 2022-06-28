@@ -1,22 +1,20 @@
 import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
+import 'dart:ui' as ui;
 
 import 'package:camera/camera.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
-import 'dart:ui' as ui;
-
 import 'package:path_provider/path_provider.dart';
-
 
 class IdScannerController extends GetxController {
   late CameraDescription camera;
   late CameraController controller;
-   Future<void>? initializeControllerFuture;
-   String? image;
+  Future<void>? initializeControllerFuture;
+  String? image;
   bool isComplete = false;
   bool galleryImage = false;
 

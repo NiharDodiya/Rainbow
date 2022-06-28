@@ -117,7 +117,6 @@ class Strings {
   static const agreementTerms =
       'By tapping accept and continue , I agree to the Terms and Condition and Privacy Policy and i am giving flighteno my concent to use my personal data to: facilitate my transaction and avail of products and services industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\nIt has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\nIt was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.';
 
-
   ///___________________________________ Complete your profile ____________________________________
   static const completeProfile = 'Complete your profile';
   static const uploadPhotos = 'Upload your photo';
@@ -143,7 +142,8 @@ class Strings {
   static const aboutMe = 'About me';
   static const hobbies = 'Hobbies and Interest';
   static const finish = 'Finish';
-  static const aboutMeDes = 'Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit, sed \ndo eiusmod tempor incididunt';
+  static const aboutMeDes =
+      'Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit, sed \ndo eiusmod tempor incididunt';
   static const bioError = 'Enter bio';
   static const statusError = 'Enter status';
   static const instaError = 'Enter instagram';

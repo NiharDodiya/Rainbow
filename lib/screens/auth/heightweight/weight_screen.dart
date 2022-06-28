@@ -54,20 +54,47 @@ class WeightScreen extends StatelessWidget {
                           height: 80,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color:
-                            ColorRes.color_6753A3.withOpacity(0.3),
+                            color: ColorRes.color_6753A3.withOpacity(0.3),
                           ),
                         ),
                         itemExtent: 50,
                         onSelectedItemChanged: (int index) {},
-                        children:  <Widget>[
-                          Center(child: Text("1 lbs",style: textStyleFont14White,)),
-                          Center(child: Text("2 lbs",style: textStyleFont14White,)),
-                          Center(child: Text("3 lbs",style: textStyleFont14White,)),
-                          Center(child: Text("3 lbs",style: textStyleFont14White,)),
-                          Center(child: Text("3 lbs",style: textStyleFont14White,)),
-                          Center(child: Text("3 lbs",style: textStyleFont14White,)),
-                          Center(child: Text("3 lbs",style: textStyleFont14White,)),
+                        children: <Widget>[
+                          Center(
+                              child: Text(
+                            "1 lbs",
+                            style: textStyleFont14White,
+                          )),
+                          Center(
+                              child: Text(
+                            "2 lbs",
+                            style: textStyleFont14White,
+                          )),
+                          Center(
+                              child: Text(
+                            "3 lbs",
+                            style: textStyleFont14White,
+                          )),
+                          Center(
+                              child: Text(
+                            "3 lbs",
+                            style: textStyleFont14White,
+                          )),
+                          Center(
+                              child: Text(
+                            "3 lbs",
+                            style: textStyleFont14White,
+                          )),
+                          Center(
+                              child: Text(
+                            "3 lbs",
+                            style: textStyleFont14White,
+                          )),
+                          Center(
+                              child: Text(
+                            "3 lbs",
+                            style: textStyleFont14White,
+                          )),
                         ],
                       ),
                     ),

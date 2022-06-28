@@ -13,16 +13,17 @@ import 'package:rainbow/utils/strings.dart';
 class IdScannerScreen extends StatelessWidget {
   final IdScannerController controller = Get.put(IdScannerController());
 
-
   IdScannerScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.white,
+    return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: GetBuilder<IdScannerController>(
           builder: (_) {
-            return SingleChildScrollView(physics: NeverScrollableScrollPhysics(),
+            return SingleChildScrollView(
+              physics: NeverScrollableScrollPhysics(),
               child: Column(
                 children: [
                   Container(
@@ -63,9 +64,10 @@ class IdScannerScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 15, right: 15),
                       child: Row(
                         children: [
-                          GestureDetector(onTap: () {
-                            controller.retakePic();
-                          },
+                          GestureDetector(
+                            onTap: () {
+                              controller.retakePic();
+                            },
                             child: Image.asset(
                               AssetRes.referesh,
                               height: 18.67,
@@ -73,10 +75,10 @@ class IdScannerScreen extends StatelessWidget {
                             ),
                           ),
                           const Spacer(),
-                          GestureDetector(onTap: () {
-                            Get.to(()=>CompleteYourProfile());
-
-                          },
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() => CompleteYourProfile());
+                            },
                             child: Image.asset(
                               AssetRes.send,
                               height: 18.67,
@@ -87,12 +89,17 @@ class IdScannerScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Stack(
-                    children:[ SizedBox(
+                  Stack(children: [
+                    SizedBox(
                       child: buildCameraFunction(context, controller),
                     ),
-                      Positioned(top: Get.height*0.3,
-                          child: Container(height: Get.height * 0.5,color: Colors.black,width: Get.width,child: Stack(
+                    Positioned(
+                        top: Get.height * 0.3,
+                        child: Container(
+                          height: Get.height * 0.5,
+                          color: Colors.black,
+                          width: Get.width,
+                          child: Stack(
                             children: [
                               Container(
                                 height: Get.height * 0.16,
@@ -124,27 +131,30 @@ class IdScannerScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              GestureDetector(onTap: () {
-                                controller.takePic();
-                              },
+                              GestureDetector(
+                                onTap: () {
+                                  controller.takePic();
+                                },
                                 child: Center(
                                   child: Padding(
-                                    padding: EdgeInsets.only(top: Get.height * 0.1),
+                                    padding:
+                                        EdgeInsets.only(top: Get.height * 0.1),
                                     child: Container(
                                       height: 84,
                                       width: 84,
                                       decoration: const BoxDecoration(
                                           image: DecorationImage(
-                                              image: AssetImage(AssetRes.camera),
+                                              image:
+                                                  AssetImage(AssetRes.camera),
                                               fit: BoxFit.cover)),
                                     ),
                                   ),
                                 ),
                               ),
-
                             ],
-                          ),))]
-                  ),
+                          ),
+                        ))
+                  ]),
                 ],
               ),
             );
@@ -182,8 +192,6 @@ class IdScannerScreen extends StatelessWidget {
       },
     );
   }
-
-
 
   Widget buildCameraFunction(context, IdScannerController controller) {
     return Stack(
@@ -262,11 +270,8 @@ class IdScannerScreen extends StatelessWidget {
                             ),
                           ),
               ),
-           /*   Positioned(top: 200,
+              /*   Positioned(top: 200,
                   child: Container(height: 300,width: Get.width,color: Colors.black,)),*/
-
-
-
             ])
           ],
         ),

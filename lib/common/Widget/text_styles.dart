@@ -166,5 +166,4 @@ TextStyle textStyleFont18Grey = const TextStyle(
   color: ColorRes.color_B4B4B4,
   fontSize: 18,
   fontFamily: "Gilroy-Medium",
-
 );

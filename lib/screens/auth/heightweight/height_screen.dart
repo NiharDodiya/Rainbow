@@ -115,7 +115,7 @@ class HeightScreen extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15),
                                     color:
-                                    ColorRes.color_6753A3.withOpacity(0.3),
+                                        ColorRes.color_6753A3.withOpacity(0.3),
                                   ),
                                 ),
                                 itemExtent: 50,

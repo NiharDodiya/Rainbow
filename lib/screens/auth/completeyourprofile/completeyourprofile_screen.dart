@@ -43,11 +43,11 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                              SizedBox(height: Get.height * 0.0616),
-                              Image.asset(
-                                AssetRes.rainBowLogo,
-                                height: Get.height * 0.05541,
-                              ),
+                            SizedBox(height: Get.height * 0.0616),
+                            Image.asset(
+                              AssetRes.rainBowLogo,
+                              height: Get.height * 0.05541,
+                            ),
                             SizedBox(height: Get.height * 0.038),
                             Text(
                               Strings.completeProfile,
@@ -190,9 +190,10 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                             SizedBox(
                               height: Get.height * 0.02,
                             ),
-                            GestureDetector(onTap: () {
-                              Get.to(()=>const WeightScreen());
-                            },
+                            GestureDetector(
+                              onTap: () {
+                                Get.to(() => const WeightScreen());
+                              },
                               child: SizedBox(
                                 width: Get.width * 0.85,
                                 child: AppTextFiled(

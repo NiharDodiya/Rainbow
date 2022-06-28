@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "205390981956",
+    "project_id": "rainbow-75ec2",
+    "storage_bucket": "rainbow-75ec2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205390981956:android:65fb0aecaaa5a91eb9c511",
+        "android_client_info": {
+          "package_name": "com.example.rainbow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "205390981956-i8gt9d7i1ngob8ugab4p6lffnhrn59dq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCal3msYMDuC8SKYm1S_8zK08IbAOwULDE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "205390981956-i8gt9d7i1ngob8ugab4p6lffnhrn59dq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

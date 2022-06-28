@@ -13,11 +13,11 @@ class IdVerificationController extends GetxController {
     Strings.married,
   ];
 
-    void onRegisterTap() {
-      if (validation()) {
-        Get.to(() => const SelfieVerificationScreen());
-      }
+  void onRegisterTap() {
+    if (validation()) {
+      Get.to(() => const SelfieVerificationScreen());
     }
+  }
 
   void idTypeDropDown() {
     if (idTypeDrop == false) {

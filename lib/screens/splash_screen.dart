@@ -12,7 +12,6 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SplashController controller = Get.put(SplashController());
     return GetBuilder<SplashController>(
       id: "splash",
       builder: (controller) {
@@ -57,11 +56,9 @@ class SplashScreen extends StatelessWidget {
                             const Spacer(),
                             Padding(
                               padding: EdgeInsets.only(top: Get.height * 0.1),
-                              child: Container(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: _buildIndicator(controller),
-                                ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: _buildIndicator(controller),
                               ),
                             ),
                             const Spacer(),

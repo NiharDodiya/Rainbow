@@ -22,12 +22,10 @@ class CompleteYourProfileController extends GetxController {
     update(['Complete_screen']);
     super.onInit();
   }
+
   void onRegisterTap() {
-    if (validation()) {
-
-    }
+    if (validation()) {}
   }
-
 
   bool validation() {
     if (bio.text.isEmpty) {
