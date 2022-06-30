@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
@@ -5,16 +7,25 @@ import 'package:rainbow/screens/selfie_verification/selfie_verification_screen.d
 import 'package:rainbow/utils/strings.dart';
 
 class IdVerificationController extends GetxController {
-  TextEditingController idType = TextEditingController();
-  TextEditingController idNO = TextEditingController();
+  TextEditingController idType = TextEditingController(text: "single");
+  TextEditingController idNO = TextEditingController(text: "13445");
   bool idTypeDrop = false;
+  String? imageFront;
+  String? imageBack;
+  RxBool loader = false.obs;
+  @override
+  void onInit()
+  {
+    super.onInit();
+    update(["IdVerification_screen"]);
+  }
   List<String> ethnicityList = [
     Strings.single,
     Strings.married,
   ];
 
   void onRegisterTap() {
-    if (validation()) {
+    if (validation() && imageBack!=null && imageFront!=null) {
       Get.to(() => const SelfieVerificationScreen());
     }
   }
@@ -25,12 +36,12 @@ class IdVerificationController extends GetxController {
     } else {
       idTypeDrop = false;
     }
-    update(['register_screen']);
+    update(['IdVerification_screen']);
   }
 
   void idTypeVerification(String value) {
     idType.text = value;
-    update(['register_screen']);
+    update(['IdVerification_screen']);
   }
 
   bool validation() {
@@ -39,6 +50,12 @@ class IdVerificationController extends GetxController {
       return false;
     } else if (idNO.text.isEmpty) {
       errorToast(Strings.ethnicityError);
+      return false;
+    }else if (imageFront== null) {
+      errorToast(Strings.imageFrontError);
+      return false;
+    }else if (imageBack==null) {
+      errorToast(Strings.imageBackError);
       return false;
     }
     return true;

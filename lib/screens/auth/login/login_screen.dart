@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/auth/login/login_controller.dart';
@@ -17,41 +18,47 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: GetBuilder<LoginController>(
-        id: "Login",
-        builder: (controller) {
-          return SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    height: Get.height * 0.81,
-                    width: Get.width,
-                    margin: EdgeInsets.all(Get.width * 0.02669),
-                    decoration: BoxDecoration(
-                        color: ColorRes.color_4F359B,
-                        borderRadius: BorderRadius.circular(25)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Stack(
-                          children: [
-                            logoRainbow(),
-                            textFields(controller),
-                            loginButton(controller)
-                          ],
-                        ),
-                      ],
+      body: Obx(() {
+        if(controller.loader.isTrue)
+          {
+            return SmallLoader();
+          }
+        return GetBuilder<LoginController>(
+          id: "Login",
+          builder: (controller) {
+            return SafeArea(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Container(
+                      height: Get.height * 0.81,
+                      width: Get.width,
+                      margin: EdgeInsets.all(Get.width * 0.02669),
+                      decoration: BoxDecoration(
+                          color: ColorRes.color_4F359B,
+                          borderRadius: BorderRadius.circular(25)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Stack(
+                            children: [
+                              logoRainbow(),
+                              textFields(controller),
+                              loginButton(controller)
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  signUp(),
-                ],
+                    signUp(),
+                  ],
+                ),
               ),
-            ),
-          );
-        },
-      ),
+            );
+          },
+        );
+      })
     );
   }
 

@@ -7,14 +7,12 @@ import 'package:rainbow/common/popup.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:rainbow/screens/auth/register/register_screen.dart';
+import 'package:rainbow/utils/strings.dart';
 
 import '../login/login_screen.dart';
 
 class AuthDashBordController extends GetxController {
-  bool loading = false;
-
-
-
+  RxBool loading = false.obs;
 
   void onInti() {
     super.onInit();
@@ -25,10 +23,12 @@ class AuthDashBordController extends GetxController {
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
   Future<User?> signWithGoogle() async {
-    loading == true;
+
     if (await googleSignIn.isSignedIn()) {
       await googleSignIn.signOut();
+     // flutterToast(Strings.googleLogOutSuccess);
     }
+    loading.value == true;
     final GoogleSignInAccount? account = await googleSignIn.signIn();
     final GoogleSignInAuthentication authentication =
         await account!.authentication;
@@ -43,7 +43,8 @@ class AuthDashBordController extends GetxController {
     print(user!.email);
     print(user.displayName);
 
-loading == false;
+     loading.value == false;
+     flutterToast(Strings.googleSignInSuccess);
     return user;
   }
 
@@ -55,10 +56,10 @@ loading == false;
     loading.value  =true;
     final LoginResult loginResult = await FacebookAuth.instance.login();
 
-    // Create a credential from the access token
     final OAuthCredential facebookAuthCredential = FacebookAuthProvider
         .credential(loginResult.accessToken!.token);
     loading.value  =false;
+    flutterToast(Strings.faceBookSignInSuccess);
   }
   void onSignUpTap() {
     Get.to(() => RegisterScreen(), transition: Transition.cupertino);

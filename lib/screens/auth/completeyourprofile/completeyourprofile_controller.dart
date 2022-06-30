@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/utils/strings.dart';
 
@@ -17,12 +20,32 @@ class CompleteYourProfileController extends GetxController {
   String aboutTextCounter = '';
   String hobbiesTextCounter = '';
   List lbsList = ["181", "182", "183", "184", "185", "186", "187"];
+  File? frontImage;
+  File? backImage;
 
   void onInit() {
     update(['Complete_screen']);
     super.onInit();
   }
 
+
+
+
+  Future frontCamera() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+
+    if(image==null) return;
+    final imageTemp = File(image.path);
+    frontImage=imageTemp;
+    update(["Complete_screen"]);
+  }  Future backCamera() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+
+    if(image==null) return;
+    final imageTemp = File(image.path);
+    backImage=imageTemp;
+    update(["Complete_screen"]);
+  }
   void onRegisterTap() {
     if (validation()) {}
   }

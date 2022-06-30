@@ -78,17 +78,21 @@ class RegisterForm extends StatelessWidget {
                 );
               },
             ),
-            GestureDetector(
-              onTap: () {
-                controller.onStatusSelect();
-              },
-              child: AppTextFiled(
-                controller: controller.statusController,
-                title: Strings.maritalStatus,
-                hintText: Strings.maritalStatus,
-                suffix: Image.asset(AssetRes.arrowDown, height: 17),
-                enable: false,
-              ),
+            GetBuilder<RegisterController>(id: "register_screen",builder: (controller) {
+              return GestureDetector(
+                onTap: () {
+                  controller.onStatusSelect();
+                },
+                child: AppTextFiled(
+                  controller: controller.statusController,
+                  title: Strings.maritalStatus,
+                  hintText: Strings.maritalStatus,
+                  suffix: Image.asset(AssetRes.arrowDown, height: 17),
+                  enable: false,
+                ),
+              );
+            },
+
             ),
             GestureDetector(
               onTap: () {

@@ -71,10 +71,21 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                                       child: ClipRRect(
                                         borderRadius: const BorderRadius.all(
                                             Radius.circular(12)),
-                                        child: Container(
-                                          height: 136,
-                                          width: 300,
-                                          color: ColorRes.color_6753A3,
+                                        child: GestureDetector(onTap:() => controller.frontCamera(),
+                                          child:controller.frontImage==null? Container(
+                                            height: 136,
+                                            width: 300,
+                                            color: ColorRes.color_6753A3,
+                                          ): Container(
+                                            height: 136,
+                                            width: 300,
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                image:  FileImage(controller.frontImage!),
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          )
                                         ),
                                       ),
                                     ),
@@ -89,11 +100,22 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(120),
-                                          child: Container(
-                                            height: 145,
-                                            width: 145,
-                                            color: ColorRes.color_6753A3
-                                                .withOpacity(1),
+                                          child: GestureDetector(onTap: () => controller.backCamera(),
+                                            child: controller.backImage==null?Container(
+                                              height: 145,
+                                              width: 145,
+                                              color: ColorRes.color_6753A3
+                                                  .withOpacity(1),
+                                            ):Container(
+                                              height: 145,
+                                              width: 145,
+                                             decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                            image:  FileImage(controller.backImage!),
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                            )
                                           ),
                                         ),
                                       ),

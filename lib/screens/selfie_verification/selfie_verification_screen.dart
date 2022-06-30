@@ -163,7 +163,7 @@ class SelfieVerificationScreen extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Get.to(() => const ScanYourFaceScreen());
+                            Get.to(() =>  ScanYourFaceScreen());
                           },
                           child: Center(
                             child: Container(

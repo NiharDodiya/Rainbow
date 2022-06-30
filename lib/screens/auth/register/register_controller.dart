@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
 import 'package:rainbow/screens/auth/login/login_screen.dart';
+import 'package:rainbow/screens/auth/register/api/register_api.dart';
 import 'package:rainbow/screens/getstarted_screen.dart';
 import 'package:rainbow/utils/strings.dart';
 
@@ -28,23 +29,25 @@ class RegisterController extends GetxController {
   TextEditingController statusController =
       TextEditingController(text: "single");
   TextEditingController ethnicityController =
-      TextEditingController(text: "single");
+      TextEditingController(text: "1");
   TextEditingController dobController =
-      TextEditingController(/*text: "07-06-1999"*/);
+      TextEditingController(text: "07-06-1999");
   TextEditingController kidsController = TextEditingController(text: "1");
-
+  String selectedLocation = Strings.single;
   List<String> martialStatusList = [
     Strings.single,
     Strings.married,
   ];
   List<String> ethnicityList = [
-    Strings.single,
-    Strings.married,
+    "0",
+    "1",
+    "2",
   ];
   List<String> noOfKids = ["0", "1", "2", "3", "4", "5", "6"];
   bool martialStatusDropdown = false;
   bool ethnicityDropdown = false;
   bool kidsDropdown = false;
+  RxBool loader = false.obs;
 
   Country countryModel = Country.from(json: {
     "e164_cc": "1",
@@ -60,6 +63,11 @@ class RegisterController extends GetxController {
     "e164_key": "1-CA-0"
   });
 
+  void onInit() {
+    update(['register_screen']);
+    super.onInit();
+  }
+
   void onCountryTap(BuildContext context) {
     showCountryPicker(
       context: context,
@@ -72,7 +80,6 @@ class RegisterController extends GetxController {
   }
 
   void onStatusSelect() {
-    // martialStatusDropdown = true;
     if (martialStatusDropdown == false) {
       martialStatusDropdown = true;
     } else {
@@ -132,7 +139,8 @@ class RegisterController extends GetxController {
 
   void onRegisterTap() {
     if (validation()) {
-      Get.to(() => const GetStartedScreens());
+      registerDetails();
+
     }
   }
 
@@ -221,5 +229,20 @@ class RegisterController extends GetxController {
 
   void onLoginTap() {
     Get.off(() => LoginScreen(), transition: Transition.cupertino);
+  }
+
+  Future<void> registerDetails() async {
+    loader.value = true;
+    await RegisterApi.postRegister(
+      fullNameController.text,
+      emailController.text,
+      pwdController.text,
+      confirmPwdController.text,
+      address1Controller.text,
+      address2Controller.text,
+      phoneController.text,statusController.text,ethnicityController.text,
+        dobController.text,kidsController.text
+    );
+    loader.value = false;
   }
 }

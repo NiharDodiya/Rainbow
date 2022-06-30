@@ -102,7 +102,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                 animationType: AnimationType.fade,
                                 validator: (v) {
                                   if (v!.length < 4) {
-                                    return "Enter Your Otp";
+                                    return Strings.enterYourOtp;
                                   } else {
                                     return null;
                                   }

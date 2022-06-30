@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
-import 'package:rainbow/screens/auth/idScanner/idscaneer_screen.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class NewPasswordController extends GetxController {
@@ -15,7 +14,7 @@ class NewPasswordController extends GetxController {
 
   void onRegisterTap() {
     if (validation()) {
-      Get.to(() => IdScannerScreen());
+        // Get.to(() => IdScannerScreen());
     }
   }
 
@@ -27,10 +26,13 @@ class NewPasswordController extends GetxController {
       errorToast(Strings.newPasswordError);
       return false;
     } else if (confirmPasswordController.text.isEmpty) {
-      errorToast(Strings.confirmPassword);
+      errorToast(Strings.coPasswordEmpty);
       return false;
     } else if (validatePassword(confirmPasswordController.text) == false) {
-      errorToast(Strings.confirmPassword);
+      errorToast(Strings.confirmShortPassword);
+      return false;
+    }else if (confirmPasswordController.text !=newPasswordController.text ) {
+      errorToast(Strings.confirmPasswordMismatch);
       return false;
     }
     return true;

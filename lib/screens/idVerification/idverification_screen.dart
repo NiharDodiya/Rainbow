@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/app_dropdown.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/auth/idScanner/idscaneer_screen.dart';
 import 'package:rainbow/screens/idVerification/idverification_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -18,7 +21,7 @@ class IdVerificationScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         body: SafeArea(
           child: GetBuilder<IdVerificationController>(
-            id: 'register_screen',
+            id: 'IdVerification_screen',
             builder: (controller) {
               return SingleChildScrollView(
                 child: Column(
@@ -37,9 +40,13 @@ class IdVerificationScreen extends StatelessWidget {
                             SizedBox(
                               height: Get.height * 0.05,
                             ),
-                            const Icon(
-                              Icons.arrow_back_ios_outlined,
-                              size: 16.72,
+                            GestureDetector(onTap: () {
+                              Get.back();
+                            },
+                              child: const Icon(
+                                Icons.arrow_back_ios_outlined,
+                                size: 16.72,
+                              ),
                             ),
                             SizedBox(
                               height: Get.height * 0.05,
@@ -131,50 +138,76 @@ class IdVerificationScreen extends StatelessWidget {
                             SizedBox(
                               height: Get.height * 0.02,
                             ),
-                            Container(
-                              height: 217,
-                              width: Get.width * 0.85,
-                              decoration: BoxDecoration(
-                                  color: ColorRes.color_F7F9FF,
-                                  borderRadius: BorderRadius.circular(30)),
-                              child: Stack(
-                                children: [
-                                  Center(
-                                    child: SizedBox(
-                                        height: 120.77,
-                                        width: Get.width * 0.47,
-                                        child:
-                                            Image.asset(AssetRes.frontPicture)),
-                                  ),
-                                ],
+                            GestureDetector(onTap: () {
+                                   Get.to(()=>IdScannerScreen());
+                            },
+                              child:controller.imageFront==null? Container(
+                                height: 217,
+                                width: Get.width * 0.85,
+                                decoration: BoxDecoration(
+                                    color: ColorRes.color_F7F9FF,
+                                    borderRadius: BorderRadius.circular(30)),
+                                child: Stack(
+                                  children: [
+                                    Center(
+                                      child: SizedBox(
+                                          height: 120.77,
+                                          width: Get.width * 0.47,
+                                          child:
+                                              Image.asset(AssetRes.frontPicture)),
+                                    )
+                                  ],
+                                ),
+                              ): Container(
+                                height: 217,
+                                width: Get.width * 0.85,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(image:  FileImage(
+                                    File(controller.imageFront.toString()),
+                                  ),fit: BoxFit.cover),
+                                    color: ColorRes.color_F7F9FF,
+                                    borderRadius: BorderRadius.circular(30)),
                               ),
                             ),
                             SizedBox(
                               height: Get.height * 0.038,
                             ),
                             Text(
-                              Strings.uploadFrontPicture,
+                              Strings.uploadBackPicture,
                               style: textStyleFont14WhiteBold,
                             ),
                             SizedBox(
                               height: Get.height * 0.02,
                             ),
-                            Container(
-                              height: 217,
-                              width: Get.width * 0.85,
-                              decoration: BoxDecoration(
-                                  color: ColorRes.color_F7F9FF,
-                                  borderRadius: BorderRadius.circular(30)),
-                              child: Stack(
-                                children: [
-                                  Center(
-                                    child: SizedBox(
-                                        height: 120.77,
-                                        width: Get.width * 0.47,
-                                        child:
-                                            Image.asset(AssetRes.backPicture)),
-                                  ),
-                                ],
+                            GestureDetector(onTap: () {
+                              Get.to(()=>IdScannerBackScreen());
+                            },
+                              child: controller.imageBack==null? Container(
+                                height: 217,
+                                width: Get.width * 0.85,
+                                decoration: BoxDecoration(
+                                    color: ColorRes.color_F7F9FF,
+                                    borderRadius: BorderRadius.circular(30)),
+                                child: Stack(
+                                  children: [
+                                    Center(
+                                      child: SizedBox(
+                                          height: 120.77,
+                                          width: Get.width * 0.47,
+                                          child:
+                                          Image.asset(AssetRes.backPicture)),
+                                    )
+                                  ],
+                                ),
+                              ): Container(
+                                height: 217,
+                                width: Get.width * 0.85,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(image:FileImage(
+                                      File(controller.imageBack.toString()),
+                                    ),fit: BoxFit.cover),
+                                    color: ColorRes.color_F7F9FF,
+                                    borderRadius: BorderRadius.circular(30)),
                               ),
                             ),
                             SizedBox(

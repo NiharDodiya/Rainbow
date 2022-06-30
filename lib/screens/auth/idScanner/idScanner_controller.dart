@@ -9,17 +9,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:rainbow/screens/idVerification/idverification_controller.dart';
 
 class IdScannerController extends GetxController {
   late CameraDescription camera;
   late CameraController controller;
+
   Future<void>? initializeControllerFuture;
-  String? image;
+
+  String? imageFront;
+  String? imageBack;
   bool isComplete = false;
   bool galleryImage = false;
 
   GlobalKey widgetKey = GlobalKey();
 
+  @override
   void onInit() async {
     await getCamera();
     controller = CameraController(
@@ -27,14 +32,13 @@ class IdScannerController extends GetxController {
       ResolutionPreset.medium,
     );
     initializeControllerFuture = controller.initialize();
-
     update();
     super.onInit();
   }
 
-  String _chars =
+  final String _chars =
       'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-  Random _rnd = Random();
+  final Random _rnd = Random();
 
   String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
       length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
@@ -45,25 +49,55 @@ class IdScannerController extends GetxController {
     update();
   }
 
-  void takePic() async {
-    if (image != null) {
+  void takePicForFront() async {
+    if (imageFront != null) {
       return;
     }
     await initializeControllerFuture;
 
     final pic = await controller.takePicture();
-    image = pic.path;
+    imageFront = pic.path;
+
+    galleryImage = false;
+    isComplete = true;
+    update();
+  }
+  void takePicForBack() async {
+    if (imageBack != null) {
+      return;
+    }
+    await initializeControllerFuture;
+
+    final pic = await controller.takePicture();
+    imageBack = pic.path;
     galleryImage = false;
     isComplete = true;
     update();
   }
 
   void retakePic() {
-    image = null;
+    imageBack = null;
+    imageFront = null;
     isComplete = false;
     update();
   }
 
+  Future<void> onImageSubmitFront() async {
+    IdVerificationController idController = Get.find();
+    File image2 = await getCropImage();
+    idController.imageFront = image2.path;
+    idController.update(['IdVerification_screen']);
+    Get.back();
+  }
+  Future<void> onImageSubmitBack() async {
+    IdVerificationController idController = Get.find();
+    File image2 = await getCropImage();
+    idController.imageBack = image2.path;
+    idController.update(['IdVerification_screen']);
+    Get.back();
+  }
+
+/*
   void upload() async {
     var pickedFile = await FilePicker.platform.pickFiles(
       type: FileType.custom,
@@ -72,21 +106,22 @@ class IdScannerController extends GetxController {
 
     if (pickedFile != null) {
       var file = pickedFile.files.first;
-      image = file.path!;
+      imageBack = file.path!;
       galleryImage = true;
       isComplete = true;
       update();
     }
   }
+*/
 
-  Future<void> onFlashTap() async {
+/*  Future<void> onFlashTap() async {
     if (controller.value.flashMode == FlashMode.off) {
       await controller.setFlashMode(FlashMode.always);
     } else {
       await controller.setFlashMode(FlashMode.off);
     }
     update(['flash']);
-  }
+  }*/
 
   Future<File> getCropImage() async {
     RenderRepaintBoundary boundary =

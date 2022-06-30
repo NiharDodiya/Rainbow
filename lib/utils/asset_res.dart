@@ -30,4 +30,5 @@ class AssetRes {
   static const selfiePicture = '${images}selfie_profile.png';
   static const posterProfile = '${images}poster_profile.png';
   static const camera = '${images}camera.png';
+  static const scanYourFace ='${images}ssssss.png';
 }

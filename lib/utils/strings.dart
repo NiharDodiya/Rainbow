@@ -15,6 +15,9 @@ class Strings {
   static const termsServices =
       'By continuing you agree Rainbow’s Terms of Services \n& Privacy Policy.';
   static const welcomeBack = 'Welcome Back!';
+  static const googleSignInSuccess = 'google SignIn Success';
+  static const faceBookSignInSuccess = 'faceBook SignIn Success';
+  static const googleLogOutSuccess = 'google SignOut Success';
   static const userName = 'User name';
   static const forgotPassword = 'Forgot password?';
   static const login = 'Login';
@@ -50,7 +53,10 @@ class Strings {
   static const newPassword = "New Password";
   static const newPasswordChange =
       "Your new password must be different\nfrom previous used password";
-  static const confirmPassword = "Confirm New Password";
+  static const confirmPassword = "confirm New Password";
+  static const confirmShortPassword= "please enter 1capital latters 1small latters and Special character with 8character";
+  static const coPasswordEmpty= "please enter  confirm Password";
+  static const confirmPasswordMismatch = "confirm  Password is Mismatch";
   static const submit = "Submit";
 
   static const codeSent = "Code is sent to +1 234 567 8901";
@@ -73,13 +79,12 @@ class Strings {
   static const noOfKids = 'No of Kids';
   static const fullNameError = 'Full Name is required';
   static const emailError = 'Email is required';
-  static const emailError1 = 'Email is required';
-  static const enterYourOtp = 'Enter your Otp';
+  static const enterYourOtp = 'enter your Otp';
   static const emailValidError = 'Email is invalid';
   static const emailValidError1 = 'Email is invalid';
   static const passwordError = 'Password is required';
-  static const newPasswordError = 'NewPassword is required';
-  static const ConfirmPasswordError = 'ConfirmPassword is required';
+  static const newPasswordError = 'cewPassword is required';
+  static const ConfirmPasswordError = 'confirmPassword is required';
   static const passwordValidError = 'Password is invalid';
   static const reTypePasswordError = 'Re-Type Password is required';
   static const reTypePasswordValidError = 'Re-Type Password is Mismatch';
@@ -101,6 +106,9 @@ class Strings {
   static const married = 'Married';
   static const british = 'British';
   static const indian = 'Indian';
+  static const imageFrontError = 'please upload front picture of id';
+  static const imageBackError = 'please upload back picture of id';
+  static const selfieError = 'please upload selfie';
   static const selfie = 'Selfie Verification';
   static const permanentResidentCard = 'Permanent Resident Card (Front)';
   static const placeYourId = '-Place your ID within the frame';

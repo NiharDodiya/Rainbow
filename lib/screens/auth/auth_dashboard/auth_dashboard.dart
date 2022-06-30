@@ -19,31 +19,35 @@ class AuthDashboard extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           backgroundColor: Colors.white,
-          body: controller.loading == true
-              ? const SmallLoader()
-              : SafeArea(
-                  child: Center(
-                    child: Container(
-                      margin: EdgeInsets.all(Get.width * 0.02669),
-                      decoration: BoxDecoration(
-                        color: ColorRes.color_4F359B,
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: Column(
-                        children: [
-                          Stack(
-                            children: [
-                              logoRainbow(),
-                              continueWithEmail(),
-                              googleFacebook(controller),
-                              alreadyHaveAccount(controller),
-                            ],
-                          )
-                        ],
-                      ),
+          body: Obx(() {
+            if(controller.loading.isTrue)
+              {
+                return const SmallLoader();
+              }
+            return SafeArea(
+                child: Center(
+                  child: Container(
+                    margin: EdgeInsets.all(Get.width * 0.02669),
+                    decoration: BoxDecoration(
+                      color: ColorRes.color_4F359B,
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: Column(
+                      children: [
+                        Stack(
+                          children: [
+                            logoRainbow(),
+                            continueWithEmail(),
+                            googleFacebook(controller),
+                            alreadyHaveAccount(controller),
+                          ],
+                        )
+                      ],
                     ),
                   ),
-                ),
+                )
+            );
+          })
         );
       },
     );
@@ -171,7 +175,6 @@ class AuthDashboard extends StatelessWidget {
                 ),
                 const SizedBox(width: 25),
                 GestureDetector(
-
                   onTap: () {
                       controller.faceBookSignIn();
                   },
