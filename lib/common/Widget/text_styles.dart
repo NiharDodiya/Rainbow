@@ -208,3 +208,9 @@ TextStyle textStyleFont12White400 = const TextStyle(
   fontFamily: "Gilroy-Medium",
   fontWeight: FontWeight.w400,
 );
+TextStyle textStyleFont20W700Black = const TextStyle(
+  color: Colors.black,
+  fontSize: 20,
+  fontFamily: "Gilroy-ExtraBold",
+  fontWeight: FontWeight.w700,
+);

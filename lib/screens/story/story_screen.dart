@@ -7,6 +7,8 @@ import 'package:rainbow/utils/color_res.dart';
 class StoryScreen extends StatelessWidget {
   StoryController controller = Get.put(StoryController());
 
+  StoryScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<StoryController>(

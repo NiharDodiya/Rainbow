@@ -59,7 +59,6 @@ class Strings {
   static const coPasswordEmpty = "please enter  confirm Password";
   static const confirmPasswordMismatch = "confirm  Password is Mismatch";
   static const submit = "Submit";
-
   static const codeSent = "Code is sent to +1 234 567 8901";
 
   ///---------------------------------------- Register ----------------------------------------
@@ -103,8 +102,8 @@ class Strings {
       'By continuing you agree Rainbow’s Terms of Services & Privacy Policy.';
   static const errorText = 'Error !';
   static const successText = 'success';
-  static const single = 'Single';
-  static const married = 'Married';
+  static const single = 'single';
+  static const married = 'married';
   static const british = 'British';
   static const indian = 'Indian';
   static const imageFrontError = 'please upload front picture of id';

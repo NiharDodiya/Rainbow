@@ -4,6 +4,7 @@ class AssetRes {
   static const images = 'assets/images/';
 
   ///--------------------------------------------- icons ---------------------------------------------
+
   static const dropdown = '${icons}dropdown.png';
   static const arrowDown = '${icons}arrow_down.png';
   static const calendar = '${icons}calendar.png';
@@ -31,7 +32,9 @@ class AssetRes {
   static const add = '${icons}add.png';
   static const sendInsta = '${icons}send_insta.png';
   static const heart = '${icons}heart.png';
+
   ///--------------------------------------------- iconsBottom---------------------------------------------
+
   static const home =  '${iconsBottom}home.png';
   static const search =  '${iconsBottom}search.png';
   static const message =  '${iconsBottom}message.png';
@@ -39,6 +42,8 @@ class AssetRes {
 
 
   ///--------------------------------------------- images ---------------------------------------------
+  static const woman = '${images}woman.png';
+  static const se = '${images}se-2.png';
   static const rainBowLogo = '${images}rainbow_logo.png';
   static const googleIcon = '${images}google.png';
   static const facebook = '${images}facebook.png';

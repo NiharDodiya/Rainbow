@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/story/story_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
+import 'package:story_view/story_view.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -200,7 +200,8 @@ class HomeScreen extends StatelessWidget {
                                 ),
                                 GestureDetector(
                                   onTap: () {
-                                    Get.to(()=> StoryScreen());
+                                    // Get.to(()=> StoryScreen());
+                                    Get.to(() => const MoreStories());
                                   },
                                   child: Container(
                                     height: 56,
@@ -561,6 +562,114 @@ class HomeScreen extends StatelessWidget {
             },
           ),
         ],
+      ),
+    );
+  }
+}
+
+class MoreStories extends StatefulWidget {
+  const MoreStories({Key? key}) : super(key: key);
+
+  @override
+  _MoreStoriesState createState() => _MoreStoriesState();
+}
+
+class _MoreStoriesState extends State<MoreStories> {
+  final storyController = StoryController();
+
+  @override
+  void dispose() {
+    storyController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("More"),
+      ),
+      body: SizedBox(height: Get.height * 0.8,
+        child: StoryView(
+          storyItems: [
+            StoryItem.text(
+              title: "I guess you'd love to see more of our food. That's great.",
+              backgroundColor: Colors.blue,
+            ),
+            StoryItem.text(
+              title: "Nice!\n\nTap to continue.",
+              backgroundColor: Colors.red,
+              textStyle: const TextStyle(
+                fontFamily: 'Dancing',
+                fontSize: 40,
+              ),
+            ),
+            StoryItem.pageImage(
+              url: "https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif",
+              caption: "Still sampling",
+              controller: storyController,
+            ),
+            StoryItem.pageImage(
+                url: "https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif",
+                caption: "Working with gifs",
+                controller: storyController),
+            StoryItem.pageImage(
+              url: "https://media.giphy.com/media/XcA8krYsrEAYXKf4UQ/giphy.gif",
+              caption: "Hello, from the other side",
+              controller: storyController,
+            ),
+            StoryItem.pageImage(
+              url: "https://media.giphy.com/media/XcA8krYsrEAYXKf4UQ/giphy.gif",
+              caption: "Hello, from the other side2",
+              controller: storyController,
+            ),
+          ],
+          onStoryShow: (s) {
+            print("Showing a story");
+          },
+          onComplete: () {
+            print("Completed a cycle");
+          },
+          progressPosition: ProgressPosition.top,
+          repeat: false,
+          controller: storyController,
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            SizedBox(
+                height: Get.height * 0.07,
+                width: Get.width * 0.7,
+                child: TextFormField(
+                  decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.only(left: 15),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      hintStyle: const TextStyle(fontSize: 14),
+                      hintText: "Send message"),
+                )),
+            SizedBox(
+              width: Get.width * 0.04,
+            ),
+            const SizedBox(
+                height: 20,
+                width: 20,
+                child: Image(
+                  image: AssetImage(AssetRes.heart),
+                  color: Colors.white,
+                )),
+            SizedBox(
+              width: Get.width * 0.05,
+            ),
+            const SizedBox(
+                height: 20,
+                width: 20,
+                child: Image(image: AssetImage(AssetRes.sendInsta))),
+          ],
+        ),
       ),
     );
   }

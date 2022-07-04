@@ -40,7 +40,7 @@ class _DashboardState extends State<Dashboard> {
             if (controller.currentTab == 0) {
               return const HomeScreen();
             } else if (controller.currentTab == 1) {
-              return const SearchScreen();
+              return  SearchScreen();
             } else if (controller.currentTab == 2) {
               return const MessageScreen();
             } else {

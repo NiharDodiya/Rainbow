@@ -17,9 +17,9 @@ class RegisterController extends GetxController {
       TextEditingController(/*text: "ravi"*/);
   TextEditingController emailController =
       TextEditingController(/*text: "ravi@gmail.com"*/);
-  TextEditingController pwdController = TextEditingController(/*text: "Test@123"*/);
+  TextEditingController pwdController = TextEditingController(text: "Test@123");
   TextEditingController confirmPwdController =
-      TextEditingController(/*text: "Test@123"*/);
+      TextEditingController(text: "Test@123");
   TextEditingController address1Controller =
       TextEditingController(/*text: "csasdd"*/);
   TextEditingController address2Controller =

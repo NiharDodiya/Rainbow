@@ -25,7 +25,7 @@ class HttpService {
 
   static Future<http.Response?> postApi({
     required String url,
-    Map<String, dynamic>? body,
+   dynamic body,
     Map<String, String>? header,
   }) async {
     try {
