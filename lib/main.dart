@@ -15,9 +15,9 @@ Future<void> main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   await Firebase.initializeApp();
   await PrefService.init();
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor:
-        ColorRes.color_4F359B, //or set color with: Color(0xFF0000FF)
+        ColorRes.color_4F359B.withOpacity(0.3), //or set color with: Color(0xFF0000FF)
   ));
   runApp(const MyApp());
 }
