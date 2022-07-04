@@ -1,5 +1,6 @@
 class AssetRes {
   static const icons = 'assets/icons/';
+  static const iconsBottom = 'assets/icons/bottom_icons/';
   static const images = 'assets/images/';
 
   ///--------------------------------------------- icons ---------------------------------------------
@@ -14,6 +15,28 @@ class AssetRes {
   static const topRight = '${icons}topright.png';
   static const topLeft = '${icons}topleft.png';
   static const camera_icon = '${icons}camera_icon.png';
+  static const locate = '${icons}locate.png';
+  static const notify= '${icons}icons_notif.png';
+  static const settings= '${icons}settings.png';
+  static const plusIcons= '${icons}plusicon.png';
+  static const elipsFul= '${icons}elipsful.png';
+  static const elipsHalf= '${icons}elipshalf.png';
+  static const profilep ='${icons}profile+.png';
+  static const delete ='${icons}delete.png';
+  static const eye = '${icons}eye.png';
+  static const vector = '${icons}Vector.png';
+  static const thumbs = '${icons}thubs.png';
+  static const comment = '${icons}comment.png';
+  static const newPost = '${icons}newpost.png';
+  static const add = '${icons}add.png';
+  static const sendInsta = '${icons}send_insta.png';
+  static const heart = '${icons}heart.png';
+  ///--------------------------------------------- iconsBottom---------------------------------------------
+  static const home =  '${iconsBottom}home.png';
+  static const search =  '${iconsBottom}search.png';
+  static const message =  '${iconsBottom}message.png';
+  static const profile =  '${iconsBottom}profile.png';
+
 
   ///--------------------------------------------- images ---------------------------------------------
   static const rainBowLogo = '${images}rainbow_logo.png';
@@ -31,4 +54,10 @@ class AssetRes {
   static const posterProfile = '${images}poster_profile.png';
   static const camera = '${images}camera.png';
   static const scanYourFace ='${images}ssssss.png';
+  static const homePro ='${images}ho.png';
+  static const lt1 ='${images}lt1.png';
+  static const lt2 ='${images}lt2.png';
+  static const lt3 ='${images}lt3.png';
+  static const backGround ='${images}backGroundImage.png';
+
 }

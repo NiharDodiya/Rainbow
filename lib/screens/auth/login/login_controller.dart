@@ -5,6 +5,7 @@ import 'package:rainbow/helper.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_api.dart';
 import 'package:rainbow/screens/auth/newpassword/newpassword_screen.dart';
 import 'package:rainbow/screens/auth/register/register_screen.dart';
+import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class LoginController extends GetxController {
@@ -52,5 +53,6 @@ class LoginController extends GetxController {
       passwordController.text,
     );
     loader.value = false;
+    Get.to(()=>const Dashboard());
   }
 }

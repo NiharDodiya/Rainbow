@@ -14,25 +14,25 @@ class RegisterController extends GetxController {
   DateTime selectedDate = DateTime.now();
 
   TextEditingController fullNameController =
-      TextEditingController(text: "ravi");
+      TextEditingController(/*text: "ravi"*/);
   TextEditingController emailController =
-      TextEditingController(text: "ravi@gmail.com");
-  TextEditingController pwdController = TextEditingController(text: "Test@123");
+      TextEditingController(/*text: "ravi@gmail.com"*/);
+  TextEditingController pwdController = TextEditingController(/*text: "Test@123"*/);
   TextEditingController confirmPwdController =
-      TextEditingController(text: "Test@123");
+      TextEditingController(/*text: "Test@123"*/);
   TextEditingController address1Controller =
-      TextEditingController(text: "csasdd");
+      TextEditingController(/*text: "csasdd"*/);
   TextEditingController address2Controller =
-      TextEditingController(text: "dfdfwdfdw");
+      TextEditingController(/*text: "dfdfwdfdw"*/);
   TextEditingController phoneController =
-      TextEditingController(text: "7878787878");
+      TextEditingController(/*text: "7878787878"*/);
   TextEditingController statusController =
-      TextEditingController(text: "single");
+      TextEditingController(/*text: "single"*/);
   TextEditingController ethnicityController =
-      TextEditingController(text: "1");
+      TextEditingController(/*text: "1"*/);
   TextEditingController dobController =
-      TextEditingController(text: "07-06-1999");
-  TextEditingController kidsController = TextEditingController(text: "1");
+      TextEditingController(/*text: "07-06-1999"*/);
+  TextEditingController kidsController = TextEditingController(/*text: "1"*/);
   String selectedLocation = Strings.single;
   List<String> martialStatusList = [
     Strings.single,

@@ -109,7 +109,7 @@ class ScanYourFaceScreen extends StatelessWidget {
                             ),
                             Padding(
                               padding:
-                              EdgeInsets.only(left: Get.height * 0.028),
+                                  EdgeInsets.only(left: Get.height * 0.028),
                               child: SizedBox(
                                 height: Get.height * 0.046,
                                 width: Get.width * 0.836619,
@@ -138,11 +138,10 @@ class ScanYourFaceScreen extends StatelessWidget {
                             SizedBox(
                               height: Get.height * 0.07,
                             ),
-
                             GestureDetector(
                               onTap: () {
                                 controller.takePicForFront();
-                            /*    controller.onRegisterTap();*/
+                                /*    controller.onRegisterTap();*/
                               },
                               child: Center(
                                 child: Container(
@@ -172,6 +171,7 @@ class ScanYourFaceScreen extends StatelessWidget {
       },
     );
   }
+
   FutureBuilder<void> futureCamera() {
     return FutureBuilder<void>(
       future: controller.initializeControllerFuture,
@@ -179,7 +179,7 @@ class ScanYourFaceScreen extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.done) {
           // If the Future is complete, display the preview.
           return SizedBox(
-              height: Get.height * 0.42,
+            height: Get.height * 0.42,
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -203,18 +203,21 @@ class ScanYourFaceScreen extends StatelessWidget {
 
   Widget buildCameraFunction(context, ScanYourFaceController controller) {
     return Stack(
-     /* alignment: Alignment.topLeft,*/
+      /* alignment: Alignment.topLeft,*/
       children: [
         futureCamera(),
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Stack(children: [
-              Container(height: 20,
-                color: ColorRes.color_4F359B,),
+              Container(
+                height: 20,
+                color: ColorRes.color_4F359B,
+              ),
               Center(
                 child: SizedBox(
-                  height: 317,width: Get.width,
+                  height: 317,
+                  width: Get.width,
                   child: Image.asset(AssetRes.scanYourFace),
                 ),
                 // child: CustomPaint(
@@ -255,25 +258,28 @@ class ScanYourFaceScreen extends StatelessWidget {
                 //   ),
                 // ),
               ),
-              Positioned(top: Get.width*0.129,left: Get.height*0.078,
+              Positioned(
+                top: Get.width * 0.129,
+                left: Get.height * 0.078,
                 child: Center(
                   child: SizedBox(
                     height: 228,
                     width: 228,
                     child: controller.imageFront == null
                         ? const SizedBox()
-                        : ClipRRect(borderRadius: BorderRadius.circular(300),
-                          child: RepaintBoundary(
-                      key: controller.widgetKey,
-                      child: Image.file(
-                          File(controller.imageFront.toString()),
-                          width: Get.width,
-                          height: 200,
-                          fit: BoxFit.fitWidth,
-                          alignment: Alignment.topCenter,
-                      ),
-                    ),
-                        ),
+                        : ClipRRect(
+                            borderRadius: BorderRadius.circular(300),
+                            child: RepaintBoundary(
+                              key: controller.widgetKey,
+                              child: Image.file(
+                                File(controller.imageFront.toString()),
+                                width: Get.width,
+                                height: 200,
+                                fit: BoxFit.fitWidth,
+                                alignment: Alignment.topCenter,
+                              ),
+                            ),
+                          ),
                   ),
                 ),
               ),
@@ -650,8 +656,3 @@ class RPSCustomPainter extends CustomPainter {
     return true;
   }
 }
-
-
-
-
-

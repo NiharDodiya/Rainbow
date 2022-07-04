@@ -28,7 +28,7 @@ class RegisterApi {
       String url = EndPoints.register;
       Map<String, String> param = {
         'fullName': fullName,
-        'email':"rdddr@gmail.com",
+        'email':email,
         'password': password,
         'address1': add1,
         'address2': add2,

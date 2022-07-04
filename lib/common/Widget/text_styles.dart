@@ -167,3 +167,44 @@ TextStyle textStyleFont18Grey = const TextStyle(
   fontSize: 18,
   fontFamily: "Gilroy-Medium",
 );
+TextStyle textStyleFont14BlueW500 = const TextStyle(
+  color: ColorRes.color_2F80ED,
+  fontSize: 14,
+  fontFamily: "Gilroy-Light",
+  fontWeight: FontWeight.w600,
+);
+TextStyle textStyleFont20WhiteBold = const TextStyle(
+  color: ColorRes.white,
+  fontSize: 20,
+  fontFamily: "Gilroy-ExtraBold",
+  fontWeight: FontWeight.w700,
+);
+TextStyle textStyleFont14White400 = const TextStyle(
+  color: ColorRes.white,
+  fontSize: 14,
+  fontFamily: "Gilroy-Light",
+  fontWeight: FontWeight.w400,
+);
+TextStyle textStyleFont12Grey = const TextStyle(
+  color: ColorRes.color_9597A1,
+  fontSize: 12,
+  fontFamily: "Gilroy-ExtraBold",
+  fontWeight: FontWeight.w600, decoration: TextDecoration.underline,
+);TextStyle textStyleFont12Gre97 = const TextStyle(
+  color: ColorRes.color_979797,
+  fontSize: 12,
+  fontFamily: "Gilroy-Light",
+  fontWeight: FontWeight.w400,
+);
+TextStyle textStyleFont16white = const TextStyle(
+  color: ColorRes.white,
+  fontSize: 16,
+  fontFamily: "Gilroy-ExtraBold",
+  fontWeight: FontWeight.w700,
+);
+TextStyle textStyleFont12White400 = const TextStyle(
+  color: ColorRes.white,
+  fontSize: 12,
+  fontFamily: "Gilroy-Medium",
+  fontWeight: FontWeight.w400,
+);

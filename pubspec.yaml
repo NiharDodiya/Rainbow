@@ -62,7 +62,11 @@ dependencies:
   flutter_facebook_auth: ^4.1.1
   #_______________________________________________________image picker____________________
   image_picker: ^0.8.5+3
-  flutter_exif_rotation: ^0.5.1
+  #_______________________________________________bottomNavigationBar______
+  salomon_bottom_bar: ^3.3.1
+  #________________________________________________STORY_________________________________________________
+  story_view: ^0.13.2
+
 
 
 
@@ -94,6 +98,7 @@ flutter:
   assets:
      - assets/images/
      - assets/icons/
+     - assets/icons/bottom_icons/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

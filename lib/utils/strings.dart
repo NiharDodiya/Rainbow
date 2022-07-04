@@ -54,8 +54,9 @@ class Strings {
   static const newPasswordChange =
       "Your new password must be different\nfrom previous used password";
   static const confirmPassword = "confirm New Password";
-  static const confirmShortPassword= "please enter 1capital latters 1small latters and Special character with 8character";
-  static const coPasswordEmpty= "please enter  confirm Password";
+  static const confirmShortPassword =
+      "please enter 1capital latters 1small latters and Special character with 8character";
+  static const coPasswordEmpty = "please enter  confirm Password";
   static const confirmPasswordMismatch = "confirm  Password is Mismatch";
   static const submit = "Submit";
 
@@ -161,4 +162,24 @@ class Strings {
   static const twitterError = 'Enter twitter';
   static const aboutMeError = 'Enter about';
   static const hobbiesError = 'Enter your hobbies';
+
+  ///___________________________dashboard--Home_______________________________________
+  static const discover = "Discover";
+  static const myStory = "My Story";
+  static const scott = "Scott";
+  static const seeAll = "See All";
+  static const latestFeed = "Latest Feed";
+  static const latestFeedDes =
+      "Lorem ipsum dolor sit amet, consectetur \nadipiscing elit, sed do eiusmod tempor \nincididunt ut labore et dolore magna aliqua.\n Lorem a commodo consequat ... more ";
+  static const likes = "+8 likes";
+  static const myCompany = "My Company";
+  static const learnMore = "LEARN MORE";
+  static const search = "Search";
+  static const discoverOtherConnections = "Discover other connections";
+  static const advancedSearch  = "Advance Search";
+  static const connect  = "Connect";
+  static const block  = "Block";
+  static const myCompanyDes = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem a commodo consequat ... more ";
+
+
 }

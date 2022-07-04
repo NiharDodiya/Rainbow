@@ -7,8 +7,8 @@ import 'package:rainbow/screens/selfie_verification/selfie_verification_screen.d
 import 'package:rainbow/utils/strings.dart';
 
 class IdVerificationController extends GetxController {
-  TextEditingController idType = TextEditingController(text: "single");
-  TextEditingController idNO = TextEditingController(text: "13445");
+  TextEditingController idType = TextEditingController(/*text: "single"*/);
+  TextEditingController idNO = TextEditingController(/*text: "13445"*/);
   bool idTypeDrop = false;
   String? imageFront;
   String? imageBack;
