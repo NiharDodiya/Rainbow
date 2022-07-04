@@ -12,6 +12,7 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SearchController>(
+      id: "Search",
       builder: (controller) {
         return Scaffold(
           backgroundColor: Colors.white,
@@ -177,7 +178,74 @@ class SearchScreen extends StatelessWidget {
                             "Surrogate Mom",
                             style: textStyleFont12White400,
                           )),
-                      const Icon(Icons.more_horiz)
+                      Positioned(
+                          top: Get.height * 0.04,
+                          left: Get.width * 0.8,
+                          child: GestureDetector(
+                              onTap: () {
+                                controller.onTapConnect();
+                              },
+                              child: const Icon(Icons.more_horiz))),
+                     controller.connect.isTrue? Positioned(
+                        top: Get.height * 0.07,
+                        left: Get.width * 0.58,
+                        child: Container(
+                          height: 69,
+                          width: 105,
+                          color: ColorRes.color_50369C.withOpacity(0.45),
+                          child: Column(
+                            children: [
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Row(
+                                children: [
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Image.asset(
+                                    AssetRes.profilep,
+                                    height: 22,
+                                    width: 22,
+                                    color: ColorRes.color_FFB2B2,
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    Strings.connect,
+                                    style: textStyleFont12WhiteBold,
+                                  )
+                                ],
+                              ),
+                              const Divider(
+                                thickness: 1.5,
+                                color: Colors.white,
+                              ),
+                              Row(
+                                children: [
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Image.asset(
+                                    AssetRes.block,
+                                    height: 22,
+                                    width: 22,
+                                    color: ColorRes.color_FFB2B2,
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    Strings.block,
+                                    style: textStyleFont12WhiteBold,
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ):const SizedBox()
                     ],
                   ),
                   SizedBox(

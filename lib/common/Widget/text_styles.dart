@@ -216,3 +216,14 @@ TextStyle textStyleFont20W700Black = const TextStyle(
   fontFamily: "Gilroy-ExtraBold",
   fontWeight: FontWeight.w700,
 );
+TextStyle textStyleFont12WhiteBold = const TextStyle(
+  color: ColorRes.white,
+  fontSize: 12,
+  fontFamily: "Gilroy-ExtraBold",
+  fontWeight: FontWeight.w400,
+);TextStyle textStyleFont13Bold = const TextStyle(
+  color: ColorRes.color_252525,
+  fontSize: 13,
+  fontFamily: "Gilroy-ExtraBold",
+  fontWeight: FontWeight.w400,
+);

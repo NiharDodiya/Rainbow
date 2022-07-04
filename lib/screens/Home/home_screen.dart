@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Home/addStory/addstory_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -71,7 +72,7 @@ class HomeScreen extends StatelessWidget {
           width: 24,
         ),
         onPressed: () {
-
+Get.to(()=>AddStoryScreen());
         },
       ),
     );

@@ -8,6 +8,7 @@ class AssetRes {
   static const editIcon = '${icons}edit_icon.png';
   static const notificationIcon = '${icons}notification_icon.png';
   static const dropdown = '${icons}dropdown.png';
+  static const block = '${icons}block.png';
   static const arrowDown = '${icons}arrow_down.png';
   static const calendar = '${icons}calendar.png';
   static const lock = '${icons}lock.png';

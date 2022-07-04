@@ -163,6 +163,8 @@ class Strings {
   static const hobbiesError = 'Enter your hobbies';
 
   ///___________________________dashboard--Home_______________________________________
+  static const post= "Post";
+  static const writeSomethings = "Write something...";
   static const discover = "Discover";
   static const myStory = "My Story";
   static const scott = "Scott";
