@@ -15,10 +15,12 @@ Future<void> main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   await Firebase.initializeApp();
   await PrefService.init();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor:
-        ColorRes.color_4F359B.withOpacity(0.3), //or set color with: Color(0xFF0000FF)
-  ));
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: ColorRes.color_4F359B
+          .withOpacity(0.3), //or set color with: Color(0xFF0000FF)
+    ),
+  );
   runApp(const MyApp());
 }
 
@@ -38,9 +40,8 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: PrefService.getBool(PrefKeys.skipBoardingScreen)
-          ?  AuthDashboard()
-          : SplashScreen(),
+          ? AuthDashboard()
+          : PrefService.getBool(PrefKeys.isLogin) == false ? SplashScreen() : const Dashboard(),
     );
   }
 }
-

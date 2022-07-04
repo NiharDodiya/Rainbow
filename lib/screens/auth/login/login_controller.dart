@@ -3,9 +3,12 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_api.dart';
+import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
 import 'package:rainbow/screens/auth/newpassword/newpassword_screen.dart';
 import 'package:rainbow/screens/auth/register/register_screen.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
+import 'package:rainbow/service/pref_services.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class LoginController extends GetxController {
@@ -48,11 +51,20 @@ class LoginController extends GetxController {
 
   Future<void> registerDetails() async {
     loader.value = true;
-    await LoginApi.postRegister(
-      emailController.text,
-      passwordController.text,
-    );
-    loader.value = false;
-    Get.to(()=>const Dashboard());
+    try{
+      List<LoginModel> list = await LoginApi.postRegister(
+        emailController.text,
+        passwordController.text,
+      );
+      loader.value = false;
+      if (list.isNotEmpty) {
+        await PrefService.setValue(PrefKeys.isLogin, true);
+        Get.to(() => const Dashboard());
+      }
+    }catch(e){
+      errorToast(e.toString());
+      loader.value = false;
+      debugPrint(e.toString());
+    }
   }
 }
