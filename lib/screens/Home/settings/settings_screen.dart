@@ -9,24 +9,33 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
-
 class SettingsScreen extends StatelessWidget {
-   SettingsScreen({Key? key}) : super(key: key);
-  SettingsController controller =Get.put(SettingsController());
-
+  SettingsScreen({Key? key}) : super(key: key);
+  SettingsController controller = Get.put(SettingsController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GetBuilder<SettingsController>(id: "settings",builder:(controller){
-        return  SingleChildScrollView(
-          child: SafeArea(
+      body: GetBuilder<SettingsController>(
+        id: "settings",
+        builder: (controller) {
+          return SafeArea(
             child: Column(
-              children: [appBar(), profile(), settingsProperties()],
+              children: [
+                appBar(),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(children: [
+                      profile(),
+                      settingsProperties(),
+                    ],),
+                  ),
+                )
+
+              ],
             ),
-          ),
-        );
-      },
+          );
+        },
       ),
     );
   }
@@ -200,9 +209,10 @@ class SettingsScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 5, bottom: 5),
-            child: GestureDetector(onTap: () {
-              Get.to(()=>ConnectionsScreen());
-            },
+            child: GestureDetector(
+              onTap: () {
+                Get.to(() => ConnectionsScreen());
+              },
               child: Row(
                 children: [
                   SizedBox(
@@ -234,9 +244,10 @@ class SettingsScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 5, bottom: 5),
-            child: GestureDetector(onTap: () {
-              Get.to(()=>SupportScreen());
-            },
+            child: GestureDetector(
+              onTap: () {
+                Get.to(() => SupportScreen());
+              },
               child: Row(
                 children: [
                   SizedBox(
@@ -352,20 +363,24 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 SizedBox(
                   width: Get.width * 0.395,
-                ), GetBuilder<SettingsController>(id: "switch",builder: (controller) {
-                  return Transform.scale(scale: 0.7,
-                    child: CupertinoSwitch(
-                      value: controller.isSwitched,
-                      onChanged: (value) {
-                        controller.isSwitched = value;
-                        controller.update(["switch"]);
-                      },
-                      activeColor: Colors.yellow,trackColor: Colors.white,
-                    ),
-                  );
-                },
                 ),
-
+                GetBuilder<SettingsController>(
+                  id: "switch",
+                  builder: (controller) {
+                    return Transform.scale(
+                      scale: 0.7,
+                      child: CupertinoSwitch(
+                        value: controller.isSwitched,
+                        onChanged: (value) {
+                          controller.isSwitched = value;
+                          controller.update(["switch"]);
+                        },
+                        activeColor: Colors.yellow,
+                        trackColor: Colors.white,
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
           ),
@@ -427,9 +442,9 @@ class SettingsScreen extends StatelessWidget {
                 color: ColorRes.color_6306B2),
             child: Center(
                 child: Text(
-                  Strings.inviteNow,
-                  style: textStyleFont11,
-                )),
+              Strings.inviteNow,
+              style: textStyleFont11,
+            )),
           ),
           SizedBox(
             height: Get.height * 0.035,
@@ -442,20 +457,20 @@ class SettingsScreen extends StatelessWidget {
                 color: ColorRes.color_FFEC5C),
             child: Center(
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                        height: 15, width: 15, child: Image.asset(AssetRes.logout)),
-                    const SizedBox(
-                      width: 11,
-                    ),
-                    Text(
-                      Strings.logout,
-                      style: textStyleFont15Blck,
-                    ),
-                  ],
-                )),
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                    height: 15, width: 15, child: Image.asset(AssetRes.logout)),
+                const SizedBox(
+                  width: 11,
+                ),
+                Text(
+                  Strings.logout,
+                  style: textStyleFont15Blck,
+                ),
+              ],
+            )),
           ),
           SizedBox(
             height: Get.height * 0.07,
