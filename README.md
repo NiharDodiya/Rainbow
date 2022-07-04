@@ -1,7 +1,7 @@
 # rainbow
 
 A new Flutter project.
-
+flutter sdk :3.0.2
 ## Getting Started
 
 This project is a starting point for a Flutter application.

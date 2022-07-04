@@ -129,7 +129,7 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                                         decoration: const BoxDecoration(
                                             image: DecorationImage(
                                                 image: AssetImage(
-                                                    AssetRes.camera_icon))),
+                                                    AssetRes.cameraIcon))),
                                       ),
                                     ),
                                     Positioned(
@@ -141,7 +141,7 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                                         decoration: const BoxDecoration(
                                             image: DecorationImage(
                                                 image: AssetImage(
-                                                    AssetRes.camera_icon))),
+                                                    AssetRes.cameraIcon))),
                                       ),
                                     ),
                                   ],

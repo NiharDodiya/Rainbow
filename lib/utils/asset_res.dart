@@ -4,6 +4,9 @@ class AssetRes {
   static const images = 'assets/images/';
 
   ///--------------------------------------------- icons ---------------------------------------------
+  static const backIcon = '${icons}back_icon.png';
+  static const editIcon = '${icons}edit_icon.png';
+  static const notificationIcon = '${icons}notification_icon.png';
   static const dropdown = '${icons}dropdown.png';
   static const arrowDown = '${icons}arrow_down.png';
   static const calendar = '${icons}calendar.png';
@@ -14,7 +17,7 @@ class AssetRes {
   static const bottomLeft = '${icons}bottomleft.png';
   static const topRight = '${icons}topright.png';
   static const topLeft = '${icons}topleft.png';
-  static const camera_icon = '${icons}camera_icon.png';
+  static const cameraIcon = '${icons}camera_icon.png';
   static const locate = '${icons}locate.png';
   static const notify= '${icons}icons_notif.png';
   static const settings= '${icons}settings.png';
