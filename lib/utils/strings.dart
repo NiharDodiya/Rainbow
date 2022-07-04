@@ -184,4 +184,23 @@ class Strings {
 
 ///___________________________dashboard--Profile_______________________________________
   static const profile = "Profile";
+  ///________________________SettingScreen____________________________________________
+  static const loremIpsum="Lorem Ipsum is simply\n dummy text of the printing \nand typesetting industry.";
+  static const pending="Pending";
+  static const complete="Complete";
+  static const sendNewMessage="Send new Message";
+  static const others="Others";
+  static const viewProfile="View Profile";
+  static const messages="Messages";
+  static const connections="Connections";
+  static const support="Support";
+  static const payment="Payment";
+  static const privacy="Privacy";
+  static const notifications="Notifications";
+  static const subscription="Subscription";
+  static const yourReferralCode="Your Referral Code";
+  static const  inviteNow="Invite Now";
+  static const  logout="Logout";
+  static const  connectionRequest = "Connection Request";
+  static const  suggestedConnection = "Suggested Connection";
 }

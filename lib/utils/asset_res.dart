@@ -2,8 +2,10 @@ class AssetRes {
   static const icons = 'assets/icons/';
   static const iconsBottom = 'assets/icons/bottom_icons/';
   static const images = 'assets/images/';
+  static const settingsImage = 'assets/settings/';
 
   ///--------------------------------------------- icons ---------------------------------------------
+  static const next = '${icons}next.png';
   static const backIcon = '${icons}back_icon.png';
   static const editIcon = '${icons}edit_icon.png';
   static const notificationIcon = '${icons}notification_icon.png';
@@ -45,6 +47,7 @@ class AssetRes {
 
 
   ///--------------------------------------------- images ---------------------------------------------
+  static const se_profile = '${images}se_profile.png';
   static const woman = '${images}woman.png';
   static const se = '${images}se-2.png';
   static const rainBowLogo = '${images}rainbow_logo.png';
@@ -67,5 +70,14 @@ class AssetRes {
   static const lt2 ='${images}lt2.png';
   static const lt3 ='${images}lt3.png';
   static const backGround ='${images}backGroundImage.png';
+  ///_______________________________settings_____________________  ___________
+
+  static const profileSettinges = '${settingsImage}profileSettinges.png';
+  static const support = '${settingsImage}Support.png';
+  static const connections = '${settingsImage}connections.png';
+  static const messages = '${settingsImage}messages.png';
+  static const payment = '${settingsImage}payment.png';
+  static const logout = '${settingsImage}logout.png';
+  static const duck = '${settingsImage}duck.png';
 
 }

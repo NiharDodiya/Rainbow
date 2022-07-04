@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/addStory/add_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
+import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class AddStoryScreen extends StatelessWidget {
@@ -22,14 +23,13 @@ class AddStoryScreen extends StatelessWidget {
            GestureDetector(onTap: () {
              Get.back();
            },
-             child: const Icon(
-               Icons.arrow_back_ios_outlined,
-               color: Colors.black,
-               size: 20,
-             ),
+             child:Image.asset(AssetRes.backIcon,height: 16,width: 16,color:ColorRes.color_252525 ,),
            ),
            SizedBox(width: Get.width * 0.8,),
-           Text(Strings.post,style: textStyleFont13Bold,),
+           GestureDetector(onTap: () {
+             Get.back();
+           },
+               child: Text(Strings.post,style: textStyleFont13Bold,)),
            SizedBox(width: Get.width * 0.05,),
 
          ],
@@ -46,7 +46,7 @@ class AddStoryScreen extends StatelessWidget {
                 Container(height: 40,width: 40,
                     decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  image: DecorationImage(image: AssetImage(AssetRes.selfiePicture))
+                  image: DecorationImage(image: AssetImage(AssetRes.se_profile))
                 ),
                  ),
                 SizedBox(width: Get.width*0.05,),

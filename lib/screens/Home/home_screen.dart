@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/addStory/addstory_screen.dart';
+import 'package:rainbow/screens/Home/settings/settings_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -38,12 +39,17 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 width: Get.width * 0.37,
               ),
-              const Image(
-                image: AssetImage(
-                  AssetRes.settings,
+              GestureDetector(
+                onTap: () {
+                  Get.to(() =>  SettingsScreen());
+                },
+                child: const Image(
+                  image: AssetImage(
+                    AssetRes.settings,
+                  ),
+                  height: 19.25,
+                  width: 19.25,
                 ),
-                height: 19.25,
-                width: 19.25,
               ),
               SizedBox(
                 width: Get.width * 0.04,
@@ -72,7 +78,7 @@ class HomeScreen extends StatelessWidget {
           width: 24,
         ),
         onPressed: () {
-Get.to(()=>AddStoryScreen());
+          Get.to(() => AddStoryScreen());
         },
       ),
     );
@@ -592,11 +598,13 @@ class _MoreStoriesState extends State<MoreStories> {
       appBar: AppBar(
         title: const Text("More"),
       ),
-      body: SizedBox(height: Get.height * 0.8,
+      body: SizedBox(
+        height: Get.height * 0.8,
         child: StoryView(
           storyItems: [
             StoryItem.text(
-              title: "I guess you'd love to see more of our food. That's great.",
+              title:
+                  "I guess you'd love to see more of our food. That's great.",
               backgroundColor: Colors.blue,
             ),
             StoryItem.text(
