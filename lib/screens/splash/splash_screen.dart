@@ -18,66 +18,64 @@ class SplashScreen extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           backgroundColor: Colors.white,
-          body: SafeArea(
-            child: Stack(
-              alignment: Alignment.bottomCenter,
-              children: <Widget>[
-                PageView(
-                  onPageChanged: controller.onChanged,
-                  controller: controller.pageController,
-                  children: <Widget>[
-                    animation(),
-                    animation(),
-                    animation(),
-                    animation(),
+          body: Stack(
+            alignment: Alignment.bottomCenter,
+            children: <Widget>[
+              PageView(
+                onPageChanged: controller.onChanged,
+                controller: controller.pageController,
+                children: <Widget>[
+                  animation(),
+                  animation(),
+                  animation(),
+                  animation(),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: Get.height * 0.8),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: 15,
+                            top: Get.height * 0.1,
+                          ),
+                          child: InkWell(
+                            onTap: controller.onNextBtnTap,
+                            child: Text(
+                              Strings.next,
+                              style: textStyleFont12,
+                            ),
+                          ),
+                        ),
+                        const Spacer(),
+                        Padding(
+                          padding: EdgeInsets.only(top: Get.height * 0.1),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: _buildIndicator(controller),
+                          ),
+                        ),
+                        const Spacer(),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              left: 15, top: Get.height * 0.1, right: 15),
+                          child: InkWell(
+                            onTap: controller.onSkipTap,
+                            child: Text(
+                              "Skip",
+                              style: textStyleFont12,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: Get.height * 0.8),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                              left: 15,
-                              top: Get.height * 0.1,
-                            ),
-                            child: InkWell(
-                              onTap: controller.onNextBtnTap,
-                              child: Text(
-                                Strings.next,
-                                style: textStyleFont12,
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: EdgeInsets.only(top: Get.height * 0.1),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: _buildIndicator(controller),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: 15, top: Get.height * 0.1, right: 15),
-                            child: InkWell(
-                              onTap: controller.onSkipTap,
-                              child: Text(
-                                "Skip",
-                                style: textStyleFont12,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       },
@@ -123,14 +121,11 @@ class SplashScreen extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 4),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Image(
-                          image: const AssetImage(AssetRes.sp1),
-                          height: Get.height * 0.35,
-                        ),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Image(
+                        image: const AssetImage(AssetRes.sp1),
+                        height: Get.height * 0.35,
                       ),
                     ),
                     Padding(
@@ -144,20 +139,17 @@ class SplashScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 5),
-                      child: Align(
-                        alignment: Alignment.topRight,
-                        child: Image(
-                          image: const AssetImage(AssetRes.sp2),
-                          height: Get.height * 0.27,
-                        ),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Image(
+                        image: const AssetImage(AssetRes.sp2),
+                        height: Get.height * 0.27,
                       ),
                     ),
                   ],
                 ),
                 Positioned(
-                  top: Get.height * 0.22,
+                  top: Get.height * 0.26,
                   left: 30,
                   child: Container(
                     height: Get.height * 0.120,
@@ -170,7 +162,7 @@ class SplashScreen extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: Get.height * 0.1),
+                  padding: EdgeInsets.only(bottom: Get.height * 0.02),
                   child: Center(
                     child: Text(
                       "Help, Support & Solutions For Families",
@@ -178,30 +170,34 @@ class SplashScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(right: 335, top: Get.height * 0.4),
-                  child: const Align(
-                    alignment: Alignment.topLeft,
-                    child: Image(
-                      image: AssetImage(AssetRes.greyCircle),
-                      height: 42,
-                      width: 42,
+                Positioned(
+                  left: -19,
+                  top: Get.height * 0.43,
+                  child: Container(
+                    height: 42,
+                    width: 42,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: ColorRes.white.withOpacity(0.4),
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: 335, top: Get.height * 0.52),
-                  child: const Align(
-                    alignment: Alignment.topRight,
-                    child: Image(
-                      image: AssetImage(AssetRes.whiteCircle),
-                      height: 59,
-                      width: 59,
+                Positioned(
+                  right: -32,
+                  top: Get.height * 0.55,
+                  child: Container(
+                    height: 59,
+                    width: 59,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: ColorRes.white,
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: Get.height * 0.62),
+                Positioned(
+                  bottom: Get.height * 0.045,
+                  left: 0,
+                  right: 0,
                   child: InkWell(
                     onTap: controller.onNextBtnTap,
                     child: Center(

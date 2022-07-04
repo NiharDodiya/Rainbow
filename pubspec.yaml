@@ -58,7 +58,7 @@ dependencies:
   #_______________________________________________ authantication______________________________________
   firebase_auth: ^3.3.20
   google_sign_in: ^5.3.3
-  flutter_login_facebook: ^1.5.0+1
+  #  flutter_login_facebook: ^1.5.0+1
   flutter_facebook_auth: ^4.1.1
   #_______________________________________________________image picker____________________
   image_picker: ^0.8.5+3
@@ -96,9 +96,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - assets/images/
-     - assets/icons/
-     - assets/icons/bottom_icons/
+    - assets/images/
+    - assets/icons/
+    - assets/icons/bottom_icons/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

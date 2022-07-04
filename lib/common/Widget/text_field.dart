@@ -17,6 +17,7 @@ class AppTextFiled extends StatelessWidget {
   final bool? multiLine;
   final Function(String)? onChange;
   final EdgeInsetsGeometry? inputPadding;
+  final double? titleBottomPadding;
 
   const AppTextFiled({
     Key? key,
@@ -32,7 +33,7 @@ class AppTextFiled extends StatelessWidget {
     this.onTap,
     this.multiLine,
     this.onChange,
-    this.inputPadding,
+    this.inputPadding, this.titleBottomPadding,
   }) : super(key: key);
 
   @override
@@ -42,7 +43,7 @@ class AppTextFiled extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(title, style: textStyleFont14White600),
-        SizedBox(height: Get.height * 0.012),
+        SizedBox(height: titleBottomPadding ?? Get.height * 0.012),
         Container(
           width: Get.width,
           constraints: BoxConstraints(

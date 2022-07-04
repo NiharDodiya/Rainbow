@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/auth/login/login_controller.dart';
-import 'package:rainbow/screens/auth/newpassword/newpassword_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -18,30 +18,34 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Obx(() {
-        if(controller.loader.isTrue)
-          {
+      body: Obx(
+            () {
+          if (controller.loader.isTrue) {
             return SmallLoader();
           }
-        return GetBuilder<LoginController>(
-          id: "Login",
-          builder: (controller) {
-            return SafeArea(
-              child: SingleChildScrollView(
+          return GetBuilder<LoginController>(
+            id: "Login",
+            builder: (controller) {
+              return SingleChildScrollView(
                 child: Column(
                   children: [
                     Container(
-                      height: Get.height * 0.81,
                       width: Get.width,
-                      margin: EdgeInsets.all(Get.width * 0.02669),
+                      margin: EdgeInsets.fromLTRB(
+                        Get.width * 0.02667,
+                        Get.width * 0.02667,
+                        Get.width * 0.02667,
+                        0,
+                      ),
                       decoration: BoxDecoration(
-                          color: ColorRes.color_4F359B,
-                          borderRadius: BorderRadius.circular(25)),
+                        color: ColorRes.color_4F359B,
+                        borderRadius: BorderRadius.circular(36),
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Stack(
+                          Column(
                             children: [
                               logoRainbow(),
                               textFields(controller),
@@ -54,11 +58,11 @@ class LoginScreen extends StatelessWidget {
                     signUp(),
                   ],
                 ),
-              ),
-            );
-          },
-        );
-      })
+              );
+            },
+          );
+        },
+      ),
     );
   }
 
@@ -67,10 +71,10 @@ class LoginScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        SizedBox(height: Get.height * 0.08),
+        SizedBox(height: Get.height * 0.1429),
         Center(
           child: Container(
-            height: Get.height * 0.13,
+            height: Get.height * 0.1207,
             width: Get.width * 0.84,
             decoration: const BoxDecoration(
               image: DecorationImage(
@@ -98,10 +102,10 @@ class LoginScreen extends StatelessWidget {
 
   Widget textFields(LoginController loginController) {
     return Padding(
-      padding: EdgeInsets.only(top: Get.height * 0.35, left: 5),
+      padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07467),
       child: Column(
         children: [
-          SizedBox(height: Get.height * 0.02),
+          SizedBox(height: Get.height * 0.044),
           /*      Align(
             alignment: Alignment.topLeft,
             child: Padding(
@@ -113,16 +117,13 @@ class LoginScreen extends StatelessWidget {
             ),
           ),*/
           /*SizedBox(height: height * 0.02),*/
-          Center(
-            child: SizedBox(
-              width: Get.width * 0.85,
-              child: AppTextFiled(
-                controller: loginController.emailController,
-                title: Strings.userName,
-                hintText: Strings.emailExample,
-                textInputType: TextInputType.emailAddress,
-              ),
-            ),
+          AppTextFiled(
+            controller: loginController.emailController,
+            title: Strings.userName,
+            hintText: Strings.emailExample,
+            textInputType: TextInputType.emailAddress,
+            titleBottomPadding: 16,
+            bottomPadding: 6,
           ),
 
           /*    Align(
@@ -136,29 +137,25 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: height * 0.02),*/
-          Center(
-            child: SizedBox(
-              width: Get.width * 0.85,
-              child: AppTextFiled(
-                controller: loginController.passwordController,
-                title: Strings.password,
-                hintText: Strings.passwordExample,
-                obscure: true,
-              ),
-            ),
+          AppTextFiled(
+            controller: loginController.passwordController,
+            title: Strings.password,
+            hintText: Strings.passwordExample,
+            obscure: true,
+            titleBottomPadding: 16,
+            bottomPadding: 7,
           ),
           Align(
             alignment: Alignment.topRight,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: GestureDetector(onTap:loginController.onForgotPassword,
-                child: Text(
-                  Strings.forgotPassword,
-                  style: TextStyle(
-                      color: ColorRes.white.withOpacity(0.5),
-                      fontSize: 14,
-                      fontFamily: "Gilroy-Light",
-                      fontWeight: FontWeight.w600),
+            child: GestureDetector(
+              onTap: loginController.onForgotPassword,
+              child: Text(
+                Strings.forgotPassword,
+                style: TextStyle(
+                  color: ColorRes.white.withOpacity(0.5),
+                  fontSize: 14,
+                  fontFamily: "Gilroy-Light",
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),
@@ -169,55 +166,37 @@ class LoginScreen extends StatelessWidget {
   }
 
   Widget loginButton(LoginController loginController) {
-    return Center(
-      child: Padding(
-        padding: EdgeInsets.only(top: Get.height * 0.67),
-        child: Column(
+    return Column(
+      children: [
+        SizedBox(height: Get.height * 0.02463),
+        SubmitButton(
+          text: Strings.login,
+          onTap: loginController.onRegisterTap,
+        ),
+        SizedBox(height: Get.height * 0.03202),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GestureDetector(
-              onTap: loginController.onRegisterTap,
-              child: Container(
-                width: Get.width * 0.84,
-                height: Get.height * 0.073,
-                decoration: BoxDecoration(
-                  color: ColorRes.color_E7D01F,
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Center(
-                  child: Text(
-                    Strings.login,
-                    style: textStyleFont16BlackLight,
-                  ),
-                ),
-              ),
+            Text(
+              Strings.log_in,
+              style: textStyleFont14WhiteBold,
             ),
-            const SizedBox(
-              height: 18,
+            Text(
+              Strings.loginAsAdvertiser,
+              style: textStyleFont14White,
             ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  Strings.log_in,
-                  style: textStyleFont14WhiteBold,
-                ),
-                Text(
-                  Strings.loginAsAdvertiser,
-                  style: textStyleFont14White,
-                ),
-              ],
-            )
           ],
         ),
-      ),
+        SizedBox(height: Get.height * 0.02463),
+      ],
     );
   }
 
   Widget signUp() {
     return Column(
       children: [
-        SizedBox(height: Get.height * 0.016),
+        SizedBox(height: Get.height * 0.02463),
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -235,7 +214,7 @@ class LoginScreen extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: Get.height * 0.028),
+        SizedBox(height: Get.height * 0.025),
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -252,7 +231,8 @@ class LoginScreen extends StatelessWidget {
               style: textStyleFont14Black,
             ),
           ],
-        )
+        ),
+        SizedBox(height: Get.height * 0.02463),
       ],
     );
   }

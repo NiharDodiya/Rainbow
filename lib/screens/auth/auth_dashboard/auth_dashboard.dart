@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashbord_controller.dart';
@@ -18,37 +19,29 @@ class AuthDashboard extends StatelessWidget {
       id: "auth",
       builder: (controller) {
         return Scaffold(
-          backgroundColor: Colors.white,
-          body: Obx(() {
-            if(controller.loading.isTrue)
-              {
+            backgroundColor: Colors.white,
+            body: Obx(() {
+              if (controller.loading.isTrue) {
                 return const SmallLoader();
               }
-            return SafeArea(
-                child: Center(
-                  child: Container(
-                    margin: EdgeInsets.all(Get.width * 0.02669),
-                    decoration: BoxDecoration(
-                      color: ColorRes.color_4F359B,
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Column(
-                      children: [
-                        Stack(
-                          children: [
-                            logoRainbow(),
-                            continueWithEmail(),
-                            googleFacebook(controller),
-                            alreadyHaveAccount(controller),
-                          ],
-                        )
-                      ],
-                    ),
+              return Center(
+                child: Container(
+                  margin: EdgeInsets.all(Get.width * 0.02667),
+                  decoration: BoxDecoration(
+                    color: ColorRes.color_4F359B,
+                    borderRadius: BorderRadius.circular(36),
                   ),
-                )
-            );
-          })
-        );
+                  child: Column(
+                    children: [
+                      logoRainbow(),
+                      continueWithEmail(),
+                      googleFacebook(controller),
+                      alreadyHaveAccount(controller),
+                    ],
+                  ),
+                ),
+              );
+            }));
       },
     );
   }
@@ -56,7 +49,7 @@ class AuthDashboard extends StatelessWidget {
   Widget logoRainbow() {
     return Column(
       children: [
-        SizedBox(height: Get.height * 0.14),
+        SizedBox(height: Get.height * 0.25),
         Center(
           child: Container(
             height: Get.height * 0.120,
@@ -76,7 +69,6 @@ class AuthDashboard extends StatelessWidget {
             style: textStyleFont18White,
           ),
         ),
-        SizedBox(height: Get.height * 0.1),
       ],
     );
   }
@@ -86,197 +78,173 @@ class AuthDashboard extends StatelessWidget {
   }
 
   Widget continueWithEmail() {
-    return Center(
-      child: Padding(
-        padding: EdgeInsets.only(top: Get.height * 0.39),
-        child: Column(
-          children: [
-            GestureDetector(
-              onTap: controller.onSignUpTap,
-              child: Container(
-                height: Get.height * 0.076,
-                width: Get.width * 0.85,
-                decoration: BoxDecoration(
-                    color: ColorRes.color_E7D01F,
-                    borderRadius: BorderRadius.circular(15)),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.email_sharp,
-                      color: Colors.black,
-                      size: 18,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      Strings.continueWithEmail,
-                      style: textStyleFont16Black,
-                    )
-                  ],
-                ),
+    return Column(
+      children: [
+        SizedBox(height: Get.height * 0.085),
+        SubmitButton(
+          onTap: controller.onSignUpTap,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.email_sharp,
+                color: Colors.black,
+                size: 18,
               ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              "OR",
-              style: textStyleFont14White,
-            ),
-          ],
+              const SizedBox(width: 8),
+              Text(
+                Strings.continueWithEmail,
+                style: textStyleFont16Black,
+              )
+            ],
+          ),
         ),
-      ),
+        const SizedBox(height: 8),
+        Text(
+          "OR",
+          style: textStyleFont14White,
+        ),
+      ],
     );
   }
 
   Widget googleFacebook(AuthDashBordController controller) {
-    return Center(
-      child: Padding(
-        padding: EdgeInsets.only(top: Get.height * 0.51),
-        child: Column(
+    return Column(
+      children: [
+        const SizedBox(height: 10),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 8),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    controller.signWithGoogle();
-                  },
-                  child: Container(
-                    height: Get.height * 0.076,
-                    width: Get.width * 0.40,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white, width: 1.5),
-                        color: ColorRes.color_4F359B,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 14,
-                          child: Image.asset(
-                            AssetRes.googleIcon,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        SizedBox(
-                          height: 14,
-                          width: 42,
-                          child: Text(
-                            Strings.google,
-                            style: textStyleFont12White,
-                          ),
-                        ),
-                      ],
+            GestureDetector(
+              onTap: controller.signWithGoogle,
+              child: Container(
+                height: Get.height * 0.076,
+                width: Get.width * 0.40,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.white, width: 1.5),
+                  color: ColorRes.color_4F359B,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 14,
+                      child: Image.asset(
+                        AssetRes.googleIcon,
+                      ),
                     ),
-                  ),
-                ),
-                const SizedBox(width: 25),
-                GestureDetector(
-                  onTap: () {
-                      controller.faceBookSignIn();
-                  },
-                  child: Container(
-                    height: Get.height * 0.076,
-                    width: Get.width * 0.40,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white, width: 1.5),
-                        color: ColorRes.color_4F359B,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 14,
-                          child: Image.asset(
-                            AssetRes.facebook,
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        SizedBox(
-                          height: 14,
-                          width: 56,
-                          child: Text(
-                            Strings.facebook,
-                            style: textStyleFont12White,
-                          ),
-                        ),
-                      ],
+                    const SizedBox(width: 10),
+                    SizedBox(
+                      height: 14,
+                      width: 42,
+                      child: Text(
+                        Strings.google,
+                        style: textStyleFont12White,
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
-            SizedBox(height: Get.height * 0.1),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget alreadyHaveAccount(AuthDashBordController controller) {
-    return Center(
-      child: Padding(
-        padding: EdgeInsets.only(top: Get.height * 0.70),
-        child: Column(
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  Strings.alreadyHaveAccount,
-                  style: textStyleFont14White,
+            const SizedBox(width: 25),
+            GestureDetector(
+              onTap: controller.faceBookSignIn,
+              child: Container(
+                height: Get.height * 0.076,
+                width: Get.width * 0.40,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.white, width: 1.5),
+                  color: ColorRes.color_4F359B,
+                  borderRadius: BorderRadius.circular(20),
                 ),
-                GestureDetector(
-                  onTap: controller.onSignInTap,
-                  child: Text(
-                    Strings.signIn,
-                    style: textStyleFont14WhiteBold,
-                    textAlign: TextAlign.center,
-                  ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 14,
+                      child: Image.asset(
+                        AssetRes.facebook,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    SizedBox(
+                      height: 14,
+                      width: 56,
+                      child: Text(
+                        Strings.facebook,
+                        style: textStyleFont12White,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            sizedBox14(),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                InkWell(
-                  onTap: controller.onSignUpTap,
-                  child: Text(
-                    Strings.signUp,
-                    style: textStyleFont14WhiteBold,
-                  ),
-                ),
-                Text(
-                  Strings.forAdvertise,
-                  style: textStyleFont14White,
-                ),
-              ],
-            ),
-            sizedBox14(),
-            SizedBox(
-              width: Get.width * 0.67,
-              height: Get.height * 0.040,
-              child: Center(
-                child: SizedBox(
-                    height: Get.height * 0.040,
-                    width: Get.width * 0.67,
-                    child: Text(
-                      Strings.termsServices,
-                      style: textStyleFont10White,
-                      textAlign: TextAlign.center,
-                    )),
               ),
             ),
           ],
         ),
-      ),
+      ],
+    );
+  }
+
+  Widget alreadyHaveAccount(AuthDashBordController controller) {
+    return Column(
+      children: [
+        SizedBox(height: Get.height*0.0788),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              Strings.alreadyHaveAccount,
+              style: textStyleFont14White,
+            ),
+            GestureDetector(
+              onTap: controller.onSignInTap,
+              child: Text(
+                Strings.signIn,
+                style: textStyleFont14WhiteBold,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        ),
+        sizedBox14(),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            InkWell(
+              onTap: controller.onSignUpTap,
+              child: Text(
+                Strings.signUp,
+                style: textStyleFont14WhiteBold,
+              ),
+            ),
+            Text(
+              Strings.forAdvertise,
+              style: textStyleFont14White,
+            ),
+          ],
+        ),
+        sizedBox14(),
+        SizedBox(
+          width: Get.width * 0.67,
+          height: Get.height * 0.040,
+          child: Center(
+            child: SizedBox(
+                height: Get.height * 0.040,
+                width: Get.width * 0.67,
+                child: Text(
+                  Strings.termsServices,
+                  style: textStyleFont10White,
+                  textAlign: TextAlign.center,
+                )),
+          ),
+        ),
+      ],
     );
   }
 }
