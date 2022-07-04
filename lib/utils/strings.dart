@@ -180,5 +180,6 @@ class Strings {
   static const block  = "Block";
   static const myCompanyDes = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem a commodo consequat ... more ";
 
-
+///___________________________dashboard--Profile_______________________________________
+  static const profile = "Profile";
 }

@@ -162,6 +162,7 @@ TextStyle textStyleFont20W700 = const TextStyle(
   fontFamily: "Gilroy-ExtraBold",
   fontWeight: FontWeight.w700,
 );
+
 TextStyle textStyleFont18Grey = const TextStyle(
   color: ColorRes.color_B4B4B4,
   fontSize: 18,
@@ -190,7 +191,8 @@ TextStyle textStyleFont12Grey = const TextStyle(
   fontSize: 12,
   fontFamily: "Gilroy-ExtraBold",
   fontWeight: FontWeight.w600, decoration: TextDecoration.underline,
-);TextStyle textStyleFont12Gre97 = const TextStyle(
+);
+TextStyle textStyleFont12Gre97 = const TextStyle(
   color: ColorRes.color_979797,
   fontSize: 12,
   fontFamily: "Gilroy-Light",
