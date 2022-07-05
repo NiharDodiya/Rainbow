@@ -6,6 +6,7 @@ import 'package:rainbow/common/popup.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:rainbow/screens/auth/register/register_screen.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/register_adviser.dart';
 import 'package:rainbow/utils/strings.dart';
 
 import '../login/login_screen.dart';
@@ -61,6 +62,7 @@ class AuthDashBordController extends GetxController {
     flutterToast(Strings.faceBookSignInSuccess);
   }
   void onSignUpTap() {
-    Get.to(() => RegisterScreen(), transition: Transition.cupertino);
+    // Get.to(() => RegisterScreen(), transition: Transition.cupertino);
+    Get.to(() => AdviserRegisterScreen());
   }
 }

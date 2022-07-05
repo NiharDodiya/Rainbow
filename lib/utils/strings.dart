@@ -10,6 +10,15 @@ class Strings {
   static const facebook = 'FaceBook';
   static const signIn = 'Sign in';
   static const signUp = 'Sign up';
+  static const houseNumber = 'House Number';
+  static const streetName = 'Street Name';
+  static const profession = 'Profession';
+  static const country = 'Country';
+  static const doctor = 'Doctor';
+  static const companyName = 'Company Name';
+  static const companyNumber = 'Company Number';
+  static const postalCode    = 'Postal Code';
+  static const website    = 'Website';
   static const sign_Up = 'Signup';
   static const forAdvertise = " for advertiser's account";
   static const termsServices =
@@ -133,6 +142,9 @@ class Strings {
   static const height = 'Height';
   static const weight = 'Weight';
   static const sorrogateMom = 'Sorrogate Mom';
+  static const ageHint = '24';
+  static const natalieNara = 'Natalie Nara';
+  static const age = 'Age';
   static const h = '5’8';
   static const w = '160 lbs';
   static const feet = 'Feet';
@@ -184,6 +196,10 @@ class Strings {
 
 ///___________________________dashboard--Profile_______________________________________
   static const profile = "Profile";
+  static const city = "City";
+  static const london = "London";
+  static const haveKids = "Have kids?";
+  static const  editProfile= "Edit Profile";
   ///________________________SettingScreen____________________________________________
   static const loremIpsum="Lorem Ipsum Is Simply\nDummy Text Of The Printing\nAnd Typesetting Industry.";
   static const pending="Pending";

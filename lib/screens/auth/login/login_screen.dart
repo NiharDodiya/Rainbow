@@ -18,48 +18,51 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Obx(
-            () {
-          if (controller.loader.isTrue) {
-            return SmallLoader();
-          }
-          return GetBuilder<LoginController>(
-            id: "Login",
-            builder: (controller) {
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Container(
-                      width: Get.width,
-                      margin: EdgeInsets.fromLTRB(
-                        Get.width * 0.02667,
-                        Get.width * 0.02667,
-                        Get.width * 0.02667,
-                        0,
-                      ),
-                      decoration: BoxDecoration(
-                        color: ColorRes.color_4F359B,
-                        borderRadius: BorderRadius.circular(36),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Column(
+      body: Obx(() {
+          return Stack(
+            children: [
+              GetBuilder<LoginController>(
+                id: "Login",
+                builder: (controller) {
+                  return SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Container(
+                          width: Get.width,
+                          margin: EdgeInsets.fromLTRB(
+                            Get.width * 0.02667,
+                            Get.width * 0.02667,
+                            Get.width * 0.02667,
+                            0,
+                          ),
+                          decoration: BoxDecoration(
+                            color: ColorRes.color_4F359B,
+                            borderRadius: BorderRadius.circular(36),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              logoRainbow(),
-                              textFields(controller),
-                              loginButton(controller)
+                              Column(
+                                children: [
+                                  logoRainbow(),
+                                  textFields(controller),
+                                  loginButton(controller)
+                                ],
+                              ),
                             ],
                           ),
-                        ],
-                      ),
+                        ),
+                        signUp(),
+                      ],
                     ),
-                    signUp(),
-                  ],
-                ),
-              );
-            },
+                  );
+                },
+              ),
+              controller.loader.isTrue
+                  ? const SmallLoader()
+                  : const SizedBox()
+            ],
           );
         },
       ),

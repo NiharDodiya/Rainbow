@@ -41,7 +41,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: !PrefService.getBool(PrefKeys.skipBoardingScreen)
           ? SplashScreen()
-          : PrefService.getBool(PrefKeys.isLogin)? const Dashboard() : AuthDashboard(),
+          : PrefService.getBool(PrefKeys.isLogin)
+              ? const Dashboard()
+              : PrefService.getBool(PrefKeys.register)
+                  ? const Dashboard()
+                  : AuthDashboard(),
     );
   }
 }

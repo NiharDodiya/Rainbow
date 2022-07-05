@@ -305,17 +305,24 @@ TextStyle gilroyMediumTextStyle({Color? color,double? fontSize,}){
     fontSize: fontSize??18,
     fontFamily: FontRes.gilroyMedium,
   );
+}TextStyle gilroyRegularTextStyle({Color? color,double? fontSize,}){
+  return TextStyle(
+    color: color??ColorRes.white,
+    fontWeight: FontWeight.w500,
+    fontSize: fontSize??18,
+    fontFamily: FontRes.gilroyRegular,
+  );
 }
 
 TextStyle textStylField16w500 = const TextStyle(
   color: ColorRes.color_49A510,
   fontSize: 16,
-  fontFamily: "Gilroy-Medium",
+  fontFamily:FontRes.gilroyMedium,
   fontWeight: FontWeight.w500,
 );TextStyle textStylField16wyellow = const TextStyle(
   color: ColorRes.color_FFA800,
   fontSize: 16,
-  fontFamily: "Gilroy-Medium",
+  fontFamily: FontRes.gilroyMedium,
   fontWeight: FontWeight.w500,
 );
 TextStyle textStyle12w600(Color color)

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/screens/Profile/widget/profileImage.dart';
 import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
+import 'package:rainbow/screens/Profile/widget/profile_details.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
@@ -26,6 +28,8 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             children: [
               profileAppbar(Strings.profile),
+              profileImage(),
+              profileDetails()
             ],
           ),
         ),

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
+import 'dart:ui' as ui;
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -11,18 +12,18 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/auth/verify_phone/verifyphone_screen.dart';
+import 'package:rainbow/screens/dashboard/dashBoard.dart';
+import 'package:rainbow/service/pref_services.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
-import 'dart:ui' as ui;
 
 class ScanYourFaceController extends GetxController {
-
   File? image1;
-  // RxBool loader= false.obs;
 
+  // RxBool loader= false.obs;
 
   @override
   void onInit() async {
-
     await getCamera();
     controller = CameraController(
       camera,
@@ -33,22 +34,23 @@ class ScanYourFaceController extends GetxController {
     update(["imagePicker"]);
     super.onInit();
   }
-Future getImage() async {
-  final image = await ImagePicker().pickImage(source: ImageSource.camera);
-  if(image == null) return;
-  final imageTemp = File(image.path);
-     image1=imageTemp;
-  update(["imagePicker"]);
-}
-  void onRegisterTap() {
 
+  Future getImage() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+    if (image == null) return;
+    final imageTemp = File(image.path);
+    image1 = imageTemp;
+    update(["imagePicker"]);
+  }
+
+  void onRegisterTap() {
     if (validation()) {
       Get.to(() => const VerifyPhoneScreen());
-
     }
   }
+
   bool validation() {
-    if (imageFront==null) {
+    if (imageFront == null) {
       errorToast(Strings.selfieError);
       return false;
     }
@@ -92,21 +94,22 @@ Future getImage() async {
     galleryImage = false;
     isComplete = true;
     update(["imagePicker"]);
-    if (validation() && imageFront!=null) {
-      Get.to(() => const VerifyPhoneScreen());
-
+    if (validation() && imageFront != null) {
+      await PrefService.setValue(PrefKeys.register, true);
+      Get.offAll(() => const Dashboard());
     }
   }
+
   Future<File> getCropImage() async {
     RenderRepaintBoundary boundary =
-    widgetKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+        widgetKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
     ui.Image image = await boundary.toImage();
     ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     Uint8List pngBytes = byteData!.buffer.asUint8List();
 
     final tempDir = await getTemporaryDirectory();
     File file =
-    await File('${tempDir.path}/${getRandomString(10)}.png').create();
+        await File('${tempDir.path}/${getRandomString(10)}.png').create();
     file.writeAsBytesSync(pngBytes);
 
     return file;

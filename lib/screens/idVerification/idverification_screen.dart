@@ -139,6 +139,7 @@ class IdVerificationScreen extends StatelessWidget {
                               height: Get.height * 0.02,
                             ),
                             GestureDetector(onTap: () {
+                              FocusScope.of(context).unfocus();
                                    Get.to(()=>IdScannerScreen());
                             },
                               child:controller.imageFront==null? Container(

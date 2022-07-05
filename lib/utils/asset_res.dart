@@ -5,6 +5,7 @@ class AssetRes {
   static const settingsImage = 'assets/settings/';
 
   ///--------------------------------------------- icons ---------------------------------------------
+  static const checkMark = '${icons}checkMark.png';
   static const next = '${icons}next.png';
   static const backIcon = '${icons}back_icon.png';
   static const editIcon = '${icons}edit_icon.png';
@@ -46,6 +47,11 @@ class AssetRes {
 
 
   ///--------------------------------------------- images ---------------------------------------------
+  static const youtube = '${images}youtube.png';
+  static const twitter = '${images}twitter.png';
+  static const instagram = '${images}instagram.png';
+  static const facebook1 = '${images}facebook1.png';
+  static const overlay = '${images}overlay.png';
   static const se_profile = '${images}se_profile.png';
   static const woman = '${images}woman.png';
   static const se = '${images}se-2.png';

@@ -7,7 +7,9 @@ import 'package:rainbow/screens/auth/newpassword/newpassword_screen.dart';
 import 'package:rainbow/screens/auth/verify_phone/verify_controller.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/idVerification/idverification_screen.dart';
+import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/color_res.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class VerifyPhoneScreen extends StatefulWidget {
@@ -138,7 +140,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                 ],
                                 onCompleted: (v) {},
                                 onChanged: (value) {
-// state.currentText = value;
+
                                 },
                                 beforeTextPaste: (text) {
                                   return true;
@@ -171,9 +173,10 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                           height: Get.height * 0.04,
                         ),
                         GestureDetector(
-                          onTap: () {
+                          onTap: () async {
                             if (formKey.currentState!.validate()) {
-                              Get.to(() => const Dashboard());
+                              await PrefService.setValue(PrefKeys.register, true);
+                              Get.offAll(() => const Dashboard());
                             }
                           },
                           child: Center(

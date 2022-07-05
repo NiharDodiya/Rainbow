@@ -6,6 +6,7 @@ import 'package:rainbow/screens/auth/login/login_api/login_api.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
 import 'package:rainbow/screens/auth/newpassword/newpassword_screen.dart';
 import 'package:rainbow/screens/auth/register/register_screen.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/register_adviser.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
@@ -19,7 +20,8 @@ class LoginController extends GetxController {
   RxBool loader = false.obs;
 
   void onSignUpTap() {
-    Get.off(() => RegisterScreen(), transition: Transition.cupertino);
+    // Get.off(() => RegisterScreen(), transition: Transition.cupertino);
+    Get.off(() => AdviserRegisterScreen(), );
   }
 
   void onRegisterTap() {

@@ -20,78 +20,82 @@ class RegisterScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorRes.white,
       body: Obx(() {
-        if(controller.loader.isTrue)
-          {
-            return const SmallLoader();
-          }
-        return SingleChildScrollView(
-            padding: EdgeInsets.all(Get.width * 0.02667),
-            child:Container(
-              padding: EdgeInsets.symmetric(horizontal: Get.width * 0.0733),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(36),
-                color: ColorRes.color_4F359B,
-              ),
-              child: GetBuilder<RegisterController>(
-                id: 'register_screen',
-                builder: (controller) {
-                  return Stack(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+
+        return Stack(
+          children: [
+            SingleChildScrollView(
+                padding: EdgeInsets.all(Get.width * 0.02667),
+                child:Container(
+                  padding: EdgeInsets.symmetric(horizontal: Get.width * 0.0733),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(36),
+                    color: ColorRes.color_4F359B,
+                  ),
+                  child: GetBuilder<RegisterController>(
+                    id: 'register_screen',
+                    builder: (controller) {
+                      return Stack(
                         children: [
-                          /// top bar area
-                          SizedBox(height: Get.height * 0.0616),
-                          Image.asset(
-                            AssetRes.rainBowLogo,
-                            height: Get.height * 0.05541,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              /// top bar area
+                              SizedBox(height: Get.height * 0.0616),
+                              Image.asset(
+                                AssetRes.rainBowLogo,
+                                height: Get.height * 0.05541,
+                              ),
+                              SizedBox(height: Get.height * 0.0308),
+                              Text(Strings.register,
+                                  style: textStyleFont30WhiteExtraBold),
+                              SizedBox(height: Get.height * 0.02094),
+
+                              /// form
+                              RegisterForm(),
+
+                              /// register button
+                              registerButtons(controller),
+                            ],
                           ),
-                          SizedBox(height: Get.height * 0.0308),
-                          Text(Strings.register,
-                              style: textStyleFont30WhiteExtraBold),
-                          SizedBox(height: Get.height * 0.02094),
-
-                          /// form
-                          RegisterForm(),
-
-                          /// register button
-                          registerButtons(controller),
+                          GetBuilder<RegisterController>(id: 'register_screen' ,builder: (controller) {
+                            return     !controller.martialStatusDropdown
+                                ? const SizedBox()
+                                : Positioned(
+                              top: Get.height * 1.213,width: Get.width * 0.8,
+                              child: AppDropdown(
+                                paramList: controller.martialStatusList,
+                                onTap: controller.onStatusChange,
+                              ),
+                            );
+                          },),
+                          !controller.ethnicityDropdown
+                              ? const SizedBox()
+                              : Positioned(
+                            top: Get.height * 1.34,width: Get.width * 0.8,
+                            child: AppDropDownEthnicity(
+                              paramList: controller.ethnicityList,
+                              onTap: controller.onEthnicityChange,
+                            ),
+                          ),
+                          !controller.kidsDropdown
+                              ? const SizedBox()
+                              : Positioned(
+                            top: Get.height * 1.6,width: Get.width * 0.8,
+                            child: AppDropDownNoOfKids(
+                              paramList: controller.noOfKids,
+                              onTap: controller.onKidsChange,
+                            ),
+                          ),
                         ],
-                      ),
-                      GetBuilder<RegisterController>(id: 'register_screen' ,builder: (controller) {
-                        return     !controller.martialStatusDropdown
-                            ? const SizedBox()
-                            : Positioned(
-                          top: Get.height * 1.213,width: Get.width * 0.8,
-                          child: AppDropdown(
-                            paramList: controller.martialStatusList,
-                            onTap: controller.onStatusChange,
-                          ),
-                        );
-                      },),
-                      !controller.ethnicityDropdown
-                          ? const SizedBox()
-                          : Positioned(
-                        top: Get.height * 1.34,width: Get.width * 0.8,
-                        child: AppDropDownEthnicity(
-                          paramList: controller.ethnicityList,
-                          onTap: controller.onEthnicityChange,
-                        ),
-                      ),
-                      !controller.kidsDropdown
-                          ? const SizedBox()
-                          : Positioned(
-                        top: Get.height * 1.6,width: Get.width * 0.8,
-                        child: AppDropDownNoOfKids(
-                          paramList: controller.noOfKids,
-                          onTap: controller.onKidsChange,
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            )
+                      );
+                    },
+                  ),
+                )
+            ),
+        controller.loader.isTrue?const SmallLoader():const SizedBox()
+
+
+          ],
         );
       })
     );

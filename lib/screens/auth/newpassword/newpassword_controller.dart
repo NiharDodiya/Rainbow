@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
+import 'package:rainbow/screens/auth/verify_phone/verifyphone_screen.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class NewPasswordController extends GetxController {
@@ -14,7 +15,7 @@ class NewPasswordController extends GetxController {
 
   void onRegisterTap() {
     if (validation()) {
-        // Get.to(() => IdScannerScreen());
+       Get.to(() => const VerifyPhoneScreen());
     }
   }
 

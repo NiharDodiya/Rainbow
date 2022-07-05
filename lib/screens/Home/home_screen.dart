@@ -606,7 +606,7 @@ class _MoreStoriesState extends State<MoreStories> {
                 backgroundColor: Colors.blue,
               ),*/
               StoryItem.text(
-                title: "Nice!\n\nTap to continue.",
+                title: "Tap to continue.",
                 backgroundColor: Colors.red,
                 textStyle: const TextStyle(
                   fontFamily: 'Dancing',
@@ -634,10 +634,8 @@ class _MoreStoriesState extends State<MoreStories> {
               ),*/
             ],
             onStoryShow: (s) {
-              print("Showing a story");
             },
             onComplete: () {
-              print("Completed a cycle");
             },
             progressPosition: ProgressPosition.top,
             repeat: false,

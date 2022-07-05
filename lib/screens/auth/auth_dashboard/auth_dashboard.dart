@@ -21,25 +21,28 @@ class AuthDashboard extends StatelessWidget {
         return Scaffold(
             backgroundColor: Colors.white,
             body: Obx(() {
-              if (controller.loading.isTrue) {
-                return const SmallLoader();
-              }
-              return Center(
-                child: Container(
-                  margin: EdgeInsets.all(Get.width * 0.02667),
-                  decoration: BoxDecoration(
-                    color: ColorRes.color_4F359B,
-                    borderRadius: BorderRadius.circular(36),
+
+              return Stack(
+                children: [
+                  Center(
+                    child: Container(
+                      margin: EdgeInsets.all(Get.width * 0.02667),
+                      decoration: BoxDecoration(
+                        color: ColorRes.color_4F359B,
+                        borderRadius: BorderRadius.circular(36),
+                      ),
+                      child: Column(
+                        children: [
+                          logoRainbow(),
+                          continueWithEmail(),
+                          googleFacebook(controller),
+                          alreadyHaveAccount(controller),
+                        ],
+                      ),
+                    ),
                   ),
-                  child: Column(
-                    children: [
-                      logoRainbow(),
-                      continueWithEmail(),
-                      googleFacebook(controller),
-                      alreadyHaveAccount(controller),
-                    ],
-                  ),
-                ),
+                  controller.loading.isTrue?SmallLoader():SizedBox()
+                ],
               );
             }));
       },

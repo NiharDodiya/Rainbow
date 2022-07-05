@@ -136,7 +136,7 @@ class ScanYourFaceScreen extends StatelessWidget {
                             ),
                             buildCameraFunction(context, controller),
                             SizedBox(
-                              height: Get.height * 0.07,
+                              height: Get.height * 0.03,
                             ),
                             GestureDetector(
                               onTap: () {
