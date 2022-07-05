@@ -16,10 +16,12 @@ class SupportScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           width: Get.width,
-          decoration: const BoxDecoration(
+          decoration:  const BoxDecoration(
             gradient: LinearGradient(
               colors: [
                 ColorRes.color_50369C,
+                ColorRes.color_50369C,
+                ColorRes.color_D18EEE,
                 ColorRes.color_D18EEE,
               ],
               begin: Alignment.topCenter,
@@ -32,7 +34,11 @@ class SupportScreen extends StatelessWidget {
                 height: Get.height * 0.035,
               ),
               appBar(),
-              supports()
+              supports(),
+              SizedBox(height: Get.height * 0.07,),
+              sendNewMessage(),
+              SizedBox(height: Get.height * 0.05,),
+
             ],
           ),
         ),
@@ -109,33 +115,64 @@ class SupportScreen extends StatelessWidget {
                         color: Colors.white),
                     child: Row(
                       children: [
-                        Container(
-                          height: 46,
-                          width: 46,
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle,  gradient: LinearGradient(
-                            colors: [
-                              ColorRes.color_50369C,
-                              ColorRes.color_D18EEE,
-                            ],
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                          ),
-                              ),child: Center(
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15),
                           child: Container(
-                            height: 36.37,width: 22,
-                            decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(AssetRes.duck),)
+                            height: 46,
+                            width: 46,
+                            decoration:  const BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: LinearGradient(
+                                colors: [
+                                  ColorRes.color_50369C,
+                                  ColorRes.color_D18EEE,
+                                ],
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                              ),
+                            ),
+                            child: Center(
+                              child: Container(
+                                height: 36.37,
+                                width: 22,
+                                decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                  image: AssetImage(AssetRes.duck),
+                                )),
+                              ),
                             ),
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15, top: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "12/30/2021",
+                                style: textStyleField16w500,
+                              ),
+                              Text(
+                                "1235CA2B2",
+                                style: textStyleField16w,
+                              ),
+                              Text(
+                                Strings.loremIpsum,
+                                style: textStyleFont13,
+                              ),
+                            ],
+                          ),
                         ),
-                        Column(children: [
-                          Text("12/30/2021",style: textStyleField16w500,),
-                          Text("1235CA2B2",style:textStyleField16w ,),
-                          Text(Strings.loremIpsum,style:textStyleFont13 ,),
-                        ],)
+                        Padding(
+                          padding: EdgeInsets.only(bottom: Get.height * 0.1),
+                          child: Text(
+                            controller.supportList[index],
+                            style: controller.supportList[index].toString() ==
+                                    "Pending"
+                                ? textStylField16wyellow
+                                : textStylField16w500,
+                          ),
+                        )
                       ],
                     ),
                   )
@@ -145,6 +182,29 @@ class SupportScreen extends StatelessWidget {
           },
         )
       ],
+    );
+  }
+  Widget sendNewMessage()
+  {
+    return    Container(
+      height: 60,
+      width:300,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(13.67),
+          color: ColorRes.color_FFED62),
+      child: Center(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: 18,width: 152  ,
+                child: Text(
+                  Strings.sendNewMessage,
+                  style: textStyleFont16Black,
+                ),
+              ),
+            ],
+          )),
     );
   }
 }

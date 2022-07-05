@@ -14,17 +14,77 @@ class SearchScreen extends StatelessWidget {
     return GetBuilder<SearchController>(
       id: "Search",
       builder: (controller) {
-        return Scaffold(
-          backgroundColor: Colors.white,
-          body: SingleChildScrollView(
-            child: Column(children: [
-              appBar(),
-              textField(),
-              const SizedBox(
-                height: 15,
+        return GestureDetector(
+          onTap: controller.onScreenTap,
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            body: SingleChildScrollView(
+              child: Stack(
+                children: [
+                  Column(children: [
+                    appBar(),
+                    textField(),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    profile(),
+                  ]),
+                  GetBuilder<SearchController>(
+                    id: "Search",
+                    builder: (controller) {
+                      return controller.advance == true
+                          ? Positioned(
+                              top: Get.height * 0.078,
+                              left: Get.width * 0.58,
+                              child: SizedBox(
+                                height: 218,
+                                width: 142,
+                                child: ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: controller.advanceSearch.length,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                      height: 40,
+                                      width: 142,
+                                      color: ColorRes.color_4F359B,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                          left: 5,
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [ SizedBox(
+                                            height: 5,
+                                          ),
+
+                                            Text(
+                                                controller.advanceSearch[index]
+                                                    .toString(),
+                                                style: textStyle12w600(
+                                                    Colors.white)),
+                                             SizedBox(
+                                              height: 4,
+                                            ),
+                                            const Divider(
+                                              thickness: 1,
+                                              color: ColorRes.white,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            )
+                          : SizedBox();
+                    },
+                  )
+                ],
               ),
-              profile()
-            ]),
+            ),
           ),
         );
       },
@@ -32,29 +92,39 @@ class SearchScreen extends StatelessWidget {
   }
 
   Widget appBar() {
-    return AppBar(
-      backgroundColor: Colors.white,
-      elevation: 0,
-      actions: [
-        Row(
-          children: [
-            Text(
-              Strings.search,
-              style: textStyleFont20W700Black,
-            ),
-            SizedBox(
-              width: Get.width * 0.47,
-            ),
-            Text(
-              Strings.advancedSearch,
-              style: textStyleFont12Grey,
-            ),
-            SizedBox(
-              width: Get.width * 0.05,
-            ),
+    return GetBuilder<SearchController>(
+      id: "Search",
+      builder: (controller) {
+        return AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          actions: [
+            Row(
+              children: [
+                Text(
+                  Strings.search,
+                  style: textStyleFont20W700Black,
+                ),
+                SizedBox(
+                  width: Get.width * 0.47,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    controller.advanceSearchOnTap();
+                  },
+                  child: Text(
+                    Strings.advancedSearch,
+                    style: textStyleFont12Grey,
+                  ),
+                ),
+                SizedBox(
+                  width: Get.width * 0.05,
+                ),
+              ],
+            )
           ],
-        )
-      ],
+        );
+      },
     );
   }
 
@@ -175,7 +245,7 @@ class SearchScreen extends StatelessWidget {
                           top: Get.height * 0.28,
                           left: 15,
                           child: Text(
-                            "Surrogate Mom",
+                            "SURROGATE MOM",
                             style: textStyleFont12White400,
                           )),
                       Positioned(
@@ -183,69 +253,71 @@ class SearchScreen extends StatelessWidget {
                           left: Get.width * 0.8,
                           child: GestureDetector(
                               onTap: () {
-                                controller.onTapConnect();
+                                controller.onMoreButtonTap(index);
                               },
                               child: const Icon(Icons.more_horiz))),
-                     controller.connect.isTrue? Positioned(
-                        top: Get.height * 0.07,
-                        left: Get.width * 0.58,
-                        child: Container(
-                          height: 69,
-                          width: 105,
-                          color: ColorRes.color_50369C.withOpacity(0.45),
-                          child: Column(
-                            children: [
-                              const SizedBox(
-                                height: 5,
+                      controller.connect[index] == true
+                          ? Positioned(
+                              top: Get.height * 0.07,
+                              left: Get.width * 0.58,
+                              child: Container(
+                                height: 69,
+                                width: 105,
+                                color: ColorRes.color_50369C.withOpacity(0.45),
+                                child: Column(
+                                  children: [
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      children: [
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Image.asset(
+                                          AssetRes.profilep,
+                                          height: 22,
+                                          width: 22,
+                                          color: ColorRes.color_FFB2B2,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          Strings.connect,
+                                          style: textStyleFont12WhiteBold,
+                                        )
+                                      ],
+                                    ),
+                                    const Divider(
+                                      thickness: 1.5,
+                                      color: Colors.white,
+                                    ),
+                                    Row(
+                                      children: [
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Image.asset(
+                                          AssetRes.block,
+                                          height: 22,
+                                          width: 22,
+                                          color: ColorRes.color_FFB2B2,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          Strings.block,
+                                          style: textStyleFont12WhiteBold,
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
-                              Row(
-                                children: [
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Image.asset(
-                                    AssetRes.profilep,
-                                    height: 22,
-                                    width: 22,
-                                    color: ColorRes.color_FFB2B2,
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    Strings.connect,
-                                    style: textStyleFont12WhiteBold,
-                                  )
-                                ],
-                              ),
-                              const Divider(
-                                thickness: 1.5,
-                                color: Colors.white,
-                              ),
-                              Row(
-                                children: [
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Image.asset(
-                                    AssetRes.block,
-                                    height: 22,
-                                    width: 22,
-                                    color: ColorRes.color_FFB2B2,
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    Strings.block,
-                                    style: textStyleFont12WhiteBold,
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ):const SizedBox()
+                            )
+                          : const SizedBox()
                     ],
                   ),
                   SizedBox(

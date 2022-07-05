@@ -25,13 +25,14 @@ class SettingsScreen extends StatelessWidget {
                 appBar(),
                 Expanded(
                   child: SingleChildScrollView(
-                    child: Column(children: [
-                      profile(),
-                      settingsProperties(),
-                    ],),
+                    child: Column(
+                      children: [
+                        profile(),
+                        settingsProperties(),
+                      ],
+                    ),
                   ),
                 )
-
               ],
             ),
           );
@@ -207,12 +208,12 @@ class SettingsScreen extends StatelessWidget {
             thickness: 1,
             color: ColorRes.color_4F359B.withOpacity(0.4),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 5, bottom: 5),
-            child: GestureDetector(
-              onTap: () {
-                Get.to(() => ConnectionsScreen());
-              },
+          InkWell(
+            onTap: () {
+              Get.to(() => ConnectionsScreen());
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(top: 5, bottom: 5),
               child: Row(
                 children: [
                   SizedBox(
@@ -242,12 +243,12 @@ class SettingsScreen extends StatelessWidget {
             thickness: 1,
             color: ColorRes.color_4F359B.withOpacity(0.4),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 5, bottom: 5),
-            child: GestureDetector(
-              onTap: () {
-                Get.to(() => SupportScreen());
-              },
+          InkWell(onTap: () {
+            Get.to(() => SupportScreen());
+
+          },
+            child: Padding(
+              padding: const EdgeInsets.only(top: 5, bottom: 5),
               child: Row(
                 children: [
                   SizedBox(
@@ -434,17 +435,21 @@ class SettingsScreen extends StatelessWidget {
           SizedBox(
             height: Get.height * 0.02,
           ),
-          Container(
-            height: 44.43,
-            width: Get.width * 0.312,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(13.67),
-                color: ColorRes.color_6306B2),
-            child: Center(
-                child: Text(
-              Strings.inviteNow,
-              style: textStyleFont11,
-            )),
+          InkWell(onTap: () {
+            controller.share();
+          },
+            child: Container(
+              height: 44.43,
+              width: Get.width * 0.312,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(13.67),
+                  color: ColorRes.color_6306B2),
+              child: Center(
+                  child: Text(
+                Strings.inviteNow,
+                style: textStyleFont11,
+              )),
+            ),
           ),
           SizedBox(
             height: Get.height * 0.035,

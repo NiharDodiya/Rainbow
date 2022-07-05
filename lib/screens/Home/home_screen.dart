@@ -595,91 +595,92 @@ class _MoreStoriesState extends State<MoreStories> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("More"),
-      ),
-      body: SizedBox(
-        height: Get.height * 0.8,
-        child: StoryView(
-          storyItems: [
-            StoryItem.text(
-              title:
-                  "I guess you'd love to see more of our food. That's great.",
-              backgroundColor: Colors.blue,
-            ),
-            StoryItem.text(
-              title: "Nice!\n\nTap to continue.",
-              backgroundColor: Colors.red,
-              textStyle: const TextStyle(
-                fontFamily: 'Dancing',
-                fontSize: 40,
+      body: SafeArea(
+        child: SizedBox(
+          height: Get.height * 1,
+          child: StoryView(
+            storyItems: [
+             /* StoryItem.text(
+                title:
+                    "I guess you'd love to see more of our food. That's great.",
+                backgroundColor: Colors.blue,
+              ),*/
+              StoryItem.text(
+                title: "Nice!\n\nTap to continue.",
+                backgroundColor: Colors.red,
+                textStyle: const TextStyle(
+                  fontFamily: 'Dancing',
+                  fontSize: 40,
+                ),
               ),
-            ),
-            StoryItem.pageImage(
-              url: "https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif",
-              caption: "Still sampling",
-              controller: storyController,
-            ),
-            StoryItem.pageImage(
+           /*   StoryItem.pageImage(
                 url: "https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif",
-                caption: "Working with gifs",
-                controller: storyController),
-            StoryItem.pageImage(
-              url: "https://media.giphy.com/media/XcA8krYsrEAYXKf4UQ/giphy.gif",
-              caption: "Hello, from the other side",
-              controller: storyController,
-            ),
-            StoryItem.pageImage(
-              url: "https://media.giphy.com/media/XcA8krYsrEAYXKf4UQ/giphy.gif",
-              caption: "Hello, from the other side2",
-              controller: storyController,
-            ),
-          ],
-          onStoryShow: (s) {
-            print("Showing a story");
-          },
-          onComplete: () {
-            print("Completed a cycle");
-          },
-          progressPosition: ProgressPosition.top,
-          repeat: false,
-          controller: storyController,
+                caption: "Still sampling",
+                controller: storyController,
+              ),*/
+           /*   StoryItem.pageImage(
+                  url: "https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif",
+                  caption: "Working with gifs",
+                  controller: storyController),*/
+            /*  StoryItem.pageImage(
+                url: "https://media.giphy.com/media/XcA8krYsrEAYXKf4UQ/giphy.gif",
+                caption: "Hello, from the other side",
+                controller: storyController,
+              ),
+              StoryItem.pageImage(
+                url: "https://media.giphy.com/media/XcA8krYsrEAYXKf4UQ/giphy.gif",
+                caption: "Hello, from the other side2",
+                controller: storyController,
+              ),*/
+            ],
+            onStoryShow: (s) {
+              print("Showing a story");
+            },
+            onComplete: () {
+              print("Completed a cycle");
+            },
+            progressPosition: ProgressPosition.top,
+            repeat: false,
+            controller: storyController,
+          ),
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            SizedBox(
-                height: Get.height * 0.07,
-                width: Get.width * 0.7,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.only(left: 15),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                      hintStyle: const TextStyle(fontSize: 14),
-                      hintText: "Send message"),
-                )),
-            SizedBox(
-              width: Get.width * 0.04,
-            ),
-            const SizedBox(
-                height: 20,
-                width: 20,
-                child: Image(
-                  image: AssetImage(AssetRes.heart),
-                  color: Colors.white,
-                )),
-            SizedBox(
-              width: Get.width * 0.05,
-            ),
-            const SizedBox(
-                height: 20,
-                width: 20,
-                child: Image(image: AssetImage(AssetRes.sendInsta))),
-          ],
+      bottomNavigationBar: Container(color: Colors.black,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              SizedBox(
+                  height: Get.height * 0.07,
+                  width: Get.width * 0.7,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.only(left: 15),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        hintStyle: const TextStyle(fontSize: 14),
+                        hintText: "Send message"),
+                  )),
+              SizedBox(
+                width: Get.width * 0.04,
+              ),
+              const SizedBox(
+                  height: 20,
+                  width: 20,
+                  child: Image(
+                    image: AssetImage(AssetRes.heart),
+                    color: Colors.white,
+                  )),
+              SizedBox(
+                width: Get.width * 0.05,
+              ),
+              const SizedBox(
+                  height: 20,
+                  width: 20,
+                  child: Image(image: AssetImage(AssetRes.sendInsta))),
+            ],
+          ),
         ),
       ),
     );

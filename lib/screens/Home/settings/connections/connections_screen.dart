@@ -129,7 +129,7 @@ class ConnectionsScreen extends StatelessWidget {
                             height: 2,
                           ),
                           Text(
-                            "Surrogate mom",
+                            "SURROGATE MOM",
                             style: textStyleFont12White,
                           ),
                         ],
@@ -210,7 +210,7 @@ class ConnectionsScreen extends StatelessWidget {
                             height: 2,
                           ),
                           Text(
-                            "Surrogate mom",
+                            "SURROGATE MOM",
                             style: textStyleFont12White,
                           ),
                         ],

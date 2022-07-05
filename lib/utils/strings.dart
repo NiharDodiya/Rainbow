@@ -185,7 +185,7 @@ class Strings {
 ///___________________________dashboard--Profile_______________________________________
   static const profile = "Profile";
   ///________________________SettingScreen____________________________________________
-  static const loremIpsum="Lorem Ipsum is simply\n dummy text of the printing \nand typesetting industry.";
+  static const loremIpsum="Lorem Ipsum Is Simply\nDummy Text Of The Printing\nAnd Typesetting Industry.";
   static const pending="Pending";
   static const complete="Complete";
   static const sendNewMessage="Send new Message";
