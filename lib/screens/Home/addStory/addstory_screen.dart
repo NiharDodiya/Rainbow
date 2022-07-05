@@ -14,7 +14,7 @@ class AddStoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
+      appBar: AppBar(elevation: 1,
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         actions:  [
