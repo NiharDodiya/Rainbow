@@ -39,7 +39,6 @@ class AssetRes {
   static const heart = '${icons}heart.png';
 
   ///--------------------------------------------- iconsBottom---------------------------------------------
-
   static const home =  '${iconsBottom}home.png';
   static const search =  '${iconsBottom}search.png';
   static const message =  '${iconsBottom}message.png';
@@ -70,8 +69,9 @@ class AssetRes {
   static const lt2 ='${images}lt2.png';
   static const lt3 ='${images}lt3.png';
   static const backGround ='${images}backGroundImage.png';
-  ///_______________________________settings_____________________  ___________
 
+
+  ///_______________________________settings________________________________
   static const profileSettinges = '${settingsImage}profileSettinges.png';
   static const support = '${settingsImage}Support.png';
   static const connections = '${settingsImage}connections.png';

@@ -10,6 +10,7 @@ Widget profileAppbar(String text) {
     child: Stack(
       children: [
         Container(
+          margin: const EdgeInsets.only(top: 3),
           width: Get.width - 38,
           alignment: Alignment.center,
           child: Text(
@@ -46,10 +47,12 @@ Widget profileAppbar(String text) {
               width: 10,
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+
+              },
               child: Stack(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                     width: 30,
                   ),
@@ -63,14 +66,22 @@ Widget profileAppbar(String text) {
                     ),
                   ),
                   Positioned(
-                    top: 0,right: 0,
+                    top: 0,
+                    right: 0,
                     child: Container(
                       height: 16,
                       width: 16,
                       alignment: Alignment.center,
                       decoration: const BoxDecoration(
                           shape: BoxShape.circle, color: ColorRes.color_FF6B97),
-                      child: Text("2",style: TextStyle(color: ColorRes.white,fontSize: 8,fontWeight: FontWeight.w800),),
+                      child: const Text(
+                        "2",
+                        style: TextStyle(
+                          color: ColorRes.white,
+                          fontSize: 8,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
                     ),
                   ),
                 ],

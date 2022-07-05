@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rainbow/utils/color_res.dart';
+import 'package:rainbow/utils/font_res.dart';
 
 TextStyle textStyleFont18White = const TextStyle(
   color: ColorRes.white,
@@ -162,7 +163,6 @@ TextStyle textStyleFont20W700 = const TextStyle(
   fontFamily: "Gilroy-ExtraBold",
   fontWeight: FontWeight.w700,
 );
-
 TextStyle textStyleFont18Grey = const TextStyle(
   color: ColorRes.color_B4B4B4,
   fontSize: 18,
@@ -221,7 +221,8 @@ TextStyle textStyleFont12WhiteBold = const TextStyle(
   fontSize: 12,
   fontFamily: "Gilroy-ExtraBold",
   fontWeight: FontWeight.w400,
-);TextStyle textStyleFont13Bold = const TextStyle(
+);
+TextStyle textStyleFont13Bold = const TextStyle(
   color: ColorRes.color_252525,
   fontSize: 13,
   fontFamily: "Gilroy-ExtraBold",
@@ -238,7 +239,8 @@ TextStyle textStyleFont15 = const TextStyle(
   fontSize: 15,
   fontFamily: "Gilroy-ExtraBold",
   fontWeight: FontWeight.w500,
-);TextStyle textStyleFont15White= const TextStyle(
+);
+TextStyle textStyleFont15White= const TextStyle(
   color: ColorRes.white,
   fontSize: 15,
   fontFamily: "Gilroy-Medium",
@@ -249,11 +251,13 @@ TextStyle textStyleFont32White= const TextStyle(
   fontSize: 32,
   fontFamily: "Gilroy-ExtraBold",
   fontWeight: FontWeight.w500,
-);TextStyle textStyleFont11 = const TextStyle(
+);
+TextStyle textStyleFont11 = const TextStyle(
   color: ColorRes.white,
   fontSize: 11.9619,
   fontFamily: "Gilroy-ExtraBold",
-);TextStyle textStyleFont15Blck= const TextStyle(
+);
+TextStyle textStyleFont15Blck= const TextStyle(
   color: ColorRes.black,
   fontSize: 15,
   fontFamily: "Gilroy-Medium",
@@ -264,7 +268,8 @@ TextStyle textStyleField16w500 = const TextStyle(
   fontSize: 16,
   fontFamily: "Gilroy-Medium",
   fontWeight: FontWeight.w600,
-);TextStyle textStyleField16w = const TextStyle(
+);
+TextStyle textStyleField16w = const TextStyle(
   color: ColorRes.color_6306B2,
   fontSize: 16,
   fontFamily: "Gilroy-Medium",
@@ -275,3 +280,29 @@ TextStyle textStyleFont13 = const TextStyle(
   fontSize: 13.1163,
   fontFamily: "Gilroy-Medium",
 );
+
+TextStyle gilroyBoldTextStyle({Color? color,double? fontSize,}){
+  return TextStyle(
+    color: color??ColorRes.white,
+    fontWeight: FontWeight.bold,
+    fontSize: fontSize??18,
+    fontFamily: FontRes.gilroyBold,
+  );
+}
+
+TextStyle gilroySemiBoldTextStyle({Color? color,double? fontSize,}){
+  return TextStyle(
+    color: color??ColorRes.white,
+    fontWeight: FontWeight.w700,
+    fontSize: fontSize??18,
+    fontFamily: FontRes.gilroySemiBold,
+  );
+}
+TextStyle gilroyMediumTextStyle({Color? color,double? fontSize,}){
+  return TextStyle(
+    color: color??ColorRes.white,
+    fontWeight: FontWeight.w500,
+    fontSize: fontSize??18,
+    fontFamily: FontRes.gilroyMedium,
+  );
+}

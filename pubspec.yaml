@@ -114,16 +114,32 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Gilroy-ExtraBold
+    - family: Gilroy-Bold
       fonts:
-        - asset: assets/fonts/Gilroy-ExtraBold.otf
+        - asset: assets/fonts/Gilroy-Bold.ttf
+    - family: Gilroy-SemiBold
+      fonts:
+        - asset: assets/fonts/Gilroy-SemiBold.ttf
     - family: Gilroy-Medium
       fonts:
         - asset: assets/fonts/Gilroy-Medium.ttf
-    - family: Gilroy-Light
+    - family: Gilroy-Regular
       fonts:
-        - asset: assets/fonts/Gilroy-Light.otf
+        - asset: assets/fonts/Gilroy-Regular.ttf
+    - family: BeVietnamPro-Bold
+      fonts:
+        - asset: assets/fonts/BeVietnamPro-Bold.ttf
+    - family: BeVietnamPro-SemiBold
+      fonts:
+        - asset: assets/fonts/BeVietnamPro-SemiBold.ttf
+    - family: BeVietnamPro-Medium
+      fonts:
+        - asset: assets/fonts/BeVietnamPro-Medium.ttf
+    - family: BeVietnamPro-Regular
+      fonts:
+        - asset: assets/fonts/BeVietnamPro-Regular.ttf
 
 
-    # For details regarding fonts from package dependencies,
+
+  # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
