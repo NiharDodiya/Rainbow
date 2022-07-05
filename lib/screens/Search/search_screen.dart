@@ -123,7 +123,7 @@ class SearchScreen extends StatelessWidget {
             shrinkWrap: true,
             padding: const EdgeInsets.only(top: 16),
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: 5,
+            itemCount: controller.search.length,
             itemBuilder: (context, index) {
               return Column(
                 children: [

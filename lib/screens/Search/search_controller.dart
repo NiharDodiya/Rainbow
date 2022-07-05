@@ -6,6 +6,7 @@ class SearchController extends GetxController
   RxBool loader = false.obs;
   RxBool connect = false.obs;
   TextEditingController searchBar = TextEditingController();
+  List search =["1","2","3","4","5"];
 
   @override
   void onInit()

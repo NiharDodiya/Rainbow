@@ -39,9 +39,9 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: PrefService.getBool(PrefKeys.skipBoardingScreen)
-          ? AuthDashboard()
-          : PrefService.getBool(PrefKeys.isLogin) == false ? SplashScreen() : const Dashboard(),
+      home: !PrefService.getBool(PrefKeys.skipBoardingScreen)
+          ? SplashScreen()
+          : PrefService.getBool(PrefKeys.isLogin)? const Dashboard() : AuthDashboard(),
     );
   }
 }
