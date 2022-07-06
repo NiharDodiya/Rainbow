@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
+import 'package:rainbow/screens/Home/settings/payment/add_cart/add_cart_controller.dart';
 
+import '../../../../../common/Widget/buttons.dart';
 import '../../../../../common/Widget/text_styles.dart';
 import '../../../../../utils/asset_res.dart';
 import '../../../../../utils/color_res.dart';
 import '../../../../../utils/strings.dart';
 
 class AddCartScreen extends StatelessWidget {
-  const AddCartScreen({Key? key}) : super(key: key);
+   AddCartScreen({Key? key}) : super(key: key);
+   AddCartController controller = Get.put(AddCartController());
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +19,7 @@ class AddCartScreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           width: Get.width,
+          height: Get.height,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
@@ -30,18 +34,104 @@ class AddCartScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               appBar(),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: Get.width * 0.0906),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Billing Information"),
-                    SizedBox(
-                      height: Get.height * 0.0431,
-                    ),
-                    
-                    AppTextFiled(controller: TextEditingController(), title: "Full Name")
-                  ],
+              Expanded(
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  padding: EdgeInsets.symmetric(horizontal: Get.width * 0.0906),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Billing Information",style: gilroyMediumTextStyle(fontSize: 18,letterSpacing: -0.55),),
+                      SizedBox(
+                        height: Get.height * 0.0431,
+                      ),
+
+                      AppTextFiled(
+                        controller: controller.fullNameController,
+                        title: "Full Name",
+                        hintText: "Natalie NAra",
+                      ),
+                      // SizedBox(height: Get.height *0.0184,),
+                      AppTextFiled(
+                        controller: controller.addressController,
+                        title: "Address",
+                        hintText: "3819 Lynden Road",
+                      ),
+                      SizedBox(
+                        height: Get.height * 0.0184,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: AppTextFiled(
+                              controller: controller.cityController,
+                              title: "City",
+                              hintText: "Canada",
+                            ),
+                          ),
+                          SizedBox(
+                            width: Get.width * 0.05866,
+                          ),
+                          Expanded(
+                            child: AppTextFiled(
+                              controller: controller.postalCodeController,
+                              title: "Postal Code",
+                              hintText: "L0B 1M0",
+                            ),
+                          ),
+                        ],
+                      ),
+                      AppTextFiled(
+                        controller: controller.countryController,
+                        title: "country",
+                        hintText: "3819 Lynden Road",
+                      ),
+                      Text("Card Information",style: gilroyMediumTextStyle(fontSize: 18,letterSpacing: -0.55),),
+                      SizedBox(
+                        height: Get.height * 0.0431034,
+                      ),
+                      AppTextFiled(
+                        controller: controller.nameOnCardController,
+                        title: "Name on card",
+                        hintText: "Aycan Doganlar",
+                      ),
+                      AppTextFiled(
+                        controller: controller.cardNmberController,
+                        title: "Card number",
+                        hintText: "1234 4567 7890 1234",
+                      ),
+                      SizedBox(
+                        height: Get.height * 0.0184,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: AppTextFiled(
+                              controller: controller.expiryDateController,
+                              title: "Expiry date",
+                              hintText: "02/24",
+                            ),
+                          ),
+                          SizedBox(
+                            width: Get.width * 0.05866,
+                          ),
+                          Expanded(
+                            child: AppTextFiled(
+                              controller: controller.cvvController,
+                              title: "CVV",
+                              hintText: ". . .",
+                            ),
+                          ),
+                        ],
+                      ),
+                      SubmitButton(
+                        text: "add Card",
+                      ),
+                      SizedBox(
+                            height: Get.width * 0.05866,
+                          ),
+                    ],
+                  ),
                 ),
               )
             ],

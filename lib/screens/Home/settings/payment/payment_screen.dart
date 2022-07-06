@@ -230,13 +230,13 @@ class PaymentScreen extends StatelessWidget {
                         minits: "2 hr ago",
                         doller: "+\$600.00",
                       ),
-                       const Tranzaction(
+                      const Tranzaction(
                         name: "Jolina Jones",
                         imagePath: AssetRes.p02,
                         minits: "4 hr ago",
                         doller: "-\$200.00",
                       ),
-                       const Tranzaction(
+                      const Tranzaction(
                         name: "Wills Smith",
                         imagePath: AssetRes.p03,
                         minits: "4 hr ago",
@@ -458,8 +458,8 @@ Widget appBar() {
             ),
             //Floating Button
             InkWell(
-              onTap: (){
-                  Get.to(() =>  const AddCartScreen());
+              onTap: () {
+                Get.to(() => AddCartScreen());
               },
               child: Container(
                 width: Get.width * 0.0826,

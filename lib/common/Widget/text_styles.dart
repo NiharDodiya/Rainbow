@@ -299,12 +299,13 @@ TextStyle gilroySemiBoldTextStyle({Color? color,double? fontSize,double? letterS
     letterSpacing: letterSpacing?? 0
   );
 }
-TextStyle gilroyMediumTextStyle({Color? color,double? fontSize,}){
+TextStyle gilroyMediumTextStyle({Color? color,double? fontSize,double? letterSpacing}){
   return TextStyle(
     color: color??ColorRes.white,
     fontWeight: FontWeight.w500,
     fontSize: fontSize??18,
     fontFamily: FontRes.gilroyMedium,
+    letterSpacing:letterSpacing?? 0 
   );
 }TextStyle gilroyRegularTextStyle({Color? color,double? fontSize,}){
   return TextStyle(
