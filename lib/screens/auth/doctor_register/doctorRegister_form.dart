@@ -33,13 +33,13 @@ class DoctorRegisterForm extends StatelessWidget {
             AppTextFiled(
               controller: controller.companyNumber,
               title: Strings.companyNumber,
-              hintText: Strings.companyNumber,
+              hintText: Strings.companyNumberDigit,
               obscure: false,
             ),
             AppTextFiled(
               controller: controller.streetName,
               title: Strings.streetName,
-              hintText: Strings.streetName,
+              hintText: Strings.street,
               obscure: false,
             ),
             GetBuilder<DoctorRegisterController>(
@@ -72,7 +72,7 @@ class DoctorRegisterForm extends StatelessWidget {
               child: AppTextFiled(
                 controller: controller.postalCode,
                 title: Strings.postalCode,
-                hintText: Strings.postalCode,
+                hintText: Strings.postalCodeDigitHint,
                 enable: true,
               ),
             ),  GestureDetector(
@@ -82,7 +82,7 @@ class DoctorRegisterForm extends StatelessWidget {
               child: AppTextFiled(
                 controller: controller.website,
                 title: Strings.website,
-                hintText: Strings.website,
+                hintText: Strings.websiteHint,
                 enable: true,
               ),
             ),

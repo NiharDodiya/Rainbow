@@ -12,6 +12,7 @@ class Strings {
   static const signUp = 'Sign up';
   static const houseNumber = 'House Number';
   static const streetName = 'Street Name';
+  static const street = 'Street ';
   static const profession = 'Profession';
   static const country = 'Country';
   static const doctor = 'Doctor';
@@ -21,7 +22,9 @@ class Strings {
   static const myCompany = 'My Company';
   static const companyNumber = 'Company Number';
   static const postalCode    = 'Postal Code';
+  static const postalCodeDigitHint   = '123125';
   static const website    = 'Website';
+  static const websiteHint    = 'www.mymom.com';
   static const sign_Up = 'Signup';
   static const forAdvertise = " for advertiser's account";
   static const termsServices =
@@ -72,6 +75,7 @@ class Strings {
   static const confirmPasswordMismatch = "confirm  Password is Mismatch";
   static const submit = "Submit";
   static const codeSent = "Code is sent to +1 234 567 8901";
+  static const companyNumberDigit = "123 456 789 3123";
 
   ///---------------------------------------- Register ----------------------------------------
   static const register = 'Register';
@@ -188,7 +192,6 @@ class Strings {
   static const latestFeedDes =
       "Lorem ipsum dolor sit amet, consectetur \nadipiscing elit, sed do eiusmod tempor \nincididunt ut labore et dolore magna aliqua.\n Lorem a commodo consequat ... more ";
   static const likes = "+8 likes";
-  static const myCompany = "My Company";
   static const learnMore = "LEARN MORE";
   static const search = "Search";
   static const discoverOtherConnections = "Discover other connections";

@@ -19,7 +19,7 @@ class DoctorRegisterController extends GetxController
   TextEditingController city =
   TextEditingController(/*text: "dfdfwdfdw"*/);
   TextEditingController country =
-  TextEditingController(/*text: "single"*/);
+  TextEditingController(text: "Canada");
   TextEditingController postalCode =
   TextEditingController(/*text: "1"*/);
   TextEditingController website   =
