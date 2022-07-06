@@ -237,23 +237,6 @@ class Strings {
   ///----------------------------------Payment ----------------------------------
   static const manageCards = "Manage Cards";
   static const platinum = "Platinum";
-  static const loremIpsum="Lorem Ipsum Is Simply\nDummy Text Of The Printing\nAnd Typesetting Industry.";
-  static const pending="Pending";
-  static const complete="Complete";
-  static const sendNewMessage="Send new Message";
-  static const others="Others";
-  static const viewProfile="View Profile";
-  static const messages="Messages";
-  static const connections="Connections";
-  static const support="Support";
-  static const payment="Payment";
-  static const privacy="Privacy";
-  static const notifications="Notifications";
-  static const subscription="Subscription";
-  static const yourReferralCode="Your Referral Code";
-  static const  inviteNow="Invite Now";
-  static const  logout="Logout";
-  static const  connectionRequest = "Connection Request";
-  static const  suggestedConnection = "Suggested Connection";
+
 
 }

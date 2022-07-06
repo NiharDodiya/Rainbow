@@ -348,8 +348,7 @@ TextStyle textStylField16w500 = const TextStyle(
   fontFamily: FontRes.gilroyMedium,
   fontWeight: FontWeight.w500,
 );
-TextStyle textStyle12w600(Color color)
-{
+
 TextStyle beVietnamRegularTextStyle({Color? color,double? fontSize,}){
   return TextStyle(
     color: color??ColorRes.white,
