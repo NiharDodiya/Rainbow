@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
               ? const Dashboard()
               : PrefService.getBool(PrefKeys.register)
                   ? const Dashboard()
-                  : AuthDashboard(),
+                  : AuthDashboard()
     );
   }
 }

@@ -7,4 +7,5 @@ class FontRes{
   static const beVietnamProSemiBold = "BeVietnamPro-SemiBold";
   static const beVietnamProMedium = "BeVietnamPro-Medium";
   static const beVietnamProRegular = "BeVietnamPro-Regular";
+  static const montserratRegular = "Montserrat-Regular";
 }

@@ -19,8 +19,8 @@ class Strings {
   static const endUsers = 'End Users';
   static const companyName = 'Company Name';
   static const companyNumber = 'Company Number';
-  static const postalCode    = 'Postal Code';
-  static const website    = 'Website';
+  static const postalCode = 'Postal Code';
+  static const website = 'Website';
   static const sign_Up = 'Signup';
   static const forAdvertise = " for advertiser's account";
   static const termsServices =
@@ -177,7 +177,7 @@ class Strings {
   static const hobbiesError = 'Enter your hobbies';
 
   ///___________________________dashboard--Home_______________________________________
-  static const post= "Post";
+  static const post = "Post";
   static const writeSomethings = "Write something...";
   static const discover = "Discover";
   static const myStory = "My Story";
@@ -191,34 +191,42 @@ class Strings {
   static const learnMore = "LEARN MORE";
   static const search = "Search";
   static const discoverOtherConnections = "Discover other connections";
-  static const advancedSearch  = "Advance Search";
-  static const connect  = "Connect";
-  static const block  = "Block";
-  static const myCompanyDes = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem a commodo consequat ... more ";
+  static const advancedSearch = "Advance Search";
+  static const connect = "Connect";
+  static const block = "Block";
+  static const myCompanyDes =
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem a commodo consequat ... more ";
 
-///___________________________dashboard--Profile_______________________________________
+  ///___________________________dashboard--Profile_______________________________________
   static const profile = "Profile";
   static const city = "City";
   static const london = "London";
   static const haveKids = "Have kids?";
-  static const  editProfile= "Edit Profile";
+  static const editProfile = "Edit Profile";
+
   ///________________________SettingScreen____________________________________________
-  static const loremIpsum="Lorem Ipsum Is Simply\nDummy Text Of The Printing\nAnd Typesetting Industry.";
-  static const pending="Pending";
-  static const complete="Complete";
-  static const sendNewMessage="Send new Message";
-  static const others="Others";
-  static const viewProfile="View Profile";
-  static const messages="Messages";
-  static const connections="Connections";
-  static const support="Support";
-  static const payment="Payment";
-  static const privacy="Privacy";
-  static const notifications="Notifications";
-  static const subscription="Subscription";
-  static const yourReferralCode="Your Referral Code";
-  static const  inviteNow="Invite Now";
-  static const  logout="Logout";
-  static const  connectionRequest = "Connection Request";
-  static const  suggestedConnection = "Suggested Connection";
+  static const loremIpsum =
+      "Lorem Ipsum Is Simply\nDummy Text Of The Printing\nAnd Typesetting Industry.";
+  static const pending = "Pending";
+  static const complete = "Complete";
+  static const sendNewMessage = "Send new Message";
+  static const others = "Others";
+  static const viewProfile = "View Profile";
+  static const messages = "Messages";
+  static const connections = "Connections";
+  static const support = "Support";
+  static const payment = "Payment";
+  static const privacy = "Privacy";
+  static const notifications = "Notifications";
+  static const subscription = "Subscription";
+  static const yourReferralCode = "Your Referral Code";
+  static const inviteNow = "Invite Now";
+  static const logout = "Logout";
+  static const connectionRequest = "Connection Request";
+  static const suggestedConnection = "Suggested Connection";
+  static const addCard = "Add Card";
+
+  ///----------------------------------Payment ----------------------------------
+  static const manageCards = "Manage Cards";
+  static const platinum = "Platinum";
 }
