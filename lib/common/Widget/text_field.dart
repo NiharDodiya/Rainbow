@@ -46,15 +46,16 @@ class AppTextFiled extends StatelessWidget {
         SizedBox(height: titleBottomPadding ?? Get.height * 0.012),
         Container(
           width: Get.width,
-          constraints: BoxConstraints(
-            minHeight: Get.height * 0.0739,
-            maxHeight: Get.height * 0.25,
-          ),
+          height: 60,
+          // constraints: BoxConstraints(
+          //   minHeight: Get.height * 0.0739,
+          //   maxHeight: Get.height * 0.25,
+          // ),
           decoration: BoxDecoration(
             color: ColorRes.white,
             borderRadius: BorderRadius.circular(20),
           ),
-          padding: inputPadding ?? const EdgeInsets.fromLTRB(26, 0, 23, 0),
+          padding: inputPadding ?? const EdgeInsets.fromLTRB(20, 0, 23, 0),
           child: Row(
             children: [
               prefix ?? const SizedBox(),
@@ -76,7 +77,7 @@ class AppTextFiled extends StatelessWidget {
                     onChanged: onChange,
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintStyle: textStyleFont16Grey,
+                      hintStyle: gilroyMediumTextStyle(fontSize: 18,color: ColorRes.black.withOpacity(0.3)),
                       hintText: hintText,
                     ),
                   ),

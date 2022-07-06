@@ -12,15 +12,19 @@ class Strings {
   static const signUp = 'Sign up';
   static const houseNumber = 'House Number';
   static const streetName = 'Street Name';
+  static const street = 'Street ';
   static const profession = 'Profession';
   static const country = 'Country';
   static const doctor = 'Doctor';
   static const admin = 'Admin';
   static const endUsers = 'End Users';
   static const companyName = 'Company Name';
+  static const myCompany = 'My Company';
   static const companyNumber = 'Company Number';
-  static const postalCode = 'Postal Code';
-  static const website = 'Website';
+  static const postalCode    = 'Postal Code';
+  static const postalCodeDigitHint   = '123125';
+  static const website    = 'Website';
+  static const websiteHint    = 'www.mymom.com';
   static const sign_Up = 'Signup';
   static const forAdvertise = " for advertiser's account";
   static const termsServices =
@@ -71,6 +75,7 @@ class Strings {
   static const confirmPasswordMismatch = "confirm  Password is Mismatch";
   static const submit = "Submit";
   static const codeSent = "Code is sent to +1 234 567 8901";
+  static const companyNumberDigit = "123 456 789 3123";
 
   ///---------------------------------------- Register ----------------------------------------
   static const register = 'Register';
@@ -165,8 +170,7 @@ class Strings {
   static const aboutMe = 'About me';
   static const hobbies = 'Hobbies and Interest';
   static const finish = 'Finish';
-  static const aboutMeDes =
-      'Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit, sed \ndo eiusmod tempor incididunt';
+  static const aboutMeDes = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ';
   static const bioError = 'Enter bio';
   static const statusError = 'Enter status';
   static const instaError = 'Enter instagram';
@@ -177,7 +181,11 @@ class Strings {
   static const hobbiesError = 'Enter your hobbies';
 
   ///___________________________dashboard--Home_______________________________________
-  static const post = "Post";
+  static const aA= "Aa";
+  static const postToStories= "Post to Stories";
+  static const post= "Post";
+  static const camera= "Camera";
+  static const addToStory= "Add to story";
   static const writeSomethings = "Write something...";
   static const discover = "Discover";
   static const myStory = "My Story";
@@ -187,7 +195,6 @@ class Strings {
   static const latestFeedDes =
       "Lorem ipsum dolor sit amet, consectetur \nadipiscing elit, sed do eiusmod tempor \nincididunt ut labore et dolore magna aliqua.\n Lorem a commodo consequat ... more ";
   static const likes = "+8 likes";
-  static const myCompany = "My Company";
   static const learnMore = "LEARN MORE";
   static const search = "Search";
   static const discoverOtherConnections = "Discover other connections";
@@ -203,7 +210,8 @@ class Strings {
   static const london = "London";
   static const haveKids = "Have kids?";
   static const editProfile = "Edit Profile";
-
+  static const seeMore = "See more";
+  static const seeLess = "See less";
   ///________________________SettingScreen____________________________________________
   static const loremIpsum =
       "Lorem Ipsum Is Simply\nDummy Text Of The Printing\nAnd Typesetting Industry.";
@@ -229,4 +237,6 @@ class Strings {
   ///----------------------------------Payment ----------------------------------
   static const manageCards = "Manage Cards";
   static const platinum = "Platinum";
+
+
 }

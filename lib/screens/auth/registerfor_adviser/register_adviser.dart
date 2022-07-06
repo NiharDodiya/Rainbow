@@ -4,7 +4,6 @@ import 'package:rainbow/common/Widget/app_dropdown.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/auth/register/widget/register_form.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/adviserForm.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/registeradviser_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -20,7 +19,6 @@ class AdviserRegisterScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: ColorRes.white,
         body: Obx(() {
-
           return Stack(
             children: [
               SingleChildScrollView(

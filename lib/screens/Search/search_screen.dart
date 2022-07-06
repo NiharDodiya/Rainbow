@@ -55,16 +55,17 @@ class SearchScreen extends StatelessWidget {
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
-                                          children: [ SizedBox(
-                                            height: 5,
-                                          ),
-
+                                          children: [
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
                                             Text(
                                                 controller.advanceSearch[index]
                                                     .toString(),
-                                                style: textStyle12w600(
-                                                    Colors.white)),
-                                             SizedBox(
+                                                style: gilroyBoldTextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 12)),
+                                            const SizedBox(
                                               height: 4,
                                             ),
                                             const Divider(
@@ -79,7 +80,7 @@ class SearchScreen extends StatelessWidget {
                                 ),
                               ),
                             )
-                          : SizedBox();
+                          : const SizedBox();
                     },
                   )
                 ],

@@ -11,7 +11,7 @@ class DoctorRegisterForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DoctorRegisterController>(
-      id: 'register_form',
+      id: 'doctor',
       builder: (controller) {
         return Column(
           children: [
@@ -28,22 +28,22 @@ class DoctorRegisterForm extends StatelessWidget {
             AppTextFiled(
               controller: controller.comanyName,
               title: Strings.companyName,
-              hintText: Strings.companyName,
+              hintText: Strings.myCompany,
             ),
             AppTextFiled(
               controller: controller.companyNumber,
               title: Strings.companyNumber,
-              hintText: Strings.companyNumber,
+              hintText: Strings.companyNumberDigit,
               obscure: false,
             ),
             AppTextFiled(
               controller: controller.streetName,
               title: Strings.streetName,
-              hintText: Strings.streetName,
+              hintText: Strings.street,
               obscure: false,
             ),
             GetBuilder<DoctorRegisterController>(
-              id: 'address1',
+              id: 'doctor',
               builder: (controller) {
                 return AppTextFiled(
                   controller: controller.city,
@@ -54,7 +54,7 @@ class DoctorRegisterForm extends StatelessWidget {
               },
             ),
             GetBuilder<DoctorRegisterController>(
-              id: 'address2',
+              id: 'doctor',
               builder: (controller) {
                 return AppTextFiled(
                   controller: controller.country,
@@ -72,7 +72,7 @@ class DoctorRegisterForm extends StatelessWidget {
               child: AppTextFiled(
                 controller: controller.postalCode,
                 title: Strings.postalCode,
-                hintText: Strings.postalCode,
+                hintText: Strings.postalCodeDigitHint,
                 enable: true,
               ),
             ),  GestureDetector(
@@ -82,7 +82,7 @@ class DoctorRegisterForm extends StatelessWidget {
               child: AppTextFiled(
                 controller: controller.website,
                 title: Strings.website,
-                hintText: Strings.website,
+                hintText: Strings.websiteHint,
                 enable: true,
               ),
             ),

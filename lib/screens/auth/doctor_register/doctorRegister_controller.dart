@@ -8,20 +8,19 @@ class DoctorRegisterController extends GetxController
 {
 
   TextEditingController profession =
-  TextEditingController(/*text: "ravi"*/);
+  TextEditingController(text: "Doctor");
   TextEditingController comanyName =
-  TextEditingController(/*text: "ravi@gmail.com"*/);
-  TextEditingController companyNumber = TextEditingController(/*text: "Test@123"*/);
-  TextEditingController confirmPwdController =
-  TextEditingController(/*text: "Test@123"*/);
+  TextEditingController(text: "abcd");
+  TextEditingController companyNumber = TextEditingController(text: "1234");
+
   TextEditingController streetName =
-  TextEditingController(/*text: "csasdd"*/);
+  TextEditingController(text: "motavarachha");
   TextEditingController city =
-  TextEditingController(/*text: "dfdfwdfdw"*/);
+  TextEditingController(text: "surat");
   TextEditingController country =
-  TextEditingController(/*text: "single"*/);
+  TextEditingController(text: "Canada");
   TextEditingController postalCode =
-  TextEditingController(/*text: "1"*/);
+  TextEditingController(text: "123125");
   TextEditingController website   =
   TextEditingController(/*text: "1"*/);
 
@@ -41,25 +40,14 @@ class DoctorRegisterController extends GetxController
 
 
   void onInit() {
-    update(['register_screen']);
+    update(['doctor']);
     super.onInit();
   }
 
 
-
-  void onStatusSelect() {
-    if (martialStatusDropdown == false) {
-      martialStatusDropdown = true;
-    } else {
-      martialStatusDropdown = false;
-    }
-
-    update(['register_screen']);
-  }
-
   void onStatusChange(String value) {
     country.text = value;
-    update(['register_screen']);
+    update(['doctor']);
   }
 
   void onProfessionOnTap() {
@@ -68,33 +56,12 @@ class DoctorRegisterController extends GetxController
     } else {
       professions = false;
     }
+    update(['doctor']);
+  }
+  void onProfessionChange(String value) {
+    profession.text = value;
     update(['register_screen']);
   }
-
-  void onEthnicityChange(String value) {
-    postalCode.text = value;
-    update(['register_screen']);
-  }
-
-  void onBODSelect() {}
-
-  void onKidsSelect() {
-    // kidsDropdown = true;
-    if (kidsDropdown == false) {
-      kidsDropdown = true;
-    } else {
-      kidsDropdown = false;
-    }
-    update(['register_screen']);
-  }
-
-/*  void onKidsChange(String value) {
-    kidsController.text = value;
-    update(['register_screen']);
-  }*/
-
-
-
 
   void onRegisterTap() {
     if (validation()) {
@@ -103,7 +70,7 @@ class DoctorRegisterController extends GetxController
     }
   }
 
-  void onSignInTap() {}
+
 
   bool validation() {
     if (profession.text.isEmpty) {

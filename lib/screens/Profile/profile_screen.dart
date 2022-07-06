@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/screens/Profile/widget/about_me.dart';
+import 'package:rainbow/screens/Profile/widget/other_visitors_viewed.dart';
 import 'package:rainbow/screens/Profile/widget/profileImage.dart';
 import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
 import 'package:rainbow/screens/Profile/widget/profile_details.dart';
+import 'package:rainbow/screens/Profile/widget/testimonials.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
@@ -25,12 +28,20 @@ class ProfileScreen extends StatelessWidget {
               end: Alignment.bottomCenter,
             ),
           ),
-          child: Column(
-            children: [
-              profileAppbar(Strings.profile),
-              profileImage(),
-              profileDetails()
-            ],
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              children: [
+                profileAppbar(Strings.profile),
+                profileImage(),
+                profileDetails(),
+                aboutProfiler("About Me"),
+                const SizedBox(height: 30,),
+                aboutProfiler("Hobbies and Interest"),
+                testimonials(),
+                otherVisitorsViewed(),
+              ],
+            ),
           ),
         ),
       ),

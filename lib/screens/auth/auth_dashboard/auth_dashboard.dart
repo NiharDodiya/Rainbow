@@ -85,7 +85,7 @@ class AuthDashboard extends StatelessWidget {
       children: [
         SizedBox(height: Get.height * 0.085),
         SubmitButton(
-          onTap: controller.onSignUpTap,
+          onTap: controller.onContinueWithEmailTap,
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [

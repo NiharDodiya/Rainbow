@@ -98,7 +98,6 @@ class EditProfileController extends GetxController {
 
   Future backCamera() async {
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
-
     if (image == null) return;
     final imageTemp = File(image.path);
     backImage = imageTemp;

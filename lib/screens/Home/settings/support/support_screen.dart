@@ -158,7 +158,7 @@ class SupportScreen extends StatelessWidget {
                               ),
                               Text(
                                 Strings.loremIpsum,
-                                style: textStyleFont13,
+                                style: gilroyMediumTextStyle(color: Colors.black,fontSize: 13.11),
                               ),
                             ],
                           ),
@@ -169,8 +169,8 @@ class SupportScreen extends StatelessWidget {
                             controller.supportList[index],
                             style: controller.supportList[index].toString() ==
                                     "Pending"
-                                ? textStylField16wyellow
-                                : textStylField16w500,
+                                ?gilroyMediumTextStyle(color: ColorRes.color_FFA800,fontSize: 16)
+                                :  gilroyMediumTextStyle(color:ColorRes.color_49A510,fontSize: 16),
                           ),
                         )
                       ],

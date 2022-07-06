@@ -186,7 +186,7 @@ class GetStartedScreens extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(15))),
             actions: [
               SizedBox(
-                height: Get.height * 0.48,
+                height: Get.height * 0.5,
                 width: Get.width * 0.86,
                 child: Column(
                   children: [
