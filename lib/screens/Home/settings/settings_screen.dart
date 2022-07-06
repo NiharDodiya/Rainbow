@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
+import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
 import 'package:rainbow/screens/Home/settings/support/support_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -178,6 +179,7 @@ class SettingsScreen extends StatelessWidget {
           SizedBox(
             height: Get.height * 0.025,
           ),
+          //Messages
           Padding(
             padding: const EdgeInsets.only(bottom: 5),
             child: Row(
@@ -208,6 +210,7 @@ class SettingsScreen extends StatelessWidget {
             thickness: 1,
             color: ColorRes.color_4F359B.withOpacity(0.4),
           ),
+          //Connections
           InkWell(
             onTap: () {
               Get.to(() => ConnectionsScreen());
@@ -243,10 +246,11 @@ class SettingsScreen extends StatelessWidget {
             thickness: 1,
             color: ColorRes.color_4F359B.withOpacity(0.4),
           ),
-          InkWell(onTap: () {
-            Get.to(() => SupportScreen());
-
-          },
+          //Support
+          InkWell(
+            onTap: () {
+              Get.to(() => SupportScreen());
+            },
             child: Padding(
               padding: const EdgeInsets.only(top: 5, bottom: 5),
               child: Row(
@@ -278,30 +282,35 @@ class SettingsScreen extends StatelessWidget {
             thickness: 1,
             color: ColorRes.color_4F359B.withOpacity(0.4),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 5, bottom: 5),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: Get.width * 0.08,
-                ),
-                SizedBox(
-                    height: 18.98,
-                    width: 20.83,
-                    child: Image.asset(AssetRes.payment)),
-                SizedBox(
-                  width: Get.width * 0.06,
-                ),
-                Text(
-                  Strings.payment,
-                  style: textStyleFont15White,
-                ),
-                SizedBox(
-                  width: Get.width * 0.57,
-                ),
-                SizedBox(
-                    height: 10, width: 6, child: Image.asset(AssetRes.next))
-              ],
+          InkWell(
+            onTap: () {
+              Get.to(() =>  PaymentScreen());
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(top: 5, bottom: 5),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: Get.width * 0.08,
+                  ),
+                  SizedBox(
+                      height: 18.98,
+                      width: 20.83,
+                      child: Image.asset(AssetRes.payment)),
+                  SizedBox(
+                    width: Get.width * 0.06,
+                  ),
+                  Text(
+                    Strings.payment,
+                    style: textStyleFont15White,
+                  ),
+                  SizedBox(
+                    width: Get.width * 0.57,
+                  ),
+                  SizedBox(
+                      height: 10, width: 6, child: Image.asset(AssetRes.next))
+                ],
+              ),
             ),
           ),
           Divider(
@@ -435,9 +444,10 @@ class SettingsScreen extends StatelessWidget {
           SizedBox(
             height: Get.height * 0.02,
           ),
-          InkWell(onTap: () {
-            controller.share();
-          },
+          InkWell(
+            onTap: () {
+              controller.share();
+            },
             child: Container(
               height: 44.43,
               width: Get.width * 0.312,

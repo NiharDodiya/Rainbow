@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/Home/addStory/add_controller.dart';
+import 'package:rainbow/screens/Home/Story/story_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
-class AddStoryScreen extends StatelessWidget {
-   AddStoryScreen({Key? key}) : super(key: key);
-  AddStoryController controller = Get.put(AddStoryController());
+class StoryScreen extends StatelessWidget {
+   StoryScreen({Key? key}) : super(key: key);
+  StoryController controller = Get.put(StoryController());
 
   @override
   Widget build(BuildContext context) {

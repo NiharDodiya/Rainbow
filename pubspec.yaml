@@ -71,6 +71,11 @@ dependencies:
 
   #________________________________________________Share_______________________________
   flutter_share: ^2.0.0
+  #________________________________________________storyCreater_________________________
+  story_creator: ^1.0.1
+  #________________________________________________photoManager_______________________
+  photo_manager: ^2.1.4
+  flutter_mentions: ^2.0.1
 
 
 
@@ -143,6 +148,9 @@ flutter:
     - family: BeVietnamPro-Regular
       fonts:
         - asset: assets/fonts/BeVietnamPro-Regular.ttf
+    - family: Montserrat-Regular
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf
 
 
 

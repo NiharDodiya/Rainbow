@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_mentions/flutter_mentions.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return GetMaterialApp( builder: (_, child) => Portal(child: child!),
       title: 'Flutter Demo',
       theme: ThemeData(
         primaryColor: ColorRes.themeColor,
@@ -45,8 +46,7 @@ class MyApp extends StatelessWidget {
               ? const Dashboard()
               : PrefService.getBool(PrefKeys.register)
                   ? const Dashboard()
-                  : const Dashboard(),
-      // AuthDashboard(),
+                  : AuthDashboard()
     );
   }
 }

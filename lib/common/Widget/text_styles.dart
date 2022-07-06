@@ -275,11 +275,6 @@ TextStyle textStyleField16w = const TextStyle(
   fontFamily: "Gilroy-Medium",
   fontWeight: FontWeight.w600,
 );
-TextStyle textStyleFont13 = const TextStyle(
-  color: ColorRes.black,
-  fontSize: 13.1163,
-  fontFamily: "Gilroy-Medium",
-);
 
 TextStyle gilroyBoldTextStyle({Color? color,double? fontSize,}){
   return TextStyle(
@@ -289,12 +284,14 @@ TextStyle gilroyBoldTextStyle({Color? color,double? fontSize,}){
     fontFamily: FontRes.gilroyBold,
   );
 }
-TextStyle gilroySemiBoldTextStyle({Color? color,double? fontSize,}){
+
+TextStyle gilroySemiBoldTextStyle({Color? color,double? fontSize,double? letterSpacing}){
   return TextStyle(
     color: color??ColorRes.white,
     fontWeight: FontWeight.w700,
     fontSize: fontSize??18,
     fontFamily: FontRes.gilroySemiBold,
+    letterSpacing: letterSpacing?? 0
   );
 }
 TextStyle gilroyMediumTextStyle({Color? color,double? fontSize,}){
@@ -313,6 +310,33 @@ TextStyle gilroyRegularTextStyle({Color? color,double? fontSize,}){
     fontFamily: FontRes.gilroyRegular,
   );
 }
+TextStyle montserratRegularTextStyle({Color? color,double? fontSize,FontWeight? fontWeight}){
+  return TextStyle(
+    color: color??ColorRes.white,
+    fontWeight: FontWeight.w400,
+    fontSize: fontSize??18,
+    fontFamily: FontRes.montserratRegular,
+  );
+}
+TextStyle montserratboldTextStyle({Color? color,double? fontSize,FontWeight? fontWeight}){
+  return TextStyle(
+    color: color??ColorRes.white,
+    fontWeight: FontWeight.w900,
+    fontSize: fontSize??18,
+    fontFamily: FontRes.montserratRegular,
+  );
+}
+TextStyle montserratMediumTextStyle({Color? color,double? fontSize,FontWeight? fontWeight}){
+  return TextStyle(
+    color: color??ColorRes.white,
+    fontWeight: FontWeight.w600,
+    fontSize: fontSize??18,
+    letterSpacing: 4,
+    fontFamily: FontRes.montserratRegular,
+  );
+}
+
+
 
 TextStyle beVietnamProBoldTextStyle({Color? color,double? fontSize,}){
   return TextStyle(
@@ -343,12 +367,19 @@ TextStyle textStylField16wyellow = const TextStyle(
   fontFamily: FontRes.gilroyMedium,
   fontWeight: FontWeight.w500,
 );
-TextStyle textStyle12w600(Color color)
-{
+
+TextStyle beVietnamRegularTextStyle({Color? color,double? fontSize,}){
   return TextStyle(
-    color: color,
-    fontSize: 12,
-    fontFamily: "Gilroy-ExtraBold",
+    color: color??ColorRes.white,
     fontWeight: FontWeight.w500,
+    fontSize: fontSize??18,
+    fontFamily: FontRes.beVietnamProBold,
+  );
+}TextStyle beVietnamSemiBoldTextStyle({Color? color,double? fontSize}){
+  return TextStyle(
+    color: color??ColorRes.white,
+    fontWeight: FontWeight.w600,
+    fontSize: fontSize??18,
+    fontFamily: FontRes.beVietnamProSemiBold,
   );
 }

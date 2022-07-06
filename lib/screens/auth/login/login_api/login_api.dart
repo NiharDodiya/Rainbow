@@ -22,7 +22,8 @@ class LoginApi {
         'password': password,
       };
       print(param);
-      http.Response? response = await HttpService.postApi(url: url, body: param);
+      http.Response? response = await HttpService.postApi(url: url,   body: jsonEncode(param),
+          header: {"Content-Type": "application/json"});
       if (response != null && response.statusCode == 200) {
         loginList.add(loginModelFromJson(response.body));
       }

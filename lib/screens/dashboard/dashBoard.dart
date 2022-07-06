@@ -38,7 +38,7 @@ class _DashboardState extends State<Dashboard> {
           id: 'bottom_bar',
           builder: (controller) {
             if (controller.currentTab == 0) {
-              return const HomeScreen();
+              return  HomeScreen();
             } else if (controller.currentTab == 1) {
               return  SearchScreen();
             } else if (controller.currentTab == 2) {

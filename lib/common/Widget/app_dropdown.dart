@@ -307,7 +307,14 @@ class AppDroDownIdType extends StatelessWidget {
 }
 
 class AppDropDownProfessionType extends StatelessWidget {
-  const AppDropDownProfessionType({Key? key}) : super(key: key);
+  final List<String> paramList;
+final Function(String) onTap;
+
+const AppDropDownProfessionType({
+  Key? key,
+  required this.paramList,
+  required this.onTap,
+}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -355,21 +362,21 @@ class AppDropDownProfessionType extends StatelessWidget {
             },
           )*/
           ListView.builder(
-            itemCount: controller.professionList.length,
+            itemCount:paramList.length,
             itemBuilder: (context, index) {
               return Column(
                 children: [
                   InkWell(
                       onTap: () {
-                        controller.profession.text = controller.professionList[index];
+                        controller.profession.text =paramList[index];
                         controller.professions=false;
                         controller.update(['register_screen']);
                       },
                       child: Text(
-                        controller.professionList[index],
+                        paramList[index],
                         style: textStyleFont14Black,
                       )),
-                  (index + 1) == controller.professionList[index].length
+                  (index + 1) ==paramList[index].length
                       ? const SizedBox()
                       : const Divider(),
                 ],

@@ -50,6 +50,8 @@ class AssetRes {
 
 
   ///--------------------------------------------- images ---------------------------------------------
+  static const shapeCamera = '${images}shapeCamera.png';
+  static const surrogateMom = '${images}surrogatemom.png';
   static const youtube = '${images}youtube.png';
   static const twitter = '${images}twitter.png';
   static const instagram = '${images}instagram.png';
@@ -78,6 +80,13 @@ class AssetRes {
   static const lt2 ='${images}lt2.png';
   static const lt3 ='${images}lt3.png';
   static const backGround ='${images}backGroundImage.png';
+  static const card ="${images}card.png";
+  static const visa ="${images}visa.png";
+ static const p01 ="${images}01.png";
+  static const p02 ="${images}02.png";
+ static const p03 ="${images}03.png";
+  // static const visa ="${images}visa.png";
+ 
 
 
   ///_______________________________settings________________________________

@@ -33,7 +33,7 @@ class DoctorRegisterScreen extends StatelessWidget {
                       color: ColorRes.color_4F359B,
                     ),
                     child: GetBuilder<DoctorRegisterController>(
-                      id: 'register_screen',
+                      id: 'doctor',
                       builder: (controller) {
                         return Stack(
                           children: [
@@ -58,26 +58,15 @@ class DoctorRegisterScreen extends StatelessWidget {
                                 registerButtons(controller),
                               ],
                             ),
-                          /*  GetBuilder<DoctorRegisterController>(id: 'register_screen' ,builder: (controller) {
-                              return     !controller.martialStatusDropdown
-                                  ? const SizedBox()
-                                  : Positioned(
-                                top: Get.height * 1.213,width: Get.width * 0.8,
-                                child: AppDropdown(
-                                  paramList: controller.martialStatusList,
-                                  onTap: controller.onStatusChange,
-                                ),
-                              );
-                            },),
-                            !controller.ethnicityDropdown
+
+                            !controller.professions
                                 ? const SizedBox()
                                 : Positioned(
-                              top: Get.height * 1.34,width: Get.width * 0.8,
-                              child: AppDropDownEthnicity(
-                                paramList: controller.ethnicityList,
-                                onTap: controller.onEthnicityChange,
-                              ),
-                            ),*/
+                                  child: AppDropDownProfessionType(
+                              paramList: controller.professionList,
+                              onTap: controller.onProfessionChange,
+                            ),
+                                ),
 
                           ],
                         );
@@ -86,8 +75,6 @@ class DoctorRegisterScreen extends StatelessWidget {
                   )
               ),
               controller.loader.isTrue?const SmallLoader():const SizedBox()
-
-
             ],
           );
         })

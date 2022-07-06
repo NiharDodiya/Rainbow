@@ -61,8 +61,9 @@ class AuthDashBordController extends GetxController {
     loading.value  =false;
     flutterToast(Strings.faceBookSignInSuccess);
   }
-  void onSignUpTap() {
-    // Get.to(() => RegisterScreen(), transition: Transition.cupertino);
+  void onContinueWithEmailTap() {
+    Get.to(() => RegisterScreen());
+  }  void onSignUpTap() {
     Get.to(() => AdviserRegisterScreen());
   }
 }
