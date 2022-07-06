@@ -18,6 +18,7 @@ class Strings {
   static const admin = 'Admin';
   static const endUsers = 'End Users';
   static const companyName = 'Company Name';
+  static const myCompany = 'My Company';
   static const companyNumber = 'Company Number';
   static const postalCode    = 'Postal Code';
   static const website    = 'Website';

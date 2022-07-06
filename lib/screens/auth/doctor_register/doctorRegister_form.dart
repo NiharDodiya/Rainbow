@@ -11,7 +11,7 @@ class DoctorRegisterForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DoctorRegisterController>(
-      id: 'register_form',
+      id: 'doctor',
       builder: (controller) {
         return Column(
           children: [
@@ -28,7 +28,7 @@ class DoctorRegisterForm extends StatelessWidget {
             AppTextFiled(
               controller: controller.comanyName,
               title: Strings.companyName,
-              hintText: Strings.companyName,
+              hintText: Strings.myCompany,
             ),
             AppTextFiled(
               controller: controller.companyNumber,
@@ -43,7 +43,7 @@ class DoctorRegisterForm extends StatelessWidget {
               obscure: false,
             ),
             GetBuilder<DoctorRegisterController>(
-              id: 'address1',
+              id: 'doctor',
               builder: (controller) {
                 return AppTextFiled(
                   controller: controller.city,
@@ -54,7 +54,7 @@ class DoctorRegisterForm extends StatelessWidget {
               },
             ),
             GetBuilder<DoctorRegisterController>(
-              id: 'address2',
+              id: 'doctor',
               builder: (controller) {
                 return AppTextFiled(
                   controller: controller.country,
