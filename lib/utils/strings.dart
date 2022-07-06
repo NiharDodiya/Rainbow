@@ -15,6 +15,8 @@ class Strings {
   static const profession = 'Profession';
   static const country = 'Country';
   static const doctor = 'Doctor';
+  static const admin = 'Admin';
+  static const endUsers = 'End Users';
   static const companyName = 'Company Name';
   static const companyNumber = 'Company Number';
   static const postalCode    = 'Postal Code';

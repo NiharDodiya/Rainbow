@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/helper.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/utils/strings.dart';
 
@@ -19,26 +18,23 @@ class DoctorRegisterController extends GetxController
   TextEditingController(/*text: "csasdd"*/);
   TextEditingController city =
   TextEditingController(/*text: "dfdfwdfdw"*/);
-
   TextEditingController country =
   TextEditingController(/*text: "single"*/);
   TextEditingController postalCode =
-  TextEditingController(/*text: "1"*/);  TextEditingController website   =
+  TextEditingController(/*text: "1"*/);
+  TextEditingController website   =
   TextEditingController(/*text: "1"*/);
 
   String selectedLocation = Strings.single;
-  List<String> martialStatusList = [
-    Strings.single,
-    Strings.married,
+
+  List<String> professionList = [
+    Strings.doctor,
+    Strings.admin,
+    Strings.endUsers,
   ];
-  List<String> ethnicityList = [
-    "0",
-    "1",
-    "2",
-  ];
-  List<String> noOfKids = ["0", "1", "2", "3", "4", "5", "6"];
+
   bool martialStatusDropdown = false;
-  bool ethnicityDropdown = false;
+  bool professions = false;
   bool kidsDropdown = false;
   RxBool loader = false.obs;
 
@@ -66,11 +62,11 @@ class DoctorRegisterController extends GetxController
     update(['register_screen']);
   }
 
-  void onEthnicitySelect() {
-    if (ethnicityDropdown == false) {
-      ethnicityDropdown = true;
+  void onProfessionOnTap() {
+    if (professions == false) {
+      professions = true;
     } else {
-      ethnicityDropdown = false;
+      professions = false;
     }
     update(['register_screen']);
   }
@@ -97,21 +93,12 @@ class DoctorRegisterController extends GetxController
     update(['register_screen']);
   }*/
 
-  void onAddress1Change(String str) {
-    if (str.length > 440 && str.length < 460) {
-      update(['address1']);
-    }
-  }
 
-  void onAddress2Change(String str) {
-    if (str.length > 440 && str.length < 460) {
-      update(['address2']);
-    }
-  }
+
 
   void onRegisterTap() {
     if (validation()) {
-      Get.to(Dash board());
+      Get.to(const Dashboard());
 
     }
   }

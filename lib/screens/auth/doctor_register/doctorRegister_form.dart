@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
 import 'package:rainbow/screens/auth/doctor_register/doctorRegister_controller.dart';
+import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class DoctorRegisterForm extends StatelessWidget {
@@ -14,10 +15,15 @@ class DoctorRegisterForm extends StatelessWidget {
       builder: (controller) {
         return Column(
           children: [
-            AppTextFiled(
-              controller: controller.profession,
-              title: Strings.profession,
-              hintText: Strings.profession,
+            GestureDetector(onTap: () {
+      controller.onProfessionOnTap();
+            },
+              child: AppTextFiled(
+                controller: controller.profession,
+                title: Strings.profession,
+                hintText: Strings.profession,
+                  suffix: Image.asset(AssetRes.arrowDown, height: 17),
+              ),
             ),
             AppTextFiled(
               controller: controller.comanyName,
@@ -44,7 +50,6 @@ class DoctorRegisterForm extends StatelessWidget {
                   title: Strings.city,
                   hintText: Strings.city,
                   multiLine: true,
-                  onChange: controller.onAddress1Change,
                 );
               },
             ),

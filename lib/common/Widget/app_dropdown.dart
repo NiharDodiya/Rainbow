@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/auth/doctor_register/doctorRegister_controller.dart';
 import 'package:rainbow/screens/auth/register/register_controller.dart';
 import 'package:rainbow/screens/idVerification/idverification_controller.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -303,4 +304,81 @@ class AppDroDownIdType extends StatelessWidget {
       },
     );
   }
+}
+
+class AppDropDownProfessionType extends StatelessWidget {
+  const AppDropDownProfessionType({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    DoctorRegisterController controller = Get.put(DoctorRegisterController());
+    return GetBuilder<DoctorRegisterController>(
+      id: 'register_screen',
+      builder: (controller) {
+        return Container(
+          width: Get.width * 0.3,
+          constraints: BoxConstraints(
+            minHeight: Get.height * 0.04,
+            maxHeight: Get.height * 0.1,
+          ),
+          decoration: BoxDecoration(
+            color: ColorRes.white,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.grey,
+                offset: Offset(
+                  2.0,
+                  2.0,
+                ),
+                blurRadius: 10.0,
+                spreadRadius: 2.0,
+              ), //BoxShadow
+              BoxShadow(
+                color: Colors.white,
+                offset: Offset(0.0, 0.0),
+                blurRadius: 0.0,
+                spreadRadius: 0.0,
+              ), //BoxShadow
+            ],
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          child:/*DropdownButton<String>(
+            items: <String>['A', 'B', 'C', 'D'].map((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+            onChanged: (_) {
+
+            },
+          )*/
+          ListView.builder(
+            itemCount: controller.professionList.length,
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  InkWell(
+                      onTap: () {
+                        controller.profession.text = controller.professionList[index];
+                        controller.professions=false;
+                        controller.update(['register_screen']);
+                      },
+                      child: Text(
+                        controller.professionList[index],
+                        style: textStyleFont14Black,
+                      )),
+                  (index + 1) == controller.professionList[index].length
+                      ? const SizedBox()
+                      : const Divider(),
+                ],
+              );
+            },
+          ),
+        );
+      },
+    );
+  }
+
 }

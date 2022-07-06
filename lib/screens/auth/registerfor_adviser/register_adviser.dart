@@ -103,8 +103,7 @@ class AdviserRegisterScreen extends StatelessWidget {
           text: Strings.next,
           onTap: controller.onRegisterTap,
         ),
-        SizedBox(height: Get.height * 0.04680),
-
+        SizedBox(height: Get.height * 0.082),
       ],
     );
   }
