@@ -23,9 +23,7 @@ class Strings {
   static const companyNumber = 'Company Number';
   static const postalCode = 'Postal Code';
   static const website = 'Website';
-  static const postalCode    = 'Postal Code';
   static const postalCodeDigitHint   = '123125';
-  static const website    = 'Website';
   static const websiteHint    = 'www.mymom.com';
   static const sign_Up = 'Signup';
   static const forAdvertise = " for advertiser's account";
