@@ -290,12 +290,13 @@ TextStyle gilroyBoldTextStyle({Color? color,double? fontSize,}){
   );
 }
 
-TextStyle gilroySemiBoldTextStyle({Color? color,double? fontSize,}){
+TextStyle gilroySemiBoldTextStyle({Color? color,double? fontSize,double? letterSpacing}){
   return TextStyle(
     color: color??ColorRes.white,
     fontWeight: FontWeight.w700,
     fontSize: fontSize??18,
     fontFamily: FontRes.gilroySemiBold,
+    letterSpacing: letterSpacing?? 0
   );
 }
 TextStyle gilroyMediumTextStyle({Color? color,double? fontSize,}){
@@ -313,6 +314,33 @@ TextStyle gilroyMediumTextStyle({Color? color,double? fontSize,}){
     fontFamily: FontRes.gilroyRegular,
   );
 }
+TextStyle montserratRegularTextStyle({Color? color,double? fontSize,FontWeight? fontWeight}){
+  return TextStyle(
+    color: color??ColorRes.white,
+    fontWeight: FontWeight.w400,
+    fontSize: fontSize??18,
+    fontFamily: FontRes.montserratRegular,
+  );
+}
+TextStyle montserratboldTextStyle({Color? color,double? fontSize,FontWeight? fontWeight}){
+  return TextStyle(
+    color: color??ColorRes.white,
+    fontWeight: FontWeight.w900,
+    fontSize: fontSize??18,
+    fontFamily: FontRes.montserratRegular,
+  );
+}
+TextStyle montserratMediumTextStyle({Color? color,double? fontSize,FontWeight? fontWeight}){
+  return TextStyle(
+    color: color??ColorRes.white,
+    fontWeight: FontWeight.w600,
+    fontSize: fontSize??18,
+    letterSpacing: 4,
+    fontFamily: FontRes.montserratRegular,
+  );
+}
+
+
 
 TextStyle textStylField16w500 = const TextStyle(
   color: ColorRes.color_49A510,

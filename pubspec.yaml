@@ -140,6 +140,9 @@ flutter:
     - family: BeVietnamPro-Regular
       fonts:
         - asset: assets/fonts/BeVietnamPro-Regular.ttf
+    - family: Montserrat-Regular
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf    
 
 
 
