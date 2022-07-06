@@ -23,6 +23,10 @@ class LoginController extends GetxController {
     // Get.off(() => RegisterScreen(), transition: Transition.cupertino);
     Get.off(() => AdviserRegisterScreen(), );
   }
+void onSignUpDontHaveTap() {
+    Get.off(() => RegisterScreen(), transition: Transition.cupertino);
+    // Get.off(() => AdviserRegisterScreen(), );
+  }
 
   void onRegisterTap() {
     if (validation()) {

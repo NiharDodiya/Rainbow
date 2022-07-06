@@ -21,9 +21,9 @@ class Strings {
   static const companyName = 'Company Name';
   static const myCompany = 'My Company';
   static const companyNumber = 'Company Number';
-  static const postalCode = 'Postal Code';
-  static const website = 'Website';
+  static const postalCode    = 'Postal Code';
   static const postalCodeDigitHint   = '123125';
+  static const website    = 'Website';
   static const websiteHint    = 'www.mymom.com';
   static const sign_Up = 'Signup';
   static const forAdvertise = " for advertiser's account";
@@ -182,7 +182,11 @@ class Strings {
   static const hobbiesError = 'Enter your hobbies';
 
   ///___________________________dashboard--Home_______________________________________
-  static const post = "Post";
+  static const aA= "Aa";
+  static const postToStories= "Post to Stories";
+  static const post= "Post";
+  static const camera= "Camera";
+  static const addToStory= "Add to story";
   static const writeSomethings = "Write something...";
   static const discover = "Discover";
   static const myStory = "My Story";
@@ -233,4 +237,23 @@ class Strings {
   ///----------------------------------Payment ----------------------------------
   static const manageCards = "Manage Cards";
   static const platinum = "Platinum";
+  static const loremIpsum="Lorem Ipsum Is Simply\nDummy Text Of The Printing\nAnd Typesetting Industry.";
+  static const pending="Pending";
+  static const complete="Complete";
+  static const sendNewMessage="Send new Message";
+  static const others="Others";
+  static const viewProfile="View Profile";
+  static const messages="Messages";
+  static const connections="Connections";
+  static const support="Support";
+  static const payment="Payment";
+  static const privacy="Privacy";
+  static const notifications="Notifications";
+  static const subscription="Subscription";
+  static const yourReferralCode="Your Referral Code";
+  static const  inviteNow="Invite Now";
+  static const  logout="Logout";
+  static const  connectionRequest = "Connection Request";
+  static const  suggestedConnection = "Suggested Connection";
+
 }

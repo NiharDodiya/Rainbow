@@ -47,6 +47,8 @@ class AssetRes {
 
 
   ///--------------------------------------------- images ---------------------------------------------
+  static const shapeCamera = '${images}shapeCamera.png';
+  static const surrogateMom = '${images}surrogatemom.png';
   static const youtube = '${images}youtube.png';
   static const twitter = '${images}twitter.png';
   static const instagram = '${images}instagram.png';

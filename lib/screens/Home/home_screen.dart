@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mentions/flutter_mentions.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/Home/addStory/addstory_screen.dart';
+import 'package:rainbow/screens/Home/Story/story_screen.dart';
+import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/settings_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -9,7 +11,8 @@ import 'package:rainbow/utils/strings.dart';
 import 'package:story_view/story_view.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+   HomeScreen({Key? key}) : super(key: key);
+  HomeController controller =Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -54,10 +57,14 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 width: Get.width * 0.04,
               ),
-              const Image(
-                image: AssetImage(AssetRes.notify),
-                height: 20,
-                width: 20,
+              InkWell(onTap: () {
+
+              },
+                child: const Image(
+                  image: AssetImage(AssetRes.notify),
+                  height: 20,
+                  width: 20,
+                ),
               ),
               SizedBox(
                 width: Get.width * 0.05,
@@ -78,7 +85,7 @@ class HomeScreen extends StatelessWidget {
           width: 24,
         ),
         onPressed: () {
-          Get.to(() => AddStoryScreen());
+          Get.to(() => StoryScreen());
         },
       ),
     );
@@ -130,53 +137,55 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(
                         height: Get.height * 0.02,
                       ),
-                      Stack(
-                        children: [
-                          Container(
-                            height: 56,
-                            width: 78,
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                    image: AssetImage(AssetRes.selfiePicture))),
-                          ),
-                          Positioned(
+                      InkWell(onTap: controller.myStoryOnTap,
+                        child: Stack(
+                          children: [
+                            Container(
+                              height: 56,
+                              width: 78,
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      image: AssetImage(AssetRes.selfiePicture))),
+                            ),
+                            Positioned(
+                                top: Get.height * 0.04,
+                                left: Get.width * 0.141,
+                                child: const Image(
+                                  image: AssetImage(AssetRes.plusIcons),
+                                  height: 24,
+                                  width: 24,
+                                )),
+                            Positioned(
                               top: Get.height * 0.04,
-                              left: Get.width * 0.15,
-                              child: const Image(
-                                image: AssetImage(AssetRes.plusIcons),
-                                height: 24,
-                                width: 24,
-                              )),
-                          Positioned(
-                            top: Get.height * 0.04,
-                            child: Container(
-                              height: 50,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color:
-                                        ColorRes.color_B9A2FD.withOpacity(0.3),
-                                    spreadRadius: 1,
-                                    blurRadius: 10,
-                                    offset: const Offset(4, 5),
-                                  ),
-                                ],
-                                gradient: LinearGradient(
-                                  colors: [
-                                    ColorRes.color_B9A2FD.withOpacity(0.1),
-                                    ColorRes.color_B9A2FD.withOpacity(0.1),
-                                    ColorRes.color_B9A2FD.withOpacity(0.1),
-                                    ColorRes.color_B9A2FD.withOpacity(0.1),
+                              child: Container(
+                                height: 50,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color:
+                                          ColorRes.color_B9A2FD.withOpacity(0.3),
+                                      spreadRadius: 1,
+                                      blurRadius: 10,
+                                      offset: const Offset(4, 5),
+                                    ),
                                   ],
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      ColorRes.color_B9A2FD.withOpacity(0.1),
+                                      ColorRes.color_B9A2FD.withOpacity(0.1),
+                                      ColorRes.color_B9A2FD.withOpacity(0.1),
+                                      ColorRes.color_B9A2FD.withOpacity(0.1),
+                                    ],
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                  ),
                                 ),
                               ),
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                       const SizedBox(
                         height: 12,
@@ -684,3 +693,5 @@ class _MoreStoriesState extends State<MoreStories> {
     );
   }
 }
+
+

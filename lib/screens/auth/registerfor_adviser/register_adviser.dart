@@ -19,7 +19,6 @@ class AdviserRegisterScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: ColorRes.white,
         body: Obx(() {
-
           return Stack(
             children: [
               SingleChildScrollView(

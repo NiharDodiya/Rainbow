@@ -61,10 +61,12 @@ class DoctorRegisterScreen extends StatelessWidget {
 
                             !controller.professions
                                 ? const SizedBox()
-                                : AppDropDownProfessionType(
+                                : Positioned(
+                                  child: AppDropDownProfessionType(
                               paramList: controller.professionList,
                               onTap: controller.onProfessionChange,
                             ),
+                                ),
 
                           ],
                         );

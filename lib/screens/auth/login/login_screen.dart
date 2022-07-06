@@ -209,7 +209,7 @@ class LoginScreen extends StatelessWidget {
               style: textStyleFont14Black,
             ),
             InkWell(
-              onTap: controller.onSignUpTap,
+              onTap: controller.onSignUpDontHaveTap,
               child: Text(
                 Strings.sign_Up,
                 style: textStyleFont14,

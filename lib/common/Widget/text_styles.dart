@@ -275,11 +275,6 @@ TextStyle textStyleField16w = const TextStyle(
   fontFamily: "Gilroy-Medium",
   fontWeight: FontWeight.w600,
 );
-TextStyle textStyleFont13 = const TextStyle(
-  color: ColorRes.black,
-  fontSize: 13.1163,
-  fontFamily: "Gilroy-Medium",
-);
 
 TextStyle gilroyBoldTextStyle({Color? color,double? fontSize,}){
   return TextStyle(
@@ -355,10 +350,18 @@ TextStyle textStylField16w500 = const TextStyle(
 );
 TextStyle textStyle12w600(Color color)
 {
+TextStyle beVietnamRegularTextStyle({Color? color,double? fontSize,}){
   return TextStyle(
-    color: color,
-    fontSize: 12,
-    fontFamily: "Gilroy-ExtraBold",
+    color: color??ColorRes.white,
     fontWeight: FontWeight.w500,
+    fontSize: fontSize??18,
+    fontFamily: FontRes.beVietnamProBold,
+  );
+}TextStyle beVietnamSemiBoldTextStyle({Color? color,double? fontSize}){
+  return TextStyle(
+    color: color??ColorRes.white,
+    fontWeight: FontWeight.w600,
+    fontSize: fontSize??18,
+    fontFamily: FontRes.beVietnamProSemiBold,
   );
 }

@@ -25,7 +25,7 @@ class RegisterController extends GetxController {
   TextEditingController address2Controller =
       TextEditingController(text: "dfdfwdfdw");
   TextEditingController phoneController =
-      TextEditingController(text: "7878787878");
+      TextEditingController();
   TextEditingController statusController =
       TextEditingController(text: "single");
   TextEditingController ethnicityController =

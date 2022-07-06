@@ -10,18 +10,17 @@ class DoctorRegisterController extends GetxController
   TextEditingController profession =
   TextEditingController(text: "Doctor");
   TextEditingController comanyName =
-  TextEditingController(/*text: "ravi@gmail.com"*/);
-  TextEditingController companyNumber = TextEditingController(/*text: "Test@123"*/);
-  TextEditingController confirmPwdController =
-  TextEditingController(/*text: "Test@123"*/);
+  TextEditingController(text: "abcd");
+  TextEditingController companyNumber = TextEditingController(text: "1234");
+
   TextEditingController streetName =
-  TextEditingController(/*text: "csasdd"*/);
+  TextEditingController(text: "motavarachha");
   TextEditingController city =
-  TextEditingController(/*text: "dfdfwdfdw"*/);
+  TextEditingController(text: "surat");
   TextEditingController country =
   TextEditingController(text: "Canada");
   TextEditingController postalCode =
-  TextEditingController(/*text: "1"*/);
+  TextEditingController(text: "123125");
   TextEditingController website   =
   TextEditingController(/*text: "1"*/);
 

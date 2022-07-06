@@ -10,26 +10,27 @@ class AdviserRegisterController extends GetxController
 {
 
   TextEditingController fullNameController =
-  TextEditingController(/*text: "ravi"*/);
+  TextEditingController(text: "ravi");
   TextEditingController emailController =
-  TextEditingController(/*text: "ravi@gmail.com"*/);
-  TextEditingController pwdController = TextEditingController(/*text: "Test@123"*/);
+  TextEditingController(text: "ravi@gmail.com");
+  TextEditingController pwdController = TextEditingController(text: "Test@123");
   TextEditingController confirmPwdController =
-  TextEditingController(/*text: "Test@123"*/);
+  TextEditingController(text: "Test@123");
   TextEditingController houseNumber =
-  TextEditingController(/*text: "csasdd"*/);
+  TextEditingController(text: "csasdd");
   TextEditingController streetName =
-  TextEditingController(/*text: "dfdfwdfdw"*/);
+  TextEditingController(text: "dfdfwdfdw");
   TextEditingController city =
-  TextEditingController(/*text: "surat"*/);
+  TextEditingController(text: "surat");
   TextEditingController country =
-  TextEditingController(/*text: "single"*/);
+  TextEditingController(text: "single");
   TextEditingController postalCode =
-  TextEditingController(/*text: "1"*/);
+  TextEditingController(text: "1");
   TextEditingController phoneNumber =
   TextEditingController(/*text: "07-06-1999"*/);
   String selectedLocation = Strings.single;
   List<String> martialStatusList = [
+
     Strings.single,
     Strings.married,
   ];
