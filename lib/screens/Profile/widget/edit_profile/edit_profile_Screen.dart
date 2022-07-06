@@ -117,7 +117,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     top: Get.height * 0.24,
                     left: Get.width * 0.4,
                     child: InkWell(onTap: () {
-                      controller.backCamera();
+                      controller.frontCamera();
                     },
                       child: Container(
                         height: 29.19,
@@ -134,7 +134,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     left: Get.width * 0.77,
                     child: InkWell(onTap:
                       () {
-                        controller.frontCamera();
+                        controller.backCamera();
+
                         },
                       child:Container(
                         height: 29.19,
@@ -218,18 +219,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Get.to(() => const HeightScreen());
+                    // Get.to(() => const HeightScreen());
                   },
                   child: SizedBox(
                     width: Get.width * 0.85,
                     child: AppTextFiled(
                       controller: controller.height,
                       title: Strings.height,
-                      suffix: const Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        size: 14.6,
-                        color: ColorRes.color_464646,
-                      ),
+                      // suffix: const Icon(
+                      //   Icons.arrow_forward_ios_rounded,
+                      //   size: 14.6,
+                      //   color: ColorRes.color_464646,
+                      // ),
                       hintText: Strings.h,
                       enable: true,
                     ),
@@ -240,18 +241,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Get.to(() => const WeightScreen());
+                    // Get.to(() => const WeightScreen());
                   },
                   child: SizedBox(
                     width: Get.width * 0.85,
                     child: AppTextFiled(
                       controller: controller.weight,
                       title: Strings.weight,
-                      suffix: const Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        size: 14.6,
-                        color: ColorRes.color_464646,
-                      ),
+                      // suffix: const Icon(
+                      //   Icons.arrow_forward_ios_rounded,
+                      //   size: 14.6,
+                      //   color: ColorRes.color_464646,
+                      // ),
                       hintText: Strings.w,
                       enable: true,
                     ),
@@ -360,6 +361,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 Container(
                   height: Get.height * 0.28,
                   width: Get.width * 0.85,
+                  padding: EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: ColorRes.white,
                     borderRadius: BorderRadius.circular(20),
@@ -374,14 +376,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     controller: controller.aboutMe,
                     style: textFieldText,
                     decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.only(
-                            left: 20, top: 15),
-                        border: InputBorder.none,
-                        hintStyle: textStyleFont18Grey,
-                        hintText: Strings.aboutMeDes,
-                        counterText:
-                        '${controller.aboutTextCounter.length.toString()}/70',
-                        counterStyle: textStyleFont18Grey),
+                      contentPadding: const EdgeInsets.only(top: 0),
+                      border: InputBorder.none,
+                      hintStyle: gilroyMediumTextStyle(fontSize: 18,color: ColorRes.black.withOpacity(0.3)),
+                      hintText: Strings.aboutMeDes,
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -400,6 +399,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     return Container(
                       height: Get.height * 0.28,
                       width: Get.width * 0.85,
+                      padding: EdgeInsets.all(20),
                       decoration: BoxDecoration(
                         color: ColorRes.white,
                         borderRadius:
@@ -418,14 +418,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         decoration: InputDecoration(
                             contentPadding:
                             const EdgeInsets.only(
-                                left: 20, top: 15),
+                            top: 0),
                             border: InputBorder.none,
-                            hintStyle: textStyleFont18Grey,
+                            hintStyle: gilroyMediumTextStyle(fontSize: 18,color: ColorRes.black.withOpacity(0.3)),
                             hintText: Strings.aboutMeDes,
-                            counterText:
-                            '${controller.hobbiesTextCounter.length.toString()}/70',
-                            counterStyle:
-                            textStyleFont18Grey),
+                        ),
                       ),
                     );
                   },

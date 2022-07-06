@@ -16,7 +16,7 @@ Widget profileAppbar(String text) {
           alignment: Alignment.center,
           child: Text(
             text,
-            style: textStyleFont20W700,
+            style: gilroyBoldTextStyle(fontSize: 18),
           ),
         ),
         Row(
