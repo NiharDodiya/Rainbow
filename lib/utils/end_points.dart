@@ -12,7 +12,11 @@ class EndPoints {
   static const companyRegister = "${baseUrl}/api/company/register";
   static const idVerification = "${baseUrl}/api/user/idverification";
   static const selfieVerification = "${baseUrl}/api/user/selfiverification";
+  static const verifyCode = "${baseUrl}/api/user/verifycode";
   static const advirtisersRegister = "${baseUrl}/api/advirtisers/register";
+  static const createPassword = "${baseUrl}/api/user/createpassword";
+  static const mobileCheck = "${baseUrl}/api/user/mobilecheck";
+  static const countryList = "${baseUrl}/api/admin/country/list";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

@@ -45,7 +45,7 @@ class TermsConditionsScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 15),
                     child: Text(Strings.termsConditions,
-                        style: textStyleFont30WhiteExtraBold,
+                        style: gilroyBoldTextStyle(fontSize: 30),
                         textAlign: TextAlign.center),
                   ),
                   SizedBox(
@@ -57,7 +57,7 @@ class TermsConditionsScreen extends StatelessWidget {
                       width: Get.width * 1,
                       height: Get.height * 0.058,
                       child: Text(Strings.privacyPolicy,
-                          style: textStyleFont16Whit,
+                          style: gilroyMediumTextStyle(fontSize: 16),
                           textAlign: TextAlign.center),
                     ),
                   ),
@@ -71,7 +71,7 @@ class TermsConditionsScreen extends StatelessWidget {
                       width: Get.width * 0.85,
                       child: Text(
                         Strings.agreementTerms,
-                        style: textStyleFont16Whit,
+                        style: gilroyMediumTextStyle(fontSize: 16),
                       ),
                     ),
                   ),
@@ -93,7 +93,7 @@ class TermsConditionsScreen extends StatelessWidget {
                         child: Center(
                             child: Text(
                           Strings.accCon,
-                          style: textStyleFont16BlackLight,
+                          style: gilroyBoldTextStyle(color: Colors.black),
                         )),
                       ),
                     ),

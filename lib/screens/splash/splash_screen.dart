@@ -46,7 +46,7 @@ class SplashScreen extends StatelessWidget {
                             onTap: controller.onNextBtnTap,
                             child: Text(
                               Strings.next,
-                              style: textStyleFont12,
+                              style: gilroyBoldTextStyle(color: ColorRes.color_4F359B,fontSize: 12),
                             ),
                           ),
                         ),
@@ -66,7 +66,7 @@ class SplashScreen extends StatelessWidget {
                             onTap: controller.onSkipTap,
                             child: Text(
                               "Skip",
-                              style: textStyleFont12,
+                              style: gilroyBoldTextStyle(color: ColorRes.color_4F359B,fontSize: 12),
                             ),
                           ),
                         ),
@@ -166,7 +166,7 @@ class SplashScreen extends StatelessWidget {
                   child: Center(
                     child: Text(
                       "Help, Support & Solutions For Families",
-                      style: textStyleFont18White,
+                      style: gilroyBoldTextStyle(),
                     ),
                   ),
                 ),

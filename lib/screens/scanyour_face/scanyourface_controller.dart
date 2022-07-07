@@ -47,6 +47,7 @@ class ScanYourFaceController extends GetxController {
 
   void onRegisterTap() {
     if (validation()) {
+
       Get.to(() => const VerifyPhoneScreen());
     }
   }
@@ -98,7 +99,8 @@ class ScanYourFaceController extends GetxController {
     update(["imagePicker"]);
     if (validation() && imageFront != null) {
       await PrefService.setValue(PrefKeys.register, true);
-      Get.offAll(() => const Dashboard());
+      selfieVerification();
+
     }
   }
 
@@ -124,7 +126,7 @@ class ScanYourFaceController extends GetxController {
         );
       loader.value = false;
       if (list.isNotEmpty) {
-        // Get.to(() => const SelfieVerificationScreen());
+         Get.offAll(() => const Dashboard());
       }
     } catch (e) {
       errorToast(e.toString());

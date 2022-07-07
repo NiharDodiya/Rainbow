@@ -121,7 +121,7 @@ class DoctorRegisterScreen extends StatelessWidget {
           width: Get.width * 0.69,
           child: Text(
             Strings.termsServices,
-            style: textStyleFont10White,
+            style: gilroyMediumTextStyle(fontSize: 10),
             textAlign: TextAlign.center,
           ),
         ),

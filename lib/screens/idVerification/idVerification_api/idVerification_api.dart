@@ -17,7 +17,7 @@ class IdVerificationApi {
       String idItemBack,
 
       ) async {
-    List<IdVerification> loginList = [];
+    List<IdVerification> IdList = [];
     String accesToken = await PrefService.getString(PrefKeys.registerToken);
     try {
       String url = EndPoints.idVerification;
@@ -47,13 +47,13 @@ print(response);
       http.Response? response = await HttpService.postApi(url: url,   body: jsonEncode(param),
           header: {"Content-Type": "application/json","x-access-token":accesToken});
       if (response != null && response.statusCode == 200) {
-        loginList.add(idVerificationFromJson(response.body));
+        IdList.add(idVerificationFromJson(response.body));
       }
       String message = jsonDecode(response!.body)["message"];
     /*  message =="please enter a correct username and password"?errorToast(message):*/flutterToast(message);
 
 
-      return loginList;
+      return IdList;
     } catch (e) {
       print(e.toString());
       return [];

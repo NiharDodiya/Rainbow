@@ -13,8 +13,8 @@ class DoctorCompanyRegister {
       String companyName,String companyNumber,String streetName,String city,String idCountry,String postalCode, String website) async {
     List<CompanyRegister> companyList = [];
     try {
-      String access_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjU3MTI2MzM5LCJleHAiOjE2NTc3MzExMzl9.9y7AoBYQsB3iTZgV0ArOl8syQQPPrj3fBh54B7YMvdk";
-      // String access_token = await PrefService.getBool(PrefKeys.accessToken).toString();
+      // String access_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjU3MTI2MzM5LCJleHAiOjE2NTc3MzExMzl9.9y7AoBYQsB3iTZgV0ArOl8syQQPPrj3fBh54B7YMvdk";
+      String accessToken = await PrefService.getBool(PrefKeys.advirtisersToken).toString();
       String url = EndPoints.companyRegister;
       Map<String, String> param = {
         'profession': profession,
@@ -29,7 +29,7 @@ class DoctorCompanyRegister {
       print(param);
       http.Response? response = await HttpService.postApi(
           url: url, body: jsonEncode(param),
-          header: {"Content-Type": "application/json", "x-access-token":access_token});
+          header: {"Content-Type": "application/json", "x-access-token":accessToken});
       if (response != null && response.statusCode == 200) {
         companyList.add(companyRegisterFromJson(response.body));
       }

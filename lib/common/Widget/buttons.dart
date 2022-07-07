@@ -26,7 +26,7 @@ class SubmitButton extends StatelessWidget {
         child: Center(
           child: child ?? Text(
             text!,
-            style: textStyleFont16Black,
+            style: gilroyBoldTextStyle(color: Colors.black,fontSize: 16),
           ),
         ),
       ),

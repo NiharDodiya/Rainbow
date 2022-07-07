@@ -444,7 +444,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     child: Center(
                         child: Text(
                           Strings.save,
-                          style: textStyleFont16Black,
+                          style: gilroyBoldTextStyle(color: Colors.black,fontSize: 16),
                         )),
                   ),
                 ),

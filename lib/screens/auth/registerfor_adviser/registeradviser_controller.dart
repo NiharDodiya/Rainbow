@@ -6,6 +6,8 @@ import 'package:rainbow/helper.dart';
 import 'package:rainbow/screens/auth/doctor_register/doctorRegister_screen.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/adviser_api/adviser_api.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/adviser_api/adviser_json.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountry_json.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -42,6 +44,7 @@ class AdviserRegisterController extends GetxController {
   RxBool loader = false.obs;
 
   void onInit() {
+    countryName();
     update(['register_screen']);
     super.onInit();
   }
@@ -190,16 +193,28 @@ class AdviserRegisterController extends GetxController {
           pwdController.text,
           houseNumber.text,
           streetName.text,
-          phoneNumber.text,
+          "+${countryModel.phoneCode+phoneNumber.text}",
           city.text,
           country.text,
           postalCode.text);
       loader.value = false;
       if (list.isNotEmpty) {
-        await PrefService.setValue(PrefKeys.advirtisersToken,list.first.token );
+        await PrefService.setValue(PrefKeys.advirtisersToken,list.first.token);
         Get.to(() => DoctorRegisterScreen());
 
       }
+    } catch (e) {
+      errorToast(e.toString());
+      loader.value = false;
+      debugPrint(e.toString());
+    }
+  } Future<void> countryName() async {
+    loader.value = true;
+    try {
+      List<ListCountryModel> list = await  ListOfCountryApi.postRegister();
+      loader.value = false;
+      print(list);
+
     } catch (e) {
       errorToast(e.toString());
       loader.value = false;

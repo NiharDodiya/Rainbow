@@ -17,9 +17,9 @@ class RegisterController extends GetxController {
   DateTime selectedDate = DateTime.now();
 
   TextEditingController fullNameController =
-      TextEditingController(text: "ravi");
+      TextEditingController();
   TextEditingController emailController =
-      TextEditingController(/*text: "ravi@gmail.com"*/);
+      TextEditingController();
   TextEditingController pwdController = TextEditingController(text: "Test@123");
   TextEditingController confirmPwdController =
       TextEditingController(text: "Test@123");
@@ -243,10 +243,10 @@ class RegisterController extends GetxController {
       confirmPwdController.text,
       address1Controller.text,
       address2Controller.text,
-      phoneController.text,statusController.text,ethnicityController.text,
+        "+${countryModel.phoneCode+phoneController.text}",statusController.text,ethnicityController.text,
         dobController.text,kidsController.text
     );
-    await PrefService.setValue(PrefKeys.registerToken,list.first.token);
+    await PrefService.setValue(PrefKeys.registerToken,list.first.token.toString());
 
     loader.value = false;
   }

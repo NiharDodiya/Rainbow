@@ -79,7 +79,7 @@ class SupportScreen extends StatelessWidget {
                   },
                   child: Text(
                     Strings.support,
-                    style: textStyleFont18White,
+                    style: gilroyBoldTextStyle(),
                   )),
               SizedBox(
                 width: Get.width * 0.05,
@@ -150,11 +150,11 @@ class SupportScreen extends StatelessWidget {
                             children: [
                               Text(
                                 "12/30/2021",
-                                style: textStyleField16w500,
+                                style: gilroyMediumTextStyle(color: ColorRes.color_9597A1,fontSize: 16),
                               ),
                               Text(
                                 "1235CA2B2",
-                                style: textStyleField16w,
+                                style: gilroyMediumTextStyle(color: ColorRes.color_6306B2,fontSize: 16),
                               ),
                               Text(
                                 Strings.loremIpsum,
@@ -200,7 +200,7 @@ class SupportScreen extends StatelessWidget {
               SizedBox(height: 18,width: 152  ,
                 child: Text(
                   Strings.sendNewMessage,
-                  style: textStyleFont16Black,
+                  style: gilroyBoldTextStyle(color: Colors.black,fontSize: 16),
                 ),
               ),
             ],

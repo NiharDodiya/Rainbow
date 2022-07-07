@@ -13,7 +13,7 @@ class ScanYourFaceApi {
       String id_item_selfi,
 
       ) async {
-    List<SelfiVerification> loginList = [];
+    List<SelfiVerification> selfieList = [];
     String accesToken = await PrefService.getString(PrefKeys.registerToken);
     try {
       String url = EndPoints.selfieVerification;
@@ -27,13 +27,13 @@ class ScanYourFaceApi {
       http.Response? response = await HttpService.postApi(url: url,   body: jsonEncode(param),
           header: {"Content-Type": "application/json","x-access-token":accesToken});
       if (response != null && response.statusCode == 200) {
-        loginList.add(selfiVerificationFromJson(response.body));
+        selfieList.add(selfiVerificationFromJson(response.body));
       }
       String message = jsonDecode(response!.body)["message"];
       /*  message =="please enter a correct username and password"?errorToast(message):*/flutterToast(message);
 
 
-      return loginList;
+      return selfieList;
     } catch (e) {
       print(e.toString());
       return [];

@@ -59,7 +59,7 @@ class DoctorRegisterController extends GetxController {
   Future<void> onRegisterTap() async {
     if (validation()) {
       companyRegister();
-      await PrefService.setValue(PrefKeys.register, true);
+      await PrefService.setValue(PrefKeys.companyRegister, true);
       Get.to(const Dashboard());
 
     }

@@ -451,7 +451,7 @@ Widget appBar() {
                 },
                 child: Text(
                   Strings.manageCards,
-                  style: textStyleFont18White,
+                  style: gilroyBoldTextStyle(),
                 )),
             SizedBox(
               width: Get.width * 0.077,

@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/utils/color_res.dart';
+import 'package:rainbow/utils/strings.dart';
 
 class AppTextFiled extends StatelessWidget {
   final TextEditingController controller;
   final String title;
   final String? hintText;
+  final double? fontsize;
   final bool? obscure;
   final Widget? prefix;
   final Widget? suffix;
@@ -24,6 +26,7 @@ class AppTextFiled extends StatelessWidget {
     required this.controller,
     required this.title,
     this.hintText,
+    this.fontsize,
     this.obscure,
     this.prefix,
     this.textInputType,
@@ -42,7 +45,7 @@ class AppTextFiled extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(title, style: textStyleFont14White600),
+        Text(title, style: gilroySemiBoldTextStyle(fontSize: 14)),
         SizedBox(height: titleBottomPadding ?? Get.height * 0.012),
         Container(
           width: Get.width,
@@ -68,7 +71,7 @@ class AppTextFiled extends StatelessWidget {
                     style: textFieldText,
                     keyboardType: textInputType,
                     enabled: enable,
-                    obscuringCharacter: '*',
+                    obscuringCharacter: "•",
                     textInputAction:
                         multiLine == true ? TextInputAction.newline : null,
                     maxLength: controller.text.length < 450 ? null : 500,
@@ -77,7 +80,7 @@ class AppTextFiled extends StatelessWidget {
                     onChanged: onChange,
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintStyle: gilroyMediumTextStyle(fontSize: 18,color: ColorRes.black.withOpacity(0.3)),
+                      hintStyle: gilroyMediumTextStyle(fontSize:fontsize?? 18,color: ColorRes.black.withOpacity(0.3)),
                       hintText: hintText,
                     ),
                   ),
