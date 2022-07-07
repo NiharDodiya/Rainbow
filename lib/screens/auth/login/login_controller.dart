@@ -65,6 +65,8 @@ void onSignUpDontHaveTap() {
       loader.value = false;
       if (list.isNotEmpty) {
         await PrefService.setValue(PrefKeys.isLogin, true);
+        await PrefService.setValue(PrefKeys.accessToken,list.first.token);
+
         Get.to(() => const Dashboard());
       }
     }catch(e){

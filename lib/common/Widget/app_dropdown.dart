@@ -370,7 +370,7 @@ const AppDropDownProfessionType({
                       onTap: () {
                         controller.profession.text =paramList[index];
                         controller.professions=false;
-                        controller.update(['register_screen']);
+                        controller.update(['doctor']);
                       },
                       child: Text(
                         paramList[index],

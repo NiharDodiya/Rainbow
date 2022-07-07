@@ -103,7 +103,7 @@ class IdVerificationScreen extends StatelessWidget {
                                 child: AppTextFiled(
                                   controller: controller.idType,
                                   title: Strings.idType,
-                                  hintText: Strings.ethnicity,
+                                  hintText: Strings.idType,
                                   suffix: Image.asset(AssetRes.arrowDown,
                                       height: 17),
                                   enable: false,

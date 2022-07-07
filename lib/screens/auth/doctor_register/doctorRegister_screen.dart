@@ -21,7 +21,6 @@ class DoctorRegisterScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: ColorRes.white,
         body: Obx(() {
-
           return Stack(
             children: [
               SingleChildScrollView(
@@ -61,11 +60,14 @@ class DoctorRegisterScreen extends StatelessWidget {
 
                             !controller.professions
                                 ? const SizedBox()
-                                : Positioned(
-                                  child: AppDropDownProfessionType(
+                                : Positioned(top: Get.height*0.35,
+                                  child: SizedBox(height: Get.height*0.2,
+                                    width: Get.width * 0.79,
+                                    child: AppDropDownProfessionType(
                               paramList: controller.professionList,
                               onTap: controller.onProfessionChange,
                             ),
+                                  ),
                                 ),
 
                           ],

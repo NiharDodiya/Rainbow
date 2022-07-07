@@ -119,6 +119,7 @@ class Strings {
   static const errorText = 'Error !';
   static const successText = 'success';
   static const single = 'single';
+  static const passport = 'passport';
   static const married = 'married';
   static const british = 'British';
   static const indian = 'Indian';

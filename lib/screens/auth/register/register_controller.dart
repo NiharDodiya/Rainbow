@@ -6,7 +6,10 @@ import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
 import 'package:rainbow/screens/auth/login/login_screen.dart';
 import 'package:rainbow/screens/auth/register/api/register_api.dart';
+import 'package:rainbow/screens/auth/register/register_json.dart';
 import 'package:rainbow/screens/getstarted_screen.dart';
+import 'package:rainbow/service/pref_services.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class RegisterController extends GetxController {
@@ -233,7 +236,7 @@ class RegisterController extends GetxController {
 
   Future<void> registerDetails() async {
     loader.value = true;
-    await RegisterApi.postRegister(
+    List<RegisterUser> list =await RegisterApi.postRegister(
       fullNameController.text,
       emailController.text,
       pwdController.text,
@@ -243,6 +246,8 @@ class RegisterController extends GetxController {
       phoneController.text,statusController.text,ethnicityController.text,
         dobController.text,kidsController.text
     );
+    await PrefService.setValue(PrefKeys.registerToken,list.first.token);
+
     loader.value = false;
   }
 }
