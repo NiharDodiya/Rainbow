@@ -2,6 +2,7 @@ class AssetRes {
   static const icons = 'assets/icons/';
   static const iconsBottom = 'assets/icons/bottom_icons/';
   static const images = 'assets/images/';
+  static const advertisers = 'assets/advertisers/';
   static const settingsImage = 'assets/settings/';
 
   ///--------------------------------------------- icons ---------------------------------------------
@@ -87,8 +88,6 @@ class AssetRes {
  static const p03 ="${images}03.png";
   // static const visa ="${images}visa.png";
  
-
-
   ///_______________________________settings________________________________
   static const profileSettinges = '${settingsImage}profileSettinges.png';
   static const support = '${settingsImage}Support.png';
@@ -97,5 +96,24 @@ class AssetRes {
   static const payment = '${settingsImage}payment.png';
   static const logout = '${settingsImage}logout.png';
   static const duck = '${settingsImage}duck.png';
+
+
+  ///*******************************_Advertisement_***************************
+///---------------------------------- icons ------------------------------------
+  static const paymentIcon = '${advertisers}pyment_icon.png';
+  static const adeNotificationIcon = '${advertisers}notification_icon.png';
+  static const supportIcon = '${advertisers}support_icon.png';
+  static const handIcon = '${advertisers}hand_icon.png';
+  static const blockIcon = '${advertisers}block_icon.png';
+  static const calendarIcon = '${advertisers}calander_Icon.png';
+  static const deleteIcon = '${advertisers}delete_icon.png';
+
+///---------------------------------- images -----------------------------------
+  static const frameImage = '${advertisers}Frame.png';
+  static const advertiserImage = '${advertisers}adve-pr.png';
+  static const advertisement_1Image = '${advertisers}advertisement_1.png';
+  static const advertisement_2Image = '${advertisers}advertisement_2.png';
+  static const advertisement_3Image = '${advertisers}advertisement_3.png';
+
 
 }

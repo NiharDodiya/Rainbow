@@ -235,9 +235,15 @@ class Strings {
   static const suggestedConnection = "Suggested Connection";
   static const addCard = "Add Card";
 
-  ///----------------------------------Payment ----------------------------------
-  static const manageCards = "Manage Cards";
+  ///----------------------------------Payment ---------------------------------
   static const platinum = "Platinum";
+  static const manageCards = "Manage Cards";
 
-
+///----------------------------------Advertisement------------------------------
+  static const noAdvertisement = "You don't have any \nposted advertisement";
+  static const createAdvertisement = "Create Advertisement";
 }
+
+
+
+

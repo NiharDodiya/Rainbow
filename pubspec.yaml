@@ -108,6 +108,7 @@ flutter:
   assets:
      - assets/images/
      - assets/icons/
+     - assets/advertisers/
      - assets/icons/bottom_icons/
      - assets/settings/
 
