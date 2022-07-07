@@ -30,7 +30,6 @@ class LoginApi {
       String message = jsonDecode(response!.body)["message"];
       message =="please enter a correct username and password"?errorToast(message):flutterToast(message);
 
-
       return loginList;
     } catch (e) {
       print(e.toString());
