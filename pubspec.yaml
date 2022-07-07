@@ -76,6 +76,7 @@ dependencies:
   #________________________________________________photoManager_______________________
   photo_manager: ^2.1.4
   flutter_mentions: ^2.0.1
+  dotted_line: ^3.1.0
 
 
 
@@ -151,6 +152,12 @@ flutter:
     - family: Montserrat-Regular
       fonts:
         - asset: assets/fonts/Montserrat-Regular.ttf
+    - family: SF-Pro-Text
+      fonts:
+        - asset: assets/fonts/SF-Pro-Text.ttf    
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter.ttf
 
 
 

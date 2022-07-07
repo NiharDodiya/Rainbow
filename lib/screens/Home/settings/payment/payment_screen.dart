@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
+
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/settings/payment/add_cart/add_cart_screen.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
@@ -67,7 +67,7 @@ class PaymentScreen extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Text("Natalie Nara",
+                                  Text(Strings.natalieNara,
                                       style: textStyleFont14White),
                                   Container(
                                     margin: const EdgeInsets.only(top: 5.5),
@@ -78,7 +78,7 @@ class PaymentScreen extends StatelessWidget {
                                             Radius.circular(2)),
                                         color: ColorRes.color_FFEC5C),
                                   ),
-                                  Text("Ending in 0212",
+                                  Text(Strings.endingIn0212,
                                       style: textStyleFont14White),
                                   Container(
                                     margin: const EdgeInsets.only(top: 5.5),
@@ -89,14 +89,15 @@ class PaymentScreen extends StatelessWidget {
                                             Radius.circular(2)),
                                         color: ColorRes.color_FFEC5C),
                                   ),
-                                  Text("01/23", style: textStyleFont14White),
+                                  Text(Strings.date,
+                                      style: textStyleFont14White),
                                 ],
                               ),
                               SizedBox(
                                 height: Get.height * 0.01598,
                               ),
                               Text(
-                                "3818 Lynden Road , Orono , Ontario , Canda , L0B 1M0",
+                                Strings.cardAddress,
                                 style: textStyleFont14White,
                                 textAlign: TextAlign.center,
                               ),
@@ -113,6 +114,7 @@ class PaymentScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
+                            //set As a Default Value
                             Container(
                               height: Get.height * 0.0406,
                               width: Get.width * 0.41066666,
@@ -127,28 +129,36 @@ class PaymentScreen extends StatelessWidget {
                                   )),
                               child: Center(
                                   child: Text(
-                                "Set as Default Payment",
+                                Strings.setasDefaultPayment,
                                 style: gilroySemiBoldTextStyle(fontSize: 12),
                               )),
                             ),
-                            Container(
-                              height: Get.height * 0.0393,
-                              width: Get.width * 0.225,
-                              decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(50)),
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      ColorRes.color_F86666.withOpacity(1),
-                                      ColorRes.color_F82222.withOpacity(1),
-                                    ],
-                                  )),
-                              child: Center(
+                            //Remove
+                            InkWell(
+                              onTap: () {
+                                controller.navigateToRemove(context);
+                              },
+                              child: Container(
+                                height: Get.height * 0.0393,
+                                width: Get.width * 0.225,
+                                decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(50)),
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        ColorRes.color_F86666.withOpacity(1),
+                                        ColorRes.color_F82222.withOpacity(1),
+                                      ],
+                                    )),
+                                child: Center(
                                   child: Text(
-                                "Remove",
-                                style: gilroySemiBoldTextStyle(fontSize: 12),
-                              )),
+                                    Strings.remove,
+                                    style: gilroySemiBoldTextStyle(fontSize: 12),
+                                  ),
+                                ),
+                              ),
                             ),
+                            //Edit
                             Container(
                               height: Get.height * 0.0393,
                               width: Get.width * 0.225,
@@ -163,7 +173,7 @@ class PaymentScreen extends StatelessWidget {
                                   )),
                               child: Center(
                                   child: Text(
-                                "Edit",
+                                Strings.edit,
                                 style: gilroySemiBoldTextStyle(
                                     fontSize: 12, color: ColorRes.black),
                               )),
@@ -225,22 +235,22 @@ class PaymentScreen extends StatelessWidget {
                         height: Get.height * 0.02832,
                       ),
                       const Tranzaction(
-                        name: "Fianna Wu",
+                        name: Strings.card01,
                         imagePath: AssetRes.p01,
-                        minits: "2 hr ago",
-                        doller: "+\$600.00",
+                        minits: Strings.cardminit01,
+                        doller: Strings.cardDoller01,
                       ),
                       const Tranzaction(
-                        name: "Jolina Jones",
+                        name: Strings.card02,
                         imagePath: AssetRes.p02,
-                        minits: "4 hr ago",
-                        doller: "-\$200.00",
+                        minits: Strings.cardminit02,
+                        doller: Strings.cardDoller02,
                       ),
                       const Tranzaction(
-                        name: "Wills Smith",
+                        name: Strings.card03,
                         imagePath: AssetRes.p03,
-                        minits: "4 hr ago",
-                        doller: "+\$240.00",
+                        minits: Strings.cardminit03,
+                        doller: Strings.cardDoller03,
                       ),
                     ],
                   ),
@@ -395,7 +405,7 @@ class PaymentCards extends StatelessWidget {
                   width: Get.width * 0.060986,
                 ),
                 Text(
-                  "• • • •",
+                  Strings.cardobsecure,
                   style: montserratboldTextStyle(
                     fontSize: 15.25,
                   ),
@@ -404,7 +414,7 @@ class PaymentCards extends StatelessWidget {
                   width: Get.width * 0.0203,
                 ),
                 Text(
-                  "0212",
+                  Strings.carddigits,
                   style: montserratMediumTextStyle(
                     fontSize: 15.25,
                   ),
@@ -479,7 +489,7 @@ Widget appBar() {
           ],
         ),
         SizedBox(
-          height: Get.height * 0.0455,
+          height: Get.height * 0.02,
         ),
       ],
     ),

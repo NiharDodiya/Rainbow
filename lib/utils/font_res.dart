@@ -8,4 +8,6 @@ class FontRes{
   static const beVietnamProMedium = "BeVietnamPro-Medium";
   static const beVietnamProRegular = "BeVietnamPro-Regular";
   static const montserratRegular = "Montserrat-Regular";
+  static const sFProText ="SF-Pro-Text";
+  static const inter="Inter.ttf";
 }

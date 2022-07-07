@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
+import 'package:rainbow/screens/Home/settings/privacy/privacy_screen.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
+import 'package:rainbow/screens/Home/settings/subscription/subscription_screen.dart';
 import 'package:rainbow/screens/Home/settings/support/support_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -284,7 +286,7 @@ class SettingsScreen extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.to(() =>  PaymentScreen());
+              Get.to(() => PaymentScreen());
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 5, bottom: 5),
@@ -317,33 +319,39 @@ class SettingsScreen extends StatelessWidget {
             thickness: 1,
             color: ColorRes.color_4F359B.withOpacity(0.4),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 5, bottom: 5),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: Get.width * 0.08,
-                ),
-                SizedBox(
-                    height: 18.98,
-                    width: 20.83,
-                    child: Image.asset(
-                      AssetRes.profileSettinges,
-                      color: Colors.yellow,
-                    )),
-                SizedBox(
-                  width: Get.width * 0.06,
-                ),
-                Text(
-                  Strings.privacy,
-                  style: textStyleFont15White,
-                ),
-                SizedBox(
-                  width: Get.width * 0.6,
-                ),
-                SizedBox(
-                    height: 10, width: 6, child: Image.asset(AssetRes.next))
-              ],
+          //Privacy
+          InkWell(
+            onTap: (){
+              Get.to(() =>  const PrivacyScreen());
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(top: 5, bottom: 5),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: Get.width * 0.08,
+                  ),
+                  SizedBox(
+                      height: 18.98,
+                      width: 20.83,
+                      child: Image.asset(
+                        AssetRes.profileSettinges,
+                        color: Colors.yellow,
+                      )),
+                  SizedBox(
+                    width: Get.width * 0.06,
+                  ),
+                  Text(
+                    Strings.privacy,
+                    style: textStyleFont15White,
+                  ),
+                  SizedBox(
+                    width: Get.width * 0.6,
+                  ),
+                  SizedBox(
+                      height: 10, width: 6, child: Image.asset(AssetRes.next))
+                ],
+              ),
             ),
           ),
           Divider(
@@ -398,33 +406,39 @@ class SettingsScreen extends StatelessWidget {
             thickness: 1,
             color: ColorRes.color_4F359B.withOpacity(0.4),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 5, bottom: 5),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: Get.width * 0.08,
-                ),
-                SizedBox(
-                    height: 18.98,
-                    width: 20.83,
-                    child: Image.asset(
-                      AssetRes.profileSettinges,
-                      color: Colors.yellow,
-                    )),
-                SizedBox(
-                  width: Get.width * 0.06,
-                ),
-                Text(
-                  Strings.subscription,
-                  style: textStyleFont15White,
-                ),
-                SizedBox(
-                  width: Get.width * 0.5,
-                ),
-                SizedBox(
-                    height: 10, width: 6, child: Image.asset(AssetRes.next))
-              ],
+          //Subscription
+          InkWell(
+            onTap: () {
+              Get.to(() =>  SubscriptionScreen());
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(top: 5, bottom: 5),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: Get.width * 0.08,
+                  ),
+                  SizedBox(
+                      height: 18.98,
+                      width: 20.83,
+                      child: Image.asset(
+                        AssetRes.profileSettinges,
+                        color: Colors.yellow,
+                      )),
+                  SizedBox(
+                    width: Get.width * 0.06,
+                  ),
+                  Text(
+                    Strings.subscription,
+                    style: textStyleFont15White,
+                  ),
+                  SizedBox(
+                    width: Get.width * 0.5,
+                  ),
+                  SizedBox(
+                      height: 10, width: 6, child: Image.asset(AssetRes.next))
+                ],
+              ),
             ),
           ),
           SizedBox(

@@ -29,28 +29,34 @@ class AddCartController extends GetxController {
       errorToast(Strings.fullNameError);
       return false;
     }  else if (addressController.text.isEmpty) {
-      errorToast('Address is required');
+      errorToast(Strings.addresserror);
       return false;
     } else if (cityController.text.isEmpty) {
-      errorToast('city is required');
+      errorToast(Strings.cityeError);
       return false;
     }  else if (postalCodeController.text.isEmpty) {
-      errorToast('postal code is required');
+      errorToast(Strings.postalCodeError);
       return false;
     } else if (countryController.text.isEmpty) {
-      errorToast('Country is required');
+      errorToast(Strings.countryError);
       return false;
     } else if (nameOnCardController.text.isEmpty) {
-      errorToast('Name on Card is required');
+      errorToast(Strings.nameonCardError);
       return false;
     } else if (cardNmberController.text.isEmpty) {
-      errorToast('card Number is required');
+      errorToast(Strings.cardnumberError);
       return false;
-    } else if (expiryDateController.text.isEmpty) {
-      errorToast('expiry date is required');
+    } else if (cardNmberController.text.length != 16) {
+      errorToast(Strings.cardnumberErrorValidation);
+      return false;
+    }else if (expiryDateController.text.isEmpty) {
+      errorToast(Strings.expirydateError);
       return false;
     } else if (cvvController.text.isEmpty) {
-      errorToast('cvv is required');
+      errorToast(Strings.cVVError);
+      return false;
+    }else if (cvvController.text.length != 3) {
+      errorToast(Strings.cVVErrorValidation);
       return false;
     }
     return true;

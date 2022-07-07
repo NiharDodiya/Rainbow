@@ -85,7 +85,9 @@ class AssetRes {
  static const p01 ="${images}01.png";
   static const p02 ="${images}02.png";
  static const p03 ="${images}03.png";
-  // static const visa ="${images}visa.png";
+  static const visalogo ="${images}visa_logo.png";
+  static const poket ="${images}poket.png";
+  static const masterLogo="${images}master.png";
  
 
 

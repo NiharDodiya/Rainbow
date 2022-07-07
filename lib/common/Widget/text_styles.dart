@@ -311,12 +311,13 @@ TextStyle gilroyRegularTextStyle({Color? color,double? fontSize,}){
     fontFamily: FontRes.gilroyRegular,
   );
 }
-TextStyle montserratRegularTextStyle({Color? color,double? fontSize,FontWeight? fontWeight}){
+TextStyle montserratRegularTextStyle({Color? color,double? fontSize,FontWeight? fontWeight,double? letterSpacing}){
   return TextStyle(
     color: color??ColorRes.white,
     fontWeight: FontWeight.w400,
     fontSize: fontSize??18,
     fontFamily: FontRes.montserratRegular,
+    letterSpacing: letterSpacing?? 0
   );
 }
 TextStyle montserratboldTextStyle({Color? color,double? fontSize,FontWeight? fontWeight}){
@@ -382,5 +383,29 @@ TextStyle beVietnamRegularTextStyle({Color? color,double? fontSize,}){
     fontWeight: FontWeight.w600,
     fontSize: fontSize??18,
     fontFamily: FontRes.beVietnamProSemiBold,
+  );
+}
+TextStyle sfProTextReguler({Color? color,double? fontSize}){
+  return TextStyle(
+    color: color??ColorRes.white,
+    fontWeight: FontWeight.w400,
+    fontSize: fontSize??18,
+    fontFamily: FontRes.sFProText,
+  );
+}
+TextStyle interTextReguler({Color? color,double? fontSize}){
+  return TextStyle(
+    color: color??ColorRes.white,
+    fontWeight: FontWeight.w400,
+    fontSize: fontSize??18,
+    fontFamily: FontRes.inter,
+  );
+}
+TextStyle interTextMedium({Color? color,double? fontSize}){
+  return TextStyle(
+    color: color??ColorRes.white,
+    fontWeight: FontWeight.w700,
+    fontSize: fontSize??18,
+    fontFamily: FontRes.inter,
   );
 }
