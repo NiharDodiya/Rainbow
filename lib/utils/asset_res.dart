@@ -118,4 +118,7 @@ class AssetRes {
   static const advertisement_3Image = '${advertisers}advertisement_3.png';
 
 
+  ///_______________________________privacy ___________________________________
+  static const privacy='${images}privacy.png';
+
 }
