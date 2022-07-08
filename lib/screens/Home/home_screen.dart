@@ -237,7 +237,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                                 Text(
                                   "Scott",
-                                  style: textStyleFont14White400,
+                                  style: gilroyMediumTextStyle(fontSize: 14),
                                 ),
                               ],
                             ),

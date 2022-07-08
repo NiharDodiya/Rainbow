@@ -417,7 +417,7 @@ class PaymentCards extends StatelessWidget {
                   Strings.carddigits,
                   style: montserratMediumTextStyle(
                     fontSize: 15.25,
-                    letterSpacing: 3
+
                   ),
                 ),
               ],
