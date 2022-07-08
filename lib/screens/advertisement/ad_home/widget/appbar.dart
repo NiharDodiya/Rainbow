@@ -5,7 +5,7 @@ import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
-Widget appbar() {
+Widget appbar(contaxt,Key) {
   AdHomeController controller = Get.find<AdHomeController>();
   return SizedBox(
     width: Get.width,
@@ -15,7 +15,9 @@ Widget appbar() {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           InkWell(
-            onTap: () => Drawer(),
+            onTap: () =>
+            // Scaffold.of(contaxt).openDrawer(),
+             Key.currentState!.openDrawer(),
             child: Container(
               height: 34,
               width: 34,

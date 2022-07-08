@@ -9,7 +9,6 @@ import 'package:rainbow/screens/advertisement/ad_support/ad_support_screen.dart'
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-
 class AdvertisementDashBord extends StatelessWidget {
   const AdvertisementDashBord({Key? key}) : super(key: key);
 
@@ -35,7 +34,7 @@ class AdvertisementDashBord extends StatelessWidget {
           id: 'bottom_bar',
           builder: (controller) {
             if (controller.currentTab == 0) {
-              return const AdHomeScreen();
+              return  AdHomeScreen();
             } else if (controller.currentTab == 1) {
               return const AdPaymentScreen();
             } else if (controller.currentTab == 2) {

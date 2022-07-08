@@ -21,10 +21,11 @@ Widget advertisementList() {
           margin: const EdgeInsets.only(bottom: 14, left: 30, right: 30),
           decoration: BoxDecoration(
             image: DecorationImage(
-                fit: BoxFit.fill,
-                image: AssetImage(
-                  controller.imageList[index],
-                )),
+              fit: BoxFit.fill,
+              image: AssetImage(
+                controller.imageList[index],
+              ),
+            ),
             borderRadius: const BorderRadius.all(Radius.circular(8)),
             color: ColorRes.white,
           ),
@@ -60,9 +61,9 @@ Widget advertisementList() {
                           ),
                         ]),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       InkWell(
-                        onTap: () =>controller.onTapMore(index) ,
+                        onTap: () => controller.onTapMore(index),
                         child: Container(
                           margin: const EdgeInsets.only(
                               top: 5, left: 10, right: 10, bottom: 10),
@@ -110,60 +111,62 @@ Widget advertisementList() {
                 right: 10,
                 top: 20,
                 child: GetBuilder<AdHomeController>(
-                  id: 'more',
-                  builder: (controller) =>controller.moreOption[index]?Container(
-                    height: 115,
-                    width: Get.width * 0.40,
-                    color: ColorRes.color_50369C,
-                    child: ListView.separated(
-                      itemBuilder: (context, index) {
-                        return Container(
-                          padding: EdgeInsets.all(9),
-                          child: Row(
-                            children: [
-                              Container(
-                                height: 20,
-                                width: 35,
-                                padding: EdgeInsets.all(2.5),
-                                decoration: BoxDecoration(
-                                  color: index == 1
-                                      ? ColorRes.color_D18EEE
-                                      : ColorRes.color_F86666,
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10)),
-                                ),
-                                child: Image.asset(
-                                  index == 0
-                                      ? AssetRes.deleteIcon
-                                      : index == 1
-                                          ? AssetRes.calendarIcon
-                                          : AssetRes.blockIcon,
-                                  height: 15,
-                                  width: 15,
-                                ),
-                              ),
-                              Text(
-                                index == 0
-                                    ? " Delete"
-                                    : index == 1
-                                        ? " Renew Ads"
-                                        : " Cancel Ads",
-                                style: gilroyMediumTextStyle(fontSize: 14),
-                              )
-                            ],
-                          ),
-                        );
-                      },
-                      separatorBuilder: (context, index) {
-                        return Divider(
-                          height: 0,
-                          color: ColorRes.white.withOpacity(0.5),
-                        );
-                      },
-                      itemCount: 3,
-                    ),
-                  ):SizedBox()
-                ),
+                    id: 'more',
+                    builder: (controller) => controller.moreOption[index]
+                        ? Container(
+                            height: 115,
+                            width: Get.width * 0.40,
+                            color: ColorRes.color_50369C,
+                            child: ListView.separated(
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  padding: EdgeInsets.all(9),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        height: 20,
+                                        width: 35,
+                                        padding: EdgeInsets.all(2.5),
+                                        decoration: BoxDecoration(
+                                          color: index == 1
+                                              ? ColorRes.color_D18EEE
+                                              : ColorRes.color_F86666,
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(10)),
+                                        ),
+                                        child: Image.asset(
+                                          index == 0
+                                              ? AssetRes.deleteIcon
+                                              : index == 1
+                                                  ? AssetRes.calendarIcon
+                                                  : AssetRes.blockIcon,
+                                          height: 15,
+                                          width: 15,
+                                        ),
+                                      ),
+                                      Text(
+                                        index == 0
+                                            ? " Delete"
+                                            : index == 1
+                                                ? " Renew Ads"
+                                                : " Cancel Ads",
+                                        style:
+                                            gilroyMediumTextStyle(fontSize: 14),
+                                      )
+                                    ],
+                                  ),
+                                );
+                              },
+                              separatorBuilder: (context, index) {
+                                return Divider(
+                                  height: 0,
+                                  color: ColorRes.white.withOpacity(0.5),
+                                );
+                              },
+                              itemCount: 3,
+                            ),
+                          )
+                        : SizedBox()),
               ),
             ],
           ),

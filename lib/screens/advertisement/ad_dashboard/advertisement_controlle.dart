@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_notification/ad_notification_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_payment/ad_payment_controller.dart';

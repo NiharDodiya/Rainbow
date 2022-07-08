@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/utils/asset_res.dart';
 
 class AdHomeController extends GetxController {
   RxBool loader = false.obs;
   bool listShow = false;
+ 
   List imageList = [
     AssetRes.advertisement_1Image,
     AssetRes.advertisement_2Image,

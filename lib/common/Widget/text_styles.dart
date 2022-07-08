@@ -239,7 +239,7 @@ TextStyle gilroyRegularTextStyle({Color? color,double? fontSize,}){
     fontFamily: FontRes.gilroyRegular,
   );
 }
-TextStyle montserratRegularTextStyle({Color? color,double? fontSize,FontWeight? fontWeight,double? letterSpacing}){
+TextStyle montserratRegularTextStyle({Color? color,double? fontSize,double? letterSpacing}){
   return TextStyle(
     color: color??ColorRes.white,
     fontWeight: FontWeight.w400,
@@ -248,7 +248,7 @@ TextStyle montserratRegularTextStyle({Color? color,double? fontSize,FontWeight? 
     letterSpacing: letterSpacing?? 0
   );
 }
-TextStyle montserratboldTextStyle({Color? color,double? fontSize,FontWeight? fontWeight}){
+TextStyle montserratboldTextStyle({Color? color,double? fontSize,}){
   return TextStyle(
     color: color??ColorRes.white,
     fontWeight: FontWeight.w900,
@@ -256,7 +256,7 @@ TextStyle montserratboldTextStyle({Color? color,double? fontSize,FontWeight? fon
     fontFamily: FontRes.montserratRegular,
   );
 }
-TextStyle montserratMediumTextStyle({Color? color,double? fontSize,FontWeight? fontWeight}){
+TextStyle montserratMediumTextStyle({Color? color,double? fontSize,}){
   return TextStyle(
     color: color??ColorRes.white,
     fontWeight: FontWeight.w600,

@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: AdvertisementDashBord()
+      home: const AdvertisementDashBord()
       // !PrefService.getBool(PrefKeys.skipBoardingScreen)
       //     ? SplashScreen()
       //     : PrefService.getBool(PrefKeys.isLogin)
