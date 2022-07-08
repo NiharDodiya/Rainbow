@@ -116,7 +116,7 @@ class HomeScreen extends StatelessWidget {
             padding: EdgeInsets.only(left: Get.width * 0.05),
             child: Text(
               Strings.discover,
-              style: textStyleFont20WhiteBold,
+              style: gilroyBoldTextStyle(fontSize: 20),
             ),
           ),
           const SizedBox(
@@ -268,7 +268,7 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 12.0),
                 child: Text(
                   Strings.seeAll,
-                  style: textStyleFont12Grey,
+                  style: gilroyBoldTextStyle(fontSize: 12,color:  ColorRes.color_9597A1),
                 ),
               )),
           const SizedBox(
@@ -361,7 +361,7 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.all(20.0),
             child: Text(
               Strings.latestFeed,
-              style: textStyleFont20W700,
+              style: gilroyBoldTextStyle(fontSize: 20),
             ),
           ),
           ListView.builder(
@@ -408,7 +408,7 @@ class HomeScreen extends StatelessWidget {
                                     children: [
                                       Text(
                                         "Sally Wilson",
-                                        style: textStyleFont16white,
+                                        style: gilroyBoldTextStyle(fontSize: 16),
                                       ),
                                       const SizedBox(
                                         height: 3,

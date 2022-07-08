@@ -29,7 +29,7 @@ class StoryScreen extends StatelessWidget {
            GestureDetector(onTap: () {
              Get.back();
            },
-               child: Text(Strings.post,style: textStyleFont13Bold,)),
+               child: Text(Strings.post,style: gilroyBoldTextStyle(fontSize: 13,color: Colors.black),)),
            SizedBox(width: Get.width * 0.05,),
 
          ],

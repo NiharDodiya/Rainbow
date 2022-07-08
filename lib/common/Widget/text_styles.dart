@@ -176,35 +176,19 @@ TextStyle textStyleFont14BlueW500 = const TextStyle(
   fontFamily: "Gilroy-Light",
   fontWeight: FontWeight.w600,
 );
-TextStyle textStyleFont20WhiteBold = const TextStyle(
-  color: ColorRes.white,
-  fontSize: 20,
-  fontFamily: FontRes.gilroyBold,
-  fontWeight: FontWeight.w700,
-);
+
 TextStyle textStyleFont14White400 = const TextStyle(
   color: ColorRes.white,
   fontSize: 14,
   fontFamily: "Gilroy-Light",
   fontWeight: FontWeight.w400,
 );
-TextStyle textStyleFont12Grey = const TextStyle(
-  color: ColorRes.color_9597A1,
-  fontSize: 12,
-  fontFamily: FontRes.gilroyBold,
-  fontWeight: FontWeight.w600, decoration: TextDecoration.underline,
-);
+
 TextStyle textStyleFont12Gre97 = const TextStyle(
   color: ColorRes.color_979797,
   fontSize: 12,
   fontFamily: "Gilroy-Light",
   fontWeight: FontWeight.w400,
-);
-TextStyle textStyleFont16white = const TextStyle(
-  color: ColorRes.white,
-  fontSize: 16,
-  fontFamily:  FontRes.gilroyBold,
-  fontWeight: FontWeight.w700,
 );
 TextStyle textStyleFont12White400 = const TextStyle(
   color: ColorRes.white,
@@ -212,52 +196,12 @@ TextStyle textStyleFont12White400 = const TextStyle(
   fontFamily: "Gilroy-Medium",
   fontWeight: FontWeight.w400,
 );
-TextStyle textStyleFont20W700Black = const TextStyle(
-  color: Colors.black,
-  fontSize: 20,
-  fontFamily:  FontRes.gilroyBold,
-  fontWeight: FontWeight.w700,
-);
-TextStyle textStyleFont12WhiteBold = const TextStyle(
-  color: ColorRes.white,
-  fontSize: 12,
-  fontFamily:  FontRes.gilroyBold,
-  fontWeight: FontWeight.w400,
-);
-TextStyle textStyleFont13Bold = const TextStyle(
-  color: ColorRes.color_252525,
-  fontSize: 13,
-  fontFamily:  FontRes.gilroyBold,
-  fontWeight: FontWeight.w400,
-);
-TextStyle textStyleFont26BlackBold = const TextStyle(
-  color: ColorRes.black,
-  fontSize: 26,
-  fontFamily: FontRes.gilroyBold,
-  fontWeight: FontWeight.w600,
-);
-TextStyle textStyleFont15 = const TextStyle(
-  color: ColorRes.color_4F359B,
-  fontSize: 15,
-  fontFamily:  FontRes.gilroyBold,
-  fontWeight: FontWeight.w500,
-);
+
 TextStyle textStyleFont15White= const TextStyle(
   color: ColorRes.white,
   fontSize: 15,
   fontFamily: "Gilroy-Medium",
   fontWeight: FontWeight.w500,
-);
-TextStyle textStyleFont32White= const TextStyle(
-  color: ColorRes.white,
-  fontSize: 32,
-  fontFamily:  FontRes.gilroyBold,
-  fontWeight: FontWeight.w500,
-);
-TextStyle textStyleFont11 = const TextStyle(
-  color: ColorRes.white,
-  fontSize: 11.9619,
-  fontFamily: FontRes.gilroyBold,
 );
 
 TextStyle gilroyBoldTextStyle({Color? color,double? fontSize,}){

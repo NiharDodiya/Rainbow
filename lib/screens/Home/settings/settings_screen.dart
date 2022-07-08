@@ -126,7 +126,7 @@ class SettingsScreen extends StatelessWidget {
                       children: [
                         Text(
                           "Natalie Nara ",
-                          style: textStyleFont26BlackBold,
+                          style: gilroyBoldTextStyle(color: Colors.black,fontSize: 26),
                         ),
                         const SizedBox(
                           height: 8,
@@ -145,7 +145,7 @@ class SettingsScreen extends StatelessWidget {
                             ),
                             Text(
                               Strings.viewProfile,
-                              style: textStyleFont15,
+                              style: gilroyBoldTextStyle(fontSize: 15,color:  ColorRes.color_4F359B),
                             )
                           ],
                         )
@@ -453,7 +453,7 @@ class SettingsScreen extends StatelessWidget {
           ),
           Text(
             "ASG45S12",
-            style: textStyleFont32White,
+            style: gilroyBoldTextStyle(fontSize: 32),
           ),
           SizedBox(
             height: Get.height * 0.02,
@@ -471,7 +471,7 @@ class SettingsScreen extends StatelessWidget {
               child: Center(
                   child: Text(
                 Strings.inviteNow,
-                style: textStyleFont11,
+                style: gilroyBoldTextStyle(fontSize: 11.9619),
               )),
             ),
           ),

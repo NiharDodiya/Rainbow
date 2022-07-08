@@ -171,7 +171,7 @@ class SubscriptionScreen extends StatelessWidget {
                 },
                 child: Text(
                   Strings.subscription,
-                  style: textStyleFont18White,
+                  style: gilroyBoldTextStyle(fontSize: 18,),
                 ),
               ),
               SizedBox(

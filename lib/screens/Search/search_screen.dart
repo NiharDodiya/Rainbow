@@ -104,7 +104,7 @@ class SearchScreen extends StatelessWidget {
               children: [
                 Text(
                   Strings.search,
-                  style: textStyleFont20W700Black,
+                  style: gilroyBoldTextStyle(fontSize: 20,color: Colors.black),
                 ),
                 SizedBox(
                   width: Get.width * 0.47,
@@ -115,7 +115,7 @@ class SearchScreen extends StatelessWidget {
                   },
                   child: Text(
                     Strings.advancedSearch,
-                    style: textStyleFont12Grey,
+                    style: gilroyBoldTextStyle(fontSize: 12,color:  ColorRes.color_9597A1),
                   ),
                 ),
                 SizedBox(
@@ -286,7 +286,7 @@ class SearchScreen extends StatelessWidget {
                                         ),
                                         Text(
                                           Strings.connect,
-                                          style: textStyleFont12WhiteBold,
+                                          style: gilroyBoldTextStyle(fontSize: 12),
                                         )
                                       ],
                                     ),
@@ -310,7 +310,7 @@ class SearchScreen extends StatelessWidget {
                                         ),
                                         Text(
                                           Strings.block,
-                                          style: textStyleFont12WhiteBold,
+                                          style: gilroyBoldTextStyle(fontSize: 12),
                                         )
                                       ],
                                     ),

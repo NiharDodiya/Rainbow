@@ -72,7 +72,7 @@ class PrivacyScreen extends StatelessWidget {
                   },
                   child: Text(
                     "Privacy",
-                    style: textStyleFont18White,
+                    style: gilroyBoldTextStyle(fontSize: 18),
                   )),
               SizedBox(
                 width: Get.width * 0.05,

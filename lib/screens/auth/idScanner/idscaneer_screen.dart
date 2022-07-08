@@ -118,7 +118,7 @@ class IdScannerScreen extends StatelessWidget {
                                         children: [
                                           Text(
                                             Strings.permanentResidentCard,
-                                            style: textStyleFont20W700,
+                                            style: gilroyBoldTextStyle(fontSize: 20),
                                           ),
                                           SizedBox(
                                             height: Get.height * 0.01,
@@ -385,7 +385,7 @@ class IdScannerBackScreen extends StatelessWidget {
                                   children: [
                                     Text(
                                       Strings.permanentResidentCard,
-                                      style: textStyleFont20W700,
+                                      style: gilroyBoldTextStyle(fontSize: 20),
                                     ),
                                     SizedBox(
                                       height: Get.height * 0.01,

@@ -171,7 +171,7 @@ class ConnectionsScreen extends StatelessWidget {
               top: Get.height * 0.055, left: 20, bottom: Get.height * 0.02),
           child: Text(
             Strings.suggestedConnection,
-            style: textStyleFont20W700,
+            style: gilroyBoldTextStyle(fontSize: 20),
           ),
         ),
         ListView.builder(
