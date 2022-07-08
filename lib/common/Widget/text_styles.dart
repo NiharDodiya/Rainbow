@@ -298,19 +298,12 @@ TextStyle gilroyRegularTextStyle({Color? color,double? fontSize,}){
 TextStyle montserratRegularTextStyle({Color? color,double? fontSize,FontWeight? fontWeight}){
   return TextStyle(
     color: color??ColorRes.white,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w500,
     fontSize: fontSize??18,
     fontFamily: FontRes.montserratRegular,
   );
 }
-TextStyle montserratboldTextStyle({Color? color,double? fontSize,FontWeight? fontWeight}){
-  return TextStyle(
-    color: color??ColorRes.white,
-    fontWeight: FontWeight.w900,
-    fontSize: fontSize??18,
-    fontFamily: FontRes.montserratRegular,
-  );
-}
+
 TextStyle montserratMediumTextStyle({Color? color,double? fontSize,FontWeight? fontWeight}){
   return TextStyle(
     color: color??ColorRes.white,

@@ -132,12 +132,13 @@ class SettingsScreen extends StatelessWidget {
                         Row(
                           children: [
                             SizedBox(
-                                height: 15.35,
-                                width: 15.35,
-                                child: Image.asset(
-                                  AssetRes.profileSettinges,
-                                  color: ColorRes.color_4F359B,
-                                )),
+                              height: 15.35,
+                              width: 15.35,
+                              child: Image.asset(
+                                AssetRes.profileSettinges,
+                                color: ColorRes.color_4F359B,
+                              ),
+                            ),
                             const SizedBox(
                               width: 5,
                             ),
@@ -284,7 +285,7 @@ class SettingsScreen extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Get.to(() =>  PaymentScreen());
+              Get.to(() => PaymentScreen());
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 5, bottom: 5),
@@ -480,10 +481,9 @@ class SettingsScreen extends StatelessWidget {
                 const SizedBox(
                   width: 11,
                 ),
-                Text(
-                  Strings.logout,
-                  style: gilroyMediumTextStyle(color: Colors.black,fontSize: 16)
-                ),
+                Text(Strings.logout,
+                    style: gilroyMediumTextStyle(
+                        color: Colors.black, fontSize: 16)),
               ],
             )),
           ),

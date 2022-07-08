@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rainbow/screens/Profile/widget/about_me.dart';
+import 'package:rainbow/screens/Profile/widget/connect_block.dart';
 import 'package:rainbow/screens/Profile/widget/other_visitors_viewed.dart';
 import 'package:rainbow/screens/Profile/widget/profileImage.dart';
 import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
-import 'package:rainbow/screens/Profile/widget/profile_details.dart';
 import 'package:rainbow/screens/Profile/widget/testimonials.dart';
+import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
-import 'package:rainbow/utils/strings.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+class ConnectionsProfileScreen extends StatelessWidget {
+  const ConnectionsProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +31,9 @@ class ProfileScreen extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
-              profileAppbar(Strings.profile,true),
-              profileImage(),
-              profileDetails(),
-              aboutProfiler("About Me"),
-              const SizedBox(height: 30,),
-              aboutProfiler("Hobbies and Interest"),
+              profileAppbar("Amber J Santiago",false),
+              profileImage(profileImage: AssetRes.se_profile),
+              connectAndBlock(),
               testimonials(),
               otherVisitorsViewed(),
             ],

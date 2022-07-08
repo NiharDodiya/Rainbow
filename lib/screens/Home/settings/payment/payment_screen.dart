@@ -396,7 +396,7 @@ class PaymentCards extends StatelessWidget {
                 ),
                 Text(
                   "• • • •",
-                  style: montserratboldTextStyle(
+                  style: gilroyBoldTextStyle(
                     fontSize: 15.25,
                   ),
                 ),
@@ -405,8 +405,9 @@ class PaymentCards extends StatelessWidget {
                 ),
                 Text(
                   "0212",
-                  style: montserratMediumTextStyle(
+                  style: gilroySemiBoldTextStyle(
                     fontSize: 15.25,
+                    letterSpacing: 3
                   ),
                 ),
               ],

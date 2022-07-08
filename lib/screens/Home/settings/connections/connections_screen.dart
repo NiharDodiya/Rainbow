@@ -7,9 +7,8 @@ import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class ConnectionsScreen extends StatelessWidget {
-  ConnectionsScreen({Key? key}) : super(key: key);
-  ConnectionsController controller = Get.put(ConnectionsController());
-
+    ConnectionsScreen({Key? key}) : super(key: key);
+    ConnectionsController controller = Get.put(ConnectionsController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,11 +29,15 @@ class ConnectionsScreen extends StatelessWidget {
             children: [
               appBar(),
               Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                children: [listOfRequest(), listOfSuggestions()],
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      listOfRequest(),
+                      listOfSuggestions(),
+                    ],
+                  ),
+                ),
               ),
-                  ))
             ],
           ),
         ),
@@ -91,155 +94,128 @@ class ConnectionsScreen extends StatelessWidget {
   }
 
   Widget listOfRequest() {
-    return Column(
-      children: [
-        ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: controller.connectionsRequest.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 5, bottom: 10),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: Get.width * 0.07,
-                      ),
-                      Container(
-                        height: 58.41,
-                        width: 58.33,
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                                image: AssetImage(AssetRes.se_profile))),
-                      ),
-                      SizedBox(
-                        width: Get.width * 0.04,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Amber J Santiago",
-                            style: textStyleFont16WhitLight,
-                          ),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          Text(
-                            "SURROGATE MOM",
-                            style: textStyleFont12White,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: Get.width * 0.07,
-                      ),
-                      const SizedBox(
-                          height: 40,
-                          width: 40,
-                          child: Image(
-                            image: AssetImage(AssetRes.profilep),
-                            color: Colors.white,
-                          )),
-                      SizedBox(
-                        width: Get.width * 0.04,
-                      ),
-                      const SizedBox(
-                          height: 40,
-                          width: 40,
-                          child: Image(image: AssetImage(AssetRes.delete))),
-                    ],
-                  )
-                ],
-              ),
-            );
-          },
-        )
-      ],
+    return GetBuilder<ConnectionsController>(
+      id: "connection",
+      builder: (control) => Column(
+        children: [
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: controller.connectionsRequest.length,
+            itemBuilder: (context, index) {
+              return infoRow(
+                viewProfile: control.onTapViewProfile,
+                index: index,
+              );
+            },
+          )
+        ],
+      ),
     );
   }
 
   Widget listOfSuggestions() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.only(
-              top: Get.height * 0.055, left: 20, bottom: Get.height * 0.02),
-          child: Text(
-            Strings.suggestedConnection,
-            style: textStyleFont20W700,
+    return GetBuilder<ConnectionsController>(
+      id: "connection",
+      builder: (control) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(
+                top: Get.height * 0.055, left: 20, bottom: Get.height * 0.02),
+            child: Text(
+              Strings.suggestedConnection,
+              style: textStyleFont20W700,
+            ),
           ),
-        ),
-        ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: controller.suggestionConnection.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 5, bottom: 10),
-              child: Column(
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: controller.suggestionConnection.length,
+            itemBuilder: (context, index) {
+              return infoRow(
+                viewProfile: control.onTapViewProfile,
+                index: index,
+              );
+            },
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget infoRow({
+    String? image,
+    String? title,
+    String? subTitle,
+    Function(int)? viewProfile,
+    int? index,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 5, bottom: 10),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              SizedBox(
+                width: Get.width * 0.07,
+              ),
+              Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: AssetImage(image ?? AssetRes.se_profile),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: Get.width * 0.04,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: Get.width * 0.07,
-                      ),
-                      Container(
-                        height: 58.41,
-                        width: 58.33,
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                                image: AssetImage(AssetRes.se_profile))),
-                      ),
-                      SizedBox(
-                        width: Get.width * 0.04,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Amber J Santiago",
-                            style: textStyleFont16WhitLight,
-                          ),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          Text(
-                            "SURROGATE MOM",
-                            style: textStyleFont12White,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: Get.width * 0.07,
-                      ),
-                      const SizedBox(
-                          height: 40,
-                          width: 40,
-                          child: Image(
-                            image: AssetImage(AssetRes.profilep),
-                            color: Colors.white,
-                          )),
-                      SizedBox(
-                        width: Get.width * 0.04,
-                      ),
-                      const SizedBox(
-                          height: 40,
-                          width: 40,
-                          child: Image(image: AssetImage(AssetRes.delete))),
-                    ],
-                  )
+                  Text(
+                    title ?? "Amber J Santiago",
+                    style: montserratRegularTextStyle(fontSize: 16),
+                  ),
+                  const SizedBox(
+                    height: 2,
+                  ),
+                  Text(
+                    subTitle ?? "SURROGATE MOM",
+                    style: montserratRegularTextStyle(fontSize: 12),
+                  ),
                 ],
               ),
-            );
-          },
-        )
-      ],
+              SizedBox(
+                width: Get.width * 0.07,
+              ),
+              InkWell(
+                onTap:(){
+                  viewProfile!(index!);
+                },
+                child: const SizedBox(
+                  height: 40,
+                  width: 40,
+                  child: Image(
+                    image: AssetImage(AssetRes.profilep),
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: Get.width * 0.04,
+              ),
+              const SizedBox(
+                  height: 40,
+                  width: 40,
+                  child: Image(image: AssetImage(AssetRes.delete))),
+            ],
+          )
+        ],
+      ),
     );
   }
 }
