@@ -12,33 +12,63 @@ class PrivacyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          width: Get.width,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+        child: Stack(children: [
+          Container(
+            width: Get.width,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  ColorRes.color_50369C,
+                  ColorRes.color_D18EEE,
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+              // image: DecorationImage(image: AssetImage(AssetRes.privacy,))
             ),
-          ),
-          child: Column(
-            children: [
-              appBar(),
-              Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                appBar(),
+                Expanded(
                   child: SingleChildScrollView(
                     child: Column(
-                children: [],
-              ),
-                  ))
-            ],
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: Get.width * 0.09066),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Show to Public",
+                                style: gilroyBoldTextStyle(fontSize: 20),
+                              ),
+                              SizedBox(height: 24.94,)
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
+          Positioned(
+              left: -55,
+              bottom: -85,
+              child: Image.asset(
+                AssetRes.privacy,
+                height: 450,
+                width: 450,
+              ))
+        ]),
       ),
     );
   }
+
   Widget appBar() {
     return SizedBox(
       width: Get.width,
