@@ -174,7 +174,7 @@ class HeightScreen extends StatelessWidget {
                           child: Center(
                               child: Text(
                             Strings.save,
-                            style: textStyleFont16Black,
+                            style: gilroyBoldTextStyle(color: Colors.black,fontSize: 16),
                           )),
                         ),
                       ),

@@ -15,33 +15,31 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          width: Get.width,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
+      body: Container(
+        width: Get.width,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              ColorRes.color_50369C,
+              ColorRes.color_D18EEE,
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              children: [
-                profileAppbar(Strings.profile),
-                profileImage(),
-                profileDetails(),
-                aboutProfiler("About Me"),
-                const SizedBox(height: 30,),
-                aboutProfiler("Hobbies and Interest"),
-                testimonials(),
-                otherVisitorsViewed(),
-              ],
-            ),
+        ),
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              profileAppbar(Strings.profile),
+              profileImage(),
+              profileDetails(),
+              aboutProfiler("About Me"),
+              const SizedBox(height: 30,),
+              aboutProfiler("Hobbies and Interest"),
+              testimonials(),
+              otherVisitorsViewed(),
+            ],
           ),
         ),
       ),

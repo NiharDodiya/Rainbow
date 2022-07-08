@@ -13,6 +13,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/auth/verify_phone/verifyphone_screen.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
+import 'package:rainbow/screens/scanyour_face/scanyourface_api/scanyourface_api.dart';
+import 'package:rainbow/screens/scanyour_face/scanyourface_api/scanyourface_json.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -20,7 +22,7 @@ import 'package:rainbow/utils/strings.dart';
 class ScanYourFaceController extends GetxController {
   File? image1;
 
-  // RxBool loader= false.obs;
+  RxBool loader= false.obs;
 
   @override
   void onInit() async {
@@ -45,6 +47,7 @@ class ScanYourFaceController extends GetxController {
 
   void onRegisterTap() {
     if (validation()) {
+
       Get.to(() => const VerifyPhoneScreen());
     }
   }
@@ -96,7 +99,8 @@ class ScanYourFaceController extends GetxController {
     update(["imagePicker"]);
     if (validation() && imageFront != null) {
       await PrefService.setValue(PrefKeys.register, true);
-      Get.offAll(() => const Dashboard());
+      selfieVerification();
+
     }
   }
 
@@ -113,5 +117,21 @@ class ScanYourFaceController extends GetxController {
     file.writeAsBytesSync(pngBytes);
 
     return file;
+  }
+
+  Future<void> selfieVerification() async {
+    loader.value = true;
+    try {
+      List<SelfiVerification> list = await ScanYourFaceApi.postRegister(image1.toString()
+        );
+      loader.value = false;
+      if (list.isNotEmpty) {
+         Get.offAll(() => const Dashboard());
+      }
+    } catch (e) {
+      errorToast(e.toString());
+      loader.value = false;
+      debugPrint(e.toString());
+    }
   }
 }

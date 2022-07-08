@@ -85,7 +85,7 @@ class SplashScreen extends StatelessWidget {
                             child: Center(
                                 child: Text(
                               "Help, Support & Solutions For Families",
-                              style: textStyleFont18White,
+                              style:gilroyBoldTextStyle(),
                             )),
                           ),
                           Padding(

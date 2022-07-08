@@ -51,7 +51,7 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                             SizedBox(height: Get.height * 0.038),
                             Text(
                               Strings.completeProfile,
-                              style: textStyleFont26WhiteBold,
+                              style: gilroyBoldTextStyle(fontSize: 30),
                             ),
                             SizedBox(
                               height: Get.height * 0.045,
@@ -386,7 +386,7 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                                 child: Center(
                                     child: Text(
                                   Strings.finish,
-                                  style: textStyleFont16Black,
+                                  style: gilroyBoldTextStyle(color: Colors.black,fontSize: 16),
                                 )),
                               ),
                             ),

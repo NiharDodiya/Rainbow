@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
               ),
               Text(
                 "Bexley, London",
-                style: textStyleFont16Black,
+                style: gilroyBoldTextStyle(color: Colors.black,fontSize: 16),
               ),
               SizedBox(
                 width: Get.width * 0.37,
@@ -300,7 +300,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         Text(
                           "Amber J Santiago",
-                          style: textStyleFont16BlackLight,
+                          style: gilroyBoldTextStyle(color: Colors.black,fontSize: 16),
                         ),
                         Text(
                           "Surrogate MoM",
@@ -507,7 +507,7 @@ class HomeScreen extends StatelessWidget {
                                           image: AssetImage(AssetRes.eye))),
                                   Text(
                                     "23",
-                                    style: textStyleFont10White,
+                                    style: gilroyMediumTextStyle(fontSize: 10),
                                   ),
                                   const Spacer(),
                                   const SizedBox(
@@ -522,7 +522,7 @@ class HomeScreen extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 2.0),
                                     child: Text(
                                       "7",
-                                      style: textStyleFont10White,
+                                      style: gilroyMediumTextStyle(fontSize: 10),
                                     ),
                                   ),
                                   SizedBox(
@@ -542,7 +542,7 @@ class HomeScreen extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 2.0),
                                     child: Text(
                                       "5",
-                                      style: textStyleFont10White,
+                                      style: gilroyMediumTextStyle(fontSize: 10),
                                     ),
                                   ),
                                   SizedBox(
@@ -560,7 +560,7 @@ class HomeScreen extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 5.0),
                                     child: Text(
                                       "8",
-                                      style: textStyleFont10White,
+                                      style: gilroyMediumTextStyle(fontSize: 10),
                                     ),
                                   ),
                                   SizedBox(

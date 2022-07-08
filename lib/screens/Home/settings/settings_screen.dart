@@ -78,7 +78,7 @@ class SettingsScreen extends StatelessWidget {
                   },
                   child: Text(
                     Strings.others,
-                    style: textStyleFont18White,
+                    style: gilroyBoldTextStyle(),
                   )),
               SizedBox(
                 width: Get.width * 0.05,
@@ -496,7 +496,7 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 Text(
                   Strings.logout,
-                  style: textStyleFont15Blck,
+                  style: gilroyMediumTextStyle(color: Colors.black,fontSize: 16)
                 ),
               ],
             )),

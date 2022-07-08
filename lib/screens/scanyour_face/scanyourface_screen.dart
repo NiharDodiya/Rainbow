@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/scanyour_face/scanyourface_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -21,152 +22,159 @@ class ScanYourFaceScreen extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           backgroundColor: Colors.white,
-          body: SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 10),
-                    child: Center(
-                      child: Container(
-                        height: Get.height * 0.975369,
-                        width: Get.width * 0.946666,
-                        /*  margin: EdgeInsets.all(Get.width * 0.02669),*/
-                        decoration: BoxDecoration(
-                            color: ColorRes.color_4F359B,
-                            borderRadius: BorderRadius.circular(25)),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: Get.height * 0.03,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Get.back();
-                              },
-                              child: const Padding(
-                                padding: EdgeInsets.only(left: 15),
-                                child: Icon(
-                                  Icons.arrow_back_ios_outlined,
-                                  size: 16.72,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: Get.height * 0.03,
-                            ),
-                            Padding(
-                                padding: const EdgeInsets.only(left: 15),
-                                child: Text(
-                                  Strings.selfie,
-                                  style: textStyleFont26WhiteBold,
-                                )),
-                            SizedBox(
-                              height: Get.height * 0.009,
-                            ),
-                            Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
+          body:Obx((){
+            return  Stack(
+              children: [
+                SafeArea(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10, bottom: 10),
+                          child: Center(
+                            child: Container(
+                              height: Get.height * 0.975369,
+                              width: Get.width * 0.946666,
+                              /*  margin: EdgeInsets.all(Get.width * 0.02669),*/
+                              decoration: BoxDecoration(
+                                  color: ColorRes.color_4F359B,
+                                  borderRadius: BorderRadius.circular(25)),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Container(
-                                    height: 29,
-                                    width: 29,
-                                    decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: ColorRes.color_B279DB),
+                                  SizedBox(
+                                    height: Get.height * 0.03,
                                   ),
-                                  Container(
-                                    height: 5,
-                                    width: Get.width * 0.25,
-                                    color: ColorRes.color_C4C4C4,
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.back();
+                                    },
+                                    child: const Padding(
+                                      padding: EdgeInsets.only(left: 15),
+                                      child: Icon(
+                                        Icons.arrow_back_ios_outlined,
+                                        size: 16.72,
+                                      ),
+                                    ),
                                   ),
-                                  Container(
-                                    height: 29,
-                                    width: 29,
-                                    decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: ColorRes.color_C4C4C4),
+                                  SizedBox(
+                                    height: Get.height * 0.03,
                                   ),
-                                  Container(
-                                    height: 5,
-                                    width: Get.width * 0.25,
-                                    color: ColorRes.color_C4C4C4,
-                                  ),
-                                  Container(
-                                    height: 29,
-                                    width: 29,
-                                    decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: ColorRes.color_C4C4C4),
-                                  ),
-                                ]),
-                            SizedBox(
-                              height: Get.height * 0.03,
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(left: Get.height * 0.028),
-                              child: SizedBox(
-                                height: Get.height * 0.046,
-                                width: Get.width * 0.836619,
-                                child: Center(
-                                  child: Text(
-                                    Strings.scanYourFace,
-                                    style: textStyleFont26WhiteBold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: Get.height * 0.03,
-                            ),
-                            Center(
-                              child: SizedBox(
-                                  height: Get.height * 0.06060,
-                                  width: Get.width * 0.901408,
-                                  child: Text(
-                                    Strings.pleaseBlink,
-                                    style: textStyleFont16Whit,
-                                    textAlign: TextAlign.center,
-                                  )),
-                            ),
-                            buildCameraFunction(context, controller),
-                            SizedBox(
-                              height: Get.height * 0.03,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                controller.takePicForFront();
-                                /*    controller.onRegisterTap();*/
-                              },
-                              child: Center(
-                                child: Container(
-                                  width: Get.width * 0.84788,
-                                  height: Get.height * 0.07575,
-                                  decoration: BoxDecoration(
-                                      color: ColorRes.color_E7D01F,
-                                      borderRadius: BorderRadius.circular(15)),
-                                  child: Center(
+                                  Padding(
+                                      padding: const EdgeInsets.only(left: 15),
                                       child: Text(
-                                    Strings.next,
-                                    style: textStyleFont16Black,
-                                  )),
-                                ),
+                                        Strings.selfie,
+                                        style: textStyleFont26WhiteBold,
+                                      )),
+                                  SizedBox(
+                                    height: Get.height * 0.009,
+                                  ),
+                                  Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          height: 29,
+                                          width: 29,
+                                          decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: ColorRes.color_B279DB),
+                                        ),
+                                        Container(
+                                          height: 5,
+                                          width: Get.width * 0.25,
+                                          color: ColorRes.color_C4C4C4,
+                                        ),
+                                        Container(
+                                          height: 29,
+                                          width: 29,
+                                          decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: ColorRes.color_C4C4C4),
+                                        ),
+                                        Container(
+                                          height: 5,
+                                          width: Get.width * 0.25,
+                                          color: ColorRes.color_C4C4C4,
+                                        ),
+                                        Container(
+                                          height: 29,
+                                          width: 29,
+                                          decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: ColorRes.color_C4C4C4),
+                                        ),
+                                      ]),
+                                  SizedBox(
+                                    height: Get.height * 0.03,
+                                  ),
+                                  Padding(
+                                    padding:
+                                    EdgeInsets.only(left: Get.height * 0.028),
+                                    child: SizedBox(
+                                      height: Get.height * 0.046,
+                                      width: Get.width * 0.836619,
+                                      child: Center(
+                                        child: Text(
+                                          Strings.scanYourFace,
+                                          style: textStyleFont26WhiteBold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: Get.height * 0.03,
+                                  ),
+                                  Center(
+                                    child: SizedBox(
+                                        height: Get.height * 0.06060,
+                                        width: Get.width * 0.901408,
+                                        child: Text(
+                                          Strings.pleaseBlink,
+                                          style: gilroyMediumTextStyle(fontSize: 16),
+                                          textAlign: TextAlign.center,
+                                        )),
+                                  ),
+                                  buildCameraFunction(context, controller),
+                                  SizedBox(
+                                    height: Get.height * 0.03,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      controller.takePicForFront();
+                                      /*    controller.onRegisterTap();*/
+                                    },
+                                    child: Center(
+                                      child: Container(
+                                        width: Get.width * 0.84788,
+                                        height: Get.height * 0.07575,
+                                        decoration: BoxDecoration(
+                                            color: ColorRes.color_E7D01F,
+                                            borderRadius: BorderRadius.circular(15)),
+                                        child: Center(
+                                            child: Text(
+                                              Strings.next,
+                                              style: gilroyBoldTextStyle(color: Colors.black,fontSize: 16),
+                                            )),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
+                ),
+                controller.loader.isTrue?SmallLoader():SizedBox(),
+              ],
+            );
+          })
         );
       },
     );

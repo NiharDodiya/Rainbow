@@ -95,7 +95,7 @@ class LoginScreen extends StatelessWidget {
             width: Get.width * 0.6028,
             child: Text(
               Strings.welcomeBack,
-              style: textStyleFont30WhiteBold,
+              style: gilroySemiBoldTextStyle(fontSize: 30),
             ),
           ),
         )
@@ -154,12 +154,7 @@ class LoginScreen extends StatelessWidget {
               onTap: loginController.onForgotPassword,
               child: Text(
                 Strings.forgotPassword,
-                style: TextStyle(
-                  color: ColorRes.white.withOpacity(0.5),
-                  fontSize: 14,
-                  fontFamily: "Gilroy-Light",
-                  fontWeight: FontWeight.w600,
-                ),
+                style: gilroyMediumTextStyle(fontSize: 14,color: ColorRes.white.withOpacity(0.5)),
               ),
             ),
           ),
@@ -206,7 +201,7 @@ class LoginScreen extends StatelessWidget {
           children: [
             Text(
               Strings.dontHaveAccount,
-              style: textStyleFont14Black,
+              style: gilroyMediumTextStyle(color: Colors.black,fontSize: 14),
             ),
             InkWell(
               onTap: controller.onSignUpDontHaveTap,
@@ -231,7 +226,7 @@ class LoginScreen extends StatelessWidget {
             ),
             Text(
               Strings.forAdvertise,
-              style: textStyleFont14Black,
+              style: gilroyMediumTextStyle(color: Colors.black,fontSize: 14),
             ),
           ],
         ),

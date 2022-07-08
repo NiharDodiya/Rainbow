@@ -10,7 +10,7 @@ Widget addStoryCamera(AddStoryController controller) {
   return Column(
     children: [
       Container(
-        height: Get.height * 0.27,
+        height: Get.height * 0.31,
         width: Get.width * 0.328,
         color: ColorRes.color_F4F4F4,
         child: InkWell(

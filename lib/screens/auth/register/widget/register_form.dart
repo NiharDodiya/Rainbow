@@ -22,24 +22,28 @@ class RegisterForm extends StatelessWidget {
               controller: controller.fullNameController,
               title: Strings.fullName,
               hintText: Strings.fullName,
+              fontsize: 16,
             ),
             AppTextFiled(
               controller: controller.emailController,
               title: Strings.email,
               hintText: Strings.email,
               textInputType: TextInputType.emailAddress,
+              fontsize: 16,
             ),
             AppTextFiled(
               controller: controller.pwdController,
               title: Strings.password,
               hintText: Strings.password,
               obscure: true,
+              fontsize: 16,
             ),
             AppTextFiled(
               controller: controller.confirmPwdController,
               title: Strings.reTypePassword,
               hintText: Strings.reTypePassword,
               obscure: true,
+              fontsize: 16,
             ),
             GetBuilder<RegisterController>(
               id: 'address1',
@@ -50,6 +54,7 @@ class RegisterForm extends StatelessWidget {
                   hintText: Strings.addressLine1,
                   multiLine: true,
                   onChange: controller.onAddress1Change,
+                  fontsize: 16,
                 );
               },
             ),
@@ -62,6 +67,7 @@ class RegisterForm extends StatelessWidget {
                   hintText: Strings.addressLine2,
                   multiLine: true,
                   onChange: controller.onAddress2Change,
+                  fontsize: 16,
                 );
               },
             ),
@@ -75,6 +81,7 @@ class RegisterForm extends StatelessWidget {
                   textInputType: TextInputType.phone,
                   prefix: countryCodePicker(context),
                   inputPadding: EdgeInsets.only(left: Get.width * 0.04),
+                  fontsize: 16,
                 );
               },
             ),
@@ -89,6 +96,7 @@ class RegisterForm extends StatelessWidget {
                   hintText: Strings.maritalStatus,
                   suffix: Image.asset(AssetRes.arrowDown, height: 17),
                   enable: false,
+                  fontsize: 16,
                 ),
               );
             },
@@ -104,6 +112,7 @@ class RegisterForm extends StatelessWidget {
                 hintText: Strings.ethnicity,
                 suffix: Image.asset(AssetRes.arrowDown, height: 17),
                 enable: false,
+                fontsize: 16,
               ),
             ),
             GestureDetector(
@@ -116,6 +125,7 @@ class RegisterForm extends StatelessWidget {
                 hintText: Strings.birthDate,
                 suffix: Image.asset(AssetRes.calendar, height: 17),
                 enable: false,
+                fontsize: 16,
               ),
             ),
             GestureDetector(
@@ -128,6 +138,7 @@ class RegisterForm extends StatelessWidget {
                 hintText: Strings.noOfKids,
                 suffix: Image.asset(AssetRes.arrowDown, height: 17),
                 enable: false,
+                fontsize: 16,
               ),
             ),
           ],

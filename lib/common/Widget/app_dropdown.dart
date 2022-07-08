@@ -63,7 +63,7 @@ class AppDropdown extends StatelessWidget {
                       },
                       child: Text(
                         paramList[index],
-                        style: textStyleFont14Black,
+                        style: gilroyMediumTextStyle(color: Colors.black,fontSize: 14),
                       )),
                   (index + 1) == paramList.length
                       ? const SizedBox()
@@ -146,7 +146,7 @@ class AppDropDownEthnicity extends StatelessWidget {
                       },
                       child: Text(
                         paramList[index],
-                        style: textStyleFont14Black,
+                        style: gilroyMediumTextStyle(color: Colors.black,fontSize: 14),
                       )),
                   (index + 1) == paramList.length
                       ? const SizedBox()
@@ -219,7 +219,7 @@ class AppDropDownNoOfKids extends StatelessWidget {
                       },
                       child: Text(
                         paramList[index],
-                        style: textStyleFont14Black,
+                        style: gilroyMediumTextStyle(color: Colors.black,fontSize: 16),
                       )),
                   (index + 1) == paramList.length
                       ? const SizedBox()
@@ -291,7 +291,7 @@ class AppDroDownIdType extends StatelessWidget {
                       },
                       child: Text(
                         paramList[index],
-                        style: textStyleFont14Black,
+                        style: gilroyMediumTextStyle(color: Colors.black,fontSize: 14),
                       )),
                   (index + 1) == paramList.length
                       ? const SizedBox()
@@ -370,11 +370,11 @@ const AppDropDownProfessionType({
                       onTap: () {
                         controller.profession.text =paramList[index];
                         controller.professions=false;
-                        controller.update(['register_screen']);
+                        controller.update(['doctor']);
                       },
                       child: Text(
                         paramList[index],
-                        style: textStyleFont14Black,
+                        style: gilroyMediumTextStyle(color: Colors.black,fontSize: 14),
                       )),
                   (index + 1) ==paramList[index].length
                       ? const SizedBox()

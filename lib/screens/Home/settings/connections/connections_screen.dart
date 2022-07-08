@@ -75,7 +75,7 @@ class ConnectionsScreen extends StatelessWidget {
                   },
                   child: Text(
                     Strings.connectionRequest,
-                    style: textStyleFont18White,
+                    style: gilroyBoldTextStyle(),
                   )),
               SizedBox(
                 width: Get.width * 0.05,

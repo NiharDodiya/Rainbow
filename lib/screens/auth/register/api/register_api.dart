@@ -6,7 +6,9 @@ import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/auth/register/register_json.dart';
 import 'package:rainbow/screens/getstarted_screen.dart';
 import 'package:rainbow/service/http_services.dart';
+import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 
 class RegisterApi {
   static Future<List<RegisterUser>> postRegister(

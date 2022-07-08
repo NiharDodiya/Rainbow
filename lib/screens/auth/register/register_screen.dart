@@ -20,7 +20,6 @@ class RegisterScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorRes.white,
       body: Obx(() {
-
         return Stack(
           children: [
             SingleChildScrollView(
@@ -137,7 +136,7 @@ class RegisterScreen extends StatelessWidget {
           width: Get.width * 0.69,
           child: Text(
             Strings.termsServices,
-            style: textStyleFont10White,
+            style: gilroyMediumTextStyle(fontSize: 10),
             textAlign: TextAlign.center,
           ),
         ),

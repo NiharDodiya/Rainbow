@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:rainbow/utils/color_res.dart';
 
 class AdNotificationsScreen extends StatelessWidget {
   const AdNotificationsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      height: Get.height,
+      width: Get.width,
+      color: ColorRes.red,
+      child: Center(child: Text("AdNotificationsScreen"),),
+    );
   }
 }

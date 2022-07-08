@@ -6,7 +6,10 @@ import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
 import 'package:rainbow/screens/auth/login/login_screen.dart';
 import 'package:rainbow/screens/auth/register/api/register_api.dart';
+import 'package:rainbow/screens/auth/register/register_json.dart';
 import 'package:rainbow/screens/getstarted_screen.dart';
+import 'package:rainbow/service/pref_services.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class RegisterController extends GetxController {
@@ -14,9 +17,9 @@ class RegisterController extends GetxController {
   DateTime selectedDate = DateTime.now();
 
   TextEditingController fullNameController =
-      TextEditingController(text: "ravi");
+      TextEditingController();
   TextEditingController emailController =
-      TextEditingController(/*text: "ravi@gmail.com"*/);
+      TextEditingController();
   TextEditingController pwdController = TextEditingController(text: "Test@123");
   TextEditingController confirmPwdController =
       TextEditingController(text: "Test@123");
@@ -233,16 +236,18 @@ class RegisterController extends GetxController {
 
   Future<void> registerDetails() async {
     loader.value = true;
-    await RegisterApi.postRegister(
+    List<RegisterUser> list =await RegisterApi.postRegister(
       fullNameController.text,
       emailController.text,
       pwdController.text,
       confirmPwdController.text,
       address1Controller.text,
       address2Controller.text,
-      phoneController.text,statusController.text,ethnicityController.text,
+        "+${countryModel.phoneCode+phoneController.text}",statusController.text,ethnicityController.text,
         dobController.text,kidsController.text
     );
+    await PrefService.setValue(PrefKeys.registerToken,list.first.token.toString());
+
     loader.value = false;
   }
 }

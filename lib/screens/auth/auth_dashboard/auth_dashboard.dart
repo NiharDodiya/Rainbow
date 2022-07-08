@@ -69,7 +69,7 @@ class AuthDashboard extends StatelessWidget {
         Center(
           child: Text(
             Strings.buildingFamilies,
-            style: textStyleFont18White,
+            style: gilroyBoldTextStyle(),
           ),
         ),
       ],
@@ -97,7 +97,7 @@ class AuthDashboard extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 Strings.continueWithEmail,
-                style: textStyleFont16Black,
+                style: gilroyBoldTextStyle(color: Colors.black,fontSize: 16),
               )
             ],
           ),
@@ -145,7 +145,7 @@ class AuthDashboard extends StatelessWidget {
                       width: 42,
                       child: Text(
                         Strings.google,
-                        style: textStyleFont12White,
+                        style: gilroyMediumTextStyle(fontSize: 12),
                       ),
                     ),
                   ],
@@ -179,7 +179,7 @@ class AuthDashboard extends StatelessWidget {
                       width: 56,
                       child: Text(
                         Strings.facebook,
-                        style: textStyleFont12White,
+                        style: gilroyMediumTextStyle(fontSize: 12),
                       ),
                     ),
                   ],
@@ -208,7 +208,7 @@ class AuthDashboard extends StatelessWidget {
               onTap: controller.onSignInTap,
               child: Text(
                 Strings.signIn,
-                style: textStyleFont14WhiteBold,
+                style:  gilroyBoldTextStyle(fontSize: 14),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -223,7 +223,7 @@ class AuthDashboard extends StatelessWidget {
               onTap: controller.onSignUpTap,
               child: Text(
                 Strings.signUp,
-                style: textStyleFont14WhiteBold,
+                style: gilroyBoldTextStyle(fontSize: 14),
               ),
             ),
             Text(
@@ -242,7 +242,7 @@ class AuthDashboard extends StatelessWidget {
                 width: Get.width * 0.67,
                 child: Text(
                   Strings.termsServices,
-                  style: textStyleFont10White,
+                  style: gilroyMediumTextStyle(fontSize: 10),
                   textAlign: TextAlign.center,
                 )),
           ),

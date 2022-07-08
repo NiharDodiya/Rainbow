@@ -4,33 +4,31 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
 import 'package:rainbow/screens/auth/doctor_register/doctorRegister_screen.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/adviser_api/adviser_api.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/adviser_api/adviser_json.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountry_json.dart';
+import 'package:rainbow/service/pref_services.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
-class AdviserRegisterController extends GetxController
-{
-
+class AdviserRegisterController extends GetxController {
   TextEditingController fullNameController =
-  TextEditingController(text: "ravi");
+      TextEditingController(text: "ravi");
   TextEditingController emailController =
-  TextEditingController(text: "ravi@gmail.com");
+      TextEditingController();
   TextEditingController pwdController = TextEditingController(text: "Test@123");
   TextEditingController confirmPwdController =
-  TextEditingController(text: "Test@123");
-  TextEditingController houseNumber =
-  TextEditingController(text: "csasdd");
-  TextEditingController streetName =
-  TextEditingController(text: "dfdfwdfdw");
-  TextEditingController city =
-  TextEditingController(text: "surat");
-  TextEditingController country =
-  TextEditingController(text: "single");
-  TextEditingController postalCode =
-  TextEditingController(text: "1");
+      TextEditingController(text: "Test@123");
+  TextEditingController houseNumber = TextEditingController(text: "123");
+  TextEditingController streetName = TextEditingController(text: "dfdfwdfdw");
+  TextEditingController city = TextEditingController(text: "surat");
+  TextEditingController country = TextEditingController(text: "1");
+  TextEditingController postalCode = TextEditingController(text: "15556");
   TextEditingController phoneNumber =
-  TextEditingController(/*text: "07-06-1999"*/);
+      TextEditingController(/*text: "07-06-1999"*/);
   String selectedLocation = Strings.single;
   List<String> martialStatusList = [
-
     Strings.single,
     Strings.married,
   ];
@@ -45,14 +43,11 @@ class AdviserRegisterController extends GetxController
   bool kidsDropdown = false;
   RxBool loader = false.obs;
 
-
-
   void onInit() {
+    countryName();
     update(['register_screen']);
     super.onInit();
   }
-
-
 
   void onStatusSelect() {
     if (martialStatusDropdown == false) {
@@ -114,11 +109,10 @@ class AdviserRegisterController extends GetxController
 
   void onRegisterTap() {
     if (validation()) {
-      Get.to(()=>DoctorRegisterScreen());
-
-
+      advirtisersRegister();
     }
   }
+
   Country countryModel = Country.from(json: {
     "e164_cc": "1",
     "iso2_cc": "CA",
@@ -132,6 +126,7 @@ class AdviserRegisterController extends GetxController
     "display_name_no_e164_cc": "Canada (CA)",
     "e164_key": "1-CA-0"
   });
+
   void onCountryTap(BuildContext context) {
     showCountryPicker(
       context: context,
@@ -142,6 +137,7 @@ class AdviserRegisterController extends GetxController
       },
     );
   }
+
   void onSignInTap() {}
 
   bool validation() {
@@ -172,7 +168,7 @@ class AdviserRegisterController extends GetxController
     } else if (city.text.isEmpty) {
       errorToast(Strings.phoneNumberError);
       return false;
-    }  else if (country.text.isEmpty) {
+    } else if (country.text.isEmpty) {
       errorToast(Strings.maritalStatusError);
       return false;
     } else if (postalCode.text.isEmpty) {
@@ -188,5 +184,41 @@ class AdviserRegisterController extends GetxController
     return true;
   }
 
+  Future<void> advirtisersRegister() async {
+    loader.value = true;
+    try {
+      List<AdvirtisersRegister> list = await AdvirtisersApi.postRegister(
+          fullNameController.text,
+          emailController.text,
+          pwdController.text,
+          houseNumber.text,
+          streetName.text,
+          "+${countryModel.phoneCode+phoneNumber.text}",
+          city.text,
+          country.text,
+          postalCode.text);
+      loader.value = false;
+      if (list.isNotEmpty) {
+        await PrefService.setValue(PrefKeys.advirtisersToken,list.first.token);
+        Get.to(() => DoctorRegisterScreen());
 
+      }
+    } catch (e) {
+      errorToast(e.toString());
+      loader.value = false;
+      debugPrint(e.toString());
+    }
+  } Future<void> countryName() async {
+    loader.value = true;
+    try {
+      List<ListCountryModel> list = await  ListOfCountryApi.postRegister();
+      loader.value = false;
+      print(list);
+
+    } catch (e) {
+      errorToast(e.toString());
+      loader.value = false;
+      debugPrint(e.toString());
+    }
+  }
 }

@@ -123,6 +123,7 @@ class Strings {
   static const errorText = 'Error !';
   static const successText = 'success';
   static const single = 'single';
+  static const passport = 'passport';
   static const married = 'married';
   static const british = 'British';
   static const indian = 'Indian';
@@ -240,9 +241,14 @@ class Strings {
   static const suggestedConnection = "Suggested Connection";
   static const addCard = "Add Card";
 
-  ///----------------------------------Payment ----------------------------------
-  static const manageCards = "Manage Cards";
+  ///----------------------------------Payment ---------------------------------
   static const platinum = "Platinum";
+  static const manageCards = "Manage Cards";
+
+  ///----------------------------------Advertisement------------------------------
+  static const noAdvertisement = "You don't have any \nposted advertisement";
+  static const createAdvertisement = "Create Advertisement";
+
   static const endingIn0212 = "Ending in 0212";
   static const date = "01/23";
   static const cardAddress =
@@ -261,54 +267,53 @@ class Strings {
   static const cardDoller03 = "+\$240.00";
   static const cardobsecure = "• • • •";
   static const carddigits = "0212";
-  static const  billingInformation = "Billing Information";
-  static const address ="Address";
-  static const addressHint ="3819 Lynden Road";
-  static const cityHint ="Canada";
-  static const postalCodeHint="L0B 1M0";
-  static const cardInformation="Card Information";
-  static const nameonCard ="Name on card";
-  static const aycanDoganlar ="Aycan Doganlar";
-  static const cardNumber ="Card number";
-  static const cardNumberHint ="1234 4567 7890 1234";
-  static const expiryDate="Expiry Date";
-  static const expiryDateHint ="02/24";
-  static const cVV ="CVV";
-  static const cVVHint =". . .";
-  static const addresserror ='Address is required';
-  static const cityeError ='city is required';
-  static const postalCodeError ='postal code is required';
-  static const countryError ='Country is required';
-  static const  nameonCardError ='Name on Card is required';
-  static const cardnumberError ='card Number is required';
-  static const cardnumberErrorValidation ="Please Currect card Number";
-  static const expirydateError ='expiry date is required';
-  static const cVVError ='cvv is required';
-  static const cVVErrorValidation ='please currect CVV';
-  static const removeCard ="Remove Card";
-  static const removeDialogDes ="Are you sure you want to remove card?";
-  static const removeDialogCancel ="Cancel";
-  static const confirm ="Confirm";
-///----------------------------------SubScription---------------------------
-static const enterPromoCode="Enter promo code";
-static const subscribe ="Subscribe";
-static const premium ="Premium";
-static const premium01   = "3 months subscription";
-static const whatYoullGet ="What You’ll Get";
-static const unlimitedAccess="Unlimited access";
-static const dateSupport ="24/7 Support";
-static const textSpan01 ="£24.99";
-static const textspan02 ="/month";
+  static const billingInformation = "Billing Information";
+  static const address = "Address";
+  static const addressHint = "3819 Lynden Road";
+  static const cityHint = "Canada";
+  static const postalCodeHint = "L0B 1M0";
+  static const cardInformation = "Card Information";
+  static const nameonCard = "Name on card";
+  static const aycanDoganlar = "Aycan Doganlar";
+  static const cardNumber = "Card number";
+  static const cardNumberHint = "1234 4567 7890 1234";
+  static const expiryDate = "Expiry Date";
+  static const expiryDateHint = "02/24";
+  static const cVV = "CVV";
+  static const cVVHint = ". . .";
+  static const addresserror = 'Address is required';
+  static const cityeError = 'city is required';
+  static const postalCodeError = 'postal code is required';
+  static const countryError = 'Country is required';
+  static const nameonCardError = 'Name on Card is required';
+  static const cardnumberError = 'card Number is required';
+  static const cardnumberErrorValidation = "Please Currect card Number";
+  static const expirydateError = 'expiry date is required';
+  static const cVVError = 'cvv is required';
+  static const cVVErrorValidation = 'please currect CVV';
+  static const removeCard = "Remove Card";
+  static const removeDialogDes = "Are you sure you want to remove card?";
+  static const removeDialogCancel = "Cancel";
+  static const confirm = "Confirm";
 
-///----------------------------------SubScription Payment---------------------------
-static const iAMPROUDMOM="IAMPROUDMOM";
-static const cardName01 ="Visa Ending in 4151 ";
-static const cardName02 ="Visa Ending in 2151 ";
-static const cardName03 ="Master Card Ending in 4151 ";
-static const cardDate01 ="06/25";
-static const subscriptionPaymenDes ="By Clicking continue below, you accept to be charged at \$24.99/month for a minimum of 3months. You also accept the Terms and condition of Rainbow Love";
-static const continue01="Continue";
+  ///----------------------------------SubScription---------------------------
+  static const enterPromoCode = "Enter promo code";
+  static const subscribe = "Subscribe";
+  static const premium = "Premium";
+  static const premium01 = "3 months subscription";
+  static const whatYoullGet = "What You’ll Get";
+  static const unlimitedAccess = "Unlimited access";
+  static const dateSupport = "24/7 Support";
+  static const textSpan01 = "£24.99";
+  static const textspan02 = "/month";
 
-
+  ///----------------------------------SubScription Payment---------------------------
+  static const iAMPROUDMOM = "IAMPROUDMOM";
+  static const cardName01 = "Visa Ending in 4151 ";
+  static const cardName02 = "Visa Ending in 2151 ";
+  static const cardName03 = "Master Card Ending in 4151 ";
+  static const cardDate01 = "06/25";
+  static const subscriptionPaymenDes = "By Clicking continue below, you accept to be charged at \$24.99/month for a minimum of 3months. You also accept the Terms and condition of Rainbow Love";
+  static const continue01 = "Continue";
 
 }

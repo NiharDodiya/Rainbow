@@ -187,7 +187,7 @@ class AddCartScreen extends StatelessWidget {
                   },
                   child: Text(
                     Strings.addCard,
-                    style: textStyleFont18White,
+                    style: gilroyBoldTextStyle(),
                   )),
               SizedBox(
                 width: Get.width * 0.05,
