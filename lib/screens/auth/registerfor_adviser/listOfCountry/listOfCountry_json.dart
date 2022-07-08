@@ -4,12 +4,32 @@
 
 import 'dart:convert';
 
-List<ListCountryModel> listCountryModelFromJson(String str) => List<ListCountryModel>.from(json.decode(str).map((x) => ListCountryModel.fromJson(x)));
+ListCountryModel listCountryModelFromJson(String str) => ListCountryModel.fromJson(json.decode(str));
 
-String listCountryModelToJson(List<ListCountryModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String listCountryModelToJson(ListCountryModel data) => json.encode(data.toJson());
 
 class ListCountryModel {
   ListCountryModel({
+    this.status,
+    this.data,
+  });
+
+  bool? status;
+  List<DataCountry>? data;
+
+  factory ListCountryModel.fromJson(Map<String, dynamic> json) => ListCountryModel(
+    status: json["status"],
+    data: List<DataCountry>.from(json["data"].map((x) => DataCountry.fromJson(x))),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "status": status,
+    "data": List<dynamic>.from(data!.map((x) => x.toJson())),
+  };
+}
+
+class DataCountry {
+  DataCountry({
     this.id,
     this.name,
     this.status,
@@ -23,7 +43,7 @@ class ListCountryModel {
   DateTime? createdAt;
   DateTime? updatedAt;
 
-  factory ListCountryModel.fromJson(Map<String, dynamic> json) => ListCountryModel(
+  factory DataCountry.fromJson(Map<String, dynamic> json) => DataCountry(
     id: json["id"],
     name: json["name"],
     status: json["status"],

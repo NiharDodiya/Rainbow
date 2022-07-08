@@ -1,17 +1,17 @@
 // To parse this JSON data, do
 //
-//     final advirtisersRegister = advirtisersRegisterFromJson(jsonString);
+//     final advertiserRegister = advertiserRegisterFromJson(jsonString);
 
 import 'dart:convert';
 
-AdvirtisersRegister advirtisersRegisterFromJson(String? str) =>
-    AdvirtisersRegister.fromJson(json.decode(str!));
+AdvertiserRegister advertiserRegisterFromJson(String str) =>
+    AdvertiserRegister.fromJson(json.decode(str));
 
-String? advirtisersRegisterToJson(AdvirtisersRegister data) =>
+String advertiserRegisterToJson(AdvertiserRegister data) =>
     json.encode(data.toJson());
 
-class AdvirtisersRegister {
-  AdvirtisersRegister({
+class AdvertiserRegister {
+  AdvertiserRegister({
     this.status,
     this.message,
     this.token,
@@ -23,8 +23,8 @@ class AdvirtisersRegister {
   String? token;
   Data? data;
 
-  factory AdvirtisersRegister.fromJson(Map<String, dynamic> json) =>
-      AdvirtisersRegister(
+  factory AdvertiserRegister.fromJson(Map<String, dynamic> json) =>
+      AdvertiserRegister(
         status: json["status"],
         message: json["message"],
         token: json["token"],
@@ -44,53 +44,61 @@ class Data {
     this.id,
     this.fullName,
     this.email,
+    this.houseNumber,
+    this.streetName,
     this.phoneNumber,
     this.city,
     this.country,
     this.idCountry,
+    this.postalCode,
     this.role,
-    this.personalStatus,
-    this.companyStatus,
     this.status,
+    this.companyCountry,
   });
 
   int? id;
   String? fullName;
   String? email;
+  String? houseNumber;
+  String? streetName;
   String? phoneNumber;
   String? city;
   String? country;
   int? idCountry;
+  int? postalCode;
   String? role;
-  String? personalStatus;
-  String? companyStatus;
   String? status;
+  String? companyCountry;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         id: json["id"],
         fullName: json["full_name"],
         email: json["email"],
+        houseNumber: json["house_number"],
+        streetName: json["street_name"],
         phoneNumber: json["phone_number"],
         city: json["city"],
         country: json["country"],
         idCountry: json["id_country"],
+        postalCode: json["postal_code"],
         role: json["role"],
-        personalStatus: json["personal_status"],
-        companyStatus: json["company_status"],
         status: json["status"],
+        companyCountry: json["company_country"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "full_name": fullName,
         "email": email,
+        "house_number": houseNumber,
+        "street_name": streetName,
         "phone_number": phoneNumber,
         "city": city,
         "country": country,
         "id_country": idCountry,
+        "postal_code": postalCode,
         "role": role,
-        "personal_status": personalStatus,
-        "company_status": companyStatus,
         "status": status,
+        "company_country": companyCountry,
       };
 }

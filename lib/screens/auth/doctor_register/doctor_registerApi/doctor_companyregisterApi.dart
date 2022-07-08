@@ -8,7 +8,7 @@ import 'package:rainbow/utils/end_points.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/utils/pref_keys.dart';
 
-class DoctorCompanyRegister {
+class DoctorCompanyRegisterApi {
   static Future<List<CompanyRegister>> postRegister(String profession,
       String companyName,String companyNumber,String streetName,String city,String idCountry,String postalCode, String website) async {
     List<CompanyRegister> companyList = [];

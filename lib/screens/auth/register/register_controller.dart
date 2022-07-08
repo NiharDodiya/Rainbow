@@ -20,22 +20,22 @@ class RegisterController extends GetxController {
       TextEditingController();
   TextEditingController emailController =
       TextEditingController();
-  TextEditingController pwdController = TextEditingController(text: "Test@123");
+  TextEditingController pwdController = TextEditingController();
   TextEditingController confirmPwdController =
-      TextEditingController(text: "Test@123");
+      TextEditingController();
   TextEditingController address1Controller =
-      TextEditingController(text: "csasdd");
+      TextEditingController();
   TextEditingController address2Controller =
-      TextEditingController(text: "dfdfwdfdw");
+      TextEditingController();
   TextEditingController phoneController =
       TextEditingController();
   TextEditingController statusController =
-      TextEditingController(text: "single");
+      TextEditingController();
   TextEditingController ethnicityController =
-      TextEditingController(text: "1");
+      TextEditingController();
   TextEditingController dobController =
-      TextEditingController(/*text: "07-06-1999"*/);
-  TextEditingController kidsController = TextEditingController(text: "1");
+      TextEditingController();
+  TextEditingController kidsController = TextEditingController();
   String selectedLocation = Strings.single;
   List<String> martialStatusList = [
     Strings.single,

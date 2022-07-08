@@ -79,14 +79,14 @@ class AdviserRegisterForm extends StatelessWidget {
             GetBuilder<AdviserRegisterController>(id: "register_screen",builder: (controller) {
               return GestureDetector(
                 onTap: () {
-                  // controller.onStatusSelect();
+                   controller.onCountryCitySelect();
                 },
                 child: AppTextFiled(
                   controller: controller.country,
                   title: Strings.country,
                   hintText: Strings.country,
-
                   enable: true,
+                  suffix: Image.asset(AssetRes.arrowDown,height: 15,width: 15,),
                 ),
               );
             },
