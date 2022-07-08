@@ -41,14 +41,13 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home:const AdvertisementDashBord(),
-      // !PrefService.getBool(PrefKeys.skipBoardingScreen)
-      //     ? SplashScreen()
-      //     : PrefService.getBool(PrefKeys.isLogin)
-      //         ? const Dashboard()
-      //         : PrefService.getBool(PrefKeys.register)
-      //             ? const Dashboard()
-      //             : AuthDashboard()
+      home: !PrefService.getBool(PrefKeys.skipBoardingScreen)
+          ? SplashScreen()
+          : PrefService.getBool(PrefKeys.isLogin)
+          ? const Dashboard()
+          : PrefService.getBool(PrefKeys.register)
+          ? const Dashboard()
+          : AuthDashboard()
     );
   }
 }
