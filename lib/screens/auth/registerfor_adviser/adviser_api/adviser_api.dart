@@ -38,7 +38,7 @@ class AdvirtisersApi {
         "streetName" :streetName,
         "phoneNumber" : phoneNumber,
         "city" :city ,
-        "id_country" : idCountry=="India"?"1":"2",
+        "id_country" : idCountry,
         "postalCode" : postalCode,
         "role" : "advertisers",
         "company" : {
@@ -47,7 +47,7 @@ class AdvirtisersApi {
           "companyNumber": companyNumber,
           "streetName" : streetName,
           "city" : companyCity ,
-          "id_country" :  country=="India"?"1":"2",
+          "id_country" :  country,
           "postalCode" : comapanyPostalCode,
           "website" : website
         }};
@@ -61,7 +61,6 @@ class AdvirtisersApi {
         Get.offAll(() => const Dashboard());
         await PrefService.setValue(PrefKeys.companyRegister, true);
         return advertiserRegisterFromJson(response.body);
-
 
       }
       /*  message == "Failed! Email is already in use!"

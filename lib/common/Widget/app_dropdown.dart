@@ -27,18 +27,18 @@ class AppDropdown extends StatelessWidget {
 
           decoration: BoxDecoration(
             color: ColorRes.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: const [
+            borderRadius: BorderRadius.circular(15),
+            boxShadow:  [
               BoxShadow(
-                color: Colors.grey,
-                offset: Offset(
+                color: Colors.black.withOpacity(0.5),
+                offset: const Offset(
                   2.0,
                   2.0,
                 ),
                 blurRadius: 10.0,
                 spreadRadius: 2.0,
               ), //BoxShadow
-              BoxShadow(
+              const BoxShadow(
                 color: Colors.white,
                 offset: Offset(0.0, 0.0),
                 blurRadius: 0.0,
@@ -50,7 +50,7 @@ class AppDropdown extends StatelessWidget {
           child: ListView.builder(
             itemCount: paramList.length,
             itemBuilder: (context, index) {
-              return Column(
+              return Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   InkWell(
                       onTap: () {
@@ -60,7 +60,7 @@ class AppDropdown extends StatelessWidget {
                       },
                       child: Text(
                         paramList[index],
-                        style: gilroyMediumTextStyle(color: Colors.black,fontSize: 14),
+                        style: gilroyMediumTextStyle(color: Colors.black,fontSize: 16),
                       )),
                   (index + 1) == paramList.length
                       ? const SizedBox()
@@ -96,18 +96,18 @@ class AppDropDownEthnicity extends StatelessWidget {
           width: Get.width * 0.3,
           decoration: BoxDecoration(
             color: ColorRes.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: const [
+            borderRadius: BorderRadius.circular(15),
+            boxShadow:  [
               BoxShadow(
-                color: Colors.grey,
-                offset: Offset(
+                color: Colors.black.withOpacity(0.5),
+                offset: const Offset(
                   2.0,
                   2.0,
                 ),
                 blurRadius: 10.0,
                 spreadRadius: 2.0,
               ), //BoxShadow
-              BoxShadow(
+              const BoxShadow(
                 color: Colors.white,
                 offset: Offset(0.0, 0.0),
                 blurRadius: 0.0,
@@ -130,7 +130,7 @@ class AppDropDownEthnicity extends StatelessWidget {
           ListView.builder(
             itemCount: paramList.length,
             itemBuilder: (context, index) {
-              return Column(
+              return Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   InkWell(
                       onTap: () {
@@ -140,7 +140,7 @@ class AppDropDownEthnicity extends StatelessWidget {
                       },
                       child: Text(
                         paramList[index],
-                        style: gilroyMediumTextStyle(color: Colors.black,fontSize: 14),
+                        style: gilroyMediumTextStyle(color: Colors.black,fontSize: 16),
                       )),
                   (index + 1) == paramList.length
                       ? const SizedBox()
@@ -176,20 +176,20 @@ class AppDropDownNoOfKids extends StatelessWidget {
           width: Get.width * 0.3,
           decoration: BoxDecoration(
             color: ColorRes.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: const [
+            borderRadius: BorderRadius.circular(15),
+            boxShadow:  [
               BoxShadow(
-                color: Colors.grey,
-                offset: Offset(
+                color: Colors.black.withOpacity(0.5),
+                offset: const Offset(
                   2.0,
                   2.0,
                 ),
                 blurRadius: 10.0,
                 spreadRadius: 2.0,
               ), //BoxShadow
-              BoxShadow(
+              const BoxShadow(
                 color: Colors.white,
-                offset: Offset(0.0, 0.0),
+                offset: const Offset(0.0, 0.0),
                 blurRadius: 0.0,
                 spreadRadius: 0.0,
               ), //BoxShadow
@@ -199,7 +199,7 @@ class AppDropDownNoOfKids extends StatelessWidget {
           child: ListView.builder(
             itemCount: paramList.length,
             itemBuilder: (context, index) {
-              return Column(
+              return Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   InkWell(
                       onTap: () {
@@ -240,28 +240,24 @@ class AppDroDownIdType extends StatelessWidget {
     return GetBuilder<IdVerificationController>(
       id: 'IdVerification_screen',
       builder: (controller) {
-        return Container(
+        return Container(height: Get.height *0.12,
           width: Get.width * 0.85,
-          constraints: BoxConstraints(
-            minHeight: Get.height * 0.07,
-            maxHeight: Get.height * 0.1,
-          ),
           decoration: BoxDecoration(
             color: ColorRes.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: const [
+            borderRadius: BorderRadius.circular(15),
+            boxShadow:  [
               BoxShadow(
-                color: Colors.grey,
-                offset: Offset(
+                color: Colors.black.withOpacity(0.5),
+                offset: const Offset(
                   2.0,
                   2.0,
                 ),
                 blurRadius: 10.0,
                 spreadRadius: 2.0,
               ), //BoxShadow
-              BoxShadow(
+              const BoxShadow(
                 color: Colors.white,
-                offset: Offset(0.0, 0.0),
+                offset: const Offset(0.0, 0.0),
                 blurRadius: 0.0,
                 spreadRadius: 0.0,
               ), //BoxShadow
@@ -271,7 +267,7 @@ class AppDroDownIdType extends StatelessWidget {
           child: ListView.builder(
             itemCount: paramList.length,
             itemBuilder: (context, index) {
-              return Column(
+              return Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   InkWell(
                       onTap: () {
@@ -281,7 +277,7 @@ class AppDroDownIdType extends StatelessWidget {
                       },
                       child: Text(
                         paramList[index],
-                        style: gilroyMediumTextStyle(color: Colors.black,fontSize: 14),
+                        style: gilroyMediumTextStyle(color: Colors.black,fontSize: 16),
                       )),
                   (index + 1) == paramList.length
                       ? const SizedBox()
@@ -320,20 +316,20 @@ class AppDropDownProfessionType extends StatelessWidget {
           ),
           decoration: BoxDecoration(
             color: ColorRes.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: const [
+            borderRadius: BorderRadius.circular(15),
+            boxShadow:  [
               BoxShadow(
-                color: Colors.grey,
-                offset: Offset(
+                color: Colors.black.withOpacity(0.5),
+                offset: const Offset(
                   2.0,
                   2.0,
                 ),
                 blurRadius: 10.0,
                 spreadRadius: 2.0,
               ), //BoxShadow
-              BoxShadow(
+              const BoxShadow(
                 color: Colors.white,
-                offset: Offset(0.0, 0.0),
+                offset: const Offset(0.0, 0.0),
                 blurRadius: 0.0,
                 spreadRadius: 0.0,
               ), //BoxShadow
@@ -354,7 +350,7 @@ class AppDropDownProfessionType extends StatelessWidget {
           ListView.builder(
             itemCount: paramList.length,
             itemBuilder: (context, index) {
-              return Column(
+              return Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   InkWell(
                       onTap: () {
@@ -365,7 +361,7 @@ class AppDropDownProfessionType extends StatelessWidget {
                       child: Text(
                         paramList[index],
                         style: gilroyMediumTextStyle(
-                            color: Colors.black, fontSize: 14),
+                            color: Colors.black, fontSize: 16),
                       )),
                   (index + 1) == paramList[index].length
                       ? const SizedBox()

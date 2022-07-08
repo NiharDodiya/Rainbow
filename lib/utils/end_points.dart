@@ -17,6 +17,8 @@ class EndPoints {
   static const createPassword = "${baseUrl}/api/user/createpassword";
   static const mobileCheck = "${baseUrl}/api/user/mobilecheck";
   static const countryList = "${baseUrl}/api/admin/country/list";
+  static const uploadImage = "${baseUrl}/api/upload/image";
+  static const editProfile = "${baseUrl}/api/user/profile/update";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

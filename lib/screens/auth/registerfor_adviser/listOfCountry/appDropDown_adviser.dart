@@ -27,10 +27,10 @@ class AppDropDownAdviser extends StatelessWidget {
 
           decoration: BoxDecoration(
             color: ColorRes.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: const [
+            borderRadius: BorderRadius.circular(15),
+            boxShadow:  [
               BoxShadow(
-                color: Colors.grey,
+                color: Colors.black.withOpacity(0.5),
                 offset: Offset(
                   2.0,
                   2.0,
@@ -50,7 +50,7 @@ class AppDropDownAdviser extends StatelessWidget {
           child: ListView.builder(
             itemCount: paramList.length,
             itemBuilder: (context, index) {
-              return Column(
+              return Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   InkWell(
                       onTap: () {
@@ -60,7 +60,7 @@ class AppDropDownAdviser extends StatelessWidget {
                       },
                       child: Text(
                         paramList[index],
-                        style: gilroyMediumTextStyle(color: Colors.black,fontSize: 14),
+                        style: gilroyMediumTextStyle(color: Colors.black,fontSize: 16),
                       )),
                   (index + 1) == paramList.length
                       ? const SizedBox()

@@ -45,6 +45,7 @@ class AdviserRegisterController extends GetxController {
     for (int i = 0; i < listCountryModel.data!.length; i++) {
       countryCity.add(listCountryModel.data![i].name!);
       countryId.add(listCountryModel.data![i].id!.toString());
+
     }
     update(['register_screen']);
   }
@@ -101,9 +102,18 @@ class AdviserRegisterController extends GetxController {
       update(['address2']);
     }
   }
-
+String? passId;
   void onRegisterTap() {
     if (validation()) {
+      for (int i = 0; i < listCountryModel.data!.length; i++) {
+
+        if(listCountryModel.data![i].name==country.text)
+        {
+         passId=listCountryModel.data![i].id!.toString();
+          print(passId);
+        }
+      }
+
       Get.to(() => DoctorRegisterScreen());
     }
   }

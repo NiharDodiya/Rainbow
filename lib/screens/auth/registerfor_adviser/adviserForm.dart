@@ -71,7 +71,6 @@ class AdviserRegisterForm extends StatelessWidget {
                   controller: controller.city,
                   title: Strings.city,
                   hintText: Strings.city,
-
                   inputPadding: EdgeInsets.only(left: Get.width * 0.04),
                 );
               },
@@ -85,7 +84,7 @@ class AdviserRegisterForm extends StatelessWidget {
                   controller: controller.country,
                   title: Strings.country,
                   hintText: Strings.country,
-                  enable: true,
+                  enable: false,
                   suffix: Image.asset(AssetRes.arrowDown,height: 15,width: 15,),
                 ),
               );

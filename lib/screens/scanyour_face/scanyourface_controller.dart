@@ -11,6 +11,8 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
+import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/screens/auth/verify_phone/verifyphone_screen.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/scanyour_face/scanyourface_api/scanyourface_api.dart';
@@ -98,8 +100,9 @@ class ScanYourFaceController extends GetxController {
     isComplete = true;
     update(["imagePicker"]);
     if (validation() && imageFront != null) {
+      uploadImageApi();
       await PrefService.setValue(PrefKeys.register, true);
-      selfieVerification();
+
 
     }
   }
@@ -118,16 +121,32 @@ class ScanYourFaceController extends GetxController {
 
     return file;
   }
+  UploadImage uploadImage = UploadImage();
 
+
+  Future<void> uploadImageApi() async {
+    loader.value = true;
+    try {
+      await UploadImageApi.postRegister(imageFront.toString()
+      ).then((value) => uploadImage = value!,
+      );
+      loader.value = false;
+      selfieVerification();
+    } catch (e) {
+      errorToast(e.toString());
+      loader.value = false;
+      debugPrint(e.toString());
+    }
+  }
+
+  SelfiVerification selfiVerification =Get.put(SelfiVerification());
   Future<void> selfieVerification() async {
     loader.value = true;
     try {
-      List<SelfiVerification> list = await ScanYourFaceApi.postRegister(image1.toString()
-        );
+      await ScanYourFaceApi.postRegister(uploadImage.data!.id.toString()
+        ).then((value) =>selfiVerification=value);
       loader.value = false;
-      if (list.isNotEmpty) {
-         Get.offAll(() => const Dashboard());
-      }
+
     } catch (e) {
       errorToast(e.toString());
       loader.value = false;

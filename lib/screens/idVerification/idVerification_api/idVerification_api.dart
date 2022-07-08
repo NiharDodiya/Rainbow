@@ -10,7 +10,7 @@ import 'package:rainbow/utils/pref_keys.dart';
 
 
 class IdVerificationApi {
-  static Future<List<IdVerification>> postRegister(
+  static Future postRegister(
       String idType,
       String idNo,
       String idItemFront,
@@ -24,8 +24,8 @@ class IdVerificationApi {
       Map<String, String> param = {
         'id_type':idType,
         'id_no': idNo,
-        'id_item_front':"1" /*idItemFront*/,
-        'id_item_back': "2"/*idItemBack*/,
+        'id_item_front':idItemFront /*idItemFront*/,
+        'id_item_back': idItemBack/*idItemBack*/,
       };
 
       print(param);
@@ -47,13 +47,11 @@ print(response);
       http.Response? response = await HttpService.postApi(url: url,   body: jsonEncode(param),
           header: {"Content-Type": "application/json","x-access-token":accesToken});
       if (response != null && response.statusCode == 200) {
-        IdList.add(idVerificationFromJson(response.body));
+        return idVerificationFromJson(response.body);
       }
       String message = jsonDecode(response!.body)["message"];
     /*  message =="please enter a correct username and password"?errorToast(message):*/flutterToast(message);
 
-
-      return IdList;
     } catch (e) {
       print(e.toString());
       return [];

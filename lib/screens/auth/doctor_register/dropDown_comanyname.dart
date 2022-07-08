@@ -50,7 +50,7 @@ class AppDropDownCompanyCountry extends StatelessWidget {
           ListView.builder(
             itemCount: paramList.length,
             itemBuilder: (context, index) {
-              return Column(
+              return Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   InkWell(
                       onTap: () {
@@ -61,7 +61,7 @@ class AppDropDownCompanyCountry extends StatelessWidget {
                       child: Text(
                         paramList[index],
                         style: gilroyMediumTextStyle(
-                            color: Colors.black, fontSize: 14),
+                            color: Colors.black, fontSize: 16),
                       )),
                   (index + 1) == paramList[index].length
                       ? const SizedBox()

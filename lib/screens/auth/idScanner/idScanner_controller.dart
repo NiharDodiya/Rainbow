@@ -81,12 +81,13 @@ class IdScannerController extends GetxController {
     isComplete = false;
     update();
   }
-
+  IdVerificationController idVerificationController = Get.put(IdVerificationController());
   Future<void> onImageSubmitFront() async {
     IdVerificationController idController = Get.find();
     File image2 = await getCropImage();
     idController.imageFront = image2.path;
     idController.update(['IdVerification_screen']);
+    idVerificationController.uploadImageApi();
     Get.back();
   }
   Future<void> onImageSubmitBack() async {
@@ -94,6 +95,7 @@ class IdScannerController extends GetxController {
     File image2 = await getCropImage();
     idController.imageBack = image2.path;
     idController.update(['IdVerification_screen']);
+    idVerificationController.uploadImageBackApi();
     Get.back();
   }
 

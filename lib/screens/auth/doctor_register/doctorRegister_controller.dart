@@ -132,10 +132,20 @@ class DoctorRegisterController extends GetxController {
   AdviserRegisterController controller = Get.put(AdviserRegisterController());
 
   AdvertiserRegister advertiserRegister = AdvertiserRegister();
-
+String? codeId;
   Future<void> companyRegister() async {
     loader.value = true;
     try {
+      for (int i = 0; i < listCountryModel.data!.length; i++) {
+        if(listCountryModel.data![i].name==country.text)
+        {
+          codeId=listCountryModel.data![i].id!.toString();
+          print(codeId);
+        }
+   /*       countryCity.add(listCountryModel.data![i].name!);
+        countryId.add(listCountryModel.data![i].id!.toString());*/
+        print(codeId);
+      }
       await AdvirtisersApi.postRegister(
               controller.fullNameController.text,
               controller.emailController.text,
@@ -144,20 +154,23 @@ class DoctorRegisterController extends GetxController {
               controller.streetName.text,
               "+${controller.countryModel.phoneCode + controller.phoneNumber.text}",
               controller.city.text,
-              controller.country.text,
+              controller.passId.toString(),
               controller.postalCode.text,
               profession.text,
               comanyName.text,
               companyNumber.text,
               streetName.text,
               city.text,
-              country.text,
+          codeId.toString(),
               postalCode.text,
               website.text)
           .then(
         (value) => advertiserRegister = value!,
       );
+
       loader.value = false;
+
+     await  PrefService.setValue(PrefKeys.advirtisersToken, advertiserRegister.token.toString());
     } catch (e) {
       errorToast(e.toString());
       loader.value = false;
