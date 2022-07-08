@@ -5,6 +5,7 @@ import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/adviserForm.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/appDropDown_adviser.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/registeradviser_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -66,13 +67,13 @@ class AdviserRegisterScreen extends StatelessWidget {
                                 ),
                               );
                             },),
-                            !controller.ethnicityDropdown
+                            !controller.countryCityDropdown
                                 ? const SizedBox()
                                 : Positioned(
-                              top: Get.height * 1.34,width: Get.width * 0.8,
-                              child: AppDropDownEthnicity(
-                                paramList: controller.ethnicityList,
-                                onTap: controller.onEthnicityChange,
+                              top: Get.height * 1.35,width: Get.width * 0.8,
+                              child: AppDropDownAdviser(
+                                paramList: controller.countryCity,
+                                onTap: controller.onCountryCityChange,
                               ),
                             ),
 

@@ -3,22 +3,26 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/auth/doctor_register/doctor_registerApi/docotor_companyJson.dart';
 import 'package:rainbow/screens/auth/doctor_register/doctor_registerApi/doctor_companyregisterApi.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/adviser_api/adviser_api.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/adviser_api/adviser_json.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountry_json.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/registeradviser_controller.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class DoctorRegisterController extends GetxController {
-  TextEditingController profession = TextEditingController(text: "Doctor");
-  TextEditingController comanyName = TextEditingController(text: "abcd");
-  TextEditingController companyNumber = TextEditingController(text: "1234");
+  TextEditingController profession = TextEditingController();
+  TextEditingController comanyName = TextEditingController();
+  TextEditingController companyNumber = TextEditingController();
 
-  TextEditingController streetName =
-      TextEditingController(text: "motavarachha");
-  TextEditingController city = TextEditingController(text: "surat");
-  TextEditingController country = TextEditingController(text: "1");
-  TextEditingController postalCode = TextEditingController(text: "123125");
-  TextEditingController website = TextEditingController(/*text: "1"*/);
+  TextEditingController streetName = TextEditingController();
+  TextEditingController city = TextEditingController();
+  TextEditingController country = TextEditingController();
+  TextEditingController postalCode = TextEditingController();
+  TextEditingController website = TextEditingController();
 
   String selectedLocation = Strings.single;
 
@@ -27,21 +31,44 @@ class DoctorRegisterController extends GetxController {
     Strings.admin,
     Strings.endUsers,
   ];
+  List<String> countryCity = [];
+  List<String> countryId = [];
 
   bool professions = false;
   bool kidsDropdown = false;
   RxBool loader = false.obs;
+  bool countryCityDropdown = false;
 
   void onInit() {
+    countryName();
     update(['doctor']);
     super.onInit();
   }
 
-  void onStatusChange(String value) {
-    country.text = value;
+  void getCountry() {
+    for (int i = 0; i < listCountryModel.data!.length; i++) {
+      countryCity.add(listCountryModel.data![i].name!);
+      countryId.add(listCountryModel.data![i].id!.toString());
+    }
     update(['doctor']);
   }
 
+/*  void onStatusChange(String value) {
+    country.text = value;
+    update(['doctor']);
+  }*/
+  void onCountryCoCityChange(String value) {
+    country.text = value;
+    update(['doctor']);
+  }
+  void onCountryCoCitySelect() {
+    if (countryCityDropdown == false) {
+      countryCityDropdown = true;
+    } else {
+      countryCityDropdown = false;
+    }
+    update(['doctor']);
+  }
   void onProfessionOnTap() {
     if (professions == false) {
       professions = true;
@@ -59,9 +86,20 @@ class DoctorRegisterController extends GetxController {
   Future<void> onRegisterTap() async {
     if (validation()) {
       companyRegister();
-      await PrefService.setValue(PrefKeys.companyRegister, true);
-      Get.to(const Dashboard());
-
+    }
+  }
+  ListCountryModel listCountryModel = ListCountryModel();
+  Future<void> countryName() async {
+    loader.value = true;
+    try {
+      await ListOfCountryApi.postRegister()
+          .then((value) => listCountryModel = value!);
+      getCountry();
+      loader.value = false;
+    } catch (e) {
+      errorToast(e.toString());
+      loader.value = false;
+      debugPrint(e.toString());
     }
   }
 
@@ -91,20 +129,35 @@ class DoctorRegisterController extends GetxController {
     return true;
   }
 
+  AdviserRegisterController controller = Get.put(AdviserRegisterController());
+
+  AdvertiserRegister advertiserRegister = AdvertiserRegister();
+
   Future<void> companyRegister() async {
     loader.value = true;
     try {
-      List<CompanyRegister> list = await DoctorCompanyRegister.postRegister(
-        profession.text,
-        comanyName.text,
-        companyNumber.text,
-        streetName.text,
-        city.text,country.text,postalCode.text,website.text
+      await AdvirtisersApi.postRegister(
+              controller.fullNameController.text,
+              controller.emailController.text,
+              controller.pwdController.text,
+              controller.houseNumber.text,
+              controller.streetName.text,
+              "+${controller.countryModel.phoneCode + controller.phoneNumber.text}",
+              controller.city.text,
+              controller.country.text,
+              controller.postalCode.text,
+              profession.text,
+              comanyName.text,
+              companyNumber.text,
+              streetName.text,
+              city.text,
+              country.text,
+              postalCode.text,
+              website.text)
+          .then(
+        (value) => advertiserRegister = value!,
       );
       loader.value = false;
-           if (list.isNotEmpty) {
-        Get.to(() => const Dashboard());
-      }
     } catch (e) {
       errorToast(e.toString());
       loader.value = false;

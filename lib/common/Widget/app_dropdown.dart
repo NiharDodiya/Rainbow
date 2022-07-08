@@ -22,12 +22,9 @@ class AppDropdown extends StatelessWidget {
     return GetBuilder<RegisterController>(
       id: 'register_screen',
       builder: (controller) {
-        return Container(
+        return Container(height: Get.height*0.15,
           width: Get.width * 0.3,
-          constraints: BoxConstraints(
-            minHeight: Get.height * 0.04,
-            maxHeight: Get.height * 0.1,
-          ),
+
           decoration: BoxDecoration(
             color: ColorRes.white,
             borderRadius: BorderRadius.circular(20),
@@ -95,11 +92,8 @@ class AppDropDownEthnicity extends StatelessWidget {
       id: 'register_screen',
       builder: (controller) {
         return Container(
+          height: Get.height*0.19,
           width: Get.width * 0.3,
-          constraints: BoxConstraints(
-            minHeight: Get.height * 0.04,
-            maxHeight: Get.height * 0.1,
-          ),
           decoration: BoxDecoration(
             color: ColorRes.white,
             borderRadius: BorderRadius.circular(20),
@@ -178,12 +172,8 @@ class AppDropDownNoOfKids extends StatelessWidget {
       id: RegisterController,
       builder: (controller) {
         return Container(
-          width: Get.width * 0.2,
-          constraints: BoxConstraints(
-            minHeight: Get.height * 0.0739,
-            maxHeight: Get.height * 0.18,
-
-          ),
+          height: Get.height*0.3,
+          width: Get.width * 0.3,
           decoration: BoxDecoration(
             color: ColorRes.white,
             borderRadius: BorderRadius.circular(20),
@@ -308,13 +298,13 @@ class AppDroDownIdType extends StatelessWidget {
 
 class AppDropDownProfessionType extends StatelessWidget {
   final List<String> paramList;
-final Function(String) onTap;
+  final Function(String) onTap;
 
-const AppDropDownProfessionType({
-  Key? key,
-  required this.paramList,
-  required this.onTap,
-}) : super(key: key);
+  const AppDropDownProfessionType({
+    Key? key,
+    required this.paramList,
+    required this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -350,7 +340,7 @@ const AppDropDownProfessionType({
             ],
           ),
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          child:/*DropdownButton<String>(
+          child: /*DropdownButton<String>(
             items: <String>['A', 'B', 'C', 'D'].map((String value) {
               return DropdownMenuItem<String>(
                 value: value,
@@ -362,21 +352,22 @@ const AppDropDownProfessionType({
             },
           )*/
           ListView.builder(
-            itemCount:paramList.length,
+            itemCount: paramList.length,
             itemBuilder: (context, index) {
               return Column(
                 children: [
                   InkWell(
                       onTap: () {
-                        controller.profession.text =paramList[index];
-                        controller.professions=false;
+                        controller.profession.text = paramList[index];
+                        controller.professions = false;
                         controller.update(['doctor']);
                       },
                       child: Text(
                         paramList[index],
-                        style: gilroyMediumTextStyle(color: Colors.black,fontSize: 14),
+                        style: gilroyMediumTextStyle(
+                            color: Colors.black, fontSize: 14),
                       )),
-                  (index + 1) ==paramList[index].length
+                  (index + 1) == paramList[index].length
                       ? const SizedBox()
                       : const Divider(),
                 ],
@@ -387,5 +378,4 @@ const AppDropDownProfessionType({
       },
     );
   }
-
 }

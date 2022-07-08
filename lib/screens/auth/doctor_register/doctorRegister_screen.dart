@@ -7,6 +7,7 @@ import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/auth/doctor_register/doctorRegister_controller.dart';
 import 'package:rainbow/screens/auth/doctor_register/doctorRegister_form.dart';
+import 'package:rainbow/screens/auth/doctor_register/dropDown_comanyname.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -69,6 +70,16 @@ class DoctorRegisterScreen extends StatelessWidget {
                             ),
                                   ),
                                 ),
+
+                            !controller.countryCityDropdown
+                                ? const SizedBox()
+                                : Positioned(
+                              top: Get.height * 1.065,width: Get.width * 0.8,
+                              child: AppDropDownCompanyCountry(
+                                paramList: controller.countryCity,
+                                onTap: controller.onCountryCoCityChange,
+                              ),
+                            ),
 
                           ],
                         );

@@ -56,11 +56,16 @@ class DoctorRegisterForm extends StatelessWidget {
             GetBuilder<DoctorRegisterController>(
               id: 'doctor',
               builder: (controller) {
-                return AppTextFiled(
-                  controller: controller.country,
-                  title: Strings.country,
-                  hintText: Strings.country,
-                  multiLine: true,
+                return GestureDetector(onTap: () {
+                  controller.onCountryCoCitySelect();
+                },
+                  child: AppTextFiled(
+                    controller: controller.country,
+                    title: Strings.country,
+                    hintText: Strings.country,
+                    multiLine: true,
+                    suffix: Image.asset(AssetRes.arrowDown,height: 15,width: 15,),
+                  ),
                 );
               },
             ),
