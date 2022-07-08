@@ -14,15 +14,18 @@ Widget appbar() {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Container(
-            height: 34,
-            width: 34,
-            margin: const EdgeInsets.only(right: 9),
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: AssetImage(
-                  AssetRes.advertiserImage,
+          InkWell(
+            onTap: () => Drawer(),
+            child: Container(
+              height: 34,
+              width: 34,
+              margin: const EdgeInsets.only(right: 9),
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage(
+                    AssetRes.advertiserImage,
+                  ),
                 ),
               ),
             ),
