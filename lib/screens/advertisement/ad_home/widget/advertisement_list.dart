@@ -58,7 +58,8 @@ Widget advertisementList() {
                             style: gilroyMediumTextStyle(
                                 fontSize: 10, color: ColorRes.color_F86666),
                           ),
-                        ]),
+                        ],
+                        ),
                       ),
                       Spacer(),
                       InkWell(

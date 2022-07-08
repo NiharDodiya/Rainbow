@@ -405,8 +405,8 @@ class PaymentCards extends StatelessWidget {
                   width: Get.width * 0.060986,
                 ),
                 Text(
-                  Strings.cardobsecure,
-                  style: montserratboldTextStyle(
+                  "• • • •",
+                  style: gilroyBoldTextStyle(
                     fontSize: 15.25,
                   ),
                 ),
@@ -417,6 +417,7 @@ class PaymentCards extends StatelessWidget {
                   Strings.carddigits,
                   style: montserratMediumTextStyle(
                     fontSize: 15.25,
+                    letterSpacing: 3
                   ),
                 ),
               ],

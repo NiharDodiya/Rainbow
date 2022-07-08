@@ -177,12 +177,8 @@ TextStyle textStyleFont14BlueW500 = const TextStyle(
   fontWeight: FontWeight.w600,
 );
 
-TextStyle textStyleFont14White400 = const TextStyle(
-  color: ColorRes.white,
-  fontSize: 14,
-  fontFamily: "Gilroy-Light",
-  fontWeight: FontWeight.w400,
-);
+
+
 
 TextStyle textStyleFont12Gre97 = const TextStyle(
   color: ColorRes.color_979797,
@@ -248,14 +244,7 @@ TextStyle montserratRegularTextStyle({Color? color,double? fontSize,FontWeight? 
     letterSpacing: letterSpacing?? 0
   );
 }
-TextStyle montserratboldTextStyle({Color? color,double? fontSize,FontWeight? fontWeight}){
-  return TextStyle(
-    color: color??ColorRes.white,
-    fontWeight: FontWeight.w900,
-    fontSize: fontSize??18,
-    fontFamily: FontRes.montserratRegular,
-  );
-}
+
 TextStyle montserratMediumTextStyle({Color? color,double? fontSize,FontWeight? fontWeight}){
   return TextStyle(
     color: color??ColorRes.white,

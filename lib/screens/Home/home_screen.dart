@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/Story/story_screen.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
+import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Home/settings/settings_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -10,8 +11,8 @@ import 'package:rainbow/utils/strings.dart';
 import 'package:story_view/story_view.dart';
 
 class HomeScreen extends StatelessWidget {
-   HomeScreen({Key? key}) : super(key: key);
-  HomeController controller =Get.put(HomeController());
+  HomeScreen({Key? key}) : super(key: key);
+  HomeController controller = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +37,14 @@ class HomeScreen extends StatelessWidget {
               ),
               Text(
                 "Bexley, London",
-                style: gilroyBoldTextStyle(color: Colors.black,fontSize: 16),
+                style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
               ),
               SizedBox(
                 width: Get.width * 0.37,
               ),
               GestureDetector(
                 onTap: () {
-                  Get.to(() =>  SettingsScreen());
+                  Get.to(() => SettingsScreen());
                 },
                 child: const Image(
                   image: AssetImage(
@@ -56,9 +57,8 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 width: Get.width * 0.04,
               ),
-              InkWell(onTap: () {
-
-              },
+              InkWell(
+                onTap: () {},
                 child: const Image(
                   image: AssetImage(AssetRes.notify),
                   height: 20,
@@ -136,7 +136,8 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(
                         height: Get.height * 0.02,
                       ),
-                      InkWell(onTap: controller.myStoryOnTap,
+                      InkWell(
+                        onTap: controller.myStoryOnTap,
                         child: Stack(
                           children: [
                             Container(
@@ -145,7 +146,8 @@ class HomeScreen extends StatelessWidget {
                               decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   image: DecorationImage(
-                                      image: AssetImage(AssetRes.selfiePicture))),
+                                      image:
+                                          AssetImage(AssetRes.selfiePicture))),
                             ),
                             Positioned(
                                 top: Get.height * 0.04,
@@ -163,8 +165,8 @@ class HomeScreen extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   boxShadow: [
                                     BoxShadow(
-                                      color:
-                                          ColorRes.color_B9A2FD.withOpacity(0.3),
+                                      color: ColorRes.color_B9A2FD
+                                          .withOpacity(0.3),
                                       spreadRadius: 1,
                                       blurRadius: 10,
                                       offset: const Offset(4, 5),
@@ -264,13 +266,17 @@ class HomeScreen extends StatelessWidget {
           ),
           Align(
               alignment: Alignment.bottomRight,
+              child: InkWell(
+                onTap: () {
+                  Get.to(()=>ConnectionsScreen());
+                },
               child: Padding(
                 padding: const EdgeInsets.only(right: 12.0),
                 child: Text(
                   Strings.seeAll,
                   style: gilroyBoldTextStyle(fontSize: 12,color:  ColorRes.color_9597A1),
                 ),
-              )),
+              ),),),
           const SizedBox(
             height: 5,
           ),
@@ -285,14 +291,16 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(
-                          left: 12.0, right: 10, bottom: 14),
+                          left: 10, right: 10, bottom: 14),
                       child: Container(
-                        height: 56,
-                        width: 56,
+                        height: 50,
+                        width: 50,
                         decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                                image: AssetImage(AssetRes.selfiePicture))),
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            image: AssetImage(AssetRes.selfiePicture),
+                          ),
+                        ),
                       ),
                     ),
                     Column(
@@ -300,11 +308,13 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         Text(
                           "Amber J Santiago",
-                          style: gilroyBoldTextStyle(color: Colors.black,fontSize: 16),
+                          style: montserratRegularTextStyle(
+                              color: Colors.black, fontSize: 16),
                         ),
                         Text(
                           "Surrogate MoM",
-                          style: textStyleFont12Gre97,
+                          style: montserratRegularTextStyle(
+                              color: Colors.black, fontSize: 12),
                         ),
                         SizedBox(
                           height: Get.height * 0.03,
@@ -312,14 +322,17 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      width: Get.width * 0.13,
+                      width: Get.width * 0.11,
                     ),
                     const Padding(
                       padding: EdgeInsets.only(bottom: 20.0),
                       child: SizedBox(
-                          height: 40,
-                          width: 40,
-                          child: Image(image: AssetImage(AssetRes.profilep))),
+                        height: 40,
+                        width: 40,
+                        child: Image(
+                          image: AssetImage(AssetRes.profilep),
+                        ),
+                      ),
                     ),
                     SizedBox(
                       width: Get.width * 0.04,
@@ -522,7 +535,8 @@ class HomeScreen extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 2.0),
                                     child: Text(
                                       "7",
-                                      style: gilroyMediumTextStyle(fontSize: 10),
+                                      style:
+                                          gilroyMediumTextStyle(fontSize: 10),
                                     ),
                                   ),
                                   SizedBox(
@@ -542,7 +556,8 @@ class HomeScreen extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 2.0),
                                     child: Text(
                                       "5",
-                                      style: gilroyMediumTextStyle(fontSize: 10),
+                                      style:
+                                          gilroyMediumTextStyle(fontSize: 10),
                                     ),
                                   ),
                                   SizedBox(
@@ -560,7 +575,8 @@ class HomeScreen extends StatelessWidget {
                                     padding: const EdgeInsets.only(top: 5.0),
                                     child: Text(
                                       "8",
-                                      style: gilroyMediumTextStyle(fontSize: 10),
+                                      style:
+                                          gilroyMediumTextStyle(fontSize: 10),
                                     ),
                                   ),
                                   SizedBox(
@@ -621,16 +637,16 @@ class _MoreStoriesState extends State<MoreStories> {
                   fontSize: 40,
                 ),
               ),
-           /*   StoryItem.pageImage(
+              /*   StoryItem.pageImage(
                 url: "https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif",
                 caption: "Still sampling",
                 controller: storyController,
               ),*/
-           /*   StoryItem.pageImage(
+              /*   StoryItem.pageImage(
                   url: "https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif",
                   caption: "Working with gifs",
                   controller: storyController),*/
-            /*  StoryItem.pageImage(
+              /*  StoryItem.pageImage(
                 url: "https://media.giphy.com/media/XcA8krYsrEAYXKf4UQ/giphy.gif",
                 caption: "Hello, from the other side",
                 controller: storyController,
@@ -641,17 +657,16 @@ class _MoreStoriesState extends State<MoreStories> {
                 controller: storyController,
               ),*/
             ],
-            onStoryShow: (s) {
-            },
-            onComplete: () {
-            },
+            onStoryShow: (s) {},
+            onComplete: () {},
             progressPosition: ProgressPosition.top,
             repeat: false,
             controller: storyController,
           ),
         ),
       ),
-      bottomNavigationBar: Container(color: Colors.black,
+      bottomNavigationBar: Container(
+        color: Colors.black,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
@@ -692,5 +707,3 @@ class _MoreStoriesState extends State<MoreStories> {
     );
   }
 }
-
-
