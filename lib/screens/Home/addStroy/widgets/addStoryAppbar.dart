@@ -30,7 +30,7 @@ Widget addStoryAppBar(AddStoryController controller) {
         ),
         Text(
           Strings.addToStory,
-          style: beVietnamRegularTextStyle(
+          style: beVietnamProMediumTextStyle(
               fontSize: 16, color: ColorRes.color_252525),
         ),
         SizedBox(
@@ -38,7 +38,7 @@ Widget addStoryAppBar(AddStoryController controller) {
         ),
         Text(
           Strings.post,
-          style: beVietnamRegularTextStyle(
+          style: beVietnamProMediumTextStyle(
               fontSize: 13, color: ColorRes.color_252525),
         )
       ],

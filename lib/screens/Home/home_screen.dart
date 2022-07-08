@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/Story/story_screen.dart';
+import 'package:rainbow/screens/Home/comments/comments_screen.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Home/settings/settings_screen.dart';
@@ -265,18 +266,21 @@ class HomeScreen extends StatelessWidget {
             height: 10,
           ),
           Align(
-              alignment: Alignment.bottomRight,
-              child: InkWell(
-                onTap: () {
-                  Get.to(()=>ConnectionsScreen());
-                },
+            alignment: Alignment.bottomRight,
+            child: InkWell(
+              onTap: () {
+                Get.to(() => ConnectionsScreen());
+              },
               child: Padding(
                 padding: const EdgeInsets.only(right: 12.0),
                 child: Text(
                   Strings.seeAll,
-                  style: gilroyBoldTextStyle(fontSize: 12,color:  ColorRes.color_9597A1),
+                  style: gilroyBoldTextStyle(
+                      fontSize: 12, color: ColorRes.color_9597A1),
                 ),
-              ),),),
+              ),
+            ),
+          ),
           const SizedBox(
             height: 5,
           ),
@@ -421,7 +425,8 @@ class HomeScreen extends StatelessWidget {
                                     children: [
                                       Text(
                                         "Sally Wilson",
-                                        style: gilroyBoldTextStyle(fontSize: 16),
+                                        style:
+                                            gilroyBoldTextStyle(fontSize: 16),
                                       ),
                                       const SizedBox(
                                         height: 3,
@@ -542,13 +547,18 @@ class HomeScreen extends StatelessWidget {
                                   SizedBox(
                                     width: Get.width * 0.05,
                                   ),
-                                  const SizedBox(
-                                      height: 16,
-                                      width: 16,
-                                      child: Image(
-                                        image: AssetImage(AssetRes.comment),
-                                        color: Colors.white,
-                                      )),
+                                  InkWell(
+                                    onTap: (){
+                                      Get.to(()=>const CommentsScreen());
+                                    },
+                                    child: const SizedBox(
+                                        height: 16,
+                                        width: 16,
+                                        child: Image(
+                                          image: AssetImage(AssetRes.comment),
+                                          color: Colors.white,
+                                        ),),
+                                  ),
                                   const SizedBox(
                                     width: 2,
                                   ),
@@ -624,7 +634,7 @@ class _MoreStoriesState extends State<MoreStories> {
           height: Get.height * 1,
           child: StoryView(
             storyItems: [
-             /* StoryItem.text(
+              /* StoryItem.text(
                 title:
                     "I guess you'd love to see more of our food. That's great.",
                 backgroundColor: Colors.blue,

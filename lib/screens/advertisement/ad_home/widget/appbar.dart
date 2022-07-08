@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/advertisement_controlle.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
 Widget appbar() {
   AdHomeController controller = Get.find<AdHomeController>();
+  AdvertisementController advertisementController = Get.find<AdvertisementController>();
   return SizedBox(
     width: Get.width,
     child: Padding(
@@ -15,7 +17,9 @@ Widget appbar() {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           InkWell(
-            onTap: () => Drawer(),
+            onTap: (){
+              advertisementController.key.currentState!.openDrawer();
+            },
             child: Container(
               height: 34,
               width: 34,

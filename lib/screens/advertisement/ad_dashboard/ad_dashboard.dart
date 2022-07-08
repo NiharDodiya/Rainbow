@@ -15,10 +15,10 @@ class AdvertisementDashBord extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AdvertisementController controller =
-        Get.put(AdvertisementController());
+    final AdvertisementController controller = Get.put(AdvertisementController());
     return Scaffold(
-      // drawer: Drawer(),
+      key: controller.key,
+      drawer: Drawer(),
       backgroundColor: ColorRes.white,
       body: Container(
         decoration: const BoxDecoration(

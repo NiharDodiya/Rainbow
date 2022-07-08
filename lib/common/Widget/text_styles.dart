@@ -177,9 +177,6 @@ TextStyle textStyleFont14BlueW500 = const TextStyle(
   fontWeight: FontWeight.w600,
 );
 
-
-
-
 TextStyle textStyleFont12Gre97 = const TextStyle(
   color: ColorRes.color_979797,
   fontSize: 12,
@@ -269,44 +266,33 @@ TextStyle beVietnamProRegularTextStyle({Color? color,double? fontSize,}){
   return TextStyle(
     color: color??ColorRes.white,
     fontWeight: FontWeight.w500,
-    fontSize: fontSize??14,
+    fontSize: fontSize??12,
     fontFamily: FontRes.beVietnamProRegular,
   );
 }
-
-TextStyle textStylField16w500 = const TextStyle(
-  color: ColorRes.color_49A510,
-  fontSize: 16,
-  fontFamily:FontRes.gilroyMedium,
-  fontWeight: FontWeight.w500,
-);
-TextStyle textStylField16wyellow = const TextStyle(
-  color: ColorRes.color_FFA800,
-  fontSize: 16,
-  fontFamily: FontRes.gilroyMedium,
-  fontWeight: FontWeight.w500,
-);
-
-TextStyle beVietnamRegularTextStyle({Color? color,double? fontSize,}){
+TextStyle beVietnamProMediumTextStyle({Color? color,double? fontSize,}){
   return TextStyle(
     color: color??ColorRes.white,
     fontWeight: FontWeight.w500,
-    fontSize: fontSize??18,
-    fontFamily: FontRes.beVietnamProBold,
+    fontSize: fontSize??14,
+    fontFamily: FontRes.beVietnamProMedium,
   );
-}TextStyle beVietnamSemiBoldTextStyle({Color? color,double? fontSize}){
+}
+TextStyle beVietnamSemiBoldTextStyle({Color? color,double? fontSize}){
   return TextStyle(
     color: color??ColorRes.white,
     fontWeight: FontWeight.w600,
-    fontSize: fontSize??18,
+    fontSize: fontSize??16,
     fontFamily: FontRes.beVietnamProSemiBold,
   );
 }
+
+
 TextStyle sfProTextReguler({Color? color,double? fontSize}){
   return TextStyle(
     color: color??ColorRes.white,
     fontWeight: FontWeight.w400,
-    fontSize: fontSize??18,
+    fontSize: fontSize??12,
     fontFamily: FontRes.sFProText,
   );
 }

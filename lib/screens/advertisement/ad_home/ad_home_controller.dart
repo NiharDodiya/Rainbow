@@ -1,7 +1,11 @@
 import 'package:get/get.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/advertisement_controlle.dart';
 import 'package:rainbow/utils/asset_res.dart';
 
 class AdHomeController extends GetxController {
+
+  //AdvertisementController advController = Get.put(AdvertisementController());
+
   RxBool loader = false.obs;
   bool listShow = false;
   List imageList = [
