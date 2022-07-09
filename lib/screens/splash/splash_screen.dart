@@ -13,6 +13,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller.onInit();
     return GetBuilder<SplashController>(
       id: "splash",
       builder: (controller) {

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/adviser_api/adviser_json.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/service/http_services.dart';
@@ -58,7 +59,7 @@ class AdvirtisersApi {
           body: jsonEncode(param),
           header: {"Content-Type": "application/json"});
       if (response != null && response.statusCode == 200) {
-        Get.offAll(() => const Dashboard());
+        Get.offAll(() => const AdvertisementDashBord());
         await PrefService.setValue(PrefKeys.companyRegister, true);
         return advertiserRegisterFromJson(response.body);
 

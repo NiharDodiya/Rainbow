@@ -15,6 +15,7 @@ class AuthDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller.onInti();
     return GetBuilder<AuthDashBordController>(
       id: "auth",
       builder: (controller) {
@@ -214,7 +215,8 @@ class AuthDashboard extends StatelessWidget {
           ),
         ),
         sizedBox14(),
-        GestureDetector(onTap:controller.onSignUpTap,
+        InkWell(
+          onTap: ()=> controller.onSignUpTap(),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/get_core.dart';
-import 'package:get/get_instance/get_instance.dart';
 import 'package:rainbow/common/Widget/app_dropdown.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
+import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/auth/doctor_register/doctorRegister_controller.dart';
 import 'package:rainbow/screens/auth/doctor_register/doctorRegister_form.dart';
@@ -12,7 +11,6 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
-import '../../../common/Widget/loaders.dart';
 
 class DoctorRegisterScreen extends StatelessWidget {
   DoctorRegisterScreen({Key? key}) : super(key: key);
@@ -60,29 +58,29 @@ class DoctorRegisterScreen extends StatelessWidget {
                                 registerButtons(controller),
                               ],
                             ),
-                            !controller.professions
-                                ? const SizedBox()
-                                : Positioned(
-                                    top: Get.height * 0.35,
-                                    child: SizedBox(
-                                      height: Get.height * 0.2,
-                                      width: Get.width * 0.79,
-                                      child: AppDropDownProfessionType(
-                                        paramList: controller.professionList,
-                                        onTap: controller.onProfessionChange,
-                                      ),
-                                    ),
-                                  ),
-                            !controller.countryCityDropdown
-                                ? const SizedBox()
-                                : Positioned(
-                                    top: Get.height * 1.065,
-                                    width: Get.width * 0.8,
-                                    child: AppDropDownCompanyCountry(
-                                      paramList: controller.countryCity,
-                                      onTap: controller.onCountryCoCityChange,
-                                    ),
-                                  ),
+
+                            // !controller.professions
+                            //     ? const SizedBox()
+                            //     : Positioned(top: Get.height*0.35,
+                            //       child: SizedBox(height: Get.height*0.2,
+                            //         width: Get.width * 0.79,
+                            //         child: AppDropDownProfessionType(
+                            //   paramList: controller.professionList,
+                            //   onTap: controller.onProfessionChange,
+                            // ),
+                            //       ),
+                            //     ),
+
+                            // !controller.countryCityDropdown
+                            //     ? const SizedBox()
+                            //     : Positioned(
+                            //   top: Get.height * 1.065,width: Get.width * 0.8,
+                            //   child: AppDropDownCompanyCountry(
+                            //     paramList: controller.countryCity,
+                            //     onTap: controller.onCountryCoCityChange,
+                            //   ),
+                            // ),
+
                           ],
                         );
                       },
@@ -115,7 +113,9 @@ class DoctorRegisterScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+
+              },
               child: Text(
                 Strings.signIn,
                 style: textStyleFont14WhiteBold,

@@ -12,8 +12,8 @@ import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class AdviserRegisterScreen extends StatelessWidget {
-   AdviserRegisterScreen({Key? key}) : super(key: key);
-   AdviserRegisterController controller = Get.put(AdviserRegisterController());
+  AdviserRegisterScreen({Key? key}) : super(key: key);
+  AdviserRegisterController controller = Get.put(AdviserRegisterController());
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +24,9 @@ class AdviserRegisterScreen extends StatelessWidget {
             children: [
               SingleChildScrollView(
                   padding: EdgeInsets.all(Get.width * 0.02667),
-                  child:Container(
-                    padding: EdgeInsets.symmetric(horizontal: Get.width * 0.0733),
+                  child: Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: Get.width * 0.0733),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(36),
                       color: ColorRes.color_4F359B,
@@ -50,46 +51,46 @@ class AdviserRegisterScreen extends StatelessWidget {
                                 SizedBox(height: Get.height * 0.02094),
 
                                 /// form
-                                 AdviserRegisterForm(),
+                                AdviserRegisterForm(),
 
                                 /// register button
                                 registerButtons(controller),
                               ],
                             ),
-                            GetBuilder<AdviserRegisterController>(id: 'register_screen' ,builder: (controller) {
-                              return     !controller.martialStatusDropdown
-                                  ? const SizedBox()
-                                  : Positioned(
-                                top: Get.height * 1.213,width: Get.width * 0.8,
-                                child: AppDropdown(
-                                  paramList: controller.martialStatusList,
-                                  onTap: controller.onStatusChange,
-                                ),
-                              );
-                            },),
-                            !controller.countryCityDropdown
-                                ? const SizedBox()
-                                : Positioned(
-                              top: Get.height * 1.35,width: Get.width * 0.8,
-                              child: AppDropDownAdviser(
-                                paramList: controller.countryCity,
-                                onTap: controller.onCountryCityChange,
-                              ),
+                            GetBuilder<AdviserRegisterController>(
+                              id: 'register_screen',
+                              builder: (controller) {
+                                return !controller.martialStatusDropdown
+                                    ? const SizedBox()
+                                    : Positioned(
+                                        top: Get.height * 1.213,
+                                        width: Get.width * 0.8,
+                                        child: AppDropdown(
+                                          paramList:
+                                              controller.martialStatusList,
+                                          onTap: controller.onStatusChange,
+                                        ),
+                                      );
+                              },
                             ),
-
+                            // !controller.countryCityDropdown
+                            //     ? const SizedBox()
+                            //     : Positioned(
+                            //   top: Get.height * 1.35,width: Get.width * 0.8,
+                            //   child: AppDropDownAdviser(
+                            //     paramList: controller.countryCity,
+                            //     onTap: controller.onCountryCityChange,
+                            //   ),
+                            // ),
                           ],
                         );
                       },
                     ),
-                  )
-              ),
-              controller.loader.isTrue?const SmallLoader():const SizedBox()
-
-
+                  )),
+              controller.loader.isTrue ? const SmallLoader() : const SizedBox()
             ],
           );
-        })
-    );
+        }));
   }
 
   Widget registerButtons(AdviserRegisterController controller) {

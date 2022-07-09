@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/country_name.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/registeradviser_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -20,24 +22,24 @@ class AdviserRegisterForm extends StatelessWidget {
             AppTextFiled(
               controller: controller.fullNameController,
               title: Strings.fullName,
-              hintText: Strings.fullName,
+              hintText: "Margarette Murray",
             ),
             AppTextFiled(
               controller: controller.emailController,
               title: Strings.email,
-              hintText: Strings.email,
+              hintText: "mmurray123@gmail.com",
               textInputType: TextInputType.emailAddress,
             ),
             AppTextFiled(
               controller: controller.pwdController,
               title: Strings.password,
-              hintText: Strings.password,
+              hintText: "************",
               obscure: true,
             ),
             AppTextFiled(
               controller: controller.confirmPwdController,
               title: Strings.reTypePassword,
-              hintText: Strings.reTypePassword,
+              hintText: "************",
               obscure: true,
             ),
             GetBuilder<AdviserRegisterController>(
@@ -46,7 +48,7 @@ class AdviserRegisterForm extends StatelessWidget {
                 return AppTextFiled(
                   controller: controller.houseNumber,
                   title: Strings.houseNumber,
-                  hintText: Strings.houseNumber,
+                  hintText: "123",
                   multiLine: true,
                   onChange: controller.onAddress1Change,
                 );
@@ -58,7 +60,7 @@ class AdviserRegisterForm extends StatelessWidget {
                 return AppTextFiled(
                   controller: controller.streetName,
                   title: Strings.streetName,
-                  hintText: Strings.streetName,
+                  hintText: "Street",
                   multiLine: true,
                   onChange: controller.onAddress2Change,
                 );
@@ -70,57 +72,63 @@ class AdviserRegisterForm extends StatelessWidget {
                 return AppTextFiled(
                   controller: controller.city,
                   title: Strings.city,
-                  hintText: Strings.city,
+                  hintText: "Ontrario",
                   inputPadding: EdgeInsets.only(left: Get.width * 0.04),
                 );
               },
             ),
-            GetBuilder<AdviserRegisterController>(id: "register_screen",builder: (controller) {
-              return GestureDetector(
-                onTap: () {
-                   controller.onCountryCitySelect();
-                },
-                child: AppTextFiled(
-                  controller: controller.country,
-                  title: Strings.country,
-                  hintText: Strings.country,
-                  enable: false,
-                  suffix: Image.asset(AssetRes.arrowDown,height: 15,width: 15,),
-                ),
+            GetBuilder<AdviserRegisterController>(
+              id: "country",
+              builder: (controller) {
+              return  dropdownButton(
+                title: "Country",
+                hintText: "Canada",
+                selectedValue: controller.selectedValue,
+                onTap: controller.onStatusChange,
+                dropdownList: countryCity,
               );
+              //   GestureDetector(
+              //   onTap: () {
+              //      controller.onCountryCitySelect();
+              //   },
+              //   child: AppTextFiled(
+              //     controller: controller.country,
+              //     title: Strings.country,
+              //     hintText: Strings.country,
+              //     enable: true,
+              //     suffix: Image.asset(AssetRes.arrowDown,height: 15,width: 15,),
+              //   ),
+              // );
             },
 
             ),
-            GestureDetector(
-              onTap: () {
-
-              },
-              child: AppTextFiled(
-                controller: controller.postalCode,
-                title: Strings.postalCode,
-                hintText: Strings.postalCode,
-                enable: true,
-              ),
-            ),      GetBuilder<AdviserRegisterController>(
+            AppTextFiled(
+              controller: controller.postalCode,
+              title: Strings.postalCode,
+              hintText: "123125",
+              textInputType: TextInputType.number,
+              enable: true,
+            ),
+            GetBuilder<AdviserRegisterController>(
               id: 'phone_filed',
               builder: (controller) {
                 return AppTextFiled(
                   controller: controller.phoneNumber,
                   title: Strings.phoneNumber,
-                  hintText: Strings.phoneNumber,
+                  hintText: "123 456 789",
                   textInputType: TextInputType.phone,
                   prefix: countryCodePicker(context),
                   inputPadding: EdgeInsets.only(left: Get.width * 0.04),
                 );
               },
             ),
-
-
           ],
         );
       },
     );
   }
+
+
   Widget countryCodePicker(BuildContext context) {
     return InkWell(
       onTap: () => controller.onCountryTap(context),

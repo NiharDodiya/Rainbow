@@ -24,14 +24,19 @@ class LoginController extends GetxController {
     // Get.off(() => RegisterScreen(), transition: Transition.cupertino);
     Get.off(() => AdviserRegisterScreen(), );
   }
-void onSignUpDontHaveTap() {
+
+  void onSignUpDontHaveTap() {
+
     Get.off(() => RegisterScreen(), transition: Transition.cupertino);
+
     // Get.off(() => AdviserRegisterScreen(), );
   }
 
   void onRegisterTap() {
     if (validation()) {
+
       registerDetails();
+
     }
   }
 
@@ -40,7 +45,9 @@ void onSignUpDontHaveTap() {
   }
 
   bool validation() {
+
     if (emailController.text.isEmpty) {
+
       errorToast(Strings.emailError);
       return false;
     } else if (!GetUtils.isEmail(emailController.text)) {
@@ -54,6 +61,7 @@ void onSignUpDontHaveTap() {
       return false;
     }
     return true;
+
   }
   LoginModel loginModel = LoginModel();
   Future<void> registerDetails() async {

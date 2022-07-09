@@ -15,70 +15,74 @@ import 'package:rainbow/utils/strings.dart';
 
 class DoctorRegisterController extends GetxController {
   TextEditingController profession = TextEditingController();
+  String? selectProfession;
   TextEditingController comanyName = TextEditingController();
   TextEditingController companyNumber = TextEditingController();
 
   TextEditingController streetName = TextEditingController();
   TextEditingController city = TextEditingController();
   TextEditingController country = TextEditingController();
+  String? selectCountry;
   TextEditingController postalCode = TextEditingController();
   TextEditingController website = TextEditingController();
 
-  String selectedLocation = Strings.single;
+  // String selectedLocation = Strings.single;
 
   List<String> professionList = [
     Strings.doctor,
     Strings.admin,
     Strings.endUsers,
   ];
-  List<String> countryCity = [];
-  List<String> countryId = [];
 
-  bool professions = false;
+  // bool professions = false;
   bool kidsDropdown = false;
   RxBool loader = false.obs;
-  bool countryCityDropdown = false;
+  // bool countryCityDropdown = false;
 
   void onInit() {
-    countryName();
+    // countryName();
     update(['doctor']);
     super.onInit();
   }
 
-  void getCountry() {
-    for (int i = 0; i < listCountryModel.data!.length; i++) {
-      countryCity.add(listCountryModel.data![i].name!);
-      countryId.add(listCountryModel.data![i].id!.toString());
-    }
-    update(['doctor']);
-  }
+  // void getCountry() {
+  //   for (int i = 0; i < listCountryModel.data!.length; i++) {
+  //     countryCity.add(listCountryModel.data![i].name!);
+  //     countryId.add(listCountryModel.data![i].id!.toString());
+  //   }
+  //   update(['doctor']);
+  // }
 
 /*  void onStatusChange(String value) {
     country.text = value;
     update(['doctor']);
   }*/
+
+
   void onCountryCoCityChange(String value) {
+    selectCountry = value;
     country.text = value;
     update(['doctor']);
   }
-  void onCountryCoCitySelect() {
-    if (countryCityDropdown == false) {
-      countryCityDropdown = true;
-    } else {
-      countryCityDropdown = false;
-    }
-    update(['doctor']);
-  }
-  void onProfessionOnTap() {
-    if (professions == false) {
-      professions = true;
-    } else {
-      professions = false;
-    }
-    update(['doctor']);
-  }
+  // void onCountryCoCitySelect() {
+  //   if (countryCityDropdown == false) {
+  //     countryCityDropdown = true;
+  //   } else {
+  //     countryCityDropdown = false;
+  //   }
+  //   update(['doctor']);
+  // }
+  // void onProfessionOnTap() {
+  //   if (professions == false) {
+  //     professions = true;
+  //   } else {
+  //     professions = false;
+  //   }
+  //   update(['doctor']);
+  // }
 
   void onProfessionChange(String value) {
+    selectProfession = value;
     profession.text = value;
     update(['doctor']);
   }
@@ -88,20 +92,20 @@ class DoctorRegisterController extends GetxController {
       companyRegister();
     }
   }
-  ListCountryModel listCountryModel = ListCountryModel();
-  Future<void> countryName() async {
-    loader.value = true;
-    try {
-      await ListOfCountryApi.postRegister()
-          .then((value) => listCountryModel = value!);
-      getCountry();
-      loader.value = false;
-    } catch (e) {
-      errorToast(e.toString());
-      loader.value = false;
-      debugPrint(e.toString());
-    }
-  }
+  // ListCountryModel listCountryModel = ListCountryModel();
+  // Future<void> countryName() async {
+  //   loader.value = true;
+  //   try {
+  //     await ListOfCountryApi.postRegister()
+  //         .then((value) => listCountryModel = value!);
+  //     getCountry();
+  //     loader.value = false;
+  //   } catch (e) {
+  //     errorToast(e.toString());
+  //     loader.value = false;
+  //     debugPrint(e.toString());
+  //   }
+  // }
 
   bool validation() {
     if (profession.text.isEmpty) {
