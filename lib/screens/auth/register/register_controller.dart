@@ -2,12 +2,13 @@ import 'package:country_picker/country_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
 import 'package:rainbow/screens/auth/login/login_screen.dart';
 import 'package:rainbow/screens/auth/register/api/register_api.dart';
+import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalitesJson.dart';
 import 'package:rainbow/screens/auth/register/register_json.dart';
-import 'package:rainbow/screens/getstarted_screen.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -26,6 +27,13 @@ class RegisterController extends GetxController {
   TextEditingController ethnicityController = TextEditingController();
   TextEditingController dobController = TextEditingController();
   TextEditingController kidsController = TextEditingController();
+  String? selectedLocation;
+
+  String? selectedEthicity;
+
+  String? selectedNoKids;
+
+  String? codeId;
   bool isSocial = false;
   String? selectedLocation;
 
@@ -79,6 +87,14 @@ class RegisterController extends GetxController {
     );
   }
 
+  void onStatusChangeCountry(String  value) {
+    print(value);
+    selectedEthicity = value.toString();
+    ethnicityController.text = value.toString();
+    update(['register_screen']);
+    print(selectedEthicity);
+    print(countryNationCity);
+  }
   void onStatusSelect() {
     if (martialStatusDropdown == false) {
       martialStatusDropdown = true;
@@ -139,6 +155,16 @@ class RegisterController extends GetxController {
 
   void onRegisterTap() {
     if (validation()) {
+      for (int i = 0; i < listNationalities.data!.length; i++) {
+        if (listNationalities.data![i].name == ethnicityController.text) {
+          codeId = listNationalities.data![i].id!.toString();
+          print(codeId);
+        }
+
+        print(codeId);
+      }
+
+
       registerDetails();
     }
   }
@@ -173,10 +199,10 @@ class RegisterController extends GetxController {
     } else if (phoneController.text.isEmpty) {
       errorToast(Strings.phoneNumberError);
       return false;
-    } else if (!GetUtils.isPhoneNumber(phoneController.text)) {
+    } /*else if (!GetUtils.isPhoneNumber(phoneController.text)) {
       errorToast(Strings.phoneNumberValidError);
       return false;
-    } else if (statusController.text.isEmpty) {
+    }*/ else if (statusController.text.isEmpty) {
       errorToast(Strings.maritalStatusError);
       return false;
     } else if (ethnicityController.text.isEmpty) {
@@ -196,33 +222,36 @@ class RegisterController extends GetxController {
     // showCupertinoModalPopup is a built-in function of the cupertino library
     showCupertinoModalPopup(
       context: ctx,
-      builder: (_) => Container(
-        height: 500,
-        color: const Color.fromARGB(255, 255, 255, 255),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 400,
-              child: CupertinoDatePicker(
-                mode: CupertinoDatePickerMode.date,
-                initialDateTime: DateTime(2001),
-                maximumDate: DateTime.now(),
-                maximumYear: DateTime.now().year,
-                onDateTimeChanged: (val) {
-                  var formattedDate = "${val.day}-${val.month}-${val.year}";
-                  dobController.text = formattedDate;
-                },
-              ),
-            ),
+      builder: (_) =>
+          Container(
+            height: 500,
+            color: const Color.fromARGB(255, 255, 255, 255),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 400,
+                  child: CupertinoDatePicker(
+                    mode: CupertinoDatePickerMode.date,
+                    initialDateTime: DateTime(2001),
+                    maximumDate: DateTime.now(),
+                    maximumYear: DateTime
+                        .now()
+                        .year,
+                    onDateTimeChanged: (val) {
+                      var formattedDate = "${val.day}-${val.month}-${val.year}";
+                      dobController.text = formattedDate;
+                    },
+                  ),
+                ),
 
-            // Close the modal
-            CupertinoButton(
-              child: const Text('OK'),
-              onPressed: () => Navigator.of(ctx).pop(),
-            )
-          ],
-        ),
-      ),
+                // Close the modal
+                CupertinoButton(
+                  child: const Text('OK'),
+                  onPressed: () => Navigator.of(ctx).pop(),
+                )
+              ],
+            ),
+          ),
     );
   }
 
@@ -231,6 +260,8 @@ class RegisterController extends GetxController {
   }
 
   RegisterUser registerUser = RegisterUser();
+
+
 
   Future<void> registerDetails() async {
     try {
@@ -251,6 +282,29 @@ class RegisterController extends GetxController {
           .then((value) => registerUser = value);
       await PrefService.setValue(PrefKeys.registerToken, registerUser.token.toString());
 
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+    }
+    try {
+      loader.value = true;
+
+      await RegisterApi.postRegister(
+          fullNameController.text,
+          emailController.text,
+          pwdController.text,
+          confirmPwdController.text,
+          address1Controller.text,
+          address2Controller.text,
+          "+${countryModel.phoneCode + phoneController.text}",
+          statusController.text,
+          // ethnicityController.text,
+          codeId.toString(),
+          dobController.text,
+          kidsController.text
+      ).then((value) => registerUser = value);
+      await PrefService.setValue(
+          PrefKeys.registerToken, registerUser.token.toString());
       loader.value = false;
     } catch (e) {
       loader.value = false;

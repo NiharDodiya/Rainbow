@@ -72,9 +72,11 @@ class AdvirtisersApi {
           flutterToast(jsonDecode(response.body)["message"]);
         }
         return advertiserRegisterFromJson(response.body);
-
-
       }
+      else if(response!.statusCode==400)
+        {
+          errorToast(jsonDecode(response.body)["message"]);
+        }
       /*  message == "Failed! Email is already in use!"
           ? errorToast(message)
           : */

@@ -6,6 +6,7 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
 Widget dropdownButton({
+  double? height,
   String? title,
   String? hintText,
   String? selectedValue,
@@ -23,7 +24,6 @@ Widget dropdownButton({
         height: 10,
       ),
       DropdownButtonHideUnderline(
-
         child: DropdownButton2<String>(
           isExpanded: true,
 
@@ -64,7 +64,7 @@ Widget dropdownButton({
           iconDisabledColor: Colors.grey,
           buttonHeight: 60,
           buttonWidth: Get.width * 0.8,
-          buttonPadding: const EdgeInsets.only(left: 14, right: 14),
+          buttonPadding: const EdgeInsets.only(left: 14, right: 23),
           buttonDecoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: Colors.white,
@@ -72,7 +72,7 @@ Widget dropdownButton({
           buttonElevation: 2,
           itemHeight: 40,
           itemPadding: const EdgeInsets.only(left: 20, right: 14),
-          dropdownMaxHeight: 100,
+          dropdownMaxHeight:height??100,
           /* height: Get.height*0.19,*/
           dropdownWidth: Get.width * 0.8,
           dropdownPadding: null,

@@ -86,6 +86,7 @@ class AdviserRegisterForm extends StatelessWidget {
                 selectedValue: controller.selectedValue,
                 onTap: controller.onStatusChange,
                 dropdownList: countryCity,
+                height: Get.height*0.3
               );
               //   GestureDetector(
               //   onTap: () {

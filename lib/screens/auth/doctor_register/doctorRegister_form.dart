@@ -71,6 +71,9 @@ class DoctorRegisterForm extends StatelessWidget {
                   selectedValue: controller.selectCountry,
                   onTap: controller.onCountryCoCityChange,
                   dropdownList: countryCity,
+                    height: Get.height*0.3
+
+
                 );
                 //   GestureDetector(onTap: () {
                 //   controller.onCountryCoCitySelect();
@@ -95,6 +98,7 @@ class DoctorRegisterForm extends StatelessWidget {
                 title: Strings.postalCode,
                 hintText: Strings.postalCodeDigitHint,
                 enable: true,
+                textInputType: TextInputType.number,
               ),
             ),  GestureDetector(
               onTap: () {

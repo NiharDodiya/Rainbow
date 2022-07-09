@@ -162,24 +162,27 @@ String? passId;
       errorToast(Strings.reTypePasswordValidError);
       return false;
     } else if (houseNumber.text.isEmpty) {
-      errorToast(Strings.addressLine1Error);
+      errorToast(Strings.houseNumberError);
       return false;
     } else if (city.text.isEmpty) {
-      errorToast(Strings.phoneNumberError);
+      errorToast(Strings.cityError);
+      return false;
+    } else if (streetName.text.isEmpty) {
+      errorToast(Strings.streetError);
       return false;
     } else if (country.text.isEmpty) {
-      errorToast(Strings.maritalStatusError);
+      errorToast(Strings.countryError);
       return false;
     } else if (postalCode.text.isEmpty) {
-      errorToast(Strings.ethnicityError);
+      errorToast(Strings.postalCodeError);
       return false;
     } else if (phoneNumber.text.isEmpty) {
-      errorToast(Strings.phoneNumber);
+      errorToast(Strings.phoneNumberError);
       return false;
-    } else if (!GetUtils.isPhoneNumber(phoneNumber.text)) {
+    }/* else if (!GetUtils.isPhoneNumber(phoneNumber.text)) {
       errorToast(Strings.phoneNumberValidError);
       return false;
-    }
+    }*/
     return true;
   }
 

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/advertisement_controlle.dart';
+import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/utils/asset_res.dart';
 
 class AdHomeController extends GetxController {
@@ -44,5 +45,8 @@ class AdHomeController extends GetxController {
     moreOption = List.generate(6, (index) => false);
     moreOption[index]= true;
     update(['more']);
+  }
+  void onTapNext(){
+    Get.offAll(()=>AuthDashboard());
   }
 }
