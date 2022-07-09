@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/auth/doctor_register/doctor_registerApi/docotor_companyJson.dart';
 import 'package:rainbow/screens/auth/doctor_register/doctor_registerApi/doctor_companyregisterApi.dart';
