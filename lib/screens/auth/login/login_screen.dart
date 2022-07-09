@@ -16,16 +16,18 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector( onTap: () {
-      FocusScopeNode currentFocus = FocusScope.of(context);
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
 
-      if (!currentFocus.hasPrimaryFocus) {
-        currentFocus.unfocus();
-      }
-    },
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
       child: Scaffold(
         backgroundColor: Colors.white,
-        body: Obx(() {
+        body: Obx(
+          () {
             return Stack(
               children: [
                 GetBuilder<LoginController>(
@@ -160,10 +162,13 @@ class LoginScreen extends StatelessWidget {
             alignment: Alignment.topRight,
             child: GestureDetector(
               onTap: loginController.onForgotPassword,
-              child: SizedBox(width: 116,height: 16,
+              child: SizedBox(
+                width: 116,
+                height: 16,
                 child: Text(
                   Strings.forgotPassword,
-                  style: gilroyMediumTextStyle(fontSize: 14,color: ColorRes.white.withOpacity(0.5)),
+                  style: gilroyMediumTextStyle(
+                      fontSize: 14, color: ColorRes.white.withOpacity(0.5)),
                 ),
               ),
             ),
@@ -182,19 +187,29 @@ class LoginScreen extends StatelessWidget {
           onTap: loginController.onRegisterTap,
         ),
         SizedBox(height: Get.height * 0.03202),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              Strings.log_in,
-              style: textStyleFont14WhiteBold,
-            ),
-            Text(
-              Strings.loginAsAdvertiser,
-              style: textStyleFont14White,
-            ),
-          ],
+        GetBuilder<LoginController>(
+          id: 'as',
+          builder: (controller) {
+            return InkWell(
+              onTap: () {
+                controller.onTapAsLogin();
+              },
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    Strings.log_in,
+                    style: textStyleFont14WhiteBold,
+                  ),
+                  Text(
+                    controller.advertiser? Strings.loginAsEndUser:Strings.loginAsAdvertiser,
+                    style: textStyleFont14White,
+                  ),
+                ],
+              ),
+            );
+          },
         ),
         SizedBox(height: Get.height * 0.02463),
       ],
@@ -205,14 +220,15 @@ class LoginScreen extends StatelessWidget {
     return Column(
       children: [
         SizedBox(height: Get.height * 0.02463),
-        GestureDetector(onTap:controller.onSignUpDontHaveTap,
+        GestureDetector(
+          onTap: controller.onSignUpDontHaveTap,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 Strings.dontHaveAccount,
-                style: gilroyMediumTextStyle(color: Colors.black,fontSize: 14),
+                style: gilroyMediumTextStyle(color: Colors.black, fontSize: 14),
               ),
               Text(
                 Strings.sign_Up,
@@ -222,21 +238,28 @@ class LoginScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: Get.height * 0.025),
-        GestureDetector(onTap: controller.onSignUpTap,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                Strings.signUp,
-                style: textStyleFont14,
+        GetBuilder<LoginController>(
+          id: 'as',
+          builder: (controller) {
+            return GestureDetector(
+              onTap: controller.onSignUpTap,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    Strings.signUp,
+                    style: textStyleFont14,
+                  ),
+                  Text(
+                    controller.advertiser
+                        ? Strings.forEndUserAccount:Strings.forAdvertise,
+                    style: gilroyMediumTextStyle(color: Colors.black, fontSize: 14),
+                  ),
+                ],
               ),
-              Text(
-                Strings.forAdvertise,
-                style: gilroyMediumTextStyle(color: Colors.black,fontSize: 14),
-              ),
-            ],
-          ),
+            );
+          },
         ),
         SizedBox(height: Get.height * 0.02463),
       ],

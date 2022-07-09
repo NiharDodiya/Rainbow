@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountry_json.dart';
 import 'package:rainbow/service/http_services.dart';
@@ -8,7 +7,6 @@ import 'package:http/http.dart' as http;
 
 class ListOfCountryApi {
   static Future postRegister() async {
-    ListCountryModel countryList =ListCountryModel();
     try {
       String url = EndPoints.countryList;
       String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjU3MTY3MzY1LCJleHAiOjE2NTc3NzIxNjV9._482B0we5VMSYDRcb_R_J4sCypNCMVvwyt-Bl5eS3uw";

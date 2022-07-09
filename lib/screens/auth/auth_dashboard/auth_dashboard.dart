@@ -22,7 +22,6 @@ class AuthDashboard extends StatelessWidget {
         return Scaffold(
             backgroundColor: Colors.white,
             body: Obx(() {
-
               return Stack(
                 children: [
                   Center(
@@ -197,7 +196,8 @@ class AuthDashboard extends StatelessWidget {
     return Column(
       children: [
         SizedBox(height: Get.height*0.0788),
-        GestureDetector(onTap: controller.onSignInTap,
+        GestureDetector(
+          onTap: controller.onSignInTap,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,

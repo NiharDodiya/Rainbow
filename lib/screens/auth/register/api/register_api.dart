@@ -14,6 +14,7 @@ class RegisterApi {
   static Future postRegister(
       String fullName,
       String email,
+      String idSocial,
       String password,
       String confirmPassword,
       String add1,
@@ -22,6 +23,7 @@ class RegisterApi {
       String maritaStatus,
       String ethnicity,
       String birthDate,
+
       String noOfKids) async {
 
     try {
@@ -33,6 +35,7 @@ class RegisterApi {
         'address1': add1,
         'address2': add2,
         'phoneNumber': phNo,
+        'id_social' : idSocial,
         'maritalStatus': maritaStatus,
         'ethnicityId': ethnicity,
         'dob': birthDate,
