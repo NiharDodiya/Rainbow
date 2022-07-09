@@ -8,6 +8,8 @@ import 'package:rainbow/common/popup.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/screens/auth/auth_dashboard/api/google_id_verification_api.dart';
 import 'package:rainbow/screens/auth/register/register_controller.dart';
+import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalitesJson.dart';
+import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
 
 import 'package:rainbow/screens/auth/register/register_screen.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
@@ -22,6 +24,7 @@ class AuthDashBordController extends GetxController {
   void onInti() {
     super.onInit();
     countryName();
+    countryNationalites();
     update(["auth"]);
   }
 
@@ -35,6 +38,17 @@ class AuthDashBordController extends GetxController {
       getCountry();
     } catch (e) {
       errorToast(e.toString());
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> countryNationalites() async {
+    try {
+      await ListOfNationalitiesApi.postRegister().then((value) => listNationalities = value!);
+      print(listNationalities);
+      getCountryNation();
+
+    } catch (e) {
       debugPrint(e.toString());
     }
   }

@@ -13,14 +13,12 @@ class VerifyPhoneController extends GetxController {
     if (verifyController.text.isEmpty) {
       errorToast(Strings.enterYourOtp);
       return false;
-    } else if (verifyController.text.isEmpty) {
-      errorToast(Strings.passwordError);
-      return false;
     }
     return true;
   }
 
   VerifyCode verifyCodeModel = Get.put(VerifyCode());
+
 
   Future<void> verifyCode() async {
     try {
@@ -33,4 +31,17 @@ class VerifyPhoneController extends GetxController {
       loader.value = false;
     }
   }
+ /* Future<void> phoneNumberRegister() async {
+    try {
+      loader.value = true;
+      await PhoneNumberApi.postRegister(
+          "+${countryModel.phoneCode + phoneNumber.text}")
+          .then((value) => phoneNumberModel = value);
+      await PrefService.setValue(
+          PrefKeys.id, phoneNumberModel.data!.id.toString());
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+    }
+  }*/
 }

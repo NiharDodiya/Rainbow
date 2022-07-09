@@ -43,19 +43,7 @@ class RegisterApi {
         'role': "end_user",
       };
       print(param);
-      /*   final Map<String, dynamic> data = new Map<String, dynamic>();
-      // data['location_name']=  locationName;
-      data['fullName'] = fullName;
-      data['email'] = "rk@gmail.com";
-      data['password'] = password;
-      data['address1'] = confirmPassword;
-      data['address2'] = add1;
-      data['phoneNumber'] = add2;
-      data['maritalStatus'] = maritaStatus;
-      data['ethnicityId'] = ethnicity;
-      data['dob'] = birthDate;
-      data['noKids'] = noOfKids;
-      data['role'] = "end_user";*/
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -75,10 +63,7 @@ class RegisterApi {
 
       }else if(response!.statusCode == 500)
         {  flutterToast(jsonDecode(response.body)["message"]);
-
         }
-
-
     } catch (e) {
       print(e.toString());
       return [];

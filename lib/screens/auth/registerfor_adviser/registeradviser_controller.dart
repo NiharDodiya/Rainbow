@@ -179,10 +179,10 @@ String? passId;
     } else if (phoneNumber.text.isEmpty) {
       errorToast(Strings.phoneNumberError);
       return false;
-    } else if (!GetUtils.isPhoneNumber(phoneNumber.text)) {
+    }/* else if (!GetUtils.isPhoneNumber(phoneNumber.text)) {
       errorToast(Strings.phoneNumberValidError);
       return false;
-    }
+    }*/
     return true;
   }
 

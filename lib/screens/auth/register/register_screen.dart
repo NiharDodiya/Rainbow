@@ -60,7 +60,7 @@ class RegisterScreen extends StatelessWidget {
                                 registerButtons(controller),
                               ],
                             ),
-                            GetBuilder<RegisterController>(id: 'register_screen' ,builder: (controller) {
+                       /*     GetBuilder<RegisterController>(id: 'register_screen' ,builder: (controller) {
                               return     !controller.martialStatusDropdown
                                   ? const SizedBox()
                                   : Positioned(
@@ -70,8 +70,8 @@ class RegisterScreen extends StatelessWidget {
                                   onTap: controller.onStatusChange,
                                 ),
                               );
-                            },),
-                            !controller.ethnicityDropdown
+                            },),*/
+                        /*    !controller.ethnicityDropdown
                                 ? const SizedBox()
                                 : Positioned(
                               top: Get.height * 1.5,width: Get.width * 0.8,
@@ -88,7 +88,7 @@ class RegisterScreen extends StatelessWidget {
                                 paramList: controller.noOfKids,
                                 onTap: controller.onKidsChange,
                               ),
-                            ),
+                            ),*/
                           ],
                         );
                       },

@@ -64,7 +64,7 @@ Widget dropdownButton({
           iconDisabledColor: Colors.grey,
           buttonHeight: 60,
           buttonWidth: Get.width * 0.8,
-          buttonPadding: const EdgeInsets.only(left: 14, right: 14),
+          buttonPadding: const EdgeInsets.only(left: 14, right: 23),
           buttonDecoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: Colors.white,

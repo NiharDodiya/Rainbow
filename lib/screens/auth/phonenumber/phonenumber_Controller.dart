@@ -21,7 +21,8 @@ class PhoneNumberController extends GetxController {
     if (phoneNumber.text.isEmpty) {
       errorToast(Strings.phoneNumberError);
       return false;
-    } /*else if (GetUtils.isPhoneNumber(phoneNumber.text)) {
+    }
+    /*else if (GetUtils.isPhoneNumber(phoneNumber.text)) {
       errorToast(Strings.phoneNumberValidError);
     }*/
     return true;
@@ -57,17 +58,20 @@ class PhoneNumberController extends GetxController {
       phoneNumberRegister();
     }
   }
-  PhoneNumber phoneNumberModel =Get.put(PhoneNumber());
+
+  PhoneNumber phoneNumberModel = Get.put(PhoneNumber());
+
   Future<void> phoneNumberRegister() async {
     try {
-      loader.value=true;
-
-          await PhoneNumberApi.postRegister( "+${countryModel.phoneCode+phoneNumber.text}").then((value) => phoneNumberModel=value);
-      await PrefService.setValue(PrefKeys.id, phoneNumberModel.data!.id.toString());
-      loader.value=false;
+      loader.value = true;
+      await PhoneNumberApi.postRegister(
+              "+${countryModel.phoneCode + phoneNumber.text}")
+          .then((value) => phoneNumberModel = value);
+      await PrefService.setValue(
+          PrefKeys.id, phoneNumberModel.data!.id.toString());
+      loader.value = false;
     } catch (e) {
-      loader.value=false;
-
+      loader.value = false;
     }
   }
 }

@@ -45,15 +45,12 @@ class DoctorRegisterController extends GetxController {
 
   void onInit() {
     // countryName();
+
     update(['doctor']);
     super.onInit();
   }
 
-  void getAdvertiserStatus() {
- status=advertiserRegister.status.toString();
- role=advertiserRegister.data!.role.toString();
-    update(['doctor']);
-  }
+
 
 /*  void onStatusChange(String value) {
     country.text = value;
@@ -175,7 +172,12 @@ String? codeId;
 
       loader.value = false;
 
+
      await  PrefService.setValue(PrefKeys.advirtisersToken, advertiserRegister.token.toString());
+      status=advertiserRegister.data!.status.toString();
+      role=advertiserRegister.data!.role.toString();
+      print(status);
+      print(role);
     } catch (e) {
 
       loader.value = false;
