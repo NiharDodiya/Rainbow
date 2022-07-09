@@ -117,9 +117,8 @@ class AuthDashBordController extends GetxController {
   }
 
   void onContinueWithEmailTap() {
-    final RegisterController controller = Get.find<RegisterController>();
+    final RegisterController controller = Get.put(RegisterController());
     controller.isSocial = false;
-
     Get.to(() => RegisterScreen());
   }
 

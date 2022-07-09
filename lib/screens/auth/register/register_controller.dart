@@ -35,11 +35,7 @@ class RegisterController extends GetxController {
 
   String? codeId;
   bool isSocial = false;
-  String? selectedLocation;
 
-  String? selectedEthicity;
-
-  String? selectedNoKids;
 
   String socialId = "";
   List<String> martialStatusList = [
@@ -260,9 +256,6 @@ class RegisterController extends GetxController {
   }
 
   RegisterUser registerUser = RegisterUser();
-
-
-
   Future<void> registerDetails() async {
     try {
       loader.value = true;
@@ -276,7 +269,7 @@ class RegisterController extends GetxController {
               address2Controller.text,
               "+${countryModel.phoneCode + phoneController.text}",
               statusController.text,
-              ethnicityController.text,
+              codeId.toString(),
               dobController.text,
               kidsController.text)
           .then((value) => registerUser = value);
@@ -286,28 +279,6 @@ class RegisterController extends GetxController {
     } catch (e) {
       loader.value = false;
     }
-    try {
-      loader.value = true;
 
-      await RegisterApi.postRegister(
-          fullNameController.text,
-          emailController.text,
-          pwdController.text,
-          confirmPwdController.text,
-          address1Controller.text,
-          address2Controller.text,
-          "+${countryModel.phoneCode + phoneController.text}",
-          statusController.text,
-          // ethnicityController.text,
-          codeId.toString(),
-          dobController.text,
-          kidsController.text
-      ).then((value) => registerUser = value);
-      await PrefService.setValue(
-          PrefKeys.registerToken, registerUser.token.toString());
-      loader.value = false;
-    } catch (e) {
-      loader.value = false;
-    }
   }
 }

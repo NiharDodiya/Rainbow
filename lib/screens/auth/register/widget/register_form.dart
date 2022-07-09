@@ -240,7 +240,7 @@ class RegisterForm extends StatelessWidget {
                           ),
                         ],
                       ),
-                      items: controller.ethnicityList
+                      items: countryNationCity
                           .map((item) => DropdownMenuItem<String>(
                                 value: item,
                                 child: Text(
