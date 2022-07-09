@@ -43,7 +43,7 @@ class GoogleIdVerification {
           Get.to(() => RegisterScreen());
         }
         else {
-          await PrefService.setValue(PrefKeys.isLogin, true);
+
           if(jsonDecode(response.body)["data"]["user_status"]=="pending"){
             await PrefService.setValue(PrefKeys.registerToken, jsonDecode(response.body)["token"].toString());
             if(jsonDecode(response.body)["data"]["id_status"]=="pending")
@@ -53,6 +53,7 @@ class GoogleIdVerification {
               Get.to(()=>ScanYourFaceScreen());
             }
           }else{
+            await PrefService.setValue(PrefKeys.isLogin, true);
             Get.offAll(() => const Dashboard());
           }
         }
