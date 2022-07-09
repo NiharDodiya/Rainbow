@@ -205,40 +205,38 @@ class LoginScreen extends StatelessWidget {
     return Column(
       children: [
         SizedBox(height: Get.height * 0.02463),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              Strings.dontHaveAccount,
-              style: gilroyMediumTextStyle(color: Colors.black,fontSize: 14),
-            ),
-            InkWell(
-              onTap: controller.onSignUpDontHaveTap,
-              child: Text(
+        GestureDetector(onTap:controller.onSignUpDontHaveTap,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                Strings.dontHaveAccount,
+                style: gilroyMediumTextStyle(color: Colors.black,fontSize: 14),
+              ),
+              Text(
                 Strings.sign_Up,
                 style: textStyleFont14,
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         SizedBox(height: Get.height * 0.025),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            InkWell(
-              onTap: controller.onSignUpTap,
-              child: Text(
+        GestureDetector(onTap: controller.onSignUpTap,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
                 Strings.signUp,
                 style: textStyleFont14,
               ),
-            ),
-            Text(
-              Strings.forAdvertise,
-              style: gilroyMediumTextStyle(color: Colors.black,fontSize: 14),
-            ),
-          ],
+              Text(
+                Strings.forAdvertise,
+                style: gilroyMediumTextStyle(color: Colors.black,fontSize: 14),
+              ),
+            ],
+          ),
         ),
         SizedBox(height: Get.height * 0.02463),
       ],
