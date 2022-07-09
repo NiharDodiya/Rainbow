@@ -19,8 +19,9 @@ import 'package:rainbow/utils/pref_keys.dart';
 class GoogleIdVerification {
   static Future postRegister(
       String id,
-  {User? user,}
-      ) async {
+  {
+    User? user,
+  }) async {
     try {
       String url = EndPoints.verificationSocial;
       Map<String, String> param = {
@@ -43,13 +44,12 @@ class GoogleIdVerification {
         }
         else {
           await PrefService.setValue(PrefKeys.isLogin, true);
-          flutterToast(jsonDecode(response.body)["message"]);
-          if(jsonDecode(response.body)["status"]=="pending"){
+          if(jsonDecode(response.body)["data"]["user_status"]=="pending"){
             await PrefService.setValue(PrefKeys.registerToken, jsonDecode(response.body)["token"].toString());
-            if(jsonDecode(response.body)["id_status"]=="pending")
+            if(jsonDecode(response.body)["data"]["id_status"]=="pending")
               {
                 Get.to(()=>IdVerificationScreen());
-              }else if(jsonDecode(response.body)["selfi_status"]=="pending"){
+              }else if(jsonDecode(response.body)["data"]["selfi_status"]=="pending"){
               Get.to(()=>ScanYourFaceScreen());
             }
           }else{
