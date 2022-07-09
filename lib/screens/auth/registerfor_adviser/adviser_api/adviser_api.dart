@@ -59,14 +59,25 @@ class AdvirtisersApi {
           body: jsonEncode(param),
           header: {"Content-Type": "application/json"});
       if (response != null && response.statusCode == 200) {
-        Get.offAll(() => const AdvertisementDashBord());
-        await PrefService.setValue(PrefKeys.companyRegister, true);
+
+        bool? status = jsonDecode(response.body)["status"];
+        if(status==false)
+        {
+          flutterToast(jsonDecode(response.body)["message"]);
+        }
+        else if(status==true)
+        {
+          Get.offAll(() => const AdvertisementDashBord());
+          await PrefService.setValue(PrefKeys.companyRegister, true);
+          flutterToast(jsonDecode(response.body)["message"]);
+        }
         return advertiserRegisterFromJson(response.body);
+
 
       }
       /*  message == "Failed! Email is already in use!"
           ? errorToast(message)
-          : */flutterToast(jsonDecode(response!.body)["message"]);
+          : */
       // return
     } catch (e) {
       print(e.toString());

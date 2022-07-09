@@ -177,7 +177,7 @@ String? codeId;
 
      await  PrefService.setValue(PrefKeys.advirtisersToken, advertiserRegister.token.toString());
     } catch (e) {
-      errorToast(e.toString());
+
       loader.value = false;
       debugPrint(e.toString());
     }
