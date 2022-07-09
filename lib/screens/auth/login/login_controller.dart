@@ -14,29 +14,33 @@ import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class LoginController extends GetxController {
-  TextEditingController emailController =
-      TextEditingController();
-  TextEditingController passwordController =
-      TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   RxBool loader = false.obs;
+  bool advertiser = false;
 
   void onSignUpTap() {
     // Get.off(() => RegisterScreen(), transition: Transition.cupertino);
-    Get.off(() => AdviserRegisterScreen(), );
+    Get.off(
+      () => !advertiser ? AdviserRegisterScreen() : RegisterScreen(),
+    );
+  }
+
+  void onTapAsLogin() {
+    advertiser = !advertiser;
+    update(['as']);
   }
 
   void onSignUpDontHaveTap() {
-
-    Get.off(() => RegisterScreen(), transition: Transition.cupertino);
+    Get.off(() => advertiser ? AdviserRegisterScreen() : RegisterScreen(),
+        transition: Transition.cupertino);
 
     // Get.off(() => AdviserRegisterScreen(), );
   }
 
   void onRegisterTap() {
     if (validation()) {
-
       registerDetails();
-
     }
   }
 
@@ -45,9 +49,7 @@ class LoginController extends GetxController {
   }
 
   bool validation() {
-
     if (emailController.text.isEmpty) {
-
       errorToast(Strings.emailError);
       return false;
     } else if (!GetUtils.isEmail(emailController.text)) {
@@ -61,19 +63,20 @@ class LoginController extends GetxController {
       return false;
     }
     return true;
-
   }
+
   LoginModel loginModel = LoginModel();
+
   Future<void> registerDetails() async {
     loader.value = true;
-    try{
+    try {
       await LoginApi.postRegister(
         emailController.text,
         passwordController.text,
-      ).then((value) =>loginModel=value);
+      ).then((value) => loginModel = value);
       loader.value = false;
-      await PrefService.setValue(PrefKeys.accessToken,loginModel.token);
-    }catch(e){
+      await PrefService.setValue(PrefKeys.accessToken, loginModel.token);
+    } catch (e) {
       loader.value = false;
       debugPrint(e.toString());
     }

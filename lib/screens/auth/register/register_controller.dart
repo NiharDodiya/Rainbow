@@ -15,30 +15,25 @@ import 'package:rainbow/utils/strings.dart';
 class RegisterController extends GetxController {
   void init() {}
   DateTime selectedDate = DateTime.now();
-
-  TextEditingController fullNameController =
-      TextEditingController();
-  TextEditingController emailController =
-      TextEditingController();
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController pwdController = TextEditingController();
-  TextEditingController confirmPwdController =
-      TextEditingController();
-  TextEditingController address1Controller =
-      TextEditingController();
-  TextEditingController address2Controller =
-      TextEditingController();
-  TextEditingController phoneController =
-      TextEditingController();
-  TextEditingController statusController =
-      TextEditingController();
-  TextEditingController ethnicityController =
-      TextEditingController();
-  TextEditingController dobController =
-      TextEditingController();
+  TextEditingController confirmPwdController = TextEditingController();
+  TextEditingController address1Controller = TextEditingController();
+  TextEditingController address2Controller = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController statusController = TextEditingController();
+  TextEditingController ethnicityController = TextEditingController();
+  TextEditingController dobController = TextEditingController();
   TextEditingController kidsController = TextEditingController();
-  String? selectedLocation ;
-  String? selectedEthicity ;
-  String? selectedNoKids ;
+  bool isSocial = false;
+  String? selectedLocation;
+
+  String? selectedEthicity;
+
+  String? selectedNoKids;
+
+  String socialId = "";
   List<String> martialStatusList = [
     Strings.single,
     Strings.married,
@@ -145,7 +140,6 @@ class RegisterController extends GetxController {
   void onRegisterTap() {
     if (validation()) {
       registerDetails();
-
     }
   }
 
@@ -161,16 +155,16 @@ class RegisterController extends GetxController {
     } else if (!GetUtils.isEmail(emailController.text)) {
       errorToast(Strings.emailValidError);
       return false;
-    } else if (pwdController.text.isEmpty) {
+    } else if (pwdController.text.isEmpty && !isSocial) {
       errorToast(Strings.passwordError);
       return false;
-    } else if (validatePassword(pwdController.text) == false) {
+    } else if (validatePassword(pwdController.text) == false && !isSocial) {
       errorToast(Strings.confirmShortPassword);
       return false;
-    } else if (confirmPwdController.text.isEmpty) {
+    } else if (confirmPwdController.text.isEmpty&& !isSocial) {
       errorToast(Strings.reTypePasswordError);
       return false;
-    } else if (pwdController.text != confirmPwdController.text) {
+    } else if (pwdController.text != confirmPwdController.text && !isSocial) {
       errorToast(Strings.reTypePasswordValidError);
       return false;
     } else if (address1Controller.text.isEmpty) {
@@ -235,25 +229,31 @@ class RegisterController extends GetxController {
   void onLoginTap() {
     Get.off(() => LoginScreen(), transition: Transition.cupertino);
   }
-  RegisterUser registerUser = RegisterUser();
-  Future<void> registerDetails() async {
-try{
-  loader.value = true;
-await RegisterApi.postRegister(
-      fullNameController.text,
-      emailController.text,
-      pwdController.text,
-      confirmPwdController.text,
-      address1Controller.text,
-      address2Controller.text,
-      "+${countryModel.phoneCode+phoneController.text}",statusController.text,ethnicityController.text,
-      dobController.text,kidsController.text
-  ).then((value) => registerUser=value);
-  await PrefService.setValue(PrefKeys.registerToken,registerUser.token.toString());
 
-  loader.value = false;
-}catch(e){
-  loader.value = false;
-}
+  RegisterUser registerUser = RegisterUser();
+
+  Future<void> registerDetails() async {
+    try {
+      loader.value = true;
+      await RegisterApi.postRegister(
+              fullNameController.text,
+              emailController.text,
+              socialId,
+              pwdController.text,
+              confirmPwdController.text,
+              address1Controller.text,
+              address2Controller.text,
+              "+${countryModel.phoneCode + phoneController.text}",
+              statusController.text,
+              ethnicityController.text,
+              dobController.text,
+              kidsController.text)
+          .then((value) => registerUser = value);
+      await PrefService.setValue(PrefKeys.registerToken, registerUser.token.toString());
+
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+    }
   }
 }

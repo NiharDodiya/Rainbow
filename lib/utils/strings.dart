@@ -31,6 +31,7 @@ class Strings {
   static const websiteHint = 'www.mymom.com';
   static const sign_Up = 'Signup';
   static const forAdvertise = " for advertiser's account";
+  static const forEndUserAccount = " for End-User account";
   static const termsServices =
       'By continuing you agree Rainbow’s Terms of Services \n& Privacy Policy.';
   static const welcomeBack = 'Welcome Back!';
@@ -42,6 +43,7 @@ class Strings {
   static const login = 'Login';
   static const log_in = 'Log in';
   static const loginAsAdvertiser = ' as advertiser';
+  static const loginAsEndUser = ' Log in as End-User';
   static const dontHaveAccount = ' Don’t have an account ';
   static const getStarted = 'Get Started';
   static const notVerified = 'Your Account \nis not yet verified';
