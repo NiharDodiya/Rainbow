@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/idVerification/idverification_controller.dart';
 
 class IdScannerController extends GetxController {
@@ -85,6 +86,7 @@ class IdScannerController extends GetxController {
   Future<void> onImageSubmitFront() async {
     IdVerificationController idController = Get.find();
     File image2 = await getCropImage();
+
     idController.imageFront = image2.path;
     idController.update(['IdVerification_screen']);
     idVerificationController.uploadImageApi();

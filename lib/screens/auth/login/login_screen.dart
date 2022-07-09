@@ -16,55 +16,63 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Obx(() {
-          return Stack(
-            children: [
-              GetBuilder<LoginController>(
-                id: "Login",
-                builder: (controller) {
-                  return SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Container(
-                          width: Get.width,
-                          margin: EdgeInsets.fromLTRB(
-                            Get.width * 0.02667,
-                            Get.width * 0.02667,
-                            Get.width * 0.02667,
-                            0,
+    return GestureDetector( onTap: () {
+      FocusScopeNode currentFocus = FocusScope.of(context);
+
+      if (!currentFocus.hasPrimaryFocus) {
+        currentFocus.unfocus();
+      }
+    },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Obx(() {
+            return Stack(
+              children: [
+                GetBuilder<LoginController>(
+                  id: "Login",
+                  builder: (controller) {
+                    return SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Container(
+                            width: Get.width,
+                            margin: EdgeInsets.fromLTRB(
+                              Get.width * 0.02667,
+                              Get.width * 0.02667,
+                              Get.width * 0.02667,
+                              0,
+                            ),
+                            decoration: BoxDecoration(
+                              color: ColorRes.color_4F359B,
+                              borderRadius: BorderRadius.circular(36),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Column(
+                                  children: [
+                                    logoRainbow(),
+                                    textFields(controller),
+                                    loginButton(controller)
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                          decoration: BoxDecoration(
-                            color: ColorRes.color_4F359B,
-                            borderRadius: BorderRadius.circular(36),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Column(
-                                children: [
-                                  logoRainbow(),
-                                  textFields(controller),
-                                  loginButton(controller)
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        signUp(),
-                      ],
-                    ),
-                  );
-                },
-              ),
-              controller.loader.isTrue
-                  ? const SmallLoader()
-                  : const SizedBox()
-            ],
-          );
-        },
+                          signUp(),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                controller.loader.isTrue
+                    ? const SmallLoader()
+                    : const SizedBox()
+              ],
+            );
+          },
+        ),
       ),
     );
   }
@@ -152,9 +160,11 @@ class LoginScreen extends StatelessWidget {
             alignment: Alignment.topRight,
             child: GestureDetector(
               onTap: loginController.onForgotPassword,
-              child: Text(
-                Strings.forgotPassword,
-                style: gilroyMediumTextStyle(fontSize: 14,color: ColorRes.white.withOpacity(0.5)),
+              child: SizedBox(width: 116,height: 16,
+                child: Text(
+                  Strings.forgotPassword,
+                  style: gilroyMediumTextStyle(fontSize: 14,color: ColorRes.white.withOpacity(0.5)),
+                ),
               ),
             ),
           ),

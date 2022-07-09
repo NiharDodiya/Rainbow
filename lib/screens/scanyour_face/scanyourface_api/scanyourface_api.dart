@@ -27,11 +27,20 @@ class ScanYourFaceApi {
       http.Response? response = await HttpService.postApi(url: url,   body: jsonEncode(param),
           header: {"Content-Type": "application/json","x-access-token":accesToken});
       if (response != null && response.statusCode == 200) {
-        Get.offAll(() => const Dashboard());
+        bool? status = jsonDecode(response.body)["status"];
+        if(status==false)
+        {
+          flutterToast(jsonDecode(response.body)["message"]);
+        }
+        else if(status==true)
+        {
+          Get.offAll(() => const Dashboard());
+          flutterToast(jsonDecode(response.body)["message"]);
+        }
        return selfiVerificationFromJson(response.body);
       }
-      String message = jsonDecode(response!.body)["message"];
-      /*  message =="please enter a correct username and password"?errorToast(message):*/flutterToast(message);
+
+      /*  message =="please enter a correct username and password"?errorToast(message):*/
     } catch (e) {
       print(e.toString());
       return [];

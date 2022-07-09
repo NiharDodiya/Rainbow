@@ -68,16 +68,12 @@ class IdVerificationController extends GetxController {
 
   Future<void> idVerification() async {
     loader.value = true;
-    try {
-      List<IdVerification> list = await IdVerificationApi.postRegister(
+    try {await IdVerificationApi.postRegister(
           idType.text, idNO.text, uploadImage1.data!.id.toString(),
           uploadImage2.data!.id.toString()).then((value) => idVerificationList= value);
       loader.value = false;
-      if (list.isNotEmpty) {
-        Get.to(() => const SelfieVerificationScreen());
-      }
     } catch (e) {
-      errorToast(e.toString());
+
       loader.value = false;
       debugPrint(e.toString());
     }
@@ -95,7 +91,7 @@ class IdVerificationController extends GetxController {
       );
       loader.value = false;
     } catch (e) {
-      errorToast(e.toString());
+
       loader.value = false;
       debugPrint(e.toString());
     }
@@ -109,7 +105,6 @@ class IdVerificationController extends GetxController {
       );
       loader.value = false;
     } catch (e) {
-      errorToast(e.toString());
       loader.value = false;
       debugPrint(e.toString());
     }

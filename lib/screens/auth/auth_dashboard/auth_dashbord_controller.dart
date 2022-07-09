@@ -53,17 +53,23 @@ class AuthDashBordController extends GetxController {
   }
   void faceBookSignIn()
   async {
-    loading.value  =true;
-    final LoginResult loginResult = await FacebookAuth.instance.login();
+ try{
+   loading.value  =true;
+   final LoginResult loginResult = await FacebookAuth.instance.login();
 
-    final OAuthCredential facebookAuthCredential = FacebookAuthProvider
-        .credential(loginResult.accessToken!.token);
-    loading.value  =false;
-    flutterToast(Strings.faceBookSignInSuccess);
+   final OAuthCredential facebookAuthCredential = FacebookAuthProvider
+       .credential(loginResult.accessToken!.token);
+   loading.value  =false;
+   flutterToast(Strings.faceBookSignInSuccess);
+ }catch(e){
+   loading.value  =false;
+
+ }
   }
   void onContinueWithEmailTap() {
     Get.to(() => RegisterScreen());
-  }  void onSignUpTap() {
+  }
+  void onSignUpTap() {
     Get.to(() => AdviserRegisterScreen());
   }
 }

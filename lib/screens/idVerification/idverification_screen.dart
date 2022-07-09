@@ -82,25 +82,19 @@ class IdVerificationScreen extends StatelessWidget {
                                     width: 29,
                                     decoration: BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: controller.imageFront != null
-                                            ? ColorRes.color_B279DB
-                                            : ColorRes.color_C4C4C4),
+                                        color: ColorRes.color_C4C4C4),
                                   ),
                                   Container(
                                     height: 5,
                                     width: Get.width * 0.3,
-                                    color: controller.imageBack != null
-                                        ? ColorRes.color_B279DB
-                                        : ColorRes.color_C4C4C4,
+                                    color: ColorRes.color_C4C4C4,
                                   ),
                                   Container(
                                     height: 29,
                                     width: 29,
                                     decoration: BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: controller.imageBack != null
-                                            ? ColorRes.color_B279DB
-                                            : ColorRes.color_C4C4C4),
+                                        color: ColorRes.color_C4C4C4),
                                   ),
                                 ]),
                                 SizedBox(

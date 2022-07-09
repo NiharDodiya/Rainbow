@@ -148,11 +148,16 @@ class PhoneNumberScreen extends StatelessWidget {
        child: Center(
          child: Container(
            width: Get.width * 0.8450,
-           height: Get.height * 0.07624,
+           height:60,
            decoration: BoxDecoration(
                color: ColorRes.color_E7D01F,
                borderRadius:
-               BorderRadius.circular(15)),
+               BorderRadius.circular(20),
+             gradient: const LinearGradient(
+               colors: [ColorRes.color_FFEC5C, ColorRes.color_DFC60B],
+               begin: Alignment.topCenter,
+               end: Alignment.bottomCenter,
+             ),),
            child: Center(
                child: Text(
                  Strings.submit,

@@ -179,7 +179,6 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                               GestureDetector(
                                 onTap: () async {
                                   if (formKey.currentState!.validate()) {
-
                                     controller.verifyCode();
                                   }
                                 },

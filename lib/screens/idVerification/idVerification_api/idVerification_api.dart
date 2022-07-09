@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/idVerification/idVerification_api/idVerification_json.dart';
+import 'package:rainbow/screens/selfie_verification/selfie_verification_screen.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
@@ -17,7 +19,6 @@ class IdVerificationApi {
       String idItemBack,
 
       ) async {
-    List<IdVerification> IdList = [];
     String accesToken = await PrefService.getString(PrefKeys.registerToken);
     try {
       String url = EndPoints.idVerification;
@@ -47,10 +48,20 @@ print(response);
       http.Response? response = await HttpService.postApi(url: url,   body: jsonEncode(param),
           header: {"Content-Type": "application/json","x-access-token":accesToken});
       if (response != null && response.statusCode == 200) {
+
+        bool? status = jsonDecode(response.body)["status"];
+        if(status==false)
+        {
+          flutterToast(jsonDecode(response.body)["message"]);
+        }
+        else if(status==true)
+        {
+          Get.to(() => const SelfieVerificationScreen());
+          flutterToast(jsonDecode(response.body)["message"]);
+        }
         return idVerificationFromJson(response.body);
       }
-      String message = jsonDecode(response!.body)["message"];
-    /*  message =="please enter a correct username and password"?errorToast(message):*/flutterToast(message);
+
 
     } catch (e) {
       print(e.toString());

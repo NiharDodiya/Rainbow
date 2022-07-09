@@ -90,20 +90,26 @@ class Strings {
   static const passwordExample = '• • • • • • • • •';
   static const reTypePassword = 'Re-Type Password';
   static const addressLine1 = 'Address Line 1';
+  static const addressLine1Hint = '123 Street Name, City ,';
   static const addressLine2 = 'Address Line 2';
+  static const addressLine2Hint = 'State, Country, Postal Code';
   static const phoneNumber = 'Phone Number';
+  static const phoneNumberHint = '123 456 789';
   static const maritalStatus = 'Marital Status';
   static const ethnicity = 'Ethnicity';
+  static const ethnicityHint = 'British';
   static const idNoT = '123456';
   static const birthDate = 'Birth Date';
+  static const birthDateHint = 'MM/DD/YYYY';
   static const noOfKids = 'No of Kids';
+  static const noOfKidsHint = '0';
   static const fullNameError = 'Full Name is required';
   static const emailError = 'Email is required';
   static const enterYourOtp = 'enter your Otp';
   static const emailValidError = 'Email is invalid';
   static const emailValidError1 = 'Email is invalid';
   static const passwordError = 'Password is required';
-  static const newPasswordError = 'cewPassword is required';
+  static const newPasswordError = 'newPassword is required';
   static const ConfirmPasswordError = 'confirmPassword is required';
   static const passwordValidError = 'Password is invalid';
   static const reTypePasswordError = 'Re-Type Password is required';
@@ -148,6 +154,7 @@ class Strings {
       'By tapping accept and continue , I agree to the Terms and Condition and Privacy Policy and i am giving flighteno my concent to use my personal data to: facilitate my transaction and avail of products and services industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\nIt has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\nIt was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.';
 
   ///___________________________________ Complete your profile ____________________________________
+  static const naranataliEmail = 'naranatalie@gmail.com';
   static const completeProfile = 'Complete your profile';
   static const uploadPhotos = 'Upload your photo';
   static const bio = 'Bio';

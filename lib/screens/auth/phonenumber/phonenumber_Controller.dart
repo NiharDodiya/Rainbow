@@ -57,12 +57,17 @@ class PhoneNumberController extends GetxController {
       phoneNumberRegister();
     }
   }
-
+  PhoneNumber phoneNumberModel =Get.put(PhoneNumber());
   Future<void> phoneNumberRegister() async {
     try {
-      List<PhoneNumber> list =
-          await PhoneNumberApi.postRegister( "+${countryModel.phoneCode+phoneNumber.text}");
-      await PrefService.setValue(PrefKeys.id, list.first.data!.id.toString());
-    } catch (e) {}
+      loader.value=true;
+
+          await PhoneNumberApi.postRegister( "+${countryModel.phoneCode+phoneNumber.text}").then((value) => phoneNumberModel=value);
+      await PrefService.setValue(PrefKeys.id, phoneNumberModel.data!.id.toString());
+      loader.value=false;
+    } catch (e) {
+      loader.value=false;
+
+    }
   }
 }

@@ -15,8 +15,9 @@ import 'package:rainbow/utils/strings.dart';
 import '../../../common/Widget/loaders.dart';
 
 class DoctorRegisterScreen extends StatelessWidget {
-   DoctorRegisterScreen({Key? key}) : super(key: key);
-  DoctorRegisterController controller =Get.put(DoctorRegisterController());
+  DoctorRegisterScreen({Key? key}) : super(key: key);
+  DoctorRegisterController controller = Get.put(DoctorRegisterController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,8 +27,9 @@ class DoctorRegisterScreen extends StatelessWidget {
             children: [
               SingleChildScrollView(
                   padding: EdgeInsets.all(Get.width * 0.02667),
-                  child:Container(
-                    padding: EdgeInsets.symmetric(horizontal: Get.width * 0.0733),
+                  child: Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: Get.width * 0.0733),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(36),
                       color: ColorRes.color_4F359B,
@@ -58,40 +60,38 @@ class DoctorRegisterScreen extends StatelessWidget {
                                 registerButtons(controller),
                               ],
                             ),
-
                             !controller.professions
                                 ? const SizedBox()
-                                : Positioned(top: Get.height*0.35,
-                                  child: SizedBox(height: Get.height*0.2,
-                                    width: Get.width * 0.79,
-                                    child: AppDropDownProfessionType(
-                              paramList: controller.professionList,
-                              onTap: controller.onProfessionChange,
-                            ),
+                                : Positioned(
+                                    top: Get.height * 0.35,
+                                    child: SizedBox(
+                                      height: Get.height * 0.2,
+                                      width: Get.width * 0.79,
+                                      child: AppDropDownProfessionType(
+                                        paramList: controller.professionList,
+                                        onTap: controller.onProfessionChange,
+                                      ),
+                                    ),
                                   ),
-                                ),
-
                             !controller.countryCityDropdown
                                 ? const SizedBox()
                                 : Positioned(
-                              top: Get.height * 1.065,width: Get.width * 0.8,
-                              child: AppDropDownCompanyCountry(
-                                paramList: controller.countryCity,
-                                onTap: controller.onCountryCoCityChange,
-                              ),
-                            ),
-
+                                    top: Get.height * 1.065,
+                                    width: Get.width * 0.8,
+                                    child: AppDropDownCompanyCountry(
+                                      paramList: controller.countryCity,
+                                      onTap: controller.onCountryCoCityChange,
+                                    ),
+                                  ),
                           ],
                         );
                       },
                     ),
-                  )
-              ),
-              controller.loader.isTrue?const SmallLoader():const SizedBox()
+                  )),
+              controller.loader.isTrue ? const SmallLoader() : const SizedBox()
             ],
           );
-        })
-    );
+        }));
   }
 
   Widget registerButtons(DoctorRegisterController controller) {
@@ -115,9 +115,7 @@ class DoctorRegisterScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             GestureDetector(
-              onTap: () {
-
-              },
+              onTap: () {},
               child: Text(
                 Strings.signIn,
                 style: textStyleFont14WhiteBold,

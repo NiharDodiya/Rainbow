@@ -9,9 +9,9 @@ import 'package:rainbow/utils/strings.dart';
 
 class NewPasswordController extends GetxController {
   TextEditingController newPasswordController =
-      TextEditingController(text: "123Test@");
+      TextEditingController();
   TextEditingController confirmPasswordController =
-      TextEditingController(text: "123Test@");
+      TextEditingController();
   RxBool loader = false.obs;
 
   void onSignUpTap() {
@@ -29,7 +29,7 @@ class NewPasswordController extends GetxController {
       errorToast(Strings.newPasswordError);
       return false;
     } else if (validatePassword(newPasswordController.text) == false) {
-      errorToast(Strings.newPasswordError);
+      errorToast(Strings.confirmShortPassword);
       return false;
     } else if (confirmPasswordController.text.isEmpty) {
       errorToast(Strings.coPasswordEmpty);
@@ -47,14 +47,12 @@ class NewPasswordController extends GetxController {
   Future<void> createNewPassword() async {
     try {
       loader.value = true;
-      List<CreateNewPassword> list =
-          await CreateNewPasswordApi.postRegister(newPasswordController.text);
-      if (list.isNotEmpty) {
-        Get.to(() => PhoneNumberScreen());
-      }
+      await CreateNewPasswordApi.postRegister(newPasswordController.text);
+
       loader.value = false;
     } catch (e) {
       flutterToast(e.toString());
+      loader.value = false;
     }
   }
 }

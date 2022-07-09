@@ -99,8 +99,9 @@ class EditProfileController extends GetxController {
     if (image == null) return;
     final imageFront = File(image.path);
     frontImage = imageFront;
-    update(["Edit_profile"]);
     uploadImageApi();
+
+    update(["Edit_profile"]);
   }
 
   Future backCamera() async {
@@ -108,8 +109,9 @@ class EditProfileController extends GetxController {
     if (image == null) return;
     final imageTemp = File(image.path);
     backImage = imageTemp;
-    update(["Edit_profile"]);
     uploadImageBackApi();
+    update(["Edit_profile"]);
+
   }
 
   UploadImage uploadImage1 = UploadImage();

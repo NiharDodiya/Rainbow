@@ -17,17 +17,23 @@ class SubmitButton extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(20),
       child: Container(
-        height: Get.height * 0.076,
+        height: 60,
         width: Get.width * 0.85,
         decoration: BoxDecoration(
           color: ColorRes.color_E7D01F,
           borderRadius: BorderRadius.circular(20),
+          gradient: const LinearGradient(
+            colors: [ColorRes.color_FFEC5C, ColorRes.color_DFC60B],
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+          ),
         ),
         child: Center(
-          child: child ?? Text(
-            text!,
-            style: gilroyBoldTextStyle(color: Colors.black,fontSize: 16),
-          ),
+          child: child ??
+              Text(
+                text!,
+                style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
+              ),
         ),
       ),
     );

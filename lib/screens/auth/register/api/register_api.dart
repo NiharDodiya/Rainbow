@@ -11,7 +11,7 @@ import 'package:rainbow/utils/end_points.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
 class RegisterApi {
-  static Future<List<RegisterUser>> postRegister(
+  static Future postRegister(
       String fullName,
       String email,
       String password,
@@ -23,7 +23,7 @@ class RegisterApi {
       String ethnicity,
       String birthDate,
       String noOfKids) async {
-    List<RegisterUser> registerList = [];
+
     try {
       String url = EndPoints.register;
       Map<String, String> param = {
@@ -58,14 +58,24 @@ class RegisterApi {
           body: jsonEncode(param),
           header: {"Content-Type": "application/json"});
       if (response != null && response.statusCode == 200) {
-        registerList.add(registerUserFromJson(response.body));
-        Get.to(() => const GetStartedScreens());
-      }
-      String message = jsonDecode(response!.body)["message"];
-      message == "Failed! Email is already in use!"
-          ? errorToast(message)
-          : flutterToast(message);
-      return registerList;
+        bool? status = jsonDecode(response.body)["status"];
+        if(status==false)
+        {
+          flutterToast(jsonDecode(response.body)["message"]);
+        }
+        else if(status==true)
+        {
+          Get.to(() => const GetStartedScreens());
+          flutterToast(jsonDecode(response.body)["message"]);
+        }
+        return registerUserFromJson(response.body);
+
+      }else if(response!.statusCode == 500)
+        {  flutterToast(jsonDecode(response.body)["message"]);
+
+        }
+
+
     } catch (e) {
       print(e.toString());
       return [];

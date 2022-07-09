@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/screens/auth/newpassword/newpassword_screen.dart';
 import 'package:rainbow/screens/auth/verify_phone/verifyPhone_api/VerifyPhone_json.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/service/http_services.dart';
@@ -11,7 +12,7 @@ import 'package:http/http.dart' as http;
 import 'package:rainbow/utils/pref_keys.dart';
 
 class VerifyCodeApi {
-  static Future<List<VerifyCode>> postRegister(
+  static Future postRegister(
       String verifyOtp,
       ) async {
     List<VerifyCode> verifyList = [];
@@ -26,17 +27,22 @@ class VerifyCodeApi {
       http.Response? response = await HttpService.postApi(url: url,   body: jsonEncode(param),
           header: {"Content-Type": "application/json"});
       if (response != null && response.statusCode == 200) {
-        // verifyCodeFromJson(response.body);
-        await PrefService.setValue(PrefKeys.register, true);
-        Get.offAll(() => const Dashboard());
+        // flutterToast( jsonDecode(response.body)["message"]);
+        bool? status = jsonDecode(response.body)["status"];
+        if(status==false)
+          {
+            flutterToast(jsonDecode(response.body)["message"]);
+          }
+        else if(status==true)
+          {
+            await PrefService.setValue(PrefKeys.register, true);
+            Get.to(() => const NewPasswordScreen());
+          }
 
-
+        return verifyCodeFromJson(response.body);
       }
-      String message = jsonDecode(response!.body)["message"];
-      /*message =="please enter a correct username and password"?errorToast(message):*/flutterToast(message);
+      /*message =="please enter a correct username and password"?errorToast(message):*/
 
-
-      return verifyList;
     } catch (e) {
       print(e.toString());
       return [];

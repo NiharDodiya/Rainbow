@@ -37,14 +37,6 @@ class UploadImageApi {
       return uploadImageFromJson(responsed.body);
 
 
-      if (response.statusCode==200) {
-        print("SUCCESS");
-        print(responseData);
-      }
-
-      //
-      // /*  message =="please enter a correct username and password"?errorToast(message):*/flutterToast(message);
-
     } catch (e) {
       print(e.toString());
       return [];

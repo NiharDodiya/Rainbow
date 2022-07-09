@@ -36,7 +36,9 @@ class RegisterController extends GetxController {
   TextEditingController dobController =
       TextEditingController();
   TextEditingController kidsController = TextEditingController();
-  String selectedLocation = Strings.single;
+  String? selectedLocation ;
+  String? selectedEthicity ;
+  String? selectedNoKids ;
   List<String> martialStatusList = [
     Strings.single,
     Strings.married,
@@ -163,7 +165,7 @@ class RegisterController extends GetxController {
       errorToast(Strings.passwordError);
       return false;
     } else if (validatePassword(pwdController.text) == false) {
-      errorToast(Strings.passwordValidError);
+      errorToast(Strings.confirmShortPassword);
       return false;
     } else if (confirmPwdController.text.isEmpty) {
       errorToast(Strings.reTypePasswordError);
@@ -233,21 +235,25 @@ class RegisterController extends GetxController {
   void onLoginTap() {
     Get.off(() => LoginScreen(), transition: Transition.cupertino);
   }
-
+  RegisterUser registerUser = RegisterUser();
   Future<void> registerDetails() async {
-    loader.value = true;
-    List<RegisterUser> list =await RegisterApi.postRegister(
+try{
+  loader.value = true;
+await RegisterApi.postRegister(
       fullNameController.text,
       emailController.text,
       pwdController.text,
       confirmPwdController.text,
       address1Controller.text,
       address2Controller.text,
-        "+${countryModel.phoneCode+phoneController.text}",statusController.text,ethnicityController.text,
-        dobController.text,kidsController.text
-    );
-    await PrefService.setValue(PrefKeys.registerToken,list.first.token.toString());
+      "+${countryModel.phoneCode+phoneController.text}",statusController.text,ethnicityController.text,
+      dobController.text,kidsController.text
+  ).then((value) => registerUser=value);
+  await PrefService.setValue(PrefKeys.registerToken,registerUser.token.toString());
 
-    loader.value = false;
+  loader.value = false;
+}catch(e){
+  loader.value = false;
+}
   }
 }
