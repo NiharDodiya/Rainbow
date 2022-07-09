@@ -18,7 +18,7 @@ class AdvertisementDashBord extends StatelessWidget {
     final AdvertisementController controller = Get.put(AdvertisementController());
     return Scaffold(
       key: controller.key,
-      drawer: Drawer(),
+      drawer: const Drawer(),
       backgroundColor: ColorRes.white,
       body: Container(
         decoration: const BoxDecoration(

@@ -28,6 +28,9 @@ class DoctorRegisterController extends GetxController {
   TextEditingController website = TextEditingController();
 
   // String selectedLocation = Strings.single;
+  AdvertiserRegister advertiserRegister = AdvertiserRegister();
+  String? status;
+  String? role;
 
   List<String> professionList = [
     Strings.doctor,
@@ -46,13 +49,11 @@ class DoctorRegisterController extends GetxController {
     super.onInit();
   }
 
-  // void getCountry() {
-  //   for (int i = 0; i < listCountryModel.data!.length; i++) {
-  //     countryCity.add(listCountryModel.data![i].name!);
-  //     countryId.add(listCountryModel.data![i].id!.toString());
-  //   }
-  //   update(['doctor']);
-  // }
+  void getAdvertiserStatus() {
+ status=advertiserRegister.status.toString();
+ role=advertiserRegister.data!.role.toString();
+    update(['doctor']);
+  }
 
 /*  void onStatusChange(String value) {
     country.text = value;
@@ -110,25 +111,25 @@ class DoctorRegisterController extends GetxController {
 
   bool validation() {
     if (profession.text.isEmpty) {
-      errorToast(Strings.profession);
+      errorToast(Strings.professionError);
       return false;
     } else if (comanyName.text.isEmpty) {
-      errorToast(Strings.companyName);
+      errorToast(Strings.companyNameError);
       return false;
     } else if (companyNumber.text.isEmpty) {
-      errorToast(Strings.companyNumber);
+      errorToast(Strings.companyNumberError);
       return false;
     } else if (city.text.isEmpty) {
-      errorToast(Strings.city);
+      errorToast(Strings.cityError);
       return false;
     } else if (country.text.isEmpty) {
-      errorToast(Strings.country);
+      errorToast(Strings.countryError);
       return false;
     } else if (postalCode.text.isEmpty) {
-      errorToast(Strings.postalCode);
+      errorToast(Strings.postalCodeError);
       return false;
     } else if (website.text.isEmpty) {
-      errorToast(Strings.website);
+      errorToast(Strings.websiteError);
       return false;
     }
     return true;
@@ -136,7 +137,6 @@ class DoctorRegisterController extends GetxController {
 
   AdviserRegisterController controller = Get.put(AdviserRegisterController());
 
-  AdvertiserRegister advertiserRegister = AdvertiserRegister();
 String? codeId;
   Future<void> companyRegister() async {
     loader.value = true;

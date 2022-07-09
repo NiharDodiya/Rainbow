@@ -15,19 +15,24 @@ class Strings {
   static const signIn = 'Sign in';
   static const signUp = 'Sign up';
   static const houseNumber = 'House Number';
+  static const houseNumberError = 'House Number required';
   static const streetName = 'Street Name';
   static const street = 'Street ';
   static const profession = 'Profession';
+  static const professionError = 'Profession is Required';
   static const country = 'Country';
   static const doctor = 'Doctor';
   static const admin = 'Admin';
   static const endUsers = 'End Users';
   static const companyName = 'Company Name';
+  static const companyNameError = 'Company Name is Required';
   static const myCompany = 'My Company';
   static const companyNumber = 'Company Number';
+  static const companyNumberError = 'Company Number is Required';
   static const postalCode = 'Postal Code';
   static const postalCodeDigitHint = '123125';
   static const website = 'Website';
+  static const websiteError = 'Website is Required';
   static const websiteHint = 'www.mymom.com';
   static const sign_Up = 'Signup';
   static const forAdvertise = " for advertiser's account";
@@ -122,6 +127,7 @@ class Strings {
 
   static const ethnicityError = 'Ethnicity is required';
   static const birthDateError = 'Birth Date is required';
+  static const postalCodeError = 'PostalCode is required';
   static const noOfKidsError = 'No of Kids is required';
   static const alreadyHaveAnAccount = 'Already have an account? ';
   static const privacyPolicyText =
@@ -220,6 +226,8 @@ class Strings {
   ///___________________________dashboard--Profile_______________________________________
   static const profile = "Profile";
   static const city = "City";
+  static const cityError = "City Name is Required";
+  static const streetError = "street Name is Required";
   static const london = "London";
   static const haveKids = "Have kids?";
   static const editProfile = "Edit Profile";
@@ -289,9 +297,9 @@ class Strings {
   static const cVV = "CVV";
   static const cVVHint = ". . .";
   static const addresserror = 'Address is required';
-  static const cityeError = 'city is required';
-  static const postalCodeError = 'postal code is required';
-  static const countryError = 'Country is required';
+  static const cityeError = 'City is required';
+
+  static const countryError = 'Country is Required';
   static const nameonCardError = 'Name on Card is required';
   static const cardnumberError = 'card Number is required';
   static const cardnumberErrorValidation = "Please Currect card Number";
