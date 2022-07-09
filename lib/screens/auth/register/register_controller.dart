@@ -89,7 +89,6 @@ class RegisterController extends GetxController {
     ethnicityController.text = value.toString();
     update(['register_screen']);
     print(selectedEthicity);
-    print(countryNationCity);
   }
   void onStatusSelect() {
     if (martialStatusDropdown == false) {
