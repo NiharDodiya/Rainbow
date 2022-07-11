@@ -2,12 +2,13 @@ import 'package:country_picker/country_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
 import 'package:rainbow/screens/auth/login/login_screen.dart';
 import 'package:rainbow/screens/auth/register/api/register_api.dart';
+import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalitesJson.dart';
 import 'package:rainbow/screens/auth/register/register_json.dart';
-import 'package:rainbow/screens/getstarted_screen.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -15,28 +16,28 @@ import 'package:rainbow/utils/strings.dart';
 class RegisterController extends GetxController {
   void init() {}
   DateTime selectedDate = DateTime.now();
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController pwdController = TextEditingController();
+  TextEditingController confirmPwdController = TextEditingController();
+  TextEditingController address1Controller = TextEditingController();
+  TextEditingController address2Controller = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController statusController = TextEditingController();
+  TextEditingController ethnicityController = TextEditingController();
+  TextEditingController dobController = TextEditingController();
+  TextEditingController kidsController = TextEditingController();
+  String? selectedLocation;
 
-  TextEditingController fullNameController =
-      TextEditingController();
-  TextEditingController emailController =
-      TextEditingController();
-  TextEditingController pwdController = TextEditingController(text: "Test@123");
-  TextEditingController confirmPwdController =
-      TextEditingController(text: "Test@123");
-  TextEditingController address1Controller =
-      TextEditingController(text: "csasdd");
-  TextEditingController address2Controller =
-      TextEditingController(text: "dfdfwdfdw");
-  TextEditingController phoneController =
-      TextEditingController();
-  TextEditingController statusController =
-      TextEditingController(text: "single");
-  TextEditingController ethnicityController =
-      TextEditingController(text: "1");
-  TextEditingController dobController =
-      TextEditingController(/*text: "07-06-1999"*/);
-  TextEditingController kidsController = TextEditingController(text: "1");
-  String selectedLocation = Strings.single;
+  String? selectedEthicity;
+
+  String? selectedNoKids;
+
+  String? codeId;
+  bool isSocial = false;
+
+
+  String socialId = "";
   List<String> martialStatusList = [
     Strings.single,
     Strings.married,
@@ -82,6 +83,13 @@ class RegisterController extends GetxController {
     );
   }
 
+  void onStatusChangeCountry(String  value) {
+    print(value);
+    selectedEthicity = value.toString();
+    ethnicityController.text = value.toString();
+    update(['register_screen']);
+    print(selectedEthicity);
+  }
   void onStatusSelect() {
     if (martialStatusDropdown == false) {
       martialStatusDropdown = true;
@@ -142,8 +150,17 @@ class RegisterController extends GetxController {
 
   void onRegisterTap() {
     if (validation()) {
-      registerDetails();
+      for (int i = 0; i < listNationalities.data!.length; i++) {
+        if (listNationalities.data![i].name == ethnicityController.text) {
+          codeId = listNationalities.data![i].id!.toString();
+          print(codeId);
+        }
 
+        print(codeId);
+      }
+
+
+      registerDetails();
     }
   }
 
@@ -159,16 +176,16 @@ class RegisterController extends GetxController {
     } else if (!GetUtils.isEmail(emailController.text)) {
       errorToast(Strings.emailValidError);
       return false;
-    } else if (pwdController.text.isEmpty) {
+    } else if (pwdController.text.isEmpty && !isSocial) {
       errorToast(Strings.passwordError);
       return false;
-    } else if (validatePassword(pwdController.text) == false) {
-      errorToast(Strings.passwordValidError);
+    } else if (validatePassword(pwdController.text) == false && !isSocial) {
+      errorToast(Strings.confirmShortPassword);
       return false;
-    } else if (confirmPwdController.text.isEmpty) {
+    } else if (confirmPwdController.text.isEmpty&& !isSocial) {
       errorToast(Strings.reTypePasswordError);
       return false;
-    } else if (pwdController.text != confirmPwdController.text) {
+    } else if (pwdController.text != confirmPwdController.text && !isSocial) {
       errorToast(Strings.reTypePasswordValidError);
       return false;
     } else if (address1Controller.text.isEmpty) {
@@ -177,10 +194,10 @@ class RegisterController extends GetxController {
     } else if (phoneController.text.isEmpty) {
       errorToast(Strings.phoneNumberError);
       return false;
-    } else if (!GetUtils.isPhoneNumber(phoneController.text)) {
+    } /*else if (!GetUtils.isPhoneNumber(phoneController.text)) {
       errorToast(Strings.phoneNumberValidError);
       return false;
-    } else if (statusController.text.isEmpty) {
+    }*/ else if (statusController.text.isEmpty) {
       errorToast(Strings.maritalStatusError);
       return false;
     } else if (ethnicityController.text.isEmpty) {
@@ -200,33 +217,36 @@ class RegisterController extends GetxController {
     // showCupertinoModalPopup is a built-in function of the cupertino library
     showCupertinoModalPopup(
       context: ctx,
-      builder: (_) => Container(
-        height: 500,
-        color: const Color.fromARGB(255, 255, 255, 255),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 400,
-              child: CupertinoDatePicker(
-                mode: CupertinoDatePickerMode.date,
-                initialDateTime: DateTime(2001),
-                maximumDate: DateTime.now(),
-                maximumYear: DateTime.now().year,
-                onDateTimeChanged: (val) {
-                  var formattedDate = "${val.day}-${val.month}-${val.year}";
-                  dobController.text = formattedDate;
-                },
-              ),
-            ),
+      builder: (_) =>
+          Container(
+            height: 500,
+            color: const Color.fromARGB(255, 255, 255, 255),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 400,
+                  child: CupertinoDatePicker(
+                    mode: CupertinoDatePickerMode.date,
+                    initialDateTime: DateTime(2001),
+                    maximumDate: DateTime.now(),
+                    maximumYear: DateTime
+                        .now()
+                        .year,
+                    onDateTimeChanged: (val) {
+                      var formattedDate = "${val.day}-${val.month}-${val.year}";
+                      dobController.text = formattedDate;
+                    },
+                  ),
+                ),
 
-            // Close the modal
-            CupertinoButton(
-              child: const Text('OK'),
-              onPressed: () => Navigator.of(ctx).pop(),
-            )
-          ],
-        ),
-      ),
+                // Close the modal
+                CupertinoButton(
+                  child: const Text('OK'),
+                  onPressed: () => Navigator.of(ctx).pop(),
+                )
+              ],
+            ),
+          ),
     );
   }
 
@@ -234,20 +254,30 @@ class RegisterController extends GetxController {
     Get.off(() => LoginScreen(), transition: Transition.cupertino);
   }
 
+  RegisterUser registerUser = RegisterUser();
   Future<void> registerDetails() async {
-    loader.value = true;
-    List<RegisterUser> list =await RegisterApi.postRegister(
-      fullNameController.text,
-      emailController.text,
-      pwdController.text,
-      confirmPwdController.text,
-      address1Controller.text,
-      address2Controller.text,
-        "+${countryModel.phoneCode+phoneController.text}",statusController.text,ethnicityController.text,
-        dobController.text,kidsController.text
-    );
-    await PrefService.setValue(PrefKeys.registerToken,list.first.token.toString());
+    try {
+      loader.value = true;
+      await RegisterApi.postRegister(
+              fullNameController.text,
+              emailController.text,
+              socialId,
+              pwdController.text,
+              confirmPwdController.text,
+              address1Controller.text,
+              address2Controller.text,
+              "+${countryModel.phoneCode + phoneController.text}",
+              statusController.text,
+              codeId.toString(),
+              dobController.text,
+              kidsController.text)
+          .then((value) => registerUser = value);
+      await PrefService.setValue(PrefKeys.registerToken, registerUser.token.toString());
 
-    loader.value = false;
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+    }
+
   }
 }

@@ -1,53 +1,43 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
 import 'package:rainbow/screens/auth/doctor_register/doctorRegister_screen.dart';
-import 'package:rainbow/screens/auth/registerfor_adviser/adviser_api/adviser_api.dart';
-import 'package:rainbow/screens/auth/registerfor_adviser/adviser_api/adviser_json.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountry_json.dart';
-import 'package:rainbow/service/pref_services.dart';
-import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class AdviserRegisterController extends GetxController {
-  TextEditingController fullNameController =
-      TextEditingController(text: "ravi");
-  TextEditingController emailController =
-      TextEditingController();
-  TextEditingController pwdController = TextEditingController(text: "Test@123");
-  TextEditingController confirmPwdController =
-      TextEditingController(text: "Test@123");
-  TextEditingController houseNumber = TextEditingController(text: "123");
-  TextEditingController streetName = TextEditingController(text: "dfdfwdfdw");
-  TextEditingController city = TextEditingController(text: "surat");
-  TextEditingController country = TextEditingController(text: "1");
-  TextEditingController postalCode = TextEditingController(text: "15556");
-  TextEditingController phoneNumber =
-      TextEditingController(/*text: "07-06-1999"*/);
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController pwdController = TextEditingController();
+  TextEditingController confirmPwdController = TextEditingController();
+  TextEditingController houseNumber = TextEditingController();
+  TextEditingController streetName = TextEditingController();
+  TextEditingController city = TextEditingController();
+  TextEditingController country = TextEditingController();
+  TextEditingController postalCode = TextEditingController();
+  TextEditingController phoneNumber = TextEditingController(/*text: "07-06-1999"*/);
   String selectedLocation = Strings.single;
+  String? selectedValue;
+  //ListCountryModel listCountryModel = ListCountryModel();
   List<String> martialStatusList = [
     Strings.single,
     Strings.married,
   ];
-  List<String> ethnicityList = [
-    "0",
-    "1",
-    "2",
-  ];
+
   List<String> noOfKids = ["0", "1", "2", "3", "4", "5", "6"];
   bool martialStatusDropdown = false;
-  bool ethnicityDropdown = false;
+  bool countryCityDropdown = false;
   bool kidsDropdown = false;
   RxBool loader = false.obs;
 
   void onInit() {
-    countryName();
-    update(['register_screen']);
     super.onInit();
   }
+
 
   void onStatusSelect() {
     if (martialStatusDropdown == false) {
@@ -59,24 +49,29 @@ class AdviserRegisterController extends GetxController {
     update(['register_screen']);
   }
 
-  void onStatusChange(String value) {
-    country.text = value;
-    update(['register_screen']);
+  void onStatusChange(String  value) {
+    print(value);
+    selectedValue = value.toString();
+    country.text = value.toString();
+    update(['country']);
+    print(selectedValue);
+    print(countryCity);
   }
 
-  void onEthnicitySelect() {
-    if (ethnicityDropdown == false) {
-      ethnicityDropdown = true;
+  void onCountryCitySelect() {
+    if (countryCityDropdown == false) {
+      countryCityDropdown = true;
     } else {
-      ethnicityDropdown = false;
+      countryCityDropdown = false;
     }
     update(['register_screen']);
   }
 
-  void onEthnicityChange(String value) {
-    postalCode.text = value;
-    update(['register_screen']);
-  }
+/*  void onCountryCityChange(String value) {
+    country.text = value;
+    selectedValue = value;
+    update(['country']);
+  }*/
 
   void onBODSelect() {}
 
@@ -90,11 +85,6 @@ class AdviserRegisterController extends GetxController {
     update(['register_screen']);
   }
 
-/*  void onKidsChange(String value) {
-    kidsController.text = value;
-    update(['register_screen']);
-  }*/
-
   void onAddress1Change(String str) {
     if (str.length > 440 && str.length < 460) {
       update(['address1']);
@@ -106,10 +96,19 @@ class AdviserRegisterController extends GetxController {
       update(['address2']);
     }
   }
-
+String? passId;
   void onRegisterTap() {
     if (validation()) {
-      advirtisersRegister();
+      for (int i = 0; i < listCountryModel.data!.length; i++) {
+
+        if(listCountryModel.data![i].name==country.text)
+        {
+         passId=listCountryModel.data![i].id!.toString();
+          print(passId);
+        }
+      }
+
+      Get.to(() => DoctorRegisterScreen());
     }
   }
 
@@ -163,62 +162,41 @@ class AdviserRegisterController extends GetxController {
       errorToast(Strings.reTypePasswordValidError);
       return false;
     } else if (houseNumber.text.isEmpty) {
-      errorToast(Strings.addressLine1Error);
+      errorToast(Strings.houseNumberError);
       return false;
     } else if (city.text.isEmpty) {
-      errorToast(Strings.phoneNumberError);
+      errorToast(Strings.cityError);
+      return false;
+    } else if (streetName.text.isEmpty) {
+      errorToast(Strings.streetError);
       return false;
     } else if (country.text.isEmpty) {
-      errorToast(Strings.maritalStatusError);
+      errorToast(Strings.countryError);
       return false;
     } else if (postalCode.text.isEmpty) {
-      errorToast(Strings.ethnicityError);
+      errorToast(Strings.postalCodeError);
       return false;
     } else if (phoneNumber.text.isEmpty) {
-      errorToast(Strings.phoneNumber);
+      errorToast(Strings.phoneNumberError);
       return false;
-    } else if (!GetUtils.isPhoneNumber(phoneNumber.text)) {
+    }/* else if (!GetUtils.isPhoneNumber(phoneNumber.text)) {
       errorToast(Strings.phoneNumberValidError);
       return false;
-    }
+    }*/
     return true;
   }
 
-  Future<void> advirtisersRegister() async {
-    loader.value = true;
-    try {
-      List<AdvirtisersRegister> list = await AdvirtisersApi.postRegister(
-          fullNameController.text,
-          emailController.text,
-          pwdController.text,
-          houseNumber.text,
-          streetName.text,
-          "+${countryModel.phoneCode+phoneNumber.text}",
-          city.text,
-          country.text,
-          postalCode.text);
-      loader.value = false;
-      if (list.isNotEmpty) {
-        await PrefService.setValue(PrefKeys.advirtisersToken,list.first.token);
-        Get.to(() => DoctorRegisterScreen());
-
-      }
-    } catch (e) {
-      errorToast(e.toString());
-      loader.value = false;
-      debugPrint(e.toString());
-    }
-  } Future<void> countryName() async {
-    loader.value = true;
-    try {
-      List<ListCountryModel> list = await  ListOfCountryApi.postRegister();
-      loader.value = false;
-      print(list);
-
-    } catch (e) {
-      errorToast(e.toString());
-      loader.value = false;
-      debugPrint(e.toString());
-    }
-  }
+  // Future<void> countryName() async {
+  //   loader.value = true;
+  //   try {
+  //     await ListOfCountryApi.postRegister().then((value) => listCountryModel = value!);
+  //     getCountry();
+  //     loader.value = false;
+  //
+  //   } catch (e) {
+  //     errorToast(e.toString());
+  //     loader.value = false;
+  //     debugPrint(e.toString());
+  //   }
+  // }
 }

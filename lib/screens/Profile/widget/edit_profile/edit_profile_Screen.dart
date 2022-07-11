@@ -118,7 +118,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     left: Get.width * 0.4,
                     child: InkWell(onTap: () {
                       controller.frontCamera();
-                    },
+                      },
                       child: Container(
                         height: 29.19,
                         width: 28.48,
@@ -136,7 +136,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       () {
                         controller.backCamera();
 
-                        },
+
+
+                      },
                       child:Container(
                         height: 29.19,
                         width: 28.48,

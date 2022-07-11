@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/edit_profile_Screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
-Widget profileAppbar(String text) {
+Widget profileAppbar(String text, bool show) {
   return Padding(
     padding: const EdgeInsets.only(top: 10, left: 18.50, right: 18.50),
     child: Stack(
@@ -36,21 +37,25 @@ Widget profileAppbar(String text) {
               ),
             ),
             const Spacer(),
-            InkWell(
-              onTap: () {
-                Get.to(() => EditProfileScreen());
-              },
-              child: SizedBox(
-                height: 31,
-                width: 31,
-                child: Image.asset(AssetRes.editIcon),
-              ),
-            ),
+            show
+                ? InkWell(
+                    onTap: () {
+                      Get.to(() => const EditProfileScreen());
+                    },
+                    child: SizedBox(
+                      height: 31,
+                      width: 31,
+                      child: Image.asset(AssetRes.editIcon),
+                    ),
+                  )
+                : const SizedBox(),
             const SizedBox(
               width: 10,
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Get.to(() => ConnectionsScreen());
+              },
               child: Stack(
                 children: [
                   const SizedBox(

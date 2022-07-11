@@ -48,6 +48,7 @@ dependencies:
   readmore: ^2.1.0
   dotted_border: ^2.0.0+2
   story_view: ^0.13.2
+  dropdown_button2: ^1.6.3
   #____________________________________________verification code_______________________________________
   pinput: ^2.2.11
   pin_code_fields: ^7.4.0
@@ -77,6 +78,7 @@ dependencies:
   photo_manager: ^2.1.4
   flutter_mentions: ^2.0.1
   dotted_line: ^3.1.0
+
 
 
 

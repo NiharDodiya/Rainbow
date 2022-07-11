@@ -11,7 +11,7 @@ import 'package:http/http.dart' as http;
 import 'package:rainbow/utils/pref_keys.dart';
 
 class PhoneNumberApi {
-  static Future<List<PhoneNumber>> postRegister(
+  static Future postRegister(
       String phoneNumber,
 
 
@@ -29,16 +29,28 @@ class PhoneNumberApi {
           body: jsonEncode(param),
           header: {"Content-Type": "application/json"});
       if (response != null && response.statusCode == 200) {
-        phoneList.add(phoneNumberFromJson(response.body));
-        Get.to(() => const VerifyPhoneScreen());
+        bool? status = jsonDecode(response.body)["status"];
+        if(status==false)
+        {
+          flutterToast(jsonDecode(response.body)["message"]);
+        }
+        else if(status==true)
+        {
+          await PrefService.setValue(PrefKeys.register, true);
+          await PrefService.setValue(PrefKeys.phoneId, jsonDecode(response.body)["data"]["id"]);
+          Get.to(() => const VerifyPhoneScreen());
+          flutterToast(jsonDecode(response.body)["message"]);
+        }
+
+        return phoneNumberFromJson(response.body);
+
 
 
       }
-      String message = jsonDecode(response!.body)["message"];
+
       /*  message == "Failed! Email is already in use!"
           ? errorToast(message)
-          : */flutterToast(message);
-      return phoneList;
+          : */
     } catch (e) {
       print(e.toString());
       return [];

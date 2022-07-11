@@ -1,13 +1,18 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/adviser_api/adviser_json.dart';
+import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/service/http_services.dart';
+import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
 import 'package:http/http.dart' as http;
+import 'package:rainbow/utils/pref_keys.dart';
 
 class AdvirtisersApi {
-  static Future<List<AdvirtisersRegister>> postRegister(
+  static Future postRegister(
       String fullName,
       String email,
       String password,
@@ -17,23 +22,36 @@ class AdvirtisersApi {
       String city,
       String idCountry,
       String postalCode,
+          String   profession,
+  String comanyName,
+  String  companyNumber,
+  String  streetNam,
+  String companyCity,String country,String comapanyPostalCode,String website
       ) async {
-    List<AdvirtisersRegister> registerList = [];
+    AdvertiserRegister registerList= AdvertiserRegister();
     try {
       String url = EndPoints.advirtisersRegister;
-      Map<String, String> param = {
-        'fullName': fullName,
-        'email': email,
-        'password': password,
-        'houseNumber': houseNumber,
-        'streetName': streetName,
-        'phoneNumber': phoneNumber,
-        'city': city,
-        'id_country': idCountry,
-        'postalCode': postalCode,
-        'role': "advertisers",
-
-      };
+      Map<String, dynamic> param = {
+        "fullName" :fullName,
+        "email" : email,
+        "password": password,
+        "houseNumber": houseNumber,
+        "streetName" :streetName,
+        "phoneNumber" : phoneNumber,
+        "city" :city ,
+        "id_country" : idCountry,
+        "postalCode" : postalCode,
+        "role" : "advertisers",
+        "company" : {
+          "profession" : profession,
+          "companyName" : comanyName,
+          "companyNumber": companyNumber,
+          "streetName" : streetName,
+          "city" : companyCity ,
+          "id_country" :  country,
+          "postalCode" : comapanyPostalCode,
+          "website" : website
+        }};
       print(param);
 
       http.Response? response = await HttpService.postApi(
@@ -41,14 +59,28 @@ class AdvirtisersApi {
           body: jsonEncode(param),
           header: {"Content-Type": "application/json"});
       if (response != null && response.statusCode == 200) {
-        registerList.add(advirtisersRegisterFromJson(response.body));
 
+        bool? status = jsonDecode(response.body)["status"];
+        if(status==false)
+        {
+          flutterToast(jsonDecode(response.body)["message"]);
+        }
+        else if(status==true)
+        {
+          Get.offAll(() => const AdvertisementDashBord());
+          await PrefService.setValue(PrefKeys.companyRegister, true);
+          flutterToast(jsonDecode(response.body)["message"]);
+        }
+        return advertiserRegisterFromJson(response.body);
       }
-      String message = jsonDecode(response!.body)["message"];
-    /*  message == "Failed! Email is already in use!"
+      else if(response!.statusCode==400)
+        {
+          errorToast(jsonDecode(response.body)["message"]);
+        }
+      /*  message == "Failed! Email is already in use!"
           ? errorToast(message)
-          : */flutterToast(message);
-      return registerList;
+          : */
+      // return
     } catch (e) {
       print(e.toString());
       return [];

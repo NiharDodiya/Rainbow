@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
+import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/screens/idVerification/idVerification_api/idVerification_api.dart';
 import 'package:rainbow/screens/idVerification/idVerification_api/idVerification_json.dart';
 import 'package:rainbow/screens/selfie_verification/selfie_verification_screen.dart';
@@ -20,7 +22,7 @@ class IdVerificationController extends GetxController {
     update(["IdVerification_screen"]);
   }
 
-  List<String> ethnicityList = [
+  List<String> idTypeList = [
     Strings.passport,
     Strings.passport,
   ];
@@ -62,17 +64,47 @@ class IdVerificationController extends GetxController {
     return true;
   }
 
+  IdVerification idVerificationList = IdVerification();
+
   Future<void> idVerification() async {
     loader.value = true;
-    try {
-      List<IdVerification> list = await IdVerificationApi.postRegister(
-          idType.text, idNO.text, imageFront.toString(), imageBack.toString());
+    try {await IdVerificationApi.postRegister(
+          idType.text, idNO.text, uploadImage1.data!.id.toString(),
+          uploadImage2.data!.id.toString()).then((value) => idVerificationList= value);
       loader.value = false;
-      if (list.isNotEmpty) {
-        Get.to(() => const SelfieVerificationScreen());
-      }
     } catch (e) {
-      errorToast(e.toString());
+
+      loader.value = false;
+      debugPrint(e.toString());
+    }
+  }
+
+  UploadImage uploadImage1 = UploadImage();
+  UploadImage uploadImage2 = UploadImage();
+
+
+  Future<void> uploadImageApi() async {
+    loader.value = true;
+    try {
+      await UploadImageApi.postRegister(imageFront.toString()
+      ).then((value) => uploadImage1 = value!,
+      );
+      loader.value = false;
+    } catch (e) {
+
+      loader.value = false;
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> uploadImageBackApi() async {
+    loader.value = true;
+    try {
+      await UploadImageApi.postRegister(imageBack.toString()
+      ).then((value) => uploadImage2 = value!,
+      );
+      loader.value = false;
+    } catch (e) {
       loader.value = false;
       debugPrint(e.toString());
     }

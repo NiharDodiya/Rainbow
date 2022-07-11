@@ -5,6 +5,7 @@ import 'package:rainbow/helper.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_api.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
 import 'package:rainbow/screens/auth/newpassword/newpassword_screen.dart';
+import 'package:rainbow/screens/auth/phonenumber/phonenumber_Screen.dart';
 import 'package:rainbow/screens/auth/register/register_screen.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/register_adviser.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
@@ -13,18 +14,27 @@ import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class LoginController extends GetxController {
-  TextEditingController emailController =
-      TextEditingController();
-  TextEditingController passwordController =
-      TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   RxBool loader = false.obs;
+  bool advertiser = false;
 
   void onSignUpTap() {
     // Get.off(() => RegisterScreen(), transition: Transition.cupertino);
-    Get.off(() => AdviserRegisterScreen(), );
+    Get.off(
+      () => !advertiser ? AdviserRegisterScreen() : RegisterScreen(),
+    );
   }
-void onSignUpDontHaveTap() {
-    Get.off(() => RegisterScreen(), transition: Transition.cupertino);
+
+  void onTapAsLogin() {
+    advertiser = !advertiser;
+    update(['as']);
+  }
+
+  void onSignUpDontHaveTap() {
+    Get.off(() => advertiser ? AdviserRegisterScreen() : RegisterScreen(),
+        transition: Transition.cupertino);
+
     // Get.off(() => AdviserRegisterScreen(), );
   }
 
@@ -35,7 +45,7 @@ void onSignUpDontHaveTap() {
   }
 
   void onForgotPassword() {
-    Get.to(() => const NewPasswordScreen());
+    Get.to(() => PhoneNumberScreen());
   }
 
   bool validation() {
@@ -49,28 +59,24 @@ void onSignUpDontHaveTap() {
       errorToast(Strings.passwordError);
       return false;
     } else if (validatePassword(passwordController.text) == false) {
-      errorToast(Strings.passwordValidError);
+      errorToast(Strings.confirmShortPassword);
       return false;
     }
     return true;
   }
 
+  LoginModel loginModel = LoginModel();
+
   Future<void> registerDetails() async {
     loader.value = true;
-    try{
-      List<LoginModel> list = await LoginApi.postRegister(
+    try {
+      await LoginApi.postRegister(
         emailController.text,
         passwordController.text,
-      );
+      ).then((value) => loginModel = value);
       loader.value = false;
-      if (list.isNotEmpty) {
-        await PrefService.setValue(PrefKeys.isLogin, true);
-        await PrefService.setValue(PrefKeys.accessToken,list.first.token);
-
-        Get.to(() => const Dashboard());
-      }
-    }catch(e){
-      errorToast(e.toString());
+      await PrefService.setValue(PrefKeys.accessToken, loginModel.token);
+    } catch (e) {
       loader.value = false;
       debugPrint(e.toString());
     }

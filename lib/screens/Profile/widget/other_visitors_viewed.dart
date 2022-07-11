@@ -12,7 +12,7 @@ Widget otherVisitorsViewed() {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(
-          height: 30,
+          height: 10,
         ),
         Text(
           "Other Visitors Viewed",
@@ -59,6 +59,7 @@ Widget visitors({String? image, String? title}) {
         child: Text(
           title ?? "Amber Davis",
           maxLines: 2,
+          textAlign: TextAlign.center,
           style: gilroyRegularTextStyle(fontSize: 16),
         ),
       )

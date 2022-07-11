@@ -67,7 +67,7 @@ class ScanYourFaceScreen extends StatelessWidget {
                                       padding: const EdgeInsets.only(left: 15),
                                       child: Text(
                                         Strings.selfie,
-                                        style: textStyleFont26WhiteBold,
+                                        style: gilroyBoldTextStyle(fontSize: 26),
                                       )),
                                   SizedBox(
                                     height: Get.height * 0.009,
@@ -86,26 +86,26 @@ class ScanYourFaceScreen extends StatelessWidget {
                                         Container(
                                           height: 5,
                                           width: Get.width * 0.25,
-                                          color: ColorRes.color_C4C4C4,
+                                          color: ColorRes.color_B279DB,
                                         ),
                                         Container(
                                           height: 29,
                                           width: 29,
                                           decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
-                                              color: ColorRes.color_C4C4C4),
+                                              color: ColorRes.color_B279DB),
                                         ),
                                         Container(
                                           height: 5,
                                           width: Get.width * 0.25,
-                                          color: ColorRes.color_C4C4C4,
+                                          color: ColorRes.color_B279DB,
                                         ),
                                         Container(
                                           height: 29,
                                           width: 29,
                                           decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
-                                              color: ColorRes.color_C4C4C4),
+                                              color: ColorRes.color_B279DB),
                                         ),
                                       ]),
                                   SizedBox(
@@ -120,7 +120,7 @@ class ScanYourFaceScreen extends StatelessWidget {
                                       child: Center(
                                         child: Text(
                                           Strings.scanYourFace,
-                                          style: textStyleFont26WhiteBold,
+                                          style: gilroyBoldTextStyle(fontSize: 26),
                                         ),
                                       ),
                                     ),
@@ -140,7 +140,7 @@ class ScanYourFaceScreen extends StatelessWidget {
                                   ),
                                   buildCameraFunction(context, controller),
                                   SizedBox(
-                                    height: Get.height * 0.03,
+                                    height: Get.height * 0.05,
                                   ),
                                   GestureDetector(
                                     onTap: () {
@@ -150,10 +150,14 @@ class ScanYourFaceScreen extends StatelessWidget {
                                     child: Center(
                                       child: Container(
                                         width: Get.width * 0.84788,
-                                        height: Get.height * 0.07575,
+                                        height:60,
                                         decoration: BoxDecoration(
                                             color: ColorRes.color_E7D01F,
-                                            borderRadius: BorderRadius.circular(15)),
+                                            borderRadius: BorderRadius.circular(20), gradient: const LinearGradient(
+                                          colors: [ColorRes.color_FFEC5C, ColorRes.color_DFC60B],
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                        ),),
                                         child: Center(
                                             child: Text(
                                               Strings.next,
@@ -171,7 +175,7 @@ class ScanYourFaceScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                controller.loader.isTrue?SmallLoader():SizedBox(),
+                controller.loader.isTrue?const SmallLoader():const SizedBox(),
               ],
             );
           })
@@ -191,9 +195,7 @@ class ScanYourFaceScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  // SizedBox(
-                  //   height: 34 + (Get.height / 36) + (Get.height / 20),
-                  // ),
+
                   CameraPreview(controller.controller),
                 ],
               ),
@@ -228,43 +230,7 @@ class ScanYourFaceScreen extends StatelessWidget {
                   width: Get.width,
                   child: Image.asset(AssetRes.scanYourFace),
                 ),
-                // child: CustomPaint(
-                //   painter: RPSCustomPainter(),
-                //   child: SizedBox(
-                //     height: 313,
-                //     width: 313,
-                //     child: Stack(
-                //       children: [
-                //         /* GestureDetector(
-                //                         onTap: () {
-                //                           controller.getImage();
-                //                         },
-                //                         child: Center(
-                //                           child: controller.image1 == null?Container(
-                //                             height: 225,
-                //                             width: 225,
-                //                             decoration: const BoxDecoration(
-                //                                 image: DecorationImage(
-                //                                     image: AssetImage(
-                //                                         AssetRes.selfiePicture),
-                //                                     fit: BoxFit.cover),
-                //                                 shape: BoxShape.circle),
-                //                           ):Container(
-                //                             height: 225,
-                //                             width: 225,
-                //                             decoration:   BoxDecoration(
-                //                               image:  DecorationImage(
-                //                                 image:  FileImage(controller.image1!),
-                //                                 fit: BoxFit.cover,
-                //                               ),
-                //                                 shape: BoxShape.circle),
-                //                           )
-                //                         ),
-                //                       ),*/
-                //       ],
-                //     ),
-                //   ),
-                // ),
+
               ),
               Positioned(
                 top: Get.width * 0.129,

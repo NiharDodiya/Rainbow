@@ -9,8 +9,9 @@ Widget testimonials() {
   return Padding(
     padding: const EdgeInsets.only(left: 30, right: 30),
     child: SizedBox(
-      height: 460,
+      height: 480,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(
@@ -19,9 +20,6 @@ Widget testimonials() {
           Text(
             "Testimonials",
             style: beVietnamProBoldTextStyle(fontSize: 18),
-          ),
-          const SizedBox(
-            height: 30,
           ),
           ListView.separated(
             physics: const NeverScrollableScrollPhysics(),
@@ -38,7 +36,7 @@ Widget testimonials() {
             shrinkWrap: true,
           ),
           Divider(
-            height: 24,
+            height: 25,
             color: ColorRes.white.withOpacity(0.7),
           ),
           Row(
@@ -49,7 +47,7 @@ Widget testimonials() {
               Container(
                 height: 20,
                 width: 30,
-                margin: const EdgeInsets.only(bottom: 10,top: 2),
+                margin: const EdgeInsets.only(bottom: 10,top: 5),
                 alignment: Alignment.center,
                 child: Text(
                   "1",
@@ -69,7 +67,7 @@ Widget iconForSlider(String image) {
   return Container(
     height: 20,
     width: 20,
-    margin: const EdgeInsets.only(left: 10,right: 10,bottom: 10,top: 2),
+    margin: const EdgeInsets.only(left: 10,right: 10,bottom: 10,top: 5),
     child: Image.asset(
       image,
       height: 20,

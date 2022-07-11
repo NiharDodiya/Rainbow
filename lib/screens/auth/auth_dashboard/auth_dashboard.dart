@@ -15,13 +15,13 @@ class AuthDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller.onInti();
     return GetBuilder<AuthDashBordController>(
       id: "auth",
       builder: (controller) {
         return Scaffold(
             backgroundColor: Colors.white,
             body: Obx(() {
-
               return Stack(
                 children: [
                   Center(
@@ -196,41 +196,41 @@ class AuthDashboard extends StatelessWidget {
     return Column(
       children: [
         SizedBox(height: Get.height*0.0788),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              Strings.alreadyHaveAccount,
-              style: textStyleFont14White,
-            ),
-            GestureDetector(
-              onTap: controller.onSignInTap,
-              child: Text(
+        GestureDetector(
+          onTap: controller.onSignInTap,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                Strings.alreadyHaveAccount,
+                style: textStyleFont14White,
+              ),
+              Text(
                 Strings.signIn,
                 style:  gilroyBoldTextStyle(fontSize: 14),
                 textAlign: TextAlign.center,
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         sizedBox14(),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            InkWell(
-              onTap: controller.onSignUpTap,
-              child: Text(
+        InkWell(
+          onTap: ()=> controller.onSignUpTap(),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
                 Strings.signUp,
                 style: gilroyBoldTextStyle(fontSize: 14),
               ),
-            ),
-            Text(
-              Strings.forAdvertise,
-              style: textStyleFont14White,
-            ),
-          ],
+              Text(
+                Strings.forAdvertise,
+                style: textStyleFont14White,
+              ),
+            ],
+          ),
         ),
         sizedBox14(),
         SizedBox(

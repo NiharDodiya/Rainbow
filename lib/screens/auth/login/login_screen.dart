@@ -16,55 +16,65 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Obx(() {
-          return Stack(
-            children: [
-              GetBuilder<LoginController>(
-                id: "Login",
-                builder: (controller) {
-                  return SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Container(
-                          width: Get.width,
-                          margin: EdgeInsets.fromLTRB(
-                            Get.width * 0.02667,
-                            Get.width * 0.02667,
-                            Get.width * 0.02667,
-                            0,
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Obx(
+          () {
+            return Stack(
+              children: [
+                GetBuilder<LoginController>(
+                  id: "Login",
+                  builder: (controller) {
+                    return SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Container(
+                            width: Get.width,
+                            margin: EdgeInsets.fromLTRB(
+                              Get.width * 0.02667,
+                              Get.width * 0.02667,
+                              Get.width * 0.02667,
+                              0,
+                            ),
+                            decoration: BoxDecoration(
+                              color: ColorRes.color_4F359B,
+                              borderRadius: BorderRadius.circular(36),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Column(
+                                  children: [
+                                    logoRainbow(),
+                                    textFields(controller),
+                                    loginButton(controller)
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                          decoration: BoxDecoration(
-                            color: ColorRes.color_4F359B,
-                            borderRadius: BorderRadius.circular(36),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Column(
-                                children: [
-                                  logoRainbow(),
-                                  textFields(controller),
-                                  loginButton(controller)
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        signUp(),
-                      ],
-                    ),
-                  );
-                },
-              ),
-              controller.loader.isTrue
-                  ? const SmallLoader()
-                  : const SizedBox()
-            ],
-          );
-        },
+                          signUp(),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                controller.loader.isTrue
+                    ? const SmallLoader()
+                    : const SizedBox()
+              ],
+            );
+          },
+        ),
       ),
     );
   }
@@ -152,9 +162,14 @@ class LoginScreen extends StatelessWidget {
             alignment: Alignment.topRight,
             child: GestureDetector(
               onTap: loginController.onForgotPassword,
-              child: Text(
-                Strings.forgotPassword,
-                style: gilroyMediumTextStyle(fontSize: 14,color: ColorRes.white.withOpacity(0.5)),
+              child: SizedBox(
+                width: 116,
+                height: 16,
+                child: Text(
+                  Strings.forgotPassword,
+                  style: gilroyMediumTextStyle(
+                      fontSize: 14, color: ColorRes.white.withOpacity(0.5)),
+                ),
               ),
             ),
           ),
@@ -172,19 +187,29 @@ class LoginScreen extends StatelessWidget {
           onTap: loginController.onRegisterTap,
         ),
         SizedBox(height: Get.height * 0.03202),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              Strings.log_in,
-              style: textStyleFont14WhiteBold,
-            ),
-            Text(
-              Strings.loginAsAdvertiser,
-              style: textStyleFont14White,
-            ),
-          ],
+        GetBuilder<LoginController>(
+          id: 'as',
+          builder: (controller) {
+            return InkWell(
+              onTap: () {
+                controller.onTapAsLogin();
+              },
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    Strings.log_in,
+                    style: textStyleFont14WhiteBold,
+                  ),
+                  Text(
+                    controller.advertiser? Strings.loginAsEndUser:Strings.loginAsAdvertiser,
+                    style: textStyleFont14White,
+                  ),
+                ],
+              ),
+            );
+          },
         ),
         SizedBox(height: Get.height * 0.02463),
       ],
@@ -195,40 +220,46 @@ class LoginScreen extends StatelessWidget {
     return Column(
       children: [
         SizedBox(height: Get.height * 0.02463),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              Strings.dontHaveAccount,
-              style: gilroyMediumTextStyle(color: Colors.black,fontSize: 14),
-            ),
-            InkWell(
-              onTap: controller.onSignUpDontHaveTap,
-              child: Text(
+        GestureDetector(
+          onTap: controller.onSignUpDontHaveTap,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                Strings.dontHaveAccount,
+                style: gilroyMediumTextStyle(color: Colors.black, fontSize: 14),
+              ),
+              Text(
                 Strings.sign_Up,
                 style: textStyleFont14,
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         SizedBox(height: Get.height * 0.025),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            InkWell(
+        GetBuilder<LoginController>(
+          id: 'as',
+          builder: (controller) {
+            return GestureDetector(
               onTap: controller.onSignUpTap,
-              child: Text(
-                Strings.signUp,
-                style: textStyleFont14,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    Strings.signUp,
+                    style: textStyleFont14,
+                  ),
+                  Text(
+                    controller.advertiser
+                        ? Strings.forEndUserAccount:Strings.forAdvertise,
+                    style: gilroyMediumTextStyle(color: Colors.black, fontSize: 14),
+                  ),
+                ],
               ),
-            ),
-            Text(
-              Strings.forAdvertise,
-              style: gilroyMediumTextStyle(color: Colors.black,fontSize: 14),
-            ),
-          ],
+            );
+          },
         ),
         SizedBox(height: Get.height * 0.02463),
       ],

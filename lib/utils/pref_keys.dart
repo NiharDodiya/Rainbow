@@ -7,4 +7,5 @@ class PrefKeys{
   static const registerToken = "registerToken";
   static const advirtisersToken = "advirtisersToken";
   static const id = "id";
+  static const phoneId = "id";
 }

@@ -31,7 +31,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp( builder: (_, child) => Portal(child: child!),
+    return GetMaterialApp(
+      builder: (_, child) => Portal(child: child!),
       title: 'Flutter Demo',
       theme: ThemeData(
         primaryColor: ColorRes.themeColor,
@@ -41,14 +42,15 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const AdvertisementDashBord()
-      // !PrefService.getBool(PrefKeys.skipBoardingScreen)
-      //     ? SplashScreen()
-      //     : PrefService.getBool(PrefKeys.isLogin)
-      //     ? const Dashboard()
-      //     : PrefService.getBool(PrefKeys.register)
-      //     ? const Dashboard()
-      //     : AuthDashboard()
+      home:
+          //AdvertisementDashBord()
+          !PrefService.getBool(PrefKeys.skipBoardingScreen)
+              ? SplashScreen()
+              : PrefService.getBool(PrefKeys.isLogin)
+                  ? const Dashboard()
+                  : PrefService.getBool(PrefKeys.register)
+                      ? const Dashboard()
+                      : AuthDashboard(),
     );
   }
 }

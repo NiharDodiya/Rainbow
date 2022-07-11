@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/country_name.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
+import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/screens/auth/doctor_register/doctorRegister_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -15,16 +17,23 @@ class DoctorRegisterForm extends StatelessWidget {
       builder: (controller) {
         return Column(
           children: [
-            GestureDetector(onTap: () {
-      controller.onProfessionOnTap();
-            },
-              child: AppTextFiled(
-                controller: controller.profession,
-                title: Strings.profession,
-                hintText: Strings.profession,
-                  suffix: Image.asset(AssetRes.arrowDown, height: 17),
-              ),
+            dropdownButton(
+              title: "Profession",
+              hintText: "Doctor",
+              selectedValue: controller.selectProfession,
+              onTap: controller.onProfessionChange,
+              dropdownList: controller.professionList,
             ),
+      //       GestureDetector(onTap: () {
+      // controller.onProfessionOnTap();
+      //       },
+      //         child: AppTextFiled(
+      //           controller: controller.profession,
+      //           title: Strings.profession,
+      //           hintText: Strings.profession,
+      //             suffix: Image.asset(AssetRes.arrowDown, height: 17),
+      //         ),
+      //       ),
             AppTextFiled(
               controller: controller.comanyName,
               title: Strings.companyName,
@@ -56,12 +65,27 @@ class DoctorRegisterForm extends StatelessWidget {
             GetBuilder<DoctorRegisterController>(
               id: 'doctor',
               builder: (controller) {
-                return AppTextFiled(
-                  controller: controller.country,
-                  title: Strings.country,
-                  hintText: Strings.country,
-                  multiLine: true,
+                return dropdownButton(
+                  title: "Country",
+                  hintText: "Canada",
+                  selectedValue: controller.selectCountry,
+                  onTap: controller.onCountryCoCityChange,
+                  dropdownList: countryCity,
+                    height: Get.height*0.3
+
+
                 );
+                //   GestureDetector(onTap: () {
+                //   controller.onCountryCoCitySelect();
+                // },
+                //   child: AppTextFiled(
+                //     controller: controller.country,
+                //     title: Strings.country,
+                //     hintText: Strings.country,
+                //     multiLine: true,
+                //     suffix: Image.asset(AssetRes.arrowDown,height: 15,width: 15,),
+                //   ),
+                // );
               },
             ),
 
@@ -74,6 +98,7 @@ class DoctorRegisterForm extends StatelessWidget {
                 title: Strings.postalCode,
                 hintText: Strings.postalCodeDigitHint,
                 enable: true,
+                textInputType: TextInputType.number,
               ),
             ),  GestureDetector(
               onTap: () {

@@ -8,6 +8,7 @@ import 'package:rainbow/screens/Home/settings/privacy/privacy_screen.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
 import 'package:rainbow/screens/Home/settings/subscription/subscription_screen.dart';
 import 'package:rainbow/screens/Home/settings/support/support_screen.dart';
+import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -134,12 +135,13 @@ class SettingsScreen extends StatelessWidget {
                         Row(
                           children: [
                             SizedBox(
-                                height: 15.35,
-                                width: 15.35,
-                                child: Image.asset(
-                                  AssetRes.profileSettinges,
-                                  color: ColorRes.color_4F359B,
-                                )),
+                              height: 15.35,
+                              width: 15.35,
+                              child: Image.asset(
+                                AssetRes.profileSettinges,
+                                color: ColorRes.color_4F359B,
+                              ),
+                            ),
                             const SizedBox(
                               width: 5,
                             ),
@@ -478,28 +480,31 @@ class SettingsScreen extends StatelessWidget {
           SizedBox(
             height: Get.height * 0.035,
           ),
-          Container(
-            height: 60,
-            width: Get.width * 0.8,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(13.67),
-                color: ColorRes.color_FFEC5C),
-            child: Center(
-                child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                    height: 15, width: 15, child: Image.asset(AssetRes.logout)),
-                const SizedBox(
-                  width: 11,
-                ),
-                Text(
-                  Strings.logout,
-                  style: gilroyMediumTextStyle(color: Colors.black,fontSize: 16)
-                ),
-              ],
-            )),
+          GestureDetector(onTap: () {
+            Get.offAll(()=>AuthDashboard());
+          },
+            child: Container(
+              height: 60,
+              width: Get.width * 0.8,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(13.67),
+                  color: ColorRes.color_FFEC5C),
+              child: Center(
+                  child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                      height: 15, width: 15, child: Image.asset(AssetRes.logout)),
+                  const SizedBox(
+                    width: 11,
+                  ),
+                  Text(Strings.logout,
+                      style: gilroyMediumTextStyle(
+                          color: Colors.black, fontSize: 16)),
+                ],
+              )),
+            ),
           ),
           SizedBox(
             height: Get.height * 0.07,

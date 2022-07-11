@@ -17,6 +17,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         width: Get.width,
+        padding: const EdgeInsets.only(top: 25),
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
@@ -31,7 +32,7 @@ class ProfileScreen extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
-              profileAppbar(Strings.profile),
+              profileAppbar(Strings.profile,true),
               profileImage(),
               profileDetails(),
               aboutProfiler("About Me"),

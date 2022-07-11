@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
+import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
+import 'package:rainbow/screens/Profile/widget/edit_profile/edit_api/edit_api.dart';
+import 'package:rainbow/screens/Profile/widget/edit_profile/edit_api/edit_model.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class EditProfileController extends GetxController {
@@ -26,6 +30,8 @@ class EditProfileController extends GetxController {
   String hobbiesTextCounter = '';
   File? frontImage;
   File? backImage;
+  RxBool loader = false.obs;
+
   void onInit() {
     update(['Edit_profile']);
     super.onInit();
@@ -33,7 +39,8 @@ class EditProfileController extends GetxController {
 
   void onTapTextField() {
     if (validation()) {
-      Get.back();
+      editProfileApi();
+      // Get.back();
     }
   }
 
@@ -89,10 +96,11 @@ class EditProfileController extends GetxController {
 
   Future frontCamera() async {
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
-
     if (image == null) return;
-    final imageTemp = File(image.path);
-    frontImage = imageTemp;
+    final imageFront = File(image.path);
+    frontImage = imageFront;
+    uploadImageApi();
+
     update(["Edit_profile"]);
   }
 
@@ -101,6 +109,73 @@ class EditProfileController extends GetxController {
     if (image == null) return;
     final imageTemp = File(image.path);
     backImage = imageTemp;
+    uploadImageBackApi();
     update(["Edit_profile"]);
+
+  }
+
+  UploadImage uploadImage1 = UploadImage();
+  UploadImage uploadImage2 = UploadImage();
+
+  Future<void> uploadImageApi() async {
+    loader.value = true;
+    try {
+      await UploadImageApi.postRegister(frontImage!.path.toString()).then(
+        (value) => uploadImage1 = value!,
+      );
+
+      loader.value = false;
+    } catch (e) {
+      errorToast(e.toString());
+      loader.value = false;
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> uploadImageBackApi() async {
+    loader.value = true;
+    try {
+      await UploadImageApi.postRegister(backImage!.path.toString()).then(
+        (value) => uploadImage2 = value!,
+      );
+
+      loader.value = false;
+    } catch (e) {
+      errorToast(e.toString());
+      loader.value = false;
+      debugPrint(e.toString());
+    }
+  }
+
+  EditProfile editProfile = Get.put(EditProfile());
+
+  Future<void> editProfileApi() async {
+    loader.value = true;
+    try {
+      await EditProfileApi.postRegister(
+        uploadImage1.data!.id.toString(),
+        uploadImage2.data!.id.toString(),
+        fullName.text,
+        status.text,
+        height.text,
+        city.text,
+        age.text,
+        weight.text,
+        ethnicity.text,
+        status1.text,
+        instagram.text,
+        youTube.text,
+        faceBook.text,
+        twitter.text,
+        aboutMe.text,
+        hobbies.text,
+        haveKids.text,
+      ).then((value) => editProfile = value);
+      loader.value = false;
+    } catch (e) {
+      errorToast(e.toString());
+      loader.value = false;
+      debugPrint(e.toString());
+    }
   }
 }

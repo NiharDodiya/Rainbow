@@ -11,9 +11,10 @@ import 'package:rainbow/utils/end_points.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
 class RegisterApi {
-  static Future<List<RegisterUser>> postRegister(
+  static Future postRegister(
       String fullName,
       String email,
+      String idSocial,
       String password,
       String confirmPassword,
       String add1,
@@ -22,8 +23,9 @@ class RegisterApi {
       String maritaStatus,
       String ethnicity,
       String birthDate,
+
       String noOfKids) async {
-    List<RegisterUser> registerList = [];
+
     try {
       String url = EndPoints.register;
       Map<String, String> param = {
@@ -33,6 +35,7 @@ class RegisterApi {
         'address1': add1,
         'address2': add2,
         'phoneNumber': phNo,
+        'id_social' : idSocial,
         'maritalStatus': maritaStatus,
         'ethnicityId': ethnicity,
         'dob': birthDate,
@@ -40,32 +43,27 @@ class RegisterApi {
         'role': "end_user",
       };
       print(param);
-      /*   final Map<String, dynamic> data = new Map<String, dynamic>();
-      // data['location_name']=  locationName;
-      data['fullName'] = fullName;
-      data['email'] = "rk@gmail.com";
-      data['password'] = password;
-      data['address1'] = confirmPassword;
-      data['address2'] = add1;
-      data['phoneNumber'] = add2;
-      data['maritalStatus'] = maritaStatus;
-      data['ethnicityId'] = ethnicity;
-      data['dob'] = birthDate;
-      data['noKids'] = noOfKids;
-      data['role'] = "end_user";*/
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
           header: {"Content-Type": "application/json"});
       if (response != null && response.statusCode == 200) {
-        registerList.add(registerUserFromJson(response.body));
-        Get.to(() => const GetStartedScreens());
-      }
-      String message = jsonDecode(response!.body)["message"];
-      message == "Failed! Email is already in use!"
-          ? errorToast(message)
-          : flutterToast(message);
-      return registerList;
+        bool? status = jsonDecode(response.body)["status"];
+        if(status==false)
+        {
+          flutterToast(jsonDecode(response.body)["message"]);
+        }
+        else if(status==true)
+        {
+          Get.to(() => const GetStartedScreens());
+          flutterToast(jsonDecode(response.body)["message"]);
+        }
+        return registerUserFromJson(response.body);
+
+      }else if(response!.statusCode == 500)
+        {  flutterToast(jsonDecode(response.body)["message"]);
+        }
     } catch (e) {
       print(e.toString());
       return [];

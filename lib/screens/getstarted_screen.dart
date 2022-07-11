@@ -159,10 +159,16 @@ class GetStartedScreens extends StatelessWidget {
           },
           child: Container(
             width: Get.width * 0.80,
-            height: Get.height * 0.073,
+            height: 60,
             decoration: BoxDecoration(
                 color: ColorRes.color_E7D01F,
-                borderRadius: BorderRadius.circular(15)),
+                borderRadius: BorderRadius.circular(15),
+              gradient: const LinearGradient(
+                colors: [ColorRes.color_FFEC5C, ColorRes.color_DFC60B],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),),
+
             child: Center(
                 child: Text(
               Strings.getStarted,
@@ -187,7 +193,7 @@ class GetStartedScreens extends StatelessWidget {
             actions: [
               SizedBox(
                 height: Get.height * 0.5,
-                width: Get.width * 0.86,
+                width: Get.width,
                 child: Column(
                   children: [
                     const SizedBox(
@@ -207,7 +213,7 @@ class GetStartedScreens extends StatelessWidget {
                       child: Center(
                           child: Text(
                         Strings.smoothProcess,
-                        style: gilroyMediumTextStyle(color: ColorRes.color_656F85,fontSize: 16),
+                        style: gilroyMediumTextStyle(color: ColorRes.color_656F85,fontSize: 14),
                         textAlign: TextAlign.center,
                       )),
                     ),

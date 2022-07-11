@@ -15,22 +15,28 @@ class Strings {
   static const signIn = 'Sign in';
   static const signUp = 'Sign up';
   static const houseNumber = 'House Number';
+  static const houseNumberError = 'House Number required';
   static const streetName = 'Street Name';
   static const street = 'Street ';
   static const profession = 'Profession';
+  static const professionError = 'Profession is Required';
   static const country = 'Country';
   static const doctor = 'Doctor';
   static const admin = 'Admin';
   static const endUsers = 'End Users';
   static const companyName = 'Company Name';
+  static const companyNameError = 'Company Name is Required';
   static const myCompany = 'My Company';
   static const companyNumber = 'Company Number';
+  static const companyNumberError = 'Company Number is Required';
   static const postalCode = 'Postal Code';
   static const postalCodeDigitHint = '123125';
   static const website = 'Website';
+  static const websiteError = 'Website is Required';
   static const websiteHint = 'www.mymom.com';
   static const sign_Up = 'Signup';
   static const forAdvertise = " for advertiser's account";
+  static const forEndUserAccount = " for End-User account";
   static const termsServices =
       'By continuing you agree Rainbow’s Terms of Services \n& Privacy Policy.';
   static const welcomeBack = 'Welcome Back!';
@@ -42,6 +48,7 @@ class Strings {
   static const login = 'Login';
   static const log_in = 'Log in';
   static const loginAsAdvertiser = ' as advertiser';
+  static const loginAsEndUser = ' as End-User';
   static const dontHaveAccount = ' Don’t have an account ';
   static const getStarted = 'Get Started';
   static const notVerified = 'Your Account \nis not yet verified';
@@ -74,11 +81,11 @@ class Strings {
       "Your new password must be different\nfrom previous used password";
   static const confirmPassword = "confirm New Password";
   static const confirmShortPassword =
-      "please enter 1capital latters 1small latters and Special character with 8character";
+      "please enter 1 Capital Letters 1 Small Letters and Special character with 8 Character";
   static const coPasswordEmpty = "please enter  confirm Password";
   static const confirmPasswordMismatch = "confirm  Password is Mismatch";
   static const submit = "Submit";
-  static const codeSent = "Code is sent to +1 234 567 8901";
+  static const codeSent = "Code is sent to ";
   static const companyNumberDigit = "123 456 789 3123";
 
   ///---------------------------------------- Register ----------------------------------------
@@ -90,20 +97,26 @@ class Strings {
   static const passwordExample = '• • • • • • • • •';
   static const reTypePassword = 'Re-Type Password';
   static const addressLine1 = 'Address Line 1';
+  static const addressLine1Hint = '123 Street Name, City ,';
   static const addressLine2 = 'Address Line 2';
+  static const addressLine2Hint = 'State, Country, Postal Code';
   static const phoneNumber = 'Phone Number';
+  static const phoneNumberHint = '123 456 789';
   static const maritalStatus = 'Marital Status';
   static const ethnicity = 'Ethnicity';
+  static const ethnicityHint = 'British';
   static const idNoT = '123456';
   static const birthDate = 'Birth Date';
+  static const birthDateHint = 'MM/DD/YYYY';
   static const noOfKids = 'No of Kids';
+  static const noOfKidsHint = '0';
   static const fullNameError = 'Full Name is required';
   static const emailError = 'Email is required';
   static const enterYourOtp = 'enter your Otp';
   static const emailValidError = 'Email is invalid';
   static const emailValidError1 = 'Email is invalid';
   static const passwordError = 'Password is required';
-  static const newPasswordError = 'cewPassword is required';
+  static const newPasswordError = 'newPassword is required';
   static const ConfirmPasswordError = 'confirmPassword is required';
   static const passwordValidError = 'Password is invalid';
   static const reTypePasswordError = 'Re-Type Password is required';
@@ -116,6 +129,7 @@ class Strings {
 
   static const ethnicityError = 'Ethnicity is required';
   static const birthDateError = 'Birth Date is required';
+  static const postalCodeError = 'PostalCode is required';
   static const noOfKidsError = 'No of Kids is required';
   static const alreadyHaveAnAccount = 'Already have an account? ';
   static const privacyPolicyText =
@@ -148,6 +162,7 @@ class Strings {
       'By tapping accept and continue , I agree to the Terms and Condition and Privacy Policy and i am giving flighteno my concent to use my personal data to: facilitate my transaction and avail of products and services industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\nIt has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\nIt was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.';
 
   ///___________________________________ Complete your profile ____________________________________
+  static const naranataliEmail = 'naranatalie@gmail.com';
   static const completeProfile = 'Complete your profile';
   static const uploadPhotos = 'Upload your photo';
   static const bio = 'Bio';
@@ -213,6 +228,8 @@ class Strings {
   ///___________________________dashboard--Profile_______________________________________
   static const profile = "Profile";
   static const city = "City";
+  static const cityError = "City Name is Required";
+  static const streetError = "street Name is Required";
   static const london = "London";
   static const haveKids = "Have kids?";
   static const editProfile = "Edit Profile";
@@ -282,9 +299,9 @@ class Strings {
   static const cVV = "CVV";
   static const cVVHint = ". . .";
   static const addresserror = 'Address is required';
-  static const cityeError = 'city is required';
-  static const postalCodeError = 'postal code is required';
-  static const countryError = 'Country is required';
+  static const cityeError = 'City is required';
+
+  static const countryError = 'Country is Required';
   static const nameonCardError = 'Name on Card is required';
   static const cardnumberError = 'card Number is required';
   static const cardnumberErrorValidation = "Please Currect card Number";

@@ -9,6 +9,7 @@ class EndPoints {
   ///---------------------------------------------- Keys ----------------------------------------------
   static const login = "${baseUrl}/api/user/login";
   static const register = "${baseUrl}/api/user/register";
+  static const verificationSocial = "${baseUrl}/api/user/social/login";
   static const companyRegister = "${baseUrl}/api/company/register";
   static const idVerification = "${baseUrl}/api/user/idverification";
   static const selfieVerification = "${baseUrl}/api/user/selfiverification";
@@ -17,6 +18,9 @@ class EndPoints {
   static const createPassword = "${baseUrl}/api/user/createpassword";
   static const mobileCheck = "${baseUrl}/api/user/mobilecheck";
   static const countryList = "${baseUrl}/api/admin/country/list";
+  static const nationalitiesList = "${baseUrl}/api/admin/nationalities/list";
+  static const uploadImage = "${baseUrl}/api/upload/image";
+  static const editProfile = "${baseUrl}/api/user/profile/update";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";
