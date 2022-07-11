@@ -42,6 +42,7 @@ class AssetRes {
   static const add = '${icons}add.png';
   static const sendInsta = '${icons}send_insta.png';
   static const heart = '${icons}heart.png';
+  static const edit = '${icons}edit.png';
 
   ///--------------------------------------------- iconsBottom---------------------------------------------
   static const home =  '${iconsBottom}home.png';
@@ -121,4 +122,7 @@ class AssetRes {
   ///_______________________________privacy ___________________________________
   static const privacy='${images}privacy.png';
 
+  ///-----------------------------account information--------------------------
+  
+static const account='${images}account.png';
 }

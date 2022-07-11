@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:rainbow/screens/Home/settings/payment/widget/remove_dialog.dart';
-import 'package:rainbow/screens/Home/settings/subscription/subscription_payment/subscription_payment_screen.dart';
 
 class Strings {
   ///---------------------------------------- Utils ----------------------------------------
@@ -125,6 +122,8 @@ class Strings {
   static const addressLine2Error = 'Address Line 2 is required';
   static const phoneNumberError = 'Phone Number is required';
   static const phoneNumberValidError = 'Phone Number is invalid';
+  static const professionerror ="Profession is required";
+  static const companyNameError ="company Name is required";
   static const maritalStatusError = 'Marital Status is required';
 
   static const ethnicityError = 'Ethnicity is required';

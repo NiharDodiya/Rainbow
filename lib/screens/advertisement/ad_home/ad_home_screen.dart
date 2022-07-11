@@ -6,12 +6,16 @@ import 'package:rainbow/screens/advertisement/ad_home/widget/appbar.dart';
 import 'package:rainbow/screens/advertisement/ad_home/widget/no_advertisement.dart';
 import 'package:rainbow/utils/color_res.dart';
 
-class AdHomeScreen extends StatelessWidget {
-  const AdHomeScreen({Key? key}) : super(key: key);
+import '../../dashboard/dashboard_controller.dart';
 
+class AdHomeScreen extends StatelessWidget {
+   AdHomeScreen({Key? key}) : super(key: key);
+ DashboardController dashboardController = Get.put(DashboardController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+// key: dashboardController.key,
+// drawer: Drawer(),
       body: SafeArea(
         child: Container(
           width: Get.width,

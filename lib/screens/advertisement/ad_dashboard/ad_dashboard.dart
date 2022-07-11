@@ -34,7 +34,7 @@ class AdvertisementDashBord extends StatelessWidget {
           id: 'bottom_bar',
           builder: (controller) {
             if (controller.currentTab == 0) {
-              return  AdHomeScreen();
+              return   AdHomeScreen();
             } else if (controller.currentTab == 1) {
               return const AdPaymentScreen();
             } else if (controller.currentTab == 2) {
