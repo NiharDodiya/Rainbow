@@ -27,7 +27,7 @@ class IdVerificationController extends GetxController {
 
   List<String> idTypeList = [
     Strings.passport,
-    Strings.passport,
+    "Passport",
   ];
 
   void onRegisterTap() {
@@ -49,12 +49,12 @@ class IdVerificationController extends GetxController {
     idType.text = value;
     update(['IdVerification_screen']);
   }
-  void onStatusChange(String  value) {
+/*  void onStatusChange(String  value) {
     print(value);
     selectedId = value.toString();
     idType.text = value.toString();
     update(['IdVerification_screen']);
-  }
+  }*/
   bool validation() {
     if (idType.text.isEmpty) {
       errorToast(Strings.maritalStatusError);
@@ -81,7 +81,6 @@ class IdVerificationController extends GetxController {
           uploadImage2.data!.id.toString()).then((value) => idVerificationList= value);
       loader.value = false;
     } catch (e) {
-
       loader.value = false;
       debugPrint(e.toString());
     }

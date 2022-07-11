@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Profile/widget/edit_profile/editProfile_contoller.dart';
 import 'package:rainbow/screens/auth/completeyourprofile/completeyourprofile_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -12,11 +13,11 @@ class HeightScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CompleteYourProfileController controller =
-        Get.put(CompleteYourProfileController());
+    EditProfileController controller =
+        Get.put(EditProfileController());
     return Scaffold(
       backgroundColor: Colors.white,
-      body: GetBuilder<CompleteYourProfileController>(
+      body: GetBuilder<EditProfileController>(id: "Edit_profile",
         builder: (controller) {
           return SafeArea(
             child: Center(
@@ -77,30 +78,14 @@ class HeightScreen extends StatelessWidget {
                                   ),
                                 ),
                                 itemExtent: 50,
-                                onSelectedItemChanged: (int index) {},
-                                children: <Widget>[
-                                  Center(
-                                      child: Text(" 1 ft",
-                                          style: textStyleFont14White)),
-                                  Center(
-                                      child: Text(" 2 ft",
-                                          style: textStyleFont14White)),
-                                  Center(
-                                      child: Text(" 3 ft",
-                                          style: textStyleFont14White)),
-                                  Center(
-                                      child: Text(" 3 ft",
-                                          style: textStyleFont14White)),
-                                  Center(
-                                      child: Text(" 3 ft",
-                                          style: textStyleFont14White)),
-                                  Center(
-                                      child: Text(" 3 ft",
-                                          style: textStyleFont14White)),
-                                  Center(
-                                      child: Text(" 3 ft",
-                                          style: textStyleFont14White)),
-                                ],
+                                onSelectedItemChanged: (int index) {
+                                  controller.heightFeet = index + 1;
+                                  },
+                              children: List.generate(15, (index) => Center(
+                                  child: Text(
+                                    "${index+1} ft",
+                                    style: textStyleFont14White,
+                                  ))),
                               ),
                             ),
                           ),
@@ -119,44 +104,15 @@ class HeightScreen extends StatelessWidget {
                                   ),
                                 ),
                                 itemExtent: 50,
-                                onSelectedItemChanged: (int index) {},
-                                children: <Widget>[
-                                  Center(
-                                      child: Text(
-                                    "1 in",
-                                    style: textStyleFont14White,
-                                  )),
-                                  Center(
-                                      child: Text(
-                                    "2 in",
-                                    style: textStyleFont14White,
-                                  )),
-                                  Center(
-                                      child: Text(
-                                    "3 in",
-                                    style: textStyleFont14White,
-                                  )),
-                                  Center(
-                                      child: Text(
-                                    "3 in",
-                                    style: textStyleFont14White,
-                                  )),
-                                  Center(
-                                      child: Text(
-                                    "3 in",
-                                    style: textStyleFont14White,
-                                  )),
-                                  Center(
-                                      child: Text(
-                                    "3 in",
-                                    style: textStyleFont14White,
-                                  )),
-                                  Center(
-                                      child: Text(
-                                    "3 in",
-                                    style: textStyleFont14White,
-                                  )),
-                                ],
+                                onSelectedItemChanged: (int index) {
+                                  controller.heightInches = index + 1;
+                                   // controller.update(["Edit_profile"]);
+                                  },
+                                children: List.generate(15, (index) => Center(
+                                    child: Text(
+                                      "${index+1} in",
+                                      style: textStyleFont14White,
+                                    ))),
                               ),
                             ),
                           ),
@@ -164,7 +120,7 @@ class HeightScreen extends StatelessWidget {
                       ),
                       SizedBox(height: Get.height * 0.4),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: controller.onHeightSave,
                         child: Container(
                           width: Get.width * 0.84,
                           height: Get.height * 0.073,

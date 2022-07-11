@@ -21,6 +21,7 @@ class EndPoints {
   static const nationalitiesList = "${baseUrl}/api/admin/nationalities/list";
   static const uploadImage = "${baseUrl}/api/upload/image";
   static const editProfile = "${baseUrl}/api/user/profile/update";
+  static const viewProfile = "${baseUrl}/api/user/profile/view";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

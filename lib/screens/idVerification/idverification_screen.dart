@@ -81,7 +81,7 @@ class IdVerificationScreen extends StatelessWidget {
                                   Container(
                                     height: 29,
                                     width: 29,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
                                         color: ColorRes.color_C4C4C4),
                                   ),
@@ -93,7 +93,7 @@ class IdVerificationScreen extends StatelessWidget {
                                   Container(
                                     height: 29,
                                     width: 29,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
                                         color: ColorRes.color_C4C4C4),
                                   ),
@@ -158,20 +158,19 @@ class IdVerificationScreen extends StatelessWidget {
                                                     fontSize: 16, color: ColorRes.black),
                                                 overflow: TextOverflow.ellipsis,
                                               ),
-                                            ))
-                                                .toList(),
+                                            )).toList(),
                                             value: controller.selectedId,
                                             onChanged: (value) {
-                                              controller.selectedId = value as String;
-                                              controller.idType.text = value;
-                                              controller.update(["register_screen"]);
+                                              controller.selectedId = value.toString();
+                                              controller.idType.text = value.toString();
+                                              controller.update(["IdVerification_screen"]);
                                             },
                                             icon: Image.asset(AssetRes.arrowDown, height: 17),
                                             iconSize: 14,
                                             iconEnabledColor: Colors.grey,
                                             iconDisabledColor: Colors.grey,
                                             buttonHeight: 60,
-                                            buttonWidth: Get.width * 0.8,
+                                            buttonWidth: Get.width * 0.85,
                                             buttonPadding: const EdgeInsets.only(left: 14, right: 23),
                                             buttonDecoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(20),
@@ -182,7 +181,7 @@ class IdVerificationScreen extends StatelessWidget {
                                             itemPadding: const EdgeInsets.only(left: 20, right: 14),
                                             dropdownMaxHeight: Get.height * 0.3,
                                             /* height: Get.height*0.19,*/
-                                            dropdownWidth: Get.width ,
+                                            dropdownWidth: Get.width *0.85,
                                             dropdownPadding: null,
                                             dropdownDecoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(14),
@@ -198,12 +197,12 @@ class IdVerificationScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                !controller.idTypeDrop
+                                /*!controller.idTypeDrop
                                     ? const SizedBox()
                                     : AppDroDownIdType(
                                         paramList: controller.idTypeList,
                                         onTap: controller.idTypeVerification,
-                                      ),
+                                      ),*/
                                 SizedBox(
                                   height: Get.height * 0.02,
                                 ),
@@ -350,7 +349,7 @@ class IdVerificationScreen extends StatelessWidget {
                 },
               ),
             ),
-            controller.loader.isTrue ? SmallLoader() : SizedBox()
+            controller.loader.isTrue ? const SmallLoader() : const SizedBox()
           ],
         ));
   }

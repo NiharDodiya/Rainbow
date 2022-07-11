@@ -18,7 +18,6 @@ class LoginApi {
   static Future postRegister(
       String email,
       String password,
-
       ) async {
     try {
       String url = EndPoints.login;
@@ -40,6 +39,7 @@ class LoginApi {
         {
           await PrefService.setValue(PrefKeys.isLogin, true);
           flutterToast(jsonDecode(response.body)["message"]);
+          await PrefService.setValue(PrefKeys.registerToken, jsonDecode(response.body)["token"].toString());
           if(jsonDecode(response.body)["data"]["user_status"]=="pending"){
             await PrefService.setValue(PrefKeys.registerToken, jsonDecode(response.body)["token"].toString());
             if(jsonDecode(response.body)["data"]["id_status"]=="pending")

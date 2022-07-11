@@ -3,9 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
+import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/edit_api/edit_api.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/edit_api/edit_model.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -28,18 +30,37 @@ class EditProfileController extends GetxController {
   TextEditingController hobbies = TextEditingController();
   String aboutTextCounter = '';
   String hobbiesTextCounter = '';
+
+  String? selectedEthicity;
   File? frontImage;
   File? backImage;
   RxBool loader = false.obs;
+  String? heightData;
+  String? weightData;
+  int heightFeet = 0;
+  int heightInches = 0;
+
+  String? codeId;
+  ProfileController profileController = Get.put(ProfileController());
 
   void onInit() {
     update(['Edit_profile']);
     super.onInit();
   }
 
-  void onTapTextField() {
+  Future<void> onTapTextField() async {
     if (validation()) {
-      editProfileApi();
+      for (int i = 0; i < listNationalities.data!.length; i++) {
+        if (listNationalities.data![i].name == ethnicity.text) {
+          codeId = listNationalities.data![i].id!.toString();
+          print(codeId);
+        }
+
+        print(codeId);
+      }
+
+      await editProfileApi();
+      await profileController.viewProfileDetails();
       // Get.back();
     }
   }
@@ -95,6 +116,7 @@ class EditProfileController extends GetxController {
   }
 
   Future frontCamera() async {
+
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
     if (image == null) return;
     final imageFront = File(image.path);
@@ -102,15 +124,18 @@ class EditProfileController extends GetxController {
     uploadImageApi();
 
     update(["Edit_profile"]);
+
   }
 
   Future backCamera() async {
+
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
     if (image == null) return;
     final imageTemp = File(image.path);
     backImage = imageTemp;
     uploadImageBackApi();
     update(["Edit_profile"]);
+
 
   }
 
@@ -126,7 +151,7 @@ class EditProfileController extends GetxController {
 
       loader.value = false;
     } catch (e) {
-      errorToast(e.toString());
+
       loader.value = false;
       debugPrint(e.toString());
     }
@@ -141,7 +166,7 @@ class EditProfileController extends GetxController {
 
       loader.value = false;
     } catch (e) {
-      errorToast(e.toString());
+
       loader.value = false;
       debugPrint(e.toString());
     }
@@ -161,7 +186,7 @@ class EditProfileController extends GetxController {
         city.text,
         age.text,
         weight.text,
-        ethnicity.text,
+        codeId.toString(),
         status1.text,
         instagram.text,
         youTube.text,
@@ -172,10 +197,24 @@ class EditProfileController extends GetxController {
         haveKids.text,
       ).then((value) => editProfile = value);
       loader.value = false;
+
+
     } catch (e) {
       errorToast(e.toString());
       loader.value = false;
       debugPrint(e.toString());
     }
   }
+
+  void onHeightSave(){
+    height.text = "$heightFeet'$heightInches";
+    update(["Edit_profile"]);
+    Get.back();
+  }
+   void onWeightSave(){
+    weight.text = "${weightData}lbs";
+    update(["Edit_profile"]);
+    Get.back();
+  }
+
 }

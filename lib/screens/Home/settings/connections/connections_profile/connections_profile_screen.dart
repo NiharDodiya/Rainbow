@@ -32,7 +32,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
           child: Column(
             children: [
               profileAppbar("Amber J Santiago",false),
-              profileImage(profileImage: AssetRes.se_profile),
+              // profileImageConnection(profileImage: AssetRes.se_profile),
               connectAndBlock(),
               testimonials(),
               otherVisitorsViewed(),

@@ -44,7 +44,7 @@ class _DashboardState extends State<Dashboard> {
             } else if (controller.currentTab == 2) {
               return const MessageScreen();
             } else {
-              return const ProfileScreen();
+              return  ProfileScreen();
             }
           },
         ),

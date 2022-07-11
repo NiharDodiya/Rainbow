@@ -87,7 +87,7 @@ class AccountInformationController extends GetxController {
   
   bool companyValidation() {
  if (profession.text.isEmpty) {
-      errorToast(Strings.professionerror);
+      errorToast(Strings.professionError);
       return false;
     } else if (comanyName.text.isEmpty) {
       errorToast(Strings.emailError);
