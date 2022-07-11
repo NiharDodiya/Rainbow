@@ -29,7 +29,6 @@ class EditProfileApi {
       String aboutMe,
       String hobbiesInterest,
       String noKids,
-
       ) async {
     EditProfile editProfile;
     String accesToken = PrefService.getString(PrefKeys.registerToken);
