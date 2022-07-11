@@ -13,21 +13,21 @@ import 'package:rainbow/screens/Profile/widget/edit_profile/edit_api/edit_model.
 import 'package:rainbow/utils/strings.dart';
 
 class EditProfileController extends GetxController {
-  TextEditingController fullName = TextEditingController();
-  TextEditingController status = TextEditingController();
-  TextEditingController age = TextEditingController();
-  TextEditingController city = TextEditingController();
-  TextEditingController height = TextEditingController();
-  TextEditingController weight = TextEditingController();
+  TextEditingController fullName = TextEditingController(text: "ramika");
+  TextEditingController status = TextEditingController(text:"sarrogate mom");
+  TextEditingController age = TextEditingController(text:"32");
+  TextEditingController city = TextEditingController(text:"Surat");
+  TextEditingController height = TextEditingController(text: "5'2");
+  TextEditingController weight = TextEditingController(text: "126lbs");
   TextEditingController ethnicity = TextEditingController();
-  TextEditingController haveKids = TextEditingController();
-  TextEditingController status1 = TextEditingController();
-  TextEditingController instagram = TextEditingController();
-  TextEditingController youTube = TextEditingController();
-  TextEditingController faceBook = TextEditingController();
-  TextEditingController twitter = TextEditingController();
-  TextEditingController aboutMe = TextEditingController();
-  TextEditingController hobbies = TextEditingController();
+  TextEditingController haveKids = TextEditingController(text: "1");
+  TextEditingController status1 = TextEditingController(text: "married");
+  TextEditingController instagram = TextEditingController(text: "https://www.instagram.com/accounts/login/?next=/jackiechan.official/");
+  TextEditingController youTube = TextEditingController(text: "https://www.youtube.com/watch?v=YwQ2eVbABsY");
+  TextEditingController faceBook = TextEditingController(text: "https://www.facebook.com/search/top/?q=Jacky%20Chain");
+  TextEditingController twitter = TextEditingController(text: "https://twitter.com/eyeofjackiechan");
+  TextEditingController aboutMe = TextEditingController(text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ");
+  TextEditingController hobbies = TextEditingController(text: "learnnig");
   String aboutTextCounter = '';
   String hobbiesTextCounter = '';
 
@@ -48,7 +48,7 @@ class EditProfileController extends GetxController {
     super.onInit();
   }
 
-  Future<void> onTapTextField() async {
+  Future<void> onTapTextField(context) async {
     if (validation()) {
       for (int i = 0; i < listNationalities.data!.length; i++) {
         if (listNationalities.data![i].name == ethnicity.text) {
@@ -58,9 +58,10 @@ class EditProfileController extends GetxController {
 
         print(codeId);
       }
-
-      await editProfileApi();
+      await editProfileApi(context);
       await profileController.viewProfileDetails();
+      profileController.update(["profile"]);
+
       // Get.back();
     }
   }
@@ -167,8 +168,7 @@ class EditProfileController extends GetxController {
 
   EditProfile editProfile = EditProfile();
 
-  Future<void> editProfileApi() async {
-
+  Future<void> editProfileApi(BuildContext context) async {
     loader.value = true;
     try {
       EditProfile? data = await EditProfileApi.postRegister(
@@ -192,10 +192,10 @@ class EditProfileController extends GetxController {
       );
       if (data != null) {
         editProfile = data;
+        Navigator.pop(context);
       }
       loader.value = false;
     } catch (e) {
-      errorToast(e.toString());
       loader.value = false;
       debugPrint(e.toString());
     }

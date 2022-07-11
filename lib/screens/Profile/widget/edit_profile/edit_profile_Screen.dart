@@ -511,7 +511,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 GestureDetector(
                   onTap: () {
                     FocusScope.of(context).unfocus();
-                    controller.onTapTextField();
+                    controller.onTapTextField(context);
                   },
                   child: Container(
                     width: Get.width * 0.84,

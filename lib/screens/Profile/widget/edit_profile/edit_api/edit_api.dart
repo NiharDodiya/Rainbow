@@ -30,7 +30,6 @@ class EditProfileApi {
       String hobbiesInterest,
       String noKids,
       ) async {
-    EditProfile editProfile;
     String accesToken = PrefService.getString(PrefKeys.registerToken);
     try {
       String url = EndPoints.editProfile;
@@ -69,7 +68,7 @@ class EditProfileApi {
         {
           flutterToast( jsonDecode(response.body)["message"]);
           await PrefService.setValue(PrefKeys.userId,jsonDecode(response.body)["data"]["id"]);
-          Get.back();
+
         }
 
         return editProfileFromJson(response.body);
