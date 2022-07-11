@@ -14,7 +14,7 @@ class AdvertisementController extends GetxController
   final AdSupportController supportController = Get.put(AdSupportController());
 
   final GlobalKey<ScaffoldState> key = GlobalKey();
-
+ bool isSwitched = false;
   void onBottomBarChange(int index) {
     currentTab = index;
     if (index == 0) {
@@ -29,4 +29,12 @@ class AdvertisementController extends GetxController
     update(['bottom_bar']);
   }
 
+notification(){
+  isSwitched = !isSwitched;
+    update(['notifi']);
+}
+
+void fun(bool flage){
+  
+}
 }

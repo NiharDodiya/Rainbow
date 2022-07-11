@@ -1,4 +1,3 @@
-
 class Strings {
   ///---------------------------------------- Utils ----------------------------------------
 
@@ -64,7 +63,6 @@ class Strings {
   static const cancel = "CANCEL";
   static const idVerification = "ID Verification";
   static const idType = "ID Type";
-  static const prc = "Permanent Resident Card";
   static const idNo = "ID No.";
   static const uploadFrontPicture = "Upload front picture of ID";
   static const uploadBackPicture = "Upload back picture of ID";
@@ -106,6 +104,8 @@ class Strings {
   static const idNoT = '123456';
   static const birthDate = 'Birth Date';
   static const birthDateHint = 'MM/DD/YYYY';
+  static const ontrario = "Ontrario";
+  static const houseNumberHint = "123";
   static const noOfKids = 'No of Kids';
   static const noOfKidsHint = '0';
   static const fullNameError = 'Full Name is required';
@@ -123,7 +123,6 @@ class Strings {
   static const addressLine2Error = 'Address Line 2 is required';
   static const phoneNumberError = 'Phone Number is required';
   static const phoneNumberValidError = 'Phone Number is invalid';
-
   static const maritalStatusError = 'Marital Status is required';
 
   static const ethnicityError = 'Ethnicity is required';
@@ -287,6 +286,7 @@ class Strings {
   static const address = "Address";
   static const addressHint = "3819 Lynden Road";
   static const cityHint = "Canada";
+
   static const postalCodeHint = "L0B 1M0";
   static const cardInformation = "Card Information";
   static const nameonCard = "Name on card";
@@ -329,7 +329,30 @@ class Strings {
   static const cardName02 = "Visa Ending in 2151 ";
   static const cardName03 = "Master Card Ending in 4151 ";
   static const cardDate01 = "06/25";
-  static const subscriptionPaymenDes = "By Clicking continue below, you accept to be charged at \$24.99/month for a minimum of 3months. You also accept the Terms and condition of Rainbow Love";
+  static const subscriptionPaymenDes =
+      "By Clicking continue below, you accept to be charged at \$24.99/month for a minimum of 3months. You also accept the Terms and condition of Rainbow Love";
   static const continue01 = "Continue";
 
+  ///---------------------------------Account Information ------------------------------
+  static const gallery = "Gallery";
+  static const company = "Company";
+  static const account = "Account";
+
+  ///_____________________________________Drawer___________________________________________
+  static const notification = "Notification";
+  static const changePassword = "Change Password";
+  static const accountInformation = "Account Information";
+  static const myEmail = "myemaill@gmail.com";
+  static const raymondMarcos = "Raymond Marcos";
+  static const logout02 ="LOG OUT";
+
+  //___________________________________Cancel approve_____________________________
+static const cancelAprove ="Cancel Advertisement";
+static const cancelAppoveDes ="Are you sure you want to cancel this advertisement?";
+
+///_____________________________________Delet Approve_______________________________
+
+static const deletApprove ="Delete Advertisement";
+
+static const deletApproveDes ="Are you sure you want to delete this advertisement?";
 }

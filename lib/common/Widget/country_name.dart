@@ -27,7 +27,6 @@ Widget dropdownButton({
       DropdownButtonHideUnderline(
         child: DropdownButton2<String>(
           isExpanded: true,
-
           hint: Row(
             children: [
               const SizedBox(
@@ -73,9 +72,9 @@ Widget dropdownButton({
           buttonElevation: 2,
           itemHeight: 40,
           itemPadding: const EdgeInsets.only(left: 20, right: 14),
-          dropdownMaxHeight:height??100,
+          dropdownMaxHeight: height ?? 100,
           /* height: Get.height*0.19,*/
-          dropdownWidth: width??Get.width * 0.8,
+          dropdownWidth: width ?? Get.width * 0.8,
           dropdownPadding: null,
           dropdownDecoration: BoxDecoration(
             borderRadius: BorderRadius.circular(14),

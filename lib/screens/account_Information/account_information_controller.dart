@@ -1,11 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../common/popup.dart';
 import '../../utils/strings.dart';
 
 class AccountInformationController extends GetxController {
   bool companySelected = false;
+  File? imagePath;
+  String? selectCountry;
   TextEditingController fullNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController houseNumberController = TextEditingController();
@@ -18,10 +23,14 @@ class AccountInformationController extends GetxController {
   TextEditingController comanyName = TextEditingController();
   TextEditingController companyNumber = TextEditingController();
   TextEditingController website = TextEditingController();
-  
-  bool professions =false;
+  bool professions = false;
+List<String> dropdownList = ["Doctor","User","Admin"];
 
-
+void onCountryCoCityChange(String value) {
+    selectCountry = value;
+    profession.text = value;
+    update(['doctor']);
+  }
   selectAccount() {
     companySelected = false;
     update(['update']);
@@ -36,21 +45,12 @@ class AccountInformationController extends GetxController {
   accountSave() {
     accountValidation();
   }
-  
-  void onProfessionOnTap() {
-    if (professions == false) {
-      professions = true;
-    } else {
-      professions = false;
-    }
-    // update(['doctor']);
-  }
+
  
- compnySave(){
-  companyValidation();
- }
 
-
+  compnySave() {
+    companyValidation();
+  }
 
 //account validation
   bool accountValidation() {
@@ -84,30 +84,79 @@ class AccountInformationController extends GetxController {
     }
     return true;
   }
-  
+
   bool companyValidation() {
- if (profession.text.isEmpty) {
-      errorToast(Strings.professionerror);
+    if (profession.text.isEmpty) {
+      errorToast(Strings.professionError);
       return false;
     } else if (comanyName.text.isEmpty) {
-      errorToast(Strings.emailError);
+      errorToast(Strings.companyNameError);
+      return false;
+    } else if (companyNumber.text.isEmpty) {
+      errorToast(Strings.companyNumberError);
       return false;
     } else if (strintNumberController.text.isEmpty) {
-      errorToast(Strings.addressLine1Error);
+      errorToast(Strings.streetError);
       return false;
     } else if (cityController.text.isEmpty) {
-      errorToast(Strings.phoneNumberError);
+      errorToast(Strings.cityError);
       return false;
     } else if (countryController.text.isEmpty) {
-      errorToast(Strings.maritalStatusError);
+      errorToast(Strings.countryError);
       return false;
     } else if (postalCodeController.text.isEmpty) {
-      errorToast(Strings.ethnicityError);
+      errorToast(Strings.postalCodeError);
       return false;
     } else if (website.text.isEmpty) {
-      errorToast(Strings.phoneNumber);
+      errorToast(Strings.websiteError);
       return false;
-    } 
+    }
     return true;
+  }
+
+  //call Camera
+  navigateToCamera() async {
+    String? path = await cameraPickImage();
+
+    if (path != null) {
+      imagePath = File(path);
+    }
+    update(["Getpic"]);
+    Get.back();
+  }
+
+  //Open Camera
+  Future<String?> cameraPickImage() async {
+    XFile? pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+      return pickedFile.path;
+    }
+    update(["Getpic"]);
+    Get.back();
+
+    return null;
+  }
+
+  navigateToGallary() async {
+    String? path = await gallaryPickImage();
+
+    if (path != null) {
+      imagePath = File(path);
+    }
+  }
+
+//open Gallary
+  Future<String?> gallaryPickImage() async {
+    XFile? pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      update(["Getpic"]);
+      Get.back();
+      return pickedFile.path;
+    }
+    update(["Getpic"]);
+    Get.back();
+    return null;
   }
 }

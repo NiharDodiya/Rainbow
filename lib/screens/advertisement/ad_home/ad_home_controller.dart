@@ -51,4 +51,9 @@ class AdHomeController extends GetxController {
   void onTapNext(){
     Get.offAll(()=>AuthDashboard());
   }
+
+  void onCloseMenu(){
+    moreOption = List.generate(6, (index) => false);
+    update(['more']);
+  }
 }

@@ -43,8 +43,8 @@ Widget noAdvertisement() {
           const SizedBox(
             height: 100,
           ),
-          SubmitButton(
-            onTap: () => Get.to(AccountInformationScreen()),
+          const SubmitButton(
+           
             text: Strings.createAdvertisement,
           ),
         ],
