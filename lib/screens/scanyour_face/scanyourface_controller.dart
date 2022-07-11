@@ -88,7 +88,8 @@ class ScanYourFaceController extends GetxController {
   }
 
   void takePicForFront() async {
-    if (imageFront != null) {
+    uploadImageApi();
+    /*if (imageFront != null) {
       return;
     }
     await initializeControllerFuture;
@@ -102,7 +103,9 @@ class ScanYourFaceController extends GetxController {
     if (validation() && imageFront != null) {
       uploadImageApi();
       await PrefService.setValue(PrefKeys.register, true);
-    }
+
+
+    }*/
   }
 
   Future<File> getCropImage() async {

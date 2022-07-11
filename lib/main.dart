@@ -2,10 +2,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mentions/flutter_mentions.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
+import 'package:rainbow/screens/scanyour_face/scanyourface_controller.dart';
+import 'package:rainbow/screens/selfie_verification/selfie_verification_screen.dart';
 import 'package:rainbow/screens/splash/splash_screen.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -31,6 +33,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut<ScanYourFaceController>(() => ScanYourFaceController());
     return GetMaterialApp(
       builder: (_, child) => Portal(child: child!),
       title: 'Flutter Demo',
@@ -42,9 +45,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home:
-          //AdvertisementDashBord()
-          !PrefService.getBool(PrefKeys.skipBoardingScreen)
+      home: !PrefService.getBool(PrefKeys.skipBoardingScreen)
               ? SplashScreen()
               : PrefService.getBool(PrefKeys.isLogin)
                   ? const Dashboard()
