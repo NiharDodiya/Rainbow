@@ -27,7 +27,7 @@ class IdVerificationController extends GetxController {
 
   List<String> idTypeList = [
     Strings.passport,
-    "Passport",
+    "Driving license",
   ];
 
   void onRegisterTap() {
