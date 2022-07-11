@@ -257,10 +257,9 @@ class IdVerificationScreen extends StatelessWidget {
                                           decoration: BoxDecoration(
                                               image: DecorationImage(
                                                   image: FileImage(
-                                                    File(controller.imageFront
-                                                        .toString()),
+                                                    File(controller.imageFront.toString()),
                                                   ),
-                                                  fit: BoxFit.cover),
+                                                  fit: BoxFit.cover,),
                                               color: ColorRes.color_F7F9FF,
                                               borderRadius:
                                                   BorderRadius.circular(30)),

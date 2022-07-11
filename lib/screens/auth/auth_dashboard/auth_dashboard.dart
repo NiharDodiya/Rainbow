@@ -20,8 +20,9 @@ class AuthDashboard extends StatelessWidget {
       id: "auth",
       builder: (controller) {
         return Scaffold(
-            backgroundColor: Colors.white,
-            body: Obx(() {
+          backgroundColor: Colors.white,
+          body: Obx(
+            () {
               return Stack(
                 children: [
                   Center(
@@ -41,10 +42,14 @@ class AuthDashboard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  controller.loading.isTrue?SmallLoader():SizedBox()
+                  controller.loading.isTrue
+                      ? const SmallLoader()
+                      : const SizedBox()
                 ],
               );
-            }));
+            },
+          ),
+        );
       },
     );
   }
@@ -52,7 +57,7 @@ class AuthDashboard extends StatelessWidget {
   Widget logoRainbow() {
     return Column(
       children: [
-        SizedBox(height: Get.height * 0.25),
+        SizedBox(height: Get.height * 0.20),
         Center(
           child: Container(
             height: Get.height * 0.120,
@@ -97,7 +102,7 @@ class AuthDashboard extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 Strings.continueWithEmail,
-                style: gilroyBoldTextStyle(color: Colors.black,fontSize: 16),
+                style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
               )
             ],
           ),
@@ -142,7 +147,6 @@ class AuthDashboard extends StatelessWidget {
                     const SizedBox(width: 10),
                     SizedBox(
                       height: 14,
-                      width: 42,
                       child: Text(
                         Strings.google,
                         style: gilroyMediumTextStyle(fontSize: 12),
@@ -176,7 +180,6 @@ class AuthDashboard extends StatelessWidget {
                     const SizedBox(width: 10),
                     SizedBox(
                       height: 14,
-                      width: 56,
                       child: Text(
                         Strings.facebook,
                         style: gilroyMediumTextStyle(fontSize: 12),
@@ -195,7 +198,7 @@ class AuthDashboard extends StatelessWidget {
   Widget alreadyHaveAccount(AuthDashBordController controller) {
     return Column(
       children: [
-        SizedBox(height: Get.height*0.0788),
+        SizedBox(height: Get.height * 0.0788),
         GestureDetector(
           onTap: controller.onSignInTap,
           child: Row(
@@ -208,7 +211,7 @@ class AuthDashboard extends StatelessWidget {
               ),
               Text(
                 Strings.signIn,
-                style:  gilroyBoldTextStyle(fontSize: 14),
+                style: gilroyBoldTextStyle(fontSize: 14),
                 textAlign: TextAlign.center,
               ),
             ],
@@ -216,7 +219,7 @@ class AuthDashboard extends StatelessWidget {
         ),
         sizedBox14(),
         InkWell(
-          onTap: ()=> controller.onSignUpTap(),
+          onTap: () => controller.onSignUpTap(),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -238,13 +241,14 @@ class AuthDashboard extends StatelessWidget {
           height: Get.height * 0.040,
           child: Center(
             child: SizedBox(
-                height: Get.height * 0.040,
-                width: Get.width * 0.67,
-                child: Text(
-                  Strings.termsServices,
-                  style: gilroyMediumTextStyle(fontSize: 10),
-                  textAlign: TextAlign.center,
-                )),
+              height: Get.height * 0.040,
+              width: Get.width * 0.67,
+              child: Text(
+                Strings.termsServices,
+                style: gilroyMediumTextStyle(fontSize: 10),
+                textAlign: TextAlign.center,
+              ),
+            ),
           ),
         ),
       ],

@@ -2,9 +2,11 @@ import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalite
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountry_json.dart';
 
 ListCountryModel listCountryModel = ListCountryModel();
-ListNationalities listNationalities =ListNationalities();
+ListNationalities listNationalities = ListNationalities();
 List<String> countryCity = [];
 List<String> countryId = [];
+List<String> countryNationCity = [];
+List<String> countryNationId = [];
 
 void getCountry() {
   countryCity=[];
@@ -14,10 +16,10 @@ void getCountry() {
     countryId.add(listCountryModel.data![i].id!.toString());
   }
   print(countryCity);
+  print(countryId);
 }
 
-List<String> countryNationCity = [];
-List<String> countryNationId = [];
+
 void getCountryNation() {
   countryNationCity= [];
   countryNationId= [];
@@ -25,5 +27,6 @@ void getCountryNation() {
     countryNationCity.add(listNationalities.data![i].name!);
     countryNationId.add(listNationalities.data![i].id!.toString());
   }
-  print(countryNationCity);
+  print("countryNationCity => $countryNationCity");
+  print("countryNationCity => $countryNationId");
 }

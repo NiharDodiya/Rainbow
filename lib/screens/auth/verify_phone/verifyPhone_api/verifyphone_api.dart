@@ -15,13 +15,12 @@ class VerifyCodeApi {
   static Future postRegister(
       String verifyOtp,
       ) async {
-    List<VerifyCode> verifyList = [];
     try {
       String url = EndPoints.verifyCode;
-      int id=  PrefService.getInt(PrefKeys.phoneId);
+      int id= PrefService.getInt(PrefKeys.phoneId);
       Map<String, String> param = {
         'id':id.toString(),
-        'code': verifyOtp,
+        'code': verifyOtp.toString(),
       };
       print(param);
       http.Response? response = await HttpService.postApi(url: url,   body: jsonEncode(param),
@@ -38,14 +37,13 @@ class VerifyCodeApi {
             await PrefService.setValue(PrefKeys.register, true);
             Get.to(() => const NewPasswordScreen());
           }
-
         return verifyCodeFromJson(response.body);
       }
       /*message =="please enter a correct username and password"?errorToast(message):*/
 
     } catch (e) {
       print(e.toString());
-      return [];
+      return verifyCodeFromJson("");
     }
   }
 }
