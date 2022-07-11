@@ -37,6 +37,7 @@ class PhoneNumberApi {
         else if(status==true)
         {
           await PrefService.setValue(PrefKeys.register, true);
+          await PrefService.setValue(PrefKeys.phoneId, jsonDecode(response.body)["data"]["id"]);
           Get.to(() => const VerifyPhoneScreen());
           flutterToast(jsonDecode(response.body)["message"]);
         }

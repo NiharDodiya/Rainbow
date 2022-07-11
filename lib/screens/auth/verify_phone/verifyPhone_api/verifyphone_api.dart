@@ -18,7 +18,7 @@ class VerifyCodeApi {
     List<VerifyCode> verifyList = [];
     try {
       String url = EndPoints.verifyCode;
-      String id= await PrefService.getString(PrefKeys.id);
+      String id= await PrefService.getString(PrefKeys.phoneId);
       Map<String, String> param = {
         'id':id,
         'code': verifyOtp,

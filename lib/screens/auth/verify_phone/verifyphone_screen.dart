@@ -73,17 +73,25 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                 SizedBox(
                                   height: Get.height * 0.009,
                                 ),
-                                Padding(
-                                    padding: const EdgeInsets.only(left: 15),
-                                    child: Text(
-                                      Strings.codeSent,
-                                      style: TextStyle(
-                                          color:
-                                              ColorRes.white.withOpacity(0.5),
-                                          fontSize: 14,
-                                          fontFamily: "Gilroy-Light",
-                                          fontWeight: FontWeight.w600),
-                                    )),
+                                GetBuilder<PhoneNumberController>(builder:(controller) {
+                                  return Padding(
+                                      padding: const EdgeInsets.only(left: 15),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            "${Strings.codeSent}${controller.phoneNumber.text.toString()}",
+                                            style: TextStyle(
+                                                color:
+                                                ColorRes.white.withOpacity(0.5),
+                                                fontSize: 14,
+                                                fontFamily: "Gilroy-Light",
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                        ],
+                                      ));
+                                },
+
+                                ),
                                 SizedBox(
                                   height: Get.height * 0.04,
                                 ),

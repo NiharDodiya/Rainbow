@@ -48,7 +48,7 @@ class Strings {
   static const login = 'Login';
   static const log_in = 'Log in';
   static const loginAsAdvertiser = ' as advertiser';
-  static const loginAsEndUser = ' Log in as End-User';
+  static const loginAsEndUser = ' as End-User';
   static const dontHaveAccount = ' Don’t have an account ';
   static const getStarted = 'Get Started';
   static const notVerified = 'Your Account \nis not yet verified';
@@ -85,7 +85,7 @@ class Strings {
   static const coPasswordEmpty = "please enter  confirm Password";
   static const confirmPasswordMismatch = "confirm  Password is Mismatch";
   static const submit = "Submit";
-  static const codeSent = "Code is sent to +1 234 567 8901";
+  static const codeSent = "Code is sent to ";
   static const companyNumberDigit = "123 456 789 3123";
 
   ///---------------------------------------- Register ----------------------------------------
