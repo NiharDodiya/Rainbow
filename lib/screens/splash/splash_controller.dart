@@ -31,7 +31,7 @@ class SplashController extends GetxController {
   }
 
   void onNextBtnTap() {
-    if (pageController.page!.round() == 3) {
+    if (pageController.page!.round() == 1) {
       onSkipTap();
     } else {
       pageController.animateToPage(

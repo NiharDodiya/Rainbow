@@ -28,8 +28,6 @@ class SplashScreen extends StatelessWidget {
                 children: <Widget>[
                   animation(),
                   animation(),
-                  animation(),
-                  animation(),
                 ],
               ),
               Padding(
@@ -98,7 +96,7 @@ class SplashScreen extends StatelessWidget {
 
   List<Widget> _buildIndicator(SplashController controller) {
     List<Widget> indicators = [];
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 2; i++) {
       if (controller.currentIndex == i) {
         indicators.add(_indicator(true));
       } else {

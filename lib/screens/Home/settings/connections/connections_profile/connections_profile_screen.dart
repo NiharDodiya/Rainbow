@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
+import 'package:rainbow/model/profile_model.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
 import 'package:rainbow/screens/Profile/widget/connect_block.dart';
 import 'package:rainbow/screens/Profile/widget/other_visitors_viewed.dart';
 import 'package:rainbow/screens/Profile/widget/profileImage.dart';
 import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
 import 'package:rainbow/screens/Profile/widget/testimonials.dart';
-import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
 class ConnectionsProfileScreen extends StatelessWidget {
@@ -23,6 +23,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
         if (controller.loader.isTrue) {
           return const SmallLoader();
         } else {
+          ProfileData data = controller.profileModel.data!;
           return Container(
             width: Get.width,
             padding: const EdgeInsets.only(top: 25),
@@ -40,9 +41,9 @@ class ConnectionsProfileScreen extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  profileAppbar(controller.profileModel.data!.fullName.toString(), false),
-                  profileImage(profileImage: AssetRes.se_profile),
-                  connectAndBlock(),
+                  profileAppbar(data.fullName.toString(), false),
+                  profileImage(data.profileImage, data.backgroundImage),
+                  connectAndBlock(title: data.fullName,subTitle: data.instagram),
                   testimonials(),
                   otherVisitorsViewed(),
                 ],

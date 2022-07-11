@@ -3,8 +3,8 @@ import 'package:rainbow/model/profile_model.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/api/OtherProfileApi.dart';
 
 class ConnectionsProfileController extends GetxController {
-  void init() {
-    callApi();
+  Future<void> init() async {
+    await callApi();
   }
 
   ProfileModel profileModel = ProfileModel();

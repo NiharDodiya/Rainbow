@@ -10,7 +10,7 @@ class OtherProfileApi {
     try {
       Map<String, dynamic> body = {"userId": userId};
       http.Response? response = await HttpService.postApi(
-        url: EndPoints.profileView,
+        url: EndPoints.viewProfile,
       );
       if(response != null && response.statusCode == 200){
         return profileModelFromJson(response.body);
