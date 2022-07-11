@@ -14,6 +14,7 @@ class IdVerificationController extends GetxController {
   bool idTypeDrop = false;
   String? imageFront;
   String? imageBack;
+  String? selectedId;
   RxBool loader = false.obs;
 
   @override
@@ -21,6 +22,8 @@ class IdVerificationController extends GetxController {
     super.onInit();
     update(["IdVerification_screen"]);
   }
+
+
 
   List<String> idTypeList = [
     Strings.passport,
@@ -46,7 +49,12 @@ class IdVerificationController extends GetxController {
     idType.text = value;
     update(['IdVerification_screen']);
   }
-
+  void onStatusChange(String  value) {
+    print(value);
+    selectedId = value.toString();
+    idType.text = value.toString();
+    update(['IdVerification_screen']);
+  }
   bool validation() {
     if (idType.text.isEmpty) {
       errorToast(Strings.maritalStatusError);

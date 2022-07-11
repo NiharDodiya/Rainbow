@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/app_dropdown.dart';
@@ -100,7 +101,7 @@ class IdVerificationScreen extends StatelessWidget {
                                 SizedBox(
                                   height: Get.height * 0.02,
                                 ),
-                                SizedBox(
+                            /*    SizedBox(
                                   width: Get.width * 0.85,
                                   child: GestureDetector(
                                     onTap: () {
@@ -116,6 +117,86 @@ class IdVerificationScreen extends StatelessWidget {
                                       enable: false,
                                     ),
                                   ),
+                                ),*/
+                                Column(crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      Strings.idType,
+                                      style: gilroySemiBoldTextStyle(fontSize: 14),
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    GetBuilder<IdVerificationController>(
+                                      id: "IdVerification_screen",
+                                      builder: (controller) {
+                                        return DropdownButtonHideUnderline(
+                                          child: DropdownButton2(
+                                            isExpanded: true,
+                                            hint: Row(
+                                              children: [
+                                                const SizedBox(
+                                                  width: 4,
+                                                ),
+                                                Expanded(
+                                                  child: Text(
+                                                    Strings.prc,
+                                                    style: gilroyMediumTextStyle(
+                                                        fontSize: 16,
+                                                        color: ColorRes.black.withOpacity(0.3)),
+                                                    overflow: TextOverflow.ellipsis,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            items: controller.idTypeList
+                                                .map((item) => DropdownMenuItem<String>(
+                                              value: item,
+                                              child: Text(
+                                                item,
+                                                style: gilroyMediumTextStyle(
+                                                    fontSize: 16, color: ColorRes.black),
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ))
+                                                .toList(),
+                                            value: controller.selectedId,
+                                            onChanged: (value) {
+                                              controller.selectedId = value as String;
+                                              controller.idType.text = value;
+                                              controller.update(["register_screen"]);
+                                            },
+                                            icon: Image.asset(AssetRes.arrowDown, height: 17),
+                                            iconSize: 14,
+                                            iconEnabledColor: Colors.grey,
+                                            iconDisabledColor: Colors.grey,
+                                            buttonHeight: 60,
+                                            buttonWidth: Get.width * 0.8,
+                                            buttonPadding: const EdgeInsets.only(left: 14, right: 23),
+                                            buttonDecoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(20),
+                                              color: Colors.white,
+                                            ),
+                                            buttonElevation: 2,
+                                            itemHeight: 40,
+                                            itemPadding: const EdgeInsets.only(left: 20, right: 14),
+                                            dropdownMaxHeight: Get.height * 0.3,
+                                            /* height: Get.height*0.19,*/
+                                            dropdownWidth: Get.width ,
+                                            dropdownPadding: null,
+                                            dropdownDecoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(14),
+                                              color: Colors.white,
+                                            ),
+                                            dropdownElevation: 8,
+                                            scrollbarRadius: const Radius.circular(40),
+                                            scrollbarThickness: 6,
+                                            scrollbarAlwaysShow: true,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ],
                                 ),
                                 !controller.idTypeDrop
                                     ? const SizedBox()

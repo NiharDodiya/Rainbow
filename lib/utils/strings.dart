@@ -64,6 +64,7 @@ class Strings {
   static const cancel = "CANCEL";
   static const idVerification = "ID Verification";
   static const idType = "ID Type";
+  static const prc = "Permanent Resident Card";
   static const idNo = "ID No.";
   static const uploadFrontPicture = "Upload front picture of ID";
   static const uploadBackPicture = "Upload back picture of ID";

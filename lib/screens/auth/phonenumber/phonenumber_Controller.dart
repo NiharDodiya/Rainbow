@@ -67,8 +67,8 @@ class PhoneNumberController extends GetxController {
       await PhoneNumberApi.postRegister(
               "+${countryModel.phoneCode + phoneNumber.text}")
           .then((value) => phoneNumberModel = value);
-      await PrefService.setValue(
-          PrefKeys.id, phoneNumberModel.data!.id.toString());
+    /*  await PrefService.setValue(
+          PrefKeys.id, phoneNumberModel.data!.id.toString());*/
       loader.value = false;
     } catch (e) {
       loader.value = false;

@@ -7,6 +7,7 @@ import 'package:rainbow/utils/color_res.dart';
 
 Widget dropdownButton({
   double? height,
+  double? width,
   String? title,
   String? hintText,
   String? selectedValue,
@@ -74,7 +75,7 @@ Widget dropdownButton({
           itemPadding: const EdgeInsets.only(left: 20, right: 14),
           dropdownMaxHeight:height??100,
           /* height: Get.height*0.19,*/
-          dropdownWidth: Get.width * 0.8,
+          dropdownWidth: width??Get.width * 0.8,
           dropdownPadding: null,
           dropdownDecoration: BoxDecoration(
             borderRadius: BorderRadius.circular(14),
