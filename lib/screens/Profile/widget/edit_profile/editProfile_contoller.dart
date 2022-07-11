@@ -116,7 +116,6 @@ class EditProfileController extends GetxController {
   }
 
   Future frontCamera() async {
-
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
     if (image == null) return;
     final imageFront = File(image.path);
@@ -124,19 +123,15 @@ class EditProfileController extends GetxController {
     uploadImageApi();
 
     update(["Edit_profile"]);
-
   }
 
   Future backCamera() async {
-
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
     if (image == null) return;
     final imageTemp = File(image.path);
     backImage = imageTemp;
     uploadImageBackApi();
     update(["Edit_profile"]);
-
-
   }
 
   UploadImage uploadImage1 = UploadImage();
@@ -151,7 +146,6 @@ class EditProfileController extends GetxController {
 
       loader.value = false;
     } catch (e) {
-
       loader.value = false;
       debugPrint(e.toString());
     }
@@ -166,18 +160,18 @@ class EditProfileController extends GetxController {
 
       loader.value = false;
     } catch (e) {
-
       loader.value = false;
       debugPrint(e.toString());
     }
   }
 
-  EditProfile editProfile = Get.put(EditProfile());
+  EditProfile editProfile = EditProfile();
 
   Future<void> editProfileApi() async {
+
     loader.value = true;
     try {
-      await EditProfileApi.postRegister(
+      EditProfile? data = await EditProfileApi.postRegister(
         uploadImage1.data!.id.toString(),
         uploadImage2.data!.id.toString(),
         fullName.text,
@@ -195,10 +189,11 @@ class EditProfileController extends GetxController {
         aboutMe.text,
         hobbies.text,
         haveKids.text,
-      ).then((value) => editProfile = value);
+      );
+      if (data != null) {
+        editProfile = data;
+      }
       loader.value = false;
-
-
     } catch (e) {
       errorToast(e.toString());
       loader.value = false;
@@ -206,15 +201,15 @@ class EditProfileController extends GetxController {
     }
   }
 
-  void onHeightSave(){
+  void onHeightSave() {
     height.text = "$heightFeet'$heightInches";
     update(["Edit_profile"]);
     Get.back();
   }
-   void onWeightSave(){
+
+  void onWeightSave() {
     weight.text = "${weightData}lbs";
     update(["Edit_profile"]);
     Get.back();
   }
-
 }
