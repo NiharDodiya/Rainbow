@@ -114,7 +114,7 @@ class Strings {
   static const emailValidError1 = 'Email is invalid';
   static const passwordError = 'Password is required';
   static const newPasswordError = 'newPassword is required';
-  static const ConfirmPasswordError = 'confirmPassword is required';
+  static const confirmPasswordError = 'confirmPassword is required';
   static const passwordValidError = 'Password is invalid';
   static const reTypePasswordError = 'Re-Type Password is required';
   static const reTypePasswordValidError = 'Re-Type Password is Mismatch';
@@ -122,8 +122,7 @@ class Strings {
   static const addressLine2Error = 'Address Line 2 is required';
   static const phoneNumberError = 'Phone Number is required';
   static const phoneNumberValidError = 'Phone Number is invalid';
-  static const professionerror ="Profession is required";
-  static const companyNameError ="company Name is required";
+
   static const maritalStatusError = 'Marital Status is required';
 
   static const ethnicityError = 'Ethnicity is required';
