@@ -17,13 +17,12 @@ class VerifyPhoneController extends GetxController {
     return true;
   }
 
-  VerifyCode verifyCodeModel = Get.put(VerifyCode());
+  VerifyCode verifyCodeModel = VerifyCode();
 
 
   Future<void> verifyCode() async {
     try {
       loader.value = true;
-
       await VerifyCodeApi.postRegister(verifyController.text)
           .then((value) => verifyCodeModel = value!);
       loader.value = false;

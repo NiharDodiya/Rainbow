@@ -15,13 +15,12 @@ class CreateNewPasswordApi {
   static Future postRegister(
       String newPassword,
       ) async {
-    CreateNewPassword createList ;
     try {
       String url = EndPoints.createPassword;
-      String id= await PrefService.getString(PrefKeys.id);
+      int id= PrefService.getInt(PrefKeys.id);
       Map<String, String> param = {
-        'id':id ,
-        'password': newPassword,
+        'id':id.toString() ,
+        'password': newPassword.toString(),
       };
       print(param);
 

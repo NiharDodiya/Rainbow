@@ -1,9 +1,7 @@
 import 'dart:io';
 import 'dart:math';
-
 import 'package:custom_image_crop/custom_image_crop.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 
 class CircleImageCropper extends StatelessWidget {

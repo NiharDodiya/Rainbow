@@ -62,8 +62,11 @@ class RegisterApi {
         return registerUserFromJson(response.body);
 
       }else if(response!.statusCode == 500)
-        {  flutterToast(jsonDecode(response.body)["message"]);
-        }
+        {
+          flutterToast(jsonDecode(response.body)["message"]);
+        }else{
+        flutterToast(jsonDecode(response.body)["message"]);
+      }
     } catch (e) {
       print(e.toString());
       return [];

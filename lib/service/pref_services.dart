@@ -42,4 +42,8 @@ class PrefService {
   static List<String> getList(String key) {
     return _prefs.getStringList(key) ?? [];
   }
+
+  static Future<void> clear() async {
+    await _prefs.clear();
+  }
 }

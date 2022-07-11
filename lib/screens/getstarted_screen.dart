@@ -161,18 +161,18 @@ class GetStartedScreens extends StatelessWidget {
             width: Get.width * 0.80,
             height: 60,
             decoration: BoxDecoration(
-                color: ColorRes.color_E7D01F,
-                borderRadius: BorderRadius.circular(15),
+              color: ColorRes.color_E7D01F,
+              borderRadius: BorderRadius.circular(15),
               gradient: const LinearGradient(
                 colors: [ColorRes.color_FFEC5C, ColorRes.color_DFC60B],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-              ),),
-
+              ),
+            ),
             child: Center(
                 child: Text(
               Strings.getStarted,
-              style: gilroyBoldTextStyle(color: Colors.black,fontSize: 16),
+              style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
             )),
           ),
         ),
@@ -196,37 +196,42 @@ class GetStartedScreens extends StatelessWidget {
                 width: Get.width,
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: Get.height * 0.008,
                     ),
                     Center(
-                        child: Text(
-                      Strings.important,
-                      style:gilroySemiBoldTextStyle(color: Colors.black),
-                    )),
-                    const SizedBox(
-                      height: 15,
+                      child: Text(
+                        Strings.important,
+                        style: gilroySemiBoldTextStyle(color: Colors.black),
+                      ),
+                    ),
+                    SizedBox(
+                      height: Get.height * 0.01,
                     ),
                     SizedBox(
                       height: Get.height * 0.05755,
                       width: Get.width * 0.74,
                       child: Center(
-                          child: Text(
-                        Strings.smoothProcess,
-                        style: gilroyMediumTextStyle(color: ColorRes.color_656F85,fontSize: 14),
-                        textAlign: TextAlign.center,
-                      )),
+                        child: Text(
+                          Strings.smoothProcess,
+                          style: gilroyMediumTextStyle(
+                              color: ColorRes.color_656F85, fontSize: 14),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                     ),
-                    const SizedBox(
-                      height: 12,
+                    SizedBox(
+                      height: Get.height * 0.01,
                     ),
                     Center(
-                        child: Text(
-                      Strings.prepare,
-                      style: gilroyMediumTextStyle(color: ColorRes.color_656F85,fontSize: 14),
-                    )),
-                    const SizedBox(
-                      height: 20,
+                      child: Text(
+                        Strings.prepare,
+                        style: gilroyMediumTextStyle(
+                            color: ColorRes.color_656F85, fontSize: 14),
+                      ),
+                    ),
+                    SizedBox(
+                      height: Get.height * 0.02,
                     ),
                     Center(
                       child: Text(
@@ -235,21 +240,23 @@ class GetStartedScreens extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    const SizedBox(
-                      height: 14,
+                    SizedBox(
+                      height: Get.height * 0.02,
                     ),
                     SizedBox(
                       width: Get.width * 0.7893,
                       height: Get.height * 0.05707,
                       child: Center(
-                          child: Text(
-                        Strings.allow,
-                        style: gilroyMediumTextStyle(fontSize: 14,color: ColorRes.color_656F85),
-                        textAlign: TextAlign.center,
-                      )),
+                        child: Text(
+                          Strings.allow,
+                          style: gilroyMediumTextStyle(
+                              fontSize: 14, color: ColorRes.color_656F85),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                     ),
-                    const SizedBox(
-                      height: 12,
+                    SizedBox(
+                      height: Get.height * 0.012,
                     ),
                     SizedBox(
                       width: Get.width * 0.9303,
@@ -257,13 +264,15 @@ class GetStartedScreens extends StatelessWidget {
                       child: Center(
                           child: Text(
                         Strings.update,
-                        style: gilroyMediumTextStyle(fontSize: 14,color: ColorRes.color_656F85),
+                        style: gilroyMediumTextStyle(
+                            fontSize: 14, color: ColorRes.color_656F85),
                         textAlign: TextAlign.center,
                       )),
                     ),
-                    const SizedBox(
-                      height: 12,
+                    SizedBox(
+                      height: Get.height * 0.012,
                     ),
+                    Spacer(),
                     const Divider(
                       thickness: 1,
                       height: 1,
@@ -281,7 +290,8 @@ class GetStartedScreens extends StatelessWidget {
                             },
                             child: Text(
                               Strings.gotIt,
-                              style: gilroySemiBoldTextStyle(color: Colors.black),
+                              style:
+                                  gilroySemiBoldTextStyle(color: Colors.black),
                             ),
                           ),
                         ),
@@ -298,9 +308,11 @@ class GetStartedScreens extends StatelessWidget {
                               onTap: () {
                                 Get.back();
                               },
-                              child: Text(
+                              child: Text
+                                (
                                 Strings.cancel,
-                                style: gilroySemiBoldTextStyle(color: Colors.black),
+                                style: gilroySemiBoldTextStyle(
+                                    color: Colors.black),
                               )),
                         ),
                       ],

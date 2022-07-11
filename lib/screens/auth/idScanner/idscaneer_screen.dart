@@ -13,7 +13,7 @@ import 'package:rainbow/utils/strings.dart';
 
 class IdScannerScreen extends StatelessWidget {
   final IdScannerController controller = Get.put(IdScannerController());
-  IdVerificationController Idcontroller =Get.put(IdVerificationController());
+  IdVerificationController idController =Get.put(IdVerificationController());
 
   IdScannerScreen({Key? key}) : super(key: key);
 
@@ -168,7 +168,7 @@ class IdScannerScreen extends StatelessWidget {
                 },
               ),
             ),
-            Idcontroller.loader.isTrue?const SmallLoader():const SizedBox(),
+            idController.loader.isTrue?const SmallLoader():const SizedBox(),
           ],
         );
       },)
@@ -283,7 +283,7 @@ class IdScannerScreen extends StatelessWidget {
 
 class IdScannerBackScreen extends StatelessWidget {
   final IdScannerController controller = Get.put(IdScannerController());
-  IdVerificationController Idcontroller =Get.put(IdVerificationController());
+  IdVerificationController idController =Get.put(IdVerificationController());
 
    IdScannerBackScreen({Key? key}) : super(key: key);
 
@@ -384,7 +384,7 @@ class IdScannerBackScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      Strings.permanentResidentCard,
+                                      Strings.permanentResidentBackCard,
                                       style: gilroyBoldTextStyle(fontSize: 20),
                                     ),
                                     SizedBox(

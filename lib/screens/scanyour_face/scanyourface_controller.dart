@@ -102,8 +102,6 @@ class ScanYourFaceController extends GetxController {
     if (validation() && imageFront != null) {
       uploadImageApi();
       await PrefService.setValue(PrefKeys.register, true);
-
-
     }
   }
 

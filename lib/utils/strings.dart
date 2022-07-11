@@ -123,9 +123,7 @@ class Strings {
   static const addressLine2Error = 'Address Line 2 is required';
   static const phoneNumberError = 'Phone Number is required';
   static const phoneNumberValidError = 'Phone Number is invalid';
-
   static const maritalStatusError = 'Marital Status is required';
-
   static const ethnicityError = 'Ethnicity is required';
   static const birthDateError = 'Birth Date is required';
   static const postalCodeError = 'PostalCode is required';
@@ -145,6 +143,7 @@ class Strings {
   static const selfieError = 'please upload selfie';
   static const selfie = 'Selfie Verification';
   static const permanentResidentCard = 'Permanent Resident Card (Front)';
+  static const permanentResidentBackCard = 'Permanent Resident Card (Back)';
   static const placeYourId = '-Place your ID within the frame';
   static const pleaseMakeSure =
       '-Please make sure it is clear and has no glare';
