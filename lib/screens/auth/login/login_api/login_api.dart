@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/idVerification/idverification_screen.dart';
@@ -49,8 +50,9 @@ class LoginApi {
             }else if(jsonDecode(response.body)["data"]["selfi_status"]=="pending"){
               Get.to(()=>SelfieVerificationScreen());
             }
-          }else{
-            Get.offAll(() => const Dashboard());
+          }else {
+            Get.offAll(() => jsonDecode(response.body)["data"]["role"]=="end_user" ?Dashboard():AdvertisementDashBord());
+
           }
           //Get.offAll(() => const Dashboard());
         }

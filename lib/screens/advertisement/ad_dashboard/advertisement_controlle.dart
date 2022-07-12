@@ -4,6 +4,7 @@ import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_notification/ad_notification_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_payment/ad_payment_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_support/ad_support_controller.dart';
+import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 
 class AdvertisementController extends GetxController
 {
@@ -36,5 +37,9 @@ notification(){
 
 void fun(bool flage){
   
+}
+void onTapLogOut()
+{
+  Get.offAll(()=>AuthDashboard());
 }
 }

@@ -191,7 +191,7 @@ class AdvertisementDashBord extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              SubmitButton(
+              SubmitButton(onTap: controller.onTapLogOut,
                 child: Row(
                   children: [
                     const Spacer(),
