@@ -76,14 +76,16 @@ class AdvirtisersApi {
       else if(response!.statusCode==400)
         {
           errorToast(jsonDecode(response.body)["message"]);
-        }
+        }else{
+        errorToast(jsonDecode(response.body)["message"]);
+      }
       /*  message == "Failed! Email is already in use!"
           ? errorToast(message)
           : */
       // return
     } catch (e) {
       print(e.toString());
-      return [];
+      return advertiserRegisterFromJson("");
     }
   }
 }

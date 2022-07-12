@@ -5,13 +5,13 @@ import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/country_name.dart';
+import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
 import 'package:rainbow/screens/account_Information/account_information_controller.dart';
 import 'package:rainbow/utils/strings.dart';
 import '../../common/Widget/text_styles.dart';
 import '../../utils/asset_res.dart';
 import '../../utils/color_res.dart';
-import '../auth/doctor_register/doctorRegister_controller.dart';
 import '../auth/phonenumber/phonenumber_Controller.dart';
 
 class AccountInformationScreen extends StatelessWidget {
@@ -20,181 +20,193 @@ class AccountInformationScreen extends StatelessWidget {
       Get.put(AccountInformationController());
   PhoneNumberController phoneNumberController =
       Get.put(PhoneNumberController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            width: Get.width,
-            decoration: const BoxDecoration(color: ColorRes.color_4F359B),
-            child: Column(children: [
-              appBar(),
-              SizedBox(
-                height: Get.height * 0.191785714,
-                width: Get.width * 0.35181,
-                child: Stack(
-                  children: [
-                    GetBuilder<AccountInformationController>(
-                      id: "Getpic",
-                      builder: (controller) => Container(
-                        height: Get.width * 0.336,
-                        width: Get.width * 0.336,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(color: ColorRes.white, width: 7),
-                          image: controller.imagePath == null
-                              ? const DecorationImage(
-                                  image: AssetImage(AssetRes.account),
-                                )
-                              : DecorationImage(
-                                  image: FileImage(
-                                    File(controller.imagePath!.path),
+      body: Obx(
+        () => Stack(
+          children: [
+            SafeArea(
+              child: SingleChildScrollView(
+                child: Container(
+                  width: Get.width,
+                  decoration: const BoxDecoration(color: ColorRes.color_4F359B),
+                  child: Column(children: [
+                    appBar(),
+                    SizedBox(
+                      height: Get.height * 0.191785714,
+                      width: Get.width * 0.35181,
+                      child: Stack(
+                        children: [
+                          GetBuilder<AccountInformationController>(
+                            id: "Getpic",
+                            builder: (controller) => Container(
+                              height: Get.width * 0.336,
+                              width: Get.width * 0.336,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border:
+                                    Border.all(color: ColorRes.white, width: 7),
+                                image: controller.imagePath == null
+                                    ? const DecorationImage(
+                                        image: AssetImage(AssetRes.account),
+                                      )
+                                    : DecorationImage(
+                                        image: FileImage(
+                                          File(controller.imagePath!.path),
+                                        ),
+                                        fit: BoxFit.cover),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: Get.width * 0.01333,
+                            right: Get.width * 0.01333,
+                            child: Container(
+                              height: Get.width * 0.09,
+                              width: Get.width * 0.09,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: ColorRes.white,
+                                border: Border.all(
+                                    color: ColorRes.color_CE8CEC, width: 4),
+                              ),
+                              child: Center(
+                                child: InkWell(
+                                  onTap: () {
+                                    showModalBottomSheet(
+                                        elevation: 10,
+                                        barrierColor:
+                                            ColorRes.black.withOpacity(0.4),
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0),
+                                          ),
+                                        ),
+                                        backgroundColor: ColorRes.color_4F359B,
+                                        context: context,
+                                        builder: (context) {
+                                          return Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: <Widget>[
+                                              GestureDetector(
+                                                onTap:
+                                                    controller.navigateToCamera,
+                                                child: const ListTile(
+                                                  leading: Icon(Icons.camera),
+                                                  title: Text(Strings.camera),
+                                                ),
+                                              ),
+                                              Container(
+                                                height: 0.5,
+                                                width: Get.width,
+                                                color: ColorRes.white,
+                                              ),
+                                              GestureDetector(
+                                                onTap: controller
+                                                    .navigateToGallary,
+                                                child: const ListTile(
+                                                  leading: Icon(Icons
+                                                      .photo_size_select_actual_outlined),
+                                                  title: Text(Strings.gallery),
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        });
+                                  },
+                                  child: SizedBox(
+                                    width: Get.width * 0.038,
+                                    height: Get.width * 0.038,
+                                    child: Image.asset(AssetRes.edit),
                                   ),
-                                  fit: BoxFit.cover),
-                        ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    Positioned(
-                      bottom: Get.width * 0.01333,
-                      right: Get.width * 0.01333,
-                      child: Container(
-                        height: Get.width * 0.09,
-                        width: Get.width * 0.09,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: ColorRes.white,
-                          border: Border.all(
-                              color: ColorRes.color_CE8CEC, width: 4),
-                        ),
-                        child: Center(
-                          child: InkWell(
-                            onTap: () {
-                              showModalBottomSheet(
-                                  elevation: 10,
-                                  barrierColor: ColorRes.black.withOpacity(0.4),
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(10.0),
+                    GetBuilder<AccountInformationController>(
+                      id: 'update',
+                      builder: (controller) => Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  controller.selectAccount();
+                                },
+                                child: SizedBox(
+                                  width: Get.width * 0.5,
+                                  height: Get.height * 0.05,
+                                  child: Center(
+                                    child: Text(
+                                      Strings.account,
+                                      textAlign: TextAlign.start,
+                                      style: gilroyBoldTextStyle(fontSize: 12),
                                     ),
                                   ),
-                                  backgroundColor: ColorRes.color_4F359B,
-                                  context: context,
-                                  builder: (context) {
-                                    return Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        GestureDetector(
-                                          onTap: controller.navigateToCamera,
-                                          child: const ListTile(
-                                            leading: Icon(Icons.camera),
-                                            title: Text(Strings.camera),
-                                          ),
-                                        ),
-                                        Container(
-                                          height: 0.5,
-                                          width: Get.width,
-                                          color: ColorRes.white,
-                                        ),
-                                        GestureDetector(
-                                          onTap: controller.navigateToGallary,
-                                          child: const ListTile(
-                                            leading: Icon(Icons
-                                                .photo_size_select_actual_outlined),
-                                            title: Text(Strings.gallery),
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  });
-                            },
-                            child: SizedBox(
-                              width: Get.width * 0.038,
-                              height: Get.width * 0.038,
-                              child: Image.asset(AssetRes.edit),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  controller.selectCompny();
+                                },
+                                child: SizedBox(
+                                  width: Get.width * 0.5,
+                                  height: Get.height * 0.05,
+                                  child: Center(
+                                    child: Text(
+                                      Strings.company,
+                                      style: gilroyBoldTextStyle(fontSize: 12),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Container(
+                                width: Get.width * .5,
+                                height: !controller.companySelected ? 3 : 1,
+                                color: !controller.companySelected
+                                    ? ColorRes.color_FFED62
+                                    : ColorRes.white,
+                              ),
+                              Container(
+                                width: Get.width * .5,
+                                height: controller.companySelected ? 3 : 1,
+                                color: controller.companySelected
+                                    ? ColorRes.color_FFED62
+                                    : ColorRes.white,
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: Get.height - (Get.height * 0.379),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: Get.width * 0.072),
+                              child: SingleChildScrollView(
+                                  physics: const BouncingScrollPhysics(),
+                                  child: controller.companySelected
+                                      ? companyPart()
+                                      : accountPart(context)),
                             ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
-                  ],
+                  ]),
                 ),
               ),
-              GetBuilder<AccountInformationController>(
-                id: 'update',
-                builder: (controller) => Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            controller.selectAccount();
-                          },
-                          child: SizedBox(
-                            width: Get.width * 0.5,
-                            height: Get.height * 0.05,
-                            child: Center(
-                              child: Text(
-                                Strings.account,
-                                textAlign: TextAlign.start,
-                                style: gilroyBoldTextStyle(fontSize: 12),
-                              ),
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            controller.selectCompny();
-                          },
-                          child: SizedBox(
-                            width: Get.width * 0.5,
-                            height: Get.height * 0.05,
-                            child: Center(
-                              child: Text(
-                                Strings.company,
-                                style: gilroyBoldTextStyle(fontSize: 12),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          width: Get.width * .5,
-                          height: !controller.companySelected ? 3 : 1,
-                          color: !controller.companySelected
-                              ? ColorRes.color_FFED62
-                              : ColorRes.white,
-                        ),
-                        Container(
-                          width: Get.width * .5,
-                          height: controller.companySelected ? 3 : 1,
-                          color: controller.companySelected
-                              ? ColorRes.color_FFED62
-                              : ColorRes.white,
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: Get.height - (Get.height * 0.379),
-                      child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: Get.width * 0.072),
-                        child: SingleChildScrollView(
-                            physics: const BouncingScrollPhysics(),
-                            child: controller.companySelected
-                                ? companyPart()
-                                : accountPart(context)),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ]),
-          ),
+            ),
+            controller.loader.isTrue ? const SmallLoader() : const SizedBox(),
+          ],
         ),
       ),
     );

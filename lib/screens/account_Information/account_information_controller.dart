@@ -1,13 +1,12 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../common/popup.dart';
 import '../../utils/strings.dart';
 
 class AccountInformationController extends GetxController {
+  RxBool loader = false.obs;
   bool companySelected = false;
   File? imagePath;
   String? selectCountry;
@@ -24,13 +23,23 @@ class AccountInformationController extends GetxController {
   TextEditingController companyNumber = TextEditingController();
   TextEditingController website = TextEditingController();
   bool professions = false;
-List<String> dropdownList = ["Doctor","User","Admin"];
+  List<String> dropdownList = ["Doctor", "User", "Admin"];
 
-void onCountryCoCityChange(String value) {
+  void init() {
+    loader.value = true;
+    Future.delayed(const Duration(milliseconds: 100)).then(
+      (value) {
+        loader.value = false;
+      },
+    );
+  }
+
+  void onCountryCoCityChange(String value) {
     selectCountry = value;
     profession.text = value;
     update(['doctor']);
   }
+
   selectAccount() {
     companySelected = false;
     update(['update']);
@@ -45,8 +54,6 @@ void onCountryCoCityChange(String value) {
   accountSave() {
     accountValidation();
   }
-
- 
 
   compnySave() {
     companyValidation();
@@ -85,6 +92,7 @@ void onCountryCoCityChange(String value) {
     return true;
   }
 
+  //Company data validation
   bool companyValidation() {
     if (profession.text.isEmpty) {
       errorToast(Strings.professionError);
