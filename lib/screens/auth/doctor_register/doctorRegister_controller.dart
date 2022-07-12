@@ -179,7 +179,6 @@ String? codeId;
       print(status);
       print(role);
     } catch (e) {
-
       loader.value = false;
       debugPrint(e.toString());
     }

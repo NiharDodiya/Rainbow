@@ -52,7 +52,6 @@ class LoginApi {
             }
           }else {
             Get.offAll(() => jsonDecode(response.body)["data"]["role"]=="end_user" ?Dashboard():AdvertisementDashBord());
-
           }
           //Get.offAll(() => const Dashboard());
         }

@@ -4,6 +4,7 @@ import 'package:rainbow/common/Widget/app_dropdown.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/screens/auth/doctor_register/doctorRegister_controller.dart';
 import 'package:rainbow/screens/auth/doctor_register/doctorRegister_form.dart';
 import 'package:rainbow/screens/auth/doctor_register/dropDown_comanyname.dart';
@@ -122,7 +123,7 @@ class DoctorRegisterScreen extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-
+                Get.offAll(()=> AuthDashboard());
               },
               child: Text(
                 Strings.signIn,
