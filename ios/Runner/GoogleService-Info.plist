@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>205390981956-cdsesmul8bl26tkpf0ttcjc3hb2gp7g0.apps.googleusercontent.com</string>
+	<string>442814978629-rpj573tdsiea798eku5jgiff8i2lb78f.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.205390981956-cdsesmul8bl26tkpf0ttcjc3hb2gp7g0</string>
+	<string>com.googleusercontent.apps.442814978629-rpj573tdsiea798eku5jgiff8i2lb78f</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>205390981956-cn4e9n88nc7r2imeha1925e7aovm2equ.apps.googleusercontent.com</string>
+	<string>442814978629-rumd5288h9o19v975r3ndvnbe2ff4tva.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBEs6aLKBaKHW0JMj9pG-PYAnGsTlVtJ18</string>
+	<string>AIzaSyB5wfej__gN4tmw17LzvDOKckRmgjV0vNE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>205390981956</string>
+	<string>442814978629</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.rainbow</string>
+	<string>com.app.rainbow</string>
 	<key>PROJECT_ID</key>
-	<string>rainbow-75ec2</string>
+	<string>rainbow-convrtx</string>
 	<key>STORAGE_BUCKET</key>
-	<string>rainbow-75ec2.appspot.com</string>
+	<string>rainbow-convrtx.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:205390981956:ios:c58c1d6c38405ca8b9c511</string>
+	<string>1:442814978629:ios:83c080169cf60c1a37e12c</string>
 </dict>
 </plist>

@@ -60,10 +60,13 @@ dependencies:
   file_picker: ^4.6.1
   path_provider: ^2.0.11
 
-  #_______________________________________________ authantication______________________________________
+  #_______________________________________________ firebase ______________________________________
   firebase_auth: ^3.3.20
+  firebase_messaging: ^11.4.4
+  flutter_local_notifications: ^9.7.0
+
+  #_______________________________________________ authentication ______________________________________
   google_sign_in: ^5.3.3
-  #  flutter_login_facebook: ^1.5.0+1
   flutter_facebook_auth: ^4.1.1
 
   #_______________________________________________________image picker____________________

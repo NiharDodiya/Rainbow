@@ -39,133 +39,135 @@ class ScanYourFaceScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                   color: ColorRes.color_4F359B,
                                   borderRadius: BorderRadius.circular(25)),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: Get.height * 0.03,
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Get.back();
-                                    },
-                                    child: const Padding(
-                                      padding: EdgeInsets.only(left: 15),
-                                      child: Icon(
-                                        Icons.arrow_back_ios_outlined,
-                                        size: 16.72,
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: Get.height * 0.03,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Get.back();
+                                      },
+                                      child: const Padding(
+                                        padding: EdgeInsets.only(left: 15),
+                                        child: Icon(
+                                          Icons.arrow_back_ios_outlined,
+                                          size: 16.72,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: Get.height * 0.03,
-                                  ),
-                                  Padding(
-                                      padding: const EdgeInsets.only(left: 15),
-                                      child: Text(
-                                        Strings.selfie,
-                                        style: gilroyBoldTextStyle(fontSize: 26),
-                                      )),
-                                  SizedBox(
-                                    height: Get.height * 0.009,
-                                  ),
-                                  Row(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          height: 29,
-                                          width: 29,
-                                          decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: ColorRes.color_B279DB),
-                                        ),
-                                        Container(
-                                          height: 5,
-                                          width: Get.width * 0.25,
-                                          color: ColorRes.color_B279DB,
-                                        ),
-                                        Container(
-                                          height: 29,
-                                          width: 29,
-                                          decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: ColorRes.color_B279DB),
-                                        ),
-                                        Container(
-                                          height: 5,
-                                          width: Get.width * 0.25,
-                                          color: ColorRes.color_B279DB,
-                                        ),
-                                        Container(
-                                          height: 29,
-                                          width: 29,
-                                          decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: ColorRes.color_B279DB),
-                                        ),
-                                      ]),
-                                  SizedBox(
-                                    height: Get.height * 0.03,
-                                  ),
-                                  Padding(
-                                    padding:
-                                    EdgeInsets.only(left: Get.height * 0.028),
-                                    child: SizedBox(
-                                      height: Get.height * 0.046,
-                                      width: Get.width * 0.836619,
-                                      child: Center(
+                                    SizedBox(
+                                      height: Get.height * 0.03,
+                                    ),
+                                    Padding(
+                                        padding: const EdgeInsets.only(left: 15),
                                         child: Text(
-                                          Strings.scanYourFace,
+                                          Strings.selfie,
                                           style: gilroyBoldTextStyle(fontSize: 26),
+                                        )),
+                                    SizedBox(
+                                      height: Get.height * 0.009,
+                                    ),
+                                    Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            height: 29,
+                                            width: 29,
+                                            decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: ColorRes.color_B279DB),
+                                          ),
+                                          Container(
+                                            height: 5,
+                                            width: Get.width * 0.25,
+                                            color: ColorRes.color_B279DB,
+                                          ),
+                                          Container(
+                                            height: 29,
+                                            width: 29,
+                                            decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: ColorRes.color_B279DB),
+                                          ),
+                                          Container(
+                                            height: 5,
+                                            width: Get.width * 0.25,
+                                            color: ColorRes.color_B279DB,
+                                          ),
+                                          Container(
+                                            height: 29,
+                                            width: 29,
+                                            decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: ColorRes.color_B279DB),
+                                          ),
+                                        ]),
+                                    SizedBox(
+                                      height: Get.height * 0.03,
+                                    ),
+                                    Padding(
+                                      padding:
+                                      EdgeInsets.only(left: Get.height * 0.028),
+                                      child: SizedBox(
+                                        height: Get.height * 0.046,
+                                        width: Get.width * 0.836619,
+                                        child: Center(
+                                          child: Text(
+                                            Strings.scanYourFace,
+                                            style: gilroyBoldTextStyle(fontSize: 26),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: Get.height * 0.03,
-                                  ),
-                                  Center(
-                                    child: SizedBox(
-                                        height: Get.height * 0.06060,
-                                        width: Get.width * 0.901408,
-                                        child: Text(
-                                          Strings.pleaseBlink,
-                                          style: gilroyMediumTextStyle(fontSize: 16),
-                                          textAlign: TextAlign.center,
-                                        )),
-                                  ),
-                                  buildCameraFunction(context, controller),
-                                  SizedBox(
-                                    height: Get.height * 0.05,
-                                  ),
-                                  InkWell(
-                                    onTap: () {
+                                    SizedBox(
+                                      height: Get.height * 0.03,
+                                    ),
+                                    Center(
+                                      child: SizedBox(
+                                          height: Get.height * 0.06060,
+                                          width: Get.width * 0.901408,
+                                          child: Text(
+                                            Strings.pleaseBlink,
+                                            style: gilroyMediumTextStyle(fontSize: 16),
+                                            textAlign: TextAlign.center,
+                                          )),
+                                    ),
+                                    buildCameraFunction(context, controller),
+                                    SizedBox(
+                                      height: Get.height * 0.05,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
 
-                                      controller.takePicForFront();
-                                      /*    controller.onRegisterTap();*/
-                                    },
-                                    child: Center(
-                                      child: Container(
-                                        width: Get.width * 0.84788,
-                                        height:60,
-                                        decoration: BoxDecoration(
-                                            color: ColorRes.color_E7D01F,
-                                            borderRadius: BorderRadius.circular(20), gradient: const LinearGradient(
-                                          colors: [ColorRes.color_FFEC5C, ColorRes.color_DFC60B],
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                        ),),
-                                        child: Center(
-                                            child: Text(
-                                              Strings.next,
-                                              style: gilroyBoldTextStyle(color: Colors.black,fontSize: 16),
-                                            )),
+                                        controller.takePicForFront();
+                                        /*    controller.onRegisterTap();*/
+                                      },
+                                      child: Center(
+                                        child: Container(
+                                          width: Get.width * 0.84788,
+                                          height:60,
+                                          decoration: BoxDecoration(
+                                              color: ColorRes.color_E7D01F,
+                                              borderRadius: BorderRadius.circular(20), gradient: const LinearGradient(
+                                            colors: [ColorRes.color_FFEC5C, ColorRes.color_DFC60B],
+                                            begin: Alignment.topCenter,
+                                            end: Alignment.bottomCenter,
+                                          ),),
+                                          child: Center(
+                                              child: Text(
+                                                Strings.next,
+                                                style: gilroyBoldTextStyle(color: Colors.black,fontSize: 16),
+                                              )),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),

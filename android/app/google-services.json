@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "205390981956",
-    "project_id": "rainbow-75ec2",
-    "storage_bucket": "rainbow-75ec2.appspot.com"
+    "project_number": "442814978629",
+    "project_id": "rainbow-convrtx",
+    "storage_bucket": "rainbow-convrtx.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:205390981956:android:65fb0aecaaa5a91eb9c511",
+        "mobilesdk_app_id": "1:442814978629:android:a27f835ad19faba537e12c",
         "android_client_info": {
-          "package_name": "com.example.rainbow"
+          "package_name": "com.app.rainbow"
         }
       },
       "oauth_client": [
         {
-          "client_id": "205390981956-i8gt9d7i1ngob8ugab4p6lffnhrn59dq.apps.googleusercontent.com",
+          "client_id": "442814978629-rumd5288h9o19v975r3ndvnbe2ff4tva.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.rainbow",
+            "certificate_hash": "63feff0c81384fea5c22092a51cd93463747d7e4"
+          }
+        },
+        {
+          "client_id": "442814978629-5tvivdmp5c1ces0fjjgqnkflme18v5bb.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCal3msYMDuC8SKYm1S_8zK08IbAOwULDE"
+          "current_key": "AIzaSyDS4CCqx1J-soRZ5MrbK7DyP1nbEX0M9wk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "205390981956-i8gt9d7i1ngob8ugab4p6lffnhrn59dq.apps.googleusercontent.com",
+              "client_id": "442814978629-5tvivdmp5c1ces0fjjgqnkflme18v5bb.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

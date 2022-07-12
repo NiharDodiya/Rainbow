@@ -98,11 +98,10 @@ class AuthDashBordController extends GetxController {
       await FacebookAuth.instance.getUserData().then((userData) {
         print(userData);
       });
-      final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
-      print(facebookAuthCredential);
-      print(facebookAuthCredential.accessToken);
+      final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token,);
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
       try {
-        await GoogleIdVerification.postRegister(facebookAuthCredential.accessToken!).then((value) {print(value);});
+        await GoogleIdVerification.postRegister(userCredential.user!.uid,user: userCredential.user).then((value) {print(value);});
       } catch (e) {
         errorToast(e.toString());
         debugPrint(e.toString());
