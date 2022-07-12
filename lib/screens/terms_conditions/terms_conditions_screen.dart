@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Home/home_screen.dart';
+import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/idVerification/idverification_screen.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class TermsConditionsScreen extends StatelessWidget {
   const TermsConditionsScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,7 +83,8 @@ class TermsConditionsScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 15),
                     child: GestureDetector(
                       onTap: () {
-                        Get.to(() => const IdVerificationScreen());
+                        Get.offAll(()=> Dashboard());
+
                       },
                       child: Container(
                         width: Get.width * 0.84,

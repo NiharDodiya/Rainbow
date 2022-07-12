@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/scanyour_face/scanyourface_api/scanyourface_json.dart';
+import 'package:rainbow/screens/terms_conditions/terms_conditions_screen.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
@@ -34,7 +35,7 @@ class ScanYourFaceApi {
         }
         else if(status==true)
         {
-          Get.offAll(() => const Dashboard());
+          Get.to(() => const TermsConditionsScreen());
           flutterToast(jsonDecode(response.body)["message"]);
         }
        return selfiVerificationFromJson(response.body);

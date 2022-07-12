@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/auth/login/login_screen.dart';
-import 'package:rainbow/screens/auth/newpassword/newpassword_api/newpassword_json.dart';
+import 'package:rainbow/screens/auth/newpassword/newpassword_api/newpassword_model.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';

@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/idVerification/idverification_screen.dart';
 import 'package:rainbow/screens/terms_conditions/terms_conditions_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -286,7 +287,7 @@ class GetStartedScreens extends StatelessWidget {
                           padding: const EdgeInsets.all(12),
                           child: GestureDetector(
                             onTap: () {
-                              Get.to(const TermsConditionsScreen());
+                              Get.to(() => const IdVerificationScreen());
                             },
                             child: Text(
                               Strings.gotIt,

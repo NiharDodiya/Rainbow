@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
-import 'package:rainbow/screens/auth/newpassword/newpassword_api/newpassword_json.dart';
+import 'package:rainbow/screens/auth/newpassword/newpassword_api/newpassword_model.dart';
 import 'package:rainbow/screens/auth/newpassword/newpassword_api/newpasword_api.dart';
 import 'package:rainbow/screens/auth/phonenumber/phonenumber_Screen.dart';
 import 'package:rainbow/utils/strings.dart';
