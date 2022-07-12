@@ -23,8 +23,6 @@ class IdVerificationController extends GetxController {
     update(["IdVerification_screen"]);
   }
 
-
-
   List<String> idTypeList = [
     Strings.passport,
     "Driving license",
