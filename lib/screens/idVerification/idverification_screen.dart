@@ -21,87 +21,88 @@ class IdVerificationScreen extends StatelessWidget {
     IdVerificationController controller = Get.put(IdVerificationController());
     return Scaffold(
         backgroundColor: Colors.white,
-        body: Stack(
-          children: [
-            SafeArea(
-              child: GetBuilder<IdVerificationController>(
-                id: 'IdVerification_screen',
-                builder: (controller) {
-                  return SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.all(Get.width * 0.02669),
-                          decoration: BoxDecoration(
-                              color: ColorRes.color_4F359B,
-                              borderRadius: BorderRadius.circular(25)),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  height: Get.height * 0.05,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Get.back();
-                                  },
-                                  child: const Icon(
-                                    Icons.arrow_back_ios_outlined,
-                                    size: 16.72,
+        body: Obx(() {
+          return Stack(
+            children: [
+              SafeArea(
+                child: GetBuilder<IdVerificationController>(
+                  id: 'IdVerification_screen',
+                  builder: (controller) {
+                    return SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.all(Get.width * 0.02669),
+                            decoration: BoxDecoration(
+                                color: ColorRes.color_4F359B,
+                                borderRadius: BorderRadius.circular(25)),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 15),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: Get.height * 0.05,
                                   ),
-                                ),
-                                SizedBox(
-                                  height: Get.height * 0.05,
-                                ),
-                                Text(
-                                  Strings.idVerification,
-                                  style: gilroyBoldTextStyle(fontSize: 26),
-                                ),
-                                SizedBox(
-                                  height: Get.height * 0.01,
-                                ),
-                                Row(children: [
-                                  Container(
-                                    height: 29,
-                                    width: 29,
-                                    decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: ColorRes.color_B279DB),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.back();
+                                    },
+                                    child: const Icon(
+                                      Icons.arrow_back_ios_outlined,
+                                      size: 16.72,
+                                    ),
                                   ),
-                                  Container(
-                                    height: 5,
-                                    width: Get.width * 0.3,
-                                    color: controller.imageFront != null
-                                        ? ColorRes.color_B279DB
-                                        : ColorRes.color_C4C4C4,
+                                  SizedBox(
+                                    height: Get.height * 0.05,
                                   ),
-                                  Container(
-                                    height: 29,
-                                    width: 29,
-                                    decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: ColorRes.color_C4C4C4),
+                                  Text(
+                                    Strings.idVerification,
+                                    style: gilroyBoldTextStyle(fontSize: 26),
                                   ),
-                                  Container(
-                                    height: 5,
-                                    width: Get.width * 0.3,
-                                    color: ColorRes.color_C4C4C4,
+                                  SizedBox(
+                                    height: Get.height * 0.01,
                                   ),
-                                  Container(
-                                    height: 29,
-                                    width: 29,
-                                    decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: ColorRes.color_C4C4C4),
+                                  Row(children: [
+                                    Container(
+                                      height: 29,
+                                      width: 29,
+                                      decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: ColorRes.color_B279DB),
+                                    ),
+                                    Container(
+                                      height: 5,
+                                      width: Get.width * 0.3,
+                                      color: controller.imageFront != null
+                                          ? ColorRes.color_B279DB
+                                          : ColorRes.color_C4C4C4,
+                                    ),
+                                    Container(
+                                      height: 29,
+                                      width: 29,
+                                      decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: ColorRes.color_C4C4C4),
+                                    ),
+                                    Container(
+                                      height: 5,
+                                      width: Get.width * 0.3,
+                                      color: ColorRes.color_C4C4C4,
+                                    ),
+                                    Container(
+                                      height: 29,
+                                      width: 29,
+                                      decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: ColorRes.color_C4C4C4),
+                                    ),
+                                  ]),
+                                  SizedBox(
+                                    height: Get.height * 0.02,
                                   ),
-                                ]),
-                                SizedBox(
-                                  height: Get.height * 0.02,
-                                ),
-                            /*    SizedBox(
+                                  /*    SizedBox(
                                   width: Get.width * 0.85,
                                   child: GestureDetector(
                                     onTap: () {
@@ -140,7 +141,7 @@ class IdVerificationScreen extends StatelessWidget {
                                                 ),
                                                 Expanded(
                                                   child: Text(
-                                                    "",
+                                                    ""   ,
                                                     style: gilroyMediumTextStyle(
                                                         fontSize: 16,
                                                         color: ColorRes.black.withOpacity(0.3)),
@@ -158,19 +159,20 @@ class IdVerificationScreen extends StatelessWidget {
                                                     fontSize: 16, color: ColorRes.black),
                                                 overflow: TextOverflow.ellipsis,
                                               ),
-                                            )).toList(),
+                                            ))
+                                                .toList(),
                                             value: controller.selectedId,
                                             onChanged: (value) {
-                                              controller.selectedId = value.toString();
-                                              controller.idType.text = value.toString();
-                                              controller.update(["IdVerification_screen"]);
+                                              controller.selectedId = value as String;
+                                              controller.idType.text = value;
+                                              controller.update(["register_screen"]);
                                             },
                                             icon: Image.asset(AssetRes.arrowDown, height: 17),
                                             iconSize: 14,
                                             iconEnabledColor: Colors.grey,
                                             iconDisabledColor: Colors.grey,
                                             buttonHeight: 60,
-                                            buttonWidth: Get.width * 0.85,
+                                            buttonWidth: Get.width * 0.8,
                                             buttonPadding: const EdgeInsets.only(left: 14, right: 23),
                                             buttonDecoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(20),
@@ -181,7 +183,7 @@ class IdVerificationScreen extends StatelessWidget {
                                             itemPadding: const EdgeInsets.only(left: 20, right: 14),
                                             dropdownMaxHeight: Get.height * 0.3,
                                             /* height: Get.height*0.19,*/
-                                            dropdownWidth: Get.width *0.85,
+                                            dropdownWidth: Get.width ,
                                             dropdownPadding: null,
                                             dropdownDecoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(14),
@@ -197,159 +199,160 @@ class IdVerificationScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                /*!controller.idTypeDrop
+                                !controller.idTypeDrop
                                     ? const SizedBox()
                                     : AppDroDownIdType(
                                         paramList: controller.idTypeList,
                                         onTap: controller.idTypeVerification,
                                       ),*/
-                                SizedBox(
-                                  height: Get.height * 0.02,
-                                ),
-                                SizedBox(
-                                  width: Get.width * 0.85,
-                                  child: AppTextFiled(
-                                    controller: controller.idNO,
-                                    title: Strings.idNo,
-                                    hintText: Strings.idNoT,
-                                    fontsize: 14,
-                                    enable: true,
+                                  SizedBox(
+                                    height: Get.height * 0.02,
                                   ),
-                                ),
-                                SizedBox(
-                                  height: Get.height * 0.038,
-                                ),
-                                Text(
-                                  Strings.uploadFrontPicture,
-                                  style: gilroyBoldTextStyle(fontSize: 14),
-                                ),
-                                SizedBox(
-                                  height: Get.height * 0.02,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    FocusScope.of(context).unfocus();
-                                    Get.to(() => IdScannerScreen());
-                                  },
-                                  child: controller.imageFront == null
-                                      ? Container(
-                                          height: 217,
-                                          width: Get.width * 0.85,
-                                          decoration: BoxDecoration(
-                                              color: ColorRes.color_F7F9FF,
-                                              borderRadius:
-                                                  BorderRadius.circular(30)),
-                                          child: Stack(
-                                            children: [
-                                              Center(
-                                                child: SizedBox(
-                                                    height: 120.77,
-                                                    width: Get.width * 0.47,
-                                                    child: Image.asset(
-                                                        AssetRes.frontPicture)),
-                                              )
-                                            ],
-                                          ),
-                                        )
-                                      : Container(
-                                          height: 217,
-                                          width: Get.width * 0.85,
-                                          decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: FileImage(
-                                                    File(controller.imageFront.toString()),
-                                                  ),
-                                                  fit: BoxFit.cover,),
-                                              color: ColorRes.color_F7F9FF,
-                                              borderRadius:
-                                                  BorderRadius.circular(30)),
-                                        ),
-                                ),
-                                SizedBox(
-                                  height: Get.height * 0.038,
-                                ),
-                                Text(
-                                  Strings.uploadBackPicture,
-                                  style: gilroyBoldTextStyle(fontSize: 14),
-                                ),
-                                SizedBox(
-                                  height: Get.height * 0.02,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    FocusScope.of(context).unfocus();
-                                    Get.to(() => IdScannerBackScreen());
-                                  },
-                                  child: controller.imageBack == null
-                                      ? Container(
-                                          height: 217,
-                                          width: Get.width * 0.85,
-                                          decoration: BoxDecoration(
-                                              color: ColorRes.color_F7F9FF,
-                                              borderRadius:
-                                                  BorderRadius.circular(30)),
-                                          child: Stack(
-                                            children: [
-                                              Center(
-                                                child: SizedBox(
-                                                    height: 120.77,
-                                                    width: Get.width * 0.47,
-                                                    child: Image.asset(
-                                                        AssetRes.backPicture)),
-                                              )
-                                            ],
-                                          ),
-                                        )
-                                      : Container(
-                                          height: 217,
-                                          width: Get.width * 0.85,
-                                          decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: FileImage(
-                                                    File(controller.imageBack
-                                                        .toString()),
-                                                  ),
-                                                  fit: BoxFit.cover),
-                                              color: ColorRes.color_F7F9FF,
-                                              borderRadius:
-                                                  BorderRadius.circular(30)),
-                                        ),
-                                ),
-                                SizedBox(
-                                  height: Get.height * 0.046,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    controller.onRegisterTap();
-                                  },
-                                  child: Container(
-                                    width: Get.width * 0.84,
-                                    height: Get.height * 0.073,
-                                    decoration: BoxDecoration(
-                                        color: ColorRes.color_E7D01F,
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                    child: Center(
-                                        child: Text(
-                                      Strings.next,
-                                      style: gilroyBoldTextStyle(
-                                          color: Colors.black, fontSize: 16),
-                                    )),
+                                  SizedBox(
+                                    width: Get.width * 0.85,
+                                    child: AppTextFiled(
+                                      controller: controller.idNO,
+                                      title: Strings.idNo,
+                                      hintText: Strings.idNoT,
+                                      fontsize: 14,
+                                      enable: true,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(height: Get.height * 0.033),
-                              ],
+                                  SizedBox(
+                                    height: Get.height * 0.038,
+                                  ),
+                                  Text(
+                                    Strings.uploadFrontPicture,
+                                    style: gilroyBoldTextStyle(fontSize: 14),
+                                  ),
+                                  SizedBox(
+                                    height: Get.height * 0.02,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      FocusScope.of(context).unfocus();
+                                      Get.to(() => IdScannerScreen());
+                                    },
+                                    child: controller.imageFront == null
+                                        ? Container(
+                                      height: 217,
+                                      width: Get.width * 0.85,
+                                      decoration: BoxDecoration(
+                                          color: ColorRes.color_F7F9FF,
+                                          borderRadius:
+                                          BorderRadius.circular(30)),
+                                      child: Stack(
+                                        children: [
+                                          Center(
+                                            child: SizedBox(
+                                                height: 120.77,
+                                                width: Get.width * 0.47,
+                                                child: Image.asset(
+                                                    AssetRes.frontPicture)),
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                        : Container(
+                                      height: 217,
+                                      width: Get.width * 0.85,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: FileImage(
+                                              File(controller.imageFront.toString()),
+                                            ),
+                                            fit: BoxFit.cover,),
+                                          color: ColorRes.color_F7F9FF,
+                                          borderRadius:
+                                          BorderRadius.circular(30)),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: Get.height * 0.038,
+                                  ),
+                                  Text(
+                                    Strings.uploadBackPicture,
+                                    style: gilroyBoldTextStyle(fontSize: 14),
+                                  ),
+                                  SizedBox(
+                                    height: Get.height * 0.02,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      FocusScope.of(context).unfocus();
+                                      Get.to(() => IdScannerBackScreen());
+                                    },
+                                    child: controller.imageBack == null
+                                        ? Container(
+                                      height: 217,
+                                      width: Get.width * 0.85,
+                                      decoration: BoxDecoration(
+                                          color: ColorRes.color_F7F9FF,
+                                          borderRadius:
+                                          BorderRadius.circular(30)),
+                                      child: Stack(
+                                        children: [
+                                          Center(
+                                            child: SizedBox(
+                                                height: 120.77,
+                                                width: Get.width * 0.47,
+                                                child: Image.asset(
+                                                    AssetRes.backPicture)),
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                        : Container(
+                                      height: 217,
+                                      width: Get.width * 0.85,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: FileImage(
+                                                File(controller.imageBack
+                                                    .toString()),
+                                              ),
+                                              fit: BoxFit.cover),
+                                          color: ColorRes.color_F7F9FF,
+                                          borderRadius:
+                                          BorderRadius.circular(30)),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: Get.height * 0.046,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      controller.onRegisterTap();
+                                    },
+                                    child: Container(
+                                      width: Get.width * 0.84,
+                                      height: Get.height * 0.073,
+                                      decoration: BoxDecoration(
+                                          color: ColorRes.color_E7D01F,
+                                          borderRadius:
+                                          BorderRadius.circular(15)),
+                                      child: Center(
+                                          child: Text(
+                                            Strings.next,
+                                            style: gilroyBoldTextStyle(
+                                                color: Colors.black, fontSize: 16),
+                                          )),
+                                    ),
+                                  ),
+                                  SizedBox(height: Get.height * 0.033),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
-            ),
-            controller.loader.isTrue ? const SmallLoader() : const SizedBox()
-          ],
-        ));
+              controller.loader.isTrue ? const SmallLoader() : const SizedBox()
+            ],
+          );
+        }));
   }
 }
