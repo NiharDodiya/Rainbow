@@ -9,6 +9,7 @@ import 'package:rainbow/screens/Home/settings/settings_controller.dart';
 import 'package:rainbow/screens/Home/settings/subscription/subscription_screen.dart';
 import 'package:rainbow/screens/Home/settings/support/support_screen.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
+import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -74,13 +75,14 @@ class SettingsScreen extends StatelessWidget {
                 width: Get.width * 0.3,
               ),
               GestureDetector(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: Text(
-                    Strings.others,
-                    style: gilroyBoldTextStyle(),
-                  )),
+                onTap: () {
+                  Get.back();
+                },
+                child: Text(
+                  Strings.others,
+                  style: gilroyBoldTextStyle(),
+                ),
+              ),
               SizedBox(
                 width: Get.width * 0.05,
               ),
@@ -127,7 +129,8 @@ class SettingsScreen extends StatelessWidget {
                       children: [
                         Text(
                           "Natalie Nara ",
-                          style: gilroyBoldTextStyle(color: Colors.black,fontSize: 26),
+                          style: gilroyBoldTextStyle(
+                              color: Colors.black, fontSize: 26),
                         ),
                         const SizedBox(
                           height: 8,
@@ -147,7 +150,8 @@ class SettingsScreen extends StatelessWidget {
                             ),
                             Text(
                               Strings.viewProfile,
-                              style: gilroyBoldTextStyle(fontSize: 15,color:  ColorRes.color_4F359B),
+                              style: gilroyBoldTextStyle(
+                                  fontSize: 15, color: ColorRes.color_4F359B),
                             )
                           ],
                         )
@@ -323,8 +327,8 @@ class SettingsScreen extends StatelessWidget {
           ),
           //Privacy
           InkWell(
-            onTap: (){
-              Get.to(() =>   PrivacyScreen());
+            onTap: () {
+              Get.to(() => PrivacyScreen());
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 5, bottom: 5),
@@ -411,7 +415,7 @@ class SettingsScreen extends StatelessWidget {
           //Subscription
           InkWell(
             onTap: () {
-              Get.to(() =>  SubscriptionScreen());
+              Get.to(() => SubscriptionScreen());
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 5, bottom: 5),
@@ -480,9 +484,11 @@ class SettingsScreen extends StatelessWidget {
           SizedBox(
             height: Get.height * 0.035,
           ),
-          GestureDetector(onTap: () {
-            Get.offAll(()=>AuthDashboard());
-          },
+          GestureDetector(
+            onTap: () async {
+              await PrefService.clear()
+                  .then((value) => Get.offAll(() => AuthDashboard()));
+            },
             child: Container(
               height: 60,
               width: Get.width * 0.8,
@@ -495,7 +501,9 @@ class SettingsScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                      height: 15, width: 15, child: Image.asset(AssetRes.logout)),
+                      height: 15,
+                      width: 15,
+                      child: Image.asset(AssetRes.logout)),
                   const SizedBox(
                     width: 11,
                   ),

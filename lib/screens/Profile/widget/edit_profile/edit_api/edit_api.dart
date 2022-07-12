@@ -11,7 +11,7 @@ import 'package:rainbow/utils/pref_keys.dart';
 import 'package:http/http.dart' as http;
 
 class EditProfileApi {
-  static Future postRegister(
+  static Future<EditProfile?> postRegister(
       String idItemBackGround,
       String idItemProfile,
       String fullName,
@@ -29,10 +29,8 @@ class EditProfileApi {
       String aboutMe,
       String hobbiesInterest,
       String noKids,
-
       ) async {
-    EditProfile editProfile;
-    String accesToken = await PrefService.getString(PrefKeys.registerToken);
+    String accesToken = PrefService.getString(PrefKeys.registerToken);
     try {
       String url = EndPoints.editProfile;
       Map<String, String> param = {
@@ -61,13 +59,24 @@ class EditProfileApi {
       http.Response? response = await HttpService.postApi(url: url,   body: jsonEncode(param),
           header: {"Content-Type": "application/json","x-access-token":accesToken});
       if (response != null && response.statusCode == 200) {
-        flutterToast( jsonDecode(response.body)["message"]);
-        Get.back();
+        bool? status = jsonDecode(response.body)["status"];
+        if(status==false)
+        {
+          flutterToast(jsonDecode(response.body)["message"]);
+        }
+        else if(status==true)
+        {
+          flutterToast( jsonDecode(response.body)["message"]);
+          await PrefService.setValue(PrefKeys.userId,jsonDecode(response.body)["data"]["id"]);
+
+        }
+
         return editProfileFromJson(response.body);
       }
+      return null;
     } catch (e) {
       print(e.toString());
-      return [];
+      return null;
     }
   }
 }

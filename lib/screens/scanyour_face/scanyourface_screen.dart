@@ -1,7 +1,5 @@
 import 'dart:io';
 import 'dart:ui' as ui;
-
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
@@ -13,7 +11,7 @@ import 'package:rainbow/utils/strings.dart';
 
 class ScanYourFaceScreen extends StatelessWidget {
   ScanYourFaceScreen({Key? key}) : super(key: key);
-  ScanYourFaceController controller = Get.put(ScanYourFaceController());
+  ScanYourFaceController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -142,8 +140,9 @@ class ScanYourFaceScreen extends StatelessWidget {
                                   SizedBox(
                                     height: Get.height * 0.05,
                                   ),
-                                  GestureDetector(
+                                  InkWell(
                                     onTap: () {
+
                                       controller.takePicForFront();
                                       /*    controller.onRegisterTap();*/
                                     },
@@ -184,84 +183,46 @@ class ScanYourFaceScreen extends StatelessWidget {
     );
   }
 
-  FutureBuilder<void> futureCamera() {
-    return FutureBuilder<void>(
-      future: controller.initializeControllerFuture,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          // If the Future is complete, display the preview.
-          return SizedBox(
-            height: Get.height * 0.42,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
+  Widget buildCameraFunction(context, ScanYourFaceController controller) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Stack(children: [
+          Container(
+            height: 20,
+            color: ColorRes.color_4F359B,
+          ),
+          Center(
+            child: SizedBox(
+              height: 317,
+              width: Get.width,
+              child: Image.asset(AssetRes.scanYourFace),
+            ),
 
-                  CameraPreview(controller.controller),
-                ],
+          ),
+          Positioned(
+            top: Get.width * 0.129,
+            left: Get.height * 0.078,
+            child: Center(
+              child: SizedBox(
+                height: 228,
+                width: 228,
+                child: controller.imageFront == null
+                    ? const SizedBox()
+                    : ClipRRect(
+                        borderRadius: BorderRadius.circular(300),
+                        child: Image.file(
+                          File(controller.imageFront.toString()),
+                          width: Get.width,
+                          height: 200,
+                          fit: BoxFit.fitWidth,
+                          alignment: Alignment.topCenter,
+                        ),
+                      ),
               ),
             ),
-          );
-        } else {
-          // Otherwise, display a loading indicator.
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-      },
-    );
-  }
-
-  Widget buildCameraFunction(context, ScanYourFaceController controller) {
-    return Stack(
-      /* alignment: Alignment.topLeft,*/
-      children: [
-        futureCamera(),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Stack(children: [
-              Container(
-                height: 20,
-                color: ColorRes.color_4F359B,
-              ),
-              Center(
-                child: SizedBox(
-                  height: 317,
-                  width: Get.width,
-                  child: Image.asset(AssetRes.scanYourFace),
-                ),
-
-              ),
-              Positioned(
-                top: Get.width * 0.129,
-                left: Get.height * 0.078,
-                child: Center(
-                  child: SizedBox(
-                    height: 228,
-                    width: 228,
-                    child: controller.imageFront == null
-                        ? const SizedBox()
-                        : ClipRRect(
-                            borderRadius: BorderRadius.circular(300),
-                            child: RepaintBoundary(
-                              key: controller.widgetKey,
-                              child: Image.file(
-                                File(controller.imageFront.toString()),
-                                width: Get.width,
-                                height: 200,
-                                fit: BoxFit.fitWidth,
-                                alignment: Alignment.topCenter,
-                              ),
-                            ),
-                          ),
-                  ),
-                ),
-              ),
-              /*   Positioned(top: 200,
-                  child: Container(height: 300,width: Get.width,color: Colors.black,)),*/
-            ])
-          ],
-        ),
+          ),
+        ])
       ],
     );
   }

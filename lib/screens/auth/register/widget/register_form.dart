@@ -195,103 +195,106 @@ class RegisterForm extends StatelessWidget {
             ],
           ),
 
-          // GestureDetector(
-          //   onTap: () {
-          //     controller.onEthnicitySelect();
-          //   },
-          //   child: AppTextFiled(
-          //     controller: controller.ethnicityController,
-          //     title: Strings.ethnicity,
-          //     hintText: Strings.ethnicityHint,
-          //     suffix: Image.asset(AssetRes.arrowDown, height: 17),
-          //     enable: false,
-          //     fontsize: 16,
-          //   ),
-          // ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                Strings.ethnicity,
-                style: gilroySemiBoldTextStyle(fontSize: 14),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              GetBuilder<RegisterController>(
-                id: "register_screen",
-                builder: (controller) {
-                  return DropdownButtonHideUnderline(
-                    child: DropdownButton2(
-                      isExpanded: true,
-                      hint: Row(
-                        children: [
-                          const SizedBox(
-                            width: 4,
-                          ),
-                          Expanded(
-                            child: Text(
-                              "0",
-                              style: gilroyMediumTextStyle(
-                                  fontSize: 16,
-                                  color: ColorRes.black.withOpacity(0.3)),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
-                      ),
-                      items: countryNationCity
-                          .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child: Text(
-                                  item,
-                                  style: gilroyMediumTextStyle(
-                                      fontSize: 16, color: ColorRes.black),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ))
-                          .toList(),
-                      value: controller.selectedEthicity,
-                      onChanged: (value) {
-                        controller.selectedEthicity = value as String;
-                        controller.ethnicityController.text = value;
-                        controller.update(["register_screen"]);
-                      },
-                      icon: Image.asset(AssetRes.arrowDown, height: 17),
-                      iconSize: 14,
-                      iconEnabledColor: Colors.grey,
-                      iconDisabledColor: Colors.grey,
-                      buttonHeight: 60,
-                      buttonWidth: Get.width * 0.8,
-                      buttonPadding: const EdgeInsets.only(left: 14, right: 23),
-                      buttonDecoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.white,
-                      ),
-                      buttonElevation: 2,
-                      itemHeight: 40,
-                      itemPadding: const EdgeInsets.only(left: 20, right: 14),
-                      dropdownMaxHeight: Get.height * 0.3,
-                      /* height: Get.height*0.19,*/
-                      dropdownWidth: Get.width * 0.8,
-                      dropdownPadding: null,
-                      dropdownDecoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(14),
-                        color: Colors.white,
-                      ),
-                      dropdownElevation: 8,
-                      scrollbarRadius: const Radius.circular(40),
-                      scrollbarThickness: 6,
-                      scrollbarAlwaysShow: true,
-                    ),
-                  );
-                },
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-            ],
+
+          GetBuilder<RegisterController>(
+            id: 'register_screen',
+            builder: (controller) {
+              return dropdownButton(
+                title: Strings.ethnicity,
+                hintText: "0",
+                selectedValue: controller.selectedEthicity,
+                onTap: controller.onTapEthnicity,
+                dropdownList: countryNationCity,
+                height: Get.height * 0.3,
+              );
+            },
           ),
+
+          // Column(
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //   children: [
+          //     Text(
+          //       Strings.ethnicity,
+          //       style: gilroySemiBoldTextStyle(fontSize: 14),
+          //     ),
+          //     const SizedBox(
+          //       height: 10,
+          //     ),
+          //     GetBuilder<RegisterController>(
+          //       id: "register_screen",
+          //       builder: (controller) {
+          //         return DropdownButtonHideUnderline(
+          //           child: DropdownButton2(
+          //             isExpanded: true,
+          //             hint: Row(
+          //               children: [
+          //                 const SizedBox(
+          //                   width: 4,
+          //                 ),
+          //                 Expanded(
+          //                   child: Text(
+          //                     "0",
+          //                     style: gilroyMediumTextStyle(
+          //                         fontSize: 16,
+          //                         color: ColorRes.black.withOpacity(0.3)),
+          //                     overflow: TextOverflow.ellipsis,
+          //                   ),
+          //                 ),
+          //               ],
+          //             ),
+          //             items: countryNationCity
+          //                 .map((item) => DropdownMenuItem<String>(
+          //                       value: item,
+          //                       child: Text(
+          //                         item,
+          //                         style: gilroyMediumTextStyle(
+          //                             fontSize: 16, color: ColorRes.black),
+          //                         overflow: TextOverflow.ellipsis,
+          //                       ),
+          //                     ))
+          //                 .toList(),
+          //             value: controller.selectedEthicity,
+          //             onChanged: (value) {
+          //               controller.selectedEthicity = value as String;
+          //               controller.ethnicityController.text = value;
+          //               controller.update(["register_screen"]);
+          //             },
+          //             icon: Image.asset(AssetRes.arrowDown, height: 17),
+          //             iconSize: 14,
+          //             iconEnabledColor: Colors.grey,
+          //             iconDisabledColor: Colors.grey,
+          //             buttonHeight: 60,
+          //             buttonWidth: Get.width * 0.8,
+          //             buttonPadding: const EdgeInsets.only(left: 14, right: 23),
+          //             buttonDecoration: BoxDecoration(
+          //               borderRadius: BorderRadius.circular(20),
+          //               color: Colors.white,
+          //             ),
+          //             buttonElevation: 2,
+          //             itemHeight: 40,
+          //             itemPadding: const EdgeInsets.only(left: 20, right: 14),
+          //             dropdownMaxHeight: Get.height * 0.3,
+          //             /* height: Get.height*0.19,*/
+          //             dropdownWidth: Get.width * 0.8,
+          //             dropdownPadding: null,
+          //             dropdownDecoration: BoxDecoration(
+          //               borderRadius: BorderRadius.circular(14),
+          //               color: Colors.white,
+          //             ),
+          //             dropdownElevation: 8,
+          //             scrollbarRadius: const Radius.circular(40),
+          //             scrollbarThickness: 6,
+          //             scrollbarAlwaysShow: true,
+          //           ),
+          //         );
+          //       },
+          //     ),
+          //     const SizedBox(
+          //       height: 10,
+          //     ),
+          //   ],
+          // ),
+
           GestureDetector(
             onTap: () {
               controller.showDatePicker(context);

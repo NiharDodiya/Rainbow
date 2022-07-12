@@ -36,7 +36,6 @@ class RegisterController extends GetxController {
   String? codeId;
   bool isSocial = false;
 
-
   String socialId = "";
   List<String> martialStatusList = [
     Strings.single,
@@ -52,7 +51,6 @@ class RegisterController extends GetxController {
   bool ethnicityDropdown = false;
   bool kidsDropdown = false;
   RxBool loader = false.obs;
-
   Country countryModel = Country.from(json: {
     "e164_cc": "1",
     "iso2_cc": "CA",
@@ -83,13 +81,14 @@ class RegisterController extends GetxController {
     );
   }
 
-  void onStatusChangeCountry(String  value) {
+  void onStatusChangeCountry(String value) {
     print(value);
     selectedEthicity = value.toString();
     ethnicityController.text = value.toString();
     update(['register_screen']);
     print(selectedEthicity);
   }
+
   void onStatusSelect() {
     if (martialStatusDropdown == false) {
       martialStatusDropdown = true;
@@ -102,20 +101,6 @@ class RegisterController extends GetxController {
 
   void onStatusChange(String value) {
     statusController.text = value;
-    update(['register_screen']);
-  }
-
-  void onEthnicitySelect() {
-    if (ethnicityDropdown == false) {
-      ethnicityDropdown = true;
-    } else {
-      ethnicityDropdown = false;
-    }
-    update(['register_screen']);
-  }
-
-  void onEthnicityChange(String value) {
-    ethnicityController.text = value;
     update(['register_screen']);
   }
 
@@ -155,10 +140,8 @@ class RegisterController extends GetxController {
           codeId = listNationalities.data![i].id!.toString();
           print(codeId);
         }
-
         print(codeId);
       }
-
 
       registerDetails();
     }
@@ -182,7 +165,7 @@ class RegisterController extends GetxController {
     } else if (validatePassword(pwdController.text) == false && !isSocial) {
       errorToast(Strings.confirmShortPassword);
       return false;
-    } else if (confirmPwdController.text.isEmpty&& !isSocial) {
+    } else if (confirmPwdController.text.isEmpty && !isSocial) {
       errorToast(Strings.reTypePasswordError);
       return false;
     } else if (pwdController.text != confirmPwdController.text && !isSocial) {
@@ -194,10 +177,12 @@ class RegisterController extends GetxController {
     } else if (phoneController.text.isEmpty) {
       errorToast(Strings.phoneNumberError);
       return false;
-    } /*else if (!GetUtils.isPhoneNumber(phoneController.text)) {
+    }
+    /*else if (!GetUtils.isPhoneNumber(phoneController.text)) {
       errorToast(Strings.phoneNumberValidError);
       return false;
-    }*/ else if (statusController.text.isEmpty) {
+    }*/
+    else if (statusController.text.isEmpty) {
       errorToast(Strings.maritalStatusError);
       return false;
     } else if (ethnicityController.text.isEmpty) {
@@ -213,40 +198,43 @@ class RegisterController extends GetxController {
     return true;
   }
 
+  void onTapEthnicity(value) {
+    selectedEthicity = value as String;
+    ethnicityController.text = value;
+    update(["register_screen"]);
+  }
+
   void showDatePicker(ctx) {
     // showCupertinoModalPopup is a built-in function of the cupertino library
     showCupertinoModalPopup(
       context: ctx,
-      builder: (_) =>
-          Container(
-            height: 500,
-            color: const Color.fromARGB(255, 255, 255, 255),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 400,
-                  child: CupertinoDatePicker(
-                    mode: CupertinoDatePickerMode.date,
-                    initialDateTime: DateTime(2001),
-                    maximumDate: DateTime.now(),
-                    maximumYear: DateTime
-                        .now()
-                        .year,
-                    onDateTimeChanged: (val) {
-                      var formattedDate = "${val.day}-${val.month}-${val.year}";
-                      dobController.text = formattedDate;
-                    },
-                  ),
-                ),
-
-                // Close the modal
-                CupertinoButton(
-                  child: const Text('OK'),
-                  onPressed: () => Navigator.of(ctx).pop(),
-                )
-              ],
+      builder: (_) => Container(
+        height: 500,
+        color: const Color.fromARGB(255, 255, 255, 255),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 400,
+              child: CupertinoDatePicker(
+                mode: CupertinoDatePickerMode.date,
+                initialDateTime: DateTime(2001),
+                maximumDate: DateTime.now(),
+                maximumYear: DateTime.now().year,
+                onDateTimeChanged: (val) {
+                  var formattedDate = "${val.month}-${val.day}-${val.year}";
+                  dobController.text = formattedDate;
+                },
+              ),
             ),
-          ),
+
+            // Close the modal
+            CupertinoButton(
+              child: const Text('OK'),
+              onPressed: () => Navigator.of(ctx).pop(),
+            )
+          ],
+        ),
+      ),
     );
   }
 
@@ -255,6 +243,7 @@ class RegisterController extends GetxController {
   }
 
   RegisterUser registerUser = RegisterUser();
+
   Future<void> registerDetails() async {
     try {
       loader.value = true;
@@ -272,12 +261,12 @@ class RegisterController extends GetxController {
               dobController.text,
               kidsController.text)
           .then((value) => registerUser = value);
-      await PrefService.setValue(PrefKeys.registerToken, registerUser.token.toString());
+      await PrefService.setValue(
+          PrefKeys.registerToken, registerUser.token.toString());
 
       loader.value = false;
     } catch (e) {
       loader.value = false;
     }
-
   }
 }

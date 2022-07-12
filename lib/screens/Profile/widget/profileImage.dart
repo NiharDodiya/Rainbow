@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 
-Widget profileImage({String? profileImage, String? bgImage}) {
+Widget profileImage(/*ProfileController controller*/String? profileImage, String? bgImage) {
   return SizedBox(
     height: 292,
     width: Get.width,
@@ -15,8 +16,8 @@ Widget profileImage({String? profileImage, String? bgImage}) {
             width: Get.width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              image: const DecorationImage(
-                image: AssetImage(AssetRes.overlay),
+              image:   DecorationImage(
+                image: NetworkImage(bgImage??AssetRes.overlay),
                 fit: BoxFit.cover,
               ),
             ),
@@ -28,10 +29,10 @@ Widget profileImage({String? profileImage, String? bgImage}) {
           child: Container(
             height: Get.height * 0.38666,
             width: Get.width * 0.38666,
-            decoration: BoxDecoration(
+            decoration:  BoxDecoration(
               shape: BoxShape.circle,
-              image: DecorationImage(
-                image: AssetImage(profileImage??AssetRes.se_profile),
+              image:  DecorationImage(
+                image:  NetworkImage(profileImage??AssetRes.se_profile),
                 fit: BoxFit.contain,
               ),
             ),

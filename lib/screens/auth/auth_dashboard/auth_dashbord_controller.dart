@@ -5,10 +5,8 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
-import 'package:http/http.dart' as http;
 import 'package:rainbow/screens/auth/auth_dashboard/api/google_id_verification_api.dart';
 import 'package:rainbow/screens/auth/register/register_controller.dart';
-import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalitesJson.dart';
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
 
 import 'package:rainbow/screens/auth/register/register_screen.dart';
@@ -61,7 +59,7 @@ class AuthDashBordController extends GetxController {
     loading.value == true;
     final GoogleSignInAccount? account = await googleSignIn.signIn();
     final GoogleSignInAuthentication authentication =
-        await account!.authentication;
+    await account!.authentication;
 
     final OAuthCredential credential = GoogleAuthProvider.credential(
       idToken: authentication.idToken,
@@ -75,7 +73,7 @@ class AuthDashBordController extends GetxController {
     print(user.tenantId);
     print(user.displayName);
 
-   // GoogleIdVerification.postRegister(user.uid).then((value) {print(value);});
+    // GoogleIdVerification.postRegister(user.uid).then((value) {print(value);});
     try {
       await GoogleIdVerification.postRegister(user.uid,user: user).then((value) {
         print(value);

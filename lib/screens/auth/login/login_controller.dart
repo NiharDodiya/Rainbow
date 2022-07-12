@@ -76,6 +76,7 @@ class LoginController extends GetxController {
       ).then((value) => loginModel = value);
       loader.value = false;
       await PrefService.setValue(PrefKeys.accessToken, loginModel.token);
+
     } catch (e) {
       loader.value = false;
       debugPrint(e.toString());

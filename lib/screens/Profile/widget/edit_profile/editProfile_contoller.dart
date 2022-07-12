@@ -3,43 +3,65 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
+import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/edit_api/edit_api.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/edit_api/edit_model.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class EditProfileController extends GetxController {
-  TextEditingController fullName = TextEditingController();
-  TextEditingController status = TextEditingController();
-  TextEditingController age = TextEditingController();
-  TextEditingController city = TextEditingController();
-  TextEditingController height = TextEditingController();
-  TextEditingController weight = TextEditingController();
+  TextEditingController fullName = TextEditingController(text: "ramika");
+  TextEditingController status = TextEditingController(text:"sarrogate mom");
+  TextEditingController age = TextEditingController(text:"32");
+  TextEditingController city = TextEditingController(text:"Surat");
+  TextEditingController height = TextEditingController(text: "5'2");
+  TextEditingController weight = TextEditingController(text: "126lbs");
   TextEditingController ethnicity = TextEditingController();
-  TextEditingController haveKids = TextEditingController();
-  TextEditingController status1 = TextEditingController();
-  TextEditingController instagram = TextEditingController();
-  TextEditingController youTube = TextEditingController();
-  TextEditingController faceBook = TextEditingController();
-  TextEditingController twitter = TextEditingController();
-  TextEditingController aboutMe = TextEditingController();
-  TextEditingController hobbies = TextEditingController();
+  TextEditingController haveKids = TextEditingController(text: "1");
+  TextEditingController status1 = TextEditingController(text: "married");
+  TextEditingController instagram = TextEditingController(text: "https://www.instagram.com/accounts/login/?next=/jackiechan.official/");
+  TextEditingController youTube = TextEditingController(text: "https://www.youtube.com/watch?v=YwQ2eVbABsY");
+  TextEditingController faceBook = TextEditingController(text: "https://www.facebook.com/search/top/?q=Jacky%20Chain");
+  TextEditingController twitter = TextEditingController(text: "https://twitter.com/eyeofjackiechan");
+  TextEditingController aboutMe = TextEditingController(text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ");
+  TextEditingController hobbies = TextEditingController(text: "learnnig");
   String aboutTextCounter = '';
   String hobbiesTextCounter = '';
+
+  String? selectedEthicity;
   File? frontImage;
   File? backImage;
   RxBool loader = false.obs;
+  String? heightData;
+  String? weightData;
+  int heightFeet = 0;
+  int heightInches = 0;
+
+  String? codeId;
+  ProfileController profileController = Get.put(ProfileController());
 
   void onInit() {
     update(['Edit_profile']);
     super.onInit();
   }
 
-  void onTapTextField() {
+  Future<void> onTapTextField(context) async {
     if (validation()) {
-      editProfileApi();
+      for (int i = 0; i < listNationalities.data!.length; i++) {
+        if (listNationalities.data![i].name == ethnicity.text) {
+          codeId = listNationalities.data![i].id!.toString();
+          print(codeId);
+        }
+
+        print(codeId);
+      }
+      await editProfileApi(context);
+      await profileController.viewProfileDetails();
+      profileController.update(["profile"]);
+
       // Get.back();
     }
   }
@@ -111,7 +133,6 @@ class EditProfileController extends GetxController {
     backImage = imageTemp;
     uploadImageBackApi();
     update(["Edit_profile"]);
-
   }
 
   UploadImage uploadImage1 = UploadImage();
@@ -126,7 +147,6 @@ class EditProfileController extends GetxController {
 
       loader.value = false;
     } catch (e) {
-      errorToast(e.toString());
       loader.value = false;
       debugPrint(e.toString());
     }
@@ -141,18 +161,17 @@ class EditProfileController extends GetxController {
 
       loader.value = false;
     } catch (e) {
-      errorToast(e.toString());
       loader.value = false;
       debugPrint(e.toString());
     }
   }
 
-  EditProfile editProfile = Get.put(EditProfile());
+  EditProfile editProfile = EditProfile();
 
-  Future<void> editProfileApi() async {
+  Future<void> editProfileApi(BuildContext context) async {
     loader.value = true;
     try {
-      await EditProfileApi.postRegister(
+      EditProfile? data = await EditProfileApi.postRegister(
         uploadImage1.data!.id.toString(),
         uploadImage2.data!.id.toString(),
         fullName.text,
@@ -161,7 +180,7 @@ class EditProfileController extends GetxController {
         city.text,
         age.text,
         weight.text,
-        ethnicity.text,
+        codeId.toString(),
         status1.text,
         instagram.text,
         youTube.text,
@@ -170,12 +189,27 @@ class EditProfileController extends GetxController {
         aboutMe.text,
         hobbies.text,
         haveKids.text,
-      ).then((value) => editProfile = value);
+      );
+      if (data != null) {
+        editProfile = data;
+        Navigator.pop(context);
+      }
       loader.value = false;
     } catch (e) {
-      errorToast(e.toString());
       loader.value = false;
       debugPrint(e.toString());
     }
+  }
+
+  void onHeightSave() {
+    height.text = "$heightFeet'$heightInches";
+    update(["Edit_profile"]);
+    Get.back();
+  }
+
+  void onWeightSave() {
+    weight.text = "${weightData}lbs";
+    update(["Edit_profile"]);
+    Get.back();
   }
 }

@@ -75,7 +75,8 @@ class NewPasswordScreen extends StatelessWidget {
                                       height: 39.9,
                                       child: Text(
                                         Strings.newPassword,
-                                        style: gilroySemiBoldTextStyle(fontSize: 30),
+                                        style: gilroySemiBoldTextStyle(
+                                            fontSize: 30),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -140,12 +141,13 @@ class NewPasswordScreen extends StatelessWidget {
                                             borderRadius:
                                                 BorderRadius.circular(15)),
                                         child: Center(
-                                            child: Text(
-                                          Strings.submit,
-                                          style: gilroyBoldTextStyle(
-                                              color: Colors.black,
-                                              fontSize: 16),
-                                        )),
+                                          child: Text(
+                                            Strings.submit,
+                                            style: gilroyBoldTextStyle(
+                                                color: Colors.black,
+                                                fontSize: 16),
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),

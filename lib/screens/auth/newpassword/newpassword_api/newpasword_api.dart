@@ -15,22 +15,21 @@ class CreateNewPasswordApi {
   static Future postRegister(
       String newPassword,
       ) async {
-    CreateNewPassword createList ;
     try {
       String url = EndPoints.createPassword;
-      String id= await PrefService.getString(PrefKeys.id);
+      int id =  PrefService.getInt(PrefKeys.id);
       Map<String, String> param = {
-        'id':id ,
+        'id':id.toString(),
         'password': newPassword,
       };
       print(param);
+
 
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
           header: {"Content-Type": "application/json"});
       if (response != null && response.statusCode == 200) {
-
         bool? status = jsonDecode(response.body)["status"];
         if(status==false)
         {
@@ -44,6 +43,10 @@ class CreateNewPasswordApi {
      return createNewPasswordFromJson(response.body);
 
       }
+      else if(response!.statusCode == 400)
+        {
+          errorToast(jsonDecode(response.body)["message"]);
+        }
 
       /*  message == "Failed! Email is already in use!"
           ? errorToast(message)

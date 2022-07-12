@@ -1,11 +1,15 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/editProfile_contoller.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/widget/editprofile_picture.dart';
 import 'package:rainbow/screens/auth/heightweight/height_screen.dart';
 import 'package:rainbow/screens/auth/heightweight/weight_screen.dart';
+
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -22,39 +26,52 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-          child: GetBuilder<EditProfileController>(
-            id: 'Edit_profile',
-            builder: (controller) {
-              return Container(
-                width: Get.width,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      ColorRes.color_50369C,
-                        ColorRes.color_D18EEE,
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      editProfilePicture(),
-                      editProfileTextField()
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: Scaffold(
+          body: Stack(
+            children: [
+              SafeArea(
+                child: GetBuilder<EditProfileController>(
+                  id: 'Edit_profile',
+                  builder: (controller) {
+                    return Container(
+                      width: Get.width,
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            ColorRes.color_50369C,
+                              ColorRes.color_D18EEE,
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 15),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            editProfilePicture(),
+                            editProfileTextField()
 
-                    ],
-                  ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
-        ));
+              ),
+              controller.loader.isTrue?SmallLoader():SizedBox(),
+            ],
+          )),
+    );
   }
   Widget editProfileTextField()
   {
@@ -135,10 +152,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     child: InkWell(onTap:
                       () {
                         controller.backCamera();
-
-
-
-                      },
+                        },
                       child:Container(
                         height: 29.19,
                         width: 28.48,
@@ -221,20 +235,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    // Get.to(() => const HeightScreen());
+                     Get.to(() => const HeightScreen());
                   },
                   child: SizedBox(
                     width: Get.width * 0.85,
                     child: AppTextFiled(
                       controller: controller.height,
                       title: Strings.height,
-                      // suffix: const Icon(
-                      //   Icons.arrow_forward_ios_rounded,
-                      //   size: 14.6,
-                      //   color: ColorRes.color_464646,
-                      // ),
+
                       hintText: Strings.h,
-                      enable: true,
+                      enable: false,
                     ),
                   ),
                 ),
@@ -243,20 +253,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    // Get.to(() => const WeightScreen());
+                     Get.to(() => const WeightScreen());
                   },
                   child: SizedBox(
                     width: Get.width * 0.85,
                     child: AppTextFiled(
                       controller: controller.weight,
                       title: Strings.weight,
-                      // suffix: const Icon(
-                      //   Icons.arrow_forward_ios_rounded,
-                      //   size: 14.6,
-                      //   color: ColorRes.color_464646,
-                      // ),
                       hintText: Strings.w,
-                      enable: true,
+                      enable: false,
                     ),
                   ),
                 ),
@@ -265,14 +270,85 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
                 SizedBox(
                   width: Get.width * 0.85,
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: AppTextFiled(
-                      controller: controller.ethnicity,
-                      title: Strings.ethnicity,
-                      hintText: Strings.ethnicity,
-                      enable: true,
-                    ),
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        Strings.ethnicity,
+                        style: gilroySemiBoldTextStyle(fontSize: 14),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      GetBuilder<EditProfileController>(
+                        id: "Edit_profile",
+                        builder: (controller) {
+                          return DropdownButtonHideUnderline(
+                            child: DropdownButton2(
+                              isExpanded: true,
+                              hint: Row(
+                                children: [
+                                  const SizedBox(
+                                    width: 4,
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      "0",
+                                      style: gilroyMediumTextStyle(
+                                          fontSize: 16,
+                                          color: ColorRes.black.withOpacity(0.3)),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              items: countryNationCity
+                                  .map((item) => DropdownMenuItem<String>(
+                                value: item,
+                                child: Text(
+                                  item,
+                                  style: gilroyMediumTextStyle(
+                                      fontSize: 16, color: ColorRes.black),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ))
+                                  .toList(),
+                              value: controller.selectedEthicity,
+                              onChanged: (value) {
+                                controller.selectedEthicity = value as String;
+                                controller.ethnicity.text = value;
+                                controller.update(["Edit_profile"]);
+                              },
+                              icon: Image.asset(AssetRes.arrowDown, height: 17),
+                              iconSize: 14,
+                              iconEnabledColor: Colors.grey,
+                              iconDisabledColor: Colors.grey,
+                              buttonHeight: 60,
+                              buttonWidth: Get.width * 0.85,
+                              buttonPadding: const EdgeInsets.only(left: 14, right: 23),
+                              buttonDecoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                              ),
+                              buttonElevation: 2,
+                              itemHeight: 40,
+                              itemPadding: const EdgeInsets.only(left: 20, right: 14),
+                              dropdownMaxHeight: Get.height * 0.3,
+                              /* height: Get.height*0.19,*/
+                              dropdownWidth: Get.width * 0.85,
+                              dropdownPadding: null,
+                              dropdownDecoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(14),
+                                color: Colors.white,
+                              ),
+                              dropdownElevation: 8,
+                              scrollbarRadius: const Radius.circular(40),
+                              scrollbarThickness: 6,
+                              scrollbarAlwaysShow: true,
+                            ),
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(
@@ -434,7 +510,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    controller.onTapTextField();
+                    FocusScope.of(context).unfocus();
+                    controller.onTapTextField(context);
                   },
                   child: Container(
                     width: Get.width * 0.84,
