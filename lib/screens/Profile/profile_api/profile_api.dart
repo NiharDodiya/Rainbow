@@ -12,7 +12,7 @@ import 'package:http/http.dart' as http;
 class ViewProfileApi {
   static Future postRegister() async {
     String accesToken=  PrefService.getString(PrefKeys.registerToken);
-    int userId =  PrefService.getInt(PrefKeys.id);
+    int userId =  PrefService.getInt(PrefKeys.userId);
     try {
       String url = EndPoints.viewProfile;
 
@@ -33,7 +33,6 @@ class ViewProfileApi {
           // flutterToast( jsonDecode(response.body)["message"]);
           // Get.back();
         }
-
         return viewProfileFromJson(response.body);
       }
     } catch (e) {

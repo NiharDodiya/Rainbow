@@ -22,6 +22,9 @@ class EndPoints {
   static const uploadImage = "${baseUrl}/api/upload/image";
   static const editProfile = "${baseUrl}/api/user/profile/update";
   static const viewProfile = "${baseUrl}/api/user/profile/view";
+  static const privacy = "${baseUrl}/api/user/privacy";
+  static const block = "${baseUrl}/api/user/block";
+  static const unBlock = "${baseUrl}/api/user/unblock";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

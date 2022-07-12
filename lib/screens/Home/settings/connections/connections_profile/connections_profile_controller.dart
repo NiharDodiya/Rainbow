@@ -13,7 +13,7 @@ class ConnectionsProfileController extends GetxController {
   Future<void> callApi() async {
     loader.value = true;
     profileModel =
-        (await OtherProfileApi.getOtherUerData("92")) ?? ProfileModel();
+        (await OtherProfileApi.getOtherUerData("123")) ?? ProfileModel();
     loader.value = true;
   }
 }

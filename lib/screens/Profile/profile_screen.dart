@@ -20,68 +20,62 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     controller.onInit();
-    return Scaffold(
-      body: Obx((){
-        return Stack(
-          children: [
-            GetBuilder<ProfileController>(
-              id: "profile",
-              builder: (controller) {
-                return Container(
-                  width: Get.width,
-                  padding: const EdgeInsets.only(top: 25),
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        ColorRes.color_50369C,
-                        ColorRes.color_D18EEE,
-                      ],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                    ),
+    return Scaffold(body: Obx(() {
+      return Stack(
+        children: [
+          GetBuilder<ProfileController>(
+            id: "profile",
+            builder: (controller) {
+              return Container(
+                width: Get.width,
+                padding: const EdgeInsets.only(top: 25),
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      ColorRes.color_50369C,
+                      ColorRes.color_D18EEE,
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
                   ),
-                  child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        profileAppbar(Strings.profile, true),
-                        // profileImage(/*controller*/
-                        //     controller.viewProfile.data==null?"":controller.viewProfile.data!.backgroundImage.toString(),
-                        //     controller.viewProfile.data==null?"":controller.viewProfile.data!.profileImage.toString()
-                        // ),
-                        profileImagesLoad(controller),
-                        profileDetails(controller),
-                        aboutProfiler(
-                            Strings.aboutMe,
-                            /* controller.viewProfile.data == null
+                ),
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      profileAppbar(Strings.profile, true),
+
+                      profileImagesLoad(controller),
+                      profileDetails(controller),
+                      aboutProfiler(
+                          Strings.aboutMe,
+                          /* controller.viewProfile.data == null
                               ? */
-                            Strings
-                                .aboutMeDes /*   : controller.viewProfile.data!.aboutMe.toString()*/),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        hobbiesAndInterest(),
-                        /* aboutProfiler(
+                          Strings
+                              .aboutMeDes /*   : controller.viewProfile.data!.aboutMe.toString()*/),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      hobbiesAndInterest(),
+                      /* aboutProfiler(
                           "Hobbies and Interest",
                           controller.viewProfile.data == null
                               ? ""
                               : controller.viewProfile.data!.hobbiesAndInterest
                                   .toString()),*/
-                        testimonials(),
-                        otherVisitorsViewed(),
-                      ],
-                    ),
+                      testimonials(),
+                      otherVisitorsViewed(),
+                    ],
                   ),
-                );
-              },
-            ),
-            controller.loader.isTrue?SmallLoader():SizedBox()
-          ],
-        );
-      } )
-
-    );
+                ),
+              );
+            },
+          ),
+          controller.loader.isTrue ? SmallLoader() : SizedBox()
+        ],
+      );
+    }));
   }
 
   Widget profileImagesLoad(ProfileController controller) {
@@ -92,7 +86,8 @@ class ProfileScreen extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 15, right: 15, top: 25),
-            child: controller.viewProfile.data != null
+            child: controller.viewProfile.data!.backgroundImage != null &&
+                    controller.viewProfile.data!.backgroundImage != ""
                 ? Container(
                     height: Get.height * 0.2857,
                     width: Get.width,
@@ -121,7 +116,8 @@ class ProfileScreen extends StatelessWidget {
           Positioned(
             top: Get.height * 0.11,
             left: Get.width * 0.30,
-            child: controller.viewProfile.data != null
+            child: controller.viewProfile.data!.profileImage != null &&
+                    controller.viewProfile.data!.profileImage != ""
                 ? Container(
                     height: Get.height * 0.38666,
                     width: Get.width * 0.38666,
@@ -183,7 +179,9 @@ class ProfileScreen extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(top: 15),
             child: ReadMoreText(
-                controller.viewProfile.data==null?"": controller.viewProfile.data!.hobbiesAndInterest.toString(),
+              controller.viewProfile.data == null
+                  ? ""
+                  : controller.viewProfile.data!.hobbiesAndInterest.toString(),
               /* aboutMe,*/
               trimLines: 3,
               trimMode: TrimMode.Line,

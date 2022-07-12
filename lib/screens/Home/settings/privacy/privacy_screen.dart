@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/screens/Home/settings/privacy/privacy_controller.dart';
+import 'package:rainbow/utils/strings.dart';
 
 import '../../../../common/Widget/text_styles.dart';
 import '../../../../utils/asset_res.dart';
@@ -34,7 +36,7 @@ class PrivacyScreen extends StatelessWidget {
             ),
             Positioned(
               left: -55,
-              bottom: -85,
+              bottom: -60,
               child: Image.asset(
                 AssetRes.privacy,
                 height: 450,
@@ -45,6 +47,9 @@ class PrivacyScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 appBar(),
+                const SizedBox(
+                  height: 2,
+                ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
@@ -74,21 +79,34 @@ class PrivacyScreen extends StatelessWidget {
                                 id: "check",
                                 builder: (controller) => ListView.builder(
                                   shrinkWrap: true,
-                                  itemCount: controller.tital.length,
+                                  itemCount: controller.privacyList.length,
                                   itemBuilder: (context, index) => Expanded(
-                                    child: PrivacyCheck(
-                                        onchange: (val) {
-                                          controller.onchange(
-                                              controller.tital[index]);
-                                        },
-                                        // => controller
-                                        //     .onchange("displayPhoto"),
-                                        tital: controller.tital[index],
-                                        value: controller.values[index]),
+                                    child:  Row(
+                                      children: [
+                                        Checkbox(activeColor: Colors.green,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(5)),
+                                          value: controller.isChecked![index],
+                                          onChanged: (val) {
+                                            controller.isChecked![index]=val!;
+                                            controller.update(["check"]);
+                                          },
+                                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                        ),
+                                        Text(
+                                          controller.privacyList[index],
+                                          style: gilroyMediumTextStyle(),
+                                        )
+                                      ],
+                                    )
                                   ),
                                 ),
                               ),
-                            )
+                            ),
+                            const SizedBox(
+                              height: 24.94,
+                            ),
+                            const Center(child: SubmitButton(text: Strings.save,))
                           ],
                         )
                       ],
@@ -152,37 +170,3 @@ class PrivacyScreen extends StatelessWidget {
   }
 }
 
-class PrivacyCheck extends StatelessWidget {
-  final String tital;
-  bool? value;
-  Function(bool) onchange;
-  PrivacyCheck({
-    super.key,
-    required this.tital,
-    this.value,
-    required this.onchange,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        // SizedBox(
-        //   width: Get.width * 0.05,
-        // ),
-        Checkbox(
-          value: value,
-          onChanged: (val) {
-            onchange(val!);
-            //  controller.onchange(value);
-          },
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        ),
-        Text(
-          tital,
-          style: gilroyMediumTextStyle(),
-        )
-      ],
-    );
-  }
-}

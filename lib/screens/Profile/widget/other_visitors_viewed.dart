@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 
@@ -24,12 +25,12 @@ Widget otherVisitorsViewed() {
         SizedBox(
           height: 130,
           child: ListView.builder(
-            itemCount: 6,
+            itemCount: controller.viewProfile.data!.userView.length,
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return visitors(title: controller.imageName[index],image: controller.image[index]);
+              return visitors(title: controller.viewProfile.data!.userView[index]["full_name"],image: controller.image[index]);
             },
           ),
         )
@@ -38,7 +39,7 @@ Widget otherVisitorsViewed() {
   );
 }
 
-Widget visitors({String? image, String? title}) {
+Widget  visitors({String? image, String? title}) {
   return Column(
     children: [
       Container(
