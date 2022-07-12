@@ -1,4 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/model/privacy_model.dart';
+import 'package:rainbow/screens/Home/settings/privacy/privacy_api/privacy_api.dart';
 
 class PrivacyController extends GetxController {
   bool displayPhoto = true;
@@ -8,42 +11,41 @@ class PrivacyController extends GetxController {
   bool hobbiesAndInterest = false;
   bool testimonials = false;
   bool visitors = false;
+  RxBool loader = false.obs;
 
-  onchange(String? value) {
-    // if (displayPhoto) {
-    //   displayPhoto = false;
-    // } else {
-    //   displayPhoto = true;
-    // }
-
-    for (int i = 0; tital.length < i; i++) {
-      //tital[i] = value!;
-      if(tital[i]==value){
-        if(values[i]){
-          values[i] = true;
-        }
-        else{
-          values[i] = false;
-        }
-      }
-
-      // if (values[i] == true) {
-      //   values[i] = false;
-      // } else {
-      //   values[i] = true;
-      // }
-    }
+    List<String> privacyList = [
+    "DisplayPhoto",
+    "BasicInformation",
+    "SocialMeadiam",
+    "AboutMe",
+    "HobbiesAndInterest",
+    "Testimonials",
+    "Visitors"
+  ];
+  List<bool>? isChecked;
+  void onInit()
+  {
+    isChecked = List.filled(privacyList.length, false);
     update(["check"]);
   }
 
-  List<String> tital = [
-    "displayPhoto",
-    "basicInformation",
-    "socialMeadiam",
-    "aboutMe",
-    "hobbiesAndInterest",
-    "testimonials",
-    "visitors"
-  ];
-  List<bool> values = [false, false, false, false, false, false, false];
+  PrivacyModel privacyModel = PrivacyModel();
+  Future<void> privacyDetails() async {
+    loader.value = true;
+    try {
+      await PrivacyApi.postRegister(
+              displayPhoto,
+              basicInformation,
+              socialMeadiam,
+              aboutMe,
+              hobbiesAndInterest,
+              testimonials,
+              visitors)
+          .then((value) => privacyModel = value);
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+      debugPrint(e.toString());
+    }
+  }
 }

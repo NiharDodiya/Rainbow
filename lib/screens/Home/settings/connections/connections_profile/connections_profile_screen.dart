@@ -41,9 +41,9 @@ class ConnectionsProfileScreen extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               child: Column(
                 children: [
-                  profileAppbar(data.fullName.toString(), false),
+                  profileAppbar(data.fullName.toString(),false),
                   profileImage(data.profileImage, data.backgroundImage),
-                  connectAndBlock(title: data.fullName,subTitle: data.instagram),
+                  connectAndBlock(title: data.fullName,subTitle: "Surrogate Mom"),
                   testimonials(),
                   otherVisitorsViewed(),
                 ],

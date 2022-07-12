@@ -47,17 +47,17 @@ Widget profileDetails(ProfileController controller) {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
-            "British",
+            controller.viewProfile == null?"":controller.viewProfile.data!.idEthnicity.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
           dot(),
           Text(
-            "Single",
+            controller.viewProfile == null?"":controller.viewProfile.data!.maritalStatus.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
           dot(),
           Text(
-            "No Kids",
+            controller.viewProfile == null?"":controller.viewProfile.data!.noKids.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
         ],

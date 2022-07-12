@@ -12,7 +12,7 @@ import 'package:http/http.dart' as http;
 class ViewProfileApi {
   static Future postRegister() async {
     String accesToken=  PrefService.getString(PrefKeys.registerToken);
-    int userId =  PrefService.getInt(PrefKeys.id);
+    int userId =  PrefService.getInt(PrefKeys.userId);
     try {
       String url = EndPoints.viewProfile;
 
@@ -21,7 +21,7 @@ class ViewProfileApi {
       };
       print(param);
       http.Response? response = await HttpService.postApi(url: url,   body:jsonEncode(param),
-          header: {"Content-Type": "application/json","x-access-token":accesToken});
+          header:  {"Content-Type": "application/json","x-access-token":accesToken});
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if(status==false)
@@ -33,7 +33,6 @@ class ViewProfileApi {
           // flutterToast( jsonDecode(response.body)["message"]);
           // Get.back();
         }
-
         return viewProfileFromJson(response.body);
       }
     } catch (e) {

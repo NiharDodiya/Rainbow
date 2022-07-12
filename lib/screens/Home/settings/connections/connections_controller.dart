@@ -7,10 +7,10 @@ class ConnectionsController extends GetxController {
   List suggestionConnection = ["1", "2", "3", "4", "5"];
 
   onTapViewProfile(int index) {
-    ConnectionsProfileController controller =
-        Get.put(ConnectionsProfileController());
+/*    ConnectionsProfileController controller =
+        Get.put(ConnectionsProfileController());*/
 
-    controller.init();
+    // controller.init();
     Get.to(() => ConnectionsProfileScreen());
   }
 }

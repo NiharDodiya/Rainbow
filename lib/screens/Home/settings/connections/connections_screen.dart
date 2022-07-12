@@ -194,7 +194,7 @@ class ConnectionsScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap:(){
-                  viewProfile!(index!);
+                   viewProfile!(index!);
                 },
                 child: const SizedBox(
                   height: 40,
