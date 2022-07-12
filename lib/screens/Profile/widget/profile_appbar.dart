@@ -8,6 +8,7 @@ import 'package:rainbow/utils/color_res.dart';
 
 Widget profileAppbar(String text, bool show) {
   return Padding(
+
     padding: const EdgeInsets.only(top: 10, left: 18.50, right: 18.50),
     child: Stack(
       children: [
