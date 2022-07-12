@@ -53,62 +53,62 @@ class PrivacyScreen extends StatelessWidget {
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        Row(
                           children: [
-                            Row(
+                            SizedBox(
+                              width: Get.width * 0.09066,
+                            ),
+                            Text(
+                              "Show to Public",
+                              style: gilroyBoldTextStyle(fontSize: 20),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 24.94,
+                        ),
+                        GetBuilder<PrivacyController>(
+                          id: "check",
+                          builder: (controller) => ListView.builder(
+                            shrinkWrap: true,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: Get.width * 0.05),
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: controller.privacyList.length,
+                            itemBuilder: (context, index) => Row(
                               children: [
-                                SizedBox(
-                                  width: Get.width * 0.09066,
+                                Checkbox(
+                                  activeColor: Colors.green,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5)),
+                                  value: controller.isChecked![index],
+                                  onChanged: (val) {
+                                    controller.isChecked![index] = val!;
+                                    controller.update(["check"]);
+                                  },
+                                  materialTapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
                                 ),
                                 Text(
-                                  "Show to Public",
-                                  style: gilroyBoldTextStyle(fontSize: 20),
-                                ),
+                                  controller.privacyList[index],
+                                  style: gilroyMediumTextStyle(),
+                                )
                               ],
                             ),
-                            const SizedBox(
-                              height: 24.94,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: Get.width * 0.05),
-                              child: GetBuilder<PrivacyController>(
-                                id: "check",
-                                builder: (controller) => ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: controller.privacyList.length,
-                                  itemBuilder: (context, index) => Expanded(
-                                    child:  Row(
-                                      children: [
-                                        Checkbox(activeColor: Colors.green,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(5)),
-                                          value: controller.isChecked![index],
-                                          onChanged: (val) {
-                                            controller.isChecked![index]=val!;
-                                            controller.update(["check"]);
-                                          },
-                                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                        ),
-                                        Text(
-                                          controller.privacyList[index],
-                                          style: gilroyMediumTextStyle(),
-                                        )
-                                      ],
-                                    )
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 24.94,
-                            ),
-                            const Center(child: SubmitButton(text: Strings.save,))
-                          ],
-                        )
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 24.94,
+                        ),
+                        Center(
+                          child: SubmitButton(
+                            text: Strings.save,
+                            onTap: controller.onSaveTap,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -169,4 +169,3 @@ class PrivacyScreen extends StatelessWidget {
     );
   }
 }
-

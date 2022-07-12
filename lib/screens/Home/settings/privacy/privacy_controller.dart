@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/model/privacy_model.dart';
 import 'package:rainbow/screens/Home/settings/privacy/privacy_api/privacy_api.dart';
+import 'package:rainbow/screens/Profile/widget/profile_details.dart';
 
 class PrivacyController extends GetxController {
   bool displayPhoto = true;
@@ -47,5 +48,9 @@ class PrivacyController extends GetxController {
       loader.value = false;
       debugPrint(e.toString());
     }
+  }
+
+  void onSaveTap(){
+    privacyDetails();
   }
 }

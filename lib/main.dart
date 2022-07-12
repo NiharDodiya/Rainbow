@@ -8,6 +8,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/scanyour_face/scanyourface_controller.dart';
+import 'package:rainbow/screens/scanyour_face/scanyourface_screen.dart';
 import 'package:rainbow/screens/splash/splash_screen.dart';
 import 'package:rainbow/screens/terms_conditions/terms_conditions_screen.dart';
 import 'package:rainbow/service/notification_service.dart';
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
+      // home: ScanYourFaceScreen(),
       home: !PrefService.getBool(PrefKeys.skipBoardingScreen)
           ? SplashScreen()
           : (PrefService.getBool(PrefKeys.isLogin) ||
