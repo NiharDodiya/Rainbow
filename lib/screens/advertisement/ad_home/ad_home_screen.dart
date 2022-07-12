@@ -26,7 +26,7 @@ class AdHomeScreen extends StatelessWidget {
               colors: [
                 ColorRes.color_50369C,
                 ColorRes.color_D18EEE,
-              ],
+              ],  
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),

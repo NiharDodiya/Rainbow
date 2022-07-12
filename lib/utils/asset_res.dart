@@ -27,13 +27,13 @@ class AssetRes {
   static const topLeft = '${icons}topleft.png';
   static const cameraIcon = '${icons}camera_icon.png';
   static const locate = '${icons}locate.png';
-  static const notify= '${icons}icons_notif.png';
-  static const settings= '${icons}settings.png';
-  static const plusIcons= '${icons}plusicon.png';
-  static const elipsFul= '${icons}elipsful.png';
-  static const elipsHalf= '${icons}elipshalf.png';
-  static const profilep ='${icons}profile+.png';
-  static const delete ='${icons}delete.png';
+  static const notify = '${icons}icons_notif.png';
+  static const settings = '${icons}settings.png';
+  static const plusIcons = '${icons}plusicon.png';
+  static const elipsFul = '${icons}elipsful.png';
+  static const elipsHalf = '${icons}elipshalf.png';
+  static const profilep = '${icons}profile+.png';
+  static const delete = '${icons}delete.png';
   static const eye = '${icons}eye.png';
   static const vector = '${icons}Vector.png';
   static const thumbs = '${icons}thubs.png';
@@ -45,11 +45,10 @@ class AssetRes {
   static const edit = '${icons}edit.png';
 
   ///--------------------------------------------- iconsBottom---------------------------------------------
-  static const home =  '${iconsBottom}home.png';
-  static const search =  '${iconsBottom}search.png';
-  static const message =  '${iconsBottom}message.png';
-  static const profile =  '${iconsBottom}profile.png';
-
+  static const home = '${iconsBottom}home.png';
+  static const search = '${iconsBottom}search.png';
+  static const message = '${iconsBottom}message.png';
+  static const profile = '${iconsBottom}profile.png';
 
   ///--------------------------------------------- images ---------------------------------------------
   static const shapeCamera = '${images}shapeCamera.png';
@@ -76,21 +75,21 @@ class AssetRes {
   static const selfiePicture = '${images}selfie_profile.png';
   static const posterProfile = '${images}poster_profile.png';
   static const camera = '${images}camera.png';
-  static const scanYourFace ='${images}ssssss.png';
-  static const homePro ='${images}ho.png';
-  static const lt1 ='${images}lt1.png';
-  static const lt2 ='${images}lt2.png';
-  static const lt3 ='${images}lt3.png';
-  static const backGround ='${images}backGroundImage.png';
-  static const card ="${images}card.png";
-  static const visa ="${images}visa.png";
- static const p01 ="${images}01.png";
-  static const p02 ="${images}02.png";
- static const p03 ="${images}03.png";
-  static const visalogo ="${images}visa_logo.png";
-  static const poket ="${images}poket.png";
-  static const masterLogo="${images}master.png";
- 
+  static const scanYourFace = '${images}ssssss.png';
+  static const homePro = '${images}ho.png';
+  static const lt1 = '${images}lt1.png';
+  static const lt2 = '${images}lt2.png';
+  static const lt3 = '${images}lt3.png';
+  static const backGround = '${images}backGroundImage.png';
+  static const card = "${images}card.png";
+  static const visa = "${images}visa.png";
+  static const p01 = "${images}01.png";
+  static const p02 = "${images}02.png";
+  static const p03 = "${images}03.png";
+  static const visalogo = "${images}visa_logo.png";
+  static const poket = "${images}poket.png";
+  static const masterLogo = "${images}master.png";
+
   ///_______________________________settings________________________________
   static const profileSettinges = '${settingsImage}profileSettinges.png';
   static const support = '${settingsImage}Support.png';
@@ -100,9 +99,8 @@ class AssetRes {
   static const logout = '${settingsImage}logout.png';
   static const duck = '${settingsImage}duck.png';
 
-
   ///*******************************_Advertisement_***************************
-///---------------------------------- icons ------------------------------------
+  ///---------------------------------- icons ------------------------------------
   static const paymentIcon = '${advertisers}pyment_icon.png';
   static const adeNotificationIcon = '${advertisers}notification_icon.png';
   static const supportIcon = '${advertisers}support_icon.png';
@@ -111,18 +109,24 @@ class AssetRes {
   static const calendarIcon = '${advertisers}calander_Icon.png';
   static const deleteIcon = '${advertisers}delete_icon.png';
 
-///---------------------------------- images -----------------------------------
+  ///---------------------------------- images -----------------------------------
   static const frameImage = '${advertisers}Frame.png';
   static const advertiserImage = '${advertisers}adve-pr.png';
   static const advertisement_1Image = '${advertisers}advertisement_1.png';
   static const advertisement_2Image = '${advertisers}advertisement_2.png';
   static const advertisement_3Image = '${advertisers}advertisement_3.png';
 
-
   ///_______________________________privacy ___________________________________
-  static const privacy='${images}privacy.png';
+  static const privacy = '${images}privacy.png';
 
   ///-----------------------------account information--------------------------
-  
-static const account='${images}account.png';
+
+  static const account = '${images}account.png';
+
+  ///________________________________ drawer icon_________________________________
+  static const lockicon = "${icons}lockicon.png";
+  static const profileicon = "${icons}profileicon.png";
+  static const notificationicon = '${icons}notificationicon.png';
+  static const deleticon = '${icons}renameicon.png';
+  static const logouticon = "${icons}logouticon.png";
 }

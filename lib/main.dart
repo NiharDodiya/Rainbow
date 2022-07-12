@@ -4,6 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_mentions/flutter_mentions.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:rainbow/screens/account_Information/account_Information_screen.dart';
+import 'package:rainbow/screens/account_Information/account_information_controller.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/scanyour_face/scanyourface_controller.dart';
@@ -45,13 +48,15 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: !PrefService.getBool(PrefKeys.skipBoardingScreen)
-              ? SplashScreen()
-              : PrefService.getBool(PrefKeys.isLogin)
-                  ? const Dashboard()
-                  : PrefService.getBool(PrefKeys.register)
-                      ? const Dashboard()
-                      : AuthDashboard(),
+      home:const AdvertisementDashBord()
+          //AdvertisementDashBord()
+          // !PrefService.getBool(PrefKeys.skipBoardingScreen)
+          //     ? SplashScreen()
+          //     : PrefService.getBool(PrefKeys.isLogin)
+          //         ? const Dashboard()
+          //         : PrefService.getBool(PrefKeys.register)
+          //             ? const Dashboard()
+          //             : AuthDashboard(),
     );
   }
 }
