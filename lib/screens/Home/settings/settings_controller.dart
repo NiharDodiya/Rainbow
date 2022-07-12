@@ -17,5 +17,6 @@ class SettingsController extends GetxController
         chooserTitle: 'Example Chooser Title'
     );
   }
+  
 
 }

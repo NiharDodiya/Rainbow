@@ -114,8 +114,8 @@ class SettingsScreen extends StatelessWidget {
                   height: 56,
                   width: 56,
                   decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
                           image: AssetImage(AssetRes.se_profile))),
                 ),
                 const SizedBox(
@@ -154,7 +154,7 @@ class SettingsScreen extends StatelessWidget {
                                   fontSize: 15, color: ColorRes.color_4F359B),
                             )
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ],

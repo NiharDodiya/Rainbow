@@ -129,4 +129,11 @@ class AssetRes {
   static const notificationicon = '${icons}notificationicon.png';
   static const deleticon = '${icons}renameicon.png';
   static const logouticon = "${icons}logouticon.png";
+
+  ///_____________________________________support____________________________________
+  
+  static const support01 ="${images}support01.png";
+    static const support02 ="${images}support02.png";
+    static const downlode = "${icons}downlode.png";
+    static const cameraPic ="${images}cameraPic.png";
 }
