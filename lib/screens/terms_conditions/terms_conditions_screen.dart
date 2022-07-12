@@ -4,7 +4,9 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/home_screen.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/idVerification/idverification_screen.dart';
+import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/color_res.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class TermsConditionsScreen extends StatelessWidget {
@@ -82,7 +84,8 @@ class TermsConditionsScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 15),
                     child: GestureDetector(
-                      onTap: () {
+                      onTap: () async {
+                        await PrefService.setValue(PrefKeys.register, true);
                         Get.offAll(()=> Dashboard());
 
                       },

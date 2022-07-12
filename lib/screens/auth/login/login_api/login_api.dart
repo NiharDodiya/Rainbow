@@ -51,6 +51,7 @@ class LoginApi {
               Get.to(()=>SelfieVerificationScreen());
             }
           }else {
+             await PrefService.setValue(PrefKeys.userId,jsonDecode(response.body)["data"]["id"]);
             Get.offAll(() => jsonDecode(response.body)["data"]["role"]=="end_user" ?Dashboard():AdvertisementDashBord());
           }
           //Get.offAll(() => const Dashboard());
