@@ -16,10 +16,8 @@ import '../auth/phonenumber/phonenumber_Controller.dart';
 
 class AccountInformationScreen extends StatelessWidget {
   AccountInformationScreen({Key? key}) : super(key: key);
-  AccountInformationController controller =
-      Get.put(AccountInformationController());
-  PhoneNumberController phoneNumberController =
-      Get.put(PhoneNumberController());
+  AccountInformationController controller = Get.put(AccountInformationController());
+  PhoneNumberController phoneNumberController = Get.put(PhoneNumberController());
 
   @override
   Widget build(BuildContext context) {
@@ -313,19 +311,19 @@ class AccountInformationScreen extends StatelessWidget {
           obscure: false,
         ),
         AppTextFiled(
-          controller: controller.strintNumberController,
+          controller: controller.companyStreetNumberController,
           title: Strings.streetName,
           hintText: Strings.street,
           obscure: false,
         ),
         AppTextFiled(
-          controller: controller.cityController,
+          controller: controller.companyCityController,
           title: Strings.city,
           hintText: Strings.city,
           multiLine: true,
         ),
         AppTextFiled(
-          controller: controller.countryController,
+          controller: controller.companyCountryController,
           title: Strings.country,
           hintText: Strings.country,
           multiLine: true,
@@ -333,7 +331,7 @@ class AccountInformationScreen extends StatelessWidget {
         GestureDetector(
           onTap: () {},
           child: AppTextFiled(
-            controller: controller.postalCodeController,
+            controller: controller.companyPostalCodeController,
             title: Strings.postalCode,
             hintText: Strings.postalCodeDigitHint,
             enable: true,

@@ -10,7 +10,7 @@ import 'package:http/http.dart' as http;
 class AdInformationAPI {
   static Future adProfileView() async {
     String accesToken=  PrefService.getString(PrefKeys.registerToken);
-    int userId =  PrefService.getInt(PrefKeys.id);
+    int userId =  PrefService.getInt(PrefKeys.userId);
     try {
       String url = EndPoints.viewProfile;
       Map<String, String> param ={

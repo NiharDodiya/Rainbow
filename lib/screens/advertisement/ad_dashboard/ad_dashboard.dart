@@ -118,9 +118,7 @@ class AdvertisementDashBord extends StatelessWidget {
               ),
               //Account Information
               InkWell(
-                onTap: () {
-                  Get.to(AccountInformationScreen());
-                },
+                onTap: ()=> controller.inTapAccountInfo(),
                 child: SizedBox(
                   height: Get.height * 0.06,
                   child: Row(

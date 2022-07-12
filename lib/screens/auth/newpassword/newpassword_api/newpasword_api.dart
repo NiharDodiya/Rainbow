@@ -17,7 +17,7 @@ class CreateNewPasswordApi {
       ) async {
     try {
       String url = EndPoints.createPassword;
-      int id =  PrefService.getInt(PrefKeys.id);
+      int id =  PrefService.getInt(PrefKeys.userId);
       Map<String, String> param = {
         'id':id.toString(),
         'password': newPassword,
