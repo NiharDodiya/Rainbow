@@ -12,7 +12,7 @@ import 'package:http/http.dart' as http;
 class ViewProfileApi {
   static Future postRegister() async {
     String accesToken=  PrefService.getString(PrefKeys.registerToken);
-    int userId =  PrefService.getInt(PrefKeys.userId);
+    int userId =  PrefService.getInt(PrefKeys.id);
     try {
       String url = EndPoints.viewProfile;
 
