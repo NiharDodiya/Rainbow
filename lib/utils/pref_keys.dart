@@ -9,4 +9,5 @@ class PrefKeys{
   static const advirtisersToken = "advirtisersToken";
   static const id = "id";
   static const phoneId = "id";
+  static const showTermsCondition = "showTermsCondition";
 }

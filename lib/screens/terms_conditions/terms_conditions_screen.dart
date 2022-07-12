@@ -4,11 +4,14 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/home_screen.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/idVerification/idverification_screen.dart';
+import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/color_res.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class TermsConditionsScreen extends StatelessWidget {
-  const TermsConditionsScreen({Key? key}) : super(key: key);
+  final bool? showBackBtn;
+  const TermsConditionsScreen({Key? key, this.showBackBtn}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +31,7 @@ class TermsConditionsScreen extends StatelessWidget {
                   SizedBox(
                     height: Get.height * 0.07,
                   ),
-                  GestureDetector(
+                  showBackBtn == false ? const SizedBox() :GestureDetector(
                     onTap: () {
                       Get.back();
                     },
@@ -82,7 +85,8 @@ class TermsConditionsScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 15),
                     child: GestureDetector(
-                      onTap: () {
+                      onTap: () async {
+                        await PrefService.setValue(PrefKeys.showTermsCondition, false);
                         Get.offAll(()=> Dashboard());
 
                       },

@@ -5,14 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_mentions/flutter_mentions.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:rainbow/screens/account_Information/account_Information_screen.dart';
-import 'package:rainbow/screens/account_Information/account_information_controller.dart';
-import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/scanyour_face/scanyourface_controller.dart';
-import 'package:rainbow/screens/selfie_verification/selfie_verification_screen.dart';
 import 'package:rainbow/screens/splash/splash_screen.dart';
+import 'package:rainbow/screens/terms_conditions/terms_conditions_screen.dart';
 import 'package:rainbow/service/notification_service.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -24,7 +21,7 @@ Future<void> main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   await Firebase.initializeApp();
   NotificationService.init();
-  await FirebaseMessaging.instance.getToken().then((value){
+  await FirebaseMessaging.instance.getToken().then((value) {
     print(value);
   });
   await PrefService.init();
@@ -55,12 +52,13 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: !PrefService.getBool(PrefKeys.skipBoardingScreen)
-              ? SplashScreen()
-              : PrefService.getBool(PrefKeys.isLogin)
-                  ? const Dashboard()
-                  : PrefService.getBool(PrefKeys.register)
-                      ? const Dashboard()
-                      : AuthDashboard(),
+          ? SplashScreen()
+          : (PrefService.getBool(PrefKeys.isLogin) ||
+                  PrefService.getBool(PrefKeys.register))
+              ? PrefService.getBool(PrefKeys.showTermsCondition)
+                  ? const TermsConditionsScreen(showBackBtn: false)
+                  : const Dashboard()
+              : AuthDashboard(),
     );
   }
 }

@@ -12,6 +12,7 @@ import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -486,8 +487,9 @@ class SettingsScreen extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () async {
-              await PrefService.clear()
-                  .then((value) => Get.offAll(() => AuthDashboard()));
+              await PrefService.clear();
+              PrefService.setValue(PrefKeys.skipBoardingScreen, true);
+              Get.offAll(() => AuthDashboard());
             },
             child: Container(
               height: 60,
