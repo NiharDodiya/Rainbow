@@ -25,29 +25,31 @@ Widget noAdvertisement() {
           end: Alignment.bottomCenter,
         ),
       ),
-      child: Column(
-        children: [
-          Container(
-            height: 142,
-            margin: const EdgeInsets.only(top: 34, bottom: 30),
-            child: Image.asset(
-              AssetRes.frameImage,
-              fit: BoxFit.fitHeight,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 142,
+              margin: const EdgeInsets.only(top: 34, bottom: 30),
+              child: Image.asset(
+                AssetRes.frameImage,
+                fit: BoxFit.fitHeight,
+              ),
             ),
-          ),
-          Text(
-            Strings.noAdvertisement,
-            style: gilroySemiBoldTextStyle(fontSize: 24),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(
-            height: 100,
-          ),
-          const SubmitButton(
-           
-            text: Strings.createAdvertisement,
-          ),
-        ],
+            Text(
+              Strings.noAdvertisement,
+              style: gilroySemiBoldTextStyle(fontSize: 24),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: Get.height*0.12,
+            ),
+            const SubmitButton(
+
+              text: Strings.createAdvertisement,
+            ),
+          ],
+        ),
       ),
     ),
   );

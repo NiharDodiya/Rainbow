@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:rainbow/screens/account_Information/ad_information_api/ad_information_api.dart';
+import 'package:rainbow/screens/account_Information/ad_information_api/ad_information_model.dart';
 import '../../common/popup.dart';
 import '../../utils/strings.dart';
 
@@ -13,10 +15,14 @@ class AccountInformationController extends GetxController {
   TextEditingController fullNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController houseNumberController = TextEditingController();
-  TextEditingController strintNumberController = TextEditingController();
+  TextEditingController companyStreetNumberController = TextEditingController();
+  TextEditingController streetNumberController = TextEditingController();
   TextEditingController cityController = TextEditingController();
+  TextEditingController companyCityController = TextEditingController();
   TextEditingController countryController = TextEditingController();
+  TextEditingController companyCountryController = TextEditingController();
   TextEditingController postalCodeController = TextEditingController();
+  TextEditingController companyPostalCodeController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController profession = TextEditingController();
   TextEditingController comanyName = TextEditingController();
@@ -24,14 +30,35 @@ class AccountInformationController extends GetxController {
   TextEditingController website = TextEditingController();
   bool professions = false;
   List<String> dropdownList = ["Doctor", "User", "Admin"];
+  AdInformationModel adViewProfile = AdInformationModel();
 
-  void init() {
+  Future<void> init() async {
     loader.value = true;
-    Future.delayed(const Duration(milliseconds: 100)).then(
-      (value) {
-        loader.value = false;
-      },
-    );
+    await AdInformationAPI.adProfileView().then((value) {
+      adViewProfile = value;
+      print(value);
+      fullNameController.text = adViewProfile.data!.fullName!;
+      emailController.text = adViewProfile.data!.email!;
+      houseNumberController.text = adViewProfile.data!.houseNumber!;
+      streetNumberController.text = adViewProfile.data!.streetName!;
+      cityController.text = adViewProfile.data!.city!;
+      countryController.text = adViewProfile.data!.country!;
+      postalCodeController.text = adViewProfile.data!.postalCode! as String;
+      phoneNumberController.text = adViewProfile.data!.phoneNumber!;
+
+      selectCountry = adViewProfile.data!.profession!;
+      comanyName.text = adViewProfile.data!.companyName!;
+      companyNumber.text = adViewProfile.data!.companyPhoneNumber!;
+      companyStreetNumberController.text = adViewProfile.data!.compnayStreetName!;
+      companyCityController.text =adViewProfile.data!.compnayCity!;
+      companyCountryController.text = adViewProfile.data!.companyCountry!;
+      companyPostalCodeController.text = adViewProfile.data!.compnayPostalCode! as String;
+      website.text = adViewProfile.data!.compnayWebsite!;
+      update(['doctor']);
+      update(['update']);
+      update(['Getpic']);
+      loader.value = false;
+    } );
   }
 
   void onCountryCoCityChange(String value) {
@@ -103,16 +130,16 @@ class AccountInformationController extends GetxController {
     } else if (companyNumber.text.isEmpty) {
       errorToast(Strings.companyNumberError);
       return false;
-    } else if (strintNumberController.text.isEmpty) {
+    } else if (companyStreetNumberController.text.isEmpty) {
       errorToast(Strings.streetError);
       return false;
-    } else if (cityController.text.isEmpty) {
+    } else if (companyCityController.text.isEmpty) {
       errorToast(Strings.cityError);
       return false;
-    } else if (countryController.text.isEmpty) {
+    } else if (companyCountryController.text.isEmpty) {
       errorToast(Strings.countryError);
       return false;
-    } else if (postalCodeController.text.isEmpty) {
+    } else if (companyPostalCodeController.text.isEmpty) {
       errorToast(Strings.postalCodeError);
       return false;
     } else if (website.text.isEmpty) {

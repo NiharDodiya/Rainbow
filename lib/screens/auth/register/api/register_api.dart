@@ -70,7 +70,7 @@ class RegisterApi {
       }
     } catch (e) {
       print(e.toString());
-      return [];
+      return registerUserFromJson("");
     }
   }
 }
