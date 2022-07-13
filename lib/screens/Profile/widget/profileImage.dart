@@ -10,25 +10,22 @@ Widget profileImage(
     width: Get.width,
     child: Stack(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 15, right: 15, top: 25),
-          child: SizedBox(
-            height: Get.height * 0.2857,
-            width: Get.width,
-            child: CachedNetworkImage(
-              imageUrl: bgImage.toString(),
-              imageBuilder: (context, imageProvider) => Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,),
-                ),
+        SizedBox(
+          height: Get.height * 0.2857,
+          width: Get.width,
+          child: CachedNetworkImage(
+            imageUrl: bgImage.toString(),
+            imageBuilder: (context, imageProvider) => Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,),
               ),
-              // placeholder: (context, url) => const Center(child:CircularProgressIndicator(),),
-              errorWidget: (context, url, error) =>
-                  Image.asset(AssetRes.overlay),
             ),
+            // placeholder: (context, url) => const Center(child:CircularProgressIndicator(),),
+            errorWidget: (context, url, error) =>
+                Image.asset(AssetRes.overlay),
           ),
         ),
         Positioned(

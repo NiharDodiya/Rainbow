@@ -27,6 +27,7 @@ class EndPoints {
   static const unBlock = "${baseUrl}/user/unblock";
   static const blockList = "${baseUrl}/user/block/list";
   static const sendFriendRequest = "${baseUrl}/user/request/send";
+  static const acceptFriendRequest = "${baseUrl}/user/request/accept";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
+import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -9,6 +11,7 @@ import 'package:rainbow/utils/strings.dart';
 class ConnectionsScreen extends StatelessWidget {
     ConnectionsScreen({Key? key}) : super(key: key);
     ConnectionsController controller = Get.put(ConnectionsController());
+    ProfileController profileController = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,9 +104,10 @@ class ConnectionsScreen extends StatelessWidget {
           ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: controller.connectionsRequest.length,
+            itemCount: profileController.viewProfile.data!.userView.length,
             itemBuilder: (context, index) {
-              return infoRow(
+              return infoRow(image: profileController.viewProfile.data!.userView[index]["profile_image"],
+                title:profileController.viewProfile.data!.userView[index]["full_name"] ,
                 viewProfile: control.onTapViewProfile,
                 index: index,
               );
@@ -160,15 +164,22 @@ class ConnectionsScreen extends StatelessWidget {
               SizedBox(
                 width: Get.width * 0.07,
               ),
-              Container(
+              SizedBox(
                 height: 50,
-                width: 50,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: AssetImage(image ?? AssetRes.se_profile),
+                width: 50,child:  CachedNetworkImage(
+                imageUrl:  image.toString(),
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,),
                   ),
                 ),
+                // placeholder: (context, url) => const Center(child:  CircularProgressIndicator(),),
+                errorWidget: (context, url, error) =>
+                    Image.asset(AssetRes.se_profile),
+              ),
               ),
               SizedBox(
                 width: Get.width * 0.04,
