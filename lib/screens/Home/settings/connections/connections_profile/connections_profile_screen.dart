@@ -43,7 +43,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
                 children: [
                   profileAppbar(data.fullName.toString(),false),
                   profileImage(data.profileImage, data.backgroundImage),
-                  connectAndBlock(title: data.fullName,subTitle: "Surrogate Mom"),
+                  connectAndBlock(title: data.fullName,subTitle: "Surrogate Mom",id:data.id.toString()),
                   testimonials(),
                   otherVisitorsViewed(),
                 ],

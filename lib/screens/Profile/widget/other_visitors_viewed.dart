@@ -59,7 +59,7 @@ Widget otherVisitorsViewed() {
                     width: 60,
                     child: Text(
                       controller.viewProfile.data!.userView[index]
-                      ["full_name"] ?? "Amber Davis",
+                      ["full_name"].toString() ?? "Amber Davis",
                       maxLines: 2,
                       textAlign: TextAlign.center,
                       style: gilroyRegularTextStyle(fontSize: 16),

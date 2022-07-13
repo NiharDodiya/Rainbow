@@ -25,6 +25,7 @@ class EndPoints {
   static const privacy = "${baseUrl}/api/user/privacy";
   static const block = "${baseUrl}/api/user/block";
   static const unBlock = "${baseUrl}/api/user/unblock";
+  static const blockList = "${baseUrl}/api/user/block/list";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mentions/flutter_mentions.dart';
@@ -23,7 +24,9 @@ Future<void> main() async {
   await Firebase.initializeApp();
   NotificationService.init();
   await FirebaseMessaging.instance.getToken().then((value) {
-    print(value);
+    if (kDebugMode) {
+      print(value);
+    }
   });
   await PrefService.init();
   SystemChrome.setSystemUIOverlayStyle(
