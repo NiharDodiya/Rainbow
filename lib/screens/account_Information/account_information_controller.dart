@@ -1,7 +1,10 @@
 import 'dart:io';
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
+import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/screens/account_Information/ad_information_api/ad_information_api.dart';
 import 'package:rainbow/screens/account_Information/ad_information_api/ad_information_model.dart';
 import '../../common/popup.dart';
@@ -25,12 +28,26 @@ class AccountInformationController extends GetxController {
   TextEditingController companyPostalCodeController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController profession = TextEditingController();
-  TextEditingController comanyName = TextEditingController();
+  TextEditingController companyName = TextEditingController();
   TextEditingController companyNumber = TextEditingController();
   TextEditingController website = TextEditingController();
   bool professions = false;
   List<String> dropdownList = ["Doctor", "User", "Admin"];
   AdInformationModel adViewProfile = AdInformationModel();
+  UploadImage uploadImage = UploadImage();
+  Country countryModel = Country.from(json: {
+    "e164_cc": "1",
+    "iso2_cc": "CA",
+    "e164_sc": 0,
+    "geographic": true,
+    "level": 2,
+    "name": "Canada",
+    "example": "2042345678",
+    "display_name": "Canada (CA) [+1]",
+    "full_example_with_plus_sign": "+12042345678",
+    "display_name_no_e164_cc": "Canada (CA)",
+    "e164_key": "1-CA-0"
+  });
 
   Future<void> init() async {
     loader.value = true;
@@ -43,27 +60,44 @@ class AccountInformationController extends GetxController {
       streetNumberController.text = adViewProfile.data!.streetName!;
       cityController.text = adViewProfile.data!.city!;
       countryController.text = adViewProfile.data!.country!;
+      postalCodeController.text = adViewProfile.data!.postalCode!.toString();
+      phoneNumberController.text = adViewProfile.data!.phoneNumber!.split(' ').last;
       postalCodeController.text = adViewProfile.data!.postalCode! as String;
       phoneNumberController.text = adViewProfile.data!.phoneNumber!;
       selectCountry = adViewProfile.data!.profession!;
-      comanyName.text = adViewProfile.data!.companyName!;
+      companyName.text = adViewProfile.data!.companyName!;
       companyNumber.text = adViewProfile.data!.companyPhoneNumber!;
-      companyStreetNumberController.text = adViewProfile.data!.compnayStreetName!;
-      companyCityController.text =adViewProfile.data!.compnayCity!;
+      companyStreetNumberController.text =
+          adViewProfile.data!.compnayStreetName!;
+      companyCityController.text = adViewProfile.data!.compnayCity!;
       companyCountryController.text = adViewProfile.data!.companyCountry!;
-      companyPostalCodeController.text = adViewProfile.data!.compnayPostalCode! as String;
+      companyPostalCodeController.text =
+          adViewProfile.data!.compnayPostalCode!.toString();
       website.text = adViewProfile.data!.compnayWebsite!;
+      loader.value = false;
+      countryModel = CountryParser.parseCountryCode(adViewProfile.data!.phoneNumber!.split(' ').first);
       update(['doctor']);
       update(['update']);
       update(['Getpic']);
-      loader.value = false;
-    } );
+
+    });
   }
 
   void onCountryCoCityChange(String value) {
     selectCountry = value;
     profession.text = value;
     update(['doctor']);
+  }
+
+  void onCountryTap(BuildContext context) {
+    showCountryPicker(
+      context: context,
+      showPhoneCode: true,
+      onSelect: (Country country) {
+        countryModel = country;
+        update(['phone_filed']);
+      },
+    );
   }
 
   selectAccount() {
@@ -123,7 +157,7 @@ class AccountInformationController extends GetxController {
     if (profession.text.isEmpty) {
       errorToast(Strings.professionError);
       return false;
-    } else if (comanyName.text.isEmpty) {
+    } else if (companyName.text.isEmpty) {
       errorToast(Strings.companyNameError);
       return false;
     } else if (companyNumber.text.isEmpty) {
@@ -192,5 +226,79 @@ class AccountInformationController extends GetxController {
     update(["Getpic"]);
     Get.back();
     return null;
+  }
+
+  Future<void> uploadImageApi() async {
+    loader.value = true;
+    try {
+      await UploadImageApi.postRegister(imagePath!.path.toString()).then(
+            (value) => uploadImage = value!,
+      );
+
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+      debugPrint(e.toString());
+    }
+  }
+
+
+  Future<void> onTapSave() async {
+    loader.value = true;
+
+
+    Map<String, Map<String, dynamic>> param1 = {
+      "advirtisersData": {
+        "id_item_profile": uploadImage.data!.id,
+        "full_name": fullNameController.text,
+        "email": emailController.text,
+        "house_number":houseNumberController.text,
+        "street_name": streetNumberController.text,
+        "phone_number": phoneNumberController.text,
+        "city": cityController.text,
+        "id_country": 1,
+        "postal_code": 9376432
+      },
+      "companyData": {
+        "profession": "Doctor",
+        "company_name": "Google",
+        "company_phone_number": "+91 364098472532",
+        "street_name": "vip Road",
+        "city": "Delhi",
+        "id_country": 1,
+        "postal_code": 735522,
+        "website": "google.com"
+      }
+    };
+
+    await AdInformationAPI.adProfileEdit(param1).then(
+      (value) {
+        adViewProfile = value;
+        print(value);
+        fullNameController.text = adViewProfile.data!.fullName!;
+        emailController.text = adViewProfile.data!.email!;
+        houseNumberController.text = adViewProfile.data!.houseNumber!;
+        streetNumberController.text = adViewProfile.data!.streetName!;
+        cityController.text = adViewProfile.data!.city!;
+        countryController.text = adViewProfile.data!.country!;
+        postalCodeController.text = adViewProfile.data!.postalCode!.toString();
+        phoneNumberController.text = adViewProfile.data!.phoneNumber!;
+
+        selectCountry = adViewProfile.data!.profession!;
+        companyName.text = adViewProfile.data!.companyName!;
+        companyNumber.text = adViewProfile.data!.companyPhoneNumber!;
+        companyStreetNumberController.text =
+        adViewProfile.data!.compnayStreetName!;
+        companyCityController.text = adViewProfile.data!.compnayCity!;
+        companyCountryController.text = adViewProfile.data!.companyCountry!;
+        companyPostalCodeController.text =
+            adViewProfile.data!.compnayPostalCode!.toString();
+        website.text = adViewProfile.data!.compnayWebsite!;
+        update(['doctor']);
+        update(['update']);
+        update(['Getpic']);
+        loader.value = false;
+      },
+    );
   }
 }

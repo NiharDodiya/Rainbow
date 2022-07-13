@@ -38,4 +38,34 @@ class AdInformationAPI {
       return adInformationModelFromJson("");
     }
   }
+
+  static Future adProfileEdit(Map<String, Map<String,dynamic>> param1) async {
+    String accesToken=  PrefService.getString(PrefKeys.registerToken);
+    try {
+      String url = EndPoints.adEditProfile;
+      Map<String, Map<String,dynamic>> param = param1;
+      print(param);
+      http.Response? response = await HttpService.postApi(url: url,   body: jsonEncode(param),
+          header: {"Content-Type": "application/json","x-access-token":accesToken});
+      if (response != null && response.statusCode == 200) {
+        bool? status = jsonDecode(response.body)["status"];
+        if(status==false)
+        {
+          flutterToast(jsonDecode(response.body)["message"]);
+        }
+        else if(status==true)
+        {
+          flutterToast( jsonDecode(response.body)["message"]);
+        }
+
+        return adInformationModelFromJson(response.body);
+      }
+      return null;
+    } catch (e) {
+      print(e.toString());
+      return adInformationModelFromJson("");
+    }
+
+  }
+
 }

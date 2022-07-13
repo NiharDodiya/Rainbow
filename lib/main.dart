@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_mentions/flutter_mentions.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/scanyour_face/scanyourface_controller.dart';
@@ -62,7 +63,9 @@ class MyApp extends StatelessWidget {
                   PrefService.getBool(PrefKeys.register))
               ? PrefService.getBool(PrefKeys.showTermsCondition)
                   ? const TermsConditionsScreen(showBackBtn: false)
-                  : const Dashboard()
+                  : PrefService.getString(PrefKeys.loginRole) == "end_user"
+                      ? const Dashboard()
+                      : const AdvertisementDashBord()
               : AuthDashboard(),
     );
   }
