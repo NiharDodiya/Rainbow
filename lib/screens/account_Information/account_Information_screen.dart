@@ -251,7 +251,7 @@ class AccountInformationScreen extends StatelessWidget {
           hintText: Strings.houseNumberHint,
         ),
         AppTextFiled(
-          controller: controller.strintNumberController,
+          controller: controller.streetNumberController,
           title: Strings.streetName,
           hintText: Strings.street,
         ),
