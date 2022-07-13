@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
+import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/screens/Home/settings/privacy/privacy_controller.dart';
 import 'package:rainbow/utils/strings.dart';
 
@@ -84,11 +85,9 @@ class PrivacyScreen extends StatelessWidget {
                                   activeColor: Colors.green,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5)),
-                                  value: controller.isChecked![index],
-                                  onChanged: (val) {
-                                    controller.isChecked![index] = val!;
-                                    controller.update(["check"]);
-                                  },
+                                  value: controller.isChecked[index],
+                                  onChanged: (val) =>
+                                      controller.onCheckMarkChange(val, index),
                                   materialTapTargetSize:
                                       MaterialTapTargetSize.shrinkWrap,
                                 ),
@@ -115,6 +114,13 @@ class PrivacyScreen extends StatelessWidget {
                 )
               ],
             ),
+            Obx(() {
+              if (controller.loader.isTrue) {
+                return const FullScreenLoader();
+              } else {
+                return const SizedBox();
+              }
+            }),
           ],
         ),
       ),

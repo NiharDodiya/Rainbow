@@ -58,7 +58,7 @@ Widget connectAndBlock({
                 ? InkWell(
               onTap: () {
                 print(id);
-                controller!.blockUserDetails(id);
+                controller.blockUserDetails(id);
               },
               child: Row(
                 children: [

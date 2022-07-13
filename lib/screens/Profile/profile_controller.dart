@@ -45,7 +45,7 @@ class ProfileController extends GetxController {
   Future<void> viewProfileDetails() async {
     try {
       loader.value = true;
-      await ViewProfileApi.postRegister().then((value) => viewProfile = value);
+      viewProfile = await ViewProfileApi.postRegister();
       // await PrefService.setValue(PrefKeys.registerToken, registerUser.token.toString());
       loader.value = false;
     } catch (e) {
