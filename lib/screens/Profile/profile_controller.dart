@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_api.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -25,7 +26,6 @@ class ProfileController extends GetxController {
     "Sally Wilson",
   ];
   ViewProfile viewProfile = ViewProfile();
-
   @override
   void onInit() {
     init();

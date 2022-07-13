@@ -45,7 +45,6 @@ class AccountInformationController extends GetxController {
       countryController.text = adViewProfile.data!.country!;
       postalCodeController.text = adViewProfile.data!.postalCode! as String;
       phoneNumberController.text = adViewProfile.data!.phoneNumber!;
-
       selectCountry = adViewProfile.data!.profession!;
       comanyName.text = adViewProfile.data!.companyName!;
       companyNumber.text = adViewProfile.data!.companyPhoneNumber!;

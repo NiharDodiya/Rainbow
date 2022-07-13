@@ -13,7 +13,7 @@ import 'package:rainbow/screens/Profile/widget/edit_profile/edit_api/edit_model.
 import 'package:rainbow/utils/strings.dart';
 
 class EditProfileController extends GetxController {
-  TextEditingController fullName = TextEditingController(text: "ramika");
+  TextEditingController fullName = TextEditingController(/*text: "ramika"*/);
   TextEditingController status = TextEditingController(text:"sarrogate mom");
   TextEditingController age = TextEditingController(text:"32");
   TextEditingController city = TextEditingController(text:"Surat");
@@ -26,8 +26,9 @@ class EditProfileController extends GetxController {
   TextEditingController youTube = TextEditingController(text: "https://www.youtube.com/watch?v=YwQ2eVbABsY");
   TextEditingController faceBook = TextEditingController(text: "https://www.facebook.com/search/top/?q=Jacky%20Chain");
   TextEditingController twitter = TextEditingController(text: "https://twitter.com/eyeofjackiechan");
-  TextEditingController aboutMe = TextEditingController(text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ");
-  TextEditingController hobbies = TextEditingController(text: "learnnig");
+  TextEditingController aboutMe = TextEditingController(text: "Lorem ipsum dolor sit amet, "
+      "Consectetur Adipiscing Elit, Sed Do Eiusmod Tempor Incididunt ");
+  TextEditingController hobbies = TextEditingController(text: "Learning");
   String aboutTextCounter = '';
   String hobbiesTextCounter = '';
 

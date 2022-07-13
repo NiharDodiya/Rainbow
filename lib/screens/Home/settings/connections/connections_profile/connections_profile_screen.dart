@@ -19,39 +19,49 @@ class ConnectionsProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx(() {
-        if (controller.loader.isTrue) {
-          return const SmallLoader();
-        } else {
-          ProfileData data = controller.profileModel.data!;
-          return Container(
-            width: Get.width,
-            padding: const EdgeInsets.only(top: 25),
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  ColorRes.color_50369C,
-                  ColorRes.color_D18EEE,
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
-            ),
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(
+      body: GetBuilder<ConnectionsProfileController>(
+        id: "connections",
+        builder: (controller) {
+          return Obx(() {
+              ProfileData data = controller.profileModel.data!;
+              return Stack(
                 children: [
-                  profileAppbar(data.fullName.toString(),false),
-                  profileImage(data.profileImage, data.backgroundImage),
-                  connectAndBlock(title: data.fullName,subTitle: "Surrogate Mom",id:data.id.toString()),
-                  testimonials(),
-                  otherVisitorsViewed(),
+                  Container(
+                    width: Get.width,
+                    padding: const EdgeInsets.only(top: 25),
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          ColorRes.color_50369C,
+                          ColorRes.color_D18EEE,
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                      ),
+                    ),
+                    child: SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      child: Column(
+                        children: [
+                          profileAppbar(data.fullName.toString(), false),
+                          profileImage(data.profileImage, data.backgroundImage),
+                          connectAndBlock(
+                              title: data.fullName,
+                              subTitle: "Surrogate Mom",
+                              id: data.id.toString()),
+                          testimonials(),
+                          otherVisitorsViewed(),
+                        ],
+                      ),
+                    ),
+                  ),
+                  controller.loader.isTrue?const SmallLoader():const SizedBox()
                 ],
-              ),
-            ),
+              );
+            }
           );
-        }
-      }),
+        },
+      ),
     );
   }
 }
