@@ -32,73 +32,72 @@ class IdScannerBackScreen extends StatelessWidget {
       backgroundColor: Colors.black,
       body: GetBuilder<IdScannerController>(
         builder: (_) {
-          return SingleChildScrollView(
-            physics: const NeverScrollableScrollPhysics(),
-            child: Column(
-              children: [
-                Container(
-                  width: Get.width,
-                  padding: EdgeInsets.only(
-                      top: Get.height * 0.04, bottom: Get.height * 0.03325),
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [Color(0XFF50379D), Color(0XFFB77DDE)]),
-                    color: ColorRes.color_4F359B,
-                  ),
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: const Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: Icon(
-                            Icons.arrow_back_ios_outlined,
-                            size: 16.72,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 18,
-                      ),
-                      Text(
-                        Strings.idVerification,
-                        style: textStyleFont26WhiteBold,
-                      )
-                    ],
-                  ),
+          return Column(
+            children: [
+              Container(
+                width: Get.width,
+                padding: EdgeInsets.only(
+                    top: Get.height * 0.04, bottom: Get.height * 0.03325),
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Color(0XFF50379D), Color(0XFFB77DDE)]),
+                  color: ColorRes.color_4F359B,
                 ),
-                SizedBox(height: Get.height * 0.04310),
-                Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: Get.width * 0.03645),
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: controller.retakePic,
-                        child: Image.asset(
-                          AssetRes.referesh,
-                          height: 18.67,
-                          width: 26.67,
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Icon(
+                          Icons.arrow_back_ios_outlined,
+                          size: 16.72,
                         ),
                       ),
-                      const Spacer(),
-                      GestureDetector(
-                        onTap: onSend,
-                        child: Image.asset(
-                          AssetRes.send,
-                          height: 18.67,
-                          width: 26.67,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(
+                      width: 18,
+                    ),
+                    Text(
+                      Strings.idVerification,
+                      style: textStyleFont26WhiteBold,
+                    )
+                  ],
                 ),
-                SizedBox(height: Get.height * 0.05095),
-                Stack(
+              ),
+              SizedBox(height: Get.height * 0.04310),
+              Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: Get.width * 0.03645),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: controller.retakePic,
+                      child: Image.asset(
+                        AssetRes.referesh,
+                        height: 18.67,
+                        width: 26.67,
+                      ),
+                    ),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: onSend,
+                      child: Image.asset(
+                        AssetRes.send,
+                        height: 18.67,
+                        width: 26.67,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: Get.height * 0.05095),
+              Expanded(
+                child: Stack(
                   children: [
                     SizedBox(
                       child: buildCameraFunction(context, controller),
@@ -168,8 +167,8 @@ class IdScannerBackScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-              ],
-            ),
+              ),
+            ],
           );
         },
       ),
@@ -192,7 +191,7 @@ class IdScannerBackScreen extends StatelessWidget {
             ),
           );
         } else {
-          // Otherwise, display a loading indicator.
+          /// Otherwise, display a loading indicator.
           return SizedBox(
             height: Get.height * 0.3226,
             child: const SmallLoader(),
