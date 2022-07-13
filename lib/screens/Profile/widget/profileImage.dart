@@ -6,26 +6,36 @@ import 'package:rainbow/utils/asset_res.dart';
 Widget profileImage(
     /*ProfileController controller*/ String? profileImage, String? bgImage) {
   return SizedBox(
-    height: 292,
+    height: 282,
     width: Get.width,
     child: Stack(
       children: [
-        SizedBox(
-          height: Get.height * 0.2857,
-          width: Get.width,
-          child: CachedNetworkImage(
-            imageUrl: bgImage.toString(),
-            imageBuilder: (context, imageProvider) => Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                    image: imageProvider,
-                    fit: BoxFit.cover,),
+        Padding(padding: EdgeInsets.only(left: 15,right: 15),
+          child: SizedBox(
+            height: Get.height * 0.2857,
+            width: Get.width,
+            child: CachedNetworkImage(
+              imageUrl: bgImage.toString(),
+              imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,),
+                ),
               ),
+              // placeholder: (context, url) => const Center(child:CircularProgressIndicator(),),
+              errorWidget: (context, url, error) =>
+                  Container(
+                    height: Get.height * 0.2857,
+                    width: Get.width,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: const DecorationImage(
+                            image: AssetImage(AssetRes.overlay),
+                            fit: BoxFit.cover)),
+                  ),
             ),
-            // placeholder: (context, url) => const Center(child:CircularProgressIndicator(),),
-            errorWidget: (context, url, error) =>
-                Image.asset(AssetRes.overlay),
           ),
         ),
         Positioned(

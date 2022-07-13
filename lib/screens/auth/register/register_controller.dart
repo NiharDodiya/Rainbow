@@ -46,7 +46,7 @@ class RegisterController extends GetxController {
     "1",
     "2",
   ];
-  List<String> noOfKids = ["0", "1", "2", "3", "4", "5", "6"];
+  List<String> noOfKids = ["0","1", "2", "3", "4", "5", "6"];
   bool martialStatusDropdown = false;
   bool ethnicityDropdown = false;
   bool kidsDropdown = false;

@@ -32,6 +32,9 @@ class LoginApi {
           body: jsonEncode(param),
           header: {"Content-Type": "application/json"});
       if (response != null && response.statusCode == 200) {
+         bool? status = jsonDecode(response.body)["status"];
+        if(status==false)
+        {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
           flutterToast(jsonDecode(response.body)["message"]);

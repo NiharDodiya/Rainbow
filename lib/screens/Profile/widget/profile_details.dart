@@ -32,21 +32,57 @@ Widget profileDetails() {
                 : controller.viewProfile.data!.age.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
-          dot(controller,controller.viewProfile.data!.age.toString()),
+          controller.viewProfile.data!.age.toString() != ""
+              ? Container(
+                  height: 4,
+                  width: 4,
+                  margin: const EdgeInsets.only(left: 8, right: 8, bottom: 3),
+                  child: Image.asset(
+                    AssetRes.yellowDot,
+                    height: 4,
+                    width: 4,
+                  ),
+                )
+              : const SizedBox(),
+          // dot(controller,controller.viewProfile.data!.age.toString()),
           Text(
-            controller.viewProfile.data!.city == null
+            controller.viewProfile.data!.city == ""
                 ? ""
                 : controller.viewProfile.data!.city.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
-          dot(controller,controller.viewProfile.data!.city.toString()),
+          controller.viewProfile.data!.city.toString() != ""
+              ? Container(
+                  height: 4,
+                  width: 4,
+                  margin: const EdgeInsets.only(left: 8, right: 8, bottom: 3),
+                  child: Image.asset(
+                    AssetRes.yellowDot,
+                    height: 4,
+                    width: 4,
+                  ),
+                )
+              : const SizedBox(),
+          // dot(controller,controller.viewProfile.data!.city.toString()),
           Text(
-            controller.viewProfile.data!.height == null
+            controller.viewProfile.data!.height == ""
                 ? ""
                 : controller.viewProfile.data!.height.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
-          dot(controller,controller.viewProfile.data!.height.toString()),
+          controller.viewProfile.data!.height.toString() != ""
+              ? Container(
+                  height: 4,
+                  width: 4,
+                  margin: const EdgeInsets.only(left: 8, right: 8, bottom: 3),
+                  child: Image.asset(
+                    AssetRes.yellowDot,
+                    height: 4,
+                    width: 4,
+                  ),
+                )
+              : const SizedBox(),
+          // dot(controller,controller.viewProfile.data!.height.toString()),
           Text(
             controller.viewProfile.data!.weight == null
                 ? ""
@@ -75,7 +111,8 @@ Widget profileDetails() {
                 : controller.viewProfile.data!.maritalStatus.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
-          dot(controller, controller.viewProfile.data!.maritalStatus.toString()),
+          dot(controller,
+              controller.viewProfile.data!.maritalStatus.toString()),
           Text(
             controller.viewProfile.data!.noKids == null
                 ? ""
@@ -91,20 +128,52 @@ Widget profileDetails() {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          InkWell(
-              onTap: () async {
-                await launchUrl(Uri.parse(
-                    controller.viewProfile.data!.instagram.toString()));
-                print("insta");
-              },
-              child: mediaIcon(AssetRes.instagram)),
+          InkWell(onTap: () async {
+            await launchUrl(
+                Uri.parse(controller.viewProfile.data!.instagram.toString()));
+            print("insta");
+          },
+              child:  controller.viewProfile.data!.instagram.toString().isEmpty
+                  ? const SizedBox()
+                  :Container(
+                height: 24,
+                width: 24,
+                margin: const EdgeInsets.only(
+                  left: 5,
+                  right: 5,
+                ),
+                child: Image.asset(
+                  AssetRes.instagram,
+                  height: 24,
+                  width: 24,
+                ),
+              ),
+             ),
           InkWell(
               onTap: () async {
                 await launchUrl(
                     Uri.parse(controller.viewProfile.data!.youtube.toString()));
                 print("youtube");
               },
-              child: mediaIcon(AssetRes.youtube)),
+              child:  controller.viewProfile.data!.youtube.toString().isEmpty
+                  ? const SizedBox()
+                  :Container(
+                height: 24,
+                width: 24,
+                margin: const EdgeInsets.only(
+                  left: 5,
+                  right: 5,
+                ),
+                child: Image.asset(
+                  AssetRes.youtube,
+                  height: 24,
+                  width: 24,
+                ),
+              )
+            /* mediaIcon(
+                  controller.viewProfile.data!.youtube.toString() == ""
+                      ? ""
+                      : )*/),
           InkWell(
               onTap: () async {
                 await launchUrl(Uri.parse(
@@ -112,7 +181,22 @@ Widget profileDetails() {
 
                 print("facebook");
               },
-              child: mediaIcon(AssetRes.facebook1)),
+              child: controller.viewProfile.data!.facebook.toString().isEmpty
+                  ? const SizedBox()
+                  :Container(
+                height: 24,
+                width: 24,
+                margin: const EdgeInsets.only(
+                  left: 5,
+                  right: 5,
+                ),
+                child: Image.asset(
+                  AssetRes.facebook1,
+                  height: 24,
+                  width: 24,
+                ),
+              )
+         /*     mediaIcon()*/),
           InkWell(
               onTap: () async {
                 await launchUrl(
@@ -120,24 +204,45 @@ Widget profileDetails() {
 
                 print("twitter");
               },
-              child: mediaIcon(AssetRes.twitter)),
+              child:
+              controller.viewProfile.data!.twitter.toString().isEmpty
+                  ? const SizedBox()
+                  :Container(
+                height: 24,
+                width: 24,
+                margin: const EdgeInsets.only(
+                  left: 5,
+                  right: 5,
+                ),
+                child: Image.asset(
+                  AssetRes.twitter,
+                  height: 24,
+                  width: 24,
+                ),
+              )
+             /* mediaIcon(
+                  controller.viewProfile.data!.twitter.toString() == ""
+                      ? ""
+                      : )*/),
         ],
       ),
     ],
   );
 }
 
-Widget dot(ProfileController controller,String? data) {
-  return  data!= null?Container(
-    height: 4,
-    width: 4,
-    margin: const EdgeInsets.only(left: 8, right: 8, bottom: 3),
-    child: Image.asset(
-      AssetRes.yellowDot,
-      height: 4,
-      width: 4,
-    ),
-  ):SizedBox();
+Widget dot(ProfileController controller, String? data) {
+  return data != null
+      ? Container(
+          height: 4,
+          width: 4,
+          margin: const EdgeInsets.only(left: 8, right: 8, bottom: 3),
+          child: Image.asset(
+            AssetRes.yellowDot,
+            height: 4,
+            width: 4,
+          ),
+        )
+      : const SizedBox();
 }
 
 Widget mediaIcon(String image) {

@@ -37,7 +37,7 @@ class PrivacyScreen extends StatelessWidget {
             ),
             Positioned(
               left: -55,
-              bottom: -60,
+              bottom: -85,
               child: Image.asset(
                 AssetRes.privacy,
                 height: 450,

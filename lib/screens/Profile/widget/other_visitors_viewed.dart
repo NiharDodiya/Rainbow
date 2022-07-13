@@ -14,19 +14,14 @@ Widget otherVisitorsViewed() {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(
-          height: 10,
-        ),
         Text(
-          "Other Visitors Viewed",
+          controller.viewProfile.data!.userView!.length==0?"": "Other Visitors Viewed",
           style: beVietnamProBoldTextStyle(fontSize: 18),
         ),
-        const SizedBox(
-          height: 10,
-        ),
+
         SizedBox(
           height: 130,
-          child: ListView.builder(
+          child: ListView.builder(padding: EdgeInsets.only(top: 5),
             itemCount: controller.viewProfile.data!.userView == null
                 ? 0
                 : controller.viewProfile.data!.userView!.length,
@@ -47,12 +42,12 @@ Widget otherVisitorsViewed() {
                       width: 60,
                       margin: const EdgeInsets.only(
                           right: 10, left: 10, top: 10, bottom: 7),
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
                           image: AssetImage(
-                            controller.image[index],
-                          ),
+                            AssetRes.se_profile,
+                          ),fit: BoxFit.fill
                         ),
                       ),
                     ),
@@ -77,42 +72,3 @@ Widget otherVisitorsViewed() {
   );
 }
 
-Widget visitors(
-    {String? image,
-    String? title,
-    String? userId,
-    ConnectionsProfileController? connectionsProfileController}) {
-  return Column(
-    children: [
-      InkWell(
-        onTap: () {
-          connectionsProfileController!.callApi(userId);
-          // Get.to(() => ConnectionsProfileScreen());
-        },
-        child: Container(
-          height: 60,
-          width: 60,
-          margin:
-              const EdgeInsets.only(right: 10, left: 10, top: 10, bottom: 7),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            image: DecorationImage(
-              image: AssetImage(
-                image ?? AssetRes.selfiePicture,
-              ),
-            ),
-          ),
-        ),
-      ),
-      SizedBox(
-        width: 60,
-        child: Text(
-          title ?? "Amber Davis",
-          maxLines: 2,
-          textAlign: TextAlign.center,
-          style: gilroyRegularTextStyle(fontSize: 16),
-        ),
-      )
-    ],
-  );
-}

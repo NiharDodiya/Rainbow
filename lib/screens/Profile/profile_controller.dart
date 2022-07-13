@@ -58,7 +58,7 @@ class ProfileController extends GetxController {
         editProfileController.ethnicity.text = viewProfile.data!.idEthnicity!;
         editProfileController.haveKids.text = viewProfile.data!.noKids!.toString();
         editProfileController.hobbies.text = viewProfile.data!.hobbiesAndInterest!.toString();
-        editProfileController.aboutMe.text = viewProfile.data!.aboutMe!.toString();
+        // editProfileController.aboutMe.text = viewProfile.data!.aboutMe!.toString();
       // await PrefService.setValue(PrefKeys.registerToken, registerUser.token.toString());
       loader.value = false;
     } catch (e) {

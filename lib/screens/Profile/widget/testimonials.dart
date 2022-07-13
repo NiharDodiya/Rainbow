@@ -9,19 +9,19 @@ Widget testimonials() {
   return Padding(
     padding: const EdgeInsets.only(left: 30, right: 30),
     child: SizedBox(
-      height: 480,
+      height: 435,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(
-            height: 30,
+            height: 10,
           ),
           Text(
-            "Testimonials",
+            Strings.testimonials,
             style: beVietnamProBoldTextStyle(fontSize: 18),
           ),
-          ListView.separated(
+          ListView.separated(padding: const EdgeInsets.only(top: 15),
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return listOfTestimonials();
@@ -88,7 +88,7 @@ Widget listOfTestimonials({
           Container(
             height: 50,
             width: 50,
-            margin: EdgeInsets.only(right: 8),
+            margin: const EdgeInsets.only(right: 8),
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(

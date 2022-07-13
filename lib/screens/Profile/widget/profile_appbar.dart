@@ -23,7 +23,7 @@ Widget profileAppbar(String text, bool show) {
         ),
         Row(
           children: [
-            InkWell(
+        /*    InkWell(
               onTap: () {
                 Get.back();
               },
@@ -36,7 +36,7 @@ Widget profileAppbar(String text, bool show) {
                   height: 15,
                 ),
               ),
-            ),
+            ),*/
             const Spacer(),
             show
                 ? InkWell(
@@ -82,7 +82,7 @@ Widget profileAppbar(String text, bool show) {
                       decoration: const BoxDecoration(
                           shape: BoxShape.circle, color: ColorRes.color_FF6B97),
                       child: const Text(
-                        "2",
+                        "0",
                         style: TextStyle(
                           color: ColorRes.white,
                           fontSize: 8,
