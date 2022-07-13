@@ -287,7 +287,7 @@ class GetStartedScreens extends StatelessWidget {
                           padding: const EdgeInsets.all(12),
                           child: GestureDetector(
                             onTap: () {
-                              Get.to(() => const IdVerificationScreen());
+                              Get.to(() => IdVerificationScreen());
                             },
                             child: Text(
                               Strings.gotIt,

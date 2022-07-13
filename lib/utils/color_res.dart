@@ -71,6 +71,7 @@ class ColorRes {
   static const color_FFAA64 =Color(0xFFFFAA64);
    static const color_C20606 =Color(0XFFC20606);
   static const color_FFA620 =Color(0xFFFFA620);
+  static const color_FBF9F9 =Color(0xFFFBF9F9);
   // static const color_EDB933 =Color(0xFFEDB933);
   //   static const color_FFC9C9 =Color(0XFFFFC9C9);
   // static const color_F28D8D =Color(0xFFF28D8D);

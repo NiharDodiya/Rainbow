@@ -46,7 +46,7 @@ class LoginApi {
             await PrefService.setValue(PrefKeys.registerToken, jsonDecode(response.body)["token"].toString());
             if(jsonDecode(response.body)["data"]["id_status"]=="pending")
             {
-              Get.to(()=>const IdVerificationScreen());
+              Get.to(()=>IdVerificationScreen());
             }else if(jsonDecode(response.body)["data"]["selfi_status"]=="pending"){
               Get.to(()=>SelfieVerificationScreen());
             }
