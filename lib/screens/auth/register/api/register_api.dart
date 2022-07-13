@@ -58,6 +58,7 @@ class RegisterApi {
         {
           Get.to(() => const GetStartedScreens());
           await PrefService.setValue(PrefKeys.userId,jsonDecode(response.body)["data"]["id"]);
+          await PrefService.setValue(PrefKeys.loginRole,jsonDecode(response.body)["data"]["role"]);
           flutterToast(jsonDecode(response.body)["message"]);
         }
         return registerUserFromJson(response.body);

@@ -52,7 +52,8 @@ class LoginApi {
             }
           }else {
              await PrefService.setValue(PrefKeys.userId,jsonDecode(response.body)["data"]["id"]);
-            Get.offAll(() => jsonDecode(response.body)["data"]["role"]=="end_user" ?Dashboard():AdvertisementDashBord());
+             await PrefService.setValue(PrefKeys.loginRole,jsonDecode(response.body)["data"]["role"]);
+            Get.offAll(() => jsonDecode(response.body)["data"]["role"]=="end_user" ?const Dashboard():const AdvertisementDashBord());
           }
           //Get.offAll(() => const Dashboard());
         }

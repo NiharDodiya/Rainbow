@@ -212,16 +212,14 @@ class AccountInformationScreen extends StatelessWidget {
 
   Widget countryCodePicker(BuildContext context) {
     return InkWell(
-      onTap: () {
-        phoneNumberController.onCountryTap(context);
-      },
+      onTap: () => controller.onCountryTap(context),
       child: Row(
         children: [
-          Text(phoneNumberController.countryModel.flagEmoji),
+          Text(controller.countryModel.flagEmoji),
           const SizedBox(width: 9),
           Text(
-            "+${phoneNumberController.countryModel.phoneCode}",
-            style: gilroyMediumTextStyle(fontSize: 14, color: Colors.black),
+            "+${controller.countryModel.phoneCode}",
+            style: textStyleFont14Alert,
           ),
           SizedBox(width: Get.width * 0.04533),
           Image.asset(AssetRes.dropdown, height: 6),
@@ -251,7 +249,7 @@ class AccountInformationScreen extends StatelessWidget {
           hintText: Strings.houseNumberHint,
         ),
         AppTextFiled(
-          controller: controller.strintNumberController,
+          controller: controller.streetNumberController,
           title: Strings.streetName,
           hintText: Strings.street,
         ),
@@ -300,7 +298,7 @@ class AccountInformationScreen extends StatelessWidget {
                   onTap: controller.onCountryCoCityChange,
                 )),
         AppTextFiled(
-          controller: controller.comanyName,
+          controller: controller.companyName,
           title: Strings.companyName,
           hintText: Strings.myCompany,
         ),
