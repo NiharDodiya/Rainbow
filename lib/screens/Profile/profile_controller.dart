@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_api.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/editProfile_contoller.dart';
@@ -47,8 +46,9 @@ class ProfileController extends GetxController {
   Future<void> viewProfileDetails() async {
     try {
       loader.value = true;
-      await ViewProfileApi.postRegister().then((value) => viewProfile = value).then((value) {
-        EditProfileController editProfileController =Get.put(EditProfileController());
+      viewProfile = await ViewProfileApi.postRegister();
+      EditProfileController editProfileController =
+          Get.put(EditProfileController());
         editProfileController.fullName.text = viewProfile.data!.fullName!;
         // editProfileController.status.text = viewProfile.data!.status!;
         editProfileController.age.text = viewProfile.data!.age.toString();
@@ -59,7 +59,6 @@ class ProfileController extends GetxController {
         editProfileController.haveKids.text = viewProfile.data!.noKids!.toString();
         editProfileController.hobbies.text = viewProfile.data!.hobbiesAndInterest!.toString();
         editProfileController.aboutMe.text = viewProfile.data!.aboutMe!.toString();
-      });
       // await PrefService.setValue(PrefKeys.registerToken, registerUser.token.toString());
       loader.value = false;
     } catch (e) {

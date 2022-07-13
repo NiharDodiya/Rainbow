@@ -5,7 +5,6 @@ class EndPoints {
   ///---------------------------------------------- Base url ----------------------------------------------
   static const baseUrl = 'https://rainbow-api-staging.herokuapp.com/api';
 
-
   ///---------------------------------------------- Keys ----------------------------------------------
   static const login = "${baseUrl}/user/login";
   static const register = "${baseUrl}/user/register";
@@ -28,8 +27,8 @@ class EndPoints {
   static const blockList = "${baseUrl}/user/block/list";
   static const sendFriendRequest = "${baseUrl}/user/request/send";
   static const acceptFriendRequest = "${baseUrl}/user/request/accept";
+  static const adEditProfile = "${baseUrl}/advirtisers/profile/update";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";
-
 }

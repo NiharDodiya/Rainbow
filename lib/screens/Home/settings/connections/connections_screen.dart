@@ -104,10 +104,10 @@ class ConnectionsScreen extends StatelessWidget {
           ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: profileController.viewProfile.data!.userView.length,
+            itemCount: profileController.viewProfile.data!.userView!.length,
             itemBuilder: (context, index) {
-              return infoRow(image: profileController.viewProfile.data!.userView[index]["profile_image"],
-                title:profileController.viewProfile.data!.userView[index]["full_name"] ,
+              return infoRow(image: profileController.viewProfile.data!.userView ![index].profileImage,
+                title:profileController.viewProfile.data!.userView![index].fullName ,
                 viewProfile: control.onTapViewProfile,
                 index: index,
               );

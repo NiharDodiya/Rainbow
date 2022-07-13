@@ -12,7 +12,7 @@ class ConnectionsController extends GetxController {
     ProfileController profileController =Get.put(ProfileController());
     ConnectionsProfileController controller =
         Get.put(ConnectionsProfileController());
-    controller.callApi(profileController.viewProfile.data!.userView[index]["id"]
+    controller.callApi(profileController.viewProfile.data!.userView![index].id
         .toString());
 
     // controller.init();

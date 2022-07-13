@@ -21,7 +21,7 @@ class AcceptFriendRequestApi {
       print(param);
       http.Response? response = await HttpService.postApi(url: url,   body:jsonEncode(param),
           header:  {"Content-Type": "application/json","x-access-token":accesToken});
-      if (response != null && response.statusCode == 200) {
+      if(response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if(status==false)
         {

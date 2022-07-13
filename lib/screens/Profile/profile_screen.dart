@@ -48,7 +48,7 @@ class ProfileScreen extends StatelessWidget {
                       profileAppbar(Strings.profile, true),
 
                       profileImagesLoad(controller),
-                      profileDetails(controller),
+                      profileDetails(),
                       aboutProfiler(
                           Strings.aboutMe,
                           /* controller.viewProfile.data == null

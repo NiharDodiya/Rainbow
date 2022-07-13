@@ -89,28 +89,28 @@ class IdVerificationController extends GetxController {
 
 
   Future<void> uploadImageApi() async {
-    loader.value = true;
+    // loader.value = true;
     try {
       await UploadImageApi.postRegister(imageFront.toString()
       ).then((value) => uploadImage1 = value!,
       );
-      loader.value = false;
+      // loader.value = false;
     } catch (e) {
 
-      loader.value = false;
+      // loader.value = false;
       debugPrint(e.toString());
     }
   }
 
   Future<void> uploadImageBackApi() async {
-    loader.value = true;
+    // loader.value = true;
     try {
       await UploadImageApi.postRegister(imageBack.toString()
       ).then((value) => uploadImage2 = value!,
       );
-      loader.value = false;
+      // loader.value = false;
     } catch (e) {
-      loader.value = false;
+      // loader.value = false;
       debugPrint(e.toString());
     }
   }
