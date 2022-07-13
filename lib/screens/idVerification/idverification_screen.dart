@@ -141,7 +141,7 @@ class IdVerificationScreen extends StatelessWidget {
                                                   ),
                                                   Expanded(
                                                     child: Text(
-                                                      ""   ,
+                                                    Strings.permanentResident,
                                                       style: gilroyMediumTextStyle(
                                                           fontSize: 16,
                                                           color: ColorRes.black.withOpacity(0.3)),
