@@ -64,17 +64,17 @@ class Data {
   String? status;
 
   factory Data.fromJson(Map<String?, dynamic> json) => Data(
-    fullName: json["full_name"],
-    email: json["email"],
-    address1: json["address1"],
-    address2: json["address2"],
-    phoneNumber: json["phone_number"],
-    maritalStatus: json["marital_status"],
-    idEthnicity: json["id_ethnicity"],
+    fullName: json["full_name"]?? "",
+    email: json["email"]?? "",
+    address1: json["address1"]?? "",
+    address2: json["address2"]?? "",
+    phoneNumber: json["phone_number"] ?? "",
+    maritalStatus: json["marital_status"]?? "",
+    idEthnicity: json["id_ethnicity"]?? "",
     birthDate: DateTime.parse(json["birth_date"]),
-    noKids: json["no_kids"],
+    noKids: json["no_kids"]?? "",
     role: json["role"],
-    status: json["status"],
+    status: json["status"]?? "",
   );
 
   Map<String?, dynamic> toJson() => {
