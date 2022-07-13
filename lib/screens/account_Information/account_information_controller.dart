@@ -11,9 +11,11 @@ import '../../common/popup.dart';
 import '../../utils/strings.dart';
 
 class AccountInformationController extends GetxController {
+
   RxBool loader = false.obs;
   bool companySelected = false;
   File? imagePath;
+  int? imageID;
   String? selectCountry;
   String? selectCompanyCountry;
   String? userProfession;
@@ -37,9 +39,22 @@ class AccountInformationController extends GetxController {
   List<String> dropdownList = ["Doctor", "User", "Admin"];
   AdInformationModel adViewProfile = AdInformationModel();
   UploadImage uploadImage = UploadImage();
-  Country countryModel = CountryParser.parseCountryCode("+91");
+  Country countryModel = Country.from(json: {
+    "e164_cc": "1",
+    "iso2_cc": "CA",
+    "e164_sc": 0,
+    "geographic": true,
+    "level": 2,
+    "name": "Canada",
+    "example": "2042345678",
+    "display_name": "Canada (CA) [+1]",
+    "full_example_with_plus_sign": "+12042345678",
+    "display_name_no_e164_cc": "Canada (CA)",
+    "e164_key": "1-CA-0"
+  });
 
-  Future<void> init() async {
+
+  Future<void> onInit() async {
     loader.value = true;
     await AdInformationAPI.adProfileView().then((value) {
       adViewProfile = value;
@@ -65,7 +80,7 @@ class AccountInformationController extends GetxController {
       companyPostalCodeController.text =
           adViewProfile.data!.compnayPostalCode!.toString();
       website.text = adViewProfile.data!.compnayWebsite!;
-      countryModel = CountryParser.parseCountryCode("+91");
+      // countryModel = CountryParser.parseCountryCode("+91");
       loader.value = false;
       update(['doctor']);
       update(['update']);
@@ -114,12 +129,18 @@ class AccountInformationController extends GetxController {
   }
 
 //account save
-  accountSave() {
-    accountValidation();
+  accountSave() async {
+    if(accountValidation()){
+      loader.value = true;
+      await uploadImageApi();
+      await onTapSave();
+    }
   }
 
   compnySave() {
-    companyValidation();
+    if(companyValidation()){
+      onTapSave();
+    }
   }
 
 //account validation
@@ -245,32 +266,42 @@ class AccountInformationController extends GetxController {
     }
   }
 
+  //
+  // userProfession = adViewProfile.data!.profession!;
+  // companyName.text = adViewProfile.data!.companyName!;
+  // companyNumber.text = adViewProfile.data!.companyPhoneNumber!;
+  // companyStreetNumberController.text =
+  // adViewProfile.data!.compnayStreetName!;
+  // companyCityController.text = adViewProfile.data!.compnayCity!;
+  // companyCountryController.text = adViewProfile.data!.companyCountry!;
+  // selectCompanyCountry = adViewProfile.data!.companyCountry!;
+  // companyPostalCodeController.text =
+  // adViewProfile.data!.compnayPostalCode!.toString();
+  // website.text = adViewProfile.data!.compnayWebsite!;
 
   Future<void> onTapSave() async {
     loader.value = true;
-    uploadImageApi();
-    loader.value = true;
     Map<String, Map<String, dynamic>> param1 = {
       "advirtisersData": {
-        "id_item_profile": uploadImage.data!.id,
+        "id_item_profile": "5",
         "full_name": fullNameController.text,
         "email": emailController.text,
         "house_number":houseNumberController.text,
         "street_name": streetNumberController.text,
         "phone_number": phoneNumberController.text,
         "city": cityController.text,
-        "id_country": '',
+        "id_country": '10',
         "postal_code": postalCodeController.text,
       },
       "companyData": {
-        "profession": "Doctor",
-        "company_name": "Google",
-        "company_phone_number": "+91 364098472532",
-        "street_name": "vip Road",
-        "city": "Delhi",
-        "id_country": 1,
-        "postal_code": 735522,
-        "website": "google.com"
+        "profession": profession.text,
+        "company_name": companyName.text,
+        "company_phone_number": companyNumber.text,
+        "street_name": companyStreetNumberController.text,
+        "city": companyCityController.text,
+        "id_country": "10",
+        "postal_code": companyPostalCodeController.text,
+        "website": website.text,
       }
     };
 

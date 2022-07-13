@@ -17,8 +17,7 @@ import '../auth/phonenumber/phonenumber_Controller.dart';
 
 class AccountInformationScreen extends StatelessWidget {
   AccountInformationScreen({Key? key}) : super(key: key);
-  AccountInformationController controller = Get.put(AccountInformationController());
-  PhoneNumberController phoneNumberController = Get.put(PhoneNumberController());
+  AccountInformationController controller = Get.find<AccountInformationController>();
 
   @override
   Widget build(BuildContext context) {

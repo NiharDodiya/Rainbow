@@ -11,11 +11,13 @@ import 'package:rainbow/screens/advertisement/ad_support/ad_support_controller.d
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
+import 'package:rainbow/service/pref_services.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 
 class AdvertisementController extends GetxController {
   int currentTab = 0;
   final AdHomeController homeController = Get.put(AdHomeController());
-  final AccountInformationController accountInformationController = Get.put(AccountInformationController());
+
   final AdPaymenetController adPaymenetController = Get.put(AdPaymenetController());
   final AdNotificationsController notificationsController = Get.put(AdNotificationsController());
   final AdSupportController supportController = Get.put(AdSupportController());
@@ -74,12 +76,15 @@ class AdvertisementController extends GetxController {
 
   void fun(bool flage) {}
 
-  void inTapAccountInfo(){
-    accountInformationController.init();
-    Get.to(()=>AccountInformationScreen());
+  Future<void> inTapAccountInfo() async {
+    final AccountInformationController accountInformationController = Get.put(AccountInformationController());
+    await accountInformationController.onInit().then((value) {Get.to(()=>AccountInformationScreen());});
+
   }
 
-  void onTapLogOut() {
+  Future<void> onTapLogOut() async {
+    await PrefService.clear();
+    PrefService.setValue(PrefKeys.skipBoardingScreen, true);
     Get.offAll(() => AuthDashboard());
   }
 }

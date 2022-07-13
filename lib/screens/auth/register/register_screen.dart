@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rainbow/common/Widget/app_dropdown.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
@@ -60,35 +59,6 @@ class RegisterScreen extends StatelessWidget {
                                 registerButtons(controller),
                               ],
                             ),
-                       /*     GetBuilder<RegisterController>(id: 'register_screen' ,builder: (controller) {
-                              return     !controller.martialStatusDropdown
-                                  ? const SizedBox()
-                                  : Positioned(
-                                top: Get.height * 1.358,width: Get.width * 0.8,
-                                child: AppDropdown(
-                                  paramList: controller.martialStatusList,
-                                  onTap: controller.onStatusChange,
-                                ),
-                              );
-                            },),*/
-                        /*    !controller.ethnicityDropdown
-                                ? const SizedBox()
-                                : Positioned(
-                              top: Get.height * 1.5,width: Get.width * 0.8,
-                              child: AppDropDownEthnicity(
-                                paramList: controller.ethnicityList,
-                                onTap: controller.onEthnicityChange,
-                              ),
-                            ),
-                            !controller.kidsDropdown
-                                ? const SizedBox()
-                                : Positioned(
-                              top: Get.height * 1.79,width: Get.width * 0.8,
-                              child: AppDropDownNoOfKids(
-                                paramList: controller.noOfKids,
-                                onTap: controller.onKidsChange,
-                              ),
-                            ),*/
                           ],
                         );
                       },
