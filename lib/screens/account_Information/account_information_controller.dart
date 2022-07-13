@@ -15,6 +15,8 @@ class AccountInformationController extends GetxController {
   bool companySelected = false;
   File? imagePath;
   String? selectCountry;
+  String? selectCompanyCountry;
+  String? userProfession;
   TextEditingController fullNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController houseNumberController = TextEditingController();
@@ -35,19 +37,7 @@ class AccountInformationController extends GetxController {
   List<String> dropdownList = ["Doctor", "User", "Admin"];
   AdInformationModel adViewProfile = AdInformationModel();
   UploadImage uploadImage = UploadImage();
-  Country countryModel = Country.from(json: {
-    "e164_cc": "1",
-    "iso2_cc": "CA",
-    "e164_sc": 0,
-    "geographic": true,
-    "level": 2,
-    "name": "Canada",
-    "example": "2042345678",
-    "display_name": "Canada (CA) [+1]",
-    "full_example_with_plus_sign": "+12042345678",
-    "display_name_no_e164_cc": "Canada (CA)",
-    "e164_key": "1-CA-0"
-  });
+  Country countryModel = CountryParser.parseCountryCode("+91");
 
   Future<void> init() async {
     loader.value = true;
@@ -60,31 +50,44 @@ class AccountInformationController extends GetxController {
       streetNumberController.text = adViewProfile.data!.streetName!;
       cityController.text = adViewProfile.data!.city!;
       countryController.text = adViewProfile.data!.country!;
+      selectCountry = adViewProfile.data!.country!;
       postalCodeController.text = adViewProfile.data!.postalCode!.toString();
       phoneNumberController.text = adViewProfile.data!.phoneNumber!.split(' ').last;
-      postalCodeController.text = adViewProfile.data!.postalCode! as String;
-      phoneNumberController.text = adViewProfile.data!.phoneNumber!;
-      selectCountry = adViewProfile.data!.profession!;
+
+      userProfession = adViewProfile.data!.profession!;
       companyName.text = adViewProfile.data!.companyName!;
       companyNumber.text = adViewProfile.data!.companyPhoneNumber!;
       companyStreetNumberController.text =
           adViewProfile.data!.compnayStreetName!;
       companyCityController.text = adViewProfile.data!.compnayCity!;
       companyCountryController.text = adViewProfile.data!.companyCountry!;
+      selectCompanyCountry = adViewProfile.data!.companyCountry!;
       companyPostalCodeController.text =
           adViewProfile.data!.compnayPostalCode!.toString();
       website.text = adViewProfile.data!.compnayWebsite!;
+      countryModel = CountryParser.parseCountryCode("+91");
       loader.value = false;
-      countryModel = CountryParser.parseCountryCode(adViewProfile.data!.phoneNumber!.split(' ').first);
       update(['doctor']);
       update(['update']);
+      update(['phone_filed']);
       update(['Getpic']);
-
     });
   }
 
-  void onCountryCoCityChange(String value) {
+  void onCountryChange(String value) {
     selectCountry = value;
+    countryController.text = value;
+    update(['doctor']);
+  }
+
+  void onCompanyCountryChange(String value) {
+    selectCompanyCountry = value;
+    companyCountryController.text = value;
+    update(['doctor']);
+  }
+
+  void onCountryProfession(String value) {
+    userProfession = value;
     profession.text = value;
     update(['doctor']);
   }
@@ -245,8 +248,8 @@ class AccountInformationController extends GetxController {
 
   Future<void> onTapSave() async {
     loader.value = true;
-
-
+    uploadImageApi();
+    loader.value = true;
     Map<String, Map<String, dynamic>> param1 = {
       "advirtisersData": {
         "id_item_profile": uploadImage.data!.id,
@@ -256,8 +259,8 @@ class AccountInformationController extends GetxController {
         "street_name": streetNumberController.text,
         "phone_number": phoneNumberController.text,
         "city": cityController.text,
-        "id_country": 1,
-        "postal_code": 9376432
+        "id_country": '',
+        "postal_code": postalCodeController.text,
       },
       "companyData": {
         "profession": "Doctor",
