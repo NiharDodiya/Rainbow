@@ -439,7 +439,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 Container(
                   height: Get.height * 0.28,
                   width: Get.width * 0.85,
-                  padding: EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: ColorRes.white,
                     borderRadius: BorderRadius.circular(20),

@@ -355,4 +355,20 @@ static const cancelAppoveDes ="Are you sure you want to cancel this advertisemen
 static const deletApprove ="Delete Advertisement";
 
 static const deletApproveDes ="Are you sure you want to delete this advertisement?";
+
+///____________________________________Support_______________________________________
+static const attachImagesOrproof ="Attach images or proof";
+static const sendMessage ="Send Message";
+static const writesomethinghere ="Write something here...";
+static const yourMessage ="Your Message";
+static const supportdeatailDEs ="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium sem sit amet venenatis commodo. Nullam aliquam lacus nisl, varius luctus mauris hendrerit ut. Etiam eros lectus, commodo nec nisl in, aliquet congue quam. Morbi condimentum lectus id urna gravida, at facilisis lectus consectetur. Nam viverra augue est, ut cursus mi bibendum sit amet. Duis hendrerit hendrerit molestie. Ut iaculis tellus risus, id facilisis purus finibus vel. In hac habitasse platea dictumst. Ut efficitur lacus eu risus aliquam mollis. Nullam gravida sit amet lorem vitae maximus. Nunc quis odio nec sapien ullamcorper eleifend a eget justo. In hac habitasse platea dictumst. Donec quis magna id libero consequat egestas eget ac felis.";
+static const supportDate ="March 22, 2021 | 9:00am";
+static const supportdeatailDEs02 ="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium sem sit amet venenatis commodo. Nullam aliquam lacus nisl, varius luctus mauris hendrerit ut. Etiam eros lectus, commodo nec nisl in, aliquet congue quam. Morbi condimentum lectus id urna gravida, at facilisis lectus consectetur. Nam viverra augue est, ut cursus mi bibendum sit amet. Duis hendrerit hendrerit molestie. Ut iaculis tellus risus, id facilisis purus finibus vel. In hac habitasse platea dictumst. Ut efficitur lacus eu risus aliquam mollis. Nullam gravida sit amet lorem vitae maximus.";
+static const supportCode ="1235CA2B2";
+static const supporterror01 ="Message is required";
+static const subject ="Subject";
+static const supportError02 ="Subject is requred";
+
+
+
 }
