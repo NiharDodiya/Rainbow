@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/model/request_user_model.dart';
+import 'package:rainbow/model/suggestion_model.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -9,9 +12,10 @@ import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class ConnectionsScreen extends StatelessWidget {
-    ConnectionsScreen({Key? key}) : super(key: key);
-    ConnectionsController controller = Get.put(ConnectionsController());
-    ProfileController profileController = Get.put(ProfileController());
+  ConnectionsScreen({Key? key}) : super(key: key);
+  ConnectionsController controller = Get.put(ConnectionsController());
+  ProfileController profileController = Get.put(ProfileController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,13 +36,24 @@ class ConnectionsScreen extends StatelessWidget {
             children: [
               appBar(),
               Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      listOfRequest(),
-                      listOfSuggestions(),
-                    ],
-                  ),
+                child: Stack(
+                  children: [
+                    SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          listOfRequest(),
+                          listOfSuggestions(),
+                        ],
+                      ),
+                    ),
+                    Obx(() {
+                      if (controller.loader.isTrue) {
+                        return const FullScreenLoader();
+                      } else {
+                        return const SizedBox();
+                      }
+                    }),
+                  ],
                 ),
               ),
             ],
@@ -104,12 +119,15 @@ class ConnectionsScreen extends StatelessWidget {
           ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: profileController.viewProfile.data!.userView!.length,
+            itemCount: controller.requestUsers.length,
             itemBuilder: (context, index) {
-              return infoRow(image: profileController.viewProfile.data!.userView ![index].profileImage,
-                title:profileController.viewProfile.data!.userView![index].fullName ,
-                viewProfile: control.onTapViewProfile,
-                index: index,
+              RequestUser user = controller.requestUsers[index];
+              return infoRow(
+                name: user.fullName,
+                image: user.profileImage,
+                label: user.email,
+                onPlusTap: () => control.onTapViewProfile(index),
+                onDeleteTap: () => controller.onDeleteBtnTap(index),
               );
             },
           )
@@ -137,9 +155,13 @@ class ConnectionsScreen extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: controller.suggestionConnection.length,
             itemBuilder: (context, index) {
+              SuggestionUser user = controller.suggestionConnection[index];
               return infoRow(
-                viewProfile: control.onTapViewProfile,
-                index: index,
+                name: user.fullName,
+                image: user.profileImage,
+                label: user.email,
+                onPlusTap: () => control.onTapViewProfile(index),
+                onDeleteTap: () => controller.onDeleteBtnTap(index),
               );
             },
           )
@@ -149,11 +171,11 @@ class ConnectionsScreen extends StatelessWidget {
   }
 
   Widget infoRow({
+    String? name,
+    String? label,
     String? image,
-    String? title,
-    String? subTitle,
-    Function(int)? viewProfile,
-    int? index,
+    VoidCallback? onPlusTap,
+    VoidCallback? onDeleteTap,
   }) {
     return Padding(
       padding: const EdgeInsets.only(top: 5, bottom: 10),
@@ -161,52 +183,44 @@ class ConnectionsScreen extends StatelessWidget {
         children: [
           Row(
             children: [
-              SizedBox(
-                width: Get.width * 0.07,
-              ),
+              SizedBox(width: Get.width * 0.07),
               SizedBox(
                 height: 50,
-                width: 50,child:  CachedNetworkImage(
-                imageUrl:  image.toString(),
-                imageBuilder: (context, imageProvider) => Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,),
+                width: 50,
+                child: CachedNetworkImage(
+                  imageUrl: image.toString(),
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
+                  // placeholder: (context, url) => const Center(child:  CircularProgressIndicator(),),
+                  errorWidget: (context, url, error) =>
+                      Image.asset(AssetRes.se_profile),
                 ),
-                // placeholder: (context, url) => const Center(child:  CircularProgressIndicator(),),
-                errorWidget: (context, url, error) =>
-                    Image.asset(AssetRes.se_profile),
               ),
-              ),
-              SizedBox(
-                width: Get.width * 0.04,
-              ),
+              SizedBox(width: Get.width * 0.04),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    title ?? "Amber J Santiago",
+                    name.toString(),
                     style: montserratRegularTextStyle(fontSize: 16),
                   ),
-                  const SizedBox(
-                    height: 2,
-                  ),
+                  const SizedBox(height: 2),
                   Text(
-                    subTitle ?? "SURROGATE MOM",
+                    label.toString(),
                     style: montserratRegularTextStyle(fontSize: 12),
                   ),
                 ],
               ),
-              SizedBox(
-                width: Get.width * 0.07,
-              ),
+              SizedBox(width: Get.width * 0.07),
               InkWell(
-                onTap:(){
-                   viewProfile!(index!);
-                },
+                onTap: onPlusTap,
                 child: const SizedBox(
                   height: 40,
                   width: 40,
@@ -216,13 +230,15 @@ class ConnectionsScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                width: Get.width * 0.04,
-              ),
-              const SizedBox(
+              SizedBox(width: Get.width * 0.04),
+              InkWell(
+                onTap: onDeleteTap,
+                child: const SizedBox(
                   height: 40,
                   width: 40,
-                  child: Image(image: AssetImage(AssetRes.delete))),
+                  child: Image(image: AssetImage(AssetRes.delete)),
+                ),
+              ),
             ],
           )
         ],

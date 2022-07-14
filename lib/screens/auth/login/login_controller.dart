@@ -38,7 +38,7 @@ class LoginController extends GetxController {
     // Get.off(() => AdviserRegisterScreen(), );
   }
 
-  void onRegisterTap() {
+  void onLoginTap() {
     if (validation()) {
       registerDetails();
     }
@@ -57,9 +57,6 @@ class LoginController extends GetxController {
       return false;
     } else if (passwordController.text.isEmpty) {
       errorToast(Strings.passwordError);
-      return false;
-    } else if (validatePassword(passwordController.text) == false) {
-      errorToast(Strings.confirmShortPassword);
       return false;
     }
     return true;

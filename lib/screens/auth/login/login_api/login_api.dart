@@ -1,6 +1,8 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
 import 'package:rainbow/screens/auth/login/login_api/advertisers_login_json.dart';
@@ -9,9 +11,9 @@ import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/idVerification/idverification_screen.dart';
 import 'package:rainbow/screens/selfie_verification/selfie_verification_screen.dart';
 import 'package:rainbow/service/http_services.dart';
+import 'package:rainbow/service/notification_service.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
-import 'package:http/http.dart' as http;
 import 'package:rainbow/utils/pref_keys.dart';
 
 class LoginApi {
@@ -40,9 +42,8 @@ class LoginApi {
           flutterToast(jsonDecode(response.body)["message"]);
           await PrefService.setValue(PrefKeys.registerToken,
               jsonDecode(response.body)["token"].toString());
+          await updateDeviceToken();
           if (jsonDecode(response.body)["data"]["user_status"] == "pending") {
-            await PrefService.setValue(PrefKeys.registerToken,
-                jsonDecode(response.body)["token"].toString());
             if (jsonDecode(response.body)["data"]["id_status"] == "pending") {
               Get.to(() => IdVerificationScreen());
             } else if (jsonDecode(response.body)["data"]["selfi_status"] ==
@@ -73,6 +74,31 @@ class LoginApi {
       print(e.toString());
 
       return loginModelFromJson('');
+    }
+  }
+
+  static Future<bool> updateDeviceToken() async {
+    try {
+      String? token = await NotificationService.getToken();
+      Map<String, dynamic> body = {'device_token': token};
+      http.Response? response = await HttpService.postApi(
+        url: EndPoints.deviceToken,
+        body: jsonEncode(body),
+      );
+      if (response != null && response.statusCode == 200) {
+        Map<String, dynamic> data = jsonDecode(response.body);
+        if (data['status'] == true) {
+          flutterToast(data['message']);
+          return true;
+        } else {
+          flutterToast(data['message']);
+        }
+      }
+      return false;
+    } catch (e) {
+      errorToast("Error", title: e.toString());
+      debugPrint(e.toString());
+      return false;
     }
   }
 }

@@ -30,6 +30,9 @@ class EndPoints {
   static const adEditProfile = "${baseUrl}/advirtisers/profile/update";
   static const listOfFriendRequest = "${baseUrl}/user/request/list";
   static const cancelFriendRequest = "${baseUrl}/user/request/reject";
+  static const deviceToken = "${baseUrl}/user/device/update";
+  static const suggestionList = "${baseUrl}/user/suggestion/list";
+  static const requestList = "${baseUrl}/user/request/list";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

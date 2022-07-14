@@ -11,6 +11,8 @@ import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 import 'package:story_view/story_view.dart';
 
+import 'settings/connections/connections_controller.dart';
+
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
   HomeController controller = Get.put(HomeController());
@@ -269,6 +271,8 @@ class HomeScreen extends StatelessWidget {
             alignment: Alignment.bottomRight,
             child: InkWell(
               onTap: () {
+                ConnectionsController connectionController = Get.put(ConnectionsController());
+                connectionController.init();
                 Get.to(() => ConnectionsScreen());
               },
               child: Padding(

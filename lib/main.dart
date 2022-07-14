@@ -26,7 +26,7 @@ Future<void> main() async {
   NotificationService.init();
   await FirebaseMessaging.instance.getToken().then((value) {
     if (kDebugMode) {
-      print(value);
+      print("FCM Token => $value");
     }
   });
   await PrefService.init();

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/Home/settings/privacy/privacy_screen.dart';
@@ -222,6 +223,8 @@ class SettingsScreen extends StatelessWidget {
           //Connections
           InkWell(
             onTap: () {
+              ConnectionsController connectionController = Get.put(ConnectionsController());
+              connectionController.init();
               Get.to(() => ConnectionsScreen());
             },
             child: Padding(
