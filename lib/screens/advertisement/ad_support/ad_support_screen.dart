@@ -16,48 +16,52 @@ class AdSupportScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          width: Get.width,
-          height: Get.height,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                ColorRes.color_50369C,
-                ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
-                ColorRes.color_D18EEE,
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+    return Container(
+      width: Get.width,
+      height: Get.height,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            ColorRes.color_50369C,
+            ColorRes.color_50369C,
+            ColorRes.color_D18EEE,
+            ColorRes.color_D18EEE,
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      ),
+      child: Column(
+        children: [
+          SizedBox(height: Get.height * 0.035),
+          appBar(),
+          Expanded(
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  supports(),
+                  SizedBox(
+                    height: Get.height * 0.07,
+                  ),
+                  SubmitButton(
+                    onTap: () {
+                      Get.to(() => const SupportcreateScreen());
+                    },
+                    child: Text(
+                      Strings.sendNewMessage,
+                      style: gilroyBoldTextStyle(
+                          color: Colors.black, fontSize: 16),
+                    ),
+                  ),
+                  SizedBox(
+                    height: Get.height * 0.1,
+                  ),
+                ],
+              ),
             ),
           ),
-          child: Column(
-            children: [
-              SizedBox(
-                height: Get.height * 0.035,
-              ),
-              appBar(),
-              supports(),
-              SizedBox(
-                height: Get.height * 0.07,
-              ),
-              const Spacer(),
-              SubmitButton(onTap: (){
-                Get.to(()=> SupportcreateScreen());
-              },
-                child: Text(
-                  Strings.sendNewMessage,
-                  style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
-                ),
-              ),
-              SizedBox(
-                height: Get.height * 0.1,
-              ),
-            ],
-          ),
-        ),
+        ],
       ),
     );
   }
@@ -67,14 +71,10 @@ class AdSupportScreen extends StatelessWidget {
       width: Get.width,
       child: Column(
         children: [
-          SizedBox(
-            height: Get.height * 0.03,
-          ),
+          SizedBox(height: Get.height * 0.03),
           Row(
             children: [
-              SizedBox(
-                width: Get.width * 0.05,
-              ),
+              SizedBox(width: Get.width * 0.05),
               GestureDetector(
                 onTap: () {
                   Get.back();
@@ -86,9 +86,7 @@ class AdSupportScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              SizedBox(
-                width: Get.width * 0.32,
-              ),
+              SizedBox(width: Get.width * 0.32),
               GestureDetector(
                   onTap: () {
                     Get.back();
@@ -97,14 +95,10 @@ class AdSupportScreen extends StatelessWidget {
                     Strings.support,
                     style: gilroyBoldTextStyle(),
                   )),
-              SizedBox(
-                width: Get.width * 0.05,
-              ),
+              SizedBox(width: Get.width * 0.05),
             ],
           ),
-          SizedBox(
-            height: Get.height * 0.04,
-          ),
+          SizedBox(height: Get.height * 0.04),
         ],
       ),
     );
@@ -225,6 +219,4 @@ class AdSupportScreen extends StatelessWidget {
       ],
     );
   }
-
-  
 }

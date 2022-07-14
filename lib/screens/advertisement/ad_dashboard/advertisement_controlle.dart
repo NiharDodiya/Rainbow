@@ -78,7 +78,8 @@ class AdvertisementController extends GetxController {
 
   Future<void> inTapAccountInfo() async {
     final AccountInformationController accountInformationController = Get.put(AccountInformationController());
-    await accountInformationController.onInit().then((value) {Get.to(()=>AccountInformationScreen());});
+    accountInformationController.onGetData();
+    Get.to(()=>AccountInformationScreen());
 
   }
 
