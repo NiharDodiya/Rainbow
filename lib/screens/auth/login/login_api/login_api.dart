@@ -65,6 +65,7 @@ class LoginApi {
         if (jsonDecode(response.body)["data"]["role"] == "end_user") {
           return loginModelFromJson(response.body);
         } else {
+          await PrefService.setValue(PrefKeys.advertiserProfileImage,jsonDecode(response.body)["data"]["profile_image"]);
           return advertisersLoginModelFromJson(response.body);
         }
       } else if (response.statusCode == 500) {

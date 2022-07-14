@@ -67,6 +67,8 @@ class ProfileData {
     this.socialMedia,
     this.hobbiesInterest,
     this.testimonials,
+    this.isFriends,
+    this.isBlock,
     this.userView,
   });
 
@@ -103,6 +105,8 @@ class ProfileData {
   bool? socialMedia;
   bool? hobbiesInterest;
   bool? testimonials;
+  String? isFriends;
+  bool? isBlock;
   List<dynamic>? userView;
 
   factory ProfileData.fromJson(Map<String, dynamic> json) => ProfileData(
@@ -139,6 +143,8 @@ class ProfileData {
     socialMedia: json["social_media"],
     hobbiesInterest: json["hobbies_interest"],
     testimonials: json["testimonials"],
+    isFriends: json["isFriends"],
+    isBlock: json["isBlock"],
     userView: json["userView"] == null ? null : List<dynamic>.from(json["userView"].map((x) => x)),
   );
 
@@ -176,6 +182,8 @@ class ProfileData {
     "social_media": socialMedia,
     "hobbies_interest": hobbiesInterest,
     "testimonials": testimonials,
+    "isFriends": isFriends,
+    "isBlock": isBlock,
     "userView": userView == null ? null : List<dynamic>.from(userView!.map((x) => x)),
   };
 }

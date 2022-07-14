@@ -8,6 +8,8 @@ import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/screens/account_Information/ad_information_api/ad_information_api.dart';
 import 'package:rainbow/screens/account_Information/ad_information_api/ad_information_model.dart';
+import 'package:rainbow/service/pref_services.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 import '../../common/popup.dart';
 import '../../utils/strings.dart';
 
@@ -16,6 +18,7 @@ class AccountInformationController extends GetxController {
   RxBool loader = false.obs;
   bool companySelected = false;
   File? imagePath;
+  String? imageProfile;
   int? imageID;
   String? selectCountry;
   String? idCountry;
@@ -58,9 +61,11 @@ class AccountInformationController extends GetxController {
 
   Future<void> onGetData() async {
     loader.value = true;
+    imageID = PrefService.getInt(PrefKeys.advertiserProfileID);
     await AdInformationAPI.adProfileView().then((value) {
       adViewProfile = value;
       print(value);
+      imageProfile = adViewProfile.data!.profileImage!;
       fullNameController.text = adViewProfile.data!.fullName!;
       emailController.text = adViewProfile.data!.email!;
       houseNumberController.text = adViewProfile.data!.houseNumber!;
@@ -80,6 +85,7 @@ class AccountInformationController extends GetxController {
       selectCompanyCountry = adViewProfile.data!.companyCountry!;
       companyPostalCodeController.text = adViewProfile.data!.compnayPostalCode!.toString();
       website.text = adViewProfile.data!.compnayWebsite!;
+
       // countryModel = CountryParser.parseCountryCode("+91");
       update(['doctor']);
       update(['update']);
@@ -129,7 +135,7 @@ class AccountInformationController extends GetxController {
 
 //account save
   accountSave() async {
-    if(uploadImage.data == null){
+    if(imageID == null){
       await uploadImageApi();
     }
     if(accountValidation() && companyValidation()){
@@ -179,10 +185,7 @@ class AccountInformationController extends GetxController {
     } else if (phoneNumberController.text.isEmpty) {
       errorToast(Strings.phoneNumber);
       return false;
-    } else if (!GetUtils.isPhoneNumber(phoneNumberController.text)) {
-      errorToast(Strings.phoneNumberValidError);
-      return false;
-    }else if(uploadImage.data == null){
+    }else if(uploadImage.data == null) {
       errorToast(Strings.uploadImageError);
       return false;
     }
@@ -225,6 +228,7 @@ class AccountInformationController extends GetxController {
 
     if (path != null) {
       imagePath = File(path);
+      imageID = null;
     }
     update(["Getpic"]);
     Get.back();
@@ -248,6 +252,7 @@ class AccountInformationController extends GetxController {
 
     if (path != null) {
       imagePath = File(path);
+      imageID = null;
     }
   }
 
@@ -269,7 +274,12 @@ class AccountInformationController extends GetxController {
     loader.value = true;
     try {
       await UploadImageApi.postRegister(imagePath!.path.toString()).then(
-            (value) => uploadImage = value!,
+            (value) async {
+              uploadImage = value!;
+              imageID = uploadImage.data!.id;
+              await PrefService.setValue(PrefKeys.advertiserProfileID,uploadImage.data!.id);
+            }
+
       );
 
       loader.value = false;
@@ -296,7 +306,7 @@ class AccountInformationController extends GetxController {
     loader.value = true;
     Map<String, Map<String, dynamic>> param1 = {
       "advirtisersData": {
-        "id_item_profile": "5",
+        "id_item_profile": imageID.toString(),
         "full_name": fullNameController.text,
         "email": emailController.text,
         "house_number":houseNumberController.text,
