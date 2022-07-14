@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_mentions/flutter_mentions.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
+import 'package:rainbow/screens/advertisement/ad_home/widget/advertisement_list.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/scanyour_face/scanyourface_controller.dart';
@@ -45,25 +47,26 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.lazyPut<ScanYourFaceController>(() => ScanYourFaceController());
     return GetMaterialApp(
-      builder: (_, child) => Portal(child: child!),
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primaryColor: ColorRes.themeColor,
-        colorScheme: const ColorScheme.dark().copyWith(
-          primary: ColorRes.themeColor,
-          secondary: ColorRes.themeColor,
+        builder: (_, child) => Portal(child: child!),
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primaryColor: ColorRes.themeColor,
+          colorScheme: const ColorScheme.dark().copyWith(
+            primary: ColorRes.themeColor,
+            secondary: ColorRes.themeColor,
+          ),
         ),
-      ),
-      debugShowCheckedModeBanner: false,
-      // home: ScanYourFaceScreen(),
-      home: !PrefService.getBool(PrefKeys.skipBoardingScreen)
-          ? SplashScreen()
-          : (PrefService.getBool(PrefKeys.isLogin) ||
-                  PrefService.getBool(PrefKeys.register))
-              ? PrefService.getBool(PrefKeys.showTermsCondition)
-                  ? const TermsConditionsScreen(showBackBtn: false)
-                  : const Dashboard()
-              : AuthDashboard(),
-    );
+        debugShowCheckedModeBanner: false,
+        // home: ScanYourFaceScreen(),
+        home: const AdvertisementDashBord()
+        // !PrefService.getBool(PrefKeys.skipBoardingScreen)
+        //     ? SplashScreen()
+        //     : (PrefService.getBool(PrefKeys.isLogin) ||
+        //             PrefService.getBool(PrefKeys.register))
+        //         ? PrefService.getBool(PrefKeys.showTermsCondition)
+        //             ? const TermsConditionsScreen(showBackBtn: false)
+        //             : const Dashboard()
+        //         : AuthDashboard(),
+        );
   }
 }

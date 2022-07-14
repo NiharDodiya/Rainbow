@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/advertisement/ad_support/screen/support_create/support_create_screen.dart';
-import 'package:rainbow/screens/advertisement/ad_support/screen/support_details/support_details_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_support/screen/support_details/support_details_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -40,21 +39,22 @@ class AdSupportScreen extends StatelessWidget {
               ),
               appBar(),
               supports(),
-              SizedBox(
-                height: Get.height * 0.07,
-              ),
+              // SizedBox(
+              //   height: Get.height * 0.07,
+              // ),
               const Spacer(),
-              SubmitButton(onTap: (){
-                Get.to(()=> SupportcreateScreen());
-              },
+              SubmitButton(
+                onTap: () {
+                  Get.to(() => const SupportcreateScreen());
+                },
                 child: Text(
                   Strings.sendNewMessage,
                   style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
                 ),
               ),
-              SizedBox(
-                height: Get.height * 0.1,
-              ),
+              // SizedBox(
+              //   height: Get.height * 0.1,
+              // ),
             ],
           ),
         ),
@@ -205,7 +205,7 @@ class AdSupportScreen extends StatelessWidget {
                                             color: ColorRes.color_FFA800,
                                             fontSize: 16)
                                         : gilroyMediumTextStyle(
-                                            color: ColorRes.color_49A510,
+                                            color: Color.fromARGB(255, 89, 146, 54),
                                             fontSize: 16),
                               ),
                             ],
@@ -225,6 +225,4 @@ class AdSupportScreen extends StatelessWidget {
       ],
     );
   }
-
-  
 }

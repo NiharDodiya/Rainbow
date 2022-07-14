@@ -20,6 +20,7 @@ class AppTextFiled extends StatelessWidget {
   final Function(String)? onChange;
   final EdgeInsetsGeometry? inputPadding;
   final double? titleBottomPadding;
+  final bool? showTitle;
 
   const AppTextFiled({
     Key? key,
@@ -36,7 +37,7 @@ class AppTextFiled extends StatelessWidget {
     this.onTap,
     this.multiLine,
     this.onChange,
-    this.inputPadding, this.titleBottomPadding,
+    this.inputPadding, this.titleBottomPadding, this.showTitle =true,
   }) : super(key: key);
 
   @override
@@ -45,8 +46,8 @@ class AppTextFiled extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(title, style: gilroySemiBoldTextStyle(fontSize: 14)),
-        SizedBox(height: titleBottomPadding ?? Get.height * 0.012),
+      showTitle!?  Text(title, style: gilroySemiBoldTextStyle(fontSize: 14)):const SizedBox(),
+        showTitle!?SizedBox(height: titleBottomPadding ?? Get.height * 0.012):const SizedBox(),
         Container(
           width: Get.width,
           height: 60,

@@ -8,6 +8,7 @@ import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
 import '../../../account_Information/account_Information_screen.dart';
+import '../screen/create_advertisement/create_advertisement_screen.dart';
 
 Widget noAdvertisement() {
   return GetBuilder<AdHomeController>(builder: (controller) {
@@ -44,7 +45,10 @@ Widget noAdvertisement() {
             SizedBox(
               height: Get.height*0.12,
             ),
-            const SubmitButton(
+             SubmitButton(
+              onTap: (){
+                Get.to(()=>  CreateAdvertisementScreen());
+              },
 
               text: Strings.createAdvertisement,
             ),
