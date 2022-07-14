@@ -18,9 +18,18 @@ Widget testimonials() {
             height: 10,
           ),
           Text(
-            Strings.noTestimonials,
+            Strings.testimonials,
             style: beVietnamProBoldTextStyle(fontSize: 18),
+          ),     const SizedBox(
+            height: 10,
           ),
+          Center(
+            child: Text(
+              Strings.noTestimonials,
+              style: beVietnamProBoldTextStyle(fontSize: 18),
+            ),
+          ),
+
           const SizedBox(
             height: 10,
           ),

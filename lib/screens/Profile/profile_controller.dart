@@ -56,9 +56,14 @@ class ProfileController extends GetxController {
         editProfileController.height.text = viewProfile.data!.height!;
         editProfileController.weight.text = viewProfile.data!.weight!;
         editProfileController.ethnicity.text = viewProfile.data!.idEthnicity!;
+        editProfileController.selectedEthicity = viewProfile.data!.idEthnicity!;
         editProfileController.haveKids.text = viewProfile.data!.noKids!.toString();
+        editProfileController.noKidsSelected = viewProfile.data!.noKids!.toString();
         editProfileController.hobbies.text = viewProfile.data!.hobbiesAndInterest!.toString();
-        // editProfileController.aboutMe.text = viewProfile.data!.aboutMe!.toString();
+         editProfileController.instagram.text = viewProfile.data!.instagram!.toString();
+         editProfileController.youTube.text = viewProfile.data!.youtube!.toString();
+         editProfileController.twitter.text = viewProfile.data!.twitter!.toString();
+         editProfileController.faceBook.text = viewProfile.data!.facebook!.toString();
       // await PrefService.setValue(PrefKeys.registerToken, registerUser.token.toString());
       loader.value = false;
     } catch (e) {
