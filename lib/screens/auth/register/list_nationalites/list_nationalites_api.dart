@@ -20,7 +20,7 @@ class ListOfNationalitiesApi {
       }
     } catch (e) {
       print(e.toString());
-      return [];
+      return listNationalitiesFromJson("");
     }
   }
 }

@@ -33,6 +33,7 @@ class AuthDashBordController extends GetxController {
     try {
       await ListOfCountryApi.postRegister()
           .then((value) => listCountryModel = value!);
+      print(listCountryModel);
       getCountry();
     } catch (e) {
       errorToast(e.toString());
@@ -42,7 +43,8 @@ class AuthDashBordController extends GetxController {
 
   Future<void> countryNationalites() async {
     try {
-      await ListOfNationalitiesApi.postRegister().then((value) => listNationalities = value!);
+      await ListOfNationalitiesApi.postRegister()
+          .then((value) => listNationalities = value!);
       print(listNationalities);
       getCountryNation();
 

@@ -8,7 +8,7 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
 Widget advertisementList() {
-  AdHomeController controller = Get.find<AdHomeController>();
+  AdHomeController controller = Get.put(AdHomeController());
   return Expanded(
     child: SingleChildScrollView(
       physics: const BouncingScrollPhysics(),

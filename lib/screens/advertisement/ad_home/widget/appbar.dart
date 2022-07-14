@@ -8,7 +8,7 @@ import 'package:rainbow/utils/color_res.dart';
 
 Widget appbar() {
   AdHomeController controller = Get.find<AdHomeController>();
-  AdvertisementController advertisementController = Get.find<AdvertisementController>();
+  AdvertisementController advertisementController = Get.put(AdvertisementController());
   return SizedBox(
     width: Get.width,
     child: Padding(

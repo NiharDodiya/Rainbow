@@ -14,9 +14,9 @@ class BlockListApi {
       String url = EndPoints.blockList;
 
       String accesToken = await PrefService.getString(PrefKeys.registerToken);
-      String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksImlhdCI6MTY1NzIxMjg3NiwiZXhwIjoxNjU3ODE3Njc2fQ.2cGzkRwlQKDDXlMrX4r5pIMprd7uq9Ii-0Z2VwTsvcE";
+      // String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksImlhdCI6MTY1NzIxMjg3NiwiZXhwIjoxNjU3ODE3Njc2fQ.2cGzkRwlQKDDXlMrX4r5pIMprd7uq9Ii-0Z2VwTsvcE";
       http.Response? response = await HttpService.postApi(url: url,body: {},
-          header: {/*"Content-Type": "application/json",*/"x-access-token": token});
+          header: {/*"Content-Type": "application/json",*/"x-access-token": accesToken});
 
       if (response != null && response.statusCode == 200) {
         /*bool? status = jsonDecode(response.body)["status"];
@@ -27,15 +27,12 @@ class BlockListApi {
         else if(status==true)
         {
           // flutterToast(jsonDecode(response.body)["message"]);
-
-        }*/
-          //Get.offAll(() => const Dashboard());
+          }*/
         }
-        return blockListModelFromJson(response!.body);
+      return blockListModelFromJson(response!.body);
 
     } catch (e) {
       print(e.toString());
-
       return [];
     }
   }

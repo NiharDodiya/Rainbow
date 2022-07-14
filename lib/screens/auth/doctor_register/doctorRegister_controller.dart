@@ -154,7 +154,7 @@ String? codeId;
               controller.pwdController.text,
               controller.houseNumber.text,
               controller.streetName.text,
-              "+${controller.countryModel.phoneCode + controller.phoneNumber.text}",
+              "+${'${controller.countryModel.phoneCode} ${controller.phoneNumber.text}'}",
               controller.city.text,
               controller.passId.toString(),
               controller.postalCode.text,

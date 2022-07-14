@@ -26,6 +26,9 @@ class ScanYourFaceScreen extends StatelessWidget {
                   SingleChildScrollView(
                     padding: EdgeInsets.all(Get.width * 0.02669),
                     child: Container(
+                      constraints: BoxConstraints(
+                        minHeight: Get.height - (Get.width * 0.05338)
+                      ),
                       decoration: BoxDecoration(
                         color: ColorRes.color_4F359B,
                         borderRadius: BorderRadius.circular(25),

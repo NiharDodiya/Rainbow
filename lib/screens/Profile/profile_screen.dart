@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
@@ -47,7 +48,7 @@ class ProfileScreen extends StatelessWidget {
                       profileAppbar(Strings.profile, true),
 
                       profileImagesLoad(controller),
-                      profileDetails(controller),
+                      profileDetails(),
                       aboutProfiler(
                           Strings.aboutMe,
                           /* controller.viewProfile.data == null
@@ -72,7 +73,7 @@ class ProfileScreen extends StatelessWidget {
               );
             },
           ),
-          controller.loader.isTrue ? SmallLoader() : SizedBox()
+          controller.loader.isTrue ? const SmallLoader() : const SizedBox()
         ],
       );
     }));
@@ -86,60 +87,44 @@ class ProfileScreen extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 15, right: 15, top: 25),
-            child: controller.viewProfile.data!.backgroundImage != null &&
-                    controller.viewProfile.data!.backgroundImage != ""
-                ? Container(
+            child: SizedBox(
                     height: Get.height * 0.2857,
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                        image: NetworkImage(controller
-                            .viewProfile.data!.backgroundImage
-                            .toString()),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                    width: Get.width, child: CachedNetworkImage(
+              imageUrl:  controller.viewProfile.data!.backgroundImage.toString(),
+              imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,),
+                ),
+              ),
+              // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
+              errorWidget: (context, url, error) =>
+                  Image.asset(AssetRes.overlay),
+            ),
                   )
-                : Container(
-                    height: Get.height * 0.2857,
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: const DecorationImage(
-                        image: AssetImage(AssetRes.overlay),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
+
           ),
           Positioned(
             top: Get.height * 0.11,
             left: Get.width * 0.30,
-            child: controller.viewProfile.data!.profileImage != null &&
-                    controller.viewProfile.data!.profileImage != ""
-                ? Container(
+            child:SizedBox(
                     height: Get.height * 0.38666,
                     width: Get.width * 0.38666,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: NetworkImage(controller
-                            .viewProfile.data!.profileImage
-                            .toString()),
-                        fit: BoxFit.contain,
+                    child:  CachedNetworkImage(
+                      imageUrl:  controller.viewProfile.data!.backgroundImage.toString(),
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,),
+                        ),
                       ),
-                    ),
-                  )
-                : Container(
-                    height: Get.height * 0.38666,
-                    width: Get.width * 0.38666,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: const DecorationImage(
-                        image: AssetImage(AssetRes.se_profile),
-                        fit: BoxFit.contain,
-                      ),
+                      // placeholder: (context, url) => const Center(child:  CircularProgressIndicator(),),
+                      errorWidget: (context, url, error) =>
+                          Image.asset(AssetRes.se_profile),
                     ),
                   ),
           ),

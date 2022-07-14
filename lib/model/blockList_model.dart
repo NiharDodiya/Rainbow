@@ -32,7 +32,7 @@ class BlockListModel {
         cuurentPage: json["cuurentPage"],
         totalPage: json["totalPage"],
         count: json["count"],
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        data: json["data"] ==null?[]:List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {

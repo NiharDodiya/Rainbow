@@ -73,10 +73,9 @@ class LoginController extends GetxController {
       await LoginApi.postRegister(
         emailController.text,
         passwordController.text,
-      ).then((value) => loginModel = value);
+      );
       loader.value = false;
-      await PrefService.setValue(PrefKeys.accessToken, loginModel.token);
-
+      // await PrefService.setValue(PrefKeys.accessToken, loginModel.token);
     } catch (e) {
       loader.value = false;
       debugPrint(e.toString());

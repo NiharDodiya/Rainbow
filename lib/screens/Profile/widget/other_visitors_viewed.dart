@@ -27,29 +27,31 @@ Widget otherVisitorsViewed() {
         SizedBox(
           height: 130,
           child: ListView.builder(
-            itemCount: controller.viewProfile.data!.userView.length,
+            itemCount: controller.viewProfile.data!.userView == null
+                ? 0
+                : controller.viewProfile.data!.userView!.length,
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              return  Column(
+              return Column(
                 children: [
                   InkWell(
                     onTap: () {
-                      connectionsProfileController.callApi(controller.viewProfile.data!.userView[index]["id"]
+                      connectionsProfileController.callApi(controller
+                          .viewProfile.data!.userView![index].id
                           .toString());
-                      // Get.to(() => ConnectionsProfileScreen());
                     },
                     child: Container(
                       height: 60,
                       width: 60,
-                      margin:
-                      const EdgeInsets.only(right: 10, left: 10, top: 10, bottom: 7),
+                      margin: const EdgeInsets.only(
+                          right: 10, left: 10, top: 10, bottom: 7),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
                           image: AssetImage(
-                            controller.image[index] ?? AssetRes.selfiePicture,
+                            controller.image[index],
                           ),
                         ),
                       ),
@@ -58,8 +60,8 @@ Widget otherVisitorsViewed() {
                   SizedBox(
                     width: 60,
                     child: Text(
-                      controller.viewProfile.data!.userView[index]
-                      ["full_name"].toString() ?? "Amber Davis",
+                      controller.viewProfile.data!.userView![index].fullName
+                          .toString(),
                       maxLines: 2,
                       textAlign: TextAlign.center,
                       style: gilroyRegularTextStyle(fontSize: 16),
@@ -67,14 +69,6 @@ Widget otherVisitorsViewed() {
                   )
                 ],
               );
-
-
-                visitors(
-                  title: controller.viewProfile.data!.userView[index]
-                      ["full_name"],
-                  image: controller.image[index],
-                  userId: controller.viewProfile.data!.userView[index]["id"]
-                      .toString());
             },
           ),
         )

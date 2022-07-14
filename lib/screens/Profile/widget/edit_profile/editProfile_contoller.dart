@@ -13,24 +13,23 @@ import 'package:rainbow/screens/Profile/widget/edit_profile/edit_api/edit_model.
 import 'package:rainbow/utils/strings.dart';
 
 class EditProfileController extends GetxController {
-  TextEditingController fullName = TextEditingController(text: "ramika");
-  TextEditingController status = TextEditingController(text:"sarrogate mom");
-  TextEditingController age = TextEditingController(text:"32");
-  TextEditingController city = TextEditingController(text:"Surat");
-  TextEditingController height = TextEditingController(text: "5'2");
-  TextEditingController weight = TextEditingController(text: "126lbs");
+  TextEditingController fullName = TextEditingController(/*text: "ramika"*/);
+  TextEditingController status = TextEditingController(/*text:"sarrogate mom"*/);
+  TextEditingController age = TextEditingController(/*text:"32"*/);
+  TextEditingController city = TextEditingController(/*text:"Surat"*/);
+  TextEditingController height = TextEditingController(/*text: "5'2"*/);
+  TextEditingController weight = TextEditingController(/*text: "126lbs"*/);
   TextEditingController ethnicity = TextEditingController();
-  TextEditingController haveKids = TextEditingController(text: "1");
-  TextEditingController status1 = TextEditingController(text: "married");
+  TextEditingController haveKids = TextEditingController(/*text: "1"*/);
+  TextEditingController status1 = TextEditingController(/*text: "married"*/);
   TextEditingController instagram = TextEditingController(text: "https://www.instagram.com/accounts/login/?next=/jackiechan.official/");
   TextEditingController youTube = TextEditingController(text: "https://www.youtube.com/watch?v=YwQ2eVbABsY");
   TextEditingController faceBook = TextEditingController(text: "https://www.facebook.com/search/top/?q=Jacky%20Chain");
   TextEditingController twitter = TextEditingController(text: "https://twitter.com/eyeofjackiechan");
-  TextEditingController aboutMe = TextEditingController(text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ");
-  TextEditingController hobbies = TextEditingController(text: "learnnig");
+  TextEditingController aboutMe = TextEditingController();
+  TextEditingController hobbies = TextEditingController(/*text: "Learning"*/);
   String aboutTextCounter = '';
   String hobbiesTextCounter = '';
-
   String? selectedEthicity;
   File? frontImage;
   File? backImage;
@@ -39,7 +38,6 @@ class EditProfileController extends GetxController {
   String? weightData;
   int heightFeet = 0;
   int heightInches = 0;
-
   String? codeId;
   ProfileController profileController = Get.put(ProfileController());
 
@@ -171,6 +169,8 @@ class EditProfileController extends GetxController {
   Future<void> editProfileApi(BuildContext context) async {
     loader.value = true;
     try {
+      print("Hello");
+
       EditProfile? data = await EditProfileApi.postRegister(
         uploadImage1.data!.id.toString(),
         uploadImage2.data!.id.toString(),

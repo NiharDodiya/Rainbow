@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter_share/flutter_share.dart';
+import 'package:rainbow/screens/Home/settings/privacy/privacy_controller.dart';
+import 'package:rainbow/screens/Home/settings/privacy/privacy_screen.dart';
 
 class SettingsController extends GetxController
 {
@@ -17,6 +19,12 @@ class SettingsController extends GetxController
         chooserTitle: 'Example Chooser Title'
     );
   }
-  
+
+
+  void onPrivacyScreenTap(){
+    PrivacyController controller = Get.put(PrivacyController());
+    controller.init();
+    Get.to(() => PrivacyScreen());
+  }
 
 }

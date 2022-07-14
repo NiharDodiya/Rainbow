@@ -1,7 +1,4 @@
 import 'dart:convert';
-
-import 'package:flutter/gestures.dart';
-import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/edit_api/edit_model.dart';
 import 'package:rainbow/service/http_services.dart';
@@ -30,7 +27,7 @@ class EditProfileApi {
       String hobbiesInterest,
       String noKids,
       ) async {
-    String accesToken = PrefService.getString(PrefKeys.registerToken);
+    String accessToken = PrefService.getString(PrefKeys.registerToken);
     try {
       String url = EndPoints.editProfile;
       Map<String, String> param = {
@@ -50,14 +47,11 @@ class EditProfileApi {
         "twitter" : twitter,
         "about_me" : aboutMe,
         "hobbies_interest" : hobbiesInterest,
-        "no_kids": noKids
+        "no_kids": noKids,
       };
-
       print(param);
-
-
       http.Response? response = await HttpService.postApi(url: url,   body: jsonEncode(param),
-          header: {"Content-Type": "application/json","x-access-token":accesToken});
+          header: {"Content-Type": "application/json","x-access-token":accessToken});
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if(status==false)
@@ -67,8 +61,6 @@ class EditProfileApi {
         else if(status==true)
         {
           flutterToast( jsonDecode(response.body)["message"]);
-          await PrefService.setValue(PrefKeys.userId,jsonDecode(response.body)["data"]["id"]);
-
         }
 
         return editProfileFromJson(response.body);

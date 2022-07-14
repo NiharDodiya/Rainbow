@@ -328,9 +328,7 @@ class SettingsScreen extends StatelessWidget {
           ),
           //Privacy
           InkWell(
-            onTap: () {
-              Get.to(() => PrivacyScreen());
-            },
+            onTap: controller.onPrivacyScreenTap,
             child: Padding(
               padding: const EdgeInsets.only(top: 5, bottom: 5),
               child: Row(

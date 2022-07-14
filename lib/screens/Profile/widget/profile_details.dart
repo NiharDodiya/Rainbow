@@ -1,93 +1,125 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-Widget profileDetails(ProfileController controller) {
+Widget profileDetails() {
+  ProfileController controller = Get.put(ProfileController());
   return Column(
     children: [
       Text(
-        controller.viewProfile.data==null?"":controller.viewProfile.data!.fullName.toString(),
+        controller.viewProfile.data == null
+            ? ""
+            : controller.viewProfile.data!.fullName.toString(),
         style: gilroySemiBoldTextStyle(fontSize: 24),
       ),
       Text(
         "Surrogate Mom ",
         style: gilroyRegularTextStyle(fontSize: 14),
       ),
-      const SizedBox(height: 6,),
+      const SizedBox(
+        height: 6,
+      ),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
-            controller.viewProfile.data==null?"":controller.viewProfile.data!.age.toString(),
+            controller.viewProfile.data!.age == null
+                ? ""
+                : controller.viewProfile.data!.age.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
-          dot(),
+          dot(controller,controller.viewProfile.data!.age.toString()),
           Text(
-            controller.viewProfile.data==null?"":controller.viewProfile.data!.city.toString(),
+            controller.viewProfile.data!.city == null
+                ? ""
+                : controller.viewProfile.data!.city.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
-          dot(),
+          dot(controller,controller.viewProfile.data!.city.toString()),
           Text(
-            controller.viewProfile.data==null?"":controller.viewProfile.data!.height.toString(),
+            controller.viewProfile.data!.height == null
+                ? ""
+                : controller.viewProfile.data!.height.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
-          dot(),
+          dot(controller,controller.viewProfile.data!.height.toString()),
           Text(
-            controller.viewProfile.data==null?"":controller.viewProfile.data!.weight.toString(),
+            controller.viewProfile.data!.weight == null
+                ? ""
+                : controller.viewProfile.data!.weight.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
         ],
       ),
-      const SizedBox(height: 15,),
+      const SizedBox(
+        height: 15,
+      ),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
-            controller.viewProfile == null?"":controller.viewProfile.data!.idEthnicity.toString(),
+            controller.viewProfile.data!.idEthnicity == null
+                ? ""
+                : controller.viewProfile.data!.idEthnicity.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
-          dot(),
+          dot(controller, controller.viewProfile.data!.idEthnicity.toString()),
           Text(
-            controller.viewProfile == null?"":controller.viewProfile.data!.maritalStatus.toString(),
+            controller.viewProfile.data!.maritalStatus == null
+                ? ""
+                : controller.viewProfile.data!.maritalStatus.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
-          dot(),
+          dot(controller, controller.viewProfile.data!.maritalStatus.toString()),
           Text(
-            controller.viewProfile == null?"":controller.viewProfile.data!.noKids.toString(),
+            controller.viewProfile.data!.noKids == null
+                ? ""
+                : controller.viewProfile.data!.noKids.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
         ],
       ),
-      const SizedBox(height: 15,),
+      const SizedBox(
+        height: 15,
+      ),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          InkWell(onTap: () async{
-            await launchUrl(Uri.parse(controller.viewProfile.data!.instagram.toString()));
-            print("insta");
-          },
+          InkWell(
+              onTap: () async {
+                await launchUrl(Uri.parse(
+                    controller.viewProfile.data!.instagram.toString()));
+                print("insta");
+              },
               child: mediaIcon(AssetRes.instagram)),
-          InkWell(onTap: () async{
-            await launchUrl(Uri.parse(controller.viewProfile.data!.youtube.toString()));
-            print("youtube");
-          },
+          InkWell(
+              onTap: () async {
+                await launchUrl(
+                    Uri.parse(controller.viewProfile.data!.youtube.toString()));
+                print("youtube");
+              },
               child: mediaIcon(AssetRes.youtube)),
-          InkWell(onTap: () async {
-            await launchUrl(Uri.parse(controller.viewProfile.data!.facebook.toString()));
+          InkWell(
+              onTap: () async {
+                await launchUrl(Uri.parse(
+                    controller.viewProfile.data!.facebook.toString()));
 
-            print("facebook");
-          },
+                print("facebook");
+              },
               child: mediaIcon(AssetRes.facebook1)),
-          InkWell(onTap: () async {
-            await launchUrl(Uri.parse(controller.viewProfile.data!.twitter.toString()));
+          InkWell(
+              onTap: () async {
+                await launchUrl(
+                    Uri.parse(controller.viewProfile.data!.twitter.toString()));
 
-            print("twitter");
-          },
+                print("twitter");
+              },
               child: mediaIcon(AssetRes.twitter)),
         ],
       ),
@@ -95,21 +127,17 @@ Widget profileDetails(ProfileController controller) {
   );
 }
 
-Widget dot() {
-  return Container(
+Widget dot(ProfileController controller,String? data) {
+  return  data!= null?Container(
     height: 4,
     width: 4,
-    margin: const EdgeInsets.only(
-      left: 8,
-      right: 8,
-      bottom: 3
-    ),
+    margin: const EdgeInsets.only(left: 8, right: 8, bottom: 3),
     child: Image.asset(
       AssetRes.yellowDot,
       height: 4,
       width: 4,
     ),
-  );
+  ):SizedBox();
 }
 
 Widget mediaIcon(String image) {

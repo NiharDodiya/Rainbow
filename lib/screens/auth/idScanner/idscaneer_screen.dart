@@ -11,429 +11,166 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
-class IdScannerScreen extends StatelessWidget {
-  final IdScannerController controller = Get.put(IdScannerController());
-  IdVerificationController idController =Get.put(IdVerificationController());
-
-  IdScannerScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Obx(() {
-        return Stack(
-          children: [
-            SafeArea(
-              child: GetBuilder<IdScannerController>(
-                builder: (_) {
-                  return SingleChildScrollView(
-                    physics: const NeverScrollableScrollPhysics(),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: Get.height * 0.1071,
-                          width: Get.width,
-                          decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: [Color(0XFF50379D), Color(0XFFB77DDE)]),
-                              color: ColorRes.color_4F359B,
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(25),
-                                  topLeft: Radius.circular(25))),
-                          child: Row(
-                            children: [
-                              GestureDetector(onTap: () {
-                                Get.back();
-                              },
-                                child: const Padding(
-                                  padding: EdgeInsets.only(left: 10),
-                                  child: Icon(
-                                    Icons.arrow_back_ios_outlined,
-                                    size: 16.72,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 18,
-                              ),
-                              Text(
-                                Strings.idVerification,
-                                style: textStyleFont26WhiteBold,
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: 83,
-                          color: Colors.black,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 15, right: 15),
-                            child: Row(
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    controller.retakePic();
-                                  },
-                                  child: Image.asset(
-                                    AssetRes.referesh,
-                                    height: 18.67,
-                                    width: 26.67,
-                                  ),
-                                ),
-                                const Spacer(),
-                                GestureDetector(
-                                  onTap: controller.onImageSubmitFront,
-                                  child: Image.asset(
-                                    AssetRes.send,
-                                    height: 18.67,
-                                    width: 26.67,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Stack(children: [
-                          SizedBox(
-                            child: buildCameraFunction(context, controller),
-                          ),
-                          Positioned(
-                              top: Get.height * 0.3,
-                              child: Container(
-                                height: Get.height * 0.5,
-                                color: Colors.black,
-                                width: Get.width,
-                                child: Stack(
-                                  children: [
-                                    Container(
-                                      height: Get.height * 0.16,
-                                      width: Get.width,
-                                      color: ColorRes.color_E2E2E2.withOpacity(0.5),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            Strings.permanentResidentCard,
-                                            style: gilroyBoldTextStyle(fontSize: 20),
-                                          ),
-                                          SizedBox(
-                                            height: Get.height * 0.01,
-                                          ),
-                                          Text(
-                                            Strings.placeYourId,
-                                            style: textStyleFont14White,
-                                          ),
-                                          SizedBox(
-                                            height: Get.height * 0.01,
-                                          ),
-                                          Text(Strings.pleaseMakeSure,
-                                              style: textStyleFont14White),
-                                          SizedBox(
-                                            height: Get.height * 0.01,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        controller.takePicForFront();
-                                      },
-                                      child: Center(
-                                        child: Padding(
-                                          padding:
-                                          EdgeInsets.only(top: Get.height * 0.1),
-                                          child: Container(
-                                            height: 84,
-                                            width: 84,
-                                            decoration: const BoxDecoration(
-                                                image: DecorationImage(
-                                                    image:
-                                                    AssetImage(AssetRes.camera),
-                                                    fit: BoxFit.cover)),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ))
-                        ]),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-            idController.loader.isTrue?const SmallLoader():const SizedBox(),
-          ],
-        );
-      },)
-    );
-  }
-
-  FutureBuilder<void> futureCamera() {
-    return FutureBuilder<void>(
-      future: controller.initializeControllerFuture,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          // If the Future is complete, display the preview.
-          return SizedBox(
-            /*  height: MediaQuery.of(context).size.height * 0.9,*/
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  // SizedBox(
-                  //   height: 34 + (Get.height / 36) + (Get.height / 20),
-                  // ),
-                  CameraPreview(controller.controller),
-                ],
-              ),
-            ),
-          );
-        } else {
-          // Otherwise, display a loading indicator.
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-      },
-    );
-  }
-
-  Widget buildCameraFunction(context, IdScannerController controller) {
-    return Stack(
-      alignment: Alignment.topLeft,
-      children: [
-        futureCamera(),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Stack(children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 10, left: 15),
-                child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Image(
-                      image: AssetImage(
-                        AssetRes.topLeft,
-                      ),
-                      height: 25,
-                      width: 25,
-                    )),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(top: 10, right: 15),
-                child: Align(
-                    alignment: Alignment.topRight,
-                    child: Image(
-                      image: AssetImage(AssetRes.topRight),
-                      height: 25,
-                      width: 25,
-                    )),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(right: 15, top: 160),
-                child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: Image(
-                      image: AssetImage(AssetRes.bottomRight),
-                      height: 25,
-                      width: 25,
-                    )),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 15, top: 160),
-                child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Image(
-                      image: AssetImage(AssetRes.bottomLeft),
-                      height: 25,
-                      width: 25,
-                    )),
-              ),
-              SizedBox(
-                height: Get.height*0.3,
-                width: Get.width,
-                child: controller.imageFront == null
-                    ? const SizedBox()
-                        : RepaintBoundary(
-                            key: controller.widgetKey,
-                            child: Image.file(
-                              File(controller.imageFront.toString()),
-                              width: Get.width,
-                              height: 200,
-                              fit: BoxFit.fitWidth,
-                              alignment: Alignment.topCenter,
-                            ),
-                          ),
-              ),
-              /*   Positioned(top: 200,
-                  child: Container(height: 300,width: Get.width,color: Colors.black,)),*/
-            ])
-          ],
-        ),
-      ],
-    );
-  }
-}
-
 class IdScannerBackScreen extends StatelessWidget {
   final IdScannerController controller = Get.put(IdScannerController());
-  IdVerificationController idController =Get.put(IdVerificationController());
+  final IdVerificationController idController =
+      Get.put(IdVerificationController());
+  final VoidCallback onSend;
+  final VoidCallback onTack;
+  final bool isFront;
 
-   IdScannerBackScreen({Key? key}) : super(key: key);
+  IdScannerBackScreen(
+      {Key? key,
+      required this.onSend,
+      required this.isFront,
+      required this.onTack})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: GetBuilder<IdScannerController>(
-          builder: (_) {
-            return SingleChildScrollView(
-              physics: const NeverScrollableScrollPhysics(),
-              child: Column(
-                children: [
-                  Container(
-                    height: Get.height * 0.1071,
-                    width: Get.width,
-                    decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [Color(0XFF50379D), Color(0XFFB77DDE)]),
-                        color: ColorRes.color_4F359B,
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(25),
-                            topLeft: Radius.circular(25))),
-                    child: Row(
-                      children: [
-                        GestureDetector(onTap: () {
-                          Get.back();
-                        },
-                          child: const Padding(
-                            padding: EdgeInsets.only(left: 10),
-                            child: Icon(
-                              Icons.arrow_back_ios_outlined,
-                              size: 16.72,
-                            ),
-                          ),
+      backgroundColor: Colors.black,
+      body: GetBuilder<IdScannerController>(
+        builder: (_) {
+          return Column(
+            children: [
+              Container(
+                width: Get.width,
+                padding: EdgeInsets.only(
+                    top: Get.height * 0.04, bottom: Get.height * 0.03325),
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Color(0XFF50379D), Color(0XFFB77DDE)]),
+                  color: ColorRes.color_4F359B,
+                ),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Icon(
+                          Icons.arrow_back_ios_outlined,
+                          size: 16.72,
                         ),
-                        const SizedBox(
-                          width: 18,
-                        ),
-                        Text(
-                          Strings.idVerification,
-                          style: textStyleFont26WhiteBold,
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 83,
-                    color: Colors.black,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 15, right: 15),
-                      child: Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              controller.retakePic();
-                            },
-                            child: Image.asset(
-                              AssetRes.referesh,
-                              height: 18.67,
-                              width: 26.67,
-                            ),
-                          ),
-                          const Spacer(),
-                          GestureDetector(
-                           onTap: controller.onImageSubmitBack,
-                            child: Image.asset(
-                              AssetRes.send,
-                              height: 18.67,
-                              width: 26.67,
-                            ),
-                          ),
-                        ],
                       ),
                     ),
-                  ),
-                  Stack(children: [
+                    const SizedBox(
+                      width: 18,
+                    ),
+                    Text(
+                      Strings.idVerification,
+                      style: textStyleFont26WhiteBold,
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(height: Get.height * 0.04310),
+              Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: Get.width * 0.03645),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: controller.retakePic,
+                      child: Image.asset(
+                        AssetRes.referesh,
+                        height: 18.67,
+                        width: 26.67,
+                      ),
+                    ),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: onSend,
+                      child: Image.asset(
+                        AssetRes.send,
+                        height: 18.67,
+                        width: 26.67,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: Get.height * 0.05095),
+              Expanded(
+                child: Stack(
+                  children: [
                     SizedBox(
                       child: buildCameraFunction(context, controller),
                     ),
                     Positioned(
-                        top: Get.height * 0.3,
-                        child: Container(
-                          height: Get.height * 0.5,
-                          color: Colors.black,
-                          width: Get.width,
-                          child: Stack(
-                            children: [
-                              Container(
-                                height: Get.height * 0.16,
-                                width: Get.width,
-                                color: ColorRes.color_E2E2E2.withOpacity(0.5),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      Strings.permanentResidentBackCard,
-                                      style: gilroyBoldTextStyle(fontSize: 20),
-                                    ),
-                                    SizedBox(
-                                      height: Get.height * 0.01,
-                                    ),
-                                    Text(
-                                      Strings.placeYourId,
-                                      style: textStyleFont14White,
-                                    ),
-                                    SizedBox(
-                                      height: Get.height * 0.01,
-                                    ),
-                                    Text(Strings.pleaseMakeSure,
-                                        style: textStyleFont14White),
-                                    SizedBox(
-                                      height: Get.height * 0.01,
-                                    ),
-                                  ],
-                                ),
+                      top: Get.height * 0.3226,
+                      child: Container(
+                        color: ColorRes.black,
+                        // height: Get.height - (Get.height * 0.1071 + 83),
+                        height: Get.height,
+                        width: Get.width,
+                        child: Column(
+                          children: [
+                            Container(
+                              width: Get.width,
+                              color: ColorRes.color_E2E2E2.withOpacity(0.5),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(height: Get.height * 0.025),
+                                  Text(
+                                    isFront
+                                        ? Strings.permanentResidentCard
+                                        : Strings.permanentResidentBackCard,
+                                    style: gilroyBoldTextStyle(fontSize: 20),
+                                  ),
+                                  SizedBox(height: Get.height * 0.01),
+                                  Text(
+                                    Strings.placeYourId,
+                                    style: textStyleFont14White,
+                                  ),
+                                  SizedBox(height: Get.height * 0.01),
+                                  Text(Strings.pleaseMakeSure,
+                                      style: textStyleFont14White),
+                                  SizedBox(height: Get.height * 0.03571),
+                                ],
                               ),
-                              GestureDetector(
-                                onTap: () {
-                                  controller.takePicForBack();
-                                },
-                                child: Center(
-                                  child: Padding(
-                                    padding:
-                                    EdgeInsets.only(top: Get.height * 0.1),
+                            ),
+                            SizedBox(height: Get.height * 0.056),
+                            GestureDetector(
+                              onTap: onTack,
+                              child: Center(
+                                child: Container(
+                                  height: Get.width * 0.224,
+                                  width: Get.width * 0.224,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: ColorRes.color_C4C4C4,
+                                  ),
+                                  child: Center(
                                     child: Container(
-                                      height: 84,
-                                      width: 84,
+                                      height: Get.width * 0.1467,
+                                      width: Get.width * 0.1467,
                                       decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                              image:
-                                              AssetImage(AssetRes.camera),
-                                              fit: BoxFit.cover)),
+                                        shape: BoxShape.circle,
+                                        color: ColorRes.color_FBF9F9,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
-                        ))
-                  ]),
-                ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            );
-          },
-        ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -443,24 +180,21 @@ class IdScannerBackScreen extends StatelessWidget {
       future: controller.initializeControllerFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          // If the Future is complete, display the preview.
           return SizedBox(
-            /*  height: MediaQuery.of(context).size.height * 0.9,*/
+            width: Get.width,
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  // SizedBox(
-                  //   height: 34 + (Get.height / 36) + (Get.height / 20),
-                  // ),
                   CameraPreview(controller.controller),
                 ],
               ),
             ),
           );
         } else {
-          // Otherwise, display a loading indicator.
-          return const Center(
-            child: CircularProgressIndicator(),
+          /// Otherwise, display a loading indicator.
+          return SizedBox(
+            height: Get.height * 0.3226,
+            child: const SmallLoader(),
           );
         }
       },
@@ -472,74 +206,85 @@ class IdScannerBackScreen extends StatelessWidget {
       alignment: Alignment.topLeft,
       children: [
         futureCamera(),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Stack(children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 10, left: 15),
+        SizedBox(
+          height: Get.height * 0.3226,
+          width: Get.width,
+          child: Stack(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(
+                    top: Get.width * 0.02, left: Get.width * 0.03645),
                 child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Image(
-                      image: AssetImage(
-                        AssetRes.topLeft,
-                      ),
-                      height: 25,
-                      width: 25,
-                    )),
+                  alignment: Alignment.topLeft,
+                  child: Image(
+                    image: const AssetImage(
+                      AssetRes.topLeft,
+                    ),
+                    height: Get.width * 0.06667,
+                    width: Get.width * 0.06667,
+                  ),
+                ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 10, right: 15),
+              Padding(
+                padding: EdgeInsets.only(
+                    top: Get.width * 0.02, right: Get.width * 0.03645),
                 child: Align(
-                    alignment: Alignment.topRight,
-                    child: Image(
-                      image: AssetImage(AssetRes.topRight),
-                      height: 25,
-                      width: 25,
-                    )),
+                  alignment: Alignment.topRight,
+                  child: Image(
+                    image: const AssetImage(AssetRes.topRight),
+                    height: Get.width * 0.06667,
+                    width: Get.width * 0.06667,
+                  ),
+                ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(right: 15, top: 160),
+              Padding(
+                padding: EdgeInsets.only(
+                    bottom: Get.width * 0.05467, right: Get.width * 0.03645),
                 child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: Image(
-                      image: AssetImage(AssetRes.bottomRight),
-                      height: 25,
-                      width: 25,
-                    )),
+                  alignment: Alignment.bottomRight,
+                  child: Image(
+                    image: const AssetImage(AssetRes.bottomRight),
+                    height: Get.width * 0.06667,
+                    width: Get.width * 0.06667,
+                  ),
+                ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 15, top: 160),
+              Padding(
+                padding: EdgeInsets.only(
+                    bottom: Get.width * 0.05467, left: Get.width * 0.03645),
                 child: Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Image(
-                      image: AssetImage(AssetRes.bottomLeft),
-                      height: 25,
-                      width: 25,
-                    )),
+                  alignment: Alignment.bottomLeft,
+                  child: Image(
+                    image: const AssetImage(AssetRes.bottomLeft),
+                    height: Get.width * 0.06667,
+                    width: Get.width * 0.06667,
+                  ),
+                ),
               ),
               SizedBox(
-                  height: Get.height*0.3,
-                  width: Get.width,
-                  child: controller.imageBack == null
-                      ? const SizedBox(): RepaintBoundary(
-                            key: controller.widgetKey,
-                            child: Image.file(
-                              File(controller.imageBack.toString()),
-                              width: Get.width,
-                              height: 200,
-                              fit: BoxFit.fitWidth,
-                              alignment: Alignment.topCenter,
-                            ),
-                          ),
+                height: Get.height * 0.3226,
+                width: Get.width,
+                child: (isFront
+                        ? controller.imageFront == null
+                        : controller.imageBack == null)
+                    ? const SizedBox()
+                    : RepaintBoundary(
+                        key: controller.widgetKey,
+                        child: Image.file(
+                          File(isFront
+                              ? controller.imageFront.toString()
+                              : controller.imageBack.toString()),
+                          width: Get.width,
+                          height: Get.height * 0.3226,
+                          fit: BoxFit.fitWidth,
+                          alignment: Alignment.topCenter,
+                        ),
+                      ),
               ),
-              /*   Positioned(top: 200,
-                  child: Container(height: 300,width: Get.width,color: Colors.black,)),*/
-            ])
-          ],
+            ],
+          ),
         ),
       ],
     );
   }
 }
-

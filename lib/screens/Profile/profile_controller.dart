@@ -1,10 +1,12 @@
 import 'package:get/get.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_api.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
+import 'package:rainbow/screens/Profile/widget/edit_profile/editProfile_contoller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProfileController extends GetxController {
+
   RxBool loader = false.obs;
   bool seeMoreAndLess = false;
   String? url;
@@ -25,7 +27,6 @@ class ProfileController extends GetxController {
     "Sally Wilson",
   ];
   ViewProfile viewProfile = ViewProfile();
-
   @override
   void onInit() {
     init();
@@ -45,7 +46,19 @@ class ProfileController extends GetxController {
   Future<void> viewProfileDetails() async {
     try {
       loader.value = true;
-      await ViewProfileApi.postRegister().then((value) => viewProfile = value);
+      viewProfile = await ViewProfileApi.postRegister();
+      EditProfileController editProfileController =
+          Get.put(EditProfileController());
+        editProfileController.fullName.text = viewProfile.data!.fullName!;
+        // editProfileController.status.text = viewProfile.data!.status!;
+        editProfileController.age.text = viewProfile.data!.age.toString();
+        editProfileController.city.text = viewProfile.data!.city!;
+        editProfileController.height.text = viewProfile.data!.height!;
+        editProfileController.weight.text = viewProfile.data!.weight!;
+        editProfileController.ethnicity.text = viewProfile.data!.idEthnicity!;
+        editProfileController.haveKids.text = viewProfile.data!.noKids!.toString();
+        editProfileController.hobbies.text = viewProfile.data!.hobbiesAndInterest!.toString();
+        editProfileController.aboutMe.text = viewProfile.data!.aboutMe!.toString();
       // await PrefService.setValue(PrefKeys.registerToken, registerUser.token.toString());
       loader.value = false;
     } catch (e) {

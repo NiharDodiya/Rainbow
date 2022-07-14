@@ -9,7 +9,6 @@ import 'package:rainbow/utils/pref_keys.dart';
 class UploadImageApi {
   static Future postRegister(
       String image,
-
   ) async {
     String accesToken = await PrefService.getString(PrefKeys.registerToken);
     try {

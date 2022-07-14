@@ -7,6 +7,7 @@ import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/country_name.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
+import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/screens/account_Information/account_information_controller.dart';
 import 'package:rainbow/utils/strings.dart';
 import '../../common/Widget/text_styles.dart';
@@ -16,8 +17,7 @@ import '../auth/phonenumber/phonenumber_Controller.dart';
 
 class AccountInformationScreen extends StatelessWidget {
   AccountInformationScreen({Key? key}) : super(key: key);
-  AccountInformationController controller = Get.put(AccountInformationController());
-  PhoneNumberController phoneNumberController = Get.put(PhoneNumberController());
+  AccountInformationController controller = Get.find<AccountInformationController>();
 
   @override
   Widget build(BuildContext context) {
@@ -212,16 +212,14 @@ class AccountInformationScreen extends StatelessWidget {
 
   Widget countryCodePicker(BuildContext context) {
     return InkWell(
-      onTap: () {
-        phoneNumberController.onCountryTap(context);
-      },
+      onTap: () => controller.onCountryTap(context),
       child: Row(
         children: [
-          Text(phoneNumberController.countryModel.flagEmoji),
+          Text(controller.countryModel.flagEmoji),
           const SizedBox(width: 9),
           Text(
-            "+${phoneNumberController.countryModel.phoneCode}",
-            style: gilroyMediumTextStyle(fontSize: 14, color: Colors.black),
+            "+${controller.countryModel.phoneCode}",
+            style: textStyleFont14Alert,
           ),
           SizedBox(width: Get.width * 0.04533),
           Image.asset(AssetRes.dropdown, height: 6),
@@ -260,6 +258,19 @@ class AccountInformationScreen extends StatelessWidget {
           title: Strings.city,
           hintText: Strings.ontrario,
         ),
+        GetBuilder<AccountInformationController>(
+          id: 'doctor',
+          builder: (controller) {
+            return dropdownButton(
+                title: "Country",
+                hintText: "Canada",
+                selectedValue: controller.selectCountry,
+                onTap: controller.onCountryChange,
+                dropdownList: countryCity,
+                height: Get.height*0.3
+            );
+          },
+        ),
         AppTextFiled(
           controller: controller.countryController,
           title: Strings.country,
@@ -296,11 +307,11 @@ class AccountInformationScreen extends StatelessWidget {
                   dropdownList: controller.dropdownList,
                   hintText: Strings.profession,
                   title: Strings.profession,
-                  selectedValue: controller.selectCountry,
-                  onTap: controller.onCountryCoCityChange,
+                  selectedValue: controller.userProfession,
+                  onTap: controller.onCountryProfession,
                 )),
         AppTextFiled(
-          controller: controller.comanyName,
+          controller: controller.companyName,
           title: Strings.companyName,
           hintText: Strings.myCompany,
         ),
@@ -321,6 +332,19 @@ class AccountInformationScreen extends StatelessWidget {
           title: Strings.city,
           hintText: Strings.city,
           multiLine: true,
+        ),
+        GetBuilder<AccountInformationController>(
+          id: 'doctor',
+          builder: (controller) {
+            return dropdownButton(
+                title: "Country",
+                hintText: "Canada",
+                selectedValue: controller.selectCompanyCountry,
+                onTap: controller.onCompanyCountryChange,
+                dropdownList: countryCity,
+                height: Get.height*0.3
+            );
+          },
         ),
         AppTextFiled(
           controller: controller.companyCountryController,

@@ -23,7 +23,7 @@ class ListOfCountryApi {
 
     } catch (e) {
       print(e.toString());
-      return [];
+      return listCountryModelFromJson("");
     }
   }
 }
