@@ -27,9 +27,9 @@ class ConnectionsProfileController extends GetxController {
   SendFriendRequest sendFriendRequest = SendFriendRequest();
   AcceptFriendRequest acceptFriendRequest = AcceptFriendRequest();
   HomeController homeController = Get.put(HomeController());
-  CancelFriendRequestModel cancelFriendRequestModel = CancelFriendRequestModel();
+  CancelFriendRequestModel cancelFriendRequestModel =
+      CancelFriendRequestModel();
   ProfileController profileController = Get.find();
-
 
   void onInit() {
     super.onInit();
@@ -57,9 +57,10 @@ class ConnectionsProfileController extends GetxController {
       loader.value = true;
       await BlockApi.postRegister(id.toString())
           .then((value) => blockModel = value);
-      await profileController.viewProfileDetails();
+      await callApi(id);
+      /*await profileController.viewProfileDetails();
 
-      await homeController.blockListDetailes();
+      await homeController.blockListDetailes();*/
       update(["connections"]);
       loader.value = false;
     } catch (e) {
@@ -71,8 +72,9 @@ class ConnectionsProfileController extends GetxController {
     try {
       loader.value = true;
       await UnBlockApi.postRegister(id).then((value) => unblockModel = value);
-      await homeController.blockListDetailes();
-      await profileController.viewProfileDetails();
+      await callApi(id);
+      /*await homeController.blockListDetailes();
+      await profileController.viewProfileDetails();*/
       update(["connections"]);
       loader.value = false;
     } catch (e) {
@@ -97,20 +99,19 @@ class ConnectionsProfileController extends GetxController {
     try {
       loader.value = true;
       sendFriendRequest = await AcceptFriendRequestApi.postRegister(id);
-      await homeController.listOfFriedRequestDetails();
-
+      await callApi(id);
       update(["connections"]);
       loader.value = false;
     } catch (e) {
       loader.value = false;
     }
   }
+
   Future<void> cancelFriendRequestDetails(String id) async {
     try {
       loader.value = true;
       cancelFriendRequestModel = await CancelFriendRequestApi.postRegister(id);
-      await homeController.listOfFriedRequestDetails();
-
+      await callApi(id);
       update(["connections"]);
       loader.value = false;
     } catch (e) {

@@ -23,7 +23,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
         id: "connections",
         builder: (controller) {
           return Obx(() {
-            ProfileData data = controller.profileModel.data!;
+            ProfileData data = controller.profileModel.data ?? ProfileData();
             return Stack(
               children: [
                 Container(
@@ -40,22 +40,31 @@ class ConnectionsProfileScreen extends StatelessWidget {
                       end: Alignment.bottomCenter,
                     ),
                   ),
-                  child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        profileAppbar(data.fullName.toString(), false),
-                        SizedBox(height: 20,),
-                        profileImage(data.profileImage, data.backgroundImage),
-                        connectAndBlock(
-                            title: data.fullName,
-                            subTitle: "Surrogate Mom",
-                            id: data.id.toString()),
-                        testimonials(),
-                        otherVisitorsViewed(),
-                      ],
-                    ),
-                  ),
+                  child: data.id == null
+                      ? const SizedBox()
+                      : SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              profileAppbar(data.fullName.toString(), false),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              profileImage(
+                                  data.profileImage, data.backgroundImage),
+                              connectAndBlock(
+                                title: data.fullName,
+                                subTitle: "Surrogate Mom",
+                                id: data.id.toString(),
+                                connect: data.isFriends == "no",
+                                block: data.isBlock,
+                              ),
+                              testimonials(),
+                              otherVisitorsViewed(),
+                            ],
+                          ),
+                        ),
                 ),
                 controller.loader.isTrue
                     ? const SmallLoader()

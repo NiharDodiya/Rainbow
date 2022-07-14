@@ -44,6 +44,7 @@ class ConnectionApi {
           return requestUserModelFromJson(response.body);
         } else {
           flutterToast(data['message']);
+          return requestUserModelFromJson(response.body);
         }
       }
       return null;

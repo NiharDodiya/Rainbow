@@ -126,8 +126,9 @@ class ConnectionsScreen extends StatelessWidget {
                 name: user.fullName,
                 image: user.profileImage,
                 label: user.email,
-                onPlusTap: () => control.onTapViewProfile(index),
-                onDeleteTap: () => controller.onDeleteBtnTap(index),
+                onPlusTap: () => control.onAddBtnTap(user.id.toString(),false),
+                onDeleteTap: () => controller.onDeleteBtnTap(user.id.toString(),false),
+                onProfileTap: () => controller.onTapViewProfile(user.id.toString()),
               );
             },
           )
@@ -160,8 +161,9 @@ class ConnectionsScreen extends StatelessWidget {
                 name: user.fullName,
                 image: user.profileImage,
                 label: user.email,
-                onPlusTap: () => control.onTapViewProfile(index),
-                onDeleteTap: () => controller.onDeleteBtnTap(index),
+                onPlusTap: () => control.onAddBtnTap(user.id.toString(),true),
+                onDeleteTap: () => controller.onDeleteBtnTap(user.id.toString(),true),
+                onProfileTap: () => controller.onTapViewProfile(user.id.toString()),
               );
             },
           )
@@ -176,17 +178,20 @@ class ConnectionsScreen extends StatelessWidget {
     String? image,
     VoidCallback? onPlusTap,
     VoidCallback? onDeleteTap,
+    VoidCallback? onProfileTap,
   }) {
     return Padding(
       padding: const EdgeInsets.only(top: 5, bottom: 10),
-      child: Column(
-        children: [
-          Row(
+      child: InkWell(
+        onTap: onProfileTap,
+        child: SizedBox(
+          width: Get.width,
+          child: Row(
             children: [
-              SizedBox(width: Get.width * 0.07),
+              SizedBox(width: Get.width * 0.043),
               SizedBox(
-                height: 50,
-                width: 50,
+                height: Get.width * 0.1467,
+                width: Get.width * 0.1467,
                 child: CachedNetworkImage(
                   imageUrl: image.toString(),
                   imageBuilder: (context, imageProvider) => Container(
@@ -204,19 +209,21 @@ class ConnectionsScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(width: Get.width * 0.04),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    name.toString(),
-                    style: montserratRegularTextStyle(fontSize: 16),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    label.toString(),
-                    style: montserratRegularTextStyle(fontSize: 12),
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name.toString(),
+                      style: montserratRegularTextStyle(fontSize: 16),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      label.toString(),
+                      style: montserratRegularTextStyle(fontSize: 12),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(width: Get.width * 0.07),
               InkWell(
@@ -239,9 +246,10 @@ class ConnectionsScreen extends StatelessWidget {
                   child: Image(image: AssetImage(AssetRes.delete)),
                 ),
               ),
+              SizedBox(width: Get.width * 0.02667),
             ],
-          )
-        ],
+          ),
+        ),
       ),
     );
   }
