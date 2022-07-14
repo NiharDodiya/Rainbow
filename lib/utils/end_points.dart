@@ -28,6 +28,8 @@ class EndPoints {
   static const sendFriendRequest = "${baseUrl}/user/request/send";
   static const acceptFriendRequest = "${baseUrl}/user/request/accept";
   static const adEditProfile = "${baseUrl}/advirtisers/profile/update";
+  static const listOfFriendRequest = "${baseUrl}/user/request/list";
+  static const cancelFriendRequest = "${baseUrl}/user/request/reject";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

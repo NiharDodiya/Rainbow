@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
@@ -15,13 +16,15 @@ Widget otherVisitorsViewed() {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          controller.viewProfile.data!.userView!.length==0?"": "Other Visitors Viewed",
+          controller.viewProfile.data!.userView!.length == 0
+              ? ""
+              : "Other Visitors Viewed",
           style: beVietnamProBoldTextStyle(fontSize: 18),
         ),
-
         SizedBox(
           height: 130,
-          child: ListView.builder(padding: EdgeInsets.only(top: 5),
+          child: ListView.builder(
+            padding: EdgeInsets.only(top: 5),
             itemCount: controller.viewProfile.data!.userView == null
                 ? 0
                 : controller.viewProfile.data!.userView!.length,
@@ -42,14 +45,23 @@ Widget otherVisitorsViewed() {
                       width: 60,
                       margin: const EdgeInsets.only(
                           right: 10, left: 10, top: 10, bottom: 7),
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: AssetImage(
-                            AssetRes.se_profile,
-                          ),fit: BoxFit.fill
+                   child:  CachedNetworkImage(
+                      imageUrl:
+                      controller.viewProfile.data!.userView![index].profileImage
+                          .toString(),
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
+                      // placeholder: (context, url) => const Center(child:  CircularProgressIndicator(),),
+                      errorWidget: (context, url, error) =>
+                          Image.asset(AssetRes.se_profile),
+                    ),
                     ),
                   ),
                   SizedBox(
@@ -71,4 +83,3 @@ Widget otherVisitorsViewed() {
     ),
   );
 }
-

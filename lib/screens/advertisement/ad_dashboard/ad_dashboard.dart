@@ -18,12 +18,9 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import '../../account_Information/account_Information_screen.dart';
 
 class AdvertisementDashBord extends StatelessWidget {
-  const AdvertisementDashBord({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final AdvertisementController controller = Get.put(AdvertisementController());
    AdvertisementDashBord({Key? key}) : super(key: key);
+
+
   final AdvertisementController controller =
   Get.put(AdvertisementController());
 

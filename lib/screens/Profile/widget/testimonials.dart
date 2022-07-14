@@ -9,7 +9,7 @@ Widget testimonials() {
   return Padding(
     padding: const EdgeInsets.only(left: 30, right: 30),
     child: SizedBox(
-      height: 435,
+      // height: 435,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -18,10 +18,13 @@ Widget testimonials() {
             height: 10,
           ),
           Text(
-            Strings.testimonials,
+            Strings.noTestimonials,
             style: beVietnamProBoldTextStyle(fontSize: 18),
           ),
-          ListView.separated(padding: const EdgeInsets.only(top: 15),
+          const SizedBox(
+            height: 10,
+          ),
+    /*      ListView.separated(padding: const EdgeInsets.only(top: 15),
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return listOfTestimonials();
@@ -56,7 +59,7 @@ Widget testimonials() {
               ),
               iconForSlider(AssetRes.rightIcon),
             ],
-          )
+          )*/
         ],
       ),
     ),

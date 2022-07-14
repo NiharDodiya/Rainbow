@@ -50,7 +50,7 @@ class ProfileController extends GetxController {
       EditProfileController editProfileController =
           Get.put(EditProfileController());
         editProfileController.fullName.text = viewProfile.data!.fullName!;
-        // editProfileController.status.text = viewProfile.data!.status!;
+        editProfileController.status1.text = viewProfile.data!.maritalStatus!;
         editProfileController.age.text = viewProfile.data!.age.toString();
         editProfileController.city.text = viewProfile.data!.city!;
         editProfileController.height.text = viewProfile.data!.height!;

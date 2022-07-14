@@ -27,6 +27,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
             return Stack(
               children: [
                 Container(
+                  height: Get.height,
                   width: Get.width,
                   padding: const EdgeInsets.only(top: 25),
                   decoration: const BoxDecoration(

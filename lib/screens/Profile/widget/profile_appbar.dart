@@ -23,7 +23,7 @@ Widget profileAppbar(String text, bool show) {
         ),
         Row(
           children: [
-        /*    InkWell(
+            InkWell(
               onTap: () {
                 Get.back();
               },
@@ -36,7 +36,7 @@ Widget profileAppbar(String text, bool show) {
                   height: 15,
                 ),
               ),
-            ),*/
+            ),
             const Spacer(),
             show
                 ? InkWell(

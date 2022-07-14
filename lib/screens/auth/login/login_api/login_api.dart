@@ -7,7 +7,6 @@ import 'package:rainbow/screens/auth/login/login_api/advertisers_login_json.dart
 import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/idVerification/idverification_screen.dart';
-import 'package:rainbow/screens/scanyour_face/scanyourface_screen.dart';
 import 'package:rainbow/screens/selfie_verification/selfie_verification_screen.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
@@ -35,8 +34,6 @@ class LoginApi {
          bool? status = jsonDecode(response.body)["status"];
         if(status==false)
         {
-        bool? status = jsonDecode(response.body)["status"];
-        if (status == false) {
           flutterToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           await PrefService.setValue(PrefKeys.isLogin, true);
@@ -60,19 +57,19 @@ class LoginApi {
             Get.offAll(() =>
                 jsonDecode(response.body)["data"]["role"] == "end_user"
                     ? const Dashboard()
-                    : const AdvertisementDashBord());
+                    :  AdvertisementDashBord());
           }
           //Get.offAll(() => const Dashboard());
-        }
+
         if (jsonDecode(response.body)["data"]["role"] == "end_user") {
           return loginModelFromJson(response.body);
         } else {
           return advertisersLoginModelFromJson(response.body);
         }
-      } else if (response!.statusCode == 500) {
+      } else if (response.statusCode == 500) {
         flutterToast(jsonDecode(response.body)["message"]);
       }
-    } catch (e) {
+    } }catch (e) {
       print(e.toString());
 
       return loginModelFromJson('');
