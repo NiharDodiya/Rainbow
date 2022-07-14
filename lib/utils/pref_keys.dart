@@ -8,6 +8,8 @@ class PrefKeys{
   static const userId = "userId";
   static const advirtisersToken = "advirtisersToken";
   static const loginRole = "role";
+  static const advertiserProfileID = "advertiserProfileID";
+  static const advertiserProfileImage = "advertiserProfileImage";
   static const phoneId = "id";
   static const showTermsCondition = "showTermsCondition";
 }
