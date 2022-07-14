@@ -127,7 +127,7 @@ class Data {
     hobbiesInterest: json["hobbies_interest"],
     testimonials: json["testimonials"],
     visitors: json["visitors"],
-    userView: List<dynamic>.from(json["userView"].map((x) => x)),
+    userView: json["userView"] == null?[]:List<dynamic>.from(json["userView"].map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {

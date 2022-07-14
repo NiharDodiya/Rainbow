@@ -3,6 +3,7 @@ import 'package:country_picker/country_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/screens/account_Information/ad_information_api/ad_information_api.dart';
@@ -17,7 +18,9 @@ class AccountInformationController extends GetxController {
   File? imagePath;
   int? imageID;
   String? selectCountry;
+  String? idCountry;
   String? selectCompanyCountry;
+  String? idCompanyCountry;
   String? userProfession;
   TextEditingController fullNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -31,7 +34,6 @@ class AccountInformationController extends GetxController {
   TextEditingController postalCodeController = TextEditingController();
   TextEditingController companyPostalCodeController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
-  TextEditingController profession = TextEditingController();
   TextEditingController companyName = TextEditingController();
   TextEditingController companyNumber = TextEditingController();
   TextEditingController website = TextEditingController();
@@ -54,7 +56,7 @@ class AccountInformationController extends GetxController {
   });
 
 
-  Future<void> onInit() async {
+  Future<void> onGetData() async {
     loader.value = true;
     await AdInformationAPI.adProfileView().then((value) {
       adViewProfile = value;
@@ -72,20 +74,18 @@ class AccountInformationController extends GetxController {
       userProfession = adViewProfile.data!.profession!;
       companyName.text = adViewProfile.data!.companyName!;
       companyNumber.text = adViewProfile.data!.companyPhoneNumber!;
-      companyStreetNumberController.text =
-          adViewProfile.data!.compnayStreetName!;
+      companyStreetNumberController.text = adViewProfile.data!.compnayStreetName!;
       companyCityController.text = adViewProfile.data!.compnayCity!;
       companyCountryController.text = adViewProfile.data!.companyCountry!;
       selectCompanyCountry = adViewProfile.data!.companyCountry!;
-      companyPostalCodeController.text =
-          adViewProfile.data!.compnayPostalCode!.toString();
+      companyPostalCodeController.text = adViewProfile.data!.compnayPostalCode!.toString();
       website.text = adViewProfile.data!.compnayWebsite!;
       // countryModel = CountryParser.parseCountryCode("+91");
-      loader.value = false;
       update(['doctor']);
       update(['update']);
       update(['phone_filed']);
       update(['Getpic']);
+      loader.value = false;
     });
   }
 
@@ -103,7 +103,6 @@ class AccountInformationController extends GetxController {
 
   void onCountryProfession(String value) {
     userProfession = value;
-    profession.text = value;
     update(['doctor']);
   }
 
@@ -130,19 +129,30 @@ class AccountInformationController extends GetxController {
 
 //account save
   accountSave() async {
-    if(accountValidation()){
-      loader.value = true;
+    if(uploadImage.data == null){
       await uploadImageApi();
+    }
+    if(accountValidation() && companyValidation()){
+      loader.value = true;
+      getCountry();
       await onTapSave();
     }
   }
 
-  compnySave() {
-    if(companyValidation()){
-      onTapSave();
+
+
+  void getCountry(){
+    for(int i=0; i < countryCity.length; i++){
+      if(countryCity[i]==selectCountry){
+        idCountry = countryId[i];
+      }
+    }
+    for(int i=0; i < countryCity.length; i++){
+      if(countryCity[i]==selectCompanyCountry){
+        idCompanyCountry = countryId[i];
+      }
     }
   }
-
 //account validation
   bool accountValidation() {
     if (fullNameController.text.isEmpty) {
@@ -172,13 +182,16 @@ class AccountInformationController extends GetxController {
     } else if (!GetUtils.isPhoneNumber(phoneNumberController.text)) {
       errorToast(Strings.phoneNumberValidError);
       return false;
+    }else if(uploadImage.data == null){
+      errorToast(Strings.uploadImageError);
+      return false;
     }
     return true;
   }
 
   //Company data validation
   bool companyValidation() {
-    if (profession.text.isEmpty) {
+    if (userProfession == null) {
       errorToast(Strings.professionError);
       return false;
     } else if (companyName.text.isEmpty) {
@@ -290,16 +303,16 @@ class AccountInformationController extends GetxController {
         "street_name": streetNumberController.text,
         "phone_number": phoneNumberController.text,
         "city": cityController.text,
-        "id_country": '10',
+        "id_country": idCountry,
         "postal_code": postalCodeController.text,
       },
       "companyData": {
-        "profession": profession.text,
+        "profession": userProfession,
         "company_name": companyName.text,
         "company_phone_number": companyNumber.text,
         "street_name": companyStreetNumberController.text,
         "city": companyCityController.text,
-        "id_country": "10",
+        "id_country": idCompanyCountry,
         "postal_code": companyPostalCodeController.text,
         "website": website.text,
       }
@@ -315,24 +328,27 @@ class AccountInformationController extends GetxController {
         streetNumberController.text = adViewProfile.data!.streetName!;
         cityController.text = adViewProfile.data!.city!;
         countryController.text = adViewProfile.data!.country!;
+        selectCountry = adViewProfile.data!.country!;
         postalCodeController.text = adViewProfile.data!.postalCode!.toString();
-        phoneNumberController.text = adViewProfile.data!.phoneNumber!;
+        phoneNumberController.text = adViewProfile.data!.phoneNumber!.split(' ').last;
 
-        selectCountry = adViewProfile.data!.profession!;
+        userProfession = adViewProfile.data!.profession!;
         companyName.text = adViewProfile.data!.companyName!;
         companyNumber.text = adViewProfile.data!.companyPhoneNumber!;
-        companyStreetNumberController.text =
-        adViewProfile.data!.compnayStreetName!;
+        companyStreetNumberController.text = adViewProfile.data!.compnayStreetName!;
         companyCityController.text = adViewProfile.data!.compnayCity!;
         companyCountryController.text = adViewProfile.data!.companyCountry!;
-        companyPostalCodeController.text =
-            adViewProfile.data!.compnayPostalCode!.toString();
+        selectCompanyCountry = adViewProfile.data!.companyCountry!;
+        companyPostalCodeController.text = adViewProfile.data!.compnayPostalCode!.toString();
         website.text = adViewProfile.data!.compnayWebsite!;
+        // countryModel = CountryParser.parseCountryCode("+91");
         update(['doctor']);
         update(['update']);
+        update(['phone_filed']);
         update(['Getpic']);
         loader.value = false;
       },
     );
+    loader.value = false;
   }
 }

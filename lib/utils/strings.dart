@@ -123,6 +123,7 @@ class Strings {
   static const addressLine2Error = 'Address Line 2 is required';
   static const phoneNumberError = 'Phone Number is required';
   static const phoneNumberValidError = 'Phone Number is invalid';
+  static const uploadImageError = 'Profile Image is not Uploaded \n please upload Profile picture';
   static const maritalStatusError = 'Marital Status is required';
   static const ethnicityError = 'Ethnicity is required';
   static const birthDateError = 'Birth Date is required';
