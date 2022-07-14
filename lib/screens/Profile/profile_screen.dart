@@ -46,25 +46,13 @@ class ProfileScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       profileAppbar(Strings.profile, true),
-
                       profileImagesLoad(controller),
                       profileDetails(),
-                      aboutProfiler(
-                          Strings.aboutMe,
-                          /* controller.viewProfile.data == null
-                              ? */
-                          Strings
-                              .aboutMeDes /*   : controller.viewProfile.data!.aboutMe.toString()*/),
+                      aboutProfiler(Strings.aboutMe, Strings.aboutMeDes),
                       const SizedBox(
                         height: 30,
                       ),
                       hobbiesAndInterest(),
-                      /* aboutProfiler(
-                          "Hobbies and Interest",
-                          controller.viewProfile.data == null
-                              ? ""
-                              : controller.viewProfile.data!.hobbiesAndInterest
-                                  .toString()),*/
                       testimonials(),
                       otherVisitorsViewed(),
                     ],
@@ -81,52 +69,63 @@ class ProfileScreen extends StatelessWidget {
 
   Widget profileImagesLoad(ProfileController controller) {
     return SizedBox(
-      height: 292,
+      height: 280,
       width: Get.width,
       child: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 15, right: 15, top: 25),
-            child: SizedBox(
+              padding: const EdgeInsets.only(left: 15, right: 15, top: 25),
+              child: SizedBox(
+                height: Get.height * 0.2857,
+                width: Get.width,
+                child: CachedNetworkImage(
+                  imageUrl:
+                      controller.viewProfile.data!.backgroundImage.toString(),
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
+                  errorWidget: (context, url, error) =>  Container(
                     height: Get.height * 0.2857,
-                    width: Get.width, child: CachedNetworkImage(
-              imageUrl:  controller.viewProfile.data!.backgroundImage.toString(),
-              imageBuilder: (context, imageProvider) => Container(
-                decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,),
+                    width: Get.width,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: const DecorationImage(
+                            image: AssetImage(AssetRes.overlay),
+                            fit: BoxFit.cover)),
+                  ),
+                  fit: BoxFit.fill,
                 ),
-              ),
-              // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
-              errorWidget: (context, url, error) =>
-                  Image.asset(AssetRes.overlay),
-            ),
-                  )
-
-          ),
+              )),
           Positioned(
             top: Get.height * 0.11,
             left: Get.width * 0.30,
-            child:SizedBox(
-                    height: Get.height * 0.38666,
-                    width: Get.width * 0.38666,
-                    child:  CachedNetworkImage(
-                      imageUrl:  controller.viewProfile.data!.backgroundImage.toString(),
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,),
-                        ),
-                      ),
-                      // placeholder: (context, url) => const Center(child:  CircularProgressIndicator(),),
-                      errorWidget: (context, url, error) =>
-                          Image.asset(AssetRes.se_profile),
+            child: SizedBox(
+              height: Get.height * 0.38666,
+              width: Get.width * 0.38666,
+              child: CachedNetworkImage(
+                imageUrl:
+                    controller.viewProfile.data!.backgroundImage.toString(),
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
                     ),
                   ),
+                ),
+                // placeholder: (context, url) => const Center(child:  CircularProgressIndicator(),),
+                errorWidget: (context, url, error) =>
+                    Image.asset(AssetRes.se_profile),
+              ),
+            ),
           ),
           Positioned(
             top: Get.height * 0.35,
@@ -149,43 +148,48 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget hobbiesAndInterest() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 30, right: 30),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: 10,
-          ),
-          Text(
-            Strings.hobbies,
-            style: beVietnamProBoldTextStyle(fontSize: 18),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 15),
-            child: ReadMoreText(
-              controller.viewProfile.data == null
-                  ? ""
-                  : controller.viewProfile.data!.hobbiesAndInterest.toString(),
-              /* aboutMe,*/
-              trimLines: 3,
-              trimMode: TrimMode.Line,
-              delimiter: " ",
-              trimCollapsedText: Strings.seeMore,
-              trimExpandedText: Strings.seeLess,
-              style: beVietnamProRegularTextStyle(
-                color: ColorRes.white.withOpacity(0.70),
-              ),
-              moreStyle: beVietnamProRegularTextStyle(
-                color: ColorRes.color_FF6B97,
-              ),
-              lessStyle: beVietnamProRegularTextStyle(
-                color: ColorRes.color_FF6B97,
-              ),
+    return controller.viewProfile.data!.hobbiesAndInterest.toString() == ""
+        ? SizedBox()
+        : Padding(
+            padding: const EdgeInsets.only(left: 30, right: 30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  Strings.hobbies,
+                  style: beVietnamProBoldTextStyle(fontSize: 18),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 15),
+                  child: ReadMoreText(
+                    controller.viewProfile.data!.hobbiesAndInterest
+                                .toString() ==
+                            ""
+                        ? ""
+                        : controller.viewProfile.data!.hobbiesAndInterest
+                            .toString(),
+                    /* aboutMe,*/
+                    trimLines: 3,
+                    trimMode: TrimMode.Line,
+                    delimiter: " ",
+                    trimCollapsedText: Strings.seeMore,
+                    trimExpandedText: Strings.seeLess,
+                    style: beVietnamProRegularTextStyle(
+                      color: ColorRes.white.withOpacity(0.70),
+                    ),
+                    moreStyle: beVietnamProRegularTextStyle(
+                      color: ColorRes.color_FF6B97,
+                    ),
+                    lessStyle: beVietnamProRegularTextStyle(
+                      color: ColorRes.color_FF6B97,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-    );
+          );
   }
 }

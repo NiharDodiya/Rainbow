@@ -3,18 +3,19 @@ import 'package:get/get.dart';
 import 'package:rainbow/model/privacy_model.dart';
 import 'package:rainbow/screens/Home/settings/privacy/privacy_api/privacy_api.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
+import 'package:rainbow/utils/strings.dart';
 
 class PrivacyController extends GetxController {
   RxBool loader = false.obs;
 
   List<String> privacyList = [
-    "profile_photo",
-    "basic_info",
-    "social_media",
-    "about_me",
-    "hobbies_interest",
-    "testimonials",
-    "visitors"
+    "Display Photo",
+    "Basic Information",
+    "Social Media",
+    "About Me",
+    "Hobbies and Interest",
+    "Testimonials",
+    "Visitors"
   ];
   List<bool> isChecked = [];
   ProfileController profileController = Get.put(ProfileController());

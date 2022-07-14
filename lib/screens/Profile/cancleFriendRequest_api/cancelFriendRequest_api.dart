@@ -1,24 +1,23 @@
 import 'dart:convert';
 
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/model/sendFriendRequest_model.dart';
+import 'package:rainbow/model/cancleFriedRequest_model.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 import 'package:http/http.dart' as http;
 
-class SendFriendRequestApi {
+class CancelFriendRequestApi {
   static Future postRegister(String id) async {
     String accesToken=  PrefService.getString(PrefKeys.registerToken);
     int userId =  PrefService.getInt(PrefKeys.userId);
 
-
     try {
-      String url = EndPoints.sendFriendRequest;
+      String url = EndPoints.cancelFriendRequest;
 
       Map<String, String> param ={
-        "id_receiver" : id.toString()
+        "id_sender" : id.toString()
       };
       print(param);
       http.Response? response = await HttpService.postApi(url: url,   body:jsonEncode(param),
@@ -33,7 +32,7 @@ class SendFriendRequestApi {
         {
           flutterToast( jsonDecode(response.body)["message"]);
         }
-        return sendFriendRequestFromJson(response.body);
+        return cancelFriendRequestModelFromJson(response.body);
       }
     } catch (e) {
       print(e.toString());

@@ -27,6 +27,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
             return Stack(
               children: [
                 Container(
+                  height: Get.height,
                   width: Get.width,
                   padding: const EdgeInsets.only(top: 25),
                   decoration: const BoxDecoration(
@@ -41,7 +42,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
                   ),
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
-                    child: Column(
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         profileAppbar(data.fullName.toString(), false),
                         SizedBox(height: 20,),

@@ -26,7 +26,7 @@ Future<void> main() async {
   NotificationService.init();
   await FirebaseMessaging.instance.getToken().then((value) {
     if (kDebugMode) {
-      print(value);
+      print("FCM Token => $value");
     }
   });
   await PrefService.init();
@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
                   ? const TermsConditionsScreen(showBackBtn: false)
                   : PrefService.getString(PrefKeys.loginRole) == "end_user"
                       ? const Dashboard()
-                      : const AdvertisementDashBord()
+                      :  AdvertisementDashBord()
               : AuthDashboard(),
     );
   }

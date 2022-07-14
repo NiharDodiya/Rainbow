@@ -50,7 +50,7 @@ class ProfileController extends GetxController {
       EditProfileController editProfileController =
           Get.put(EditProfileController());
         editProfileController.fullName.text = viewProfile.data!.fullName!;
-        // editProfileController.status.text = viewProfile.data!.status!;
+        editProfileController.status1.text = viewProfile.data!.maritalStatus!;
         editProfileController.age.text = viewProfile.data!.age.toString();
         editProfileController.city.text = viewProfile.data!.city!;
         editProfileController.height.text = viewProfile.data!.height!;
@@ -58,7 +58,7 @@ class ProfileController extends GetxController {
         editProfileController.ethnicity.text = viewProfile.data!.idEthnicity!;
         editProfileController.haveKids.text = viewProfile.data!.noKids!.toString();
         editProfileController.hobbies.text = viewProfile.data!.hobbiesAndInterest!.toString();
-        editProfileController.aboutMe.text = viewProfile.data!.aboutMe!.toString();
+        // editProfileController.aboutMe.text = viewProfile.data!.aboutMe!.toString();
       // await PrefService.setValue(PrefKeys.registerToken, registerUser.token.toString());
       loader.value = false;
     } catch (e) {

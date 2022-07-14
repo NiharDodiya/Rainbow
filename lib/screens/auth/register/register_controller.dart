@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
+import 'package:rainbow/screens/auth/login/login_api/login_api.dart';
 import 'package:rainbow/screens/auth/login/login_screen.dart';
 import 'package:rainbow/screens/auth/register/api/register_api.dart';
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalitesJson.dart';
@@ -46,7 +47,7 @@ class RegisterController extends GetxController {
     "1",
     "2",
   ];
-  List<String> noOfKids = ["0", "1", "2", "3", "4", "5", "6"];
+  List<String> noOfKids = ["0","1", "2", "3", "4", "5", "6"];
   bool martialStatusDropdown = false;
   bool ethnicityDropdown = false;
   bool kidsDropdown = false;
@@ -263,6 +264,7 @@ class RegisterController extends GetxController {
           .then((value) => registerUser = value);
       await PrefService.setValue(
           PrefKeys.registerToken, registerUser.token.toString());
+      await LoginApi.updateDeviceToken();
 
       loader.value = false;
     } catch (e) {

@@ -22,10 +22,10 @@ class EditProfileController extends GetxController {
   TextEditingController ethnicity = TextEditingController();
   TextEditingController haveKids = TextEditingController(/*text: "1"*/);
   TextEditingController status1 = TextEditingController(/*text: "married"*/);
-  TextEditingController instagram = TextEditingController(text: "https://www.instagram.com/accounts/login/?next=/jackiechan.official/");
-  TextEditingController youTube = TextEditingController(text: "https://www.youtube.com/watch?v=YwQ2eVbABsY");
-  TextEditingController faceBook = TextEditingController(text: "https://www.facebook.com/search/top/?q=Jacky%20Chain");
-  TextEditingController twitter = TextEditingController(text: "https://twitter.com/eyeofjackiechan");
+  TextEditingController instagram = TextEditingController(/*text: "https://www.instagram.com/accounts/login/?next=/jackiechan.official/"*/);
+  TextEditingController youTube = TextEditingController(/*text: "https://www.youtube.com/watch?v=YwQ2eVbABsY"*/);
+  TextEditingController faceBook = TextEditingController(/*text: "https://www.facebook.com/search/top/?q=Jacky%20Chain"*/);
+  TextEditingController twitter = TextEditingController(/*text: "https://twitter.com/eyeofjackiechan"*/);
   TextEditingController aboutMe = TextEditingController();
   TextEditingController hobbies = TextEditingController(/*text: "Learning"*/);
   String aboutTextCounter = '';
@@ -40,6 +40,8 @@ class EditProfileController extends GetxController {
   int heightInches = 0;
   String? codeId;
   ProfileController profileController = Get.put(ProfileController());
+  List<String> noOfKids = ["0","1", "2", "3", "4", "5", "6"];
+  String? noKidsSelected;
 
   void onInit() {
     update(['Edit_profile']);
@@ -59,13 +61,18 @@ class EditProfileController extends GetxController {
       await editProfileApi(context);
       await profileController.viewProfileDetails();
       profileController.update(["profile"]);
-
-      // Get.back();
     }
   }
 
   bool validation() {
-    if (fullName.text.isEmpty) {
+    if (backImage==null) {
+      errorToast(Strings.captureImageBack);
+      return false;
+    }else if (frontImage==null) {
+      errorToast(Strings.captureImageFront);
+      return false;
+    }
+    else if (fullName.text.isEmpty) {
       errorToast(Strings.fullName);
       return false;
     } else if (status.text.isEmpty) {
@@ -92,7 +99,7 @@ class EditProfileController extends GetxController {
     } else if (status1.text.isEmpty) {
       errorToast(Strings.status);
       return false;
-    } else if (instagram.text.isEmpty) {
+    } /*else if (instagram.text.isEmpty) {
       errorToast(Strings.instagram);
       return false;
     } else if (youTube.text.isEmpty) {
@@ -104,7 +111,7 @@ class EditProfileController extends GetxController {
     } else if (twitter.text.isEmpty) {
       errorToast(Strings.twitter);
       return false;
-    } else if (aboutMe.text.isEmpty) {
+    }*/else if (aboutMe.text.isEmpty) {
       errorToast(Strings.aboutMe);
       return false;
     } else if (hobbies.text.isEmpty) {

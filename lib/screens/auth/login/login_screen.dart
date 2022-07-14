@@ -183,7 +183,7 @@ class LoginScreen extends StatelessWidget {
         SizedBox(height: Get.height * 0.02463),
         SubmitButton(
           text: Strings.login,
-          onTap: loginController.onRegisterTap,
+          onTap: loginController.onLoginTap,
         ),
         SizedBox(height: Get.height * 0.03202),
         GetBuilder<LoginController>(

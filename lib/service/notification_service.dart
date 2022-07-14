@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:get/get.dart';
+import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
+import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 
 class NotificationService {
   static Future<void> init() async {
@@ -32,6 +37,7 @@ class NotificationService {
       // If `onMessage` is triggered with a notification, construct our own
       // local notification to show to users using the created channel.
       if (notification != null && android != null) {
+        Map<String, dynamic> payload = message!.data;
         flutterLocalNotificationsPlugin.show(
           notification.hashCode,
           notification.title,
@@ -44,16 +50,33 @@ class NotificationService {
               // other properties...
             ),
           ),
+          payload: jsonEncode(payload),
         );
       }
     });
 
     FirebaseMessaging.onMessageOpenedApp
-        .listen((RemoteMessage message) async {});
+        .listen((RemoteMessage message) async {
+      if (true) {
+        Future.delayed(8.seconds,(){
+          ConnectionsController connectionController = Get.put(ConnectionsController());
+          connectionController.init();
+          Get.to(() => ConnectionsScreen());
+        });
+      }
+    });
 
     FirebaseMessaging.instance
         .getInitialMessage()
-        .then((RemoteMessage? message) async {});
+        .then((RemoteMessage? message) async {
+      if (message != null) {
+        Future.delayed(5.seconds,(){
+          ConnectionsController connectionController = Get.put(ConnectionsController());
+          connectionController.init();
+          Get.to(() => ConnectionsScreen());
+        });
+      }
+    });
 
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
@@ -69,7 +92,13 @@ class NotificationService {
 
     flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onSelectNotification: (String? payload) async {
-      if (payload != null) {}
+      if (payload != null) {
+        if (true) {
+          ConnectionsController connectionController = Get.put(ConnectionsController());
+          connectionController.init();
+          Get.to(() => ConnectionsScreen());
+        }
+      }
     });
   }
 
