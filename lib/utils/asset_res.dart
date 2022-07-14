@@ -109,7 +109,6 @@ class AssetRes {
   static const calendarIcon = '${advertisers}calander_Icon.png';
   static const deleteIcon = '${advertisers}delete_icon.png';
 
-
   ///---------------------------------- images -----------------------------------
   static const frameImage = '${advertisers}Frame.png';
   static const advertiserImage = '${advertisers}adve-pr.png';
@@ -132,12 +131,18 @@ class AssetRes {
   static const logouticon = "${icons}logouticon.png";
 
   ///_____________________________________support____________________________________
-  
-  static const support01 ="${images}support01.png";
-    static const support02 ="${images}support02.png";
-    static const downlode = "${icons}downlode.png";
-    static const cameraPic ="${images}cameraPic.png";
+
+  static const support01 = "${images}support01.png";
+  static const support02 = "${images}support02.png";
+  static const downlode = "${icons}downlode.png";
+  static const cameraPic = "${images}cameraPic.png";
+
   ///_________________________________________Ad-Home____________________________________
-  
-    static const imageHint ="${images}imageHint.png";
+
+  static const imageHint = "${images}imageHint.png";
+
+  ///_________________________________________Ad-Notification____________________________________
+  static const greenDuck = "${icons}greenduck.png";
+  static const adsdetail = "${images}adsdetail.png";
+  static const editicons = "${icons}editicons.png";
 }

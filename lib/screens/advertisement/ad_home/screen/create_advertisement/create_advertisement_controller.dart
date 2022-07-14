@@ -1,14 +1,19 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/advertisement_deatail/advertisement_deatail_screen.dart';
 
 import '../../../../../common/popup.dart';
 import '../../../../../utils/strings.dart';
 
 class CreateAdvertisementController extends GetxController {
+  List tags =[];
   String? callToAction;
+  String? address;
   TextEditingController tagsController = TextEditingController();
   TextEditingController titleController = TextEditingController();
   TextEditingController canedaController = TextEditingController();
@@ -22,6 +27,13 @@ class CreateAdvertisementController extends GetxController {
   TextEditingController callToActionController = TextEditingController();
   List<String> dropDList = ["Learn More", "Contact Us"];
   File? imagePath;
+
+tagsListSet(){
+ String addcomma ="${tagsController.text}";
+  tags =   addcomma.split(',');
+  print(tags);
+}
+ 
 
   /// On Tap Dropdown
   void onCallToActionChange(String value) {
@@ -78,7 +90,7 @@ class CreateAdvertisementController extends GetxController {
 
   createAdvertisement() {
     if (validation()) {
-      // Get.to(()=> )
+      Get.to(()=>AdvertisementDeatailScreen() );
     }
   }
 
@@ -122,4 +134,33 @@ class CreateAdvertisementController extends GetxController {
     }
     return true;
   }
+
+  Future getCurrentLocation() async {
+    LocationPermission permission = await Geolocator.checkPermission();
+
+    if (permission == LocationPermission.denied) {
+      LocationPermission result = await Geolocator.requestPermission();
+      return (result == LocationPermission.always ||
+          result == LocationPermission.whileInUse);
+    } else {
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+      List<Placemark> placemarks =
+          await placemarkFromCoordinates(position.latitude, position.longitude);
+
+      Placemark place = placemarks[0];
+      address =
+          '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
+          print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<$address>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+          update(["location"]);
+    }
+  }
 }
+ // await PrefService.setValue(PrefKeys.latitude, position.latitude);
+      // await PrefService.setValue(PrefKeys.longitude, position.longitude);
+
+      //   List<Placemark> placeMarks =
+      //       await placemarkFromCoordinates(position.latitude, position.longitude);
+
+      //   await PrefService.setValue(PrefKeys.locality, placeMarks.first.locality);

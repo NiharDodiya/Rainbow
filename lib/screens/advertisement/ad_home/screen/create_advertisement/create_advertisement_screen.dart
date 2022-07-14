@@ -92,13 +92,14 @@ class CreateAdvertisementScreen extends StatelessWidget {
                 width: Get.width * 0.25,
               ),
               GestureDetector(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: Text(
-                    "Add advertisement",
-                    style: gilroyBoldTextStyle(),
-                  )),
+                onTap: () {
+                  Get.back();
+                },
+                child: Text(
+                  "Add advertisement",
+                  style: gilroyBoldTextStyle(),
+                ),
+              ),
               SizedBox(
                 width: Get.width * 0.05,
               ),
@@ -231,32 +232,46 @@ class CreateAdvertisementScreen extends StatelessWidget {
               hintText: "Title",
               showTitle: false,
             ),
-            Container(
-                height: 60,
-                width: Get.width * 0.89333,
-                // padding: const EdgeInsets.all(2),
-                decoration: BoxDecoration(
-                  color: ColorRes.white,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  children: [
-                    const Spacer(),
-                    const Icon(
-                      Icons.location_on,
-                      color: ColorRes.black,
+            GetBuilder<CreateAdvertisementController>(
+              id: "location",
+              builder: (controller) => InkWell(
+                onTap: () {
+                  controller.getCurrentLocation();
+                },
+                child: Container(
+                    height: 60,
+                    width: Get.width * 0.89333,
+                    // padding: const EdgeInsets.all(2),
+                    decoration: BoxDecoration(
+                      color: ColorRes.white,
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      "Use current location",
-                      style: gilroyBoldTextStyle(
-                          fontSize: 16, color: ColorRes.black),
-                    ),
-                    const Spacer()
-                  ],
-                )),
+                    child: Row(
+                      children: [
+                        const Spacer(),
+                        const Icon(
+                          Icons.location_on,
+                          color: ColorRes.black,
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        controller.address == null
+                            ? Text(
+                                "Use current location",
+                                style: gilroyBoldTextStyle(
+                                    fontSize: 16, color: ColorRes.black),
+                              )
+                            : Text(
+                                controller.address!,
+                                style: gilroyBoldTextStyle(
+                                    fontSize: 9, color: ColorRes.black),
+                              ),
+                        const Spacer()
+                      ],
+                    )),
+              ),
+            ),
             SizedBox(height: Get.height * 0.0197),
             AppTextFiled(
               controller: advertisementController.canedaController,
