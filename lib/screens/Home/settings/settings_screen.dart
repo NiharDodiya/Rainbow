@@ -41,7 +41,9 @@ class SettingsScreen extends StatelessWidget {
                     )
                   ],
                 ),
-                controller.loader.isTrue?const SmallLoader():const SizedBox()
+                controller.loader.isTrue
+                    ? const SmallLoader()
+                    : const SizedBox()
               ],
             ),
           );
@@ -369,49 +371,46 @@ class SettingsScreen extends StatelessWidget {
             thickness: 1,
             color: ColorRes.color_4F359B.withOpacity(0.4),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 5, bottom: 5),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: Get.width * 0.08,
-                ),
-                SizedBox(
-                    height: 18.98,
-                    width: 20.83,
-                    child: Image.asset(
-                      AssetRes.notify,
-                      color: Colors.yellow,
-                    )),
-                SizedBox(
-                  width: Get.width * 0.06,
-                ),
-                Text(
-                  Strings.notifications,
-                  style: textStyleFont15White,
-                ),
-                SizedBox(
-                  width: Get.width * 0.395,
-                ),
-                GetBuilder<SettingsController>(
-                  id: "switch",
-                  builder: (controller) {
-                    return Transform.scale(
-                      scale: 0.7,
-                      child: CupertinoSwitch(
-                        value: controller.isSwitched,
-                        onChanged: (value) {
-                          controller.isSwitched = value;
-                          controller.update(["switch"]);
-                        },
-                        activeColor: Colors.yellow,
-                        trackColor: Colors.white,
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
+          Row(
+            children: [
+              SizedBox(
+                width: Get.width * 0.08,
+              ),
+              SizedBox(
+                  height: 18.98,
+                  width: 20.83,
+                  child: Image.asset(
+                    AssetRes.notify,
+                    color: Colors.yellow,
+                  )),
+              SizedBox(
+                width: Get.width * 0.06,
+              ),
+              Text(
+                Strings.notifications,
+                style: textStyleFont15White,
+              ),
+              SizedBox(
+                width: Get.width * 0.395,
+              ),
+              GetBuilder<SettingsController>(
+                id: "switch",
+                builder: (controller) {
+                  return Transform.scale(
+                    scale: 0.7,
+                    child: CupertinoSwitch(
+                      value: controller.isSwitched,
+                      onChanged: (value) {
+                        controller.isSwitched = value;
+                        controller.update(["switch"]);
+                      },
+                      activeColor: Colors.yellow,
+                      trackColor: Colors.white,
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
           Divider(
             thickness: 1,

@@ -5,6 +5,7 @@ import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/blockList_model.dart';
 import 'package:rainbow/model/listOfFriendRequest_model.dart';
+import 'package:rainbow/screens/Home/Story/story_controller.dart';
 import 'package:rainbow/screens/Home/addStroy/addStory_screen.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/widget/listOfFriendRequest_api/listOfFriendRequest_api.dart';
@@ -28,6 +29,7 @@ class HomeController extends GetxController {
     controller.viewProfileDetails();
     super.onInit();
   }
+  final storyController = StoryController();
 
   Future<void> countryName() async {
     try {
