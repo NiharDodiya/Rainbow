@@ -28,8 +28,8 @@ class LogOutApi {
           flutterToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           flutterToast(jsonDecode(response.body)["message"]);
-          PrefService.setValue(PrefKeys.skipBoardingScreen, true);
           await PrefService.clear();
+          PrefService.setValue(PrefKeys.skipBoardingScreen, true);
           Get.offAll(() => AuthDashboard());
         }
         return logOutModelFromJson(response.body);

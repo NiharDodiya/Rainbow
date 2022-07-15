@@ -273,8 +273,8 @@ class EditProfileController extends GetxController {
     try {
       print("Hello");
       EditProfile? data = await EditProfileApi.postRegister(
-        uploadImage1.data!.id.toString(),
         uploadImage2.data!.id.toString(),
+        uploadImage1.data!.id.toString(),
         fullName.text,
         status.text,
         height.text,

@@ -69,7 +69,7 @@ class ProfileScreen extends StatelessWidget {
 
   Widget profileImagesLoad(ProfileController controller) {
     return SizedBox(
-      height: Get.height*0.415,
+      height: Get.height*0.425,
       width: Get.width,
       child: Stack(
         children: [
