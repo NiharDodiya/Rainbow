@@ -110,14 +110,14 @@ class Strings {
   static const houseNumberHint = "123";
   static const noOfKids = 'No of Kids';
   static const noOfKidsHint = '0';
-  static const fullNameError = 'Full Name is required';
+  static const fullNameError = 'Full name is required';
   static const emailError = 'Email is required';
-  static const enterYourOtp = 'enter your Otp';
+  static const enterYourOtp = 'Enter your otp';
   static const emailValidError = 'Email is invalid';
   static const emailValidError1 = 'Email is invalid';
   static const passwordError = 'Password is required';
-  static const newPasswordError = 'newPassword is required';
-  static const confirmPasswordError = 'confirmPassword is required';
+  static const newPasswordError = 'New password is required';
+  static const confirmPasswordError = 'Confirm password is required';
   static const passwordValidError = 'Password is invalid';
   static const reTypePasswordError = 'Re-Type Password is required';
   static const reTypePasswordValidError = 'Re-Type Password is Mismatch';
@@ -128,7 +128,7 @@ class Strings {
   static const uploadImageError = 'Profile Image is not Uploaded \n please upload Profile picture';
   static const maritalStatusError = 'Marital Status is required';
   static const ethnicityError = 'Ethnicity is required';
-  static const birthDateError = 'Birth Date is required';
+  static const birthDateError = 'Birth date is required';
   static const postalCodeError = 'PostalCode is required';
   static const noOfKidsError = 'No of Kids is required';
   static const alreadyHaveAnAccount = 'Already have an account? ';
@@ -231,8 +231,8 @@ class Strings {
   ///___________________________dashboard--Profile_______________________________________
   static const profile = "Profile";
   static const city = "City";
-  static const cityError = "City Name is Required";
-  static const streetError = "street Name is Required";
+  static const cityError = "City name is Required";
+  static const streetError = "street name is Required";
   static const london = "London";
   static const haveKids = "Have kids?";
   static const editProfile = "Edit Profile";
@@ -306,12 +306,12 @@ class Strings {
   static const cityeError = 'City is required';
 
   static const countryError = 'Country is Required';
-  static const nameonCardError = 'Name on Card is required';
-  static const cardnumberError = 'card Number is required';
-  static const cardnumberErrorValidation = "Please Currect card Number";
-  static const expirydateError = 'expiry date is required';
-  static const cVVError = 'cvv is required';
-  static const cVVErrorValidation = 'please currect CVV';
+  static const nameonCardError = 'Name on card is required';
+  static const cardnumberError = 'card number is required';
+  static const cardnumberErrorValidation = "Please currect card Number";
+  static const expirydateError = 'Expiry date is required';
+  static const cVVError = 'Cvv is required';
+  static const cVVErrorValidation = 'Please currect cvv';
   static const removeCard = "Remove Card";
   static const removeDialogDes = "Are you sure you want to remove card?";
   static const removeDialogCancel = "Cancel";

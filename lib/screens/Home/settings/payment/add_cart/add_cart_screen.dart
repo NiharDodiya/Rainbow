@@ -63,9 +63,9 @@ class AddCartScreen extends StatelessWidget {
                           title: Strings.address,
                           hintText: Strings.addressHint,
                         ),
-                        SizedBox(
-                          height: Get.height * 0.0184,
-                        ),
+                        // SizedBox(
+                        //   height: Get.height * 0.0184,
+                        // ),
                         Row(
                           children: [
                             Expanded(
@@ -91,14 +91,18 @@ class AddCartScreen extends StatelessWidget {
                           controller: controller.countryController,
                           title: Strings.country,
                           hintText: Strings.london,
+                          bottomPadding: 0,
+                        ),
+                         const SizedBox(
+                          height: 30,
                         ),
                         Text(
                           Strings.cardInformation,
                           style: gilroyMediumTextStyle(
                               fontSize: 18, letterSpacing: -0.55),
                         ),
-                        SizedBox(
-                          height: Get.height * 0.0431034,
+                       const SizedBox(
+                          height: 15,
                         ),
                         AppTextFiled(
                           controller: controller.nameOnCardController,
@@ -110,9 +114,9 @@ class AddCartScreen extends StatelessWidget {
                           title: Strings.cardNumber,
                           hintText:Strings.cardNumberHint ,
                         ),
-                        SizedBox(
-                          height: Get.height * 0.0184,
-                        ),
+                        // SizedBox(
+                        //   height: Get.height * 0.0184,
+                        // ),
                         Row(
                           children: [
                             Expanded(

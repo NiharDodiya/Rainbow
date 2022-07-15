@@ -7,6 +7,7 @@ import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/advertisement_controlle.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/change_password_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_notification/ad_notification_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_support/ad_support_screen.dart';
@@ -16,6 +17,8 @@ import 'package:rainbow/utils/strings.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../account_Information/account_Information_screen.dart';
+import '../../auth/phonenumber/phonenumber_Screen.dart';
+import '../../auth/verify_phone/verifyphone_screen.dart';
 
 class AdvertisementDashBord extends StatelessWidget {
    AdvertisementDashBord({Key? key}) : super(key: key);
@@ -97,30 +100,35 @@ class AdvertisementDashBord extends StatelessWidget {
                 height: Get.height * 0.0467,
               ),
               //Change Password
-              SizedBox(
-                height: Get.height * 0.06,
-                child: Row(
-                  children: [
-                    Image.asset(
-                      AssetRes.lockicon,
-                      width: Get.width * 0.04706,
-                    ),
-                    SizedBox(
-                      width: Get.width * 0.0853,
-                    ),
-                    Text(
-                      Strings.changePassword,
-                      style: gilroyMediumTextStyle(
-                        fontSize: 16,
-                        color: ColorRes.color_09110E,
+              InkWell(
+                onTap: () {
+                  Get.to(() => PhoneNumberScreen());
+                },
+                child: SizedBox(
+                  height: Get.height * 0.06,
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        AssetRes.lockicon,
+                        width: Get.width * 0.04706,
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        width: Get.width * 0.0853,
+                      ),
+                      Text(
+                        Strings.changePassword,
+                        style: gilroyMediumTextStyle(
+                          fontSize: 16,
+                          color: ColorRes.color_09110E,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               //Account Information
               InkWell(
-                onTap: ()=> controller.inTapAccountInfo(),
+                onTap: () => controller.inTapAccountInfo(),
                 child: SizedBox(
                   height: Get.height * 0.06,
                   child: Row(
@@ -174,8 +182,6 @@ class AdvertisementDashBord extends StatelessWidget {
                           child: Transform.scale(
                             scale: .7,
                             child: CupertinoSwitch(
-                              trackColor:
-                                  Colors.red, // **INACTIVE STATE COLOR**
                               activeColor: ColorRes.color_CE8CEC,
                               value: controller.isSwitched,
                               onChanged: (bool value) {
@@ -246,7 +252,7 @@ class AdvertisementDashBord extends StatelessWidget {
             } else if (controller.currentTab == 2) {
               return const AdNotificationsScreen();
             } else {
-              return  AdSupportScreen();
+              return AdSupportScreen();
             }
           },
         ),

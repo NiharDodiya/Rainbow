@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/settings/payment/add_cart/add_cart_screen.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
-
 import '../../../../utils/asset_res.dart';
 import '../../../../utils/color_res.dart';
 import '../../../../utils/strings.dart';
@@ -35,6 +33,9 @@ class PaymentScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
+                      const SizedBox(
+                        height: 32,
+                      ),
                       SizedBox(
                         height: Get.width * 0.508,
                         child: PageView.builder(
@@ -116,7 +117,7 @@ class PaymentScreen extends StatelessWidget {
                           children: [
                             //set As a Default Value
                             Container(
-                              height: Get.height * 0.0406,
+                              height: 32,
                               width: Get.width * 0.41066666,
                               decoration: BoxDecoration(
                                   borderRadius: const BorderRadius.all(
@@ -139,7 +140,7 @@ class PaymentScreen extends StatelessWidget {
                                 controller.navigateToRemove(context);
                               },
                               child: Container(
-                                height: Get.height * 0.0393,
+                                height: 32,
                                 width: Get.width * 0.225,
                                 decoration: BoxDecoration(
                                     borderRadius: const BorderRadius.all(
@@ -153,16 +154,21 @@ class PaymentScreen extends StatelessWidget {
                                 child: Center(
                                   child: Text(
                                     Strings.remove,
-                                    style: gilroySemiBoldTextStyle(fontSize: 12),
+                                    style:
+                                        gilroySemiBoldTextStyle(fontSize: 12),
                                   ),
                                 ),
                               ),
                             ),
                             //Edit
-                            Container(
-                              height: Get.height * 0.0393,
-                              width: Get.width * 0.225,
-                              decoration: BoxDecoration(
+                            InkWell(
+                              onTap: () {
+                                Get.to(() => AddCartScreen());
+                              },
+                              child: Container(
+                                height: 32,
+                                width: Get.width * 0.225,
+                                decoration: BoxDecoration(
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(50)),
                                   gradient: LinearGradient(
@@ -170,19 +176,22 @@ class PaymentScreen extends StatelessWidget {
                                       ColorRes.color_FFED62.withOpacity(1),
                                       ColorRes.color_F9DD08.withOpacity(1),
                                     ],
-                                  )),
-                              child: Center(
+                                  ),
+                                ),
+                                child: Center(
                                   child: Text(
-                                Strings.edit,
-                                style: gilroySemiBoldTextStyle(
-                                    fontSize: 12, color: ColorRes.black),
-                              )),
+                                    Strings.edit,
+                                    style: gilroySemiBoldTextStyle(
+                                        fontSize: 12, color: ColorRes.black),
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: Get.height * 0.02214,
+                      const SizedBox(
+                        height: 18.02,
                       ),
                       Center(
                         child: GetBuilder<PaymentController>(
@@ -194,11 +203,13 @@ class PaymentScreen extends StatelessWidget {
                                 height: Get.width * 0.016,
                                 width: Get.width * 0.016,
                                 decoration: BoxDecoration(
-                                    color: controller.selectedIndex == 0
-                                        ? ColorRes.color_989898
-                                        : ColorRes.color_D8D8D8,
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(9))),
+                                  color: controller.selectedIndex == 0
+                                      ? ColorRes.color_989898
+                                      : ColorRes.color_D8D8D8,
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(9),
+                                  ),
+                                ),
                               ),
                               SizedBox(
                                 width: Get.width * 0.014,
@@ -207,11 +218,13 @@ class PaymentScreen extends StatelessWidget {
                                 height: Get.width * 0.016,
                                 width: Get.width * 0.016,
                                 decoration: BoxDecoration(
-                                    color: controller.selectedIndex == 1
-                                        ? ColorRes.color_989898
-                                        : ColorRes.color_D8D8D8,
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(9))),
+                                  color: controller.selectedIndex == 1
+                                      ? ColorRes.color_989898
+                                      : ColorRes.color_D8D8D8,
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(9),
+                                  ),
+                                ),
                               ),
                               SizedBox(
                                 width: Get.width * 0.014,
@@ -220,19 +233,35 @@ class PaymentScreen extends StatelessWidget {
                                 height: Get.width * 0.016,
                                 width: Get.width * 0.016,
                                 decoration: BoxDecoration(
-                                    color: controller.selectedIndex == 2
-                                        ? ColorRes.color_989898
-                                        : ColorRes.color_D8D8D8,
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(9))),
+                                  color: controller.selectedIndex == 2
+                                      ? ColorRes.color_989898
+                                      : ColorRes.color_D8D8D8,
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(9),
+                                  ),
+                                ),
                               ),
                               const Spacer(),
                             ],
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: Get.height * 0.02832,
+                      const SizedBox(
+                        height: 22.03,
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: Get.width * 0.10666,
+                          ),
+                          Text(
+                            "Last Transactions",
+                            style: gilroyMediumTextStyle(fontSize: 18),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 9.41,
                       ),
                       const Tranzaction(
                         name: Strings.card01,
@@ -286,7 +315,7 @@ class Tranzaction extends StatelessWidget {
           bottom: Get.height * 0.02216),
       child: Container(
         width: Get.width,
-        height: Get.height * 0.08004,
+        height: 65,
         decoration: const BoxDecoration(
             color: ColorRes.white,
             borderRadius: BorderRadius.all(Radius.circular(12))),
@@ -345,7 +374,7 @@ class Tranzaction extends StatelessWidget {
               ),
               SizedBox(
                 width: Get.width * 0.072,
-              )
+              ),
             ],
           ),
         ),
@@ -417,7 +446,6 @@ class PaymentCards extends StatelessWidget {
                   Strings.carddigits,
                   style: montserratMediumTextStyle(
                     fontSize: 15.25,
-
                   ),
                 ),
               ],
@@ -454,7 +482,7 @@ Widget appBar() {
               ),
             ),
             SizedBox(
-              width: Get.width * 0.3,
+              width: Get.width * 0.23,
             ),
             GestureDetector(
                 onTap: () {
@@ -473,24 +501,18 @@ Widget appBar() {
                 Get.to(() => AddCartScreen());
               },
               child: Container(
-                width: Get.width * 0.0826,
-                height: Get.width * 0.0826,
+                width: 28,
+                height: 28,
                 decoration: const BoxDecoration(
                   color: ColorRes.color_9297FF,
                   borderRadius: BorderRadius.all(
                     Radius.circular(25),
                   ),
                 ),
-                child: SizedBox(
-                    height: Get.width * 0.02533,
-                    width: Get.width * 0.02533,
-                    child: const Icon(Icons.add)),
+                child: const Icon(Icons.add, size: 17),
               ),
             ),
           ],
-        ),
-        SizedBox(
-          height: Get.height * 0.02,
         ),
       ],
     ),

@@ -10,6 +10,7 @@ Widget dropdownButton({
   double? width,
   String? title,
   String? hintText,
+  bool showtitle = true,
   String? selectedValue,
   Function(String)? onTap,
   List<String>? dropdownList,
@@ -17,13 +18,17 @@ Widget dropdownButton({
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text(
-        title!,
-        style: gilroySemiBoldTextStyle(fontSize: 14),
-      ),
-      const SizedBox(
-        height: 10,
-      ),
+      showtitle
+          ? Text(
+              title!,
+              style: gilroySemiBoldTextStyle(fontSize: 14),
+            )
+          : Container(),
+      showtitle
+          ? const SizedBox(
+              height: 10,
+            )
+          : Container(),
       DropdownButtonHideUnderline(
         child: DropdownButton2<String>(
           isExpanded: true,
