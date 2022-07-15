@@ -45,15 +45,16 @@ class ProfileController extends GetxController {
 
   Future<void> viewProfileDetails() async {
     try {
+      print("data Calling is here");
       loader.value = true;
-      EditProfileController editProfileController =
-      Get.put(EditProfileController());
+      /*EditProfileController editProfileController =
+      Get.put(EditProfileController());*/
      await ViewProfileApi.postRegister().then((value){
        viewProfile = value;
 
      });
 
-        editProfileController.fullName.text = viewProfile.data!.fullName!;
+        /*editProfileController.fullName.text = viewProfile.data!.fullName!;
         editProfileController.status1.text = viewProfile.data!.maritalStatus!;
         editProfileController.age.text = viewProfile.data!.age.toString();
         editProfileController.city.text = viewProfile.data!.city!;
@@ -67,7 +68,7 @@ class ProfileController extends GetxController {
          editProfileController.instagram.text = viewProfile.data!.instagram!.toString();
          editProfileController.youTube.text = viewProfile.data!.youtube!.toString();
          editProfileController.twitter.text = viewProfile.data!.twitter!.toString();
-         editProfileController.faceBook.text = viewProfile.data!.facebook!.toString();
+         editProfileController.faceBook.text = viewProfile.data!.facebook!.toString();*/
       // await PrefService.setValue(PrefKeys.registerToken, registerUser.token.toString());
       loader.value = false;
     } catch (e) {

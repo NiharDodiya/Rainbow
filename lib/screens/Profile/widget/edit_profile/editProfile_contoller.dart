@@ -48,10 +48,8 @@ class EditProfileController extends GetxController {
   List<String> noOfKids = ["0", "1", "2", "3", "4", "5", "6"];
   String? noKidsSelected;
 
-  void onInit() {
-    update(['Edit_profile']);
-
-    super.onInit();
+  void init(){
+    setInitData();
   }
 
 
@@ -68,6 +66,27 @@ class EditProfileController extends GetxController {
       await profileController.viewProfileDetails();
       profileController.update(["profile"]);
     }
+  }
+
+  void setInitData(){
+    ProfileController profileController = Get.find();
+
+    fullName.text = profileController.viewProfile.data!.fullName!;
+        status1.text = profileController.viewProfile.data!.maritalStatus!;
+        age.text = profileController.viewProfile.data!.age.toString();
+        city.text = profileController.viewProfile.data!.city!;
+        height.text = profileController.viewProfile.data!.height!;
+        weight.text = profileController.viewProfile.data!.weight!;
+        ethnicity.text = profileController.viewProfile.data!.idEthnicity!;
+        selectedEthicity = profileController.viewProfile.data!.idEthnicity!;
+        haveKids.text = profileController.viewProfile.data!.noKids!.toString();
+        noKidsSelected = profileController.viewProfile.data!.noKids!.toString();
+        hobbies.text = profileController.viewProfile.data!.hobbiesAndInterest!.toString();
+         instagram.text = profileController.viewProfile.data!.instagram!.toString();
+         youTube.text = profileController.viewProfile.data!.youtube!.toString();
+         twitter.text = profileController.viewProfile.data!.twitter!.toString();
+         faceBook.text = profileController.viewProfile.data!.facebook!.toString();
+    // await PrefService.setValue(PrefKeys.registerToken, registerUser.token.toString());
   }
 
   bool validation() {
