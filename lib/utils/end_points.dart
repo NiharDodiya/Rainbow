@@ -33,6 +33,7 @@ class EndPoints {
   static const deviceToken = "${baseUrl}/user/device/update";
   static const suggestionList = "${baseUrl}/user/suggestion/list";
   static const requestList = "${baseUrl}/user/request/list";
+  static const logOut = "${baseUrl}/user/logout";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

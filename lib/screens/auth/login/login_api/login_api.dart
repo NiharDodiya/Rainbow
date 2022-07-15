@@ -71,8 +71,14 @@ class LoginApi {
       } else if (response.statusCode == 500) {
         flutterToast(jsonDecode(response.body)["message"]);
       }
-    } }catch (e) {
+    }else if(response!.statusCode == 500)
+      {
+        flutterToast(jsonDecode(response.body)["message"]);
+      }
+
+    }catch (e) {
       print(e.toString());
+
 
       return loginModelFromJson('');
     }

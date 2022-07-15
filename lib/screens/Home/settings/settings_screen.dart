@@ -1,19 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
-import 'package:rainbow/screens/Home/settings/privacy/privacy_screen.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
 import 'package:rainbow/screens/Home/settings/subscription/subscription_screen.dart';
 import 'package:rainbow/screens/Home/settings/support/support_screen.dart';
-import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
-import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
-import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -27,19 +24,24 @@ class SettingsScreen extends StatelessWidget {
         id: "settings",
         builder: (controller) {
           return SafeArea(
-            child: Column(
+            child: Stack(
               children: [
-                appBar(),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        profile(),
-                        settingsProperties(),
-                      ],
-                    ),
-                  ),
-                )
+                Column(
+                  children: [
+                    appBar(),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            profile(),
+                            settingsProperties(),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                controller.loader.isTrue?const SmallLoader():const SizedBox()
               ],
             ),
           );
@@ -116,8 +118,8 @@ class SettingsScreen extends StatelessWidget {
                   height: 56,
                   width: 56,
                   decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
                           image: AssetImage(AssetRes.se_profile))),
                 ),
                 const SizedBox(
@@ -223,7 +225,8 @@ class SettingsScreen extends StatelessWidget {
           //Connections
           InkWell(
             onTap: () {
-              ConnectionsController connectionController = Get.put(ConnectionsController());
+              ConnectionsController connectionController =
+                  Get.put(ConnectionsController());
               connectionController.init();
               Get.to(() => ConnectionsScreen());
             },
@@ -488,10 +491,7 @@ class SettingsScreen extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () async {
-
-              PrefService.setValue(PrefKeys.skipBoardingScreen, true);
-              await PrefService.clear();
-              Get.offAll(() => AuthDashboard());
+              controller.logOutDetails();
             },
             child: Container(
               height: 60,

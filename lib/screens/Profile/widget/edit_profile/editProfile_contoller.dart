@@ -91,13 +91,13 @@ class EditProfileController extends GetxController {
   }
 
   bool validation() {
- /*   if (backImage == null) {
+    if (backImage == null) {
       errorToast(Strings.captureImageBack);
       return false;
     } else if (frontImage == null) {
       errorToast(Strings.captureImageFront);
       return false;
-    } else */if (fullName.text.isEmpty) {
+    } else if (fullName.text.isEmpty) {
       errorToast(Strings.fullName);
       return false;
     } else if (status.text.isEmpty) {
@@ -156,8 +156,9 @@ class EditProfileController extends GetxController {
       frontImage = File(path);
     }
     uploadImageApi();
-    update(["Edit_profile"]);
     Get.back();
+    update(["Edit_profile"]);
+
   }  navigateToCameraBack() async {
     String? path = await cameraPickImage1();
 
@@ -165,8 +166,9 @@ class EditProfileController extends GetxController {
       backImage = File(path);
     }
     uploadImageBackApi();
-    update(["Edit_profile"]);
     Get.back();
+    update(["Edit_profile"]);
+
   }
   navigateToGallaryBack() async {
     String? path = await gallaryPickImage1();
@@ -175,8 +177,9 @@ class EditProfileController extends GetxController {
       backImage = File(path);
     }
     uploadImageBackApi();
-    update(["Edit_profile"]);
     Get.back();
+    update(["Edit_profile"]);
+
   }
 
   navigateToGallaryFront() async {
@@ -186,8 +189,9 @@ class EditProfileController extends GetxController {
       frontImage = File(path);
     }
     uploadImageApi();
-    update(["Edit_profile"]);
     Get.back();
+
+    update(["Edit_profile"]);
   }
   Future<String?> cameraPickImage1() async {
     XFile? pickedFile =
@@ -207,8 +211,9 @@ class EditProfileController extends GetxController {
     if (pickedFile != null) {
       return pickedFile.path;
     }
-    update(["Edit_profile"]);
     Get.back();
+    update(["Edit_profile"]);
+
 
     return null;
   }
