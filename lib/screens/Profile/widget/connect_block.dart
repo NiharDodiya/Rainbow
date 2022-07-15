@@ -33,8 +33,8 @@ Widget connectAndBlock({
           const SizedBox(
             height: 5,
           ),
-          Text(
-            subTitle ?? "Surrogate Mom ",
+          subTitle == null ? const SizedBox() : Text(
+            subTitle.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
           Row(
@@ -91,6 +91,7 @@ Widget connectAndBlock({
                           ? InkWell(
                               onTap: () {
                                 // controller.cancelFriendRequestDetails(id!);
+                                controller.unFriendRequestDetails(id!);
                               },
                               child: Row(
                                 children: [
@@ -114,8 +115,8 @@ Widget connectAndBlock({
                           : connect == "accept"
                               ? InkWell(
                                   onTap: () {
-                                    // controller.cancelFriendRequestDetails(id!);
-                                    connectionsController.onAddBtnTap(id!, false);
+                                    controller.acceptFriendRequestDetails(id!);
+                                    // connectionsController.onAddBtnTap(id!, false);
                                   },
                                   child: Row(
                                     children: [

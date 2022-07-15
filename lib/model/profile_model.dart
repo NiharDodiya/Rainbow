@@ -70,6 +70,7 @@ class ProfileData {
     this.testimonials,
     this.isFriends,
     this.isBlock,
+    this.visitors,
     this.userView,
   });
 
@@ -109,6 +110,7 @@ class ProfileData {
   bool? testimonials;
   String? isFriends;
   bool? isBlock;
+  bool? visitors;
   List<dynamic>? userView;
 
   factory ProfileData.fromJson(Map<String, dynamic> json) => ProfileData(
@@ -148,6 +150,7 @@ class ProfileData {
     testimonials: json["testimonials"],
     isFriends: json["isFriends"],
     isBlock: json["isBlock"],
+    visitors: json["visitors"],
     userView: json["userView"] == null ? null : List<dynamic>.from(json["userView"].map((x) => x)),
   );
 
@@ -188,6 +191,7 @@ class ProfileData {
     "testimonials": testimonials,
     "isFriends": isFriends,
     "isBlock": isBlock,
+    "visitors": visitors,
     "userView": userView == null ? null : List<dynamic>.from(userView!.map((x) => x)),
   };
 }
