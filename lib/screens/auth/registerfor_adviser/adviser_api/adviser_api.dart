@@ -28,7 +28,6 @@ class AdvirtisersApi {
   String  streetNam,
   String companyCity,String country,String comapanyPostalCode,String website
       ) async {
-    AdvertiserRegister registerList= AdvertiserRegister();
     try {
       String url = EndPoints.advirtisersRegister;
       Map<String, dynamic> param = {

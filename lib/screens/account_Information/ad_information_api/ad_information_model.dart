@@ -108,7 +108,7 @@ class Data {
     country: json["country"],
     idCountry: json["id_country"],
     postalCode: json["postal_code"],
-    profileImage: json["profile_image"],
+    profileImage: json["profile_image"] ?? "",
     role: json["role"],
     status: json["status"],
     profession: json["profession"],
