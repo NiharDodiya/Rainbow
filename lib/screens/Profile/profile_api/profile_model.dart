@@ -58,6 +58,7 @@ class Data {
     this.youtube,
     this.facebook,
     this.twitter,
+    this.about,
     this.aboutMe,
     this.hobbiesAndInterest,
     this.backgroundImage,
@@ -97,6 +98,7 @@ class Data {
   String? youtube;
   String? facebook;
   String? twitter;
+  String? about;
   bool? aboutMe;
   String? hobbiesAndInterest;
   String? backgroundImage;
@@ -136,6 +138,7 @@ class Data {
         youtube: json["youtube"],
         facebook: json["facebook"],
         twitter: json["twitter"],
+        about: json["about"],
         aboutMe: json["about_me"],
         hobbiesAndInterest: json["hobbies_and_Interest"],
         backgroundImage: json["background_image"],
@@ -178,6 +181,7 @@ class Data {
         "youtube": youtube,
         "facebook": facebook,
         "twitter": twitter,
+        "about":about,
         "about_me": aboutMe,
         "hobbies_and_Interest": hobbiesAndInterest,
         "background_image": backgroundImage,

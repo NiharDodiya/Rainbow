@@ -57,6 +57,7 @@ class ProfileData {
     this.youtube,
     this.facebook,
     this.twitter,
+    this.about,
     this.aboutMe,
     this.hobbiesAndInterest,
     this.backgroundImage,
@@ -69,6 +70,7 @@ class ProfileData {
     this.testimonials,
     this.isFriends,
     this.isBlock,
+    this.visitors,
     this.userView,
   });
 
@@ -95,6 +97,7 @@ class ProfileData {
   String? youtube;
   String? facebook;
   String? twitter;
+  String? about;
   bool? aboutMe;
   String? hobbiesAndInterest;
   String? backgroundImage;
@@ -107,6 +110,7 @@ class ProfileData {
   bool? testimonials;
   String? isFriends;
   bool? isBlock;
+  bool? visitors;
   List<dynamic>? userView;
 
   factory ProfileData.fromJson(Map<String, dynamic> json) => ProfileData(
@@ -133,6 +137,7 @@ class ProfileData {
     youtube: json["youtube"],
     facebook: json["facebook"],
     twitter: json["twitter"],
+    about: json["about"],
     aboutMe: json["about_me"],
     hobbiesAndInterest: json["hobbies_and_Interest"],
     backgroundImage: json["background_image"],
@@ -145,6 +150,7 @@ class ProfileData {
     testimonials: json["testimonials"],
     isFriends: json["isFriends"],
     isBlock: json["isBlock"],
+    visitors: json["visitors"],
     userView: json["userView"] == null ? null : List<dynamic>.from(json["userView"].map((x) => x)),
   );
 
@@ -172,6 +178,7 @@ class ProfileData {
     "youtube": youtube,
     "facebook": facebook,
     "twitter": twitter,
+    "about": about,
     "about_me": aboutMe,
     "hobbies_and_Interest": hobbiesAndInterest,
     "background_image": backgroundImage,
@@ -184,6 +191,7 @@ class ProfileData {
     "testimonials": testimonials,
     "isFriends": isFriends,
     "isBlock": isBlock,
+    "visitors": visitors,
     "userView": userView == null ? null : List<dynamic>.from(userView!.map((x) => x)),
   };
 }

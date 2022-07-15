@@ -9,7 +9,6 @@ import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/api/OtherProfileApi.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_screen.dart';
 import 'package:rainbow/screens/Profile/acceptFriendRequest_api/accaeptFriedRequest_api.dart';
-import 'package:rainbow/screens/Profile/cancleFriendRequest_api/cancelFriendRequest_api.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/sendFriendRequest_api/sendFriendRequest_api.dart';
 import 'package:rainbow/screens/Profile/widget/block_unblock%20_Api/block_api.dart';
@@ -31,10 +30,9 @@ class ConnectionsProfileController extends GetxController {
       CancelFriendRequestModel();
   ProfileController profileController = Get.find();
 
-
-  String no="no";
-  String sent="sent";
-  String cancel="cancel";
+  String no = "no";
+  String sent = "sent";
+  String cancel = "cancel";
 
   void onInit() {
     super.onInit();
@@ -92,7 +90,8 @@ class ConnectionsProfileController extends GetxController {
       loader.value = true;
       await SendFriendRequestApi.postRegister(id)
           .then((value) => sendFriendRequest = value);
-      await homeController.listOfFriedRequestDetails();
+      await callApi(id);
+      // homeController.listOfFriedRequestDetails();
       update(["connections"]);
       loader.value = false;
     } catch (e) {
@@ -115,8 +114,21 @@ class ConnectionsProfileController extends GetxController {
   Future<void> cancelFriendRequestDetails(String id) async {
     try {
       loader.value = true;
-      cancelFriendRequestModel = await CancelFriendRequestApi.postRegister(id);
+      cancelFriendRequestModel = (await OtherProfileApi.cancelRequest(id)) ??
+          CancelFriendRequestModel();
       await callApi(id);
+      update(["connections"]);
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+    }
+  }
+
+  Future<void> unFriendRequestDetails(String id) async {
+    try {
+      loader.value = true;
+      // cancelFriendRequestModel = await CancelFriendRequestApi.postRegister(id);
+      // await callApi(id);
       update(["connections"]);
       loader.value = false;
     } catch (e) {

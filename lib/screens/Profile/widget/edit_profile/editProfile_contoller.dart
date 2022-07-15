@@ -63,14 +63,14 @@ class EditProfileController extends GetxController {
         print(codeId);
       }
       await editProfileApi(context);
-      await profileController.viewProfileDetails();
+
       profileController.update(["profile"]);
+      await profileController.viewProfileDetails();
     }
   }
 
   void setInitData(){
     ProfileController profileController = Get.find();
-
     fullName.text = profileController.viewProfile.data!.fullName!;
         status1.text = profileController.viewProfile.data!.maritalStatus!;
         age.text = profileController.viewProfile.data!.age.toString();
@@ -86,6 +86,7 @@ class EditProfileController extends GetxController {
          youTube.text = profileController.viewProfile.data!.youtube!.toString();
          twitter.text = profileController.viewProfile.data!.twitter!.toString();
          faceBook.text = profileController.viewProfile.data!.facebook!.toString();
+         aboutMe.text = profileController.viewProfile.data!.about!.toString();
     // await PrefService.setValue(PrefKeys.registerToken, registerUser.token.toString());
   }
 
@@ -155,8 +156,9 @@ class EditProfileController extends GetxController {
       frontImage = File(path);
     }
     uploadImageApi();
-    update(["Edit_profile"]);
     Get.back();
+    update(["Edit_profile"]);
+
   }  navigateToCameraBack() async {
     String? path = await cameraPickImage1();
 
@@ -164,8 +166,9 @@ class EditProfileController extends GetxController {
       backImage = File(path);
     }
     uploadImageBackApi();
-    update(["Edit_profile"]);
     Get.back();
+    update(["Edit_profile"]);
+
   }
   navigateToGallaryBack() async {
     String? path = await gallaryPickImage1();
@@ -174,8 +177,9 @@ class EditProfileController extends GetxController {
       backImage = File(path);
     }
     uploadImageBackApi();
-    update(["Edit_profile"]);
     Get.back();
+    update(["Edit_profile"]);
+
   }
 
   navigateToGallaryFront() async {
@@ -185,8 +189,9 @@ class EditProfileController extends GetxController {
       frontImage = File(path);
     }
     uploadImageApi();
-    update(["Edit_profile"]);
     Get.back();
+
+    update(["Edit_profile"]);
   }
   Future<String?> cameraPickImage1() async {
     XFile? pickedFile =
@@ -206,8 +211,9 @@ class EditProfileController extends GetxController {
     if (pickedFile != null) {
       return pickedFile.path;
     }
-    update(["Edit_profile"]);
     Get.back();
+    update(["Edit_profile"]);
+
 
     return null;
   }
@@ -266,7 +272,6 @@ class EditProfileController extends GetxController {
     loader.value = true;
     try {
       print("Hello");
-
       EditProfile? data = await EditProfileApi.postRegister(
         uploadImage1.data!.id.toString(),
         uploadImage2.data!.id.toString(),
