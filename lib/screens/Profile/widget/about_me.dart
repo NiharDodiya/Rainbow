@@ -20,8 +20,8 @@ Widget aboutProfiler(String title,String aboutMe
         Container(
           margin: const EdgeInsets.only(top: 15),
           child: ReadMoreText(
-             "${Strings.aboutMeDes}${Strings.aboutMeDes} ",
-           /* aboutMe,*/
+            /* "${Strings.aboutMeDes}${Strings.aboutMeDes} ",*/
+            aboutMe,
             trimLines: 3,
             trimMode: TrimMode.Line,
             delimiter: " ",

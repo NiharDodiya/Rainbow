@@ -6,11 +6,11 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/model/request_user_model.dart';
 import 'package:rainbow/model/suggestion_model.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
+
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
-
 class ConnectionsScreen extends StatelessWidget {
   ConnectionsScreen({Key? key}) : super(key: key);
   ConnectionsController controller = Get.put(ConnectionsController());

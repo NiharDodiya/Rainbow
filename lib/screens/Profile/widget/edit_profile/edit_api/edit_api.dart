@@ -29,6 +29,7 @@ class EditProfileApi {
       ) async {
     String accessToken = PrefService.getString(PrefKeys.registerToken);
     try {
+
       String url = EndPoints.editProfile;
       Map<String, String> param = {
         "id_item_background" : idItemBackGround,

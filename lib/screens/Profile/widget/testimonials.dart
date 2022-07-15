@@ -26,7 +26,7 @@ Widget testimonials() {
           Center(
             child: Text(
               Strings.noTestimonials,
-              style: beVietnamProBoldTextStyle(fontSize: 18),
+              style: beVietnamProBoldTextStyle(color:ColorRes.white.withOpacity(0.70),fontSize: 16),
             ),
           ),
 

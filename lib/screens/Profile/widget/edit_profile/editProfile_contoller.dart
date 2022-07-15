@@ -63,14 +63,14 @@ class EditProfileController extends GetxController {
         print(codeId);
       }
       await editProfileApi(context);
-      await profileController.viewProfileDetails();
+
       profileController.update(["profile"]);
+      await profileController.viewProfileDetails();
     }
   }
 
   void setInitData(){
     ProfileController profileController = Get.find();
-
     fullName.text = profileController.viewProfile.data!.fullName!;
         status1.text = profileController.viewProfile.data!.maritalStatus!;
         age.text = profileController.viewProfile.data!.age.toString();
@@ -86,17 +86,18 @@ class EditProfileController extends GetxController {
          youTube.text = profileController.viewProfile.data!.youtube!.toString();
          twitter.text = profileController.viewProfile.data!.twitter!.toString();
          faceBook.text = profileController.viewProfile.data!.facebook!.toString();
+         aboutMe.text = profileController.viewProfile.data!.about!.toString();
     // await PrefService.setValue(PrefKeys.registerToken, registerUser.token.toString());
   }
 
   bool validation() {
-    if (backImage == null) {
+ /*   if (backImage == null) {
       errorToast(Strings.captureImageBack);
       return false;
     } else if (frontImage == null) {
       errorToast(Strings.captureImageFront);
       return false;
-    } else if (fullName.text.isEmpty) {
+    } else */if (fullName.text.isEmpty) {
       errorToast(Strings.fullName);
       return false;
     } else if (status.text.isEmpty) {
@@ -266,7 +267,6 @@ class EditProfileController extends GetxController {
     loader.value = true;
     try {
       print("Hello");
-
       EditProfile? data = await EditProfileApi.postRegister(
         uploadImage1.data!.id.toString(),
         uploadImage2.data!.id.toString(),
