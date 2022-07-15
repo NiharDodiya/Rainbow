@@ -7,12 +7,11 @@ import 'package:rainbow/utils/color_res.dart';
 Widget profileImage(/*ProfileController controller*/ String? profileImage,
     String? bgImage, bool? showImages) {
   return SizedBox(
-    height: 292,
+    height: Get.height*0.415,
     width: Get.width,
     child: Stack(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 15, right: 15),
+        Padding(padding: const EdgeInsets.only(left: 15,right: 15),
           child: SizedBox(
             height: Get.height * 0.2857,
             width: Get.width,
