@@ -80,7 +80,7 @@ class ProfileScreen extends StatelessWidget {
                 width: Get.width,
                 child: CachedNetworkImage(
                   imageUrl:
-                      controller.viewProfile.data!.backgroundImage.toString(),
+                      controller.viewProfile.data!.profileImage.toString(),
                   imageBuilder: (context, imageProvider) => Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -111,7 +111,7 @@ class ProfileScreen extends StatelessWidget {
               width: Get.width * 0.38666,
               child: CachedNetworkImage(
                 imageUrl:
-                    controller.viewProfile.data!.profileImage.toString(),
+                    controller.viewProfile.data!.backgroundImage.toString(),
                 imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,

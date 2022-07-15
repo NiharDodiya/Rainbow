@@ -146,7 +146,7 @@ class EditProfileController extends GetxController {
     }
     return true;
   }
-/*  File? imagePathCAmear;
+  File? imagePathCAmear;
   File? imagePath;
   navigateToCameraFront() async {
     String? path = await cameraPickImage1();
@@ -155,7 +155,6 @@ class EditProfileController extends GetxController {
       frontImage = File(path);
     }
     uploadImageApi();
-
     update(["Edit_profile"]);
     Get.back();
   }  navigateToCameraBack() async {
@@ -164,7 +163,6 @@ class EditProfileController extends GetxController {
     if (path != null) {
       backImage = File(path);
     }
-
     uploadImageBackApi();
     update(["Edit_profile"]);
     Get.back();
@@ -187,7 +185,6 @@ class EditProfileController extends GetxController {
       frontImage = File(path);
     }
     uploadImageApi();
-
     update(["Edit_profile"]);
     Get.back();
   }
@@ -197,10 +194,8 @@ class EditProfileController extends GetxController {
     if (pickedFile != null) {
       return pickedFile.path;
     }
-
     update(["Edit_profile"]);
     Get.back();
-
     return null;
   }
 
@@ -211,13 +206,11 @@ class EditProfileController extends GetxController {
     if (pickedFile != null) {
       return pickedFile.path;
     }
-
-
     update(["Edit_profile"]);
     Get.back();
 
     return null;
-  }*/
+  }
   Future frontCamera() async {
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
     if (image == null) return;
