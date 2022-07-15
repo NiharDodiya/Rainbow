@@ -49,7 +49,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
                   child: data.id == null
                       ? const SizedBox()
                       : SingleChildScrollView(
-                          physics: const BouncingScrollPhysics(),
+                          physics:  const BouncingScrollPhysics(),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

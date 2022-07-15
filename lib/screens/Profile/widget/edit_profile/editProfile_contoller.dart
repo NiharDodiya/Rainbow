@@ -72,6 +72,7 @@ class EditProfileController extends GetxController {
   void setInitData(){
     ProfileController profileController = Get.find();
     fullName.text = profileController.viewProfile.data!.fullName!;
+    status.text = profileController.viewProfile.data!.userStatus!;
         status1.text = profileController.viewProfile.data!.maritalStatus!;
         age.text = profileController.viewProfile.data!.age.toString();
         city.text = profileController.viewProfile.data!.city!;

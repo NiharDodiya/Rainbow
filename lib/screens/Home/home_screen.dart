@@ -271,7 +271,8 @@ class HomeScreen extends StatelessWidget {
             alignment: Alignment.bottomRight,
             child: InkWell(
               onTap: () {
-                ConnectionsController connectionController = Get.put(ConnectionsController());
+                ConnectionsController connectionController =
+                    Get.put(ConnectionsController());
                 connectionController.init();
                 Get.to(() => ConnectionsScreen());
               },
@@ -552,16 +553,17 @@ class HomeScreen extends StatelessWidget {
                                     width: Get.width * 0.05,
                                   ),
                                   InkWell(
-                                    onTap: (){
-                                      Get.to(()=>const CommentsScreen());
+                                    onTap: () {
+                                      Get.to(() => const CommentsScreen());
                                     },
                                     child: const SizedBox(
-                                        height: 16,
-                                        width: 16,
-                                        child: Image(
-                                          image: AssetImage(AssetRes.comment),
-                                          color: Colors.white,
-                                        ),),
+                                      height: 16,
+                                      width: 16,
+                                      child: Image(
+                                        image: AssetImage(AssetRes.comment),
+                                        color: Colors.white,
+                                      ),
+                                    ),
                                   ),
                                   const SizedBox(
                                     width: 2,
@@ -636,50 +638,57 @@ class _MoreStoriesState extends State<MoreStories> {
       body: SafeArea(
         child: SizedBox(
           height: Get.height * 1,
-          child: StoryView(
-            storyItems: [
-              /* StoryItem.text(
-                title:
-                    "I guess you'd love to see more of our food. That's great.",
-                backgroundColor: Colors.blue,
-              ),*/
-              StoryItem.text(
-                title: "Tap to continue.",
-                backgroundColor: Colors.red,
-                textStyle: const TextStyle(
-                  fontFamily: 'Dancing',
-                  fontSize: 40,
-                ),
+          child: Stack(
+            children: [
+              StoryView(
+                storyItems: [
+                  StoryItem.text(
+                    title: "",
+                    backgroundColor: Colors.blueGrey,
+                    textStyle: const TextStyle(
+                      fontFamily: 'Dancing',
+                      fontSize: 40,
+                    ),
+                  ),
+                  StoryItem.text(
+                    title: "",
+                    backgroundColor: Colors.blueAccent,
+                    textStyle: const TextStyle(
+                      fontFamily: 'Dancing',
+                      fontSize: 40,
+                    ),
+                  ),
+                  StoryItem.text(
+                    title: "",
+                    backgroundColor: Colors.black,
+                    textStyle: const TextStyle(
+                      fontFamily: 'Dancing',
+                      fontSize: 40,
+                    ),
+                  ),
+                ],
+                onStoryShow: (s) {},
+                onComplete: () {
+                  // Get.back();
+                },
+                progressPosition: ProgressPosition.bottom,
+                repeat: false,
+                controller: storyController,
               ),
-              /*   StoryItem.pageImage(
-                url: "https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif",
-                caption: "Still sampling",
-                controller: storyController,
-              ),*/
-              /*   StoryItem.pageImage(
-                  url: "https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif",
-                  caption: "Working with gifs",
-                  controller: storyController),*/
-              /*  StoryItem.pageImage(
-                url: "https://media.giphy.com/media/XcA8krYsrEAYXKf4UQ/giphy.gif",
-                caption: "Hello, from the other side",
-                controller: storyController,
+              Positioned(top: Get.height*0.75,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Container(
+                height: 2,
+                width: 320,
+                color: ColorRes.color_9597A1,
               ),
-              StoryItem.pageImage(
-                url: "https://media.giphy.com/media/XcA8krYsrEAYXKf4UQ/giphy.gif",
-                caption: "Hello, from the other side2",
-                controller: storyController,
-              ),*/
+                  ))
             ],
-            onStoryShow: (s) {},
-            onComplete: () {},
-            progressPosition: ProgressPosition.top,
-            repeat: false,
-            controller: storyController,
           ),
         ),
       ),
-      bottomNavigationBar: Container(
+      /*  bottomNavigationBar: Container(
         color: Colors.black,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -717,7 +726,7 @@ class _MoreStoriesState extends State<MoreStories> {
             ],
           ),
         ),
-      ),
+      ),*/
     );
   }
 }
