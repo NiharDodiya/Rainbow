@@ -225,8 +225,8 @@ class Strings {
   static const advancedSearch = "Advance Search";
   static const connect = "Connect";
   static const block = "Block";
-  static const myCompanyDes =
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem a commodo consequat ... more ";
+  static const myCompanyDes = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem a commodo consequat ... more ";
+  static const typeYourReply = "Type your reply...";
 
   ///___________________________dashboard--Profile_______________________________________
   static const profile = "Profile";
@@ -271,8 +271,7 @@ class Strings {
 
   static const endingIn0212 = "Ending in 0212";
   static const date = "01/23";
-  static const cardAddress =
-      "3818 Lynden Road , Orono , Ontario , Canda , L0B 1M0";
+  static const cardAddress = "3818 Lynden Road , Orono , Ontario , Canda , L0B 1M0";
   static const setasDefaultPayment = "Set as Default Payment";
   static const remove = "Remove";
   static const edit = "Edit";
@@ -358,7 +357,6 @@ static const cancelAppoveDes ="Are you sure you want to cancel this advertisemen
 ///_____________________________________Delet Approve_______________________________
 
 static const deletApprove ="Delete Advertisement";
-
 static const deletApproveDes ="Are you sure you want to delete this advertisement?";
 
 ///____________________________________Support_______________________________________

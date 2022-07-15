@@ -4,7 +4,7 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
-Widget userComment() {
+Widget userComment(bool reply) {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -67,7 +67,8 @@ Widget userComment() {
               ),
               InkWell(
                 child: Container(
-                  padding: const EdgeInsets.only(left: 15,top: 5,right: 15,bottom: 5),
+                  padding: const EdgeInsets.only(
+                      left: 15, top: 5, right: 15, bottom: 5),
                   child: Text(
                     "Reply",
                     style: beVietnamProRegularTextStyle(
@@ -79,6 +80,54 @@ Widget userComment() {
               ),
             ],
           ),
+          !reply? Container(
+            width: Get.width - 110,
+            decoration: BoxDecoration(
+              color: ColorRes.color_959595.withOpacity(0.1),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(15),
+              ),
+            ),
+            margin: const EdgeInsets.only(left: 25,),
+            padding: const EdgeInsets.all(7),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Wilma Warren",
+                  style: beVietnamProMediumTextStyle(color: ColorRes.black),
+                ),
+                Text(
+                  "1 min ago",
+                  style: beVietnamProRegularTextStyle(
+                    fontSize: 10,
+                    color: ColorRes.color_959595,
+                  ),
+                ),
+                const SizedBox(
+                  height: 7,
+                ),
+                RichText(
+                  text: TextSpan(
+                    text: '@Maria Rosales ',
+                    style: beVietnamProRegularTextStyle(
+                      color: ColorRes.themeColor,
+                      fontSize: 12,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: "Ut enim ad minim",
+                        style: beVietnamProRegularTextStyle(
+                          fontSize: 12,
+                          color: ColorRes.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ):const SizedBox(),
         ],
       )
     ],
