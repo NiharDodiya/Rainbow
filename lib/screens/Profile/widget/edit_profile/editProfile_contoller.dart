@@ -50,8 +50,10 @@ class EditProfileController extends GetxController {
 
   void onInit() {
     update(['Edit_profile']);
+
     super.onInit();
   }
+
 
   Future<void> onTapTextField(context) async {
     if (validation()) {
@@ -125,7 +127,7 @@ class EditProfileController extends GetxController {
     }
     return true;
   }
-  File? imagePathCAmear;
+/*  File? imagePathCAmear;
   File? imagePath;
   navigateToCameraFront() async {
     String? path = await cameraPickImage1();
@@ -196,7 +198,7 @@ class EditProfileController extends GetxController {
     Get.back();
 
     return null;
-  }
+  }*/
   Future frontCamera() async {
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
     if (image == null) return;

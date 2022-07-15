@@ -69,7 +69,7 @@ class ProfileScreen extends StatelessWidget {
 
   Widget profileImagesLoad(ProfileController controller) {
     return SizedBox(
-      height: 280,
+      height: 295,
       width: Get.width,
       child: Stack(
         children: [
@@ -111,7 +111,7 @@ class ProfileScreen extends StatelessWidget {
               width: Get.width * 0.38666,
               child: CachedNetworkImage(
                 imageUrl:
-                    controller.viewProfile.data!.backgroundImage.toString(),
+                    controller.viewProfile.data!.profileImage.toString(),
                 imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,

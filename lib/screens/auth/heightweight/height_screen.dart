@@ -22,6 +22,7 @@ class HeightScreen extends StatelessWidget {
           return SafeArea(
             child: Center(
               child: Container(
+                height: Get.height,
                 width: Get.width,
                 margin: EdgeInsets.all(Get.width * 0.02669),
                 decoration: BoxDecoration(
@@ -32,7 +33,7 @@ class HeightScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    // mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       SizedBox(height: Get.height * 0.0616),
                       Image.asset(

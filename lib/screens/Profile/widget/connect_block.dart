@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
+import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -11,13 +12,15 @@ Widget connectAndBlock({
   String? title,
   String? subTitle,
   String? id,
-  bool? connect,
+  String? connect,
   bool? block,
 }) {
   ConnectionsProfileController? controller =
       Get.put(ConnectionsProfileController());
+
   HomeController homeController = Get.find();
   ProfileController profileController = Get.find();
+  ConnectionsController connectionsController =  Get.put(ConnectionsController());
   return GetBuilder<ConnectionsProfileController>(
     id: "connections",
     builder: (controller) {
@@ -38,7 +41,7 @@ Widget connectAndBlock({
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              connect == true
+              connect == "no"
                   ? InkWell(
                       onTap: () {
                         controller.sendFriendRequestDetails(id!);
@@ -61,34 +64,127 @@ Widget connectAndBlock({
                         ],
                       ),
                     )
-                  : InkWell(
-                      onTap: () {
-                        controller.cancelFriendRequestDetails(id!);
-                      },
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 22,
-                            width: 22,
-                            margin: const EdgeInsets.all(9),
-                            child: Image.asset(
-                              AssetRes.profilep,
-                              color: ColorRes.color_FFB2B2,
-                            ),
+                  : connect == "sent"
+                      ? InkWell(
+                          onTap: () {
+                             controller.cancelFriendRequestDetails(id!);
+                          },
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 22,
+                                width: 22,
+                                margin: const EdgeInsets.all(9),
+                                child: Image.asset(
+                                  AssetRes.profilep,
+                                  color: ColorRes.color_FFB2B2,
+                                ),
+                              ),
+                              Text(
+                                "Cancel Request",
+                                style: beVietnamSemiBoldTextStyle(fontSize: 12),
+                              ),
+                            ],
                           ),
-                          Text(
-                            "Cancel",
-                            style: beVietnamSemiBoldTextStyle(fontSize: 12),
-                          ),
-                        ],
+                        )
+                      : connect == "yes"
+                          ? InkWell(
+                              onTap: () {
+                                // controller.cancelFriendRequestDetails(id!);
+                              },
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height: 22,
+                                    width: 22,
+                                    margin: const EdgeInsets.all(9),
+                                    child: Image.asset(
+                                      AssetRes.profilep,
+                                      color: ColorRes.color_FFB2B2,
+                                    ),
+                                  ),
+                                  Text(
+                                    "UnFriend",
+                                    style: beVietnamSemiBoldTextStyle(
+                                        fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                            )
+                          : connect == "accept"
+                              ? InkWell(
+                                  onTap: () {
+                                    // controller.cancelFriendRequestDetails(id!);
+                                    connectionsController.onAddBtnTap(id!, false);
+                                  },
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        height: 22,
+                                        width: 22,
+                                        margin: const EdgeInsets.all(9),
+                                        child: Image.asset(
+                                          AssetRes.profilep,
+                                          color: ColorRes.color_FFB2B2,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Accept",
+                                        style: beVietnamSemiBoldTextStyle(
+                                            fontSize: 12),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              : InkWell(
+                                  onTap: () {
+                                    controller.cancelFriendRequestDetails(id!);
+                                  },
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        height: 22,
+                                        width: 22,
+                                        margin: const EdgeInsets.all(9),
+                                        child: Image.asset(
+                                          AssetRes.profilep,
+                                          color: ColorRes.color_FFB2B2,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Cancel",
+                                        style: beVietnamSemiBoldTextStyle(
+                                            fontSize: 12),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+              /*  InkWell(
+                onTap: () {
+                  controller.sendFriendRequestDetails(id!);
+                },
+                child: Row(
+                  children: [
+                    Container(
+                      height: 22,
+                      width: 22,
+                      margin: const EdgeInsets.all(9),
+                      child: Image.asset(
+                        AssetRes.profilep,
+                        color: ColorRes.color_FFB2B2,
                       ),
                     ),
+                    Text(
+                      "Accept",
+                      style: beVietnamSemiBoldTextStyle(fontSize: 12),
+                    ),
+                  ],
+                ),
+              )*/
               const SizedBox(
                 width: 8,
               ),
               block == false
-                  // profileController.viewProfile.data!.isBlock==false
-
                   ? InkWell(
                       onTap: () {
                         print(id);

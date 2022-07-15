@@ -6,7 +6,7 @@ import 'package:rainbow/utils/asset_res.dart';
 Widget profileImage(
     /*ProfileController controller*/ String? profileImage, String? bgImage) {
   return SizedBox(
-    height: 282,
+    height: 292,
     width: Get.width,
     child: Stack(
       children: [

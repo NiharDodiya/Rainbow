@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/model/profile_model.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
+import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/widget/connect_block.dart';
 import 'package:rainbow/screens/Profile/widget/other_visitors_viewed.dart';
 import 'package:rainbow/screens/Profile/widget/profileImage.dart';
@@ -15,6 +16,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
 
   ConnectionsProfileController controller =
       Get.put(ConnectionsProfileController());
+  ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +59,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
                                 title: data.fullName,
                                 subTitle: "Surrogate Mom",
                                 id: data.id.toString(),
-                                connect: data.isFriends == "no",
+                                connect: data.isFriends.toString(),
                                 block: data.isBlock,
                               ),
                               testimonials(),

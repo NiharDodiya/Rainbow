@@ -488,8 +488,9 @@ class SettingsScreen extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () async {
-              await PrefService.clear();
+
               PrefService.setValue(PrefKeys.skipBoardingScreen, true);
+              await PrefService.clear();
               Get.offAll(() => AuthDashboard());
             },
             child: Container(

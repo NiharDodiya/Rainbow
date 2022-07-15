@@ -46,9 +46,13 @@ class ProfileController extends GetxController {
   Future<void> viewProfileDetails() async {
     try {
       loader.value = true;
-      viewProfile = await ViewProfileApi.postRegister();
       EditProfileController editProfileController =
-          Get.put(EditProfileController());
+      Get.put(EditProfileController());
+     await ViewProfileApi.postRegister().then((value){
+       viewProfile = value;
+
+     });
+
         editProfileController.fullName.text = viewProfile.data!.fullName!;
         editProfileController.status1.text = viewProfile.data!.maritalStatus!;
         editProfileController.age.text = viewProfile.data!.age.toString();

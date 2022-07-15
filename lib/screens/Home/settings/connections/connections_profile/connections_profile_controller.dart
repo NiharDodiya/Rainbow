@@ -31,6 +31,11 @@ class ConnectionsProfileController extends GetxController {
       CancelFriendRequestModel();
   ProfileController profileController = Get.find();
 
+
+  String no="no";
+  String sent="sent";
+  String cancel="cancel";
+
   void onInit() {
     super.onInit();
   }

@@ -81,13 +81,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               height: Get.height * 0.045,
             ),
             SizedBox(
-              height: 260,
+              height: 270,
               width: Get.width,
               child: Stack(
                 children: [
-                  profileController.viewProfile.data!.backgroundImage
-                              .toString() ==
-                          ""
+                  controller.backImage==null
                       ? Container(
                           margin: const EdgeInsets.only(right: 16),
                           height: Get.height * 0.2857,
@@ -102,7 +100,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           margin: const EdgeInsets.only(right: 16),
                           height: Get.height * 0.2857,
                           width: Get.width,
-                          child: CachedNetworkImage(
+                          /*child:*//* CachedNetworkImage(
                             imageUrl: profileController
                                 .viewProfile.data!.backgroundImage
                                 .toString(),
@@ -126,20 +124,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     fit: BoxFit.cover,
                                   )),
                             ),
-                          ),
-                          /*     decoration: BoxDecoration(
+                          ),*/
+                               decoration: BoxDecoration(
                        borderRadius: BorderRadius.circular(10),
                        image: DecorationImage(
                          image:  FileImage(controller.backImage!),
                          fit: BoxFit.cover,
-                       )),*/
+                       )),
                         ),
                   Positioned(
                     top: Get.height * 0.072,
                     left: Get.width * 0.25,
-                    child: profileController.viewProfile.data!.profileImage
-                                .toString() ==
-                            ""
+                    child:   controller.frontImage==null
                         ? Container(
                             height: Get.height * 0.38666,
                             width: Get.width * 0.38666,
@@ -152,7 +148,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         : Container(
                             height: Get.height * 0.38666,
                             width: Get.width * 0.38666,
-                            child: CachedNetworkImage(
+                          /*  child: CachedNetworkImage(
                               imageUrl: profileController
                                   .viewProfile.data!.profileImage
                                   .toString(),
@@ -178,13 +174,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   ),
                                 ),
                               ),
-                            ),
-                            /*  decoration:  BoxDecoration(
+                            ),*/
+                              decoration:  BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
                           image:  FileImage(controller.frontImage!),
                           fit: BoxFit.cover,
-                        ),),*/
+                        ),),
                           ),
                   ),
                   Positioned(
@@ -365,6 +361,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   GestureDetector(
                     onTap: () {
                       Get.to(() => const HeightScreen());
+                      FocusScope.of(context).unfocus();
                     },
                     child: SizedBox(
                       width: Get.width * 0.85,
@@ -382,6 +379,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   GestureDetector(
                     onTap: () {
                       Get.to(() => const WeightScreen());
+                      FocusScope.of(context).unfocus();
+
                     },
                     child: SizedBox(
                       width: Get.width * 0.85,
