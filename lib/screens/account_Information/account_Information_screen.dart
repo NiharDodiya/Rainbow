@@ -7,13 +7,13 @@ import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/country_name.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
+import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/screens/account_Information/account_information_controller.dart';
+import 'package:rainbow/utils/asset_res.dart';
+import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
-import '../../common/Widget/text_styles.dart';
-import '../../utils/asset_res.dart';
-import '../../utils/color_res.dart';
-import '../auth/phonenumber/phonenumber_Controller.dart';
+
 
 class AccountInformationScreen extends StatelessWidget {
   AccountInformationScreen({Key? key}) : super(key: key);
