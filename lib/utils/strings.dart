@@ -216,8 +216,7 @@ class Strings {
   static const scott = "Scott";
   static const seeAll = "See All";
   static const latestFeed = "Latest Feed";
-  static const latestFeedDes =
-      "Lorem ipsum dolor sit amet, consectetur \nadipiscing elit, sed do eiusmod tempor \nincididunt ut labore et dolore magna aliqua.\n Lorem a commodo consequat ... more ";
+  static const latestFeedDes = "Lorem ipsum dolor sit amet, consectetur \nadipiscing elit, sed do eiusmod tempor \nincididunt ut labore et dolore magna aliqua.\n Lorem a commodo consequat ... more ";
   static const likes = "+8 likes";
   static const learnMore = "LEARN MORE";
   static const search = "Search";
@@ -225,7 +224,7 @@ class Strings {
   static const advancedSearch = "Advance Search";
   static const connect = "Connect";
   static const block = "Block";
-  static const myCompanyDes = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem a commodo consequat ... more ";
+  static const myCompanyDes = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem a commodo consequat  ";
   static const typeYourReply = "Type your reply...";
 
   ///___________________________dashboard--Profile_______________________________________

@@ -8,33 +8,33 @@ class SearchController extends GetxController {
   // RxBool connect = false.obs;
   TextEditingController searchBar = TextEditingController();
   List<int> search = [0, 1, 2, 3, 4];
-  List advanceSearch = ["Surrogate Mom  " , "Sperm Donor", "Egg Donor", "Intended Parents", "Retired Surrogate"];
+  List advanceSearch = [
+    "Surrogate Mom  ",
+    "Sperm Donor",
+    "Egg Donor",
+    "Intended Parents",
+    "Retired Surrogate"
+  ];
 
   List<bool> connect = [];
 
   void onScreenTap() {
-
+    advance = false;
     connect = List.filled(search.length, false);
-update(["Search"]);
-
-  }
-  void onMoreButtonTap(int index)
-  {
-    connect[index]=true;
     update(["Search"]);
-
-
   }
-  void advanceSearchOnTap()
-  {
-    if(advance==false)
-      {
-        advance=true;
-      }
-    else
-      {
-        advance=false;
-      }
+
+  void onMoreButtonTap(int index) {
+    connect[index] = true;
+    update(["Search"]);
+  }
+
+  void advanceSearchOnTap() {
+    if (advance == false) {
+      advance = true;
+    } else {
+      advance = false;
+    }
     update(["Search"]);
   }
 
@@ -49,6 +49,4 @@ update(["Search"]);
     connect = List.filled(search.length, false);
     loader.value = true;
   }
-
-
 }

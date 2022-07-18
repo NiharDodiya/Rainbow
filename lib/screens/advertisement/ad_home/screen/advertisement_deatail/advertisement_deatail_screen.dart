@@ -191,7 +191,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
             image: createAdvertisementController.imagePath == null
                 ? const DecorationImage(
                     image: AssetImage(
-                      AssetRes.adsdetail,
+                      AssetRes.adsDetail,
                     ),
                     fit: BoxFit.fill)
                 : DecorationImage(
@@ -239,7 +239,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(12),
                         child: Image.asset(
-                          AssetRes.editicons,
+                          AssetRes.editIcons,
                           color: ColorRes.black,
                         ),
                       ),
