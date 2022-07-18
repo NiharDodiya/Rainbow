@@ -19,15 +19,13 @@ import 'package:rainbow/utils/pref_keys.dart';
 class LoginApi {
   static Future postRegister(
     String email,
-    String password,
-  ) async {
+    String password,) async {
     try {
       String url = EndPoints.login;
       Map<String, String> param = {
         'email': email,
         'password': password,
       };
-      print(param);
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -48,7 +46,7 @@ class LoginApi {
               Get.to(() => IdVerificationScreen());
             } else if (jsonDecode(response.body)["data"]["selfi_status"] ==
                 "pending") {
-              Get.to(() => SelfieVerificationScreen());
+              Get.to(() => const SelfieVerificationScreen());
             }
           } else {
             await PrefService.setValue(
@@ -71,8 +69,14 @@ class LoginApi {
       } else if (response.statusCode == 500) {
         flutterToast(jsonDecode(response.body)["message"]);
       }
-    } }catch (e) {
+    }else if(response!.statusCode == 500)
+      {
+        flutterToast(jsonDecode(response.body)["message"]);
+      }
+
+    }catch (e) {
       print(e.toString());
+
 
       return loginModelFromJson('');
     }

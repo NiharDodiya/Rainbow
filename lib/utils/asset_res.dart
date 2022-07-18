@@ -43,6 +43,10 @@ class AssetRes {
   static const sendInsta = '${icons}send_insta.png';
   static const heart = '${icons}heart.png';
   static const edit = '${icons}edit.png';
+  static const commentCamera = '${icons}comment_camera.png';
+  static const commentGallery = '${icons}comment_gallery.png';
+  static const commentSend = '${icons}comment_send.png';
+  static const worldIcon = '${icons}world_icon.png';
 
   ///--------------------------------------------- iconsBottom---------------------------------------------
   static const home = '${iconsBottom}home.png';

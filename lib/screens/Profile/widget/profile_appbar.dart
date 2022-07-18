@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
+import 'package:rainbow/screens/Profile/widget/edit_profile/editProfile_contoller.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/edit_profile_Screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -42,6 +43,8 @@ Widget profileAppbar(String text, bool show) {
             show
                 ? InkWell(
                     onTap: () {
+                      EditProfileController editController = Get.put(EditProfileController());
+                      editController.init();
                       Get.to(() => const EditProfileScreen());
                     },
                     child: SizedBox(

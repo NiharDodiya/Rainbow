@@ -85,7 +85,8 @@ class AdvertisementController extends GetxController {
 
   Future<void> onTapLogOut() async {
     await PrefService.clear();
-    PrefService.setValue(PrefKeys.skipBoardingScreen, true);
     Get.offAll(() => AuthDashboard());
+    PrefService.setValue(PrefKeys.skipBoardingScreen, true);
+
   }
 }

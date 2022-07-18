@@ -15,7 +15,6 @@ import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class RegisterController extends GetxController {
-  void init() {}
   DateTime selectedDate = DateTime.now();
   TextEditingController fullNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();

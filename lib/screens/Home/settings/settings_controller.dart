@@ -1,10 +1,17 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_share/flutter_share.dart';
+import 'package:rainbow/model/logout_model.dart';
+import 'package:rainbow/screens/Home/settings/logOut_Api/LogOut_Api.dart';
 import 'package:rainbow/screens/Home/settings/privacy/privacy_controller.dart';
 import 'package:rainbow/screens/Home/settings/privacy/privacy_screen.dart';
 
 class SettingsController extends GetxController
 {
+
+  RxBool loader = false.obs;
+  LogOutModel logOutModel = LogOutModel();
+
   void onInit()
   {
     super.onInit();
@@ -27,4 +34,15 @@ class SettingsController extends GetxController
     Get.to(() => PrivacyScreen());
   }
 
+  Future<void> logOutDetails() async {
+     loader.value = true;
+    try {
+     await LogOutApi.postRegister();
+
+       loader.value = false;
+    } catch (e) {
+      loader.value = false;
+      debugPrint(e.toString());
+    }
+  }
 }

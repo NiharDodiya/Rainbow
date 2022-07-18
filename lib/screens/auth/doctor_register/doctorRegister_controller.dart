@@ -173,7 +173,8 @@ String? codeId;
       loader.value = false;
 
 
-     await  PrefService.setValue(PrefKeys.advirtisersToken, advertiserRegister.token.toString());
+     await  PrefService.setValue(PrefKeys.registerToken, advertiserRegister.token.toString());
+      await PrefService.setValue(PrefKeys.userId, advertiserRegister.data!.id);
       status=advertiserRegister.data!.status.toString();
       role=advertiserRegister.data!.role.toString();
       print(status);

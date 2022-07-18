@@ -48,10 +48,10 @@ class EditProfileController extends GetxController {
   List<String> noOfKids = ["0", "1", "2", "3", "4", "5", "6"];
   String? noKidsSelected;
 
-  void onInit() {
-    update(['Edit_profile']);
-    super.onInit();
+  void init(){
+    setInitData();
   }
+
 
   Future<void> onTapTextField(context) async {
     if (validation()) {
@@ -63,9 +63,32 @@ class EditProfileController extends GetxController {
         print(codeId);
       }
       await editProfileApi(context);
-      await profileController.viewProfileDetails();
+
       profileController.update(["profile"]);
+      await profileController.viewProfileDetails();
     }
+  }
+
+  void setInitData(){
+    ProfileController profileController = Get.find();
+    fullName.text = profileController.viewProfile.data!.fullName!;
+    status.text = profileController.viewProfile.data!.userStatus!;
+        status1.text = profileController.viewProfile.data!.maritalStatus!;
+        age.text = profileController.viewProfile.data!.age.toString();
+        city.text = profileController.viewProfile.data!.city!;
+        height.text = profileController.viewProfile.data!.height!;
+        weight.text = profileController.viewProfile.data!.weight!;
+        ethnicity.text = profileController.viewProfile.data!.idEthnicity!;
+        selectedEthicity = profileController.viewProfile.data!.idEthnicity!;
+        haveKids.text = profileController.viewProfile.data!.noKids!.toString();
+        noKidsSelected = profileController.viewProfile.data!.noKids!.toString();
+        hobbies.text = profileController.viewProfile.data!.hobbiesAndInterest!.toString();
+         instagram.text = profileController.viewProfile.data!.instagram!.toString();
+         youTube.text = profileController.viewProfile.data!.youtube!.toString();
+         twitter.text = profileController.viewProfile.data!.twitter!.toString();
+         faceBook.text = profileController.viewProfile.data!.facebook!.toString();
+         aboutMe.text = profileController.viewProfile.data!.about!.toString();
+    // await PrefService.setValue(PrefKeys.registerToken, registerUser.token.toString());
   }
 
   bool validation() {
@@ -134,19 +157,19 @@ class EditProfileController extends GetxController {
       frontImage = File(path);
     }
     uploadImageApi();
-
-    update(["Edit_profile"]);
     Get.back();
+    update(["Edit_profile"]);
+
   }  navigateToCameraBack() async {
     String? path = await cameraPickImage1();
 
     if (path != null) {
       backImage = File(path);
     }
-
     uploadImageBackApi();
-    update(["Edit_profile"]);
     Get.back();
+    update(["Edit_profile"]);
+
   }
   navigateToGallaryBack() async {
     String? path = await gallaryPickImage1();
@@ -155,8 +178,9 @@ class EditProfileController extends GetxController {
       backImage = File(path);
     }
     uploadImageBackApi();
-    update(["Edit_profile"]);
     Get.back();
+    update(["Edit_profile"]);
+
   }
 
   navigateToGallaryFront() async {
@@ -166,9 +190,9 @@ class EditProfileController extends GetxController {
       frontImage = File(path);
     }
     uploadImageApi();
+    Get.back();
 
     update(["Edit_profile"]);
-    Get.back();
   }
   Future<String?> cameraPickImage1() async {
     XFile? pickedFile =
@@ -176,10 +200,8 @@ class EditProfileController extends GetxController {
     if (pickedFile != null) {
       return pickedFile.path;
     }
-
     update(["Edit_profile"]);
     Get.back();
-
     return null;
   }
 
@@ -190,10 +212,9 @@ class EditProfileController extends GetxController {
     if (pickedFile != null) {
       return pickedFile.path;
     }
-
-
-    update(["Edit_profile"]);
     Get.back();
+    update(["Edit_profile"]);
+
 
     return null;
   }
@@ -252,10 +273,9 @@ class EditProfileController extends GetxController {
     loader.value = true;
     try {
       print("Hello");
-
       EditProfile? data = await EditProfileApi.postRegister(
-        uploadImage1.data!.id.toString(),
         uploadImage2.data!.id.toString(),
+        uploadImage1.data!.id.toString(),
         fullName.text,
         status.text,
         height.text,

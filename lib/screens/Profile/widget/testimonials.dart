@@ -20,13 +20,14 @@ Widget testimonials() {
           Text(
             Strings.testimonials,
             style: beVietnamProBoldTextStyle(fontSize: 18),
-          ),     const SizedBox(
+          ),
+          const SizedBox(
             height: 10,
           ),
           Center(
             child: Text(
               Strings.noTestimonials,
-              style: beVietnamProBoldTextStyle(fontSize: 18),
+              style: beVietnamProBoldTextStyle(color:ColorRes.white.withOpacity(0.70),fontSize: 16),
             ),
           ),
 

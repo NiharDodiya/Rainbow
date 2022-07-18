@@ -17,11 +17,16 @@ Widget aboutProfiler(String title,String aboutMe
           title,
           style: beVietnamProBoldTextStyle(fontSize: 18),
         ),
-        Container(
+        aboutMe==""?Center(
+          child: Text(
+            "No about",
+            style: beVietnamProBoldTextStyle(color:ColorRes.white.withOpacity(0.70),fontSize: 16),
+          ),
+        ): Container(
           margin: const EdgeInsets.only(top: 15),
           child: ReadMoreText(
-             "${Strings.aboutMeDes}${Strings.aboutMeDes} ",
-           /* aboutMe,*/
+            /* "${Strings.aboutMeDes}${Strings.aboutMeDes} ",*/
+            aboutMe,
             trimLines: 3,
             trimMode: TrimMode.Line,
             delimiter: " ",

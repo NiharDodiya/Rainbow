@@ -36,39 +36,41 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         }
       },
       child: Scaffold(
-          body: Stack(
-        children: [
-          SafeArea(
-            child: GetBuilder<EditProfileController>(
-              id: 'Edit_profile',
-              builder: (controller) {
-                return Container(
-                  width: Get.width,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        ColorRes.color_50369C,
-                        ColorRes.color_D18EEE,
-                      ],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                    ),
+          body: Obx(() {
+            return Stack(
+              children: [
+                SafeArea(
+                  child: GetBuilder<EditProfileController>(
+                    id: 'Edit_profile',
+                    builder: (controller) {
+                      return Container(
+                        width: Get.width,
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              ColorRes.color_50369C,
+                              ColorRes.color_D18EEE,
+                            ],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [editProfilePicture(), editProfileTextField()],
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [editProfilePicture(), editProfileTextField()],
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          controller.loader.isTrue ? SmallLoader() : SizedBox(),
-        ],
-      )),
+                ),
+                controller.loader.isTrue ? const SmallLoader() : const SizedBox(),
+              ],
+            );
+          })),
     );
   }
 
@@ -77,32 +79,41 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              height: Get.height * 0.045,
+            const SizedBox(
+              height: 25,
             ),
             SizedBox(
-              height: 260,
+              height: 270,
               width: Get.width,
               child: Stack(
                 children: [
-                  profileController.viewProfile.data!.backgroundImage
-                              .toString() ==
-                          ""
+                  controller.backImage != null
                       ? Container(
-                          margin: const EdgeInsets.only(right: 16),
-                          height: Get.height * 0.2857,
-                          width: Get.width,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: const DecorationImage(
-                                  image: AssetImage(AssetRes.overlay),
-                                  fit: BoxFit.cover)),
-                        )
-                      : Container(
-                          margin: const EdgeInsets.only(right: 16),
-                          height: Get.height * 0.2857,
-                          width: Get.width,
-                          child: CachedNetworkImage(
+                    margin: const EdgeInsets.only(right: 16),
+                    height: Get.height * 0.2857,
+                    width: Get.width,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: DecorationImage(
+                          image: FileImage(controller.backImage!),
+                          fit: BoxFit.cover,
+                        )),
+                  )
+                      : /*profileController
+                      .viewProfile.data!.backgroundImage!.isEmpty ? */Container(
+                    margin: const EdgeInsets.only(right: 16),
+                    height: Get.height * 0.2857,
+                    width: Get.width,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: const DecorationImage(
+                            image: AssetImage(AssetRes.overlay),
+                            fit: BoxFit.cover)),
+                  ) /*:Container(
+                    margin: const EdgeInsets.only(right: 16),
+                    height: Get.height * 0.2857,
+                    width: Get.width,
+                    child:  CachedNetworkImage(
                             imageUrl: profileController
                                 .viewProfile.data!.backgroundImage
                                 .toString(),
@@ -121,38 +132,69 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               width: Get.width,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  image: DecorationImage(
-                                    image: FileImage(controller.backImage!),
+                                  image: const DecorationImage(
+                                    image:  AssetImage(AssetRes.overlay),
                                     fit: BoxFit.cover,
                                   )),
                             ),
                           ),
-                          /*     decoration: BoxDecoration(
-                       borderRadius: BorderRadius.circular(10),
-                       image: DecorationImage(
-                         image:  FileImage(controller.backImage!),
-                         fit: BoxFit.cover,
-                       )),*/
-                        ),
+
+                  ),*/,
                   Positioned(
                     top: Get.height * 0.072,
                     left: Get.width * 0.25,
-                    child: profileController.viewProfile.data!.profileImage
-                                .toString() ==
-                            ""
-                        ? Container(
+                    child: controller.frontImage != null
+                        ?
+                         Container(
                             height: Get.height * 0.38666,
                             width: Get.width * 0.38666,
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                    image: AssetImage(AssetRes.se_profile),
-                                    fit: BoxFit.contain)),
-                          )
-                        : Container(
-                            height: Get.height * 0.38666,
-                            width: Get.width * 0.38666,
-                            child: CachedNetworkImage(
+                            /*  child: CachedNetworkImage(
+                              imageUrl: profileController
+                                  .viewProfile.data!.profileImage
+                                  .toString(),
+                              imageBuilder: (context, imageProvider) =>
+                                  Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    image: imageProvider,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              // placeholder: (context, url) => const Center(child:CircularProgressIndicator(),),
+                              errorWidget: (context, url, error) => Container(
+                                height: Get.height * 0.2857,
+                                width: Get.width,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    image: FileImage(controller.frontImage!),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),*/
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: FileImage(controller.frontImage!),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ):/*profileController
+                        .viewProfile.data!.profileImage!.isEmpty ?*/Container(
+                      height: Get.height * 0.38666,
+                      width: Get.width * 0.38666,
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              image: AssetImage(AssetRes.se_profile),
+                              fit: BoxFit.contain)),
+                    )/*:Container(
+                      height: Get.height * 0.38666,
+                      width: Get.width * 0.38666,
+                        child: CachedNetworkImage(
                               imageUrl: profileController
                                   .viewProfile.data!.profileImage
                                   .toString(),
@@ -179,73 +221,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 ),
                               ),
                             ),
-                            /*  decoration:  BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image:  FileImage(controller.frontImage!),
-                          fit: BoxFit.cover,
-                        ),),*/
-                          ),
+
+                    ),*/
                   ),
                   Positioned(
                     top: Get.height * 0.24,
                     left: Get.width * 0.4,
                     child: InkWell(
                         onTap: () {
-                           controller.frontCamera();
-                          /*showModalBottomSheet(
-                              elevation: 10,
-                              barrierColor: ColorRes.black.withOpacity(0.4),
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.0),
-                                ),
-                              ),
-                              backgroundColor: ColorRes.color_4F359B,
-                              context: context,
-                              builder: (context) {
-                                return Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    GestureDetector(
-                                      onTap: controller.navigateToCameraFront(),
-                                      child: const ListTile(
-                                        leading: Icon(Icons.camera),
-                                        title: Text(Strings.camera),
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 0.5,
-                                      width: Get.width,
-                                      color: ColorRes.white,
-                                    ),
-                                    GestureDetector(
-                                      onTap: controller.navigateToGallary,
-                                      child: const ListTile(
-                                        leading: Icon(Icons
-                                            .photo_size_select_actual_outlined),
-                                        title: Text(Strings.gallery),
-                                      ),
-                                    ),
-                                  ],
-                                );
-                              });*/
-                        },
-                        child: Container(
-                          height: 29.19,
-                          width: 28.48,
-                          decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(AssetRes.cameraIcon))),
-                        )),
-                  ),
-                  Positioned(
-                    top: Get.height * 0.22,
-                    left: Get.width * 0.77,
-                    child: InkWell(
-                        onTap: () {
-                          controller.backCamera();
-                        /*  showModalBottomSheet(
+                          // controller.frontCamera();
+                          showModalBottomSheet(
                               elevation: 10,
                               barrierColor: ColorRes.black.withOpacity(0.4),
                               shape: const RoundedRectangleBorder(
@@ -272,7 +257,59 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                       color: ColorRes.white,
                                     ),
                                     GestureDetector(
-                                      onTap: controller.navigateToGallaryFront(),
+                                      onTap: controller.navigateToGallaryFront,
+                                      child: const ListTile(
+                                        leading: Icon(Icons
+                                            .photo_size_select_actual_outlined),
+                                        title: Text(Strings.gallery),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              });
+                        },
+                        child: Container(
+                          height: 29.19,
+                          width: 28.48,
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(AssetRes.cameraIcon))),
+                        )),
+                  ),
+                  Positioned(
+                    top: Get.height * 0.22,
+                    left: Get.width * 0.77,
+                    child: InkWell(
+                        onTap: () {
+                          // controller.backCamera();
+                            showModalBottomSheet(
+                              elevation: 10,
+                              barrierColor: ColorRes.black.withOpacity(0.4),
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10.0),
+                                ),
+                              ),
+                              backgroundColor: ColorRes.color_4F359B,
+                              context: context,
+                              builder: (context) {
+                                return Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    GestureDetector(
+                                      onTap: controller.navigateToCameraBack,
+                                      child: const ListTile(
+                                        leading: Icon(Icons.camera),
+                                        title: Text(Strings.camera),
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 0.5,
+                                      width: Get.width,
+                                      color: ColorRes.white,
+                                    ),
+                                    GestureDetector(
+                                      onTap: controller.navigateToGallaryBack,
                                       child: const ListTile(
                                         leading: Icon(
                                             Icons.photo_size_select_actual_outlined),
@@ -281,7 +318,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     ),
                                   ],
                                 );
-                              });*/
+                              });
                         },
                         child: Container(
                           height: 29.19,
@@ -299,8 +336,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    height: Get.height * 0.026,
+                  const SizedBox(
+                    height: 10,
                   ),
                   SizedBox(
                     width: Get.width * 0.85,
@@ -365,6 +402,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   GestureDetector(
                     onTap: () {
                       Get.to(() => const HeightScreen());
+                      FocusScope.of(context).unfocus();
                     },
                     child: SizedBox(
                       width: Get.width * 0.85,
@@ -382,6 +420,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   GestureDetector(
                     onTap: () {
                       Get.to(() => const WeightScreen());
+                      FocusScope.of(context).unfocus();
                     },
                     child: SizedBox(
                       width: Get.width * 0.85,
@@ -701,7 +740,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       return Container(
                         height: Get.height * 0.28,
                         width: Get.width * 0.85,
-                        padding: EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
                           color: ColorRes.white,
                           borderRadius: BorderRadius.circular(20),
