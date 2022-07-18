@@ -4,6 +4,7 @@ import 'package:rainbow/model/block_model.dart';
 import 'package:rainbow/model/cancleFriedRequest_model.dart';
 import 'package:rainbow/model/profile_model.dart';
 import 'package:rainbow/model/sendFriendRequest_model.dart';
+import 'package:rainbow/model/unFriend_model.dart';
 import 'package:rainbow/model/unblock_model.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/api/OtherProfileApi.dart';
@@ -11,6 +12,7 @@ import 'package:rainbow/screens/Home/settings/connections/connections_profile/co
 import 'package:rainbow/screens/Profile/acceptFriendRequest_api/accaeptFriedRequest_api.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/sendFriendRequest_api/sendFriendRequest_api.dart';
+import 'package:rainbow/screens/Profile/unFriendRequest_api/unFriendRequest_api.dart';
 import 'package:rainbow/screens/Profile/widget/block_unblock%20_Api/block_api.dart';
 import 'package:rainbow/screens/Profile/widget/block_unblock%20_Api/unblock_api.dart';
 
@@ -29,10 +31,7 @@ class ConnectionsProfileController extends GetxController {
   CancelFriendRequestModel cancelFriendRequestModel =
       CancelFriendRequestModel();
   ProfileController profileController = Get.find();
-
-  String no = "no";
-  String sent = "sent";
-  String cancel = "cancel";
+  UnFriendModel unFriendModel =UnFriendModel();
 
   void onInit() {
     super.onInit();
@@ -123,12 +122,10 @@ class ConnectionsProfileController extends GetxController {
       loader.value = false;
     }
   }
-
   Future<void> unFriendRequestDetails(String id) async {
     try {
       loader.value = true;
-      // cancelFriendRequestModel = await CancelFriendRequestApi.postRegister(id);
-      // await callApi(id);
+      unFriendModel= await UnFriendRequestApi.postRegister(id);
       update(["connections"]);
       loader.value = false;
     } catch (e) {
