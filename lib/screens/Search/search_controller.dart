@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/screens/Search/advance_search/advance_search_screen.dart';
 
 class SearchController extends GetxController {
   RxBool loader = false.obs;
@@ -36,6 +37,14 @@ class SearchController extends GetxController {
       advance = false;
     }
     update(["Search"]);
+  }
+
+  void onTapAdvanceSearchMenu(int index) {
+    Get.to(
+      AdvanceSearchScreen(
+        title: advanceSearch[index],
+      ),
+    );
   }
 
   @override

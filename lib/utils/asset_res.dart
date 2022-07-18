@@ -47,6 +47,7 @@ class AssetRes {
   static const commentGallery = '${icons}comment_gallery.png';
   static const commentSend = '${icons}comment_send.png';
   static const worldIcon = '${icons}world_icon.png';
+  static const filterIcon = '${icons}filter_icon.png';
 
   ///--------------------------------------------- iconsBottom---------------------------------------------
   static const home = '${iconsBottom}home.png';
@@ -93,6 +94,7 @@ class AssetRes {
   static const visalogo = "${images}visa_logo.png";
   static const poket = "${images}poket.png";
   static const masterLogo = "${images}master.png";
+  static const searchBackground = "${images}search_backgraund.png";
 
   ///_______________________________settings________________________________
   static const profileSettinges = '${settingsImage}profileSettinges.png';

@@ -45,7 +45,7 @@ class SearchScreen extends StatelessWidget {
                                 itemBuilder: (context, index) {
                                   return InkWell(
                                     onTap: () {
-
+                                      controller.onTapAdvanceSearchMenu(index);
                                     },
                                     child: Container(
                                       width: 142,
@@ -114,7 +114,7 @@ class SearchScreen extends StatelessWidget {
                   child: Text(
                     Strings.advancedSearch,
                     style: gilroyBoldTextStyle(
-                        fontSize: 12, color: ColorRes.color_9597A1).copyWith(decoration: TextDecoration.underline),
+                        fontSize: 12, color: ColorRes.color_9597A1).copyWith(decoration: TextDecoration.underline,),
                   ),
                 ),
                 SizedBox(
