@@ -11,7 +11,7 @@ import '../../../../../common/popup.dart';
 import '../../../../../utils/strings.dart';
 
 class CreateAdvertisementController extends GetxController {
-  List tags =[];
+  List tags = [];
   String? callToAction;
   String? address;
   TextEditingController tagsController = TextEditingController();
@@ -28,12 +28,18 @@ class CreateAdvertisementController extends GetxController {
   List<String> dropDList = ["Learn More", "Contact Us"];
   File? imagePath;
 
-tagsListSet(){
- String addcomma ="${tagsController.text}";
-  tags =   addcomma.split(',');
-  print(tags);
-}
- 
+  tagsListSet() {
+    if (!tagsController.text.toString().contains(",")) {
+      tags.add(tagsController.text.toString());
+    } 
+     else {
+      // String addcomma = "${tagsController.text},";
+    tags = tagsController.text.split(',');
+       tags.removeWhere((e)=>e.isEmpty);
+
+      
+    }
+  }
 
   /// On Tap Dropdown
   void onCallToActionChange(String value) {
@@ -50,6 +56,7 @@ tagsListSet(){
       imagePath = File(path);
     }
     update(["Getpic"]);
+
     Get.back();
   }
 
@@ -89,8 +96,9 @@ tagsListSet(){
   }
 
   createAdvertisement() {
+    tagsListSet();
     if (validation()) {
-      Get.to(()=>AdvertisementDeatailScreen() );
+      Get.to(() => AdvertisementDeatailScreen());
     }
   }
 
@@ -152,8 +160,9 @@ tagsListSet(){
       Placemark place = placemarks[0];
       address =
           '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
-          print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<$address>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-          update(["location"]);
+      print(
+          "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<$address>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+      update(["location"]);
     }
   }
 }

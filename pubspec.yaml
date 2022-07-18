@@ -88,6 +88,8 @@ dependencies:
   url_launcher: ^6.1.4
   geolocator: ^9.0.1
   geocoding: ^2.0.4
+  table_calendar: ^3.0.6
+  syncfusion_flutter_datepicker: ^20.2.38
 
 
 
