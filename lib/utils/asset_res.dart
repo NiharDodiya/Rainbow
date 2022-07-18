@@ -149,4 +149,5 @@ class AssetRes {
   static const greenDuck = "${icons}greenduck.png";
   static const adsdetail = "${images}adsdetail.png";
   static const editicons = "${icons}editicons.png";
+  static const blurBack = "${images}blurBack.png";
 }

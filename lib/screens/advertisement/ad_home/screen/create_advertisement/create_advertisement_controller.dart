@@ -14,6 +14,9 @@ class CreateAdvertisementController extends GetxController {
   List tags = [];
   String? callToAction;
   String? address;
+  String? addCountry;
+  String? addCity;
+  String? addStreet;
   TextEditingController tagsController = TextEditingController();
   TextEditingController titleController = TextEditingController();
   TextEditingController canedaController = TextEditingController();
@@ -31,13 +34,10 @@ class CreateAdvertisementController extends GetxController {
   tagsListSet() {
     if (!tagsController.text.toString().contains(",")) {
       tags.add(tagsController.text.toString());
-    } 
-     else {
+    } else {
       // String addcomma = "${tagsController.text},";
-    tags = tagsController.text.split(',');
-       tags.removeWhere((e)=>e.isEmpty);
-
-      
+      tags = tagsController.text.split(',');
+      tags.removeWhere((e) => e.isEmpty);
     }
   }
 
@@ -158,6 +158,9 @@ class CreateAdvertisementController extends GetxController {
           await placemarkFromCoordinates(position.latitude, position.longitude);
 
       Placemark place = placemarks[0];
+      addCity = place.locality;
+      addCountry = place.country;
+      addStreet = place.street;
       address =
           '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
       print(

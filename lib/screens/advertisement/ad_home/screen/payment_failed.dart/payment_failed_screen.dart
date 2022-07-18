@@ -1,0 +1,163 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../../../common/Widget/buttons.dart';
+import '../../../../../common/Widget/text_styles.dart';
+import '../../../../../utils/asset_res.dart';
+import '../../../../../utils/color_res.dart';
+import '../../../ad_dashboard/ad_dashboard.dart';
+
+class PaymentFailedScreen extends StatelessWidget {
+  const PaymentFailedScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          width: Get.width,
+          height: Get.height,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                ColorRes.color_50369C,
+                ColorRes.color_50369C,
+                ColorRes.color_D18EEE,
+                ColorRes.color_D18EEE,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: Get.height * 0.165024,
+                ),
+                Text(
+                  "Payment Failed",
+                  style: gilroySemiBoldTextStyle(fontSize: 24),
+                ),
+                SizedBox(
+                  height: Get.height * 0.02832,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(30),
+                  height: 177,
+                  width: 177,
+                  decoration: BoxDecoration(
+                      color: ColorRes.color_F28D8D,
+                      border: Border.all(
+                        color: ColorRes.color_FFC9C9,
+                        width: 14,
+                      ),
+                      shape: BoxShape.circle),
+                  child: Container(
+                    height: 10,
+                    width: 10,
+                    decoration: const BoxDecoration(
+                      color: ColorRes.color_A52C2C,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.check_rounded,
+                      size: 50,
+                    ),
+                  ),
+                ),
+                // SizedBox(
+                //   height: Get.height * 0.04064,
+                // ),
+                Container(
+                  height: 250,
+                  width: Get.width,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                  child: Stack(
+                    children: [
+                      SizedBox(
+                        height: 250,
+                        width: Get.width,
+                        child: Image.asset(
+                          AssetRes.blurBack,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 60, vertical: 30),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Payer’s Name",
+                              style: poppinsRegularBold(fontSize: 12),
+                            ),
+                            SizedBox(
+                              height: Get.height * 0.007389,
+                            ),
+                            Text(
+                              "Miracle Keen",
+                              style: poppinsMediumBold(fontSize: 14),
+                            ),
+                            SizedBox(
+                              height: Get.height * 0.0209,
+                            ),
+                            Text(
+                              "Transaction Number",
+                              style: poppinsRegularBold(fontSize: 12),
+                            ),
+                            SizedBox(
+                              height: Get.height * 0.007389,
+                            ),
+                            Text(
+                              "122900083HN",
+                              style: poppinsMediumBold(fontSize: 14),
+                            ),
+                            SizedBox(
+                              height: Get.height * 0.0209,
+                            ),
+                            Text(
+                              "Service",
+                              style: poppinsRegularBold(fontSize: 12),
+                            ),
+                            SizedBox(
+                              height: Get.height * 0.007389,
+                            ),
+                            Text(
+                              "Post Ads",
+                              style: poppinsMediumBold(fontSize: 14),
+                            ),
+                            SizedBox(
+                              height: Get.height * 0.0209,
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+
+                  // child: BackdropFilter(
+                  //     filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20)),
+                ),
+                SizedBox(height: Get.height * 0.0714),
+                SubmitButton(
+                  text: "Back to Home",
+                  onTap: () {
+                    Get.off(()=> AdvertisementDashBord());
+                  },
+                ),
+                SizedBox(
+                  height: Get.height * 0.02832,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

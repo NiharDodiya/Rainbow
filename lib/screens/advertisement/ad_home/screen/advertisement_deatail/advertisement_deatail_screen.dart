@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/edit_advertisement/edit_advertisement_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -231,16 +232,21 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    Container(
-                      height: 33.3,
-                      width: 33.3,
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle, color: ColorRes.white),
-                      child: Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Image.asset(
-                          AssetRes.editicons,
-                          color: ColorRes.black,
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(() => const EditAdvertisementscreen());
+                      },
+                      child: Container(
+                        height: 33.3,
+                        width: 33.3,
+                        decoration: const BoxDecoration(
+                            shape: BoxShape.circle, color: ColorRes.white),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Image.asset(
+                            AssetRes.editicons,
+                            color: ColorRes.black,
+                          ),
                         ),
                       ),
                     ),

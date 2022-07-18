@@ -99,6 +99,7 @@ class Strings {
   static const addressLine2 = 'Address Line 2';
   static const addressLine2Hint = 'State, Country, Postal Code';
   static const phoneNumber = 'Phone Number';
+  static const uploadImageError = "Image not found";
   static const phoneNumberHint = '123 456 789';
   static const maritalStatus = 'Marital Status';
   static const ethnicity = 'Ethnicity';
@@ -224,7 +225,8 @@ class Strings {
   static const advancedSearch = "Advance Search";
   static const connect = "Connect";
   static const block = "Block";
-  static const myCompanyDes = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem a commodo consequat ... more ";
+  static const myCompanyDes =
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem a commodo consequat ... more ";
   static const typeYourReply = "Type your reply...";
 
   ///___________________________dashboard--Profile_______________________________________
@@ -270,7 +272,8 @@ class Strings {
 
   static const endingIn0212 = "Ending in 0212";
   static const date = "01/23";
-  static const cardAddress = "3818 Lynden Road , Orono , Ontario , Canda , L0B 1M0";
+  static const cardAddress =
+      "3818 Lynden Road , Orono , Ontario , Canda , L0B 1M0";
   static const setasDefaultPayment = "Set as Default Payment";
   static const remove = "Remove";
   static const edit = "Edit";
@@ -347,30 +350,31 @@ class Strings {
   static const accountInformation = "Account Information";
   static const myEmail = "myemaill@gmail.com";
   static const raymondMarcos = "Raymond Marcos";
-  static const logout02 ="LOG OUT";
+  static const logout02 = "LOG OUT";
 
   //___________________________________Cancel approve_____________________________
-static const cancelAprove ="Cancel Advertisement";
-static const cancelAppoveDes ="Are you sure you want to cancel this advertisement?";
+  static const cancelAprove = "Cancel Advertisement";
+  static const cancelAppoveDes =
+      "Are you sure you want to cancel this advertisement?";
 
-///_____________________________________Delet Approve_______________________________
+  ///_____________________________________Delet Approve_______________________________
 
-static const deletApprove ="Delete Advertisement";
-static const deletApproveDes ="Are you sure you want to delete this advertisement?";
+  static const deletApprove = "Delete Advertisement";
+  static const deletApproveDes =
+      "Are you sure you want to delete this advertisement?";
 
-///____________________________________Support_______________________________________
-static const attachImagesOrproof ="Attach images or proof";
-static const sendMessage ="Send Message";
-static const writesomethinghere ="Write something here...";
-static const yourMessage ="Your Message";
-static const supportdeatailDEs ="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium sem sit amet venenatis commodo. Nullam aliquam lacus nisl, varius luctus mauris hendrerit ut. Etiam eros lectus, commodo nec nisl in, aliquet congue quam. Morbi condimentum lectus id urna gravida, at facilisis lectus consectetur. Nam viverra augue est, ut cursus mi bibendum sit amet. Duis hendrerit hendrerit molestie. Ut iaculis tellus risus, id facilisis purus finibus vel. In hac habitasse platea dictumst. Ut efficitur lacus eu risus aliquam mollis. Nullam gravida sit amet lorem vitae maximus. Nunc quis odio nec sapien ullamcorper eleifend a eget justo. In hac habitasse platea dictumst. Donec quis magna id libero consequat egestas eget ac felis.";
-static const supportDate ="March 22, 2021 | 9:00am";
-static const supportdeatailDEs02 ="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium sem sit amet venenatis commodo. Nullam aliquam lacus nisl, varius luctus mauris hendrerit ut. Etiam eros lectus, commodo nec nisl in, aliquet congue quam. Morbi condimentum lectus id urna gravida, at facilisis lectus consectetur. Nam viverra augue est, ut cursus mi bibendum sit amet. Duis hendrerit hendrerit molestie. Ut iaculis tellus risus, id facilisis purus finibus vel. In hac habitasse platea dictumst. Ut efficitur lacus eu risus aliquam mollis. Nullam gravida sit amet lorem vitae maximus.";
-static const supportCode ="1235CA2B2";
-static const supporterror01 ="Message is required";
-static const subject ="Subject";
-static const supportError02 ="Subject is requred";
-
-
-
+  ///____________________________________Support_______________________________________
+  static const attachImagesOrproof = "Attach images or proof";
+  static const sendMessage = "Send Message";
+  static const writesomethinghere = "Write something here...";
+  static const yourMessage = "Your Message";
+  static const supportdeatailDEs =
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium sem sit amet venenatis commodo. Nullam aliquam lacus nisl, varius luctus mauris hendrerit ut. Etiam eros lectus, commodo nec nisl in, aliquet congue quam. Morbi condimentum lectus id urna gravida, at facilisis lectus consectetur. Nam viverra augue est, ut cursus mi bibendum sit amet. Duis hendrerit hendrerit molestie. Ut iaculis tellus risus, id facilisis purus finibus vel. In hac habitasse platea dictumst. Ut efficitur lacus eu risus aliquam mollis. Nullam gravida sit amet lorem vitae maximus. Nunc quis odio nec sapien ullamcorper eleifend a eget justo. In hac habitasse platea dictumst. Donec quis magna id libero consequat egestas eget ac felis.";
+  static const supportDate = "March 22, 2021 | 9:00am";
+  static const supportdeatailDEs02 =
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium sem sit amet venenatis commodo. Nullam aliquam lacus nisl, varius luctus mauris hendrerit ut. Etiam eros lectus, commodo nec nisl in, aliquet congue quam. Morbi condimentum lectus id urna gravida, at facilisis lectus consectetur. Nam viverra augue est, ut cursus mi bibendum sit amet. Duis hendrerit hendrerit molestie. Ut iaculis tellus risus, id facilisis purus finibus vel. In hac habitasse platea dictumst. Ut efficitur lacus eu risus aliquam mollis. Nullam gravida sit amet lorem vitae maximus.";
+  static const supportCode = "1235CA2B2";
+  static const supporterror01 = "Message is required";
+  static const subject = "Subject";
+  static const supportError02 = "Subject is requred";
 }

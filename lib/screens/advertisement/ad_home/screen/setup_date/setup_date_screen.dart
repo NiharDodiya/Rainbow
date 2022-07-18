@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/country_name.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/payment_failed.dart/payment_failed_screen.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/payment_successful/payment_successful_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_controller.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -41,7 +43,7 @@ class SetupDateScreen extends StatelessWidget {
               Expanded(
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
-                  child: bottom(),
+                  child: bottom(context),
                 ),
               ),
             ],
@@ -100,7 +102,7 @@ class SetupDateScreen extends StatelessWidget {
     );
   }
 
-  Widget bottom() {
+  Widget bottom(context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: Get.width * 0.0853),
       child: Column(
@@ -359,6 +361,32 @@ class SetupDateScreen extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               SubmitButton(
+                onTap: () {
+                  Get.bottomSheet(
+                    enableDrag: false,
+                    BottomSheet(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30),
+                        ),
+                      ),
+                      backgroundColor: ColorRes.white,
+                      onClosing: () {},
+                      constraints: BoxConstraints(
+                        maxHeight: Get.height - (Get.height * 0.0480  ),
+                      ),
+
+                      // enableDrag: true,
+                      builder: (_) => ShowBottomNext(),
+                    ),
+                    isScrollControlled: true,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(35),
+                    ),
+                    ignoreSafeArea: true,
+                  );
+                },
                 child: Text(
                   "Next",
                   style: gilroyBoldTextStyle(
@@ -371,6 +399,180 @@ class SetupDateScreen extends StatelessWidget {
             ],
           )
         ],
+      ),
+    );
+  }
+}
+
+class ShowBottomNext extends StatelessWidget {
+  const ShowBottomNext({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return DraggableScrollableSheet(
+      initialChildSize: 0.99,
+      minChildSize: 0.95,
+      maxChildSize: 0.99,
+      builder: (context, scrollController) => GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        child: SingleChildScrollView(
+          controller: scrollController,
+          child: Padding(
+            padding: EdgeInsets.only(
+                top: Get.height * 0.1169,
+                left: Get.width * 0.0853,
+                right: Get.width * 0.0853),
+            child: Column(
+              children: [
+                Text(
+                  "Confirm Advertisement Details And Pay",
+                  style: gilroySemiBoldTextStyle(
+                    fontSize: 24,
+                    color: ColorRes.black,
+                  ),
+                ),
+                SizedBox(
+                  height: Get.height * 0.03078,
+                ),
+                Container(
+                  width: Get.width * 0.8293,
+                  height: 350,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        ColorRes.color_50369C,
+                        ColorRes.color_50369C,
+                        ColorRes.color_D18EEE,
+                        ColorRes.color_D18EEE,
+                      ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: Get.width * 0.0666),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: Get.height * 0.0320,
+                        ),
+                        Text(
+                          "You have to pay",
+                          style: gilroySemiBoldTextStyle(fontSize: 12),
+                        ),
+                        // SizedBox(
+                        //   height: Get.height * 0.0320,
+                        // ),
+                        RichText(
+                          text: TextSpan(children: [
+                            TextSpan(
+                              text: "120",
+                              style: poppinsSemiBold(fontSize: 64),
+                            ),
+                            TextSpan(
+                              text: ".00USD",
+                              style: poppinsSemiBold(fontSize: 24),
+                            )
+                          ]),
+                        ),
+
+                        Divider(
+                          color: ColorRes.black.withOpacity(0.5),
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.036,
+                        ),
+                        Text(
+                          "Payer’s Name",
+                          style: poppinsRegularBold(fontSize: 12),
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.007389,
+                        ),
+                        Text(
+                          "Miracle Keen",
+                          style: poppinsMediumBold(fontSize: 14),
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.0209,
+                        ),
+                        Text(
+                          "Transaction Number",
+                          style: poppinsRegularBold(fontSize: 12),
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.007389,
+                        ),
+                        Text(
+                          "122900083HN",
+                          style: poppinsMediumBold(fontSize: 14),
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.0209,
+                        ),
+                        Text(
+                          "Service",
+                          style: poppinsRegularBold(fontSize: 12),
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.007389,
+                        ),
+                        Text(
+                          "Post Ads",
+                          style: poppinsMediumBold(fontSize: 14),
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.0209,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: Get.height * 0.0665,
+                ),
+                SubmitButton(
+                    onTap: (){
+                    Get.to(()=>const PaymentSuccessfulScreen());
+                  },
+                  child: Text(
+                    "Pay 120.00USD",
+                    style: gilroyBoldTextStyle(
+                      fontSize: 16,
+                      color: ColorRes.black,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: Get.height * 0.0246,
+                ),
+                SubmitButton(
+                  onTap: (){
+                    Get.to(()=>const PaymentFailedScreen());
+                  },
+                  child: Text(
+                    "Cancel",
+                    style: gilroySemiBoldTextStyle(fontSize: 16),
+                  ),
+                  colors: const [
+                    ColorRes.color_F86666,
+                    ColorRes.color_F82222,
+                  ],
+                ),
+                SizedBox(
+                  height: Get.height * 0.0320,
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

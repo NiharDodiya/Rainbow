@@ -9,5 +9,10 @@ class FontRes{
   static const beVietnamProRegular = "BeVietnamPro-Regular";
   static const montserratRegular = "Montserrat-Regular";
   static const sFProText ="SF-Pro-Text";
-  static const inter="Inter.ttf";
+  static const inter="Inter";
+  static const poppinsSemiBold = "Poppins-SemiBold";
+   static const poppinsMedium="Poppins-Medium";
+    static const poppinsRegular="Poppins-Regular";
+
+
 }

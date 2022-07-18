@@ -4,7 +4,7 @@ class ColorRes {
   static const black = Color(0xFF000000);
   static const black2 = Color(0xFF090909);
   static const white = Color(0xFFFFFFFF);
-    static const themeColor = Color(0xFF1B86E6);
+  static const themeColor = Color(0xFF1B86E6);
   static const bgColor1 = Color(0xFF0A0A3E);
   static const bgColor2 = Color(0xFF060620);
   static const lightGrey = Color(0xFFCECED8);
@@ -75,10 +75,18 @@ class ColorRes {
   static const color_ADB1B1 = Color(0xFFADB1B1);
   static const color_979B9B = Color(0XFF979B9B);
   static const color_ECEFF0 = Color(0xFFECEFF0);
-  static const color_696D6D =Color(0xFF696D6D);
-   static const color_27354C = Color(0XFF27354C);
+  static const color_696D6D = Color(0xFF696D6D);
+  static const color_27354C = Color(0XFF27354C);
+
   static const color_FCE307 = Color(0xFFFCE307);
-  // static const color_696D6D =Color(0xFF696D6D);
+  static const color_3835A6 = Color(0xFF3835A6);
+  static const color_514EC6 = Color(0xFF514EC6);
 
+  static const color_A52C2C = Color(0xFFA52C2C);
 
+  static const color_3083FF = Color(0xFF3083FF);
+
+  // static const color_3835A6 = Color(0xFF3835A6);
+
+  // static const color_3835A6 = Color(0xFF3835A6);
 }
