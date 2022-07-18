@@ -109,7 +109,7 @@ class ProfileData {
   bool? hobbiesInterest;
   bool? testimonials;
   String? isFriends;
-  bool? isBlock;
+  String? isBlock;
   bool? visitors;
   List<dynamic>? userView;
 

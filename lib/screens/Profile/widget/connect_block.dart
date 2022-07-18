@@ -13,14 +13,14 @@ Widget connectAndBlock({
   String? subTitle,
   String? id,
   String? connect,
-  bool? block,
+  String? block,
 }) {
-  ConnectionsProfileController? controller =
-      Get.put(ConnectionsProfileController());
+  // ConnectionsProfileController? controller =
+  //     Get.put(ConnectionsProfileController());
 
-  HomeController homeController = Get.find();
-  ProfileController profileController = Get.find();
-  ConnectionsController connectionsController =  Get.put(ConnectionsController());
+  // HomeController homeController = Get.find();
+  // ProfileController profileController = Get.find();
+  // ConnectionsController connectionsController =  Get.put(ConnectionsController());
   return GetBuilder<ConnectionsProfileController>(
     id: "connections",
     builder: (controller) {
@@ -45,6 +45,7 @@ Widget connectAndBlock({
                   ? InkWell(
                       onTap: () {
                         controller.sendFriendRequestDetails(id!);
+                        controller.update(["connections"]);
                       },
                       child: Row(
                         children: [
@@ -68,6 +69,7 @@ Widget connectAndBlock({
                       ? InkWell(
                           onTap: () {
                              controller.cancelFriendRequestDetails(id!);
+                             controller.update(["connections"]);
                           },
                           child: Row(
                             children: [
@@ -91,6 +93,7 @@ Widget connectAndBlock({
                           ? InkWell(
                               onTap: () {
                                 controller.unFriendRequestDetails(id!);
+                                controller.update(["connections"]);
                               },
                               child: Row(
                                 children: [
@@ -115,6 +118,7 @@ Widget connectAndBlock({
                               ? InkWell(
                                   onTap: () {
                                     controller.acceptFriendRequestDetails(id!);
+                                    controller.update(["connections"]);
                                     // connectionsController.onAddBtnTap(id!, false);
                                   },
                                   child: Row(
@@ -139,6 +143,7 @@ Widget connectAndBlock({
                               : InkWell(
                                   onTap: () {
                                     controller.cancelFriendRequestDetails(id!);
+                                    controller.update(["connections"]);
                                   },
                                   child: Row(
                                     children: [
@@ -184,7 +189,7 @@ Widget connectAndBlock({
               const SizedBox(
                 width: 8,
               ),
-              block == false
+              block == "no"
                   ? InkWell(
                       onTap: () {
                         print(id);

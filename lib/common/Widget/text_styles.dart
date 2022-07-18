@@ -221,7 +221,8 @@ TextStyle gilroyMediumTextStyle({Color? color,double? fontSize,double? letterSpa
     fontWeight: FontWeight.w500,
     fontSize: fontSize??18,
     fontFamily: FontRes.gilroyMedium,
-    letterSpacing:letterSpacing?? 0 
+    letterSpacing:letterSpacing?? 0 ,
+
   );
 }
 TextStyle gilroyRegularTextStyle({Color? color,double? fontSize,}){
