@@ -4,14 +4,18 @@ import 'package:rainbow/common/blocList_api/blockList_api.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/blockList_model.dart';
+import 'package:rainbow/model/listOfFriendRequest_model.dart';
 import 'package:rainbow/screens/Home/addStroy/addStory_screen.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
+import 'package:rainbow/screens/Profile/widget/listOfFriendRequest_api/listOfFriendRequest_api.dart';
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
 
 class HomeController extends GetxController {
   RxBool loader = false.obs;
   ProfileController controller = Get.put(ProfileController());
+  ListOfFriendRequestModel listOfFriendRequestModel = ListOfFriendRequestModel();
+
 
   @override
   void onInit() {
@@ -19,6 +23,7 @@ class HomeController extends GetxController {
     countryName();
     countryNationalites();
     blockListDetailes();
+    listOfFriedRequestDetails();
 
     controller.viewProfileDetails();
     super.onInit();
@@ -58,7 +63,16 @@ class HomeController extends GetxController {
       debugPrint(e.toString());
     }
   }
-
+  Future<void> listOfFriedRequestDetails() async {
+    try {
+      loader.value = true;
+      listOfFriendRequestModel= (await ListOfFriendRequestApi.postRegister())!;
+      update(["connections"]);
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+    }
+  }
   Future<void> init() async {
     loader.value = true;
   }

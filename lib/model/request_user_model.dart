@@ -1,39 +1,51 @@
 // To parse this JSON data, do
 //
-//     final profileModel = profileModelFromJson(jsonString);
+//     final requestUserModel = requestUserModelFromJson(jsonString);
 
 import 'dart:convert';
 
-ProfileModel profileModelFromJson(String str) => ProfileModel.fromJson(json.decode(str));
+RequestUserModel requestUserModelFromJson(String str) => RequestUserModel.fromJson(json.decode(str));
 
-String profileModelToJson(ProfileModel data) => json.encode(data.toJson());
+String requestUserModelToJson(RequestUserModel data) => json.encode(data.toJson());
 
-class ProfileModel {
-  ProfileModel({
+class RequestUserModel {
+  RequestUserModel({
     this.status,
     this.message,
+    this.cuurentPage,
+    this.totalPage,
+    this.count,
     this.data,
   });
 
   bool? status;
   String? message;
-  ProfileData? data;
+  int? cuurentPage;
+  int? totalPage;
+  int? count;
+  List<RequestUser>? data;
 
-  factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(
+  factory RequestUserModel.fromJson(Map<String, dynamic> json) => RequestUserModel(
     status: json["status"],
     message: json["message"],
-    data: json["data"] == null ? null : ProfileData.fromJson(json["data"]),
+    cuurentPage: json["cuurentPage"],
+    totalPage: json["totalPage"],
+    count: json["count"],
+    data: json["data"] == null ? null : List<RequestUser>.from(json["data"].map((x) => RequestUser.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
     "status": status,
     "message": message,
-    "data": data == null ? null : data!.toJson(),
+    "cuurentPage": cuurentPage,
+    "totalPage": totalPage,
+    "count": count,
+    "data": data == null ? null : List<dynamic>.from(data!.map((x) => x.toJson())),
   };
 }
 
-class ProfileData {
-  ProfileData({
+class RequestUser {
+  RequestUser({
     this.id,
     this.idSocial,
     this.fullName,
@@ -62,14 +74,6 @@ class ProfileData {
     this.backgroundImage,
     this.profileImage,
     this.status,
-    this.profilePhoto,
-    this.basicInfo,
-    this.socialMedia,
-    this.hobbiesInterest,
-    this.testimonials,
-    this.isFriends,
-    this.isBlock,
-    this.userView,
   });
 
   int? id;
@@ -95,21 +99,13 @@ class ProfileData {
   String? youtube;
   String? facebook;
   String? twitter;
-  bool? aboutMe;
+  String? aboutMe;
   String? hobbiesAndInterest;
   String? backgroundImage;
   String? profileImage;
   String? status;
-  bool? profilePhoto;
-  bool? basicInfo;
-  bool? socialMedia;
-  bool? hobbiesInterest;
-  bool? testimonials;
-  String? isFriends;
-  bool? isBlock;
-  List<dynamic>? userView;
 
-  factory ProfileData.fromJson(Map<String, dynamic> json) => ProfileData(
+  factory RequestUser.fromJson(Map<String, dynamic> json) => RequestUser(
     id: json["id"],
     idSocial: json["id_social"],
     fullName: json["full_name"],
@@ -138,14 +134,6 @@ class ProfileData {
     backgroundImage: json["background_image"],
     profileImage: json["profile_image"],
     status: json["status"],
-    profilePhoto: json["profile_photo"],
-    basicInfo: json["basic_info"],
-    socialMedia: json["social_media"],
-    hobbiesInterest: json["hobbies_interest"],
-    testimonials: json["testimonials"],
-    isFriends: json["isFriends"],
-    isBlock: json["isBlock"],
-    userView: json["userView"] == null ? null : List<dynamic>.from(json["userView"].map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
@@ -177,13 +165,5 @@ class ProfileData {
     "background_image": backgroundImage,
     "profile_image": profileImage,
     "status": status,
-    "profile_photo": profilePhoto,
-    "basic_info": basicInfo,
-    "social_media": socialMedia,
-    "hobbies_interest": hobbiesInterest,
-    "testimonials": testimonials,
-    "isFriends": isFriends,
-    "isBlock": isBlock,
-    "userView": userView == null ? null : List<dynamic>.from(userView!.map((x) => x)),
   };
 }

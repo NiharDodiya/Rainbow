@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:rainbow/model/acceptFriendRequest_model.dart';
 import 'package:rainbow/model/block_model.dart';
+import 'package:rainbow/model/cancleFriedRequest_model.dart';
 import 'package:rainbow/model/profile_model.dart';
 import 'package:rainbow/model/sendFriendRequest_model.dart';
 import 'package:rainbow/model/unblock_model.dart';
@@ -8,6 +9,8 @@ import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/api/OtherProfileApi.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_screen.dart';
 import 'package:rainbow/screens/Profile/acceptFriendRequest_api/accaeptFriedRequest_api.dart';
+import 'package:rainbow/screens/Profile/cancleFriendRequest_api/cancelFriendRequest_api.dart';
+import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/sendFriendRequest_api/sendFriendRequest_api.dart';
 import 'package:rainbow/screens/Profile/widget/block_unblock%20_Api/block_api.dart';
 import 'package:rainbow/screens/Profile/widget/block_unblock%20_Api/unblock_api.dart';
@@ -24,6 +27,9 @@ class ConnectionsProfileController extends GetxController {
   SendFriendRequest sendFriendRequest = SendFriendRequest();
   AcceptFriendRequest acceptFriendRequest = AcceptFriendRequest();
   HomeController homeController = Get.put(HomeController());
+  CancelFriendRequestModel cancelFriendRequestModel =
+      CancelFriendRequestModel();
+  ProfileController profileController = Get.find();
 
   void onInit() {
     super.onInit();
@@ -51,7 +57,10 @@ class ConnectionsProfileController extends GetxController {
       loader.value = true;
       await BlockApi.postRegister(id.toString())
           .then((value) => blockModel = value);
-      await homeController.blockListDetailes();
+      await callApi(id);
+      /*await profileController.viewProfileDetails();
+
+      await homeController.blockListDetailes();*/
       update(["connections"]);
       loader.value = false;
     } catch (e) {
@@ -63,7 +72,9 @@ class ConnectionsProfileController extends GetxController {
     try {
       loader.value = true;
       await UnBlockApi.postRegister(id).then((value) => unblockModel = value);
-      await homeController.blockListDetailes();
+      await callApi(id);
+      /*await homeController.blockListDetailes();
+      await profileController.viewProfileDetails();*/
       update(["connections"]);
       loader.value = false;
     } catch (e) {
@@ -76,6 +87,7 @@ class ConnectionsProfileController extends GetxController {
       loader.value = true;
       await SendFriendRequestApi.postRegister(id)
           .then((value) => sendFriendRequest = value);
+      await homeController.listOfFriedRequestDetails();
       update(["connections"]);
       loader.value = false;
     } catch (e) {
@@ -86,9 +98,20 @@ class ConnectionsProfileController extends GetxController {
   Future<void> acceptFriendRequestDetails(String id) async {
     try {
       loader.value = true;
-      await AcceptFriendRequestApi.postRegister(id)
-          .then((value) => sendFriendRequest = value);
+      sendFriendRequest = await AcceptFriendRequestApi.postRegister(id);
+      await callApi(id);
+      update(["connections"]);
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+    }
+  }
 
+  Future<void> cancelFriendRequestDetails(String id) async {
+    try {
+      loader.value = true;
+      cancelFriendRequestModel = await CancelFriendRequestApi.postRegister(id);
+      await callApi(id);
       update(["connections"]);
       loader.value = false;
     } catch (e) {

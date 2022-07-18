@@ -28,7 +28,7 @@ Future<void> main() async {
   NotificationService.init();
   await FirebaseMessaging.instance.getToken().then((value) {
     if (kDebugMode) {
-      print(value);
+      print("FCM Token => $value");
     }
   });
   await PrefService.init();
@@ -48,28 +48,27 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.lazyPut<ScanYourFaceController>(() => ScanYourFaceController());
     return GetMaterialApp(
-        builder: (_, child) => Portal(child: child!),
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primaryColor: ColorRes.themeColor,
-          colorScheme: const ColorScheme.dark().copyWith(
-            primary: ColorRes.themeColor,
-            secondary: ColorRes.themeColor,
-          ),
+      builder: (_, child) => Portal(child: child!),
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primaryColor: ColorRes.themeColor,
+        colorScheme: const ColorScheme.dark().copyWith(
+          primary: ColorRes.themeColor,
+          secondary: ColorRes.themeColor,
         ),
-        debugShowCheckedModeBanner: false,
-        // home: ScanYourFaceScreen(),
-        home: const AdvertisementDashBord()
-        //  !PrefService.getBool(PrefKeys.skipBoardingScreen)
-        //     ? SplashScreen()
-        //     : (PrefService.getBool(PrefKeys.isLogin) ||
-        //             PrefService.getBool(PrefKeys.register))
-        //         ? PrefService.getBool(PrefKeys.showTermsCondition)
-        //             ? const TermsConditionsScreen(showBackBtn: false)
-        //             : PrefService.getString(PrefKeys.loginRole) == "end_user"
-        //                 ? const Dashboard()
-        //                 : const AdvertisementDashBord()
-        //         : AuthDashboard(),
-        );
+      ),
+      debugShowCheckedModeBanner: false,
+      // home: ScanYourFaceScreen(),
+      home: !PrefService.getBool(PrefKeys.skipBoardingScreen)
+          ? SplashScreen()
+          : (PrefService.getBool(PrefKeys.isLogin) ||
+                  PrefService.getBool(PrefKeys.register))
+              ? PrefService.getBool(PrefKeys.showTermsCondition)
+                  ? const TermsConditionsScreen(showBackBtn: false)
+                  : PrefService.getString(PrefKeys.loginRole) == "end_user"
+                      ? const Dashboard()
+                      :  AdvertisementDashBord()
+              : AuthDashboard(),
+    );
   }
 }

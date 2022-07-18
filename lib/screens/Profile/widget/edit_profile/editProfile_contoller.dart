@@ -14,7 +14,8 @@ import 'package:rainbow/utils/strings.dart';
 
 class EditProfileController extends GetxController {
   TextEditingController fullName = TextEditingController(/*text: "ramika"*/);
-  TextEditingController status = TextEditingController(/*text:"sarrogate mom"*/);
+  TextEditingController status =
+      TextEditingController(/*text:"sarrogate mom"*/);
   TextEditingController age = TextEditingController(/*text:"32"*/);
   TextEditingController city = TextEditingController(/*text:"Surat"*/);
   TextEditingController height = TextEditingController(/*text: "5'2"*/);
@@ -22,10 +23,14 @@ class EditProfileController extends GetxController {
   TextEditingController ethnicity = TextEditingController();
   TextEditingController haveKids = TextEditingController(/*text: "1"*/);
   TextEditingController status1 = TextEditingController(/*text: "married"*/);
-  TextEditingController instagram = TextEditingController(text: "https://www.instagram.com/accounts/login/?next=/jackiechan.official/");
-  TextEditingController youTube = TextEditingController(text: "https://www.youtube.com/watch?v=YwQ2eVbABsY");
-  TextEditingController faceBook = TextEditingController(text: "https://www.facebook.com/search/top/?q=Jacky%20Chain");
-  TextEditingController twitter = TextEditingController(text: "https://twitter.com/eyeofjackiechan");
+  TextEditingController instagram = TextEditingController(
+      /*text: "https://www.instagram.com/accounts/login/?next=/jackiechan.official/"*/);
+  TextEditingController youTube = TextEditingController(
+      /*text: "https://www.youtube.com/watch?v=YwQ2eVbABsY"*/);
+  TextEditingController faceBook = TextEditingController(
+      /*text: "https://www.facebook.com/search/top/?q=Jacky%20Chain"*/);
+  TextEditingController twitter =
+      TextEditingController(/*text: "https://twitter.com/eyeofjackiechan"*/);
   TextEditingController aboutMe = TextEditingController();
   TextEditingController hobbies = TextEditingController(/*text: "Learning"*/);
   String aboutTextCounter = '';
@@ -40,6 +45,8 @@ class EditProfileController extends GetxController {
   int heightInches = 0;
   String? codeId;
   ProfileController profileController = Get.put(ProfileController());
+  List<String> noOfKids = ["0", "1", "2", "3", "4", "5", "6"];
+  String? noKidsSelected;
 
   void onInit() {
     update(['Edit_profile']);
@@ -53,19 +60,22 @@ class EditProfileController extends GetxController {
           codeId = listNationalities.data![i].id!.toString();
           print(codeId);
         }
-
         print(codeId);
       }
       await editProfileApi(context);
       await profileController.viewProfileDetails();
       profileController.update(["profile"]);
-
-      // Get.back();
     }
   }
 
   bool validation() {
-    if (fullName.text.isEmpty) {
+    if (backImage == null) {
+      errorToast(Strings.captureImageBack);
+      return false;
+    } else if (frontImage == null) {
+      errorToast(Strings.captureImageFront);
+      return false;
+    } else if (fullName.text.isEmpty) {
       errorToast(Strings.fullName);
       return false;
     } else if (status.text.isEmpty) {
@@ -92,7 +102,8 @@ class EditProfileController extends GetxController {
     } else if (status1.text.isEmpty) {
       errorToast(Strings.status);
       return false;
-    } else if (instagram.text.isEmpty) {
+    }
+    /*else if (instagram.text.isEmpty) {
       errorToast(Strings.instagram);
       return false;
     } else if (youTube.text.isEmpty) {
@@ -104,7 +115,8 @@ class EditProfileController extends GetxController {
     } else if (twitter.text.isEmpty) {
       errorToast(Strings.twitter);
       return false;
-    } else if (aboutMe.text.isEmpty) {
+    }*/
+    else if (aboutMe.text.isEmpty) {
       errorToast(Strings.aboutMe);
       return false;
     } else if (hobbies.text.isEmpty) {
@@ -113,7 +125,78 @@ class EditProfileController extends GetxController {
     }
     return true;
   }
+  File? imagePathCAmear;
+  File? imagePath;
+  navigateToCameraFront() async {
+    String? path = await cameraPickImage1();
 
+    if (path != null) {
+      frontImage = File(path);
+    }
+    uploadImageApi();
+
+    update(["Edit_profile"]);
+    Get.back();
+  }  navigateToCameraBack() async {
+    String? path = await cameraPickImage1();
+
+    if (path != null) {
+      backImage = File(path);
+    }
+
+    uploadImageBackApi();
+    update(["Edit_profile"]);
+    Get.back();
+  }
+  navigateToGallaryBack() async {
+    String? path = await gallaryPickImage1();
+
+    if (path != null) {
+      backImage = File(path);
+    }
+    uploadImageBackApi();
+    update(["Edit_profile"]);
+    Get.back();
+  }
+
+  navigateToGallaryFront() async {
+    String? path = await gallaryPickImage1();
+
+    if (path != null) {
+      frontImage = File(path);
+    }
+    uploadImageApi();
+
+    update(["Edit_profile"]);
+    Get.back();
+  }
+  Future<String?> cameraPickImage1() async {
+    XFile? pickedFile =
+    await ImagePicker().pickImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+      return pickedFile.path;
+    }
+
+    update(["Edit_profile"]);
+    Get.back();
+
+    return null;
+  }
+
+
+  Future<String?> gallaryPickImage1() async {
+    XFile? pickedFile =
+    await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      return pickedFile.path;
+    }
+
+
+    update(["Edit_profile"]);
+    Get.back();
+
+    return null;
+  }
   Future frontCamera() async {
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
     if (image == null) return;
@@ -137,29 +220,28 @@ class EditProfileController extends GetxController {
   UploadImage uploadImage2 = UploadImage();
 
   Future<void> uploadImageApi() async {
-    loader.value = true;
+    // loader.value = true;
     try {
       await UploadImageApi.postRegister(frontImage!.path.toString()).then(
         (value) => uploadImage1 = value!,
       );
 
-      loader.value = false;
+      // loader.value = false;
     } catch (e) {
-      loader.value = false;
+      // loader.value = false;
       debugPrint(e.toString());
     }
   }
 
   Future<void> uploadImageBackApi() async {
-    loader.value = true;
+    // loader.value = true;
     try {
       await UploadImageApi.postRegister(backImage!.path.toString()).then(
         (value) => uploadImage2 = value!,
       );
-
-      loader.value = false;
+      // loader.value = false;
     } catch (e) {
-      loader.value = false;
+      // loader.value = false;
       debugPrint(e.toString());
     }
   }

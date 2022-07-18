@@ -67,7 +67,7 @@ class AdvirtisersApi {
         }
         else if(status==true)
         {
-          Get.offAll(() => const AdvertisementDashBord());
+          Get.offAll(() =>  AdvertisementDashBord());
           await PrefService.setValue(PrefKeys.companyRegister, true);
           flutterToast(jsonDecode(response.body)["message"]);
         }

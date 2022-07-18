@@ -83,6 +83,8 @@ class Strings {
   static const submit = "Submit";
   static const codeSent = "Code is sent to ";
   static const companyNumberDigit = "123 456 789 3123";
+  static const captureImageBack = "please capture backgroundImage";
+  static const captureImageFront = "please capture  frontImage";
 
   ///---------------------------------------- Register ----------------------------------------
   static const register = 'Register';
@@ -152,6 +154,8 @@ class Strings {
   static const scanYourFace = 'Scan your face';
   static const termsConditions = 'Terms and Conditions';
   static const pleaseBlink = 'Please Blink';
+  static const testimonials = "Testimonials";
+  static const noTestimonials = "No Testimonials";
   static const makeSure =
       'Make sure you are in a well-lit room \nand hold the phone as shown in the picture';
   static const privacyPolicy =

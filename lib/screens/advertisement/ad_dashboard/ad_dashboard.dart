@@ -21,11 +21,14 @@ import '../../auth/phonenumber/phonenumber_Screen.dart';
 import '../../auth/verify_phone/verifyphone_screen.dart';
 
 class AdvertisementDashBord extends StatelessWidget {
-  const AdvertisementDashBord({Key? key}) : super(key: key);
+   AdvertisementDashBord({Key? key}) : super(key: key);
+
+
+  final AdvertisementController controller =
+  Get.put(AdvertisementController());
 
   @override
   Widget build(BuildContext context) {
-    final AdvertisementController controller = Get.put(AdvertisementController());
     return Scaffold(
       key: controller.key,
       drawer: Drawer(
@@ -194,25 +197,28 @@ class AdvertisementDashBord extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              SubmitButton(
-                onTap: controller.onTapLogOut,
-                child: Row(
-                  children: [
-                    const Spacer(),
-                    Image.asset(
-                      AssetRes.logouticon,
-                      height: 22,
-                    ),
-                    const SizedBox(
-                      width: 26,
-                    ),
-                    Text(
-                      Strings.logout02,
-                      style: gilroyBoldTextStyle(
-                          fontSize: 16, color: ColorRes.black),
-                    ),
-                    const Spacer(),
-                  ],
+              Padding(
+                padding:  EdgeInsets.only(
+                    right: Get.width * 0.0498),
+                child: SubmitButton(onTap: controller.onTapLogOut,
+                  child: Row(
+                    children: [
+                      const Spacer(),
+                      Image.asset(
+                        AssetRes.logouticon,
+                        height: 22,
+                      ),
+                      const SizedBox(
+                        width: 26,
+                      ),
+                      Text(
+                        Strings.logout02,
+                        style: gilroyBoldTextStyle(
+                            fontSize: 16, color: ColorRes.black),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
