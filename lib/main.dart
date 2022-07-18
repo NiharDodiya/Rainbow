@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       // home: ScanYourFaceScreen(),
-      home: !PrefService.getBool(PrefKeys.skipBoardingScreen)
+      home:  AdvertisementDashBord()/*!PrefService.getBool(PrefKeys.skipBoardingScreen)
           ? SplashScreen()
           : (PrefService.getBool(PrefKeys.isLogin) ||
                   PrefService.getBool(PrefKeys.register))
@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
                   : PrefService.getString(PrefKeys.loginRole) == "end_user"
                       ? const Dashboard()
                       :  AdvertisementDashBord()
-              : AuthDashboard(),
+              : AuthDashboard(),*/
     );
   }
 }

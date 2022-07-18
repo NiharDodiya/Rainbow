@@ -323,6 +323,7 @@ class Strings {
   static const transactionHint = "122900083HN";
   static const postAds = "Post Ads";
   static const approved = "Approved";
+  static const rejected = "Rejected";
   static const approvedByRainbowAdmin = "Your post has been approved by Rainbow Admin.";
   static const postRejectedByViolation = "Your post has been rejected by Rainbow Admin due to violation of any of the following:";
   static const violationOf = "1. violation of ....";
@@ -365,6 +366,13 @@ class Strings {
   static const myEmail = "myemaill@gmail.com";
   static const raymondMarcos = "Raymond Marcos";
   static const logout02 ="LOG OUT";
+  static const sun ="Sun";
+  static const mon ="Mon";
+  static const tue ="Tue";
+  static const wed ="Wed";
+  static const th ="Th";
+  static const fri ="Fri";
+  static const sat ="Sat";
 
   //___________________________________Cancel approve_____________________________
 static const cancelAprove ="Cancel Advertisement";
