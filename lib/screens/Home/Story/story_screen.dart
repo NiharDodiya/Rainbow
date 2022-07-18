@@ -8,7 +8,7 @@ import 'package:rainbow/utils/strings.dart';
 
 class StoryScreen extends StatelessWidget {
    StoryScreen({Key? key}) : super(key: key);
-  StoryController controller = Get.put(StoryController());
+  EditStoryController controller = Get.put(EditStoryController());
 
   @override
   Widget build(BuildContext context) {

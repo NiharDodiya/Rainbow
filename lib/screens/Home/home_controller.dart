@@ -29,7 +29,7 @@ class HomeController extends GetxController {
     controller.viewProfileDetails();
     super.onInit();
   }
-  final storyController = StoryController();
+  final storyController = EditStoryController();
 
   Future<void> countryName() async {
     try {

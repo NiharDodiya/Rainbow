@@ -56,26 +56,29 @@ class _AddStoryScreenState extends State<AddStoryScreen> {
             future: asset.thumbnailData,
             builder: (BuildContext context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
-                return Stack(
-                  children: <Widget>[
-                    Positioned.fill(
-                      child: Image.memory(
-                        snapshot.data!,
-                        fit: BoxFit.cover,
+                return InkWell(
+                  onTap: () => controller.onImageTap(asset.file),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned.fill(
+                        child: Image.memory(
+                          snapshot.data!,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
-                    // if (asset.type == AssetType.video)
-                    //   const Align(
-                    //     alignment: Alignment.bottomRight,
-                    //     child: Padding(
-                    //       padding: EdgeInsets.only(right: 5, bottom: 5),
-                    //       child: Icon(
-                    //         Icons.videocam,
-                    //         color: Colors.white,
-                    //       ),
-                    //     ),
-                    //   ),
-                  ],
+                      // if (asset.type == AssetType.video)
+                      //   const Align(
+                      //     alignment: Alignment.bottomRight,
+                      //     child: Padding(
+                      //       padding: EdgeInsets.only(right: 5, bottom: 5),
+                      //       child: Icon(
+                      //         Icons.videocam,
+                      //         color: Colors.white,
+                      //       ),
+                      //     ),
+                      //   ),
+                    ],
+                  ),
                 );
               }
               return const SizedBox();

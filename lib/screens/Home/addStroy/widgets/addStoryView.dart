@@ -10,20 +10,29 @@ import 'package:rainbow/utils/strings.dart';
 class AddStoryViewScreen extends StatelessWidget {
   AddStoryViewScreen({Key? key}) : super(key: key);
   AddStoryController controller = Get.put(AddStoryController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Stack(
           children: [
+            Image.file(controller.image!,height: Get.height,width: Get.width,fit: BoxFit.cover,),
             Container(
               height: Get.height,
               width: Get.width,
               decoration: BoxDecoration(
-                  image: DecorationImage(
-                image: FileImage(controller.image!),
-                fit: BoxFit.cover,
-              )),
+                gradient: LinearGradient(
+                  colors: [
+                    ColorRes.color_141414.withOpacity(0.9),
+                    Colors.transparent,
+                    Colors.transparent
+                  ],
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  stops: const [0, 0.8, 1],
+                ),
+              ),
             ),
             Positioned(
               top: Get.height * 0.032,
@@ -50,10 +59,10 @@ class AddStoryViewScreen extends StatelessWidget {
             ),
             Positioned(
               top: Get.height * 0.032,
-              left: Get.width*0.8,
+              left: Get.width * 0.8,
               child: InkWell(
                 onTap: () {
-                  Get.back();
+                  // Get.back();
                 },
                 child: Container(
                   height: 40,
@@ -69,46 +78,58 @@ class AddStoryViewScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(top: Get.height*0.85,left: Get.width*0.08,
-              child: InkWell(onTap: () {
-                Get.back();
-              },
+            Positioned(
+              top: Get.height * 0.85,
+              left: Get.width * 0.08,
+              child: InkWell(
+                onTap: controller.onStoryPost,
                 child: Container(
-                  height: Get.height*0.07389,width: Get.width * 0.8,
-                decoration:BoxDecoration(   gradient: const LinearGradient(
-                  colors: [
-                    ColorRes.color_FFEC5C,
-                    ColorRes.color_DFC60B
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
+                  height: Get.height * 0.07389,
+                  width: Get.width * 0.8,
+                  decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [ColorRes.color_FFEC5C, ColorRes.color_DFC60B],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                      ),
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Center(
+                    child: Text(
+                      Strings.postToStories,
+                      style: gilroyMediumTextStyle(
+                          fontSize: 15, color: ColorRes.black),
+                    ),
+                  ),
                 ),
-                  borderRadius: BorderRadius.circular(15)
-                ) ,child: Center(child: Text(Strings.postToStories,style: gilroyMediumTextStyle(fontSize: 15,color: ColorRes.black),),),),
               ),
             ),
-            SizedBox(height: Get.height*4,
-              child: Column(mainAxisAlignment: MainAxisAlignment.center,
+            SizedBox(
+              height: Get.height * 4,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   FlutterMentions(
                     key: key,
                     suggestionPosition: SuggestionPosition.Top,
                     maxLines: 5,
                     minLines: 1,
-                    decoration:  const InputDecoration(contentPadding: EdgeInsets.only(left: 15),hintText: 'Write Text',border: InputBorder.none),
+                    decoration: const InputDecoration(
+                        contentPadding: EdgeInsets.only(left: 15),
+                        hintText: 'Write Text',
+                        border: InputBorder.none),
                     mentions: [
                       Mention(
                           trigger: '@',
                           style: const TextStyle(
-                            color: Colors.blue,decoration: TextDecoration.none
-                          ),
+                              color: Colors.blue,
+                              decoration: TextDecoration.none),
                           data: [
                             {
                               'id': '61as61fsa',
                               'display': 'marion congrats new mom!',
                               'full_name': 'Fayeed Pawaskar',
                               'photo':
-                              'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+                                  'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
                             },
                             {
                               'id': '61asasgasgsag6a',
@@ -116,9 +137,9 @@ class AddStoryViewScreen extends StatelessWidget {
                               'full_name': 'DJ Khaled',
                               'style': const TextStyle(color: Colors.blue),
                               'photo':
-                              'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+                                  'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
                             },
-                          /*  {
+                            /*  {
                               'id': 'asfgasga41',
                               'display': 'markT',
                               'full_name': 'Mark Twain',
@@ -149,8 +170,14 @@ class AddStoryViewScreen extends StatelessWidget {
                                   ),
                                   Column(
                                     children: <Widget>[
-                                      Text(data['full_name'],style: const TextStyle(color: Colors.black),),
-                                      Text('@${data['display']}',style: const TextStyle(color: Colors.black)),
+                                      Text(
+                                        data['full_name'],
+                                        style: const TextStyle(
+                                            color: Colors.black),
+                                      ),
+                                      Text('@${data['display']}',
+                                          style: const TextStyle(
+                                              color: Colors.black)),
                                     ],
                                   )
                                 ],
@@ -164,8 +191,14 @@ class AddStoryViewScreen extends StatelessWidget {
                           color: Colors.blue,
                         ),
                         data: [
-                          {'id': 'reactjs', 'display': 'marion congrats new mom!'},
-                          {'id': 'javascript', 'display': 'marion congrats new mom!'},
+                          {
+                            'id': 'reactjs',
+                            'display': 'marion congrats new mom!'
+                          },
+                          {
+                            'id': 'javascript',
+                            'display': 'marion congrats new mom!'
+                          },
                         ],
                         matchAll: true,
                       )
@@ -174,7 +207,6 @@ class AddStoryViewScreen extends StatelessWidget {
                 ],
               ),
             ),
-
           ],
         ),
       ),

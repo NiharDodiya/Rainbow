@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class StoryController extends GetxController
+class EditStoryController extends GetxController
 {
   TextEditingController writeSomethings =  TextEditingController();
 
