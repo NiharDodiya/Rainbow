@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
@@ -35,7 +36,9 @@ class AdvertisementDeatailScreen extends StatelessWidget {
           child: Column(
             children: [
               top(),
-              Expanded(child: SingleChildScrollView(physics: const BouncingScrollPhysics()  ,child: bottom())),
+              Expanded(
+                  child: SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(), child: bottom())),
             ],
           ),
         ),
@@ -151,11 +154,16 @@ class AdvertisementDeatailScreen extends StatelessWidget {
             createAdvertisementController.urlLinkController.text.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
+          const SizedBox(
+            height: 87,
+          ),
           SubmitButton(
+            onTap: () {
+              Get.to(() => SetupDateScreen());
+            },
             child: Text(
               "Next",
-              style:
-                  gilroyBoldTextStyle(fontSize: 16, color: ColorRes.black),
+              style: gilroyBoldTextStyle(fontSize: 16, color: ColorRes.black),
             ),
           ),
           const SizedBox(
@@ -202,7 +210,6 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () {
-                        createAdvertisementController.tagsListSet();
                         Get.back();
                       },
                       child: Container(
