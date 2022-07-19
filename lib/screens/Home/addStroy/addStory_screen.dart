@@ -20,35 +20,42 @@ class AddStoryScreen extends StatefulWidget {
 class _AddStoryScreenState extends State<AddStoryScreen> {
   AddStoryController controller = Get.put(AddStoryController());
 
-   ScrollController? scrollController;
+  ScrollController? scrollController;
   List<Widget> _mediaList = [];
   int currentPage = 0;
   int? lastPage;
+
   @override
   void initState() {
     super.initState();
-    scrollController = ScrollController()..addListener(() {_handleScrollEvent();});
+    scrollController = ScrollController()
+      ..addListener(() {
+        _handleScrollEvent();
+      });
     _fetchNewMedia();
   }
+
   _handleScrollEvent() {
-    if (scrollController!.position.pixels / scrollController!.position.maxScrollExtent > 0.33) {
+    if (scrollController!.position.pixels /
+            scrollController!.position.maxScrollExtent >
+        0.33) {
       if (currentPage != lastPage) {
         _fetchNewMedia();
       }
     }
   }
+
   _fetchNewMedia() async {
     lastPage = currentPage;
     PermissionState result = await PhotoManager.requestPermissionExtend();
     if (result == PermissionState.authorized) {
       // success
 //load the album list
-
       List<AssetPathEntity> albums =
-      await PhotoManager.getAssetPathList(type: RequestType.image,onlyAll: true);
+      await PhotoManager.getAssetPathList(onlyAll: true);
       print(albums);
       List<AssetEntity> media =
-      await albums[0].getAssetListPaged( page:1, size: 100);
+          await albums[0].getAssetListPaged(page: 1, size: 100);
       print(media);
       List<Widget> temp = [];
       for (var asset in media) {
@@ -95,93 +102,41 @@ class _AddStoryScreenState extends State<AddStoryScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             addStoryAppBar(controller),
-            SizedBox(height: Get.height*0.04,),
+            SizedBox(
+              height: Get.height * 0.04,
+            ),
 
-          // addStoryCamera(controller),
+            // addStoryCamera(controller),
             /*  InkWell(onTap: () {
             Get.to(MyApp());
           },
               child: const Text("submit",style:TextStyle(color: Colors.black),)),*/
-             gallaryImage()
+            gallaryImage()
           ],
         ),
       ),
     );
   }
-  Widget gallaryImage()
-  {
-    return SizedBox(height: Get.height*0.85,width: Get.width,
+
+  Widget gallaryImage() {
+    return SizedBox(
+      height: Get.height * 0.85,
+      width: Get.width,
       child: GridView.builder(
           itemCount: _mediaList.length,
-          controller:scrollController,
-          gridDelegate:
-          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,childAspectRatio: 1.1 / 2,mainAxisSpacing: 2,
-              crossAxisSpacing: 2,
+          controller: scrollController,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            childAspectRatio: 1.1 / 2,
+            mainAxisSpacing: 2,
+            crossAxisSpacing: 2,
           ),
-
           itemBuilder: (BuildContext context, int index) {
-             if(index==0)
-               {
-               return  addStoryCamera(controller);
-              }
-            return _mediaList[index+1];
+            if (index == 0) {
+              return addStoryCamera(controller);
+            }
+            return _mediaList[index + 1];
           }),
     );
   }
 }
-
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  File? editedFile;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Story Creator Example'),
-      ),
-      body: Center(
-        child: Stack(
-          alignment: Alignment.center,
-          // mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            editedFile != null
-                ? Image.file(
-                    editedFile!,
-                    fit: BoxFit.cover,
-                  )
-                : const SizedBox.shrink(),
-            TextButton(
-              onPressed: () async {
-                final picker = ImagePicker();
-                await picker
-                    .pickImage(source: ImageSource.gallery)
-                    .then((file) async {
-                  editedFile = await Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => StoryCreator(
-                        filePath: file!.path,
-                      ),
-                    ),
-                  );
-                  if (editedFile != null) {
-                    print('editedFile: ' + editedFile!.path);
-                    setState(() {});
-                  }
-                });
-              },
-              child: const Text('Pick Image'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-

@@ -4,11 +4,18 @@ import 'package:rainbow/screens/Home/view_story/widgets/likes_bottomShit.dart';
 import 'package:story/story_page_view/story_page_view.dart';
 
 class ViewStoryController extends GetxController {
-  void init() {}
+  RxBool loader = false.obs;
+  FriendStoryModel friendStoryModel = FriendStoryModel();
+  MyStoryModel myStoryModel = MyStoryModel();
 
-  late ValueNotifier<IndicatorAnimationCommand> indicatorAnimationController;
+  void init() {
+
+    friendStoryApiData();
+
+  }
 
   void onStoryComplete() {}
+  late ValueNotifier<IndicatorAnimationCommand> indicatorAnimationController;
 
   void onBackTap() {
     Get.back();
@@ -28,11 +35,54 @@ class ViewStoryController extends GetxController {
     ).then((value){
       indicatorAnimationController.value = IndicatorAnimationCommand.resume;
     });
+  Future<void> myStoryApiData() async {
+    try {
+      loader.value = true;
+      myStoryModel = (await MyStoryApi.postRegister())!;
+      update(["adStory"]);
+
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+    }
   }
 
-  void onScreenTap(){
+  Future<void> friendStoryApiData() async {
+    try {
+      loader.value = true;
+      friendStoryModel = (await FriendStoryApi.postRegister())!;
+      update(["adStory"]);
 
+
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+    }
   }
 
+  Future<void> myStoryApiData() async {
+    try {
+      loader.value = true;
+      myStoryModel = (await MyStoryApi.postRegister())!;
+      update(["adStory"]);
+
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+    }
+  }
+
+  Future<void> friendStoryApiData() async {
+    try {
+      loader.value = true;
+      friendStoryModel = (await FriendStoryApi.postRegister())!;
+      update(["adStory"]);
+
+
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+    }
+  }
   void onCommentButtonTap() {}
 }

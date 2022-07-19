@@ -7,10 +7,26 @@ import 'package:rainbow/utils/asset_res.dart';
 class AdHomeController extends GetxController {
 
   //AdvertisementController advController = Get.put(AdvertisementController());
+  TextEditingController monthSet = TextEditingController();
 
   RxBool loader = false.obs;
+  String? selectedItem;
   bool listShow = false;
- 
+  List<String> months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ];
+
   List imageList = [
     AssetRes.advertisement_1Image,
     AssetRes.advertisement_2Image,

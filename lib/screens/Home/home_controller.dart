@@ -8,6 +8,7 @@ import 'package:rainbow/model/blockList_model.dart';
 import 'package:rainbow/model/listOfFriendRequest_model.dart';
 import 'package:rainbow/screens/Home/Story/story_controller.dart';
 import 'package:rainbow/screens/Home/addStroy/addStory_screen.dart';
+import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/widget/listOfFriendRequest_api/listOfFriendRequest_api.dart';
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
@@ -17,6 +18,7 @@ class HomeController extends GetxController {
   RxBool loader = false.obs;
   ProfileController controller = Get.put(ProfileController());
   ListOfFriendRequestModel listOfFriendRequestModel = ListOfFriendRequestModel();
+  ViewStoryController viewStoryController=Get.put(ViewStoryController());
   List<bool> isAd =  List.generate(10,(index)=>Random().nextInt(2) == 1);
 
 
@@ -29,6 +31,7 @@ class HomeController extends GetxController {
     blockListDetailes();
     listOfFriedRequestDetails();
     controller.viewProfileDetails();
+    viewStoryController.friendStoryApiData();
     super.onInit();
   }
   final storyController = EditStoryController();

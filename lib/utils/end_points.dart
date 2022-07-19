@@ -36,6 +36,9 @@ class EndPoints {
   static const cancelSenderRequest = "$baseUrl/user/request/sender/reject";
   static const logOut = "$baseUrl/user/logout";
   static const unFriendRequest = "$baseUrl/user/unfriend";
+  static const storyAdd = "$baseUrl/user/story/add";
+  static const myStory = "$baseUrl/user/story/my";
+  static const friendStory = "$baseUrl/user/story/friends";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

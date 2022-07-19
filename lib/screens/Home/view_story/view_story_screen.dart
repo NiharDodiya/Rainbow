@@ -62,217 +62,230 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StoryPageView(
-        itemBuilder: (context, pageIndex, storyIndex) {
-          final user = sampleUsers[pageIndex];
-          final story = user.stories[storyIndex];
-          return Stack(
-            children: [
-              Positioned.fill(
-                child: Container(color: Colors.black),
-              ),
-              Positioned.fill(
-                child: Image.network(
-                  story.imageUrl,
-                  fit: BoxFit.cover,
+      body: GetBuilder<ViewStoryController>(id: "friendStory",builder:(controller){
+        return StoryPageView(
+          itemBuilder: (context, pageIndex, storyIndex) {
+            final user = controller.friendStoryModel.data![pageIndex];
+            // final user = sampleUsers[pageIndex];
+            final story = user.storyList![storyIndex];
+            return Stack(
+              children: [
+                Positioned.fill(
+                  child: Container(color: Colors.black),
                 ),
-              ),
-            ],
-          );
-        },
-        indicatorPadding:
-            EdgeInsets.only(top: Get.height - 20, right: 50, left: 50),
-        gestureItemBuilder: (context, pageIndex, storyIndex) {
-          return Stack(
-            children: [
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  width: Get.width,
-                  height: Get.height * 0.3,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        ColorRes.color_141414.withOpacity(0.9),
-                        Colors.transparent,
-                        Colors.transparent
-                      ],
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                      stops: const [0, 0.99, 1],
+                Positioned.fill(
+                  child: Image.network(
+                    story.storyItem.toString(),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ],
+            );
+          },
+          indicatorPadding:
+          EdgeInsets.only(top: Get.height - 20, right: 50, left: 50),
+          gestureItemBuilder: (context, pageIndex, storyIndex) {
+            return Stack(
+              children: [
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    width: Get.width,
+                    height: Get.height * 0.3,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          ColorRes.color_141414.withOpacity(0.9),
+                          Colors.transparent,
+                          Colors.transparent
+                        ],
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        stops: const [0, 0.99, 1],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Align(
-                alignment: Alignment.topLeft,
-                child: SizedBox(
-                  width: Get.width,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 32, left: 5, right: 5),
-                    child: Row(
-                      children: [
-                        IconButton(
-                          padding: EdgeInsets.zero,
-                          color: Colors.white,
-                          icon: const Icon(Icons.arrow_back_ios, size: 20),
-                          onPressed: controller.onBackTap,
-                        ),
-                        const Spacer(),
-                        IconButton(
-                          padding: EdgeInsets.zero,
-                          color: Colors.white,
-                          icon: const Icon(Icons.more_horiz, size: 24),
-                          onPressed: controller.onMoreBtnTap,
-                        ),
-                      ],
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: SizedBox(
+                    width: Get.width,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 32, left: 5, right: 5),
+                      child: Row(
+                        children: [
+                          IconButton(
+                            padding: EdgeInsets.zero,
+                            color: Colors.white,
+                            icon: const Icon(Icons.arrow_back_ios, size: 20),
+                            onPressed: controller.onBackTap,
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            height: 30,
+                            child: TextButton(
+                              onPressed: controller.onCommentButtonTap,
+                              style: TextButton.styleFrom(backgroundColor: ColorRes.color_50369C.withOpacity(0.5),),
+                              child: Text("Comments",style: sfProTextReguler(),),
+                            ),
+                          ),
+                          IconButton(
+                            padding: EdgeInsets.zero,
+                            color: Colors.white,
+                            icon: const Icon(Icons.more_horiz, size: 24),
+                            onPressed: controller.onMoreBtnTap,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Positioned(
-                bottom: 40,
-                child: SizedBox(
-                  width: Get.width,
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: Get.width * 0.072),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          width: Get.width,
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: "@maryjan",
-                                  style: sfProTextReguler().copyWith(
-                                    color: ColorRes.color_2F80ED,
-                                    fontSize: 27,
-                                  ),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = controller.onHashTagTap,
-                                ),
-                                TextSpan(
-                                  text: " congrats on your new baby 👍🏼",
-                                  style: sfProTextReguler().copyWith(
-                                    fontSize: 27,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: Get.height * 0.039),
-                        Container(
-                          height: 2,
-                          width: Get.width,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(2),
-                            color: ColorRes.color_9597A1.withOpacity(0.2),
-                          ),
-                        ),
-                        SizedBox(height: Get.height * 0.04926),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(50),
-                              child: Image.asset(
-                                AssetRes.p03,
-                                height: Get.width * 0.1493,
-                                width: Get.width * 0.1493,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Scott McKay",
-                                  style: sfProTextReguler().copyWith(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                                Text(
-                                  "Sperm Donor",
-                                  style: sfProTextReguler().copyWith(
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const Spacer(),
-                            Text(
-                              "12:30",
-                              style: sfProTextReguler().copyWith(),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        SizedBox(
-                          width: Get.width,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Column(
-                                mainAxisSize: MainAxisSize.min,
+                Positioned(
+                  bottom: 60,
+                  child: SizedBox(
+                    width: Get.width,
+                    child: Padding(
+                      padding:
+                      EdgeInsets.symmetric(horizontal: Get.width * 0.072),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            width: Get.width,
+                            child: RichText(
+                              text: TextSpan(
                                 children: [
-                                  InkWell(
-                                    onTap: controller.onLikeBtnTap,
-                                    child: const Icon(
-                                      Icons.favorite,
-                                      color: ColorRes.red,
+                                  TextSpan(
+                                    text: "@maryjan",
+                                    style: sfProTextReguler().copyWith(
+                                      color: ColorRes.color_2F80ED,
+                                      fontSize: 27,
                                     ),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = controller.onHashTagTap,
                                   ),
-                                  InkWell(
-                                    onTap: controller.onLikeViewTap,
-                                    child: Text(
-                                      Strings.likes,
-                                      style: sfProTextReguler(),
+                                  TextSpan(
+                                    text: " congrats on your new baby 👍🏼",
+                                    style: sfProTextReguler().copyWith(
+                                      fontSize: 27,
                                     ),
                                   ),
                                 ],
                               ),
-                              InkWell(
-                                onTap: controller.onCommentButtonTap,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    const Icon(Icons.comment,
-                                        color: ColorRes.white),
-                                    Text(Strings.comments,
-                                        style: sfProTextReguler()),
-                                  ],
+                            ),
+                          ),
+                          SizedBox(height: Get.height * 0.039),
+                          Container(
+                            height: 2,
+                            width: Get.width,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(2),
+                              color: ColorRes.color_9597A1.withOpacity(0.2),
+                            ),
+                          ),
+                          SizedBox(height: Get.height * 0.04926),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(50),
+                                child: Image.asset(
+                                  AssetRes.p03,
+                                  height: Get.width * 0.1493,
+                                  width: Get.width * 0.1493,
+                                  fit: BoxFit.cover,
                                 ),
+                              ),
+                              const SizedBox(width: 16),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Scott McKay",
+                                    style: sfProTextReguler().copyWith(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Sperm Donor",
+                                    style: sfProTextReguler().copyWith(
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const Spacer(),
+                              Text(
+                                "12:30",
+                                style: sfProTextReguler().copyWith(
+                                    decoration: TextDecoration.underline),
                               ),
                             ],
                           ),
-                        ),
-                      ],
+                          const SizedBox(height: 10),
+                          SizedBox(
+                            width: Get.width,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    InkWell(
+                                      onTap: controller.onLikeBtnTap,
+                                      child: const Icon(
+                                        Icons.favorite,
+                                        color: ColorRes.red,
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: controller.onLikeViewTap,
+                                      child: Text(
+                                        Strings.likes,
+                                        style: sfProTextReguler(),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                InkWell(
+                                  onTap: controller.onCommentButtonTap,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Icon(Icons.comment,
+                                          color: ColorRes.white),
+                                      Text(Strings.comments,
+                                          style: sfProTextReguler()),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          );
-        },
-        indicatorAnimationController: controller.indicatorAnimationController,
-        initialStoryIndex: (pageIndex) {
-          /* if (pageIndex == 0) {
-            return 1;
-          }*/
-          return 0;
-        },
-        pageLength: sampleUsers.length,
-        storyLength: (int pageIndex) {
-          return sampleUsers[pageIndex].stories.length;
-        },
-        onPageLimitReached: () {
-          Navigator.pop(context);
-        },
+              ],
+            );
+          },
+          indicatorAnimationController: indicatorAnimationController,
+          initialStoryIndex: (pageIndex) {
+            /* if (pageIndex == 0) {
+              return 1;
+            }*/
+            return 0;
+          },
+          pageLength: controller.friendStoryModel.data!.length,
+          storyLength: (int pageIndex) {
+            return controller.friendStoryModel.data![pageIndex].storyList!.length;
+          },
+          onPageLimitReached: () {
+            Navigator.pop(context);
+          },
+        );
+      },
       ),
     );
   }

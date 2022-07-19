@@ -95,6 +95,9 @@ class AssetRes {
   static const poket = "${images}poket.png";
   static const masterLogo = "${images}master.png";
   static const searchBackground = "${images}search_backgraund.png";
+  static const i1 = "${images}i1.png";
+  static const i2 = "${images}i2.png";
+  static const i3 = "${images}i3.png";
 
   ///_______________________________settings________________________________
   static const profileSettinges = '${settingsImage}profileSettinges.png';
