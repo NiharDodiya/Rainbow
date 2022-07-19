@@ -90,7 +90,6 @@ Widget connectAndBlock({
                       : connect == "yes"
                           ? InkWell(
                               onTap: () {
-                                // controller.cancelFriendRequestDetails(id!);
                                 controller.unFriendRequestDetails(id!);
                               },
                               child: Row(

@@ -6,10 +6,10 @@ import 'package:rainbow/screens/Home/comments/comments_screen.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Home/settings/settings_screen.dart';
+import 'package:rainbow/screens/Home/view_story/view_story_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
-import 'package:story_view/story_view.dart';
 
 import 'settings/connections/connections_controller.dart';
 
@@ -223,7 +223,7 @@ class HomeScreen extends StatelessWidget {
                                 GestureDetector(
                                   onTap: () {
                                     // Get.to(()=> StoryScreen());
-                                    Get.to(() => const MoreStories());
+                                    Get.to(() => const ViewStoryScreen());
                                   },
                                   child: Container(
                                     height: 56,
@@ -612,121 +612,6 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class MoreStories extends StatefulWidget {
-  const MoreStories({Key? key}) : super(key: key);
-
-  @override
-  _MoreStoriesState createState() => _MoreStoriesState();
-}
-
-class _MoreStoriesState extends State<MoreStories> {
-  final storyController = StoryController();
-
-  @override
-  void dispose() {
-    storyController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SizedBox(
-          height: Get.height * 1,
-          child: Stack(
-            children: [
-              StoryView(
-                storyItems: [
-                  StoryItem.text(
-                    title: "",
-                    backgroundColor: Colors.blueGrey,
-                    textStyle: const TextStyle(
-                      fontFamily: 'Dancing',
-                      fontSize: 40,
-                    ),
-                  ),
-                  StoryItem.text(
-                    title: "",
-                    backgroundColor: Colors.blueAccent,
-                    textStyle: const TextStyle(
-                      fontFamily: 'Dancing',
-                      fontSize: 40,
-                    ),
-                  ),
-                  StoryItem.text(
-                    title: "",
-                    backgroundColor: Colors.black,
-                    textStyle: const TextStyle(
-                      fontFamily: 'Dancing',
-                      fontSize: 40,
-                    ),
-                  ),
-                ],
-                onStoryShow: (s) {},
-                onComplete: () {
-                  // Get.back();
-                },
-                progressPosition: ProgressPosition.bottom,
-                repeat: false,
-                controller: storyController,
-              ),
-              Positioned(top: Get.height*0.75,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Container(
-                height: 2,
-                width: 320,
-                color: ColorRes.color_9597A1,
-              ),
-                  ))
-            ],
-          ),
-        ),
-      ),
-      /*  bottomNavigationBar: Container(
-        color: Colors.black,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              SizedBox(
-                  height: Get.height * 0.07,
-                  width: Get.width * 0.7,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.only(left: 15),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                        hintStyle: const TextStyle(fontSize: 14),
-                        hintText: "Send message"),
-                  )),
-              SizedBox(
-                width: Get.width * 0.04,
-              ),
-              const SizedBox(
-                  height: 20,
-                  width: 20,
-                  child: Image(
-                    image: AssetImage(AssetRes.heart),
-                    color: Colors.white,
-                  )),
-              SizedBox(
-                width: Get.width * 0.05,
-              ),
-              const SizedBox(
-                  height: 20,
-                  width: 20,
-                  child: Image(image: AssetImage(AssetRes.sendInsta))),
-            ],
-          ),
-        ),
-      ),*/
     );
   }
 }

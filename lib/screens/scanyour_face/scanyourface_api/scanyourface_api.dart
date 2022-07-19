@@ -16,7 +16,7 @@ class ScanYourFaceApi {
       String idItemSelfie,
 
       ) async {
-    List<SelfiVerification> selfieList = [];
+
     String accesToken = await PrefService.getString(PrefKeys.registerToken);
     try {
       String url = EndPoints.selfieVerification;
