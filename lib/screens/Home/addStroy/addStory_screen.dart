@@ -1,11 +1,14 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:rainbow/screens/Home/addStroy/addStory_controller.dart';
 import 'package:rainbow/screens/Home/addStroy/widgets/addStoryAppbar.dart';
 import 'package:rainbow/screens/Home/addStroy/widgets/addStoryCamera.dart';
+import 'package:story_creator/story_creator.dart';
 
 class AddStoryScreen extends StatefulWidget {
   AddStoryScreen({Key? key}) : super(key: key);
@@ -44,12 +47,12 @@ class _AddStoryScreenState extends State<AddStoryScreen> {
 
   _fetchNewMedia() async {
     lastPage = currentPage;
-    var result = await PhotoManager.requestPermissionExtend();
-    if (result != null) {
+    PermissionState result = await PhotoManager.requestPermissionExtend();
+    if (result == PermissionState.authorized) {
       // success
 //load the album list
       List<AssetPathEntity> albums =
-          await PhotoManager.getAssetPathList(onlyAll: true);
+      await PhotoManager.getAssetPathList(onlyAll: true);
       print(albums);
       List<AssetEntity> media =
           await albums[0].getAssetListPaged(page: 1, size: 100);
@@ -71,17 +74,6 @@ class _AddStoryScreenState extends State<AddStoryScreen> {
                           fit: BoxFit.cover,
                         ),
                       ),
-                      // if (asset.type == AssetType.video)
-                      //   const Align(
-                      //     alignment: Alignment.bottomRight,
-                      //     child: Padding(
-                      //       padding: EdgeInsets.only(right: 5, bottom: 5),
-                      //       child: Icon(
-                      //         Icons.videocam,
-                      //         color: Colors.white,
-                      //       ),
-                      //     ),
-                      //   ),
                     ],
                   ),
                 );
@@ -148,59 +140,3 @@ class _AddStoryScreenState extends State<AddStoryScreen> {
     );
   }
 }
-
-/*
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  File? editedFile;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Story Creator Example'),
-      ),
-      body: Center(
-        child: Stack(
-          alignment: Alignment.center,
-          // mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            editedFile != null
-                ? Image.file(
-                    editedFile!,
-                    fit: BoxFit.cover,
-                  )
-                : const SizedBox.shrink(),
-            TextButton(
-              onPressed: () async {
-                final picker = ImagePicker();
-                await picker
-                    .pickImage(source: ImageSource.gallery)
-                    .then((file) async {
-                  editedFile = await Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => StoryCreator(
-                        filePath: file!.path,
-                      ),
-                    ),
-                  );
-                  if (editedFile != null) {
-                    print('editedFile: ' + editedFile!.path);
-                    setState(() {});
-                  }
-                });
-              },
-              child: const Text('Pick Image'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-*/

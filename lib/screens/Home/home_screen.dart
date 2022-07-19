@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
@@ -7,6 +8,7 @@ import 'package:rainbow/screens/Home/comments/comments_screen.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Home/settings/settings_screen.dart';
+import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -17,6 +19,7 @@ import 'settings/connections/connections_controller.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
   HomeController controller = Get.put(HomeController());
+  ViewStoryController viewStoryController = Get.put(ViewStoryController());
 
   @override
   Widget build(BuildContext context) {
@@ -209,7 +212,7 @@ class HomeScreen extends StatelessWidget {
                   height: 129,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: 25,
+                    itemCount: viewStoryController.friendStoryModel.data!.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return Padding(
@@ -224,23 +227,44 @@ class HomeScreen extends StatelessWidget {
                                 GestureDetector(
                                   onTap: () {
                                     // Get.to(()=> StoryScreen());
+                                    viewStoryController.init();
                                     Get.to(() => const ViewStoryScreen());
+
                                   },
                                   child: Container(
                                     height: 56,
                                     width: 56,
-                                    decoration: const BoxDecoration(
+                                   child:  CachedNetworkImage(
+                                    imageUrl:
+                                    viewStoryController.friendStoryModel.data![index].userDetail!.profileImage.toString(),
+                                    imageBuilder: (context, imageProvider) => Container(
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
+                                    errorWidget: (context, url, error) => Container(
+                                      height: Get.height * 0.2857,
+                                      width: Get.width,
+                                      decoration:   const BoxDecoration(
                                         shape: BoxShape.circle,
                                         image: DecorationImage(
                                             image:
-                                                AssetImage(AssetRes.homePro))),
+                                            AssetImage(AssetRes.homePro))),
+                                    ),
+                                    fit: BoxFit.fill,
+                                  ),
                                   ),
                                 ),
                                 const SizedBox(
                                   height: 12,
                                 ),
                                 Text(
-                                  "Scott",
+                                  viewStoryController.friendStoryModel.data![index].userDetail!.fullName.toString(),
                                   style: gilroyMediumTextStyle(fontSize: 14),
                                 ),
                               ],
