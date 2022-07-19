@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-ListCountryModel listCountryModelFromJson(String str) => ListCountryModel.fromJson(json.decode(str));
+ListCountryModel listCountryModelFromJson(String str) =>
+    ListCountryModel.fromJson(json.decode(str));
 
-String listCountryModelToJson(ListCountryModel data) => json.encode(data.toJson());
+String listCountryModelToJson(ListCountryModel data) =>
+    json.encode(data.toJson());
 
 class ListCountryModel {
   ListCountryModel({
@@ -17,15 +19,17 @@ class ListCountryModel {
   bool? status;
   List<DataCountry>? data;
 
-  factory ListCountryModel.fromJson(Map<String, dynamic> json) => ListCountryModel(
-    status: json["status"],
-    data: List<DataCountry>.from(json["data"].map((x) => DataCountry.fromJson(x))),
-  );
+  factory ListCountryModel.fromJson(Map<String, dynamic> json) =>
+      ListCountryModel(
+        status: json["status"],
+        data: List<DataCountry>.from(
+            json["data"].map((x) => DataCountry.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "data": List<dynamic>.from(data!.map((x) => x.toJson())),
-  };
+        "status": status,
+        "data": List<dynamic>.from(data!.map((x) => x.toJson())),
+      };
 }
 
 class DataCountry {
@@ -44,18 +48,18 @@ class DataCountry {
   DateTime? updatedAt;
 
   factory DataCountry.fromJson(Map<String, dynamic> json) => DataCountry(
-    id: json["id"],
-    name: json["name"],
-    status: json["status"],
-    createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
-  );
+        id: json["id"],
+        name: json["name"],
+        status: json["status"],
+        createdAt: DateTime.parse(json["createdAt"]),
+        updatedAt: DateTime.parse(json["updatedAt"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "status": status,
-    "createdAt": createdAt!.toIso8601String(),
-    "updatedAt": updatedAt!.toIso8601String(),
-  };
+        "id": id,
+        "name": name,
+        "status": status,
+        "createdAt": createdAt!.toIso8601String(),
+        "updatedAt": updatedAt!.toIso8601String(),
+      };
 }

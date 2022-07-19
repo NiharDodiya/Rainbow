@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/utils/color_res.dart';
-import 'package:rainbow/utils/strings.dart';
 
 class AppTextFiled extends StatelessWidget {
   final TextEditingController controller;
@@ -37,7 +36,9 @@ class AppTextFiled extends StatelessWidget {
     this.onTap,
     this.multiLine,
     this.onChange,
-    this.inputPadding, this.titleBottomPadding, this.showTitle =true,
+    this.inputPadding,
+    this.titleBottomPadding,
+    this.showTitle = true,
   }) : super(key: key);
 
   @override
@@ -46,8 +47,12 @@ class AppTextFiled extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-      showTitle!?  Text(title, style: gilroySemiBoldTextStyle(fontSize: 14)):const SizedBox(),
-        showTitle!?SizedBox(height: titleBottomPadding ?? Get.height * 0.012):const SizedBox(),
+        showTitle!
+            ? Text(title, style: gilroySemiBoldTextStyle(fontSize: 14))
+            : const SizedBox(),
+        showTitle!
+            ? SizedBox(height: titleBottomPadding ?? Get.height * 0.012)
+            : const SizedBox(),
         Container(
           width: Get.width,
           height: 60,
@@ -81,7 +86,9 @@ class AppTextFiled extends StatelessWidget {
                     onChanged: onChange,
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintStyle: gilroyMediumTextStyle(fontSize:fontsize?? 18,color: ColorRes.black.withOpacity(0.3)),
+                      hintStyle: gilroyMediumTextStyle(
+                          fontSize: fontsize ?? 18,
+                          color: ColorRes.black.withOpacity(0.3)),
                       hintText: hintText,
                     ),
                   ),

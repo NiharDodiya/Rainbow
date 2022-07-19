@@ -16,62 +16,62 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(onTap: () {
-      FocusScope.of(context).unfocus();
-    },
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
       child: Scaffold(
-        backgroundColor: ColorRes.white,
-        body: Obx(() {
-          return Stack(
-            children: [
-              SingleChildScrollView(
-                  padding: EdgeInsets.all(Get.width * 0.02667),
-                  child:Container(
-                    padding: EdgeInsets.symmetric(horizontal: Get.width * 0.0733),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(36),
-                      color: ColorRes.color_4F359B,
-                    ),
-                    child: GetBuilder<RegisterController>(
-                      id: 'register_screen',
-                      builder: (controller) {
-                        return Stack(
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                /// top bar area
-                                SizedBox(height: Get.height * 0.0616),
-                                Image.asset(
-                                  AssetRes.rainBowLogo,
-                                  height: Get.height * 0.05541,
-                                ),
-                                SizedBox(height: Get.height * 0.0308),
-                                Text(Strings.register,
-                                    style: textStyleFont30WhiteExtraBold),
-                                SizedBox(height: Get.height * 0.02094),
+          backgroundColor: ColorRes.white,
+          body: Obx(() {
+            return Stack(
+              children: [
+                SingleChildScrollView(
+                    padding: EdgeInsets.all(Get.width * 0.02667),
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: Get.width * 0.0733),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(36),
+                        color: ColorRes.color_4F359B,
+                      ),
+                      child: GetBuilder<RegisterController>(
+                        id: 'register_screen',
+                        builder: (controller) {
+                          return Stack(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  /// top bar area
+                                  SizedBox(height: Get.height * 0.0616),
+                                  Image.asset(
+                                    AssetRes.rainBowLogo,
+                                    height: Get.height * 0.05541,
+                                  ),
+                                  SizedBox(height: Get.height * 0.0308),
+                                  Text(Strings.register,
+                                      style: textStyleFont30WhiteExtraBold),
+                                  SizedBox(height: Get.height * 0.02094),
 
-                                /// form
-                                RegisterForm(),
-                                SizedBox(height: Get.height * 0.01),
+                                  /// form
+                                  RegisterForm(),
+                                  SizedBox(height: Get.height * 0.01),
 
-                                /// register button
-                                registerButtons(controller),
-                              ],
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                  )
-              ),
-          controller.loader.isTrue?const SmallLoader():const SizedBox()
-
-
-            ],
-          );
-        })
-      ),
+                                  /// register button
+                                  registerButtons(controller),
+                                ],
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    )),
+                controller.loader.isTrue
+                    ? const SmallLoader()
+                    : const SizedBox()
+              ],
+            );
+          })),
     );
   }
 
@@ -86,7 +86,8 @@ class RegisterScreen extends StatelessWidget {
           onTap: controller.onRegisterTap,
         ),
         SizedBox(height: Get.height * 0.04680),
-        GestureDetector(onTap: controller.onLoginTap,
+        GestureDetector(
+          onTap: controller.onLoginTap,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,

@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-SendFriendRequest sendFriendRequestFromJson(String str) => SendFriendRequest.fromJson(json.decode(str));
+SendFriendRequest sendFriendRequestFromJson(String str) =>
+    SendFriendRequest.fromJson(json.decode(str));
 
-String sendFriendRequestToJson(SendFriendRequest data) => json.encode(data.toJson());
+String sendFriendRequestToJson(SendFriendRequest data) =>
+    json.encode(data.toJson());
 
 class SendFriendRequest {
   SendFriendRequest({
@@ -15,11 +17,12 @@ class SendFriendRequest {
 
   int? idReceiver;
 
-  factory SendFriendRequest.fromJson(Map<String, dynamic> json) => SendFriendRequest(
-    idReceiver: json["id_receiver"],
-  );
+  factory SendFriendRequest.fromJson(Map<String, dynamic> json) =>
+      SendFriendRequest(
+        idReceiver: json["id_receiver"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id_receiver": idReceiver,
-  };
+        "id_receiver": idReceiver,
+      };
 }

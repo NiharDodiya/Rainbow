@@ -5,7 +5,6 @@ import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/screens/idVerification/idVerification_api/idVerification_api.dart';
 import 'package:rainbow/screens/idVerification/idVerification_api/idVerification_json.dart';
-import 'package:rainbow/screens/selfie_verification/selfie_verification_screen.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class IdVerificationController extends GetxController {
@@ -47,6 +46,7 @@ class IdVerificationController extends GetxController {
     idType.text = value;
     update(['IdVerification_screen']);
   }
+
 /*  void onStatusChange(String  value) {
     print(value);
     selectedId = value.toString();
@@ -74,9 +74,13 @@ class IdVerificationController extends GetxController {
 
   Future<void> idVerification() async {
     loader.value = true;
-    try {await IdVerificationApi.postRegister(
-          idType.text, idNO.text, uploadImage1.data!.id.toString(),
-          uploadImage2.data!.id.toString()).then((value) => idVerificationList= value);
+    try {
+      await IdVerificationApi.postRegister(
+              idType.text,
+              idNO.text,
+              uploadImage1.data!.id.toString(),
+              uploadImage2.data!.id.toString())
+          .then((value) => idVerificationList = value);
       loader.value = false;
     } catch (e) {
       loader.value = false;
@@ -87,16 +91,14 @@ class IdVerificationController extends GetxController {
   UploadImage uploadImage1 = UploadImage();
   UploadImage uploadImage2 = UploadImage();
 
-
   Future<void> uploadImageApi() async {
     // loader.value = true;
     try {
-      await UploadImageApi.postRegister(imageFront.toString()
-      ).then((value) => uploadImage1 = value!,
+      await UploadImageApi.postRegister(imageFront.toString()).then(
+        (value) => uploadImage1 = value!,
       );
       // loader.value = false;
     } catch (e) {
-
       // loader.value = false;
       debugPrint(e.toString());
     }
@@ -105,8 +107,8 @@ class IdVerificationController extends GetxController {
   Future<void> uploadImageBackApi() async {
     // loader.value = true;
     try {
-      await UploadImageApi.postRegister(imageBack.toString()
-      ).then((value) => uploadImage2 = value!,
+      await UploadImageApi.postRegister(imageBack.toString()).then(
+        (value) => uploadImage2 = value!,
       );
       // loader.value = false;
     } catch (e) {

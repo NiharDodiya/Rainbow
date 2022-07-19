@@ -134,7 +134,7 @@ class LikesBottomShit extends StatelessWidget {
                         ],
                       ),
                       const Spacer(),
-                      Icon(Icons.favorite,color: ColorRes.red),
+                      Icon(Icons.favorite, color: ColorRes.red),
                     ],
                   ),
                 );

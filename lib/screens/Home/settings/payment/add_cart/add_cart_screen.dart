@@ -44,7 +44,7 @@ class AddCartScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                        Strings.billingInformation ,
+                          Strings.billingInformation,
                           style: gilroyMediumTextStyle(
                               fontSize: 18, letterSpacing: -0.55),
                         ),
@@ -72,7 +72,7 @@ class AddCartScreen extends StatelessWidget {
                               child: AppTextFiled(
                                 controller: controller.cityController,
                                 title: Strings.city,
-                                hintText:Strings.cityHint ,
+                                hintText: Strings.cityHint,
                               ),
                             ),
                             SizedBox(
@@ -82,7 +82,7 @@ class AddCartScreen extends StatelessWidget {
                               child: AppTextFiled(
                                 controller: controller.postalCodeController,
                                 title: Strings.postalCode,
-                                hintText:Strings.postalCodeHint ,
+                                hintText: Strings.postalCodeHint,
                               ),
                             ),
                           ],
@@ -93,7 +93,7 @@ class AddCartScreen extends StatelessWidget {
                           hintText: Strings.london,
                           bottomPadding: 0,
                         ),
-                         const SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         Text(
@@ -101,18 +101,18 @@ class AddCartScreen extends StatelessWidget {
                           style: gilroyMediumTextStyle(
                               fontSize: 18, letterSpacing: -0.55),
                         ),
-                       const SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                         AppTextFiled(
                           controller: controller.nameOnCardController,
-                          title:Strings.nameonCard ,
+                          title: Strings.nameonCard,
                           hintText: Strings.aycanDoganlar,
                         ),
                         AppTextFiled(
                           controller: controller.cardNmberController,
                           title: Strings.cardNumber,
-                          hintText:Strings.cardNumberHint ,
+                          hintText: Strings.cardNumberHint,
                         ),
                         // SizedBox(
                         //   height: Get.height * 0.0184,
@@ -123,7 +123,7 @@ class AddCartScreen extends StatelessWidget {
                               child: AppTextFiled(
                                   controller: controller.expiryDateController,
                                   title: Strings.expiryDate,
-                                  hintText: Strings.expiryDateHint ,
+                                  hintText: Strings.expiryDateHint,
                                   textInputType: TextInputType.number),
                             ),
                             SizedBox(
@@ -133,7 +133,7 @@ class AddCartScreen extends StatelessWidget {
                               child: AppTextFiled(
                                 controller: controller.cvvController,
                                 title: Strings.cVV,
-                                hintText:Strings.cVVHint,
+                                hintText: Strings.cVVHint,
                                 textInputType: TextInputType.number,
                               ),
                             ),

@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/adStory_model.dart';
@@ -10,7 +9,8 @@ import 'package:rainbow/utils/end_points.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
 class AdStoryApi {
-  static Future postRegister(String idItem, String description, List<Map<String,dynamic>> list) async {
+  static Future postRegister(String idItem, String description,
+      List<Map<String, dynamic>> list) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
     int userId = PrefService.getInt(PrefKeys.userId);
     try {
@@ -35,8 +35,7 @@ class AdStoryApi {
         if (status == false) {
           flutterToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          flutterToast( jsonDecode(response.body)["message"]);
-
+          flutterToast(jsonDecode(response.body)["message"]);
         }
         return adStoryModelFromJson(response.body);
       }

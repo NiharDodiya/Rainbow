@@ -7,57 +7,55 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
-import '../../../account_Information/account_Information_screen.dart';
 import '../screen/create_advertisement/create_advertisement_screen.dart';
 
 Widget noAdvertisement() {
-  return GetBuilder<AdHomeController>(builder: (controller) {
-  return Expanded(
-    child: Container(
-      margin: EdgeInsets.only(top: 20),
-      width: Get.width,
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            ColorRes.color_735EB0,
-            ColorRes.color_D18EEE,
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+  return GetBuilder<AdHomeController>(
+    builder: (controller) {
+      return Expanded(
+        child: Container(
+          margin: EdgeInsets.only(top: 20),
+          width: Get.width,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                ColorRes.color_735EB0,
+                ColorRes.color_D18EEE,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  height: 142,
+                  margin: const EdgeInsets.only(top: 34, bottom: 30),
+                  child: Image.asset(
+                    AssetRes.frameImage,
+                    fit: BoxFit.fitHeight,
+                  ),
+                ),
+                Text(
+                  Strings.noAdvertisement,
+                  style: gilroySemiBoldTextStyle(fontSize: 24),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: Get.height * 0.12,
+                ),
+                SubmitButton(
+                  onTap: () {
+                    Get.to(() => CreateAdvertisementScreen());
+                  },
+                  text: Strings.createAdvertisement,
+                ),
+              ],
+            ),
+          ),
         ),
-      ),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: 142,
-              margin: const EdgeInsets.only(top: 34, bottom: 30),
-              child: Image.asset(
-                AssetRes.frameImage,
-                fit: BoxFit.fitHeight,
-              ),
-            ),
-            Text(
-              Strings.noAdvertisement,
-              style: gilroySemiBoldTextStyle(fontSize: 24),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: Get.height*0.12,
-            ),
-             SubmitButton(
-              onTap: (){
-                Get.to(()=>  CreateAdvertisementScreen());
-              },
-
-              text: Strings.createAdvertisement,
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-  },
-
+      );
+    },
   );
 }

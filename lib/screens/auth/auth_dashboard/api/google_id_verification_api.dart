@@ -10,7 +10,6 @@ import 'package:rainbow/screens/auth/register/register_controller.dart';
 import 'package:rainbow/screens/auth/register/register_screen.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/idVerification/idverification_screen.dart';
-import 'package:rainbow/screens/scanyour_face/scanyourface_screen.dart';
 import 'package:rainbow/screens/selfie_verification/selfieVerification_controller.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';

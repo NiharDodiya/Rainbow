@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
@@ -27,8 +28,7 @@ class ScanYourFaceScreen extends StatelessWidget {
                     padding: EdgeInsets.all(Get.width * 0.02669),
                     child: Container(
                       constraints: BoxConstraints(
-                        minHeight: Get.height - (Get.width * 0.05338)
-                      ),
+                          minHeight: Get.height - (Get.width * 0.05338)),
                       decoration: BoxDecoration(
                         color: ColorRes.color_4F359B,
                         borderRadius: BorderRadius.circular(25),
@@ -119,19 +119,22 @@ class ScanYourFaceScreen extends StatelessWidget {
                             alignment: Alignment.center,
                             children: [
                               Center(
-                                child: Image.asset(AssetRes.scanYourFace,width: Get.width),
+                                child: Image.asset(AssetRes.scanYourFace,
+                                    width: Get.width),
                               ),
                               Center(
                                 child: controller.imageFront == null
                                     ? const SizedBox()
                                     : ClipRRect(
-                                  borderRadius: BorderRadius.circular(300),
-                                  child: Image.file(
-                                    File(controller.imageFront.toString()),
-                                    width: Get.width * 0.62,
-                                    fit: BoxFit.fitWidth,
-                                  ),
-                                ),
+                                        borderRadius:
+                                            BorderRadius.circular(300),
+                                        child: Image.file(
+                                          File(
+                                              controller.imageFront.toString()),
+                                          width: Get.width * 0.62,
+                                          fit: BoxFit.fitWidth,
+                                        ),
+                                      ),
                               ),
                             ],
                           ),

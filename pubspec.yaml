@@ -52,6 +52,7 @@ dependencies:
   cropperx: ^1.1.0
   cached_network_image: ^3.2.1
   story: ^0.7.0
+  intl: ^0.17.0
 
   #____________________________________________verification code_______________________________________
   pinput: ^2.2.11

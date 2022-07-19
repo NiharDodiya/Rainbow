@@ -1,9 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/auth/registerfor_adviser/registeradviser_controller.dart';
-import 'package:rainbow/utils/color_res.dart';
-
 
 
 // class AppDropDownAdviser extends StatelessWidget {

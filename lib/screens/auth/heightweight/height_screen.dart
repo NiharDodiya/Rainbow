@@ -13,11 +13,11 @@ class HeightScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    EditProfileController controller =
-        Get.put(EditProfileController());
+    EditProfileController controller = Get.put(EditProfileController());
     return Scaffold(
       backgroundColor: Colors.white,
-      body: GetBuilder<EditProfileController>(id: "Edit_profile",
+      body: GetBuilder<EditProfileController>(
+        id: "Edit_profile",
         builder: (controller) {
           return SafeArea(
             child: Center(
@@ -81,12 +81,14 @@ class HeightScreen extends StatelessWidget {
                                 itemExtent: 50,
                                 onSelectedItemChanged: (int index) {
                                   controller.heightFeet = index + 1;
-                                  },
-                              children: List.generate(15, (index) => Center(
-                                  child: Text(
-                                    "${index+1} ft",
-                                    style: textStyleFont14White,
-                                  ))),
+                                },
+                                children: List.generate(
+                                    15,
+                                    (index) => Center(
+                                            child: Text(
+                                          "${index + 1} ft",
+                                          style: textStyleFont14White,
+                                        ))),
                               ),
                             ),
                           ),
@@ -107,13 +109,15 @@ class HeightScreen extends StatelessWidget {
                                 itemExtent: 50,
                                 onSelectedItemChanged: (int index) {
                                   controller.heightInches = index + 1;
-                                   // controller.update(["Edit_profile"]);
-                                  },
-                                children: List.generate(15, (index) => Center(
-                                    child: Text(
-                                      "${index+1} in",
-                                      style: textStyleFont14White,
-                                    ))),
+                                  // controller.update(["Edit_profile"]);
+                                },
+                                children: List.generate(
+                                    15,
+                                    (index) => Center(
+                                            child: Text(
+                                          "${index + 1} in",
+                                          style: textStyleFont14White,
+                                        ))),
                               ),
                             ),
                           ),
@@ -131,7 +135,8 @@ class HeightScreen extends StatelessWidget {
                           child: Center(
                               child: Text(
                             Strings.save,
-                            style: gilroyBoldTextStyle(color: Colors.black,fontSize: 16),
+                            style: gilroyBoldTextStyle(
+                                color: Colors.black, fontSize: 16),
                           )),
                         ),
                       ),

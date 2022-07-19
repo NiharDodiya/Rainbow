@@ -14,6 +14,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
   AdvertisementDeatailScreen({Key? key}) : super(key: key);
   CreateAdvertisementController createAdvertisementController =
       Get.put(CreateAdvertisementController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

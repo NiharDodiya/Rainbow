@@ -22,13 +22,13 @@ class AppDropdown extends StatelessWidget {
     return GetBuilder<RegisterController>(
       id: 'register_screen',
       builder: (controller) {
-        return Container(height: Get.height*0.15,
+        return Container(
+          height: Get.height * 0.15,
           width: Get.width * 0.3,
-
           decoration: BoxDecoration(
             color: ColorRes.white,
             borderRadius: BorderRadius.circular(15),
-            boxShadow:  [
+            boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.5),
                 offset: const Offset(
@@ -50,17 +50,20 @@ class AppDropdown extends StatelessWidget {
           child: ListView.builder(
             itemCount: paramList.length,
             itemBuilder: (context, index) {
-              return Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.start,
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   InkWell(
                       onTap: () {
                         controller.statusController.text = paramList[index];
-                        controller.martialStatusDropdown=false;
+                        controller.martialStatusDropdown = false;
                         controller.update(['register_screen']);
                       },
                       child: Text(
                         paramList[index],
-                        style: gilroyMediumTextStyle(color: Colors.black,fontSize: 16),
+                        style: gilroyMediumTextStyle(
+                            color: Colors.black, fontSize: 16),
                       )),
                   (index + 1) == paramList.length
                       ? const SizedBox()
@@ -92,12 +95,12 @@ class AppDropDownEthnicity extends StatelessWidget {
       id: 'register_screen',
       builder: (controller) {
         return Container(
-          height: Get.height*0.19,
+          height: Get.height * 0.19,
           width: Get.width * 0.3,
           decoration: BoxDecoration(
             color: ColorRes.white,
             borderRadius: BorderRadius.circular(15),
-            boxShadow:  [
+            boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.5),
                 offset: const Offset(
@@ -116,7 +119,7 @@ class AppDropDownEthnicity extends StatelessWidget {
             ],
           ),
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          child:/*DropdownButton<String>(
+          child: /*DropdownButton<String>(
             items: <String>['A', 'B', 'C', 'D'].map((String value) {
               return DropdownMenuItem<String>(
                 value: value,
@@ -127,20 +130,23 @@ class AppDropDownEthnicity extends StatelessWidget {
 
             },
           )*/
-          ListView.builder(
+              ListView.builder(
             itemCount: paramList.length,
             itemBuilder: (context, index) {
-              return Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.start,
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   InkWell(
                       onTap: () {
                         controller.ethnicityController.text = paramList[index];
-                        controller.ethnicityDropdown=false;
+                        controller.ethnicityDropdown = false;
                         controller.update(['register_screen']);
                       },
                       child: Text(
                         paramList[index],
-                        style: gilroyMediumTextStyle(color: Colors.black,fontSize: 16),
+                        style: gilroyMediumTextStyle(
+                            color: Colors.black, fontSize: 16),
                       )),
                   (index + 1) == paramList.length
                       ? const SizedBox()
@@ -172,12 +178,12 @@ class AppDropDownNoOfKids extends StatelessWidget {
       id: RegisterController,
       builder: (controller) {
         return Container(
-          height: Get.height*0.3,
+          height: Get.height * 0.3,
           width: Get.width * 0.3,
           decoration: BoxDecoration(
             color: ColorRes.white,
             borderRadius: BorderRadius.circular(15),
-            boxShadow:  [
+            boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.5),
                 offset: const Offset(
@@ -199,17 +205,20 @@ class AppDropDownNoOfKids extends StatelessWidget {
           child: ListView.builder(
             itemCount: paramList.length,
             itemBuilder: (context, index) {
-              return Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.start,
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   InkWell(
                       onTap: () {
                         controller.kidsController.text = paramList[index];
-                        controller.kidsDropdown=false;
+                        controller.kidsDropdown = false;
                         controller.update(['register_screen']);
                       },
                       child: Text(
                         paramList[index],
-                        style: gilroyMediumTextStyle(color: Colors.black,fontSize: 16),
+                        style: gilroyMediumTextStyle(
+                            color: Colors.black, fontSize: 16),
                       )),
                   (index + 1) == paramList.length
                       ? const SizedBox()
@@ -240,12 +249,13 @@ class AppDroDownIdType extends StatelessWidget {
     return GetBuilder<IdVerificationController>(
       id: 'IdVerification_screen',
       builder: (controller) {
-        return Container(height: Get.height *0.12,
+        return Container(
+          height: Get.height * 0.12,
           width: Get.width * 0.85,
           decoration: BoxDecoration(
             color: ColorRes.white,
             borderRadius: BorderRadius.circular(15),
-            boxShadow:  [
+            boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.5),
                 offset: const Offset(
@@ -267,7 +277,9 @@ class AppDroDownIdType extends StatelessWidget {
           child: ListView.builder(
             itemCount: paramList.length,
             itemBuilder: (context, index) {
-              return Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.start,
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   InkWell(
                       onTap: () {
@@ -277,7 +289,8 @@ class AppDroDownIdType extends StatelessWidget {
                       },
                       child: Text(
                         paramList[index],
-                        style: gilroyMediumTextStyle(color: Colors.black,fontSize: 16),
+                        style: gilroyMediumTextStyle(
+                            color: Colors.black, fontSize: 16),
                       )),
                   (index + 1) == paramList.length
                       ? const SizedBox()

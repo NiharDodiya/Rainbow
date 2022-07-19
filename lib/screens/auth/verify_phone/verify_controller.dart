@@ -19,7 +19,6 @@ class VerifyPhoneController extends GetxController {
 
   VerifyCode verifyCodeModel = VerifyCode();
 
-
   Future<void> verifyCode() async {
     try {
       loader.value = true;
@@ -30,7 +29,7 @@ class VerifyPhoneController extends GetxController {
       loader.value = false;
     }
   }
- /* Future<void> phoneNumberRegister() async {
+/* Future<void> phoneNumberRegister() async {
     try {
       loader.value = true;
       await PhoneNumberApi.postRegister(

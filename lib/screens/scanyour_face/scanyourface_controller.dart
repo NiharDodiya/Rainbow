@@ -14,17 +14,14 @@ import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/screens/auth/verify_phone/verifyphone_screen.dart';
-import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/scanyour_face/scanyourface_api/scanyourface_api.dart';
 import 'package:rainbow/screens/scanyour_face/scanyourface_api/scanyourface_json.dart';
-import 'package:rainbow/service/pref_services.dart';
-import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class ScanYourFaceController extends GetxController {
   File? image1;
 
-  RxBool loader= false.obs;
+  RxBool loader = false.obs;
 
   @override
   void onInit() async {
@@ -49,7 +46,6 @@ class ScanYourFaceController extends GetxController {
 
   void onRegisterTap() {
     if (validation()) {
-
       Get.to(() => const VerifyPhoneScreen());
     }
   }
@@ -122,14 +118,14 @@ class ScanYourFaceController extends GetxController {
 
     return file;
   }
-  UploadImage uploadImage = UploadImage();
 
+  UploadImage uploadImage = UploadImage();
 
   Future<void> uploadImageApi() async {
     loader.value = true;
     try {
-      await UploadImageApi.postRegister(imageFront.toString()
-      ).then((value) => uploadImage = value!,
+      await UploadImageApi.postRegister(imageFront.toString()).then(
+        (value) => uploadImage = value!,
       );
       loader.value = false;
       selfieVerification();
@@ -140,14 +136,14 @@ class ScanYourFaceController extends GetxController {
     }
   }
 
-  SelfiVerification selfiVerification =Get.put(SelfiVerification());
+  SelfiVerification selfiVerification = Get.put(SelfiVerification());
+
   Future<void> selfieVerification() async {
     loader.value = true;
     try {
-      await ScanYourFaceApi.postRegister(uploadImage.data!.id.toString()
-        ).then((value) =>selfiVerification=value);
+      await ScanYourFaceApi.postRegister(uploadImage.data!.id.toString())
+          .then((value) => selfiVerification = value);
       loader.value = false;
-
     } catch (e) {
       errorToast(e.toString());
       loader.value = false;

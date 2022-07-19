@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-UnblockModel unblockModelFromJson(String str) => UnblockModel.fromJson(json.decode(str));
+UnblockModel unblockModelFromJson(String str) =>
+    UnblockModel.fromJson(json.decode(str));
 
 String unblockModelToJson(UnblockModel data) => json.encode(data.toJson());
 
@@ -18,12 +19,12 @@ class UnblockModel {
   String? message;
 
   factory UnblockModel.fromJson(Map<String, dynamic> json) => UnblockModel(
-    status: json["status"],
-    message: json["message"],
-  );
+        status: json["status"],
+        message: json["message"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-  };
+        "status": status,
+        "message": message,
+      };
 }

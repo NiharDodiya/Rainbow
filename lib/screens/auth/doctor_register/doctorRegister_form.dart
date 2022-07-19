@@ -4,7 +4,6 @@ import 'package:rainbow/common/Widget/country_name.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/screens/auth/doctor_register/doctorRegister_controller.dart';
-import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class DoctorRegisterForm extends StatelessWidget {
@@ -24,16 +23,16 @@ class DoctorRegisterForm extends StatelessWidget {
               onTap: controller.onProfessionChange,
               dropdownList: controller.professionList,
             ),
-      //       GestureDetector(onTap: () {
-      // controller.onProfessionOnTap();
-      //       },
-      //         child: AppTextFiled(
-      //           controller: controller.profession,
-      //           title: Strings.profession,
-      //           hintText: Strings.profession,
-      //             suffix: Image.asset(AssetRes.arrowDown, height: 17),
-      //         ),
-      //       ),
+            //       GestureDetector(onTap: () {
+            // controller.onProfessionOnTap();
+            //       },
+            //         child: AppTextFiled(
+            //           controller: controller.profession,
+            //           title: Strings.profession,
+            //           hintText: Strings.profession,
+            //             suffix: Image.asset(AssetRes.arrowDown, height: 17),
+            //         ),
+            //       ),
             AppTextFiled(
               controller: controller.comanyName,
               title: Strings.companyName,
@@ -66,15 +65,12 @@ class DoctorRegisterForm extends StatelessWidget {
               id: 'doctor',
               builder: (controller) {
                 return dropdownButton(
-                  title: "Country",
-                  hintText: "Canada",
-                  selectedValue: controller.selectCountry,
-                  onTap: controller.onCountryCoCityChange,
-                  dropdownList: countryCity,
-                    height: Get.height*0.3
-
-
-                );
+                    title: "Country",
+                    hintText: "Canada",
+                    selectedValue: controller.selectCountry,
+                    onTap: controller.onCountryCoCityChange,
+                    dropdownList: countryCity,
+                    height: Get.height * 0.3);
                 //   GestureDetector(onTap: () {
                 //   controller.onCountryCoCitySelect();
                 // },
@@ -90,9 +86,7 @@ class DoctorRegisterForm extends StatelessWidget {
             ),
 
             GestureDetector(
-              onTap: () {
-
-              },
+              onTap: () {},
               child: AppTextFiled(
                 controller: controller.postalCode,
                 title: Strings.postalCode,
@@ -100,10 +94,9 @@ class DoctorRegisterForm extends StatelessWidget {
                 enable: true,
                 textInputType: TextInputType.number,
               ),
-            ),  GestureDetector(
-              onTap: () {
-
-              },
+            ),
+            GestureDetector(
+              onTap: () {},
               child: AppTextFiled(
                 controller: controller.website,
                 title: Strings.website,
@@ -111,8 +104,6 @@ class DoctorRegisterForm extends StatelessWidget {
                 enable: true,
               ),
             ),
-
-
           ],
         );
       },

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rainbow/common/helper.dart';
-import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
-import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
@@ -22,8 +19,6 @@ class SplashController extends GetxController {
     pageController.dispose();
     super.dispose();
   }
-
-
 
   void onChanged(int page) {
     currentIndex = page;

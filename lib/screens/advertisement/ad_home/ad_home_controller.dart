@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rainbow/screens/advertisement/ad_dashboard/advertisement_controlle.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/utils/asset_res.dart';
 
 class AdHomeController extends GetxController {
-
   //AdvertisementController advController = Get.put(AdvertisementController());
   TextEditingController monthSet = TextEditingController();
 
@@ -43,7 +41,8 @@ class AdHomeController extends GetxController {
     "Licensed Mid - Wife",
     "Breast Milk Donor",
   ];
-  List<bool>moreOption = List.generate(6, (index) => false);
+  List<bool> moreOption = List.generate(6, (index) => false);
+
   @override
   void onInit() {
     init();
@@ -54,21 +53,22 @@ class AdHomeController extends GetxController {
     loader.value = true;
   }
 
-  void onTapAddList(){
+  void onTapAddList() {
     listShow = !listShow;
     update(['list']);
   }
 
-  void onTapMore(int index){
+  void onTapMore(int index) {
     moreOption = List.generate(6, (index) => false);
-    moreOption[index]= true;
+    moreOption[index] = true;
     update(['more']);
   }
-  void onTapNext(){
-    Get.offAll(()=>AuthDashboard());
+
+  void onTapNext() {
+    Get.offAll(() => AuthDashboard());
   }
 
-  void onCloseMenu(){
+  void onCloseMenu() {
     moreOption = List.generate(6, (index) => false);
     update(['more']);
   }

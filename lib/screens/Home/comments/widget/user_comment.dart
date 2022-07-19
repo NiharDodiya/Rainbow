@@ -80,54 +80,59 @@ Widget userComment(bool reply) {
               ),
             ],
           ),
-          !reply? Container(
-            width: Get.width - 110,
-            decoration: BoxDecoration(
-              color: ColorRes.color_959595.withOpacity(0.1),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(15),
-              ),
-            ),
-            margin: const EdgeInsets.only(left: 25,),
-            padding: const EdgeInsets.all(7),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Wilma Warren",
-                  style: beVietnamProMediumTextStyle(color: ColorRes.black),
-                ),
-                Text(
-                  "1 min ago",
-                  style: beVietnamProRegularTextStyle(
-                    fontSize: 10,
-                    color: ColorRes.color_959595,
-                  ),
-                ),
-                const SizedBox(
-                  height: 7,
-                ),
-                RichText(
-                  text: TextSpan(
-                    text: '@Maria Rosales ',
-                    style: beVietnamProRegularTextStyle(
-                      color: ColorRes.themeColor,
-                      fontSize: 12,
+          !reply
+              ? Container(
+                  width: Get.width - 110,
+                  decoration: BoxDecoration(
+                    color: ColorRes.color_959595.withOpacity(0.1),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(15),
                     ),
+                  ),
+                  margin: const EdgeInsets.only(
+                    left: 25,
+                  ),
+                  padding: const EdgeInsets.all(7),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextSpan(
-                        text: "Ut enim ad minim",
+                      Text(
+                        "Wilma Warren",
+                        style:
+                            beVietnamProMediumTextStyle(color: ColorRes.black),
+                      ),
+                      Text(
+                        "1 min ago",
                         style: beVietnamProRegularTextStyle(
-                          fontSize: 12,
-                          color: ColorRes.black,
+                          fontSize: 10,
+                          color: ColorRes.color_959595,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 7,
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text: '@Maria Rosales ',
+                          style: beVietnamProRegularTextStyle(
+                            color: ColorRes.themeColor,
+                            fontSize: 12,
+                          ),
+                          children: [
+                            TextSpan(
+                              text: "Ut enim ad minim",
+                              style: beVietnamProRegularTextStyle(
+                                fontSize: 12,
+                                color: ColorRes.black,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
-                ),
-              ],
-            ),
-          ):const SizedBox(),
+                )
+              : const SizedBox(),
         ],
       )
     ],

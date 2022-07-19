@@ -20,4 +20,3 @@ void flutterToast(String value, {String? title}) {
     backgroundColor: Colors.green,
   );
 }
-

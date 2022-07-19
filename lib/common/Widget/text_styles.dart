@@ -149,13 +149,13 @@ TextStyle textFieldText = const TextStyle(
 TextStyle textStyleFont12 = const TextStyle(
   color: ColorRes.color_4F359B,
   fontSize: 12,
-  fontFamily:  FontRes.gilroyBold,
+  fontFamily: FontRes.gilroyBold,
   fontWeight: FontWeight.w600,
 );
 TextStyle textStyleFont16W700 = const TextStyle(
   color: ColorRes.color_69C200,
   fontSize: 16,
-  fontFamily:  FontRes.gilroyBold,
+  fontFamily: FontRes.gilroyBold,
   fontWeight: FontWeight.w700,
   decoration: TextDecoration.underline,
 );
@@ -190,126 +190,147 @@ TextStyle textStyleFont12White400 = const TextStyle(
   fontWeight: FontWeight.w400,
 );
 
-TextStyle textStyleFont15White= const TextStyle(
+TextStyle textStyleFont15White = const TextStyle(
   color: ColorRes.white,
   fontSize: 15,
   fontFamily: "Gilroy-Medium",
   fontWeight: FontWeight.w500,
 );
 
-TextStyle gilroyBoldTextStyle({Color? color,double? fontSize,}){
+TextStyle gilroyBoldTextStyle({
+  Color? color,
+  double? fontSize,
+}) {
   return TextStyle(
-    color: color??ColorRes.white,
+    color: color ?? ColorRes.white,
     fontWeight: FontWeight.bold,
-    fontSize: fontSize??18,
+    fontSize: fontSize ?? 18,
     fontFamily: FontRes.gilroyBold,
   );
 }
 
-TextStyle gilroySemiBoldTextStyle({Color? color,double? fontSize,double? letterSpacing}){
+TextStyle gilroySemiBoldTextStyle(
+    {Color? color, double? fontSize, double? letterSpacing}) {
   return TextStyle(
-    color: color??ColorRes.white,
-    fontWeight: FontWeight.w700,
-    fontSize: fontSize??18,
-    fontFamily: FontRes.gilroySemiBold,
-    letterSpacing: letterSpacing?? 0
-  );
+      color: color ?? ColorRes.white,
+      fontWeight: FontWeight.w700,
+      fontSize: fontSize ?? 18,
+      fontFamily: FontRes.gilroySemiBold,
+      letterSpacing: letterSpacing ?? 0);
 }
-TextStyle gilroyMediumTextStyle({Color? color,double? fontSize,double? letterSpacing}){
-  return TextStyle(
-    color: color??ColorRes.white,
-    fontWeight: FontWeight.w500,
-    fontSize: fontSize??18,
-    fontFamily: FontRes.gilroyMedium,
-    letterSpacing:letterSpacing?? 0 ,
 
+TextStyle gilroyMediumTextStyle(
+    {Color? color, double? fontSize, double? letterSpacing}) {
+  return TextStyle(
+    color: color ?? ColorRes.white,
+    fontWeight: FontWeight.w500,
+    fontSize: fontSize ?? 18,
+    fontFamily: FontRes.gilroyMedium,
+    letterSpacing: letterSpacing ?? 0,
   );
 }
-TextStyle gilroyRegularTextStyle({Color? color,double? fontSize,}){
+
+TextStyle gilroyRegularTextStyle({
+  Color? color,
+  double? fontSize,
+}) {
   return TextStyle(
-    color: color??ColorRes.white,
+    color: color ?? ColorRes.white,
     fontWeight: FontWeight.w500,
-    fontSize: fontSize??18,
+    fontSize: fontSize ?? 18,
     fontFamily: FontRes.gilroyRegular,
   );
 }
-TextStyle montserratRegularTextStyle({Color? color,double? fontSize,double? letterSpacing}){
+
+TextStyle montserratRegularTextStyle(
+    {Color? color, double? fontSize, double? letterSpacing}) {
   return TextStyle(
-    color: color??ColorRes.white,
-    fontWeight: FontWeight.w400,
-    fontSize: fontSize??18,
-    fontFamily: FontRes.montserratRegular,
-    letterSpacing: letterSpacing?? 0
-  );
+      color: color ?? ColorRes.white,
+      fontWeight: FontWeight.w400,
+      fontSize: fontSize ?? 18,
+      fontFamily: FontRes.montserratRegular,
+      letterSpacing: letterSpacing ?? 0);
 }
 
-TextStyle montserratMediumTextStyle({Color? color,double? fontSize,FontWeight? fontWeight}){
+TextStyle montserratMediumTextStyle(
+    {Color? color, double? fontSize, FontWeight? fontWeight}) {
   return TextStyle(
-    color: color??ColorRes.white,
+    color: color ?? ColorRes.white,
     fontWeight: FontWeight.w600,
-    fontSize: fontSize??18,
+    fontSize: fontSize ?? 18,
     letterSpacing: 4,
     fontFamily: FontRes.montserratRegular,
   );
 }
 
-
-
-TextStyle beVietnamProBoldTextStyle({Color? color,double? fontSize,}){
+TextStyle beVietnamProBoldTextStyle({
+  Color? color,
+  double? fontSize,
+}) {
   return TextStyle(
-    color: color??ColorRes.white,
+    color: color ?? ColorRes.white,
     fontWeight: FontWeight.bold,
-    fontSize: fontSize??18,
+    fontSize: fontSize ?? 18,
     fontFamily: FontRes.beVietnamProBold,
   );
 }
-TextStyle beVietnamProRegularTextStyle({Color? color,double? fontSize,}){
+
+TextStyle beVietnamProRegularTextStyle({
+  Color? color,
+  double? fontSize,
+}) {
   return TextStyle(
-    color: color??ColorRes.white,
+    color: color ?? ColorRes.white,
     fontWeight: FontWeight.w500,
-    fontSize: fontSize??12,
+    fontSize: fontSize ?? 12,
     fontFamily: FontRes.beVietnamProRegular,
   );
 }
-TextStyle beVietnamProMediumTextStyle({Color? color,double? fontSize,}){
+
+TextStyle beVietnamProMediumTextStyle({
+  Color? color,
+  double? fontSize,
+}) {
   return TextStyle(
-    color: color??ColorRes.white,
+    color: color ?? ColorRes.white,
     fontWeight: FontWeight.w500,
-    fontSize: fontSize??14,
+    fontSize: fontSize ?? 14,
     fontFamily: FontRes.beVietnamProMedium,
   );
 }
-TextStyle beVietnamSemiBoldTextStyle({Color? color,double? fontSize}){
+
+TextStyle beVietnamSemiBoldTextStyle({Color? color, double? fontSize}) {
   return TextStyle(
-    color: color??ColorRes.white,
+    color: color ?? ColorRes.white,
     fontWeight: FontWeight.w600,
-    fontSize: fontSize??16,
+    fontSize: fontSize ?? 16,
     fontFamily: FontRes.beVietnamProSemiBold,
   );
 }
 
-
-TextStyle sfProTextReguler({Color? color,double? fontSize}){
+TextStyle sfProTextReguler({Color? color, double? fontSize}) {
   return TextStyle(
-    color: color??ColorRes.white,
+    color: color ?? ColorRes.white,
     fontWeight: FontWeight.w400,
-    fontSize: fontSize??12,
+    fontSize: fontSize ?? 12,
     fontFamily: FontRes.sFProText,
   );
 }
-TextStyle interTextReguler({Color? color,double? fontSize}){
+
+TextStyle interTextReguler({Color? color, double? fontSize}) {
   return TextStyle(
-    color: color??ColorRes.white,
+    color: color ?? ColorRes.white,
     fontWeight: FontWeight.w400,
-    fontSize: fontSize??18,
+    fontSize: fontSize ?? 18,
     fontFamily: FontRes.inter,
   );
 }
-TextStyle interTextMedium({Color? color,double? fontSize}){
+
+TextStyle interTextMedium({Color? color, double? fontSize}) {
   return TextStyle(
-    color: color??ColorRes.white,
+    color: color ?? ColorRes.white,
     fontWeight: FontWeight.w700,
-    fontSize: fontSize??18,
+    fontSize: fontSize ?? 18,
     fontFamily: FontRes.inter,
   );
 }

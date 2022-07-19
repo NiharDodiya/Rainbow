@@ -308,9 +308,12 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                         const SizedBox(
                           height: 15,
                         ),
-                        Row(crossAxisAlignment: CrossAxisAlignment.center,
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SizedBox(width: 25,),
+                            SizedBox(
+                              width: 25,
+                            ),
                             Container(
                               height: 10,
                               width: 10,
@@ -318,7 +321,6 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                   color: ColorRes.color_B180EF,
                                   shape: BoxShape.circle),
                             ),
-
                             Spacer(),
                             Text(
                               Strings.sun,
@@ -409,7 +411,9 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                               style: gilroyMediumTextStyle(
                                   color: ColorRes.color_C4C4C4, fontSize: 10),
                             ),
-                            SizedBox(width: 25,),
+                            SizedBox(
+                              width: 25,
+                            ),
                           ],
                         )
                       ],

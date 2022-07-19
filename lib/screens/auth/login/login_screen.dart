@@ -202,7 +202,9 @@ class LoginScreen extends StatelessWidget {
                     style: textStyleFont14WhiteBold,
                   ),
                   Text(
-                    controller.advertiser? Strings.loginAsEndUser:Strings.loginAsAdvertiser,
+                    controller.advertiser
+                        ? Strings.loginAsEndUser
+                        : Strings.loginAsAdvertiser,
                     style: textStyleFont14White,
                   ),
                 ],
@@ -252,8 +254,10 @@ class LoginScreen extends StatelessWidget {
                   ),
                   Text(
                     controller.advertiser
-                        ? Strings.forEndUserAccount:Strings.forAdvertise,
-                    style: gilroyMediumTextStyle(color: Colors.black, fontSize: 14),
+                        ? Strings.forEndUserAccount
+                        : Strings.forAdvertise,
+                    style: gilroyMediumTextStyle(
+                        color: Colors.black, fontSize: 14),
                   ),
                 ],
               ),

@@ -1,14 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_mentions/flutter_mentions.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/model/adStory_model.dart';
-import 'package:rainbow/model/myStory_model.dart';
 import 'package:rainbow/screens/Home/Story/adstory_api/adStroy_Api.dart';
-import 'package:rainbow/screens/Home/Story/myStory_api/myStroy_api.dart';
 import 'package:rainbow/screens/Home/addStroy/widgets/addStoryView.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/dashboard/dashboard_controller.dart';
@@ -19,6 +18,8 @@ class AddStoryController extends GetxController {
   int? lastPage;
   File? image;
   AdStoryModel adStoryModel = AdStoryModel();
+  GlobalKey<FlutterMentionsState> key = GlobalKey<FlutterMentionsState>();
+  RxBool loader = false.obs;
 
   Future camera() async {
     final getImage = await ImagePicker().pickImage(source: ImageSource.camera);
@@ -43,19 +44,18 @@ class AddStoryController extends GetxController {
     dashboardController.onBottomBarChange(0);
   }
 
-  RxBool loader = false.obs;
-
   UploadImage uploadImage = UploadImage();
 
   Future<void> uploadImageApi(des, user, name, user1, name1) async {
-    // loader.value = true;
+    loader.value = true;
     try {
       uploadImage = await UploadImageApi.postRegister(image!.path.toString());
       adStoryApiData(des, user, name, user1, name1);
 
-      // loader.value = false;
+      loader.value = false;
     } catch (e) {
-      // loader.value = false;
+      //
+      loader.value = false;
       debugPrint(e.toString());
     }
   }
@@ -66,12 +66,11 @@ class AddStoryController extends GetxController {
       adStoryModel = (await AdStoryApi.postRegister(
           uploadImage.data!.id.toString(), des == null ? "" : des, []))!;
       update(["adStory"]);
-      Get.offAll(() => const Dashboard());
 
       loader.value = false;
+      Get.offAll(() => Dashboard());
     } catch (e) {
       loader.value = false;
     }
   }
-
 }

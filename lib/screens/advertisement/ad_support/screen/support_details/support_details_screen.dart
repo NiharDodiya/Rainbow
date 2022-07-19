@@ -10,6 +10,7 @@ import '../../../../../utils/strings.dart';
 
 class SupportDetailsScreen extends StatelessWidget {
   final String com;
+
   SupportDetailsScreen({Key? key, required this.com}) : super(key: key);
 
   @override
@@ -59,8 +60,7 @@ class SupportDetailsScreen extends StatelessWidget {
   }
 
   Widget body(String comp) {
-     SupportDetailsController controller =
-      Get.put(SupportDetailsController());
+    SupportDetailsController controller = Get.put(SupportDetailsController());
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: Get.width * 0.08),
@@ -288,17 +288,16 @@ class SupportDetailsScreen extends StatelessWidget {
               SizedBox(
                 height: Get.height * 0.01477,
               ),
-            
-                Center(
-                  child: SizedBox(
-                    height: Get.height * 0.0474,
-                    child: InkWell(onTap: () {
-                      controller.navigateToCamera();
-                      
-                    }, child: Image.asset(AssetRes.cameraPic)),
-                  ),
+              Center(
+                child: SizedBox(
+                  height: Get.height * 0.0474,
+                  child: InkWell(
+                      onTap: () {
+                        controller.navigateToCamera();
+                      },
+                      child: Image.asset(AssetRes.cameraPic)),
                 ),
-            
+              ),
               SizedBox(
                 height: Get.height * 0.0190,
               ),
@@ -311,9 +310,10 @@ class SupportDetailsScreen extends StatelessWidget {
               SizedBox(
                 height: Get.height * 0.05,
               ),
-              SubmitButton(onTap: (){
-                controller.valid();
-              },
+              SubmitButton(
+                onTap: () {
+                  controller.valid();
+                },
                 child: Text(
                   Strings.sendMessage,
                   style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),

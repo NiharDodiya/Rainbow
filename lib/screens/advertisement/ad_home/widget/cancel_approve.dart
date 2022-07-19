@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/utils/strings.dart';
+
 import '../../../../common/Widget/text_styles.dart';
 import '../../../../utils/asset_res.dart';
 import '../../../../utils/color_res.dart';
@@ -61,7 +62,7 @@ class CancelApprove extends StatelessWidget {
               SizedBox(
                 width: 210,
                 child: Text(
-                 Strings.cancelAppoveDes ,
+                  Strings.cancelAppoveDes,
                   style: gilroyMediumTextStyle(fontSize: 16),
                   textAlign: TextAlign.center,
                 ),

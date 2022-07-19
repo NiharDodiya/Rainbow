@@ -1,12 +1,10 @@
 import 'package:get/get.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_api.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
-import 'package:rainbow/screens/Profile/widget/edit_profile/editProfile_contoller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProfileController extends GetxController {
-
   RxBool loader = false.obs;
   bool seeMoreAndLess = false;
   String? url;
@@ -27,6 +25,7 @@ class ProfileController extends GetxController {
     "Sally Wilson",
   ];
   ViewProfile viewProfile = ViewProfile();
+
   @override
   void onInit() {
     init();
@@ -49,12 +48,11 @@ class ProfileController extends GetxController {
       loader.value = true;
       /*EditProfileController editProfileController =
       Get.put(EditProfileController());*/
-     await ViewProfileApi.postRegister().then((value){
-       viewProfile = value;
+      await ViewProfileApi.postRegister().then((value) {
+        viewProfile = value;
+      });
 
-     });
-
-        /*editProfileController.fullName.text = viewProfile.data!.fullName!;
+      /*editProfileController.fullName.text = viewProfile.data!.fullName!;
         editProfileController.status1.text = viewProfile.data!.maritalStatus!;
         editProfileController.age.text = viewProfile.data!.age.toString();
         editProfileController.city.text = viewProfile.data!.city!;
@@ -75,6 +73,7 @@ class ProfileController extends GetxController {
       loader.value = false;
     }
   }
+
   void _launchUrl(String? url) async {
     if (!await launchUrl(Uri.parse(url!))) {
       throw 'Could not launch $url';

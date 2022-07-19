@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-PrivacyModel privacyModelFromJson(String str) => PrivacyModel.fromJson(json.decode(str));
+PrivacyModel privacyModelFromJson(String str) =>
+    PrivacyModel.fromJson(json.decode(str));
 
 String privacyModelToJson(PrivacyModel data) => json.encode(data.toJson());
 
@@ -18,12 +19,12 @@ class PrivacyModel {
   String? data;
 
   factory PrivacyModel.fromJson(Map<String, dynamic> json) => PrivacyModel(
-    status: json["status"],
-    data: json["data"],
-  );
+        status: json["status"],
+        data: json["data"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "data": data,
-  };
+        "status": status,
+        "data": data,
+      };
 }

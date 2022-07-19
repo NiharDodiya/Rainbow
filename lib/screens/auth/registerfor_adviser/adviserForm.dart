@@ -9,8 +9,8 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class AdviserRegisterForm extends StatelessWidget {
-   AdviserRegisterForm({Key? key}) : super(key: key);
-  AdviserRegisterController controller =Get.put(AdviserRegisterController());
+  AdviserRegisterForm({Key? key}) : super(key: key);
+  AdviserRegisterController controller = Get.put(AdviserRegisterController());
 
   @override
   Widget build(BuildContext context) {
@@ -80,28 +80,26 @@ class AdviserRegisterForm extends StatelessWidget {
             GetBuilder<AdviserRegisterController>(
               id: "country",
               builder: (controller) {
-              return  dropdownButton(
-                title: "Country",
-                hintText: "Canada",
-                selectedValue: controller.selectedValue,
-                onTap: controller.onStatusChange,
-                dropdownList: countryCity,
-                height: Get.height*0.3
-              );
-              //   GestureDetector(
-              //   onTap: () {
-              //      controller.onCountryCitySelect();
-              //   },
-              //   child: AppTextFiled(
-              //     controller: controller.country,
-              //     title: Strings.country,
-              //     hintText: Strings.country,
-              //     enable: true,
-              //     suffix: Image.asset(AssetRes.arrowDown,height: 15,width: 15,),
-              //   ),
-              // );
-            },
-
+                return dropdownButton(
+                    title: "Country",
+                    hintText: "Canada",
+                    selectedValue: controller.selectedValue,
+                    onTap: controller.onStatusChange,
+                    dropdownList: countryCity,
+                    height: Get.height * 0.3);
+                //   GestureDetector(
+                //   onTap: () {
+                //      controller.onCountryCitySelect();
+                //   },
+                //   child: AppTextFiled(
+                //     controller: controller.country,
+                //     title: Strings.country,
+                //     hintText: Strings.country,
+                //     enable: true,
+                //     suffix: Image.asset(AssetRes.arrowDown,height: 15,width: 15,),
+                //   ),
+                // );
+              },
             ),
             AppTextFiled(
               controller: controller.postalCode,
@@ -129,7 +127,6 @@ class AdviserRegisterForm extends StatelessWidget {
     );
   }
 
-
   Widget countryCodePicker(BuildContext context) {
     return InkWell(
       onTap: () => controller.onCountryTap(context),
@@ -148,5 +145,4 @@ class AdviserRegisterForm extends StatelessWidget {
       ),
     );
   }
-
 }

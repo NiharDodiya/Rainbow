@@ -37,7 +37,7 @@ class LearnMoreDetails extends StatelessWidget {
           height: Get.height,
           width: Get.width,
           color: ColorRes.white,
-          padding: const EdgeInsets.only(left: 19,right: 19),
+          padding: const EdgeInsets.only(left: 19, right: 19),
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Column(
@@ -122,7 +122,9 @@ class LearnMoreDetails extends StatelessWidget {
                         height: 19,
                       ),
                       Text(
-                        Strings.myCompanyDes+Strings.myCompanyDes+Strings.myCompanyDes,
+                        Strings.myCompanyDes +
+                            Strings.myCompanyDes +
+                            Strings.myCompanyDes,
                         style: beVietnamSemiBoldTextStyle(
                           color: ColorRes.darkBlue.withOpacity(0.6),
                           fontSize: 14,

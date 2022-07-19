@@ -19,8 +19,7 @@ Widget advertisementList() {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => InkWell(
           onTap: () {
-            Get.to(()=> AdvertisementDetailsApprovedScreen());
-
+            Get.to(() => AdvertisementDetailsApprovedScreen());
           },
           child: Container(
             height: 202,
@@ -60,7 +59,8 @@ Widget advertisementList() {
                                 Text(
                                   "Approve",
                                   style: gilroySemiBoldTextStyle(
-                                      fontSize: 18, color: ColorRes.color_49A510),
+                                      fontSize: 18,
+                                      color: ColorRes.color_49A510),
                                 ),
                                 const SizedBox(
                                   height: 5,
@@ -68,7 +68,8 @@ Widget advertisementList() {
                                 Text(
                                   "Not Active",
                                   style: gilroyMediumTextStyle(
-                                      fontSize: 10, color: ColorRes.color_F86666),
+                                      fontSize: 10,
+                                      color: ColorRes.color_F86666),
                                 ),
                               ],
                             ),
@@ -136,10 +137,10 @@ Widget advertisementList() {
                                   return Container(
                                     padding: const EdgeInsets.all(9),
                                     child: InkWell(
-                                      onTap: (){
-                                        if(index ==0){
+                                      onTap: () {
+                                        if (index == 0) {
                                           Get.to(const DeletApprove());
-                                        }else if(index ==2){
+                                        } else if (index == 2) {
                                           Get.to(const CancelApprove());
                                         }
                                         print(index);
@@ -154,8 +155,9 @@ Widget advertisementList() {
                                               color: index == 1
                                                   ? ColorRes.color_D18EEE
                                                   : ColorRes.color_F86666,
-                                              borderRadius: const BorderRadius.all(
-                                                  Radius.circular(10)),
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(10)),
                                             ),
                                             child: Image.asset(
                                               index == 0
@@ -173,8 +175,8 @@ Widget advertisementList() {
                                                 : index == 1
                                                     ? " Renew Ads"
                                                     : " Cancel Ads",
-                                            style:
-                                                gilroyMediumTextStyle(fontSize: 14),
+                                            style: gilroyMediumTextStyle(
+                                                fontSize: 14),
                                           )
                                         ],
                                       ),

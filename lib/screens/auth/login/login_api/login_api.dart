@@ -19,7 +19,8 @@ import 'package:rainbow/utils/pref_keys.dart';
 class LoginApi {
   static Future postRegister(
     String email,
-    String password,) async {
+    String password,
+  ) async {
     try {
       String url = EndPoints.login;
       Map<String, String> param = {
@@ -31,9 +32,8 @@ class LoginApi {
           body: jsonEncode(param),
           header: {"Content-Type": "application/json"});
       if (response != null && response.statusCode == 200) {
-         bool? status = jsonDecode(response.body)["status"];
-        if(status==false)
-        {
+        bool? status = jsonDecode(response.body)["status"];
+        if (status == false) {
           flutterToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           await PrefService.setValue(PrefKeys.isLogin, true);
@@ -56,27 +56,25 @@ class LoginApi {
             Get.offAll(() =>
                 jsonDecode(response.body)["data"]["role"] == "end_user"
                     ? const Dashboard()
-                    :  AdvertisementDashBord());
+                    : AdvertisementDashBord());
           }
           //Get.offAll(() => const Dashboard());
 
-        if (jsonDecode(response.body)["data"]["role"] == "end_user") {
-          return loginModelFromJson(response.body);
-        } else {
-          await PrefService.setValue(PrefKeys.advertiserProfileImage,jsonDecode(response.body)["data"]["profile_image"]);
-          return advertisersLoginModelFromJson(response.body);
+          if (jsonDecode(response.body)["data"]["role"] == "end_user") {
+            return loginModelFromJson(response.body);
+          } else {
+            await PrefService.setValue(PrefKeys.advertiserProfileImage,
+                jsonDecode(response.body)["data"]["profile_image"]);
+            return advertisersLoginModelFromJson(response.body);
+          }
+        } else if (response.statusCode == 500) {
+          flutterToast(jsonDecode(response.body)["message"]);
         }
-      } else if (response.statusCode == 500) {
+      } else if (response!.statusCode == 500) {
         flutterToast(jsonDecode(response.body)["message"]);
       }
-    }else if(response!.statusCode == 500)
-      {
-        flutterToast(jsonDecode(response.body)["message"]);
-      }
-
-    }catch (e) {
+    } catch (e) {
       print(e.toString());
-
 
       return loginModelFromJson('');
     }

@@ -162,6 +162,4 @@ class AssetRes {
 
   static const adsdetail = "${images}adsdetail.png";
   static const editicons = "${icons}editicons.png";
-
-
 }

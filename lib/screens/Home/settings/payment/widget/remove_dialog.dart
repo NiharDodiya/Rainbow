@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/strings.dart';
+
 import '../../../../../utils/color_res.dart';
 
 class RemoveDialog extends StatelessWidget {
@@ -11,33 +12,42 @@ class RemoveDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      insetPadding: EdgeInsets.only(top: 0, bottom: Get.height * 0.37,left:Get.width *0.07,right:Get.width *0.07 ),
+      insetPadding: EdgeInsets.only(
+          top: 0,
+          bottom: Get.height * 0.37,
+          left: Get.width * 0.07,
+          right: Get.width * 0.07),
       backgroundColor: ColorRes.white,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(20.0),
         ),
       ),
-      child: Column(mainAxisSize: MainAxisSize.min,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-           SizedBox(
-                  height: Get.height * 0.03201,
-                ),
-          Row(children: [SizedBox(width: Get.width * 0.04),Text(
-                  Strings.removeCard,
-                  style: montserratRegularTextStyle(
-                      color: ColorRes.color_303030,
-                      fontSize: 16,
-                      letterSpacing: 0.01),
-                ),],),
+          SizedBox(
+            height: Get.height * 0.03201,
+          ),
+          Row(
+            children: [
+              SizedBox(width: Get.width * 0.04),
+              Text(
+                Strings.removeCard,
+                style: montserratRegularTextStyle(
+                    color: ColorRes.color_303030,
+                    fontSize: 16,
+                    letterSpacing: 0.01),
+              ),
+            ],
+          ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: Get.width *0.05),
+            padding: EdgeInsets.symmetric(horizontal: Get.width * 0.05),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-               
                 SizedBox(height: Get.height * 0.02216),
                 Text(
                   Strings.removeDialogDes,
@@ -78,7 +88,7 @@ class RemoveDialog extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     InkWell(
-                      onTap: (){
+                      onTap: () {
                         Get.back();
                       },
                       child: Container(
@@ -102,7 +112,7 @@ class RemoveDialog extends StatelessWidget {
                       ),
                     ),
                     InkWell(
-                      onTap: (){
+                      onTap: () {
                         Get.back();
                       },
                       child: Container(
@@ -127,7 +137,9 @@ class RemoveDialog extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: Get.height *0.0258,)
+                SizedBox(
+                  height: Get.height * 0.0258,
+                )
               ],
             ),
           ),

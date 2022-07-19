@@ -48,10 +48,9 @@ class EditProfileController extends GetxController {
   List<String> noOfKids = ["0", "1", "2", "3", "4", "5", "6"];
   String? noKidsSelected;
 
-  void init(){
+  void init() {
     setInitData();
   }
-
 
   Future<void> onTapTextField(context) async {
     if (validation()) {
@@ -69,25 +68,26 @@ class EditProfileController extends GetxController {
     }
   }
 
-  void setInitData(){
+  void setInitData() {
     ProfileController profileController = Get.find();
     fullName.text = profileController.viewProfile.data!.fullName!;
     status.text = profileController.viewProfile.data!.userStatus!;
-        status1.text = profileController.viewProfile.data!.maritalStatus!;
-        age.text = profileController.viewProfile.data!.age.toString();
-        city.text = profileController.viewProfile.data!.city!;
-        height.text = profileController.viewProfile.data!.height!;
-        weight.text = profileController.viewProfile.data!.weight!;
-        ethnicity.text = profileController.viewProfile.data!.idEthnicity!;
-        selectedEthicity = profileController.viewProfile.data!.idEthnicity!;
-        haveKids.text = profileController.viewProfile.data!.noKids!.toString();
-        noKidsSelected = profileController.viewProfile.data!.noKids!.toString();
-        hobbies.text = profileController.viewProfile.data!.hobbiesAndInterest!.toString();
-         instagram.text = profileController.viewProfile.data!.instagram!.toString();
-         youTube.text = profileController.viewProfile.data!.youtube!.toString();
-         twitter.text = profileController.viewProfile.data!.twitter!.toString();
-         faceBook.text = profileController.viewProfile.data!.facebook!.toString();
-         aboutMe.text = profileController.viewProfile.data!.about!.toString();
+    status1.text = profileController.viewProfile.data!.maritalStatus!;
+    age.text = profileController.viewProfile.data!.age.toString();
+    city.text = profileController.viewProfile.data!.city!;
+    height.text = profileController.viewProfile.data!.height!;
+    weight.text = profileController.viewProfile.data!.weight!;
+    ethnicity.text = profileController.viewProfile.data!.idEthnicity!;
+    selectedEthicity = profileController.viewProfile.data!.idEthnicity!;
+    haveKids.text = profileController.viewProfile.data!.noKids!.toString();
+    noKidsSelected = profileController.viewProfile.data!.noKids!.toString();
+    hobbies.text =
+        profileController.viewProfile.data!.hobbiesAndInterest!.toString();
+    instagram.text = profileController.viewProfile.data!.instagram!.toString();
+    youTube.text = profileController.viewProfile.data!.youtube!.toString();
+    twitter.text = profileController.viewProfile.data!.twitter!.toString();
+    faceBook.text = profileController.viewProfile.data!.facebook!.toString();
+    aboutMe.text = profileController.viewProfile.data!.about!.toString();
     // await PrefService.setValue(PrefKeys.registerToken, registerUser.token.toString());
   }
 
@@ -148,8 +148,10 @@ class EditProfileController extends GetxController {
     }
     return true;
   }
+
   File? imagePathCAmear;
   File? imagePath;
+
   navigateToCameraFront() async {
     String? path = await cameraPickImage1();
 
@@ -159,8 +161,9 @@ class EditProfileController extends GetxController {
     uploadImageApi();
     Get.back();
     update(["Edit_profile"]);
+  }
 
-  }  navigateToCameraBack() async {
+  navigateToCameraBack() async {
     String? path = await cameraPickImage1();
 
     if (path != null) {
@@ -169,8 +172,8 @@ class EditProfileController extends GetxController {
     uploadImageBackApi();
     Get.back();
     update(["Edit_profile"]);
-
   }
+
   navigateToGallaryBack() async {
     String? path = await gallaryPickImage1();
 
@@ -180,7 +183,6 @@ class EditProfileController extends GetxController {
     uploadImageBackApi();
     Get.back();
     update(["Edit_profile"]);
-
   }
 
   navigateToGallaryFront() async {
@@ -194,9 +196,10 @@ class EditProfileController extends GetxController {
 
     update(["Edit_profile"]);
   }
+
   Future<String?> cameraPickImage1() async {
     XFile? pickedFile =
-    await ImagePicker().pickImage(source: ImageSource.camera);
+        await ImagePicker().pickImage(source: ImageSource.camera);
     if (pickedFile != null) {
       return pickedFile.path;
     }
@@ -204,20 +207,19 @@ class EditProfileController extends GetxController {
     Get.back();
     return null;
   }
-
 
   Future<String?> gallaryPickImage1() async {
     XFile? pickedFile =
-    await ImagePicker().pickImage(source: ImageSource.gallery);
+        await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       return pickedFile.path;
     }
     Get.back();
     update(["Edit_profile"]);
 
-
     return null;
   }
+
   Future frontCamera() async {
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
     if (image == null) return;

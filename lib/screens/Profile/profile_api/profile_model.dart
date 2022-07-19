@@ -181,7 +181,7 @@ class Data {
         "youtube": youtube,
         "facebook": facebook,
         "twitter": twitter,
-        "about":about,
+        "about": about,
         "about_me": aboutMe,
         "hobbies_and_Interest": hobbiesAndInterest,
         "background_image": backgroundImage,

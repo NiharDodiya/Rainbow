@@ -7,6 +7,7 @@ import 'package:rainbow/screens/advertisement/ad_support/screen/support_details/
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
+
 import 'ad_support_controller.dart';
 
 class AdSupportScreen extends StatelessWidget {
@@ -191,15 +192,15 @@ class AdSupportScreen extends StatelessWidget {
                               ),
                               Text(
                                 controller.supportList[index],
-                                style:
-                                    controller.supportList[index].toString() ==
-                                            "Pending"
-                                        ? gilroyMediumTextStyle(
-                                            color: ColorRes.color_FFA800,
-                                            fontSize: 16)
-                                        : gilroyMediumTextStyle(
-                                            color: Color.fromARGB(255, 89, 146, 54),
-                                            fontSize: 16),
+                                style: controller.supportList[index]
+                                            .toString() ==
+                                        "Pending"
+                                    ? gilroyMediumTextStyle(
+                                        color: ColorRes.color_FFA800,
+                                        fontSize: 16)
+                                    : gilroyMediumTextStyle(
+                                        color: Color.fromARGB(255, 89, 146, 54),
+                                        fontSize: 16),
                               ),
                             ],
                           ),

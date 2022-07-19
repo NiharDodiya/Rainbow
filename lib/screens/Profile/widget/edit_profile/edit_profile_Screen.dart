@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,42 +34,44 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           currentFocus.unfocus();
         }
       },
-      child: Scaffold(
-          body: Obx(() {
-            return Stack(
-              children: [
-                SafeArea(
-                  child: GetBuilder<EditProfileController>(
-                    id: 'Edit_profile',
-                    builder: (controller) {
-                      return Container(
-                        width: Get.width,
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              ColorRes.color_50369C,
-                              ColorRes.color_D18EEE,
-                            ],
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                          ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 15),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [editProfilePicture(), editProfileTextField()],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                controller.loader.isTrue ? const SmallLoader() : const SizedBox(),
-              ],
-            );
-          })),
+      child: Scaffold(body: Obx(() {
+        return Stack(
+          children: [
+            SafeArea(
+              child: GetBuilder<EditProfileController>(
+                id: 'Edit_profile',
+                builder: (controller) {
+                  return Container(
+                    width: Get.width,
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          ColorRes.color_50369C,
+                          ColorRes.color_D18EEE,
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          editProfilePicture(),
+                          editProfileTextField()
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            controller.loader.isTrue ? const SmallLoader() : const SizedBox(),
+          ],
+        );
+      })),
     );
   }
 
@@ -89,27 +90,28 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 children: [
                   controller.backImage != null
                       ? Container(
-                    margin: const EdgeInsets.only(right: 16),
-                    height: Get.height * 0.2857,
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        image: DecorationImage(
-                          image: FileImage(controller.backImage!),
-                          fit: BoxFit.cover,
-                        )),
-                  )
+                          margin: const EdgeInsets.only(right: 16),
+                          height: Get.height * 0.2857,
+                          width: Get.width,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              image: DecorationImage(
+                                image: FileImage(controller.backImage!),
+                                fit: BoxFit.cover,
+                              )),
+                        )
                       : /*profileController
-                      .viewProfile.data!.backgroundImage!.isEmpty ? */Container(
-                    margin: const EdgeInsets.only(right: 16),
-                    height: Get.height * 0.2857,
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        image: const DecorationImage(
-                            image: AssetImage(AssetRes.overlay),
-                            fit: BoxFit.cover)),
-                  ) /*:Container(
+                      .viewProfile.data!.backgroundImage!.isEmpty ? */
+                      Container(
+                          margin: const EdgeInsets.only(right: 16),
+                          height: Get.height * 0.2857,
+                          width: Get.width,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              image: const DecorationImage(
+                                  image: AssetImage(AssetRes.overlay),
+                                  fit: BoxFit.cover)),
+                        ) /*:Container(
                     margin: const EdgeInsets.only(right: 16),
                     height: Get.height * 0.2857,
                     width: Get.width,
@@ -139,16 +141,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                           ),
 
-                  ),*/,
+                  ),*/
+                  ,
                   Positioned(
-                    top: Get.height * 0.072,
-                    left: Get.width * 0.25,
-                    child: controller.frontImage != null
-                        ?
-                         Container(
-                            height: Get.height * 0.38666,
-                            width: Get.width * 0.38666,
-                            /*  child: CachedNetworkImage(
+                      top: Get.height * 0.072,
+                      left: Get.width * 0.25,
+                      child: controller.frontImage != null
+                          ? Container(
+                              height: Get.height * 0.38666,
+                              width: Get.width * 0.38666,
+                              /*  child: CachedNetworkImage(
                               imageUrl: profileController
                                   .viewProfile.data!.profileImage
                                   .toString(),
@@ -175,23 +177,25 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 ),
                               ),
                             ),*/
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                image: FileImage(controller.frontImage!),
-                                fit: BoxFit.cover,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  image: FileImage(controller.frontImage!),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                            ),
-                          ):/*profileController
-                        .viewProfile.data!.profileImage!.isEmpty ?*/Container(
-                      height: Get.height * 0.38666,
-                      width: Get.width * 0.38666,
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              image: AssetImage(AssetRes.se_profile),
-                              fit: BoxFit.contain)),
-                    )/*:Container(
+                            )
+                          : /*profileController
+                        .viewProfile.data!.profileImage!.isEmpty ?*/
+                          Container(
+                              height: Get.height * 0.38666,
+                              width: Get.width * 0.38666,
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      image: AssetImage(AssetRes.se_profile),
+                                      fit: BoxFit.contain)),
+                            ) /*:Container(
                       height: Get.height * 0.38666,
                       width: Get.width * 0.38666,
                         child: CachedNetworkImage(
@@ -223,7 +227,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
 
                     ),*/
-                  ),
+                      ),
                   Positioned(
                     top: Get.height * 0.24,
                     left: Get.width * 0.4,
@@ -282,7 +286,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     child: InkWell(
                         onTap: () {
                           // controller.backCamera();
-                            showModalBottomSheet(
+                          showModalBottomSheet(
                               elevation: 10,
                               barrierColor: ColorRes.black.withOpacity(0.4),
                               shape: const RoundedRectangleBorder(
@@ -311,8 +315,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     GestureDetector(
                                       onTap: controller.navigateToGallaryBack,
                                       child: const ListTile(
-                                        leading: Icon(
-                                            Icons.photo_size_select_actual_outlined),
+                                        leading: Icon(Icons
+                                            .photo_size_select_actual_outlined),
                                         title: Text(Strings.gallery),
                                       ),
                                     ),

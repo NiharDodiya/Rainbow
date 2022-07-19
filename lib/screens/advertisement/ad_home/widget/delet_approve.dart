@@ -36,7 +36,7 @@ class DeletApprove extends StatelessWidget {
                 height: Get.height * 0.07881,
               ),
               Text(
-               Strings.deletApprove ,
+                Strings.deletApprove,
                 style: gilroySemiBoldTextStyle(fontSize: 24),
               ),
               SizedBox(
@@ -71,7 +71,7 @@ class DeletApprove extends StatelessWidget {
               SizedBox(
                 width: 210,
                 child: Text(
-                 Strings.deletApproveDes ,
+                  Strings.deletApproveDes,
                   style: gilroyMediumTextStyle(fontSize: 16),
                   textAlign: TextAlign.center,
                 ),

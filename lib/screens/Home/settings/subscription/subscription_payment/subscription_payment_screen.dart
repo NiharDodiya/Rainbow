@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/screens/Home/settings/subscription/subscription_payment/subscription_payment_controller.dart';
 import 'package:rainbow/utils/strings.dart';
+
 import '../../../../../common/Widget/text_styles.dart';
 import '../../../../../utils/asset_res.dart';
 import '../../../../../utils/color_res.dart';
@@ -12,6 +13,7 @@ class SubscriptionPaymentScreen extends StatelessWidget {
   SubscriptionPaymentScreen({Key? key}) : super(key: key);
   SubscriptionPaymentController controller =
       Get.put(SubscriptionPaymentController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -174,6 +176,7 @@ class CardDeatail extends StatelessWidget {
   final String date;
   final int index;
   final SubscriptionPaymentController controller;
+
   const CardDeatail({
     Key? key,
     required this.imageLogo,

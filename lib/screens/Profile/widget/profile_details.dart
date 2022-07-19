@@ -16,8 +16,9 @@ Widget profileDetails() {
         style: gilroySemiBoldTextStyle(fontSize: 24),
       ),
       Text(
-          controller.viewProfile.data!.userStatus!.isEmpty ?"":
-        "Surrogate Mom ",
+        controller.viewProfile.data!.userStatus!.isEmpty
+            ? ""
+            : "Surrogate Mom ",
         style: gilroyRegularTextStyle(fontSize: 14),
       ),
       const SizedBox(

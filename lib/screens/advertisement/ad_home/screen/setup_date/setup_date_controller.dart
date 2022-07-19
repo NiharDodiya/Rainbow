@@ -15,6 +15,5 @@ class SetupDateController extends GetxController {
   drop(val) {
     select = val;
     update(['drop']);
-
   }
 }

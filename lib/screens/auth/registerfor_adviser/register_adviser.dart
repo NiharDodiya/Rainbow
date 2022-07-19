@@ -5,7 +5,6 @@ import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/adviserForm.dart';
-import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/appDropDown_adviser.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/registeradviser_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -17,13 +16,14 @@ class AdviserRegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(onTap: () {
-      FocusScopeNode currentFocus = FocusScope.of(context);
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
 
-      if (!currentFocus.hasPrimaryFocus) {
-        currentFocus.unfocus();
-      }
-    },
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
       child: Scaffold(
           backgroundColor: ColorRes.white,
           body: Obx(() {
@@ -94,7 +94,9 @@ class AdviserRegisterScreen extends StatelessWidget {
                         },
                       ),
                     )),
-                controller.loader.isTrue ? const SmallLoader() : const SizedBox()
+                controller.loader.isTrue
+                    ? const SmallLoader()
+                    : const SizedBox()
               ],
             );
           })),

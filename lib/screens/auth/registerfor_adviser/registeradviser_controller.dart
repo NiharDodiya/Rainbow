@@ -5,8 +5,6 @@ import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
 import 'package:rainbow/screens/auth/doctor_register/doctorRegister_screen.dart';
-import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
-import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountry_json.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class AdviserRegisterController extends GetxController {
@@ -19,9 +17,11 @@ class AdviserRegisterController extends GetxController {
   TextEditingController city = TextEditingController();
   TextEditingController country = TextEditingController();
   TextEditingController postalCode = TextEditingController();
-  TextEditingController phoneNumber = TextEditingController(/*text: "07-06-1999"*/);
+  TextEditingController phoneNumber =
+      TextEditingController(/*text: "07-06-1999"*/);
   String selectedLocation = Strings.single;
   String? selectedValue;
+
   //ListCountryModel listCountryModel = ListCountryModel();
   List<String> martialStatusList = [
     Strings.single,
@@ -38,7 +38,6 @@ class AdviserRegisterController extends GetxController {
     super.onInit();
   }
 
-
   void onStatusSelect() {
     if (martialStatusDropdown == false) {
       martialStatusDropdown = true;
@@ -49,7 +48,7 @@ class AdviserRegisterController extends GetxController {
     update(['register_screen']);
   }
 
-  void onStatusChange(String  value) {
+  void onStatusChange(String value) {
     print(value);
     selectedValue = value.toString();
     country.text = value.toString();
@@ -96,14 +95,14 @@ class AdviserRegisterController extends GetxController {
       update(['address2']);
     }
   }
-String? passId;
+
+  String? passId;
+
   void onRegisterTap() {
     if (validation()) {
       for (int i = 0; i < listCountryModel.data!.length; i++) {
-
-        if(listCountryModel.data![i].name==country.text)
-        {
-         passId=listCountryModel.data![i].id!.toString();
+        if (listCountryModel.data![i].name == country.text) {
+          passId = listCountryModel.data![i].id!.toString();
           print(passId);
         }
       }
@@ -179,24 +178,25 @@ String? passId;
     } else if (phoneNumber.text.isEmpty) {
       errorToast(Strings.phoneNumberError);
       return false;
-    }/* else if (!GetUtils.isPhoneNumber(phoneNumber.text)) {
+    }
+    /* else if (!GetUtils.isPhoneNumber(phoneNumber.text)) {
       errorToast(Strings.phoneNumberValidError);
       return false;
     }*/
     return true;
   }
 
-  // Future<void> countryName() async {
-  //   loader.value = true;
-  //   try {
-  //     await ListOfCountryApi.postRegister().then((value) => listCountryModel = value!);
-  //     getCountry();
-  //     loader.value = false;
-  //
-  //   } catch (e) {
-  //     errorToast(e.toString());
-  //     loader.value = false;
-  //     debugPrint(e.toString());
-  //   }
-  // }
+// Future<void> countryName() async {
+//   loader.value = true;
+//   try {
+//     await ListOfCountryApi.postRegister().then((value) => listCountryModel = value!);
+//     getCountry();
+//     loader.value = false;
+//
+//   } catch (e) {
+//     errorToast(e.toString());
+//     loader.value = false;
+//     debugPrint(e.toString());
+//   }
+// }
 }

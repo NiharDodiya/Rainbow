@@ -1,17 +1,15 @@
 import 'package:get/get.dart';
 
-class MessageContorller extends GetxController
-{
+class MessageContorller extends GetxController {
   RxBool loader = false.obs;
 
   @override
-  void onInit()
-  {
+  void onInit() {
     init();
     super.onInit();
   }
+
   Future<void> init() async {
     loader.value = true;
-
   }
 }

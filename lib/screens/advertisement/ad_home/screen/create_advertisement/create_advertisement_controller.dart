@@ -31,13 +31,10 @@ class CreateAdvertisementController extends GetxController {
   tagsListSet() {
     if (!tagsController.text.toString().contains(",")) {
       tags.add(tagsController.text.toString());
-    } 
-     else {
+    } else {
       // String addcomma = "${tagsController.text},";
-    tags = tagsController.text.split(',');
-       tags.removeWhere((e)=>e.isEmpty);
-
-      
+      tags = tagsController.text.split(',');
+      tags.removeWhere((e) => e.isEmpty);
     }
   }
 
@@ -166,10 +163,10 @@ class CreateAdvertisementController extends GetxController {
     }
   }
 }
- // await PrefService.setValue(PrefKeys.latitude, position.latitude);
-      // await PrefService.setValue(PrefKeys.longitude, position.longitude);
+// await PrefService.setValue(PrefKeys.latitude, position.latitude);
+// await PrefService.setValue(PrefKeys.longitude, position.longitude);
 
-      //   List<Placemark> placeMarks =
-      //       await placemarkFromCoordinates(position.latitude, position.longitude);
+//   List<Placemark> placeMarks =
+//       await placemarkFromCoordinates(position.latitude, position.longitude);
 
-      //   await PrefService.setValue(PrefKeys.locality, placeMarks.first.locality);
+//   await PrefService.setValue(PrefKeys.locality, placeMarks.first.locality);

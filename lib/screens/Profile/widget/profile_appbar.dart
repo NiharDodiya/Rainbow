@@ -10,7 +10,6 @@ import 'package:rainbow/utils/color_res.dart';
 
 Widget profileAppbar(String text, bool show) {
   return Padding(
-
     padding: const EdgeInsets.only(top: 10, left: 18.50, right: 18.50),
     child: Stack(
       children: [
@@ -43,7 +42,8 @@ Widget profileAppbar(String text, bool show) {
             show
                 ? InkWell(
                     onTap: () {
-                      EditProfileController editController = Get.put(EditProfileController());
+                      EditProfileController editController =
+                          Get.put(EditProfileController());
                       editController.init();
                       Get.to(() => const EditProfileScreen());
                     },
@@ -59,7 +59,8 @@ Widget profileAppbar(String text, bool show) {
             ),
             InkWell(
               onTap: () {
-                ConnectionsController connectionController = Get.put(ConnectionsController());
+                ConnectionsController connectionController =
+                    Get.put(ConnectionsController());
                 connectionController.init();
                 Get.to(() => ConnectionsScreen());
               },

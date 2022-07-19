@@ -17,7 +17,8 @@ class StoryScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: Colors.black,
           body: SafeArea(
-            child: Container(height: Get.height*0.88,
+            child: Container(
+              height: Get.height * 0.88,
               child: Stack(
                 alignment: Alignment.bottomCenter,
                 children: <Widget>[
@@ -30,43 +31,54 @@ class StoryScreen extends StatelessWidget {
                       animation(),
                       animation(),
                     ],
-                  ), Padding(
-                    padding: EdgeInsets.only(bottom: Get.height*0.858),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: Get.height * 0.858),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: _buildIndicator(controller),
                     ),
                   ),
-
                 ],
               ),
             ),
-          ),bottomNavigationBar: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              SizedBox(
-                  height: Get.height * 0.07,
-                  width: Get.width * 0.7,
-                  child: TextFormField(
-                    decoration: InputDecoration(contentPadding: const EdgeInsets.only(left: 15),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                        hintStyle: const TextStyle(fontSize: 14),
-                        hintText: "Send message"),
-                  )),
-              SizedBox(width: Get.width * 0.04,),
-              const SizedBox(height:20,width: 20,
-                  child: Image(image: AssetImage(AssetRes.heart),color: Colors.white,)),
-              SizedBox(width: Get.width * 0.05,),
-              const SizedBox(height: 20,width: 20,
-                  child: Image(image: AssetImage(AssetRes.sendInsta))),
-
-            ],
           ),
-        ),
-
+          bottomNavigationBar: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                SizedBox(
+                    height: Get.height * 0.07,
+                    width: Get.width * 0.7,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.only(left: 15),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          hintStyle: const TextStyle(fontSize: 14),
+                          hintText: "Send message"),
+                    )),
+                SizedBox(
+                  width: Get.width * 0.04,
+                ),
+                const SizedBox(
+                    height: 20,
+                    width: 20,
+                    child: Image(
+                      image: AssetImage(AssetRes.heart),
+                      color: Colors.white,
+                    )),
+                SizedBox(
+                  width: Get.width * 0.05,
+                ),
+                const SizedBox(
+                    height: 20,
+                    width: 20,
+                    child: Image(image: AssetImage(AssetRes.sendInsta))),
+              ],
+            ),
+          ),
         );
       },
     );
@@ -76,11 +88,10 @@ class StoryScreen extends StatelessWidget {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       height: 2,
-      width:Get.width * 0.2,
+      width: Get.width * 0.2,
       margin: const EdgeInsets.only(right: 5),
       decoration: BoxDecoration(
         color: isActive ? ColorRes.color_4F359B : ColorRes.color_656F85,
-
       ),
     );
   }
@@ -100,12 +111,10 @@ class StoryScreen extends StatelessWidget {
 
   Widget animation() {
     return Container(
-      height:200,
+      height: 200,
       width: Get.width,
       decoration: const BoxDecoration(
-          image:
-          DecorationImage(image: AssetImage(AssetRes.backGround))),
+          image: DecorationImage(image: AssetImage(AssetRes.backGround))),
     );
   }
 }
-

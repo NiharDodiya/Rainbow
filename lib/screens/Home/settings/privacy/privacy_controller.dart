@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:rainbow/model/privacy_model.dart';
 import 'package:rainbow/screens/Home/settings/privacy/privacy_api/privacy_api.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
-import 'package:rainbow/utils/strings.dart';
 
 class PrivacyController extends GetxController {
   RxBool loader = false.obs;
@@ -25,11 +24,11 @@ class PrivacyController extends GetxController {
     update(["check"]);
   }
 
-  void init(){
+  void init() {
     setInitData();
   }
 
-  setInitData(){
+  setInitData() {
     isChecked[0] = profileController.viewProfile.data!.profilePhoto ?? false;
     isChecked[1] = profileController.viewProfile.data!.basicInfo ?? false;
     isChecked[2] = profileController.viewProfile.data!.socialMedia ?? false;

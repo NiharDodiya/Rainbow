@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/auth/phonenumber/phonenumber_api/phonenumber_api.dart';
 import 'package:rainbow/screens/auth/phonenumber/phonenumber_api/phonenumber_json.dart';
-import 'package:rainbow/service/pref_services.dart';
-import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class PhoneNumberController extends GetxController {
@@ -67,7 +65,7 @@ class PhoneNumberController extends GetxController {
       await PhoneNumberApi.postRegister(
               "+${countryModel.phoneCode + phoneNumber.text}")
           .then((value) => phoneNumberModel = value);
-    /*  await PrefService.setValue(
+      /*  await PrefService.setValue(
           PrefKeys.id, phoneNumberModel.data!.id.toString());*/
       loader.value = false;
     } catch (e) {
