@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
+import 'package:rainbow/utils/strings.dart';
 import 'package:story/story_page_view/story_page_view.dart';
 
 import '../../../common/Widget/text_styles.dart';
@@ -16,7 +17,6 @@ class ViewStoryScreen extends StatefulWidget {
 }
 
 class _ViewStoryScreenState extends State<ViewStoryScreen> {
-  late ValueNotifier<IndicatorAnimationCommand> indicatorAnimationController;
   final ViewStoryController controller = Get.put(ViewStoryController());
   final sampleUsers = [
     UserModel([
@@ -49,13 +49,13 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
   @override
   void initState() {
     super.initState();
-    indicatorAnimationController = ValueNotifier<IndicatorAnimationCommand>(
-        IndicatorAnimationCommand.resume);
+    controller.indicatorAnimationController = ValueNotifier<IndicatorAnimationCommand>(
+        IndicatorAnimationCommand.pause);
   }
 
   @override
   void dispose() {
-    indicatorAnimationController.dispose();
+    controller.indicatorAnimationController.dispose();
     super.dispose();
   }
 
@@ -119,14 +119,6 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                           onPressed: controller.onBackTap,
                         ),
                         const Spacer(),
-                        SizedBox(
-                          height: 30,
-                          child: TextButton(
-                            onPressed: controller.onCommentButtonTap,
-                            style: TextButton.styleFrom(backgroundColor: ColorRes.color_50369C.withOpacity(0.5),),
-                            child: Text("Comments",style: sfProTextReguler(),),
-                          ),
-                        ),
                         IconButton(
                           padding: EdgeInsets.zero,
                           color: Colors.white,
@@ -139,7 +131,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                 ),
               ),
               Positioned(
-                bottom: 60,
+                bottom: 40,
                 child: SizedBox(
                   width: Get.width,
                   child: Padding(
@@ -215,10 +207,49 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                             const Spacer(),
                             Text(
                               "12:30",
-                              style: sfProTextReguler().copyWith(
-                                  decoration: TextDecoration.underline),
+                              style: sfProTextReguler().copyWith(),
                             ),
                           ],
+                        ),
+                        const SizedBox(height: 10),
+                        SizedBox(
+                          width: Get.width,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  InkWell(
+                                    onTap: controller.onLikeBtnTap,
+                                    child: const Icon(
+                                      Icons.favorite,
+                                      color: ColorRes.red,
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: controller.onLikeViewTap,
+                                    child: Text(
+                                      Strings.likes,
+                                      style: sfProTextReguler(),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              InkWell(
+                                onTap: controller.onCommentButtonTap,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Icon(Icons.comment,
+                                        color: ColorRes.white),
+                                    Text(Strings.comments,
+                                        style: sfProTextReguler()),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -228,7 +259,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
             ],
           );
         },
-        indicatorAnimationController: indicatorAnimationController,
+        indicatorAnimationController: controller.indicatorAnimationController,
         initialStoryIndex: (pageIndex) {
           /* if (pageIndex == 0) {
             return 1;

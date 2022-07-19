@@ -217,7 +217,8 @@ class Strings {
   static const seeAll = "See All";
   static const latestFeed = "Latest Feed";
   static const latestFeedDes = "Lorem ipsum dolor sit amet, consectetur \nadipiscing elit, sed do eiusmod tempor \nincididunt ut labore et dolore magna aliqua.\n Lorem a commodo consequat ... more ";
-  static const likes = "+8 likes";
+  static const likes = "Likes";
+  static const comments = "Comments";
   static const learnMore = "LEARN MORE";
   static const search = "Search";
   static const discoverOtherConnections = "Discover other connections";

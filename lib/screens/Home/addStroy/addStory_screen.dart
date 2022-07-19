@@ -39,12 +39,13 @@ class _AddStoryScreenState extends State<AddStoryScreen> {
   }
   _fetchNewMedia() async {
     lastPage = currentPage;
-    var result = await PhotoManager.requestPermissionExtend();
-    if (result!=null) {
+    PermissionState result = await PhotoManager.requestPermissionExtend();
+    if (result == PermissionState.authorized) {
       // success
 //load the album list
+
       List<AssetPathEntity> albums =
-      await PhotoManager.getAssetPathList(onlyAll: true);
+      await PhotoManager.getAssetPathList(type: RequestType.image,onlyAll: true);
       print(albums);
       List<AssetEntity> media =
       await albums[0].getAssetListPaged( page:1, size: 100);
@@ -66,17 +67,6 @@ class _AddStoryScreenState extends State<AddStoryScreen> {
                           fit: BoxFit.cover,
                         ),
                       ),
-                      // if (asset.type == AssetType.video)
-                      //   const Align(
-                      //     alignment: Alignment.bottomRight,
-                      //     child: Padding(
-                      //       padding: EdgeInsets.only(right: 5, bottom: 5),
-                      //       child: Icon(
-                      //         Icons.videocam,
-                      //         color: Colors.white,
-                      //       ),
-                      //     ),
-                      //   ),
                     ],
                   ),
                 );
