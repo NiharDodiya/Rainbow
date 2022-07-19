@@ -270,7 +270,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
               ],
             );
           },
-          indicatorAnimationController: indicatorAnimationController,
+          indicatorAnimationController: controller.indicatorAnimationController,
           initialStoryIndex: (pageIndex) {
             /* if (pageIndex == 0) {
               return 1;
