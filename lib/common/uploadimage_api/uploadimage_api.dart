@@ -22,13 +22,7 @@ class UploadImageApi {
       multipartRequest.files.add(multipartFileIdFront);
 
 
-      // var request = await http.MultipartRequest("POST",Uri.parse(url));
-      // http.MultipartRequest("POST",Uri.parse(url)).headers.addAll(headers);
 
-      // http.MultipartFile multipartFileIdBack =
-      //     await http.MultipartFile.fromPath('id_item_back', idItemBack);
-      // request.files.add(multipartFileIdFront);
-      // request.files.add(multipartFileIdBack);
       var response = await multipartRequest.send();
       print(response);
       var responsed = await http.Response.fromStream(response);
