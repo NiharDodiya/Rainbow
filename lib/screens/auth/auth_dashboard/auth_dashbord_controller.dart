@@ -6,9 +6,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/api/google_id_verification_api.dart';
-import 'package:rainbow/screens/auth/register/register_controller.dart';
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
-
+import 'package:rainbow/screens/auth/register/register_controller.dart';
 import 'package:rainbow/screens/auth/register/register_screen.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/register_adviser.dart';
@@ -47,7 +46,6 @@ class AuthDashBordController extends GetxController {
           .then((value) => listNationalities = value!);
       print(listNationalities);
       getCountryNation();
-
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -61,14 +59,15 @@ class AuthDashBordController extends GetxController {
     loading.value == true;
     final GoogleSignInAccount? account = await googleSignIn.signIn();
     final GoogleSignInAuthentication authentication =
-    await account!.authentication;
+        await account!.authentication;
 
     final OAuthCredential credential = GoogleAuthProvider.credential(
       idToken: authentication.idToken,
       accessToken: authentication.accessToken,
     );
 
-    final UserCredential authResult = await auth.signInWithCredential(credential);
+    final UserCredential authResult =
+        await auth.signInWithCredential(credential);
     final User? user = authResult.user;
     print(user!.email);
     print(user.uid);
@@ -77,7 +76,8 @@ class AuthDashBordController extends GetxController {
 
     // GoogleIdVerification.postRegister(user.uid).then((value) {print(value);});
     try {
-      await GoogleIdVerification.postRegister(user.uid,user: user).then((value) {
+      await GoogleIdVerification.postRegister(user.uid, user: user)
+          .then((value) {
         print(value);
       });
     } catch (e) {
@@ -96,14 +96,23 @@ class AuthDashBordController extends GetxController {
     try {
       loading.value = true;
 
-      final LoginResult loginResult = await FacebookAuth.instance.login(permissions: ["public_profile", "email"]);
+      final LoginResult loginResult = await FacebookAuth.instance
+          .login(permissions: ["public_profile", "email"]);
       await FacebookAuth.instance.getUserData().then((userData) {
         print(userData);
       });
-      final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token,);
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+      final OAuthCredential facebookAuthCredential =
+          FacebookAuthProvider.credential(
+        loginResult.accessToken!.token,
+      );
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithCredential(facebookAuthCredential);
       try {
-        await GoogleIdVerification.postRegister(userCredential.user!.uid,user: userCredential.user).then((value) {print(value);});
+        await GoogleIdVerification.postRegister(userCredential.user!.uid,
+                user: userCredential.user)
+            .then((value) {
+          print(value);
+        });
       } catch (e) {
         errorToast(e.toString());
         debugPrint(e.toString());

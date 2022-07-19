@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -6,7 +7,7 @@ import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class SupportDetailsController extends GetxController {
-  TextEditingController yourMsgController =TextEditingController();
+  TextEditingController yourMsgController = TextEditingController();
   File? imagePath;
 
   //call Camera
@@ -30,10 +31,10 @@ class SupportDetailsController extends GetxController {
 
     return null;
   }
-  valid(){
+
+  valid() {
     if (yourMsgController.text.isEmpty) {
       errorToast(Strings.supporterror01);
-      
     }
   }
 }

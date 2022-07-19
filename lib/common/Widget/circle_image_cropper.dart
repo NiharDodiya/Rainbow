@@ -38,7 +38,8 @@ class _CircleImageCropperState extends State<CircleImageCropper> {
         child: Column(
           children: [
             SizedBox(height: Get.height * 0.08),
-            Text("Crop your Selfie",style: textStyleFont26WhiteBold.copyWith(fontSize: 24)),
+            Text("Crop your Selfie",
+                style: textStyleFont26WhiteBold.copyWith(fontSize: 24)),
             SizedBox(height: Get.height * 0.1),
             Cropper(
               cropperKey: _cropperKey,
@@ -76,7 +77,10 @@ class _CircleImageCropperState extends State<CircleImageCropper> {
             return widget.onCropped(file);
           }
         },
-        child: Icon(Icons.arrow_forward_rounded,color: ColorRes.white,),
+        child: Icon(
+          Icons.arrow_forward_rounded,
+          color: ColorRes.white,
+        ),
       ),
     );
   }

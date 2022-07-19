@@ -23,9 +23,7 @@ class RegisterApi {
       String maritaStatus,
       String ethnicity,
       String birthDate,
-
       String noOfKids) async {
-
     try {
       String url = EndPoints.register;
       Map<String, String> param = {
@@ -35,7 +33,7 @@ class RegisterApi {
         'address1': add1,
         'address2': add2,
         'phoneNumber': phNo,
-        'id_social' : idSocial,
+        'id_social': idSocial,
         'maritalStatus': maritaStatus,
         'ethnicityId': ethnicity,
         'dob': birthDate,
@@ -50,23 +48,20 @@ class RegisterApi {
           header: {"Content-Type": "application/json"});
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
-        if(status==false)
-        {
+        if (status == false) {
           flutterToast(jsonDecode(response.body)["message"]);
-        }
-        else if(status==true)
-        {
+        } else if (status == true) {
           Get.to(() => const GetStartedScreens());
-          await PrefService.setValue(PrefKeys.userId,jsonDecode(response.body)["data"]["id"]);
-          await PrefService.setValue(PrefKeys.loginRole,jsonDecode(response.body)["data"]["role"]);
+          await PrefService.setValue(
+              PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
+          await PrefService.setValue(
+              PrefKeys.loginRole, jsonDecode(response.body)["data"]["role"]);
           flutterToast(jsonDecode(response.body)["message"]);
         }
         return registerUserFromJson(response.body);
-
-      }else if(response!.statusCode == 500)
-        {
-          flutterToast(jsonDecode(response.body)["message"]);
-        }else{
+      } else if (response!.statusCode == 500) {
+        flutterToast(jsonDecode(response.body)["message"]);
+      } else {
         flutterToast(jsonDecode(response.body)["message"]);
       }
     } catch (e) {

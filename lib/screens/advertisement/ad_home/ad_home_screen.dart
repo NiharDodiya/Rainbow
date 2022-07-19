@@ -9,8 +9,9 @@ import 'package:rainbow/utils/color_res.dart';
 import '../../dashboard/dashboard_controller.dart';
 
 class AdHomeScreen extends StatelessWidget {
-   AdHomeScreen({Key? key}) : super(key: key);
- DashboardController dashboardController = Get.put(DashboardController());
+  AdHomeScreen({Key? key}) : super(key: key);
+  DashboardController dashboardController = Get.put(DashboardController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +27,7 @@ class AdHomeScreen extends StatelessWidget {
               colors: [
                 ColorRes.color_50369C,
                 ColorRes.color_D18EEE,
-              ],  
+              ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
@@ -40,7 +41,6 @@ class AdHomeScreen extends StatelessWidget {
                     ? advertisementList()
                     : noAdvertisement(),
               ),
-
             ],
           ),
         ),

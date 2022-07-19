@@ -31,7 +31,7 @@ class ConnectionsProfileController extends GetxController {
   CancelFriendRequestModel cancelFriendRequestModel =
       CancelFriendRequestModel();
   ProfileController profileController = Get.find();
-  UnFriendModel unFriendModel =UnFriendModel();
+  UnFriendModel unFriendModel = UnFriendModel();
 
   @override
   void onInit() {
@@ -103,7 +103,7 @@ class ConnectionsProfileController extends GetxController {
   Future<void> acceptFriendRequestDetails(String id) async {
     try {
       loader.value = true;
-   await AcceptFriendRequestApi.postRegister(id);
+      await AcceptFriendRequestApi.postRegister(id);
       await callApi(id);
       update(["connections"]);
       loader.value = false;
@@ -124,10 +124,11 @@ class ConnectionsProfileController extends GetxController {
       loader.value = false;
     }
   }
+
   Future<void> unFriendRequestDetails(String id) async {
     try {
       loader.value = true;
-      unFriendModel= await UnFriendRequestApi.postRegister(id);
+      unFriendModel = await UnFriendRequestApi.postRegister(id);
       await callApi(id);
       update(["connections"]);
       loader.value = false;

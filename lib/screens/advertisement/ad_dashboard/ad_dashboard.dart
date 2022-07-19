@@ -7,7 +7,6 @@ import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/advertisement_controlle.dart';
-import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/change_password_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_notification/ad_notification_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_support/ad_support_screen.dart';
@@ -16,16 +15,12 @@ import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-import '../../account_Information/account_Information_screen.dart';
 import '../../auth/phonenumber/phonenumber_Screen.dart';
-import '../../auth/verify_phone/verifyphone_screen.dart';
 
 class AdvertisementDashBord extends StatelessWidget {
-   AdvertisementDashBord({Key? key}) : super(key: key);
+  AdvertisementDashBord({Key? key}) : super(key: key);
 
-
-  final AdvertisementController controller =
-  Get.put(AdvertisementController());
+  final AdvertisementController controller = Get.put(AdvertisementController());
 
   @override
   Widget build(BuildContext context) {
@@ -198,9 +193,9 @@ class AdvertisementDashBord extends StatelessWidget {
               ),
               const Spacer(),
               Padding(
-                padding:  EdgeInsets.only(
-                    right: Get.width * 0.0498),
-                child: SubmitButton(onTap: controller.onTapLogOut,
+                padding: EdgeInsets.only(right: Get.width * 0.0498),
+                child: SubmitButton(
+                  onTap: controller.onTapLogOut,
                   child: Row(
                     children: [
                       const Spacer(),

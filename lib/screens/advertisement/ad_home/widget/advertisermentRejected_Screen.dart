@@ -118,25 +118,30 @@ class AdvertisermentRejectedScreen extends StatelessWidget {
               ),
             ],
           ),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 Strings.postRejectedByViolation,
                 style: gilroyMediumTextStyle(fontSize: 12),
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               Text(
                 Strings.violationOf,
                 style: gilroyMediumTextStyle(fontSize: 12),
               ),
-              SizedBox(height: 10,),
-
+              SizedBox(
+                height: 10,
+              ),
               Text(
                 Strings.violationOfTermsConditions,
                 style: gilroyMediumTextStyle(fontSize: 12),
               ),
-              SizedBox(height: 10,),
-
+              SizedBox(
+                height: 10,
+              ),
               Text(
                 Strings.etc,
                 style: gilroyMediumTextStyle(fontSize: 12),
@@ -156,8 +161,14 @@ class AdvertisermentRejectedScreen extends StatelessWidget {
           height: Get.height * 0.377,
           width: 245,
         ),
-        SizedBox(height: 25,),
-        Text(Strings.refundedPayment,style: gilroyRegularTextStyle(color: ColorRes.color_C4C4C4,fontSize: 12),)
+        SizedBox(
+          height: 25,
+        ),
+        Text(
+          Strings.refundedPayment,
+          style: gilroyRegularTextStyle(
+              color: ColorRes.color_C4C4C4, fontSize: 12),
+        )
       ],
     );
   }

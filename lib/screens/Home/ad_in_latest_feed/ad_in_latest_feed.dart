@@ -16,7 +16,8 @@ Widget adInLatestFeed() {
           child: Container(
             height: Get.width * 1.05,
             width: Get.width * 0.92266,
-            padding: const EdgeInsets.only(left: 9,top: 13,right: 20,bottom: 18),
+            padding:
+                const EdgeInsets.only(left: 9, top: 13, right: 20, bottom: 18),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color: Colors.white),
@@ -69,9 +70,10 @@ Widget adInLatestFeed() {
                   ],
                 ),
                 Container(
-                  height: Get.width *0.43,
-                  width:  Get.width * 0.85333,
-                  padding: const EdgeInsets.only(left: 15,top: 10,bottom: 12,right: 6),
+                  height: Get.width * 0.43,
+                  width: Get.width * 0.85333,
+                  padding: const EdgeInsets.only(
+                      left: 15, top: 10, bottom: 12, right: 6),
                   child: ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
                     child: Image.asset(
@@ -81,7 +83,9 @@ Widget adInLatestFeed() {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.only(left: 15,),
+                  padding: const EdgeInsets.only(
+                    left: 15,
+                  ),
                   width: Get.width * 0.85333,
                   height: 110,
                   child: Column(
@@ -91,16 +95,15 @@ Widget adInLatestFeed() {
                       Text(
                         "Surrogate Mom",
                         style: beVietnamProBoldTextStyle(
-                            color: ColorRes.black,
-                            fontSize: 16),
+                            color: ColorRes.black, fontSize: 16),
                       ),
                       Text(
                         Strings.myCompanyDes,
                         maxLines: 3,
-
                         style: beVietnamSemiBoldTextStyle(
-                            color: ColorRes.darkBlue.withOpacity(0.6),
-                            fontSize: 14).copyWith(letterSpacing: 0,height: 1.5),
+                                color: ColorRes.darkBlue.withOpacity(0.6),
+                                fontSize: 14)
+                            .copyWith(letterSpacing: 0, height: 1.5),
                       ),
                       Text(
                         "...more",
@@ -117,9 +120,9 @@ Widget adInLatestFeed() {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     InkWell(
-                       onTap: () {
-                         Get.to(()=>const LearnMoreDetails());
-                       },
+                      onTap: () {
+                        Get.to(() => const LearnMoreDetails());
+                      },
                       child: Container(
                         height: 30,
                         width: Get.width * 0.32,

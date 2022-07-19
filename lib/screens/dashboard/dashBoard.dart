@@ -38,18 +38,19 @@ class _DashboardState extends State<Dashboard> {
           id: 'bottom_bar',
           builder: (controller) {
             if (controller.currentTab == 0) {
-              return  HomeScreen();
+              return HomeScreen();
             } else if (controller.currentTab == 1) {
-              return  SearchScreen();
+              return SearchScreen();
             } else if (controller.currentTab == 2) {
               return const MessageScreen();
             } else {
-              return  ProfileScreen();
+              return ProfileScreen();
             }
           },
         ),
       ),
-      bottomNavigationBar: SalomonBottomBar(margin: const EdgeInsets.all(12),
+      bottomNavigationBar: SalomonBottomBar(
+        margin: const EdgeInsets.all(12),
         selectedItemColor: ColorRes.color_2F80ED,
         unselectedItemColor: ColorRes.color_9597A1,
         currentIndex: controller.currentTab,

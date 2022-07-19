@@ -71,8 +71,7 @@ class IdScannerBackScreen extends StatelessWidget {
               ),
               SizedBox(height: Get.height * 0.04310),
               Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: Get.width * 0.03645),
+                padding: EdgeInsets.symmetric(horizontal: Get.width * 0.03645),
                 child: Row(
                   children: [
                     GestureDetector(

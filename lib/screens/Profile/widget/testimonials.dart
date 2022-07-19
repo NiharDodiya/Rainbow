@@ -27,14 +27,14 @@ Widget testimonials() {
           Center(
             child: Text(
               Strings.noTestimonials,
-              style: beVietnamProBoldTextStyle(color:ColorRes.white.withOpacity(0.70),fontSize: 16),
+              style: beVietnamProBoldTextStyle(
+                  color: ColorRes.white.withOpacity(0.70), fontSize: 16),
             ),
           ),
-
           const SizedBox(
             height: 10,
           ),
-    /*      ListView.separated(padding: const EdgeInsets.only(top: 15),
+          /*      ListView.separated(padding: const EdgeInsets.only(top: 15),
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return listOfTestimonials();
@@ -80,7 +80,7 @@ Widget iconForSlider(String image) {
   return Container(
     height: 20,
     width: 20,
-    margin: const EdgeInsets.only(left: 10,right: 10,bottom: 10,top: 5),
+    margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 5),
     child: Image.asset(
       image,
       height: 20,

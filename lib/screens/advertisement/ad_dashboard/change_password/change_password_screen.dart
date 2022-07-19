@@ -13,6 +13,7 @@ class ChangePasswordScreen extends StatelessWidget {
   ChangePasswordScreen({Key? key}) : super(key: key);
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     ChangePasswordController controller = Get.put(ChangePasswordController());
@@ -219,7 +220,7 @@ class ChangePasswordScreen extends StatelessWidget {
                         ),
                       ),
                     ],
-            ),
+                  ),
                 ),
               ),
               controller.loader.isTrue ? const SmallLoader() : const SizedBox(),

@@ -51,15 +51,18 @@ class BottomBar extends StatelessWidget {
                   ],
                 ),
                 child: index == controller.currentTab
-                    ? Container(height: Get.height * 0.090,width: Get.width * 0.256,
-                      decoration: BoxDecoration(color: ColorRes.color_2F80ED.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(20)),
-                      child: Image.asset(
-                         icon1 ,
+                    ? Container(
+                        height: Get.height * 0.090,
+                        width: Get.width * 0.256,
+                        decoration: BoxDecoration(
+                            color: ColorRes.color_2F80ED.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Image.asset(
+                          icon1,
                           height: 16,
                           width: 16,
                         ),
-                    )
+                      )
                     : Image.asset(
                         icon2,
                         height: 16,

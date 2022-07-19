@@ -4,8 +4,7 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
-Widget editProfilePicture()
-{
+Widget editProfilePicture() {
   return Column(
     children: [
       SizedBox(height: Get.height * 0.038),

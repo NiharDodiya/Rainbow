@@ -1,21 +1,19 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/auth/phonenumber/phonenumber_api/phonenumber_json.dart';
 import 'package:rainbow/screens/auth/verify_phone/verifyphone_screen.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
-import 'package:http/http.dart' as http;
 import 'package:rainbow/utils/pref_keys.dart';
 
 class PhoneNumberApi {
   static Future postRegister(
-      String phoneNumber,
-
-
-      ) async {
+    String phoneNumber,
+  ) async {
     List<PhoneNumber> phoneList = [];
     try {
       String url = EndPoints.mobileCheck;
@@ -30,22 +28,17 @@ class PhoneNumberApi {
           header: {"Content-Type": "application/json"});
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
-        if(status==false)
-        {
+        if (status == false) {
           flutterToast(jsonDecode(response.body)["message"]);
-        }
-        else if(status==true)
-        {
+        } else if (status == true) {
           await PrefService.setValue(PrefKeys.register, true);
-          await PrefService.setValue(PrefKeys.phoneId, jsonDecode(response.body)["data"]["id"]);
+          await PrefService.setValue(
+              PrefKeys.phoneId, jsonDecode(response.body)["data"]["id"]);
           Get.to(() => const VerifyPhoneScreen());
           flutterToast(jsonDecode(response.body)["message"]);
         }
 
         return phoneNumberFromJson(response.body);
-
-
-
       }
 
       /*  message == "Failed! Email is already in use!"

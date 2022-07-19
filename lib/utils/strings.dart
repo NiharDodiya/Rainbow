@@ -120,6 +120,15 @@ class Strings {
   static const newPasswordError = 'New password is required';
   static const confirmPasswordError = 'Confirm password is required';
   static const passwordValidError = 'Password is invalid';
+  static const reTypePasswordError = 'Re-Type Password is required';
+  static const reTypePasswordValidError = 'Re-Type Password is Mismatch';
+  static const addressLine1Error = 'Address Line 1 is required';
+  static const addressLine2Error = 'Address Line 2 is required';
+  static const phoneNumberError = 'Phone Number is required';
+  static const phoneNumberValidError = 'Phone Number is invalid';
+  static const uploadImageError =
+      'Profile Image is not Uploaded \n please upload Profile picture';
+  static const maritalStatusError = 'Marital Status is required';
   static const reTypePasswordError = 'Re-Type password is required';
   static const reTypePasswordValidError = 'Re-Type password is mismatch';
   static const addressLine1Error = 'Address line 1 is required';
@@ -226,7 +235,7 @@ class Strings {
   static const connect = "Connect";
   static const block = "Block";
   static const myCompanyDes =
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem a commodo consequat ... more ";
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem a commodo consequat  ";
   static const typeYourReply = "Type your reply...";
   static const enterLocation = "Enter Location";
 
@@ -327,14 +336,19 @@ class Strings {
   static const postAds = "Post Ads";
   static const approved = "Approved";
   static const rejected = "Rejected";
-  static const approvedByRainbowAdmin = "Your post has been approved by Rainbow Admin.";
-  static const postRejectedByViolation = "Your post has been rejected by Rainbow Admin due to violation of any of the following:";
+  static const approvedByRainbowAdmin =
+      "Your post has been approved by Rainbow Admin.";
+  static const postRejectedByViolation =
+      "Your post has been rejected by Rainbow Admin due to violation of any of the following:";
   static const violationOf = "1. violation of ....";
-  static const violationOfTermsConditions= "2. violation of terms and conditions";
-  static const etc= "3. etc";
+  static const violationOfTermsConditions =
+      "2. violation of terms and conditions";
+  static const etc = "3. etc";
   static const backToHome = "Back to Home";
-  static const refundedPayment = "Payment will be refunded to you, Please wait...";
-  static const sampleDescriptions = "Sample description goes here to exlpain about your package desils. Sample description goes here to exlpain about your package desils. ";
+  static const refundedPayment =
+      "Payment will be refunded to you, Please wait...";
+  static const sampleDescriptions =
+      "Sample description goes here to exlpain about your package desils. Sample description goes here to exlpain about your package desils. ";
 
   ///----------------------------------SubScription---------------------------
   static const enterPromoCode = "Enter promo code";
@@ -389,6 +403,20 @@ class Strings {
   static const deletApproveDes =
       "Are you sure you want to delete this advertisement?";
 
+  ///____________________________________Support_______________________________________
+  static const attachImagesOrproof = "Attach images or proof";
+  static const sendMessage = "Send Message";
+  static const writesomethinghere = "Write something here...";
+  static const yourMessage = "Your Message";
+  static const supportdeatailDEs =
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium sem sit amet venenatis commodo. Nullam aliquam lacus nisl, varius luctus mauris hendrerit ut. Etiam eros lectus, commodo nec nisl in, aliquet congue quam. Morbi condimentum lectus id urna gravida, at facilisis lectus consectetur. Nam viverra augue est, ut cursus mi bibendum sit amet. Duis hendrerit hendrerit molestie. Ut iaculis tellus risus, id facilisis purus finibus vel. In hac habitasse platea dictumst. Ut efficitur lacus eu risus aliquam mollis. Nullam gravida sit amet lorem vitae maximus. Nunc quis odio nec sapien ullamcorper eleifend a eget justo. In hac habitasse platea dictumst. Donec quis magna id libero consequat egestas eget ac felis.";
+  static const supportDate = "March 22, 2021 | 9:00am";
+  static const supportdeatailDEs02 =
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium sem sit amet venenatis commodo. Nullam aliquam lacus nisl, varius luctus mauris hendrerit ut. Etiam eros lectus, commodo nec nisl in, aliquet congue quam. Morbi condimentum lectus id urna gravida, at facilisis lectus consectetur. Nam viverra augue est, ut cursus mi bibendum sit amet. Duis hendrerit hendrerit molestie. Ut iaculis tellus risus, id facilisis purus finibus vel. In hac habitasse platea dictumst. Ut efficitur lacus eu risus aliquam mollis. Nullam gravida sit amet lorem vitae maximus.";
+  static const supportCode = "1235CA2B2";
+  static const supporterror01 = "Message is required";
+  static const subject = "Subject";
+  static const supportError02 = "Subject is requred";
   ///____________________________________Support_______________________________________
   static const attachImagesOrproof = "Attach images or proof";
   static const sendMessage = "Send Message";

@@ -10,6 +10,7 @@ import '../../../../../utils/strings.dart';
 
 class SupportDetailsScreen extends StatelessWidget {
   final String com;
+
   SupportDetailsScreen({Key? key, required this.com}) : super(key: key);
 
   @override

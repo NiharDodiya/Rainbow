@@ -5,36 +5,36 @@ import '../../../../../common/popup.dart';
 import '../../../../../utils/strings.dart';
 
 class AddCartController extends GetxController {
-  TextEditingController fullNameController =TextEditingController();
-  TextEditingController addressController =TextEditingController();
-  TextEditingController cityController =TextEditingController();
-  TextEditingController countryController =TextEditingController();
-  TextEditingController postalCodeController =TextEditingController();
-  TextEditingController nameOnCardController =TextEditingController();
-  TextEditingController cardNmberController =TextEditingController();
-  TextEditingController expiryDateController =TextEditingController();
-  TextEditingController cvvController =TextEditingController();
-  void onInit()
-  {
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
+  TextEditingController countryController = TextEditingController();
+  TextEditingController postalCodeController = TextEditingController();
+  TextEditingController nameOnCardController = TextEditingController();
+  TextEditingController cardNmberController = TextEditingController();
+  TextEditingController expiryDateController = TextEditingController();
+  TextEditingController cvvController = TextEditingController();
+
+  void onInit() {
     update();
     super.onInit();
   }
 
-  addCart(){
+  addCart() {
     validation();
   }
-  
+
   bool validation() {
-     if (fullNameController.text.isEmpty) {
+    if (fullNameController.text.isEmpty) {
       errorToast(Strings.fullNameError);
       return false;
-    }  else if (addressController.text.isEmpty) {
+    } else if (addressController.text.isEmpty) {
       errorToast(Strings.addresserror);
       return false;
     } else if (cityController.text.isEmpty) {
       errorToast(Strings.cityeError);
       return false;
-    }  else if (postalCodeController.text.isEmpty) {
+    } else if (postalCodeController.text.isEmpty) {
       errorToast(Strings.postalCodeError);
       return false;
     } else if (countryController.text.isEmpty) {
@@ -49,13 +49,13 @@ class AddCartController extends GetxController {
     } else if (cardNmberController.text.length != 16) {
       errorToast(Strings.cardnumberErrorValidation);
       return false;
-    }else if (expiryDateController.text.isEmpty) {
+    } else if (expiryDateController.text.isEmpty) {
       errorToast(Strings.expirydateError);
       return false;
     } else if (cvvController.text.isEmpty) {
       errorToast(Strings.cVVError);
       return false;
-    }else if (cvvController.text.length != 3) {
+    } else if (cvvController.text.length != 3) {
       errorToast(Strings.cVVErrorValidation);
       return false;
     }

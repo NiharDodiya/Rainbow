@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/Home/home_screen.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
-import 'package:rainbow/screens/idVerification/idverification_screen.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/pref_keys.dart';
@@ -11,7 +9,9 @@ import 'package:rainbow/utils/strings.dart';
 
 class TermsConditionsScreen extends StatelessWidget {
   final bool? showBackBtn;
+
   const TermsConditionsScreen({Key? key, this.showBackBtn}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,18 +31,20 @@ class TermsConditionsScreen extends StatelessWidget {
                   SizedBox(
                     height: Get.height * 0.07,
                   ),
-                  showBackBtn == false ? const SizedBox() :GestureDetector(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.only(left: 15),
-                      child: Icon(
-                        Icons.arrow_back_ios_outlined,
-                        size: 16.72,
-                      ),
-                    ),
-                  ),
+                  showBackBtn == false
+                      ? const SizedBox()
+                      : GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: const Padding(
+                            padding: EdgeInsets.only(left: 15),
+                            child: Icon(
+                              Icons.arrow_back_ios_outlined,
+                              size: 16.72,
+                            ),
+                          ),
+                        ),
                   SizedBox(
                     height: Get.height * 0.05,
                   ),
@@ -86,9 +88,9 @@ class TermsConditionsScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 15),
                     child: GestureDetector(
                       onTap: () async {
-                        await PrefService.setValue(PrefKeys.showTermsCondition, false);
-                        Get.offAll(()=> Dashboard());
-
+                        await PrefService.setValue(
+                            PrefKeys.showTermsCondition, false);
+                        Get.offAll(() => Dashboard());
                       },
                       child: Container(
                         width: Get.width * 0.84,

@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rainbow/common/Widget/app_dropdown.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/screens/auth/doctor_register/doctorRegister_controller.dart';
 import 'package:rainbow/screens/auth/doctor_register/doctorRegister_form.dart';
-import 'package:rainbow/screens/auth/doctor_register/dropDown_comanyname.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
-
 
 class DoctorRegisterScreen extends StatelessWidget {
   DoctorRegisterScreen({Key? key}) : super(key: key);
@@ -19,13 +16,14 @@ class DoctorRegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(onTap: () {
-      FocusScopeNode currentFocus = FocusScope.of(context);
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
 
-      if (!currentFocus.hasPrimaryFocus) {
-        currentFocus.unfocus();
-      }
-    },
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
       child: Scaffold(
           backgroundColor: ColorRes.white,
           body: Obx(() {
@@ -88,13 +86,14 @@ class DoctorRegisterScreen extends StatelessWidget {
                               //     onTap: controller.onCountryCoCityChange,
                               //   ),
                               // ),
-
                             ],
                           );
                         },
                       ),
                     )),
-                controller.loader.isTrue ? const SmallLoader() : const SizedBox()
+                controller.loader.isTrue
+                    ? const SmallLoader()
+                    : const SizedBox()
               ],
             );
           })),
@@ -123,7 +122,7 @@ class DoctorRegisterScreen extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Get.offAll(()=> AuthDashboard());
+                Get.offAll(() => AuthDashboard());
               },
               child: Text(
                 Strings.signIn,

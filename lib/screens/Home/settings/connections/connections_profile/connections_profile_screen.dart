@@ -52,19 +52,25 @@ class ConnectionsProfileScreen extends StatelessWidget {
                       : SingleChildScrollView(
                           physics: const BouncingScrollPhysics(),
                           child: data.isBlock == "block"
-                              ? Container(  height: Get.height,
-                              width: Get.width,
-                              padding: const EdgeInsets.only(top: 25),
-                              decoration: const BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    ColorRes.color_50369C,
-                                    ColorRes.color_D18EEE,
-                                  ],
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                ),),
-                              child: Center(child: Text("Profile Not Visible",style: gilroyBoldTextStyle(),)))
+                              ? Container(
+                                  height: Get.height,
+                                  width: Get.width,
+                                  padding: const EdgeInsets.only(top: 25),
+                                  decoration: const BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        ColorRes.color_50369C,
+                                        ColorRes.color_D18EEE,
+                                      ],
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                    ),
+                                  ),
+                                  child: Center(
+                                      child: Text(
+                                    "Profile Not Visible",
+                                    style: gilroyBoldTextStyle(),
+                                  )))
                               : Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [

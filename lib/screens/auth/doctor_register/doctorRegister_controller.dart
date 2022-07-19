@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/screens/auth/doctor_register/doctor_registerApi/docotor_companyJson.dart';
-import 'package:rainbow/screens/auth/doctor_register/doctor_registerApi/doctor_companyregisterApi.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/adviser_api/adviser_api.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/adviser_api/adviser_json.dart';
-import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
-import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountry_json.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/registeradviser_controller.dart';
-import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -41,6 +36,7 @@ class DoctorRegisterController extends GetxController {
   // bool professions = false;
   bool kidsDropdown = false;
   RxBool loader = false.obs;
+
   // bool countryCityDropdown = false;
 
   void onInit() {
@@ -50,19 +46,17 @@ class DoctorRegisterController extends GetxController {
     super.onInit();
   }
 
-
-
 /*  void onStatusChange(String value) {
     country.text = value;
     update(['doctor']);
   }*/
-
 
   void onCountryCoCityChange(String value) {
     selectCountry = value;
     country.text = value;
     update(['doctor']);
   }
+
   // void onCountryCoCitySelect() {
   //   if (countryCityDropdown == false) {
   //     countryCityDropdown = true;
@@ -91,6 +85,7 @@ class DoctorRegisterController extends GetxController {
       companyRegister();
     }
   }
+
   // ListCountryModel listCountryModel = ListCountryModel();
   // Future<void> countryName() async {
   //   loader.value = true;
@@ -134,17 +129,17 @@ class DoctorRegisterController extends GetxController {
 
   AdviserRegisterController controller = Get.put(AdviserRegisterController());
 
-String? codeId;
+  String? codeId;
+
   Future<void> companyRegister() async {
     loader.value = true;
     try {
       for (int i = 0; i < listCountryModel.data!.length; i++) {
-        if(listCountryModel.data![i].name==country.text)
-        {
-          codeId=listCountryModel.data![i].id!.toString();
+        if (listCountryModel.data![i].name == country.text) {
+          codeId = listCountryModel.data![i].id!.toString();
           print(codeId);
         }
-   /*       countryCity.add(listCountryModel.data![i].name!);
+        /*       countryCity.add(listCountryModel.data![i].name!);
         countryId.add(listCountryModel.data![i].id!.toString());*/
         print(codeId);
       }
@@ -163,7 +158,7 @@ String? codeId;
               companyNumber.text,
               streetName.text,
               city.text,
-          codeId.toString(),
+              codeId.toString(),
               postalCode.text,
               website.text)
           .then(
@@ -172,11 +167,11 @@ String? codeId;
 
       loader.value = false;
 
-
-     await  PrefService.setValue(PrefKeys.registerToken, advertiserRegister.token.toString());
+      await PrefService.setValue(
+          PrefKeys.registerToken, advertiserRegister.token.toString());
       await PrefService.setValue(PrefKeys.userId, advertiserRegister.data!.id);
-      status=advertiserRegister.data!.status.toString();
-      role=advertiserRegister.data!.role.toString();
+      status = advertiserRegister.data!.status.toString();
+      role = advertiserRegister.data!.role.toString();
       print(status);
       print(role);
     } catch (e) {

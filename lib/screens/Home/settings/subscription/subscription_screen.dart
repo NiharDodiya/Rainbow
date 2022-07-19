@@ -13,6 +13,7 @@ import '../../../../utils/color_res.dart';
 class SubscriptionScreen extends StatelessWidget {
   SubscriptionScreen({Key? key}) : super(key: key);
   SubscriptionController controller = Get.put(SubscriptionController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,11 +92,13 @@ class SubscriptionScreen extends StatelessWidget {
                                 height: Get.width * 0.016,
                                 width: Get.width * 0.016,
                                 decoration: BoxDecoration(
-                                    color: controller.selectedIndex == 1
-                                        ? ColorRes.color_989898
-                                        : ColorRes.color_D8D8D8,
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(9),),),
+                                  color: controller.selectedIndex == 1
+                                      ? ColorRes.color_989898
+                                      : ColorRes.color_D8D8D8,
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(9),
+                                  ),
+                                ),
                               ),
                               SizedBox(
                                 width: Get.width * 0.014,
@@ -104,11 +107,13 @@ class SubscriptionScreen extends StatelessWidget {
                                 height: Get.width * 0.016,
                                 width: Get.width * 0.016,
                                 decoration: BoxDecoration(
-                                    color: controller.selectedIndex == 2
-                                        ? ColorRes.color_989898
-                                        : ColorRes.color_D8D8D8,
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(9),),),
+                                  color: controller.selectedIndex == 2
+                                      ? ColorRes.color_989898
+                                      : ColorRes.color_D8D8D8,
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(9),
+                                  ),
+                                ),
                               ),
                               const Spacer(),
                             ],
@@ -118,9 +123,10 @@ class SubscriptionScreen extends StatelessWidget {
                       SizedBox(
                         height: Get.height * 0.07019,
                       ),
-                      SubmitButton(onTap: (){
-                          Get.to(() =>  SubscriptionPaymentScreen());
-                      },
+                      SubmitButton(
+                        onTap: () {
+                          Get.to(() => SubscriptionPaymentScreen());
+                        },
                         child: Text(
                           Strings.subscribe,
                           style: gilroySemiBoldTextStyle(
@@ -171,7 +177,9 @@ class SubscriptionScreen extends StatelessWidget {
                 },
                 child: Text(
                   Strings.subscription,
-                  style: gilroyBoldTextStyle(fontSize: 18,),
+                  style: gilroyBoldTextStyle(
+                    fontSize: 18,
+                  ),
                 ),
               ),
               SizedBox(
@@ -226,7 +234,7 @@ class PremiumPackage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                     Strings.premium ,
+                      Strings.premium,
                       style: interTextMedium(fontSize: 29),
                     ),
                     Text(Strings.premium01,
@@ -290,11 +298,11 @@ class PremiumPackage extends StatelessWidget {
             RichText(
               text: TextSpan(children: [
                 TextSpan(
-                  text:Strings.textSpan01 ,
+                  text: Strings.textSpan01,
                   style: interTextMedium(fontSize: 32, color: ColorRes.white),
                 ),
                 TextSpan(
-                  text:Strings.textspan02 ,
+                  text: Strings.textspan02,
                   style: interTextReguler(fontSize: 18, color: ColorRes.white),
                 ),
               ]),

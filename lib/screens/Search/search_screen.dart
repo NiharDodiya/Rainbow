@@ -114,7 +114,10 @@ class SearchScreen extends StatelessWidget {
                   child: Text(
                     Strings.advancedSearch,
                     style: gilroyBoldTextStyle(
-                        fontSize: 12, color: ColorRes.color_9597A1).copyWith(decoration: TextDecoration.underline,),
+                            fontSize: 12, color: ColorRes.color_9597A1)
+                        .copyWith(
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -205,7 +208,8 @@ class SearchScreen extends StatelessWidget {
                           SizedBox(
                             height: 232,
                             width: Get.width * 0.90133,
-                            child: const Image(image: AssetImage(AssetRes.woman)),
+                            child:
+                                const Image(image: AssetImage(AssetRes.woman)),
                           ),
                           Positioned(
                             top: Get.height * 0.03,
@@ -215,9 +219,11 @@ class SearchScreen extends StatelessWidget {
                               width: 40,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                border: Border.all(color: Colors.white, width: 3),
+                                border:
+                                    Border.all(color: Colors.white, width: 3),
                               ),
-                              child: const Image(image: AssetImage(AssetRes.se)),
+                              child:
+                                  const Image(image: AssetImage(AssetRes.se)),
                             ),
                           ),
                           Container(
@@ -266,7 +272,8 @@ class SearchScreen extends StatelessWidget {
                                   child: Container(
                                     height: 69,
                                     width: 105,
-                                    color: ColorRes.color_50369C.withOpacity(0.45),
+                                    color:
+                                        ColorRes.color_50369C.withOpacity(0.45),
                                     child: Column(
                                       children: [
                                         const SizedBox(
@@ -288,8 +295,8 @@ class SearchScreen extends StatelessWidget {
                                             ),
                                             Text(
                                               Strings.connect,
-                                              style:
-                                                  gilroyBoldTextStyle(fontSize: 12),
+                                              style: gilroyBoldTextStyle(
+                                                  fontSize: 12),
                                             )
                                           ],
                                         ),
@@ -313,8 +320,8 @@ class SearchScreen extends StatelessWidget {
                                             ),
                                             Text(
                                               Strings.block,
-                                              style:
-                                                  gilroyBoldTextStyle(fontSize: 12),
+                                              style: gilroyBoldTextStyle(
+                                                  fontSize: 12),
                                             )
                                           ],
                                         ),

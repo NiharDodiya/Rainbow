@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-RequestSend requestSendFromJson(String str) => RequestSend.fromJson(json.decode(str));
+RequestSend requestSendFromJson(String str) =>
+    RequestSend.fromJson(json.decode(str));
 
 String requestSendToJson(RequestSend data) => json.encode(data.toJson());
 
@@ -18,12 +19,12 @@ class RequestSend {
   String? message;
 
   factory RequestSend.fromJson(Map<String, dynamic> json) => RequestSend(
-    status: json["status"],
-    message: json["message"],
-  );
+        status: json["status"],
+        message: json["message"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-  };
+        "status": status,
+        "message": message,
+      };
 }

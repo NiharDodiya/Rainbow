@@ -45,23 +45,23 @@ Widget otherVisitorsViewed() {
                       width: 60,
                       margin: const EdgeInsets.only(
                           right: 10, left: 10, top: 10, bottom: 7),
-                   child:  CachedNetworkImage(
-                      imageUrl:
-                      controller.viewProfile.data!.userView![index].profileImage
-                          .toString(),
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
+                      child: CachedNetworkImage(
+                        imageUrl: controller
+                            .viewProfile.data!.userView![index].profileImage
+                            .toString(),
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
+                        // placeholder: (context, url) => const Center(child:  CircularProgressIndicator(),),
+                        errorWidget: (context, url, error) =>
+                            Image.asset(AssetRes.se_profile),
                       ),
-                      // placeholder: (context, url) => const Center(child:  CircularProgressIndicator(),),
-                      errorWidget: (context, url, error) =>
-                          Image.asset(AssetRes.se_profile),
-                    ),
                     ),
                   ),
                   SizedBox(

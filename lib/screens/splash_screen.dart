@@ -12,7 +12,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() =>  AuthDashboard());
+        Get.to(() => AuthDashboard());
       },
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -42,8 +42,10 @@ class SplashScreen extends StatelessWidget {
                                     height: Get.height * 0.35,
                                   ),
                                 ),
-                              ),  Padding(
-                                padding: EdgeInsets.only(left: 90,top: Get.height*0.1),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    left: 90, top: Get.height * 0.1),
                                 child: const Align(
                                   alignment: Alignment.topCenter,
                                   child: Image(
@@ -85,7 +87,7 @@ class SplashScreen extends StatelessWidget {
                             child: Center(
                                 child: Text(
                               "Help, Support & Solutions For Families",
-                              style:gilroyBoldTextStyle(),
+                              style: gilroyBoldTextStyle(),
                             )),
                           ),
                           Padding(

@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-CreateNewPassword createNewPasswordFromJson(String str) => CreateNewPassword.fromJson(json.decode(str));
+CreateNewPassword createNewPasswordFromJson(String str) =>
+    CreateNewPassword.fromJson(json.decode(str));
 
-String createNewPasswordToJson(CreateNewPassword data) => json.encode(data.toJson());
+String createNewPasswordToJson(CreateNewPassword data) =>
+    json.encode(data.toJson());
 
 class CreateNewPassword {
   CreateNewPassword({
@@ -17,13 +19,14 @@ class CreateNewPassword {
   bool? status;
   String? message;
 
-  factory CreateNewPassword.fromJson(Map<String, dynamic> json) => CreateNewPassword(
-    status: json["status"],
-    message: json["message"],
-  );
+  factory CreateNewPassword.fromJson(Map<String, dynamic> json) =>
+      CreateNewPassword(
+        status: json["status"],
+        message: json["message"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-  };
+        "status": status,
+        "message": message,
+      };
 }

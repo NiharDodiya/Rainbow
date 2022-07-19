@@ -1,5 +1,3 @@
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalitesJson.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountry_json.dart';
 
@@ -11,8 +9,8 @@ List<String> countryNationCity = [];
 List<String> countryNationId = [];
 
 void getCountry() {
-  countryCity=[];
-  countryId=[];
+  countryCity = [];
+  countryId = [];
   for (int i = 0; i < listCountryModel.data!.length; i++) {
     countryCity.add(listCountryModel.data![i].name!);
     countryId.add(listCountryModel.data![i].id!.toString());
@@ -21,10 +19,9 @@ void getCountry() {
   print(countryId);
 }
 
-
 void getCountryNation() {
-  countryNationCity= [];
-  countryNationId= [];
+  countryNationCity = [];
+  countryNationId = [];
   for (int i = 0; i < listNationalities.data!.length; i++) {
     countryNationCity.add(listNationalities.data![i].name!);
     countryNationId.add(listNationalities.data![i].id!.toString());

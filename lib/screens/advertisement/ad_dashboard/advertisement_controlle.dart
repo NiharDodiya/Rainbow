@@ -18,8 +18,10 @@ class AdvertisementController extends GetxController {
   int currentTab = 0;
   final AdHomeController homeController = Get.put(AdHomeController());
 
-  final AdPaymenetController adPaymenetController = Get.put(AdPaymenetController());
-  final AdNotificationsController notificationsController = Get.put(AdNotificationsController());
+  final AdPaymenetController adPaymenetController =
+      Get.put(AdPaymenetController());
+  final AdNotificationsController notificationsController =
+      Get.put(AdNotificationsController());
   final AdSupportController supportController = Get.put(AdSupportController());
 
   final GlobalKey<ScaffoldState> key = GlobalKey();
@@ -77,16 +79,15 @@ class AdvertisementController extends GetxController {
   void fun(bool flage) {}
 
   Future<void> inTapAccountInfo() async {
-    final AccountInformationController accountInformationController = Get.put(AccountInformationController());
+    final AccountInformationController accountInformationController =
+        Get.put(AccountInformationController());
     accountInformationController.onGetData();
-    Get.to(()=>AccountInformationScreen());
-
+    Get.to(() => AccountInformationScreen());
   }
 
   Future<void> onTapLogOut() async {
     await PrefService.clear();
     Get.offAll(() => AuthDashboard());
     PrefService.setValue(PrefKeys.skipBoardingScreen, true);
-
   }
 }

@@ -195,7 +195,6 @@ class RegisterForm extends StatelessWidget {
             ],
           ),
 
-
           GetBuilder<RegisterController>(
             id: 'register_screen',
             builder: (controller) {

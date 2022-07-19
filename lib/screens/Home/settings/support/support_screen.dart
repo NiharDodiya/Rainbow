@@ -16,7 +16,7 @@ class SupportScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           width: Get.width,
-          decoration:  const BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
                 ColorRes.color_50369C,
@@ -35,10 +35,13 @@ class SupportScreen extends StatelessWidget {
               ),
               appBar(),
               supports(),
-              SizedBox(height: Get.height * 0.07,),
+              SizedBox(
+                height: Get.height * 0.07,
+              ),
               sendNewMessage(),
-              SizedBox(height: Get.height * 0.05,),
-
+              SizedBox(
+                height: Get.height * 0.05,
+              ),
             ],
           ),
         ),
@@ -120,7 +123,7 @@ class SupportScreen extends StatelessWidget {
                           child: Container(
                             height: 46,
                             width: 46,
-                            decoration:  const BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               gradient: LinearGradient(
                                 colors: [
@@ -150,15 +153,18 @@ class SupportScreen extends StatelessWidget {
                             children: [
                               Text(
                                 "12/30/2021",
-                                style: gilroyMediumTextStyle(color: ColorRes.color_9597A1,fontSize: 16),
+                                style: gilroyMediumTextStyle(
+                                    color: ColorRes.color_9597A1, fontSize: 16),
                               ),
                               Text(
                                 "1235CA2B2",
-                                style: gilroyMediumTextStyle(color: ColorRes.color_6306B2,fontSize: 16),
+                                style: gilroyMediumTextStyle(
+                                    color: ColorRes.color_6306B2, fontSize: 16),
                               ),
                               Text(
                                 Strings.loremIpsum,
-                                style: gilroyMediumTextStyle(color: Colors.black,fontSize: 13.11),
+                                style: gilroyMediumTextStyle(
+                                    color: Colors.black, fontSize: 13.11),
                               ),
                             ],
                           ),
@@ -169,8 +175,10 @@ class SupportScreen extends StatelessWidget {
                             controller.supportList[index],
                             style: controller.supportList[index].toString() ==
                                     "Pending"
-                                ?gilroyMediumTextStyle(color: ColorRes.color_FFA800,fontSize: 16)
-                                :  gilroyMediumTextStyle(color:ColorRes.color_49A510,fontSize: 16),
+                                ? gilroyMediumTextStyle(
+                                    color: ColorRes.color_FFA800, fontSize: 16)
+                                : gilroyMediumTextStyle(
+                                    color: ColorRes.color_49A510, fontSize: 16),
                           ),
                         )
                       ],
@@ -184,27 +192,29 @@ class SupportScreen extends StatelessWidget {
       ],
     );
   }
-  Widget sendNewMessage()
-  {
-    return    Container(
+
+  Widget sendNewMessage() {
+    return Container(
       height: 60,
-      width:300,
+      width: 300,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(13.67),
           color: ColorRes.color_FFED62),
       child: Center(
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: 18,width: 152  ,
-                child: Text(
-                  Strings.sendNewMessage,
-                  style: gilroyBoldTextStyle(color: Colors.black,fontSize: 16),
-                ),
-              ),
-            ],
-          )),
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 18,
+            width: 152,
+            child: Text(
+              Strings.sendNewMessage,
+              style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
+            ),
+          ),
+        ],
+      )),
     );
   }
 }

@@ -8,7 +8,8 @@ import 'package:rainbow/utils/color_res.dart';
 
 Widget appbar() {
   AdHomeController controller = Get.find<AdHomeController>();
-  AdvertisementController advertisementController = Get.put(AdvertisementController());
+  AdvertisementController advertisementController =
+      Get.put(AdvertisementController());
   return SizedBox(
     width: Get.width,
     child: Padding(
@@ -17,7 +18,7 @@ Widget appbar() {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           InkWell(
-            onTap: (){
+            onTap: () {
               advertisementController.key.currentState!.openDrawer();
             },
             child: Container(

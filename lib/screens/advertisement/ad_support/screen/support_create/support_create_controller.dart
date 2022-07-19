@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -8,8 +9,8 @@ import '../../../../../common/popup.dart';
 
 class SupportCreateController extends GetxController {
   File? imagePath;
-  TextEditingController yourMsgController =TextEditingController();
-  TextEditingController subjectController =TextEditingController();
+  TextEditingController yourMsgController = TextEditingController();
+  TextEditingController subjectController = TextEditingController();
 
   //call Camera
   navigateToCamera() async {
@@ -32,13 +33,12 @@ class SupportCreateController extends GetxController {
 
     return null;
   }
-  valid(){
+
+  valid() {
     if (subjectController.text.isEmpty) {
-       errorToast(Strings.supportError02);
-      
-    } else if(subjectController.text.isEmpty){
+      errorToast(Strings.supportError02);
+    } else if (subjectController.text.isEmpty) {
       errorToast(Strings.supporterror01);
-      
     }
   }
 }

@@ -7,6 +7,7 @@ import 'package:rainbow/screens/advertisement/ad_support/screen/support_details/
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
+
 import 'ad_support_controller.dart';
 
 class AdSupportScreen extends StatelessWidget {

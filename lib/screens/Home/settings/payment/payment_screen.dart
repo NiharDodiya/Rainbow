@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/settings/payment/add_cart/add_cart_screen.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
+
 import '../../../../utils/asset_res.dart';
 import '../../../../utils/color_res.dart';
 import '../../../../utils/strings.dart';
@@ -10,6 +11,7 @@ import '../../../../utils/strings.dart';
 class PaymentScreen extends StatelessWidget {
   PaymentScreen({Key? key}) : super(key: key);
   PaymentController controller = Get.put(PaymentController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -298,6 +300,7 @@ class Tranzaction extends StatelessWidget {
   final String name;
   final String minits;
   final String doller;
+
   const Tranzaction({
     Key? key,
     required this.imagePath,

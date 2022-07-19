@@ -6,11 +6,11 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/model/request_user_model.dart';
 import 'package:rainbow/model/suggestion_model.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
-
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
+
 class ConnectionsScreen extends StatelessWidget {
   ConnectionsScreen({Key? key}) : super(key: key);
   ConnectionsController controller = Get.put(ConnectionsController());
@@ -126,9 +126,11 @@ class ConnectionsScreen extends StatelessWidget {
                 name: user.fullName,
                 image: user.profileImage,
                 label: user.email,
-                onPlusTap: () => control.onAddBtnTap(user.id.toString(),false),
-                onDeleteTap: () => controller.onDeleteBtnTap(user.id.toString(),false),
-                onProfileTap: () => controller.onTapViewProfile(user.id.toString()),
+                onPlusTap: () => control.onAddBtnTap(user.id.toString(), false),
+                onDeleteTap: () =>
+                    controller.onDeleteBtnTap(user.id.toString(), false),
+                onProfileTap: () =>
+                    controller.onTapViewProfile(user.id.toString()),
               );
             },
           )
@@ -161,9 +163,11 @@ class ConnectionsScreen extends StatelessWidget {
                 name: user.fullName,
                 image: user.profileImage,
                 label: user.email,
-                onPlusTap: () => control.onAddBtnTap(user.id.toString(),true),
-                onDeleteTap: () => controller.onDeleteBtnTap(user.id.toString(),true),
-                onProfileTap: () => controller.onTapViewProfile(user.id.toString()),
+                onPlusTap: () => control.onAddBtnTap(user.id.toString(), true),
+                onDeleteTap: () =>
+                    controller.onDeleteBtnTap(user.id.toString(), true),
+                onProfileTap: () =>
+                    controller.onTapViewProfile(user.id.toString()),
               );
             },
           )

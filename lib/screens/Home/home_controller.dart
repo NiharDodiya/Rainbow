@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/blocList_api/blockList_api.dart';
@@ -17,14 +18,13 @@ import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCou
 class HomeController extends GetxController {
   RxBool loader = false.obs;
   ProfileController controller = Get.put(ProfileController());
-  ListOfFriendRequestModel listOfFriendRequestModel = ListOfFriendRequestModel();
-  ViewStoryController viewStoryController=Get.put(ViewStoryController());
-  List<bool> isAd =  List.generate(10,(index)=>Random().nextInt(2) == 1);
-
-
+  ListOfFriendRequestModel listOfFriendRequestModel =
+      ListOfFriendRequestModel();
+  ViewStoryController viewStoryController = Get.put(ViewStoryController());
+  List<bool> isAd = List.generate(10, (index) => Random().nextInt(2) == 1);
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     init();
     countryName();
     countryNationalites();
@@ -32,8 +32,10 @@ class HomeController extends GetxController {
     listOfFriedRequestDetails();
     controller.viewProfileDetails();
     viewStoryController.friendStoryApiData();
+
     super.onInit();
   }
+
   final storyController = EditStoryController();
 
   Future<void> countryName() async {
@@ -70,18 +72,20 @@ class HomeController extends GetxController {
       debugPrint(e.toString());
     }
   }
+
   Future<void> listOfFriedRequestDetails() async {
     try {
       loader.value = true;
-      listOfFriendRequestModel= (await ListOfFriendRequestApi.postRegister())!;
+      listOfFriendRequestModel = (await ListOfFriendRequestApi.postRegister())!;
       update(["connections"]);
       loader.value = false;
     } catch (e) {
       loader.value = false;
     }
   }
+
   Future<void> init() async {
-    loader.value = true;
+    // loader.value = true;
   }
 
   void myStoryOnTap() {

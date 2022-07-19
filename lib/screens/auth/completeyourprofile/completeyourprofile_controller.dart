@@ -28,24 +28,24 @@ class CompleteYourProfileController extends GetxController {
     super.onInit();
   }
 
-
-
-
   Future frontCamera() async {
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
 
-    if(image==null) return;
+    if (image == null) return;
     final imageTemp = File(image.path);
-    frontImage=imageTemp;
-    update(["Complete_screen"]);
-  }  Future backCamera() async {
-    final image = await ImagePicker().pickImage(source: ImageSource.camera);
-
-    if(image==null) return;
-    final imageTemp = File(image.path);
-    backImage=imageTemp;
+    frontImage = imageTemp;
     update(["Complete_screen"]);
   }
+
+  Future backCamera() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.camera);
+
+    if (image == null) return;
+    final imageTemp = File(image.path);
+    backImage = imageTemp;
+    update(["Complete_screen"]);
+  }
+
   void onRegisterTap() {
     if (validation()) {}
   }

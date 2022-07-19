@@ -7,11 +7,12 @@ import 'package:rainbow/utils/color_res.dart';
 Widget profileImage(/*ProfileController controller*/ String? profileImage,
     String? bgImage, bool? showImages) {
   return SizedBox(
-    height: Get.height*0.415,
+    height: Get.height * 0.415,
     width: Get.width,
     child: Stack(
       children: [
-        Padding(padding: const EdgeInsets.only(left: 15,right: 15),
+        Padding(
+          padding: const EdgeInsets.only(left: 15, right: 15),
           child: SizedBox(
             height: Get.height * 0.2857,
             width: Get.width,
@@ -61,7 +62,7 @@ Widget profileImage(/*ProfileController controller*/ String? profileImage,
             width: Get.width * 0.38666,
             child: showImages == false
                 ? Container(
-                    padding: EdgeInsets.all(Get.width*0.11),
+                    padding: EdgeInsets.all(Get.width * 0.11),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       gradient: LinearGradient(
@@ -73,9 +74,9 @@ Widget profileImage(/*ProfileController controller*/ String? profileImage,
                         end: Alignment.bottomCenter,
                       ),
                     ),
-              child: Center(
-                child: Image.asset(AssetRes.duck),
-              ),
+                    child: Center(
+                      child: Image.asset(AssetRes.duck),
+                    ),
                   )
                 : CachedNetworkImage(
                     imageUrl: profileImage.toString(),

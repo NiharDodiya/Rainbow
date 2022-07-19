@@ -4,7 +4,6 @@ import 'package:rainbow/utils/color_res.dart';
 
 import '../../../common/Widget/text_styles.dart';
 import '../../../utils/asset_res.dart';
-import '../../../utils/strings.dart';
 
 class AdNotificationsScreen extends StatelessWidget {
   const AdNotificationsScreen({Key? key}) : super(key: key);

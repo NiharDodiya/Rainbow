@@ -1,12 +1,12 @@
 import 'dart:convert';
 
+import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/myStory_model.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
 import 'package:rainbow/utils/pref_keys.dart';
-import 'package:http/http.dart' as http;
 
 class MyStoryApi {
   static Future postRegister() async {
@@ -15,7 +15,7 @@ class MyStoryApi {
     try {
       String url = EndPoints.myStory;
 
-  /*    Map<String, dynamic> param = {
+      /*    Map<String, dynamic> param = {
         "id_item": idItem,
         "description": description,
         "tag": list
@@ -34,8 +34,7 @@ class MyStoryApi {
         if (status == false) {
           flutterToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          flutterToast( jsonDecode(response.body)["message"]);
-
+          flutterToast(jsonDecode(response.body)["message"]);
         }
         return myStoryModelFromJson(response.body);
       }

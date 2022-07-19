@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-CancelFriendRequestModel cancelFriendRequestModelFromJson(String str) => CancelFriendRequestModel.fromJson(json.decode(str));
+CancelFriendRequestModel cancelFriendRequestModelFromJson(String str) =>
+    CancelFriendRequestModel.fromJson(json.decode(str));
 
-String cancelFriendRequestModelToJson(CancelFriendRequestModel data) => json.encode(data.toJson());
+String cancelFriendRequestModelToJson(CancelFriendRequestModel data) =>
+    json.encode(data.toJson());
 
 class CancelFriendRequestModel {
   CancelFriendRequestModel({
@@ -17,13 +19,14 @@ class CancelFriendRequestModel {
   bool? status;
   String? message;
 
-  factory CancelFriendRequestModel.fromJson(Map<String, dynamic> json) => CancelFriendRequestModel(
-    status: json["status"],
-    message: json["message"],
-  );
+  factory CancelFriendRequestModel.fromJson(Map<String, dynamic> json) =>
+      CancelFriendRequestModel(
+        status: json["status"],
+        message: json["message"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-  };
+        "status": status,
+        "message": message,
+      };
 }

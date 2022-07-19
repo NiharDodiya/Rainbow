@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/Story/story_screen.dart';
 import 'package:rainbow/screens/Home/ad_in_latest_feed/ad_in_latest_feed.dart';
@@ -23,78 +24,91 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        actions: [
-          Row(
-            children: [
-              SizedBox(
-                width: Get.width * 0.02,
-              ),
-              const Image(
-                image: AssetImage(AssetRes.locate),
-                height: 19.25,
-                width: 19.25,
-              ),
-              SizedBox(
-                width: Get.width * 0.02,
-              ),
-              Text(
-                "Bexley, London",
-                style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
-              ),
-              SizedBox(
-                width: Get.width * 0.37,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(() => SettingsScreen());
-                },
-                child: const Image(
-                  image: AssetImage(
-                    AssetRes.settings,
+    return Obx(() {
+      return Stack(
+        children: [
+          GetBuilder<HomeController>(
+            id: "home",
+            builder: (controller) {
+              return Scaffold(
+                backgroundColor: Colors.white,
+                appBar: AppBar(
+                  backgroundColor: Colors.white,
+                  elevation: 0,
+                  actions: [
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: Get.width * 0.02,
+                        ),
+                        const Image(
+                          image: AssetImage(AssetRes.locate),
+                          height: 19.25,
+                          width: 19.25,
+                        ),
+                        SizedBox(
+                          width: Get.width * 0.02,
+                        ),
+                        Text(
+                          "Bexley, London",
+                          style: gilroyBoldTextStyle(
+                              color: Colors.black, fontSize: 16),
+                        ),
+                        SizedBox(
+                          width: Get.width * 0.37,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(() => SettingsScreen());
+                          },
+                          child: const Image(
+                            image: AssetImage(
+                              AssetRes.settings,
+                            ),
+                            height: 19.25,
+                            width: 19.25,
+                          ),
+                        ),
+                        SizedBox(
+                          width: Get.width * 0.04,
+                        ),
+                        InkWell(
+                          onTap: () {},
+                          child: const Image(
+                            image: AssetImage(AssetRes.notify),
+                            height: 20,
+                            width: 20,
+                          ),
+                        ),
+                        SizedBox(
+                          width: Get.width * 0.05,
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                body: SingleChildScrollView(
+                  child: Column(
+                    children: [discover(), seeAll(), latestFeed()],
                   ),
-                  height: 19.25,
-                  width: 19.25,
                 ),
-              ),
-              SizedBox(
-                width: Get.width * 0.04,
-              ),
-              InkWell(
-                onTap: () {},
-                child: const Image(
-                  image: AssetImage(AssetRes.notify),
-                  height: 20,
-                  width: 20,
+                floatingActionButton: FloatingActionButton(
+                  child: Image.asset(
+                    AssetRes.add,
+                    height: 24,
+                    width: 24,
+                  ),
+                  onPressed: () {
+                    Get.to(() => StoryScreen());
+                  },
                 ),
-              ),
-              SizedBox(
-                width: Get.width * 0.05,
-              ),
-            ],
-          )
+              );
+            },
+          ),
+          controller.loader.isTrue ? SmallLoader() : SizedBox()
         ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [discover(), seeAll(), latestFeed()],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Image.asset(
-          AssetRes.add,
-          height: 24,
-          width: 24,
-        ),
-        onPressed: () {
-          Get.to(() => StoryScreen());
-        },
-      ),
-    );
+      );
+    });
   }
 
   Widget discover() {
@@ -212,7 +226,9 @@ class HomeScreen extends StatelessWidget {
                   height: 129,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: viewStoryController.friendStoryModel.data!.length,
+                    itemCount: viewStoryController.friendStoryModel.data == null
+                        ? 0
+                        : viewStoryController.friendStoryModel.data!.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return Padding(
@@ -229,42 +245,49 @@ class HomeScreen extends StatelessWidget {
                                     // Get.to(()=> StoryScreen());
                                     viewStoryController.init();
                                     Get.to(() => const ViewStoryScreen());
-
                                   },
-                                  child: Container(
+                                  child: SizedBox(
                                     height: 56,
                                     width: 56,
-                                   child:  CachedNetworkImage(
-                                    imageUrl:
-                                    viewStoryController.friendStoryModel.data![index].userDetail!.profileImage.toString(),
-                                    imageBuilder: (context, imageProvider) => Container(
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        image: DecorationImage(
-                                          image: imageProvider,
-                                          fit: BoxFit.cover,
+                                    child: CachedNetworkImage(
+                                      imageUrl: viewStoryController
+                                          .friendStoryModel
+                                          .data![index]
+                                          .userDetail!
+                                          .profileImage
+                                          .toString(),
+                                      imageBuilder: (context, imageProvider) =>
+                                          Container(
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                            image: imageProvider,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
+                                      // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
+                                      errorWidget: (context, url, error) =>
+                                          Container(
+                                        height: Get.height * 0.2857,
+                                        width: Get.width,
+                                        decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                    AssetRes.homePro))),
+                                      ),
+                                      fit: BoxFit.fill,
                                     ),
-                                    // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
-                                    errorWidget: (context, url, error) => Container(
-                                      height: Get.height * 0.2857,
-                                      width: Get.width,
-                                      decoration:   const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        image: DecorationImage(
-                                            image:
-                                            AssetImage(AssetRes.homePro))),
-                                    ),
-                                    fit: BoxFit.fill,
-                                  ),
                                   ),
                                 ),
                                 const SizedBox(
                                   height: 12,
                                 ),
                                 Text(
-                                  viewStoryController.friendStoryModel.data![index].userDetail!.fullName.toString(),
+                                  viewStoryController.friendStoryModel
+                                      .data![index].userDetail!.fullName
+                                      .toString(),
                                   style: gilroyMediumTextStyle(fontSize: 14),
                                 ),
                               ],
@@ -416,224 +439,239 @@ class HomeScreen extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: controller.isAd.length,
             itemBuilder: (context, index) {
-              return controller.isAd[index]?Padding(
-                padding: const EdgeInsets.only(bottom: 22.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: Container(
-                        height: 253,
-                        width: Get.width * 0.92266,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.white)),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 15.0, top: 20),
-                                  child: Container(
-                                    height: 40,
-                                    width: 40,
-                                    decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        image: DecorationImage(
-                                            image: AssetImage(
-                                                AssetRes.selfiePicture))),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 20.0, left: 12),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+              return controller.isAd[index]
+                  ? Padding(
+                      padding: const EdgeInsets.only(bottom: 22.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Center(
+                            child: Container(
+                              height: 253,
+                              width: Get.width * 0.92266,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(color: Colors.white)),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
                                     children: [
-                                      Text(
-                                        "Sally Wilson",
-                                        style:
-                                            gilroyBoldTextStyle(fontSize: 16),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 15.0, top: 20),
+                                        child: Container(
+                                          height: 40,
+                                          width: 40,
+                                          decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                  image: AssetImage(
+                                                      AssetRes.selfiePicture))),
+                                        ),
                                       ),
-                                      const SizedBox(
-                                        height: 3,
-                                      ),
-                                      Text(
-                                        "30 minutes ago",
-                                        style: textStyleFont12White400,
-                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 20.0, left: 12),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Sally Wilson",
+                                              style: gilroyBoldTextStyle(
+                                                  fontSize: 16),
+                                            ),
+                                            const SizedBox(
+                                              height: 3,
+                                            ),
+                                            Text(
+                                              "30 minutes ago",
+                                              style: textStyleFont12White400,
+                                            ),
+                                          ],
+                                        ),
+                                      )
                                     ],
                                   ),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: Get.height * 0.02,
-                            ),
-                            Center(
-                              child: SizedBox(
-                                width: Get.width * 0.85333,
-                                height: 96,
-                                child: Text(
-                                  Strings.latestFeedDes,
-                                  style: textStyleFont16WhitLight,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: Get.height * 0.025,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 15.0),
-                              child: SizedBox(
-                                height: 32,
-                                width: 134,
-                                child: Stack(
-                                  children: [
-                                    Container(
+                                  SizedBox(
+                                    height: Get.height * 0.02,
+                                  ),
+                                  Center(
+                                    child: SizedBox(
+                                      width: Get.width * 0.85333,
+                                      height: 96,
+                                      child: Text(
+                                        Strings.latestFeedDes,
+                                        style: textStyleFont16WhitLight,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: Get.height * 0.025,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 15.0),
+                                    child: SizedBox(
                                       height: 32,
-                                      width: 32,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Colors.white, width: 2),
-                                          shape: BoxShape.circle,
-                                          image: const DecorationImage(
-                                              image: AssetImage(AssetRes.lt2))),
+                                      width: 134,
+                                      child: Stack(
+                                        children: [
+                                          Container(
+                                            height: 32,
+                                            width: 32,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: Colors.white,
+                                                    width: 2),
+                                                shape: BoxShape.circle,
+                                                image: const DecorationImage(
+                                                    image: AssetImage(
+                                                        AssetRes.lt2))),
+                                          ),
+                                          Positioned(
+                                            left: 24,
+                                            child: Container(
+                                              height: 32,
+                                              width: 32,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.white,
+                                                      width: 2),
+                                                  shape: BoxShape.circle,
+                                                  image: const DecorationImage(
+                                                      image: AssetImage(
+                                                          AssetRes.lt1))),
+                                            ),
+                                          ),
+                                          Positioned(
+                                            left: 48,
+                                            child: Container(
+                                              height: 32,
+                                              width: 32,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Colors.white,
+                                                      width: 2),
+                                                  shape: BoxShape.circle,
+                                                  image: const DecorationImage(
+                                                      image: AssetImage(
+                                                          AssetRes.lt3))),
+                                            ),
+                                          ),
+                                          Positioned(
+                                              left: Get.width * 0.24,
+                                              top: Get.height * 0.01,
+                                              child: Text(
+                                                "+8 likes",
+                                                style: textStyleFont14White,
+                                              ))
+                                        ],
+                                      ),
                                     ),
-                                    Positioned(
-                                      left: 24,
-                                      child: Container(
-                                        height: 32,
-                                        width: 32,
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: Colors.white, width: 2),
-                                            shape: BoxShape.circle,
-                                            image: const DecorationImage(
+                                  ),
+                                  const SizedBox(
+                                    height: 7,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20.0),
+                                    child: Row(
+                                      children: [
+                                        const SizedBox(
+                                            height: 16,
+                                            width: 16,
+                                            child: Image(
                                                 image:
-                                                    AssetImage(AssetRes.lt1))),
-                                      ),
+                                                    AssetImage(AssetRes.eye))),
+                                        Text(
+                                          "23",
+                                          style: gilroyMediumTextStyle(
+                                              fontSize: 10),
+                                        ),
+                                        const Spacer(),
+                                        const SizedBox(
+                                            height: 16,
+                                            width: 16,
+                                            child: Image(
+                                                image: AssetImage(
+                                                    AssetRes.vector))),
+                                        const SizedBox(
+                                          width: 2,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 2.0),
+                                          child: Text(
+                                            "7",
+                                            style: gilroyMediumTextStyle(
+                                                fontSize: 10),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: Get.width * 0.05,
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            Get.to(
+                                                () => const CommentsScreen());
+                                          },
+                                          child: const SizedBox(
+                                            height: 16,
+                                            width: 16,
+                                            child: Image(
+                                              image:
+                                                  AssetImage(AssetRes.comment),
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 2,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 2.0),
+                                          child: Text(
+                                            "5",
+                                            style: gilroyMediumTextStyle(
+                                                fontSize: 10),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: Get.width * 0.05,
+                                        ),
+                                        const SizedBox(
+                                            height: 16,
+                                            width: 16,
+                                            child: Image(
+                                                image: AssetImage(
+                                                    AssetRes.thumbs))),
+                                        const SizedBox(
+                                          width: 2,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 5.0),
+                                          child: Text(
+                                            "8",
+                                            style: gilroyMediumTextStyle(
+                                                fontSize: 10),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: Get.width * 0.05,
+                                        )
+                                      ],
                                     ),
-                                    Positioned(
-                                      left: 48,
-                                      child: Container(
-                                        height: 32,
-                                        width: 32,
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: Colors.white, width: 2),
-                                            shape: BoxShape.circle,
-                                            image: const DecorationImage(
-                                                image:
-                                                    AssetImage(AssetRes.lt3))),
-                                      ),
-                                    ),
-                                    Positioned(
-                                        left: Get.width * 0.24,
-                                        top: Get.height * 0.01,
-                                        child: Text(
-                                          "+8 likes",
-                                          style: textStyleFont14White,
-                                        ))
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 7,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20.0),
-                              child: Row(
-                                children: [
-                                  const SizedBox(
-                                      height: 16,
-                                      width: 16,
-                                      child: Image(
-                                          image: AssetImage(AssetRes.eye))),
-                                  Text(
-                                    "23",
-                                    style: gilroyMediumTextStyle(fontSize: 10),
-                                  ),
-                                  const Spacer(),
-                                  const SizedBox(
-                                      height: 16,
-                                      width: 16,
-                                      child: Image(
-                                          image: AssetImage(AssetRes.vector))),
-                                  const SizedBox(
-                                    width: 2,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 2.0),
-                                    child: Text(
-                                      "7",
-                                      style:
-                                          gilroyMediumTextStyle(fontSize: 10),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: Get.width * 0.05,
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      Get.to(() => const CommentsScreen());
-                                    },
-                                    child: const SizedBox(
-                                      height: 16,
-                                      width: 16,
-                                      child: Image(
-                                        image: AssetImage(AssetRes.comment),
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 2,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 2.0),
-                                    child: Text(
-                                      "5",
-                                      style:
-                                          gilroyMediumTextStyle(fontSize: 10),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: Get.width * 0.05,
-                                  ),
-                                  const SizedBox(
-                                      height: 16,
-                                      width: 16,
-                                      child: Image(
-                                          image: AssetImage(AssetRes.thumbs))),
-                                  const SizedBox(
-                                    width: 2,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
-                                    child: Text(
-                                      "8",
-                                      style:
-                                          gilroyMediumTextStyle(fontSize: 10),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: Get.width * 0.05,
                                   )
                                 ],
                               ),
-                            )
-                          ],
-                        ),
+                            ),
+                          )
+                        ],
                       ),
                     )
-                  ],
-                ),
-              ):adInLatestFeed();
+                  : adInLatestFeed();
             },
           ),
         ],

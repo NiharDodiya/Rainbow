@@ -8,7 +8,6 @@ import 'package:rainbow/helper.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_api.dart';
 import 'package:rainbow/screens/auth/login/login_screen.dart';
 import 'package:rainbow/screens/auth/register/api/register_api.dart';
-import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalitesJson.dart';
 import 'package:rainbow/screens/auth/register/register_json.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
@@ -46,7 +45,7 @@ class RegisterController extends GetxController {
     "1",
     "2",
   ];
-  List<String> noOfKids = ["0","1", "2", "3", "4", "5", "6"];
+  List<String> noOfKids = ["0", "1", "2", "3", "4", "5", "6"];
   bool martialStatusDropdown = false;
   bool ethnicityDropdown = false;
   bool kidsDropdown = false;

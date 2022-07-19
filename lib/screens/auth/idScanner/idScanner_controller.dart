@@ -4,12 +4,10 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:camera/camera.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/idVerification/idverification_controller.dart';
 
 class IdScannerController extends GetxController {
@@ -63,6 +61,7 @@ class IdScannerController extends GetxController {
     isComplete = true;
     update();
   }
+
   void takePicForBack() async {
     if (imageBack != null) {
       return;
@@ -82,7 +81,10 @@ class IdScannerController extends GetxController {
     isComplete = false;
     update();
   }
-  IdVerificationController idVerificationController = Get.put(IdVerificationController());
+
+  IdVerificationController idVerificationController =
+      Get.put(IdVerificationController());
+
   Future<void> onImageSubmitFront() async {
     IdVerificationController idController = Get.find();
     File image2 = await getCropImage();
@@ -92,6 +94,7 @@ class IdScannerController extends GetxController {
     idVerificationController.uploadImageApi();
     Get.back();
   }
+
   Future<void> onImageSubmitBack() async {
     IdVerificationController idController = Get.find();
     File image2 = await getCropImage();

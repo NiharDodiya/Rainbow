@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/Home/home_controller.dart';
-import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
-import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
@@ -33,10 +30,12 @@ Widget connectAndBlock({
           const SizedBox(
             height: 5,
           ),
-          subTitle == null ? const SizedBox() : Text(
-            subTitle.toString(),
-            style: gilroyRegularTextStyle(fontSize: 14),
-          ),
+          subTitle == null
+              ? const SizedBox()
+              : Text(
+                  subTitle.toString(),
+                  style: gilroyRegularTextStyle(fontSize: 14),
+                ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,8 +67,8 @@ Widget connectAndBlock({
                   : connect == "sent"
                       ? InkWell(
                           onTap: () {
-                             controller.cancelFriendRequestDetails(id!);
-                             controller.update(["connections"]);
+                            controller.cancelFriendRequestDetails(id!);
+                            controller.update(["connections"]);
                           },
                           child: Row(
                             children: [
