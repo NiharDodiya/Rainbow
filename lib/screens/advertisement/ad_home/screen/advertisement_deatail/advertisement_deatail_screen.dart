@@ -8,6 +8,7 @@ import 'package:rainbow/screens/advertisement/ad_home/screen/edit_advertisement/
 import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
+import 'package:rainbow/utils/strings.dart';
 
 import '../create_advertisement/create_advertisement_controller.dart';
 
@@ -59,19 +60,19 @@ class AdvertisementDeatailScreen extends StatelessWidget {
           Row(
             children: [
               Text(
-                "Surrogate Mom",
+                Strings.surrogateMom,
                 style: gilroySemiBoldTextStyle(fontSize: 18),
               ),
               const Spacer(),
               Text(
-                "Summary",
+                Strings.summary,
                 style: gilroySemiBoldTextStyle(
                     fontSize: 18, color: ColorRes.color_EED82F),
               ),
             ],
           ),
           Text(
-            "\$200",
+           Strings.doller200 ,
             style: gilroySemiBoldTextStyle(
               fontSize: 14,
             ),
@@ -88,7 +89,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
           Row(
             children: [
               Text(
-                "Tags",
+                Strings.tags,
                 style: gilroySemiBoldTextStyle(
                   fontSize: 14,
                 ),
@@ -131,7 +132,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
             height: 25,
           ),
           Text(
-            "Call to Action",
+            Strings.callToAction,
             style: gilroyMediumTextStyle(fontSize: 18),
           ),
           const SizedBox(
@@ -145,7 +146,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
             height: 25,
           ),
           Text(
-            "URL Link",
+           Strings.urlLink ,
             style: gilroyMediumTextStyle(fontSize: 18),
           ),
           const SizedBox(
@@ -163,7 +164,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
               Get.to(() => SetupDateScreen());
             },
             child: Text(
-              "Next",
+              Strings.next,
               style: gilroyBoldTextStyle(fontSize: 16, color: ColorRes.black),
             ),
           ),

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/edit_advertisement/edit_advertisement_controller.dart';
+import 'package:rainbow/utils/strings.dart';
 import '../../../../../common/Widget/text_styles.dart';
 import '../../../../../utils/asset_res.dart';
 import '../../../../../utils/color_res.dart';
@@ -76,7 +77,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                   Get.back();
                 },
                 child: Text(
-                  "Edit Advertisement",
+                 Strings.editAdvertisement ,
                   style: gilroyBoldTextStyle(),
                 ),
               ),
@@ -263,10 +264,10 @@ class EditAdvertisementscreen extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Text("Location", style: poppinsMediumBold(fontSize: 18)),
+                      Text(Strings.location, style: poppinsMediumBold(fontSize: 18)),
                       const Spacer(),
                       Text(
-                        "Edit",
+                        Strings.edit,
                         style: poppinsMediumBold(fontSize: 18)
                             .copyWith(decoration: TextDecoration.underline),
                       ),
@@ -279,19 +280,19 @@ class EditAdvertisementscreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Country : ${createAdvertisementController.addCountry!}",
+                        "${Strings.country} : ${createAdvertisementController.addCountry!}",
                         style: poppinsRegularBold(
                           fontSize: 14,
                         ),
                       ),
                       Text(
-                        "Street :${createAdvertisementController.streetController.text}",
+                        "${Strings.street} :${createAdvertisementController.streetController.text}",
                         style: poppinsRegularBold(
                           fontSize: 14,
                         ),
                       ),
                       Text(
-                        "City:${createAdvertisementController.cityController.text}",
+                        "${Strings.city}:${createAdvertisementController.cityController.text}",
                         style: poppinsRegularBold(
                           fontSize: 14,
                         ),
@@ -537,7 +538,7 @@ class EditAdvertisementscreen extends StatelessWidget {
               height: 16,
             ),
             const SubmitButton(
-              text: "Post Advertisement",
+              text: Strings.postAdvertisement,
             ),
             const SizedBox(
               height: 41,

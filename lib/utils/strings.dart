@@ -377,4 +377,57 @@ class Strings {
   static const supporterror01 = "Message is required";
   static const subject = "Subject";
   static const supportError02 = "Subject is requred";
+  static const datesuppo = "12/30/2021";
+  static const seriz = "1235CA2B2";
+
+  ///-----------------------------------support creat ---------------------
+  static const attachImage = "Attach images or proof";
+  static const surrogateMom = "Surrogate Mom";
+  static const summary = "Summary";
+  static const doller200 = "\$200";
+  static const tags = "Tags";
+
+  ///------------------------------Ad _home --->Create Advertisement--------
+  static const callToAction = "Call to Action";
+  static const urlLink = "URL Link";
+  static const tagsError = "Tags is required";
+  static const imageError = "image is required";
+  static const titleError = "Title is required";
+  static const canedaError = "Caneda is required";
+  static const provinceError = "Province is required";
+  static const dateError = "Date is requreid";
+  static const descriptionError = "Description is requreid";
+  static const callActionError = "select call To Action is requreid";
+  static const addAdvertisement = "Add advertisement";
+  static const tagsSeparated = "Tags(Separated by space)";
+  static const uploadImage = "Upload Images";
+  static const title = "Title";
+  static const useCurrentLocation = "Use current location";
+  static const caneda = "Canada";
+  static const plase = "Your place name/number + Street/ Road";
+  static const proviceHint = "Province / Territory (Canada)";
+  static const postalHint = "Postal Code (Canada)";
+  static const description = "Description";
+  static const urlHint = "URL link (www.mymom.com)";
+  // static const tags = ;
+
+  ///_______________________________Ad-Home--> payment Succe. and failed_________
+  static const paymentSuccessful = "Payment Successful";
+  static const playerName = "Payer’s Name";
+  static const miracleKeen = "Miracle Keen";
+  static const transactionNumber = "Transaction Number";
+  static const traNo = "122900083HN";
+  static const service = "Service";
+  static const postAds = "Post Ads";
+  static const backToHome = "Back to Home";
+  static const paymentFailed = "Payment Failed";
+
+  ///_______________________________Ad-Home--> payment Succe. and failed_________
+
+  static const editAdvertisement = "Edit Advertisement";
+  static const location = "Location";
+  static const postAdvertisement = "Post Advertisement";
+  // static const tags = ;
+  // static const tags = ;
+
 }

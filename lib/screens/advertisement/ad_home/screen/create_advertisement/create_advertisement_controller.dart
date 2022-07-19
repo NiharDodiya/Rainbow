@@ -104,37 +104,37 @@ class CreateAdvertisementController extends GetxController {
 
   bool validation() {
     if (tagsController.text.isEmpty) {
-      errorToast("Tags is required");
+      errorToast(Strings.tagsError);
       return false;
     } else if (imagePath == null) {
-      errorToast("image is required");
+      errorToast(Strings.imageError);
       return false;
     } else if (titleController.text.isEmpty) {
-      errorToast("Title is required");
+      errorToast(Strings.titleError);
       return false;
     } else if (canedaController.text.isEmpty) {
-      errorToast("Caneda is required");
+      errorToast(Strings.canedaError);
       return false;
     } else if (streetController.text.isEmpty) {
       errorToast(Strings.streetError);
       return false;
     } else if (cityController.text.isEmpty) {
-      errorToast("city is required");
+      errorToast(Strings.cityError);
       return false;
     } else if (preovinceController.text.isEmpty) {
-      errorToast("Province is required");
+      errorToast(Strings.provinceError);
       return false;
     } else if (postalCodeController.text.isEmpty) {
       errorToast(Strings.postalCodeError);
       return false;
     } else if (dateController.text.isEmpty) {
-      errorToast("Date is requreid");
+      errorToast(Strings.date);
       return false;
     } else if (descriptoionController.text.isEmpty) {
-      errorToast("Description is requreid");
+      errorToast(Strings.descriptionError);
       return false;
     } else if (callToAction == null) {
-      errorToast("select call To Action is requreid");
+      errorToast(Strings.callActionError);
       return false;
     } else if (urlLinkController.text.isEmpty) {
       errorToast(Strings.websiteError);

@@ -132,7 +132,7 @@ class SupportcreateScreen extends StatelessWidget {
               ),
               Center(
                 child: Text(
-                  "Attach images or proof",
+                 Strings.attachImage ,
                   style: gilroyMediumTextStyle(fontSize: 14),
                 ),
               ),
@@ -144,7 +144,7 @@ class SupportcreateScreen extends StatelessWidget {
                   controller.valid();
                 },
                 child: Text(
-                  "Send Message",
+                 Strings.sendMessage ,
                   style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
                 ),
               ),

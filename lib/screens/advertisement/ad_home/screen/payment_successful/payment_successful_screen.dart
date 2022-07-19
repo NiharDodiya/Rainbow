@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/utils/asset_res.dart';
+import 'package:rainbow/utils/strings.dart';
 
 import '../../../../../utils/color_res.dart';
 import '../../../ad_dashboard/ad_dashboard.dart';
@@ -38,7 +39,7 @@ class PaymentSuccessfulScreen extends StatelessWidget {
                   height: Get.height * 0.165024,
                 ),
                 Text(
-                  "Payment Successful",
+                  Strings.paymentSuccessful,
                   style: gilroySemiBoldTextStyle(fontSize: 24),
                 ),
                 SizedBox(
@@ -85,42 +86,42 @@ class PaymentSuccessfulScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Payer’s Name",
+                             Strings.playerName ,
                               style: poppinsRegularBold(fontSize: 12),
                             ),
                             SizedBox(
                               height: Get.height * 0.007389,
                             ),
                             Text(
-                              "Miracle Keen",
+                              Strings.miracleKeen,
                               style: poppinsMediumBold(fontSize: 14),
                             ),
                             SizedBox(
                               height: Get.height * 0.0209,
                             ),
                             Text(
-                              "Transaction Number",
+                             Strings.transactionNumber ,
                               style: poppinsRegularBold(fontSize: 12),
                             ),
                             SizedBox(
                               height: Get.height * 0.007389,
                             ),
                             Text(
-                              "122900083HN",
+                             Strings.traNo ,
                               style: poppinsMediumBold(fontSize: 14),
                             ),
                             SizedBox(
                               height: Get.height * 0.0209,
                             ),
                             Text(
-                              "Service",
+                             Strings.service ,
                               style: poppinsRegularBold(fontSize: 12),
                             ),
                             SizedBox(
                               height: Get.height * 0.007389,
                             ),
                             Text(
-                              "Post Ads",
+                             Strings.postAds ,
                               style: poppinsMediumBold(fontSize: 14),
                             ),
                             SizedBox(
@@ -140,7 +141,7 @@ class PaymentSuccessfulScreen extends StatelessWidget {
                   onTap: () {
                     Get.off(() => AdvertisementDashBord());
                   },
-                  text: "Back to Home",
+                  text:Strings.backToHome ,
                 ),
                 SizedBox(
                   height: Get.height * 0.02832,

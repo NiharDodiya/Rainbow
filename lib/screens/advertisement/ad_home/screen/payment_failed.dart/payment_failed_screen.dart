@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/utils/strings.dart';
 
 import '../../../../../common/Widget/buttons.dart';
 import '../../../../../common/Widget/text_styles.dart';
@@ -37,7 +38,7 @@ class PaymentFailedScreen extends StatelessWidget {
                   height: Get.height * 0.165024,
                 ),
                 Text(
-                  "Payment Failed",
+                 Strings.paymentFailed ,
                   style: gilroySemiBoldTextStyle(fontSize: 24),
                 ),
                 SizedBox(
@@ -93,42 +94,42 @@ class PaymentFailedScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Payer’s Name",
+                              Strings.playerName,
                               style: poppinsRegularBold(fontSize: 12),
                             ),
                             SizedBox(
                               height: Get.height * 0.007389,
                             ),
                             Text(
-                              "Miracle Keen",
+                              Strings.miracleKeen,
                               style: poppinsMediumBold(fontSize: 14),
                             ),
                             SizedBox(
                               height: Get.height * 0.0209,
                             ),
                             Text(
-                              "Transaction Number",
+                              Strings.transactionNumber,
                               style: poppinsRegularBold(fontSize: 12),
                             ),
                             SizedBox(
                               height: Get.height * 0.007389,
                             ),
                             Text(
-                              "122900083HN",
+                              Strings.traNo,
                               style: poppinsMediumBold(fontSize: 14),
                             ),
                             SizedBox(
                               height: Get.height * 0.0209,
                             ),
                             Text(
-                              "Service",
+                              Strings.service,
                               style: poppinsRegularBold(fontSize: 12),
                             ),
                             SizedBox(
                               height: Get.height * 0.007389,
                             ),
                             Text(
-                              "Post Ads",
+                              Strings.postAds,
                               style: poppinsMediumBold(fontSize: 14),
                             ),
                             SizedBox(
@@ -145,7 +146,7 @@ class PaymentFailedScreen extends StatelessWidget {
                 ),
                 SizedBox(height: Get.height * 0.0714),
                 SubmitButton(
-                  text: "Back to Home",
+                  text: Strings.backToHome,
                   onTap: () {
                     Get.off(()=> AdvertisementDashBord());
                   },
