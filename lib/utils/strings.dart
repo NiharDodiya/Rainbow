@@ -226,7 +226,6 @@ class Strings {
   static const block = "Block";
   static const myCompanyDes =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem a commodo consequat ... more ";
-  static const myCompanyDes = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem a commodo consequat  ";
   static const typeYourReply = "Type your reply...";
   static const enterLocation = "Enter Location";
 
@@ -369,7 +368,7 @@ class Strings {
   static const myEmail = "myemaill@gmail.com";
   static const raymondMarcos = "Raymond Marcos";
   static const logout02 = "LOG OUT";
-  static const logout02 ="LOG OUT";
+
   static const sun ="Sun";
   static const mon ="Mon";
   static const tue ="Tue";
@@ -441,11 +440,8 @@ class Strings {
   static const paymentSuccessful = "Payment Successful";
   static const playerName = "Payer’s Name";
   static const miracleKeen = "Miracle Keen";
-  static const transactionNumber = "Transaction Number";
   static const traNo = "122900083HN";
-  static const service = "Service";
-  static const postAds = "Post Ads";
-  static const backToHome = "Back to Home";
+
   static const paymentFailed = "Payment Failed";
 
   ///_______________________________Ad-Home--> payment Succe. and failed_________

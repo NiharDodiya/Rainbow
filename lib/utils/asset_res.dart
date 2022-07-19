@@ -98,6 +98,7 @@ class AssetRes {
   static const i1 = "${images}i1.png";
   static const i2 = "${images}i2.png";
   static const i3 = "${images}i3.png";
+  static const flag01 = "${images}flag01.png";
 
   ///_______________________________settings________________________________
   static const profileSettinges = '${settingsImage}profileSettinges.png';
@@ -163,6 +164,4 @@ class AssetRes {
   static const adsdetail = "${images}adsdetail.png";
   static const editicons = "${icons}editicons.png";
   static const blurBack = "${images}blurBack.png";
-
-
 }

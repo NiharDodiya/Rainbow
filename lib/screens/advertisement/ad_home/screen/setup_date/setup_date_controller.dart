@@ -1,10 +1,12 @@
+import 'package:country_picker/country_picker.dart';
 import 'package:get/get.dart';
 
 class SetupDateController extends GetxController {
   DateTime startTime = DateTime.now();
   DateTime endtime = DateTime.now();
   List<String> list = ["1", "2", "3"];
-  String select = '';
+  String select = 'Caneda';
+
 
   rangSelect(start, end, range) {
     startTime = start;
@@ -15,6 +17,17 @@ class SetupDateController extends GetxController {
   drop(val) {
     select = val;
     update(['drop']);
+  }
+   void onCountryTap( context) {
+    showCountryPicker(
+      context: context,
+      showPhoneCode: false,
+      onSelect: ( country) {
+        // countryModel = country;
+        select =country.toString();
 
+        update(['Phone']);
+      },
+    );
   }
 }

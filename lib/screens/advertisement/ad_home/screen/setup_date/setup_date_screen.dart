@@ -314,40 +314,78 @@ class SetupDateScreen extends StatelessWidget {
                               style: gilroyMediumTextStyle(fontSize: 18),
                             ),
                             const Spacer(),
-                            Container(
-                              decoration: const BoxDecoration(
-                                color: ColorRes.white,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10),
+                            Column(
+                              children: [
+                                Container(
+                                  decoration: const BoxDecoration(
+                                    color: ColorRes.white,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
+                                  ),
+                                  height: 20,
+                                  width: 80,
+                                  child: Expanded(
+                                    child: GetBuilder<SetupDateController>(
+                                        id: 'drop',
+                                        builder: (controller) =>
+                                            // Text(setupDateController.select)
+                                            Row(
+                                              children: [
+                                                Image.asset(AssetRes.flag01),
+                                                Text(
+                                                  setupDateController.select,
+                                                  style: gilroyMediumTextStyle(
+                                                      fontSize: 12),
+                                                ),
+                                              ],
+                                            )
+
+                                        // DropdownButton(
+                                        //   dropdownColor: ColorRes.white,
+                                        //   hint: Center(
+                                        //     child: Text(
+                                        //       "caneda",
+                                        //       style: gilroyMediumTextStyle(
+                                        //           fontSize: 12,
+                                        //           color: ColorRes.black),
+                                        //     ),
+                                        //   ),
+                                        //   items: controller.list.map((String items) {
+                                        //     return DropdownMenuItem(
+                                        //       value: controller.list,
+                                        //       child: Text(items),
+                                        //     );
+                                        //   }).toList(),
+                                        //   onChanged: (newValue) {
+                                        //     controller.drop(newValue);
+                                        //   },
+                                        // ),
+                                        ),
+                                  ),
                                 ),
-                              ),
-                              height: 20,
-                              width: 80,
-                              child: Expanded(
-                                child: GetBuilder<SetupDateController>(
-                                  id: 'drop',
-                                  builder: (controller) => DropdownButton(
-                                    dropdownColor: ColorRes.white,
-                                    hint: Center(
+                                const SizedBox(
+                                  height: 1,
+                                ),
+                                SizedBox(
+                                  height: 50,
+                                  width: 60,
+                                  child: ListView.builder(
+                                    itemCount: setupDateController.list.length,
+                                    itemBuilder: (context, index) => Container(
+                                      height: 20,
+                                      width: 40,
+                                      decoration: const BoxDecoration(
+                                          color: ColorRes.white),
                                       child: Text(
-                                        "caneda",
-                                        style: gilroyMediumTextStyle(
-                                            fontSize: 12,
+                                        setupDateController.list[index],
+                                        style: const TextStyle(
                                             color: ColorRes.black),
                                       ),
                                     ),
-                                    items: controller.list.map((String items) {
-                                      return DropdownMenuItem(
-                                        value: controller.list,
-                                        child: Text(items),
-                                      );
-                                    }).toList(),
-                                    onChanged: (newValue) {
-                                      controller.drop(newValue);
-                                    },
                                   ),
                                 ),
-                              ),
+                              ],
                             ),
                             SizedBox(
                               width: Get.width * 0.0293,
@@ -374,7 +412,7 @@ class SetupDateScreen extends StatelessWidget {
                       backgroundColor: ColorRes.white,
                       onClosing: () {},
                       constraints: BoxConstraints(
-                        maxHeight: Get.height - (Get.height * 0.0480  ),
+                        maxHeight: Get.height - (Get.height * 0.0480),
                       ),
 
                       // enableDrag: true,
@@ -539,8 +577,8 @@ class ShowBottomNext extends StatelessWidget {
                   height: Get.height * 0.0665,
                 ),
                 SubmitButton(
-                    onTap: (){
-                    Get.to(()=>const PaymentSuccessfulScreen());
+                  onTap: () {
+                    Get.to(() => const PaymentSuccessfulScreen());
                   },
                   child: Text(
                     "Pay 120.00USD",
@@ -554,8 +592,8 @@ class ShowBottomNext extends StatelessWidget {
                   height: Get.height * 0.0246,
                 ),
                 SubmitButton(
-                  onTap: (){
-                    Get.to(()=>const PaymentFailedScreen());
+                  onTap: () {
+                    Get.to(() => const PaymentFailedScreen());
                   },
                   child: Text(
                     "Cancel",
