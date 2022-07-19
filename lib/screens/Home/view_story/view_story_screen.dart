@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -74,9 +75,28 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                   child: Container(color: Colors.black),
                 ),
                 Positioned.fill(
-                  child: Image.network(
+                  child:CachedNetworkImage(
+                    imageUrl:
                     story.storyItem.toString(),
-                    fit: BoxFit.cover,
+                    imageBuilder: (context, imageProvider) => Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
+                    errorWidget: (context, url, error) => Container(
+                      height: Get.height * 0.2857,
+                      width: Get.width,
+                      decoration:   const BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              image:
+                              AssetImage(AssetRes.homePro))),
+                    ),
+                    fit: BoxFit.fill,
                   ),
                 ),
               ],
