@@ -82,7 +82,9 @@ class AddStoryViewScreen extends StatelessWidget {
               top: Get.height * 0.85,
               left: Get.width * 0.08,
               child: InkWell(
-                onTap: controller.onStoryPost,
+                onTap: () {
+                   controller.onStoryPost();
+                },
                 child: Container(
                   height: Get.height * 0.07389,
                   width: Get.width * 0.8,
@@ -139,20 +141,7 @@ class AddStoryViewScreen extends StatelessWidget {
                               'photo':
                                   'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
                             },
-                            /*  {
-                              'id': 'asfgasga41',
-                              'display': 'markT',
-                              'full_name': 'Mark Twain',
-                              'photo':
-                              'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
-                            },
-                            {
-                              'id': 'asfsaf451a',
-                              'display': 'JhonL',
-                              'full_name': 'Jhon Legend',
-                              'photo':
-                              'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
-                            },*/
+
                           ],
                           matchAll: false,
                           suggestionBuilder: (data) {

@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/blocList_api/blockList_api.dart';
@@ -16,6 +17,8 @@ class HomeController extends GetxController {
   RxBool loader = false.obs;
   ProfileController controller = Get.put(ProfileController());
   ListOfFriendRequestModel listOfFriendRequestModel = ListOfFriendRequestModel();
+  List<bool> isAd =  List.generate(10,(index)=>Random().nextInt(2) == 1);
+
 
 
   @override
@@ -25,7 +28,6 @@ class HomeController extends GetxController {
     countryNationalites();
     blockListDetailes();
     listOfFriedRequestDetails();
-
     controller.viewProfileDetails();
     super.onInit();
   }

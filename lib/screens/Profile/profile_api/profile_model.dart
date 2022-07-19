@@ -111,7 +111,7 @@ class Data {
   bool? testimonials;
   bool? visitors;
   String? isFriends;
-  bool? isBlock;
+  String? isBlock;
   List<UserView>? userView;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(

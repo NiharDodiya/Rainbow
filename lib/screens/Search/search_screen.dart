@@ -18,73 +18,71 @@ class SearchScreen extends StatelessWidget {
           onTap: controller.onScreenTap,
           child: Scaffold(
             backgroundColor: Colors.white,
-            body: SingleChildScrollView(
-              child: Stack(
-                children: [
-                  Column(children: [
-                    appBar(),
-                    textField(),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    profile(),
-                  ]),
-                  GetBuilder<SearchController>(
-                    id: "Search",
-                    builder: (controller) {
-                      return controller.advance == true
-                          ? Positioned(
-                              top: Get.height * 0.078,
-                              left: Get.width * 0.58,
-                              child: SizedBox(
-                                height: 218,
-                                width: 142,
-                                child: ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemCount: controller.advanceSearch.length,
-                                  itemBuilder: (context, index) {
-                                    return Container(
-                                      height: 40,
+            body: Stack(
+              children: [
+                Column(children: [
+                  appBar(),
+                  textField(),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  profile(),
+                ]),
+                GetBuilder<SearchController>(
+                  id: "Search",
+                  builder: (controller) {
+                    return controller.advance == true
+                        ? Positioned(
+                            top: Get.height * 0.105,
+                            left: Get.width * 0.58,
+                            child: Container(
+                              height: 200,
+                              width: 142,
+                              padding: EdgeInsets.zero,
+                              color: ColorRes.color_4F359B,
+                              child: ListView.separated(
+                                shrinkWrap: true,
+                                itemBuilder: (context, index) {
+                                  return InkWell(
+                                    onTap: () {
+                                      controller.onTapAdvanceSearchMenu(index);
+                                    },
+                                    child: Container(
                                       width: 142,
-                                      color: ColorRes.color_4F359B,
+                                      height: 37,
+                                      alignment: Alignment.centerLeft,
                                       child: Padding(
                                         padding: const EdgeInsets.only(
-                                          left: 5,
+                                          left: 10,
                                         ),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            const SizedBox(
-                                              height: 5,
-                                            ),
-                                            Text(
-                                                controller.advanceSearch[index]
-                                                    .toString(),
-                                                style: gilroyBoldTextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 12)),
-                                            const SizedBox(
-                                              height: 4,
-                                            ),
-                                            const Divider(
-                                              thickness: 1,
-                                              color: ColorRes.white,
-                                            ),
-                                          ],
+                                        child: Text(
+                                          controller.advanceSearch[index]
+                                              .toString(),
+                                          style: gilroyBoldTextStyle(
+                                              color: Colors.white,
+                                              fontSize: 12),
                                         ),
                                       ),
-                                    );
-                                  },
-                                ),
+                                    ),
+                                  );
+                                },
+                                separatorBuilder: (context, index) {
+                                  return const Divider(
+                                    thickness: 1,
+                                    color: ColorRes.white,
+                                    height: 2,
+                                  );
+                                },
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: controller.advanceSearch.length,
+                                padding: const EdgeInsets.only(top: 0),
                               ),
-                            )
-                          : const SizedBox();
-                    },
-                  )
-                ],
-              ),
+                            ),
+                          )
+                        : const SizedBox();
+                  },
+                )
+              ],
             ),
           ),
         );
@@ -104,7 +102,7 @@ class SearchScreen extends StatelessWidget {
               children: [
                 Text(
                   Strings.search,
-                  style: gilroyBoldTextStyle(fontSize: 20,color: Colors.black),
+                  style: gilroyBoldTextStyle(fontSize: 20, color: Colors.black),
                 ),
                 SizedBox(
                   width: Get.width * 0.47,
@@ -115,7 +113,8 @@ class SearchScreen extends StatelessWidget {
                   },
                   child: Text(
                     Strings.advancedSearch,
-                    style: gilroyBoldTextStyle(fontSize: 12,color:  ColorRes.color_9597A1),
+                    style: gilroyBoldTextStyle(
+                        fontSize: 12, color: ColorRes.color_9597A1).copyWith(decoration: TextDecoration.underline,),
                   ),
                 ),
                 SizedBox(
@@ -176,159 +175,166 @@ class SearchScreen extends StatelessWidget {
   }
 
   Widget profile() {
-    return Container(
-      width: Get.width,
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            ColorRes.color_50369C,
-            ColorRes.color_D18EEE,
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
-      ),
-      child: Column(
-        children: [
-          ListView.builder(
-            shrinkWrap: true,
-            padding: const EdgeInsets.only(top: 16),
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: controller.search.length,
-            itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  Stack(
+    return Expanded(
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Container(
+          width: Get.width,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                ColorRes.color_50369C,
+                ColorRes.color_D18EEE,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: Column(
+            children: [
+              ListView.builder(
+                shrinkWrap: true,
+                padding: const EdgeInsets.only(top: 16),
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: controller.search.length,
+                itemBuilder: (context, index) {
+                  return Column(
                     children: [
-                      SizedBox(
-                        height: 232,
-                        width: Get.width * 0.90133,
-                        child: const Image(image: AssetImage(AssetRes.woman)),
-                      ),
-                      Positioned(
-                        top: Get.height * 0.03,
-                        left: Get.width * 0.05,
-                        child: Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.white, width: 3),
+                      Stack(
+                        children: [
+                          SizedBox(
+                            height: 232,
+                            width: Get.width * 0.90133,
+                            child: const Image(image: AssetImage(AssetRes.woman)),
                           ),
-                          child: const Image(image: AssetImage(AssetRes.se)),
-                        ),
-                      ),
-                      Container(
-                          height: 232,
-                          width: Get.width * 0.90133,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            gradient: LinearGradient(
-                              colors: [
-                                ColorRes.color_141414.withOpacity(0.1),
-                                ColorRes.color_141414.withOpacity(0.1),
-                                ColorRes.color_141414.withOpacity(0.5),
-                                ColorRes.color_141414.withOpacity(0.8),
-                                ColorRes.color_141414
-                              ],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                            ),
-                          )),
-                      Positioned(
-                          top: Get.height * 0.255,
-                          left: 15,
-                          child: Text(
-                            "Sallie Wilson",
-                            style: textStyleFont14WhiteBold,
-                          )),
-                      Positioned(
-                          top: Get.height * 0.28,
-                          left: 15,
-                          child: Text(
-                            "SURROGATE MOM",
-                            style: textStyleFont12White400,
-                          )),
-                      Positioned(
-                          top: Get.height * 0.04,
-                          left: Get.width * 0.8,
-                          child: GestureDetector(
-                              onTap: () {
-                                controller.onMoreButtonTap(index);
-                              },
-                              child: const Icon(Icons.more_horiz))),
-                      controller.connect[index] == true
-                          ? Positioned(
-                              top: Get.height * 0.07,
-                              left: Get.width * 0.58,
-                              child: Container(
-                                height: 69,
-                                width: 105,
-                                color: ColorRes.color_50369C.withOpacity(0.45),
-                                child: Column(
-                                  children: [
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    Row(
-                                      children: [
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Image.asset(
-                                          AssetRes.profilep,
-                                          height: 22,
-                                          width: 22,
-                                          color: ColorRes.color_FFB2B2,
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          Strings.connect,
-                                          style: gilroyBoldTextStyle(fontSize: 12),
-                                        )
-                                      ],
-                                    ),
-                                    const Divider(
-                                      thickness: 1.5,
-                                      color: Colors.white,
-                                    ),
-                                    Row(
-                                      children: [
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Image.asset(
-                                          AssetRes.block,
-                                          height: 22,
-                                          width: 22,
-                                          color: ColorRes.color_FFB2B2,
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          Strings.block,
-                                          style: gilroyBoldTextStyle(fontSize: 12),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                          Positioned(
+                            top: Get.height * 0.03,
+                            left: Get.width * 0.05,
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(color: Colors.white, width: 3),
                               ),
-                            )
-                          : const SizedBox()
+                              child: const Image(image: AssetImage(AssetRes.se)),
+                            ),
+                          ),
+                          Container(
+                              height: 232,
+                              width: Get.width * 0.90133,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                gradient: LinearGradient(
+                                  colors: [
+                                    ColorRes.color_141414.withOpacity(0.1),
+                                    ColorRes.color_141414.withOpacity(0.1),
+                                    ColorRes.color_141414.withOpacity(0.5),
+                                    ColorRes.color_141414.withOpacity(0.8),
+                                    ColorRes.color_141414
+                                  ],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                ),
+                              )),
+                          Positioned(
+                              top: Get.height * 0.255,
+                              left: 15,
+                              child: Text(
+                                "Sallie Wilson",
+                                style: textStyleFont14WhiteBold,
+                              )),
+                          Positioned(
+                              top: Get.height * 0.28,
+                              left: 15,
+                              child: Text(
+                                "SURROGATE MOM",
+                                style: textStyleFont12White400,
+                              )),
+                          Positioned(
+                              top: Get.height * 0.04,
+                              left: Get.width * 0.8,
+                              child: GestureDetector(
+                                  onTap: () {
+                                    controller.onMoreButtonTap(index);
+                                  },
+                                  child: const Icon(Icons.more_horiz))),
+                          controller.connect[index] == true
+                              ? Positioned(
+                                  top: Get.height * 0.07,
+                                  left: Get.width * 0.58,
+                                  child: Container(
+                                    height: 69,
+                                    width: 105,
+                                    color: ColorRes.color_50369C.withOpacity(0.45),
+                                    child: Column(
+                                      children: [
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Row(
+                                          children: [
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Image.asset(
+                                              AssetRes.profilep,
+                                              height: 22,
+                                              width: 22,
+                                              color: ColorRes.color_FFB2B2,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                              Strings.connect,
+                                              style:
+                                                  gilroyBoldTextStyle(fontSize: 12),
+                                            )
+                                          ],
+                                        ),
+                                        const Divider(
+                                          thickness: 1.5,
+                                          color: Colors.white,
+                                        ),
+                                        Row(
+                                          children: [
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Image.asset(
+                                              AssetRes.block,
+                                              height: 22,
+                                              width: 22,
+                                              color: ColorRes.color_FFB2B2,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                              Strings.block,
+                                              style:
+                                                  gilroyBoldTextStyle(fontSize: 12),
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              : const SizedBox()
+                        ],
+                      ),
+                      SizedBox(
+                        height: Get.height * 0.026,
+                      ),
                     ],
-                  ),
-                  SizedBox(
-                    height: Get.height * 0.026,
-                  ),
-                ],
-              );
-            },
-          )
-        ],
+                  );
+                },
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

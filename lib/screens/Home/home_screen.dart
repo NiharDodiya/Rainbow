@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/Story/story_screen.dart';
+import 'package:rainbow/screens/Home/ad_in_latest_feed/ad_in_latest_feed.dart';
 import 'package:rainbow/screens/Home/comments/comments_screen.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
@@ -389,9 +390,9 @@ class HomeScreen extends StatelessWidget {
           ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: 5,
+            itemCount: controller.isAd.length,
             itemBuilder: (context, index) {
-              return Padding(
+              return controller.isAd[index]?Padding(
                 padding: const EdgeInsets.only(bottom: 22.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -450,12 +451,13 @@ class HomeScreen extends StatelessWidget {
                             ),
                             Center(
                               child: SizedBox(
-                                  width: Get.width * 0.85333,
-                                  height: 96,
-                                  child: Text(
-                                    Strings.latestFeedDes,
-                                    style: textStyleFont16WhitLight,
-                                  )),
+                                width: Get.width * 0.85333,
+                                height: 96,
+                                child: Text(
+                                  Strings.latestFeedDes,
+                                  style: textStyleFont16WhitLight,
+                                ),
+                              ),
                             ),
                             SizedBox(
                               height: Get.height * 0.025,
@@ -607,7 +609,7 @@ class HomeScreen extends StatelessWidget {
                     )
                   ],
                 ),
-              );
+              ):adInLatestFeed();
             },
           ),
         ],

@@ -45,10 +45,16 @@ class ProfileScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      profileAppbar(Strings.profile, true),
+                      profileAppbar(
+                        Strings.profile,
+                        true,
+                      ),
                       profileImagesLoad(controller),
                       profileDetails(),
-                      aboutProfiler(Strings.aboutMe, controller.viewProfile.data!.about.toString()),
+                      aboutProfiler(
+                        Strings.aboutMe,
+                        controller.viewProfile.data!.about.toString(),
+                      ),
                       const SizedBox(
                         height: 30,
                       ),
@@ -69,7 +75,7 @@ class ProfileScreen extends StatelessWidget {
 
   Widget profileImagesLoad(ProfileController controller) {
     return SizedBox(
-      height: Get.height*0.425,
+      height: Get.height * 0.425,
       width: Get.width,
       child: Stack(
         children: [
@@ -91,7 +97,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                   // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
-                  errorWidget: (context, url, error) =>  Container(
+                  errorWidget: (context, url, error) => Container(
                     height: Get.height * 0.2857,
                     width: Get.width,
                     decoration: BoxDecoration(
@@ -110,8 +116,7 @@ class ProfileScreen extends StatelessWidget {
               height: Get.height * 0.38666,
               width: Get.width * 0.38666,
               child: CachedNetworkImage(
-                imageUrl:
-                    controller.viewProfile.data!.profileImage.toString(),
+                imageUrl: controller.viewProfile.data!.profileImage.toString(),
                 imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,

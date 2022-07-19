@@ -216,8 +216,7 @@ class Strings {
   static const scott = "Scott";
   static const seeAll = "See All";
   static const latestFeed = "Latest Feed";
-  static const latestFeedDes =
-      "Lorem ipsum dolor sit amet, consectetur \nadipiscing elit, sed do eiusmod tempor \nincididunt ut labore et dolore magna aliqua.\n Lorem a commodo consequat ... more ";
+  static const latestFeedDes = "Lorem ipsum dolor sit amet, consectetur \nadipiscing elit, sed do eiusmod tempor \nincididunt ut labore et dolore magna aliqua.\n Lorem a commodo consequat ... more ";
   static const likes = "+8 likes";
   static const learnMore = "LEARN MORE";
   static const search = "Search";
@@ -227,7 +226,9 @@ class Strings {
   static const block = "Block";
   static const myCompanyDes =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem a commodo consequat ... more ";
+  static const myCompanyDes = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem a commodo consequat  ";
   static const typeYourReply = "Type your reply...";
+  static const enterLocation = "Enter Location";
 
   ///___________________________dashboard--Profile_______________________________________
   static const profile = "Profile";
@@ -245,6 +246,7 @@ class Strings {
       "Lorem Ipsum Is Simply\nDummy Text Of The Printing\nAnd Typesetting Industry.";
   static const pending = "Pending";
   static const complete = "Complete";
+  static const service = "Service";
   static const sendNewMessage = "Send new Message";
   static const others = "Others";
   static const viewProfile = "View Profile";
@@ -318,6 +320,22 @@ class Strings {
   static const removeDialogCancel = "Cancel";
   static const confirm = "Confirm";
 
+  static const advertisementApproved = "Advertisement has been approved";
+  static const advertisementRejected = "Advertisement has been rejected";
+  static const transactionNumber = "Transaction number";
+  static const transactionHint = "122900083HN";
+  static const postAds = "Post Ads";
+  static const approved = "Approved";
+  static const rejected = "Rejected";
+  static const approvedByRainbowAdmin = "Your post has been approved by Rainbow Admin.";
+  static const postRejectedByViolation = "Your post has been rejected by Rainbow Admin due to violation of any of the following:";
+  static const violationOf = "1. violation of ....";
+  static const violationOfTermsConditions= "2. violation of terms and conditions";
+  static const etc= "3. etc";
+  static const backToHome = "Back to Home";
+  static const refundedPayment = "Payment will be refunded to you, Please wait...";
+  static const sampleDescriptions = "Sample description goes here to exlpain about your package desils. Sample description goes here to exlpain about your package desils. ";
+
   ///----------------------------------SubScription---------------------------
   static const enterPromoCode = "Enter promo code";
   static const subscribe = "Subscribe";
@@ -351,6 +369,14 @@ class Strings {
   static const myEmail = "myemaill@gmail.com";
   static const raymondMarcos = "Raymond Marcos";
   static const logout02 = "LOG OUT";
+  static const logout02 ="LOG OUT";
+  static const sun ="Sun";
+  static const mon ="Mon";
+  static const tue ="Tue";
+  static const wed ="Wed";
+  static const th ="Th";
+  static const fri ="Fri";
+  static const sat ="Sat";
 
   //___________________________________Cancel approve_____________________________
   static const cancelAprove = "Cancel Advertisement";

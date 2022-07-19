@@ -193,7 +193,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
             image: createAdvertisementController.imagePath == null
                 ? const DecorationImage(
                     image: AssetImage(
-                      AssetRes.adsdetail,
+                      AssetRes.adsDetail,
                     ),
                     fit: BoxFit.fill)
                 : DecorationImage(

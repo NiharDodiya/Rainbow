@@ -47,6 +47,7 @@ class AssetRes {
   static const commentGallery = '${icons}comment_gallery.png';
   static const commentSend = '${icons}comment_send.png';
   static const worldIcon = '${icons}world_icon.png';
+  static const filterIcon = '${icons}filter_icon.png';
 
   ///--------------------------------------------- iconsBottom---------------------------------------------
   static const home = '${iconsBottom}home.png';
@@ -93,6 +94,10 @@ class AssetRes {
   static const visalogo = "${images}visa_logo.png";
   static const poket = "${images}poket.png";
   static const masterLogo = "${images}master.png";
+  static const searchBackground = "${images}search_backgraund.png";
+  static const i1 = "${images}i1.png";
+  static const i2 = "${images}i2.png";
+  static const i3 = "${images}i3.png";
 
   ///_______________________________settings________________________________
   static const profileSettinges = '${settingsImage}profileSettinges.png';
@@ -119,6 +124,10 @@ class AssetRes {
   static const advertisement_1Image = '${advertisers}advertisement_1.png';
   static const advertisement_2Image = '${advertisers}advertisement_2.png';
   static const advertisement_3Image = '${advertisers}advertisement_3.png';
+  static const baby = '${advertisers}baby.png';
+  static const babyCry = '${advertisers}babycry.png';
+  static const advertiserViews = '${advertisers}advertiserViews.png';
+  static const share = "${advertisers}share.png";
 
   ///_______________________________privacy ___________________________________
   static const privacy = '${images}privacy.png';
@@ -147,7 +156,13 @@ class AssetRes {
 
   ///_________________________________________Ad-Notification____________________________________
   static const greenDuck = "${icons}greenduck.png";
+
+  static const adsDetail = "${images}adsdetail.png";
+  static const editIcons = "${icons}editicons.png";
+
   static const adsdetail = "${images}adsdetail.png";
   static const editicons = "${icons}editicons.png";
   static const blurBack = "${images}blurBack.png";
+
+
 }

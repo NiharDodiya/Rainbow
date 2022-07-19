@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/screens/Search/advance_search/advance_search_screen.dart';
 
 class SearchController extends GetxController {
   RxBool loader = false.obs;
@@ -8,34 +9,42 @@ class SearchController extends GetxController {
   // RxBool connect = false.obs;
   TextEditingController searchBar = TextEditingController();
   List<int> search = [0, 1, 2, 3, 4];
-  List advanceSearch = ["Surrogate Mom  " , "Sperm Donor", "Egg Donor", "Intended Parents", "Retired Surrogate"];
+  List advanceSearch = [
+    "Surrogate Mom  ",
+    "Sperm Donor",
+    "Egg Donor",
+    "Intended Parents",
+    "Retired Surrogate"
+  ];
 
   List<bool> connect = [];
 
   void onScreenTap() {
-
+    advance = false;
     connect = List.filled(search.length, false);
-update(["Search"]);
-
-  }
-  void onMoreButtonTap(int index)
-  {
-    connect[index]=true;
     update(["Search"]);
-
-
   }
-  void advanceSearchOnTap()
-  {
-    if(advance==false)
-      {
-        advance=true;
-      }
-    else
-      {
-        advance=false;
-      }
+
+  void onMoreButtonTap(int index) {
+    connect[index] = true;
     update(["Search"]);
+  }
+
+  void advanceSearchOnTap() {
+    if (advance == false) {
+      advance = true;
+    } else {
+      advance = false;
+    }
+    update(["Search"]);
+  }
+
+  void onTapAdvanceSearchMenu(int index) {
+    Get.to(
+      AdvanceSearchScreen(
+        title: advanceSearch[index],
+      ),
+    );
   }
 
   @override
@@ -49,6 +58,4 @@ update(["Search"]);
     connect = List.filled(search.length, false);
     loader.value = true;
   }
-
-
 }
