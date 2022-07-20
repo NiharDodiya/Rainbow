@@ -1,33 +1,17 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/myStory_model.dart';
 import 'package:rainbow/service/http_services.dart';
-import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
-import 'package:rainbow/utils/pref_keys.dart';
 
 class MyStoryApi {
-  static Future postRegister() async {
-    String accesToken = PrefService.getString(PrefKeys.registerToken);
-    // int userId = PrefService.getInt(PrefKeys.userId);
+  static Future<MyStoryModel?> getMyStory() async {
     try {
       String url = EndPoints.myStory;
-
-      /*    Map<String, dynamic> param = {
-        "id_item": idItem,
-        "description": description,
-        "tag": list
-      };*/
-
-      http.Response? response = await HttpService.postApi(
-          url: url,
-          body: {},
-          header: {
-            "Content-Type": "application/json",
-            "x-access-token": accesToken
-          });
+      http.Response? response = await HttpService.getApi(url: url);
 
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
@@ -38,9 +22,11 @@ class MyStoryApi {
         }
         return myStoryModelFromJson(response.body);
       }
+      return null;
     } catch (e) {
-      print(e.toString());
-      return [];
+      debugPrint(e.toString());
+      errorToast("Error", title: e.toString());
+      return null;
     }
   }
 }

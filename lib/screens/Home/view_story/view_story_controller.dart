@@ -6,7 +6,7 @@ import 'package:rainbow/model/unlike_model.dart';
 import 'package:rainbow/screens/Home/Story/StoryComment_api/storyComment_api.dart';
 import 'package:rainbow/screens/Home/Story/friendStory_api/friendStory_model.dart';
 import 'package:rainbow/screens/Home/Story/likeStory_api/likeStory_api.dart';
-import 'package:rainbow/screens/Home/Story/myStory_api/myStroy_api.dart';
+import 'package:rainbow/screens/Home/my_story/api/myStroy_api.dart';
 import 'package:rainbow/screens/Home/Story/story_screen.dart';
 import 'package:rainbow/screens/Home/Story/unlike_api/unlike_api.dart';
 import 'package:rainbow/screens/Home/comments/comments_screen.dart';
@@ -25,7 +25,7 @@ class ViewStoryController extends GetxController {
   LikeStoryModel likeStoryModel = LikeStoryModel();
   StoryCommentModel storyCommentModel = StoryCommentModel();
   TextEditingController writeSomethings = TextEditingController();
-
+  late ValueNotifier<IndicatorAnimationCommand> indicatorAnimationController;
 
   void init() {
     friendStoryApiData();
@@ -38,7 +38,6 @@ class ViewStoryController extends GetxController {
   }
 
   void onStoryComplete() {}
-  late ValueNotifier<IndicatorAnimationCommand> indicatorAnimationController;
 
   void onBackTap() {
     Get.back();
@@ -66,18 +65,6 @@ class ViewStoryController extends GetxController {
     ).then((value) {
       indicatorAnimationController.value = IndicatorAnimationCommand.resume;
     });
-  }
-
-  Future<void> myStoryApiData() async {
-    try {
-      loader.value = true;
-      myStoryModel = (await MyStoryApi.postRegister())!;
-      update(["adStory"]);
-      update(["friendStory"]);
-      loader.value = false;
-    } catch (e) {
-      loader.value = false;
-    }
   }
 
   Future<void> friendStoryApiData() async {

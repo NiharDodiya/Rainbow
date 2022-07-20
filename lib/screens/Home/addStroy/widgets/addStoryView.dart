@@ -90,12 +90,7 @@ class AddStoryViewScreen extends StatelessWidget {
                   top: Get.height * 0.85,
                   left: Get.width * 0.08,
                   child: InkWell(
-                    onTap: () {
-                      controller.onStoryPost(
-                          des: controller
-                              .key.currentState!.controller!.markupText
-                              .toString());
-                    },
+                    onTap: controller.onStoryPost,
                     child: Container(
                       height: Get.height * 0.07389,
                       width: Get.width * 0.8,
@@ -113,7 +108,9 @@ class AddStoryViewScreen extends StatelessWidget {
                         child: Text(
                           Strings.postToStories,
                           style: gilroyMediumTextStyle(
-                              fontSize: 15, color: ColorRes.black),
+                            fontSize: 15,
+                            color: ColorRes.black,
+                          ),
                         ),
                       ),
                     ),

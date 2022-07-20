@@ -9,6 +9,7 @@ import 'package:rainbow/model/blockList_model.dart';
 import 'package:rainbow/model/listOfFriendRequest_model.dart';
 import 'package:rainbow/screens/Home/Story/story_controller.dart';
 import 'package:rainbow/screens/Home/addStroy/addStory_screen.dart';
+import 'package:rainbow/screens/Home/my_story/my_story_controller.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/widget/listOfFriendRequest_api/listOfFriendRequest_api.dart';
@@ -90,6 +91,9 @@ class HomeController extends GetxController {
   }
 
   void myStoryOnTap() {
-    Get.to(() => AddStoryScreen());
+    MyStoryController myStoryController = Get.put(MyStoryController());
+    myStoryController.init();
+    Get.to(() => MyStoryController());
+    // Get.to(() => AddStoryScreen());
   }
 }

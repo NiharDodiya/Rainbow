@@ -18,12 +18,12 @@ class MyStoryModel {
 
   bool? status;
   String? message;
-  List<Datum>? data;
+  List<MyStory>? data;
 
   factory MyStoryModel.fromJson(Map<String, dynamic> json) => MyStoryModel(
         status: json["status"],
         message: json["message"],
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        data: List<MyStory>.from(json["data"].map((x) => MyStory.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -33,8 +33,8 @@ class MyStoryModel {
       };
 }
 
-class Datum {
-  Datum({
+class MyStory {
+  MyStory({
     this.id,
     this.idUser,
     this.storyItem,
@@ -62,7 +62,7 @@ class Datum {
   int? storyViewCount;
   List<dynamic>? storyView;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory MyStory.fromJson(Map<String, dynamic> json) => MyStory(
         id: json["id"],
         idUser: json["id_user"],
         storyItem: json["story_item"],

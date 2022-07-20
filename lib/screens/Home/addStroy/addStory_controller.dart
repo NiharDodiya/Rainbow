@@ -37,20 +37,19 @@ class AddStoryController extends GetxController {
     Get.to(() => AddStoryViewScreen());
   }
 
-  void onStoryPost(
-      {String? des, String? user, String? name, String? user1, String? name1}) {
-    uploadImageApi(des, user, name, user1, name1);
+  Future<void> onStoryPost() async {
+    await uploadImageApi();
     DashboardController dashboardController = Get.find();
     dashboardController.onBottomBarChange(0);
   }
 
   UploadImage uploadImage = UploadImage();
 
-  Future<void> uploadImageApi(des, user, name, user1, name1) async {
+  Future<void> uploadImageApi() async {
     loader.value = true;
     try {
       uploadImage = await UploadImageApi.postRegister(image!.path.toString());
-      adStoryApiData(des, user, name, user1, name1);
+      await adStoryApiData();
 
       loader.value = false;
     } catch (e) {
@@ -60,11 +59,15 @@ class AddStoryController extends GetxController {
     }
   }
 
-  Future<void> adStoryApiData(des, user, name, user1, name1) async {
+  Future<void> adStoryApiData() async {
     try {
       loader.value = true;
       adStoryModel = (await AdStoryApi.postRegister(
-          uploadImage.data!.id.toString(), des == null ? "" : des, []))!;
+            uploadImage.data!.id.toString(),
+            key.currentState!.controller!.markupText.toString(),
+            [],
+          ) ??
+          AdStoryModel());
       update(["adStory"]);
 
       loader.value = false;

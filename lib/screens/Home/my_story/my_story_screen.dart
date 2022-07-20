@@ -3,23 +3,25 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
-import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
+import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/model/myStory_model.dart';
+import 'package:rainbow/screens/Home/my_story/my_story_controller.dart';
+import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 import 'package:story/story_page_view/story_page_view.dart';
 
-import '../../../common/Widget/text_styles.dart';
-
-class ViewStoryScreen extends StatefulWidget {
-  const ViewStoryScreen({Key? key}) : super(key: key);
+class MyStoryScreen extends StatefulWidget {
+  const MyStoryScreen({Key? key}) : super(key: key);
 
   @override
-  State<ViewStoryScreen> createState() => _ViewStoryScreenState();
+  State<MyStoryScreen> createState() => _MyStoryScreenState();
 }
 
-class _ViewStoryScreenState extends State<ViewStoryScreen> {
-  final ViewStoryController controller = Get.put(ViewStoryController());
+class _MyStoryScreenState extends State<MyStoryScreen> {
+  final MyStoryController controller = Get.put(MyStoryController());
+  final ProfileController profileController = Get.find();
 
   @override
   void initState() {
@@ -42,14 +44,16 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
         () {
           return Stack(
             children: [
-              GetBuilder<ViewStoryController>(
-                id: "friendStory",
+              GetBuilder<MyStoryController>(
+                id: "my_story",
                 builder: (controller) {
+                  if(controller.myStoryModel.data == null){
+                    return Container(color: ColorRes.black);
+                  }
                   return StoryPageView(
                     itemBuilder: (context, pageIndex, storyIndex) {
-                      final user = controller.friendStoryModel.data![pageIndex];
-                      // final user = sampleUsers[pageIndex];
-                      final story = user.storyList![storyIndex];
+                      final MyStory story =
+                          controller.myStoryModel.data![storyIndex];
                       return Stack(
                         children: [
                           Positioned.fill(
@@ -72,9 +76,11 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                 height: Get.height * 0.2857,
                                 width: Get.width,
                                 decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                        image: AssetImage(AssetRes.homePro))),
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    image: AssetImage(AssetRes.homePro),
+                                  ),
+                                ),
                               ),
                               fit: BoxFit.fill,
                             ),
@@ -127,13 +133,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                       height: 30,
                                       child: TextButton(
                                         onPressed: () {
-                                          controller.onCommentButtonTap(
-                                              id: controller
-                                                  .friendStoryModel
-                                                  .data![pageIndex]
-                                                  .storyList![storyIndex]
-                                                  .id
-                                                  .toString());
+                                          controller.onCommentButtonTap();
                                         },
                                         style: TextButton.styleFrom(
                                           backgroundColor: ColorRes.color_50369C
@@ -172,11 +172,8 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                         text: TextSpan(
                                           children: [
                                             TextSpan(
-                                              text: controller
-                                                  .friendStoryModel
-                                                  .data![pageIndex]
-                                                  .storyList![storyIndex]
-                                                  .description
+                                              text: controller.myStoryModel
+                                                  .data![pageIndex].description
                                                   .toString(),
                                               style:
                                                   sfProTextReguler().copyWith(
@@ -187,14 +184,6 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                                 ..onTap =
                                                     controller.onHashTagTap,
                                             ),
-                                            /*    TextSpan(
-                                                text:
-                                                    "congrats on your new baby 👍🏼",
-                                                style:
-                                                    sfProTextReguler().copyWith(
-                                                  fontSize: 27,
-                                                ),
-                                              ),*/
                                           ],
                                         ),
                                       ),
@@ -217,17 +206,16 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                           height: 56,
                                           width: 56,
                                           decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              image: DecorationImage(
-                                                  image: NetworkImage(
-                                                    controller
-                                                        .friendStoryModel
-                                                        .data![pageIndex]
-                                                        .userDetail!
-                                                        .profileImage
-                                                        .toString(),
-                                                  ),
-                                                  fit: BoxFit.cover)),
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                              image: NetworkImage(
+                                                profileController.viewProfile
+                                                    .data!.profileImage
+                                                    .toString(),
+                                              ),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
                                         ),
                                         const SizedBox(width: 16),
                                         Column(
@@ -235,11 +223,8 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              controller
-                                                  .friendStoryModel
-                                                  .data![pageIndex]
-                                                  .userDetail!
-                                                  .fullName
+                                              profileController
+                                                  .viewProfile.data!.fullName
                                                   .toString(),
                                               style:
                                                   sfProTextReguler().copyWith(
@@ -248,11 +233,8 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                               ),
                                             ),
                                             Text(
-                                              controller
-                                                  .friendStoryModel
-                                                  .data![pageIndex]
-                                                  .userDetail!
-                                                  .userStatus
+                                              profileController
+                                                  .viewProfile.data!.userStatus
                                                   .toString(),
                                               style:
                                                   sfProTextReguler().copyWith(
@@ -263,7 +245,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                         ),
                                         const Spacer(),
                                         Text(
-                                          "${controller.friendStoryModel.data![pageIndex].storyList![storyIndex].createdAt!.hour.toString()}:${controller.friendStoryModel.data![pageIndex].storyList![storyIndex].createdAt!.minute.toString()}",
+                                          "${controller.myStoryModel.data![storyIndex].createdAt!.hour.toString()}:${controller.myStoryModel.data![storyIndex].createdAt!.minute.toString()}",
                                           style: sfProTextReguler().copyWith(
                                               decoration:
                                                   TextDecoration.underline),
@@ -271,8 +253,8 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                       ],
                                     ),
                                     const SizedBox(height: 10),
-                                    GetBuilder<ViewStoryController>(
-                                      id: "friendStory",
+                                    GetBuilder<MyStoryController>(
+                                      id: "my_story",
                                       builder: (controller) {
                                         return SizedBox(
                                           width: Get.width,
@@ -280,60 +262,17 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceAround,
                                             children: [
-                                              Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  controller
-                                                              .friendStoryModel
-                                                              .data![pageIndex]
-                                                              .storyList![
-                                                                  storyIndex]
-                                                              .isLike
-                                                              .toString() ==
-                                                          "no"
-                                                      ? InkWell(
-                                                          onTap: () {
-                                                            controller.onLikeBtnTap(controller
-                                                                .friendStoryModel
-                                                                .data![
-                                                                    pageIndex]
-                                                                .storyList![
-                                                                    storyIndex]
-                                                                .id
-                                                                .toString());
-                                                            controller.update([
-                                                              "friendStory"
-                                                            ]);
-                                                          },
-                                                          child: const Icon(
-                                                            Icons.favorite,
-                                                            color:
-                                                                ColorRes.white,
-                                                          ),
-                                                        )
-                                                      : InkWell(
-                                                          onTap: () {
-                                                            controller.onUnLikeBtnTap(controller
-                                                                .friendStoryModel
-                                                                .data![
-                                                                    pageIndex]
-                                                                .storyList![
-                                                                    storyIndex]
-                                                                .id
-                                                                .toString());
-                                                            controller.update([
-                                                              "friendStory"
-                                                            ]);
-                                                          },
-                                                          child: const Icon(
-                                                            Icons.favorite,
-                                                            color: ColorRes.red,
-                                                          ),
-                                                        ),
-                                                  InkWell(
-                                                    onTap: controller
-                                                        .onLikeViewTap,
-                                                    child: Row(
+                                              InkWell(
+                                                onTap: controller.onLikeBtnTap,
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    const Icon(
+                                                      Icons.favorite,
+                                                      color: ColorRes.red,
+                                                    ),
+                                                    Row(
                                                       children: [
                                                         Text(
                                                           Strings.likes,
@@ -343,10 +282,8 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                                         ),
                                                         Text(
                                                           controller
-                                                              .friendStoryModel
-                                                              .data![pageIndex]
-                                                              .storyList![
-                                                                  storyIndex]
+                                                              .myStoryModel
+                                                              .data![storyIndex]
                                                               .storyLikeCount
                                                               .toString(),
                                                           style:
@@ -355,8 +292,8 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                                         ),
                                                       ],
                                                     ),
-                                                  ),
-                                                ],
+                                                  ],
+                                                ),
                                               ),
                                               InkWell(
                                                 onTap: () {
@@ -391,15 +328,14 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                     indicatorAnimationController:
                         controller.indicatorAnimationController,
                     initialStoryIndex: (pageIndex) {
-                      /* if (pageIndex == 0) {
-                  return 1;
-                }*/
                       return 0;
                     },
-                    pageLength: controller.friendStoryModel.data!.length,
+                    pageLength: 1,
                     storyLength: (int pageIndex) {
-                      return controller
-                          .friendStoryModel.data![pageIndex].storyList!.length;
+                      if (controller.myStoryModel.data == null) {
+                        return 0;
+                      }
+                      return controller.myStoryModel.data!.length;
                     },
                     onPageLimitReached: () {
                       Navigator.pop(context);
@@ -407,7 +343,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                   );
                 },
               ),
-              controller.loader.isTrue ? SmallLoader() : SizedBox()
+              controller.loader.isTrue ? const SmallLoader() : const SizedBox()
             ],
           );
         },
