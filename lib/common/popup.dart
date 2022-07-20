@@ -20,3 +20,16 @@ void flutterToast(String value, {String? title}) {
     backgroundColor: Colors.green,
   );
 }
+
+void commonAlert(
+    {String? title,
+    String? content,
+    VoidCallback? onOkTap,
+    VoidCallback? onCancelTap}) {
+  Get.dialog(
+    AlertDialog(
+      title: Text(title ?? ''),
+
+    ),
+  );
+}

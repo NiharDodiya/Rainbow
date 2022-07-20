@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/model/myStory_model.dart';
 import 'package:rainbow/screens/Home/my_story/api/myStroy_api.dart';
@@ -10,15 +11,29 @@ class MyStoryController extends GetxController {
   late ValueNotifier<IndicatorAnimationCommand> indicatorAnimationController;
 
   void init() {
-    indicatorAnimationController =
-        ValueNotifier<IndicatorAnimationCommand>(
-            IndicatorAnimationCommand.pause);
+    myStoryModel = MyStoryModel();
+    indicatorAnimationController = ValueNotifier<IndicatorAnimationCommand>(
+        IndicatorAnimationCommand.pause);
     getMyStoryList();
   }
 
   Future<void> getMyStoryList() async {
     loader.value = true;
     myStoryModel = (await MyStoryApi.getMyStory()) ?? MyStoryModel();
+    myStoryModel.data ??= [];
+    /*for (var value in myStoryModel.data!) {
+      if (value.storyItem != null) {
+        loadImages(value.storyItem!);
+      }
+    }*/
+    loader.value = false;
+    indicatorAnimationController.value = IndicatorAnimationCommand.pause;
+  }
+
+  Future<void> loadImages(String image) async {
+    loader.value = true;
+    indicatorAnimationController.value = IndicatorAnimationCommand.pause;
+    await DefaultCacheManager().downloadFile(image);
     loader.value = false;
     indicatorAnimationController.value = IndicatorAnimationCommand.resume;
   }
@@ -27,11 +42,15 @@ class MyStoryController extends GetxController {
     Get.back();
   }
 
-  void onCommentButtonTap(){}
+  void onCommentButtonTap() {}
 
-  void onMoreBtnTap(){}
+  void onMoreBtnTap() {}
 
-  void onHashTagTap(){}
+  void onHashTagTap() {}
 
-  void onLikeBtnTap(){}
+  void onLikeBtnTap() {}
+
+  void onDeleteTap(int storyIndex){
+
+  }
 }

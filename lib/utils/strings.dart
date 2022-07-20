@@ -410,4 +410,5 @@ class Strings {
   static const supporterror01 = "Message is required";
   static const subject = "Subject";
   static const supportError02 = "Subject is requred";
+  static const delete = "Delete";
 }

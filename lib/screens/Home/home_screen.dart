@@ -36,54 +36,62 @@ class HomeScreen extends StatelessWidget {
                   backgroundColor: Colors.white,
                   elevation: 0,
                   actions: [
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: Get.width * 0.02,
-                        ),
-                        const Image(
-                          image: AssetImage(AssetRes.locate),
-                          height: 19.25,
-                          width: 19.25,
-                        ),
-                        SizedBox(
-                          width: Get.width * 0.02,
-                        ),
-                        Text(
-                          "Bexley, London",
-                          style: gilroyBoldTextStyle(
-                              color: Colors.black, fontSize: 16),
-                        ),
-                        SizedBox(
-                          width: Get.width * 0.37,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Get.to(() => SettingsScreen());
-                          },
-                          child: const Image(
-                            image: AssetImage(
-                              AssetRes.settings,
-                            ),
+                    Expanded(
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: Get.width * 0.02,
+                          ),
+                          const Image(
+                            image: AssetImage(AssetRes.locate),
                             height: 19.25,
                             width: 19.25,
                           ),
-                        ),
-                        SizedBox(
-                          width: Get.width * 0.04,
-                        ),
-                        InkWell(
-                          onTap: () {},
-                          child: const Image(
-                            image: AssetImage(AssetRes.notify),
-                            height: 20,
-                            width: 20,
+                          SizedBox(
+                            width: Get.width * 0.02,
                           ),
-                        ),
-                        SizedBox(
-                          width: Get.width * 0.05,
-                        ),
-                      ],
+                          Text(
+                            "Bexley, London",
+                            style: gilroyBoldTextStyle(
+                                color: Colors.black, fontSize: 16),
+                          ),
+                          /*SizedBox(
+                            width: Get.width * 0.37,
+                          ),*/
+                          const Spacer(),
+                          InkWell(
+                            onTap: controller.onNewStoryTap,
+                            child: const Icon(Icons.add, color: ColorRes.black),
+                          ),
+                          const SizedBox(width: 10),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() => SettingsScreen());
+                            },
+                            child: const Image(
+                              image: AssetImage(
+                                AssetRes.settings,
+                              ),
+                              height: 19.25,
+                              width: 19.25,
+                            ),
+                          ),
+                          SizedBox(
+                            width: Get.width * 0.04,
+                          ),
+                          InkWell(
+                            onTap: () {},
+                            child: const Image(
+                              image: AssetImage(AssetRes.notify),
+                              height: 20,
+                              width: 20,
+                            ),
+                          ),
+                          SizedBox(
+                            width: Get.width * 0.05,
+                          ),
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -105,7 +113,7 @@ class HomeScreen extends StatelessWidget {
               );
             },
           ),
-          controller.loader.isTrue ? SmallLoader() : SizedBox()
+          controller.loader.isTrue ? const SmallLoader() : const SizedBox()
         ],
       );
     });

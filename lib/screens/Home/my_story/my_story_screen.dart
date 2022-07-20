@@ -47,7 +47,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
               GetBuilder<MyStoryController>(
                 id: "my_story",
                 builder: (controller) {
-                  if(controller.myStoryModel.data == null){
+                  if (controller.myStoryModel.data == null) {
                     return Container(color: ColorRes.black);
                   }
                   return StoryPageView(
@@ -62,6 +62,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                           Positioned.fill(
                             child: CachedNetworkImage(
                               imageUrl: story.storyItem.toString(),
+
                               imageBuilder: (context, imageProvider) =>
                                   Container(
                                 decoration: BoxDecoration(
@@ -82,6 +83,16 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                   ),
                                 ),
                               ),
+                              progressIndicatorBuilder: (con, str, progress) {
+                                if (progress.progress != 100) {
+                                  controller.indicatorAnimationController
+                                      .value = IndicatorAnimationCommand.pause;
+                                } else {
+                                  controller.indicatorAnimationController
+                                      .value = IndicatorAnimationCommand.resume;
+                                }
+                                return SmallLoader(progress: progress.progress);
+                              },
                               fit: BoxFit.fill,
                             ),
                           ),
@@ -309,6 +320,22 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                     Text(Strings.comments,
                                                         style:
                                                             sfProTextReguler()),
+                                                  ],
+                                                ),
+                                              ),
+                                              InkWell(
+                                                onTap: () => controller
+                                                    .onDeleteTap(storyIndex),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    const Icon(Icons.delete,
+                                                        color: ColorRes.red),
+                                                    Text(
+                                                      Strings.delete,
+                                                      style: sfProTextReguler(),
+                                                    ),
                                                   ],
                                                 ),
                                               ),
