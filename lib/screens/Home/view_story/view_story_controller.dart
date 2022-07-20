@@ -122,7 +122,6 @@ class ViewStoryController extends GetxController {
       storyCommentModel = (await StoryCommentApi.sendNewComment(
               id, writeSomethings.text.toString()) ??
           StoryCommentModel());
-
       update(["friendStory"]);
       writeSomethings.clear();
       loader.value = false;
@@ -142,13 +141,11 @@ class ViewStoryController extends GetxController {
   }
 
   void commentSendTap(String id) {
-   if(validation())
-     {
-       indicatorAnimationController.value = IndicatorAnimationCommand.pause;
-       commentData(id);
-
-       update(["friendStory"]);
-
-     }
+    if (validation()) {
+      indicatorAnimationController.value = IndicatorAnimationCommand.pause;
+      commentData(id);
+      friendStoryApiData();
+      update(["friendStory"]);
+    }
   }
 }
