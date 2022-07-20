@@ -16,9 +16,8 @@ class MyStoryApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          flutterToast(jsonDecode(response.body)["message"]);
-        } else if (status == true) {
-          flutterToast(jsonDecode(response.body)["message"]);
+          errorToast("Error",title: jsonDecode(response.body)["message"]);
+          return null;
         }
         return myStoryModelFromJson(response.body);
       }
@@ -27,6 +26,30 @@ class MyStoryApi {
       debugPrint(e.toString());
       errorToast("Error", title: e.toString());
       return null;
+    }
+  }
+
+  static Future<bool> deleteMyStory(String storyId) async {
+    try {
+      String url = EndPoints.deleteStory;
+      Map<String, dynamic> body = {"id_stroy": storyId};
+      http.Response? response =
+          await HttpService.postApi(url: url, body: jsonEncode(body));
+
+      if (response != null && response.statusCode == 200) {
+        bool? status = jsonDecode(response.body)["status"];
+        if (status == false) {
+          errorToast("Error",title: jsonDecode(response.body)["message"]);
+        } else if (status == true) {
+          flutterToast(jsonDecode(response.body)["message"]);
+        }
+        return true;
+      }
+      return false;
+    } catch (e) {
+      debugPrint(e.toString());
+      errorToast("Error", title: e.toString());
+      return false;
     }
   }
 }

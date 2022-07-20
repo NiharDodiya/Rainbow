@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/myStory_model.dart';
 import 'package:rainbow/screens/Home/my_story/api/myStroy_api.dart';
-import 'package:story/story_page_view/story_page_view.dart';
+import 'package:rainbow/screens/dashboard/dashBoard.dart';
 
 class MyStoryController extends GetxController {
   RxBool loader = false.obs;
   MyStoryModel myStoryModel = MyStoryModel();
-  late ValueNotifier<IndicatorAnimationCommand> indicatorAnimationController;
 
-  void init() {
+  // late ValueNotifier<IndicatorAnimationCommand> indicatorAnimationController;
+
+  Future<void> init() async {
     myStoryModel = MyStoryModel();
-    indicatorAnimationController = ValueNotifier<IndicatorAnimationCommand>(
-        IndicatorAnimationCommand.pause);
-    getMyStoryList();
+    await getMyStoryList((){}, (){});
+    /*indicatorAnimationController = ValueNotifier<IndicatorAnimationCommand>(
+        IndicatorAnimationCommand.pause);*/
   }
 
-  Future<void> getMyStoryList() async {
+  Future<void> getMyStoryList(
+    VoidCallback pauseAnimation,
+    VoidCallback playAnimation,
+  ) async {
     loader.value = true;
     myStoryModel = (await MyStoryApi.getMyStory()) ?? MyStoryModel();
     myStoryModel.data ??= [];
@@ -27,15 +32,19 @@ class MyStoryController extends GetxController {
       }
     }*/
     loader.value = false;
-    indicatorAnimationController.value = IndicatorAnimationCommand.pause;
+    pauseAnimation();
   }
 
-  Future<void> loadImages(String image) async {
+  Future<void> loadImages(
+    String image,
+    VoidCallback pauseAnimation,
+    VoidCallback playAnimation,
+  ) async {
     loader.value = true;
-    indicatorAnimationController.value = IndicatorAnimationCommand.pause;
+    pauseAnimation();
     await DefaultCacheManager().downloadFile(image);
     loader.value = false;
-    indicatorAnimationController.value = IndicatorAnimationCommand.resume;
+    playAnimation();
   }
 
   void onBackTap() {
@@ -50,7 +59,31 @@ class MyStoryController extends GetxController {
 
   void onLikeBtnTap() {}
 
-  void onDeleteTap(int storyIndex){
-
+  void onDeleteTap(
+    int storyIndex,
+    VoidCallback pauseAnimation,
+    VoidCallback playAnimation,
+  ) {
+    pauseAnimation();
+    commonAlert(
+      title: "Alert!",
+      content: "Are you sure you want to delete this story",
+      onOkTap: () async {
+        Get.back();
+        loader.value = true;
+        bool result = await MyStoryApi.deleteMyStory(
+            myStoryModel.data![storyIndex].id.toString());
+        playAnimation();
+        loader.value = false;
+        Get.back();
+        if (result) {
+          Get.offAll(() => const Dashboard());
+        }
+      },
+      onCancelTap: () {
+        Get.back();
+        playAnimation();
+      },
+    );
   }
 }

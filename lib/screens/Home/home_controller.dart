@@ -94,11 +94,16 @@ class HomeController extends GetxController {
     // loader.value = true;
   }
 
-  void myStoryOnTap() {
+  Future<void> myStoryOnTap() async {
     MyStoryController myStoryController = Get.put(MyStoryController());
-    myStoryController.init();
-    Get.to(() => const MyStoryScreen());
-
+    loader.value = true;
+    await myStoryController.init();
+    loader.value = false;
+    if(myStoryController.myStoryModel.data!.isNotEmpty){
+      Get.to(() => const MyStoryScreen());
+    }else{
+      Get.to(() => AddStoryScreen());
+    }
   }
 
 }

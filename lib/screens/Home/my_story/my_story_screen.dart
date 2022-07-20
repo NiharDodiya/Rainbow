@@ -23,17 +23,20 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
   final MyStoryController controller = Get.put(MyStoryController());
   final ProfileController profileController = Get.find();
 
+  late ValueNotifier<IndicatorAnimationCommand> indicatorAnimationController;
+
   @override
   void initState() {
     super.initState();
-    controller.indicatorAnimationController =
+
+    indicatorAnimationController =
         ValueNotifier<IndicatorAnimationCommand>(
-            IndicatorAnimationCommand.pause);
+            IndicatorAnimationCommand.resume);
   }
 
   @override
   void dispose() {
-    controller.indicatorAnimationController.dispose();
+    indicatorAnimationController.dispose();
     super.dispose();
   }
 
@@ -52,6 +55,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                   }
                   return StoryPageView(
                     itemBuilder: (context, pageIndex, storyIndex) {
+
                       final MyStory story =
                           controller.myStoryModel.data![storyIndex];
                       return Stack(
@@ -85,10 +89,10 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                               ),
                               progressIndicatorBuilder: (con, str, progress) {
                                 if (progress.progress != 100) {
-                                  controller.indicatorAnimationController
+                                  indicatorAnimationController
                                       .value = IndicatorAnimationCommand.pause;
                                 } else {
-                                  controller.indicatorAnimationController
+                                  indicatorAnimationController
                                       .value = IndicatorAnimationCommand.resume;
                                 }
                                 return SmallLoader(progress: progress.progress);
@@ -325,7 +329,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                               ),
                                               InkWell(
                                                 onTap: () => controller
-                                                    .onDeleteTap(storyIndex),
+                                                    .onDeleteTap(storyIndex,pauseAnimation,playAnimation),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.min,
@@ -353,7 +357,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                       );
                     },
                     indicatorAnimationController:
-                        controller.indicatorAnimationController,
+                        indicatorAnimationController,
                     initialStoryIndex: (pageIndex) {
                       return 0;
                     },
@@ -376,5 +380,13 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
         },
       ),
     );
+  }
+
+  void pauseAnimation(){
+    indicatorAnimationController.value = IndicatorAnimationCommand.pause;
+  }
+
+  void playAnimation(){
+    indicatorAnimationController.value = IndicatorAnimationCommand.resume;
   }
 }
