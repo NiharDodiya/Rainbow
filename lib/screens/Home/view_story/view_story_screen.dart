@@ -38,31 +38,28 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GetBuilder<ViewStoryController>(
-        id: "friendStory",
-        builder: (controller) {
-          return Obx(() {
-            return Stack(
-              children: [
-                GetBuilder<ViewStoryController>(
-                  id: "friendStory",
-                  builder: (controller) {
-                    return StoryPageView(
-                      itemBuilder: (context, pageIndex, storyIndex) {
-                        final user =
-                            controller.friendStoryModel.data![pageIndex];
-                        // final user = sampleUsers[pageIndex];
-                        final story = user.storyList![storyIndex];
-                        return Stack(
-                          children: [
-                            Positioned.fill(
-                              child: Container(color: Colors.black),
-                            ),
-                            Positioned.fill(
-                              child: CachedNetworkImage(
-                                imageUrl: story.storyItem.toString(),
-                                imageBuilder: (context, imageProvider) =>
-                                    Container(
+      body: Obx(() {
+        return Stack(
+          children: [
+            GetBuilder<ViewStoryController>(
+              id: "friendStory",
+              builder: (controller) {
+                return StoryPageView(
+                  itemBuilder: (context, pageIndex, storyIndex) {
+                    final user =
+                    controller.friendStoryModel.data![pageIndex];
+                    // final user = sampleUsers[pageIndex];
+                    final story = user.storyList![storyIndex];
+                    return Stack(
+                      children: [
+                        Positioned.fill(
+                          child: Container(color: Colors.black),
+                        ),
+                        Positioned.fill(
+                          child: CachedNetworkImage(
+                            imageUrl: story.storyItem.toString(),
+                            imageBuilder: (context, imageProvider) =>
+                                Container(
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
                                       image: imageProvider,
@@ -70,8 +67,9 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                     ),
                                   ),
                                 ),
-                                // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
-                                errorWidget: (context, url, error) => Container(
+                            // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
+                            errorWidget: (context, url, error) =>
+                                Container(
                                   height: Get.height * 0.2857,
                                   width: Get.width,
                                   decoration: const BoxDecoration(
@@ -79,120 +77,120 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                       image: DecorationImage(
                                           image: AssetImage(AssetRes.homePro))),
                                 ),
-                                fit: BoxFit.fill,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                  indicatorPadding: EdgeInsets.only(
+                      top: Get.height - 20, right: 50, left: 50),
+                  gestureItemBuilder: (context, pageIndex, storyIndex) {
+                    return Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            width: Get.width,
+                            height: Get.height * 0.3,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  ColorRes.color_141414.withOpacity(0.9),
+                                  Colors.transparent,
+                                  Colors.transparent
+                                ],
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter,
+                                stops: const [0, 0.99, 1],
                               ),
                             ),
-                          ],
-                        );
-                      },
-                      indicatorPadding: EdgeInsets.only(
-                          top: Get.height - 20, right: 50, left: 50),
-                      gestureItemBuilder: (context, pageIndex, storyIndex) {
-                        return Stack(
-                          children: [
-                            Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Container(
-                                width: Get.width,
-                                height: Get.height * 0.3,
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      ColorRes.color_141414.withOpacity(0.9),
-                                      Colors.transparent,
-                                      Colors.transparent
-                                    ],
-                                    begin: Alignment.bottomCenter,
-                                    end: Alignment.topCenter,
-                                    stops: const [0, 0.99, 1],
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: SizedBox(
+                            width: Get.width,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 32, left: 5, right: 5),
+                              child: Row(
+                                children: [
+                                  IconButton(
+                                    padding: EdgeInsets.zero,
+                                    color: Colors.white,
+                                    icon: const Icon(Icons.arrow_back_ios,
+                                        size: 20),
+                                    onPressed: controller.onBackTap,
                                   ),
-                                ),
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: SizedBox(
-                                width: Get.width,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 32, left: 5, right: 5),
-                                  child: Row(
-                                    children: [
-                                      IconButton(
-                                        padding: EdgeInsets.zero,
-                                        color: Colors.white,
-                                        icon: const Icon(Icons.arrow_back_ios,
-                                            size: 20),
-                                        onPressed: controller.onBackTap,
+                                  const Spacer(),
+                                  SizedBox(
+                                    height: 30,
+                                    child: TextButton(
+                                      onPressed: () {
+                                        controller.onCommentButtonTap(
+                                            id: controller
+                                                .friendStoryModel
+                                                .data![pageIndex]
+                                                .storyList![storyIndex]
+                                                .id
+                                                .toString());
+                                      },
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: ColorRes
+                                            .color_50369C
+                                            .withOpacity(0.5),
                                       ),
-                                      const Spacer(),
-                                      SizedBox(
-                                        height: 30,
-                                        child: TextButton(
-                                          onPressed: () {
-                                            controller.onCommentButtonTap(
-                                                id: controller
-                                                    .friendStoryModel
-                                                    .data![pageIndex]
-                                                    .storyList![storyIndex]
-                                                    .id
-                                                    .toString());
-                                          },
-                                          style: TextButton.styleFrom(
-                                            backgroundColor: ColorRes
-                                                .color_50369C
-                                                .withOpacity(0.5),
-                                          ),
-                                          child: Text(
-                                            "Comments",
-                                            style: sfProTextReguler(),
-                                          ),
-                                        ),
+                                      child: Text(
+                                        "Comments",
+                                        style: sfProTextReguler(),
                                       ),
-                                      IconButton(
-                                        padding: EdgeInsets.zero,
-                                        color: Colors.white,
-                                        icon: const Icon(Icons.more_horiz,
-                                            size: 24),
-                                        onPressed: controller.onMoreBtnTap,
-                                      ),
-                                    ],
+                                    ),
                                   ),
-                                ),
+                                  IconButton(
+                                    padding: EdgeInsets.zero,
+                                    color: Colors.white,
+                                    icon: const Icon(Icons.more_horiz,
+                                        size: 24),
+                                    onPressed: controller.onMoreBtnTap,
+                                  ),
+                                ],
                               ),
                             ),
-                            Positioned(
-                              bottom: 60,
-                              child: SizedBox(
-                                width: Get.width,
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: Get.width * 0.072),
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                        width: Get.width,
-                                        child: RichText(
-                                          text: TextSpan(
-                                            children: [
-                                              TextSpan(
-                                                text: controller
-                                                    .friendStoryModel
-                                                    .data![pageIndex]
-                                                    .storyList![storyIndex]
-                                                    .description
-                                                    .toString(),
-                                                style:
-                                                    sfProTextReguler().copyWith(
-                                                  color: ColorRes.color_2F80ED,
-                                                  fontSize: 27,
-                                                ),
-                                                recognizer:
-                                                    TapGestureRecognizer()
-                                                      ..onTap = controller
-                                                          .onHashTagTap,
-                                              ),
-                                              /*    TextSpan(
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 60,
+                          child: SizedBox(
+                            width: Get.width,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: Get.width * 0.072),
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    width: Get.width,
+                                    child: RichText(
+                                      text: TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: controller
+                                                .friendStoryModel
+                                                .data![pageIndex]
+                                                .storyList![storyIndex]
+                                                .description
+                                                .toString(),
+                                            style:
+                                            sfProTextReguler().copyWith(
+                                              color: ColorRes.color_2F80ED,
+                                              fontSize: 27,
+                                            ),
+                                            recognizer:
+                                            TapGestureRecognizer()
+                                              ..onTap = controller
+                                                  .onHashTagTap,
+                                          ),
+                                          /*    TextSpan(
                                                 text:
                                                     "congrats on your new baby 👍🏼",
                                                 style:
@@ -200,232 +198,253 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                                   fontSize: 27,
                                                 ),
                                               ),*/
-                                            ],
-                                          ),
-                                        ),
+                                        ],
                                       ),
-                                      SizedBox(height: Get.height * 0.039),
+                                    ),
+                                  ),
+                                  SizedBox(height: Get.height * 0.039),
+                                  Container(
+                                    height: 2,
+                                    width: Get.width,
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.circular(2),
+                                      color: ColorRes.color_9597A1
+                                          .withOpacity(0.2),
+                                    ),
+                                  ),
+                                  SizedBox(height: Get.height * 0.04926),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
                                       Container(
-                                        height: 2,
-                                        width: Get.width,
+                                        height: 56,
+                                        width: 56,
                                         decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(2),
-                                          color: ColorRes.color_9597A1
-                                              .withOpacity(0.2),
-                                        ),
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                                image: NetworkImage(
+                                                  controller
+                                                      .friendStoryModel
+                                                      .data![pageIndex]
+                                                      .userDetail!
+                                                      .profileImage
+                                                      .toString(),
+                                                ),
+                                                fit: BoxFit.cover)),
                                       ),
-                                      SizedBox(height: Get.height * 0.04926),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.min,
+                                      const SizedBox(width: 16),
+                                      Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                         children: [
-                                          Container(
-                                            height: 56,
-                                            width: 56,
-                                            decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                image: DecorationImage(
-                                                    image: NetworkImage(
-                                                      controller
-                                                          .friendStoryModel
-                                                          .data![pageIndex]
-                                                          .userDetail!
-                                                          .profileImage
-                                                          .toString(),
-                                                    ),
-                                                    fit: BoxFit.cover)),
-                                          ),
-                                          const SizedBox(width: 16),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                controller
-                                                    .friendStoryModel
-                                                    .data![pageIndex]
-                                                    .userDetail!
-                                                    .fullName
-                                                    .toString(),
-                                                style:
-                                                    sfProTextReguler().copyWith(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w700,
-                                                ),
-                                              ),
-                                              Text(
-                                                controller
-                                                    .friendStoryModel
-                                                    .data![pageIndex]
-                                                    .userDetail!
-                                                    .userStatus
-                                                    .toString(),
-                                                style:
-                                                    sfProTextReguler().copyWith(
-                                                  fontWeight: FontWeight.w300,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          const Spacer(),
                                           Text(
-                                            "${controller.friendStoryModel.data![pageIndex].storyList![storyIndex].createdAt!.hour.toString()}:${controller.friendStoryModel.data![pageIndex].storyList![storyIndex].createdAt!.minute.toString()}",
-                                            style: sfProTextReguler().copyWith(
-                                                decoration:
-                                                    TextDecoration.underline),
+                                            controller
+                                                .friendStoryModel
+                                                .data![pageIndex]
+                                                .userDetail!
+                                                .fullName
+                                                .toString(),
+                                            style:
+                                            sfProTextReguler().copyWith(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                          ),
+                                          Text(
+                                            controller
+                                                .friendStoryModel
+                                                .data![pageIndex]
+                                                .userDetail!
+                                                .userStatus
+                                                .toString(),
+                                            style:
+                                            sfProTextReguler().copyWith(
+                                              fontWeight: FontWeight.w300,
+                                            ),
                                           ),
                                         ],
                                       ),
-                                      const SizedBox(height: 10),
-                                      GetBuilder<ViewStoryController>(
-                                        id: "friendStory",
-                                        builder: (controller) {
-                                          return SizedBox(
-                                            width: Get.width,
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
+                                      const Spacer(),
+                                      Text(
+                                        "${controller.friendStoryModel
+                                            .data![pageIndex]
+                                            .storyList![storyIndex].createdAt!
+                                            .hour.toString()}:${controller
+                                            .friendStoryModel.data![pageIndex]
+                                            .storyList![storyIndex].createdAt!
+                                            .minute.toString()}",
+                                        style: sfProTextReguler().copyWith(
+                                            decoration:
+                                            TextDecoration.underline),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  GetBuilder<ViewStoryController>(
+                                    id: "friendStory",
+                                    builder: (controller) {
+                                      return SizedBox(
+                                        width: Get.width,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Column(
+                                              mainAxisSize:
+                                              MainAxisSize.min,
                                               children: [
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  children: [
-                                                    controller
-                                                                .friendStoryModel
-                                                                .data![
-                                                                    pageIndex]
-                                                                .storyList![
-                                                                    storyIndex]
-                                                                .isLike
-                                                                .toString() ==
-                                                            "no"
-                                                        ? InkWell(
-                                                            onTap: () {
-                                                              controller.onLikeBtnTap(controller
-                                                                  .friendStoryModel
-                                                                  .data![
-                                                                      pageIndex]
-                                                                  .storyList![
-                                                                      storyIndex]
-                                                                  .id
-                                                                  .toString());
-                                                            },
-                                                            child: const Icon(
-                                                              Icons.favorite,
-                                                              color: ColorRes
-                                                                  .white,
-                                                            ),
-                                                          )
-                                                        : InkWell(
-                                                            onTap: () {
-                                                              controller.onUnLikeBtnTap(controller
-                                                                  .friendStoryModel
-                                                                  .data![
-                                                                      pageIndex]
-                                                                  .storyList![
-                                                                      storyIndex]
-                                                                  .id
-                                                                  .toString());
-                                                            },
-                                                            child: const Icon(
-                                                              Icons.favorite,
-                                                              color:
-                                                                  ColorRes.red,
-                                                            ),
-                                                          ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        controller.onLikeViewTap(
-                                                            friendStory: controller
-                                                                    .friendStoryModel
-                                                                    .data![
-                                                                pageIndex],
-                                                            storyIndex:
-                                                                storyIndex);
-                                                      },
-                                                      child: Row(
-                                                        children: [
-                                                          Text(
-                                                            Strings.likes,
-                                                            style:
-                                                                sfProTextReguler(
-                                                                    fontSize:
-                                                                        15),
-                                                          ),
-                                                          Text(
-                                                            controller
-                                                                .friendStoryModel
-                                                                .data![
-                                                                    pageIndex]
-                                                                .storyList![
-                                                                    storyIndex]
-                                                                .storyLikeCount
-                                                                .toString(),
-                                                            style:
-                                                                sfProTextReguler(
-                                                                    fontSize:
-                                                                        15),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
+                                                controller
+                                                    .friendStoryModel
+                                                    .data![
+                                                pageIndex]
+                                                    .storyList![
+                                                storyIndex]
+                                                    .isLike
+                                                    .toString() ==
+                                                    "no"
+                                                    ? InkWell(
+                                                  onTap: () {
+                                                    controller.onLikeBtnTap(
+                                                        controller
+                                                            .friendStoryModel
+                                                            .data![
+                                                        pageIndex]
+                                                            .storyList![
+                                                        storyIndex]
+                                                            .id
+                                                            .toString());
+                                                  },
+                                                  child: const Icon(
+                                                    Icons.favorite,
+                                                    color: ColorRes
+                                                        .white,
+                                                  ),
+                                                )
+                                                    : InkWell(
+                                                  onTap: () {
+                                                    controller.onUnLikeBtnTap(
+                                                        controller
+                                                            .friendStoryModel
+                                                            .data![
+                                                        pageIndex]
+                                                            .storyList![
+                                                        storyIndex]
+                                                            .id
+                                                            .toString());
+                                                  },
+                                                  child: const Icon(
+                                                    Icons.favorite,
+                                                    color:
+                                                    ColorRes.red,
+                                                  ),
                                                 ),
                                                 InkWell(
                                                   onTap: () {
-                                                    controller
-                                                        .onCommentButtonTap();
+                                                    controller.onLikeViewTap(
+                                                        friendStory: controller
+                                                            .friendStoryModel
+                                                            .data![
+                                                        pageIndex],
+                                                        storyIndex:
+                                                        storyIndex);
                                                   },
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
+                                                  child: Row(
                                                     children: [
-                                                      const Icon(Icons.comment,
-                                                          color:
-                                                              ColorRes.white),
-                                                      Text(Strings.comments,
-                                                          style:
-                                                              sfProTextReguler()),
+                                                      Text(
+                                                        Strings.likes,
+                                                        style:
+                                                        sfProTextReguler(
+                                                            fontSize:
+                                                            15),
+                                                      ),  const SizedBox(width: 5,),
+                                                      Text(
+                                                        controller
+                                                            .friendStoryModel
+                                                            .data![
+                                                        pageIndex]
+                                                            .storyList![
+                                                        storyIndex]
+                                                            .storyLikeCount
+                                                            .toString(),
+                                                        style:
+                                                        sfProTextReguler(
+                                                            fontSize:
+                                                            15),
+                                                      ),
                                                     ],
                                                   ),
                                                 ),
                                               ],
                                             ),
-                                          );
-                                        },
-                                      )
-                                    ],
-                                  ),
-                                ),
+                                            InkWell(
+                                              onTap: () {
+                                                controller
+                                                    .onCommentButtonTap();
+                                              },
+                                              child: Column(
+                                                mainAxisSize:
+                                                MainAxisSize.min,
+                                                children: [
+                                                  const Icon(Icons.comment,
+                                                      color:
+                                                      ColorRes.white),
+                                                  Row(
+                                                    children: [
+                                                      Text(Strings.comments,
+                                                          style:
+                                                          sfProTextReguler()),
+                                                      const SizedBox(width: 5,),Text(controller
+                                                          .friendStoryModel
+                                                          .data![
+                                                      pageIndex]
+                                                          .storyList![
+                                                      storyIndex]
+                                                          .storyCommentCount
+                                                          .toString(),
+                                                          style:
+                                                          sfProTextReguler()),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  )
+                                ],
                               ),
                             ),
-                          ],
-                        );
-                      },
-                      indicatorAnimationController:
-                          controller.indicatorAnimationController,
-                      initialStoryIndex: (pageIndex) {
-                        /* if (pageIndex == 0) {
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                  indicatorAnimationController:
+                  controller.indicatorAnimationController,
+                  initialStoryIndex: (pageIndex) {
+                    /* if (pageIndex == 0) {
                   return 1;
                 }*/
-                      return 0;
-                    },
-                    pageLength: controller.friendStoryModel.data!.length,
-                    storyLength: (int pageIndex) {
-                      return controller
-                          .friendStoryModel.data![pageIndex].storyList!.length;
-                    },
-                    onPageLimitReached: () {
-                      Navigator.pop(context);
-                    },
-                  );
-                },
-              ),
-              controller.loader.isTrue ? SmallLoader() : SizedBox()
-            ],
-          );
-        },
-      ),
-    );
+                    return 0;
+                  },
+                  pageLength: controller.friendStoryModel.data!.length,
+                  storyLength: (int pageIndex) {
+                    return controller
+                        .friendStoryModel.data![pageIndex].storyList!.length;
+                  },
+                  onPageLimitReached: () {
+                    Navigator.pop(context);
+                  },
+                );
+              },
+            ),
+            controller.loader.isTrue ? const SmallLoader() : const SizedBox()
+          ],
+        );
+      },
+      ));
   }
 }

@@ -52,6 +52,9 @@ class HomeController extends GetxController {
     }
   }
 
+  void onNewStoryTap(){
+    Get.to(() => AddStoryScreen());
+  }
   Future<void> countryNationalites() async {
     try {
       await ListOfNationalitiesApi.postRegister()
@@ -98,7 +101,4 @@ class HomeController extends GetxController {
 
   }
 
-  void onNewStoryTap(){
-    Get.to(() => AddStoryScreen());
-  }
 }

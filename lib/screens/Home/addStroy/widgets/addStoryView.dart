@@ -94,9 +94,7 @@ class AddStoryViewScreen extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         controller.onStoryPost(
-                            des: controller
-                                .key.currentState!.controller!.markupText
-                                .toString());
+                        );
                       },
                       child: Container(
                         height: Get.height * 0.07389,
