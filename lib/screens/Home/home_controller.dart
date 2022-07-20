@@ -31,7 +31,7 @@ class HomeController extends GetxController {
     blockListDetailes();
     listOfFriedRequestDetails();
     controller.viewProfileDetails();
-    viewStoryController.friendStoryApiData();
+    // viewStoryController.friendStoryApiData();
 
     super.onInit();
   }
@@ -85,6 +85,7 @@ class HomeController extends GetxController {
   }
 
   Future<void> init() async {
+    viewStoryController.friendStoryApiData();
     // loader.value = true;
   }
 

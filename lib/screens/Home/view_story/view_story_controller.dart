@@ -10,6 +10,7 @@ import 'package:rainbow/screens/Home/Story/myStory_api/myStroy_api.dart';
 import 'package:rainbow/screens/Home/Story/story_screen.dart';
 import 'package:rainbow/screens/Home/Story/unlike_api/unlike_api.dart';
 import 'package:rainbow/screens/Home/comments/comments_screen.dart';
+import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/view_story/widgets/likes_bottomShit.dart';
 import 'package:story/story_page_view/story_page_view.dart';
 
@@ -84,6 +85,8 @@ class ViewStoryController extends GetxController {
       loader.value = true;
       friendStoryModel = (await FriendStoryApi.postRegister())!;
       update(["adStory"]);
+      HomeController homeController = Get.find();
+      homeController.update(['home']);
 
       loader.value = false;
     } catch (e) {

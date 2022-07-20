@@ -337,11 +337,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                                                       storyIndex]
                                                                   .id
                                                                   .toString());
-                                                              controller
-                                                                  .update([
-                                                                "friendStory"
-                                                              ]);
-                                                            },
+                                                              },
                                                             child: const Icon(
                                                               Icons.favorite,
                                                               color: ColorRes
@@ -358,10 +354,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                                                       storyIndex]
                                                                   .id
                                                                   .toString());
-                                                              controller
-                                                                  .update([
-                                                                "friendStory"
-                                                              ]);
+
                                                             },
                                                             child: const Icon(
                                                               Icons.favorite,
