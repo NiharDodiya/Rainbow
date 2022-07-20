@@ -250,572 +250,232 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                   isScrollControlled: true,
                   context: context,
                   builder: (context) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15),
-                          child: Text(
-                            "Month",
-                            style: gilroyRegularTextStyle(
-                                color: ColorRes.color_8B8B8B),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 25),
-                          child: GetBuilder<AdHomeController>(
-                            id: "add",
-                            builder: (controller) {
-                              return DropdownButtonHideUnderline(
-                                child: DropdownButton2(
-                                  isExpanded: true,
-                                  hint: Row(
-                                    children: [
-                                      const SizedBox(
-                                        width: 4,
-                                      ),
-                                      Expanded(
-                                        child: Text(
-                                          "july",
-                                          style: gilroyMediumTextStyle(
-                                              fontSize: 16,
-                                              color: ColorRes.black
-                                                  .withOpacity(0.3)),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  items: adHomeController.months
-                                      .map((item) => DropdownMenuItem<String>(
-                                            value: item,
-                                            child: Text(
-                                              item,
-                                              style: gilroyMediumTextStyle(
-                                                  fontSize: 16,
-                                                  color: ColorRes.black),
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ))
-                                      .toList(),
-                                  value: adHomeController.selectedItem,
-                                  onChanged: (value) {
-                                    adHomeController.selectedItem =
-                                        value as String?;
-                                    adHomeController.update(["add"]);
-                                  },
-                                  icon: Image.asset(
-                                    AssetRes.arrowDown,
-                                    height: 17,
-                                    color: Colors.black,
-                                  ),
-                                  iconSize: 14,
-                                  iconEnabledColor: Colors.grey,
-                                  iconDisabledColor: Colors.grey,
-                                  buttonHeight: 60,
-                                  buttonWidth: Get.width * 0.85,
-                                  buttonPadding: const EdgeInsets.only(
-                                      left: 14, right: 23),
-                                  buttonDecoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: ColorRes.color_E4E4EC),
-                                    borderRadius: BorderRadius.circular(15),
-                                    color: Colors.white,
-                                  ),
-                                  buttonElevation: 0,
-                                  itemHeight: 40,
-                                  itemPadding: const EdgeInsets.only(
-                                      left: 20, right: 14),
-                                  dropdownMaxHeight: Get.height * 0.3,
-                                  /* height: Get.height*0.19,*/
-                                  dropdownWidth: Get.width * 0.85,
-                                  dropdownPadding: null,
-                                  dropdownDecoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(14),
-                                    color: ColorRes.color_E4E4EC,
-                                  ),
-                                  // scrollbarRadius: const Radius.circular(40),
-                                  scrollbarThickness: 6,
-                                  scrollbarAlwaysShow: true,
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              width: 25,
-                            ),
-                            Container(
-                              height: 10,
-                              width: 10,
-                              decoration: const BoxDecoration(
-                                  color: ColorRes.color_B180EF,
-                                  shape: BoxShape.circle),
-                            ),
-                            Spacer(),
-                            Text(
-                              Strings.sun,
-                              style: gilroyMediumTextStyle(
-                                  color: ColorRes.color_C4C4C4, fontSize: 10),
-                            ),
-                            Spacer(),
-                            Container(
-                              height: 10,
-                              width: 10,
-                              decoration: const BoxDecoration(
-                                  color: ColorRes.color_FF737D,
-                                  shape: BoxShape.circle),
-                            ),
-                            Spacer(),
-                            Text(
-                              Strings.mon,
-                              style: gilroyMediumTextStyle(
-                                  color: ColorRes.color_C4C4C4, fontSize: 10),
-                            ),
-                            Spacer(),
-                            Container(
-                              height: 10,
-                              width: 10,
-                              decoration: const BoxDecoration(
-                                  color: ColorRes.color_61BDFF,
-                                  shape: BoxShape.circle),
-                            ),
-                            Spacer(),
-                            Text(
-                              Strings.tue,
-                              style: gilroyMediumTextStyle(
-                                  color: ColorRes.color_C4C4C4, fontSize: 10),
-                            ),
-                            Spacer(),
-                            Container(
-                              height: 10,
-                              width: 10,
-                              decoration: const BoxDecoration(
-                                  color: ColorRes.color_3294DB,
-                                  shape: BoxShape.circle),
-                            ),
-                            Spacer(),
-                            Text(
-                              Strings.wed,
-                              style: gilroyMediumTextStyle(
-                                  color: ColorRes.color_C4C4C4, fontSize: 10),
-                            ),
-                            Spacer(),
-                            Container(
-                              height: 10,
-                              width: 10,
-                              decoration: const BoxDecoration(
-                                  color: ColorRes.color_73E6FF,
-                                  shape: BoxShape.circle),
-                            ),
-                            Spacer(),
-                            Text(
-                              Strings.th,
-                              style: gilroyMediumTextStyle(
-                                  color: ColorRes.color_C4C4C4, fontSize: 10),
-                            ),
-                            Spacer(),
-                            Container(
-                              height: 10,
-                              width: 10,
-                              decoration: const BoxDecoration(
-                                  color: ColorRes.color_4075FF,
-                                  shape: BoxShape.circle),
-                            ),
-                            Spacer(),
-                            Text(
-                              Strings.fri,
-                              style: gilroyMediumTextStyle(
-                                  color: ColorRes.color_C4C4C4, fontSize: 10),
-                            ),
-                            Spacer(),
-                            Container(
-                              height: 10,
-                              width: 10,
-                              decoration: const BoxDecoration(
-                                  color: ColorRes.color_FF61D3,
-                                  shape: BoxShape.circle),
-                            ),
-                            Spacer(),
-                            Text(
-                              Strings.sat,
-                              style: gilroyMediumTextStyle(
-                                  color: ColorRes.color_C4C4C4, fontSize: 10),
-                            ),
-                            SizedBox(
-                              width: 25,
-                            ),
-                          ],
-                        )
-                      ],
                     return GestureDetector(
-                      behavior: HitTestBehavior.opaque,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Text(
-                              "Month",
-                              style: gilroyRegularTextStyle(
-                                  color: ColorRes.color_8B8B8B),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 25),
-                            child: GetBuilder<AdHomeController>(
-                              id: "add",
-                              builder: (controller) {
-                                return DropdownButtonHideUnderline(
-                                  child: DropdownButton2(
-                                    isExpanded: true,
-                                    hint: Row(
-                                      children: [
-                                        const SizedBox(
-                                          width: 4,
-                                        ),
-                                        Expanded(
-                                          child: Text(
-                                            "july",
-                                            style: gilroyMediumTextStyle(
-                                                fontSize: 16,
-                                                color: ColorRes.black
-                                                    .withOpacity(0.3)),
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    items: adHomeController.months
-                                        .map((item) => DropdownMenuItem<String>(
-                                              value: item,
+                        behavior: HitTestBehavior.opaque,
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 15),
+                                child: Text(
+                                  "Month",
+                                  style: gilroyRegularTextStyle(
+                                      color: ColorRes.color_8B8B8B),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 25),
+                                child: GetBuilder<AdHomeController>(
+                                  id: "add",
+                                  builder: (controller) {
+                                    return DropdownButtonHideUnderline(
+                                      child: DropdownButton2(
+                                        isExpanded: true,
+                                        hint: Row(
+                                          children: [
+                                            const SizedBox(
+                                              width: 4,
+                                            ),
+                                            Expanded(
                                               child: Text(
-                                                item,
+                                                "july",
                                                 style: gilroyMediumTextStyle(
                                                     fontSize: 16,
-                                                    color: ColorRes.black),
+                                                    color: ColorRes.black
+                                                        .withOpacity(0.3)),
                                                 overflow: TextOverflow.ellipsis,
                                               ),
-                                            ))
-                                        .toList(),
-                                    value: adHomeController.selectedItem,
-                                    onChanged: (value) {
-                                      adHomeController.selectedItem =
-                                          value as String?;
-                                      adHomeController.update(["add"]);
-                                    },
-                                    icon: Image.asset(
-                                      AssetRes.arrowDown,
-                                      height: 17,
-                                      color: Colors.black,
-                                    ),
-                                    iconSize: 14,
-                                    iconEnabledColor: Colors.grey,
-                                    iconDisabledColor: Colors.grey,
-                                    buttonHeight: 60,
-                                    buttonWidth: Get.width * 0.85,
-                                    buttonPadding: const EdgeInsets.only(
-                                        left: 14, right: 23),
-                                    buttonDecoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: ColorRes.color_E4E4EC),
-                                      borderRadius: BorderRadius.circular(15),
-                                      color: Colors.white,
-                                    ),
-                                    buttonElevation: 0,
-                                    itemHeight: 40,
-                                    itemPadding: const EdgeInsets.only(
-                                        left: 20, right: 14),
-                                    dropdownMaxHeight: Get.height * 0.3,
-                                    /* height: Get.height*0.19,*/
-                                    dropdownWidth: Get.width * 0.85,
-                                    dropdownPadding: null,
-                                    dropdownDecoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(14),
-                                      color: ColorRes.color_E4E4EC,
-                                    ),
-                                    // scrollbarRadius: const Radius.circular(40),
-                                    scrollbarThickness: 6,
-                                    scrollbarAlwaysShow: true,
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const SizedBox(
-                                width: 25,
-                              ),
-                              Container(
-                                height: 10,
-                                width: 10,
-                                decoration: const BoxDecoration(
-                                    color: ColorRes.color_B180EF,
-                                    shape: BoxShape.circle),
-                              ),
-                              const Spacer(),
-                              Text(
-                                Strings.sun,
-                                style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
-                              ),
-                              const Spacer(),
-                              Container(
-                                height: 10,
-                                width: 10,
-                                decoration: const BoxDecoration(
-                                    color: ColorRes.color_FF737D,
-                                    shape: BoxShape.circle),
-                              ),
-                              const Spacer(),
-                              Text(
-                                Strings.mon,
-                                style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
-                              ),
-                              const Spacer(),
-                              Container(
-                                height: 10,
-                                width: 10,
-                                decoration: const BoxDecoration(
-                                    color: ColorRes.color_61BDFF,
-                                    shape: BoxShape.circle),
-                              ),
-                              const Spacer(),
-                              Text(
-                                Strings.tue,
-                                style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
-                              ),
-                              const Spacer(),
-                              Container(
-                                height: 10,
-                                width: 10,
-                                decoration: const BoxDecoration(
-                                    color: ColorRes.color_3294DB,
-                                    shape: BoxShape.circle),
-                              ),
-                              const Spacer(),
-                              Text(
-                                Strings.wed,
-                                style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
-                              ),
-                              const Spacer(),
-                              Container(
-                                height: 10,
-                                width: 10,
-                                decoration: const BoxDecoration(
-                                    color: ColorRes.color_73E6FF,
-                                    shape: BoxShape.circle),
-                              ),
-                              const Spacer(),
-                              Text(
-                                Strings.th,
-                                style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
-                              ),
-                              const Spacer(),
-                              Container(
-                                height: 10,
-                                width: 10,
-                                decoration: const BoxDecoration(
-                                    color: ColorRes.color_4075FF,
-                                    shape: BoxShape.circle),
-                              ),
-                              const Spacer(),
-                              Text(
-                                Strings.fri,
-                                style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
-                              ),
-                              const Spacer(),
-                              Container(
-                                height: 10,
-                                width: 10,
-                                decoration: const BoxDecoration(
-                                    color: ColorRes.color_FF61D3,
-                                    shape: BoxShape.circle),
-                              ),
-                              const Spacer(),
-                              Text(
-                                Strings.sat,
-                                style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
-                              ),
-                              const SizedBox(
-                                width: 25,
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: Get.width * 0.0693,
-                                right: Get.width * 0.04),
-                            child: Row(
-                              children: [
-                                SizedBox(
-                                  width: Get.width - 67 - (Get.width * 0.0693),
-                                  height: 273,
-                                  child: chart.BarChart(
-                                    barGroupingType:
-                                        chart.BarGroupingType.groupedStacked,
-                                    series,
-                                    vertical: false,
-                                    animate: true,
-                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                        items: adHomeController.months
+                                            .map((item) =>
+                                                DropdownMenuItem<String>(
+                                                  value: item,
+                                                  child: Text(
+                                                    item,
+                                                    style:
+                                                        gilroyMediumTextStyle(
+                                                            fontSize: 16,
+                                                            color:
+                                                                ColorRes.black),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                ))
+                                            .toList(),
+                                        value: adHomeController.selectedItem,
+                                        onChanged: (value) {
+                                          adHomeController.selectedItem =
+                                              value as String?;
+                                          adHomeController.update(["add"]);
+                                        },
+                                        icon: Image.asset(
+                                          AssetRes.arrowDown,
+                                          height: 17,
+                                          color: Colors.black,
+                                        ),
+                                        iconSize: 14,
+                                        iconEnabledColor: Colors.grey,
+                                        iconDisabledColor: Colors.grey,
+                                        buttonHeight: 60,
+                                        buttonWidth: Get.width * 0.85,
+                                        buttonPadding: const EdgeInsets.only(
+                                            left: 14, right: 23),
+                                        buttonDecoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: ColorRes.color_E4E4EC),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          color: Colors.white,
+                                        ),
+                                        buttonElevation: 0,
+                                        itemHeight: 40,
+                                        itemPadding: const EdgeInsets.only(
+                                            left: 20, right: 14),
+                                        dropdownMaxHeight: Get.height * 0.3,
+                                        /* height: Get.height*0.19,*/
+                                        dropdownWidth: Get.width * 0.85,
+                                        dropdownPadding: null,
+                                        dropdownDecoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(14),
+                                          color: ColorRes.color_E4E4EC,
+                                        ),
+                                        // scrollbarRadius: const Radius.circular(40),
+                                        scrollbarThickness: 6,
+                                        scrollbarAlwaysShow: true,
+                                      ),
+                                    );
+                                  },
                                 ),
-                                Column(
-                                  children: [
-                                    Container(
-                                      height: 50,
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: ColorRes.color_DCDCDC,
-                                            width: 1),
-                                        color: ColorRes.white,
-                                        shape: BoxShape.circle,
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: ColorRes.color_2F415E
-                                                  .withOpacity(0.13),
-                                              offset: const Offset(0, 8),
-                                              blurRadius: 4),
-                                        ],
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          "80",
-                                          style: poppinsSemiBold(
-                                              fontSize: 14,
-                                              color: ColorRes.black),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 3,
-                                    ),
-                                    Container(
-                                      height: 50,
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: ColorRes.color_DCDCDC,
-                                            width: 1),
-                                        color: ColorRes.white,
-                                        shape: BoxShape.circle,
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: ColorRes.color_2F415E
-                                                  .withOpacity(0.13),
-                                              offset: const Offset(0, 8),
-                                              blurRadius: 4),
-                                        ],
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          "198",
-                                          style: poppinsSemiBold(
-                                              fontSize: 14,
-                                              color: ColorRes.black),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 3,
-                                    ),
-                                    Container(
-                                      height: 50,
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: ColorRes.color_DCDCDC,
-                                            width: 1),
-                                        color: ColorRes.white,
-                                        shape: BoxShape.circle,
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: ColorRes.color_2F415E
-                                                  .withOpacity(0.13),
-                                              offset: const Offset(0, 8),
-                                              blurRadius: 4),
-                                        ],
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          "60",
-                                          style: poppinsSemiBold(
-                                              fontSize: 14,
-                                              color: ColorRes.black),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 3,
-                                    ),
-                                    Container(
-                                      height: 50,
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: ColorRes.color_DCDCDC,
-                                            width: 1),
-                                        color: ColorRes.white,
-                                        shape: BoxShape.circle,
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: ColorRes.color_2F415E
-                                                  .withOpacity(0.13),
-                                              offset: const Offset(0, 8),
-                                              blurRadius: 4),
-                                        ],
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          "225",
-                                          style: poppinsSemiBold(
-                                              fontSize: 14,
-                                              color: ColorRes.black),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 3,
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: 25,
+                                  ),
+                                  Container(
+                                    height: 10,
+                                    width: 10,
+                                    decoration: const BoxDecoration(
+                                        color: ColorRes.color_B180EF,
+                                        shape: BoxShape.circle),
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    Strings.sun,
+                                    style: gilroyMediumTextStyle(
+                                        color: ColorRes.color_C4C4C4,
+                                        fontSize: 10),
+                                  ),
+                                  Spacer(),
+                                  Container(
+                                    height: 10,
+                                    width: 10,
+                                    decoration: const BoxDecoration(
+                                        color: ColorRes.color_FF737D,
+                                        shape: BoxShape.circle),
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    Strings.mon,
+                                    style: gilroyMediumTextStyle(
+                                        color: ColorRes.color_C4C4C4,
+                                        fontSize: 10),
+                                  ),
+                                  Spacer(),
+                                  Container(
+                                    height: 10,
+                                    width: 10,
+                                    decoration: const BoxDecoration(
+                                        color: ColorRes.color_61BDFF,
+                                        shape: BoxShape.circle),
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    Strings.tue,
+                                    style: gilroyMediumTextStyle(
+                                        color: ColorRes.color_C4C4C4,
+                                        fontSize: 10),
+                                  ),
+                                  Spacer(),
+                                  Container(
+                                    height: 10,
+                                    width: 10,
+                                    decoration: const BoxDecoration(
+                                        color: ColorRes.color_3294DB,
+                                        shape: BoxShape.circle),
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    Strings.wed,
+                                    style: gilroyMediumTextStyle(
+                                        color: ColorRes.color_C4C4C4,
+                                        fontSize: 10),
+                                  ),
+                                  Spacer(),
+                                  Container(
+                                    height: 10,
+                                    width: 10,
+                                    decoration: const BoxDecoration(
+                                        color: ColorRes.color_73E6FF,
+                                        shape: BoxShape.circle),
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    Strings.th,
+                                    style: gilroyMediumTextStyle(
+                                        color: ColorRes.color_C4C4C4,
+                                        fontSize: 10),
+                                  ),
+                                  Spacer(),
+                                  Container(
+                                    height: 10,
+                                    width: 10,
+                                    decoration: const BoxDecoration(
+                                        color: ColorRes.color_4075FF,
+                                        shape: BoxShape.circle),
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    Strings.fri,
+                                    style: gilroyMediumTextStyle(
+                                        color: ColorRes.color_C4C4C4,
+                                        fontSize: 10),
+                                  ),
+                                  Spacer(),
+                                  Container(
+                                    height: 10,
+                                    width: 10,
+                                    decoration: const BoxDecoration(
+                                        color: ColorRes.color_FF61D3,
+                                        shape: BoxShape.circle),
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    Strings.sat,
+                                    style: gilroyMediumTextStyle(
+                                        color: ColorRes.color_C4C4C4,
+                                        fontSize: 10),
+                                  ),
+                                  SizedBox(
+                                    width: 25,
+                                  ),
+                                ],
+                              )
+                            ]));
                   });
             },
             child: Row(

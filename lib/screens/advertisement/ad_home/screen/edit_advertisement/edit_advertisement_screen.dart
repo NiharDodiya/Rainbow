@@ -280,7 +280,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${Strings.country?? ""} : ${createAdvertisementController.addCountry!}",
+                        "${Strings.country} : ${createAdvertisementController.addCountry!}",
                         style: poppinsRegularBold(
                           fontSize: 14,
                         ),

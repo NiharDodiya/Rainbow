@@ -1,7 +1,9 @@
 // ignore_for_file: avoid_print, sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:flutter_multi_formatter/formatters/money_input_formatter.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/country_name.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_failed.dart/payment_failed_screen.dart';
@@ -134,8 +136,16 @@ class SetupDateScreen extends StatelessWidget {
                   child: GetBuilder<SetupDateController>(
                     id: 'range',
                     builder: (controller) => TableCalendar(
-                      calendarBuilders: CalendarBuilders(),
+                      calendarBuilders: const CalendarBuilders(),
                       shouldFillViewport: true,
+                      // selectedDayPredicate: ,
+                      onPageChanged: (d) {
+                        print(d.month);
+                      },
+                      onHeaderTapped: (on) {
+                        print(on.isUtc);
+                      },
+                      onDaySelected: (statrt, end) {},
                       firstDay: DateTime(
                         2022,
                         DateTime.now().month,
@@ -205,28 +215,18 @@ class SetupDateScreen extends StatelessWidget {
                       rangeEndDay: controller.endtime,
                       rangeSelectionMode: RangeSelectionMode.toggledOn,
                       headerStyle: HeaderStyle(
-                        titleTextStyle: TextStyle(fontSize: 0),
+                        titleTextStyle: TextStyle(color: ColorRes.black),
                         leftChevronVisible: false,
-                        rightChevronVisible: true,
-                        rightChevronIcon: const Icon(
-                          Icons.arrow_drop_down,
-                          color: ColorRes.black,
-                        ),
-                        rightChevronPadding: const EdgeInsets.only(
-                          right: 175,
-                        ),
-                        //// Moth Show
-                        formatButtonVisible: true,
+
+                        formatButtonVisible: false,
                         formatButtonTextStyle: gilroySemiBoldTextStyle(
                           fontSize: 11.94,
                           color: ColorRes.black,
                         ),
                         formatButtonShowsNext: false,
                         formatButtonDecoration: const BoxDecoration(),
-                        titleCentered: true,
-                        formatButtonPadding: EdgeInsets.only(left: 1),
-
-                        // titleCentered: false,
+                        titleCentered: false,
+                        // titleTextFormatter:(date, locale) => DateFormat.yM(locale).format(date),
 
                         decoration: const BoxDecoration(
                           color: Colors.white,
@@ -234,17 +234,6 @@ class SetupDateScreen extends StatelessWidget {
                             Radius.circular(12),
                           ),
                         ),
-
-                        // rightChevronIcon: Icon(
-                        //   Icons.chevron_right,
-                        //   size: 16,
-                        //   color: Colors.pink,
-                        // ),
-                        // leftChevronIcon: Icon(
-                        //   Icons.chevron_left,
-                        //   size: 16,
-                        //   color: Colors.blue,
-                        // ),
                       ),
                       daysOfWeekStyle: DaysOfWeekStyle(
                         weekdayStyle: gilroyBoldTextStyle(
@@ -285,18 +274,27 @@ class SetupDateScreen extends StatelessWidget {
                   children: [
                     Center(
                       child: SizedBox(
-                        child: TextField(
-                          controller: TextEditingController(),
-                          style: gilroySemiBoldTextStyle(fontSize: 24),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            counterStyle: gilroySemiBoldTextStyle(fontSize: 24),
-                            hintText: "\$00.00",
-                            hintStyle: gilroySemiBoldTextStyle(fontSize: 24),
+                        child: GetBuilder<SetupDateController>(
+                          id: 'selectC',
+                          builder: (controller) => TextField(
+                            inputFormatters: [
+                              MoneyInputFormatter(
+                                  leadingSymbol: controller.currency)
+                            ],
+                            controller: TextEditingController(),
+                            style: gilroySemiBoldTextStyle(fontSize: 24),
+                            textAlign: TextAlign.center,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              counterStyle:
+                                  gilroySemiBoldTextStyle(fontSize: 24),
+                              hintText: "${controller.currency}00.00",
+                              hintStyle: gilroySemiBoldTextStyle(fontSize: 24),
+                            ),
                           ),
                         ),
                         height: 30,
-                        width: 120,
+                        width: Get.width,
                       ),
                       // child: Text(
                       //   "\$00.00",
@@ -307,6 +305,7 @@ class SetupDateScreen extends StatelessWidget {
                       children: [
                         const SizedBox(height: 17),
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(width: Get.width * 0.085),
                             Text(
@@ -314,78 +313,109 @@ class SetupDateScreen extends StatelessWidget {
                               style: gilroyMediumTextStyle(fontSize: 18),
                             ),
                             const Spacer(),
-                            Column(
-                              children: [
-                                Container(
-                                  decoration: const BoxDecoration(
-                                    color: ColorRes.white,
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(10),
+                            GetBuilder<SetupDateController>(
+                              id: 'selectC',
+                              builder: (controller) => Column(
+                                children: [
+                                  Container(
+                                    decoration: const BoxDecoration(
+                                      color: ColorRes.white,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
                                     ),
-                                  ),
-                                  height: 20,
-                                  width: 80,
-                                  child: Expanded(
-                                    child: GetBuilder<SetupDateController>(
-                                        id: 'drop',
-                                        builder: (controller) =>
-                                            // Text(setupDateController.select)
-                                            Row(
-                                              children: [
-                                                Image.asset(AssetRes.flag01),
-                                                Text(
-                                                  setupDateController.select,
-                                                  style: gilroyMediumTextStyle(
-                                                      fontSize: 12),
-                                                ),
-                                              ],
-                                            )
-
-                                        // DropdownButton(
-                                        //   dropdownColor: ColorRes.white,
-                                        //   hint: Center(
-                                        //     child: Text(
-                                        //       "caneda",
-                                        //       style: gilroyMediumTextStyle(
-                                        //           fontSize: 12,
-                                        //           color: ColorRes.black),
-                                        //     ),
-                                        //   ),
-                                        //   items: controller.list.map((String items) {
-                                        //     return DropdownMenuItem(
-                                        //       value: controller.list,
-                                        //       child: Text(items),
-                                        //     );
-                                        //   }).toList(),
-                                        //   onChanged: (newValue) {
-                                        //     controller.drop(newValue);
-                                        //   },
-                                        // ),
+                                    height: 25,
+                                    width: 90,
+                                    child: Expanded(
+                                      child:
+                                          // Text(setupDateController.select)
+                                          GestureDetector(
+                                        onTap: () {
+                                          controller.showDrop();
+                                        },
+                                        child: Row(
+                                          children: [
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Image.asset(
+                                              controller.flag,
+                                              height: 20,
+                                              width: 15,
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              controller.select,
+                                              style: gilroyMediumTextStyle(
+                                                  fontSize: 12,
+                                                  color: ColorRes.black),
+                                            ),
+                                            const Spacer(),
+                                            Image.asset(
+                                              AssetRes.drop,
+                                              height: 3.5,
+                                              width: 7,
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                          ],
                                         ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 1,
-                                ),
-                                SizedBox(
-                                  height: 50,
-                                  width: 60,
-                                  child: ListView.builder(
-                                    itemCount: setupDateController.list.length,
-                                    itemBuilder: (context, index) => Container(
-                                      height: 20,
-                                      width: 40,
-                                      decoration: const BoxDecoration(
-                                          color: ColorRes.white),
-                                      child: Text(
-                                        setupDateController.list[index],
-                                        style: const TextStyle(
-                                            color: ColorRes.black),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                  const SizedBox(
+                                    height: 1,
+                                  ),
+                                  controller.showDropDown
+                                      ? Container(
+                                          height: 50,
+                                          width: 80,
+                                          decoration: const BoxDecoration(
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(15),
+                                            ),
+                                          ),
+                                          child: ListView.builder(
+                                            itemCount:
+                                                setupDateController.list.length,
+                                            itemBuilder: (context, index) =>
+                                                GestureDetector(
+                                              onTap: () {
+                                                controller.selectContry(index);
+                                              },
+                                              child: Container(
+                                                height: 20,
+                                                width: 40,
+                                                decoration: const BoxDecoration(
+                                                    color: ColorRes.white),
+                                                child: Row(
+                                                  children: [
+                                                    const SizedBox(
+                                                      width: 2,
+                                                    ),
+                                                    Image.asset(controller
+                                                        .flagList[index]),
+                                                    const SizedBox(
+                                                      width: 2,
+                                                    ),
+                                                    Text(
+                                                      controller.list[index],
+                                                      style: const TextStyle(
+                                                          color:
+                                                              ColorRes.black),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      : Container(),
+                                ],
+                              ),
                             ),
                             SizedBox(
                               width: Get.width * 0.0293,

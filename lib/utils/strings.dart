@@ -126,16 +126,10 @@ class Strings {
   static const addressLine2Error = 'Address Line 2 is required';
   static const phoneNumberError = 'Phone Number is required';
   static const phoneNumberValidError = 'Phone Number is invalid';
-  static const uploadImageError =
-      'Profile Image is not Uploaded \n please upload Profile picture';
+
   static const maritalStatusError = 'Marital Status is required';
-  static const reTypePasswordError = 'Re-Type password is required';
-  static const reTypePasswordValidError = 'Re-Type password is mismatch';
-  static const addressLine1Error = 'Address line 1 is required';
-  static const addressLine2Error = 'Address line 2 is required';
-  static const phoneNumberError = 'Phone number is required';
-  static const phoneNumberValidError = 'Phone number is invalid';
-  static const maritalStatusError = 'Marital status is required';
+  
+
   static const ethnicityError = 'Ethnicity is required';
   static const birthDateError = 'Birth date is required';
   static const postalCodeError = 'PostalCode is required';
@@ -418,19 +412,7 @@ class Strings {
   static const subject = "Subject";
   static const supportError02 = "Subject is requred";
   ///____________________________________Support_______________________________________
-  static const attachImagesOrproof = "Attach images or proof";
-  static const sendMessage = "Send Message";
-  static const writesomethinghere = "Write something here...";
-  static const yourMessage = "Your Message";
-  static const supportdeatailDEs =
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium sem sit amet venenatis commodo. Nullam aliquam lacus nisl, varius luctus mauris hendrerit ut. Etiam eros lectus, commodo nec nisl in, aliquet congue quam. Morbi condimentum lectus id urna gravida, at facilisis lectus consectetur. Nam viverra augue est, ut cursus mi bibendum sit amet. Duis hendrerit hendrerit molestie. Ut iaculis tellus risus, id facilisis purus finibus vel. In hac habitasse platea dictumst. Ut efficitur lacus eu risus aliquam mollis. Nullam gravida sit amet lorem vitae maximus. Nunc quis odio nec sapien ullamcorper eleifend a eget justo. In hac habitasse platea dictumst. Donec quis magna id libero consequat egestas eget ac felis.";
-  static const supportDate = "March 22, 2021 | 9:00am";
-  static const supportdeatailDEs02 =
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium sem sit amet venenatis commodo. Nullam aliquam lacus nisl, varius luctus mauris hendrerit ut. Etiam eros lectus, commodo nec nisl in, aliquet congue quam. Morbi condimentum lectus id urna gravida, at facilisis lectus consectetur. Nam viverra augue est, ut cursus mi bibendum sit amet. Duis hendrerit hendrerit molestie. Ut iaculis tellus risus, id facilisis purus finibus vel. In hac habitasse platea dictumst. Ut efficitur lacus eu risus aliquam mollis. Nullam gravida sit amet lorem vitae maximus.";
-  static const supportCode = "1235CA2B2";
-  static const supporterror01 = "Message is required";
-  static const subject = "Subject";
-  static const supportError02 = "Subject is requred";
+
   static const datesuppo = "12/30/2021";
   static const seriz = "1235CA2B2";
 
