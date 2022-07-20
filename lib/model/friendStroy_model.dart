@@ -19,13 +19,13 @@ class FriendStoryModel {
 
   bool? status;
   String? message;
-  List<Datum>? data;
+  List<FriendStory>? data;
 
   factory FriendStoryModel.fromJson(Map<String, dynamic> json) =>
       FriendStoryModel(
         status: json["status"],
         message: json["message"],
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        data: List<FriendStory>.from(json["data"].map((x) => FriendStory.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -35,8 +35,8 @@ class FriendStoryModel {
       };
 }
 
-class Datum {
-  Datum({
+class FriendStory {
+  FriendStory({
     this.userDetail,
     this.storyList,
   });
@@ -44,7 +44,7 @@ class Datum {
   UserDetail? userDetail;
   List<StoryList>? storyList;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory FriendStory.fromJson(Map<String, dynamic> json) => FriendStory(
         userDetail: UserDetail.fromJson(json["userDetail"]),
         storyList: List<StoryList>.from(
             json["storyList"].map((x) => StoryList.fromJson(x))),
@@ -65,6 +65,7 @@ class StoryList {
     this.updatedAt,
     this.storyTag,
     this.storyLikeCount,
+    this.storyLikeList,
     this.isLike,
     this.storyCommentCount,
     this.storyComment,
@@ -78,8 +79,9 @@ class StoryList {
   String? description;
   DateTime? createdAt;
   DateTime? updatedAt;
-  List<dynamic>? storyTag;
+  List<StoryTag>? storyTag;
   int? storyLikeCount;
+  List<UserDetail>? storyLikeList;
   String? isLike;
   int? storyCommentCount;
   List<dynamic>? storyComment;
@@ -93,8 +95,11 @@ class StoryList {
         description: json["description"],
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
-        storyTag: List<dynamic>.from(json["storyTag"].map((x) => x)),
+        storyTag: List<StoryTag>.from(
+            json["storyTag"].map((x) => StoryTag.fromJson(x))),
         storyLikeCount: json["storyLikeCount"],
+        storyLikeList: List<UserDetail>.from(
+            json["storyLikeList"].map((x) => UserDetail.fromJson(x))),
         isLike: json["isLike"],
         storyCommentCount: json["storyCommentCount"],
         storyComment: List<dynamic>.from(json["storyComment"].map((x) => x)),
@@ -109,8 +114,10 @@ class StoryList {
         "description": description,
         "createdAt": createdAt!.toIso8601String(),
         "updatedAt": updatedAt!.toIso8601String(),
-        "storyTag": List<dynamic>.from(storyTag!.map((x) => x)),
+        "storyTag": List<dynamic>.from(storyTag!.map((x) => x.toJson())),
         "storyLikeCount": storyLikeCount,
+        "storyLikeList":
+            List<dynamic>.from(storyLikeList!.map((x) => x.toJson())),
         "isLike": isLike,
         "storyCommentCount": storyCommentCount,
         "storyComment": List<dynamic>.from(storyComment!.map((x) => x)),
@@ -242,5 +249,29 @@ class UserDetail {
         "background_image": backgroundImage,
         "profile_image": profileImage,
         "status": status,
+      };
+}
+
+class StoryTag {
+  StoryTag({
+    this.id,
+    this.idTag,
+    this.name,
+  });
+
+  int? id;
+  int? idTag;
+  String? name;
+
+  factory StoryTag.fromJson(Map<String, dynamic> json) => StoryTag(
+        id: json["id"],
+        idTag: json["id_tag"],
+        name: json["name"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "id_tag": idTag,
+        "name": name,
       };
 }

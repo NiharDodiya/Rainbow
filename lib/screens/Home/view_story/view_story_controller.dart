@@ -26,6 +26,8 @@ class ViewStoryController extends GetxController {
   StoryCommentModel storyCommentModel = StoryCommentModel();
   TextEditingController writeSomethings = TextEditingController();
   late ValueNotifier<IndicatorAnimationCommand> indicatorAnimationController;
+  List<UserDetail> storyLikesList = [];
+
 
   void init() {
     friendStoryApiData();
@@ -33,7 +35,7 @@ class ViewStoryController extends GetxController {
 
   @override
   void onInit() {
-    update(["friendStory"]);
+
     super.onInit();
   }
 
@@ -57,8 +59,10 @@ class ViewStoryController extends GetxController {
     update(["friendStory"]);
   }
 
-  void onLikeViewTap() {
+  void onLikeViewTap(
+      {required FriendStory friendStory,required int storyIndex}) {
     indicatorAnimationController.value = IndicatorAnimationCommand.pause;
+    storyLikesList = friendStory.storyList![storyIndex].storyLikeList ?? [];
     Get.bottomSheet(
       LikesBottomShit(),
       isScrollControlled: true,
@@ -85,7 +89,7 @@ class ViewStoryController extends GetxController {
     try {
       loader.value = true;
       likeStoryModel = await LikeStoryApi.postRegister(id);
-
+      friendStoryApiData();
       update(["friendStory"]);
       loader.value = false;
     } catch (e) {
@@ -97,6 +101,7 @@ class ViewStoryController extends GetxController {
     try {
       loader.value = true;
       unLikeStoryModel = await UnLikeStoryApi.postRegister(id);
+      friendStoryApiData();
       update(["friendStory"]);
 
       loader.value = false;

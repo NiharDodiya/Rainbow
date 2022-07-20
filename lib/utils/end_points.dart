@@ -42,6 +42,7 @@ class EndPoints {
   static const likeStory = "$baseUrl/user/story/like";
   static const unLikeStory = "$baseUrl/user/story/unlike";
   static const commentStory = "$baseUrl/user/story/comment";
+  static const commentStoryDelete = "$baseUrl/user/story/comment/delete";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";
