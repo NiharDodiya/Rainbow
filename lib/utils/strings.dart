@@ -77,7 +77,7 @@ class Strings {
       "Your new password must be different\nfrom previous used password";
   static const confirmPassword = "confirm New Password";
   static const confirmShortPassword =
-      "please enter 1 Capital Letters 1 Small Letters and Special character with 8 Character";
+      "Please enter password with one special, one capital and one small latter with minimum 8 character";
   static const coPasswordEmpty = "please enter  confirm Password";
   static const confirmPasswordMismatch = "confirm  Password is Mismatch";
   static const submit = "Submit";

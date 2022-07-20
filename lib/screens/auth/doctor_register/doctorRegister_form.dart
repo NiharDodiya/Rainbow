@@ -92,7 +92,7 @@ class DoctorRegisterForm extends StatelessWidget {
                 title: Strings.postalCode,
                 hintText: Strings.postalCodeDigitHint,
                 enable: true,
-                textInputType: TextInputType.number,
+                // textInputType: TextInputType.number,
               ),
             ),
             GestureDetector(

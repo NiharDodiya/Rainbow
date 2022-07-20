@@ -105,7 +105,7 @@ class AdviserRegisterForm extends StatelessWidget {
               controller: controller.postalCode,
               title: Strings.postalCode,
               hintText: "123125",
-              textInputType: TextInputType.number,
+              // textInputType: TextInputType.number,
               enable: true,
             ),
             GetBuilder<AdviserRegisterController>(

@@ -18,7 +18,7 @@ Widget userComment(bool reply) {
           borderRadius: const BorderRadius.all(Radius.circular(50)),
           child: Image.asset(
             AssetRes.advertisement_1Image,
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           ),
         ),
       ),

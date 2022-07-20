@@ -85,11 +85,10 @@ class ConnectionsProfileController extends GetxController {
       loader.value = false;
     }
   }
-
   Future<void> sendFriendRequestDetails(String id) async {
     try {
       loader.value = true;
-      await SendFriendRequestApi.postRegister(id)
+       await SendFriendRequestApi.postRegister(id)
           .then((value) => sendFriendRequest = value);
       await callApi(id);
       // homeController.listOfFriedRequestDetails();

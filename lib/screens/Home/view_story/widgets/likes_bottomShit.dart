@@ -129,7 +129,7 @@ class LikesBottomShit extends StatelessWidget {
                       ),*/
                       CachedNetworkImage(height: 56,
                         width: 56,
-                        imageUrl:   controller.storyLikesList[index].profileImage.toString(),
+                        imageUrl: controller.storyLikesList[index].profileImage.toString(),
                         imageBuilder: (context, imageProvider) =>
                             Container(
                               decoration: BoxDecoration(

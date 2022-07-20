@@ -4,7 +4,7 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
-Widget storyComment(bool reply) {
+Widget storyComment(String comments) {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -18,7 +18,7 @@ Widget storyComment(bool reply) {
           borderRadius: const BorderRadius.all(Radius.circular(50)),
           child: Image.asset(
             AssetRes.advertisement_1Image,
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           ),
         ),
       ),
@@ -41,21 +41,21 @@ Widget storyComment(bool reply) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Wilma Warren",
+                  comments,
                   style: beVietnamProMediumTextStyle(color: ColorRes.black),
                 ),
                 const SizedBox(
                   height: 7,
                 ),
-                Text(
+               /* Text(
                   "Hdolor sit amet, consectetur",
                   style: beVietnamProRegularTextStyle(
                       fontSize: 12, color: ColorRes.black),
-                ),
+                ),*/
               ],
             ),
           ),
-          Row(
+          /*Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
@@ -79,8 +79,8 @@ Widget storyComment(bool reply) {
                 ),
               ),
             ],
-          ),
-          !reply
+          ),*/
+    /*      !reply
               ? Container(
                   width: Get.width - 110,
                   decoration: BoxDecoration(
@@ -132,7 +132,7 @@ Widget storyComment(bool reply) {
                     ],
                   ),
                 )
-              : const SizedBox(),
+              : const SizedBox(),*/
         ],
       )
     ],

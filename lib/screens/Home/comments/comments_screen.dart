@@ -60,7 +60,7 @@ class CommentsScreen extends StatelessWidget {
                       height: 40,
                     );
                   },
-                  itemCount: 10,
+                  itemCount: 1,
                 ),
               ),
             ),

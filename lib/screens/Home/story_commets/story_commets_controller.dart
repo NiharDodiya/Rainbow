@@ -24,9 +24,9 @@ class StoryCommentsController extends GetxController {
   void init(){}
 
   void onCommentSend(){
-    if(commentController.text.trim().isEmpty){
-      return;
-    }
-    StoryCommentApi.sendNewComment(story.id.toString(), commentController.text);
+    // if(commentController.text.trim().isEmpty){
+    //   return;
+    // }
+    // StoryCommentApi.sendNewComment(story.id.toString(), commentController.text);
   }
 }
