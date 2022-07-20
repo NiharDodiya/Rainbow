@@ -17,12 +17,12 @@ class FriendStoryModel {
 
   bool? status;
   String? message;
-  List<Datum>? data;
+  List<FriendStory>? data;
 
   factory FriendStoryModel.fromJson(Map<String, dynamic> json) => FriendStoryModel(
     status: json["status"],
     message: json["message"],
-    data: json["data"] == null ? null : List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+    data: json["data"] == null ? null : List<FriendStory>.from(json["data"].map((x) => FriendStory.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -32,8 +32,8 @@ class FriendStoryModel {
   };
 }
 
-class Datum {
-  Datum({
+class FriendStory {
+  FriendStory({
     this.userDetail,
     this.storyList,
   });
@@ -41,7 +41,7 @@ class Datum {
   UserDetail? userDetail;
   List<StoryList>? storyList;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory FriendStory.fromJson(Map<String, dynamic> json) => FriendStory(
     userDetail: json["userDetail"] == null ? null : UserDetail.fromJson(json["userDetail"]),
     storyList: json["storyList"] == null ? null : List<StoryList>.from(json["storyList"].map((x) => StoryList.fromJson(x))),
   );
@@ -77,7 +77,7 @@ class StoryList {
   DateTime? updatedAt;
   List<dynamic>? storyTag;
   int? storyLikeCount;
-  List<dynamic>? storyLikeList;
+  List<UserDetail>? storyLikeList;
   String? isLike;
   int? storyCommentCount;
   List<StoryComment>? storyComment;
@@ -93,7 +93,8 @@ class StoryList {
     updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
     storyTag: json["storyTag"] == null ? null : List<dynamic>.from(json["storyTag"].map((x) => x)),
     storyLikeCount: json["storyLikeCount"],
-    storyLikeList: json["storyLikeList"] == null ? null : List<dynamic>.from(json["storyLikeList"].map((x) => x)),
+    storyLikeList: List<UserDetail>.from(
+        json["storyLikeList"].map((x) => UserDetail.fromJson(x))),
     isLike: json["isLike"],
     storyCommentCount: json["storyCommentCount"],
     storyComment: json["storyComment"] == null ? null : List<StoryComment>.from(json["storyComment"].map((x) => StoryComment.fromJson(x))),
@@ -110,7 +111,8 @@ class StoryList {
     "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
     "storyTag": storyTag == null ? null : List<dynamic>.from(storyTag!.map((x) => x)),
     "storyLikeCount": storyLikeCount,
-    "storyLikeList": storyLikeList == null ? null : List<dynamic>.from(storyLikeList!.map((x) => x)),
+    "storyLikeList":
+    List<dynamic>.from(storyLikeList!.map((x) => x.toJson())),
     "isLike": isLike,
     "storyCommentCount": storyCommentCount,
     "storyComment": storyComment == null ? null : List<dynamic>.from(storyComment!.map((x) => x.toJson())),
