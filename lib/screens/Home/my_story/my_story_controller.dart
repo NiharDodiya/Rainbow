@@ -3,11 +3,14 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/myStory_model.dart';
+import 'package:rainbow/model/storyViewList_model.dart';
 import 'package:rainbow/screens/Home/my_story/api/myStroy_api.dart';
 import 'package:rainbow/screens/Home/my_story/widgets/myStoryComments_screen.dart';
 import 'package:rainbow/screens/Home/my_story/widgets/myStoryListLike_screen.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:story/story_page_view/story_page_view.dart';
+
+import 'widgets/myStoryViewBottom_screen.dart';
 
 class MyStoryController extends GetxController {
   RxBool loader = false.obs;
@@ -22,6 +25,22 @@ class MyStoryController extends GetxController {
     await getMyStoryList((){}, (){});
     /*indicatorAnimationController = ValueNotifier<IndicatorAnimationCommand>(
         IndicatorAnimationCommand.pause);*/
+  }
+  StoryViewListModel storyViewListModel =StoryViewListModel();
+
+  Future<void> getStoryViewList(String id)
+  async {
+    try {
+      loader.value = true;
+      storyViewListModel = await MyStoryApi.storyViewListAPi(id);
+      Get.bottomSheet(
+        StoryViewListScreen(),
+        isScrollControlled: true,
+      );
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+    }
   }
 
   Future<void> getMyStoryList(

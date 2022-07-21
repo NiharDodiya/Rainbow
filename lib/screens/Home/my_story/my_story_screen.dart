@@ -142,7 +142,20 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                       onPressed: controller.onBackTap,
                                     ),
                                     const Spacer(),
-                                    SizedBox(
+                                    IconButton(
+                                        onPressed: () {
+                                          controller.getStoryViewList(controller
+                                              .myStoryModel.data![pageIndex].id
+                                              .toString());
+                                        },
+                                        icon: const Icon(
+                                          Icons.remove_red_eye,
+                                          color: Colors.white,
+                                        )),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    /*  SizedBox(
                                       height: 30,
                                       child: TextButton(
                                         onPressed: () {
@@ -164,7 +177,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                       icon: const Icon(Icons.more_horiz,
                                           size: 24),
                                       onPressed: controller.onMoreBtnTap,
-                                    ),
+                                    ),*/
                                   ],
                                 ),
                               ),
@@ -276,9 +289,12 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                 MainAxisAlignment.spaceAround,
                                             children: [
                                               InkWell(
-                                                onTap:() {
-                                                  controller.onLikeBtnTap(myStory: controller
-                                                      .myStoryModel.data![pageIndex], storyindex: storyIndex);
+                                                onTap: () {
+                                                  controller.onLikeBtnTap(
+                                                      myStory: controller
+                                                          .myStoryModel
+                                                          .data![pageIndex],
+                                                      storyindex: storyIndex);
                                                 },
                                                 child: Column(
                                                   mainAxisSize:
@@ -315,7 +331,8 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                 onTap: () {
                                                   controller.onCommentButtonTap(
                                                       myStory: controller
-                                                          .myStoryModel.data![pageIndex],
+                                                          .myStoryModel
+                                                          .data![pageIndex],
                                                       storyindex: storyIndex);
                                                 },
                                                 child: Column(
@@ -329,11 +346,13 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                         Text(Strings.comments,
                                                             style:
                                                                 sfProTextReguler()),
-                                                        Text(  controller
-                                                            .myStoryModel
-                                                            .data![storyIndex]
-                                                            .storyCommentCount
-                                                            .toString(),
+                                                        Text(
+                                                            controller
+                                                                .myStoryModel
+                                                                .data![
+                                                                    storyIndex]
+                                                                .storyCommentCount
+                                                                .toString(),
                                                             style:
                                                                 sfProTextReguler()),
                                                       ],

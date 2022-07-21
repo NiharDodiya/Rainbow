@@ -84,7 +84,7 @@ class AddStoryController extends GetxController {
       adStoryModel = (await AdStoryApi.postRegister(
             uploadImage.data!.id.toString(),
             key.currentState!.controller!.markupText.toString(),
-            [],
+        [],
           ) ??
           AdStoryModel());
       update(["adStory"]);

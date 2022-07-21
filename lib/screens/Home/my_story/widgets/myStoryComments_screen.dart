@@ -32,40 +32,54 @@ class MyStoryCommentsScreen extends StatelessWidget {
         elevation: 1,
       ),
       backgroundColor: ColorRes.white,
-      body: GetBuilder<MyStoryController>(id: "myStoryComments",builder: (controller)
-      {
-        return SafeArea(
-          child: Column(
-            children: [
-              Expanded(
-                child: Container(
-                  height: Get.height,
-                  width: Get.width,
-                  padding: const EdgeInsets.only(
-                    left: 19,
-                    right: 19,
+      body: GetBuilder<MyStoryController>(
+        id: "myStoryComments",
+        builder: (controller) {
+          return SafeArea(
+            child: Column(
+              children: [
+                controller.comments.isEmpty
+                    ? Center(
+                  child: Text(
+                    "No comments",
+                    style:
+                    gilroyBoldTextStyle(color: Colors.black),
                   ),
-                  child: ListView.separated(
-                    physics: const BouncingScrollPhysics(),
-                    padding: const EdgeInsets.only(top: 10),
-                    itemBuilder: (context, index) {
-                      return storyComment(
-                        controller.comments[index].description.toString(),
-                        controller.comments[index].storyUserComment!.profileImage.toString(),
-                        controller.comments[index].storyUserComment!.fullName.toString(),
-                      );
-                    },
-                    separatorBuilder: (context, index) {
-                      return Divider(
-                        color: ColorRes.black.withOpacity(0.6),
-                        height: 40,
-                      );
-                    },
-                    itemCount: controller.comments.length,
+                )
+                    :Expanded(
+                  child: Container(
+                    height: Get.height,
+                    width: Get.width,
+                    padding: const EdgeInsets.only(
+                      left: 19,
+                      right: 19,
+                    ),
+                    child: ListView.separated(
+                      physics: const BouncingScrollPhysics(),
+                      padding: const EdgeInsets.only(top: 10),
+                      itemBuilder: (context, index) {
+                        return  storyComment(
+                                controller.comments[index].description
+                                    .toString(),
+                                controller.comments[index].storyUserComment!
+                                    .profileImage
+                                    .toString(),
+                                controller
+                                    .comments[index].storyUserComment!.fullName
+                                    .toString(),
+                              );
+                      },
+                      separatorBuilder: (context, index) {
+                        return Divider(
+                          color: ColorRes.black.withOpacity(0.6),
+                          height: 40,
+                        );
+                      },
+                      itemCount: controller.comments.length,
+                    ),
                   ),
                 ),
-              ),
-              /*  Container(
+                /*  Container(
                 width: Get.width,
                 decoration: BoxDecoration(color: ColorRes.white, boxShadow: [
                   BoxShadow(
@@ -84,7 +98,7 @@ class MyStoryCommentsScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                   *//* RichText(
+                   */ /* RichText(
                       text: TextSpan(
                         text: 'Replying to ',
                         style: beVietnamProRegularTextStyle(
@@ -101,8 +115,8 @@ class MyStoryCommentsScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ),*//*
-                   *//* Row(
+                    ),*/ /*
+                   */ /* Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -178,17 +192,15 @@ class MyStoryCommentsScreen extends StatelessWidget {
                         ),
                         const SizedBox(width: 5),
                       ],
-                    ),*//*
+                    ),*/ /*
                   ],
                 ),
               ),*/
-            ],
-          ),
-        );
-      },
-
+              ],
+            ),
+          );
+        },
       ),
     );
   }
 }
-

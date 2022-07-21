@@ -59,7 +59,6 @@ class MyStoryApi {
     try {
       String url = EndPoints.storyView;
       http.Response? response = await HttpService.getApi(url: url);
-
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
@@ -75,10 +74,11 @@ class MyStoryApi {
       return null;
     }
   }
-  static Future storyViewListAPi() async {
+  static Future storyViewListAPi(String id) async {
     try {
       String url = EndPoints.storyViewList;
-      http.Response? response = await HttpService.getApi(url: url);
+      Map<String, dynamic> body = {"id_story": id.toString()};
+      http.Response? response = await HttpService.postApi(url: url,body:jsonEncode(body) );
 
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
