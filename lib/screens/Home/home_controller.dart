@@ -28,13 +28,6 @@ class HomeController extends GetxController {
   @override
   Future<void> onInit() async {
     init();
-    countryName();
-    countryNationalites();
-    blockListDetailes();
-    listOfFriedRequestDetails();
-    controller.viewProfileDetails();
-    // viewStoryController.friendStoryApiData();
-
     super.onInit();
   }
 
@@ -90,6 +83,11 @@ class HomeController extends GetxController {
   }
 
   Future<void> init() async {
+    countryName();
+    countryNationalites();
+    blockListDetailes();
+    listOfFriedRequestDetails();
+    controller.viewProfileDetails();
     // viewStoryController.friendStoryApiData();
     // loader.value = true;
   }

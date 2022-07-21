@@ -54,7 +54,7 @@ class _DashboardState extends State<Dashboard> {
         selectedItemColor: ColorRes.color_2F80ED,
         unselectedItemColor: ColorRes.color_9597A1,
         currentIndex: controller.currentTab,
-        onTap: (i) => setState(() => controller.currentTab = i),
+        onTap: controller.onBottomBarChange,
         items: [
           /// Home
           SalomonBottomBarItem(

@@ -20,6 +20,7 @@ class ViewStoryScreen extends StatefulWidget {
 
 class _ViewStoryScreenState extends State<ViewStoryScreen> {
   final ViewStoryController controller = Get.put(ViewStoryController());
+  final FocusNode focusNode = FocusNode();
 
   @override
   void initState() {
@@ -27,20 +28,39 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
     controller.indicatorAnimationController =
         ValueNotifier<IndicatorAnimationCommand>(
             IndicatorAnimationCommand.pause);
+    controller.indicatorAnimationController.value =
+        IndicatorAnimationCommand.pause;
+    controller.indicatorAnimationController.value =
+        IndicatorAnimationCommand.resume;
+    focusNode.addListener(() {
+      if(focusNode.hasFocus){
+        controller.indicatorAnimationController.value = IndicatorAnimationCommand.pause;
+      }else{
+        controller.indicatorAnimationController.value = IndicatorAnimationCommand.resume;
+      }
+    });
   }
 
   @override
   void dispose() {
     controller.indicatorAnimationController.dispose();
+    focusNode.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: SafeArea(
-      child: Obx(
-        () {
-          return Stack(
+    return WillPopScope(
+      onWillPop: ()async{
+        if(focusNode.hasFocus){
+          focusNode.unfocus();
+          return false;
+        }
+        return true;
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Stack(
             children: [
               GetBuilder<ViewStoryController>(
                 id: "friendStory",
@@ -87,24 +107,24 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                       return Stack(
                         children: [
                           /*    Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Container(
-                              width: Get.width,
-                              height: Get.height * 0.3,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    ColorRes.color_141414.withOpacity(0.9),
-                                    Colors.transparent,
-                                    Colors.transparent
-                                  ],
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter,
-                                  stops: const [0, 0.99, 1],
+                              alignment: Alignment.bottomCenter,
+                              child: Container(
+                                width: Get.width,
+                                height: Get.height * 0.3,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      ColorRes.color_141414.withOpacity(0.9),
+                                      Colors.transparent,
+                                      Colors.transparent
+                                    ],
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.topCenter,
+                                    stops: const [0, 0.99, 1],
+                                  ),
                                 ),
                               ),
-                            ),
-                          ),*/
+                            ),*/
                           Align(
                             alignment: Alignment.topLeft,
                             child: SizedBox(
@@ -123,35 +143,35 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                     ),
                                     const Spacer(),
                                     /*    SizedBox(
-                                      height: 30,
-                                      child: TextButton(
-                                        onPressed: () {
-                                      */ /*    controller.onCommentButtonTap(
-                                              id: controller
-                                                  .friendStoryModel
-                                                  .data![pageIndex]
-                                                  .storyList![storyIndex]
-                                                  .id
-                                                  .toString());*/ /*
-                                        },
-                                        style: TextButton.styleFrom(
-                                          backgroundColor: ColorRes
-                                              .color_50369C
-                                              .withOpacity(0.5),
+                                        height: 30,
+                                        child: TextButton(
+                                          onPressed: () {
+                                        */ /*    controller.onCommentButtonTap(
+                                                id: controller
+                                                    .friendStoryModel
+                                                    .data![pageIndex]
+                                                    .storyList![storyIndex]
+                                                    .id
+                                                    .toString());*/ /*
+                                          },
+                                          style: TextButton.styleFrom(
+                                            backgroundColor: ColorRes
+                                                .color_50369C
+                                                .withOpacity(0.5),
+                                          ),
+                                          child: Text(
+                                            "Comments",
+                                            style: sfProTextReguler(),
+                                          ),
                                         ),
-                                        child: Text(
-                                          "Comments",
-                                          style: sfProTextReguler(),
-                                        ),
-                                      ),
-                                    ),*/
+                                      ),*/
                                     /*     IconButton(
-                                      padding: EdgeInsets.zero,
-                                      color: Colors.white,
-                                      icon: const Icon(Icons.more_horiz,
-                                          size: 24),
-                                      onPressed: controller.onMoreBtnTap,
-                                    ),*/
+                                        padding: EdgeInsets.zero,
+                                        color: Colors.white,
+                                        icon: const Icon(Icons.more_horiz,
+                                            size: 24),
+                                        onPressed: controller.onMoreBtnTap,
+                                      ),*/
                                   ],
                                 ),
                               ),
@@ -178,23 +198,21 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                                   .storyList![storyIndex]
                                                   .description
                                                   .toString(),
-                                              style:
-                                                  sfProTextReguler().copyWith(
+                                              style: sfProTextReguler().copyWith(
                                                 color: ColorRes.color_2F80ED,
                                                 fontSize: 27,
                                               ),
                                               recognizer: TapGestureRecognizer()
-                                                ..onTap =
-                                                    controller.onHashTagTap,
+                                                ..onTap = controller.onHashTagTap,
                                             ),
                                             /*    TextSpan(
-                                                  text:
-                                                      "congrats on your new baby 👍🏼",
-                                                  style:
-                                                      sfProTextReguler().copyWith(
-                                                    fontSize: 27,
-                                                  ),
-                                                ),*/
+                                                    text:
+                                                        "congrats on your new baby 👍🏼",
+                                                    style:
+                                                        sfProTextReguler().copyWith(
+                                                      fontSize: 27,
+                                                    ),
+                                                  ),*/
                                           ],
                                         ),
                                       ),
@@ -241,8 +259,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                                   .userDetail!
                                                   .fullName
                                                   .toString(),
-                                              style:
-                                                  sfProTextReguler().copyWith(
+                                              style: sfProTextReguler().copyWith(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w700,
                                               ),
@@ -254,8 +271,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                                   .userDetail!
                                                   .userStatus
                                                   .toString(),
-                                              style:
-                                                  sfProTextReguler().copyWith(
+                                              style: sfProTextReguler().copyWith(
                                                 fontWeight: FontWeight.w300,
                                               ),
                                             ),
@@ -293,31 +309,32 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                                           "no"
                                                       ? InkWell(
                                                           onTap: () {
-                                                            controller.onLikeBtnTap(controller
-                                                                .friendStoryModel
-                                                                .data![
-                                                                    pageIndex]
-                                                                .storyList![
-                                                                    storyIndex]
-                                                                .id
-                                                                .toString());
+                                                            controller.onLikeBtnTap(
+                                                                controller
+                                                                    .friendStoryModel
+                                                                    .data![
+                                                                        pageIndex]
+                                                                    .storyList![
+                                                                        storyIndex]
+                                                                    .id
+                                                                    .toString());
                                                           },
                                                           child: const Icon(
                                                             Icons.favorite,
-                                                            color:
-                                                                ColorRes.white,
+                                                            color: ColorRes.white,
                                                           ),
                                                         )
                                                       : InkWell(
                                                           onTap: () {
-                                                            controller.onUnLikeBtnTap(controller
-                                                                .friendStoryModel
-                                                                .data![
-                                                                    pageIndex]
-                                                                .storyList![
-                                                                    storyIndex]
-                                                                .id
-                                                                .toString());
+                                                            controller.onUnLikeBtnTap(
+                                                                controller
+                                                                    .friendStoryModel
+                                                                    .data![
+                                                                        pageIndex]
+                                                                    .storyList![
+                                                                        storyIndex]
+                                                                    .id
+                                                                    .toString());
                                                           },
                                                           child: const Icon(
                                                             Icons.favorite,
@@ -330,16 +347,14 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                                           friendStory: controller
                                                               .friendStoryModel
                                                               .data![pageIndex],
-                                                          storyIndex:
-                                                              storyIndex);
+                                                          storyIndex: storyIndex);
                                                     },
                                                     child: Row(
                                                       children: [
                                                         Text(
                                                           Strings.likes,
-                                                          style:
-                                                              sfProTextReguler(
-                                                                  fontSize: 15),
+                                                          style: sfProTextReguler(
+                                                              fontSize: 15),
                                                         ),
                                                         const SizedBox(
                                                           width: 5,
@@ -352,9 +367,8 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                                                   storyIndex]
                                                               .storyLikeCount
                                                               .toString(),
-                                                          style:
-                                                              sfProTextReguler(
-                                                                  fontSize: 15),
+                                                          style: sfProTextReguler(
+                                                              fontSize: 15),
                                                         ),
                                                       ],
                                                     ),
@@ -370,8 +384,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                                           .data![pageIndex]);
                                                 },
                                                 child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
+                                                  mainAxisSize: MainAxisSize.min,
                                                   children: [
                                                     const Icon(Icons.comment,
                                                         color: ColorRes.white),
@@ -386,8 +399,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                                         Text(
                                                             controller
                                                                 .friendStoryModel
-                                                                .data![
-                                                                    pageIndex]
+                                                                .data![pageIndex]
                                                                 .storyList![
                                                                     storyIndex]
                                                                 .storyCommentCount
@@ -419,24 +431,24 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                   width: 250,
                                   child: TextFormField(
                                     controller: controller.writeSomethings,
+                                    focusNode: focusNode,
                                     decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(35),
-                                        ),
-                                        filled: true,
-                                        fillColor: Colors.black,
-                                        hintStyle: const TextStyle(
-                                            color: Colors.white),
-                                        hintText: "send message",
-                                        contentPadding: const EdgeInsets.only(
-                                            top: 2, left: 15),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.grey),
-                                          borderRadius:
-                                              BorderRadius.circular(35),
-                                        )),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(35),
+                                      ),
+                                      filled: true,
+                                      fillColor: Colors.black,
+                                      hintStyle:
+                                          const TextStyle(color: Colors.white),
+                                      hintText: "send message",
+                                      contentPadding:
+                                          const EdgeInsets.only(top: 2, left: 15),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide:
+                                            const BorderSide(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(35),
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(
@@ -470,8 +482,8 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                         controller.indicatorAnimationController,
                     initialStoryIndex: (pageIndex) {
                       /* if (pageIndex == 0) {
-                    return 1;
-                  }*/
+                      return 1;
+                    }*/
                       return 0;
                     },
                     pageLength: controller.friendStoryModel.data!.length,
@@ -491,11 +503,15 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                   );
                 },
               ),
-              controller.loader.isTrue ? const SmallLoader() : const SizedBox()
+              Obx(() {
+                return controller.loader.isTrue
+                    ? const SmallLoader()
+                    : const SizedBox();
+              }),
             ],
-          );
-        },
+          ),
+        ),
       ),
-    ));
+    );
   }
 }

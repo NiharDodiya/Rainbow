@@ -52,12 +52,12 @@ class ViewStoryController extends GetxController {
 
   void onLikeBtnTap(id) {
     likeStory(id);
-    update(["friendStory"]);
+    // update(["friendStory"]);
   }
 
   void onUnLikeBtnTap(id) {
     unLikeStory(id);
-    update(["friendStory"]);
+    // update(["friendStory"]);
   }
 
   bool validation() {
@@ -98,7 +98,9 @@ class ViewStoryController extends GetxController {
   Future<void> likeStory(String id) async {
     try {
       loader.value = true;
+      indicatorAnimationController.value = IndicatorAnimationCommand.pause;
       likeStoryModel = await LikeStoryApi.postRegister(id);
+      indicatorAnimationController.value = IndicatorAnimationCommand.resume;
       await friendStoryApiData();
       update(["friendStory"]);
       loader.value = false;
@@ -110,8 +112,10 @@ class ViewStoryController extends GetxController {
   Future<void> unLikeStory(String id) async {
     try {
       loader.value = true;
+      indicatorAnimationController.value = IndicatorAnimationCommand.pause;
       unLikeStoryModel = await UnLikeStoryApi.postRegister(id);
       await friendStoryApiData();
+      indicatorAnimationController.value = IndicatorAnimationCommand.resume;
       update(["friendStory"]);
 
       loader.value = false;
@@ -137,12 +141,15 @@ class ViewStoryController extends GetxController {
 
   Future<void> onCommentButtonTap(
       {required FriendStory friendStory, required int storyIndex}) async {
+    indicatorAnimationController.value = IndicatorAnimationCommand.pause;
     await friendStoryApiData();
     StoryCommentsController storyController =
         Get.put(StoryCommentsController());
     storyController.comments =
         friendStory.storyList![storyIndex].storyCommentList ?? [];
-    Get.to(() => StoryCommentsScreen());
+    Get.to(() => StoryCommentsScreen())!.whenComplete((){
+      indicatorAnimationController.value = IndicatorAnimationCommand.resume;
+    });
   }
 
   void commentSendTap(String id, BuildContext context) {
