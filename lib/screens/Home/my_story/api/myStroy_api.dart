@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/myStory_model.dart';
+import 'package:rainbow/model/storyViewList_model.dart';
 import 'package:rainbow/model/storyView_model.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/utils/end_points.dart';
 
 class MyStoryApi {
+
+
   static Future<MyStoryModel?> getMyStory() async {
     try {
       String url = EndPoints.myStory;
@@ -29,7 +32,6 @@ class MyStoryApi {
       return null;
     }
   }
-
   static Future<bool> deleteMyStory(String storyId) async {
     try {
       String url = EndPoints.deleteStory;
@@ -73,4 +75,26 @@ class MyStoryApi {
       return null;
     }
   }
+  static Future storyViewListAPi() async {
+    try {
+      String url = EndPoints.storyViewList;
+      http.Response? response = await HttpService.getApi(url: url);
+
+      if (response != null && response.statusCode == 200) {
+        bool? status = jsonDecode(response.body)["status"];
+        if (status == false) {
+          errorToast("Error",title: jsonDecode(response.body)["message"]);
+          return null;
+        }
+        return storyViewListModelFromJson(response.body);
+      }
+      return null;
+    } catch (e) {
+      debugPrint(e.toString());
+      errorToast("Error", title: e.toString());
+      return null;
+    }
+  }
+
+
 }

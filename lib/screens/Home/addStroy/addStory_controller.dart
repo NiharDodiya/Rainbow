@@ -25,7 +25,6 @@ class AddStoryController extends GetxController {
 
   Future camera() async {
     final getImage = await ImagePicker().pickImage(source: ImageSource.camera);
-
     if (getImage == null) return;
     final imageTemp = File(getImage.path);
     image = imageTemp;
