@@ -10,8 +10,6 @@ import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/utils/end_points.dart';
 
 class MyStoryApi {
-
-
   static Future<MyStoryModel?> getMyStory() async {
     try {
       String url = EndPoints.myStory;
@@ -20,7 +18,7 @@ class MyStoryApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          errorToast("Error",title: jsonDecode(response.body)["message"]);
+          errorToast("Error", title: jsonDecode(response.body)["message"]);
           return null;
         }
         return myStoryModelFromJson(response.body);
@@ -32,6 +30,7 @@ class MyStoryApi {
       return null;
     }
   }
+
   static Future<bool> deleteMyStory(String storyId) async {
     try {
       String url = EndPoints.deleteStory;
@@ -42,7 +41,7 @@ class MyStoryApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          errorToast("Error",title: jsonDecode(response.body)["message"]);
+          errorToast("Error", title: jsonDecode(response.body)["message"]);
         } else if (status == true) {
           flutterToast(jsonDecode(response.body)["message"]);
         }
@@ -55,14 +54,22 @@ class MyStoryApi {
       return false;
     }
   }
-  static Future storyViewAPi() async {
+
+  static Future storyViewAPi(String storyId) async {
     try {
       String url = EndPoints.storyView;
-      http.Response? response = await HttpService.getApi(url: url);
+      Map<String, dynamic> body = {
+        "id_story": storyId,
+      };
+      http.Response? response = await HttpService.postApi(
+        url: url,
+        body: jsonEncode(body),
+      );
+
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          errorToast("Error",title: jsonDecode(response.body)["message"]);
+          errorToast("Error", title: jsonDecode(response.body)["message"]);
           return null;
         }
         return storyViewModelFromJson(response.body);
@@ -95,6 +102,4 @@ class MyStoryApi {
       return null;
     }
   }
-
-
 }

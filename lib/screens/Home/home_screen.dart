@@ -251,6 +251,7 @@ class HomeScreen extends StatelessWidget {
                                 GestureDetector(
                                   onTap: () {
                                     // Get.to(()=> StoryScreen());
+                                    viewStoryController.currentPage = index;
                                     viewStoryController.init();
                                     Get.to(() => const ViewStoryScreen());
                                   },

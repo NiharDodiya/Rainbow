@@ -28,6 +28,8 @@ class ViewStoryController extends GetxController {
   TextEditingController writeSomethings = TextEditingController();
   late ValueNotifier<IndicatorAnimationCommand> indicatorAnimationController;
   List<UserDetail> storyLikesList = [];
+  int currentPage = 0;
+  int storyIndex = 0;
 
   void init() {
     friendStoryApiData();
@@ -85,6 +87,7 @@ class ViewStoryController extends GetxController {
       update(["adStory"]);
       HomeController homeController = Get.find();
       homeController.update(['home']);
+      onPageChange(currentPage);
 
       loader.value = false;
     } catch (e) {
@@ -140,7 +143,6 @@ class ViewStoryController extends GetxController {
     storyController.comments =
         friendStory.storyList![storyIndex].storyCommentList ?? [];
     Get.to(() => StoryCommentsScreen());
-
   }
 
   void commentSendTap(String id, BuildContext context) {
@@ -150,5 +152,23 @@ class ViewStoryController extends GetxController {
       update(["friendStory"]);
       FocusScope.of(context).unfocus();
     }
+  }
+
+  void onPageChange(int pageIndex) {
+    currentPage = pageIndex;
+    onStoryChange(pageIndex, 0);
+  }
+
+  void onStoryChange(int pageIndex, int storyIndex) {
+    currentPage = pageIndex;
+    this.storyIndex = storyIndex;
+    viewStoryApi();
+  }
+
+  Future<void> viewStoryApi() async {
+    String storyId = friendStoryModel
+        .data![currentPage].storyList![storyIndex].id
+        .toString();
+    await MyStoryApi.storyViewAPi(storyId);
   }
 }

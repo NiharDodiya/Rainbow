@@ -80,7 +80,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                         ],
                       );
                     },
-                    indicatorDuration: const Duration(seconds: 20),
+                    indicatorDuration: const Duration(seconds: 10),
                     indicatorPadding: EdgeInsets.only(
                         top: Get.height * 0.02, right: 50, left: 50),
                     gestureItemBuilder: (context, pageIndex, storyIndex) {
@@ -145,7 +145,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                         ),
                                       ),
                                     ),*/
-                               /*     IconButton(
+                                    /*     IconButton(
                                       padding: EdgeInsets.zero,
                                       color: Colors.white,
                                       icon: const Icon(Icons.more_horiz,
@@ -444,12 +444,14 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    controller.commentSendTap(controller
-                                        .friendStoryModel
-                                        .data![pageIndex]
-                                        .storyList![storyIndex]
-                                        .id
-                                        .toString(),context);
+                                    controller.commentSendTap(
+                                        controller
+                                            .friendStoryModel
+                                            .data![pageIndex]
+                                            .storyList![storyIndex]
+                                            .id
+                                            .toString(),
+                                        context);
                                   },
                                   child: Image.asset(
                                     AssetRes.send,
@@ -477,9 +479,15 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                       return controller
                           .friendStoryModel.data![pageIndex].storyList!.length;
                     },
+                    onPageChanged: controller.onPageChange,
                     onPageLimitReached: () {
-                      Navigator.pop(context);
+                      Get.back();
                     },
+                    color: ColorRes.white,
+                    bgColor: ColorRes.color_464646,
+                    onStoryChange: (int storyIndex) => controller.onStoryChange(
+                        controller.currentPage, storyIndex),
+                    initialPage: controller.currentPage,
                   );
                 },
               ),
