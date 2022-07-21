@@ -124,7 +124,7 @@ class AddStoryViewScreen extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        FlutterMentions(
+                        FlutterMentions(onChanged: controller.listTagStoryApi,
                           key: controller.key,
                           suggestionPosition: SuggestionPosition.Top,
                           maxLines: 5,
@@ -139,23 +139,7 @@ class AddStoryViewScreen extends StatelessWidget {
                                 style: const TextStyle(
                                     color: Colors.blue,
                                     decoration: TextDecoration.none),
-                                data: [
-                                  {
-                                    'id': '61as61fsa',
-                                    'display': 'marion congrats new mom!',
-                                    'full_name': 'Fayeed Pawaskar',
-                                    'photo':
-                                    'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
-                                  },
-                                  {
-                                    'id': '61asasgasgsag6a',
-                                    'display': 'marion congrats new mom!',
-                                    'full_name': 'DJ Khaled',
-                                    'style': const TextStyle(color: Colors.blue),
-                                    'photo':
-                                    'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
-                                  },
-                                ],
+                                data: controller.getMentionList(),
                                 matchAll: false,
                                 suggestionBuilder: (data) {
                                   return Container(
@@ -186,7 +170,7 @@ class AddStoryViewScreen extends StatelessWidget {
                                     ),
                                   );
                                 }),
-                            Mention(
+                           /* Mention(
                               trigger: '#',
                               disableMarkup: true,
                               style: const TextStyle(
@@ -203,7 +187,7 @@ class AddStoryViewScreen extends StatelessWidget {
                                 },
                               ],
                               matchAll: true,
-                            )
+                            )*/
                           ],
                         ),
                       ],

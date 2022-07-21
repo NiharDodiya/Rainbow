@@ -50,7 +50,6 @@ class _AddStoryScreenState extends State<AddStoryScreen> {
 //load the album list
       List<AssetPathEntity> albums =
           await PhotoManager.getAssetPathList(onlyAll: true);
-      print(albums);
       List<AssetEntity> media =
           await albums[0].getAssetListPaged(page: 1, size: 100);
       print(media);

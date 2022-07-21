@@ -5,7 +5,7 @@ import 'package:rainbow/screens/Home/story_commets/api/story_comment_api.dart';
 
 class StoryCommentsController extends GetxController {
   RxBool loader = false.obs;
-  List<StoryComment> comments = [];
+  List<StoryCommentList> comments = [];
   StoryList story = StoryList();
   TextEditingController commentController = TextEditingController();
   List<bool> reply = [

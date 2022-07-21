@@ -4,11 +4,16 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/myStory_model.dart';
 import 'package:rainbow/screens/Home/my_story/api/myStroy_api.dart';
+import 'package:rainbow/screens/Home/my_story/widgets/myStoryComments_screen.dart';
+import 'package:rainbow/screens/Home/my_story/widgets/myStoryListLike_screen.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
+import 'package:story/story_page_view/story_page_view.dart';
 
 class MyStoryController extends GetxController {
   RxBool loader = false.obs;
   MyStoryModel myStoryModel = MyStoryModel();
+  List<Story> storyLikeList = [];
+  List<StorycommentList> comments = [];
 
   // late ValueNotifier<IndicatorAnimationCommand> indicatorAnimationController;
 
@@ -26,6 +31,7 @@ class MyStoryController extends GetxController {
     loader.value = true;
     myStoryModel = (await MyStoryApi.getMyStory()) ?? MyStoryModel();
     myStoryModel.data ??= [];
+
     /*for (var value in myStoryModel.data!) {
       if (value.storyItem != null) {
         loadImages(value.storyItem!);
@@ -51,13 +57,27 @@ class MyStoryController extends GetxController {
     Get.back();
   }
 
-  void onCommentButtonTap() {}
+  void onCommentButtonTap({required MyStory myStory,required int storyindex}) {
+
+comments= myStory.storycommentList ??[];
+    Get.to(() => const MyStoryCommentsScreen());
+
+  }
 
   void onMoreBtnTap() {}
 
   void onHashTagTap() {}
 
-  void onLikeBtnTap() {}
+  void onLikeBtnTap({required MyStory myStory,required int storyindex}) {
+
+    storyLikeList= myStory.storyLikeList ??[];
+    Get.bottomSheet(
+      MyStoryListLike(),
+      isScrollControlled: true,
+    ).then((value) {
+      // indicatorAnimationController.value = IndicatorAnimationCommand.resume;
+    });
+  }
 
   void onDeleteTap(
     int storyIndex,
@@ -86,4 +106,5 @@ class MyStoryController extends GetxController {
       },
     );
   }
+
 }

@@ -11,11 +11,11 @@ class DashboardController extends GetxController {
   final SearchController searchController = Get.put(SearchController());
   final MessageContorller messageController = Get.put(MessageContorller());
   final ProfileController profileController = Get.put(ProfileController());
-  // ViewStoryController viewStoryController = Get.put(ViewStoryController());
+   ViewStoryController viewStoryController = Get.put(ViewStoryController());
 
   @override
   void onInit() {
-    // viewStoryController.friendStoryApiData();
+    viewStoryController.friendStoryApiData();
     super.onInit();
   }
 

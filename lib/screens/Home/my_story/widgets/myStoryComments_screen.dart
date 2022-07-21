@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/Home/story_commets/story_commets_controller.dart';
+import 'package:rainbow/screens/Home/my_story/my_story_controller.dart';
 import 'package:rainbow/screens/Home/story_commets/widget/story_comment.dart';
-import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
-import 'package:rainbow/utils/strings.dart';
 
-class StoryCommentsScreen extends StatelessWidget {
-  StoryCommentsScreen({Key? key}) : super(key: key);
-  final StoryCommentsController controller = Get.find();
+class MyStoryCommentsScreen extends StatelessWidget {
+  const MyStoryCommentsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,40 +32,40 @@ class StoryCommentsScreen extends StatelessWidget {
         elevation: 1,
       ),
       backgroundColor: ColorRes.white,
-      body: GetBuilder<StoryCommentsController>(id: "comments",builder: (controller)
-        {
-           return SafeArea(
-             child: Column(
-               children: [
-                 Expanded(
-                   child: Container(
-                     height: Get.height,
-                     width: Get.width,
-                     padding: const EdgeInsets.only(
-                       left: 19,
-                       right: 19,
-                     ),
-                     child: ListView.separated(
-                       physics: const BouncingScrollPhysics(),
-                       padding: const EdgeInsets.only(top: 10),
-                       itemBuilder: (context, index) {
-                         return storyComment(
-                           controller.comments[index].description.toString(),
-                             controller.comments[index].storyUserComment!.profileImage.toString(),
-                             controller.comments[index].storyUserComment!.fullName.toString(),
-                         );
-                       },
-                       separatorBuilder: (context, index) {
-                         return Divider(
-                           color: ColorRes.black.withOpacity(0.6),
-                           height: 40,
-                         );
-                       },
-                       itemCount: controller.comments.length,
-                     ),
-                   ),
-                 ),
-                 /*  Container(
+      body: GetBuilder<MyStoryController>(id: "myStoryComments",builder: (controller)
+      {
+        return SafeArea(
+          child: Column(
+            children: [
+              Expanded(
+                child: Container(
+                  height: Get.height,
+                  width: Get.width,
+                  padding: const EdgeInsets.only(
+                    left: 19,
+                    right: 19,
+                  ),
+                  child: ListView.separated(
+                    physics: const BouncingScrollPhysics(),
+                    padding: const EdgeInsets.only(top: 10),
+                    itemBuilder: (context, index) {
+                      return storyComment(
+                        controller.comments[index].description.toString(),
+                        controller.comments[index].storyUserComment!.profileImage.toString(),
+                        controller.comments[index].storyUserComment!.fullName.toString(),
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return Divider(
+                        color: ColorRes.black.withOpacity(0.6),
+                        height: 40,
+                      );
+                    },
+                    itemCount: controller.comments.length,
+                  ),
+                ),
+              ),
+              /*  Container(
                 width: Get.width,
                 decoration: BoxDecoration(color: ColorRes.white, boxShadow: [
                   BoxShadow(
@@ -185,12 +182,13 @@ class StoryCommentsScreen extends StatelessWidget {
                   ],
                 ),
               ),*/
-               ],
-             ),
-           );
-        },
+            ],
+          ),
+        );
+      },
 
       ),
     );
   }
 }
+

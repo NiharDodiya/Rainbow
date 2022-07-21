@@ -145,13 +145,13 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                         ),
                                       ),
                                     ),*/
-                                    IconButton(
+                               /*     IconButton(
                                       padding: EdgeInsets.zero,
                                       color: Colors.white,
                                       icon: const Icon(Icons.more_horiz,
                                           size: 24),
                                       onPressed: controller.onMoreBtnTap,
-                                    ),
+                                    ),*/
                                   ],
                                 ),
                               ),
@@ -449,7 +449,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                         .data![pageIndex]
                                         .storyList![storyIndex]
                                         .id
-                                        .toString());
+                                        .toString(),context);
                                   },
                                   child: Image.asset(
                                     AssetRes.send,

@@ -95,7 +95,7 @@ class ViewStoryController extends GetxController {
     try {
       loader.value = true;
       likeStoryModel = await LikeStoryApi.postRegister(id);
-      friendStoryApiData();
+      await friendStoryApiData();
       update(["friendStory"]);
       loader.value = false;
     } catch (e) {
@@ -107,7 +107,7 @@ class ViewStoryController extends GetxController {
     try {
       loader.value = true;
       unLikeStoryModel = await UnLikeStoryApi.postRegister(id);
-      friendStoryApiData();
+      await friendStoryApiData();
       update(["friendStory"]);
 
       loader.value = false;
@@ -122,6 +122,7 @@ class ViewStoryController extends GetxController {
       storyCommentModel = (await StoryCommentApi.sendNewComment(
               id, writeSomethings.text.toString()) ??
           StoryCommentModel());
+      await friendStoryApiData();
       update(["friendStory"]);
       writeSomethings.clear();
       loader.value = false;
@@ -130,22 +131,23 @@ class ViewStoryController extends GetxController {
     }
   }
 
-  void onCommentButtonTap(
-      {required FriendStory friendStory, required int storyIndex}) {
-    friendStoryApiData();
+  Future<void> onCommentButtonTap(
+      {required FriendStory friendStory, required int storyIndex}) async {
+    await friendStoryApiData();
     StoryCommentsController storyController =
         Get.put(StoryCommentsController());
     storyController.comments =
-        friendStory.storyList![storyIndex].storyComment ?? [];
+        friendStory.storyList![storyIndex].storyCommentList ?? [];
     Get.to(() => StoryCommentsScreen());
+
   }
 
-  void commentSendTap(String id) {
+  void commentSendTap(String id, BuildContext context) {
     if (validation()) {
       indicatorAnimationController.value = IndicatorAnimationCommand.pause;
       commentData(id);
-      friendStoryApiData();
       update(["friendStory"]);
+      FocusScope.of(context).unfocus();
     }
   }
 }

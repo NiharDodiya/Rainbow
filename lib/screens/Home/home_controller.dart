@@ -90,7 +90,7 @@ class HomeController extends GetxController {
   }
 
   Future<void> init() async {
-    viewStoryController.friendStoryApiData();
+    // viewStoryController.friendStoryApiData();
     // loader.value = true;
   }
 

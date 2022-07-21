@@ -28,10 +28,8 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
   @override
   void initState() {
     super.initState();
-
-    indicatorAnimationController =
-        ValueNotifier<IndicatorAnimationCommand>(
-            IndicatorAnimationCommand.resume);
+    indicatorAnimationController = ValueNotifier<IndicatorAnimationCommand>(
+        IndicatorAnimationCommand.resume);
   }
 
   @override
@@ -55,7 +53,6 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                   }
                   return StoryPageView(
                     itemBuilder: (context, pageIndex, storyIndex) {
-
                       final MyStory story =
                           controller.myStoryModel.data![storyIndex];
                       return Stack(
@@ -89,11 +86,11 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                               ),
                               progressIndicatorBuilder: (con, str, progress) {
                                 if (progress.progress != 100) {
-                                  indicatorAnimationController
-                                      .value = IndicatorAnimationCommand.pause;
+                                  indicatorAnimationController.value =
+                                      IndicatorAnimationCommand.pause;
                                 } else {
-                                  indicatorAnimationController
-                                      .value = IndicatorAnimationCommand.resume;
+                                  indicatorAnimationController.value =
+                                      IndicatorAnimationCommand.resume;
                                 }
                                 return SmallLoader(progress: progress.progress);
                               },
@@ -103,6 +100,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                         ],
                       );
                     },
+                    indicatorDuration: const Duration(seconds: 20),
                     indicatorPadding: EdgeInsets.only(
                         top: Get.height - 20, right: 50, left: 50),
                     gestureItemBuilder: (context, pageIndex, storyIndex) {
@@ -148,7 +146,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                       height: 30,
                                       child: TextButton(
                                         onPressed: () {
-                                          controller.onCommentButtonTap();
+
                                         },
                                         style: TextButton.styleFrom(
                                           backgroundColor: ColorRes.color_50369C
@@ -278,7 +276,10 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                 MainAxisAlignment.spaceAround,
                                             children: [
                                               InkWell(
-                                                onTap: controller.onLikeBtnTap,
+                                                onTap:() {
+                                                  controller.onLikeBtnTap(myStory: controller
+                                                      .myStoryModel.data![pageIndex], storyindex: storyIndex);
+                                                },
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.min,
@@ -312,8 +313,10 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                               ),
                                               InkWell(
                                                 onTap: () {
-                                                  controller
-                                                      .onCommentButtonTap();
+                                                  controller.onCommentButtonTap(
+                                                      myStory: controller
+                                                          .myStoryModel.data![pageIndex],
+                                                      storyindex: storyIndex);
                                                 },
                                                 child: Column(
                                                   mainAxisSize:
@@ -321,15 +324,29 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                   children: [
                                                     const Icon(Icons.comment,
                                                         color: ColorRes.white),
-                                                    Text(Strings.comments,
-                                                        style:
-                                                            sfProTextReguler()),
+                                                    Row(
+                                                      children: [
+                                                        Text(Strings.comments,
+                                                            style:
+                                                                sfProTextReguler()),
+                                                        Text(  controller
+                                                            .myStoryModel
+                                                            .data![storyIndex]
+                                                            .storyCommentCount
+                                                            .toString(),
+                                                            style:
+                                                                sfProTextReguler()),
+                                                      ],
+                                                    ),
                                                   ],
                                                 ),
                                               ),
                                               InkWell(
-                                                onTap: () => controller
-                                                    .onDeleteTap(storyIndex,pauseAnimation,playAnimation),
+                                                onTap: () =>
+                                                    controller.onDeleteTap(
+                                                        storyIndex,
+                                                        pauseAnimation,
+                                                        playAnimation),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.min,
@@ -356,8 +373,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                         ],
                       );
                     },
-                    indicatorAnimationController:
-                        indicatorAnimationController,
+                    indicatorAnimationController: indicatorAnimationController,
                     initialStoryIndex: (pageIndex) {
                       return 0;
                     },
@@ -382,11 +398,11 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
     );
   }
 
-  void pauseAnimation(){
+  void pauseAnimation() {
     indicatorAnimationController.value = IndicatorAnimationCommand.pause;
   }
 
-  void playAnimation(){
+  void playAnimation() {
     indicatorAnimationController.value = IndicatorAnimationCommand.resume;
   }
 }

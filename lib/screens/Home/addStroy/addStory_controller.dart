@@ -7,7 +7,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/model/adStory_model.dart';
+import 'package:rainbow/model/listUserTag_model.dart';
 import 'package:rainbow/screens/Home/Story/adstory_api/adStroy_Api.dart';
+import 'package:rainbow/screens/Home/addStroy/ListStoryTag_api/listStoryTag_api.dart';
 import 'package:rainbow/screens/Home/addStroy/widgets/addStoryView.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/dashboard/dashboard_controller.dart';
@@ -58,6 +60,24 @@ class AddStoryController extends GetxController {
       debugPrint(e.toString());
     }
   }
+  ListUserTagModel listUserTagModel =ListUserTagModel();
+
+  Future<void> listTagStoryApi(String name) async {
+/*    if(name.contains("@")){
+      name.replaceAll('@', '');
+    }else{
+      return;
+    }*/
+    loader.value = true;
+    try {
+      listUserTagModel = await ListTagStoryApi.listTagStory(name);
+      loader.value = false;
+    } catch (e) {
+      //
+      loader.value = false;
+      debugPrint(e.toString());
+    }
+  }
 
   Future<void> adStoryApiData() async {
     try {
@@ -75,5 +95,15 @@ class AddStoryController extends GetxController {
     } catch (e) {
       loader.value = false;
     }
+  }
+
+  List<Map<String,dynamic>> getMentionList(){
+    listUserTagModel.data ??= [];
+    return listUserTagModel.data!.map<Map<String,dynamic>>((e) => {
+      'id': e.id.toString(),
+      'display': e.fullName.toString(),
+      'full_name': e.fullName.toString(),
+      'photo': e.profileImage.toString(),
+    },).toList();
   }
 }

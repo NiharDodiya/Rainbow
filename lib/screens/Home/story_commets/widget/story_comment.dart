@@ -1,26 +1,37 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
-Widget storyComment(String comments) {
+Widget storyComment(String comments,String profileImage,String name) {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Container(
+      CachedNetworkImage(
         height: 40,
         width: 40,
-        decoration: const BoxDecoration(
-          shape: BoxShape.circle,
-        ),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(50)),
-          child: Image.asset(
-            AssetRes.advertisement_1Image,
-            fit: BoxFit.cover,
+        imageUrl: profileImage,
+        imageBuilder: (context, imageProvider) => Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            image: DecorationImage(
+              image: imageProvider,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
+        // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
+        errorWidget: (context, url, error) => Container(
+          height: 40,
+          width: 40,
+          decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                  image: AssetImage(AssetRes.homePro))),
+        ),
+        fit: BoxFit.fill,
       ),
       Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -41,17 +52,17 @@ Widget storyComment(String comments) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  comments,
+                  name,
                   style: beVietnamProMediumTextStyle(color: ColorRes.black),
                 ),
                 const SizedBox(
                   height: 7,
                 ),
-               /* Text(
-                  "Hdolor sit amet, consectetur",
+                Text(
+                  comments,
                   style: beVietnamProRegularTextStyle(
                       fontSize: 12, color: ColorRes.black),
-                ),*/
+                ),
               ],
             ),
           ),
