@@ -537,9 +537,9 @@ packages:
   keyboard_visibility:
     dependency: "direct main"
     description:
-      name: keyboard_visibility
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: keyboard_visibility
+      relative: true
+    source: path
     version: "0.5.6"
   lints:
     dependency: transitive
