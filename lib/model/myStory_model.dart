@@ -65,17 +65,17 @@ class MyStory {
         idUser: json["id_user"],
         storyItem: json["story_item"],
         description: json["description"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
-        storyTag: List<dynamic>.from(json["storyTag"].map((x) => x)),
+        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
+        storyTag: json["storyTag"] == null ? null : List<dynamic>.from(json["storyTag"].map((x) => x)),
         storyLikeCount: json["storyLikeCount"],
-        storyLikeList: List<Story>.from(
+        storyLikeList: json["storyLikeList"] == null ? null : List<Story>.from(
             json["storyLikeList"].map((x) => Story.fromJson(x))),
         storyCommentCount: json["storyCommentCount"],
-        storycommentList: List<StorycommentList>.from(
+        storycommentList: json["storycommentList"] == null ? null : List<StorycommentList>.from(
             json["storycommentList"].map((x) => StorycommentList.fromJson(x))),
         storyViewCount: json["storyViewCount"],
-        storyView: List<dynamic>.from(json["storyView"].map((x) => x)),
+        storyView: json["storyView"] == null ? null : List<dynamic>.from(json["storyView"].map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {
@@ -170,7 +170,7 @@ class Story {
         phoneNumber: json["phone_number"],
         maritalStatus: json["marital_status"],
         idEthnicity: json["id_ethnicity"],
-        birthDate: DateTime.parse(json["birth_date"]),
+        birthDate: json["birth_date"] == null ? null : DateTime.parse(json["birth_date"]),
         noKids: json["no_kids"],
         mobileStatus: json["mobile_status"],
         role: json["role"],

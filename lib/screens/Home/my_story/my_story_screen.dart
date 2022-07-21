@@ -30,6 +30,8 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
     super.initState();
     indicatorAnimationController = ValueNotifier<IndicatorAnimationCommand>(
         IndicatorAnimationCommand.resume);
+    pauseAnimation();
+    playAnimation();
   }
 
   @override
@@ -406,6 +408,8 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                     onPageLimitReached: () {
                       Navigator.pop(context);
                     },
+                    color: ColorRes.white,
+                    bgColor: ColorRes.color_464646,
                   );
                 },
               ),
