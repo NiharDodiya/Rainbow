@@ -21,10 +21,12 @@ class StoryCommentApi {
       };
       debugPrint(param.toString());
       http.Response? response = await HttpService.postApi(
-        url: url,
-        body: jsonEncode(param),
-        header: { "Content-Type": "application/json","x-access-token":accessToken}
-      );
+          url: url,
+          body: jsonEncode(param),
+          header: {
+            "Content-Type": "application/json",
+            "x-access-token": accessToken
+          });
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {

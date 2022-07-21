@@ -1,12 +1,11 @@
 import 'dart:convert';
 
-import 'package:rainbow/common/popup.dart';
+import 'package:http/http.dart' as http;
 import 'package:rainbow/model/listUserTag_model.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
 import 'package:rainbow/utils/pref_keys.dart';
-import 'package:http/http.dart' as http;
 
 class ListTagStoryApi {
   static Future listTagStory(String name) async {
@@ -15,9 +14,7 @@ class ListTagStoryApi {
     try {
       String url = EndPoints.listTageStory;
 
-      Map<String, dynamic> param ={
-        "full_name" : name
-      };
+      Map<String, dynamic> param = {"full_name": name};
       print(param);
       http.Response? response = await HttpService.postApi(
           url: url,

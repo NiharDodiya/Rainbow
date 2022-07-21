@@ -26,11 +26,10 @@ void getCountryNation() {
   countryNationCity = [];
   countryNationId = [];
   for (int i = 0; i < listNationalities.data!.length; i++) {
-
     countryNationCity.add(listNationalities.data![i].name!);
     countryNationCity.sort((a, b) {
-        return a.toString().toLowerCase().compareTo(b.toString().toLowerCase());
-      });
+      return a.toString().toLowerCase().compareTo(b.toString().toLowerCase());
+    });
     countryNationId.add(listNationalities.data![i].id!.toString());
   }
   print("countryNationCity => $countryNationCity");

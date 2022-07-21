@@ -246,8 +246,8 @@ class PremiumPackage extends StatelessWidget {
             height: Get.height * 0.029556,
           ),
           Text(Strings.whatYoullGet,
-              style: interTextReguler(
-                  fontSize: 22, color: ColorRes.color_E9E9E9)),
+              style:
+                  interTextReguler(fontSize: 22, color: ColorRes.color_E9E9E9)),
           SizedBox(
             height: Get.height * 0.029556,
           ),

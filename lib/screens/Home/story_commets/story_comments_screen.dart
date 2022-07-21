@@ -3,9 +3,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/story_commets/story_commets_controller.dart';
 import 'package:rainbow/screens/Home/story_commets/widget/story_comment.dart';
-import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
-import 'package:rainbow/utils/strings.dart';
 
 class StoryCommentsScreen extends StatelessWidget {
   StoryCommentsScreen({Key? key}) : super(key: key);
@@ -35,40 +33,44 @@ class StoryCommentsScreen extends StatelessWidget {
         elevation: 1,
       ),
       backgroundColor: ColorRes.white,
-      body: GetBuilder<StoryCommentsController>(id: "comments",builder: (controller)
-        {
-           return SafeArea(
-             child: Column(
-               children: [
-                 Expanded(
-                   child: Container(
-                     height: Get.height,
-                     width: Get.width,
-                     padding: const EdgeInsets.only(
-                       left: 19,
-                       right: 19,
-                     ),
-                     child: ListView.separated(
-                       physics: const BouncingScrollPhysics(),
-                       padding: const EdgeInsets.only(top: 10),
-                       itemBuilder: (context, index) {
-                         return storyComment(
-                           controller.comments[index].description.toString(),
-                             controller.comments[index].storyUserComment!.profileImage.toString(),
-                             controller.comments[index].storyUserComment!.fullName.toString(),
-                         );
-                       },
-                       separatorBuilder: (context, index) {
-                         return Divider(
-                           color: ColorRes.black.withOpacity(0.6),
-                           height: 40,
-                         );
-                       },
-                       itemCount: controller.comments.length,
-                     ),
-                   ),
-                 ),
-                 /*  Container(
+      body: GetBuilder<StoryCommentsController>(
+        id: "comments",
+        builder: (controller) {
+          return SafeArea(
+            child: Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    height: Get.height,
+                    width: Get.width,
+                    padding: const EdgeInsets.only(
+                      left: 19,
+                      right: 19,
+                    ),
+                    child: ListView.separated(
+                      physics: const BouncingScrollPhysics(),
+                      padding: const EdgeInsets.only(top: 10),
+                      itemBuilder: (context, index) {
+                        return storyComment(
+                          controller.comments[index].description.toString(),
+                          controller
+                              .comments[index].storyUserComment!.profileImage
+                              .toString(),
+                          controller.comments[index].storyUserComment!.fullName
+                              .toString(),
+                        );
+                      },
+                      separatorBuilder: (context, index) {
+                        return Divider(
+                          color: ColorRes.black.withOpacity(0.6),
+                          height: 40,
+                        );
+                      },
+                      itemCount: controller.comments.length,
+                    ),
+                  ),
+                ),
+                /*  Container(
                 width: Get.width,
                 decoration: BoxDecoration(color: ColorRes.white, boxShadow: [
                   BoxShadow(
@@ -87,7 +89,7 @@ class StoryCommentsScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                   *//* RichText(
+                   */ /* RichText(
                       text: TextSpan(
                         text: 'Replying to ',
                         style: beVietnamProRegularTextStyle(
@@ -104,8 +106,8 @@ class StoryCommentsScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ),*//*
-                   *//* Row(
+                    ),*/ /*
+                   */ /* Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -181,15 +183,14 @@ class StoryCommentsScreen extends StatelessWidget {
                         ),
                         const SizedBox(width: 5),
                       ],
-                    ),*//*
+                    ),*/ /*
                   ],
                 ),
               ),*/
-               ],
-             ),
-           );
+              ],
+            ),
+          );
         },
-
       ),
     );
   }

@@ -7,9 +7,10 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
 class StoryViewListScreen extends StatelessWidget {
-   StoryViewListScreen({Key? key}) : super(key: key);
+  StoryViewListScreen({Key? key}) : super(key: key);
 
-MyStoryController myStoryController = Get.put(MyStoryController());
+  MyStoryController myStoryController = Get.put(MyStoryController());
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,7 +37,7 @@ MyStoryController myStoryController = Get.put(MyStoryController());
             ),
           ),
           SizedBox(height: Get.height * 0.03),
-         /* Padding(
+          /* Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -125,19 +126,21 @@ MyStoryController myStoryController = Get.put(MyStoryController());
                           fit: BoxFit.cover,
                         ),
                       ),*/
-                      CachedNetworkImage(height: 56,
+                      CachedNetworkImage(
+                        height: 56,
                         width: 56,
-                        imageUrl: myStoryController.storyViewListModel.data![index].profileImage.toString(),
-                        imageBuilder: (context, imageProvider) =>
-                            Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: imageProvider,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
+                        imageUrl: myStoryController
+                            .storyViewListModel.data![index].profileImage
+                            .toString(),
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
                             ),
+                          ),
+                        ),
                         // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
                         errorWidget: (context, url, error) => Container(
                           height: 56,
@@ -154,7 +157,9 @@ MyStoryController myStoryController = Get.put(MyStoryController());
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            myStoryController.storyViewListModel.data![index].fullName.toString(),
+                            myStoryController
+                                .storyViewListModel.data![index].fullName
+                                .toString(),
                             style: sfProTextReguler().copyWith(
                               fontSize: 13,
                               fontWeight: FontWeight.w700,
@@ -162,7 +167,9 @@ MyStoryController myStoryController = Get.put(MyStoryController());
                             ),
                           ),
                           Text(
-                            myStoryController.storyViewListModel.data![index].userStatus.toString(),
+                            myStoryController
+                                .storyViewListModel.data![index].userStatus
+                                .toString(),
                             style: sfProTextReguler().copyWith(
                               fontWeight: FontWeight.w300,
                               color: ColorRes.black,

@@ -17,21 +17,19 @@ class LoginModel {
     this.data,
   });
 
-  bool?status;
+  bool? status;
   String? message;
   String? token;
   Data? data;
 
-  factory LoginModel.fromJson(Map<String?, dynamic> json) =>
-      LoginModel(
+  factory LoginModel.fromJson(Map<String?, dynamic> json) => LoginModel(
         status: json["status"],
         message: json["message"],
         token: json["token"],
         data: Data.fromJson(json["data"]),
       );
 
-  Map<String?, dynamic> toJson() =>
-      {
+  Map<String?, dynamic> toJson() => {
         "status": status,
         "message": message,
         "token": token,
@@ -66,8 +64,7 @@ class Data {
   String? role;
   String? status;
 
-  factory Data.fromJson(Map<String?, dynamic> json) =>
-      Data(
+  factory Data.fromJson(Map<String?, dynamic> json) => Data(
         fullName: json["full_name"] ?? "",
         email: json["email"] ?? "",
         address1: json["address1"] ?? "",
@@ -81,8 +78,7 @@ class Data {
         status: json["status"] ?? "",
       );
 
-  Map<String?, dynamic> toJson() =>
-      {
+  Map<String?, dynamic> toJson() => {
         "full_name": fullName,
         "email": email,
         "address1": address1,
@@ -90,9 +86,8 @@ class Data {
         "phone_number": phoneNumber,
         "marital_status": maritalStatus,
         "id_ethnicity": idEthnicity,
-        "birth_date": "${birthDate!.year.toString().padLeft(
-            4, '0')}-${birthDate!.month.toString().padLeft(2, '0')}-${birthDate!
-            .day.toString().padLeft(2, '0')}",
+        "birth_date":
+            "${birthDate!.year.toString().padLeft(4, '0')}-${birthDate!.month.toString().padLeft(2, '0')}-${birthDate!.day.toString().padLeft(2, '0')}",
         "no_kids": noKids,
         "role": role,
         "status": status,

@@ -55,11 +55,11 @@ class NotificationService {
       }
     });
 
-    FirebaseMessaging.onMessageOpenedApp
-        .listen((RemoteMessage message) async {
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
       if (true) {
-        Future.delayed(8.seconds,(){
-          ConnectionsController connectionController = Get.put(ConnectionsController());
+        Future.delayed(8.seconds, () {
+          ConnectionsController connectionController =
+              Get.put(ConnectionsController());
           connectionController.init();
           Get.to(() => ConnectionsScreen());
         });
@@ -70,8 +70,9 @@ class NotificationService {
         .getInitialMessage()
         .then((RemoteMessage? message) async {
       if (message != null) {
-        Future.delayed(5.seconds,(){
-          ConnectionsController connectionController = Get.put(ConnectionsController());
+        Future.delayed(5.seconds, () {
+          ConnectionsController connectionController =
+              Get.put(ConnectionsController());
           connectionController.init();
           Get.to(() => ConnectionsScreen());
         });
@@ -94,7 +95,8 @@ class NotificationService {
         onSelectNotification: (String? payload) async {
       if (payload != null) {
         if (true) {
-          ConnectionsController connectionController = Get.put(ConnectionsController());
+          ConnectionsController connectionController =
+              Get.put(ConnectionsController());
           connectionController.init();
           Get.to(() => ConnectionsScreen());
         }

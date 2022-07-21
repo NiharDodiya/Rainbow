@@ -43,19 +43,21 @@ class LikesBottomShit extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                CachedNetworkImage(height: 56,
+                CachedNetworkImage(
+                  height: 56,
                   width: 56,
-                  imageUrl: controller.friendStoryModel.data!.first.userDetail!.profileImage.toString(),
-                  imageBuilder: (context, imageProvider) =>
-                      Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                  imageUrl: controller
+                      .friendStoryModel.data!.first.userDetail!.profileImage
+                      .toString(),
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
                       ),
+                    ),
+                  ),
                   // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
                   errorWidget: (context, url, error) => Container(
                     height: 56,
@@ -72,7 +74,9 @@ class LikesBottomShit extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                     controller.friendStoryModel.data!.first.userDetail!.fullName.toString(),
+                      controller
+                          .friendStoryModel.data!.first.userDetail!.fullName
+                          .toString(),
                       style: sfProTextReguler().copyWith(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
@@ -80,7 +84,9 @@ class LikesBottomShit extends StatelessWidget {
                       ),
                     ),
                     Text(
-                    controller.friendStoryModel.data!.first.userDetail!.userStatus.toString(),
+                      controller
+                          .friendStoryModel.data!.first.userDetail!.userStatus
+                          .toString(),
                       style: sfProTextReguler().copyWith(
                         fontWeight: FontWeight.w300,
                         color: ColorRes.black,
@@ -118,7 +124,7 @@ class LikesBottomShit extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                   /*   ClipRRect(
+                      /*   ClipRRect(
                         borderRadius: BorderRadius.circular(50),
                         child: Image.asset(
                         ,
@@ -127,19 +133,20 @@ class LikesBottomShit extends StatelessWidget {
                           fit: BoxFit.cover,
                         ),
                       ),*/
-                      CachedNetworkImage(height: 56,
+                      CachedNetworkImage(
+                        height: 56,
                         width: 56,
-                        imageUrl: controller.storyLikesList[index].profileImage.toString(),
-                        imageBuilder: (context, imageProvider) =>
-                            Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: imageProvider,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
+                        imageUrl: controller.storyLikesList[index].profileImage
+                            .toString(),
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
                             ),
+                          ),
+                        ),
                         // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
                         errorWidget: (context, url, error) => Container(
                           height: 56,
@@ -156,7 +163,8 @@ class LikesBottomShit extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            controller.storyLikesList[index].fullName.toString(),
+                            controller.storyLikesList[index].fullName
+                                .toString(),
                             style: sfProTextReguler().copyWith(
                               fontSize: 13,
                               fontWeight: FontWeight.w700,
@@ -164,7 +172,8 @@ class LikesBottomShit extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            controller.storyLikesList[index].userStatus.toString(),
+                            controller.storyLikesList[index].userStatus
+                                .toString(),
                             style: sfProTextReguler().copyWith(
                               fontWeight: FontWeight.w300,
                               color: ColorRes.black,

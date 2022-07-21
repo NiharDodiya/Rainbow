@@ -59,7 +59,8 @@ class AddStoryController extends GetxController {
       debugPrint(e.toString());
     }
   }
-  ListUserTagModel listUserTagModel =ListUserTagModel();
+
+  ListUserTagModel listUserTagModel = ListUserTagModel();
 
   Future<void> listTagStoryApi(String name) async {
 /*    if(name.contains("@")){
@@ -84,7 +85,7 @@ class AddStoryController extends GetxController {
       adStoryModel = (await AdStoryApi.postRegister(
             uploadImage.data!.id.toString(),
             key.currentState!.controller!.markupText.toString(),
-        [],
+            [],
           ) ??
           AdStoryModel());
       update(["adStory"]);
@@ -96,13 +97,17 @@ class AddStoryController extends GetxController {
     }
   }
 
-  List<Map<String,dynamic>> getMentionList(){
+  List<Map<String, dynamic>> getMentionList() {
     listUserTagModel.data ??= [];
-    return listUserTagModel.data!.map<Map<String,dynamic>>((e) => {
-      'id': e.id.toString(),
-      'display': e.fullName.toString(),
-      'full_name': e.fullName.toString(),
-      'photo': e.profileImage.toString(),
-    },).toList();
+    return listUserTagModel.data!
+        .map<Map<String, dynamic>>(
+          (e) => {
+            'id': e.id.toString(),
+            'display': e.fullName.toString(),
+            'full_name': e.fullName.toString(),
+            'photo': e.profileImage.toString(),
+          },
+        )
+        .toList();
   }
 }

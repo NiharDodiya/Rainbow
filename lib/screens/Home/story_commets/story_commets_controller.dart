@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/model/friendStroy_model.dart';
-import 'package:rainbow/screens/Home/story_commets/api/story_comment_api.dart';
 
 class StoryCommentsController extends GetxController {
   RxBool loader = false.obs;
@@ -21,9 +20,9 @@ class StoryCommentsController extends GetxController {
     true
   ];
 
-  void init(){}
+  void init() {}
 
-  void onCommentSend(){
+  void onCommentSend() {
     // if(commentController.text.trim().isEmpty){
     //   return;
     // }

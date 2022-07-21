@@ -21,6 +21,7 @@ class SmartLoader extends StatelessWidget {
 
 class SmallLoader extends StatelessWidget {
   final double? progress;
+
   const SmallLoader({Key? key, this.progress}) : super(key: key);
 
   @override

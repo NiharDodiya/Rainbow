@@ -5,7 +5,7 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
-Widget storyComment(String comments,String profileImage,String name) {
+Widget storyComment(String comments, String profileImage, String name) {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -28,8 +28,7 @@ Widget storyComment(String comments,String profileImage,String name) {
           width: 40,
           decoration: const BoxDecoration(
               shape: BoxShape.circle,
-              image: DecorationImage(
-                  image: AssetImage(AssetRes.homePro))),
+              image: DecorationImage(image: AssetImage(AssetRes.homePro))),
         ),
         fit: BoxFit.fill,
       ),
@@ -91,7 +90,7 @@ Widget storyComment(String comments,String profileImage,String name) {
               ),
             ],
           ),*/
-    /*      !reply
+          /*      !reply
               ? Container(
                   width: Get.width - 110,
                   decoration: BoxDecoration(

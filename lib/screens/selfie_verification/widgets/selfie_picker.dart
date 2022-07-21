@@ -8,6 +8,7 @@ import 'package:rainbow/utils/color_res.dart';
 
 class SelfiePicker extends StatefulWidget {
   final Function(File file) onCapture;
+
   const SelfiePicker({Key? key, required this.onCapture}) : super(key: key);
 
   @override

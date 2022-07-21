@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-StoryCommentModel storyCommentModelFromJson(String str) => StoryCommentModel.fromJson(json.decode(str));
+StoryCommentModel storyCommentModelFromJson(String str) =>
+    StoryCommentModel.fromJson(json.decode(str));
 
-String storyCommentModelToJson(StoryCommentModel data) => json.encode(data.toJson());
+String storyCommentModelToJson(StoryCommentModel data) =>
+    json.encode(data.toJson());
 
 class StoryCommentModel {
   StoryCommentModel({
@@ -17,13 +19,14 @@ class StoryCommentModel {
   bool? status;
   String? message;
 
-  factory StoryCommentModel.fromJson(Map<String, dynamic> json) => StoryCommentModel(
-    status: json["status"],
-    message: json["message"],
-  );
+  factory StoryCommentModel.fromJson(Map<String, dynamic> json) =>
+      StoryCommentModel(
+        status: json["status"],
+        message: json["message"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-  };
+        "status": status,
+        "message": message,
+      };
 }

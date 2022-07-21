@@ -8,7 +8,6 @@ import 'package:rainbow/screens/Home/my_story/api/myStroy_api.dart';
 import 'package:rainbow/screens/Home/my_story/widgets/myStoryComments_screen.dart';
 import 'package:rainbow/screens/Home/my_story/widgets/myStoryListLike_screen.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
-import 'package:story/story_page_view/story_page_view.dart';
 
 import 'widgets/myStoryViewBottom_screen.dart';
 
@@ -22,14 +21,14 @@ class MyStoryController extends GetxController {
 
   Future<void> init() async {
     myStoryModel = MyStoryModel();
-    await getMyStoryList((){}, (){});
+    await getMyStoryList(() {}, () {});
     /*indicatorAnimationController = ValueNotifier<IndicatorAnimationCommand>(
         IndicatorAnimationCommand.pause);*/
   }
-  StoryViewListModel storyViewListModel =StoryViewListModel();
 
-  Future<void> getStoryViewList(String id)
-  async {
+  StoryViewListModel storyViewListModel = StoryViewListModel();
+
+  Future<void> getStoryViewList(String id) async {
     try {
       loader.value = true;
       storyViewListModel = await MyStoryApi.storyViewListAPi(id);
@@ -76,20 +75,17 @@ class MyStoryController extends GetxController {
     Get.back();
   }
 
-  void onCommentButtonTap({required MyStory myStory,required int storyindex}) {
-
-comments= myStory.storycommentList ??[];
+  void onCommentButtonTap({required MyStory myStory, required int storyindex}) {
+    comments = myStory.storycommentList ?? [];
     Get.to(() => const MyStoryCommentsScreen());
-
   }
 
   void onMoreBtnTap() {}
 
   void onHashTagTap() {}
 
-  void onLikeBtnTap({required MyStory myStory,required int storyindex}) {
-
-    storyLikeList= myStory.storyLikeList ??[];
+  void onLikeBtnTap({required MyStory myStory, required int storyindex}) {
+    storyLikeList = myStory.storyLikeList ?? [];
     Get.bottomSheet(
       MyStoryListLike(),
       isScrollControlled: true,
@@ -125,5 +121,4 @@ comments= myStory.storycommentList ??[];
       },
     );
   }
-
 }

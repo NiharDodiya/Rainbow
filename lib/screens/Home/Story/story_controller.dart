@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class EditStoryController extends GetxController {
-
-}
+class EditStoryController extends GetxController {}

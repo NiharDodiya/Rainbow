@@ -106,15 +106,20 @@ class MyStoryListLike extends StatelessWidget {
               color: ColorRes.lightGrey,
             ),
           ),
-          myStoryController.storyLikeList.isEmpty?Text("No Likes",style: gilroyBoldTextStyle(color: Colors.black),):Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              shrinkWrap: true,
-              itemCount: myStoryController.storyLikeList.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
-                  child:  Row(
+          myStoryController.storyLikeList.isEmpty
+              ? Text(
+                  "No Likes",
+                  style: gilroyBoldTextStyle(color: Colors.black),
+                )
+              : Expanded(
+                  child: ListView.builder(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    shrinkWrap: true,
+                    itemCount: myStoryController.storyLikeList.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                        child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             /*   ClipRRect(
@@ -183,10 +188,10 @@ class MyStoryListLike extends StatelessWidget {
                             const Icon(Icons.favorite, color: ColorRes.red),
                           ],
                         ),
-                );
-              },
-            ),
-          ),
+                      );
+                    },
+                  ),
+                ),
         ],
       ),
     );

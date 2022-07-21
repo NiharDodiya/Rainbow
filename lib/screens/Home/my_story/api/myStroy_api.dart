@@ -81,16 +81,18 @@ class MyStoryApi {
       return null;
     }
   }
+
   static Future storyViewListAPi(String id) async {
     try {
       String url = EndPoints.storyViewList;
       Map<String, dynamic> body = {"id_story": id.toString()};
-      http.Response? response = await HttpService.postApi(url: url,body:jsonEncode(body) );
+      http.Response? response =
+          await HttpService.postApi(url: url, body: jsonEncode(body));
 
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          errorToast("Error",title: jsonDecode(response.body)["message"]);
+          errorToast("Error", title: jsonDecode(response.body)["message"]);
           return null;
         }
         return storyViewListModelFromJson(response.body);

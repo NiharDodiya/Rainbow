@@ -45,9 +45,10 @@ class HomeController extends GetxController {
     }
   }
 
-  void onNewStoryTap(){
+  void onNewStoryTap() {
     Get.to(() => AddStoryScreen());
   }
+
   Future<void> countryNationalites() async {
     try {
       await ListOfNationalitiesApi.postRegister()
@@ -97,11 +98,10 @@ class HomeController extends GetxController {
     loader.value = true;
     await myStoryController.init();
     loader.value = false;
-    if(myStoryController.myStoryModel.data!.isNotEmpty){
+    if (myStoryController.myStoryModel.data!.isNotEmpty) {
       Get.to(() => const MyStoryScreen());
-    }else{
+    } else {
       Get.to(() => AddStoryScreen());
     }
   }
-
 }

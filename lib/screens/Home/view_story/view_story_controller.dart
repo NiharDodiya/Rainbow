@@ -147,7 +147,7 @@ class ViewStoryController extends GetxController {
         Get.put(StoryCommentsController());
     storyController.comments =
         friendStory.storyList![storyIndex].storyCommentList ?? [];
-    Get.to(() => StoryCommentsScreen())!.whenComplete((){
+    Get.to(() => StoryCommentsScreen())!.whenComplete(() {
       indicatorAnimationController.value = IndicatorAnimationCommand.resume;
     });
   }

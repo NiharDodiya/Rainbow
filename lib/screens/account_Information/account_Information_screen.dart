@@ -14,10 +14,10 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
-
 class AccountInformationScreen extends StatelessWidget {
   AccountInformationScreen({Key? key}) : super(key: key);
-  AccountInformationController controller = Get.find<AccountInformationController>();
+  AccountInformationController controller =
+      Get.find<AccountInformationController>();
 
   @override
   Widget build(BuildContext context) {
@@ -41,17 +41,16 @@ class AccountInformationScreen extends StatelessWidget {
                         width: Get.width * 0.336,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          border:
-                          Border.all(color: ColorRes.white, width: 7),
+                          border: Border.all(color: ColorRes.white, width: 7),
                           image: controller.imagePath == null
                               ? const DecorationImage(
-                            image: AssetImage(AssetRes.account),
-                          )
+                                  image: AssetImage(AssetRes.account),
+                                )
                               : DecorationImage(
-                              image: FileImage(
-                                File(controller.imagePath!.path),
-                              ),
-                              fit: BoxFit.cover),
+                                  image: FileImage(
+                                    File(controller.imagePath!.path),
+                                  ),
+                                  fit: BoxFit.cover),
                         ),
                       ),
                     ),
@@ -72,8 +71,7 @@ class AccountInformationScreen extends StatelessWidget {
                             onTap: () {
                               showModalBottomSheet(
                                   elevation: 10,
-                                  barrierColor:
-                                  ColorRes.black.withOpacity(0.4),
+                                  barrierColor: ColorRes.black.withOpacity(0.4),
                                   shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(10.0),
@@ -86,8 +84,7 @@ class AccountInformationScreen extends StatelessWidget {
                                       mainAxisSize: MainAxisSize.min,
                                       children: <Widget>[
                                         GestureDetector(
-                                          onTap:
-                                          controller.navigateToCamera,
+                                          onTap: controller.navigateToCamera,
                                           child: const ListTile(
                                             leading: Icon(Icons.camera),
                                             title: Text(Strings.camera),
@@ -99,8 +96,7 @@ class AccountInformationScreen extends StatelessWidget {
                                           color: ColorRes.white,
                                         ),
                                         GestureDetector(
-                                          onTap: controller
-                                              .navigateToGallary,
+                                          onTap: controller.navigateToGallary,
                                           child: const ListTile(
                                             leading: Icon(Icons
                                                 .photo_size_select_actual_outlined),
@@ -184,8 +180,8 @@ class AccountInformationScreen extends StatelessWidget {
                     SizedBox(
                       height: Get.height - (Get.height * 0.379),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: Get.width * 0.072),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: Get.width * 0.072),
                         child: SingleChildScrollView(
                             physics: const BouncingScrollPhysics(),
                             child: controller.companySelected
@@ -223,146 +219,146 @@ class AccountInformationScreen extends StatelessWidget {
   }
 
   Widget accountPart(context) {
-    return Obx(
-        ()=>controller.loader.isTrue ? const SmallLoader() :  Column(
-        children: [
-          SizedBox(height: Get.height * 0.0197),
-          AppTextFiled(
-            controller: controller.fullNameController,
-            title: Strings.fullName,
-            hintText: Strings.fullName,
-          ),
-          AppTextFiled(
-            controller: controller.emailController,
-            title: Strings.email,
-            hintText: Strings.email,
-          ),
-          AppTextFiled(
-            controller: controller.houseNumberController,
-            title: Strings.houseNumber,
-            hintText: Strings.houseNumberHint,
-          ),
-          AppTextFiled(
-            controller: controller.streetNumberController,
-            title: Strings.streetName,
-            hintText: Strings.street,
-          ),
-          AppTextFiled(
-            controller: controller.cityController,
-            title: Strings.city,
-            hintText: Strings.ontrario,
-          ),
-          GetBuilder<AccountInformationController>(
-            id: 'doctor',
-            builder: (controller) {
-              return dropdownButton(
-                  title: "Country",
-                  hintText: "Canada",
-                  selectedValue: controller.selectCountry,
-                  onTap: controller.onCountryChange,
-                  dropdownList: countryCity,
-                  height: Get.height*0.3
-              );
-            },
-          ),
-          AppTextFiled(
-            controller: controller.postalCodeController,
-            title: Strings.postalCode,
-            hintText: Strings.postalCodeHint,
-          ),
-          AppTextFiled(
-            prefix: countryCodePicker(context),
-            controller: controller.phoneNumberController,
-            title: Strings.phoneNumber,
-            hintText: Strings.phoneNumberHint,
-          ),
-          SizedBox(height: Get.height * 0.0197),
-          SubmitButton(
-            text: Strings.save,
-            onTap: controller.accountSave,
-          ),
-          SizedBox(height: Get.height * 0.0197),
-        ],
-      )
-    );
+    return Obx(() => controller.loader.isTrue
+        ? const SmallLoader()
+        : Column(
+            children: [
+              SizedBox(height: Get.height * 0.0197),
+              AppTextFiled(
+                controller: controller.fullNameController,
+                title: Strings.fullName,
+                hintText: Strings.fullName,
+              ),
+              AppTextFiled(
+                controller: controller.emailController,
+                title: Strings.email,
+                hintText: Strings.email,
+              ),
+              AppTextFiled(
+                controller: controller.houseNumberController,
+                title: Strings.houseNumber,
+                hintText: Strings.houseNumberHint,
+              ),
+              AppTextFiled(
+                controller: controller.streetNumberController,
+                title: Strings.streetName,
+                hintText: Strings.street,
+              ),
+              AppTextFiled(
+                controller: controller.cityController,
+                title: Strings.city,
+                hintText: Strings.ontrario,
+              ),
+              GetBuilder<AccountInformationController>(
+                id: 'doctor',
+                builder: (controller) {
+                  return dropdownButton(
+                      title: "Country",
+                      hintText: "Canada",
+                      selectedValue: controller.selectCountry,
+                      onTap: controller.onCountryChange,
+                      dropdownList: countryCity,
+                      height: Get.height * 0.3);
+                },
+              ),
+              AppTextFiled(
+                controller: controller.postalCodeController,
+                title: Strings.postalCode,
+                hintText: Strings.postalCodeHint,
+              ),
+              AppTextFiled(
+                prefix: countryCodePicker(context),
+                controller: controller.phoneNumberController,
+                title: Strings.phoneNumber,
+                hintText: Strings.phoneNumberHint,
+              ),
+              SizedBox(height: Get.height * 0.0197),
+              SubmitButton(
+                text: Strings.save,
+                onTap: controller.accountSave,
+              ),
+              SizedBox(height: Get.height * 0.0197),
+            ],
+          ));
   }
 
   Widget companyPart() {
     return Obx(
-        ()=>controller.loader.isTrue ? const SmallLoader() : Column(
-        children: [
-          SizedBox(height: Get.height * 0.0197),
-          GetBuilder<AccountInformationController>(
-              id: 'doctor',
-              builder: (controller) => dropdownButton(
-                    dropdownList: controller.dropdownList,
-                    hintText: Strings.profession,
-                    title: Strings.profession,
-                    selectedValue: controller.userProfession,
-                    onTap: controller.onCountryProfession,
-                  )),
-          AppTextFiled(
-            controller: controller.companyName,
-            title: Strings.companyName,
-            hintText: Strings.myCompany,
-          ),
-          AppTextFiled(
-            controller: controller.companyNumber,
-            title: Strings.companyNumber,
-            hintText: Strings.companyNumberDigit,
-            obscure: false,
-          ),
-          AppTextFiled(
-            controller: controller.companyStreetNumberController,
-            title: Strings.streetName,
-            hintText: Strings.street,
-            obscure: false,
-          ),
-          AppTextFiled(
-            controller: controller.companyCityController,
-            title: Strings.city,
-            hintText: Strings.city,
-            multiLine: true,
-          ),
-          GetBuilder<AccountInformationController>(
-            id: 'doctor',
-            builder: (controller) {
-              return dropdownButton(
-                  title: "Country",
-                  hintText: "Canada",
-                  selectedValue: controller.selectCompanyCountry,
-                  onTap: controller.onCompanyCountryChange,
-                  dropdownList: countryCity,
-                  height: Get.height*0.3
-              );
-            },
-          ),
-          GestureDetector(
-            onTap: () {},
-            child: AppTextFiled(
-              controller: controller.companyPostalCodeController,
-              title: Strings.postalCode,
-              hintText: Strings.postalCodeDigitHint,
-              enable: true,
+      () => controller.loader.isTrue
+          ? const SmallLoader()
+          : Column(
+              children: [
+                SizedBox(height: Get.height * 0.0197),
+                GetBuilder<AccountInformationController>(
+                    id: 'doctor',
+                    builder: (controller) => dropdownButton(
+                          dropdownList: controller.dropdownList,
+                          hintText: Strings.profession,
+                          title: Strings.profession,
+                          selectedValue: controller.userProfession,
+                          onTap: controller.onCountryProfession,
+                        )),
+                AppTextFiled(
+                  controller: controller.companyName,
+                  title: Strings.companyName,
+                  hintText: Strings.myCompany,
+                ),
+                AppTextFiled(
+                  controller: controller.companyNumber,
+                  title: Strings.companyNumber,
+                  hintText: Strings.companyNumberDigit,
+                  obscure: false,
+                ),
+                AppTextFiled(
+                  controller: controller.companyStreetNumberController,
+                  title: Strings.streetName,
+                  hintText: Strings.street,
+                  obscure: false,
+                ),
+                AppTextFiled(
+                  controller: controller.companyCityController,
+                  title: Strings.city,
+                  hintText: Strings.city,
+                  multiLine: true,
+                ),
+                GetBuilder<AccountInformationController>(
+                  id: 'doctor',
+                  builder: (controller) {
+                    return dropdownButton(
+                        title: "Country",
+                        hintText: "Canada",
+                        selectedValue: controller.selectCompanyCountry,
+                        onTap: controller.onCompanyCountryChange,
+                        dropdownList: countryCity,
+                        height: Get.height * 0.3);
+                  },
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: AppTextFiled(
+                    controller: controller.companyPostalCodeController,
+                    title: Strings.postalCode,
+                    hintText: Strings.postalCodeDigitHint,
+                    enable: true,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: AppTextFiled(
+                    controller: controller.website,
+                    title: Strings.website,
+                    hintText: Strings.websiteHint,
+                    enable: true,
+                  ),
+                ),
+                SizedBox(height: Get.height * 0.0197),
+                SubmitButton(
+                  text: Strings.save,
+                  onTap: () => controller.accountSave(),
+                ),
+                SizedBox(height: Get.height * 0.0197),
+              ],
             ),
-          ),
-          GestureDetector(
-            onTap: () {},
-            child: AppTextFiled(
-              controller: controller.website,
-              title: Strings.website,
-              hintText: Strings.websiteHint,
-              enable: true,
-            ),
-          ),
-          SizedBox(height: Get.height * 0.0197),
-          SubmitButton(
-            text: Strings.save,
-            onTap: () => controller.accountSave(),
-          ),
-          SizedBox(height: Get.height * 0.0197),
-        ],
-      ),
     );
   }
 }

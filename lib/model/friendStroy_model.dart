@@ -90,11 +90,16 @@ class StoryList {
         id: json["id"],
         storyItem: json["story_item"],
         description: json["description"],
-        createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-        updatedAt:json["createdAt"] == null ? null :  DateTime.parse(json["updatedAt"]),
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        updatedAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
         storyTag: List<dynamic>.from(json["storyTag"].map((x) => x)),
         storyLikeCount: json["storyLikeCount"],
-        storyLikeList: List<UserDetail>.from(json["storyLikeList"].map((x) => UserDetail.fromJson(x))),
+        storyLikeList: List<UserDetail>.from(
+            json["storyLikeList"].map((x) => UserDetail.fromJson(x))),
         isLike: json["isLike"],
         storyCommentCount: json["storyCommentCount"],
         storyCommentList: List<StoryCommentList>.from(
@@ -112,7 +117,8 @@ class StoryList {
         "updatedAt": updatedAt!.toIso8601String(),
         "storyTag": List<dynamic>.from(storyTag!.map((x) => x)),
         "storyLikeCount": storyLikeCount,
-        "storyLikeList": List<dynamic>.from(storyLikeList!.map((x) => x.toJson())),
+        "storyLikeList":
+            List<dynamic>.from(storyLikeList!.map((x) => x.toJson())),
         "isLike": isLike,
         "storyCommentCount": storyCommentCount,
         "storyCommentList":
@@ -214,31 +220,32 @@ class UserDetail {
   factory UserDetail.fromJson(Map<String, dynamic> json) => UserDetail(
         id: json["id"],
         idSocial: json["id_social"],
-        fullName:json["full_name"],
+        fullName: json["full_name"],
         email: json["email"],
         address1: json["address1"],
         address2: json["address2"],
         phoneNumber: json["phone_number"],
         maritalStatus: json["marital_status"],
         idEthnicity: json["id_ethnicity"],
-        birthDate:json["birth_date"] == null ? null :  DateTime.parse(json["birth_date"]),
+        birthDate: json["birth_date"] == null
+            ? null
+            : DateTime.parse(json["birth_date"]),
         noKids: json["no_kids"],
         mobileStatus: json["mobile_status"],
         role: json["role"],
-        idStatus:json["id_status"],
+        idStatus: json["id_status"],
         selfiStatus: json["selfi_status"],
         userStatus: json["user_status"],
         age: json["age"],
-        city:json["city"],
+        city: json["city"],
         height: json["height"],
         weight: json["weight"],
         instagram: json["instagram"],
         youtube: json["youtube"],
         facebook: json["facebook"],
         twitter: json["twitter"],
-        about:json["about"],
-        hobbiesAndInterest:
-            json["hobbies_and_Interest"],
+        about: json["about"],
+        hobbiesAndInterest: json["hobbies_and_Interest"],
         backgroundImage: json["background_image"],
         profileImage: json["profile_image"],
         status: json["status"],
@@ -249,33 +256,31 @@ class UserDetail {
         "id_social": idSocial,
         "full_name": fullName,
         "email": email,
-        "address1":address1,
+        "address1": address1,
         "address2": address2,
         "phone_number": phoneNumber,
-        "marital_status":maritalStatus,
+        "marital_status": maritalStatus,
         "id_ethnicity": idEthnicity,
         "birth_date":
             "${birthDate!.year.toString().padLeft(4, '0')}-${birthDate!.month.toString().padLeft(2, '0')}-${birthDate!.day.toString().padLeft(2, '0')}",
         "no_kids": noKids,
         "mobile_status": mobileStatus,
-        "role":role,
+        "role": role,
         "id_status": idStatus,
         "selfi_status": selfiStatus,
-        "user_status":userStatus,
+        "user_status": userStatus,
         "age": age,
         "city": city,
         "height": height,
-        "weight":weight,
+        "weight": weight,
         "instagram": instagram,
         "youtube": youtube,
         "facebook": facebook,
         "twitter": twitter,
-        "about":about,
-        "hobbies_and_Interest":
-        hobbiesAndInterest,
+        "about": about,
+        "hobbies_and_Interest": hobbiesAndInterest,
         "background_image": backgroundImage,
         "profile_image": profileImage,
         "status": status
       };
 }
-

@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -10,11 +11,11 @@ import 'package:rainbow/screens/account_Information/ad_information_api/ad_inform
 import 'package:rainbow/screens/account_Information/ad_information_api/ad_information_model.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
+
 import '../../common/popup.dart';
 import '../../utils/strings.dart';
 
 class AccountInformationController extends GetxController {
-
   RxBool loader = false.obs;
   bool companySelected = false;
   File? imagePath;
@@ -58,7 +59,6 @@ class AccountInformationController extends GetxController {
     "e164_key": "1-CA-0"
   });
 
-
   Future<void> onGetData() async {
     loader.value = true;
     imageID = PrefService.getInt(PrefKeys.advertiserProfileID);
@@ -74,16 +74,19 @@ class AccountInformationController extends GetxController {
       countryController.text = adViewProfile.data!.country!;
       selectCountry = adViewProfile.data!.country!;
       postalCodeController.text = adViewProfile.data!.postalCode!.toString();
-      phoneNumberController.text = adViewProfile.data!.phoneNumber!.split(' ').last;
+      phoneNumberController.text =
+          adViewProfile.data!.phoneNumber!.split(' ').last;
 
       userProfession = adViewProfile.data!.profession!;
       companyName.text = adViewProfile.data!.companyName!;
       companyNumber.text = adViewProfile.data!.companyPhoneNumber!;
-      companyStreetNumberController.text = adViewProfile.data!.compnayStreetName!;
+      companyStreetNumberController.text =
+          adViewProfile.data!.compnayStreetName!;
       companyCityController.text = adViewProfile.data!.compnayCity!;
       companyCountryController.text = adViewProfile.data!.companyCountry!;
       selectCompanyCountry = adViewProfile.data!.companyCountry!;
-      companyPostalCodeController.text = adViewProfile.data!.compnayPostalCode!.toString();
+      companyPostalCodeController.text =
+          adViewProfile.data!.compnayPostalCode!.toString();
       website.text = adViewProfile.data!.compnayWebsite!;
 
       // countryModel = CountryParser.parseCountryCode("+91");
@@ -135,30 +138,29 @@ class AccountInformationController extends GetxController {
 
 //account save
   accountSave() async {
-    if(imageID == null){
+    if (imageID == null) {
       await uploadImageApi();
     }
-    if(accountValidation() && companyValidation()){
+    if (accountValidation() && companyValidation()) {
       loader.value = true;
       getCountry();
       await onTapSave();
     }
   }
 
-
-
-  void getCountry(){
-    for(int i=0; i < countryCity.length; i++){
-      if(countryCity[i]==selectCountry){
+  void getCountry() {
+    for (int i = 0; i < countryCity.length; i++) {
+      if (countryCity[i] == selectCountry) {
         idCountry = countryId[i];
       }
     }
-    for(int i=0; i < countryCity.length; i++){
-      if(countryCity[i]==selectCompanyCountry){
+    for (int i = 0; i < countryCity.length; i++) {
+      if (countryCity[i] == selectCompanyCountry) {
         idCompanyCountry = countryId[i];
       }
     }
   }
+
 //account validation
   bool accountValidation() {
     if (fullNameController.text.isEmpty) {
@@ -185,7 +187,7 @@ class AccountInformationController extends GetxController {
     } else if (phoneNumberController.text.isEmpty) {
       errorToast(Strings.phoneNumber);
       return false;
-    }else if(uploadImage.data == null) {
+    } else if (uploadImage.data == null) {
       errorToast(Strings.uploadImageError);
       return false;
     }
@@ -273,14 +275,13 @@ class AccountInformationController extends GetxController {
   Future<void> uploadImageApi() async {
     loader.value = true;
     try {
-      await UploadImageApi.postRegister(imagePath!.path.toString()).then(
-            (value) async {
-              uploadImage = value!;
-              imageID = uploadImage.data!.id;
-              await PrefService.setValue(PrefKeys.advertiserProfileID,uploadImage.data!.id);
-            }
-
-      );
+      await UploadImageApi.postRegister(imagePath!.path.toString())
+          .then((value) async {
+        uploadImage = value!;
+        imageID = uploadImage.data!.id;
+        await PrefService.setValue(
+            PrefKeys.advertiserProfileID, uploadImage.data!.id);
+      });
 
       loader.value = false;
     } catch (e) {
@@ -309,7 +310,7 @@ class AccountInformationController extends GetxController {
         "id_item_profile": imageID.toString(),
         "full_name": fullNameController.text,
         "email": emailController.text,
-        "house_number":houseNumberController.text,
+        "house_number": houseNumberController.text,
         "street_name": streetNumberController.text,
         "phone_number": phoneNumberController.text,
         "city": cityController.text,
@@ -340,16 +341,19 @@ class AccountInformationController extends GetxController {
         countryController.text = adViewProfile.data!.country!;
         selectCountry = adViewProfile.data!.country!;
         postalCodeController.text = adViewProfile.data!.postalCode!.toString();
-        phoneNumberController.text = adViewProfile.data!.phoneNumber!.split(' ').last;
+        phoneNumberController.text =
+            adViewProfile.data!.phoneNumber!.split(' ').last;
 
         userProfession = adViewProfile.data!.profession!;
         companyName.text = adViewProfile.data!.companyName!;
         companyNumber.text = adViewProfile.data!.companyPhoneNumber!;
-        companyStreetNumberController.text = adViewProfile.data!.compnayStreetName!;
+        companyStreetNumberController.text =
+            adViewProfile.data!.compnayStreetName!;
         companyCityController.text = adViewProfile.data!.compnayCity!;
         companyCountryController.text = adViewProfile.data!.companyCountry!;
         selectCompanyCountry = adViewProfile.data!.companyCountry!;
-        companyPostalCodeController.text = adViewProfile.data!.compnayPostalCode!.toString();
+        companyPostalCodeController.text =
+            adViewProfile.data!.compnayPostalCode!.toString();
         website.text = adViewProfile.data!.compnayWebsite!;
         // countryModel = CountryParser.parseCountryCode("+91");
         update(['doctor']);

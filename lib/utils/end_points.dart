@@ -46,7 +46,7 @@ class EndPoints {
   static const deleteStory = "$baseUrl/user/story/delete";
   static const listTageStory = "$baseUrl/user/tag/list";
   static const storyView = "$baseUrl/user/story/view";
-  static const storyViewList= "$baseUrl/user/story/view/list";
+  static const storyViewList = "$baseUrl/user/story/view/list";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

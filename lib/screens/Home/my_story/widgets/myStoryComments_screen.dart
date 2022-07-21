@@ -40,25 +40,24 @@ class MyStoryCommentsScreen extends StatelessWidget {
               children: [
                 controller.comments.isEmpty
                     ? Center(
-                  child: Text(
-                    "No comments",
-                    style:
-                    gilroyBoldTextStyle(color: Colors.black),
-                  ),
-                )
-                    :Expanded(
-                  child: Container(
-                    height: Get.height,
-                    width: Get.width,
-                    padding: const EdgeInsets.only(
-                      left: 19,
-                      right: 19,
-                    ),
-                    child: ListView.separated(
-                      physics: const BouncingScrollPhysics(),
-                      padding: const EdgeInsets.only(top: 10),
-                      itemBuilder: (context, index) {
-                        return  storyComment(
+                        child: Text(
+                          "No comments",
+                          style: gilroyBoldTextStyle(color: Colors.black),
+                        ),
+                      )
+                    : Expanded(
+                        child: Container(
+                          height: Get.height,
+                          width: Get.width,
+                          padding: const EdgeInsets.only(
+                            left: 19,
+                            right: 19,
+                          ),
+                          child: ListView.separated(
+                            physics: const BouncingScrollPhysics(),
+                            padding: const EdgeInsets.only(top: 10),
+                            itemBuilder: (context, index) {
+                              return storyComment(
                                 controller.comments[index].description
                                     .toString(),
                                 controller.comments[index].storyUserComment!
@@ -68,17 +67,17 @@ class MyStoryCommentsScreen extends StatelessWidget {
                                     .comments[index].storyUserComment!.fullName
                                     .toString(),
                               );
-                      },
-                      separatorBuilder: (context, index) {
-                        return Divider(
-                          color: ColorRes.black.withOpacity(0.6),
-                          height: 40,
-                        );
-                      },
-                      itemCount: controller.comments.length,
-                    ),
-                  ),
-                ),
+                            },
+                            separatorBuilder: (context, index) {
+                              return Divider(
+                                color: ColorRes.black.withOpacity(0.6),
+                                height: 40,
+                              );
+                            },
+                            itemCount: controller.comments.length,
+                          ),
+                        ),
+                      ),
                 /*  Container(
                 width: Get.width,
                 decoration: BoxDecoration(color: ColorRes.white, boxShadow: [
