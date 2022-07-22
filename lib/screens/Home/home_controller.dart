@@ -13,6 +13,7 @@ import 'package:rainbow/screens/Home/addStroy/addStory_screen.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_controller.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_screen.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
+import 'package:rainbow/screens/Home/view_story/view_story_screen.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/widget/listOfFriendRequest_api/listOfFriendRequest_api.dart';
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
@@ -144,5 +145,17 @@ class HomeController extends GetxController {
     NotificationsController notificationsController = Get.put(NotificationsController());
     notificationsController.init();
     Get.to(() => NotificationScreen());
+  }
+
+  void onFriedStoryTap(int index){
+    viewStoryController.currentPage = index;
+    viewStoryController.init();
+   /* for (var data in viewStoryController.friendStoryModel.data!) {
+      for (var story in data.storyList!) {
+        String url = story.storyItem.toString();
+
+      }
+    }*/
+    Get.to(() => const ViewStoryScreen());
   }
 }

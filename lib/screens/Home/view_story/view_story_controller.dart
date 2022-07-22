@@ -173,6 +173,7 @@ class ViewStoryController extends GetxController {
     currentPage = pageIndex;
     this.storyIndex = storyIndex;
     viewStoryApi();
+    pauseAnimation();
   }
 
   Future<void> downloadImage() async {

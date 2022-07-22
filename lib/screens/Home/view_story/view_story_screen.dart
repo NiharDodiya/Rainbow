@@ -31,7 +31,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
             IndicatorAnimationCommand.pause);
     controller.pauseAnimation();
     controller.playAnimation();
-    controller.init();
+    // controller.init();
 
     KeyboardVisibilityController().onChange.listen((bool visible) {
       if(Get.currentRoute != "/ViewStoryScreen"){

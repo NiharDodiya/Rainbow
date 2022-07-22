@@ -407,12 +407,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: Get.height * 0.02,
                                 ),
                                 GestureDetector(
-                                  onTap: () {
-                                    // Get.to(()=> StoryScreen());
-                                    viewStoryController.currentPage = index;
-                                    // viewStoryController.init();
-                                    Get.to(() => const ViewStoryScreen());
-                                  },
+                                  onTap: () => controller.onFriedStoryTap(index),
                                   child: SizedBox(
                                     height: 56,
                                     width: 56,
