@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_mentions/flutter_mentions.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rainbow/common/popup.dart';
@@ -20,7 +19,6 @@ class AddStoryController extends GetxController {
   int? lastPage;
   File? image;
   AdStoryModel adStoryModel = AdStoryModel();
-  GlobalKey<FlutterMentionsState> key = GlobalKey<FlutterMentionsState>();
   RxBool loader = false.obs;
   List<UserData> tagUserList = [];
 
