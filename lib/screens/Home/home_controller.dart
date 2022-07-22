@@ -25,6 +25,7 @@ class HomeController extends GetxController {
       ListOfFriendRequestModel();
   ViewStoryController viewStoryController = Get.put(ViewStoryController());
   List<bool> isAd = List.generate(10, (index) => Random().nextInt(2) == 1);
+  MyStoryController myStoryController = Get.put(MyStoryController());
   RefreshController refreshController = RefreshController();
 
   @override
@@ -48,7 +49,12 @@ class HomeController extends GetxController {
   }
 
   void onNewStoryTap() {
-    Get.to(() => AddStoryScreen());
+    // if (myStoryController.myStoryModel.data!.isNotEmpty) {
+      Get.to(() => const MyStoryScreen());
+ /*   } else {
+      Get.to(() => AddStoryScreen());
+    }*/
+    // Get.to(() => AddStoryScreen());
   }
 
   Future<void> countryNationalites() async {
@@ -92,12 +98,16 @@ class HomeController extends GetxController {
     await listOfFriedRequestDetails();
     await viewStoryController.friendStoryApiData();
     await controller.viewProfileDetails();
+    loader.value = true;
+    await myStoryController.init();
+    loader.value = false;
     // viewStoryController.friendStoryApiData();
     // loader.value = true;
   }
 
   Future<void> myStoryOnTap() async {
-    MyStoryController myStoryController = Get.put(MyStoryController());
+    Get.to(() => AddStoryScreen());
+    /*MyStoryController myStoryController = Get.put(MyStoryController());
     loader.value = true;
     await myStoryController.init();
     loader.value = false;
@@ -105,7 +115,7 @@ class HomeController extends GetxController {
       Get.to(() => const MyStoryScreen());
     } else {
       Get.to(() => AddStoryScreen());
-    }
+    }*/
   }
 
   Future<void> onRefresh() async {
