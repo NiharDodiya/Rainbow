@@ -17,6 +17,7 @@ import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/widget/listOfFriendRequest_api/listOfFriendRequest_api.dart';
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
+import 'package:rainbow/screens/notification/notification_screen.dart';
 
 class HomeController extends GetxController {
   RxBool loader = false.obs;
@@ -126,7 +127,7 @@ class HomeController extends GetxController {
   }
 
   void changeLoader(bool status) {
-    if(refreshController == null){
+    if(refreshController == null || refreshController!.headerMode == null){
       loader.value = status;
       return;
     }
@@ -134,5 +135,9 @@ class HomeController extends GetxController {
       return;
     }
     loader.value = status;
+  }
+
+  void onNotyIconBtnTap(){
+    Get.to(() => NotificationScreen());
   }
 }

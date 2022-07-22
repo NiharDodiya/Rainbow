@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             width: Get.width * 0.04,
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: controller.onNotyIconBtnTap,
                             child: const Image(
                               image: AssetImage(AssetRes.notify),
                               height: 20,
@@ -369,7 +369,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   onTap: () {
                                     // Get.to(()=> StoryScreen());
                                     viewStoryController.currentPage = index;
-                                    viewStoryController.init();
+                                    // viewStoryController.init();
                                     Get.to(() => const ViewStoryScreen());
                                   },
                                   child: SizedBox(

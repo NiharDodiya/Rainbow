@@ -47,6 +47,7 @@ class EndPoints {
   static const listTageStory = "$baseUrl/user/tag/list";
   static const storyView = "$baseUrl/user/story/view";
   static const storyViewList = "$baseUrl/user/story/view/list";
+  static const notificationList = "$baseUrl/user/notification/list";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

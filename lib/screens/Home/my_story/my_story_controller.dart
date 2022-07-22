@@ -75,8 +75,11 @@ class MyStoryController extends GetxController {
   }
 
   void onCommentButtonTap({required MyStory myStory, required int storyindex}) {
+    pauseAnimation();
     comments = myStory.storycommentList ?? [];
-    Get.to(() => const MyStoryCommentsScreen());
+    Get.to(() => const MyStoryCommentsScreen())!.whenComplete((){
+      playAnimation();
+    });
   }
 
   void onMoreBtnTap() {}
@@ -84,12 +87,13 @@ class MyStoryController extends GetxController {
   void onHashTagTap() {}
 
   void onLikeBtnTap({required MyStory myStory, required int storyindex}) {
+    pauseAnimation();
     storyLikeList = myStory.storyLikeList ?? [];
     Get.bottomSheet(
       MyStoryListLike(),
       isScrollControlled: true,
     ).then((value) {
-      // indicatorAnimationController.value = IndicatorAnimationCommand.resume;
+      playAnimation();
     });
   }
 

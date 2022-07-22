@@ -351,15 +351,6 @@ class _StoryPageFrameState extends State<_StoryPageFrame>
             ],
           ),
         ),
-        Indicators(
-          storyLength: widget.storyLength,
-          animationController: animationController,
-          isCurrentPage: widget.isCurrentPage,
-          isPaging: widget.isPaging,
-          padding: widget.indicatorPadding,
-          color: widget.color,
-          bgColor: widget.bgColor,
-        ),
         Gestures(
           animationController: animationController,
           onStoryChange: widget.onStoryChange,
@@ -371,6 +362,15 @@ class _StoryPageFrameState extends State<_StoryPageFrame>
                 context.watch<StoryStackController>().value,
               ) ??
               const SizedBox.shrink(),
+        ),
+        Indicators(
+          storyLength: widget.storyLength,
+          animationController: animationController,
+          isCurrentPage: widget.isCurrentPage,
+          isPaging: widget.isPaging,
+          padding: widget.indicatorPadding,
+          color: widget.color,
+          bgColor: widget.bgColor,
         ),
       ],
     );

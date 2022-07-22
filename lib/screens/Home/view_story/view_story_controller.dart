@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/StoryComment_model.dart';
@@ -26,13 +27,14 @@ class ViewStoryController extends GetxController {
   LikeStoryModel likeStoryModel = LikeStoryModel();
   StoryCommentModel storyCommentModel = StoryCommentModel();
   TextEditingController writeSomethings = TextEditingController();
-  late ValueNotifier<IndicatorAnimationCommand> indicatorAnimationController;
+  ValueNotifier<IndicatorAnimationCommand>? indicatorAnimationController;
   List<UserDetail> storyLikesList = [];
   int currentPage = 0;
   int storyIndex = 0;
 
-  void init() {
-    friendStoryApiData();
+  Future<void> init() async {
+    // pauseAnimation();
+    await friendStoryApiData();
   }
 
   @override
@@ -70,13 +72,13 @@ class ViewStoryController extends GetxController {
 
   void onLikeViewTap(
       {required FriendStory friendStory, required int storyIndex}) {
-    indicatorAnimationController.value = IndicatorAnimationCommand.pause;
+    pauseAnimation();
     storyLikesList = friendStory.storyList![storyIndex].storyLikeList ?? [];
     Get.bottomSheet(
       LikesBottomShit(),
       isScrollControlled: true,
     ).then((value) {
-      indicatorAnimationController.value = IndicatorAnimationCommand.resume;
+      playAnimation();
     });
   }
 
@@ -98,9 +100,9 @@ class ViewStoryController extends GetxController {
   Future<void> likeStory(String id) async {
     try {
       loader.value = true;
-      indicatorAnimationController.value = IndicatorAnimationCommand.pause;
+      pauseAnimation();
       likeStoryModel = await LikeStoryApi.postRegister(id);
-      indicatorAnimationController.value = IndicatorAnimationCommand.resume;
+      playAnimation();
       await friendStoryApiData();
       update(["friendStory"]);
       loader.value = false;
@@ -112,10 +114,10 @@ class ViewStoryController extends GetxController {
   Future<void> unLikeStory(String id) async {
     try {
       loader.value = true;
-      indicatorAnimationController.value = IndicatorAnimationCommand.pause;
+      pauseAnimation();
       unLikeStoryModel = await UnLikeStoryApi.postRegister(id);
       await friendStoryApiData();
-      indicatorAnimationController.value = IndicatorAnimationCommand.resume;
+      playAnimation();
       update(["friendStory"]);
 
       loader.value = false;
@@ -131,7 +133,8 @@ class ViewStoryController extends GetxController {
               id, writeSomethings.text.toString()) ??
           StoryCommentModel());
       await friendStoryApiData();
-      update(["friendStory"]);
+      playAnimation();
+      // update(["friendStory"]);
       writeSomethings.clear();
       loader.value = false;
     } catch (e) {
@@ -141,22 +144,22 @@ class ViewStoryController extends GetxController {
 
   Future<void> onCommentButtonTap(
       {required FriendStory friendStory, required int storyIndex}) async {
-    indicatorAnimationController.value = IndicatorAnimationCommand.pause;
+    pauseAnimation();
     await friendStoryApiData();
     StoryCommentsController storyController =
         Get.put(StoryCommentsController());
     storyController.comments =
         friendStory.storyList![storyIndex].storyCommentList ?? [];
     Get.to(() => StoryCommentsScreen())!.whenComplete(() {
-      indicatorAnimationController.value = IndicatorAnimationCommand.resume;
+      playAnimation();
     });
   }
 
   void commentSendTap(String id, BuildContext context) {
     if (validation()) {
-      indicatorAnimationController.value = IndicatorAnimationCommand.pause;
+      pauseAnimation();
       commentData(id);
-      update(["friendStory"]);
+      // update(["friendStory"]);
       FocusScope.of(context).unfocus();
     }
   }
@@ -172,10 +175,31 @@ class ViewStoryController extends GetxController {
     viewStoryApi();
   }
 
+  Future<void> downloadImage() async {
+    String url = friendStoryModel.data![currentPage].storyList![storyIndex].storyItem.toString();
+    pauseAnimation();
+    await DefaultCacheManager().downloadFile(url);
+    playAnimation();
+  }
+
   Future<void> viewStoryApi() async {
     String storyId = friendStoryModel
         .data![currentPage].storyList![storyIndex].id
         .toString();
     await MyStoryApi.storyViewAPi(storyId);
+  }
+
+  void playAnimation() {
+    if(indicatorAnimationController == null){
+      return;
+    }
+    indicatorAnimationController!.value = IndicatorAnimationCommand.resume;
+  }
+
+  void pauseAnimation() {
+    if(indicatorAnimationController == null){
+      return;
+    }
+    indicatorAnimationController!.value = IndicatorAnimationCommand.pause;
   }
 }

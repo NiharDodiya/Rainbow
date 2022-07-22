@@ -36,11 +36,13 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
         IndicatorAnimationCommand.resume;
 
     KeyboardVisibilityController().onChange.listen((bool visible) {
+      if(Get.currentRoute != "/MyStoryScreen"){
+        return;
+      }
       if (visible) {
         controller.indicatorAnimationController!.value =
             IndicatorAnimationCommand.pause;
       } else {
-        FocusScope.of(context).unfocus();
         controller.indicatorAnimationController!.value =
             IndicatorAnimationCommand.resume;
       }
@@ -114,7 +116,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                     ],
                   );
                 },
-                indicatorDuration: const Duration(seconds: 5),
+                indicatorDuration: const Duration(seconds: 20),
                 indicatorPadding: EdgeInsets.only(
                     top: Get.height - 20, right: 50, left: 50),
                 gestureItemBuilder: (context, pageIndex, storyIndex) {

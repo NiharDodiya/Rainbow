@@ -81,29 +81,27 @@ class AdNotificationsScreen extends StatelessWidget {
                                   const SizedBox(
                                     width: 12,
                                   ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const SizedBox(
-                                        height: 35,
-                                      ),
-                                      Text(
-                                        "2/09/2021",
-                                        style: gilroySemiBoldTextStyle(
-                                            fontSize: 12),
-                                      ),
-                                      SizedBox(
-                                        child: Expanded(
-                                          child: Text(
-                                            "Advertisement is now approved \nby admin",
-                                            style: gilroyMediumTextStyle(
-                                                fontSize: 14,
-                                                letterSpacing: -0.03),
-                                          ),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const SizedBox(
+                                          height: 35,
                                         ),
-                                      ),
-                                    ],
+                                        Text(
+                                          "2/09/2021",
+                                          style: gilroySemiBoldTextStyle(
+                                              fontSize: 12),
+                                        ),
+                                        Text(
+                                          "Advertisement is now approved by admin",
+                                          style: gilroyMediumTextStyle(
+                                              fontSize: 14,
+                                              letterSpacing: -0.03),
+                                        ),
+                                      ],
+                                    ),
                                   )
                                 ],
                               ),

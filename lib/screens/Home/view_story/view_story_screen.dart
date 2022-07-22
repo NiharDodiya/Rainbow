@@ -29,18 +29,19 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
     controller.indicatorAnimationController =
         ValueNotifier<IndicatorAnimationCommand>(
             IndicatorAnimationCommand.pause);
-    controller.indicatorAnimationController.value =
-        IndicatorAnimationCommand.pause;
-    controller.indicatorAnimationController.value =
-        IndicatorAnimationCommand.resume;
+    controller.pauseAnimation();
+    controller.playAnimation();
+    controller.init();
 
     KeyboardVisibilityController().onChange.listen((bool visible) {
+      if(Get.currentRoute != "/ViewStoryScreen"){
+        return;
+      }
       if (visible) {
-        controller.indicatorAnimationController.value =
+        controller.indicatorAnimationController!.value =
             IndicatorAnimationCommand.pause;
       } else {
-        FocusScope.of(context).unfocus();
-        controller.indicatorAnimationController.value =
+        controller.indicatorAnimationController!.value =
             IndicatorAnimationCommand.resume;
       }
     });
@@ -48,7 +49,8 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
 
   @override
   void dispose() {
-    controller.indicatorAnimationController.dispose();
+    controller.indicatorAnimationController!.dispose();
+    controller.indicatorAnimationController = null;
     super.dispose();
   }
 
