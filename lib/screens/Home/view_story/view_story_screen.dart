@@ -1,13 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
-import 'package:rainbow/utils/strings.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+
+
 import 'package:story/story_page_view/story_page_view.dart';
 
 import '../../../common/Widget/text_styles.dart';
@@ -294,49 +295,8 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                             Column(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
-                                                controller
-                                                            .friendStoryModel
-                                                            .data![pageIndex]
-                                                            .storyList![
-                                                                storyIndex]
-                                                            .isLike
-                                                            .toString() ==
-                                                        "no"
-                                                    ? InkWell(
-                                                        onTap: () {
-                                                          controller.onLikeBtnTap(
-                                                              controller
-                                                                  .friendStoryModel
-                                                                  .data![
-                                                                      pageIndex]
-                                                                  .storyList![
-                                                                      storyIndex]
-                                                                  .id
-                                                                  .toString());
-                                                        },
-                                                        child: const Icon(
-                                                          Icons.favorite,
-                                                          color: ColorRes.white,
-                                                        ),
-                                                      )
-                                                    : InkWell(
-                                                        onTap: () {
-                                                          controller.onUnLikeBtnTap(
-                                                              controller
-                                                                  .friendStoryModel
-                                                                  .data![
-                                                                      pageIndex]
-                                                                  .storyList![
-                                                                      storyIndex]
-                                                                  .id
-                                                                  .toString());
-                                                        },
-                                                        child: const Icon(
-                                                          Icons.favorite,
-                                                          color: ColorRes.red,
-                                                        ),
-                                                      ),
-                                                InkWell(
+
+                                         /*       InkWell(
                                                   onTap: () {
                                                     controller.onLikeViewTap(
                                                         friendStory: controller
@@ -346,14 +306,14 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                                   },
                                                   child: Row(
                                                     children: [
-                                                      Text(
+                                                     *//* Text(
                                                         Strings.likes,
                                                         style: sfProTextReguler(
                                                             fontSize: 15),
                                                       ),
                                                       const SizedBox(
                                                         width: 5,
-                                                      ),
+                                                      ),*//*
                                                       Text(
                                                         controller
                                                             .friendStoryModel
@@ -367,10 +327,10 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                                       ),
                                                     ],
                                                   ),
-                                                ),
+                                                ),*/
                                               ],
                                             ),
-                                            InkWell(
+                                            /*InkWell(
                                               onTap: () {
                                                 controller.onCommentButtonTap(
                                                     storyIndex: storyIndex,
@@ -405,7 +365,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                                   ),
                                                 ],
                                               ),
-                                            ),
+                                            ),*/
                                           ],
                                         ),
                                       );
@@ -421,6 +381,52 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                           left: 15,
                           child: Row(
                             children: [
+
+                              controller
+                                  .friendStoryModel
+                                  .data![pageIndex]
+                                  .storyList![
+                              storyIndex]
+                                  .isLike
+                                  .toString() ==
+                                  "no"
+                                  ? InkWell(
+                                onTap: () {
+                                  controller.onLikeBtnTap(
+                                      controller
+                                          .friendStoryModel
+                                          .data![
+                                      pageIndex]
+                                          .storyList![
+                                      storyIndex]
+                                          .id
+                                          .toString());
+                                },
+                                child: const Icon(
+                                  Icons.favorite,
+                                  color: ColorRes.white,
+                                ),
+                              )
+                                  : InkWell(
+                                onTap: () {
+                                  controller.onUnLikeBtnTap(
+                                      controller
+                                          .friendStoryModel
+                                          .data![
+                                      pageIndex]
+                                          .storyList![
+                                      storyIndex]
+                                          .id
+                                          .toString());
+                                },
+                                child: const Icon(
+                                  Icons.favorite,
+                                  color: ColorRes.red,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 15,
+                              ),
                               SizedBox(
                                 height: 40,
                                 width: 250,
@@ -445,8 +451,9 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                   ),
                                 ),
                               ),
+
                               const SizedBox(
-                                width: 30,
+                                width: 15,
                               ),
                               InkWell(
                                 onTap: () {

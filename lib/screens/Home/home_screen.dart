@@ -55,14 +55,11 @@ class HomeScreen extends StatelessWidget {
                             style: gilroyBoldTextStyle(
                                 color: Colors.black, fontSize: 16),
                           ),
-                          /*SizedBox(
-                            width: Get.width * 0.37,
-                          ),*/
                           const Spacer(),
-                          InkWell(
+                          /* InkWell(
                             onTap: controller.onNewStoryTap,
                             child: const Icon(Icons.add, color: ColorRes.black),
-                          ),
+                          ),*/
                           const SizedBox(width: 10),
                           GestureDetector(
                             onTap: () {
@@ -158,6 +155,7 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(
                   width: Get.width * 0.03,
                 ),
+                //add story
                 SizedBox(
                   height: 129,
                   child: Column(
@@ -229,6 +227,83 @@ class HomeScreen extends StatelessWidget {
                 ),
                 SizedBox(
                   width: Get.width * 0.01,
+                ),
+                // my story
+                Visibility(
+                  visible:
+                      controller.myStoryController.myStoryModel.data == null ||
+                          controller
+                              .myStoryController.myStoryModel.data!.isNotEmpty,
+                  child: SizedBox(
+                    height: 129,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: Get.height * 0.02,
+                        ),
+                        InkWell(
+                          onTap: controller.onNewStoryTap,
+                          child: Stack(
+                            children: [
+                              Container(
+                                height: 56,
+                                width: 78,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: controller
+                                        .controller
+                                        .viewProfile
+                                        .data == null ? null : DecorationImage(
+                                        image: NetworkImage(controller
+                                            .controller
+                                            .viewProfile
+                                            .data!
+                                            .profileImage
+                                            .toString()),
+                                        fit: BoxFit.cover)),
+                              ),
+                              Positioned(
+                                top: Get.height * 0.04,
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: ColorRes.color_B9A2FD
+                                            .withOpacity(0.3),
+                                        spreadRadius: 1,
+                                        blurRadius: 10,
+                                        offset: const Offset(4, 5),
+                                      ),
+                                    ],
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        ColorRes.color_B9A2FD.withOpacity(0.1),
+                                        ColorRes.color_B9A2FD.withOpacity(0.1),
+                                        ColorRes.color_B9A2FD.withOpacity(0.1),
+                                        ColorRes.color_B9A2FD.withOpacity(0.1),
+                                      ],
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        Text(
+                          controller.controller.viewProfile.data!.fullName
+                              .toString(),
+                          style: textStyleFont14WhiteBold,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: 129,
