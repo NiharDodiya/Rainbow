@@ -18,11 +18,29 @@ import 'package:rainbow/utils/strings.dart';
 
 import 'settings/connections/connections_controller.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   HomeController controller = Get.put(HomeController());
+
   ViewStoryController viewStoryController = Get.put(ViewStoryController());
 
+  @override
+  void initState() {
+    controller.refreshController = RefreshController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.refreshController?.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -94,7 +112,7 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 body: SmartRefresher(
-                  controller: controller.refreshController,
+                  controller: controller.refreshController!,
                   header: CustomHeader(
                     builder: (context, status) {
                       return Padding(

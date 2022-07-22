@@ -26,7 +26,7 @@ class HomeController extends GetxController {
   ViewStoryController viewStoryController = Get.put(ViewStoryController());
   List<bool> isAd = List.generate(10, (index) => Random().nextInt(2) == 1);
   MyStoryController myStoryController = Get.put(MyStoryController());
-  RefreshController refreshController = RefreshController();
+  RefreshController? refreshController;
 
   @override
   Future<void> onInit() async {
@@ -40,7 +40,7 @@ class HomeController extends GetxController {
     try {
       await ListOfCountryApi.postRegister()
           .then((value) => listCountryModel = value!);
-      print(listCountryModel);
+      debugPrint(listCountryModel.toJson().toString());
       getCountry();
     } catch (e) {
       errorToast(e.toString());
@@ -50,8 +50,10 @@ class HomeController extends GetxController {
 
   void onNewStoryTap() {
     // if (myStoryController.myStoryModel.data!.isNotEmpty) {
-      Get.to(() => const MyStoryScreen());
- /*   } else {
+    Get.to(() => const MyStoryScreen())!.whenComplete(() {
+      init();
+    });
+    /*   } else {
       Get.to(() => AddStoryScreen());
     }*/
     // Get.to(() => AddStoryScreen());
@@ -120,11 +122,15 @@ class HomeController extends GetxController {
 
   Future<void> onRefresh() async {
     await init();
-    refreshController.refreshCompleted();
+    refreshController!.refreshCompleted();
   }
 
-  void changeLoader(bool status){
-    if(refreshController.headerMode?.value == RefreshStatus.refreshing){
+  void changeLoader(bool status) {
+    if(refreshController == null){
+      loader.value = status;
+      return;
+    }
+    if (refreshController!.headerMode!.value == RefreshStatus.refreshing) {
       return;
     }
     loader.value = status;

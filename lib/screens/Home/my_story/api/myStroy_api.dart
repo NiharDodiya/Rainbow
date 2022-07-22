@@ -31,7 +31,7 @@ class MyStoryApi {
     }
   }
 
-  static Future<bool> deleteMyStory(String storyId) async {
+  static Future<String?> deleteMyStory(String storyId) async {
     try {
       String url = EndPoints.deleteStory;
       Map<String, dynamic> body = {"id_stroy": storyId};
@@ -42,16 +42,14 @@ class MyStoryApi {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
           errorToast("Error", title: jsonDecode(response.body)["message"]);
-        } else if (status == true) {
-          flutterToast(jsonDecode(response.body)["message"]);
         }
-        return true;
+        return jsonDecode(response.body)["message"].toString();
       }
-      return false;
+      return null;
     } catch (e) {
       debugPrint(e.toString());
       errorToast("Error", title: e.toString());
-      return false;
+      return null;
     }
   }
 

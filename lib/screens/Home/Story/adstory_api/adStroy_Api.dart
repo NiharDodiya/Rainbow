@@ -34,8 +34,6 @@ class AdStoryApi {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
           flutterToast(jsonDecode(response.body)["message"]);
-        } else if (status == true) {
-          flutterToast(jsonDecode(response.body)["message"]);
         }
         return adStoryModelFromJson(response.body);
       }

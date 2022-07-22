@@ -32,13 +32,17 @@ class MyStoryController extends GetxController {
   Future<void> getStoryViewList(String id) async {
     try {
       loader.value = true;
+      pauseAnimation();
       storyViewListModel = await MyStoryApi.storyViewListAPi(id);
       Get.bottomSheet(
         StoryViewListScreen(),
         isScrollControlled: true,
-      );
+      ).then((value){
+        playAnimation();
+      });
       loader.value = false;
     } catch (e) {
+      playAnimation();
       loader.value = false;
     }
   }
@@ -99,13 +103,14 @@ class MyStoryController extends GetxController {
       onOkTap: () async {
         Get.back();
         loader.value = true;
-        bool result = await MyStoryApi.deleteMyStory(
+        String? result = await MyStoryApi.deleteMyStory(
             myStoryModel.data![storyIndex].id.toString());
         playAnimation();
         loader.value = false;
         Get.back();
-        if (result) {
-          Get.offAll(() => const Dashboard());
+        if (result != null) {
+          Get.back();
+          flutterToast(result);
         }
       },
       onCancelTap: () {
