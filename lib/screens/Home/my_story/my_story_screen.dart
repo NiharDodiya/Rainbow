@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
@@ -23,20 +24,31 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
   final MyStoryController controller = Get.put(MyStoryController());
   final ProfileController profileController = Get.find();
 
-  late ValueNotifier<IndicatorAnimationCommand> indicatorAnimationController;
-
   @override
   void initState() {
     super.initState();
-    indicatorAnimationController = ValueNotifier<IndicatorAnimationCommand>(
+    controller.indicatorAnimationController = ValueNotifier<IndicatorAnimationCommand>(
         IndicatorAnimationCommand.resume);
-    pauseAnimation();
-    playAnimation();
+    controller.indicatorAnimationController!.value =
+        IndicatorAnimationCommand.pause;
+    controller.indicatorAnimationController!.value =
+        IndicatorAnimationCommand.resume;
+
+    KeyboardVisibilityController().onChange.listen((bool visible) {
+      if (visible) {
+        controller.indicatorAnimationController!.value =
+            IndicatorAnimationCommand.pause;
+      } else {
+        FocusScope.of(context).unfocus();
+        controller.indicatorAnimationController!.value =
+            IndicatorAnimationCommand.resume;
+      }
+    });
   }
 
   @override
   void dispose() {
-    indicatorAnimationController.dispose();
+    controller.indicatorAnimationController?.dispose();
     super.dispose();
   }
 
@@ -87,14 +99,14 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                 ),
                               ),
                               progressIndicatorBuilder: (con, str, progress) {
-                                if (progress.progress != 100) {
-                                  indicatorAnimationController.value =
+                                /*if (progress.progress != 100) {
+                                  controller.indicatorAnimationController.value =
                                       IndicatorAnimationCommand.pause;
                                 } else {
                                   indicatorAnimationController.value =
                                       IndicatorAnimationCommand.resume;
-                                }
-                                return SmallLoader(progress: progress.progress);
+                                }*/
+                                return const SizedBox();
                               },
                               fit: BoxFit.fill,
                             ),
@@ -169,7 +181,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                         ),
                                         child: Text(
                                           "Comments",
-                                          style: sfProTextReguler(),
+                                          // style: sfProTextReguler(),
                                         ),
                                       ),
                                     ),
@@ -365,9 +377,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                               InkWell(
                                                 onTap: () =>
                                                     controller.onDeleteTap(
-                                                        storyIndex,
-                                                        pauseAnimation,
-                                                        playAnimation),
+                                                        storyIndex),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.min,
@@ -394,7 +404,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                         ],
                       );
                     },
-                    indicatorAnimationController: indicatorAnimationController,
+                    indicatorAnimationController: controller.indicatorAnimationController,
                     initialStoryIndex: (pageIndex) {
                       return 0;
                     },
@@ -419,13 +429,5 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
         },
       ),
     );
-  }
-
-  void pauseAnimation() {
-    indicatorAnimationController.value = IndicatorAnimationCommand.pause;
-  }
-
-  void playAnimation() {
-    indicatorAnimationController.value = IndicatorAnimationCommand.resume;
   }
 }

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:rainbow/common/blocList_api/blockList_api.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
@@ -24,6 +25,7 @@ class HomeController extends GetxController {
       ListOfFriendRequestModel();
   ViewStoryController viewStoryController = Get.put(ViewStoryController());
   List<bool> isAd = List.generate(10, (index) => Random().nextInt(2) == 1);
+  RefreshController refreshController = RefreshController();
 
   @override
   Future<void> onInit() async {
@@ -74,22 +76,22 @@ class HomeController extends GetxController {
 
   Future<void> listOfFriedRequestDetails() async {
     try {
-      loader.value = true;
+      changeLoader(true);
       listOfFriendRequestModel = (await ListOfFriendRequestApi.postRegister())!;
       update(["connections"]);
-      loader.value = false;
+      changeLoader(false);
     } catch (e) {
-      loader.value = false;
+      changeLoader(false);
     }
   }
 
   Future<void> init() async {
-    countryName();
-    countryNationalites();
-    blockListDetailes();
-    listOfFriedRequestDetails();
-    viewStoryController.friendStoryApiData();
-    controller.viewProfileDetails();
+    await countryName();
+    await countryNationalites();
+    await blockListDetailes();
+    await listOfFriedRequestDetails();
+    await viewStoryController.friendStoryApiData();
+    await controller.viewProfileDetails();
     // viewStoryController.friendStoryApiData();
     // loader.value = true;
   }
@@ -104,5 +106,17 @@ class HomeController extends GetxController {
     } else {
       Get.to(() => AddStoryScreen());
     }
+  }
+
+  Future<void> onRefresh() async {
+    await init();
+    refreshController.refreshCompleted();
+  }
+
+  void changeLoader(bool status){
+    if(refreshController.headerMode?.value == RefreshStatus.refreshing){
+      return;
+    }
+    loader.value = status;
   }
 }

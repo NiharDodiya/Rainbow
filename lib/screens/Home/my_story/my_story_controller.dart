@@ -8,6 +8,7 @@ import 'package:rainbow/screens/Home/my_story/api/myStroy_api.dart';
 import 'package:rainbow/screens/Home/my_story/widgets/myStoryComments_screen.dart';
 import 'package:rainbow/screens/Home/my_story/widgets/myStoryListLike_screen.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
+import 'package:story/story_page_view/story_page_view.dart';
 
 import 'widgets/myStoryViewBottom_screen.dart';
 
@@ -17,11 +18,11 @@ class MyStoryController extends GetxController {
   List<Story> storyLikeList = [];
   List<StorycommentList> comments = [];
 
-  // late ValueNotifier<IndicatorAnimationCommand> indicatorAnimationController;
+  ValueNotifier<IndicatorAnimationCommand>? indicatorAnimationController;
 
   Future<void> init() async {
     myStoryModel = MyStoryModel();
-    await getMyStoryList(() {}, () {});
+    await getMyStoryList();
     /*indicatorAnimationController = ValueNotifier<IndicatorAnimationCommand>(
         IndicatorAnimationCommand.pause);*/
   }
@@ -42,10 +43,7 @@ class MyStoryController extends GetxController {
     }
   }
 
-  Future<void> getMyStoryList(
-    VoidCallback pauseAnimation,
-    VoidCallback playAnimation,
-  ) async {
+  Future<void> getMyStoryList() async {
     loader.value = true;
     myStoryModel = (await MyStoryApi.getMyStory()) ?? MyStoryModel();
     myStoryModel.data ??= [];
@@ -56,13 +54,10 @@ class MyStoryController extends GetxController {
       }
     }*/
     loader.value = false;
-    pauseAnimation();
   }
 
   Future<void> loadImages(
     String image,
-    VoidCallback pauseAnimation,
-    VoidCallback playAnimation,
   ) async {
     loader.value = true;
     pauseAnimation();
@@ -96,8 +91,6 @@ class MyStoryController extends GetxController {
 
   void onDeleteTap(
     int storyIndex,
-    VoidCallback pauseAnimation,
-    VoidCallback playAnimation,
   ) {
     pauseAnimation();
     commonAlert(
@@ -120,5 +113,19 @@ class MyStoryController extends GetxController {
         playAnimation();
       },
     );
+  }
+
+  void playAnimation() {
+    if(indicatorAnimationController == null){
+      return;
+    }
+    indicatorAnimationController!.value = IndicatorAnimationCommand.resume;
+  }
+
+  void pauseAnimation() {
+    if(indicatorAnimationController == null){
+      return;
+    }
+    indicatorAnimationController!.value = IndicatorAnimationCommand.pause;
   }
 }

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/Story/story_screen.dart';
@@ -95,9 +96,32 @@ class HomeScreen extends StatelessWidget {
                     )
                   ],
                 ),
-                body: SingleChildScrollView(
-                  child: Column(
-                    children: [discover(), seeAll(), latestFeed()],
+                body: SmartRefresher(
+                  controller: controller.refreshController,
+                  header: CustomHeader(
+                    builder: (context, status) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 15.0),
+                        child: Center(
+                          child: SizedBox(
+                            height: 30,
+                            width: 30,
+                            child: CircularProgressIndicator(
+                              color: ColorRes.color_4F359B,
+                              backgroundColor: ColorRes.black2.withOpacity(0.2),
+                              strokeWidth: 2.2,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                  enablePullDown: true,
+                  onRefresh: controller.onRefresh,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [discover(), seeAll(), latestFeed()],
+                    ),
                   ),
                 ),
                 floatingActionButton: FloatingActionButton(
