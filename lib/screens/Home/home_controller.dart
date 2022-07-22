@@ -88,6 +88,7 @@ class HomeController extends GetxController {
     countryNationalites();
     blockListDetailes();
     listOfFriedRequestDetails();
+    viewStoryController.friendStoryApiData();
     controller.viewProfileDetails();
     // viewStoryController.friendStoryApiData();
     // loader.value = true;

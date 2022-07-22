@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
-import 'package:keyboard_visibility/keyboard_visibility.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -33,13 +33,15 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
     controller.indicatorAnimationController.value =
         IndicatorAnimationCommand.resume;
 
-    KeyboardVisibilityNotification().addNewListener(onShow: () {
-      controller.indicatorAnimationController.value =
-          IndicatorAnimationCommand.pause;
-    }, onHide: () {
-      FocusScope.of(context).unfocus();
-      controller.indicatorAnimationController.value =
-          IndicatorAnimationCommand.resume;
+    KeyboardVisibilityController().onChange.listen((bool visible) {
+      if (visible) {
+        controller.indicatorAnimationController.value =
+            IndicatorAnimationCommand.pause;
+      } else {
+        FocusScope.of(context).unfocus();
+        controller.indicatorAnimationController.value =
+            IndicatorAnimationCommand.resume;
+      }
     });
   }
 
