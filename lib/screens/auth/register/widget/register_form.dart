@@ -35,7 +35,7 @@ class RegisterForm extends StatelessWidget {
             fontsize: 16,
           ),
           controller.isSocial
-              ? SizedBox()
+              ? const SizedBox()
               : AppTextFiled(
                   controller: controller.pwdController,
                   title: Strings.password,
@@ -44,7 +44,7 @@ class RegisterForm extends StatelessWidget {
                   fontsize: 16,
                 ),
           controller.isSocial
-              ? SizedBox()
+              ? const SizedBox()
               : AppTextFiled(
                   controller: controller.confirmPwdController,
                   title: Strings.reTypePassword,

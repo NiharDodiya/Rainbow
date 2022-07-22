@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/auth/register/register_json.dart';
+import 'package:rainbow/screens/auth/register/widget/RegisterVerifyOtp_Screen.dart';
+import 'package:rainbow/screens/auth/verify_phone/verifyphone_screen.dart';
 import 'package:rainbow/screens/getstarted_screen.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
@@ -51,11 +53,11 @@ class RegisterApi {
         if (status == false) {
           flutterToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          Get.to(() => const GetStartedScreens());
+          // Get.to(() => const GetStartedScreens());
+          Get.offAll(() => const RegisterOtpScreen());
           await PrefService.setValue(
               PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
-          await PrefService.setValue(
-              PrefKeys.loginRole, jsonDecode(response.body)["data"]["role"]);
+
           flutterToast(jsonDecode(response.body)["message"]);
         }
         return registerUserFromJson(response.body);

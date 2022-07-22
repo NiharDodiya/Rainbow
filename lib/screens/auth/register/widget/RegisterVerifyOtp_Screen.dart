@@ -3,24 +3,32 @@ import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/auth/phonenumber/phonenumber_Controller.dart';
-import 'package:rainbow/screens/auth/verify_phone/verify_controller.dart';
+import 'package:rainbow/screens/auth/register/register_controller.dart';
+import 'package:rainbow/screens/auth/register/widget/registerVerify_controller.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
-class VerifyPhoneScreen extends StatefulWidget {
-  const VerifyPhoneScreen({Key? key}) : super(key: key);
+class RegisterOtpScreen extends StatefulWidget {
+  const RegisterOtpScreen({Key? key}) : super(key: key);
 
   @override
-  State<VerifyPhoneScreen> createState() => _VerifyPhoneScreenState();
+  State<RegisterOtpScreen> createState() => _RegisterOtpScreenState();
 }
 
-class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
+class _RegisterOtpScreenState extends State<RegisterOtpScreen> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final VerifyPhoneController controller = Get.put(VerifyPhoneController());
+  final RegisterVerifyController controller =
+      Get.put(RegisterVerifyController());
+
+  @override
+  void initState() {
+    controller.startTimer();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    RegisterController registerController = Get.put(RegisterController());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Obx(
@@ -50,7 +58,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                 SizedBox(
                                   height: Get.height * 0.03,
                                 ),
-                                GestureDetector(
+                                /*    GestureDetector(
                                   onTap: () {
                                     Get.back();
                                   },
@@ -61,7 +69,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                       size: 16.72,
                                     ),
                                   ),
-                                ),
+                                ),*/
                                 SizedBox(
                                   height: Get.height * 0.09,
                                 ),
@@ -74,7 +82,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                 SizedBox(
                                   height: Get.height * 0.009,
                                 ),
-                                GetBuilder<PhoneNumberController>(
+                                GetBuilder<RegisterController>(
                                   builder: (controller) {
                                     return Padding(
                                         padding:
@@ -82,7 +90,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                         child: Row(
                                           children: [
                                             Text(
-                                              "${Strings.codeSent}${controller.phoneNumber.text.toString()}",
+                                              "${Strings.codeSent}${controller.phoneController.text.toString()}",
                                               style: TextStyle(
                                                   color: ColorRes.white
                                                       .withOpacity(0.5),
@@ -160,6 +168,14 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                 SizedBox(
                                   height: Get.height * 0.02,
                                 ),
+                                GetBuilder<RegisterVerifyController>(
+                                  id: 'count_timer',
+                                  builder: (controller) {
+                                    return Center(
+                                        child: Text(
+                                            "${controller.seconds.toString()} Seconds"));
+                                  },
+                                ),
                                 Center(
                                   child: Text(
                                     Strings.reciveCode,
@@ -171,23 +187,20 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                 SizedBox(
                                   height: Get.height * 0.022,
                                 ),
-                                GetBuilder<PhoneNumberController>(
-                                  builder: (controller) {
-                                    return InkWell(
-                                      onTap: () {
-                                        controller.phoneNumberRegister();
-                                      },
-                                      child: Center(
-                                        child: Text(
-                                          Strings.resendOtp,
-                                          style: gilroyBoldTextStyle(
-                                            fontSize: 16,
-                                            color: ColorRes.color_69C200,
-                                          ),
-                                        ),
-                                      ),
-                                    );
+                                InkWell(
+                                  onTap: () {
+                                    controller.startTimer();
+                                     controller.phoneNumberRegister("${"+${registerController.countryModel.phoneCode}"}${registerController.phoneController.text.toString()}");
                                   },
+                                  child: Center(
+                                    child: Text(
+                                      Strings.resendOtp,
+                                      style: gilroyBoldTextStyle(
+                                        fontSize: 16,
+                                        color: ColorRes.color_69C200,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                                 SizedBox(
                                   height: Get.height * 0.04,
@@ -227,7 +240,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                   ),
                 ),
               ),
-              controller.loader.isTrue ? SmallLoader() : SizedBox(),
+              controller.loader.isTrue ? const SmallLoader() : const SizedBox(),
             ],
           );
         },
