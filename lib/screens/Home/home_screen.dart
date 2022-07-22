@@ -253,11 +253,10 @@ class HomeScreen extends StatelessWidget {
                   width: Get.width * 0.01,
                 ),
                 // my story
-                Visibility(
-                  visible:
-                      controller.myStoryController.myStoryModel.data == null ||
-                          controller
-                              .myStoryController.myStoryModel.data!.isNotEmpty,
+                controller.controller.viewProfile.data == null ||
+                    controller.myStoryController.myStoryModel.data == null ? const SizedBox() : Visibility(
+                  visible: controller
+                          .myStoryController.myStoryModel.data!.isNotEmpty,
                   child: SizedBox(
                     height: 129,
                     child: Column(
@@ -275,16 +274,17 @@ class HomeScreen extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     image: controller
-                                        .controller
-                                        .viewProfile
-                                        .data == null ? null : DecorationImage(
-                                        image: NetworkImage(controller
-                                            .controller
-                                            .viewProfile
-                                            .data!
-                                            .profileImage
-                                            .toString()),
-                                        fit: BoxFit.cover)),
+                                                .controller.viewProfile.data ==
+                                            null
+                                        ? null
+                                        : DecorationImage(
+                                            image: NetworkImage(controller
+                                                .controller
+                                                .viewProfile
+                                                .data!
+                                                .profileImage
+                                                .toString()),
+                                            fit: BoxFit.cover)),
                               ),
                               Positioned(
                                 top: Get.height * 0.04,

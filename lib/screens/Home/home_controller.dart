@@ -92,15 +92,15 @@ class HomeController extends GetxController {
   }
 
   Future<void> init() async {
-    await countryName();
-    await countryNationalites();
-    await blockListDetailes();
-    await listOfFriedRequestDetails();
+    changeLoader(true);
+    countryName();
+    countryNationalites();
+    // await blockListDetailes();
+    // await listOfFriedRequestDetails();
     await viewStoryController.friendStoryApiData();
     await controller.viewProfileDetails();
-    loader.value = true;
     await myStoryController.init();
-    loader.value = false;
+    changeLoader(false);
     // viewStoryController.friendStoryApiData();
     // loader.value = true;
   }
