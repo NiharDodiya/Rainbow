@@ -6,8 +6,10 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
+import 'package:rainbow/screens/notification/notification_controller.dart';
 
 class NotificationService {
+  static final NotificationsController _notyController = Get.put(NotificationsController());
   static Future<void> init() async {
     await FirebaseMessaging.instance
         .setForegroundNotificationPresentationOptions(
@@ -37,6 +39,7 @@ class NotificationService {
       // If `onMessage` is triggered with a notification, construct our own
       // local notification to show to users using the created channel.
       if (notification != null && android != null) {
+        _notyController.getNotifications();
         Map<String, dynamic> payload = message!.data;
         flutterLocalNotificationsPlugin.show(
           notification.hashCode,
@@ -56,6 +59,7 @@ class NotificationService {
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
+      _notyController.getNotifications();
       if (true) {
         Future.delayed(8.seconds, () {
           ConnectionsController connectionController =
@@ -105,7 +109,9 @@ class NotificationService {
   }
 
   static Future<void> _firebaseMessagingBackgroundHandler(
-      RemoteMessage message) async {}
+      RemoteMessage message) async {
+    _notyController.getNotifications();
+  }
 
   static Future onDidReceiveLocalNotification(
     int id,

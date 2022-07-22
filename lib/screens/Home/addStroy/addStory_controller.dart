@@ -13,17 +13,20 @@ import 'package:rainbow/screens/Home/Story/adstory_api/adStroy_Api.dart';
 import 'package:rainbow/screens/Home/addStroy/ListStoryTag_api/listStoryTag_api.dart';
 import 'package:rainbow/screens/Home/addStroy/widgets/addStoryView.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
-import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/dashboard/dashboard_controller.dart';
 
 class AddStoryController extends GetxController {
-  List<Widget> _mediaList = [];
   int currentPage = 0;
   int? lastPage;
   File? image;
   AdStoryModel adStoryModel = AdStoryModel();
   GlobalKey<FlutterMentionsState> key = GlobalKey<FlutterMentionsState>();
   RxBool loader = false.obs;
+  List<UserData> tagUserList = [];
+
+  void init() {
+    tagUserList = [];
+  }
 
   Future camera() async {
     final getImage = await ImagePicker().pickImage(source: ImageSource.camera);
@@ -65,11 +68,6 @@ class AddStoryController extends GetxController {
   ListUserTagModel listUserTagModel = ListUserTagModel();
 
   Future<void> listTagStoryApi(String name) async {
-/*    if(name.contains("@")){
-      name.replaceAll('@', '');
-    }else{
-      return;
-    }*/
     loader.value = true;
     try {
       listUserTagModel = await ListTagStoryApi.listTagStory(name);
@@ -83,11 +81,17 @@ class AddStoryController extends GetxController {
 
   Future<void> adStoryApiData() async {
     try {
+      List<Map<String, dynamic>> list = tagUserList
+          .map<Map<String, dynamic>>((e) => {
+                "id_user": e.id.toString(),
+                "name": e.fullName,
+              })
+          .toList();
       loader.value = true;
       adStoryModel = (await AdStoryApi.postRegister(
             uploadImage.data!.id.toString(),
-            key.currentState!.controller!.markupText.toString(),
-            [],
+            msgController.text,
+            list,
           ) ??
           AdStoryModel());
       update(["adStory"]);
@@ -103,17 +107,53 @@ class AddStoryController extends GetxController {
     }
   }
 
-  List<Map<String, dynamic>> getMentionList() {
-    listUserTagModel.data ??= [];
-    return listUserTagModel.data!
-        .map<Map<String, dynamic>>(
-          (e) => {
-            'id': e.id.toString(),
-            'display': e.fullName.toString(),
-            'full_name': e.fullName.toString(),
-            'photo': e.profileImage.toString(),
-          },
-        )
-        .toList();
+  /// tag mention
+
+  TextEditingController msgController = TextEditingController();
+  List<UserData> filterList = [];
+
+  Future<void> onChange(String? value) async {
+    String sent = msgController.text;
+
+    if (sent.isEmpty) {
+      filterList = [];
+      update(['mention_popUp']);
+      return;
+    }
+
+    List<String> list = sent.split(' ');
+
+    if (list.last.isNotEmpty && list.last[0] == "@") {
+      String word = list.last.replaceAll("@", '');
+
+      listUserTagModel = await ListTagStoryApi.listTagStory(word);
+
+      filterList = (listUserTagModel.data ?? [])
+          .where((element) => element.fullName
+              .toString()
+              .toLowerCase()
+              .contains(word.toLowerCase()))
+          .toList();
+      update(['mention_popUp']);
+    } else {
+      filterList = [];
+      update(['mention_popUp']);
+    }
+  }
+
+  void onTagTap(UserData userData) {
+    tagUserList.add(userData);
+    String sent = msgController.text;
+
+    List<String> list = sent.split(' ');
+
+    list.removeLast();
+
+    msgController.text =
+        "${list.join(' ')}${list.isEmpty ? '' : ' '}@${userData.fullName}";
+    filterList = [];
+    update(['mention_popUp']);
+    msgController.selection =
+        TextSelection.collapsed(offset: msgController.text.length);
   }
 }

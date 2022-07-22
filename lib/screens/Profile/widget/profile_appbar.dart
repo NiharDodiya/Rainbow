@@ -5,6 +5,7 @@ import 'package:rainbow/screens/Home/settings/connections/connections_controller
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/editProfile_contoller.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/edit_profile_Screen.dart';
+import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
@@ -82,20 +83,25 @@ Widget profileAppbar(String text, bool show) {
                   Positioned(
                     top: 0,
                     right: 0,
-                    child: Container(
-                      height: 16,
-                      width: 16,
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle, color: ColorRes.color_FF6B97),
-                      child: const Text(
-                        "0",
-                        style: TextStyle(
-                          color: ColorRes.white,
-                          fontSize: 8,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
+                    child: GetBuilder<NotificationsController>(
+                      id: 'notification_badge',
+                      builder: (notificationController){
+                        return Container(
+                          height: 16,
+                          width: 16,
+                          alignment: Alignment.center,
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle, color: ColorRes.color_FF6B97),
+                          child: Text(
+                            notificationController.notificationList.length.toString(),
+                            style: const TextStyle(
+                              color: ColorRes.white,
+                              fontSize: 8,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ],

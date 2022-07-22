@@ -19,7 +19,7 @@ class ListUserTagModel {
 
   bool? status;
   String? message;
-  List<Datum>? data;
+  List<UserData>? data;
 
   factory ListUserTagModel.fromJson(Map<String, dynamic> json) =>
       ListUserTagModel(
@@ -27,7 +27,7 @@ class ListUserTagModel {
         message: json["message"] == null ? null : json["message"],
         data: json["data"] == null
             ? null
-            : List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+            : List<UserData>.from(json["data"].map((x) => UserData.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -39,8 +39,8 @@ class ListUserTagModel {
       };
 }
 
-class Datum {
-  Datum({
+class UserData {
+  UserData({
     this.id,
     this.idSocial,
     this.fullName,
@@ -102,7 +102,7 @@ class Datum {
   String? profileImage;
   String? status;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory UserData.fromJson(Map<String, dynamic> json) => UserData(
         id: json["id"] == null ? null : json["id"],
         idSocial: json["id_social"] == null ? null : json["id_social"],
         fullName: json["full_name"] == null ? null : json["full_name"],

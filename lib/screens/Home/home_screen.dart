@@ -12,6 +12,7 @@ import 'package:rainbow/screens/Home/settings/connections/connections_screen.dar
 import 'package:rainbow/screens/Home/settings/settings_screen.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_screen.dart';
+import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -97,10 +98,50 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           InkWell(
                             onTap: controller.onNotyIconBtnTap,
-                            child: const Image(
-                              image: AssetImage(AssetRes.notify),
-                              height: 20,
-                              width: 20,
+                            child: Stack(
+                              children: [
+                                const SizedBox(
+                                  height: 25,
+                                  width: 25,
+                                ),
+                                const Positioned(
+                                  bottom: 0,
+                                  left: 0,
+                                  child: SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: Image(
+                                      image: AssetImage(AssetRes.notify),
+                                      height: 20,
+                                      width: 20,
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  top: 0,
+                                  right: 0,
+                                  child: GetBuilder<NotificationsController>(
+                                    id: 'notification_badge',
+                                    builder: (notificationController){
+                                      return Container(
+                                        height: 16,
+                                        width: 16,
+                                        alignment: Alignment.center,
+                                        decoration: const BoxDecoration(
+                                            shape: BoxShape.circle, color: ColorRes.color_FF6B97),
+                                        child: Text(
+                                          notificationController.notificationList.length.toString(),
+                                          style: const TextStyle(
+                                            color: ColorRes.white,
+                                            fontSize: 8,
+                                            fontWeight: FontWeight.w800,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                           SizedBox(
