@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:rainbow/common/blocList_api/blockList_api.dart';
@@ -147,15 +148,17 @@ class HomeController extends GetxController {
     Get.to(() => NotificationScreen());
   }
 
-  void onFriedStoryTap(int index){
+  Future<void> onFriedStoryTap(int index) async {
     viewStoryController.currentPage = index;
     viewStoryController.init();
-   /* for (var data in viewStoryController.friendStoryModel.data!) {
+    /*loader.value = true;
+    for (var data in viewStoryController.friendStoryModel.data!) {
       for (var story in data.storyList!) {
         String url = story.storyItem.toString();
-
+        await DefaultCacheManager().downloadFile(url);
       }
-    }*/
+    }
+    loader.value = false;*/
     Get.to(() => const ViewStoryScreen());
   }
 }

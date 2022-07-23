@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:story/story_page_view/story_limit_controller.dart';
 import 'package:story/story_page_view/story_stack_controller.dart';
@@ -41,6 +42,7 @@ class StoryPageView extends StatefulWidget {
     this.color,
     this.bgColor,
     this.onStoryChange,
+    this.loadImage,
   }) : super(key: key);
 
   /// Function to build story content
@@ -82,6 +84,7 @@ class StoryPageView extends StatefulWidget {
   final Color? bgColor;
   final Color? color;
   final Function(int)? onStoryChange;
+  final Future<void> Function()? loadImage;
 
   /// A stream with [IndicatorAnimationCommand] to force pause or continue inticator animation
   /// Useful when you need to show any popup over the story
@@ -156,6 +159,7 @@ class _StoryPageViewState extends State<StoryPageView> {
                   color: widget.color,
                   bgColor: widget.bgColor,
                   onStoryChange: widget.onStoryChange,
+                  loadImage: widget.loadImage,
                 ),
                 if (isPaging && !isLeaving)
                   Positioned.fill(
@@ -191,6 +195,7 @@ class _StoryPageFrame extends StatefulWidget {
     required this.color,
     required this.bgColor,
     this.onStoryChange,
+    this.loadImage,
   }) : super(key: key);
   final int storyLength;
   final int initialStoryIndex;
@@ -205,6 +210,7 @@ class _StoryPageFrame extends StatefulWidget {
   final Color? bgColor;
   final Color? color;
   final Function(int)? onStoryChange;
+  final Future<void> Function()? loadImage;
 
   static Widget wrapped({
     required int pageIndex,
@@ -224,6 +230,7 @@ class _StoryPageFrame extends StatefulWidget {
     Color? color,
     Color? bgColor,
     Function(int)? onStoryChange,
+    Future<void> Function()? loadImage,
   }) {
     return MultiProvider(
       providers: [
@@ -265,6 +272,7 @@ class _StoryPageFrame extends StatefulWidget {
         bgColor: bgColor,
         color: color,
         onStoryChange: onStoryChange,
+        loadImage: loadImage,
       ),
     );
   }
@@ -312,6 +320,16 @@ class _StoryPageFrameState extends State<_StoryPageFrame>
         },
       );
     widget.indicatorAnimationController?.addListener(listener);
+    downloadImage();
+  }
+
+  Future<void> downloadImage() async {
+    await Future.delayed(Duration.zero);
+    animationController.stop();
+    if(widget.loadImage != null){
+      await widget.loadImage!();
+    }
+    animationController.forward();
   }
 
   @override
@@ -372,6 +390,27 @@ class _StoryPageFrameState extends State<_StoryPageFrame>
           color: widget.color,
           bgColor: widget.bgColor,
         ),
+        /*Positioned(
+          right: 0,
+          top: 100,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              FloatingActionButton(
+                onPressed: () {
+                  animationController.stop();
+                },
+                child: const Icon(Icons.pause),
+              ),
+              FloatingActionButton(
+                onPressed: () {
+                  animationController.forward();
+                },
+                child: const Icon(Icons.play_arrow),
+              ),
+            ],
+          ),
+        )*/
       ],
     );
   }
