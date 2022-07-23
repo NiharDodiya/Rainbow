@@ -7,6 +7,8 @@ import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/advertisement_controlle.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/AdvertiserVerifyController.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/AdvertiserVerifyOtpScreen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_notification/ad_notification_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_support/ad_support_screen.dart';
@@ -94,10 +96,12 @@ class AdvertisementDashBord extends StatelessWidget {
               SizedBox(
                 height: Get.height * 0.0467,
               ),
-              //Change Password
+              ///Change Password
               InkWell(
                 onTap: () {
-                  Get.to(() => PhoneNumberScreen());
+                  AdvertiserVerifyController adController = Get.put(AdvertiserVerifyController());
+                  adController.backScreen = 'AdvertisementDashBord';
+                  Get.to(() => AdvertiserVerifyOtpScreen());
                 },
                 child: SizedBox(
                   height: Get.height * 0.06,

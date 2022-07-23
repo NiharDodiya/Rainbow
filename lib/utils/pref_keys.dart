@@ -12,5 +12,6 @@ class PrefKeys {
   static const advertiserProfileImage = "advertiserProfileImage";
   static const phoneId = "id";
   static const showTermsCondition = "showTermsCondition";
-  static const phonSaveNumber = "phonSaveNumber";
+  static const phonSaveNumberEndUser = "phonSaveNumber";
+  static const phonSaveNumberAdvertiser = "phonSaveNumberAdvertiser";
 }

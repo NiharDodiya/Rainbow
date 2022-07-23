@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/AdvertiserVerifyController.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/AdvertiserVerifyOtpScreen.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/adviser_api/adviser_json.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
@@ -64,7 +66,17 @@ class AdvirtisersApi {
         if (status == false) {
           flutterToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          Get.offAll(() => AdvertisementDashBord());
+          AdvertiserVerifyController advertiserVerifyController = Get.put(AdvertiserVerifyController());
+
+          PrefService.setValue(PrefKeys.register, true);
+          await PrefService.setValue(PrefKeys.phonSaveNumberAdvertiser,
+              jsonDecode(response.body)["data"]["phone_number"]);
+          advertiserVerifyController.phoneNumber =
+          jsonDecode(response.body)["data"]["phone_number"];
+          AdvertiserVerifyController adController = Get.put(AdvertiserVerifyController());
+          adController.backScreen = 'DoctorRegisterScreen';
+          advertiserVerifyController.phoneNumberRegister();
+          Get.offAll(() => AdvertiserVerifyOtpScreen());
           await PrefService.setValue(PrefKeys.companyRegister, true);
           flutterToast(jsonDecode(response.body)["message"]);
         }

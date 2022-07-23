@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/AdvertiserVerifyController.dart';
 import 'package:rainbow/screens/auth/login/login_api/advertisers_login_json.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
 import 'package:rainbow/screens/auth/register/widget/RegisterVerifyOtp_Screen.dart';
@@ -39,19 +40,28 @@ class LoginApi {
         if (status == false) {
           flutterToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
+          await PrefService.setValue(
+              PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
           await PrefService.setValue(PrefKeys.isLogin, true);
+
           flutterToast(jsonDecode(response.body)["message"]);
+
           await PrefService.setValue(PrefKeys.registerToken,
               jsonDecode(response.body)["token"].toString());
+
           await updateDeviceToken();
-          // if (jsonDecode(response.body)["data"]["user_status"] == "pending") {
-            if (jsonDecode(response.body)["data"]["mobile_status"] == "pending") {
+
+          if (jsonDecode(response.body)["data"]["role"] != "advertisers") {
+            if (jsonDecode(response.body)["data"]["mobile_status"] ==
+                "pending") {
               await PrefService.setValue(
                   PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
-              await PrefService.setValue(PrefKeys.phonSaveNumber,jsonDecode(response.body)["data"]["phone_number"]);
-              controller.phoneNumber =jsonDecode(response.body)["data"]["phone_number"];
+              await PrefService.setValue(PrefKeys.phonSaveNumberEndUser,
+                  jsonDecode(response.body)["data"]["phone_number"]);
+              controller.phoneNumber =
+              jsonDecode(response.body)["data"]["phone_number"];
               await controller.sendOtp();
-              Get.to(()=>const RegisterOtpScreen());
+              Get.to(() => const RegisterOtpScreen());
             } else if (jsonDecode(response.body)["data"]["id_status"] ==
                 "pending") {
               Get.to(() => IdVerificationScreen());
@@ -59,16 +69,36 @@ class LoginApi {
                 "pending") {
               Get.to(() => const SelfieVerificationScreen());
             }
-           else {
-            await PrefService.setValue(
-                PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
-            await PrefService.setValue(
-                PrefKeys.loginRole, jsonDecode(response.body)["data"]["role"]);
-            Get.offAll(() =>
-                jsonDecode(response.body)["data"]["role"] == "end_user"
-                    ? const Dashboard()
-                    : AdvertisementDashBord());
+            else {
+              await PrefService.setValue(
+                  PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
+              await PrefService.setValue(
+                  PrefKeys.loginRole,
+                  jsonDecode(response.body)["data"]["role"]);
+              Get.offAll(() =>
+              jsonDecode(response.body)["data"]["role"] == "end_user"
+                  ? const Dashboard()
+                  : AdvertisementDashBord());
+            }
           }
+            else {
+            AdvertiserVerifyController advertiserVerifyController = Get.put(AdvertiserVerifyController());
+
+            await PrefService.setValue(
+                  PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
+              await PrefService.setValue(PrefKeys.phonSaveNumberAdvertiser,
+                  jsonDecode(response.body)["data"]["phone_number"]);
+            advertiserVerifyController.phoneNumber =
+              jsonDecode(response.body)["data"]["phone_number"];
+              await PrefService.setValue(
+                  PrefKeys.loginRole,
+                  jsonDecode(response.body)["data"]["role"]);
+              Get.offAll(() =>
+              jsonDecode(response.body)["data"]["role"] == "end_user"
+                  ? const Dashboard()
+                  : AdvertisementDashBord());
+            }
+
           //Get.offAll(() => const Dashboard());
 
           if (jsonDecode(response.body)["data"]["role"] == "end_user") {
@@ -102,7 +132,7 @@ class LoginApi {
       if (response != null && response.statusCode == 200) {
         Map<String, dynamic> data = jsonDecode(response.body);
         if (data['status'] == true) {
-          flutterToast(data['message']);
+          // flutterToast(data['message']);
           return true;
         } else {
           flutterToast(data['message']);

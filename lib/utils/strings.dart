@@ -80,6 +80,8 @@ class Strings {
       "Please enter password with one special, one capital and one small latter with minimum 8 character";
   static const coPasswordEmpty = "please enter  confirm Password";
   static const confirmPasswordMismatch = "confirm  Password is Mismatch";
+  static const currentPasswordHint = "current password  is required";
+  static const currentPassword = "current password";
   static const submit = "Submit";
   static const codeSent = "Code is sent to ";
   static const companyNumberDigit = "123 456 789 3123";

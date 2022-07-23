@@ -15,7 +15,7 @@ class UploadImageApi {
       String url = EndPoints.uploadImage;
       Map<String, String> headers = {"x-access-token": accesToken};
       final multipartRequest =
-          new http.MultipartRequest('POST', Uri.parse(url));
+          http.MultipartRequest('POST',Uri.parse(url));
       multipartRequest.headers.addAll(headers);
       http.MultipartFile multipartFileIdFront =
           await http.MultipartFile.fromPath('file', image);

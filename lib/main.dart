@@ -55,8 +55,7 @@ class MyApp extends StatelessWidget {
       // home: ScanYourFaceScreen(),
       home: !PrefService.getBool(PrefKeys.skipBoardingScreen)
           ? SplashScreen()
-          : (PrefService.getBool(PrefKeys.isLogin) ||
-                  PrefService.getBool(PrefKeys.register))
+          : (PrefService.getBool(PrefKeys.isLogin) || PrefService.getBool(PrefKeys.register))
               ? PrefService.getBool(PrefKeys.showTermsCondition)
                   ? const TermsConditionsScreen(showBackBtn: false)
                   : PrefService.getString(PrefKeys.loginRole) == "end_user"
