@@ -91,7 +91,7 @@ class IdScannerController extends GetxController {
 
     idController.imageFront = image2.path;
     idController.update(['IdVerification_screen']);
-    idVerificationController.uploadImageApi();
+    // idVerificationController.uploadImageApi();
     Get.back();
   }
 
@@ -100,7 +100,7 @@ class IdScannerController extends GetxController {
     File image2 = await getCropImage();
     idController.imageBack = image2.path;
     idController.update(['IdVerification_screen']);
-    idVerificationController.uploadImageBackApi();
+    // idVerificationController.uploadImageBackApi();
     Get.back();
   }
 

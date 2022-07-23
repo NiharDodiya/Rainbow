@@ -49,4 +49,44 @@ class CreateNewPasswordApi {
       return [];
     }
   }
+
+
+  static Future createPasswordAdvertisement(
+      String currentPassword,String newPassword,
+      ) async {
+    try {
+      String url = EndPoints.createPasswordForAdvertiser;
+      String accesToken = PrefService.getString(PrefKeys.registerToken);
+      Map<String, String> paramPassword = {
+        "current_password" : currentPassword,
+        "new_password" : newPassword
+      };
+      print(paramPassword);
+
+      http.Response? response = await HttpService.postApi(
+          url: url,
+          body: jsonEncode(paramPassword),
+          header: {"Content-Type": "application/json","x-access-token":accesToken});
+      if (response != null && response.statusCode == 200) {
+        bool? status = jsonDecode(response.body)["status"];
+        if (status == false) {
+          flutterToast(jsonDecode(response.body)["message"]);
+        } else if (status == true) {
+          Get.offAll(() => LoginScreen());
+          flutterToast(jsonDecode(response.body)["message"]);
+        }
+        return createNewPasswordFromJson(response.body);
+      } else if (response!.statusCode == 400) {
+        errorToast(jsonDecode(response.body)["message"]);
+      }
+
+      /*  message == "Failed! Email is already in use!"
+          ? errorToast(message)
+          : */
+
+    } catch (e) {
+      print(e.toString());
+      return [];
+    }
+  }
 }

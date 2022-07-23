@@ -3,6 +3,9 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/screens/advertisement/AdvertiserTermsAndConditions_Screen/advertiserTerms_screen.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/AdvertiserVerifyController.dart';
+import 'package:rainbow/screens/advertisement/changePasswordAdvertiser_Screen.dart';
 import 'package:rainbow/screens/auth/newpassword/newpassword_screen.dart';
 import 'package:rainbow/screens/auth/verify_phone/verifyPhone_api/VerifyPhone_json.dart';
 import 'package:rainbow/screens/getstarted_screen.dart';
@@ -47,6 +50,7 @@ class VerifyCodeApi {
       return verifyCodeFromJson("");
     }
   }
+
   static Future registerVerifyCode(
       String verifyOtp,
       ) async {
@@ -77,8 +81,6 @@ class VerifyCodeApi {
             "pending") {
           Get.offAll(() => const SelfieVerificationScreen());
         }
-
-
         }
         return verifyCodeFromJson(response.body);
       }
@@ -89,4 +91,87 @@ class VerifyCodeApi {
       return verifyCodeFromJson("");
     }
   }
+
+
+  static Future advertiserVerifyCode(
+      String verifyOtp,
+      ) async {
+    try {
+      String url = EndPoints.verifyCode;
+      int id = PrefService.getInt(PrefKeys.phoneId);
+      Map<String, String> param = {
+        'id': id.toString(),
+        'code': verifyOtp.toString(),
+      };
+      print(param);
+      http.Response? response = await HttpService.postApi(
+          url: url,
+          body: jsonEncode(param),
+          header: {"Content-Type": "application/json"});
+      if (response != null && response.statusCode == 200) {
+        // flutterToast( jsonDecode(response.body)["message"]);
+        final AdvertiserVerifyController _controller = Get.put(AdvertiserVerifyController());
+        bool? status = jsonDecode(response.body)["status"];
+        if (status == false) {
+          flutterToast(jsonDecode(response.body)["message"]);
+        } else if (status == true) {
+          await PrefService.setValue(PrefKeys.register, true);
+          await PrefService.setValue(
+              PrefKeys.loginRole,
+              jsonDecode(response.body)["data"]["role"]);
+          print(_controller.backScreen.toString());
+
+          if(_controller.backScreen == "AdvertisementDashBord"){
+
+            Get.to(() => const AdvertiserChangePasswordScreen());
+          }else{
+            Get.to(() => const AdvertiserTermsAndConditionsScreen());
+          }
+        }
+        return verifyCodeFromJson(response.body);
+      }
+      /*message =="please enter a correct username and password"?errorToast(message):*/
+
+    } catch (e) {
+      print(e.toString());
+      return verifyCodeFromJson("");
+    }
+  }
+
+
+  static Future advertiserRegisterVerifyCode(
+      String verifyOtp,
+      ) async {
+    try {
+      String url = EndPoints.verifyCode;
+      int id = PrefService.getInt(PrefKeys.phoneId);
+      Map<String, String> param = {
+        'id': id.toString(),
+        'code': verifyOtp.toString(),
+      };
+      print(param);
+      http.Response? response = await HttpService.postApi(
+          url: url,
+          body: jsonEncode(param),
+          header: {"Content-Type": "application/json"});
+      if (response != null && response.statusCode == 200) {
+        // flutterToast( jsonDecode(response.body)["message"]);
+        bool? status = jsonDecode(response.body)["status"];
+        if (status == false) {
+          flutterToast(jsonDecode(response.body)["message"]);
+        } else if (status == true) {
+          await PrefService.setValue(PrefKeys.register, true);
+          PrefService.setValue(PrefKeys.showTermsCondition, true);
+          Get.to(() => const AdvertiserTermsAndConditionsScreen());
+        }
+        return verifyCodeFromJson(response.body);
+      }
+      /*message =="please enter a correct username and password"?errorToast(message):*/
+
+    } catch (e) {
+      print(e.toString());
+      return verifyCodeFromJson("");
+    }
+  }
+
 }

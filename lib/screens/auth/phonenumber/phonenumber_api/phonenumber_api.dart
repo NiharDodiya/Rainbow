@@ -125,4 +125,41 @@ class PhoneNumberApi {
       return [];
     }
   }
+
+  static Future advertiserSendOtp(
+      String phoneNumber,
+      ) async {
+
+    try {
+      String url = EndPoints.mobileCheck;
+      Map<String, String> param = {
+        'phoneNumber': phoneNumber,
+      };
+      print(param);
+
+      http.Response? response = await HttpService.postApi(
+          url: url,
+          body: jsonEncode(param),
+          header: {"Content-Type": "application/json"});
+      if (response != null && response.statusCode == 200) {
+        bool? status = jsonDecode(response.body)["status"];
+        if (status == false) {
+          flutterToast(jsonDecode(response.body)["message"]);
+        } else if (status == true) {
+          // await PrefService.setValue(PrefKeys.register, true);
+          await PrefService.setValue(
+              PrefKeys.phoneId, jsonDecode(response.body)["data"]["id"]);
+          flutterToast(jsonDecode(response.body)["message"]);
+        }
+        return phoneNumberFromJson(response.body);
+      }
+
+      /*  message == "Failed! Email is already in use!"
+          ? errorToast(message)
+          : */
+    } catch (e) {
+      print(e.toString());
+      return [];
+    }
+  }
 }
