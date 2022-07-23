@@ -5,6 +5,9 @@ import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/auth/newpassword/newpassword_screen.dart';
 import 'package:rainbow/screens/auth/verify_phone/verifyPhone_api/VerifyPhone_json.dart';
+import 'package:rainbow/screens/getstarted_screen.dart';
+import 'package:rainbow/screens/idVerification/idverification_screen.dart';
+import 'package:rainbow/screens/selfie_verification/selfie_verification_screen.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
@@ -34,6 +37,48 @@ class VerifyCodeApi {
         } else if (status == true) {
           await PrefService.setValue(PrefKeys.register, true);
           Get.to(() => const NewPasswordScreen());
+        }
+        return verifyCodeFromJson(response.body);
+      }
+      /*message =="please enter a correct username and password"?errorToast(message):*/
+
+    } catch (e) {
+      print(e.toString());
+      return verifyCodeFromJson("");
+    }
+  }
+  static Future registerVerifyCode(
+      String verifyOtp,
+      ) async {
+    try {
+      String url = EndPoints.verifyCode;
+      int userId = PrefService.getInt(PrefKeys.userId);
+      Map<String, String> param = {
+        'id': userId.toString(),
+        'code': verifyOtp.toString(),
+      };
+      print(param);
+      http.Response? response = await HttpService.postApi(
+          url: url,
+          body: jsonEncode(param),
+          header: {"Content-Type": "application/json"});
+      if (response != null && response.statusCode == 200) {
+        // flutterToast( jsonDecode(response.body)["message"]);
+        bool? status = jsonDecode(response.body)["status"];
+        if (status == false) {
+          flutterToast(jsonDecode(response.body)["message"]);
+        } else if (status == true) {
+          flutterToast(jsonDecode(response.body)["message"]);
+          // await PrefService.setValue(PrefKeys.register, true);
+     if (jsonDecode(response.body)["data"]["id_status"] ==
+            "pending") {
+          Get.offAll(() => IdVerificationScreen());
+        } else if (jsonDecode(response.body)["data"]["selfi_status"] ==
+            "pending") {
+          Get.offAll(() => const SelfieVerificationScreen());
+        }
+
+
         }
         return verifyCodeFromJson(response.body);
       }

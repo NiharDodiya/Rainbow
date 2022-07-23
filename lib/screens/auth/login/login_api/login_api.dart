@@ -7,6 +7,8 @@ import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
 import 'package:rainbow/screens/auth/login/login_api/advertisers_login_json.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
+import 'package:rainbow/screens/auth/register/widget/RegisterVerifyOtp_Screen.dart';
+import 'package:rainbow/screens/auth/register/widget/registerVerify_controller.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/idVerification/idverification_screen.dart';
 import 'package:rainbow/screens/selfie_verification/selfie_verification_screen.dart';
@@ -22,6 +24,7 @@ class LoginApi {
     String password,
   ) async {
     try {
+      RegisterVerifyController controller =Get.put(RegisterVerifyController());
       String url = EndPoints.login;
       Map<String, String> param = {
         'email': email,
@@ -41,14 +44,22 @@ class LoginApi {
           await PrefService.setValue(PrefKeys.registerToken,
               jsonDecode(response.body)["token"].toString());
           await updateDeviceToken();
-          if (jsonDecode(response.body)["data"]["user_status"] == "pending") {
-            if (jsonDecode(response.body)["data"]["id_status"] == "pending") {
+          // if (jsonDecode(response.body)["data"]["user_status"] == "pending") {
+            if (jsonDecode(response.body)["data"]["mobile_status"] == "pending") {
+              await PrefService.setValue(
+                  PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
+              await PrefService.setValue(PrefKeys.phonSaveNumber,jsonDecode(response.body)["data"]["phone_number"]);
+              controller.phoneNumber =jsonDecode(response.body)["data"]["phone_number"];
+              await controller.sendOtp();
+              Get.to(()=>const RegisterOtpScreen());
+            } else if (jsonDecode(response.body)["data"]["id_status"] ==
+                "pending") {
               Get.to(() => IdVerificationScreen());
             } else if (jsonDecode(response.body)["data"]["selfi_status"] ==
                 "pending") {
               Get.to(() => const SelfieVerificationScreen());
             }
-          } else {
+           else {
             await PrefService.setValue(
                 PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
             await PrefService.setValue(

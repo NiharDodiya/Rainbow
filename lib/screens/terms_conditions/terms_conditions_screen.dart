@@ -90,7 +90,7 @@ class TermsConditionsScreen extends StatelessWidget {
                       onTap: () async {
                         await PrefService.setValue(
                             PrefKeys.showTermsCondition, false);
-                        Get.offAll(() => Dashboard());
+                        Get.offAll(() => const Dashboard());
                       },
                       child: Container(
                         width: Get.width * 0.84,

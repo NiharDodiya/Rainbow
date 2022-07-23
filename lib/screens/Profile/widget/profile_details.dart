@@ -18,7 +18,7 @@ Widget profileDetails() {
       Text(
         controller.viewProfile.data!.userStatus!.isEmpty
             ? ""
-            : "Surrogate Mom ",
+            : controller.viewProfile.data!.userStatus.toString(),
         style: gilroyRegularTextStyle(fontSize: 14),
       ),
       const SizedBox(
@@ -29,7 +29,7 @@ Widget profileDetails() {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           controller.viewProfile.data!.age == 0
-              ? Text("")
+              ? const Text("")
               : Text(
                   controller.viewProfile.data!.age.toString(),
                   style: gilroyRegularTextStyle(fontSize: 14),
