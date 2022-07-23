@@ -1,14 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-
-
 import 'package:story/story_page_view/story_page_view.dart';
 
 import '../../../common/Widget/text_styles.dart';
@@ -34,7 +32,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
     // controller.init();
 
     KeyboardVisibilityController().onChange.listen((bool visible) {
-      if(Get.currentRoute != "/ViewStoryScreen"){
+      if (Get.currentRoute != "/ViewStoryScreen") {
         return;
       }
       if (visible) {
@@ -73,7 +71,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                         Positioned.fill(
                           child: Container(color: Colors.black),
                         ),
-                        CachedNetworkImage(
+                        /*CachedNetworkImage(
                           height: Get.height * 0.9,
                           imageUrl: story.storyItem.toString(),
                           imageBuilder: (context, imageProvider) => Container(
@@ -94,6 +92,19 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                     image: AssetImage(AssetRes.homePro))),
                           ),
                           fit: BoxFit.fill,
+                        ),*/
+                        Image.network(
+                          story.storyItem.toString(),
+                          height: Get.height * 0.9,
+                          fit: BoxFit.fill,
+                          errorBuilder: (context, url, error) => Container(
+                            height: Get.height * 0.2857,
+                            width: Get.width,
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                    image: AssetImage(AssetRes.homePro))),
+                          ),
                         ),
                       ],
                     );
@@ -297,8 +308,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                             Column(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
-
-                                         /*       InkWell(
+                                                /*       InkWell(
                                                   onTap: () {
                                                     controller.onLikeViewTap(
                                                         friendStory: controller
@@ -308,14 +318,14 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                                   },
                                                   child: Row(
                                                     children: [
-                                                     *//* Text(
+                                                     */ /* Text(
                                                         Strings.likes,
                                                         style: sfProTextReguler(
                                                             fontSize: 15),
                                                       ),
                                                       const SizedBox(
                                                         width: 5,
-                                                      ),*//*
+                                                      ),*/ /*
                                                       Text(
                                                         controller
                                                             .friendStoryModel
@@ -383,49 +393,38 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                           left: 15,
                           child: Row(
                             children: [
-
-                              controller
-                                  .friendStoryModel
-                                  .data![pageIndex]
-                                  .storyList![
-                              storyIndex]
-                                  .isLike
-                                  .toString() ==
-                                  "no"
+                              controller.friendStoryModel.data![pageIndex]
+                                          .storyList![storyIndex].isLike
+                                          .toString() ==
+                                      "no"
                                   ? InkWell(
-                                onTap: () {
-                                  controller.onLikeBtnTap(
-                                      controller
-                                          .friendStoryModel
-                                          .data![
-                                      pageIndex]
-                                          .storyList![
-                                      storyIndex]
-                                          .id
-                                          .toString());
-                                },
-                                child: const Icon(
-                                  Icons.favorite,
-                                  color: ColorRes.white,
-                                ),
-                              )
+                                      onTap: () {
+                                        controller.onLikeBtnTap(controller
+                                            .friendStoryModel
+                                            .data![pageIndex]
+                                            .storyList![storyIndex]
+                                            .id
+                                            .toString());
+                                      },
+                                      child: const Icon(
+                                        Icons.favorite,
+                                        color: ColorRes.white,
+                                      ),
+                                    )
                                   : InkWell(
-                                onTap: () {
-                                  controller.onUnLikeBtnTap(
-                                      controller
-                                          .friendStoryModel
-                                          .data![
-                                      pageIndex]
-                                          .storyList![
-                                      storyIndex]
-                                          .id
-                                          .toString());
-                                },
-                                child: const Icon(
-                                  Icons.favorite,
-                                  color: ColorRes.red,
-                                ),
-                              ),
+                                      onTap: () {
+                                        controller.onUnLikeBtnTap(controller
+                                            .friendStoryModel
+                                            .data![pageIndex]
+                                            .storyList![storyIndex]
+                                            .id
+                                            .toString());
+                                      },
+                                      child: const Icon(
+                                        Icons.favorite,
+                                        color: ColorRes.red,
+                                      ),
+                                    ),
                               const SizedBox(
                                 width: 15,
                               ),
@@ -453,7 +452,6 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                   ),
                                 ),
                               ),
-
                               const SizedBox(
                                 width: 15,
                               ),
@@ -503,6 +501,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                   onStoryChange: (int storyIndex) => controller.onStoryChange(
                       controller.currentPage, storyIndex),
                   initialPage: controller.currentPage,
+                  loadImage: () => controller.downloadImage(context),
                 );
               },
             ),

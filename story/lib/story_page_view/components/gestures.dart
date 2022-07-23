@@ -31,6 +31,7 @@ class Gestures extends StatelessWidget {
               onLongPressUp: () {
                 animationController!.forward();
               },
+
             ),
           ),
         ),

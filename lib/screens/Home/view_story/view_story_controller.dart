@@ -175,11 +175,13 @@ class ViewStoryController extends GetxController {
     viewStoryApi();
   }
 
-  Future<void> downloadImage() async {
-    String url = friendStoryModel.data![currentPage].storyList![storyIndex].storyItem.toString();
-    pauseAnimation();
-    await DefaultCacheManager().downloadFile(url);
-    playAnimation();
+  Future<void> downloadImage(BuildContext context) async {
+    
+
+    for (var story in friendStoryModel.data![currentPage].storyList!) {
+      String url = story.storyItem.toString();
+      precacheImage(NetworkImage(url),context);
+    }
   }
 
   Future<void> viewStoryApi() async {
@@ -190,14 +192,14 @@ class ViewStoryController extends GetxController {
   }
 
   void playAnimation() {
-    if(indicatorAnimationController == null){
+    if (indicatorAnimationController == null) {
       return;
     }
     indicatorAnimationController!.value = IndicatorAnimationCommand.resume;
   }
 
   void pauseAnimation() {
-    if(indicatorAnimationController == null){
+    if (indicatorAnimationController == null) {
       return;
     }
     indicatorAnimationController!.value = IndicatorAnimationCommand.pause;
