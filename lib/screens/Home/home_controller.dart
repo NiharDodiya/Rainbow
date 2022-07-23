@@ -150,6 +150,7 @@ class HomeController extends GetxController {
 
   Future<void> onFriedStoryTap(int index) async {
     viewStoryController.currentPage = index;
+    viewStoryController.storyIndex = 0;
     viewStoryController.init();
     /*loader.value = true;
     for (var data in viewStoryController.friendStoryModel.data!) {

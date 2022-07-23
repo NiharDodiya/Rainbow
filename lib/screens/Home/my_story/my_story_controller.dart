@@ -17,7 +17,8 @@ class MyStoryController extends GetxController {
   MyStoryModel myStoryModel = MyStoryModel();
   List<Story> storyLikeList = [];
   List<StorycommentList> comments = [];
-
+  int storyIndex = 0;
+  bool isImageLoading = false;
   ValueNotifier<IndicatorAnimationCommand>? indicatorAnimationController;
 
   Future<void> init() async {
@@ -122,6 +123,40 @@ class MyStoryController extends GetxController {
         playAnimation();
       },
     );
+  }
+
+  void onStoryChange(int storyIndex) {
+    this.storyIndex = storyIndex;
+    viewStoryApi();
+  }
+
+  Future<void> downloadImage(BuildContext context) async {
+    /*for (var story in friendStoryModel.data![currentPage].storyList!) {
+      loader.value = true;
+      String url = story.storyItem.toString();
+      try{
+        await precacheImage(NetworkImage(url), context);
+      }catch(e){
+        debugPrint(e.toString());
+      }
+    }*/
+    loader.value = true;
+    String url = myStoryModel.data![storyIndex].storyItem.toString();
+    try{
+      isImageLoading = true;
+      await precacheImage(NetworkImage(url), context);
+    }catch(e){
+      debugPrint(e.toString());
+    }
+    isImageLoading = false;
+    // }
+    loader.value = false;
+  }
+
+  Future<void> viewStoryApi() async {
+    String storyId = myStoryModel.data![storyIndex].id
+        .toString();
+    await MyStoryApi.storyViewAPi(storyId);
   }
 
   void playAnimation() {

@@ -2,7 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:provider/provider.dart';
 import 'package:story/story_page_view/story_limit_controller.dart';
 import 'package:story/story_page_view/story_stack_controller.dart';
@@ -288,11 +288,12 @@ class _StoryPageFrameState extends State<_StoryPageFrame>
   late AnimationController animationController;
 
   late VoidCallback listener;
+  bool isImageLoading = false;
 
   @override
   void initState() {
     super.initState();
-
+    isImageLoading = false;
     listener = () {
       if (widget.isCurrentPage) {
         switch (widget.indicatorAnimationController?.value) {
@@ -316,19 +317,31 @@ class _StoryPageFrameState extends State<_StoryPageFrame>
                   restartAnimation: () => animationController.forward(from: 0),
                   onStoryChange: widget.onStoryChange,
                 );
+            downloadImage();
           }
         },
       );
     widget.indicatorAnimationController?.addListener(listener);
     downloadImage();
+    KeyboardVisibilityController().onChange.listen((bool visible) {
+      if (visible) {
+          animationController.stop();
+      } else {
+        if(isImageLoading == false){
+          animationController.forward();
+        }
+      }
+    });
   }
 
   Future<void> downloadImage() async {
-    await Future.delayed(Duration.zero);
+    await Future.delayed(Duration(milliseconds: 800));
+    isImageLoading = true;
     animationController.stop();
     if(widget.loadImage != null){
       await widget.loadImage!();
     }
+    isImageLoading = false;
     animationController.forward();
   }
 
@@ -372,6 +385,7 @@ class _StoryPageFrameState extends State<_StoryPageFrame>
         Gestures(
           animationController: animationController,
           onStoryChange: widget.onStoryChange,
+          loadImage: widget.loadImage,
         ),
         Positioned.fill(
           child: widget.gestureItemBuilder?.call(
