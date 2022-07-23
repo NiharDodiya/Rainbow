@@ -31,9 +31,11 @@ class ViewStoryController extends GetxController {
   List<UserDetail> storyLikesList = [];
   int currentPage = 0;
   int storyIndex = 0;
+  bool isImageLoading = false;
 
   Future<void> init() async {
     // pauseAnimation();
+    isImageLoading = false;
     await friendStoryApiData();
   }
 
@@ -176,12 +178,26 @@ class ViewStoryController extends GetxController {
   }
 
   Future<void> downloadImage(BuildContext context) async {
-    
-
-    for (var story in friendStoryModel.data![currentPage].storyList!) {
+    /*for (var story in friendStoryModel.data![currentPage].storyList!) {
+      loader.value = true;
       String url = story.storyItem.toString();
-      precacheImage(NetworkImage(url),context);
+      try{
+        await precacheImage(NetworkImage(url), context);
+      }catch(e){
+        debugPrint(e.toString());
+      }
+    }*/
+    loader.value = true;
+    String url = friendStoryModel.data![currentPage].storyList![storyIndex].storyItem.toString();
+    try{
+      isImageLoading = true;
+      await precacheImage(NetworkImage(url), context);
+    }catch(e){
+      debugPrint(e.toString());
     }
+    isImageLoading = false;
+    // }
+    loader.value = false;
   }
 
   Future<void> viewStoryApi() async {
@@ -192,7 +208,7 @@ class ViewStoryController extends GetxController {
   }
 
   void playAnimation() {
-    if (indicatorAnimationController == null) {
+    if (isImageLoading || indicatorAnimationController == null) {
       return;
     }
     indicatorAnimationController!.value = IndicatorAnimationCommand.resume;

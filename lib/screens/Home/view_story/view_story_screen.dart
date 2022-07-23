@@ -27,22 +27,20 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
     controller.indicatorAnimationController =
         ValueNotifier<IndicatorAnimationCommand>(
             IndicatorAnimationCommand.pause);
-    controller.pauseAnimation();
-    controller.playAnimation();
+    // controller.pauseAnimation();
+    // controller.playAnimation();
     // controller.init();
 
-    KeyboardVisibilityController().onChange.listen((bool visible) {
+    /*KeyboardVisibilityController().onChange.listen((bool visible) {
       if (Get.currentRoute != "/ViewStoryScreen") {
         return;
       }
       if (visible) {
-        controller.indicatorAnimationController!.value =
-            IndicatorAnimationCommand.pause;
+        controller.pauseAnimation();
       } else {
-        controller.indicatorAnimationController!.value =
-            IndicatorAnimationCommand.resume;
+        controller.playAnimation();
       }
-    });
+    });*/
   }
 
   @override
@@ -96,7 +94,8 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                         Image.network(
                           story.storyItem.toString(),
                           height: Get.height * 0.9,
-                          fit: BoxFit.fill,
+                          width: Get.width,
+                          fit: BoxFit.cover,
                           errorBuilder: (context, url, error) => Container(
                             height: Get.height * 0.2857,
                             width: Get.width,
@@ -109,7 +108,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                       ],
                     );
                   },
-                  indicatorDuration: const Duration(seconds: 10),
+                  indicatorDuration: const Duration(seconds: 20),
                   indicatorPadding: EdgeInsets.only(
                       top: Get.height * 0.02, right: 50, left: 50),
                   gestureItemBuilder: (context, pageIndex, storyIndex) {
@@ -450,6 +449,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                       borderRadius: BorderRadius.circular(35),
                                     ),
                                   ),
+                                  onChanged: (_) => controller.pauseAnimation(),
                                 ),
                               ),
                               const SizedBox(

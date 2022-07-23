@@ -52,6 +52,7 @@ class _IndicatorsState extends State<Indicators> {
         !widget.isPaging &&
         widget.animationController!.value != 0) {
       widget.animationController!.value = 0;
+      print("Hello");
     }
     if (widget.isCurrentPage &&
         !widget.animationController!.isAnimating &&

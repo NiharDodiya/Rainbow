@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import '../story_stack_controller.dart';
@@ -8,10 +9,22 @@ class Gestures extends StatelessWidget {
     Key? key,
     required this.animationController,
     this.onStoryChange,
+    this.loadImage,
   }) : super(key: key);
 
   final AnimationController? animationController;
   final Function(int)? onStoryChange;
+  final Future<void> Function()? loadImage;
+
+  Future<void> downloadImage() async {
+    await Future.delayed(800.milliseconds);
+
+    animationController!.stop();
+    if(loadImage != null){
+      await loadImage!();
+    }
+    animationController!.forward();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +37,7 @@ class Gestures extends StatelessWidget {
               onTap: () {
                 animationController!.forward(from: 0);
                 context.read<StoryStackController>().decrement(onStoryChange: onStoryChange);
+                downloadImage();
               },
               onLongPress: () {
                 animationController!.stop();
@@ -46,6 +60,7 @@ class Gestures extends StatelessWidget {
                       completeAnimation: () => animationController!.value = 1,
                       onStoryChange: onStoryChange,
                     );
+                downloadImage();
               },
               onLongPress: () {
                 animationController!.stop();

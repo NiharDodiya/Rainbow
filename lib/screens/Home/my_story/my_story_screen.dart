@@ -75,7 +75,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                       Positioned.fill(
                         child: Container(color: Colors.black),
                       ),
-                      Positioned.fill(
+                      /*Positioned.fill(
                         child: CachedNetworkImage(
                           imageUrl: story.storyItem.toString(),
 
@@ -101,16 +101,25 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                 ),
                               ),
                           progressIndicatorBuilder: (con, str, progress) {
-                            /*if (progress.progress != 100) {
-                                  controller.indicatorAnimationController.value =
-                                      IndicatorAnimationCommand.pause;
-                                } else {
-                                  indicatorAnimationController.value =
-                                      IndicatorAnimationCommand.resume;
-                                }*/
                             return const SizedBox();
                           },
                           fit: BoxFit.fill,
+                        ),
+                      ),*/
+                      Positioned.fill(
+                        child: Image.network(
+                          story.storyItem.toString(),
+                          height: Get.height * 0.9,
+                          width: Get.width,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, url, error) => Container(
+                            height: Get.height * 0.2857,
+                            width: Get.width,
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                    image: AssetImage(AssetRes.homePro),),),
+                          ),
                         ),
                       ),
                     ],
@@ -427,6 +436,8 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                 },
                 color: ColorRes.white,
                 bgColor: ColorRes.color_464646,
+                onStoryChange: (int storyIndex) => controller.onStoryChange(storyIndex),
+                loadImage: () => controller.downloadImage(context),
               );
             },
           ),
