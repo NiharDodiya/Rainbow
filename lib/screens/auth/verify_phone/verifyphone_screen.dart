@@ -227,7 +227,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                   ),
                 ),
               ),
-              controller.loader.isTrue ? SmallLoader() : SizedBox(),
+              controller.loader.isTrue ? FullScreenLoader(): SizedBox(),
             ],
           );
         },

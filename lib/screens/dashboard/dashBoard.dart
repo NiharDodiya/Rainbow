@@ -14,10 +14,10 @@ class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  State<Dashboard> createState() => DashboardState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     final DashboardController controller = Get.put(DashboardController());
@@ -49,71 +49,75 @@ class _DashboardState extends State<Dashboard> {
           },
         ),
       ),
-      bottomNavigationBar: SalomonBottomBar(
-        margin: const EdgeInsets.all(12),
-        selectedItemColor: ColorRes.color_2F80ED,
-        unselectedItemColor: ColorRes.color_9597A1,
-        currentIndex: controller.currentTab,
-        onTap: (int index){
-          controller.onBottomBarChange(index);
-          setState((){});
+      bottomNavigationBar: GetBuilder<DashboardController>(id: "bottom_bar",
+        builder: (controller) {
+          return SalomonBottomBar(
+            margin: const EdgeInsets.all(12),
+            selectedItemColor: ColorRes.color_2F80ED,
+            unselectedItemColor: ColorRes.color_9597A1,
+            currentIndex: controller.currentTab,
+            onTap: (int index) {
+              controller.onBottomBarChange(index);
+              setState(() {});
+            },
+            items: [
+              /// Home
+              SalomonBottomBarItem(
+                icon: Image.asset(
+                  AssetRes.home,
+                  height: 16,
+                  width: 16,
+                  color: controller.currentTab == 0
+                      ? ColorRes.color_2F80ED
+                      : ColorRes.color_9597A1,
+                ),
+                title: Text("Home", style: textStyleFont14BlueW500),
+              ),
+
+              /// search
+              SalomonBottomBarItem(
+                icon: Image.asset(
+                  AssetRes.search,
+                  height: 16,
+                  width: 16,
+                  color: controller.currentTab == 1
+                      ? ColorRes.color_2F80ED
+                      : ColorRes.color_9597A1,
+                ),
+                title: Text("Search", style: textStyleFont14BlueW500),
+              ),
+
+              /// message
+              SalomonBottomBarItem(
+                icon: Image.asset(
+                  AssetRes.message,
+                  height: 16,
+                  width: 16,
+                  color: controller.currentTab == 2
+                      ? ColorRes.color_2F80ED
+                      : ColorRes.color_9597A1,
+                ),
+                title: Text(
+                  "Message",
+                  style: textStyleFont14BlueW500,
+                ),
+              ),
+
+              /// Profile
+              SalomonBottomBarItem(
+                icon: Image.asset(
+                  AssetRes.profile,
+                  height: 16,
+                  width: 16,
+                  color: controller.currentTab == 3
+                      ? ColorRes.color_2F80ED
+                      : ColorRes.color_9597A1,
+                ),
+                title: Text("Profile", style: textStyleFont14BlueW500),
+              ),
+            ],
+          );
         },
-        items: [
-          /// Home
-          SalomonBottomBarItem(
-            icon: Image.asset(
-              AssetRes.home,
-              height: 16,
-              width: 16,
-              color: controller.currentTab == 0
-                  ? ColorRes.color_2F80ED
-                  : ColorRes.color_9597A1,
-            ),
-            title: Text("Home", style: textStyleFont14BlueW500),
-          ),
-
-          /// search
-          SalomonBottomBarItem(
-            icon: Image.asset(
-              AssetRes.search,
-              height: 16,
-              width: 16,
-              color: controller.currentTab == 1
-                  ? ColorRes.color_2F80ED
-                  : ColorRes.color_9597A1,
-            ),
-            title: Text("Search", style: textStyleFont14BlueW500),
-          ),
-
-          /// message
-          SalomonBottomBarItem(
-            icon: Image.asset(
-              AssetRes.message,
-              height: 16,
-              width: 16,
-              color: controller.currentTab == 2
-                  ? ColorRes.color_2F80ED
-                  : ColorRes.color_9597A1,
-            ),
-            title: Text(
-              "Message",
-              style: textStyleFont14BlueW500,
-            ),
-          ),
-
-          /// Profile
-          SalomonBottomBarItem(
-            icon: Image.asset(
-              AssetRes.profile,
-              height: 16,
-              width: 16,
-              color: controller.currentTab == 3
-                  ? ColorRes.color_2F80ED
-                  : ColorRes.color_9597A1,
-            ),
-            title: Text("Profile", style: textStyleFont14BlueW500),
-          ),
-        ],
       ),
     );
   }

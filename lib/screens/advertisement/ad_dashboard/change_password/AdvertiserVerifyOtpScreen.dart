@@ -246,7 +246,7 @@ class _AdvertiserVerifyOtpScreenState extends State<AdvertiserVerifyOtpScreen> {
                 ),
               ),
             ),
-            controller.loader.isTrue ? const SmallLoader() : const SizedBox(),
+            controller.loader.isTrue ? const FullScreenLoader(): const SizedBox(),
           ],
         );
       }),

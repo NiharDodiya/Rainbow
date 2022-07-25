@@ -240,7 +240,7 @@ class _RegisterOtpScreenState extends State<RegisterOtpScreen> {
                   ),
                 ),
               ),
-              controller.loader.isTrue ? const SmallLoader() : const SizedBox(),
+              controller.loader.isTrue ? const FullScreenLoader(): const SizedBox(),
             ],
           );
         },

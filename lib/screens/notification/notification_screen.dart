@@ -131,7 +131,7 @@ class NotificationScreen extends StatelessWidget {
           ),
           Obx(() {
             if (controller.loader.isTrue) {
-              return const SmallLoader();
+              return const FullScreenLoader();
             } else {
               return const SizedBox();
             }

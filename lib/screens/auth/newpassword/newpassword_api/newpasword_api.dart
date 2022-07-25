@@ -28,9 +28,10 @@ class CreateNewPasswordApi {
           body: jsonEncode(param),
           header: {"Content-Type": "application/json"});
       if (response != null && response.statusCode == 200) {
+
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          flutterToast(jsonDecode(response.body)["message"]);
+          errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           Get.offAll(() => LoginScreen());
           flutterToast(jsonDecode(response.body)["message"]);
@@ -70,7 +71,7 @@ class CreateNewPasswordApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          flutterToast(jsonDecode(response.body)["message"]);
+          errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           Get.offAll(() => LoginScreen());
           flutterToast(jsonDecode(response.body)["message"]);

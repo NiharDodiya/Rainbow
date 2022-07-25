@@ -20,6 +20,17 @@ class AddStoryController extends GetxController {
   File? image;
   AdStoryModel adStoryModel = AdStoryModel();
   RxBool loader = false.obs;
+  bool textShow = false;
+  void onTextTap()
+  {
+    if(textShow==false)
+      {
+      textShow=true;
+      }else{
+      textShow=false;
+    }
+    update(["adStory"]);
+  }
   List<UserData> tagUserList = [];
 
   void init() {

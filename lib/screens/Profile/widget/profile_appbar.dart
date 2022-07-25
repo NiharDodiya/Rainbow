@@ -9,7 +9,7 @@ import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
-Widget profileAppbar(String text, bool show) {
+Widget profileAppbar(String text, bool show,  final VoidCallback? onTap) {
   return Padding(
     padding: const EdgeInsets.only(top: 10, left: 18.50, right: 18.50),
     child: Stack(
@@ -26,9 +26,7 @@ Widget profileAppbar(String text, bool show) {
         Row(
           children: [
             InkWell(
-              onTap: () {
-                Get.back();
-              },
+              onTap: onTap,
               child: Container(
                 padding: const EdgeInsets.all(7),
                 height: 30,

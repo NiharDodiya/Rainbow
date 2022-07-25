@@ -77,7 +77,7 @@ class _AddStoryScreenState extends State<AddStoryScreen> {
       backgroundColor: Colors.white,
       body: Obx(() {
         if (controller.loader.isTrue) {
-          return const SmallLoader();
+          return const FullScreenLoader();
         } else {
           return SafeArea(
             child: Column(

@@ -42,7 +42,7 @@ class SettingsScreen extends StatelessWidget {
                   ],
                 ),
                 controller.loader.isTrue
-                    ? const SmallLoader()
+                    ? const FullScreenLoader()
                     : const SizedBox()
               ],
             ),

@@ -97,6 +97,7 @@ class StoryViewListScreen extends StatelessWidget {
               ],
             ),
           ),*/
+          Text("Story views", style: gilroyBoldTextStyle(color: Colors.black)),
           SizedBox(height: Get.height * 0.02463),
           Container(
             height: 2,
@@ -106,6 +107,10 @@ class StoryViewListScreen extends StatelessWidget {
               color: ColorRes.lightGrey,
             ),
           ),
+          myStoryController.storyViewListModel.data!.isEmpty? Text(
+              "No Story Views",
+              style: gilroyBoldTextStyle(color: Colors.black)):
+
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -132,24 +137,26 @@ class StoryViewListScreen extends StatelessWidget {
                         imageUrl: myStoryController
                             .storyViewListModel.data![index].profileImage
                             .toString(),
-                        imageBuilder: (context, imageProvider) => Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.cover,
+                        imageBuilder: (context, imageProvider) =>
+                            Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  image: imageProvider,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
                         // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
-                        errorWidget: (context, url, error) => Container(
-                          height: 56,
-                          width: 56,
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                  image: AssetImage(AssetRes.homePro))),
-                        ),
+                        errorWidget: (context, url, error) =>
+                            Container(
+                              height: 56,
+                              width: 56,
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      image: AssetImage(AssetRes.homePro))),
+                            ),
                         fit: BoxFit.fill,
                       ),
                       const SizedBox(width: 16),

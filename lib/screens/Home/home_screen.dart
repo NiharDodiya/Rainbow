@@ -11,7 +11,6 @@ import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Home/settings/settings_screen.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
-import 'package:rainbow/screens/Home/view_story/view_story_screen.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -42,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
     controller.refreshController?.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -122,15 +122,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                   right: 0,
                                   child: GetBuilder<NotificationsController>(
                                     id: 'notification_badge',
-                                    builder: (notificationController){
+                                    builder: (notificationController) {
                                       return Container(
                                         height: 16,
                                         width: 16,
                                         alignment: Alignment.center,
                                         decoration: const BoxDecoration(
-                                            shape: BoxShape.circle, color: ColorRes.color_FF6B97),
+                                            shape: BoxShape.circle,
+                                            color: ColorRes.color_FF6B97),
                                         child: Text(
-                                          notificationController.notificationList.length.toString(),
+                                          notificationController
+                                              .notificationList.length
+                                              .toString(),
                                           style: const TextStyle(
                                             color: ColorRes.white,
                                             fontSize: 8,
@@ -193,7 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-          controller.loader.isTrue ? const SmallLoader() : const SizedBox()
+          controller.loader.isTrue ? const FullScreenLoader(): const SizedBox()
         ],
       );
     });
@@ -312,82 +315,102 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: Get.width * 0.01,
                 ),
                 // my story
-                controller.controller.viewProfile.data == null ||
-                    controller.myStoryController.myStoryModel.data == null ? const SizedBox() : Visibility(
-                  visible: controller
-                          .myStoryController.myStoryModel.data!.isNotEmpty,
-                  child: SizedBox(
-                    height: 129,
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: Get.height * 0.02,
-                        ),
-                        InkWell(
-                          onTap: controller.onNewStoryTap,
-                          child: Stack(
+                controller.controller.viewProfile == null ||
+                        controller.myStoryController.myStoryModel.data == null
+                    ? const SizedBox()
+                    : Visibility(
+                        visible: controller
+                            .myStoryController.myStoryModel.data!.isNotEmpty,
+                        child: SizedBox(
+                          height: 129,
+                          child: Column(
                             children: [
-                              Container(
-                                height: 56,
-                                width: 78,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: controller
-                                                .controller.viewProfile.data ==
-                                            null
-                                        ? null
-                                        : DecorationImage(
-                                            image: NetworkImage(controller
-                                                .controller
-                                                .viewProfile
-                                                .data!
-                                                .profileImage
-                                                .toString()),
-                                            fit: BoxFit.cover)),
+                              SizedBox(
+                                height: Get.height * 0.02,
                               ),
-                              Positioned(
-                                top: Get.height * 0.04,
-                                child: Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: ColorRes.color_B9A2FD
-                                            .withOpacity(0.3),
-                                        spreadRadius: 1,
-                                        blurRadius: 10,
-                                        offset: const Offset(4, 5),
-                                      ),
-                                    ],
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        ColorRes.color_B9A2FD.withOpacity(0.1),
-                                        ColorRes.color_B9A2FD.withOpacity(0.1),
-                                        ColorRes.color_B9A2FD.withOpacity(0.1),
-                                        ColorRes.color_B9A2FD.withOpacity(0.1),
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
+                              InkWell(
+                                onTap: controller.onNewStoryTap,
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      height: 56,
+                                      width: 78,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: controller.controller
+                                                      .viewProfile.data ==
+                                                  null
+                                              ? null
+                                              : controller
+                                                          .controller
+                                                          .viewProfile
+                                                          .data!
+                                                          .profileImage
+                                                          .toString() ==
+                                                      ""
+                                                  ?  DecorationImage(
+                                                      image: AssetImage(
+                                                          AssetRes.selfiePicture))
+                                                  : DecorationImage(
+                                                      image: NetworkImage(
+                                                          controller
+                                                              .controller
+                                                              .viewProfile
+                                                              .data!
+                                                              .profileImage
+                                                              .toString()),
+                                                      fit: BoxFit.cover)),
                                     ),
-                                  ),
+                                    // Positioned(
+                                    //   top: Get.height * 0.04,
+                                    //   child: Container(
+                                    //     height: 50,
+                                    //     width: 50,
+                                    //     decoration: BoxDecoration(
+                                    //       boxShadow: [
+                                    //         BoxShadow(
+                                    //           color: ColorRes.color_B9A2FD
+                                    //               .withOpacity(0.3),
+                                    //           spreadRadius: 2,
+                                    //           blurRadius: 10,
+                                    //           offset: const Offset(4, 5),
+                                    //         ),
+                                    //       ],
+                                    //       gradient: LinearGradient(
+                                    //         colors: [
+                                    //           ColorRes.color_B9A2FD
+                                    //               .withOpacity(0.1),
+                                    //           ColorRes.color_B9A2FD
+                                    //               .withOpacity(0.1),
+                                    //           ColorRes.color_B9A2FD
+                                    //               .withOpacity(0.1),
+                                    //           ColorRes.color_B9A2FD
+                                    //               .withOpacity(0.1),
+                                    //         ],
+                                    //         begin: Alignment.topCenter,
+                                    //         end: Alignment.bottomCenter,
+                                    //       ),
+                                    //     ),
+                                    //   ),
+                                    // )
+                                  ],
                                 ),
-                              )
+                              ),
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              Text(
+                                controller.controller.viewProfile.data == null
+                                    ? ""
+                                    : controller
+                                        .controller.viewProfile.data!.fullName
+                                        .toString(),
+                                style: textStyleFont14WhiteBold,
+                              ),
                             ],
                           ),
                         ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        Text(
-                          controller.controller.viewProfile.data!.fullName
-                              .toString(),
-                          style: textStyleFont14WhiteBold,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                      ),
                 SizedBox(
                   height: 129,
                   child: ListView.builder(
@@ -407,7 +430,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: Get.height * 0.02,
                                 ),
                                 GestureDetector(
-                                  onTap: () => controller.onFriedStoryTap(index),
+                                  onTap: () =>
+                                      controller.onFriedStoryTap(index),
                                   child: SizedBox(
                                     height: 56,
                                     width: 56,

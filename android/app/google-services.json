@@ -1,42 +1,109 @@
 {
   "project_info": {
-    "project_number": "442814978629",
-    "project_id": "rainbow-convrtx",
-    "storage_bucket": "rainbow-convrtx.appspot.com"
+    "project_number": "205390981956",
+    "project_id": "rainbow-75ec2",
+    "storage_bucket": "rainbow-75ec2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:442814978629:android:a27f835ad19faba537e12c",
+        "mobilesdk_app_id": "1:205390981956:android:3312830e47ac3d9db9c511",
         "android_client_info": {
           "package_name": "com.app.rainbow"
         }
       },
       "oauth_client": [
         {
-          "client_id": "442814978629-rumd5288h9o19v975r3ndvnbe2ff4tva.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.app.rainbow",
-            "certificate_hash": "63feff0c81384fea5c22092a51cd93463747d7e4"
-          }
-        },
-        {
-          "client_id": "442814978629-5tvivdmp5c1ces0fjjgqnkflme18v5bb.apps.googleusercontent.com",
+          "client_id": "205390981956-i8gt9d7i1ngob8ugab4p6lffnhrn59dq.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDS4CCqx1J-soRZ5MrbK7DyP1nbEX0M9wk"
+          "current_key": "AIzaSyCal3msYMDuC8SKYm1S_8zK08IbAOwULDE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "442814978629-5tvivdmp5c1ces0fjjgqnkflme18v5bb.apps.googleusercontent.com",
+              "client_id": "205390981956-i8gt9d7i1ngob8ugab4p6lffnhrn59dq.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "205390981956-cdsesmul8bl26tkpf0ttcjc3hb2gp7g0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.rainbow"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205390981956:android:65fb0aecaaa5a91eb9c511",
+        "android_client_info": {
+          "package_name": "com.example.rainbow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "205390981956-cn4e9n88nc7r2imeha1925e7aovm2equ.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rainbow",
+            "certificate_hash": "166d1a5846322483c67f106379482cd398e0522a"
+          }
+        },
+        {
+          "client_id": "205390981956-hrbp1315q0mhtf17h7g0ab7bcotokbb1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rainbow",
+            "certificate_hash": "9ca8bf2ea7704bfa828018bcbcf7e9bac43ce978"
+          }
+        },
+        {
+          "client_id": "205390981956-j17mgn855nn48s9h02f7oohiqn4ft2me.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rainbow",
+            "certificate_hash": "63feff0c81384fea5c22092a51cd93463747d7e4"
+          }
+        },
+        {
+          "client_id": "205390981956-pk5dmom418ajdd085183l2b543v9b2in.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rainbow",
+            "certificate_hash": "168af2c4988cacf4c391250ba3e0b752c2079b52"
+          }
+        },
+        {
+          "client_id": "205390981956-i8gt9d7i1ngob8ugab4p6lffnhrn59dq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCal3msYMDuC8SKYm1S_8zK08IbAOwULDE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "205390981956-i8gt9d7i1ngob8ugab4p6lffnhrn59dq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "205390981956-cdsesmul8bl26tkpf0ttcjc3hb2gp7g0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.rainbow"
+              }
             }
           ]
         }

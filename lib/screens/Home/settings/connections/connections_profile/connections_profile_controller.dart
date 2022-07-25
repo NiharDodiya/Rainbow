@@ -136,4 +136,9 @@ class ConnectionsProfileController extends GetxController {
       loader.value = false;
     }
   }
+  void onTapGetBack()
+  {
+    print("etgg");
+    Get.back();
+  }
 }

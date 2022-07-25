@@ -51,7 +51,7 @@ class RegisterApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          flutterToast(jsonDecode(response.body)["message"]);
+          errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           // Get.to(() => const GetStartedScreens());
           Get.offAll(() => const RegisterOtpScreen());
@@ -62,9 +62,9 @@ class RegisterApi {
         }
         return registerUserFromJson(response.body);
       } else if (response!.statusCode == 500) {
-        flutterToast(jsonDecode(response.body)["message"]);
+        errorToast(jsonDecode(response.body)["message"]);
       } else {
-        flutterToast(jsonDecode(response.body)["message"]);
+        errorToast(jsonDecode(response.body)["message"]);
       }
     } catch (e) {
       print(e.toString());
