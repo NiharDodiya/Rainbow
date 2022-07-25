@@ -507,7 +507,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
             ),
             Obx(() {
               return controller.loader.isTrue
-                  ? const SmallLoader()
+                  ? const FullScreenLoader()
                   : const SizedBox();
             }),
           ],

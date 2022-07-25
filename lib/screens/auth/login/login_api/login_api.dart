@@ -38,7 +38,7 @@ class LoginApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          flutterToast(jsonDecode(response.body)["message"]);
+          errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           await PrefService.setValue(
               PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
@@ -109,10 +109,10 @@ class LoginApi {
             return advertisersLoginModelFromJson(response.body);
           }
         } else if (response.statusCode == 500) {
-          flutterToast(jsonDecode(response.body)["message"]);
+          errorToast(jsonDecode(response.body)["message"]);
         }
       } else if (response!.statusCode == 500) {
-        flutterToast(jsonDecode(response.body)["message"]);
+        errorToast(jsonDecode(response.body)["message"]);
       }
     } catch (e) {
       print(e.toString());
@@ -135,7 +135,7 @@ class LoginApi {
           // flutterToast(data['message']);
           return true;
         } else {
-          flutterToast(data['message']);
+          errorToast(data['message']);
         }
       }
       return false;

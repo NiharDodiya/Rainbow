@@ -55,12 +55,20 @@ class ViewStoryController extends GetxController {
   void onHashTagTap() {}
 
   void onLikeBtnTap(id) {
-    likeStory(id);
+
+    if(loader.isFalse)
+    {
+      likeStory(id);
+    }
     // update(["friendStory"]);
   }
 
   void onUnLikeBtnTap(id) {
-    unLikeStory(id);
+    if(loader.isFalse)
+      {
+        unLikeStory(id);
+      }
+
     // update(["friendStory"]);
   }
 
@@ -160,7 +168,10 @@ class ViewStoryController extends GetxController {
   void commentSendTap(String id, BuildContext context) {
     if (validation()) {
       pauseAnimation();
-      commentData(id);
+      if(loader.isFalse)
+      {
+        commentData(id);
+      }
       // update(["friendStory"]);
       FocusScope.of(context).unfocus();
     }

@@ -173,7 +173,7 @@ class ScanYourFaceScreen extends StatelessWidget {
                     ),
                   ),
                   controller.loader.isTrue
-                      ? const SmallLoader()
+                      ? const FullScreenLoader()
                       : const SizedBox(),
                 ],
               );

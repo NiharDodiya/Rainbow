@@ -97,6 +97,10 @@ class MyStoryListLike extends StatelessWidget {
               ],
             ),
           ),
+          Text(
+            "Likes",
+            style: gilroyBoldTextStyle(color: Colors.black),
+          ),
           SizedBox(height: Get.height * 0.02463),
           Container(
             height: 2,
@@ -106,6 +110,7 @@ class MyStoryListLike extends StatelessWidget {
               color: ColorRes.lightGrey,
             ),
           ),
+
           myStoryController.storyLikeList.isEmpty
               ? Text(
                   "No Likes",

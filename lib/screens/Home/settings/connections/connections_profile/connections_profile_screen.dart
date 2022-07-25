@@ -75,7 +75,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     profileAppbar(
-                                        data.fullName.toString(), false),
+                                        data.fullName.toString(), false,controller.onTapGetBack),
                                     const SizedBox(height: 20),
                                     profileImage(
                                       data.profileImage,
@@ -112,7 +112,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
                         ),
                 ),
                 controller.loader.isTrue
-                    ? const SmallLoader()
+                    ? const FullScreenLoader()
                     : const SizedBox()
               ],
             );

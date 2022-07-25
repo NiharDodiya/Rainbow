@@ -346,6 +346,10 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                           .myStoryModel
                                                           .data![storyIndex]
                                                           .storyLikeCount
+                                                          .toString()=="0"?"": controller
+                                                          .myStoryModel
+                                                          .data![storyIndex]
+                                                          .storyLikeCount
                                                           .toString(),
                                                       style:
                                                       sfProTextReguler(
@@ -377,6 +381,11 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                         sfProTextReguler()),
                                                     Text(
                                                         controller
+                                                            .myStoryModel
+                                                            .data![
+                                                        storyIndex]
+                                                            .storyCommentCount
+                                                            .toString()=="0"?"":controller
                                                             .myStoryModel
                                                             .data![
                                                         storyIndex]
@@ -443,7 +452,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
           ),
           Obx(() {
             return controller.loader.isTrue
-                ? const SmallLoader()
+                ? const FullScreenLoader()
                 : const SizedBox();
           }),
         ],

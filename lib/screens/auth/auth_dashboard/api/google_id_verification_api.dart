@@ -43,6 +43,9 @@ class GoogleIdVerification {
           controller.phoneController.text = user.phoneNumber ?? "";
           Get.to(() => RegisterScreen());
         } else {
+          await PrefService.setValue(PrefKeys.userId,jsonDecode(response.body)["data"]["id"].toString());
+          await PrefService.setValue(PrefKeys.registerToken,
+              jsonDecode(response.body)["token"].toString());
           if (jsonDecode(response.body)["data"]["user_status"] == "pending") {
             await PrefService.setValue(PrefKeys.registerToken,
                 jsonDecode(response.body)["token"].toString());

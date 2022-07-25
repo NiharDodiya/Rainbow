@@ -220,7 +220,7 @@ class AccountInformationScreen extends StatelessWidget {
 
   Widget accountPart(context) {
     return Obx(() => controller.loader.isTrue
-        ? const SmallLoader()
+        ? const FullScreenLoader()
         : Column(
             children: [
               SizedBox(height: Get.height * 0.0197),
@@ -285,7 +285,7 @@ class AccountInformationScreen extends StatelessWidget {
   Widget companyPart() {
     return Obx(
       () => controller.loader.isTrue
-          ? const SmallLoader()
+          ? const FullScreenLoader()
           : Column(
               children: [
                 SizedBox(height: Get.height * 0.0197),

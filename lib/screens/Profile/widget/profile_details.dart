@@ -16,7 +16,7 @@ Widget profileDetails() {
         style: gilroySemiBoldTextStyle(fontSize: 24),
       ),
       Text(
-        controller.viewProfile.data!.userStatus!.isEmpty
+        controller.viewProfile.data==null
             ? ""
             : controller.viewProfile.data!.userStatus.toString(),
         style: gilroyRegularTextStyle(fontSize: 14),
@@ -28,7 +28,7 @@ Widget profileDetails() {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          controller.viewProfile.data!.age == 0
+          controller.viewProfile.data!.age== 0
               ? const Text("")
               : Text(
                   controller.viewProfile.data!.age.toString(),
@@ -48,11 +48,12 @@ Widget profileDetails() {
               : const SizedBox(),
           // dot(controller,controller.viewProfile.data!.age.toString()),
           Text(
-            controller.viewProfile.data!.city == ""
+            controller.viewProfile.data==null
                 ? ""
                 : controller.viewProfile.data!.city.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
+          // controller.viewProfile.data!.city.toString() != ""
           controller.viewProfile.data!.city.toString() != ""
               ? Container(
                   height: 4,
@@ -67,12 +68,12 @@ Widget profileDetails() {
               : const SizedBox(),
           // dot(controller,controller.viewProfile.data!.city.toString()),
           Text(
-            controller.viewProfile.data!.height == ""
+            controller.viewProfile.data == null
                 ? ""
                 : controller.viewProfile.data!.height.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
-          controller.viewProfile.data!.height.toString() != ""
+          controller.viewProfile.data!.height !=""
               ? Container(
                   height: 4,
                   width: 4,
@@ -86,7 +87,7 @@ Widget profileDetails() {
               : const SizedBox(),
           // dot(controller,controller.viewProfile.data!.height.toString()),
           Text(
-            controller.viewProfile.data!.weight == null
+            controller.viewProfile.data == null
                 ? ""
                 : controller.viewProfile.data!.weight.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
@@ -101,22 +102,22 @@ Widget profileDetails() {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
-            controller.viewProfile.data!.idEthnicity == null
+            controller.viewProfile.data== null
                 ? ""
                 : controller.viewProfile.data!.idEthnicity.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
-          dot(controller, controller.viewProfile.data!.idEthnicity.toString()),
+          dot(controller, controller.viewProfile.data==null?"":controller.viewProfile.data!.idEthnicity.toString()),
           Text(
-            controller.viewProfile.data!.maritalStatus == null
+            controller.viewProfile.data== null
                 ? ""
                 : controller.viewProfile.data!.maritalStatus.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
           dot(controller,
-              controller.viewProfile.data!.maritalStatus.toString()),
+              controller.viewProfile.data==null?"":controller.viewProfile.data!.maritalStatus.toString()),
           Text(
-            controller.viewProfile.data!.noKids == null
+            controller.viewProfile.data == null
                 ? ""
                 : controller.viewProfile.data!.noKids.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
@@ -136,7 +137,7 @@ Widget profileDetails() {
                   Uri.parse(controller.viewProfile.data!.instagram.toString()));
               print("insta");
             },
-            child: controller.viewProfile.data!.instagram.toString().isEmpty
+            child: controller.viewProfile.data==null
                 ? const SizedBox()
                 : Container(
                     height: 24,
@@ -158,7 +159,7 @@ Widget profileDetails() {
                     Uri.parse(controller.viewProfile.data!.youtube.toString()));
                 print("youtube");
               },
-              child: controller.viewProfile.data!.youtube.toString().isEmpty
+              child:  controller.viewProfile.data==null
                   ? const SizedBox()
                   : Container(
                       height: 24,
@@ -185,7 +186,7 @@ Widget profileDetails() {
 
                 print("facebook");
               },
-              child: controller.viewProfile.data!.facebook.toString().isEmpty
+              child:  controller.viewProfile.data==null
                   ? const SizedBox()
                   : Container(
                       height: 24,
@@ -207,7 +208,7 @@ Widget profileDetails() {
 
                 print("twitter");
               },
-              child: controller.viewProfile.data!.twitter.toString().isEmpty
+              child:  controller.viewProfile.data==null
                   ? const SizedBox()
                   : Container(
                       height: 24,

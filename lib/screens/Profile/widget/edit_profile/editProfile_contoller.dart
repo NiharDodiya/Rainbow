@@ -225,7 +225,7 @@ class EditProfileController extends GetxController {
     if (image == null) return;
     final imageFront = File(image.path);
     frontImage = imageFront;
-    uploadImageApi();
+    // uploadImageApi();
 
     update(["Edit_profile"]);
   }
@@ -235,7 +235,7 @@ class EditProfileController extends GetxController {
     if (image == null) return;
     final imageTemp = File(image.path);
     backImage = imageTemp;
-    uploadImageBackApi();
+    // uploadImageBackApi();
     update(["Edit_profile"]);
   }
 
@@ -275,6 +275,8 @@ class EditProfileController extends GetxController {
     loader.value = true;
     try {
       print("Hello");
+      uploadImageApi();
+      uploadImageBackApi();
       EditProfile? data = await EditProfileApi.postRegister(
         uploadImage2.data!.id.toString(),
         uploadImage1.data!.id.toString(),

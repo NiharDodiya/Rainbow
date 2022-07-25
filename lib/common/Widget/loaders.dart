@@ -39,13 +39,18 @@ class FullScreenLoader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: Get.height,
-      width: Get.width,
-      child: Center(
-        child: Platform.isIOS
-            ? const CupertinoActivityIndicator()
-            : const CircularProgressIndicator(),
+    return InkWell(
+      onTap: () {
+
+      },
+      child: SizedBox(
+        height: Get.height,
+        width: Get.width,
+        child: Center(
+          child: Platform.isIOS
+              ? const CupertinoActivityIndicator()
+              : const CircularProgressIndicator(),
+        ),
       ),
     );
   }

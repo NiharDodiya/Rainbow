@@ -193,7 +193,7 @@ class IdScannerBackScreen extends StatelessWidget {
           /// Otherwise, display a loading indicator.
           return SizedBox(
             height: Get.height * 0.3226,
-            child: const SmallLoader(),
+            child: const FullScreenLoader(),
           );
         }
       },

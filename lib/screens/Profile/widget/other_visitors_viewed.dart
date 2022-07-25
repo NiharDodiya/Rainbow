@@ -16,7 +16,7 @@ Widget otherVisitorsViewed() {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          controller.viewProfile.data!.userView!.length == 0
+          controller.viewProfile.data==null
               ? ""
               : "Other Visitors Viewed",
           style: beVietnamProBoldTextStyle(fontSize: 18),
@@ -25,7 +25,7 @@ Widget otherVisitorsViewed() {
           height: 130,
           child: ListView.builder(
             padding: EdgeInsets.only(top: 5),
-            itemCount: controller.viewProfile.data!.userView == null
+            itemCount: controller.viewProfile.data == null
                 ? 0
                 : controller.viewProfile.data!.userView!.length,
             physics: const BouncingScrollPhysics(),

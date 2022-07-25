@@ -74,7 +74,7 @@ class AddStoryViewScreen extends StatelessWidget {
                       left: Get.width * 0.8,
                       child: InkWell(
                         onTap: () {
-                          // Get.back();
+                         controller.onTextTap();
                         },
                         child: Container(
                           height: 40,
@@ -170,7 +170,6 @@ class AddStoryViewScreen extends StatelessWidget {
                                                   ClipRRect(
                                                     borderRadius: BorderRadius.circular(50),
                                                     child: CachedNetworkImage(
-
                                                       imageUrl: controller
                                                           .filterList[index]
                                                           .profileImage
@@ -225,7 +224,7 @@ class AddStoryViewScreen extends StatelessWidget {
                                 },
                               ),
                               const SizedBox(height: 20),
-                              Center(
+                              controller.textShow==true?Center(
                                 child: SizedBox(
                                   height: 50,
                                   width: Get.width,
@@ -234,19 +233,19 @@ class AddStoryViewScreen extends StatelessWidget {
                                     style: const TextStyle(fontSize: 20),
                                     onChanged: controller.onChange,
                                     decoration: const InputDecoration(
-                                      hintText: "Send",
+                                      hintText: Strings.writeSomethings,
                                       border: InputBorder.none,
                                     ),
                                   ),
                                 ),
-                              ),
+                              ):const SizedBox(),
                             ],
                           ),
                         ),
                       ),
                     ),
                     controller.loader.isTrue
-                        ? const SmallLoader()
+                        ? const FullScreenLoader()
                         : const SizedBox()
                   ],
                 );

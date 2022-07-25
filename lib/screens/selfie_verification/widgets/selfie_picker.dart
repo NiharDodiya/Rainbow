@@ -94,7 +94,7 @@ class _SelfiePickerState extends State<SelfiePicker> {
                     ),
                   ),
                 )
-              : const SmallLoader()),
+              : const FullScreenLoader()),
     );
   }
 }

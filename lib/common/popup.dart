@@ -6,7 +6,7 @@ import 'package:rainbow/utils/strings.dart';
 void errorToast(String error, {String? title}) {
   Get.snackbar(
     title ?? Strings.errorText,
-    error,
+    error,duration: Duration(seconds: 1),
     colorText: ColorRes.white,
     backgroundColor: ColorRes.red,
   );
@@ -15,7 +15,7 @@ void errorToast(String error, {String? title}) {
 void flutterToast(String value, {String? title}) {
   Get.snackbar(
     title ?? Strings.successText,
-    value,
+    value,duration: Duration(seconds: 1),
     colorText: ColorRes.white,
     backgroundColor: Colors.green,
   );
