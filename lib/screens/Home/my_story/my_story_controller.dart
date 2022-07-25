@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/model/StoryComment_model.dart';
 import 'package:rainbow/model/myStory_model.dart';
 import 'package:rainbow/model/storyViewList_model.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/my_story/api/myStroy_api.dart';
 import 'package:rainbow/screens/Home/my_story/widgets/myStoryComments_screen.dart';
 import 'package:rainbow/screens/Home/my_story/widgets/myStoryListLike_screen.dart';
+import 'package:rainbow/screens/Home/story_commets/api/story_comment_api.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:story/story_page_view/story_page_view.dart';
 
@@ -21,12 +23,47 @@ class MyStoryController extends GetxController {
   int storyIndex = 0;
   bool isImageLoading = false;
   ValueNotifier<IndicatorAnimationCommand>? indicatorAnimationController;
+  TextEditingController writeSomething = TextEditingController();
 
   Future<void> init() async {
     myStoryModel = MyStoryModel();
     await getMyStoryList();
     /*indicatorAnimationController = ValueNotifier<IndicatorAnimationCommand>(
         IndicatorAnimationCommand.pause);*/
+  }
+  bool validation() {
+    if (writeSomething.text.isEmpty) {
+      errorToast("Type Something");
+      return false;
+    }
+    return true;
+  }
+  void commentSendTap(String id, BuildContext context) {
+    if (validation()) {
+      pauseAnimation();
+      if(loader.isFalse)
+      {
+        commentData(id);
+      }
+      // update(["friendStory"]);
+      FocusScope.of(context).unfocus();
+    }
+  }
+  StoryCommentModel storyCommentModel = StoryCommentModel();
+  Future<void> commentData(String id) async {
+    try {
+      loader.value = true;
+      storyCommentModel = (await StoryCommentApi.sendNewComment(
+          id, writeSomething.text.toString()) ??
+          StoryCommentModel());
+      // await friendStoryApiData();
+      playAnimation();
+      // update(["friendStory"]);
+      writeSomething.clear();
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+    }
   }
 
   StoryViewListModel storyViewListModel = StoryViewListModel();

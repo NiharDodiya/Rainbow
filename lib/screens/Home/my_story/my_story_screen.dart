@@ -58,56 +58,54 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          GetBuilder<MyStoryController>(
-            id: "my_story",
-            builder: (controller) {
-              if (controller.myStoryModel.data == null) {
-                return Container(color: ColorRes.black);
-              }
-              return StoryPageView(
-                itemBuilder: (context, pageIndex, storyIndex) {
-                  final MyStory story =
-                  controller.myStoryModel.data![storyIndex];
-                  return Stack(
-                    children: [
-                      Positioned.fill(
-                        child: Container(color: Colors.black),
-                      ),
-                      /*Positioned.fill(
-                        child: CachedNetworkImage(
-                          imageUrl: story.storyItem.toString(),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            GetBuilder<MyStoryController>(
+              id: "my_story",
+              builder: (controller) {
+                if (controller.myStoryModel.data == null) {
+                  return Container(color: ColorRes.black);
+                }
+                return StoryPageView(
+                  itemBuilder: (context, pageIndex, storyIndex) {
+                    final MyStory story =
+                    controller.myStoryModel.data![storyIndex];
+                    return Stack(
+                      children: [
+                        Container(color: Colors.black),
+                        /*Positioned.fill(
+                          child: CachedNetworkImage(
+                            imageUrl: story.storyItem.toString(),
 
-                          imageBuilder: (context, imageProvider) =>
-                              Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: imageProvider,
-                                    fit: BoxFit.cover,
+                            imageBuilder: (context, imageProvider) =>
+                                Container(
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: imageProvider,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
-                              ),
-                          // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
-                          errorWidget: (context, url, error) =>
-                              Container(
-                                height: Get.height * 0.2857,
-                                width: Get.width,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    image: AssetImage(AssetRes.homePro),
+                            // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
+                            errorWidget: (context, url, error) =>
+                                Container(
+                                  height: Get.height * 0.2857,
+                                  width: Get.width,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                      image: AssetImage(AssetRes.homePro),
+                                    ),
                                   ),
                                 ),
-                              ),
-                          progressIndicatorBuilder: (con, str, progress) {
-                            return const SizedBox();
-                          },
-                          fit: BoxFit.fill,
-                        ),
-                      ),*/
-                      Positioned.fill(
-                        child: Image.network(
+                            progressIndicatorBuilder: (con, str, progress) {
+                              return const SizedBox();
+                            },
+                            fit: BoxFit.fill,
+                          ),
+                        ),*/
+                        Image.network(
                           story.storyItem.toString(),
                           height: Get.height * 0.9,
                           width: Get.width,
@@ -121,340 +119,391 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                     image: AssetImage(AssetRes.homePro),),),
                           ),
                         ),
-                      ),
-                    ],
-                  );
-                },
-                indicatorDuration: const Duration(seconds: 20),
-                indicatorPadding: EdgeInsets.only(
-                    top: Get.height - 20, right: 50, left: 50),
-                gestureItemBuilder: (context, pageIndex, storyIndex) {
-                  return Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          width: Get.width,
-                          height: Get.height * 0.3,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                ColorRes.color_141414.withOpacity(0.9),
-                                Colors.transparent,
-                                Colors.transparent
-                              ],
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
-                              stops: const [0, 0.99, 1],
+                      ],
+                    );
+                  },
+                  indicatorDuration: const Duration(seconds: 20),
+                  indicatorPadding: EdgeInsets.only(
+                      top: Get.height * 0.02, right: 50, left: 50),
+                  gestureItemBuilder: (context, pageIndex, storyIndex) {
+                    return Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            width: Get.width,
+                            height: Get.height * 0.3,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  ColorRes.color_141414.withOpacity(0.9),
+                                  Colors.transparent,
+                                  Colors.transparent
+                                ],
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter,
+                                stops: const [0, 0.99, 1],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: SizedBox(
-                          width: Get.width,
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                top: 32, left: 5, right: 5),
-                            child: Row(
-                              children: [
-                                IconButton(
-                                  padding: EdgeInsets.zero,
-                                  color: Colors.white,
-                                  icon: const Icon(Icons.arrow_back_ios,
-                                      size: 20),
-                                  onPressed: controller.onBackTap,
-                                ),
-                                const Spacer(),
-                                IconButton(
-                                    onPressed: () {
-                                      controller.getStoryViewList(controller
-                                          .myStoryModel.data![pageIndex].id
-                                          .toString());
-                                    },
-                                    icon: const Icon(
-                                      Icons.remove_red_eye,
-                                      color: Colors.white,
-                                    )),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                /*  SizedBox(
-                                      height: 30,
-                                      child: TextButton(
-                                        onPressed: () {
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: SizedBox(
+                            width: Get.width,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 25, left: 5, right: 5),
+                              child: Row(
+                                children: [
+                                  IconButton(
+                                    padding: EdgeInsets.zero,
+                                    color: Colors.white,
+                                    icon: const Icon(Icons.arrow_back_ios,
+                                        size: 20),
+                                    onPressed: controller.onBackTap,
+                                  ),
+                                  const Spacer(),
+                                  IconButton(
+                                      onPressed: () {
+                                        controller.getStoryViewList(controller
+                                            .myStoryModel.data![pageIndex].id
+                                            .toString());
+                                      },
+                                      icon: const Icon(
+                                        Icons.remove_red_eye,
+                                        color: Colors.white,
+                                      )),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  /*  SizedBox(
+                                        height: 30,
+                                        child: TextButton(
+                                          onPressed: () {
 
-                                        },
-                                        style: TextButton.styleFrom(
-                                          backgroundColor: ColorRes.color_50369C
-                                              .withOpacity(0.5),
-                                        ),
-                                        child: Text(
-                                          "Comments",
-                                          // style: sfProTextReguler(),
+                                          },
+                                          style: TextButton.styleFrom(
+                                            backgroundColor: ColorRes.color_50369C
+                                                .withOpacity(0.5),
+                                          ),
+                                          child: Text(
+                                            "Comments",
+                                            // style: sfProTextReguler(),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    IconButton(
-                                      padding: EdgeInsets.zero,
-                                      color: Colors.white,
-                                      icon: const Icon(Icons.more_horiz,
-                                          size: 24),
-                                      onPressed: controller.onMoreBtnTap,
-                                    ),*/
-                              ],
+                                      IconButton(
+                                        padding: EdgeInsets.zero,
+                                        color: Colors.white,
+                                        icon: const Icon(Icons.more_horiz,
+                                            size: 24),
+                                        onPressed: controller.onMoreBtnTap,
+                                      ),*/
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        bottom: 60,
-                        child: SizedBox(
-                          width: Get.width,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: Get.width * 0.072),
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  width: Get.width,
-                                  child: RichText(
-                                    text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: controller.myStoryModel
-                                              .data![pageIndex].description
-                                              .toString(),
-                                          style:
-                                          sfProTextReguler().copyWith(
-                                            color: ColorRes.color_2F80ED,
-                                            fontSize: 27,
-                                          ),
-                                          recognizer: TapGestureRecognizer()
-                                            ..onTap =
-                                                controller.onHashTagTap,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: Get.height * 0.039),
-                                Container(
-                                  height: 2,
-                                  width: Get.width,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(2),
-                                    color: ColorRes.color_9597A1
-                                        .withOpacity(0.2),
-                                  ),
-                                ),
-                                SizedBox(height: Get.height * 0.04926),
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Container(
-                                      height: 56,
-                                      width: 56,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        image: DecorationImage(
-                                          image: NetworkImage(
-                                            profileController.viewProfile
-                                                .data!.profileImage
+                        Positioned(
+                          bottom: 60,
+                          child: SizedBox(
+                            width: Get.width,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: Get.width * 0.072),
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    width: Get.width,
+                                    child: RichText(
+                                      text: TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: controller.myStoryModel
+                                                .data![pageIndex].description
                                                 .toString(),
+                                            style:
+                                            sfProTextReguler().copyWith(
+                                              color: ColorRes.color_2F80ED,
+                                              fontSize: 27,
+                                            ),
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap =
+                                                  controller.onHashTagTap,
                                           ),
-                                          fit: BoxFit.cover,
-                                        ),
+                                        ],
                                       ),
                                     ),
-                                    const SizedBox(width: 16),
-                                    Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          profileController
-                                              .viewProfile.data!.fullName
-                                              .toString(),
-                                          style:
-                                          sfProTextReguler().copyWith(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w700,
+                                  ),
+                                  SizedBox(height: Get.height * 0.039),
+                                  Container(
+                                    height: 2,
+                                    width: Get.width,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(2),
+                                      color: ColorRes.color_9597A1
+                                          .withOpacity(0.2),
+                                    ),
+                                  ),
+                                  SizedBox(height: Get.height * 0.04926),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Container(
+                                        height: 56,
+                                        width: 56,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                            image: NetworkImage(
+                                              profileController.viewProfile
+                                                  .data!.profileImage
+                                                  .toString(),
+                                            ),
+                                            fit: BoxFit.cover,
                                           ),
                                         ),
-                                        Text(
-                                          profileController
-                                              .viewProfile.data!.userStatus
-                                              .toString(),
-                                          style:
-                                          sfProTextReguler().copyWith(
-                                            fontWeight: FontWeight.w300,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const Spacer(),
-                                    Text(
-                                      "${controller.myStoryModel
-                                          .data![storyIndex].createdAt!.hour
-                                          .toString()}:${controller.myStoryModel
-                                          .data![storyIndex].createdAt!.minute
-                                          .toString()}",
-                                      style: sfProTextReguler().copyWith(
-                                          decoration:
-                                          TextDecoration.underline),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10),
-                                GetBuilder<MyStoryController>(
-                                  id: "my_story",
-                                  builder: (controller) {
-                                    return SizedBox(
-                                      width: Get.width,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
+                                      ),
+                                      const SizedBox(width: 16),
+                                      Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                         children: [
-                                          InkWell(
-                                            onTap: () {
-                                              controller.onLikeBtnTap(
-                                                  myStory: controller
-                                                      .myStoryModel
-                                                      .data![pageIndex],
-                                                  storyindex: storyIndex);
-                                            },
-                                            child: Column(
-                                              mainAxisSize:
-                                              MainAxisSize.min,
-                                              children: [
-                                                const Icon(
-                                                  Icons.favorite,
-                                                  color: ColorRes.red,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      Strings.likes,
-                                                      style:
-                                                      sfProTextReguler(
-                                                          fontSize: 15),
-                                                    ),
-                                                    Text(
-                                                      controller
-                                                          .myStoryModel
-                                                          .data![storyIndex]
-                                                          .storyLikeCount
-                                                          .toString()=="0"?"": controller
-                                                          .myStoryModel
-                                                          .data![storyIndex]
-                                                          .storyLikeCount
-                                                          .toString(),
-                                                      style:
-                                                      sfProTextReguler(
-                                                          fontSize: 15),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
+                                          Text(
+                                            profileController
+                                                .viewProfile.data!.fullName
+                                                .toString(),
+                                            style:
+                                            sfProTextReguler().copyWith(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w700,
                                             ),
                                           ),
-                                          InkWell(
-                                            onTap: () {
-                                              controller.onCommentButtonTap(
-                                                  myStory: controller
-                                                      .myStoryModel
-                                                      .data![pageIndex],
-                                                  storyindex: storyIndex);
-                                            },
-                                            child: Column(
-                                              mainAxisSize:
-                                              MainAxisSize.min,
-                                              children: [
-                                                const Icon(Icons.comment,
-                                                    color: ColorRes.white),
-                                                Row(
-                                                  children: [
-                                                    Text(Strings.comments,
-                                                        style:
-                                                        sfProTextReguler()),
-                                                    Text(
-                                                        controller
-                                                            .myStoryModel
-                                                            .data![
-                                                        storyIndex]
-                                                            .storyCommentCount
-                                                            .toString()=="0"?"":controller
-                                                            .myStoryModel
-                                                            .data![
-                                                        storyIndex]
-                                                            .storyCommentCount
-                                                            .toString(),
-                                                        style:
-                                                        sfProTextReguler()),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          InkWell(
-                                            onTap: () =>
-                                                controller.onDeleteTap(storyIndex),
-                                            child: Column(
-                                              mainAxisSize:
-                                              MainAxisSize.min,
-                                              children: [
-                                                const Icon(Icons.delete,
-                                                    color: ColorRes.red),
-                                                Text(
-                                                  Strings.delete,
-                                                  style: sfProTextReguler(),
-                                                ),
-                                              ],
+                                          Text(
+                                            profileController
+                                                .viewProfile.data!.userStatus
+                                                .toString(),
+                                            style:
+                                            sfProTextReguler().copyWith(
+                                              fontWeight: FontWeight.w300,
                                             ),
                                           ),
                                         ],
                                       ),
-                                    );
-                                  },
-                                )
-                              ],
+                                      const Spacer(),
+                                      Text(
+                                        "${controller.myStoryModel
+                                            .data![storyIndex].createdAt!.hour
+                                            .toString()}:${controller.myStoryModel
+                                            .data![storyIndex].createdAt!.minute
+                                            .toString()}",
+                                        style: sfProTextReguler().copyWith(
+                                            decoration:
+                                            TextDecoration.underline),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  GetBuilder<MyStoryController>(
+                                    id: "my_story",
+                                    builder: (controller) {
+                                      return SizedBox(
+                                        width: Get.width,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                          children: [
+                                            InkWell(
+                                              onTap: () {
+                                                controller.onLikeBtnTap(
+                                                    myStory: controller
+                                                        .myStoryModel
+                                                        .data![pageIndex],
+                                                    storyindex: storyIndex);
+                                              },
+                                              child: Column(
+                                                mainAxisSize:
+                                                MainAxisSize.min,
+                                                children: [
+                                                  const Icon(
+                                                    Icons.favorite,
+                                                    color: ColorRes.red,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        Strings.likes,
+                                                        style:
+                                                        sfProTextReguler(
+                                                            fontSize: 15),
+                                                      ),
+                                                      Text(
+                                                        controller
+                                                            .myStoryModel
+                                                            .data![storyIndex]
+                                                            .storyLikeCount
+                                                            .toString()=="0"?"": controller
+                                                            .myStoryModel
+                                                            .data![storyIndex]
+                                                            .storyLikeCount
+                                                            .toString(),
+                                                        style:
+                                                        sfProTextReguler(
+                                                            fontSize: 15),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            InkWell(
+                                              onTap: () {
+                                                controller.onCommentButtonTap(
+                                                    myStory: controller
+                                                        .myStoryModel
+                                                        .data![pageIndex],
+                                                    storyindex: storyIndex);
+                                              },
+                                              child: Column(
+                                                mainAxisSize:
+                                                MainAxisSize.min,
+                                                children: [
+                                                  const Icon(Icons.comment,
+                                                      color: ColorRes.white),
+                                                  Row(
+                                                    children: [
+                                                      Text(Strings.comments,
+                                                          style:
+                                                          sfProTextReguler()),
+                                                      Text(
+                                                          controller
+                                                              .myStoryModel
+                                                              .data![
+                                                          storyIndex]
+                                                              .storyCommentCount
+                                                              .toString()=="0"?"":controller
+                                                              .myStoryModel
+                                                              .data![
+                                                          storyIndex]
+                                                              .storyCommentCount
+                                                              .toString(),
+                                                          style:
+                                                          sfProTextReguler()),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            InkWell(
+                                              onTap: () =>
+                                                  controller.onDeleteTap(storyIndex),
+                                              child: Column(
+                                                mainAxisSize:
+                                                MainAxisSize.min,
+                                                children: [
+                                                  const Icon(Icons.delete,
+                                                      color: ColorRes.red),
+                                                  Text(
+                                                    Strings.delete,
+                                                    style: sfProTextReguler(),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  );
-                },
-                indicatorAnimationController: controller
-                    .indicatorAnimationController,
-                initialStoryIndex: (pageIndex) {
-                  return 0;
-                },
-                pageLength: 1,
-                storyLength: (int pageIndex) {
-                  if (controller.myStoryModel.data == null) {
+                        Positioned(bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                height: 40,
+                                width: 250,
+                                child: TextFormField(
+                                  controller: controller.writeSomething,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(35),
+                                    ),
+                                    filled: true,
+                                    fillColor: Colors.black,
+                                    hintStyle:
+                                    const TextStyle(color: Colors.white),
+                                    hintText: "send message",
+                                    contentPadding:
+                                    const EdgeInsets.only(top: 2, left: 15),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide:
+                                      const BorderSide(color: Colors.grey),
+                                      borderRadius: BorderRadius.circular(35),
+                                    ),
+                                  ),
+                                  onChanged: (_) => controller.pauseAnimation(),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  controller.commentSendTap(
+                                      controller
+                                          .myStoryModel
+                                          .data![pageIndex]
+                                          .id
+                                          .toString(),
+                                      context);
+                                },
+                                child: Image.asset(
+                                  AssetRes.send,
+                                  height: 20,
+                                  width: 20,
+                                  color: Colors.white,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                  indicatorAnimationController: controller
+                      .indicatorAnimationController,
+                  initialStoryIndex: (pageIndex) {
                     return 0;
-                  }
-                  return controller.myStoryModel.data!.length;
-                },
-                onPageLimitReached: () {
-                  Navigator.pop(context);
-                },
-                color: ColorRes.white,
-                bgColor: ColorRes.color_464646,
-                onStoryChange: (int storyIndex) => controller.onStoryChange(storyIndex),
-                loadImage: () => controller.downloadImage(context),
-              );
-            },
-          ),
-          Obx(() {
-            return controller.loader.isTrue
-                ? const FullScreenLoader()
-                : const SizedBox();
-          }),
-        ],
+                  },
+                  pageLength: 1,
+                  storyLength: (int pageIndex) {
+                    if (controller.myStoryModel.data == null) {
+                      return 0;
+                    }
+                    return controller.myStoryModel.data!.length;
+                  },
+                  onPageLimitReached: () {
+                    Navigator.pop(context);
+                  },
+                  color: ColorRes.white,
+                  bgColor: ColorRes.color_464646,
+                  onStoryChange: (int storyIndex) => controller.onStoryChange(storyIndex),
+                  loadImage: () => controller.downloadImage(context),
+                );
+              },
+            ),
+            Obx(() {
+              return controller.loader.isTrue
+                  ? const FullScreenLoader()
+                  : const SizedBox();
+            }),
+          ],
+        ),
       ),
     );
   }

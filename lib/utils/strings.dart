@@ -467,5 +467,4 @@ class Strings {
   // static const tags = ;
   // static const tags = ;
 
-  static const delete = "Delete";
 }
