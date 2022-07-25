@@ -126,123 +126,116 @@ class SetupDateScreen extends StatelessWidget {
               Container(
                 width: Get.width,
                 height: 308,
+                padding: EdgeInsets.only(bottom: 5),
                 decoration: const BoxDecoration(
                   color: ColorRes.white,
                   borderRadius: BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),
-                child: Expanded(
-                  child: GetBuilder<SetupDateController>(
-                    id: 'range',
-                    builder: (controller) => TableCalendar(
-                      calendarBuilders: const CalendarBuilders(),
-                      shouldFillViewport: true,
-                      // selectedDayPredicate: ,
-                      onPageChanged: (d) {
-                        print(d.month);
-                      },
-                      onHeaderTapped: (on) {
-                        print(on.isUtc);
-                      },
-                      onDaySelected: (statrt, end) {},
-                      firstDay: DateTime(
-                        2022,
-                        DateTime.now().month,
-                      ),
-                      lastDay: DateTime(2050),
-                      onFormatChanged: (CalendarFormat ca) {
-                        CalendarFormat.month;
-                      },
-                      availableCalendarFormats: const {
-                        CalendarFormat.month: 'Month',
-                        CalendarFormat.twoWeeks: '2 weeks',
-                        CalendarFormat.week: 'Week'
-                      },
-                      focusedDay: DateTime.now(),
-                      calendarStyle: CalendarStyle(
-                        isTodayHighlighted: false,
-                        rangeHighlightColor: ColorRes.color_F4F4F4,
-                        todayTextStyle: gilroyBoldTextStyle(fontSize: 11.43),
-                        weekendTextStyle: gilroyMediumTextStyle(
-                            fontSize: 11.43, color: ColorRes.color_27354C),
-                        outsideTextStyle: gilroyMediumTextStyle(
-                          fontSize: 11.43,
-                          color: ColorRes.color_27354C.withOpacity(0.4),
-                        ),
-
-                        defaultTextStyle: gilroyMediumTextStyle(
-                            fontSize: 11.43, color: ColorRes.color_27354C),
-                        rangeEndTextStyle:
-                            const TextStyle(fontSize: 15, color: Colors.white),
-                        disabledTextStyle: gilroyMediumTextStyle(
-                          fontSize: 11.43,
-                          color: ColorRes.color_27354C.withOpacity(0.4),
-                        ),
-                        selectedDecoration: BoxDecoration(
-                          color: ColorRes.black,
-                          border: Border.all(
-                              color: ColorRes.color_FCE307, width: 1.46),
-                        ),
-                        // selectedTextStyle:
-                        //     TextStyle(fontSize: 15, color: Colors.purple),
-
-                        rangeEndDecoration: BoxDecoration(
-                          color: ColorRes.color_50369C,
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                              color: ColorRes.color_FCE307, width: 1.5),
-                        ),
-                        rangeStartDecoration: BoxDecoration(
-                          color: ColorRes.color_50369C,
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                              color: ColorRes.color_FCE307, width: 1.5),
-                        ),
-                        withinRangeTextStyle: gilroyMediumTextStyle(
-                            fontSize: 11.43, color: ColorRes.color_27354C),
-                      ),
-                      rangeStartDay: controller.startTime,
-                      onRangeSelected: (start, end, as) {
-                        controller.rangSelect(start, end, as);
-                        print(
-                            "<<<<<<<<<<<<<<<<<<<<<<<<<<<<  starn<$start>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-                        print(
-                            "<<<<<<<<<<<<<<<<<<<<<<<<<<End <<<$end>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-                        print(
-                            "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<$as>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-                      },
-                      rangeEndDay: controller.endtime,
-                      rangeSelectionMode: RangeSelectionMode.toggledOn,
-                      headerStyle: HeaderStyle(
-                        titleTextStyle: TextStyle(color: ColorRes.black),
-                        leftChevronVisible: false,
-
-                        formatButtonVisible: false,
-                        formatButtonTextStyle: gilroySemiBoldTextStyle(
-                          fontSize: 11.94,
-                          color: ColorRes.black,
-                        ),
-                        formatButtonShowsNext: false,
-                        formatButtonDecoration: const BoxDecoration(),
-                        titleCentered: false,
-                        // titleTextFormatter:(date, locale) => DateFormat.yM(locale).format(date),
-
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(12),
-                          ),
-                        ),
-                      ),
-                      daysOfWeekStyle: DaysOfWeekStyle(
-                        weekdayStyle: gilroyBoldTextStyle(
-                            fontSize: 11.43, color: ColorRes.color_50369C),
-                      ),
-                      weekendDays: [],
-                      calendarFormat: CalendarFormat.month,
-                      startingDayOfWeek: StartingDayOfWeek.monday,
+                child: GetBuilder<SetupDateController>(
+                  id: 'range',
+                  builder: (controller) => TableCalendar(
+                    calendarBuilders: const CalendarBuilders(),
+                    shouldFillViewport: true,
+                    firstDay: DateTime(
+                      2022,
+                      DateTime.now().month,
                     ),
+                    lastDay: DateTime(2050),
+                    onFormatChanged: (CalendarFormat ca) {
+                      CalendarFormat.month;
+                    },
+                    availableCalendarFormats: const {
+                      CalendarFormat.month: 'Month',
+                      CalendarFormat.twoWeeks: '2 weeks',
+                      CalendarFormat.week: 'Week'
+                    },
+                    focusedDay: DateTime.now(),
+                    calendarStyle: CalendarStyle(
+                      isTodayHighlighted: false,
+                      rangeHighlightColor: ColorRes.color_F4F4F4,
+                      todayTextStyle: gilroyBoldTextStyle(fontSize: 11.43),
+                      weekendTextStyle: gilroyMediumTextStyle(
+                          fontSize: 11.43, color: ColorRes.color_27354C),
+                      outsideTextStyle: gilroyMediumTextStyle(
+                        fontSize: 11.43,
+                        color: ColorRes.color_27354C.withOpacity(0.4),
+                      ),
+
+                      defaultTextStyle: gilroyMediumTextStyle(
+                          fontSize: 11.43, color: ColorRes.color_27354C),
+                      rangeEndTextStyle:
+                      const TextStyle(fontSize: 15, color: Colors.white),
+                      disabledTextStyle: gilroyMediumTextStyle(
+                        fontSize: 11.43,
+                        color: ColorRes.color_27354C.withOpacity(0.4),
+                      ),
+                      selectedDecoration: BoxDecoration(
+                        color: ColorRes.black,
+                        border: Border.all(
+                            color: ColorRes.color_FCE307, width: 1.46),
+                      ),
+                      // selectedTextStyle:
+                      //     TextStyle(fontSize: 15, color: Colors.purple),
+
+                      rangeEndDecoration: BoxDecoration(
+                        color: ColorRes.color_50369C,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: ColorRes.color_FCE307, width: 1.5),
+                      ),
+                      rangeStartDecoration: BoxDecoration(
+                        color: ColorRes.color_50369C,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: ColorRes.color_FCE307, width: 1.5),
+                      ),
+                      withinRangeTextStyle: gilroyMediumTextStyle(
+                          fontSize: 11.43, color: ColorRes.color_27354C),
+                    ),
+                    rangeStartDay: controller.startTime,
+                    onRangeSelected: (start, end, as) {
+                      controller.rangSelect(start, end, as);
+                      print(
+                          "<<<<<<<<<<<<<<<<<<<<<<<<<<<<  starn<$start>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                      print(
+                          "<<<<<<<<<<<<<<<<<<<<<<<<<<End <<<$end>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                      print(
+                          "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<$as>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                    },
+                    rangeEndDay: controller.endtime,
+                    rangeSelectionMode: RangeSelectionMode.toggledOn,
+                    headerStyle: HeaderStyle(
+                      titleTextStyle: gilroyBoldTextStyle(
+                          fontSize: 11.43, color: ColorRes.black),
+                      leftChevronVisible: true,
+                      rightChevronVisible: true,
+                      formatButtonVisible: false,
+                      titleCentered: false,
+                      leftChevronIcon: Icon(
+                        Icons.chevron_left,
+                        color: ColorRes.black.withOpacity(0.5),
+                      ),
+                      rightChevronIcon: Icon(
+                        Icons.chevron_right,
+                        color: ColorRes.black.withOpacity(0.5),
+                      ),
+                      rightChevronMargin: EdgeInsets.only(right: Get.width*0.30),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(12),
+                        ),
+                      ),
+                    ),
+                    daysOfWeekStyle: DaysOfWeekStyle(
+                      weekdayStyle: gilroyBoldTextStyle(
+                          fontSize: 11.43, color: ColorRes.color_50369C),
+                    ),
+                    calendarFormat: CalendarFormat.month,
+
+                    startingDayOfWeek: StartingDayOfWeek.monday,
                   ),
                 ),
                 // SfDateRangePicker(
@@ -272,8 +265,10 @@ class SetupDateScreen extends StatelessWidget {
                 ),
                 child: Stack(
                   children: [
-                    Center(
-                      child: SizedBox(
+                    SizedBox(
+                      height: 191,
+                      width: Get.width,
+                      child: Center(
                         child: GetBuilder<SetupDateController>(
                           id: 'selectC',
                           builder: (controller) => TextField(
@@ -293,13 +288,7 @@ class SetupDateScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        height: 30,
-                        width: Get.width,
                       ),
-                      // child: Text(
-                      //   "\$00.00",
-                      //   style: gilroySemiBoldTextStyle(fontSize: 24),
-                      // ),
                     ),
                     Column(
                       children: [
@@ -326,47 +315,43 @@ class SetupDateScreen extends StatelessWidget {
                                     ),
                                     height: 25,
                                     width: 90,
-                                    child: Expanded(
-                                      child:
-                                          // Text(setupDateController.select)
-                                          GestureDetector(
+                                    child: GestureDetector(
                                         onTap: () {
-                                          controller.showDrop();
+                                    controller.showDrop();
 
-                                          
+
                                         },
                                         child: Row(
-                                          children: [
-                                            const SizedBox(
-                                              width: 5,
-                                            ),
-                                            Image.asset(
-                                              controller.flag,
-                                              height: 20,
-                                              width: 15,
-                                            ),
-                                            const SizedBox(
-                                              width: 5,
-                                            ),
-                                            Text(
-                                              controller.select,
-                                              style: gilroyMediumTextStyle(
-                                                  fontSize: 12,
-                                                  color: ColorRes.black),
-                                            ),
-                                            const Spacer(),
-                                            Image.asset(
-                                              AssetRes.drop,
-                                              height: 3.5,
-                                              width: 7,
-                                            ),
-                                            const SizedBox(
-                                              width: 5,
-                                            ),
-                                          ],
+                                    children: [
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      Image.asset(
+                                        controller.flag,
+                                        height: 20,
+                                        width: 15,
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                        controller.select,
+                                        style: gilroyMediumTextStyle(
+                                            fontSize: 12,
+                                            color: ColorRes.black),
+                                      ),
+                                      const Spacer(),
+                                      Image.asset(
+                                        AssetRes.drop,
+                                        height: 3.5,
+                                        width: 7,
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                    ],
                                         ),
                                       ),
-                                    ),
                                   ),
                                   const SizedBox(
                                     height: 1,

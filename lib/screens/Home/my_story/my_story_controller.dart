@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/myStory_model.dart';
 import 'package:rainbow/model/storyViewList_model.dart';
+import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/my_story/api/myStroy_api.dart';
 import 'package:rainbow/screens/Home/my_story/widgets/myStoryComments_screen.dart';
 import 'package:rainbow/screens/Home/my_story/widgets/myStoryListLike_screen.dart';
@@ -38,7 +39,7 @@ class MyStoryController extends GetxController {
       Get.bottomSheet(
         StoryViewListScreen(),
         isScrollControlled: true,
-      ).then((value){
+      ).then((value) {
         playAnimation();
       });
       loader.value = false;
@@ -78,7 +79,7 @@ class MyStoryController extends GetxController {
   void onCommentButtonTap({required MyStory myStory, required int storyindex}) {
     pauseAnimation();
     comments = myStory.storycommentList ?? [];
-    Get.to(() => const MyStoryCommentsScreen())!.whenComplete((){
+    Get.to(() => const MyStoryCommentsScreen())!.whenComplete(() {
       playAnimation();
     });
   }
@@ -110,12 +111,11 @@ class MyStoryController extends GetxController {
         loader.value = true;
         String? result = await MyStoryApi.deleteMyStory(
             myStoryModel.data![storyIndex].id.toString());
-        playAnimation();
-        loader.value = false;
-        Get.back();
         if (result != null) {
+          loader.value = false;
+          await Get.find<HomeController>().onStory();
+          //flutterToast(result);
           Get.back();
-          flutterToast(result);
         }
       },
       onCancelTap: () {
@@ -142,10 +142,10 @@ class MyStoryController extends GetxController {
     }*/
     loader.value = true;
     String url = myStoryModel.data![storyIndex].storyItem.toString();
-    try{
+    try {
       isImageLoading = true;
       await precacheImage(NetworkImage(url), context);
-    }catch(e){
+    } catch (e) {
       debugPrint(e.toString());
     }
     isImageLoading = false;
@@ -154,20 +154,19 @@ class MyStoryController extends GetxController {
   }
 
   Future<void> viewStoryApi() async {
-    String storyId = myStoryModel.data![storyIndex].id
-        .toString();
+    String storyId = myStoryModel.data![storyIndex].id.toString();
     await MyStoryApi.storyViewAPi(storyId);
   }
 
   void playAnimation() {
-    if(indicatorAnimationController == null){
+    if (indicatorAnimationController == null) {
       return;
     }
     indicatorAnimationController!.value = IndicatorAnimationCommand.resume;
   }
 
   void pauseAnimation() {
-    if(indicatorAnimationController == null){
+    if (indicatorAnimationController == null) {
       return;
     }
     indicatorAnimationController!.value = IndicatorAnimationCommand.pause;

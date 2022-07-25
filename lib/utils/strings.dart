@@ -413,6 +413,7 @@ class Strings {
   static const supporterror01 = "Message is required";
   static const subject = "Subject";
   static const supportError02 = "Subject is requred";
+  ///____________________________________Support123__________________________________________
   static const delete = "Delete";
   ///____________________________________Support_______________________________________
 
@@ -466,4 +467,5 @@ class Strings {
   // static const tags = ;
   // static const tags = ;
 
+  static const delete = "Delete";
 }
