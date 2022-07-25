@@ -426,7 +426,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                             children: [
                               SizedBox(
                                 height: 40,
-                                width: 250,
+                                width: 280,
                                 child: TextFormField(
                                   controller: controller.writeSomething,
                                   decoration: InputDecoration(
