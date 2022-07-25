@@ -151,7 +151,7 @@ class MyStoryController extends GetxController {
         if (result != null) {
           loader.value = false;
           await Get.find<HomeController>().onStory();
-          //flutterToast(result);
+
           Get.back();
         }
       },
