@@ -15,6 +15,7 @@ import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
