@@ -137,7 +137,7 @@ Widget profileDetails() {
                   Uri.parse(controller.viewProfile.data!.instagram.toString()));
               print("insta");
             },
-            child: controller.viewProfile.data==null
+            child: controller.viewProfile.data!.instagram==""
                 ? const SizedBox()
                 : Container(
                     height: 24,
@@ -159,7 +159,7 @@ Widget profileDetails() {
                     Uri.parse(controller.viewProfile.data!.youtube.toString()));
                 print("youtube");
               },
-              child:  controller.viewProfile.data==null
+              child:  controller.viewProfile.data!.youtube==""
                   ? const SizedBox()
                   : Container(
                       height: 24,
@@ -186,7 +186,7 @@ Widget profileDetails() {
 
                 print("facebook");
               },
-              child:  controller.viewProfile.data==null
+              child:  controller.viewProfile.data!.facebook==""
                   ? const SizedBox()
                   : Container(
                       height: 24,
@@ -208,7 +208,7 @@ Widget profileDetails() {
 
                 print("twitter");
               },
-              child:  controller.viewProfile.data==null
+              child:  controller.viewProfile.data!.twitter==''
                   ? const SizedBox()
                   : Container(
                       height: 24,

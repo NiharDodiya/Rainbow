@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/AdvertiserVerifyController.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/AdvertiserVerifyOtpScreen.dart';
 import 'package:rainbow/screens/auth/login/login_api/advertisers_login_json.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
 import 'package:rainbow/screens/auth/register/widget/RegisterVerifyOtp_Screen.dart';
@@ -25,7 +26,7 @@ class LoginApi {
     String password,
   ) async {
     try {
-      RegisterVerifyController controller =Get.put(RegisterVerifyController());
+      RegisterVerifyController controller = Get.put(RegisterVerifyController());
       String url = EndPoints.login;
       Map<String, String> param = {
         'email': email,
@@ -59,7 +60,7 @@ class LoginApi {
               await PrefService.setValue(PrefKeys.phonSaveNumberEndUser,
                   jsonDecode(response.body)["data"]["phone_number"]);
               controller.phoneNumber =
-              jsonDecode(response.body)["data"]["phone_number"];
+                  jsonDecode(response.body)["data"]["phone_number"];
               await controller.sendOtp();
               Get.to(() => const RegisterOtpScreen());
             } else if (jsonDecode(response.body)["data"]["id_status"] ==
@@ -68,36 +69,41 @@ class LoginApi {
             } else if (jsonDecode(response.body)["data"]["selfi_status"] ==
                 "pending") {
               Get.to(() => const SelfieVerificationScreen());
-            }
-            else {
+            } else {
               await PrefService.setValue(
                   PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
-              await PrefService.setValue(
-                  PrefKeys.loginRole,
+              await PrefService.setValue(PrefKeys.loginRole,
                   jsonDecode(response.body)["data"]["role"]);
               Get.offAll(() =>
-              jsonDecode(response.body)["data"]["role"] == "end_user"
-                  ? const Dashboard()
-                  : AdvertisementDashBord());
+                  jsonDecode(response.body)["data"]["role"] == "end_user"
+                      ? const Dashboard()
+                      : AdvertisementDashBord());
             }
-          }
-            else {
-            AdvertiserVerifyController advertiserVerifyController = Get.put(AdvertiserVerifyController());
+          } else {
+            AdvertiserVerifyController advertiserVerifyController =
+                Get.put(AdvertiserVerifyController());
 
             await PrefService.setValue(
-                  PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
-              await PrefService.setValue(PrefKeys.phonSaveNumberAdvertiser,
-                  jsonDecode(response.body)["data"]["phone_number"]);
+                PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
+            await PrefService.setValue(PrefKeys.phonSaveNumberAdvertiser,
+                jsonDecode(response.body)["data"]["phone_number"]);
             advertiserVerifyController.phoneNumber =
-              jsonDecode(response.body)["data"]["phone_number"];
-              await PrefService.setValue(
-                  PrefKeys.loginRole,
-                  jsonDecode(response.body)["data"]["role"]);
+                jsonDecode(response.body)["data"]["phone_number"];
+            await PrefService.setValue(
+                PrefKeys.loginRole, jsonDecode(response.body)["data"]["role"]);
+
+
+            if (jsonDecode(response.body)["data"]["mobile_status"] ==
+                "pending") {
+              advertiserVerifyController.phoneNumberRegister();
+              Get.to(() => AdvertiserVerifyOtpScreen());
+            } else {
               Get.offAll(() =>
-              jsonDecode(response.body)["data"]["role"] == "end_user"
-                  ? const Dashboard()
-                  : AdvertisementDashBord());
+                  jsonDecode(response.body)["data"]["role"] == "end_user"
+                      ? const Dashboard()
+                      : AdvertisementDashBord());
             }
+          }
 
           //Get.offAll(() => const Dashboard());
 

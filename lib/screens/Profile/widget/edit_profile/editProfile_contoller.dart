@@ -158,7 +158,7 @@ class EditProfileController extends GetxController {
     if (path != null) {
       frontImage = File(path);
     }
-    uploadImageApi();
+    // uploadImageApi();
     Get.back();
     update(["Edit_profile"]);
   }
@@ -169,7 +169,7 @@ class EditProfileController extends GetxController {
     if (path != null) {
       backImage = File(path);
     }
-    uploadImageBackApi();
+    // uploadImageBackApi();
     Get.back();
     update(["Edit_profile"]);
   }
@@ -180,7 +180,7 @@ class EditProfileController extends GetxController {
     if (path != null) {
       backImage = File(path);
     }
-    uploadImageBackApi();
+    // uploadImageBackApi();
     Get.back();
     update(["Edit_profile"]);
   }
@@ -191,7 +191,7 @@ class EditProfileController extends GetxController {
     if (path != null) {
       frontImage = File(path);
     }
-    uploadImageApi();
+    // uploadImageApi();
     Get.back();
 
     update(["Edit_profile"]);
@@ -221,22 +221,28 @@ class EditProfileController extends GetxController {
   }
 
   Future frontCamera() async {
+    loader.value=true;
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
     if (image == null) return;
     final imageFront = File(image.path);
     frontImage = imageFront;
-    // uploadImageApi();
+     uploadImageApi();
+    loader.value=false;
+     update(["Edit_profile"]);
 
-    update(["Edit_profile"]);
   }
 
   Future backCamera() async {
+    loader.value=true;
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
     if (image == null) return;
     final imageTemp = File(image.path);
     backImage = imageTemp;
-    // uploadImageBackApi();
+     uploadImageBackApi();
+    loader.value=false;
     update(["Edit_profile"]);
+
+
   }
 
   UploadImage uploadImage1 = UploadImage();
@@ -275,8 +281,6 @@ class EditProfileController extends GetxController {
     loader.value = true;
     try {
       print("Hello");
-      uploadImageApi();
-      uploadImageBackApi();
       EditProfile? data = await EditProfileApi.postRegister(
         uploadImage2.data!.id.toString(),
         uploadImage1.data!.id.toString(),

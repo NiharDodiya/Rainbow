@@ -32,7 +32,7 @@ class ScanYourFaceApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          flutterToast(jsonDecode(response.body)["message"]);
+          errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           await PrefService.setValue(
               PrefKeys.loginRole, jsonDecode(response.body)["data"]["role"]);

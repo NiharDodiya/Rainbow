@@ -64,10 +64,9 @@ class AdvirtisersApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          flutterToast(jsonDecode(response.body)["message"]);
+          errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           AdvertiserVerifyController advertiserVerifyController = Get.put(AdvertiserVerifyController());
-
           PrefService.setValue(PrefKeys.register, true);
           await PrefService.setValue(PrefKeys.phonSaveNumberAdvertiser,
               jsonDecode(response.body)["data"]["phone_number"]);

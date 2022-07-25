@@ -36,7 +36,7 @@ class VerifyCodeApi {
         // flutterToast( jsonDecode(response.body)["message"]);
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          flutterToast(jsonDecode(response.body)["message"]);
+          errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           await PrefService.setValue(PrefKeys.register, true);
           Get.to(() => const NewPasswordScreen());
@@ -70,7 +70,7 @@ class VerifyCodeApi {
         // flutterToast( jsonDecode(response.body)["message"]);
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          flutterToast(jsonDecode(response.body)["message"]);
+          errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           flutterToast(jsonDecode(response.body)["message"]);
           // await PrefService.setValue(PrefKeys.register, true);
@@ -158,7 +158,7 @@ class VerifyCodeApi {
         // flutterToast( jsonDecode(response.body)["message"]);
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          flutterToast(jsonDecode(response.body)["message"]);
+          errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           await PrefService.setValue(PrefKeys.register, true);
           PrefService.setValue(PrefKeys.showTermsCondition, true);

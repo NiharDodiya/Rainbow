@@ -44,7 +44,6 @@ class NewPasswordController extends GetxController {
     try {
       loader.value = true;
       await CreateNewPasswordApi.postRegister(newPasswordController.text);
-
       loader.value = false;
     } catch (e) {
       flutterToast(e.toString());

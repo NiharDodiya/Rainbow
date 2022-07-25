@@ -43,7 +43,7 @@ class PrivacyApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          flutterToast(jsonDecode(response.body)["data"]);
+          errorToast(jsonDecode(response.body)["data"]);
         } else if (status == true) {
           Get.back();
           flutterToast(jsonDecode(response.body)["data"]);

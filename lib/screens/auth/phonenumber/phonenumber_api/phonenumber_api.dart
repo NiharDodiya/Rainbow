@@ -30,7 +30,7 @@ class PhoneNumberApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          flutterToast(jsonDecode(response.body)["message"]);
+          errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           await PrefService.setValue(PrefKeys.register, true);
           await PrefService.setValue(
@@ -38,7 +38,6 @@ class PhoneNumberApi {
           Get.to(() => const VerifyPhoneScreen());
           flutterToast(jsonDecode(response.body)["message"]);
         }
-
         return phoneNumberFromJson(response.body);
       }
 
@@ -50,10 +49,10 @@ class PhoneNumberApi {
       return [];
     }
   }
-  static Future sendOtp(
-      String phoneNumber,
-      ) async {
 
+  static Future sendOtp(
+    String phoneNumber,
+  ) async {
     try {
       String url = EndPoints.mobileCheck;
       Map<String, String> param = {
@@ -68,7 +67,7 @@ class PhoneNumberApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          flutterToast(jsonDecode(response.body)["message"]);
+          errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           await PrefService.setValue(PrefKeys.register, true);
           await PrefService.setValue(
@@ -90,9 +89,8 @@ class PhoneNumberApi {
   }
 
   static Future resendOtp(
-      String phoneNumber,
-      ) async {
-
+    String phoneNumber,
+  ) async {
     try {
       String url = EndPoints.mobileCheck;
       Map<String, String> param = {
@@ -107,7 +105,7 @@ class PhoneNumberApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          flutterToast(jsonDecode(response.body)["message"]);
+          errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           // await PrefService.setValue(PrefKeys.register, true);
           await PrefService.setValue(
@@ -127,9 +125,8 @@ class PhoneNumberApi {
   }
 
   static Future advertiserSendOtp(
-      String phoneNumber,
-      ) async {
-
+    String phoneNumber,
+  ) async {
     try {
       String url = EndPoints.mobileCheck;
       Map<String, String> param = {
@@ -144,7 +141,7 @@ class PhoneNumberApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          flutterToast(jsonDecode(response.body)["message"]);
+          errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           // await PrefService.setValue(PrefKeys.register, true);
           await PrefService.setValue(
