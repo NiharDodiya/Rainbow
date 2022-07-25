@@ -400,8 +400,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                           ),
                                           InkWell(
                                             onTap: () =>
-                                                controller.onDeleteTap(
-                                                    storyIndex),
+                                                controller.onDeleteTap(storyIndex),
                                             child: Column(
                                               mainAxisSize:
                                               MainAxisSize.min,

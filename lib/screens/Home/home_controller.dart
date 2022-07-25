@@ -55,9 +55,7 @@ class HomeController extends GetxController {
 
   void onNewStoryTap() {
     // if (myStoryController.myStoryModel.data!.isNotEmpty) {
-    Get.to(() => const MyStoryScreen())!.whenComplete(() {
-      init();
-    });
+    Get.to(() => const MyStoryScreen());
     /*   } else {
       Get.to(() => AddStoryScreen());
     }*/
@@ -104,13 +102,18 @@ class HomeController extends GetxController {
     countryNationalites();
     // await blockListDetailes();
     // await listOfFriedRequestDetails();
-    await viewStoryController.friendStoryApiData();
     await controller.viewProfileDetails();
-    await myStoryController.init();
+    await onStory();
     notificationsController.getNotifications();
     changeLoader(false);
     // viewStoryController.friendStoryApiData();
     // loader.value = true;
+  }
+
+  Future<void> onStory() async {
+    await viewStoryController.friendStoryApiData();
+    await myStoryController.init();
+    update(['home']);
   }
 
   Future<void> myStoryOnTap() async {

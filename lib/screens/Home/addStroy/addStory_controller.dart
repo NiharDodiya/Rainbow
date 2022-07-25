@@ -54,8 +54,8 @@ class AddStoryController extends GetxController {
 
   Future<void> onStoryPost() async {
     await uploadImageApi();
-    DashboardController dashboardController = Get.find();
-    dashboardController.onBottomBarChange(0);
+    // DashboardController dashboardController = Get.find();
+    // dashboardController.onBottomBarChange(0);
   }
 
   UploadImage uploadImage = UploadImage();
@@ -104,13 +104,11 @@ class AddStoryController extends GetxController {
           ) ??
           AdStoryModel());
       update(["adStory"]);
-
-      loader.value = false;
-      // Get.offAll(() => Dashboard());
-      Get.back();
-      Get.back();
       flutterToast(adStoryModel.message.toString());
-      Get.find<HomeController>().init();
+      await Get.find<HomeController>().onStory();
+      loader.value = false;
+      Get.back();
+      Get.back();
     } catch (e) {
       loader.value = false;
     }

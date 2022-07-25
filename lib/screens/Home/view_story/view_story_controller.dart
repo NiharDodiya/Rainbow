@@ -152,8 +152,7 @@ class ViewStoryController extends GetxController {
     }
   }
 
-  Future<void> onCommentButtonTap(
-      {required FriendStory friendStory, required int storyIndex}) async {
+  Future<void> onCommentButtonTap({required FriendStory friendStory, required int storyIndex}) async {
     pauseAnimation();
     await friendStoryApiData();
     StoryCommentsController storyController =
