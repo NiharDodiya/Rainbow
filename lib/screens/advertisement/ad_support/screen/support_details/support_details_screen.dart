@@ -83,6 +83,7 @@ class SupportDetailsScreen extends StatelessWidget {
                     style: gilroySemiBoldTextStyle(
                         fontSize: 18, color: ColorRes.color_FFA620),
                   ),
+                 
                 ],
               ),
               SizedBox(
@@ -124,9 +125,9 @@ class SupportDetailsScreen extends StatelessWidget {
                               fontSize: 18,
                             ),
                           ),
-                          SizedBox(
-                            height: Get.height * 0.0086,
-                          )
+                          // SizedBox(
+                          //   height: Get.height * 0.0086,
+                          // )
                         ]),
 
                     // const Spacer(),
@@ -237,9 +238,9 @@ class SupportDetailsScreen extends StatelessWidget {
                               fontSize: 18,
                             ),
                           ),
-                          SizedBox(
-                            height: Get.height * 0.0086,
-                          )
+                          // SizedBox(
+                          //   height: Get.height * 0.0086,
+                          // )
                         ]),
 
                     // const Spacer(),

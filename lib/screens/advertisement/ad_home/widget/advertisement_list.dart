@@ -192,7 +192,7 @@ Widget advertisementList() {
                                 itemCount: 3,
                               ),
                             )
-                          : SizedBox()),
+                          : const SizedBox()),
                 ),
               ],
             ),
