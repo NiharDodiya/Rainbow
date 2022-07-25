@@ -1,8 +1,13 @@
 // ignore_for_file: avoid_print, sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:flutter_multi_formatter/formatters/money_input_formatter.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
+import 'package:rainbow/common/Widget/country_name.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/payment_failed.dart/payment_failed_screen.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/payment_successful/payment_successful_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_controller.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -40,7 +45,7 @@ class SetupDateScreen extends StatelessWidget {
               Expanded(
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
-                  child: bottom(),
+                  child: bottom(context),
                 ),
               ),
             ],
@@ -99,7 +104,7 @@ class SetupDateScreen extends StatelessWidget {
     );
   }
 
-  Widget bottom() {
+  Widget bottom(context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: Get.width * 0.0853),
       child: Column(
@@ -131,8 +136,16 @@ class SetupDateScreen extends StatelessWidget {
                   child: GetBuilder<SetupDateController>(
                     id: 'range',
                     builder: (controller) => TableCalendar(
-                      calendarBuilders: CalendarBuilders(),
+                      calendarBuilders: const CalendarBuilders(),
                       shouldFillViewport: true,
+                      // selectedDayPredicate: ,
+                      onPageChanged: (d) {
+                        print(d.month);
+                      },
+                      onHeaderTapped: (on) {
+                        print(on.isUtc);
+                      },
+                      onDaySelected: (statrt, end) {},
                       firstDay: DateTime(
                         2022,
                         DateTime.now().month,
@@ -202,28 +215,18 @@ class SetupDateScreen extends StatelessWidget {
                       rangeEndDay: controller.endtime,
                       rangeSelectionMode: RangeSelectionMode.toggledOn,
                       headerStyle: HeaderStyle(
-                        titleTextStyle: TextStyle(fontSize: 0),
+                        titleTextStyle: TextStyle(color: ColorRes.black),
                         leftChevronVisible: false,
-                        rightChevronVisible: true,
-                        rightChevronIcon: const Icon(
-                          Icons.arrow_drop_down,
-                          color: ColorRes.black,
-                        ),
-                        rightChevronPadding: const EdgeInsets.only(
-                          right: 175,
-                        ),
-                        //// Moth Show
-                        formatButtonVisible: true,
+
+                        formatButtonVisible: false,
                         formatButtonTextStyle: gilroySemiBoldTextStyle(
                           fontSize: 11.94,
                           color: ColorRes.black,
                         ),
                         formatButtonShowsNext: false,
                         formatButtonDecoration: const BoxDecoration(),
-                        titleCentered: true,
-                        formatButtonPadding: EdgeInsets.only(left: 1),
-
-                        // titleCentered: false,
+                        titleCentered: false,
+                        // titleTextFormatter:(date, locale) => DateFormat.yM(locale).format(date),
 
                         decoration: const BoxDecoration(
                           color: Colors.white,
@@ -231,17 +234,6 @@ class SetupDateScreen extends StatelessWidget {
                             Radius.circular(12),
                           ),
                         ),
-
-                        // rightChevronIcon: Icon(
-                        //   Icons.chevron_right,
-                        //   size: 16,
-                        //   color: Colors.pink,
-                        // ),
-                        // leftChevronIcon: Icon(
-                        //   Icons.chevron_left,
-                        //   size: 16,
-                        //   color: Colors.blue,
-                        // ),
                       ),
                       daysOfWeekStyle: DaysOfWeekStyle(
                         weekdayStyle: gilroyBoldTextStyle(
@@ -282,18 +274,27 @@ class SetupDateScreen extends StatelessWidget {
                   children: [
                     Center(
                       child: SizedBox(
-                        child: TextField(
-                          controller: TextEditingController(),
-                          style: gilroySemiBoldTextStyle(fontSize: 24),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            counterStyle: gilroySemiBoldTextStyle(fontSize: 24),
-                            hintText: "\$00.00",
-                            hintStyle: gilroySemiBoldTextStyle(fontSize: 24),
+                        child: GetBuilder<SetupDateController>(
+                          id: 'selectC',
+                          builder: (controller) => TextField(
+                            inputFormatters: [
+                              MoneyInputFormatter(
+                                  leadingSymbol: controller.currency)
+                            ],
+                            controller: TextEditingController(),
+                            style: gilroySemiBoldTextStyle(fontSize: 24),
+                            textAlign: TextAlign.center,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              counterStyle:
+                                  gilroySemiBoldTextStyle(fontSize: 24),
+                              hintText: "${controller.currency}00.00",
+                              hintStyle: gilroySemiBoldTextStyle(fontSize: 24),
+                            ),
                           ),
                         ),
                         height: 30,
-                        width: 120,
+                        width: Get.width,
                       ),
                       // child: Text(
                       //   "\$00.00",
@@ -304,6 +305,7 @@ class SetupDateScreen extends StatelessWidget {
                       children: [
                         const SizedBox(height: 17),
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(width: Get.width * 0.085),
                             Text(
@@ -311,39 +313,110 @@ class SetupDateScreen extends StatelessWidget {
                               style: gilroyMediumTextStyle(fontSize: 18),
                             ),
                             const Spacer(),
-                            Container(
-                              decoration: const BoxDecoration(
-                                color: ColorRes.white,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10),
-                                ),
-                              ),
-                              height: 20,
-                              width: 80,
-                              child: Expanded(
-                                child: GetBuilder<SetupDateController>(
-                                  id: 'drop',
-                                  builder: (controller) => DropdownButton(
-                                    dropdownColor: ColorRes.white,
-                                    hint: Center(
-                                      child: Text(
-                                        "caneda",
-                                        style: gilroyMediumTextStyle(
-                                            fontSize: 12,
-                                            color: ColorRes.black),
+                            GetBuilder<SetupDateController>(
+                              id: 'selectC',
+                              builder: (controller) => Column(
+                                children: [
+                                  Container(
+                                    decoration: const BoxDecoration(
+                                      color: ColorRes.white,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10),
                                       ),
                                     ),
-                                    items: controller.list.map((String items) {
-                                      return DropdownMenuItem(
-                                        value: controller.list,
-                                        child: Text(items),
-                                      );
-                                    }).toList(),
-                                    onChanged: (newValue) {
-                                      controller.drop(newValue);
-                                    },
+                                    height: 25,
+                                    width: 90,
+                                    child: Expanded(
+                                      child:
+                                          // Text(setupDateController.select)
+                                          GestureDetector(
+                                        onTap: () {
+                                          controller.showDrop();
+
+                                          
+                                        },
+                                        child: Row(
+                                          children: [
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Image.asset(
+                                              controller.flag,
+                                              height: 20,
+                                              width: 15,
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              controller.select,
+                                              style: gilroyMediumTextStyle(
+                                                  fontSize: 12,
+                                                  color: ColorRes.black),
+                                            ),
+                                            const Spacer(),
+                                            Image.asset(
+                                              AssetRes.drop,
+                                              height: 3.5,
+                                              width: 7,
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  const SizedBox(
+                                    height: 1,
+                                  ),
+                                  controller.showDropDown
+                                      ? Container(
+                                          height: 50,
+                                          width: 80,
+                                          decoration: const BoxDecoration(
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(15),
+                                            ),
+                                          ),
+                                          child: ListView.builder(
+                                            itemCount:
+                                                setupDateController.list.length,
+                                            itemBuilder: (context, index) =>
+                                                GestureDetector(
+                                              onTap: () {
+                                                controller.selectContry(index);
+                                              },
+                                              child: Container(
+                                                height: 20,
+                                                width: 40,
+                                                decoration: const BoxDecoration(
+                                                    color: ColorRes.white),
+                                                child: Row(
+                                                  children: [
+                                                    const SizedBox(
+                                                      width: 2,
+                                                    ),
+                                                    Image.asset(controller
+                                                        .flagList[index]),
+                                                    const SizedBox(
+                                                      width: 2,
+                                                    ),
+                                                    Text(
+                                                      controller.list[index],
+                                                      style: const TextStyle(
+                                                          color:
+                                                              ColorRes.black),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      : Container(),
+                                ],
                               ),
                             ),
                             SizedBox(
@@ -358,6 +431,32 @@ class SetupDateScreen extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               SubmitButton(
+                onTap: () {
+                  Get.bottomSheet(
+                    enableDrag: false,
+                    BottomSheet(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30),
+                          topRight: Radius.circular(30),
+                        ),
+                      ),
+                      backgroundColor: ColorRes.white,
+                      onClosing: () {},
+                      constraints: BoxConstraints(
+                        maxHeight: Get.height - (Get.height * 0.0480),
+                      ),
+
+                      // enableDrag: true,
+                      builder: (_) => ShowBottomNext(),
+                    ),
+                    isScrollControlled: true,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(35),
+                    ),
+                    ignoreSafeArea: true,
+                  );
+                },
                 child: Text(
                   "Next",
                   style: gilroyBoldTextStyle(
@@ -370,6 +469,180 @@ class SetupDateScreen extends StatelessWidget {
             ],
           )
         ],
+      ),
+    );
+  }
+}
+
+class ShowBottomNext extends StatelessWidget {
+  const ShowBottomNext({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return DraggableScrollableSheet(
+      initialChildSize: 0.99,
+      minChildSize: 0.95,
+      maxChildSize: 0.99,
+      builder: (context, scrollController) => GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        child: SingleChildScrollView(
+          controller: scrollController,
+          child: Padding(
+            padding: EdgeInsets.only(
+                top: Get.height * 0.1169,
+                left: Get.width * 0.0853,
+                right: Get.width * 0.0853),
+            child: Column(
+              children: [
+                Text(
+                  "Confirm Advertisement Details And Pay",
+                  style: gilroySemiBoldTextStyle(
+                    fontSize: 24,
+                    color: ColorRes.black,
+                  ),
+                ),
+                SizedBox(
+                  height: Get.height * 0.03078,
+                ),
+                Container(
+                  width: Get.width * 0.8293,
+                  height: 350,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        ColorRes.color_50369C,
+                        ColorRes.color_50369C,
+                        ColorRes.color_D18EEE,
+                        ColorRes.color_D18EEE,
+                      ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: Get.width * 0.0666),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: Get.height * 0.0320,
+                        ),
+                        Text(
+                          "You have to pay",
+                          style: gilroySemiBoldTextStyle(fontSize: 12),
+                        ),
+                        // SizedBox(
+                        //   height: Get.height * 0.0320,
+                        // ),
+                        RichText(
+                          text: TextSpan(children: [
+                            TextSpan(
+                              text: "120",
+                              style: poppinsSemiBold(fontSize: 64),
+                            ),
+                            TextSpan(
+                              text: ".00USD",
+                              style: poppinsSemiBold(fontSize: 24),
+                            )
+                          ]),
+                        ),
+
+                        Divider(
+                          color: ColorRes.black.withOpacity(0.5),
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.036,
+                        ),
+                        Text(
+                          "Payer’s Name",
+                          style: poppinsRegularBold(fontSize: 12),
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.007389,
+                        ),
+                        Text(
+                          "Miracle Keen",
+                          style: poppinsMediumBold(fontSize: 14),
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.0209,
+                        ),
+                        Text(
+                          "Transaction Number",
+                          style: poppinsRegularBold(fontSize: 12),
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.007389,
+                        ),
+                        Text(
+                          "122900083HN",
+                          style: poppinsMediumBold(fontSize: 14),
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.0209,
+                        ),
+                        Text(
+                          "Service",
+                          style: poppinsRegularBold(fontSize: 12),
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.007389,
+                        ),
+                        Text(
+                          "Post Ads",
+                          style: poppinsMediumBold(fontSize: 14),
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.0209,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: Get.height * 0.0665,
+                ),
+                SubmitButton(
+                  onTap: () {
+                    Get.to(() => const PaymentSuccessfulScreen());
+                  },
+                  child: Text(
+                    "Pay 120.00USD",
+                    style: gilroyBoldTextStyle(
+                      fontSize: 16,
+                      color: ColorRes.black,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: Get.height * 0.0246,
+                ),
+                SubmitButton(
+                  onTap: () {
+                    Get.to(() => const PaymentFailedScreen());
+                  },
+                  child: Text(
+                    "Cancel",
+                    style: gilroySemiBoldTextStyle(fontSize: 16),
+                  ),
+                  colors: const [
+                    ColorRes.color_F86666,
+                    ColorRes.color_F82222,
+                  ],
+                ),
+                SizedBox(
+                  height: Get.height * 0.0320,
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

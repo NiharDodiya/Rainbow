@@ -96,7 +96,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                   Get.back();
                 },
                 child: Text(
-                  "Add advertisement",
+                  Strings.addAdvertisement,
                   style: gilroyBoldTextStyle(),
                 ),
               ),
@@ -139,7 +139,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                   border: InputBorder.none,
                   hintStyle: gilroyMediumTextStyle(
                       fontSize: 18, color: ColorRes.black.withOpacity(0.3)),
-                  hintText: "Tags(Separated by space)",
+                  hintText: Strings.tagsSeparated,
                 ),
               ),
             ),
@@ -215,7 +215,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        "Upload Images",
+                        Strings.uploadImage,
                         style: gilroyMediumTextStyle(
                             fontSize: 16, color: ColorRes.color_ADB1B1),
                       )
@@ -229,7 +229,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
               controller: advertisementController.titleController,
               title: "",
               titleBottomPadding: 0,
-              hintText: "Title",
+              hintText: Strings.title,
               showTitle: false,
             ),
             GetBuilder<CreateAdvertisementController>(
@@ -258,7 +258,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                         ),
                         controller.address == null
                             ? Text(
-                                "Use current location",
+                               Strings.useCurrentLocation ,
                                 style: gilroyBoldTextStyle(
                                     fontSize: 16, color: ColorRes.black),
                               )
@@ -277,18 +277,18 @@ class CreateAdvertisementScreen extends StatelessWidget {
               controller: advertisementController.canedaController,
               title: "",
               titleBottomPadding: 0,
-              hintText: "Canada",
+              hintText: Strings.caneda,
               showTitle: false,
             ),
             AppTextFiled(
               controller: advertisementController.streetController,
               title: "",
               titleBottomPadding: 0,
-              hintText: "Street",
+              hintText: Strings.street,
               showTitle: false,
             ),
             Text(
-              "Your place name/number + Street/ Road",
+             Strings.plase ,
               style: gilroyBoldTextStyle(
                   fontSize: 12, color: ColorRes.color_979B9B),
             ),
@@ -297,28 +297,28 @@ class CreateAdvertisementScreen extends StatelessWidget {
               controller: advertisementController.cityController,
               title: "",
               titleBottomPadding: 0,
-              hintText: "City",
+              hintText: Strings.city,
               showTitle: false,
             ),
             AppTextFiled(
               controller: advertisementController.preovinceController,
               title: "",
               titleBottomPadding: 0,
-              hintText: "Province / Territory (Canada)",
+              hintText: Strings.proviceHint,
               showTitle: false,
             ),
             AppTextFiled(
               controller: advertisementController.postalCodeController,
               title: "",
               titleBottomPadding: 0,
-              hintText: "Postal Code (Canada)",
+              hintText:Strings.postalHint ,
               showTitle: false,
             ),
             AppTextFiled(
               controller: advertisementController.dateController,
               title: "",
               titleBottomPadding: 0,
-              hintText: "Date",
+              hintText: Strings.date,
               showTitle: false,
             ),
             Container(
@@ -339,7 +339,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                   border: InputBorder.none,
                   hintStyle: gilroyMediumTextStyle(
                       fontSize: 18, color: ColorRes.black.withOpacity(0.3)),
-                  hintText: "Description",
+                  hintText: Strings.description,
                 ),
               ),
             ),
@@ -352,7 +352,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                 onTap: advertisementController.onCallToActionChange,
                 title: "",
                 showtitle: false,
-                hintText: "Call to Action",
+                hintText: Strings.callToAction,
               ),
             ),
             SizedBox(height: Get.height * 0.006),
@@ -360,7 +360,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
               controller: advertisementController.urlLinkController,
               title: "",
               titleBottomPadding: 0,
-              hintText: "URL link (www.mymom.com)",
+              hintText: Strings.urlHint,
               showTitle: false,
             ),
           ],

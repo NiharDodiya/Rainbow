@@ -101,6 +101,7 @@ class Strings {
   static const addressLine2 = 'Address Line 2';
   static const addressLine2Hint = 'State, Country, Postal Code';
   static const phoneNumber = 'Phone Number';
+  static const uploadImageError = "Image not found";
   static const phoneNumberHint = '123 456 789';
   static const maritalStatus = 'Marital Status';
   static const ethnicity = 'Ethnicity';
@@ -127,9 +128,10 @@ class Strings {
   static const addressLine2Error = 'Address Line 2 is required';
   static const phoneNumberError = 'Phone Number is required';
   static const phoneNumberValidError = 'Phone Number is invalid';
-  static const uploadImageError =
-      'Profile Image is not Uploaded \n please upload Profile picture';
+
   static const maritalStatusError = 'Marital Status is required';
+
+
   static const ethnicityError = 'Ethnicity is required';
   static const birthDateError = 'Birth date is required';
   static const postalCodeError = 'PostalCode is required';
@@ -219,8 +221,7 @@ class Strings {
   static const scott = "Scott";
   static const seeAll = "See All";
   static const latestFeed = "Latest Feed";
-  static const latestFeedDes =
-      "Lorem ipsum dolor sit amet, consectetur \nadipiscing elit, sed do eiusmod tempor \nincididunt ut labore et dolore magna aliqua.\n Lorem a commodo consequat ... more ";
+  static const latestFeedDes = "Lorem ipsum dolor sit amet, consectetur \nadipiscing elit, sed do eiusmod tempor \nincididunt ut labore et dolore magna aliqua.\n Lorem a commodo consequat ... more ";
   static const likes = "Likes";
   static const comments = "Comments";
   static const learnMore = "LEARN MORE";
@@ -379,13 +380,13 @@ class Strings {
   static const raymondMarcos = "Raymond Marcos";
   static const logout02 = "LOG OUT";
 
-  static const sun = "Sun";
-  static const mon = "Mon";
-  static const tue = "Tue";
-  static const wed = "Wed";
-  static const th = "Th";
-  static const fri = "Fri";
-  static const sat = "Sat";
+  static const sun ="Sun";
+  static const mon ="Mon";
+  static const tue ="Tue";
+  static const wed ="Wed";
+  static const th ="Th";
+  static const fri ="Fri";
+  static const sat ="Sat";
 
   //___________________________________Cancel approve_____________________________
   static const cancelAprove = "Cancel Advertisement";
@@ -413,4 +414,56 @@ class Strings {
   static const subject = "Subject";
   static const supportError02 = "Subject is requred";
   static const delete = "Delete";
+  ///____________________________________Support_______________________________________
+
+  static const datesuppo = "12/30/2021";
+  static const seriz = "1235CA2B2";
+
+  ///-----------------------------------support creat ---------------------
+  static const attachImage = "Attach images or proof";
+  static const surrogateMom = "Surrogate Mom";
+  static const summary = "Summary";
+  static const doller200 = "\$200";
+  static const tags = "Tags";
+
+  ///------------------------------Ad _home --->Create Advertisement--------
+  static const callToAction = "Call to Action";
+  static const urlLink = "URL Link";
+  static const tagsError = "Tags is required";
+  static const imageError = "image is required";
+  static const titleError = "Title is required";
+  static const canedaError = "Caneda is required";
+  static const provinceError = "Province is required";
+  static const dateError = "Date is requreid";
+  static const descriptionError = "Description is requreid";
+  static const callActionError = "select call To Action is requreid";
+  static const addAdvertisement = "Add advertisement";
+  static const tagsSeparated = "Tags(Separated by space)";
+  static const uploadImage = "Upload Images";
+  static const title = "Title";
+  static const useCurrentLocation = "Use current location";
+  static const caneda = "Canada";
+  static const plase = "Your place name/number + Street/ Road";
+  static const proviceHint = "Province / Territory (Canada)";
+  static const postalHint = "Postal Code (Canada)";
+  static const description = "Description";
+  static const urlHint = "URL link (www.mymom.com)";
+  // static const tags = ;
+
+  ///_______________________________Ad-Home--> payment Succe. and failed_________
+  static const paymentSuccessful = "Payment Successful";
+  static const playerName = "Payer’s Name";
+  static const miracleKeen = "Miracle Keen";
+  static const traNo = "122900083HN";
+
+  static const paymentFailed = "Payment Failed";
+
+  ///_______________________________Ad-Home--> payment Succe. and failed_________
+
+  static const editAdvertisement = "Edit Advertisement";
+  static const location = "Location";
+  static const postAdvertisement = "Post Advertisement";
+  // static const tags = ;
+  // static const tags = ;
+
 }

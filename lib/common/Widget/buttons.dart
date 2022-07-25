@@ -7,8 +7,10 @@ class SubmitButton extends StatelessWidget {
   final String? text;
   final VoidCallback? onTap;
   final Widget? child;
+  final List<Color>? colors;
 
-  const SubmitButton({Key? key, this.text = '', this.onTap, this.child})
+  const SubmitButton(
+      {Key? key, this.text = '', this.onTap, this.child, this.colors})
       : super(key: key);
 
   @override
@@ -22,8 +24,8 @@ class SubmitButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: ColorRes.color_E7D01F,
           borderRadius: BorderRadius.circular(20),
-          gradient: const LinearGradient(
-            colors: [ColorRes.color_FFEC5C, ColorRes.color_DFC60B],
+          gradient:  LinearGradient(
+            colors:colors?? [ColorRes.color_FFEC5C, ColorRes.color_DFC60B],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),

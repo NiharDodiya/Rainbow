@@ -334,3 +334,27 @@ TextStyle interTextMedium({Color? color, double? fontSize}) {
     fontFamily: FontRes.inter,
   );
 }
+TextStyle poppinsSemiBold({Color? color,double? fontSize}){
+  return TextStyle(
+    color: color??ColorRes.white,
+    fontWeight: FontWeight.w600,
+    fontSize: fontSize??18,
+    fontFamily: FontRes.poppinsSemiBold,
+  );
+}
+TextStyle poppinsRegularBold({Color? color,double? fontSize}){
+  return TextStyle(
+    color: color??ColorRes.white,
+    fontWeight: FontWeight.w400,
+    fontSize: fontSize??18,
+    fontFamily: FontRes.poppinsRegular,
+  );
+}
+TextStyle poppinsMediumBold({Color? color,double? fontSize}){
+  return TextStyle(
+    color: color??ColorRes.white,
+    fontWeight: FontWeight.w500,
+    fontSize: fontSize??18,
+    fontFamily: FontRes.poppinsMedium,
+  );
+}
