@@ -332,6 +332,8 @@ class SetupDateScreen extends StatelessWidget {
                                           GestureDetector(
                                         onTap: () {
                                           controller.showDrop();
+
+                                          
                                         },
                                         child: Row(
                                           children: [
