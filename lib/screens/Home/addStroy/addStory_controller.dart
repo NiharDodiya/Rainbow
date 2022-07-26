@@ -92,9 +92,9 @@ class AddStoryController extends GetxController {
     try {
       List<Map<String, dynamic>> list = tagUserList
           .map<Map<String, dynamic>>((e) => {
-                "id_user": e.id.toString(),
-                "name": e.fullName,
-              })
+        "id_user": e.id.toString(),
+        "name": e.fullName,
+      })
           .toList();
       loader.value = true;
       adStoryModel = (await AdStoryApi.postRegister(

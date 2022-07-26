@@ -1,11 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/model/myStory_model.dart';
+import 'package:rainbow/model/friendStroy_model.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_controller.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -64,13 +63,13 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
             GetBuilder<MyStoryController>(
               id: "my_story",
               builder: (controller) {
-                if (controller.myStoryModel.data == null) {
+                if (controller. viewStoryController.storyModel.myStory == null) {
                   return Container(color: ColorRes.black);
                 }
                 return StoryPageView(
                   itemBuilder: (context, pageIndex, storyIndex) {
                     final MyStory story =
-                    controller.myStoryModel.data![storyIndex];
+                    controller.viewStoryController.storyModel.myStory![storyIndex];
                     return Stack(
                       children: [
                         Container(color: Colors.black),
@@ -167,7 +166,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                   IconButton(
                                       onPressed: () {
                                         controller.getStoryViewList(controller
-                                            .myStoryModel.data![pageIndex].id
+                                            . viewStoryController.storyModel.myStory![pageIndex].id
                                             .toString());
                                       },
                                       icon: const Icon(
@@ -220,8 +219,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                       text: TextSpan(
                                         children: [
                                           TextSpan(
-                                            text: controller.myStoryModel
-                                                .data![pageIndex].description
+                                            text: controller. viewStoryController.storyModel.myStory![pageIndex].description
                                                 .toString(),
                                             style:
                                             sfProTextReguler().copyWith(
@@ -293,10 +291,8 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                       ),
                                       const Spacer(),
                                       Text(
-                                        "${controller.myStoryModel
-                                            .data![storyIndex].createdAt!.hour
-                                            .toString()}:${controller.myStoryModel
-                                            .data![storyIndex].createdAt!.minute
+                                        "${controller. viewStoryController.storyModel.myStory![storyIndex].createdAt!.hour
+                                            .toString()}:${controller. viewStoryController.storyModel.myStory![storyIndex].createdAt!.minute
                                             .toString()}",
                                         style: sfProTextReguler().copyWith(
                                             decoration:
@@ -318,8 +314,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                               onTap: () {
                                                 controller.onLikeBtnTap(
                                                     myStory: controller
-                                                        .myStoryModel
-                                                        .data![pageIndex],
+                                                        . viewStoryController.storyModel.myStory![pageIndex],
                                                     storyindex: storyIndex);
                                               },
                                               child: Column(
@@ -340,12 +335,12 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                       ),
                                                       Text(
                                                         controller
-                                                            .myStoryModel
-                                                            .data![storyIndex]
+                                                            . viewStoryController.storyModel
+                                                            .myStory![pageIndex]
                                                             .storyLikeCount
                                                             .toString()=="0"?"": controller
-                                                            .myStoryModel
-                                                            .data![storyIndex]
+                                                            . viewStoryController.storyModel
+                                                            .myStory![pageIndex]
                                                             .storyLikeCount
                                                             .toString(),
                                                         style:
@@ -361,8 +356,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                               onTap: () {
                                                 controller.onCommentButtonTap(
                                                     myStory: controller
-                                                        .myStoryModel
-                                                        .data![pageIndex],
+                                                        . viewStoryController.storyModel.myStory![pageIndex],
                                                     storyindex: storyIndex);
                                               },
                                               child: Column(
@@ -378,14 +372,12 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                           sfProTextReguler()),
                                                       Text(
                                                           controller
-                                                              .myStoryModel
-                                                              .data![
-                                                          storyIndex]
+                                                              . viewStoryController.storyModel.myStory![
+                                                          pageIndex]
                                                               .storyCommentCount
                                                               .toString()=="0"?"":controller
-                                                              .myStoryModel
-                                                              .data![
-                                                          storyIndex]
+                                                              . viewStoryController.storyModel.myStory![
+                                                          pageIndex]
                                                               .storyCommentCount
                                                               .toString(),
                                                           style:
@@ -456,8 +448,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                 onTap: () {
                                   controller.commentSendTap(
                                       controller
-                                          .myStoryModel
-                                          .data![pageIndex]
+                                          . viewStoryController.storyModel.myStory![pageIndex]
                                           .id
                                           .toString(),
                                       context);
@@ -482,10 +473,10 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                   },
                   pageLength: 1,
                   storyLength: (int pageIndex) {
-                    if (controller.myStoryModel.data == null) {
+                    if (controller.viewStoryController.storyModel.myStory == null) {
                       return 0;
                     }
-                    return controller.myStoryModel.data!.length;
+                    return controller.viewStoryController.storyModel.myStory!.length;
                   },
                   onPageLimitReached: () {
                     Navigator.pop(context);

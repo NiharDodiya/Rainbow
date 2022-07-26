@@ -1,11 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
+import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/model/StoryComment_model.dart';
 import 'package:rainbow/model/likeStory_model.dart';
+import 'package:rainbow/model/listUserTag_model.dart';
 import 'package:rainbow/model/unlike_model.dart';
-import 'package:rainbow/screens/Home/Story/friendStory_api/friendStory_model.dart';
+import 'package:rainbow/screens/Home/Story/friendStory_api/friendStory_api.dart';
 import 'package:rainbow/screens/Home/Story/likeStory_api/likeStory_api.dart';
 import 'package:rainbow/screens/Home/Story/unlike_api/unlike_api.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
@@ -13,16 +18,15 @@ import 'package:rainbow/screens/Home/my_story/api/myStroy_api.dart';
 import 'package:rainbow/screens/Home/story_commets/api/story_comment_api.dart';
 import 'package:rainbow/screens/Home/story_commets/story_comments_screen.dart';
 import 'package:rainbow/screens/Home/story_commets/story_commets_controller.dart';
-import 'package:rainbow/screens/Home/view_story/widgets/likes_bottomShit.dart';
 import 'package:story/story_page_view/story_page_view.dart';
 
 import '../../../model/friendStroy_model.dart';
-import '../../../model/myStory_model.dart';
 
 class ViewStoryController extends GetxController {
   RxBool loader = false.obs;
-  FriendStoryModel friendStoryModel = FriendStoryModel();
-  MyStoryModel myStoryModel = MyStoryModel();
+  StoryModel storyModel = StoryModel();
+
+  // MyStoryModel myStoryModel = MyStoryModel();
   UnLikeStoryModel unLikeStoryModel = UnLikeStoryModel();
   LikeStoryModel likeStoryModel = LikeStoryModel();
   StoryCommentModel storyCommentModel = StoryCommentModel();
@@ -32,6 +36,10 @@ class ViewStoryController extends GetxController {
   int currentPage = 0;
   int storyIndex = 0;
   bool isImageLoading = false;
+  List<UserData> tagUserList = [];
+  List<dynamic> captureImageList = [];
+  List<File> image = [];
+  late File imageCamera;
 
   Future<void> init() async {
     // pauseAnimation();
@@ -41,6 +49,7 @@ class ViewStoryController extends GetxController {
 
   @override
   void onInit() {
+    update(["createStory"]);
     super.onInit();
   }
 
@@ -55,19 +64,59 @@ class ViewStoryController extends GetxController {
   void onHashTagTap() {}
 
   void onLikeBtnTap(id) {
-
-    if(loader.isFalse)
-    {
+    if (loader.isFalse) {
       likeStory(id);
     }
     // update(["friendStory"]);
   }
 
+  List<File>? frontImage;
+  File? imageForCamera;
+
+  Future galleryImage() async {
+    List<XFile>?  pickedFile = await ImagePicker().pickMultiImage();
+
+    if(pickedFile != null){
+      image = pickedFile.map<File>((e) => File(e.path)).toList();
+    }
+    if (pickedFile != null) {
+      return image;
+    }
+    update(["createStory"]);
+  }
+
+  navigateToGallery() async {
+    List<File> path = await galleryImage();
+    if(path != null){
+      frontImage = path.map<File>((e) => File(e.path)).toList();
+    }
+
+
+    update(["createStory"]);
+  }
+
+  Future cameraImage() async {
+    var pickedFile = await ImagePicker().pickImage(source: ImageSource.camera);
+    final imageTemp = File(pickedFile!.path);
+    imageCamera = imageTemp;
+    if (pickedFile != null) {
+      return pickedFile.path;
+    }
+    update(["createStory"]);
+  }
+  navigateToCamera() async {
+    String? path = await cameraImage();
+
+    if (path != null) {
+      imageForCamera = File(path);
+    }
+
+    update(["createStory"]);
+  }
   void onUnLikeBtnTap(id) {
-    if(loader.isFalse)
-      {
-        unLikeStory(id);
-      }
+    if (loader.isFalse) {
+      unLikeStory(id);
+    }
 
     // update(["friendStory"]);
   }
@@ -80,8 +129,10 @@ class ViewStoryController extends GetxController {
     return true;
   }
 
+/*
+
   void onLikeViewTap(
-      {required FriendStory friendStory, required int storyIndex}) {
+      {required FriendsStory friendStory, required int storyIndex}) {
     pauseAnimation();
     storyLikesList = friendStory.storyList![storyIndex].storyLikeList ?? [];
     Get.bottomSheet(
@@ -91,14 +142,60 @@ class ViewStoryController extends GetxController {
       playAnimation();
     });
   }
+*/
 
   Future<void> friendStoryApiData() async {
     try {
       loader.value = true;
-      friendStoryModel = (await FriendStoryApi.postRegister())!;
+      storyModel = (await FriendStoryApi.postRegister())!;
       update(["adStory"]);
       HomeController homeController = Get.find();
       homeController.update(['home']);
+      onPageChange(currentPage);
+
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+    }
+  }
+  UploadImage uploadImage =UploadImage();
+  List<int> imgIdList = [];
+
+  Future<void> uploadImageData() async {
+    // loader.value = true;
+    try {
+      imgIdList = [];
+      for(var e in image){
+        uploadImage = await UploadImageApi.postRegister(e.path);
+        imgIdList.add(uploadImage.data!.id!);
+      }
+
+      // oader.value = false;
+    } catch (e) {
+      // loader.value = false;
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> createPostData(BuildContext context) async {
+    try {
+      loader.value = true;
+
+     await uploadImageData();
+
+      List<Map<String, dynamic>> list = tagUserList
+          .map<Map<String, dynamic>>((e) => {
+                "id_user": e.id.toString(),
+                "name": e.fullName,
+              })
+          .toList();
+
+      storyModel = (await FriendStoryApi.createPost(context,
+          imgIdList, writeSomethings.text, writeSomethings.text, list))!;
+
+      HomeController homeController = Get.find();
+      homeController.update(['home']);
+
       onPageChange(currentPage);
 
       loader.value = false;
@@ -152,7 +249,8 @@ class ViewStoryController extends GetxController {
     }
   }
 
-  Future<void> onCommentButtonTap({required FriendStory friendStory, required int storyIndex}) async {
+  Future<void> onCommentButtonTap(
+      {required FriendsStory friendStory, required int storyIndex}) async {
     pauseAnimation();
     await friendStoryApiData();
     StoryCommentsController storyController =
@@ -167,8 +265,7 @@ class ViewStoryController extends GetxController {
   void commentSendTap(String id, BuildContext context) {
     if (validation()) {
       pauseAnimation();
-      if(loader.isFalse)
-      {
+      if (loader.isFalse) {
         commentData(id);
       }
       // update(["friendStory"]);
@@ -198,11 +295,13 @@ class ViewStoryController extends GetxController {
       }
     }*/
     loader.value = true;
-    String url = friendStoryModel.data![currentPage].storyList![storyIndex].storyItem.toString();
-    try{
+    String url = storyModel
+        .friendsStory![currentPage].storyList![storyIndex].storyItem
+        .toString();
+    try {
       isImageLoading = true;
       await precacheImage(NetworkImage(url), context);
-    }catch(e){
+    } catch (e) {
       debugPrint(e.toString());
     }
     isImageLoading = false;
@@ -211,8 +310,8 @@ class ViewStoryController extends GetxController {
   }
 
   Future<void> viewStoryApi() async {
-    String storyId = friendStoryModel
-        .data![currentPage].storyList![storyIndex].id
+    String storyId = storyModel
+        .friendsStory![currentPage].storyList![storyIndex].id
         .toString();
     await MyStoryApi.storyViewAPi(storyId);
   }

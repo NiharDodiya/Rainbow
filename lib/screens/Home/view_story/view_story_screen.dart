@@ -1,7 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
@@ -61,7 +59,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
               builder: (controller) {
                 return StoryPageView(
                   itemBuilder: (context, pageIndex, storyIndex) {
-                    final user = controller.friendStoryModel.data![pageIndex];
+                    final user = controller.storyModel.friendsStory![pageIndex];
                     // final user = sampleUsers[pageIndex];
                     final story = user.storyList![storyIndex];
                     return Stack(
@@ -201,8 +199,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                         children: [
                                           TextSpan(
                                             text: controller
-                                                .friendStoryModel
-                                                .data![pageIndex]
+                                                .storyModel.friendsStory![pageIndex]
                                                 .storyList![storyIndex]
                                                 .description
                                                 .toString(),
@@ -247,8 +244,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                             image: DecorationImage(
                                                 image: NetworkImage(
                                                   controller
-                                                      .friendStoryModel
-                                                      .data![pageIndex]
+                                                      .storyModel.friendsStory![pageIndex]
                                                       .userDetail!
                                                       .profileImage
                                                       .toString(),
@@ -262,8 +258,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                         children: [
                                           Text(
                                             controller
-                                                .friendStoryModel
-                                                .data![pageIndex]
+                                                .storyModel.friendsStory![pageIndex]
                                                 .userDetail!
                                                 .fullName
                                                 .toString(),
@@ -274,8 +269,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                           ),
                                           Text(
                                             controller
-                                                .friendStoryModel
-                                                .data![pageIndex]
+                                                .storyModel.friendsStory![pageIndex]
                                                 .userDetail!
                                                 .userStatus
                                                 .toString(),
@@ -287,7 +281,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                       ),
                                       const Spacer(),
                                       Text(
-                                        "${controller.friendStoryModel.data![pageIndex].storyList![storyIndex].createdAt!.hour.toString()}:${controller.friendStoryModel.data![pageIndex].storyList![storyIndex].createdAt!.minute.toString()}",
+                                        "${controller.storyModel.friendsStory![pageIndex].storyList![storyIndex].createdAt!.hour.toString()}:${controller.storyModel.friendsStory![pageIndex].storyList![storyIndex].createdAt!.minute.toString()}",
                                         style: sfProTextReguler().copyWith(
                                             decoration:
                                                 TextDecoration.underline),
@@ -392,15 +386,14 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                           left: 15,
                           child: Row(
                             children: [
-                              controller.friendStoryModel.data![pageIndex]
+                              controller.storyModel.friendsStory![pageIndex]
                                           .storyList![storyIndex].isLike
                                           .toString() ==
                                       "no"
                                   ? InkWell(
                                       onTap: () {
                                         controller.onLikeBtnTap(controller
-                                            .friendStoryModel
-                                            .data![pageIndex]
+                                            .storyModel.friendsStory![pageIndex]
                                             .storyList![storyIndex]
                                             .id
                                             .toString());
@@ -413,8 +406,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                   : InkWell(
                                       onTap: () {
                                         controller.onUnLikeBtnTap(controller
-                                            .friendStoryModel
-                                            .data![pageIndex]
+                                            .storyModel.friendsStory![pageIndex]
                                             .storyList![storyIndex]
                                             .id
                                             .toString());
@@ -459,8 +451,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                 onTap: () {
                                   controller.commentSendTap(
                                       controller
-                                          .friendStoryModel
-                                          .data![pageIndex]
+                                          .storyModel.friendsStory![pageIndex]
                                           .storyList![storyIndex]
                                           .id
                                           .toString(),
@@ -487,10 +478,10 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                   }*/
                     return 0;
                   },
-                  pageLength: controller.friendStoryModel.data!.length,
+                  pageLength: controller.storyModel.friendsStory!.length,
                   storyLength: (int pageIndex) {
                     return controller
-                        .friendStoryModel.data![pageIndex].storyList!.length;
+                        .storyModel.friendsStory![pageIndex].storyList!.length;
                   },
                   onPageChanged: controller.onPageChange,
                   onPageLimitReached: () {

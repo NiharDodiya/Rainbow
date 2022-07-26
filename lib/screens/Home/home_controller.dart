@@ -8,9 +8,18 @@ import 'package:rainbow/common/blocList_api/blockList_api.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/blockList_model.dart';
+import 'package:rainbow/model/friendPostView_Model.dart';
 import 'package:rainbow/model/listOfFriendRequest_model.dart';
+import 'package:rainbow/model/myPostList_model.dart';
+import 'package:rainbow/model/postLike_model.dart';
+import 'package:rainbow/model/postView_model.dart';
+import 'package:rainbow/model/sharePost_model.dart';
+import 'package:rainbow/model/unLikePost_model.dart';
+import 'package:rainbow/screens/Home/Story/friendStory_api/friendStory_api.dart';
 import 'package:rainbow/screens/Home/Story/story_controller.dart';
 import 'package:rainbow/screens/Home/addStroy/addStory_screen.dart';
+import 'package:rainbow/screens/Home/myPost_Api/myPost_api.dart';
+import 'package:rainbow/screens/Home/my_story/api/myStroy_api.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_controller.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_screen.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
@@ -32,6 +41,8 @@ class HomeController extends GetxController {
   MyStoryController myStoryController = Get.put(MyStoryController());
   RefreshController? refreshController;
   NotificationsController notificationsController = Get.put(NotificationsController());
+  MyPostListModel myPostListModel=MyPostListModel();
+
 
   @override
   Future<void> onInit() async {
@@ -84,6 +95,67 @@ class HomeController extends GetxController {
       debugPrint(e.toString());
     }
   }
+  Future<void> myStoryList() async {
+    try {
+      myPostListModel = await FriendStoryApi.getMyPostList();
+      update(['home']);
+
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+  SharePostModel sharePostModel =SharePostModel();
+  Future<void> sharePostData(String id) async {
+    try {
+      sharePostModel = await MyPostApi.sharPostApi(id);
+      update(['home']);
+
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+  PostLikeModel postLikeModel =PostLikeModel();
+  Future<void> likePostData(String id) async {
+    try {
+      loader.value = true;
+      postLikeModel = await MyPostApi.postLikeApi(id);
+      update(['home']);
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+      debugPrint(e.toString());
+    }
+  }
+  PostUnlikeModel postUnlikeModel = PostUnlikeModel();
+  Future<void> unLikePostData(String id) async {
+    try {
+      postUnlikeModel = await MyPostApi.postUnLikeApi(id);
+      update(['home']);
+
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+  PostViewModel postViewModel =PostViewModel();
+  Future<void> postViewData(String id) async {
+    try {
+      postViewModel = await MyPostApi.postViewApi(id);
+      update(['home']);
+
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+  FriendPostViewModel friendPostViewModel = FriendPostViewModel();
+  Future<void> friendPostData() async {
+    try {
+      friendPostViewModel = await MyPostApi.friendPostApi();
+      update(['home']);
+
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 
   Future<void> listOfFriedRequestDetails() async {
     try {
@@ -106,6 +178,7 @@ class HomeController extends GetxController {
     await onStory();
     notificationsController.getNotifications();
     changeLoader(false);
+    await myStoryList();
     // viewStoryController.friendStoryApiData();
     // loader.value = true;
   }

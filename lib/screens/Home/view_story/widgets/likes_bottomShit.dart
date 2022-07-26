@@ -47,7 +47,7 @@ class LikesBottomShit extends StatelessWidget {
                   height: 56,
                   width: 56,
                   imageUrl: controller
-                      .friendStoryModel.data!.first.userDetail!.profileImage
+                      .storyModel.friendsStory!.first.userDetail!.profileImage
                       .toString(),
                   imageBuilder: (context, imageProvider) => Container(
                     decoration: BoxDecoration(
@@ -75,7 +75,7 @@ class LikesBottomShit extends StatelessWidget {
                   children: [
                     Text(
                       controller
-                          .friendStoryModel.data!.first.userDetail!.fullName
+                          .storyModel.friendsStory!.first.userDetail!.fullName
                           .toString(),
                       style: sfProTextReguler().copyWith(
                         fontSize: 14,
@@ -85,7 +85,7 @@ class LikesBottomShit extends StatelessWidget {
                     ),
                     Text(
                       controller
-                          .friendStoryModel.data!.first.userDetail!.userStatus
+                          .storyModel.friendsStory!.first.userDetail!.userStatus
                           .toString(),
                       style: sfProTextReguler().copyWith(
                         fontWeight: FontWeight.w300,

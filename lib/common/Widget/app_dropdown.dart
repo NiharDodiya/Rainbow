@@ -17,7 +17,6 @@ class AppDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RegisterController controller = Get.put(RegisterController());
     return GetBuilder<RegisterController>(
       id: 'register_screen',
       builder: (controller) {
@@ -89,7 +88,6 @@ class AppDropDownEthnicity extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RegisterController controller = Get.put(RegisterController());
     return GetBuilder<RegisterController>(
       id: 'register_screen',
       builder: (controller) {
@@ -172,7 +170,6 @@ class AppDropDownNoOfKids extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RegisterController controller = Get.put(RegisterController());
     return GetBuilder<RegisterController>(
       id: RegisterController,
       builder: (controller) {
@@ -194,7 +191,7 @@ class AppDropDownNoOfKids extends StatelessWidget {
               ), //BoxShadow
               const BoxShadow(
                 color: Colors.white,
-                offset: const Offset(0.0, 0.0),
+                offset: Offset(0.0, 0.0),
                 blurRadius: 0.0,
                 spreadRadius: 0.0,
               ), //BoxShadow
@@ -266,7 +263,7 @@ class AppDroDownIdType extends StatelessWidget {
               ), //BoxShadow
               const BoxShadow(
                 color: Colors.white,
-                offset: const Offset(0.0, 0.0),
+                offset: Offset(0.0, 0.0),
                 blurRadius: 0.0,
                 spreadRadius: 0.0,
               ), //BoxShadow

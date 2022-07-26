@@ -49,6 +49,13 @@ class EndPoints {
   static const storyView = "$baseUrl/user/story/view";
   static const storyViewList = "$baseUrl/user/story/view/list";
   static const notificationList = "$baseUrl/user/notification/list";
+  static const createPost = "$baseUrl/user/post/create";
+  static const myPostList = "$baseUrl/user/post/my/list";
+  static const sharePost = "$baseUrl/user/post/share";
+  static const postLike = "$baseUrl/user/post/like";
+  static const unlikePost = "$baseUrl/user/post/unlike";
+  static const postView = "$baseUrl/user/post/view";
+  static const friendPostList = "$baseUrl/user/post/friend/list";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

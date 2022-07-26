@@ -4,8 +4,8 @@ import 'package:rainbow/model/friendStroy_model.dart';
 
 class StoryCommentsController extends GetxController {
   RxBool loader = false.obs;
-  List<StoryCommentList> comments = [];
-  StoryList story = StoryList();
+  List<StorycommentList> comments = [];
+  MyStory story = MyStory();
   TextEditingController commentController = TextEditingController();
   List<bool> reply = [
     true,

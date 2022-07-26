@@ -10,26 +10,26 @@ import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/utils/end_points.dart';
 
 class MyStoryApi {
-  static Future<MyStoryModel?> getMyStory() async {
-    try {
-      String url = EndPoints.myStory;
-      http.Response? response = await HttpService.getApi(url: url);
-
-      if (response != null && response.statusCode == 200) {
-        bool? status = jsonDecode(response.body)["status"];
-        if (status == false) {
-          errorToast("Error", title: jsonDecode(response.body)["message"]);
-          return null;
-        }
-        return myStoryModelFromJson(response.body);
-      }
-      return null;
-    } catch (e) {
-      debugPrint(e.toString());
-      errorToast("Error", title: e.toString());
-      return null;
-    }
-  }
+  // static Future<MyStoryModel?> getMyStory() async {
+  //   try {
+  //     String url = EndPoints.myStory;
+  //     http.Response? response = await HttpService.getApi(url: url);
+  //
+  //     if (response != null && response.statusCode == 200) {
+  //       bool? status = jsonDecode(response.body)["status"];
+  //       if (status == false) {
+  //         errorToast("Error", title: jsonDecode(response.body)["message"]);
+  //         return null;
+  //       }
+  //       return myStoryModelFromJson(response.body);
+  //     }
+  //     return null;
+  //   } catch (e) {
+  //     debugPrint(e.toString());
+  //     errorToast("Error", title: e.toString());
+  //     return null;
+  //   }
+  // }
 
   static Future<String?> deleteMyStory(String storyId) async {
     try {

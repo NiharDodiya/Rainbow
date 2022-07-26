@@ -13,7 +13,7 @@ class CircleImageCropper extends StatefulWidget {
   final Function(File file) onCropped;
   final File image;
 
-  CircleImageCropper({Key? key, required this.onCropped, required this.image})
+  const CircleImageCropper({Key? key, required this.onCropped, required this.image})
       : super(key: key);
 
   @override
@@ -27,9 +27,9 @@ class _CircleImageCropperState extends State<CircleImageCropper> {
 
   Uint8List? _croppedImage;
 
-  OverlayType _overlayType = OverlayType.circle;
+  final OverlayType _overlayType = OverlayType.circle;
 
-  int _rotationTurns = 0;
+  final int _rotationTurns = 0;
 
   @override
   Widget build(BuildContext context) {

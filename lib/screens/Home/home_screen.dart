@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
@@ -196,7 +197,7 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-          controller.loader.isTrue ? const FullScreenLoader(): const SizedBox()
+          controller.loader.isTrue ? const FullScreenLoader() : const SizedBox()
         ],
       );
     });
@@ -315,12 +316,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: Get.width * 0.01,
                 ),
                 // my story
+
                 controller.controller.viewProfile == null ||
-                        controller.myStoryController.myStoryModel.data == null
+                        controller.myStoryController.viewStoryController
+                                .storyModel.myStory ==
+                            null
                     ? const SizedBox()
                     : Visibility(
-                        visible: controller
-                            .myStoryController.myStoryModel.data!.isNotEmpty,
+                        visible: controller.myStoryController
+                            .viewStoryController.storyModel.myStory!.isNotEmpty,
                         child: SizedBox(
                           height: 129,
                           child: Column(
@@ -348,9 +352,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                           .profileImage
                                                           .toString() ==
                                                       ""
-                                                  ?  DecorationImage(
-                                                      image: AssetImage(
-                                                          AssetRes.selfiePicture))
+                                                  ? DecorationImage(
+                                                      image: AssetImage(AssetRes
+                                                          .selfiePicture))
                                                   : DecorationImage(
                                                       image: NetworkImage(
                                                           controller
@@ -415,9 +419,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 129,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: viewStoryController.friendStoryModel.data == null
+                    itemCount: viewStoryController.storyModel.friendsStory ==
+                            null
                         ? 0
-                        : viewStoryController.friendStoryModel.data!.length,
+                        : viewStoryController.storyModel.friendsStory!.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return Padding(
@@ -437,8 +442,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     width: 56,
                                     child: CachedNetworkImage(
                                       imageUrl: viewStoryController
-                                          .friendStoryModel
-                                          .data![index]
+                                          .storyModel
+                                          .friendsStory![index]
                                           .userDetail!
                                           .profileImage
                                           .toString(),
@@ -471,8 +476,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 12,
                                 ),
                                 Text(
-                                  viewStoryController.friendStoryModel
-                                      .data![index].userDetail!.fullName
+                                  viewStoryController.storyModel
+                                      .friendsStory![index].userDetail!.fullName
                                       .toString(),
                                   style: gilroyMediumTextStyle(fontSize: 14),
                                 ),
@@ -620,246 +625,288 @@ class _HomeScreenState extends State<HomeScreen> {
               style: gilroyBoldTextStyle(fontSize: 20),
             ),
           ),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: controller.isAd.length,
-            itemBuilder: (context, index) {
-              return controller.isAd[index]
-                  ? Padding(
-                      padding: const EdgeInsets.only(bottom: 22.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Center(
-                            child: Container(
-                              height: 253,
-                              width: Get.width * 0.92266,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(color: Colors.white)),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 15.0, top: 20),
-                                        child: Container(
-                                          height: 40,
-                                          width: 40,
-                                          decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              image: DecorationImage(
-                                                  image: AssetImage(
-                                                      AssetRes.selfiePicture))),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 20.0, left: 12),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+          controller.myPostListModel.data == null
+              ? SizedBox()
+              : ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  // itemCount: controller.isAd.length,
+                  itemCount: controller.myPostListModel.data!.length,
+                  itemBuilder: (context, index) {
+                    return controller.isAd[index]
+                        ? Padding(
+                            padding: const EdgeInsets.only(bottom: 22.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Center(
+                                  child: Container(
+                                    height: 253,
+                                    width: Get.width * 0.92266,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        border:
+                                            Border.all(color: Colors.white)),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
                                           children: [
-                                            Text(
-                                              "Sally Wilson",
-                                              style: gilroyBoldTextStyle(
-                                                  fontSize: 16),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 15.0, top: 20),
+                                              child: Container(
+                                                height: 40,
+                                                width: 40,
+                                                decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    image: DecorationImage(
+                                                        image: NetworkImage(
+                                                            controller
+                                                                .myPostListModel
+                                                                .data![index]
+                                                                .postUser!
+                                                                .profileImage
+                                                                .toString()),
+                                                        fit: BoxFit.cover,
+                                                        alignment: Alignment
+                                                            .topCenter)),
+                                              ),
                                             ),
-                                            const SizedBox(
-                                              height: 3,
-                                            ),
-                                            Text(
-                                              "30 minutes ago",
-                                              style: textStyleFont12White400,
-                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 20.0, left: 12),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    controller
+                                                        .myPostListModel
+                                                        .data![index]
+                                                        .postUser!
+                                                        .fullName
+                                                        .toString(),
+                                                    style: gilroyBoldTextStyle(
+                                                        fontSize: 16),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 3,
+                                                  ),
+                                                  Text(
+                                                    DateFormat.Hm().format(
+                                                        controller
+                                                            .myPostListModel
+                                                            .data![index]
+                                                            .createdAt!),
+                                                    style:
+                                                        textStyleFont12White400,
+                                                  ),
+                                                ],
+                                              ),
+                                            )
                                           ],
                                         ),
-                                      )
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: Get.height * 0.02,
-                                  ),
-                                  Center(
-                                    child: SizedBox(
-                                      width: Get.width * 0.85333,
-                                      height: 96,
-                                      child: Text(
-                                        Strings.latestFeedDes,
-                                        style: textStyleFont16WhitLight,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: Get.height * 0.025,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 15.0),
-                                    child: SizedBox(
-                                      height: 32,
-                                      width: 134,
-                                      child: Stack(
-                                        children: [
-                                          Container(
+                                        SizedBox(
+                                          height: Get.height * 0.02,
+                                        ),
+                                        Center(
+                                          child: SizedBox(
+                                            width: Get.width * 0.85333,
+                                            height: 96,
+                                            child: Text(
+                                              controller.myPostListModel
+                                                  .data![index].description
+                                                  .toString(),
+                                              style: textStyleFont16WhitLight,
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: Get.height * 0.025,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 15.0),
+                                          child: SizedBox(
                                             height: 32,
-                                            width: 32,
-                                            decoration: BoxDecoration(
-                                                border: Border.all(
-                                                    color: Colors.white,
-                                                    width: 2),
-                                                shape: BoxShape.circle,
-                                                image: const DecorationImage(
+                                            width: 134,
+                                            child: Stack(
+                                              children: [
+                                                Container(
+                                                  height: 32,
+                                                  width: 32,
+                                                  decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                          color: Colors.white,
+                                                          width: 2),
+                                                      shape: BoxShape.circle,
+                                                      image:
+                                                          const DecorationImage(
+                                                              image: AssetImage(
+                                                                  AssetRes
+                                                                      .lt2))),
+                                                ),
+                                                Positioned(
+                                                  left: 24,
+                                                  child: Container(
+                                                    height: 32,
+                                                    width: 32,
+                                                    decoration: BoxDecoration(
+                                                        border: Border.all(
+                                                            color: Colors.white,
+                                                            width: 2),
+                                                        shape: BoxShape.circle,
+                                                        image:
+                                                            const DecorationImage(
+                                                                image: AssetImage(
+                                                                    AssetRes
+                                                                        .lt1))),
+                                                  ),
+                                                ),
+                                                Positioned(
+                                                  left: 48,
+                                                  child: Container(
+                                                    height: 32,
+                                                    width: 32,
+                                                    decoration: BoxDecoration(
+                                                        border: Border.all(
+                                                            color: Colors.white,
+                                                            width: 2),
+                                                        shape: BoxShape.circle,
+                                                        image:
+                                                            const DecorationImage(
+                                                                image: AssetImage(
+                                                                    AssetRes
+                                                                        .lt3))),
+                                                  ),
+                                                ),
+                                                Positioned(
+                                                    left: Get.width * 0.24,
+                                                    top: Get.height * 0.01,
+                                                    child: Text(
+                                                      "+8 likes",
+                                                      style:
+                                                          textStyleFont14White,
+                                                    ))
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 7,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 20.0),
+                                          child: Row(
+                                            children: [
+                                              const SizedBox(
+                                                  height: 16,
+                                                  width: 16,
+                                                  child: Image(
+                                                      image: AssetImage(
+                                                          AssetRes.eye))),
+                                              Text(
+                                                controller.myPostListModel
+                                                    .data![index].postViewcount
+                                                    .toString(),
+                                                style: gilroyMediumTextStyle(
+                                                    fontSize: 10),
+                                              ),
+                                              const Spacer(),
+                                              const SizedBox(
+                                                  height: 16,
+                                                  width: 16,
+                                                  child: Image(
+                                                      image: AssetImage(
+                                                          AssetRes.vector))),
+                                              const SizedBox(
+                                                width: 2,
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 2.0),
+                                                child: Text(
+                                                  controller.myPostListModel
+                                                      .data![index].postLikeCount
+                                                      .toString(),
+                                                  style: gilroyMediumTextStyle(
+                                                      fontSize: 10),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: Get.width * 0.05,
+                                              ),
+                                              InkWell(
+                                                onTap: () {
+                                                  Get.to(() =>
+                                                      const CommentsScreen());
+                                                },
+                                                child: const SizedBox(
+                                                  height: 16,
+                                                  width: 16,
+                                                  child: Image(
                                                     image: AssetImage(
-                                                        AssetRes.lt2))),
-                                          ),
-                                          Positioned(
-                                            left: 24,
-                                            child: Container(
-                                              height: 32,
-                                              width: 32,
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color: Colors.white,
-                                                      width: 2),
-                                                  shape: BoxShape.circle,
-                                                  image: const DecorationImage(
+                                                        AssetRes.comment),
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 2,
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 2.0),
+                                                child: Text(
+                                                  controller.myPostListModel
+                                                      .data![index].postCommentCount
+                                                      .toString(),
+                                                  style: gilroyMediumTextStyle(
+                                                      fontSize: 10),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: Get.width * 0.05,
+                                              ),
+                                              const SizedBox(
+                                                  height: 16,
+                                                  width: 16,
+                                                  child: Image(
                                                       image: AssetImage(
-                                                          AssetRes.lt1))),
-                                            ),
+                                                          AssetRes.thumbs))),
+                                              const SizedBox(
+                                                width: 2,
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 5.0),
+                                                child: Text(
+                                                  controller.myPostListModel
+                                                      .data![index].postLikeCount
+                                                      .toString(),
+                                                  style: gilroyMediumTextStyle(
+                                                      fontSize: 10),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: Get.width * 0.05,
+                                              )
+                                            ],
                                           ),
-                                          Positioned(
-                                            left: 48,
-                                            child: Container(
-                                              height: 32,
-                                              width: 32,
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color: Colors.white,
-                                                      width: 2),
-                                                  shape: BoxShape.circle,
-                                                  image: const DecorationImage(
-                                                      image: AssetImage(
-                                                          AssetRes.lt3))),
-                                            ),
-                                          ),
-                                          Positioned(
-                                              left: Get.width * 0.24,
-                                              top: Get.height * 0.01,
-                                              child: Text(
-                                                "+8 likes",
-                                                style: textStyleFont14White,
-                                              ))
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 7,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20.0),
-                                    child: Row(
-                                      children: [
-                                        const SizedBox(
-                                            height: 16,
-                                            width: 16,
-                                            child: Image(
-                                                image:
-                                                    AssetImage(AssetRes.eye))),
-                                        Text(
-                                          "23",
-                                          style: gilroyMediumTextStyle(
-                                              fontSize: 10),
-                                        ),
-                                        const Spacer(),
-                                        const SizedBox(
-                                            height: 16,
-                                            width: 16,
-                                            child: Image(
-                                                image: AssetImage(
-                                                    AssetRes.vector))),
-                                        const SizedBox(
-                                          width: 2,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 2.0),
-                                          child: Text(
-                                            "7",
-                                            style: gilroyMediumTextStyle(
-                                                fontSize: 10),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: Get.width * 0.05,
-                                        ),
-                                        InkWell(
-                                          onTap: () {
-                                            Get.to(
-                                                () => const CommentsScreen());
-                                          },
-                                          child: const SizedBox(
-                                            height: 16,
-                                            width: 16,
-                                            child: Image(
-                                              image:
-                                                  AssetImage(AssetRes.comment),
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 2,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 2.0),
-                                          child: Text(
-                                            "5",
-                                            style: gilroyMediumTextStyle(
-                                                fontSize: 10),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: Get.width * 0.05,
-                                        ),
-                                        const SizedBox(
-                                            height: 16,
-                                            width: 16,
-                                            child: Image(
-                                                image: AssetImage(
-                                                    AssetRes.thumbs))),
-                                        const SizedBox(
-                                          width: 2,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 5.0),
-                                          child: Text(
-                                            "8",
-                                            style: gilroyMediumTextStyle(
-                                                fontSize: 10),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: Get.width * 0.05,
                                         )
                                       ],
                                     ),
-                                  )
-                                ],
-                              ),
+                                  ),
+                                )
+                              ],
                             ),
                           )
-                        ],
-                      ),
-                    )
-                  : adInLatestFeed();
-            },
-          ),
+                        : adInLatestFeed();
+                  },
+                ),
         ],
       ),
     );

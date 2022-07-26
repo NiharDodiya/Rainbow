@@ -62,7 +62,6 @@ class EditProfileController extends GetxController {
         print(codeId);
       }
       await editProfileApi(context);
-
       profileController.update(["profile"]);
       await profileController.viewProfileDetails();
     }
