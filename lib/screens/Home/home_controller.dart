@@ -10,7 +10,10 @@ import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/blockList_model.dart';
 import 'package:rainbow/model/friendPostView_Model.dart';
 import 'package:rainbow/model/listOfFriendRequest_model.dart';
+import 'package:rainbow/model/listUserTag_model.dart';
 import 'package:rainbow/model/myPostList_model.dart';
+import 'package:rainbow/model/postCommentList_model.dart';
+import 'package:rainbow/model/postComment_model.dart';
 import 'package:rainbow/model/postLike_model.dart';
 import 'package:rainbow/model/postView_model.dart';
 import 'package:rainbow/model/sharePost_model.dart';
@@ -42,6 +45,15 @@ class HomeController extends GetxController {
   RefreshController? refreshController;
   NotificationsController notificationsController = Get.put(NotificationsController());
   MyPostListModel myPostListModel=MyPostListModel();
+  TextEditingController comment = TextEditingController();
+  List<UserData> tagUserList = [];
+  PostUnlikeModel postUnlikeModel = PostUnlikeModel();
+  PostLikeModel postLikeModel =PostLikeModel();
+  BlockListModel blockListModel = BlockListModel();
+  SharePostModel sharePostModel =SharePostModel();
+  PostViewModel postViewModel =PostViewModel();
+  FriendPostViewModel friendPostViewModel = FriendPostViewModel();
+  PostCommentListModel postCommentListModel=PostCommentListModel();
 
 
   @override
@@ -84,7 +96,6 @@ class HomeController extends GetxController {
     }
   }
 
-  BlockListModel blockListModel = BlockListModel();
 
   Future<void> blockListDetailes() async {
     try {
@@ -104,21 +115,27 @@ class HomeController extends GetxController {
       debugPrint(e.toString());
     }
   }
-  SharePostModel sharePostModel =SharePostModel();
+
   Future<void> sharePostData(String id) async {
     try {
+      loader.value = true;
       sharePostModel = await MyPostApi.sharPostApi(id);
+      await friendPostData();
       update(['home']);
+      loader.value = false;
 
     } catch (e) {
       debugPrint(e.toString());
+      loader.value = false;
+
     }
   }
-  PostLikeModel postLikeModel =PostLikeModel();
+
   Future<void> likePostData(String id) async {
     try {
       loader.value = true;
       postLikeModel = await MyPostApi.postLikeApi(id);
+      await friendPostData();
       update(['home']);
       loader.value = false;
     } catch (e) {
@@ -126,17 +143,21 @@ class HomeController extends GetxController {
       debugPrint(e.toString());
     }
   }
-  PostUnlikeModel postUnlikeModel = PostUnlikeModel();
+
   Future<void> unLikePostData(String id) async {
     try {
+      loader.value = true;
       postUnlikeModel = await MyPostApi.postUnLikeApi(id);
+      await friendPostData();
       update(['home']);
+      loader.value = false;
 
     } catch (e) {
       debugPrint(e.toString());
+      loader.value = false;
     }
   }
-  PostViewModel postViewModel =PostViewModel();
+
   Future<void> postViewData(String id) async {
     try {
       postViewModel = await MyPostApi.postViewApi(id);
@@ -146,13 +167,29 @@ class HomeController extends GetxController {
       debugPrint(e.toString());
     }
   }
-  FriendPostViewModel friendPostViewModel = FriendPostViewModel();
+
   Future<void> friendPostData() async {
     try {
+      loader.value=true;
       friendPostViewModel = await MyPostApi.friendPostApi();
       update(['home']);
 
+      loader.value=false;
     } catch (e) {
+      debugPrint(e.toString());
+      loader.value=false;
+
+    }
+  }
+  Future<void> commentPostListData(String idPost) async {
+    try {
+      loader.value=true;
+      postCommentListModel = await MyPostApi.commentPostListApi(idPost);
+      update(['home']);
+      loader.value=false;
+
+    } catch (e) {
+      loader.value=false;
       debugPrint(e.toString());
     }
   }
@@ -178,6 +215,7 @@ class HomeController extends GetxController {
     await onStory();
     notificationsController.getNotifications();
     changeLoader(false);
+    await friendPostData();
     await myStoryList();
     // viewStoryController.friendStoryApiData();
     // loader.value = true;

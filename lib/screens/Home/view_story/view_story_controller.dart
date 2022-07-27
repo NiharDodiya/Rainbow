@@ -39,7 +39,7 @@ class ViewStoryController extends GetxController {
   List<UserData> tagUserList = [];
   List<dynamic> captureImageList = [];
   List<File> image = [];
-  late File imageCamera;
+  File? imageCamera;
 
   Future<void> init() async {
     // pauseAnimation();
@@ -74,9 +74,9 @@ class ViewStoryController extends GetxController {
   File? imageForCamera;
 
   Future galleryImage() async {
-    List<XFile>?  pickedFile = await ImagePicker().pickMultiImage();
+    List<XFile>? pickedFile = await ImagePicker().pickMultiImage();
 
-    if(pickedFile != null){
+    if (pickedFile != null) {
       image = pickedFile.map<File>((e) => File(e.path)).toList();
     }
     if (pickedFile != null) {
@@ -87,10 +87,9 @@ class ViewStoryController extends GetxController {
 
   navigateToGallery() async {
     List<File> path = await galleryImage();
-    if(path != null){
+    if (path != null) {
       frontImage = path.map<File>((e) => File(e.path)).toList();
     }
-
 
     update(["createStory"]);
   }
@@ -104,6 +103,7 @@ class ViewStoryController extends GetxController {
     }
     update(["createStory"]);
   }
+
   navigateToCamera() async {
     String? path = await cameraImage();
 
@@ -113,6 +113,7 @@ class ViewStoryController extends GetxController {
 
     update(["createStory"]);
   }
+
   void onUnLikeBtnTap(id) {
     if (loader.isFalse) {
       unLikeStory(id);
@@ -152,21 +153,26 @@ class ViewStoryController extends GetxController {
       HomeController homeController = Get.find();
       homeController.update(['home']);
       onPageChange(currentPage);
-
       loader.value = false;
     } catch (e) {
       loader.value = false;
     }
   }
-  UploadImage uploadImage =UploadImage();
+
+  UploadImage uploadImage = UploadImage();
   List<int> imgIdList = [];
 
   Future<void> uploadImageData() async {
     // loader.value = true;
     try {
       imgIdList = [];
-      for(var e in image){
-        uploadImage = await UploadImageApi.postRegister(e.path);
+      if (imageCamera == null) {
+        for (var e in image) {
+          uploadImage = await UploadImageApi.postRegister(e.path);
+          imgIdList.add(uploadImage.data!.id!);
+        }
+      } else {
+        uploadImage = await UploadImageApi.postRegister(imageCamera!.path.toString());
         imgIdList.add(uploadImage.data!.id!);
       }
 
@@ -181,7 +187,7 @@ class ViewStoryController extends GetxController {
     try {
       loader.value = true;
 
-     await uploadImageData();
+      await uploadImageData();
 
       List<Map<String, dynamic>> list = tagUserList
           .map<Map<String, dynamic>>((e) => {
@@ -190,12 +196,14 @@ class ViewStoryController extends GetxController {
               })
           .toList();
 
-      storyModel = (await FriendStoryApi.createPost(context,
-          imgIdList, writeSomethings.text, writeSomethings.text, list))!;
+      storyModel = (await FriendStoryApi.createPost(context, imgIdList,
+          writeSomethings.text, writeSomethings.text, list))!;
 
       HomeController homeController = Get.find();
+      homeController.friendPostData();
+      writeSomethings.clear();
+      list = [];
       homeController.update(['home']);
-
       onPageChange(currentPage);
 
       loader.value = false;

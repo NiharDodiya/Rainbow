@@ -39,7 +39,6 @@ class SplashController extends GetxController {
 
   Future<void> onSkipTap() async {
     await PrefService.setValue(PrefKeys.skipBoardingScreen, true);
-
     Get.offAll(() => AuthDashboard());
   }
 }

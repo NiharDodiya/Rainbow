@@ -100,6 +100,7 @@ class AssetRes {
   static const i3 = "${images}i3.png";
   static const flag01 = "${images}flag01.png";
   static const flag02 = "${images}flag02.png";
+  static const likeThubesUp = "${images}likeThubesup.png";
 
   ///_______________________________settings________________________________
   static const profileSettinges = '${settingsImage}profileSettinges.png';

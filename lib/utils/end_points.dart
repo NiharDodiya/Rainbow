@@ -56,6 +56,8 @@ class EndPoints {
   static const unlikePost = "$baseUrl/user/post/unlike";
   static const postView = "$baseUrl/user/post/view";
   static const friendPostList = "$baseUrl/user/post/friend/list";
+  static const commentPost = "$baseUrl/user/post/comment";
+  static const commentPostList = "$baseUrl/user/post/comment/list";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

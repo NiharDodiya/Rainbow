@@ -50,7 +50,7 @@ class StoryScreen extends StatelessWidget {
                   child: Text(
                     Strings.post,
                     style:
-                    gilroyBoldTextStyle(fontSize: 13, color: Colors.black),
+                        gilroyBoldTextStyle(fontSize: 13, color: Colors.black),
                   )),
               SizedBox(
                 width: Get.width * 0.05,
@@ -63,49 +63,43 @@ class StoryScreen extends StatelessWidget {
         id: "createStory",
         builder: (controller) {
           return Obx(() {
-            return  Stack(
+            return Stack(
               children: [
-                Column(
+                Column(crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
                       height: Get.height * 0.02,
                     ),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: Get.width * 0.05,
-                        ),
-                        Container(
-                          height: 40,
-                          width: 40,
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                  image: AssetImage(AssetRes.se_profile))),
-                        ),
-                        SizedBox(
-                          width: Get.width * 0.05,
-                        ),
-                        SizedBox(
-                          width: Get.width * 0.5,
-                          child: TextField(
-                            controller: controller.writeSomethings,
-                            obscureText: false,
-                            style: textFieldText,
-                            minLines: 1,
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.only(top: 6),
-                              border: InputBorder.none,
-                              hintStyle: textStyleFont16Grey,
-                              hintText: Strings.writeSomethings,
-                              /*   filled: true,
-                                  fillColor: ColorRes.color_9597A1.withOpacity(0.1)*/
-                            ),
-                          ),
-                        )
-                      ],
+                    Container(margin: const EdgeInsets.only(left: 40),
+                      height: Get.height * 0.28,
+                      width: Get.width * 0.8,
+                      decoration: BoxDecoration(
+                        color: ColorRes.white,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: TextField(
+                        controller: controller.writeSomethings,
+                        maxLines: 7,
+                        style: textFieldText,
+                        decoration: InputDecoration(
+                            contentPadding:
+                                const EdgeInsets.only(left: 20, top: 15),
+                            border: InputBorder.none,
+                            hintStyle: textStyleFont18Grey,
+                            hintText: Strings.writeSomethings,
+                            counterStyle: textStyleFont18Grey),
+                      ),
                     ),
-                    GetBuilder<ViewStoryController>(
+                    SizedBox(height: Get.height*0.2,),
+                    controller.imageCamera!= null?Container(height: Get.height * 0.3,
+                      margin: const EdgeInsets.only(left: 15),
+                      child: Image.file(
+                        controller.imageCamera!,
+                        height: Get.height * 0.05,
+                        width: Get.width * 0.28,
+                        fit: BoxFit.contain,
+                      ),
+                    ): GetBuilder<ViewStoryController>(
                       id: "createStory",
                       builder: (controller) {
                         return controller.image == null
@@ -121,7 +115,7 @@ class StoryScreen extends StatelessWidget {
                                 child: Image.file(
                                   controller.image[index],
                                   height: Get.height * 0.05,
-                                  width: Get.width*0.28,
+                                  width: Get.width * 0.28,
                                   fit: BoxFit.contain,
                                 ),
                               );
@@ -129,15 +123,27 @@ class StoryScreen extends StatelessWidget {
                           ),
                         );
                       },
-                    )
+                    ),
+
                   ],
                 ),
+                Positioned(top: Get.height*0.025,left: 15,
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                            image: AssetImage(AssetRes.se_profile))),
+                  ),
+                ),
+
                 Positioned(
                   bottom: 0,
                   child: Container(
                     width: Get.width,
-                    decoration:
-                    const BoxDecoration(color: ColorRes.white, boxShadow: []),
+                    decoration: const BoxDecoration(
+                        color: ColorRes.white, boxShadow: []),
                     padding: const EdgeInsets.only(
                       left: 19,
                       right: 12,
@@ -175,7 +181,8 @@ class StoryScreen extends StatelessWidget {
                                 controller.navigateToCamera();
                               },
                               child: Padding(
-                                padding: const EdgeInsets.only(right: 5, top: 15),
+                                padding:
+                                    const EdgeInsets.only(right: 5, top: 15),
                                 child: Image.asset(
                                   AssetRes.commentCamera,
                                   height: 22,
@@ -253,7 +260,9 @@ class StoryScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                controller.loader.isTrue?const FullScreenLoader():const SizedBox()
+                controller.loader.isTrue
+                    ? const FullScreenLoader()
+                    : const SizedBox()
               ],
             );
           });
