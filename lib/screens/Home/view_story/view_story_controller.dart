@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -13,6 +15,7 @@ import 'package:rainbow/model/unlike_model.dart';
 import 'package:rainbow/screens/Home/Story/friendStory_api/friendStory_api.dart';
 import 'package:rainbow/screens/Home/Story/likeStory_api/likeStory_api.dart';
 import 'package:rainbow/screens/Home/Story/unlike_api/unlike_api.dart';
+import 'package:rainbow/screens/Home/addStroy/ListStoryTag_api/listStoryTag_api.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/my_story/api/myStroy_api.dart';
 import 'package:rainbow/screens/Home/story_commets/api/story_comment_api.dart';
@@ -31,6 +34,7 @@ class ViewStoryController extends GetxController {
   LikeStoryModel likeStoryModel = LikeStoryModel();
   StoryCommentModel storyCommentModel = StoryCommentModel();
   TextEditingController writeSomethings = TextEditingController();
+  TextEditingController tagController = TextEditingController();
   ValueNotifier<IndicatorAnimationCommand>? indicatorAnimationController;
   List<UserDetail> storyLikesList = [];
   int currentPage = 0;
@@ -40,6 +44,7 @@ class ViewStoryController extends GetxController {
   List<dynamic> captureImageList = [];
   List<File> image = [];
   File? imageCamera;
+  bool textShow = false;
 
   Future<void> init() async {
     // pauseAnimation();
@@ -54,7 +59,16 @@ class ViewStoryController extends GetxController {
   }
 
   void onStoryComplete() {}
-
+  void onTextTap()
+  {
+    if(textShow==false)
+    {
+      textShow=true;
+    }else{
+      textShow=false;
+    }
+    update(["createStory"]);
+  }
   void onBackTap() {
     Get.back();
   }
@@ -92,6 +106,52 @@ class ViewStoryController extends GetxController {
     }
 
     update(["createStory"]);
+  }
+  ListUserTagModel listUserTagModel = ListUserTagModel();
+  List<UserData> filterList = [];
+
+  Future<void> onChange(String? value) async {
+    String sent = tagController.text;
+
+    if (sent.isEmpty) {
+      filterList = [];
+      update(['createStory']);
+      return;
+    }
+
+    List<String> list = sent.split(' ');
+
+    if (list.last.isNotEmpty && list.last[0] == "@") {
+      String word = list.last.replaceAll("@", '');
+
+      listUserTagModel = await ListTagStoryApi.listTagStory(word);
+
+      filterList = (listUserTagModel.data ?? [])
+          .where((element) => element.fullName
+          .toString()
+          .toLowerCase()
+          .contains(word.toLowerCase()))
+          .toList();
+      update(['createStory']);
+    } else {
+      filterList = [];
+      update(['createStory']);
+    }
+  }
+  void onTagTap(UserData userData) {
+    tagUserList.add(userData);
+    String sent = tagController.text;
+
+    List<String> list = sent.split(' ');
+
+    list.removeLast();
+
+    tagController.text =
+    "${list.join(' ')}${list.isEmpty ? '' : ' '}@${userData.fullName}";
+    filterList = [];
+    update(['createStory']);
+    tagController.selection =
+        TextSelection.collapsed(offset: tagController.text.length);
   }
 
   Future cameraImage() async {
@@ -189,22 +249,26 @@ class ViewStoryController extends GetxController {
 
       await uploadImageData();
 
-      List<Map<String, dynamic>> list = tagUserList
+      List<Map<String, dynamic>>? list = tagUserList
           .map<Map<String, dynamic>>((e) => {
                 "id_user": e.id.toString(),
                 "name": e.fullName,
               })
           .toList();
 
-      storyModel = (await FriendStoryApi.createPost(context, imgIdList,
-          writeSomethings.text, writeSomethings.text, list))!;
-
-      HomeController homeController = Get.find();
+      storyModel = await FriendStoryApi.createPost(context, imgIdList,
+          writeSomethings.text, writeSomethings.text, list);
+      // writeSomethings.clear();
+      // list!.clear();
+      // imageCamera==null?"":imageCamera!.delete();
+  /*    HomeController homeController = Get.find();
       homeController.friendPostData();
-      writeSomethings.clear();
-      list = [];
-      homeController.update(['home']);
-      onPageChange(currentPage);
+       homeController.update(['home']);*/
+      // onPageChange(currentPage);
+      update(["createStory"]);
+      //
+      // Navigator.pop(context);
+
 
       loader.value = false;
     } catch (e) {
@@ -330,11 +394,11 @@ class ViewStoryController extends GetxController {
     }
     indicatorAnimationController!.value = IndicatorAnimationCommand.resume;
   }
-
   void pauseAnimation() {
     if (indicatorAnimationController == null) {
       return;
     }
     indicatorAnimationController!.value = IndicatorAnimationCommand.pause;
   }
+
 }

@@ -426,6 +426,7 @@ class Strings {
   static const summary = "Summary";
   static const doller200 = "\$200";
   static const tags = "Tags";
+  static const tagsUsers = "Tag users";
 
   ///------------------------------Ad _home --->Create Advertisement--------
   static const callToAction = "Call to Action";

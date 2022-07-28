@@ -217,7 +217,7 @@ class CommentsScreen extends StatelessWidget {
                                         ),
                                         InkWell(
                                           onTap: () async {
-                                            await controller.commentPostData(
+                                            await controller.commentPostData(context,
                                                 idPost.toString());
                                             FocusScope.of(context).unfocus();
                                           },

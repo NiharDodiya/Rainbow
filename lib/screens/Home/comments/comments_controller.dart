@@ -83,7 +83,7 @@ class CommentsController extends GetxController {
     }
   }
 
-  Future<void> commentPostData(String idPost) async {
+  Future<void> commentPostData(BuildContext context,String idPost) async {
     try {
       loader.value = true;
       List<Map<String, dynamic>> list = tagUserList
@@ -94,24 +94,22 @@ class CommentsController extends GetxController {
           .toList();
       if (replyId == null) {
         await uploadImageApi();
-        postCommentModel = await MyPostApi.commentPostApi(
+        postCommentModel = await MyPostApi.commentPostApi(context,
             idPost, uploadImage.data!.id.toString(), msgController.text, list);
       } else {
         await uploadImageApi();
-        postCommentModel = await MyPostApi.commentReplayPostApi(
+        postCommentModel = await MyPostApi.commentReplayPostApi(context,
             replyId.toString(),
             idPost,uploadImage.data!.id.toString(),
             msgController.text,
             list);
       }
       await homeController.friendPostData();
-      Get.back();
+
       homeController.update(["home"]);
       update(['commentPost']);
 
-      msgController.clear();
-      replyId = "";
-      nameComment = "";
+
       loader.value = false;
     } catch (e) {
       debugPrint(e.toString());

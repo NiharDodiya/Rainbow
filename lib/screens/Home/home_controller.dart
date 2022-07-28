@@ -170,14 +170,14 @@ class HomeController extends GetxController {
 
   Future<void> friendPostData() async {
     try {
-      loader.value=true;
+      // loader.value=true;
       friendPostViewModel = await MyPostApi.friendPostApi();
       update(['home']);
 
-      loader.value=false;
+      // loader.value=false;
     } catch (e) {
       debugPrint(e.toString());
-      loader.value=false;
+      // loader.value=false;
 
     }
   }
@@ -216,7 +216,7 @@ class HomeController extends GetxController {
     notificationsController.getNotifications();
     changeLoader(false);
     await friendPostData();
-    await myStoryList();
+    // await myStoryList();
     // viewStoryController.friendStoryApiData();
     // loader.value = true;
   }

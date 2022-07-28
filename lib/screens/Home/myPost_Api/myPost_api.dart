@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/friendPostView_Model.dart';
 import 'package:rainbow/model/postCommentList_model.dart';
@@ -8,6 +10,7 @@ import 'package:rainbow/model/postLike_model.dart';
 import 'package:rainbow/model/postView_model.dart';
 import 'package:rainbow/model/sharePost_model.dart';
 import 'package:rainbow/model/unLikePost_model.dart';
+import 'package:rainbow/screens/Home/comments/comments_controller.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
@@ -164,7 +167,7 @@ class MyPostApi {
     }
   }
 
-  static Future commentPostApi(
+  static Future commentPostApi(BuildContext context,
       String idPost,
       String idItem,
       String des,
@@ -188,7 +191,13 @@ class MyPostApi {
         if (status == false) {
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
+          CommentsController commentsController = Get.find();
+          commentsController.msgController.clear();
+          commentsController.replyId = "";
+          commentsController.nameComment = "";
           flutterToast(jsonDecode(response.body)["message"]);
+
+          Navigator.pop(context);
         }
         return postCommentModelFromJson(response.body);
       }
@@ -197,7 +206,7 @@ class MyPostApi {
       return [];
     }
   }
-  static Future commentReplayPostApi(String idComment,
+  static Future commentReplayPostApi(BuildContext context,String idComment,
       String idPost,
       String idItem,
       String des,
@@ -222,7 +231,12 @@ class MyPostApi {
         if (status == false) {
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
+          CommentsController commentsController = Get.find();
+          commentsController.msgController.clear();
+          commentsController.replyId = "";
+          commentsController.nameComment = "";
           flutterToast(jsonDecode(response.body)["message"]);
+          Navigator.pop(context);
         }
         return postCommentModelFromJson(response.body);
       }
