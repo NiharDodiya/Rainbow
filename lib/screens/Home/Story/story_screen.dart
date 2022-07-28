@@ -320,7 +320,24 @@ class StoryScreen extends StatelessWidget {
                                   children: [
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(50),
-                                      child: CachedNetworkImage(
+                                      child:Image.network(controller
+                                          .filterList[index]
+                                          .profileImage
+                                          .toString(),height: 30,width: 30,fit: BoxFit.cover,errorBuilder: (con,str,dy){
+                                        return Container(
+                                          height: 30,
+                                          width: 30,
+                                          decoration: BoxDecoration(
+                                            color: ColorRes.white,
+                                            shape: BoxShape.circle,
+                                            border: Border.all(color: ColorRes.black,width: 0.7),
+                                          ),
+                                          child: const Center(
+                                            child: Icon(Icons.account_circle_outlined,color: ColorRes.black,),
+                                          ),
+                                        );
+                                      },)
+                                      /*CachedNetworkImage(
                                         imageUrl: controller
                                             .filterList[index]
                                             .profileImage
@@ -342,7 +359,7 @@ class StoryScreen extends StatelessWidget {
                                             ),
                                           );
                                         },
-                                      ),
+                                      )*/,
                                     ),
                                     const SizedBox(width: 10),
                                     Column(

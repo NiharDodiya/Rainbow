@@ -248,7 +248,6 @@ class MyPostApi {
 
   static Future commentPostListApi(String idPost) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
-
     try {
       String url = EndPoints.commentPostList;
       Map<String, dynamic> param = {

@@ -6,12 +6,13 @@ import 'package:rainbow/model/postCommentList_model.dart';
 import 'package:rainbow/screens/Home/comments/comments_controller.dart';
 import 'package:rainbow/utils/color_res.dart';
 
-Widget userComment({String? description,
-  String? fullName,
-  String? profileImage,
-  String? image,
-  String? commentId,
-  List<PostCommentReply>? reply = const []}) {
+Widget userComment(
+    {String? description,
+    String? fullName,
+    String? profileImage,
+    String? image,
+    String? commentId,
+    List<PostCommentReply>? reply = const []}) {
   return GetBuilder<CommentsController>(
       id: "commentPost",
       builder: (controller) {
@@ -30,7 +31,9 @@ Widget userComment({String? description,
                     borderRadius: const BorderRadius.all(Radius.circular(50)),
                     child: Image.network(
                       profileImage.toString(),
-                      fit: BoxFit.cover,
+                      fit: BoxFit.cover,errorBuilder: (context,
+                        url, error) =>
+                    const Icon(Icons.error,color: Colors.grey,),
                     ),
                   ),
                 ),
@@ -96,29 +99,40 @@ Widget userComment({String? description,
                         ),
                       ],
                     ),
-                    image == ""
+          /*          image == ""
                         ? const SizedBox()
                         : CachedNetworkImage(
-                      imageUrl: image.toString(),
-                      height: 100,
-                      width: 100,
-                      fit: BoxFit.cover,
-                      progressIndicatorBuilder: (context, url,
-                          downloadProgress) {
-                        return Center(
-                          child: CircularProgressIndicator(
-                              value: downloadProgress.progress),
-                        );
-                      },
-                      errorWidget: (context, url, error) => const Icon(Icons.error),
-                    ),
-
-
+                            imageUrl: image.toString(),
+                            height: 100,
+                            width: 100,
+                            fit: BoxFit.cover,
+                            progressIndicatorBuilder:
+                                (context, url, downloadProgress) {
+                              return Center(
+                                child: CircularProgressIndicator(
+                                    value: downloadProgress.progress),
+                              );
+                            },
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                          ),*/
+                    image == ""
+                        ? const SizedBox()
+                        : Image.network(
+                            image.toString(),
+                            height: 100,
+                            width: 100,
+                            fit: BoxFit.cover, errorBuilder: (context,
+                        url, error) =>
+                    const Icon(Icons.error,color: Colors.grey,),
+                          )
                   ],
                 )
               ],
             ),
-            const SizedBox(height: 15,),
+            const SizedBox(
+              height: 15,
+            ),
             Align(
               alignment: Alignment.topRight,
               child: SizedBox(
@@ -130,77 +144,92 @@ Widget userComment({String? description,
                   itemBuilder: (context, index) {
                     return reply.isNotEmpty
                         ? Container(
-                      width: Get.width - 110,
-                      decoration: BoxDecoration(
-                        color: ColorRes.color_959595.withOpacity(0.1),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(15),
-                        ),
-                      ),
-                      margin: const EdgeInsets.only(
-                        left: 25,
-                      ),
-                      padding: const EdgeInsets.all(7),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            reply[index]
-                                .postCommentUser!
-                                .fullName
-                                .toString(),
-                            style: beVietnamProMediumTextStyle(
-                                color: ColorRes.black),
-                          ),
-                          Text(
-                            "1 min ago",
-                            style: beVietnamProRegularTextStyle(
-                              fontSize: 10,
-                              color: ColorRes.color_959595,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 7,
-                          ),
-                          RichText(
-                            text: TextSpan(
-                              text: "",
-                              style: beVietnamProRegularTextStyle(
-                                color: ColorRes.themeColor,
-                                fontSize: 12,
+                            width: Get.width - 110,
+                            decoration: BoxDecoration(
+                              color: ColorRes.color_959595.withOpacity(0.1),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(15),
                               ),
+                            ),
+                            margin: const EdgeInsets.only(
+                              left: 25,
+                            ),
+                            padding: const EdgeInsets.all(7),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                TextSpan(
-                                  text:
-                                  reply[index].description.toString(),
+                                Text(
+                                  reply[index]
+                                      .postCommentUser!
+                                      .fullName
+                                      .toString(),
+                                  style: beVietnamProMediumTextStyle(
+                                      color: ColorRes.black),
+                                ),
+                                Text(
+                                  "1 min ago",
                                   style: beVietnamProRegularTextStyle(
-                                    fontSize: 12,
-                                    color: ColorRes.black,
+                                    fontSize: 10,
+                                    color: ColorRes.color_959595,
                                   ),
+                                ),
+                                const SizedBox(
+                                  height: 7,
+                                ),
+                                RichText(
+                                  text: TextSpan(
+                                    text: "",
+                                    style: beVietnamProRegularTextStyle(
+                                      color: ColorRes.themeColor,
+                                      fontSize: 12,
+                                    ),
+                                    children: [
+                                      TextSpan(
+                                        text:
+                                            reply[index].description.toString(),
+                                        style: beVietnamProRegularTextStyle(
+                                          fontSize: 12,
+                                          color: ColorRes.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                /*reply[index].postCommentItem.toString() == ""
+                                    ? const SizedBox()
+                                    : CachedNetworkImage(
+                                        imageUrl: reply[index]
+                                            .postCommentItem
+                                            .toString(),
+                                        height: 100,
+                                        width: 100,
+                                        fit: BoxFit.cover,
+                                        progressIndicatorBuilder:
+                                            (context, url, downloadProgress) {
+                                          return Center(
+                                            child: CircularProgressIndicator(
+                                                value:
+                                                    downloadProgress.progress),
+                                          );
+                                        },
+                                        errorWidget: (context, url, error) =>
+                                            const Icon(Icons.error),
+                                      ),*/
+                                reply[index].postCommentItem.toString() == ""
+                                    ? const SizedBox()
+                                    :  image == ""
+                                    ? const SizedBox()
+                                    : Image.network(
+                                  image.toString(),
+                                  height: 100,
+                                  width: 100,
+                                  fit: BoxFit.cover,errorBuilder: (context,
+                                    url, error) =>
+                                const Icon(Icons.error,color: Colors.grey,)
                                 ),
                               ],
                             ),
-                          ),
-
-                          reply[index].postCommentItem.toString() == ""
-                              ? const SizedBox()
-                              :CachedNetworkImage(
-                            imageUrl: reply[index].postCommentItem.toString(),
-                            height: 100,
-                            width: 100,
-                            fit: BoxFit.cover,
-                            progressIndicatorBuilder: (context, url,
-                                downloadProgress) {
-                              return Center(
-                                child: CircularProgressIndicator(
-                                    value: downloadProgress.progress),
-                              );
-                            },
-                            errorWidget: (context, url, error) => const Icon(Icons.error),
-                          ),
-                        ],
-                      ),
-                    )
+                          )
                         : const SizedBox();
                   },
                 ),

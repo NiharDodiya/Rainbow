@@ -1,10 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/model/request_user_model.dart';
 import 'package:rainbow/screens/Home/Story/story_screen.dart';
 import 'package:rainbow/screens/Home/comments/comments_screen.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
@@ -28,6 +28,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   HomeController controller = Get.put(HomeController());
   ViewStoryController viewStoryController = Get.put(ViewStoryController());
+  ConnectionsController connectionsController =
+      Get.put(ConnectionsController());
 
   @override
   void initState() {
@@ -442,40 +444,59 @@ class _HomeScreenState extends State<HomeScreen> {
                                 GestureDetector(
                                   onTap: () =>
                                       controller.onFriedStoryTap(index),
-                                  child: SizedBox(
-                                    height: 56,
-                                    width: 56,
-                                    child: CachedNetworkImage(
-                                      imageUrl: viewStoryController
-                                          .storyModel
-                                          .friendsStory![index]
-                                          .userDetail!
-                                          .profileImage
-                                          .toString(),
-                                      imageBuilder: (context, imageProvider) =>
-                                          Container(
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: DecorationImage(
-                                            image: imageProvider,
-                                            fit: BoxFit.cover,
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(50),
+                                      child: Image.network(
+                                        viewStoryController
+                                            .storyModel
+                                            .friendsStory![index]
+                                            .userDetail!
+                                            .profileImage
+                                            .toString(),
+                                        height: 56,
+                                        width: 56,
+                                        fit: BoxFit.cover,
+                                        errorBuilder: (context, url, error) =>
+                                            const SizedBox(
+                                          height: 56,
+                                          width: 56,
+                                          child: Icon(
+                                            Icons.error,
+                                            color: Colors.grey,
                                           ),
                                         ),
+                                      )
+                                      // CachedNetworkImage(
+                                      //   imageUrl: viewStoryController
+                                      //       .storyModel
+                                      //       .friendsStory![index]
+                                      //       .userDetail!
+                                      //       .profileImage
+                                      //       .toString(),
+                                      //   imageBuilder: (context, imageProvider) =>
+                                      //       Container(
+                                      //     decoration: BoxDecoration(
+                                      //       shape: BoxShape.circle,
+                                      //       image: DecorationImage(
+                                      //         image: imageProvider,
+                                      //         fit: BoxFit.cover,
+                                      //       ),
+                                      //     ),
+                                      //   ),
+                                      //   // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
+                                      //   errorWidget: (context, url, error) =>
+                                      //       Container(
+                                      //     height: Get.height * 0.2857,
+                                      //     width: Get.width,
+                                      //     decoration: const BoxDecoration(
+                                      //         shape: BoxShape.circle,
+                                      //         image: DecorationImage(
+                                      //             image: AssetImage(
+                                      //                 AssetRes.homePro))),
+                                      //   ),
+                                      //   fit: BoxFit.fill,
+                                      // ),
                                       ),
-                                      // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
-                                      errorWidget: (context, url, error) =>
-                                          Container(
-                                        height: Get.height * 0.2857,
-                                        width: Get.width,
-                                        decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            image: DecorationImage(
-                                                image: AssetImage(
-                                                    AssetRes.homePro))),
-                                      ),
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
                                 ),
                                 const SizedBox(
                                   height: 12,
@@ -503,107 +524,151 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget seeAll() {
-    return SizedBox(
-      height: 169,
-      width: Get.width,
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 10,
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: InkWell(
-              onTap: () {
-                ConnectionsController connectionController =
-                    Get.put(ConnectionsController());
-                connectionController.init();
-                Get.to(() => ConnectionsScreen());
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(right: 12.0),
-                child: Text(
-                  Strings.seeAll,
-                  style: gilroyBoldTextStyle(
-                      fontSize: 12, color: ColorRes.color_9597A1),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          SizedBox(
-            height: 139,
-            child: ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              itemCount: 2,
-              itemBuilder: (context, index) {
-                return Row(
+    return GetBuilder<ConnectionsController>(
+      id: "connection",
+      builder: (controller) {
+        return controller.requestUsers.isEmpty
+            ? SizedBox(
+                height: 169,
+                width: Get.width,
+                child: Center(
+                    child: Text(
+                  "No Request",
+                  style: gilroyBoldTextStyle(color: ColorRes.color_9597A1),
+                )),
+              )
+            : SizedBox(
+                height: 169,
+                width: Get.width,
+                child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 10, right: 10, bottom: 14),
-                      child: Container(
-                        height: 50,
-                        width: 50,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: AssetImage(AssetRes.selfiePicture),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: InkWell(
+                        onTap: () {
+                          ConnectionsController connectionController =
+                              Get.put(ConnectionsController());
+                          connectionController.init();
+                          Get.to(() => ConnectionsScreen());
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 12.0),
+                          child: Text(
+                            Strings.seeAll,
+                            style: gilroyBoldTextStyle(
+                                fontSize: 12, color: ColorRes.color_9597A1),
                           ),
                         ),
                       ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Amber J Santiago",
-                          style: montserratRegularTextStyle(
-                              color: Colors.black, fontSize: 16),
-                        ),
-                        Text(
-                          "Surrogate MoM",
-                          style: montserratRegularTextStyle(
-                              color: Colors.black, fontSize: 12),
-                        ),
-                        SizedBox(
-                          height: Get.height * 0.03,
-                        )
-                      ],
+                    const SizedBox(
+                      height: 5,
                     ),
                     SizedBox(
-                      width: Get.width * 0.11,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(bottom: 20.0),
-                      child: SizedBox(
-                        height: 40,
-                        width: 40,
-                        child: Image(
-                          image: AssetImage(AssetRes.profilep),
-                        ),
+                      height: 139,
+                      child: ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        itemCount: controller.requestUsers.length < 2
+                            ? controller.requestUsers.length
+                            : 2,
+                        itemBuilder: (context, index) {
+                          RequestUser user = controller.requestUsers[index];
+
+                          return Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 10, right: 10, bottom: 14),
+                                child: Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    /* image: DecorationImage(
+                                image: AssetImage(AssetRes.selfiePicture),
+                              ),*/
+                                  ),
+                                  child: Image.network(
+                                    user.profileImage.toString(),
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (context, url, error) =>
+                                        const Icon(
+                                      Icons.error,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    user.fullName.toString(),
+                                    style: montserratRegularTextStyle(
+                                        color: Colors.black, fontSize: 16),
+                                  ),
+                                  SizedBox(
+                                    width: Get.width * 0.4,
+                                    child: Text(
+                                      user.userStatus.toString(),
+                                      style: montserratRegularTextStyle(
+                                          color: Colors.black, fontSize: 12),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: Get.height * 0.03,
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                width: Get.width * 0.11,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 20.0),
+                                child: InkWell(
+                                  onTap: () {
+                                    controller.onAddBtnTap(
+                                        user.id.toString(), false);
+                                  },
+                                  child: const SizedBox(
+                                    height: 40,
+                                    width: 40,
+                                    child: Image(
+                                      image: AssetImage(AssetRes.profilep),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: Get.width * 0.04,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 20.0),
+                                child: InkWell(
+                                  onTap: () {
+                                    controller.onDeleteBtnTap(
+                                        user.id.toString(), false);
+                                  },
+                                  child: const SizedBox(
+                                      height: 40,
+                                      width: 40,
+                                      child: Image(
+                                          image: AssetImage(AssetRes.delete))),
+                                ),
+                              ),
+                            ],
+                          );
+                        },
                       ),
-                    ),
-                    SizedBox(
-                      width: Get.width * 0.04,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(bottom: 20.0),
-                      child: SizedBox(
-                          height: 40,
-                          width: 40,
-                          child: Image(image: AssetImage(AssetRes.delete))),
-                    ),
+                    )
                   ],
-                );
-              },
-            ),
-          )
-        ],
-      ),
+                ),
+              );
+      },
     );
   }
 
@@ -650,7 +715,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Center(
                                   child: Container(
-                                    height: 350,
+                                    height: Get.height * 0.51,
                                     width: Get.width * 0.92266,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
@@ -744,7 +809,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     left: 10),
                                                 height: 80,
                                                 width: 300,
-                                                child: ListView.builder(scrollDirection: Axis.horizontal,
+                                                child: ListView.builder(
+                                                  scrollDirection:
+                                                      Axis.horizontal,
                                                   shrinkWrap: true,
                                                   physics:
                                                       const NeverScrollableScrollPhysics(),
@@ -755,7 +822,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       .length,
                                                   itemBuilder:
                                                       (context, index2) {
-                                                    return Padding(padding: const EdgeInsets.only(left: 5,right: 5),
+                                                    return Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 5,
+                                                              right: 5),
                                                       child: Container(
                                                         height: 80,
                                                         width: 80,
@@ -768,19 +839,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                                           controller
                                                               .friendPostViewModel
                                                               .data![index]
-                                                              .postList![index2],fit: BoxFit.cover,
-                                                          errorBuilder: (context,
-                                                                  url, error) =>
-                                                              Container(
-                                                                height: 80,
-                                                                width: 80,
-                                                            decoration: const BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                                image: DecorationImage(
-                                                                    image: AssetImage(
-                                                                        AssetRes
-                                                                            .homePro))),
+                                                              .postList![index2],
+                                                          fit: BoxFit.cover,
+                                                          errorBuilder:
+                                                              (context, url,
+                                                                      error) =>
+                                                                  const Icon(
+                                                            Icons.error,
+                                                            color: Colors.grey,
                                                           ),
                                                         ),
                                                       ),

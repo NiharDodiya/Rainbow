@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:rainbow/model/request_user_model.dart';
 import 'package:rainbow/model/suggestion_model.dart';
+import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/api/connections_api.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_screen.dart';
@@ -12,7 +13,7 @@ class ConnectionsController extends GetxController {
   List<SuggestionUser> suggestionConnection = [];
   List<RequestUser> requestUsers = [];
   RxBool loader = false.obs;
-
+  // HomeController  homeController = Get.find();
   Future<void> init() async {
     await callRequestApi();
     await callSuggestionApi();
@@ -52,6 +53,8 @@ class ConnectionsController extends GetxController {
     if (model != null) {
       suggestionConnection = model.data ?? [];
       update(['connection']);
+      // homeController.update(["home"]);
+
     }
     loader.value = false;
   }
@@ -62,6 +65,7 @@ class ConnectionsController extends GetxController {
     if (model != null) {
       requestUsers = model.data ?? [];
       update(['connection']);
+      // homeController.update(["home"]);
     }
     loader.value = false;
   }

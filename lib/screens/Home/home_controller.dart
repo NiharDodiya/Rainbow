@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:rainbow/common/blocList_api/blockList_api.dart';
@@ -13,7 +12,6 @@ import 'package:rainbow/model/listOfFriendRequest_model.dart';
 import 'package:rainbow/model/listUserTag_model.dart';
 import 'package:rainbow/model/myPostList_model.dart';
 import 'package:rainbow/model/postCommentList_model.dart';
-import 'package:rainbow/model/postComment_model.dart';
 import 'package:rainbow/model/postLike_model.dart';
 import 'package:rainbow/model/postView_model.dart';
 import 'package:rainbow/model/sharePost_model.dart';
@@ -22,9 +20,9 @@ import 'package:rainbow/screens/Home/Story/friendStory_api/friendStory_api.dart'
 import 'package:rainbow/screens/Home/Story/story_controller.dart';
 import 'package:rainbow/screens/Home/addStroy/addStory_screen.dart';
 import 'package:rainbow/screens/Home/myPost_Api/myPost_api.dart';
-import 'package:rainbow/screens/Home/my_story/api/myStroy_api.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_controller.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_screen.dart';
+import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_screen.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
@@ -43,26 +41,42 @@ class HomeController extends GetxController {
   List<bool> isAd = List.generate(10, (index) => Random().nextInt(2) == 1);
   MyStoryController myStoryController = Get.put(MyStoryController());
   RefreshController? refreshController;
-  NotificationsController notificationsController = Get.put(NotificationsController());
-  MyPostListModel myPostListModel=MyPostListModel();
+  NotificationsController notificationsController =
+      Get.put(NotificationsController());
+  MyPostListModel myPostListModel = MyPostListModel();
   TextEditingController comment = TextEditingController();
   List<UserData> tagUserList = [];
   PostUnlikeModel postUnlikeModel = PostUnlikeModel();
-  PostLikeModel postLikeModel =PostLikeModel();
+  PostLikeModel postLikeModel = PostLikeModel();
   BlockListModel blockListModel = BlockListModel();
-  SharePostModel sharePostModel =SharePostModel();
-  PostViewModel postViewModel =PostViewModel();
+  SharePostModel sharePostModel = SharePostModel();
+  PostViewModel postViewModel = PostViewModel();
   FriendPostViewModel friendPostViewModel = FriendPostViewModel();
-  PostCommentListModel postCommentListModel=PostCommentListModel();
-
+  PostCommentListModel postCommentListModel = PostCommentListModel();
+  int page = 1;
+  int totalPages = 0;
+  bool isLoading = false;
+  ScrollController scrollController = ScrollController();
+  final storyController = EditStoryController();
 
   @override
   Future<void> onInit() async {
     init();
+    scrollController.addListener(pagination);
+    update(['home']);
     super.onInit();
   }
 
-  final storyController = EditStoryController();
+  void pagination() {
+    if ((scrollController.position.pixels ==
+            scrollController.position.maxScrollExtent) &&
+        (friendPostViewModel.data!.length < totalPages)) {
+      isLoading = true;
+      friendPostData();
+      isLoading = false;
+      update(['home']);
+    }
+  }
 
   Future<void> countryName() async {
     try {
@@ -96,7 +110,6 @@ class HomeController extends GetxController {
     }
   }
 
-
   Future<void> blockListDetailes() async {
     try {
       await BlockListApi.postRegister()
@@ -106,11 +119,11 @@ class HomeController extends GetxController {
       debugPrint(e.toString());
     }
   }
+
   Future<void> myStoryList() async {
     try {
       myPostListModel = await FriendStoryApi.getMyPostList();
       update(['home']);
-
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -123,11 +136,9 @@ class HomeController extends GetxController {
       await friendPostData();
       update(['home']);
       loader.value = false;
-
     } catch (e) {
       debugPrint(e.toString());
       loader.value = false;
-
     }
   }
 
@@ -151,7 +162,6 @@ class HomeController extends GetxController {
       await friendPostData();
       update(['home']);
       loader.value = false;
-
     } catch (e) {
       debugPrint(e.toString());
       loader.value = false;
@@ -162,7 +172,6 @@ class HomeController extends GetxController {
     try {
       postViewModel = await MyPostApi.postViewApi(id);
       update(['home']);
-
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -170,26 +179,25 @@ class HomeController extends GetxController {
 
   Future<void> friendPostData() async {
     try {
-      // loader.value=true;
+      loader.value = true;
       friendPostViewModel = await MyPostApi.friendPostApi();
       update(['home']);
 
-      // loader.value=false;
+      loader.value = false;
     } catch (e) {
       debugPrint(e.toString());
-      // loader.value=false;
-
+      loader.value = false;
     }
   }
+
   Future<void> commentPostListData(String idPost) async {
     try {
-      loader.value=true;
+      loader.value = true;
       postCommentListModel = await MyPostApi.commentPostListApi(idPost);
       update(['home']);
-      loader.value=false;
-
+      loader.value = false;
     } catch (e) {
-      loader.value=false;
+      loader.value = false;
       debugPrint(e.toString());
     }
   }
@@ -204,6 +212,7 @@ class HomeController extends GetxController {
       changeLoader(false);
     }
   }
+  ConnectionsController connectionsController = Get.put(ConnectionsController());
 
   Future<void> init() async {
     changeLoader(true);
@@ -216,6 +225,7 @@ class HomeController extends GetxController {
     notificationsController.getNotifications();
     changeLoader(false);
     await friendPostData();
+    await connectionsController.init();
     // await myStoryList();
     // viewStoryController.friendStoryApiData();
     // loader.value = true;
@@ -246,7 +256,7 @@ class HomeController extends GetxController {
   }
 
   void changeLoader(bool status) {
-    if(refreshController == null || refreshController!.headerMode == null){
+    if (refreshController == null || refreshController!.headerMode == null) {
       loader.value = status;
       return;
     }
@@ -256,8 +266,9 @@ class HomeController extends GetxController {
     loader.value = status;
   }
 
-  void onNotyIconBtnTap(){
-    NotificationsController notificationsController = Get.put(NotificationsController());
+  void onNotyIconBtnTap() {
+    NotificationsController notificationsController =
+        Get.put(NotificationsController());
     notificationsController.init();
     Get.to(() => NotificationScreen());
   }
