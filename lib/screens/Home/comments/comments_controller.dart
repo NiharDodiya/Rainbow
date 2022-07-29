@@ -31,13 +31,17 @@ class CommentsController extends GetxController {
   }
 
   Future cameraImage() async {
-    var pickedFile = await ImagePicker().pickImage(source: ImageSource.camera);
-    final imageTemp = File(pickedFile!.path);
-    imageCamera = imageTemp;
-    if (pickedFile != null) {
-      return pickedFile.path;
-    }
-    update(["commentPost"]);
+ try{
+   var pickedFile = await ImagePicker().pickImage(source: ImageSource.camera);
+   final imageTemp = File(pickedFile!.path);
+   imageCamera = imageTemp;
+   if (pickedFile != null) {
+     return pickedFile.path;
+   }
+   update(["commentPost"]);
+ }catch(e){
+   print(e.toString());
+ }
   }
 
   navigateToCamera() async {
@@ -49,6 +53,7 @@ class CommentsController extends GetxController {
   }
 
   Future galleryImage() async {
+  try{
     var pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
     final imageTemp = File(pickedFile!.path);
     imageCamera = imageTemp;
@@ -56,6 +61,9 @@ class CommentsController extends GetxController {
       return pickedFile.path;
     }
     update(["commentPost"]);
+  }catch(e){
+    print(e.toString());
+  }
   }
 
   navigateToGallery() async {
