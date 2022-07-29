@@ -383,8 +383,9 @@ class ViewStoryController extends GetxController {
 
   Future<void> viewStoryApi() async {
     String storyId = storyModel
+        .friendsStory!.isNotEmpty?storyModel
         .friendsStory![currentPage].storyList![storyIndex].id
-        .toString();
+        .toString():"0";
     await MyStoryApi.storyViewAPi(storyId);
   }
 

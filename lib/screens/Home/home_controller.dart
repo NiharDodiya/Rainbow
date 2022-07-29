@@ -53,30 +53,32 @@ class HomeController extends GetxController {
   PostViewModel postViewModel = PostViewModel();
   FriendPostViewModel friendPostViewModel = FriendPostViewModel();
   PostCommentListModel postCommentListModel = PostCommentListModel();
-  int page = 1;
-  int totalPages = 0;
-  bool isLoading = false;
-  ScrollController scrollController = ScrollController();
-  final storyController = EditStoryController();
+  // int page = 1;
+  // int totalPages = 0;
+  // bool isLoading = false;
+  // ScrollController scrollController = ScrollController();
+  // final storyController = EditStoryController();
+  ConnectionsController connectionsController = Get.put(ConnectionsController());
+
 
   @override
   Future<void> onInit() async {
     init();
-    scrollController.addListener(pagination);
+    // scrollController.addListener(pagination);
     update(['home']);
     super.onInit();
   }
 
-  void pagination() {
-    if ((scrollController.position.pixels ==
-            scrollController.position.maxScrollExtent) &&
-        (friendPostViewModel.data!.length < totalPages)) {
-      isLoading = true;
-      friendPostData();
-      isLoading = false;
-      update(['home']);
-    }
-  }
+  // void pagination() {
+  //   if ((scrollController.position.pixels ==
+  //           scrollController.position.maxScrollExtent) &&
+  //       (friendPostViewModel.data!.length < totalPages)) {
+  //     isLoading = true;
+  //     friendPostData();
+  //     isLoading = false;
+  //     update(['home']);
+  //   }
+  // }
 
   Future<void> countryName() async {
     try {
@@ -212,7 +214,6 @@ class HomeController extends GetxController {
       changeLoader(false);
     }
   }
-  ConnectionsController connectionsController = Get.put(ConnectionsController());
 
   Future<void> init() async {
     changeLoader(true);
@@ -223,9 +224,9 @@ class HomeController extends GetxController {
     await controller.viewProfileDetails();
     await onStory();
     notificationsController.getNotifications();
-    changeLoader(false);
     await friendPostData();
-    await connectionsController.init();
+    await connectionsController.callRequestApi();
+    changeLoader(false);
     // await myStoryList();
     // viewStoryController.friendStoryApiData();
     // loader.value = true;
@@ -233,7 +234,7 @@ class HomeController extends GetxController {
 
   Future<void> onStory() async {
     await viewStoryController.friendStoryApiData();
-    await myStoryController.init();
+    // await myStoryController.init();
     update(['home']);
   }
 

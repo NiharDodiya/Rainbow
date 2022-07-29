@@ -467,5 +467,17 @@ class Strings {
   static const postAdvertisement = "Post Advertisement";
   // static const tags = ;
   // static const tags = ;
+///____________________________________chates________________________________________
+ static const chats="Chats";
+ static const deleteConversation="Are you sure you want to delete this conversation?";
+ static const blockPerson="Are you sure you want to block this person?";
+ static const photosPeoplePlaces ="Photos, People, Places...";
+ static const albums ="Albums";
+ static const connectionRainBow ="You’re connection on Rainbow";
+ static const newConnections="Say hi to your new connection,";
+ static const connection="Connection";
+ static const pixsellz ="Pixsellz";
+ static const designProcess="Pixsellz Ad Make design process easier View More";
+
 
 }

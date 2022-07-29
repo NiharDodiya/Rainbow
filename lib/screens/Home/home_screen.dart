@@ -577,24 +577,18 @@ class _HomeScreenState extends State<HomeScreen> {
                             : 2,
                         itemBuilder: (context, index) {
                           RequestUser user = controller.requestUsers[index];
-
                           return Row(
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(
                                     left: 10, right: 10, bottom: 14),
-                                child: Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    /* image: DecorationImage(
-                                image: AssetImage(AssetRes.selfiePicture),
-                              ),*/
-                                  ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(50),
                                   child: Image.network(
                                     user.profileImage.toString(),
                                     fit: BoxFit.cover,
+                                    height: 50,
+                                    width: 50,
                                     errorBuilder: (context, url, error) =>
                                         const Icon(
                                       Icons.error,
@@ -991,7 +985,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                               .data![index]
                                                               .id
                                                               .toString());
-                                                  Get.to(() => CommentsScreen(
+                                                  Get.to(() => CommentScreen(
                                                         idPost: controller
                                                             .friendPostViewModel
                                                             .data![index]
@@ -1041,8 +1035,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               SizedBox(
                                                 width: Get.width * 0.05,
                                               ),
-                                              controller
-                                                          .friendPostViewModel
+                                              controller.friendPostViewModel
                                                           .data![index]
                                                           .isLike ==
                                                       "no"

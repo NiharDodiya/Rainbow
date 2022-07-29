@@ -27,10 +27,9 @@ class ConnectionsProfileController extends GetxController {
   UnblockModel unblockModel = UnblockModel();
   SendFriendRequest sendFriendRequest = SendFriendRequest();
   AcceptFriendRequest acceptFriendRequest = AcceptFriendRequest();
-  HomeController homeController = Get.put(HomeController());
+  // HomeController homeController = Get.put(HomeController());
   CancelFriendRequestModel cancelFriendRequestModel =
       CancelFriendRequestModel();
-  ProfileController profileController = Get.find();
   UnFriendModel unFriendModel = UnFriendModel();
 
   @override
@@ -39,11 +38,11 @@ class ConnectionsProfileController extends GetxController {
     super.onInit();
   }
 
-  void checkStatusForBlockUser() {
-    for (int i = 0; i < homeController.blockListModel.data!.length; i++) {
-      homeController.blockListModel.data![i].id == profileModel.data!.id;
-    }
-  }
+  // void checkStatusForBlockUser() {
+  //   for (int i = 0; i < homeController.blockListModel.data!.length; i++) {
+  //     homeController.blockListModel.data![i].id == profileModel.data!.id;
+  //   }
+  // }
 
   RxBool loader = false.obs;
 

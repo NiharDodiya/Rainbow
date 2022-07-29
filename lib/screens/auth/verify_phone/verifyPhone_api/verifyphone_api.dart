@@ -22,7 +22,7 @@ class VerifyCodeApi {
   ) async {
     try {
       String url = EndPoints.verifyCode;
-      int id = PrefService.getInt(PrefKeys.phoneId);
+      int id = PrefService.getInt(PrefKeys.userId);
       Map<String, String> param = {
         'id': id.toString(),
         'code': verifyOtp.toString(),

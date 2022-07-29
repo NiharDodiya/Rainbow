@@ -14,7 +14,6 @@ import 'package:rainbow/screens/Home/myPost_Api/myPost_api.dart';
 
 class CommentsController extends GetxController {
   RxBool loader = false.obs;
-
   TextEditingController msgController = TextEditingController();
   PostCommentModel postCommentModel = PostCommentModel();
   List<UserData> tagUserList = [];
@@ -42,11 +41,9 @@ class CommentsController extends GetxController {
 
   navigateToCamera() async {
     String? path = await cameraImage();
-
     if (path != null) {
       imageForCamera = File(path);
     }
-
     update(["commentPost"]);
   }
 
@@ -62,30 +59,28 @@ class CommentsController extends GetxController {
 
   navigateToGallery() async {
     String? path = await galleryImage();
-
     if (path != null) {
       imageForCamera = File(path);
     }
-
     update(["commentPost"]);
   }
 
   UploadImage uploadImage = UploadImage();
 
   Future<void> uploadImageApi() async {
-     loader.value = true;
+    loader.value = true;
     try {
       await UploadImageApi.postRegister(imageForCamera!.path.toString()).then(
         (value) => uploadImage = value!,
       );
       loader.value = false;
     } catch (e) {
-       loader.value = false;
+      loader.value = false;
       debugPrint(e.toString());
     }
   }
 
-  Future<void> commentPostData(BuildContext context,String idPost) async {
+  Future<void> commentPostData(BuildContext context, String idPost) async {
     try {
       loader.value = true;
       List<Map<String, dynamic>> list = tagUserList
@@ -95,14 +90,24 @@ class CommentsController extends GetxController {
               })
           .toList();
       if (replyId == null) {
-        await uploadImageApi();
-        postCommentModel = await MyPostApi.commentPostApi(context,
-            idPost, uploadImage.data!.id.toString(), msgController.text, list);
+        if (imageForCamera != null) {
+          await uploadImageApi();
+        }
+        postCommentModel = await MyPostApi.commentPostApi(
+            context,
+            idPost,
+            uploadImage.data == null ? "" : uploadImage.data!.id.toString(),
+            msgController.text,
+            list);
       } else {
-        await uploadImageApi();
-        postCommentModel = await MyPostApi.commentReplayPostApi(context,
+        if (imageForCamera != null) {
+          await uploadImageApi();
+        }
+        postCommentModel = await MyPostApi.commentReplayPostApi(
+            context,
             replyId.toString(),
-            idPost,uploadImage.data!.id.toString(),
+            idPost,
+            uploadImage.data == null ? "" : uploadImage.data!.id.toString(),
             msgController.text,
             list);
       }
@@ -110,7 +115,6 @@ class CommentsController extends GetxController {
 
       homeController.update(["home"]);
       update(['commentPost']);
-
 
       loader.value = false;
     } catch (e) {
