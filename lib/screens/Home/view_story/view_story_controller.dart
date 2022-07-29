@@ -239,7 +239,7 @@ class ViewStoryController extends GetxController {
         imgIdList.add(uploadImage.data!.id!);
       }
 
-      // oader.value = false;
+      // loader.value = false;
     } catch (e) {
       // loader.value = false;
       debugPrint(e.toString());
@@ -258,7 +258,6 @@ class ViewStoryController extends GetxController {
                 "name": e.fullName,
               })
           .toList();
-
       storyModel = await FriendStoryApi.createPost(
           context, imgIdList, writeSomethings.text, writeSomethings.text, list);
       // writeSomethings.clear();

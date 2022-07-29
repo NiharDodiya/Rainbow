@@ -915,7 +915,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ),
                                                 ),
                                                 Positioned(
-                                                    left: Get.width * 0.24,
+                                                    left: Get.width * 0.25,
                                                     top: Get.height * 0.01,
                                                     child: Text(
                                                       "+8 likes",
