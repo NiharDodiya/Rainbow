@@ -131,7 +131,6 @@ class Strings {
 
   static const maritalStatusError = 'Marital Status is required';
 
-
   static const ethnicityError = 'Ethnicity is required';
   static const birthDateError = 'Birth date is required';
   static const postalCodeError = 'PostalCode is required';
@@ -221,7 +220,8 @@ class Strings {
   static const scott = "Scott";
   static const seeAll = "See All";
   static const latestFeed = "Latest Feed";
-  static const latestFeedDes = "Lorem ipsum dolor sit amet, consectetur \nadipiscing elit, sed do eiusmod tempor \nincididunt ut labore et dolore magna aliqua.\n Lorem a commodo consequat ... more ";
+  static const latestFeedDes =
+      "Lorem ipsum dolor sit amet, consectetur \nadipiscing elit, sed do eiusmod tempor \nincididunt ut labore et dolore magna aliqua.\n Lorem a commodo consequat ... more ";
   static const likes = "Likes";
   static const comments = "Comments";
   static const learnMore = "LEARN MORE";
@@ -380,13 +380,13 @@ class Strings {
   static const raymondMarcos = "Raymond Marcos";
   static const logout02 = "LOG OUT";
 
-  static const sun ="Sun";
-  static const mon ="Mon";
-  static const tue ="Tue";
-  static const wed ="Wed";
-  static const th ="Th";
-  static const fri ="Fri";
-  static const sat ="Sat";
+  static const sun = "Sun";
+  static const mon = "Mon";
+  static const tue = "Tue";
+  static const wed = "Wed";
+  static const th = "Th";
+  static const fri = "Fri";
+  static const sat = "Sat";
 
   //___________________________________Cancel approve_____________________________
   static const cancelAprove = "Cancel Advertisement";
@@ -413,8 +413,10 @@ class Strings {
   static const supporterror01 = "Message is required";
   static const subject = "Subject";
   static const supportError02 = "Subject is requred";
+
   ///____________________________________Support123__________________________________________
   static const delete = "Delete";
+
   ///____________________________________Support_______________________________________
 
   static const datesuppo = "12/30/2021";
@@ -450,6 +452,7 @@ class Strings {
   static const postalHint = "Postal Code (Canada)";
   static const description = "Description";
   static const urlHint = "URL link (www.mymom.com)";
+
   // static const tags = ;
 
   ///_______________________________Ad-Home--> payment Succe. and failed_________
@@ -465,19 +468,20 @@ class Strings {
   static const editAdvertisement = "Edit Advertisement";
   static const location = "Location";
   static const postAdvertisement = "Post Advertisement";
+
   // static const tags = ;
   // static const tags = ;
-///____________________________________chates________________________________________
- static const chats="Chats";
- static const deleteConversation="Are you sure you want to delete this conversation?";
- static const blockPerson="Are you sure you want to block this person?";
- static const photosPeoplePlaces ="Photos, People, Places...";
- static const albums ="Albums";
- static const connectionRainBow ="You’re connection on Rainbow";
- static const newConnections="Say hi to your new connection,";
- static const connection="Connection";
- static const pixsellz ="Pixsellz";
- static const designProcess="Pixsellz Ad Make design process easier View More";
-
-
+  ///____________________________________chates________________________________________
+  static const chats = "Chats";
+  static const deleteConversation =
+      "Are you sure you want to delete this conversation?";
+  static const blockPerson = "Are you sure you want to block this person?";
+  static const photosPeoplePlaces = "Photos, People, Places...";
+  static const albums = "Albums";
+  static const connectionRainBow = "You’re connection on Rainbow";
+  static const newConnections = "Say hi to your new connection,";
+  static const connection = "Connection";
+  static const pixsellz = "Pixsellz";
+  static const designProcess =
+      "Pixsellz Ad Make design process easier View More";
 }

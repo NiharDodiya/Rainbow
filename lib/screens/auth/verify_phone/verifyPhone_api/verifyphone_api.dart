@@ -8,7 +8,6 @@ import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/Adver
 import 'package:rainbow/screens/advertisement/changePasswordAdvertiser_Screen.dart';
 import 'package:rainbow/screens/auth/newpassword/newpassword_screen.dart';
 import 'package:rainbow/screens/auth/verify_phone/verifyPhone_api/VerifyPhone_json.dart';
-import 'package:rainbow/screens/getstarted_screen.dart';
 import 'package:rainbow/screens/idVerification/idverification_screen.dart';
 import 'package:rainbow/screens/selfie_verification/selfie_verification_screen.dart';
 import 'package:rainbow/service/http_services.dart';
@@ -52,8 +51,8 @@ class VerifyCodeApi {
   }
 
   static Future registerVerifyCode(
-      String verifyOtp,
-      ) async {
+    String verifyOtp,
+  ) async {
     try {
       String url = EndPoints.verifyCode;
       int userId = PrefService.getInt(PrefKeys.userId);
@@ -74,13 +73,12 @@ class VerifyCodeApi {
         } else if (status == true) {
           flutterToast(jsonDecode(response.body)["message"]);
           // await PrefService.setValue(PrefKeys.register, true);
-     if (jsonDecode(response.body)["data"]["id_status"] ==
-            "pending") {
-          Get.offAll(() => IdVerificationScreen());
-        } else if (jsonDecode(response.body)["data"]["selfi_status"] ==
-            "pending") {
-          Get.offAll(() => const SelfieVerificationScreen());
-        }
+          if (jsonDecode(response.body)["data"]["id_status"] == "pending") {
+            Get.offAll(() => IdVerificationScreen());
+          } else if (jsonDecode(response.body)["data"]["selfi_status"] ==
+              "pending") {
+            Get.offAll(() => const SelfieVerificationScreen());
+          }
         }
         return verifyCodeFromJson(response.body);
       }
@@ -92,10 +90,9 @@ class VerifyCodeApi {
     }
   }
 
-
   static Future advertiserVerifyCode(
-      String verifyOtp,
-      ) async {
+    String verifyOtp,
+  ) async {
     try {
       String url = EndPoints.verifyCode;
       int id = PrefService.getInt(PrefKeys.phoneId);
@@ -110,21 +107,20 @@ class VerifyCodeApi {
           header: {"Content-Type": "application/json"});
       if (response != null && response.statusCode == 200) {
         // flutterToast( jsonDecode(response.body)["message"]);
-        final AdvertiserVerifyController _controller = Get.put(AdvertiserVerifyController());
+        final AdvertiserVerifyController _controller =
+            Get.put(AdvertiserVerifyController());
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
           flutterToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           await PrefService.setValue(PrefKeys.register, true);
           await PrefService.setValue(
-              PrefKeys.loginRole,
-              jsonDecode(response.body)["data"]["role"]);
+              PrefKeys.loginRole, jsonDecode(response.body)["data"]["role"]);
           print(_controller.backScreen.toString());
 
-          if(_controller.backScreen == "AdvertisementDashBord"){
-
+          if (_controller.backScreen == "AdvertisementDashBord") {
             Get.to(() => const AdvertiserChangePasswordScreen());
-          }else{
+          } else {
             Get.to(() => const AdvertiserTermsAndConditionsScreen());
           }
         }
@@ -138,10 +134,9 @@ class VerifyCodeApi {
     }
   }
 
-
   static Future advertiserRegisterVerifyCode(
-      String verifyOtp,
-      ) async {
+    String verifyOtp,
+  ) async {
     try {
       String url = EndPoints.verifyCode;
       int id = PrefService.getInt(PrefKeys.phoneId);
@@ -173,5 +168,4 @@ class VerifyCodeApi {
       return verifyCodeFromJson("");
     }
   }
-
 }

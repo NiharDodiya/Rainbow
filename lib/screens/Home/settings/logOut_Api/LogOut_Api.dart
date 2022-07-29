@@ -26,8 +26,7 @@ class LogOutApi {
           flutterToast(jsonDecode(response.body)["message"]);
           // await PrefService.clear();
           PrefService.setValue(PrefKeys.skipBoardingScreen, true);
-          await PrefService.setValue(
-              PrefKeys.loginRole,"");
+          await PrefService.setValue(PrefKeys.loginRole, "");
           Get.offAll(() => AuthDashboard());
         }
         return logOutModelFromJson(response.body);

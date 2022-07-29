@@ -17,8 +17,6 @@ import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-import '../../auth/phonenumber/phonenumber_Screen.dart';
-
 class AdvertisementDashBord extends StatelessWidget {
   AdvertisementDashBord({Key? key}) : super(key: key);
 
@@ -96,10 +94,12 @@ class AdvertisementDashBord extends StatelessWidget {
               SizedBox(
                 height: Get.height * 0.0467,
               ),
+
               ///Change Password
               InkWell(
                 onTap: () {
-                  AdvertiserVerifyController adController = Get.put(AdvertiserVerifyController());
+                  AdvertiserVerifyController adController =
+                      Get.put(AdvertiserVerifyController());
                   adController.backScreen = 'AdvertisementDashBord';
                   Get.to(() => AdvertiserVerifyOtpScreen());
                 },

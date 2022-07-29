@@ -35,7 +35,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
         IndicatorAnimationCommand.resume;
 
     KeyboardVisibilityController().onChange.listen((bool visible) {
-      if(Get.currentRoute != "/MyStoryScreen"){
+      if (Get.currentRoute != "/MyStoryScreen") {
         return;
       }
       if (visible) {
@@ -63,13 +63,13 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
             GetBuilder<MyStoryController>(
               id: "my_story",
               builder: (controller) {
-                if (controller. viewStoryController.storyModel.myStory == null) {
+                if (controller.viewStoryController.storyModel.myStory == null) {
                   return Container(color: ColorRes.black);
                 }
                 return StoryPageView(
                   itemBuilder: (context, pageIndex, storyIndex) {
-                    final MyStory story =
-                    controller.viewStoryController.storyModel.myStory![storyIndex];
+                    final MyStory story = controller
+                        .viewStoryController.storyModel.myStory![storyIndex];
                     return Stack(
                       children: [
                         Container(color: Colors.black),
@@ -113,9 +113,11 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                             height: Get.height * 0.2857,
                             width: Get.width,
                             decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                    image: AssetImage(AssetRes.homePro),),),
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: AssetImage(AssetRes.homePro),
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -166,7 +168,10 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                   IconButton(
                                       onPressed: () {
                                         controller.getStoryViewList(controller
-                                            . viewStoryController.storyModel.myStory![pageIndex].id
+                                            .viewStoryController
+                                            .storyModel
+                                            .myStory![pageIndex]
+                                            .id
                                             .toString());
                                       },
                                       icon: const Icon(
@@ -219,16 +224,18 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                       text: TextSpan(
                                         children: [
                                           TextSpan(
-                                            text: controller. viewStoryController.storyModel.myStory![pageIndex].description
+                                            text: controller
+                                                .viewStoryController
+                                                .storyModel
+                                                .myStory![pageIndex]
+                                                .description
                                                 .toString(),
-                                            style:
-                                            sfProTextReguler().copyWith(
+                                            style: sfProTextReguler().copyWith(
                                               color: ColorRes.color_2F80ED,
                                               fontSize: 27,
                                             ),
                                             recognizer: TapGestureRecognizer()
-                                              ..onTap =
-                                                  controller.onHashTagTap,
+                                              ..onTap = controller.onHashTagTap,
                                           ),
                                         ],
                                       ),
@@ -266,14 +273,13 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                       const SizedBox(width: 16),
                                       Column(
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             profileController
                                                 .viewProfile.data!.fullName
                                                 .toString(),
-                                            style:
-                                            sfProTextReguler().copyWith(
+                                            style: sfProTextReguler().copyWith(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w700,
                                             ),
@@ -282,8 +288,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                             profileController
                                                 .viewProfile.data!.userStatus
                                                 .toString(),
-                                            style:
-                                            sfProTextReguler().copyWith(
+                                            style: sfProTextReguler().copyWith(
                                               fontWeight: FontWeight.w300,
                                             ),
                                           ),
@@ -291,12 +296,10 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                       ),
                                       const Spacer(),
                                       Text(
-                                        "${controller. viewStoryController.storyModel.myStory![storyIndex].createdAt!.hour
-                                            .toString()}:${controller. viewStoryController.storyModel.myStory![storyIndex].createdAt!.minute
-                                            .toString()}",
+                                        "${controller.viewStoryController.storyModel.myStory![storyIndex].createdAt!.hour.toString()}:${controller.viewStoryController.storyModel.myStory![storyIndex].createdAt!.minute.toString()}",
                                         style: sfProTextReguler().copyWith(
                                             decoration:
-                                            TextDecoration.underline),
+                                                TextDecoration.underline),
                                       ),
                                     ],
                                   ),
@@ -308,18 +311,19 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                         width: Get.width,
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
+                                              MainAxisAlignment.spaceAround,
                                           children: [
                                             InkWell(
                                               onTap: () {
                                                 controller.onLikeBtnTap(
                                                     myStory: controller
-                                                        . viewStoryController.storyModel.myStory![pageIndex],
+                                                        .viewStoryController
+                                                        .storyModel
+                                                        .myStory![pageIndex],
                                                     storyindex: storyIndex);
                                               },
                                               child: Column(
-                                                mainAxisSize:
-                                                MainAxisSize.min,
+                                                mainAxisSize: MainAxisSize.min,
                                                 children: [
                                                   const Icon(
                                                     Icons.favorite,
@@ -329,22 +333,27 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                     children: [
                                                       Text(
                                                         Strings.likes,
-                                                        style:
-                                                        sfProTextReguler(
+                                                        style: sfProTextReguler(
                                                             fontSize: 15),
                                                       ),
                                                       Text(
                                                         controller
-                                                            . viewStoryController.storyModel
-                                                            .myStory![pageIndex]
-                                                            .storyLikeCount
-                                                            .toString()=="0"?"": controller
-                                                            . viewStoryController.storyModel
-                                                            .myStory![pageIndex]
-                                                            .storyLikeCount
-                                                            .toString(),
-                                                        style:
-                                                        sfProTextReguler(
+                                                                    .viewStoryController
+                                                                    .storyModel
+                                                                    .myStory![
+                                                                        pageIndex]
+                                                                    .storyLikeCount
+                                                                    .toString() ==
+                                                                "0"
+                                                            ? ""
+                                                            : controller
+                                                                .viewStoryController
+                                                                .storyModel
+                                                                .myStory![
+                                                                    pageIndex]
+                                                                .storyLikeCount
+                                                                .toString(),
+                                                        style: sfProTextReguler(
                                                             fontSize: 15),
                                                       ),
                                                     ],
@@ -356,12 +365,13 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                               onTap: () {
                                                 controller.onCommentButtonTap(
                                                     myStory: controller
-                                                        . viewStoryController.storyModel.myStory![pageIndex],
+                                                        .viewStoryController
+                                                        .storyModel
+                                                        .myStory![pageIndex],
                                                     storyindex: storyIndex);
                                               },
                                               child: Column(
-                                                mainAxisSize:
-                                                MainAxisSize.min,
+                                                mainAxisSize: MainAxisSize.min,
                                                 children: [
                                                   const Icon(Icons.comment,
                                                       color: ColorRes.white),
@@ -369,30 +379,36 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                     children: [
                                                       Text(Strings.comments,
                                                           style:
-                                                          sfProTextReguler()),
+                                                              sfProTextReguler()),
                                                       Text(
                                                           controller
-                                                              . viewStoryController.storyModel.myStory![
-                                                          pageIndex]
-                                                              .storyCommentCount
-                                                              .toString()=="0"?"":controller
-                                                              . viewStoryController.storyModel.myStory![
-                                                          pageIndex]
-                                                              .storyCommentCount
-                                                              .toString(),
+                                                                      .viewStoryController
+                                                                      .storyModel
+                                                                      .myStory![
+                                                                          pageIndex]
+                                                                      .storyCommentCount
+                                                                      .toString() ==
+                                                                  "0"
+                                                              ? ""
+                                                              : controller
+                                                                  .viewStoryController
+                                                                  .storyModel
+                                                                  .myStory![
+                                                                      pageIndex]
+                                                                  .storyCommentCount
+                                                                  .toString(),
                                                           style:
-                                                          sfProTextReguler()),
+                                                              sfProTextReguler()),
                                                     ],
                                                   ),
                                                 ],
                                               ),
                                             ),
                                             InkWell(
-                                              onTap: () =>
-                                                  controller.onDeleteTap(storyIndex),
+                                              onTap: () => controller
+                                                  .onDeleteTap(storyIndex),
                                               child: Column(
-                                                mainAxisSize:
-                                                MainAxisSize.min,
+                                                mainAxisSize: MainAxisSize.min,
                                                 children: [
                                                   const Icon(Icons.delete,
                                                       color: ColorRes.red),
@@ -413,7 +429,8 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                             ),
                           ),
                         ),
-                        Positioned(bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+                        Positioned(
+                          bottom: MediaQuery.of(context).viewInsets.bottom + 10,
                           child: Row(
                             children: [
                               SizedBox(
@@ -428,13 +445,13 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                     filled: true,
                                     fillColor: Colors.black,
                                     hintStyle:
-                                    const TextStyle(color: Colors.white),
+                                        const TextStyle(color: Colors.white),
                                     hintText: "send message",
                                     contentPadding:
-                                    const EdgeInsets.only(top: 2, left: 15),
+                                        const EdgeInsets.only(top: 2, left: 15),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide:
-                                      const BorderSide(color: Colors.grey),
+                                          const BorderSide(color: Colors.grey),
                                       borderRadius: BorderRadius.circular(35),
                                     ),
                                   ),
@@ -447,9 +464,8 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                               InkWell(
                                 onTap: () {
                                   controller.commentSendTap(
-                                      controller
-                                          . viewStoryController.storyModel.myStory![pageIndex]
-                                          .id
+                                      controller.viewStoryController.storyModel
+                                          .myStory![pageIndex].id
                                           .toString(),
                                       context);
                                 },
@@ -466,24 +482,27 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                       ],
                     );
                   },
-                  indicatorAnimationController: controller
-                      .indicatorAnimationController,
+                  indicatorAnimationController:
+                      controller.indicatorAnimationController,
                   initialStoryIndex: (pageIndex) {
                     return 0;
                   },
                   pageLength: 1,
                   storyLength: (int pageIndex) {
-                    if (controller.viewStoryController.storyModel.myStory == null) {
+                    if (controller.viewStoryController.storyModel.myStory ==
+                        null) {
                       return 0;
                     }
-                    return controller.viewStoryController.storyModel.myStory!.length;
+                    return controller
+                        .viewStoryController.storyModel.myStory!.length;
                   },
                   onPageLimitReached: () {
                     Navigator.pop(context);
                   },
                   color: ColorRes.white,
                   bgColor: ColorRes.color_464646,
-                  onStoryChange: (int storyIndex) => controller.onStoryChange(storyIndex),
+                  onStoryChange: (int storyIndex) =>
+                      controller.onStoryChange(storyIndex),
                   loadImage: () => controller.downloadImage(context),
                 );
               },

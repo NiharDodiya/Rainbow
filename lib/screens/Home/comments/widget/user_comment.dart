@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
@@ -31,9 +30,11 @@ Widget userComment(
                     borderRadius: const BorderRadius.all(Radius.circular(50)),
                     child: Image.network(
                       profileImage.toString(),
-                      fit: BoxFit.cover,errorBuilder: (context,
-                        url, error) =>
-                    const Icon(Icons.error,color: Colors.grey,),
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, url, error) => const Icon(
+                        Icons.error,
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
                 ),
@@ -99,7 +100,7 @@ Widget userComment(
                         ),
                       ],
                     ),
-          /*          image == ""
+                    /*          image == ""
                         ? const SizedBox()
                         : CachedNetworkImage(
                             imageUrl: image.toString(),
@@ -122,9 +123,11 @@ Widget userComment(
                             image.toString(),
                             height: 100,
                             width: 100,
-                            fit: BoxFit.cover, errorBuilder: (context,
-                        url, error) =>
-                    const Icon(Icons.error,color: Colors.grey,),
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, url, error) => const Icon(
+                              Icons.error,
+                              color: Colors.grey,
+                            ),
                           )
                   ],
                 )
@@ -217,16 +220,18 @@ Widget userComment(
                                       ),*/
                                 reply[index].postCommentItem.toString() == ""
                                     ? const SizedBox()
-                                    :  image == ""
-                                    ? const SizedBox()
-                                    : Image.network(
-                                  image.toString(),
-                                  height: 100,
-                                  width: 100,
-                                  fit: BoxFit.cover,errorBuilder: (context,
-                                    url, error) =>
-                                const Icon(Icons.error,color: Colors.grey,)
-                                ),
+                                    : image == ""
+                                        ? const SizedBox()
+                                        : Image.network(image.toString(),
+                                            height: 100,
+                                            width: 100,
+                                            fit: BoxFit.cover,
+                                            errorBuilder:
+                                                (context, url, error) =>
+                                                    const Icon(
+                                                      Icons.error,
+                                                      color: Colors.grey,
+                                                    )),
                               ],
                             ),
                           )

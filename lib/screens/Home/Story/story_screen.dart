@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
@@ -30,7 +29,6 @@ class StoryScreen extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   Get.back();
-
                 },
                 child: Image.asset(
                   AssetRes.backIcon,
@@ -50,8 +48,7 @@ class StoryScreen extends StatelessWidget {
                   height: 30,
                   width: 30,
                   decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: ColorRes.color_606060),
+                      shape: BoxShape.circle, color: ColorRes.color_606060),
                   child: Center(
                     child: Text(
                       Strings.aA,
@@ -88,12 +85,14 @@ class StoryScreen extends StatelessWidget {
           return Obx(() {
             return Stack(
               children: [
-                Column(crossAxisAlignment: CrossAxisAlignment.start,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
                       height: Get.height * 0.02,
                     ),
-                    Container(margin: const EdgeInsets.only(left: 40),
+                    Container(
+                      margin: const EdgeInsets.only(left: 40),
                       height: Get.height * 0.28,
                       width: Get.width * 0.8,
                       decoration: BoxDecoration(
@@ -113,44 +112,50 @@ class StoryScreen extends StatelessWidget {
                             counterStyle: textStyleFont18Grey),
                       ),
                     ),
-                    SizedBox(height: Get.height*0.2,),
-                    controller.imageCamera!= null?Container(height: Get.height * 0.3,
-                      margin: const EdgeInsets.only(left: 15),
-                      child: Image.file(
-                        controller.imageCamera!,
-                        height: Get.height * 0.05,
-                        width: Get.width * 0.28,
-                        fit: BoxFit.contain,
-                      ),
-                    ): GetBuilder<ViewStoryController>(
-                      id: "createStory",
-                      builder: (controller) {
-                        return controller.image == null
-                            ? const SizedBox()
-                            : SizedBox(
-                          height: Get.height * 0.3,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: controller.image.length,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Image.file(
-                                  controller.image[index],
-                                  height: Get.height * 0.05,
-                                  width: Get.width * 0.28,
-                                  fit: BoxFit.contain,
-                                ),
-                              );
+                    SizedBox(
+                      height: Get.height * 0.2,
+                    ),
+                    controller.imageCamera != null
+                        ? Container(
+                            height: Get.height * 0.3,
+                            margin: const EdgeInsets.only(left: 15),
+                            child: Image.file(
+                              controller.imageCamera!,
+                              height: Get.height * 0.05,
+                              width: Get.width * 0.28,
+                              fit: BoxFit.contain,
+                            ),
+                          )
+                        : GetBuilder<ViewStoryController>(
+                            id: "createStory",
+                            builder: (controller) {
+                              return controller.image == null
+                                  ? const SizedBox()
+                                  : SizedBox(
+                                      height: Get.height * 0.3,
+                                      child: ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: controller.image.length,
+                                        itemBuilder: (context, index) {
+                                          return Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Image.file(
+                                              controller.image[index],
+                                              height: Get.height * 0.05,
+                                              width: Get.width * 0.28,
+                                              fit: BoxFit.contain,
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    );
                             },
                           ),
-                        );
-                      },
-                    ),
-
                   ],
                 ),
-                Positioned(top: Get.height*0.025,left: 15,
+                Positioned(
+                  top: Get.height * 0.025,
+                  left: 15,
                   child: Container(
                     height: 40,
                     width: 40,
@@ -160,7 +165,6 @@ class StoryScreen extends StatelessWidget {
                             image: AssetImage(AssetRes.se_profile))),
                   ),
                 ),
-
                 Positioned(
                   bottom: 0,
                   child: Container(
@@ -291,16 +295,14 @@ class StoryScreen extends StatelessWidget {
                     } else {
                       return Container(
                         constraints: const BoxConstraints(
-                            maxHeight: 200 - 20 - 50,
-                            minHeight: 30),
+                            maxHeight: 200 - 20 - 50, minHeight: 30),
                         // height: 200,
                         width: Get.width,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           boxShadow: [
                             BoxShadow(
-                                color:
-                                Colors.black.withOpacity(0.2),
+                                color: Colors.black.withOpacity(0.2),
                                 blurRadius: 5),
                           ],
                         ),
@@ -309,34 +311,42 @@ class StoryScreen extends StatelessWidget {
                           shrinkWrap: true,
                           itemBuilder: (con, index) {
                             return InkWell(
-                              onTap: () => controller.onTagTap(
-                                  controller.filterList[index]),
+                              onTap: () => controller
+                                  .onTagTap(controller.filterList[index]),
                               child: Padding(
-                                padding:
-                                const EdgeInsets.symmetric(
-                                    vertical: 10.0,
-                                    horizontal: 10),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 10.0, horizontal: 10),
                                 child: Row(
                                   children: [
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(50),
-                                      child:Image.network(controller
-                                          .filterList[index]
-                                          .profileImage
-                                          .toString(),height: 30,width: 30,fit: BoxFit.cover,errorBuilder: (con,str,dy){
-                                        return Container(
-                                          height: 30,
-                                          width: 30,
-                                          decoration: BoxDecoration(
-                                            color: ColorRes.white,
-                                            shape: BoxShape.circle,
-                                            border: Border.all(color: ColorRes.black,width: 0.7),
-                                          ),
-                                          child: const Center(
-                                            child: Icon(Icons.account_circle_outlined,color: ColorRes.black,),
-                                          ),
-                                        );
-                                      },)
+                                      child: Image.network(
+                                        controller
+                                            .filterList[index].profileImage
+                                            .toString(),
+                                        height: 30,
+                                        width: 30,
+                                        fit: BoxFit.cover,
+                                        errorBuilder: (con, str, dy) {
+                                          return Container(
+                                            height: 30,
+                                            width: 30,
+                                            decoration: BoxDecoration(
+                                              color: ColorRes.white,
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                  color: ColorRes.black,
+                                                  width: 0.7),
+                                            ),
+                                            child: const Center(
+                                              child: Icon(
+                                                Icons.account_circle_outlined,
+                                                color: ColorRes.black,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      )
                                       /*CachedNetworkImage(
                                         imageUrl: controller
                                             .filterList[index]
@@ -359,25 +369,29 @@ class StoryScreen extends StatelessWidget {
                                             ),
                                           );
                                         },
-                                      )*/,
+                                      )*/
+                                      ,
                                     ),
                                     const SizedBox(width: 10),
                                     Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          controller.filterList[index]
-                                              .fullName
+                                          controller.filterList[index].fullName
                                               .toString(),
                                           style: const TextStyle(
-                                            color: ColorRes.black,fontSize: 12,),
+                                            color: ColorRes.black,
+                                            fontSize: 12,
+                                          ),
                                         ),
                                         Text(
-                                          controller.filterList[index]
-                                              .email
+                                          controller.filterList[index].email
                                               .toString(),
                                           style: const TextStyle(
-                                            color: ColorRes.black,fontSize: 10,),
+                                            color: ColorRes.black,
+                                            fontSize: 10,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -391,24 +405,28 @@ class StoryScreen extends StatelessWidget {
                     }
                   },
                 ),
-                controller.textShow==true?Padding(padding: const EdgeInsets.only(left: 15),
-                  child: Center(
-                    child: SizedBox(
-                      height: 50,
-                      width: Get.width,
-                      child: TextField(
-                        controller: controller.tagController,
-                        style: const TextStyle(fontSize: 20,color: Colors.blueAccent),
-                        onChanged: controller.onChange,
-                        decoration:  InputDecoration(
-                          hintText: Strings.tagsUsers,
-                          hintStyle: textStyleFont18Grey,
-                          border: InputBorder.none,
+                controller.textShow == true
+                    ? Padding(
+                        padding: const EdgeInsets.only(left: 15),
+                        child: Center(
+                          child: SizedBox(
+                            height: 50,
+                            width: Get.width,
+                            child: TextField(
+                              controller: controller.tagController,
+                              style: const TextStyle(
+                                  fontSize: 20, color: Colors.blueAccent),
+                              onChanged: controller.onChange,
+                              decoration: InputDecoration(
+                                hintText: Strings.tagsUsers,
+                                hintStyle: textStyleFont18Grey,
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                ):const SizedBox(),
+                      )
+                    : const SizedBox(),
                 controller.loader.isTrue
                     ? const FullScreenLoader()
                     : const SizedBox()

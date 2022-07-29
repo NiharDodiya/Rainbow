@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/model/myStory_model.dart';
 import 'package:rainbow/model/storyViewList_model.dart';
 import 'package:rainbow/model/storyView_model.dart';
 import 'package:rainbow/service/http_services.dart';

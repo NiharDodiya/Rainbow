@@ -92,7 +92,6 @@ class LoginApi {
             await PrefService.setValue(
                 PrefKeys.loginRole, jsonDecode(response.body)["data"]["role"]);
 
-
             if (jsonDecode(response.body)["data"]["mobile_status"] ==
                 "pending") {
               advertiserVerifyController.phoneNumberRegister();

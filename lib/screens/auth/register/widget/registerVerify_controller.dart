@@ -11,21 +11,19 @@ import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
-class RegisterVerifyController extends GetxController
-{
+class RegisterVerifyController extends GetxController {
   TextEditingController verifyController = TextEditingController();
   RxBool loader = false.obs;
-  String phoneNumber="";
-  LoginModel loginModel=LoginModel();
+  String phoneNumber = "";
+  LoginModel loginModel = LoginModel();
   int seconds = 60;
   Timer? _countDown;
 
-@override
-  Future<void> onInit()
-async {
+  @override
+  Future<void> onInit() async {
+    super.onInit();
+  }
 
-  super.onInit();
-}
   bool validation() {
     if (verifyController.text.isEmpty) {
       errorToast(Strings.enterYourOtp);
@@ -46,6 +44,7 @@ async {
       loader.value = false;
     }
   }
+
   Future<void> sendOtp() async {
     try {
       loader.value = true;
@@ -56,12 +55,14 @@ async {
       loader.value = false;
     }
   }
+
   void phoneNumberRegister(String ph) async {
     try {
       loader.value = true;
 
-      await PhoneNumberApi.resendOtp(
-          ph==null? PrefService.getString(PrefKeys.phonSaveNumberEndUser) :ph);
+      await PhoneNumberApi.resendOtp(ph == null
+          ? PrefService.getString(PrefKeys.phonSaveNumberEndUser)
+          : ph);
       /*  await PrefService.setValue(
           PrefKeys.id, phoneNumberModel.data!.id.toString());*/
       loader.value = false;
@@ -76,18 +77,17 @@ async {
     const oneSec = Duration(seconds: 1);
     _countDown = new Timer.periodic(
       oneSec,
-          (timer) {
+      (timer) {
         if (seconds == 0) {
-            _countDown!.cancel();
-            timer.cancel();
-            update(['count_timer']);
+          _countDown!.cancel();
+          timer.cancel();
+          update(['count_timer']);
         } else {
-            seconds--;
-            update(['count_timer']);
+          seconds--;
+          update(['count_timer']);
         }
       },
     );
     update(['count_timer']);
   }
-
 }

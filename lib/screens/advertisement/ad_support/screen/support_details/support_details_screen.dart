@@ -83,7 +83,6 @@ class SupportDetailsScreen extends StatelessWidget {
                     style: gilroySemiBoldTextStyle(
                         fontSize: 18, color: ColorRes.color_FFA620),
                   ),
-                 
                 ],
               ),
               SizedBox(

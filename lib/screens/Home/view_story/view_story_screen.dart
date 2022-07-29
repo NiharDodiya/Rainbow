@@ -199,7 +199,8 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                         children: [
                                           TextSpan(
                                             text: controller
-                                                .storyModel.friendsStory![pageIndex]
+                                                .storyModel
+                                                .friendsStory![pageIndex]
                                                 .storyList![storyIndex]
                                                 .description
                                                 .toString(),
@@ -244,7 +245,8 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                             image: DecorationImage(
                                                 image: NetworkImage(
                                                   controller
-                                                      .storyModel.friendsStory![pageIndex]
+                                                      .storyModel
+                                                      .friendsStory![pageIndex]
                                                       .userDetail!
                                                       .profileImage
                                                       .toString(),
@@ -258,7 +260,8 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                         children: [
                                           Text(
                                             controller
-                                                .storyModel.friendsStory![pageIndex]
+                                                .storyModel
+                                                .friendsStory![pageIndex]
                                                 .userDetail!
                                                 .fullName
                                                 .toString(),
@@ -269,7 +272,8 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                           ),
                                           Text(
                                             controller
-                                                .storyModel.friendsStory![pageIndex]
+                                                .storyModel
+                                                .friendsStory![pageIndex]
                                                 .userDetail!
                                                 .userStatus
                                                 .toString(),
@@ -393,7 +397,8 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                   ? InkWell(
                                       onTap: () {
                                         controller.onLikeBtnTap(controller
-                                            .storyModel.friendsStory![pageIndex]
+                                            .storyModel
+                                            .friendsStory![pageIndex]
                                             .storyList![storyIndex]
                                             .id
                                             .toString());
@@ -406,7 +411,8 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                   : InkWell(
                                       onTap: () {
                                         controller.onUnLikeBtnTap(controller
-                                            .storyModel.friendsStory![pageIndex]
+                                            .storyModel
+                                            .friendsStory![pageIndex]
                                             .storyList![storyIndex]
                                             .id
                                             .toString());
@@ -451,7 +457,8 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                 onTap: () {
                                   controller.commentSendTap(
                                       controller
-                                          .storyModel.friendsStory![pageIndex]
+                                          .storyModel
+                                          .friendsStory![pageIndex]
                                           .storyList![storyIndex]
                                           .id
                                           .toString(),

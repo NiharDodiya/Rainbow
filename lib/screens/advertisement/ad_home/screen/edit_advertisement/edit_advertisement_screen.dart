@@ -4,6 +4,7 @@ import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/edit_advertisement/edit_advertisement_controller.dart';
 import 'package:rainbow/utils/strings.dart';
+
 import '../../../../../common/Widget/text_styles.dart';
 import '../../../../../utils/asset_res.dart';
 import '../../../../../utils/color_res.dart';
@@ -77,7 +78,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                   Get.back();
                 },
                 child: Text(
-                 Strings.editAdvertisement ,
+                  Strings.editAdvertisement,
                   style: gilroyBoldTextStyle(),
                 ),
               ),
@@ -264,7 +265,8 @@ class EditAdvertisementscreen extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Text(Strings.location, style: poppinsMediumBold(fontSize: 18)),
+                      Text(Strings.location,
+                          style: poppinsMediumBold(fontSize: 18)),
                       const Spacer(),
                       Text(
                         Strings.edit,

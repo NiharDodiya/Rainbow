@@ -14,7 +14,8 @@ class AdvertiserVerifyOtpScreen extends StatefulWidget {
   AdvertiserVerifyOtpScreen({Key? key}) : super(key: key);
 
   @override
-  State<AdvertiserVerifyOtpScreen> createState() => _AdvertiserVerifyOtpScreenState();
+  State<AdvertiserVerifyOtpScreen> createState() =>
+      _AdvertiserVerifyOtpScreenState();
 }
 
 class _AdvertiserVerifyOtpScreenState extends State<AdvertiserVerifyOtpScreen> {
@@ -24,18 +25,21 @@ class _AdvertiserVerifyOtpScreenState extends State<AdvertiserVerifyOtpScreen> {
   @override
   void initState() {
     controller.startTimer();
-    controller.verifyController=TextEditingController();
-    controller. phoneNumberRegister();
+    controller.verifyController = TextEditingController();
+    controller.phoneNumberRegister();
     super.initState();
   }
-@override
+
+  @override
   void dispose() {
-  controller.verifyController.dispose();
+    controller.verifyController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-    AdvertiserVerifyController controller = Get.put(AdvertiserVerifyController());
+    AdvertiserVerifyController controller =
+        Get.put(AdvertiserVerifyController());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Obx(() {
@@ -214,7 +218,6 @@ class _AdvertiserVerifyOtpScreenState extends State<AdvertiserVerifyOtpScreen> {
                                 onTap: () async {
                                   if (formKey.currentState!.validate()) {
                                     controller.verifyCode();
-
                                   }
                                 },
                                 child: Center(
@@ -246,7 +249,9 @@ class _AdvertiserVerifyOtpScreenState extends State<AdvertiserVerifyOtpScreen> {
                 ),
               ),
             ),
-            controller.loader.isTrue ? const FullScreenLoader(): const SizedBox(),
+            controller.loader.isTrue
+                ? const FullScreenLoader()
+                : const SizedBox(),
           ],
         );
       }),

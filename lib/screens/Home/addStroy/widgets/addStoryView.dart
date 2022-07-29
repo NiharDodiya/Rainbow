@@ -74,7 +74,7 @@ class AddStoryViewScreen extends StatelessWidget {
                       left: Get.width * 0.8,
                       child: InkWell(
                         onTap: () {
-                         controller.onTextTap();
+                          controller.onTextTap();
                         },
                         child: Container(
                           height: 40,
@@ -168,7 +168,9 @@ class AddStoryViewScreen extends StatelessWidget {
                                               child: Row(
                                                 children: [
                                                   ClipRRect(
-                                                    borderRadius: BorderRadius.circular(50),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50),
                                                     child: CachedNetworkImage(
                                                       imageUrl: controller
                                                           .filterList[index]
@@ -177,17 +179,29 @@ class AddStoryViewScreen extends StatelessWidget {
                                                       height: 30,
                                                       width: 30,
                                                       fit: BoxFit.cover,
-                                                      errorWidget: (con,str,dy){
+                                                      errorWidget:
+                                                          (con, str, dy) {
                                                         return Container(
                                                           height: 30,
                                                           width: 30,
-                                                          decoration: BoxDecoration(
-                                                            color: ColorRes.white,
-                                                            shape: BoxShape.circle,
-                                                            border: Border.all(color: ColorRes.black,width: 0.7),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color:
+                                                                ColorRes.white,
+                                                            shape:
+                                                                BoxShape.circle,
+                                                            border: Border.all(
+                                                                color: ColorRes
+                                                                    .black,
+                                                                width: 0.7),
                                                           ),
                                                           child: const Center(
-                                                            child: Icon(Icons.account_circle_outlined,color: ColorRes.black,),
+                                                            child: Icon(
+                                                              Icons
+                                                                  .account_circle_outlined,
+                                                              color: ColorRes
+                                                                  .black,
+                                                            ),
                                                           ),
                                                         );
                                                       },
@@ -195,21 +209,29 @@ class AddStoryViewScreen extends StatelessWidget {
                                                   ),
                                                   const SizedBox(width: 10),
                                                   Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
                                                       Text(
-                                                        controller.filterList[index]
+                                                        controller
+                                                            .filterList[index]
                                                             .fullName
                                                             .toString(),
                                                         style: const TextStyle(
-                                                            color: ColorRes.black,fontSize: 12,),
+                                                          color: ColorRes.black,
+                                                          fontSize: 12,
+                                                        ),
                                                       ),
                                                       Text(
-                                                        controller.filterList[index]
+                                                        controller
+                                                            .filterList[index]
                                                             .email
                                                             .toString(),
                                                         style: const TextStyle(
-                                                            color: ColorRes.black,fontSize: 10,),
+                                                          color: ColorRes.black,
+                                                          fontSize: 10,
+                                                        ),
                                                       ),
                                                     ],
                                                   ),
@@ -224,21 +246,23 @@ class AddStoryViewScreen extends StatelessWidget {
                                 },
                               ),
                               const SizedBox(height: 20),
-                              controller.textShow==true?Center(
-                                child: SizedBox(
-                                  height: 50,
-                                  width: Get.width,
-                                  child: TextField(
-                                    controller: controller.msgController,
-                                    style: const TextStyle(fontSize: 20),
-                                    onChanged: controller.onChange,
-                                    decoration: const InputDecoration(
-                                      hintText: Strings.writeSomethings,
-                                      border: InputBorder.none,
-                                    ),
-                                  ),
-                                ),
-                              ):const SizedBox(),
+                              controller.textShow == true
+                                  ? Center(
+                                      child: SizedBox(
+                                        height: 50,
+                                        width: Get.width,
+                                        child: TextField(
+                                          controller: controller.msgController,
+                                          style: const TextStyle(fontSize: 20),
+                                          onChanged: controller.onChange,
+                                          decoration: const InputDecoration(
+                                            hintText: Strings.writeSomethings,
+                                            border: InputBorder.none,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  : const SizedBox(),
                             ],
                           ),
                         ),

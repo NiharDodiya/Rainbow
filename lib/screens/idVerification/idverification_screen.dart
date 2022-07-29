@@ -384,7 +384,9 @@ class IdVerificationScreen extends StatelessWidget {
                   },
                 ),
               ),
-              controller.loader.isTrue ? const FullScreenLoader() : const SizedBox()
+              controller.loader.isTrue
+                  ? const FullScreenLoader()
+                  : const SizedBox()
             ],
           );
         }));

@@ -59,16 +59,16 @@ class ViewStoryController extends GetxController {
   }
 
   void onStoryComplete() {}
-  void onTextTap()
-  {
-    if(textShow==false)
-    {
-      textShow=true;
-    }else{
-      textShow=false;
+
+  void onTextTap() {
+    if (textShow == false) {
+      textShow = true;
+    } else {
+      textShow = false;
     }
     update(["createStory"]);
   }
+
   void onBackTap() {
     Get.back();
   }
@@ -107,6 +107,7 @@ class ViewStoryController extends GetxController {
 
     update(["createStory"]);
   }
+
   ListUserTagModel listUserTagModel = ListUserTagModel();
   List<UserData> filterList = [];
 
@@ -128,9 +129,9 @@ class ViewStoryController extends GetxController {
 
       filterList = (listUserTagModel.data ?? [])
           .where((element) => element.fullName
-          .toString()
-          .toLowerCase()
-          .contains(word.toLowerCase()))
+              .toString()
+              .toLowerCase()
+              .contains(word.toLowerCase()))
           .toList();
       update(['createStory']);
     } else {
@@ -138,6 +139,7 @@ class ViewStoryController extends GetxController {
       update(['createStory']);
     }
   }
+
   void onTagTap(UserData userData) {
     tagUserList.add(userData);
     String sent = tagController.text;
@@ -147,7 +149,7 @@ class ViewStoryController extends GetxController {
     list.removeLast();
 
     tagController.text =
-    "${list.join(' ')}${list.isEmpty ? '' : ' '}@${userData.fullName}";
+        "${list.join(' ')}${list.isEmpty ? '' : ' '}@${userData.fullName}";
     filterList = [];
     update(['createStory']);
     tagController.selection =
@@ -232,7 +234,8 @@ class ViewStoryController extends GetxController {
           imgIdList.add(uploadImage.data!.id!);
         }
       } else {
-        uploadImage = await UploadImageApi.postRegister(imageCamera!.path.toString());
+        uploadImage =
+            await UploadImageApi.postRegister(imageCamera!.path.toString());
         imgIdList.add(uploadImage.data!.id!);
       }
 
@@ -256,19 +259,18 @@ class ViewStoryController extends GetxController {
               })
           .toList();
 
-      storyModel = await FriendStoryApi.createPost(context, imgIdList,
-          writeSomethings.text, writeSomethings.text, list);
+      storyModel = await FriendStoryApi.createPost(
+          context, imgIdList, writeSomethings.text, writeSomethings.text, list);
       // writeSomethings.clear();
       // list!.clear();
       // imageCamera==null?"":imageCamera!.delete();
-  /*    HomeController homeController = Get.find();
+      /*    HomeController homeController = Get.find();
       homeController.friendPostData();
        homeController.update(['home']);*/
       // onPageChange(currentPage);
       update(["createStory"]);
       //
       // Navigator.pop(context);
-
 
       loader.value = false;
     } catch (e) {
@@ -382,10 +384,10 @@ class ViewStoryController extends GetxController {
   }
 
   Future<void> viewStoryApi() async {
-    String storyId = storyModel
-        .friendsStory!.isNotEmpty?storyModel
-        .friendsStory![currentPage].storyList![storyIndex].id
-        .toString():"0";
+    String storyId = storyModel.friendsStory!.isNotEmpty
+        ? storyModel.friendsStory![currentPage].storyList![storyIndex].id
+            .toString()
+        : "0";
     await MyStoryApi.storyViewAPi(storyId);
   }
 
@@ -395,11 +397,11 @@ class ViewStoryController extends GetxController {
     }
     indicatorAnimationController!.value = IndicatorAnimationCommand.resume;
   }
+
   void pauseAnimation() {
     if (indicatorAnimationController == null) {
       return;
     }
     indicatorAnimationController!.value = IndicatorAnimationCommand.pause;
   }
-
 }

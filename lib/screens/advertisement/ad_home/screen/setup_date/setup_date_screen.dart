@@ -3,9 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/formatters/money_input_formatter.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
-import 'package:rainbow/common/Widget/country_name.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_failed.dart/payment_failed_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_successful/payment_successful_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_controller.dart';
@@ -166,7 +164,7 @@ class SetupDateScreen extends StatelessWidget {
                       defaultTextStyle: gilroyMediumTextStyle(
                           fontSize: 11.43, color: ColorRes.color_27354C),
                       rangeEndTextStyle:
-                      const TextStyle(fontSize: 15, color: Colors.white),
+                          const TextStyle(fontSize: 15, color: Colors.white),
                       disabledTextStyle: gilroyMediumTextStyle(
                         fontSize: 11.43,
                         color: ColorRes.color_27354C.withOpacity(0.4),
@@ -221,7 +219,8 @@ class SetupDateScreen extends StatelessWidget {
                         Icons.chevron_right,
                         color: ColorRes.black.withOpacity(0.5),
                       ),
-                      rightChevronMargin: EdgeInsets.only(right: Get.width*0.30),
+                      rightChevronMargin:
+                          EdgeInsets.only(right: Get.width * 0.30),
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(
@@ -234,7 +233,6 @@ class SetupDateScreen extends StatelessWidget {
                           fontSize: 11.43, color: ColorRes.color_50369C),
                     ),
                     calendarFormat: CalendarFormat.month,
-
                     startingDayOfWeek: StartingDayOfWeek.monday,
                   ),
                 ),
@@ -316,42 +314,40 @@ class SetupDateScreen extends StatelessWidget {
                                     height: 25,
                                     width: 90,
                                     child: GestureDetector(
-                                        onTap: () {
-                                    controller.showDrop();
-
-
-                                        },
-                                        child: Row(
-                                    children: [
-                                      const SizedBox(
-                                        width: 5,
+                                      onTap: () {
+                                        controller.showDrop();
+                                      },
+                                      child: Row(
+                                        children: [
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
+                                          Image.asset(
+                                            controller.flag,
+                                            height: 20,
+                                            width: 15,
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
+                                          Text(
+                                            controller.select,
+                                            style: gilroyMediumTextStyle(
+                                                fontSize: 12,
+                                                color: ColorRes.black),
+                                          ),
+                                          const Spacer(),
+                                          Image.asset(
+                                            AssetRes.drop,
+                                            height: 3.5,
+                                            width: 7,
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
+                                        ],
                                       ),
-                                      Image.asset(
-                                        controller.flag,
-                                        height: 20,
-                                        width: 15,
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text(
-                                        controller.select,
-                                        style: gilroyMediumTextStyle(
-                                            fontSize: 12,
-                                            color: ColorRes.black),
-                                      ),
-                                      const Spacer(),
-                                      Image.asset(
-                                        AssetRes.drop,
-                                        height: 3.5,
-                                        width: 7,
-                                      ),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                    ],
-                                        ),
-                                      ),
+                                    ),
                                   ),
                                   const SizedBox(
                                     height: 1,

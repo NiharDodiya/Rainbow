@@ -46,14 +46,14 @@ class ProfileScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       profileAppbar(
-                        Strings.profile,
-                        true,controller.onTapToHomeScreen
-                      ),
+                          Strings.profile, true, controller.onTapToHomeScreen),
                       profileImagesLoad(controller),
                       profileDetails(),
                       aboutProfiler(
                         Strings.aboutMe,
-                        controller.viewProfile.data==null?"":controller.viewProfile.data!.about.toString(),
+                        controller.viewProfile.data == null
+                            ? ""
+                            : controller.viewProfile.data!.about.toString(),
                       ),
                       const SizedBox(
                         height: 30,
@@ -67,7 +67,7 @@ class ProfileScreen extends StatelessWidget {
               );
             },
           ),
-          controller.loader.isTrue ? const FullScreenLoader(): const SizedBox()
+          controller.loader.isTrue ? const FullScreenLoader() : const SizedBox()
         ],
       );
     }));
@@ -85,8 +85,9 @@ class ProfileScreen extends StatelessWidget {
                 height: Get.height * 0.2857,
                 width: Get.width,
                 child: CachedNetworkImage(
-                  imageUrl:
-                  controller.viewProfile.data==null?"":controller.viewProfile.data!.backgroundImage.toString(),
+                  imageUrl: controller.viewProfile.data == null
+                      ? ""
+                      : controller.viewProfile.data!.backgroundImage.toString(),
                   imageBuilder: (context, imageProvider) => Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -116,7 +117,9 @@ class ProfileScreen extends StatelessWidget {
               height: Get.height * 0.38666,
               width: Get.width * 0.38666,
               child: CachedNetworkImage(
-                imageUrl:     controller.viewProfile.data==null?"":controller.viewProfile.data!.profileImage.toString(),
+                imageUrl: controller.viewProfile.data == null
+                    ? ""
+                    : controller.viewProfile.data!.profileImage.toString(),
                 imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
@@ -153,7 +156,7 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget hobbiesAndInterest() {
-    return  controller.viewProfile.data==null
+    return controller.viewProfile.data == null
         ? SizedBox()
         : Padding(
             padding: const EdgeInsets.only(left: 30, right: 30),

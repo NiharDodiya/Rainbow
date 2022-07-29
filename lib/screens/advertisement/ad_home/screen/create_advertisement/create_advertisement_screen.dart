@@ -258,7 +258,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                         ),
                         controller.address == null
                             ? Text(
-                               Strings.useCurrentLocation ,
+                                Strings.useCurrentLocation,
                                 style: gilroyBoldTextStyle(
                                     fontSize: 16, color: ColorRes.black),
                               )
@@ -288,7 +288,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
               showTitle: false,
             ),
             Text(
-             Strings.plase ,
+              Strings.plase,
               style: gilroyBoldTextStyle(
                   fontSize: 12, color: ColorRes.color_979B9B),
             ),
@@ -311,7 +311,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
               controller: advertisementController.postalCodeController,
               title: "",
               titleBottomPadding: 0,
-              hintText:Strings.postalHint ,
+              hintText: Strings.postalHint,
               showTitle: false,
             ),
             AppTextFiled(

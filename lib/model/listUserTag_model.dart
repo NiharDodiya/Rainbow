@@ -27,7 +27,8 @@ class ListUserTagModel {
         message: json["message"] == null ? null : json["message"],
         data: json["data"] == null
             ? null
-            : List<UserData>.from(json["data"].map((x) => UserData.fromJson(x))),
+            : List<UserData>.from(
+                json["data"].map((x) => UserData.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {

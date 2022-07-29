@@ -709,7 +709,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Center(
                                   child: Container(
-                                    height: Get.height * 0.51,
+                                    height: 355,
                                     width: Get.width * 0.92266,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
@@ -783,12 +783,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                           child: SizedBox(
                                             width: Get.width * 0.85333,
                                             height: 96,
-                                            child: Text(
-                                              controller.friendPostViewModel
-                                                  .data![index].description
-                                                  .toString(),
-                                              style: textStyleFont16WhitLight,
-                                            ),
+                                            child: controller
+                                                        .friendPostViewModel
+                                                        .data![index]
+                                                        .description ==
+                                                    null
+                                                ? const Text("")
+                                                : Text(
+                                                    controller
+                                                        .friendPostViewModel
+                                                        .data![index]
+                                                        .description
+                                                        .toString(),
+                                                    style:
+                                                        textStyleFont16WhitLight,
+                                                  ),
                                           ),
                                         ),
                                         SizedBox(
@@ -821,19 +830,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                                           const EdgeInsets.only(
                                                               left: 5,
                                                               right: 5),
-                                                      child: Container(
-                                                        height: 80,
-                                                        width: 80,
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        10)),
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(50),
                                                         child: Image.network(
                                                           controller
                                                               .friendPostViewModel
                                                               .data![index]
                                                               .postList![index2],
+                                                          height: 80,
+                                                          width: 80,
                                                           fit: BoxFit.cover,
                                                           errorBuilder:
                                                               (context, url,
@@ -1035,7 +1042,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                               SizedBox(
                                                 width: Get.width * 0.05,
                                               ),
-                                              controller.friendPostViewModel
+                                              controller
+                                                          .friendPostViewModel
                                                           .data![index]
                                                           .isLike ==
                                                       "no"

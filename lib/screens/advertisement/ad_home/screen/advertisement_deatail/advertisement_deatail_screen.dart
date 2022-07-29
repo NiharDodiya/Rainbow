@@ -73,7 +73,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
             ],
           ),
           Text(
-           Strings.doller200 ,
+            Strings.doller200,
             style: gilroySemiBoldTextStyle(
               fontSize: 14,
             ),
@@ -147,7 +147,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
             height: 25,
           ),
           Text(
-           Strings.urlLink ,
+            Strings.urlLink,
             style: gilroyMediumTextStyle(fontSize: 18),
           ),
           const SizedBox(

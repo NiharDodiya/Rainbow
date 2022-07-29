@@ -18,6 +18,7 @@ class CommentsController extends GetxController {
   PostCommentModel postCommentModel = PostCommentModel();
   List<UserData> tagUserList = [];
   HomeController homeController = Get.put(HomeController());
+  UploadImage uploadImage = UploadImage();
   String? replyId;
   String? nameComment;
   File? imageCamera;
@@ -64,8 +65,6 @@ class CommentsController extends GetxController {
     }
     update(["commentPost"]);
   }
-
-  UploadImage uploadImage = UploadImage();
 
   Future<void> uploadImageApi() async {
     loader.value = true;

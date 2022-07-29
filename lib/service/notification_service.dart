@@ -9,7 +9,9 @@ import 'package:rainbow/screens/Home/settings/connections/connections_screen.dar
 import 'package:rainbow/screens/notification/notification_controller.dart';
 
 class NotificationService {
-  static final NotificationsController _notyController = Get.put(NotificationsController());
+  static final NotificationsController _notyController =
+      Get.put(NotificationsController());
+
   static Future<void> init() async {
     await FirebaseMessaging.instance
         .setForegroundNotificationPresentationOptions(

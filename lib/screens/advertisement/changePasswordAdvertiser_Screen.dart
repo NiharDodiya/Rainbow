@@ -13,7 +13,8 @@ class AdvertiserChangePasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ChangeAdvertiserController controller = Get.put(ChangeAdvertiserController());
+    ChangeAdvertiserController controller =
+        Get.put(ChangeAdvertiserController());
     return GetBuilder<ChangeAdvertiserController>(
       builder: (controller) {
         return Scaffold(
@@ -68,7 +69,7 @@ class AdvertiserChangePasswordScreen extends StatelessWidget {
                                     child: Container(
                                       height: 137.39,
                                       width: 137,
-                                      decoration:  const BoxDecoration(
+                                      decoration: const BoxDecoration(
                                           image: DecorationImage(
                                               image: AssetImage(AssetRes.lock),
                                               fit: BoxFit.cover)),
@@ -98,7 +99,7 @@ class AdvertiserChangePasswordScreen extends StatelessWidget {
                                         Strings.newPasswordChange,
                                         style: gilroyMediumTextStyle(
                                             color:
-                                            ColorRes.white.withOpacity(0.5),
+                                                ColorRes.white.withOpacity(0.5),
                                             fontSize: 16),
                                         textAlign: TextAlign.center,
                                       ),
@@ -111,8 +112,7 @@ class AdvertiserChangePasswordScreen extends StatelessWidget {
                                     child: SizedBox(
                                       width: Get.width * 0.85,
                                       child: AppTextFiled(
-                                        controller:
-                                        controller.currentPassword,
+                                        controller: controller.currentPassword,
                                         title: Strings.currentPassword,
                                         hintText: Strings.passwordExample,
                                         obscure: true,
@@ -127,7 +127,7 @@ class AdvertiserChangePasswordScreen extends StatelessWidget {
                                       width: Get.width * 0.85,
                                       child: AppTextFiled(
                                         controller:
-                                        controller.newPasswordController,
+                                            controller.newPasswordController,
                                         title: Strings.newPassword,
                                         hintText: Strings.passwordExample,
                                         obscure: true,
@@ -161,7 +161,7 @@ class AdvertiserChangePasswordScreen extends StatelessWidget {
                                         decoration: BoxDecoration(
                                             color: ColorRes.color_E7D01F,
                                             borderRadius:
-                                            BorderRadius.circular(15)),
+                                                BorderRadius.circular(15)),
                                         child: Center(
                                           child: Text(
                                             Strings.submit,

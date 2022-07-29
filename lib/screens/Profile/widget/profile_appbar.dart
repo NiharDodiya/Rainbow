@@ -9,7 +9,7 @@ import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
-Widget profileAppbar(String text, bool show,  final VoidCallback? onTap) {
+Widget profileAppbar(String text, bool show, final VoidCallback? onTap) {
   return Padding(
     padding: const EdgeInsets.only(top: 10, left: 18.50, right: 18.50),
     child: Stack(
@@ -83,15 +83,17 @@ Widget profileAppbar(String text, bool show,  final VoidCallback? onTap) {
                     right: 0,
                     child: GetBuilder<NotificationsController>(
                       id: 'notification_badge',
-                      builder: (notificationController){
+                      builder: (notificationController) {
                         return Container(
                           height: 16,
                           width: 16,
                           alignment: Alignment.center,
                           decoration: const BoxDecoration(
-                              shape: BoxShape.circle, color: ColorRes.color_FF6B97),
+                              shape: BoxShape.circle,
+                              color: ColorRes.color_FF6B97),
                           child: Text(
-                            notificationController.notificationList.length.toString(),
+                            notificationController.notificationList.length
+                                .toString(),
                             style: const TextStyle(
                               color: ColorRes.white,
                               fontSize: 8,

@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-PostLikeModel postLikeModelFromJson(String str) => PostLikeModel.fromJson(json.decode(str));
+PostLikeModel postLikeModelFromJson(String str) =>
+    PostLikeModel.fromJson(json.decode(str));
 
 String postLikeModelToJson(PostLikeModel data) => json.encode(data.toJson());
 
@@ -18,12 +19,12 @@ class PostLikeModel {
   String? message;
 
   factory PostLikeModel.fromJson(Map<String, dynamic> json) => PostLikeModel(
-    status: json["status"] == null ? null : json["status"],
-    message: json["message"] == null ? null : json["message"],
-  );
+        status: json["status"] == null ? null : json["status"],
+        message: json["message"] == null ? null : json["message"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status == null ? null : status,
-    "message": message == null ? null : message,
-  };
+        "status": status == null ? null : status,
+        "message": message == null ? null : message,
+      };
 }

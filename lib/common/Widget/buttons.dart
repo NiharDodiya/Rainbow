@@ -24,8 +24,8 @@ class SubmitButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: ColorRes.color_E7D01F,
           borderRadius: BorderRadius.circular(20),
-          gradient:  LinearGradient(
-            colors:colors?? [ColorRes.color_FFEC5C, ColorRes.color_DFC60B],
+          gradient: LinearGradient(
+            colors: colors ?? [ColorRes.color_FFEC5C, ColorRes.color_DFC60B],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),

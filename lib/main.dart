@@ -15,7 +15,6 @@ import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
@@ -57,13 +56,15 @@ class MyApp extends StatelessWidget {
       home: !PrefService.getBool(PrefKeys.skipBoardingScreen)
           ? SplashScreen()
           : (PrefService.getBool(PrefKeys.isLogin) ||
-          PrefService.getBool(PrefKeys.register))
-          ? PrefService.getBool(PrefKeys.showTermsCondition)
-          ? const TermsConditionsScreen(showBackBtn: false)
-          : PrefService.getString(PrefKeys.loginRole) == "end_user"
-          ? const Dashboard()
-          : PrefService.getString(PrefKeys.loginRole) == ""?AuthDashboard(): AdvertisementDashBord()
-          : AuthDashboard(),
+                  PrefService.getBool(PrefKeys.register))
+              ? PrefService.getBool(PrefKeys.showTermsCondition)
+                  ? const TermsConditionsScreen(showBackBtn: false)
+                  : PrefService.getString(PrefKeys.loginRole) == "end_user"
+                      ? const Dashboard()
+                      : PrefService.getString(PrefKeys.loginRole) == ""
+                          ? AuthDashboard()
+                          : AdvertisementDashBord()
+              : AuthDashboard(),
     );
   }
 }

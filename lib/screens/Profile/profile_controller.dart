@@ -1,9 +1,6 @@
 import 'package:get/get.dart';
-import 'package:rainbow/screens/Home/home_controller.dart';
-import 'package:rainbow/screens/Home/home_screen.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_api.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
-import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/dashboard/dashboard_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -31,9 +28,9 @@ class ProfileController extends GetxController {
   ViewProfile viewProfile = ViewProfile();
 
   @override
-  void onInit()async {
+  void onInit() async {
     init();
-     viewProfileDetails();
+    viewProfileDetails();
     update(["profile"]);
     super.onInit();
   }
@@ -84,11 +81,8 @@ class ProfileController extends GetxController {
     }
   }
 
-   onTapToHomeScreen()
-  {
+  onTapToHomeScreen() {
     DashboardController dashboardController = Get.find();
     dashboardController.onBottomBarChange(0);
-
-
   }
 }

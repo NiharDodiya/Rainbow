@@ -17,6 +17,7 @@ import 'widgets/myStoryViewBottom_screen.dart';
 
 class MyStoryController extends GetxController {
   RxBool loader = false.obs;
+
   // StoryModel storyModel = StoryModel();
 
   // MyStoryModel myStoryModel = MyStoryModel();
@@ -29,7 +30,6 @@ class MyStoryController extends GetxController {
   ViewStoryController viewStoryController = Get.put(ViewStoryController());
 
   Future<void> init() async {
-
     // myStoryModel = MyStoryModel();
     // storyModel = StoryModel();
     // await getMyStoryList();
@@ -37,6 +37,7 @@ class MyStoryController extends GetxController {
     /*indicatorAnimationController = ValueNotifier<IndicatorAnimationCommand>(
         IndicatorAnimationCommand.pause);*/
   }
+
   bool validation() {
     if (writeSomething.text.isEmpty) {
       errorToast("Type Something");
@@ -44,23 +45,25 @@ class MyStoryController extends GetxController {
     }
     return true;
   }
+
   void commentSendTap(String id, BuildContext context) {
     if (validation()) {
       pauseAnimation();
-      if(loader.isFalse)
-      {
+      if (loader.isFalse) {
         commentData(id);
       }
       // update(["friendStory"]);
       FocusScope.of(context).unfocus();
     }
   }
+
   StoryCommentModel storyCommentModel = StoryCommentModel();
+
   Future<void> commentData(String id) async {
     try {
       loader.value = true;
       storyCommentModel = (await StoryCommentApi.sendNewComment(
-          id, writeSomething.text.toString()) ??
+              id, writeSomething.text.toString()) ??
           StoryCommentModel());
       // await friendStoryApiData();
       playAnimation();
@@ -103,7 +106,7 @@ class MyStoryController extends GetxController {
       if (value.storyItem != null) {
         loadImages(value.storyItem!);
       }
-    }*//*
+    }*/ /*
 
     loader.value = false;
   }
@@ -188,7 +191,8 @@ class MyStoryController extends GetxController {
       }
     }*/
     loader.value = true;
-    String url =  viewStoryController.storyModel.myStory![storyIndex].storyItem.toString();
+    String url = viewStoryController.storyModel.myStory![storyIndex].storyItem
+        .toString();
     try {
       isImageLoading = true;
       await precacheImage(NetworkImage(url), context);
@@ -201,7 +205,8 @@ class MyStoryController extends GetxController {
   }
 
   Future<void> viewStoryApi() async {
-    String storyId =  viewStoryController.storyModel.myStory![storyIndex].id.toString();
+    String storyId =
+        viewStoryController.storyModel.myStory![storyIndex].id.toString();
     await MyStoryApi.storyViewAPi(storyId);
   }
 

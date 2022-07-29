@@ -190,7 +190,8 @@ class _RegisterOtpScreenState extends State<RegisterOtpScreen> {
                                 InkWell(
                                   onTap: () {
                                     controller.startTimer();
-                                     controller.phoneNumberRegister("${"+${registerController.countryModel.phoneCode}"}${registerController.phoneController.text.toString()}");
+                                    controller.phoneNumberRegister(
+                                        "${"+${registerController.countryModel.phoneCode}"}${registerController.phoneController.text.toString()}");
                                   },
                                   child: Center(
                                     child: Text(
@@ -240,7 +241,9 @@ class _RegisterOtpScreenState extends State<RegisterOtpScreen> {
                   ),
                 ),
               ),
-              controller.loader.isTrue ? const FullScreenLoader(): const SizedBox(),
+              controller.loader.isTrue
+                  ? const FullScreenLoader()
+                  : const SizedBox(),
             ],
           );
         },

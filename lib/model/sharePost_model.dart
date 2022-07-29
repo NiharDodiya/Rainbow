@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-SharePostModel sharePostModelFromJson(String str) => SharePostModel.fromJson(json.decode(str));
+SharePostModel sharePostModelFromJson(String str) =>
+    SharePostModel.fromJson(json.decode(str));
 
 String sharePostModelToJson(SharePostModel data) => json.encode(data.toJson());
 
@@ -18,12 +19,12 @@ class SharePostModel {
   String? message;
 
   factory SharePostModel.fromJson(Map<String, dynamic> json) => SharePostModel(
-    status: json["status"] == null ? null : json["status"],
-    message: json["message"] == null ? null : json["message"],
-  );
+        status: json["status"] == null ? null : json["status"],
+        message: json["message"] == null ? null : json["message"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status == null ? null : status,
-    "message": message == null ? null : message,
-  };
+        "status": status == null ? null : status,
+        "message": message == null ? null : message,
+      };
 }

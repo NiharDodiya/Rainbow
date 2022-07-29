@@ -28,7 +28,6 @@ class CreateNewPasswordApi {
           body: jsonEncode(param),
           header: {"Content-Type": "application/json"});
       if (response != null && response.statusCode == 200) {
-
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
           errorToast(jsonDecode(response.body)["message"]);
@@ -51,23 +50,26 @@ class CreateNewPasswordApi {
     }
   }
 
-
   static Future createPasswordAdvertisement(
-      String currentPassword,String newPassword,
-      ) async {
+    String currentPassword,
+    String newPassword,
+  ) async {
     try {
       String url = EndPoints.createPasswordForAdvertiser;
       String accesToken = PrefService.getString(PrefKeys.registerToken);
       Map<String, String> paramPassword = {
-        "current_password" : currentPassword,
-        "new_password" : newPassword
+        "current_password": currentPassword,
+        "new_password": newPassword
       };
       print(paramPassword);
 
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(paramPassword),
-          header: {"Content-Type": "application/json","x-access-token":accesToken});
+          header: {
+            "Content-Type": "application/json",
+            "x-access-token": accesToken
+          });
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {

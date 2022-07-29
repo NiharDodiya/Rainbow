@@ -5,8 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/auth/register/register_json.dart';
 import 'package:rainbow/screens/auth/register/widget/RegisterVerifyOtp_Screen.dart';
-import 'package:rainbow/screens/auth/verify_phone/verifyphone_screen.dart';
-import 'package:rainbow/screens/getstarted_screen.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';

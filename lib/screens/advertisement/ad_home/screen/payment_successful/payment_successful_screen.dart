@@ -86,7 +86,7 @@ class PaymentSuccessfulScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                             Strings.playerName ,
+                              Strings.playerName,
                               style: poppinsRegularBold(fontSize: 12),
                             ),
                             SizedBox(
@@ -100,28 +100,28 @@ class PaymentSuccessfulScreen extends StatelessWidget {
                               height: Get.height * 0.0209,
                             ),
                             Text(
-                             Strings.transactionNumber ,
+                              Strings.transactionNumber,
                               style: poppinsRegularBold(fontSize: 12),
                             ),
                             SizedBox(
                               height: Get.height * 0.007389,
                             ),
                             Text(
-                             Strings.traNo ,
+                              Strings.traNo,
                               style: poppinsMediumBold(fontSize: 14),
                             ),
                             SizedBox(
                               height: Get.height * 0.0209,
                             ),
                             Text(
-                             Strings.service ,
+                              Strings.service,
                               style: poppinsRegularBold(fontSize: 12),
                             ),
                             SizedBox(
                               height: Get.height * 0.007389,
                             ),
                             Text(
-                             Strings.postAds ,
+                              Strings.postAds,
                               style: poppinsMediumBold(fontSize: 14),
                             ),
                             SizedBox(
@@ -141,7 +141,7 @@ class PaymentSuccessfulScreen extends StatelessWidget {
                   onTap: () {
                     Get.off(() => AdvertisementDashBord());
                   },
-                  text:Strings.backToHome ,
+                  text: Strings.backToHome,
                 ),
                 SizedBox(
                   height: Get.height * 0.02832,

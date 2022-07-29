@@ -6,11 +6,9 @@ import 'package:rainbow/model/profile_model.dart';
 import 'package:rainbow/model/sendFriendRequest_model.dart';
 import 'package:rainbow/model/unFriend_model.dart';
 import 'package:rainbow/model/unblock_model.dart';
-import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/api/OtherProfileApi.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_screen.dart';
 import 'package:rainbow/screens/Profile/acceptFriendRequest_api/accaeptFriedRequest_api.dart';
-import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/sendFriendRequest_api/sendFriendRequest_api.dart';
 import 'package:rainbow/screens/Profile/unFriendRequest_api/unFriendRequest_api.dart';
 import 'package:rainbow/screens/Profile/widget/block_unblock%20_Api/block_api.dart';
@@ -27,6 +25,7 @@ class ConnectionsProfileController extends GetxController {
   UnblockModel unblockModel = UnblockModel();
   SendFriendRequest sendFriendRequest = SendFriendRequest();
   AcceptFriendRequest acceptFriendRequest = AcceptFriendRequest();
+
   // HomeController homeController = Get.put(HomeController());
   CancelFriendRequestModel cancelFriendRequestModel =
       CancelFriendRequestModel();
@@ -135,8 +134,8 @@ class ConnectionsProfileController extends GetxController {
       loader.value = false;
     }
   }
-  void onTapGetBack()
-  {
+
+  void onTapGetBack() {
     print("etgg");
     Get.back();
   }

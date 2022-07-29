@@ -78,7 +78,7 @@ class IdVerificationController extends GetxController {
     // loader.value = true;
     try {
       await UploadImageApi.postRegister(imageFront.toString()).then(
-            (value) => uploadImage1 = value!,
+        (value) => uploadImage1 = value!,
       );
       // loader.value = false;
     } catch (e) {
@@ -91,7 +91,7 @@ class IdVerificationController extends GetxController {
     // loader.value = true;
     try {
       await UploadImageApi.postRegister(imageBack.toString()).then(
-            (value) => uploadImage2 = value!,
+        (value) => uploadImage2 = value!,
       );
       // loader.value = false;
     } catch (e) {
@@ -99,11 +99,12 @@ class IdVerificationController extends GetxController {
       debugPrint(e.toString());
     }
   }
+
   Future<void> idVerification() async {
     loader.value = true;
     try {
-     await  uploadImageApi();
-     await uploadImageBackApi();
+      await uploadImageApi();
+      await uploadImageBackApi();
       await IdVerificationApi.postRegister(
               idType.text,
               idNO.text,
@@ -116,6 +117,4 @@ class IdVerificationController extends GetxController {
       debugPrint(e.toString());
     }
   }
-
-
 }

@@ -49,7 +49,8 @@ class DashboardState extends State<Dashboard> {
           },
         ),
       ),
-      bottomNavigationBar: GetBuilder<DashboardController>(id: "bottom_bar",
+      bottomNavigationBar: GetBuilder<DashboardController>(
+        id: "bottom_bar",
         builder: (controller) {
           return SalomonBottomBar(
             margin: const EdgeInsets.all(12),

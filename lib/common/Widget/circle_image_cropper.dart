@@ -13,7 +13,8 @@ class CircleImageCropper extends StatefulWidget {
   final Function(File file) onCropped;
   final File image;
 
-  const CircleImageCropper({Key? key, required this.onCropped, required this.image})
+  const CircleImageCropper(
+      {Key? key, required this.onCropped, required this.image})
       : super(key: key);
 
   @override

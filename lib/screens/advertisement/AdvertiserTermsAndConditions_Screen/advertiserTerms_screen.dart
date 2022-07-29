@@ -29,7 +29,7 @@ class AdvertiserTermsAndConditionsScreen extends StatelessWidget {
                   SizedBox(
                     height: Get.height * 0.07,
                   ),
-                /*  showBackBtn == false
+                  /*  showBackBtn == false
                       ? const SizedBox()
                       : GestureDetector(
                     onTap: () {
@@ -88,7 +88,7 @@ class AdvertiserTermsAndConditionsScreen extends StatelessWidget {
                       onTap: () async {
                         await PrefService.setValue(
                             PrefKeys.showTermsCondition, false);
-                        Get.offAll(() =>  AdvertisementDashBord());
+                        Get.offAll(() => AdvertisementDashBord());
                       },
                       child: Container(
                         width: Get.width * 0.84,
@@ -98,9 +98,9 @@ class AdvertiserTermsAndConditionsScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15)),
                         child: Center(
                             child: Text(
-                              Strings.accCon,
-                              style: gilroyBoldTextStyle(color: Colors.black),
-                            )),
+                          Strings.accCon,
+                          style: gilroyBoldTextStyle(color: Colors.black),
+                        )),
                       ),
                     ),
                   ),

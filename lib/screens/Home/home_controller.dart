@@ -17,7 +17,6 @@ import 'package:rainbow/model/postView_model.dart';
 import 'package:rainbow/model/sharePost_model.dart';
 import 'package:rainbow/model/unLikePost_model.dart';
 import 'package:rainbow/screens/Home/Story/friendStory_api/friendStory_api.dart';
-import 'package:rainbow/screens/Home/Story/story_controller.dart';
 import 'package:rainbow/screens/Home/addStroy/addStory_screen.dart';
 import 'package:rainbow/screens/Home/myPost_Api/myPost_api.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_controller.dart';
@@ -53,13 +52,14 @@ class HomeController extends GetxController {
   PostViewModel postViewModel = PostViewModel();
   FriendPostViewModel friendPostViewModel = FriendPostViewModel();
   PostCommentListModel postCommentListModel = PostCommentListModel();
+
   // int page = 1;
   // int totalPages = 0;
   // bool isLoading = false;
   // ScrollController scrollController = ScrollController();
   // final storyController = EditStoryController();
-  ConnectionsController connectionsController = Get.put(ConnectionsController());
-
+  ConnectionsController connectionsController =
+      Get.put(ConnectionsController());
 
   @override
   Future<void> onInit() async {

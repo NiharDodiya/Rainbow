@@ -220,28 +220,25 @@ class EditProfileController extends GetxController {
   }
 
   Future frontCamera() async {
-    loader.value=true;
+    loader.value = true;
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
     if (image == null) return;
     final imageFront = File(image.path);
     frontImage = imageFront;
-     // uploadImageApi();
-    loader.value=false;
-     update(["Edit_profile"]);
-
+    // uploadImageApi();
+    loader.value = false;
+    update(["Edit_profile"]);
   }
 
   Future backCamera() async {
-    loader.value=true;
+    loader.value = true;
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
     if (image == null) return;
     final imageTemp = File(image.path);
     backImage = imageTemp;
-     // uploadImageBackApi();
-    loader.value=false;
+    // uploadImageBackApi();
+    loader.value = false;
     update(["Edit_profile"]);
-
-
   }
 
   UploadImage uploadImage1 = UploadImage();
@@ -281,7 +278,7 @@ class EditProfileController extends GetxController {
     try {
       print("Hello");
       await uploadImageApi();
-     await uploadImageBackApi();
+      await uploadImageBackApi();
       EditProfile? data = await EditProfileApi.postRegister(
         uploadImage2.data!.id.toString(),
         uploadImage1.data!.id.toString(),

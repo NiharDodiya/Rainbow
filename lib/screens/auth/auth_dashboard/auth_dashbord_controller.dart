@@ -52,16 +52,14 @@ class AuthDashBordController extends GetxController {
   }
 
   Future signWithGoogle() async {
-
     loading.value = true;
     if (await googleSignIn.isSignedIn()) {
       await googleSignIn.signOut();
-       flutterToast(Strings.googleLogOutSuccess);
-
+      flutterToast(Strings.googleLogOutSuccess);
     }
     final GoogleSignInAccount? account = await googleSignIn.signIn();
     final GoogleSignInAuthentication authentication =
-    await account!.authentication;
+        await account!.authentication;
 
     final OAuthCredential credential = GoogleAuthProvider.credential(
       idToken: authentication.idToken,
@@ -69,7 +67,7 @@ class AuthDashBordController extends GetxController {
     );
 
     final UserCredential authResult =
-    await auth.signInWithCredential(credential);
+        await auth.signInWithCredential(credential);
     final User? user = authResult.user;
     print(user!.email);
     print(user.uid);

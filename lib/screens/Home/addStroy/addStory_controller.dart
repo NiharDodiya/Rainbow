@@ -12,7 +12,6 @@ import 'package:rainbow/screens/Home/Story/adstory_api/adStroy_Api.dart';
 import 'package:rainbow/screens/Home/addStroy/ListStoryTag_api/listStoryTag_api.dart';
 import 'package:rainbow/screens/Home/addStroy/widgets/addStoryView.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
-import 'package:rainbow/screens/dashboard/dashboard_controller.dart';
 
 class AddStoryController extends GetxController {
   int currentPage = 0;
@@ -21,16 +20,16 @@ class AddStoryController extends GetxController {
   AdStoryModel adStoryModel = AdStoryModel();
   RxBool loader = false.obs;
   bool textShow = false;
-  void onTextTap()
-  {
-    if(textShow==false)
-      {
-      textShow=true;
-      }else{
-      textShow=false;
+
+  void onTextTap() {
+    if (textShow == false) {
+      textShow = true;
+    } else {
+      textShow = false;
     }
     update(["adStory"]);
   }
+
   List<UserData> tagUserList = [];
 
   void init() {
@@ -92,9 +91,9 @@ class AddStoryController extends GetxController {
     try {
       List<Map<String, dynamic>> list = tagUserList
           .map<Map<String, dynamic>>((e) => {
-        "id_user": e.id.toString(),
-        "name": e.fullName,
-      })
+                "id_user": e.id.toString(),
+                "name": e.fullName,
+              })
           .toList();
       loader.value = true;
       adStoryModel = (await AdStoryApi.postRegister(

@@ -107,22 +107,22 @@ class StoryViewListScreen extends StatelessWidget {
               color: ColorRes.lightGrey,
             ),
           ),
-          myStoryController.storyViewListModel.data!.isEmpty? Text(
-              "No Story Views",
-              style: gilroyBoldTextStyle(color: Colors.black)):
-
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              shrinkWrap: true,
-              itemCount: myStoryController.storyViewListModel.data!.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      /*   ClipRRect(
+          myStoryController.storyViewListModel.data!.isEmpty
+              ? Text("No Story Views",
+                  style: gilroyBoldTextStyle(color: Colors.black))
+              : Expanded(
+                  child: ListView.builder(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    shrinkWrap: true,
+                    itemCount:
+                        myStoryController.storyViewListModel.data!.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            /*   ClipRRect(
                         borderRadius: BorderRadius.circular(50),
                         child: Image.asset(
                         ,
@@ -131,68 +131,67 @@ class StoryViewListScreen extends StatelessWidget {
                           fit: BoxFit.cover,
                         ),
                       ),*/
-                      CachedNetworkImage(
-                        height: 56,
-                        width: 56,
-                        imageUrl: myStoryController
-                            .storyViewListModel.data![index].profileImage
-                            .toString(),
-                        imageBuilder: (context, imageProvider) =>
-                            Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: imageProvider,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                        // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
-                        errorWidget: (context, url, error) =>
-                            Container(
+                            CachedNetworkImage(
                               height: 56,
                               width: 56,
-                              decoration: const BoxDecoration(
+                              imageUrl: myStoryController
+                                  .storyViewListModel.data![index].profileImage
+                                  .toString(),
+                              imageBuilder: (context, imageProvider) =>
+                                  Container(
+                                decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   image: DecorationImage(
-                                      image: AssetImage(AssetRes.homePro))),
+                                    image: imageProvider,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
+                              errorWidget: (context, url, error) => Container(
+                                height: 56,
+                                width: 56,
+                                decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                        image: AssetImage(AssetRes.homePro))),
+                              ),
+                              fit: BoxFit.fill,
                             ),
-                        fit: BoxFit.fill,
-                      ),
-                      const SizedBox(width: 16),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            myStoryController
-                                .storyViewListModel.data![index].fullName
-                                .toString(),
-                            style: sfProTextReguler().copyWith(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w700,
-                              color: ColorRes.black,
+                            const SizedBox(width: 16),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  myStoryController
+                                      .storyViewListModel.data![index].fullName
+                                      .toString(),
+                                  style: sfProTextReguler().copyWith(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w700,
+                                    color: ColorRes.black,
+                                  ),
+                                ),
+                                Text(
+                                  myStoryController.storyViewListModel
+                                      .data![index].userStatus
+                                      .toString(),
+                                  style: sfProTextReguler().copyWith(
+                                    fontWeight: FontWeight.w300,
+                                    color: ColorRes.black,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          Text(
-                            myStoryController
-                                .storyViewListModel.data![index].userStatus
-                                .toString(),
-                            style: sfProTextReguler().copyWith(
-                              fontWeight: FontWeight.w300,
-                              color: ColorRes.black,
-                              fontSize: 11,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Spacer(),
-                      // const Icon(Icons.favorite, color: ColorRes.red),
-                    ],
+                            const Spacer(),
+                            // const Icon(Icons.favorite, color: ColorRes.red),
+                          ],
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
-          ),
+                ),
         ],
       ),
     );

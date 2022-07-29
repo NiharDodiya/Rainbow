@@ -16,7 +16,6 @@ class AdStoryApi {
     try {
       String url = EndPoints.storyAdd;
 
-
       Map<String, dynamic> param = {
         "id_item": idItem,
         "description": description,
@@ -43,5 +42,4 @@ class AdStoryApi {
       return [];
     }
   }
-
 }

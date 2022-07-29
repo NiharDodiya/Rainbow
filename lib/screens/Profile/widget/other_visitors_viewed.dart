@@ -16,9 +16,7 @@ Widget otherVisitorsViewed() {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          controller.viewProfile.data==null
-              ? ""
-              : "Other Visitors Viewed",
+          controller.viewProfile.data == null ? "" : "Other Visitors Viewed",
           style: beVietnamProBoldTextStyle(fontSize: 18),
         ),
         SizedBox(

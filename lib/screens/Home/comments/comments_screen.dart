@@ -64,17 +64,20 @@ class CommentScreen extends StatelessWidget {
                               physics: const BouncingScrollPhysics(),
                               padding: const EdgeInsets.only(top: 10),
                               itemBuilder: (context, index) {
-                                return userComment(image: homeController
-                                    .postCommentListModel
-                                    .data![index]
-                                    .postCommentItem.toString(),
+                                return userComment(
+                                    image: homeController.postCommentListModel
+                                        .data![index].postCommentItem
+                                        .toString(),
                                     description: homeController
                                         .postCommentListModel
                                         .data![index]
                                         .description
                                         .toString(),
-                                    fullName: homeController.postCommentListModel
-                                        .data![index].postCommentUser!.fullName
+                                    fullName: homeController
+                                        .postCommentListModel
+                                        .data![index]
+                                        .postCommentUser!
+                                        .fullName
                                         .toString(),
                                     profileImage: profileImage,
                                     reply: homeController.postCommentListModel
@@ -90,7 +93,8 @@ class CommentScreen extends StatelessWidget {
                                 );
                               },
                               itemCount:
-                                  homeController.postCommentListModel.data == null
+                                  homeController.postCommentListModel.data ==
+                                          null
                                       ? 0
                                       : homeController
                                           .postCommentListModel.data!.length,
@@ -104,8 +108,8 @@ class CommentScreen extends StatelessWidget {
                                 width: 100,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
-                                        image:
-                                            FileImage(controller.imageForCamera!))),
+                                        image: FileImage(
+                                            controller.imageForCamera!))),
                               ),
                         Container(
                           width: Get.width,
@@ -179,8 +183,8 @@ class CommentScreen extends StatelessWidget {
                                   Expanded(
                                     child: Container(
                                       height: 40,
-                                      margin:
-                                          const EdgeInsets.only(left: 5, top: 7),
+                                      margin: const EdgeInsets.only(
+                                          left: 5, top: 7),
                                       padding: const EdgeInsets.only(
                                           left: 7, top: 7, bottom: 7, right: 7),
                                       decoration: BoxDecoration(
@@ -218,8 +222,8 @@ class CommentScreen extends StatelessWidget {
                                           ),
                                           InkWell(
                                             onTap: () async {
-                                              await controller.commentPostData(context,
-                                                  idPost.toString());
+                                              await controller.commentPostData(
+                                                  context, idPost.toString());
                                               FocusScope.of(context).unfocus();
                                             },
                                             child: Padding(

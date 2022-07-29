@@ -40,9 +40,7 @@ class FullScreenLoader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-
-      },
+      onTap: () {},
       child: SizedBox(
         height: Get.height,
         width: Get.width,

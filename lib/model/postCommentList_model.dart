@@ -27,7 +27,8 @@ class PostCommentListModel {
         message: json["message"] == null ? null : json["message"],
         data: json["data"] == null
             ? null
-            : List<PostCommentReply>.from(json["data"].map((x) => PostCommentReply.fromJson(x))),
+            : List<PostCommentReply>.from(
+                json["data"].map((x) => PostCommentReply.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -56,7 +57,8 @@ class PostCommentReply {
   List<PostCommentReply>? postCommentReply;
   List<dynamic>? postCommentTag;
 
-  factory PostCommentReply.fromJson(Map<String, dynamic> json) => PostCommentReply(
+  factory PostCommentReply.fromJson(Map<String, dynamic> json) =>
+      PostCommentReply(
         id: json["id"] == null ? null : json["id"],
         description: json["description"] == null ? null : json["description"],
         postCommentUser: json["postCommentUser"] == null
@@ -66,8 +68,8 @@ class PostCommentReply {
             json["postCommentItem"] == null ? null : json["postCommentItem"],
         postCommentReply: json["postCommentReply"] == null
             ? null
-            : List<PostCommentReply>.from(
-                json["postCommentReply"].map((x) => PostCommentReply.fromJson(x))),
+            : List<PostCommentReply>.from(json["postCommentReply"]
+                .map((x) => PostCommentReply.fromJson(x))),
         postCommentTag: json["postCommentTag"] == null
             ? null
             : List<dynamic>.from(json["postCommentTag"].map((x) => x)),

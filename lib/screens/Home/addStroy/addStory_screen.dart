@@ -91,8 +91,9 @@ class _AddStoryScreenState extends State<AddStoryScreen> {
                 Expanded(
                   child: GridView.builder(
                     controller: scrollController,
-                    itemCount: videoList.length +1,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    itemCount: videoList.length + 1,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
                       childAspectRatio: 1.1 / 2,
                       mainAxisSpacing: 2,
@@ -103,13 +104,13 @@ class _AddStoryScreenState extends State<AddStoryScreen> {
                         return addStoryCamera(controller);
                       }
                       return FutureBuilder<Uint8List?>(
-                        future: videoList[index-1].thumbnailDataWithSize(
+                        future: videoList[index - 1].thumbnailDataWithSize(
                             const ThumbnailSize(200, 200)),
                         builder: (context, snapshot) {
                           return snapshot.hasData
                               ? InkWell(
                                   onTap: () => controller
-                                      .onImageTap(videoList[index-1].file),
+                                      .onImageTap(videoList[index - 1].file),
                                   child: Image.memory(
                                     //model.videoAvatar[index],
                                     snapshot.data!,

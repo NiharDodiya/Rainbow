@@ -38,7 +38,7 @@ class PaymentFailedScreen extends StatelessWidget {
                   height: Get.height * 0.165024,
                 ),
                 Text(
-                 Strings.paymentFailed ,
+                  Strings.paymentFailed,
                   style: gilroySemiBoldTextStyle(fontSize: 24),
                 ),
                 SizedBox(
@@ -148,7 +148,7 @@ class PaymentFailedScreen extends StatelessWidget {
                 SubmitButton(
                   text: Strings.backToHome,
                   onTap: () {
-                    Get.off(()=> AdvertisementDashBord());
+                    Get.off(() => AdvertisementDashBord());
                   },
                 ),
                 SizedBox(

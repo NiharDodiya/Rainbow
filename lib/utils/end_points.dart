@@ -15,7 +15,8 @@ class EndPoints {
   static const verifyCode = "$baseUrl/user/verifycode";
   static const advirtisersRegister = "$baseUrl/advirtisers/register";
   static const createPassword = "$baseUrl/user/createpassword";
-  static const createPasswordForAdvertiser = "$baseUrl/advirtisers/changepassword";
+  static const createPasswordForAdvertiser =
+      "$baseUrl/advirtisers/changepassword";
   static const mobileCheck = "$baseUrl/user/mobilecheck";
   static const countryList = "$baseUrl/admin/country/list";
   static const nationalitiesList = "$baseUrl/admin/nationalities/list";
