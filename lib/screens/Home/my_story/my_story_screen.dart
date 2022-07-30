@@ -325,9 +325,29 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
-                                                  const Icon(
-                                                    Icons.favorite,
-                                                    color: ColorRes.red,
+                                                  controller
+                                                      .viewStoryController
+                                                      .storyModel
+                                                      .myStory![pageIndex].isLike.toString()=="no"?InkWell(onTap: () {
+                                                    controller.onLikeBtn(controller
+                                                        .viewStoryController
+                                                        .storyModel
+                                                        .myStory![pageIndex].id.toString());
+                                                  },
+                                                    child: const Icon(
+                                                      Icons.favorite,
+                                                      color: ColorRes.white,
+                                                    ),
+                                                  ):InkWell(onTap: () {
+                                                    controller.onUnLikeBtn(controller
+                                                        .viewStoryController
+                                                        .storyModel
+                                                        .myStory![pageIndex].id.toString());
+                                                  },
+                                                    child: const Icon(
+                                                      Icons.favorite,
+                                                      color: ColorRes.red,
+                                                    ),
                                                   ),
                                                   Row(
                                                     children: [
@@ -380,6 +400,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                       Text(Strings.comments,
                                                           style:
                                                               sfProTextReguler()),
+                                                      SizedBox(width: 2,),
                                                       Text(
                                                           controller
                                                                       .viewStoryController

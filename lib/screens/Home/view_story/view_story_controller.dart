@@ -184,6 +184,7 @@ class ViewStoryController extends GetxController {
     // update(["friendStory"]);
   }
 
+
   bool validation() {
     if (writeSomethings.text.isEmpty) {
       errorToast("Type Something");
@@ -314,7 +315,7 @@ class ViewStoryController extends GetxController {
           StoryCommentModel());
       await friendStoryApiData();
       playAnimation();
-      // update(["friendStory"]);
+       update(["friendStory"]);
       writeSomethings.clear();
       loader.value = false;
     } catch (e) {
@@ -338,9 +339,9 @@ class ViewStoryController extends GetxController {
   void commentSendTap(String id, BuildContext context) {
     if (validation()) {
       pauseAnimation();
-      if (loader.isFalse) {
+
         commentData(id);
-      }
+
       // update(["friendStory"]);
       FocusScope.of(context).unfocus();
     }

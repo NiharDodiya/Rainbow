@@ -5,6 +5,9 @@ import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/StoryComment_model.dart';
 import 'package:rainbow/model/friendStroy_model.dart';
 import 'package:rainbow/model/storyViewList_model.dart';
+import 'package:rainbow/model/unlike_model.dart';
+import 'package:rainbow/screens/Home/Story/likeStory_api/likeStory_api.dart';
+import 'package:rainbow/screens/Home/Story/unlike_api/unlike_api.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/my_story/api/myStroy_api.dart';
 import 'package:rainbow/screens/Home/my_story/widgets/myStoryComments_screen.dart';
@@ -13,6 +16,7 @@ import 'package:rainbow/screens/Home/story_commets/api/story_comment_api.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:story/story_page_view/story_page_view.dart';
 
+import '../../../model/likeStory_model.dart';
 import 'widgets/myStoryViewBottom_screen.dart';
 
 class MyStoryController extends GetxController {
@@ -49,10 +53,10 @@ class MyStoryController extends GetxController {
   void commentSendTap(String id, BuildContext context) {
     if (validation()) {
       pauseAnimation();
-      if (loader.isFalse) {
+
         commentData(id);
-      }
-      // update(["friendStory"]);
+
+       update(["my_story"]);
       FocusScope.of(context).unfocus();
     }
   }
@@ -65,9 +69,9 @@ class MyStoryController extends GetxController {
       storyCommentModel = (await StoryCommentApi.sendNewComment(
               id, writeSomething.text.toString()) ??
           StoryCommentModel());
-      // await friendStoryApiData();
+       await viewStoryController.friendStoryApiData();
       playAnimation();
-      // update(["friendStory"]);
+       update(["my_story"]);
       writeSomething.clear();
       loader.value = false;
     } catch (e) {
@@ -75,6 +79,50 @@ class MyStoryController extends GetxController {
     }
   }
 
+  void onLikeBtn(id) {
+    if (loader.isFalse) {
+      likeStory(id);
+    }
+    // update(["friendStory"]);
+  }
+  LikeStoryModel likeStoryModel = LikeStoryModel();
+
+  Future<void> likeStory(String id) async {
+    try {
+      loader.value = true;
+      pauseAnimation();
+      likeStoryModel = await LikeStoryApi.postRegister(id);
+      playAnimation();
+      await viewStoryController.friendStoryApiData();
+      update(["my_story"]);
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+    }
+  }
+
+  void onUnLikeBtn(id) {
+    if (loader.isFalse) {
+      unLikeStory(id);
+    }
+
+    // update(["friendStory"]);
+  }
+  UnLikeStoryModel unLikeStoryModel=UnLikeStoryModel();
+  Future<void> unLikeStory(String id) async {
+    try {
+      loader.value = true;
+      pauseAnimation();
+      unLikeStoryModel = await UnLikeStoryApi.postRegister(id);
+      await viewStoryController.friendStoryApiData();
+      playAnimation();
+      update(["friendStory"]);
+
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+    }
+  }
   StoryViewListModel storyViewListModel = StoryViewListModel();
 
   Future<void> getStoryViewList(String id) async {

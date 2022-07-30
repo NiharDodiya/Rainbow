@@ -106,8 +106,8 @@ class AddStoryController extends GetxController {
       flutterToast(adStoryModel.message.toString());
       await Get.find<HomeController>().onStory();
       loader.value = false;
-      Get.back();
-      Get.back();
+
+
     } catch (e) {
       loader.value = false;
     }

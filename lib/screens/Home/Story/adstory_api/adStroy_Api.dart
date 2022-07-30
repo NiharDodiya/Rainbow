@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/adStory_model.dart';
@@ -29,13 +30,17 @@ class AdStoryApi {
             "Content-Type": "application/json",
             "x-access-token": accesToken
           });
-
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
           errorToast(jsonDecode(response.body)["message"]);
-        }
-        return adStoryModelFromJson(response.body);
+        }else if(status==true)
+          {
+            Get.back();
+            Get.back();
+            return adStoryModelFromJson(response.body);
+          }
+        return null;
       }
     } catch (e) {
       print(e.toString());
