@@ -326,29 +326,46 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
                                                   controller
-                                                      .viewStoryController
-                                                      .storyModel
-                                                      .myStory![pageIndex].isLike.toString()=="no"?InkWell(onTap: () {
-                                                    controller.onLikeBtn(controller
-                                                        .viewStoryController
-                                                        .storyModel
-                                                        .myStory![pageIndex].id.toString());
-                                                  },
-                                                    child: const Icon(
-                                                      Icons.favorite,
-                                                      color: ColorRes.white,
-                                                    ),
-                                                  ):InkWell(onTap: () {
-                                                    controller.onUnLikeBtn(controller
-                                                        .viewStoryController
-                                                        .storyModel
-                                                        .myStory![pageIndex].id.toString());
-                                                  },
-                                                    child: const Icon(
-                                                      Icons.favorite,
-                                                      color: ColorRes.red,
-                                                    ),
-                                                  ),
+                                                              .viewStoryController
+                                                              .storyModel
+                                                              .myStory![
+                                                                  pageIndex]
+                                                              .isLike
+                                                              .toString() ==
+                                                          "no"
+                                                      ? InkWell(
+                                                          onTap: () {
+                                                            controller.onLikeBtn(
+                                                                controller
+                                                                    .viewStoryController
+                                                                    .storyModel
+                                                                    .myStory![
+                                                                        pageIndex]
+                                                                    .id
+                                                                    .toString());
+                                                          },
+                                                          child: const Icon(
+                                                            Icons.favorite,
+                                                            color:
+                                                                ColorRes.white,
+                                                          ),
+                                                        )
+                                                      : InkWell(
+                                                          onTap: () {
+                                                            controller.onUnLikeBtn(
+                                                                controller
+                                                                    .viewStoryController
+                                                                    .storyModel
+                                                                    .myStory![
+                                                                        pageIndex]
+                                                                    .id
+                                                                    .toString());
+                                                          },
+                                                          child: const Icon(
+                                                            Icons.favorite,
+                                                            color: ColorRes.red,
+                                                          ),
+                                                        ),
                                                   Row(
                                                     children: [
                                                       Text(
@@ -400,13 +417,15 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                       Text(Strings.comments,
                                                           style:
                                                               sfProTextReguler()),
-                                                      SizedBox(width: 2,),
+                                                      SizedBox(
+                                                        width: 2,
+                                                      ),
                                                       Text(
                                                           controller
                                                                       .viewStoryController
                                                                       .storyModel
                                                                       .myStory![
-                                                                          pageIndex]
+                                                                          storyIndex]
                                                                       .storyCommentCount
                                                                       .toString() ==
                                                                   "0"
@@ -415,7 +434,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                                   .viewStoryController
                                                                   .storyModel
                                                                   .myStory![
-                                                                      pageIndex]
+                                                          storyIndex]
                                                                   .storyCommentCount
                                                                   .toString(),
                                                           style:
