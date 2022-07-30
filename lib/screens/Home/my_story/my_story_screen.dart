@@ -319,7 +319,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                     myStory: controller
                                                         .viewStoryController
                                                         .storyModel
-                                                        .myStory![pageIndex],
+                                                        .myStory![storyIndex],
                                                     storyindex: storyIndex);
                                               },
                                               child: Column(
@@ -329,7 +329,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                               .viewStoryController
                                                               .storyModel
                                                               .myStory![
-                                                                  pageIndex]
+                                                                  storyIndex]
                                                               .isLike
                                                               .toString() ==
                                                           "no"
@@ -340,7 +340,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                                     .viewStoryController
                                                                     .storyModel
                                                                     .myStory![
-                                                                        pageIndex]
+                                                                        storyIndex]
                                                                     .id
                                                                     .toString());
                                                           },
@@ -357,7 +357,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                                     .viewStoryController
                                                                     .storyModel
                                                                     .myStory![
-                                                                        pageIndex]
+                                                                        storyIndex]
                                                                     .id
                                                                     .toString());
                                                           },
@@ -378,7 +378,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                                     .viewStoryController
                                                                     .storyModel
                                                                     .myStory![
-                                                                        pageIndex]
+                                                                        storyIndex]
                                                                     .storyLikeCount
                                                                     .toString() ==
                                                                 "0"
@@ -387,7 +387,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                                 .viewStoryController
                                                                 .storyModel
                                                                 .myStory![
-                                                                    pageIndex]
+                                                        storyIndex]
                                                                 .storyLikeCount
                                                                 .toString(),
                                                         style: sfProTextReguler(

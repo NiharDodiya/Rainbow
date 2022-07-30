@@ -34,7 +34,7 @@ class PrivacyController extends GetxController {
     isChecked[2] = profileController.viewProfile.data!.socialMedia ?? false;
     isChecked[3] = profileController.viewProfile.data!.aboutMe ?? false;
     isChecked[4] = profileController.viewProfile.data!.hobbiesInterest ?? false;
-    isChecked[5] = profileController.viewProfile.data!.testimonials ?? false;
+    // isChecked[5] = profileController.viewProfile.data!.testimonials ?? false;
     isChecked[6] = profileController.viewProfile.data!.visitors ?? false;
   }
 

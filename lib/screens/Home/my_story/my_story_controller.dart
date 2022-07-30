@@ -116,7 +116,7 @@ class MyStoryController extends GetxController {
       unLikeStoryModel = await UnLikeStoryApi.postRegister(id);
       await viewStoryController.friendStoryApiData();
       playAnimation();
-      update(["friendStory"]);
+      update(["my_story"]);
 
       loader.value = false;
     } catch (e) {

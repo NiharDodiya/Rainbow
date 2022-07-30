@@ -184,7 +184,6 @@ class ViewStoryController extends GetxController {
     // update(["friendStory"]);
   }
 
-
   bool validation() {
     if (writeSomethings.text.isEmpty) {
       errorToast("Type Something");
