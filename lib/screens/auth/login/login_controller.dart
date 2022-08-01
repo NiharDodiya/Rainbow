@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
@@ -11,8 +13,10 @@ import 'package:rainbow/utils/strings.dart';
 class LoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   RxBool loader = false.obs;
   bool advertiser = false;
+  String? userUid;
 
   void onSignUpTap() {
     // Get.off(() => RegisterScreen(), transition: Transition.cupertino);
@@ -66,6 +70,7 @@ class LoginController extends GetxController {
         emailController.text,
         passwordController.text,
       );
+      firebaseSignIn();
       loader.value = false;
       // await PrefService.setValue(PrefKeys.accessToken, loginModel.token);
     } catch (e) {
@@ -73,4 +78,72 @@ class LoginController extends GetxController {
       debugPrint(e.toString());
     }
   }
+  firebaseSignIn() async {
+
+    FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+    try {
+      final userCredential = await firebaseAuth.signInWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim());
+      if (userCredential.user != null) {
+        print(userCredential.user!.uid);
+        userUid = userCredential.user!.uid;
+        await addUser(userCredential.user!.uid);
+        Get.snackbar("Success", "Login SuccessFull");
+        //Get.to(() => const UserListScreen());
+      }
+    } on FirebaseAuthException catch (e) {
+      print(e.toString());
+      if (e.code == "user-not-found") {
+        Get.snackbar("Error", "User Not Found");
+      } else if (e.code == "wrong-password") {
+        Get.snackbar("Error", "Wrong Password");
+      }
+    }
+    update(['login']);
+  }
+
+  addUser(String uid) async {
+    await firebaseFirestore
+        .collection("users")
+        .doc(uid)
+        .get()
+        .then((value) async {
+      if (!value.exists) {
+        await firebaseFirestore.collection("users").doc(uid).set({
+          "email": emailController.text,
+          "uid": userUid,
+          //"name": nameController.text,
+          "online": true
+        });
+        setCount();
+      } else {
+        await firebaseFirestore
+            .collection("users")
+            .doc(uid)
+            .update({"online": true});
+        setCount();
+      }
+    });
+  }
+
+  setCount() async {
+    int? count;
+    await FirebaseFirestore.instance
+        .collection("onlineCount")
+        .doc("onlineCount")
+        .get()
+        .then((value) {
+      if (value.exists) {
+        count = value.data()!['count'];
+      } else {}
+    });
+    await FirebaseFirestore.instance
+        .collection("onlineCount")
+        .doc("onlineCount")
+        .update({"count": count! + 1});
+  }
+
+
+
 }

@@ -95,6 +95,15 @@ dependencies:
   syncfusion_flutter_datepicker: ^20.2.38
   charts_flutter: ^0.12.0
   flutter_multi_formatter: ^2.5.8
+  image_stack: ^2.1.1
+  paginate_firestore: ^1.0.3+1
+  firebase_database: ^9.0.3
+  cloud_firestore: ^3.4.1
+  firebase_core: ^1.20.0
+
+
+
+
 
 
 
