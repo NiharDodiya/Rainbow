@@ -8,6 +8,8 @@ import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
 import 'package:rainbow/screens/auth/phonenumber/phonenumber_Screen.dart';
 import 'package:rainbow/screens/auth/register/register_screen.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/register_adviser.dart';
+import 'package:rainbow/service/pref_services.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class LoginController extends GetxController {
@@ -66,11 +68,12 @@ class LoginController extends GetxController {
   Future<void> registerDetails() async {
     loader.value = true;
     try {
-      await LoginApi.postRegister(
+      loginModel = await LoginApi.postRegister(
         emailController.text,
         passwordController.text,
       );
-      firebaseSignIn();
+      // await PrefService.setValue(PrefKeys.uid, loginM );
+      await firebaseSignIn();
       loader.value = false;
       // await PrefService.setValue(PrefKeys.accessToken, loginModel.token);
     } catch (e) {
@@ -78,8 +81,8 @@ class LoginController extends GetxController {
       debugPrint(e.toString());
     }
   }
-  firebaseSignIn() async {
 
+  firebaseSignIn() async {
     FirebaseAuth firebaseAuth = FirebaseAuth.instance;
     try {
       final userCredential = await firebaseAuth.signInWithEmailAndPassword(
@@ -88,16 +91,18 @@ class LoginController extends GetxController {
       if (userCredential.user != null) {
         print(userCredential.user!.uid);
         userUid = userCredential.user!.uid;
+        await PrefService.setValue(PrefKeys.uid, userCredential.user!.uid);
+
         await addUser(userCredential.user!.uid);
-        Get.snackbar("Success", "Login SuccessFull");
+        // Get.snackbar("Success", "Login SuccessFull");
         //Get.to(() => const UserListScreen());
       }
     } on FirebaseAuthException catch (e) {
       print(e.toString());
       if (e.code == "user-not-found") {
-        Get.snackbar("Error", "User Not Found");
+        // Get.snackbar("Error", "User Not Found");
       } else if (e.code == "wrong-password") {
-        Get.snackbar("Error", "Wrong Password");
+        // Get.snackbar("Error", "Wrong Password");
       }
     }
     update(['login']);
@@ -113,6 +118,7 @@ class LoginController extends GetxController {
         await firebaseFirestore.collection("users").doc(uid).set({
           "email": emailController.text,
           "uid": userUid,
+          "id": PrefService.getInt(PrefKeys.userId),
           //"name": nameController.text,
           "online": true
         });
@@ -143,7 +149,4 @@ class LoginController extends GetxController {
         .doc("onlineCount")
         .update({"count": count! + 1});
   }
-
-
-
 }

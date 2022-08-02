@@ -1,3 +1,6 @@
+import 'package:rainbow/service/chat_service.dart';
+import 'package:rainbow/service/messaing_services.dart';
+
 class AssetRes {
   static const icons = 'assets/icons/';
   static const iconsBottom = 'assets/icons/bottom_icons/';
@@ -48,6 +51,12 @@ class AssetRes {
   static const commentSend = '${icons}comment_send.png';
   static const worldIcon = '${icons}world_icon.png';
   static const filterIcon = '${icons}filter_icon.png';
+  static const read = '${icons}Read.png';
+  static const hold = '${icons}hold.png';
+  static const deleteChat = '${icons}deleteChat.png';
+  static const oval = '${icons}Oval.png';
+  static const chatSend = '${icons}chatSend.png';
+  static const chatImage = '${icons}chatImage.png';
 
   ///--------------------------------------------- iconsBottom---------------------------------------------
   static const home = '${iconsBottom}home.png';
@@ -168,3 +177,5 @@ class AssetRes {
   static const blurBack = "${images}blurBack.png";
   static const drop = "${icons}drop.png";
 }
+ChatServices chatServices = ChatServices();
+MessagingService messagingService = MessagingService();

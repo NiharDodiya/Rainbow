@@ -14,4 +14,5 @@ class PrefKeys {
   static const showTermsCondition = "showTermsCondition";
   static const phonSaveNumberEndUser = "phonSaveNumber";
   static const phonSaveNumberAdvertiser = "phonSaveNumberAdvertiser";
+  static const uid = "uid";
 }

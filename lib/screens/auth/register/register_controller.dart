@@ -5,10 +5,14 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
+import 'package:rainbow/model/user_model.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_api.dart';
 import 'package:rainbow/screens/auth/login/login_screen.dart';
 import 'package:rainbow/screens/auth/register/api/register_api.dart';
 import 'package:rainbow/screens/auth/register/register_json.dart';
+import 'package:rainbow/service/Users_services.dart';
+import 'package:rainbow/service/auth_services.dart';
+import 'package:rainbow/service/chat_service.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -263,10 +267,18 @@ class RegisterController extends GetxController {
       await PrefService.setValue(
           PrefKeys.registerToken, registerUser.token.toString());
       await LoginApi.updateDeviceToken();
-
+      UserModel userModel = UserModel(
+        name: fullNameController.text,
+        email: emailController.text,
+      );
+      String? uid = (await AuthService.loginUser(userModel: userModel,
+          email: emailController.text, pwd: pwdController.text)) as String?;
+      userModel.uid = uid;
+      // await UserService.createUser(userModel);
       loader.value = false;
     } catch (e) {
       loader.value = false;
     }
   }
+
 }

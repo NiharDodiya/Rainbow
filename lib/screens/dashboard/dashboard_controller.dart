@@ -8,7 +8,7 @@ class DashboardController extends GetxController {
   int currentTab = 0;
   final HomeController homeController = Get.put(HomeController());
   final SearchController searchController = Get.put(SearchController());
-  final MessageContorller messageController = Get.put(MessageContorller());
+  final MessageController messageController = Get.put(MessageController());
   final ProfileController profileController = Get.put(ProfileController());
 
   @override
