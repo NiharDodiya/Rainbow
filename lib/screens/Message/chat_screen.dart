@@ -170,6 +170,7 @@ class ChatScreen extends StatelessWidget {
                                   ? MainAxisAlignment.end
                                   : MainAxisAlignment.start,
                           children: [
+                            // Text(controller.data['time'].toString(),style: sfProTextReguler(fontSize: 12,color:ColorRes.color_F0F0F0 ),),
                             Container(
                               margin: const EdgeInsets.only(bottom: 10),
                               padding: const EdgeInsets.all(10),
@@ -187,15 +188,19 @@ class ChatScreen extends StatelessWidget {
                               child: Text(
                                 controller.data['content'],
                                 style: gilroyBoldTextStyle(
-                                    fontSize: 16, color: Colors.black),
+                                    fontSize: 17, color: Colors.black),
                               ),
                             ),
+                            const SizedBox(width: 5,),
                             controller.data!['senderUid'].toString() ==
-                                userUid ?Image.asset(
+                                userUid ?Container(margin: const EdgeInsets.only(top: 15),
+                                  child: Image.asset(
                               AssetRes.read,color: Colors.white,
-                              height: 12,
-                              width: 12,
-                            ):const SizedBox()
+                              height: 16,
+                              width: 16,
+                            ),
+                                ):const SizedBox(),
+                            const SizedBox(width: 5,)
                           ],
                         );
                       },
