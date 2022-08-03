@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Message/message_controller.dart';
@@ -86,38 +87,40 @@ class MessageScreen extends StatelessWidget {
                         return snapshot.data!.docs[index]['uid'] ==
                                 controller.userUid
                             ? const SizedBox()
-                            : Column(
-                                children: [
-                                  Stack(
+                            : snapshot.data!.docs[index]['online'] == true
+                                ? Column(
                                     children: [
-                                      Container(
-                                        margin: const EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        height: 50,
-                                        width: 50,
-                                        decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.grey),
-                                        child: const Center(
-                                          child: Icon(Icons.person),
-                                        ),
+                                      Stack(
+                                        children: [
+                                          Container(
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 10),
+                                            height: 50,
+                                            width: 50,
+                                            decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Colors.grey),
+                                            child: const Center(
+                                              child: Icon(Icons.person),
+                                            ),
+                                          ),
+                                          Positioned(
+                                              top: Get.height * 0.05,
+                                              right: 12,
+                                              child: Image.asset(
+                                                AssetRes.oval,
+                                                height: 12,
+                                                width: 12,
+                                              ))
+                                        ],
                                       ),
-                                      Positioned(
-                                          top: Get.height * 0.05,
-                                          right: 12,
-                                          child: Image.asset(
-                                            AssetRes.oval,
-                                            height: 12,
-                                            width: 12,
-                                          ))
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      const Text("Name")
                                     ],
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  const Text("Name")
-                                ],
-                              );
+                                  )
+                                : const SizedBox();
                       }),
                 );
               },
@@ -136,71 +139,85 @@ class MessageScreen extends StatelessWidget {
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (BuildContext context, int index) {
-                      return snapshot.data!.docs[index]['uid'] ==
-                              controller.userUid
-                          ? const SizedBox()
-                          : InkWell(
-                              onTap: () {
-                                controller.gotoChatScreen(
-                                    snapshot.data!.docs[index]['uid'],
-                                    snapshot.data!.docs[index]['email']);
+                        return   snapshot.data!.docs[index]['uid'] ==
+                            controller.userUid
+                            ? const SizedBox()
+                            : InkWell(
+                          onTap: () {
+                            controller.gotoChatScreen(
+                                snapshot.data!.docs[index]['uid'],
+                                snapshot.data!.docs[index]
+                                ['email']);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10),
+                            child: Dismissible(
+                              key: ValueKey<int>(index),
+                              direction:
+                              DismissDirection.endToStart,
+                              onDismissed: (direction) {
+                                if (direction ==
+                                    DismissDirection.startToEnd) {}
                               },
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 10),
-                                child: Dismissible(
-                                  key: ValueKey<int>(index),
-                                  direction: DismissDirection.endToStart,
-                                  onDismissed: (direction) {
-                                    if (direction ==
-                                        DismissDirection.startToEnd) {}
-                                  },
-                                  child: Row(
+                              child: Row(
+                                children: [
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Container(
+                                    margin:
+                                    const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    height: 60,
+                                    width: 60,
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.grey),
+                                    child: const Center(
+                                      child: Icon(Icons.person),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  Column(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
                                     children: [
-                                      Container(
-                                        margin: const EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        height: 50,
-                                        width: 50,
-                                        decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.grey),
-                                        child: const Center(
-                                          child: Icon(Icons.person),
-                                        ),
+                                      Text(
+                                        "${snapshot.data!.docs[index]['email'].toString()}",
+                                        style: sfProTextReguler(
+                                            fontSize: 17),
                                       ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "${snapshot.data!.docs[index]['email'].toString()}",
-                                            style:
-                                                const TextStyle(color: Colors.white),
-                                          ),
-                                          const Text(
-                                            "You:ok",
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          )
-                                        ],
-                                      ),
-                                      const Spacer(),
-                                      Image.asset(
-                                        AssetRes.read,
-                                        height: 16,
-                                        width: 16,
-                                      ),
-                                      const SizedBox(
-                                        width: 15,
+                                      Text(
+                                        "You:ok",
+                                        style: sfProTextReguler(
+                                            fontSize: 14,
+                                            color: ColorRes
+                                                .color_F0F0F0),
                                       )
                                     ],
                                   ),
-                                ),
+                                  const Spacer(),
+                                  Image.asset(
+                                    AssetRes.read,
+                                    height: 16,
+                                    width: 16,
+                                  ),
+                                  const SizedBox(
+                                    width: 15,
+                                  )
+                                ],
                               ),
-                            );
+                            ),
+                          ),
+                        );
+
+
+
                     });
               },
             );

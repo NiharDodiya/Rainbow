@@ -101,6 +101,8 @@ dependencies:
   cloud_firestore: ^3.4.1
   firebase_core: ^1.20.0
   firebase_storage: ^10.3.4
+  #____________________________________________________FLUTTER SLIDABLE___________________________
+  flutter_slidable: ^2.0.0
 
 
 

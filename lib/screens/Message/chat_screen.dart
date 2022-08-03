@@ -171,6 +171,23 @@ class ChatScreen extends StatelessWidget {
                                   : MainAxisAlignment.start,
                           children: [
                             // Text(controller.data['time'].toString(),style: sfProTextReguler(fontSize: 12,color:ColorRes.color_F0F0F0 ),),
+                            const SizedBox(
+                              width: 9,
+                            ),
+                            controller.data!['senderUid'].toString() == userUid
+                                ? const SizedBox()
+                                : Container(
+                                    margin: const EdgeInsets.only(top: 5),
+                                    height: 28,
+                                    width: 28,
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.grey),
+                                  ),
+                            const SizedBox(
+                              width: 12,
+                            ),
+
                             Container(
                               margin: const EdgeInsets.only(bottom: 10),
                               padding: const EdgeInsets.all(10),
@@ -183,7 +200,7 @@ class ChatScreen extends StatelessWidget {
                                     controller.data['senderUid'].toString() ==
                                             userUid
                                         ? Colors.white
-                                        : Colors.yellow,
+                                        : ColorRes.color_E9D224,
                               ),
                               child: Text(
                                 controller.data['content'],
@@ -191,16 +208,23 @@ class ChatScreen extends StatelessWidget {
                                     fontSize: 17, color: Colors.black),
                               ),
                             ),
-                            const SizedBox(width: 5,),
-                            controller.data!['senderUid'].toString() ==
-                                userUid ?Container(margin: const EdgeInsets.only(top: 15),
-                                  child: Image.asset(
-                              AssetRes.read,color: Colors.white,
-                              height: 16,
-                              width: 16,
+                            const SizedBox(
+                              width: 5,
                             ),
-                                ):const SizedBox(),
-                            const SizedBox(width: 5,)
+                            controller.data!['senderUid'].toString() == userUid
+                                ? Container(
+                                    margin: const EdgeInsets.only(top: 15),
+                                    child: Image.asset(
+                                      AssetRes.read,
+                                      color: Colors.white,
+                                      height: 16,
+                                      width: 16,
+                                    ),
+                                  )
+                                : const SizedBox(),
+                            const SizedBox(
+                              width: 5,
+                            )
                           ],
                         );
                       },

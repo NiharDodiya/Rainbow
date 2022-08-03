@@ -46,6 +46,7 @@ class MessageController extends GetxController {
   void onScrollDownTap() {
     listScrollController.position.jumpTo(0);
   }
+   doNothing(BuildContext context) {}
 
   Future<void> init() async {
     loader.value = true;
