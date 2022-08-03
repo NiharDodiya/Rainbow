@@ -41,7 +41,7 @@ class ViewStoryController extends GetxController {
   int storyIndex = 0;
   bool isImageLoading = false;
   List<UserData> tagUserList = [];
-  List<dynamic> captureImageList = [];
+
   List<File> image = [];
   File? imageCamera;
   bool textShow = false;
@@ -102,12 +102,31 @@ class ViewStoryController extends GetxController {
   navigateToGallery() async {
     List<File> path = await galleryImage();
     if (path != null) {
-      frontImage = path.map<File>((e) => File(e.path)).toList();
+      image = path.map<File>((e) => File(e.path)).toList();
     }
 
     update(["createStory"]);
   }
 
+  Future cameraImage() async {
+    var pickedFile = await ImagePicker().pickImage(source: ImageSource.camera);
+    final imageTemp = File(pickedFile!.path);
+    imageCamera = imageTemp;
+    if (pickedFile != null) {
+      return pickedFile.path;
+    }
+    update(["createStory"]);
+  }
+
+  navigateToCamera() async {
+    String? path = await cameraImage();
+
+    if (path != null) {
+      imageForCamera = File(path);
+    }
+
+    update(["createStory"]);
+  }
   ListUserTagModel listUserTagModel = ListUserTagModel();
   List<UserData> filterList = [];
 
@@ -156,25 +175,6 @@ class ViewStoryController extends GetxController {
         TextSelection.collapsed(offset: tagController.text.length);
   }
 
-  Future cameraImage() async {
-    var pickedFile = await ImagePicker().pickImage(source: ImageSource.camera);
-    final imageTemp = File(pickedFile!.path);
-    imageCamera = imageTemp;
-    if (pickedFile != null) {
-      return pickedFile.path;
-    }
-    update(["createStory"]);
-  }
-
-  navigateToCamera() async {
-    String? path = await cameraImage();
-
-    if (path != null) {
-      imageForCamera = File(path);
-    }
-
-    update(["createStory"]);
-  }
 
   void onUnLikeBtnTap(id) {
     if (loader.isFalse) {
@@ -186,7 +186,7 @@ class ViewStoryController extends GetxController {
 
   bool validation() {
     if (writeSomethings.text.isEmpty) {
-      errorToast("Type Something");
+      errorToast("Type Something required");
       return false;
     }
     return true;
@@ -339,13 +339,16 @@ class ViewStoryController extends GetxController {
     if (validation()) {
       pauseAnimation();
 
-        commentData(id);
-
+      commentData(id);
       // update(["friendStory"]);
       FocusScope.of(context).unfocus();
     }
   }
-
+void onTapPostStory(BuildContext context){
+    if(validation()){
+      createPostData(context);
+    }
+}
   void onPageChange(int pageIndex) {
     currentPage = pageIndex;
     onStoryChange(pageIndex, 0);

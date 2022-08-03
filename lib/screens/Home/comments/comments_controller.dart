@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/model/listUserTag_model.dart';
@@ -27,9 +28,20 @@ class CommentsController extends GetxController {
   @override
   void onInit() {
     update(["commentPost"]);
+
     super.onInit();
   }
-
+bool validation(){
+    if(msgController.text.isEmpty){
+      flutterToast("replay required");
+    }
+    return true;
+}
+void onTapSendMsg(BuildContext context,String id){
+    if(validation()){
+      commentPostData(context, id);
+    }
+}
   Future cameraImage() async {
  try{
    var pickedFile = await ImagePicker().pickImage(source: ImageSource.camera);
@@ -106,6 +118,7 @@ class CommentsController extends GetxController {
             uploadImage.data == null ? "" : uploadImage.data!.id.toString(),
             msgController.text,
             list);
+
       } else {
         if (imageForCamera != null) {
           await uploadImageApi();
@@ -118,6 +131,7 @@ class CommentsController extends GetxController {
             msgController.text,
             list);
       }
+      await homeController.commentPostListData(idPost);
       await homeController.friendPostData();
 
       homeController.update(["home"]);

@@ -36,17 +36,24 @@ class EditProfile {
 class Data {
   Data({
     this.id,
+    this.idSocial,
     this.fullName,
     this.email,
     this.address1,
     this.address2,
     this.phoneNumber,
     this.maritalStatus,
+    this.onlineStatus,
     this.idEthnicity,
     this.birthDate,
     this.noKids,
+    this.mobileStatus,
     this.role,
+    this.referrallCode,
     this.idStatus,
+    this.latitude,
+    this.longitude,
+    this.userType,
     this.selfiStatus,
     this.userStatus,
     this.age,
@@ -57,7 +64,7 @@ class Data {
     this.youtube,
     this.facebook,
     this.twitter,
-    this.aboutMe,
+    this.about,
     this.hobbiesAndInterest,
     this.backgroundImage,
     this.profileImage,
@@ -65,17 +72,24 @@ class Data {
   });
 
   int? id;
+  String? idSocial;
   String? fullName;
   String? email;
   String? address1;
   String? address2;
   String? phoneNumber;
   String? maritalStatus;
+  String? onlineStatus;
   String? idEthnicity;
   DateTime? birthDate;
   int? noKids;
+  String? mobileStatus;
   String? role;
+  String? referrallCode;
   String? idStatus;
+  double? latitude;
+  double? longitude;
+  String? userType;
   String? selfiStatus;
   String? userStatus;
   int? age;
@@ -86,7 +100,7 @@ class Data {
   String? youtube;
   String? facebook;
   String? twitter;
-  String? aboutMe;
+  String? about;
   String? hobbiesAndInterest;
   String? backgroundImage;
   String? profileImage;
@@ -94,17 +108,24 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         id: json["id"],
+        idSocial: json["id_social"],
         fullName: json["full_name"],
         email: json["email"],
         address1: json["address1"],
         address2: json["address2"],
         phoneNumber: json["phone_number"],
         maritalStatus: json["marital_status"],
+        onlineStatus: json["online_status"],
         idEthnicity: json["id_ethnicity"],
         birthDate: DateTime.parse(json["birth_date"]),
         noKids: json["no_kids"],
+        mobileStatus: json["mobile_status"],
         role: json["role"],
+        referrallCode: json["referrall_code"],
         idStatus: json["id_status"],
+        latitude: json["latitude"].toDouble(),
+        longitude: json["longitude"].toDouble(),
+        userType: json["user_type"],
         selfiStatus: json["selfi_status"],
         userStatus: json["user_status"],
         age: json["age"],
@@ -115,7 +136,7 @@ class Data {
         youtube: json["youtube"],
         facebook: json["facebook"],
         twitter: json["twitter"],
-        aboutMe: json["about_me"],
+        about: json["about"],
         hobbiesAndInterest: json["hobbies_and_Interest"],
         backgroundImage: json["background_image"],
         profileImage: json["profile_image"],
@@ -124,18 +145,25 @@ class Data {
 
   Map<String, dynamic> toJson() => {
         "id": id,
+        "id_social": idSocial,
         "full_name": fullName,
         "email": email,
         "address1": address1,
         "address2": address2,
         "phone_number": phoneNumber,
         "marital_status": maritalStatus,
+        "online_status": onlineStatus,
         "id_ethnicity": idEthnicity,
         "birth_date":
             "${birthDate!.year.toString().padLeft(4, '0')}-${birthDate!.month.toString().padLeft(2, '0')}-${birthDate!.day.toString().padLeft(2, '0')}",
         "no_kids": noKids,
+        "mobile_status": mobileStatus,
         "role": role,
+        "referrall_code": referrallCode,
         "id_status": idStatus,
+        "latitude": latitude,
+        "longitude": longitude,
+        "user_type": userType,
         "selfi_status": selfiStatus,
         "user_status": userStatus,
         "age": age,
@@ -146,7 +174,7 @@ class Data {
         "youtube": youtube,
         "facebook": facebook,
         "twitter": twitter,
-        "about_me": aboutMe,
+        "about": about,
         "hobbies_and_Interest": hobbiesAndInterest,
         "background_image": backgroundImage,
         "profile_image": profileImage,

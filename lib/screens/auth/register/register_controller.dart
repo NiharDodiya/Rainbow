@@ -10,9 +10,7 @@ import 'package:rainbow/screens/auth/login/login_api/login_api.dart';
 import 'package:rainbow/screens/auth/login/login_screen.dart';
 import 'package:rainbow/screens/auth/register/api/register_api.dart';
 import 'package:rainbow/screens/auth/register/register_json.dart';
-import 'package:rainbow/service/Users_services.dart';
 import 'package:rainbow/service/auth_services.dart';
-import 'package:rainbow/service/chat_service.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -207,6 +205,8 @@ class RegisterController extends GetxController {
     update(["register_screen"]);
   }
 
+  var now = DateTime.now();
+
   void showDatePicker(ctx) {
     // showCupertinoModalPopup is a built-in function of the cupertino library
     showCupertinoModalPopup(
@@ -226,10 +226,10 @@ class RegisterController extends GetxController {
                 onDateTimeChanged: (val) {
                   var formattedDate = "${val.month}-${val.day}-${val.year}";
                   dobController.text = formattedDate;
+                  update(["register_screen"]);
                 },
               ),
             ),
-
             // Close the modal
             CupertinoButton(
               child: const Text('OK'),
@@ -271,8 +271,10 @@ class RegisterController extends GetxController {
         name: fullNameController.text,
         email: emailController.text,
       );
-      String? uid = (await AuthService.loginUser(userModel: userModel,
-          email: emailController.text, pwd: pwdController.text)) as String?;
+      String? uid = (await AuthService.loginUser(
+          userModel: userModel,
+          email: emailController.text,
+          pwd: pwdController.text)) as String?;
       userModel.uid = uid;
       // await UserService.createUser(userModel);
       loader.value = false;
@@ -280,5 +282,4 @@ class RegisterController extends GetxController {
       loader.value = false;
     }
   }
-
 }

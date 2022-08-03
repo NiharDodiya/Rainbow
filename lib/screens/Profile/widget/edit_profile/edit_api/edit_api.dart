@@ -34,6 +34,8 @@ class EditProfileApi {
       Map<String, String> param = {
         "id_item_background": idItemBackGround,
         "id_item_profile": idItemProfile,
+        "latitude" :"",
+        "longitude" : "",
         "full_name": fullName,
         "user_status": userStatus,
         "height": height,

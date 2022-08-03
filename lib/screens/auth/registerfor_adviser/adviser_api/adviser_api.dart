@@ -63,7 +63,7 @@ class AdvirtisersApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          errorToast(jsonDecode(response.body)["message"]);
+          // errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           AdvertiserVerifyController advertiserVerifyController =
               Get.put(AdvertiserVerifyController());
@@ -78,13 +78,13 @@ class AdvirtisersApi {
           advertiserVerifyController.phoneNumberRegister();
           Get.offAll(() => AdvertiserVerifyOtpScreen());
           await PrefService.setValue(PrefKeys.companyRegister, true);
-          flutterToast(jsonDecode(response.body)["message"]);
+          // flutterToast(jsonDecode(response.body)["message"]);
         }
         return advertiserRegisterFromJson(response.body);
       } else if (response!.statusCode == 400) {
-        errorToast(jsonDecode(response.body)["message"]);
+        // errorToast(jsonDecode(response.body)["message"]);
       } else {
-        errorToast(jsonDecode(response.body)["message"]);
+        // errorToast(jsonDecode(response.body)["message"]);
       }
       /*  message == "Failed! Email is already in use!"
           ? errorToast(message)

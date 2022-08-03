@@ -21,12 +21,12 @@ class ConnectionApi {
         if (data['status'] == true) {
           return suggestionModelFromJson(response.body);
         } else {
-          flutterToast(data['message']);
+          // flutterToast(data['message']);
         }
       }
       return null;
     } catch (e) {
-      errorToast("Error", title: e.toString());
+      // errorToast("Error", title: e.toString());
       debugPrint(e.toString());
       return null;
     }
@@ -44,13 +44,13 @@ class ConnectionApi {
         if (data['status'] == true) {
           return requestUserModelFromJson(response.body);
         } else {
-          flutterToast(data['message']);
+          // flutterToast(data['message']);
           return requestUserModelFromJson(response.body);
         }
       }
       return null;
     } catch (e) {
-      errorToast("Error", title: e.toString());
+      // errorToast("Error", title: e.toString());
       debugPrint(e.toString());
       return null;
     }

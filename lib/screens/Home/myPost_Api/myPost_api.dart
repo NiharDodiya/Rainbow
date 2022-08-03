@@ -181,15 +181,14 @@ class MyPostApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          errorToast(jsonDecode(response.body)["message"]);
+          // errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           CommentsController commentsController = Get.find();
           commentsController.msgController.clear();
           commentsController.replyId = "";
           commentsController.nameComment = "";
-          flutterToast(jsonDecode(response.body)["message"]);
+          // flutterToast(jsonDecode(response.body)["message"]);
 
-          Navigator.pop(context);
         }
         return postCommentModelFromJson(response.body);
       }
@@ -227,14 +226,14 @@ class MyPostApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          errorToast(jsonDecode(response.body)["message"]);
+          // errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           CommentsController commentsController = Get.find();
           commentsController.msgController.clear();
           commentsController.replyId = "";
           commentsController.nameComment = "";
-          flutterToast(jsonDecode(response.body)["message"]);
-          Navigator.pop(context);
+          // flutterToast(jsonDecode(response.body)["message"]);
+
         }
         return postCommentModelFromJson(response.body);
       }
@@ -255,9 +254,9 @@ class MyPostApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          errorToast(jsonDecode(response.body)["message"]);
+          // errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          flutterToast(jsonDecode(response.body)["message"]);
+          // flutterToast(jsonDecode(response.body)["message"]);
         }
         return postCommentListModelFromJson(response.body);
       }

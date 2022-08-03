@@ -215,9 +215,6 @@ class MessageScreen extends StatelessWidget {
                             ),
                           ),
                         );
-
-
-
                     });
               },
             );

@@ -11,7 +11,7 @@ import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/edit_api/edit_api.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/edit_api/edit_model.dart';
 import 'package:rainbow/utils/strings.dart';
-
+import 'package:geolocator/geolocator.dart';
 class EditProfileController extends GetxController {
   TextEditingController fullName = TextEditingController(/*text: "ramika"*/);
   TextEditingController status =
@@ -47,6 +47,8 @@ class EditProfileController extends GetxController {
   ProfileController profileController = Get.put(ProfileController());
   List<String> noOfKids = ["0", "1", "2", "3", "4", "5", "6"];
   String? noKidsSelected;
+  String? lat;
+  String? lan;
 
   void init() {
     setInitData();
@@ -272,11 +274,49 @@ class EditProfileController extends GetxController {
   }
 
   EditProfile editProfile = EditProfile();
+  Future<Position> determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
 
+    // Test if location services are enabled.
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      // Location services are not enabled don't continue
+      // accessing the position and request users of the
+      // App to enable the location services.
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // Permissions are denied, next time you could try
+        // requesting permissions again (this is also where
+        // Android's shouldShowRequestPermissionRationale
+        // returned true. According to Android guidelines
+        // your App should show an explanatory UI now.
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    // When we reach here, permissions are granted and we can
+    // continue accessing the position of the device.
+    return await Geolocator.getCurrentPosition();
+  }
   Future<void> editProfileApi(BuildContext context) async {
     loader.value = true;
     try {
-      print("Hello");
+      Position position;
+      await determinePosition();   position = await getCurrentPosition();
+      lat = position.latitude.toString();
+      lan = position.longitude.toString();
       await uploadImageApi();
       await uploadImageBackApi();
       EditProfile? data = await EditProfileApi.postRegister(
@@ -309,6 +349,20 @@ class EditProfileController extends GetxController {
     }
   }
 
+  Future<Position> getCurrentPosition() async {
+// verify permissions
+
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever) {
+      permission = await Geolocator.requestPermission();
+    }
+
+    var _currentPosition = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+
+    return _currentPosition;
+  }
   void onHeightSave() {
     height.text = "$heightFeet'$heightInches";
     update(["Edit_profile"]);

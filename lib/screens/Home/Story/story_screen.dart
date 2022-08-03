@@ -62,7 +62,7 @@ class StoryScreen extends StatelessWidget {
               ),
               GestureDetector(
                   onTap: () {
-                    controller.createPostData(context);
+                    controller.onTapPostStory(context);
                     /*    controller.commentSendTap(id!);
                         Get.back();*/
                     /*    controller.writeSomethings.clear();*/

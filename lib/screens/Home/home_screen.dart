@@ -124,7 +124,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: GetBuilder<NotificationsController>(
                                     id: 'notification_badge',
                                     builder: (notificationController) {
-                                      return Container(
+                                      return  notificationController
+                                          .notificationList.length
+                                          .toString() ==
+                                          "0"
+                                          ? const SizedBox()
+                                          :Container(
                                         height: 16,
                                         width: 16,
                                         alignment: Alignment.center,
@@ -133,8 +138,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                             color: ColorRes.color_FF6B97),
                                         child: Text(
                                           notificationController
-                                              .notificationList.length
-                                              .toString(),
+                                                  .notificationList.length
+                                                  .toString(),
                                           style: const TextStyle(
                                             color: ColorRes.white,
                                             fontSize: 8,
@@ -528,15 +533,7 @@ class _HomeScreenState extends State<HomeScreen> {
       id: "connection",
       builder: (controller) {
         return controller.requestUsers.isEmpty
-            ? SizedBox(
-                height: 169,
-                width: Get.width,
-                child: Center(
-                    child: Text(
-                  "No Request",
-                  style: gilroyBoldTextStyle(color: ColorRes.color_9597A1),
-                )),
-              )
+            ? const SizedBox()
             : SizedBox(
                 height: 169,
                 width: Get.width,
@@ -693,7 +690,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 controller.friendPostViewModel.data == null
-                    ? const SizedBox()
+                    ? SizedBox(
+                        child: Center(
+                          child: Text(
+                            "No feed Available",
+                            style: gilroyBoldTextStyle(
+                                fontSize: 20, color: Colors.black),
+                          ),
+                        ),
+                      )
                     : ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
@@ -709,7 +714,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Center(
                                   child: Container(
-                                    height: 355,
                                     width: Get.width * 0.92266,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
@@ -724,22 +728,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                             Padding(
                                               padding: const EdgeInsets.only(
                                                   left: 15.0, top: 20),
-                                              child: Container(
-                                                height: 40,
-                                                width: 40,
-                                                decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    image: DecorationImage(
-                                                        image: NetworkImage(
-                                                            controller
-                                                                .friendPostViewModel
-                                                                .data![index]
-                                                                .postUser!
-                                                                .profileImage
-                                                                .toString()),
-                                                        fit: BoxFit.cover,
-                                                        alignment: Alignment
-                                                            .topCenter)),
+                                              child: ClipRRect(borderRadius: BorderRadius.circular(50),
+                                                child: Image.network( controller
+                                                    .friendPostViewModel
+                                                    .data![index]
+                                                    .postUser!
+                                                    .profileImage
+                                                    .toString(),fit: BoxFit.cover,height: 40,width: 40,errorBuilder: (context, error, stackTrace) {
+                                                      return const Icon(Icons.error);
+                                                    },),
                                               ),
                                             ),
                                             Padding(
@@ -782,7 +779,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                         Center(
                                           child: SizedBox(
                                             width: Get.width * 0.85333,
-                                            height: 96,
                                             child: controller
                                                         .friendPostViewModel
                                                         .data![index]
@@ -863,7 +859,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               const EdgeInsets.only(left: 15.0),
                                           child: SizedBox(
                                             height: 32,
-                                            width: 134,
+                                            width: 135,
                                             child: Stack(
                                               children: [
                                                 Container(
@@ -1103,7 +1099,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                               )
                                             ],
                                           ),
-                                        )
+                                        ),
+                                        const SizedBox(height: 10,)
                                       ],
                                     ),
                                   ),
@@ -1114,6 +1111,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           // : adInLatestFeed();
                         },
                       ),
+                const SizedBox(
+                  height: 60,
+                )
               ],
             ),
           );
