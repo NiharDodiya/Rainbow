@@ -68,6 +68,7 @@ class HomeController extends GetxController {
 
   @override
   Future<void> onInit() async {
+    /*await deepLinkInt();*/
     init();
     // scrollController.addListener(pagination);
     update(['home']);

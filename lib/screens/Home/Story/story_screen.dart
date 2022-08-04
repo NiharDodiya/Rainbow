@@ -7,7 +7,6 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
-
 class StoryScreen extends StatelessWidget {
   String? id;
 
@@ -115,35 +114,55 @@ class StoryScreen extends StatelessWidget {
                     SizedBox(
                       height: Get.height * 0.2,
                     ),
-                    controller.imageCamera != null
-                        ? Container(
-                            height: Get.height * 0.3,
-                            margin: const EdgeInsets.only(left: 15),
-                            child: Image.file(
-                              controller.imageCamera!,
-                              height: Get.height * 0.05,
-                              width: Get.width * 0.28,
-                              fit: BoxFit.contain,
-                            ),
-                          )
-                        : GetBuilder<ViewStoryController>(
+                  GetBuilder<ViewStoryController>(
                             id: "createStory",
                             builder: (controller) {
                               return controller.image == null
                                   ? const SizedBox()
                                   : SizedBox(
-                                      height: Get.height * 0.3,
+                                      height: Get.height * 0.35,
                                       child: ListView.builder(
                                         scrollDirection: Axis.horizontal,
                                         itemCount: controller.image.length,
                                         itemBuilder: (context, index) {
                                           return Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Image.file(
-                                              controller.image[index],
-                                              height: Get.height * 0.05,
-                                              width: Get.width * 0.28,
-                                              fit: BoxFit.contain,
+                                            padding: const EdgeInsets.all(3),
+                                            child: SizedBox(
+                                              height: Get.height * 0.34,
+                                              width: Get.width * 0.32,
+                                              child: Stack(
+                                                children: [
+                                                  Positioned(
+                                                    top: 10,
+                                                    child: Image.file(
+                                                      height: Get.height * 0.27,
+                                                      width: Get.width * 0.28,
+                                                      controller.image[index],
+                                                      fit: BoxFit.contain,
+                                                    ),
+                                                  ),
+                                                  Positioned(
+                                                    left: 85,
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        controller.image.removeAt(index);
+                                                        controller.update(["createStory"]);
+                                                        },
+                                                      child: Container(
+                                                          decoration:
+                                                              const BoxDecoration(
+                                                                  shape: BoxShape
+                                                                      .circle,
+                                                                  color: Colors
+                                                                      .black),
+                                                          child: const Icon(
+                                                            Icons.clear,
+                                                            color: Colors.white,
+                                                          )),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           );
                                         },
@@ -205,7 +224,8 @@ class StoryScreen extends StatelessWidget {
                           children: [
                             InkWell(
                               onTap: () {
-                                controller.navigateToCamera();
+                                controller.cameraImage();
+                                controller.update(["createStory"]);
                               },
                               child: Padding(
                                 padding:
@@ -218,7 +238,8 @@ class StoryScreen extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
-                                controller.navigateToGallery();
+                                controller.galleryImage();
+                                controller.update(["createStory"]);
                               },
                               child: Padding(
                                 padding: const EdgeInsets.only(

@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -41,9 +42,11 @@ class ViewStoryController extends GetxController {
   int storyIndex = 0;
   bool isImageLoading = false;
   List<UserData> tagUserList = [];
+  ListUserTagModel listUserTagModel = ListUserTagModel();
+  List<UserData> filterList = [];
+
 
   List<File> image = [];
-  File? imageCamera;
   bool textShow = false;
 
   Future<void> init() async {
@@ -84,63 +87,39 @@ class ViewStoryController extends GetxController {
     // update(["friendStory"]);
   }
 
-  List<File>? frontImage;
-  File? imageForCamera;
+  Future<String?> galleryImage() async {
+    FilePickerResult? filePickerResult = await FilePicker.platform.pickFiles(
+        /*allowedExtensions: ["jpg","png","jpeg"],*/
+        allowMultiple: false,
+        type: FileType.image);
 
-  Future galleryImage() async {
-    List<XFile>? pickedFile = await ImagePicker().pickMultiImage();
+    if (filePickerResult != null) {
+      image.add(File(filePickerResult.files.first.path!));
+    }
 
+    update(["createStory"]);
+    return null;
+  }
+
+  Future<String?> cameraImage() async {
+    XFile? pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.camera,imageQuality: 100);
     if (pickedFile != null) {
-      image = pickedFile.map<File>((e) => File(e.path)).toList();
-    }
-    if (pickedFile != null) {
-      return image;
+      image.add(File(pickedFile.path));
     }
     update(["createStory"]);
+    return null;
   }
 
-  navigateToGallery() async {
-    List<File> path = await galleryImage();
-    if (path != null) {
-      image = path.map<File>((e) => File(e.path)).toList();
-    }
-
-    update(["createStory"]);
-  }
-
-  Future cameraImage() async {
-    var pickedFile = await ImagePicker().pickImage(source: ImageSource.camera);
-    final imageTemp = File(pickedFile!.path);
-    imageCamera = imageTemp;
-    if (pickedFile != null) {
-      return pickedFile.path;
-    }
-    update(["createStory"]);
-  }
-
-  navigateToCamera() async {
-    String? path = await cameraImage();
-
-    if (path != null) {
-      image.add(File(path)) ;
-    }
-
-    update(["createStory"]);
-  }
-  ListUserTagModel listUserTagModel = ListUserTagModel();
-  List<UserData> filterList = [];
 
   Future<void> onChange(String? value) async {
     String sent = tagController.text;
-
     if (sent.isEmpty) {
       filterList = [];
       update(['createStory']);
       return;
     }
-
     List<String> list = sent.split(' ');
-
     if (list.last.isNotEmpty && list.last[0] == "@") {
       String word = list.last.replaceAll("@", '');
 
@@ -174,7 +153,6 @@ class ViewStoryController extends GetxController {
     tagController.selection =
         TextSelection.collapsed(offset: tagController.text.length);
   }
-
 
   void onUnLikeBtnTap(id) {
     if (loader.isFalse) {
@@ -228,14 +206,9 @@ class ViewStoryController extends GetxController {
     // loader.value = true;
     try {
       imgIdList = [];
-      if (imageCamera == null) {
-        for (var e in image) {
-          uploadImage = await UploadImageApi.postRegister(e.path);
-          imgIdList.add(uploadImage.data!.id!);
-        }
-      } else {
-        uploadImage =
-            await UploadImageApi.postRegister(imageCamera!.path.toString());
+
+      for (var e in image) {
+        uploadImage = await UploadImageApi.postRegister(e.path);
         imgIdList.add(uploadImage.data!.id!);
       }
 
@@ -314,7 +287,7 @@ class ViewStoryController extends GetxController {
           StoryCommentModel());
       await friendStoryApiData();
       playAnimation();
-       update(["friendStory"]);
+      update(["friendStory"]);
       writeSomethings.clear();
       loader.value = false;
     } catch (e) {
@@ -344,11 +317,13 @@ class ViewStoryController extends GetxController {
       FocusScope.of(context).unfocus();
     }
   }
-void onTapPostStory(BuildContext context){
-    if(validation()){
+
+  void onTapPostStory(BuildContext context) {
+    if (validation()) {
       createPostData(context);
     }
-}
+  }
+
   void onPageChange(int pageIndex) {
     currentPage = pageIndex;
     onStoryChange(pageIndex, 0);

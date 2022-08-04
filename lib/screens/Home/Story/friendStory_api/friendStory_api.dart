@@ -94,9 +94,7 @@ class FriendStoryApi {
           ViewStoryController viewStoryController = Get.find();
           viewStoryController.writeSomethings.clear();
           viewStoryController.image.clear();
-          viewStoryController.imageCamera == null
-              ? ""
-              : viewStoryController.imageCamera!.delete();
+
           flutterToast(jsonDecode(response.body)["message"]);
           Navigator.pop(context);
         }

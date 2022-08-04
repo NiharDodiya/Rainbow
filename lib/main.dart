@@ -10,7 +10,7 @@ import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/scanyour_face/scanyourface_controller.dart';
 import 'package:rainbow/screens/splash/splash_screen.dart';
 import 'package:rainbow/screens/terms_conditions/terms_conditions_screen.dart';
-import 'package:rainbow/service/chat_service.dart';
+
 import 'package:rainbow/service/notification_service.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/color_res.dart';

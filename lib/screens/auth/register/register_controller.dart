@@ -213,12 +213,12 @@ class RegisterController extends GetxController {
       context: ctx,
       builder: (_) => Container(
         height: 500,
-        color: const Color.fromARGB(255, 255, 255, 255),
+        color:  Colors.black,
         child: Column(
           children: [
-            SizedBox(
-              height: 400,
-              child: CupertinoDatePicker(
+            Container(
+              height: 400,color: Colors.black,
+              child: CupertinoDatePicker(backgroundColor: Colors.black,
                 mode: CupertinoDatePickerMode.date,
                 initialDateTime: DateTime(2001),
                 maximumDate: DateTime.now(),

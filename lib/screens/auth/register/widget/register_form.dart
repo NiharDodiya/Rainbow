@@ -303,6 +303,7 @@ class RegisterForm extends StatelessWidget {
               controller: controller.dobController,
               title: Strings.birthDate,
               hintText: Strings.birthDateHint,
+
               suffix: Image.asset(AssetRes.calendar, height: 17),
               enable: false,
               fontsize: 16,

@@ -1008,7 +1008,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               const Spacer(),
                                               InkWell(
                                                 onTap: () async {
-                                                  await controller.deepLinkInt();
+
                                                   controller.share(controller
                                                       .friendPostViewModel
                                                       .data![index]
