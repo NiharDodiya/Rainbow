@@ -112,10 +112,13 @@ class MyStoryListLike extends StatelessWidget {
           ),
 
           myStoryController.storyLikeList.isEmpty
-              ? Text(
+              ? Padding(
+                padding:  EdgeInsets.only(top: Get.height*0.4),
+                child: Text(
             "No Likes",
             style: gilroyBoldTextStyle(color: Colors.black),
-          )
+          ),
+              )
               : Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 20),

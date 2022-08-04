@@ -33,7 +33,8 @@ class CommentsController extends GetxController {
   }
 bool validation(){
     if(msgController.text.isEmpty){
-      flutterToast("replay required");
+      errorToast("replay required");
+      return false;
     }
     return true;
 }
@@ -131,6 +132,7 @@ void onTapSendMsg(BuildContext context,String id){
             msgController.text,
             list);
       }
+
       await homeController.commentPostListData(idPost);
       await homeController.friendPostData();
 

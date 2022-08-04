@@ -18,7 +18,7 @@ class MyStoryCommentsScreen extends StatelessWidget {
           child: const Icon(
             Icons.chevron_left,
             color: ColorRes.black,
-            size: 25,
+            size: 35,
           ),
         ),
         title: Text(
@@ -36,15 +36,15 @@ class MyStoryCommentsScreen extends StatelessWidget {
         id: "myStoryComments",
         builder: (controller) {
           return SafeArea(
-            child: Column(
+            child: Column(mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 controller.comments.isEmpty
                     ? Center(
-                        child: Text(
-                          "No comments",
-                          style: gilroyBoldTextStyle(color: Colors.black),
-                        ),
-                      )
+                      child: Text(
+                        "No comments",
+                        style: gilroyBoldTextStyle(color: Colors.black),
+                      ),
+                    )
                     : Expanded(
                         child: Container(
                           height: Get.height,

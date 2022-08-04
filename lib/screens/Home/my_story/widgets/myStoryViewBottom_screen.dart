@@ -108,8 +108,11 @@ class StoryViewListScreen extends StatelessWidget {
             ),
           ),
           myStoryController.storyViewListModel.data!.isEmpty
-              ? Text("No Story Views",
-                  style: gilroyBoldTextStyle(color: Colors.black))
+              ? Padding(
+                padding:  EdgeInsets.only(top: Get.height*0.4),
+                child: Text("No Story Views",
+                    style: gilroyBoldTextStyle(color: Colors.black)),
+              )
               : Expanded(
                   child: ListView.builder(
                     padding: const EdgeInsets.symmetric(horizontal: 20),

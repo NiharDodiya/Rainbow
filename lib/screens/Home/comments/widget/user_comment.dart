@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/model/postCommentList_model.dart';
 import 'package:rainbow/screens/Home/comments/comments_controller.dart';
+import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
 Widget userComment(
@@ -27,15 +28,19 @@ Widget userComment(
                     shape: BoxShape.circle,
                   ),
                   child: ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(50)),
-                    child: Image.network(
+                    borderRadius:  const BorderRadius.all(const Radius.circular(50)),
+                    child:FadeInImage(
+                      placeholder:  const AssetImage(AssetRes.portrait_placeholder),
+                      image: NetworkImage( profileImage.toString()),
+                      fit: BoxFit.cover,
+                    )/* Image.network(
                       profileImage.toString(),
                       fit: BoxFit.cover,
                       errorBuilder: (context, url, error) => const Icon(
                         Icons.error,
                         color: Colors.grey,
                       ),
-                    ),
+                    )*/,
                   ),
                 ),
                 Column(
@@ -119,7 +124,7 @@ Widget userComment(
                           ),*/
                     image == ""
                         ? const SizedBox()
-                        : Image.network(
+                        : /*Image.network(
                             image.toString(),
                             height: 100,
                             width: 100,
@@ -128,7 +133,12 @@ Widget userComment(
                               Icons.error,
                               color: Colors.grey,
                             ),
-                          )
+                          )*/FadeInImage(   height: 100,
+                      width: 100,
+                      placeholder:  const AssetImage(AssetRes.placeholderImage),
+                      image: NetworkImage( image.toString()),
+                      fit: BoxFit.cover,
+                    )
                   ],
                 )
               ],
@@ -198,6 +208,7 @@ Widget userComment(
                                     ],
                                   ),
                                 ),
+                                const SizedBox(height: 5,),
                                 /*reply[index].postCommentItem.toString() == ""
                                     ? const SizedBox()
                                     : CachedNetworkImage(
@@ -222,16 +233,14 @@ Widget userComment(
                                     ? const SizedBox()
                                     : image == ""
                                         ? const SizedBox()
-                                        : Image.network(image.toString(),
-                                            height: 100,
-                                            width: 100,
-                                            fit: BoxFit.cover,
-                                            errorBuilder:
-                                                (context, url, error) =>
-                                                    const Icon(
-                                                      Icons.error,
-                                                      color: Colors.grey,
-                                                    )),
+                                        : FadeInImage(   height: 100,
+                                  width: 100,
+                                  placeholder:  const AssetImage(AssetRes.placeholderImage),
+                                  image: NetworkImage(  reply[index]
+                                      .postCommentItem
+                                      .toString()),
+                                  fit: BoxFit.cover,
+                                ),
                               ],
                             ),
                           )

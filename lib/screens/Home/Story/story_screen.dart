@@ -7,11 +7,11 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
-// ignore: must_be_immutable
+
 class StoryScreen extends StatelessWidget {
   String? id;
 
-  StoryScreen({this.id});
+  StoryScreen({Key? key, this.id}) : super(key: key);
 
   ViewStoryController controller = Get.put(ViewStoryController());
 

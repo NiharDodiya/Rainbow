@@ -122,7 +122,7 @@ class ViewStoryController extends GetxController {
     String? path = await cameraImage();
 
     if (path != null) {
-      imageForCamera = File(path);
+      image.add(File(path)) ;
     }
 
     update(["createStory"]);

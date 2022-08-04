@@ -11,8 +11,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:rainbow/screens/idVerification/idverification_controller.dart';
 
 class IdScannerController extends GetxController {
-  late CameraDescription camera;
-  late CameraController controller;
+   CameraDescription? camera;
+   CameraController? controller;
 
   Future<void>? initializeControllerFuture;
 
@@ -26,11 +26,11 @@ class IdScannerController extends GetxController {
   @override
   void onInit() async {
     await getCamera();
-    controller = CameraController(
-      camera,
+    controller = CameraController(enableAudio: false,
+      camera!,
       ResolutionPreset.medium,
     );
-    initializeControllerFuture = controller.initialize();
+    initializeControllerFuture = controller!.initialize();
     update();
     super.onInit();
   }
@@ -54,7 +54,7 @@ class IdScannerController extends GetxController {
     }
     await initializeControllerFuture;
 
-    final pic = await controller.takePicture();
+    final pic = await controller!.takePicture();
     imageFront = pic.path;
 
     galleryImage = false;
@@ -68,7 +68,7 @@ class IdScannerController extends GetxController {
     }
     await initializeControllerFuture;
 
-    final pic = await controller.takePicture();
+    final pic = await controller!.takePicture();
     imageBack = pic.path;
     galleryImage = false;
     isComplete = true;

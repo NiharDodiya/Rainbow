@@ -184,7 +184,7 @@ class IdScannerBackScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  CameraPreview(controller.controller),
+                  CameraPreview(controller.controller!),
                 ],
               ),
             ),

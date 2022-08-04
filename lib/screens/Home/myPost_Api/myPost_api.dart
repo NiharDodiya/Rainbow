@@ -147,7 +147,7 @@ class MyPostApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          errorToast(jsonDecode(response.body)["message"]);
+          /*errorToast(jsonDecode(response.body)["message"]);*/
         } else if (status == true) {
           // flutterToast(jsonDecode(response.body)["message"]);
         }
@@ -187,7 +187,8 @@ class MyPostApi {
           commentsController.msgController.clear();
           commentsController.replyId = "";
           commentsController.nameComment = "";
-          // flutterToast(jsonDecode(response.body)["message"]);
+          commentsController.imageForCamera =null;
+           flutterToast(jsonDecode(response.body)["message"]);
 
         }
         return postCommentModelFromJson(response.body);
@@ -232,7 +233,8 @@ class MyPostApi {
           commentsController.msgController.clear();
           commentsController.replyId = "";
           commentsController.nameComment = "";
-          // flutterToast(jsonDecode(response.body)["message"]);
+          commentsController.imageForCamera =null;
+           flutterToast(jsonDecode(response.body)["message"]);
 
         }
         return postCommentModelFromJson(response.body);
@@ -253,10 +255,11 @@ class MyPostApi {
 
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
+        print(response.body);
         if (status == false) {
           // errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          // flutterToast(jsonDecode(response.body)["message"]);
+          /* flutterToast(jsonDecode(response.body)["message"]);*/
         }
         return postCommentListModelFromJson(response.body);
       }

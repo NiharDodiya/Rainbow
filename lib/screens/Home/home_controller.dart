@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_share/flutter_share.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:rainbow/common/blocList_api/blockList_api.dart';
@@ -18,6 +20,7 @@ import 'package:rainbow/model/sharePost_model.dart';
 import 'package:rainbow/model/unLikePost_model.dart';
 import 'package:rainbow/screens/Home/Story/friendStory_api/friendStory_api.dart';
 import 'package:rainbow/screens/Home/addStroy/addStory_screen.dart';
+import 'package:rainbow/screens/Home/home_screen.dart';
 import 'package:rainbow/screens/Home/myPost_Api/myPost_api.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_controller.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_screen.dart';
@@ -30,6 +33,7 @@ import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalite
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/screens/notification/notification_screen.dart';
+import 'package:uni_links/uni_links.dart';
 
 class HomeController extends GetxController {
   RxBool loader = false.obs;
@@ -52,6 +56,7 @@ class HomeController extends GetxController {
   PostViewModel postViewModel = PostViewModel();
   FriendPostViewModel friendPostViewModel = FriendPostViewModel();
   PostCommentListModel postCommentListModel = PostCommentListModel();
+  String? deepLinkPath;
 
   // int page = 1;
   // int totalPages = 0;
@@ -130,7 +135,29 @@ class HomeController extends GetxController {
       debugPrint(e.toString());
     }
   }
+  ///On Share
 
+
+
+
+  Future<void> deepLinkInt() async {
+    Uri? uri = await getInitialUri();
+    if (uri != null) {
+      deepLinkPath = uri.path;
+    }
+    uriLinkStream.listen((event) {
+      if (event != null) {
+      Get.to(()=> HomeScreen());
+      }
+    });
+  }
+  Future<void> share(String? id) async {
+    await FlutterShare.share(
+        title: 'rainbow',
+        text: 'rainbow',
+        linkUrl: "https://www.rainbow.com/rainbow/$id",
+        chooserTitle: 'rainbow');
+  }
   Future<void> sharePostData(String id) async {
     try {
       loader.value = true;
@@ -214,6 +241,13 @@ class HomeController extends GetxController {
       changeLoader(false);
     }
   }
+  Future<void> refreshCode()async {
+    await controller.viewProfileDetails();
+    await onStory();
+    notificationsController.getNotifications();
+    await friendPostData();
+    await connectionsController.callRequestApi();
+  }
 
   Future<void> init() async {
     changeLoader(true);
@@ -252,7 +286,8 @@ class HomeController extends GetxController {
   }
 
   Future<void> onRefresh() async {
-    await init();
+    /*await init()*/
+    await refreshCode();
     refreshController!.refreshCompleted();
   }
 
