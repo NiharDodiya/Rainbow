@@ -49,8 +49,11 @@ class EditProfileController extends GetxController {
   String? noKidsSelected;
   String? lat;
   String? lan;
+  Position? position;
+  Future<void> init() async {
 
-  void init() {
+    await determinePosition();
+    position = await getCurrentPosition();
     setInitData();
   }
 
@@ -313,15 +316,18 @@ class EditProfileController extends GetxController {
   Future<void> editProfileApi(BuildContext context) async {
     loader.value = true;
     try {
-      Position position;
-      await determinePosition();   position = await getCurrentPosition();
-      lat = position.latitude.toString();
-      lan = position.longitude.toString();
+
+      lat = position!.latitude.toString();
+      lan = position!.longitude.toString();
+      print(lat);
+      print(lan);
       await uploadImageApi();
       await uploadImageBackApi();
       EditProfile? data = await EditProfileApi.postRegister(
         uploadImage2.data!.id.toString(),
         uploadImage1.data!.id.toString(),
+        lat.toString(),
+        lan.toString(),
         fullName.text,
         status.text,
         height.text,

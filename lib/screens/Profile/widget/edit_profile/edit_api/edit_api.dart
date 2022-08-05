@@ -12,6 +12,8 @@ class EditProfileApi {
   static Future<EditProfile?> postRegister(
     String idItemBackGround,
     String idItemProfile,
+    String latitude,
+    String longitude,
     String fullName,
     String userStatus,
     String height,
@@ -34,8 +36,8 @@ class EditProfileApi {
       Map<String, String> param = {
         "id_item_background": idItemBackGround,
         "id_item_profile": idItemProfile,
-        "latitude" :"21.1591857",
-        "longitude" : "72.752256",
+        "latitude" :latitude,
+        "longitude" : longitude,
         "full_name": fullName,
         "user_status": userStatus,
         "height": height,

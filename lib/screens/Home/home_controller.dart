@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_share/flutter_share.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:rainbow/common/blocList_api/blockList_api.dart';
@@ -57,34 +58,39 @@ class HomeController extends GetxController {
   FriendPostViewModel friendPostViewModel = FriendPostViewModel();
   PostCommentListModel postCommentListModel = PostCommentListModel();
   String? deepLinkPath;
+  List<FriendPost> friendPostListData = [];
 
-  // int page = 1;
-  // int totalPages = 0;
-  // bool isLoading = false;
-  // ScrollController scrollController = ScrollController();
+
+  ScrollController scrollController = ScrollController();
+  int page=0;
+  int limit=5;
+
   // final storyController = EditStoryController();
   ConnectionsController connectionsController =
       Get.put(ConnectionsController());
 
   @override
   Future<void> onInit() async {
-    /*await deepLinkInt();*/
+
     init();
-    // scrollController.addListener(pagination);
+    scrollController.addListener(pagination);
+
+    await deepLinkInt();
+
     update(['home']);
     super.onInit();
   }
 
-  // void pagination() {
-  //   if ((scrollController.position.pixels ==
-  //           scrollController.position.maxScrollExtent) &&
-  //       (friendPostViewModel.data!.length < totalPages)) {
-  //     isLoading = true;
-  //     friendPostData();
-  //     isLoading = false;
-  //     update(['home']);
-  //   }
-  // }
+  void pagination() async {
+    print("Hello");
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent) {
+      await friendPostData();
+    }
+
+    update(['home']);
+  }
+
 
   Future<void> countryName() async {
     try {
@@ -136,10 +142,8 @@ class HomeController extends GetxController {
       debugPrint(e.toString());
     }
   }
+
   ///On Share
-
-
-
 
   Future<void> deepLinkInt() async {
     Uri? uri = await getInitialUri();
@@ -148,10 +152,11 @@ class HomeController extends GetxController {
     }
     uriLinkStream.listen((event) {
       if (event != null) {
-      Get.to(()=> HomeScreen());
+        Get.to(() => HomeScreen());
       }
     });
   }
+
   Future<void> share(String? id) async {
     await FlutterShare.share(
         title: 'rainbow',
@@ -159,6 +164,7 @@ class HomeController extends GetxController {
         linkUrl: "https://www.rainbow.com/rainbow/$id",
         chooserTitle: 'rainbow');
   }
+
   Future<void> sharePostData(String id) async {
     try {
       loader.value = true;
@@ -210,7 +216,9 @@ class HomeController extends GetxController {
   Future<void> friendPostData() async {
     try {
       loader.value = true;
-      friendPostViewModel = await MyPostApi.friendPostApi();
+      friendPostViewModel = await MyPostApi.friendPostApi(page,limit);
+      page++;
+      friendPostListData.addAll(friendPostViewModel.data!);
       update(['home']);
 
       loader.value = false;
@@ -242,7 +250,8 @@ class HomeController extends GetxController {
       changeLoader(false);
     }
   }
-  Future<void> refreshCode()async {
+
+  Future<void> refreshCode() async {
     await controller.viewProfileDetails();
     await onStory();
     notificationsController.getNotifications();

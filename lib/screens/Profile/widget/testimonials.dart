@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Profile/widget/postTestimonial_screen/postTestimonial_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -17,9 +18,22 @@ Widget testimonials() {
           const SizedBox(
             height: 10,
           ),
-          Text(
-            Strings.testimonials,
-            style: beVietnamProBoldTextStyle(fontSize: 18),
+          Row(
+            children: [
+              Text(
+                Strings.testimonials,
+                style: beVietnamProBoldTextStyle(fontSize: 18),
+              ),const Spacer(),
+              InkWell(onTap: () {
+                Get.to(()=>const PostTestimonialScreen());
+
+              },
+                child: Text(
+                  "Add",
+                  style: beVietnamProBoldTextStyle(fontSize: 18),
+                ),
+              ),
+            ],
           ),
           const SizedBox(
             height: 10,

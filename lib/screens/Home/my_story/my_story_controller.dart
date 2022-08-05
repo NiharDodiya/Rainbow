@@ -25,7 +25,7 @@ class MyStoryController extends GetxController {
   // StoryModel storyModel = StoryModel();
 
   // MyStoryModel myStoryModel = MyStoryModel();
-  List<UserDetail> storyLikeList = [];
+  List<Story> storyLikeList = [];
   List<StorycommentList> comments = [];
   int storyIndex = 0;
   bool isImageLoading = false;

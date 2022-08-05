@@ -20,7 +20,7 @@ class AddStoryController extends GetxController {
   AdStoryModel adStoryModel = AdStoryModel();
   RxBool loader = false.obs;
   bool textShow = false;
-
+  UploadImage uploadImage = UploadImage();
   void onTextTap() {
     if (textShow == false) {
       textShow = true;
@@ -57,7 +57,7 @@ class AddStoryController extends GetxController {
     // dashboardController.onBottomBarChange(0);
   }
 
-  UploadImage uploadImage = UploadImage();
+
 
   Future<void> uploadImageApi() async {
     loader.value = true;

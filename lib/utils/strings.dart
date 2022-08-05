@@ -160,6 +160,7 @@ class Strings {
   static const termsConditions = 'Terms and Conditions';
   static const pleaseBlink = 'Please Blink';
   static const testimonials = "Testimonials";
+  static const postTestimonial = "Post a Testimonial";
   static const noTestimonials = "No Testimonials";
   static const makeSure =
       'Make sure you are in a well-lit room \nand hold the phone as shown in the picture';

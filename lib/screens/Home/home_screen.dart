@@ -185,6 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   enablePullDown: true,
                   onRefresh: controller.onRefresh,
                   child: SingleChildScrollView(
+                    controller: controller.scrollController,
                     child: Column(
                       children: [discover(), seeAll(), latestFeed()],
                     ),
@@ -263,56 +264,91 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(
                         height: Get.height * 0.02,
                       ),
-                      InkWell(
-                        onTap: controller.myStoryOnTap,
-                        child: Stack(
-                          children: [
-                            Container(
-                              height: 56,
-                              width: 78,
-                              decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                      image:
-                                          AssetImage(AssetRes.selfiePicture))),
-                            ),
-                            Positioned(
-                                top: Get.height * 0.04,
-                                left: Get.width * 0.141,
-                                child: const Image(
-                                  image: AssetImage(AssetRes.plusIcons),
-                                  height: 24,
-                                  width: 24,
-                                )),
-                            Positioned(
-                              top: Get.height * 0.04,
-                              child: Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: ColorRes.color_B9A2FD
-                                          .withOpacity(0.3),
-                                      spreadRadius: 1,
-                                      blurRadius: 10,
-                                      offset: const Offset(4, 5),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: InkWell(
+                          onTap: controller.myStoryOnTap,
+                          child: SizedBox(
+                            width: 80,
+                            child: Stack(
+                              children: [
+                                controller.controller.viewProfile.data == null
+                                    ? Container(
+                                        height: 56,
+                                        width: 56,
+                                        decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                                image: AssetImage(AssetRes
+                                                    .portrait_placeholder))),
+                                      )
+                                    : ClipRRect(
+                                        borderRadius: BorderRadius.circular(50),
+                                        child: FadeInImage(
+                                          height: 56,
+                                          width: 56,
+                                          placeholder: const AssetImage(
+                                              AssetRes.portrait_placeholder),
+                                          image: NetworkImage(controller
+                                              .controller
+                                              .viewProfile
+                                              .data!
+                                              .profileImage
+                                              .toString()),
+                                          fit: BoxFit.cover,
+                                        )),
+                                /*     Container(
+                                  height: 56,
+                                  width: 78,
+                                  decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                          image:
+                                              AssetImage(AssetRes.selfiePicture))),
+                                ),*/
+                                Positioned(
+                                    top: Get.height * 0.04,
+                                    left: Get.width * 0.1,
+                                    child: const Image(
+                                      image: AssetImage(AssetRes.plusIcons),
+                                      height: 24,
+                                      width: 24,
+                                    )),
+                                Positioned(
+                                  top: Get.height * 0.04,
+                                  child: Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: ColorRes.color_B9A2FD
+                                              .withOpacity(0.3),
+                                          spreadRadius: 1,
+                                          blurRadius: 10,
+                                          offset: const Offset(4, 5),
+                                        ),
+                                      ],
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          ColorRes.color_B9A2FD
+                                              .withOpacity(0.1),
+                                          ColorRes.color_B9A2FD
+                                              .withOpacity(0.1),
+                                          ColorRes.color_B9A2FD
+                                              .withOpacity(0.1),
+                                          ColorRes.color_B9A2FD
+                                              .withOpacity(0.1),
+                                        ],
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                      ),
                                     ),
-                                  ],
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      ColorRes.color_B9A2FD.withOpacity(0.1),
-                                      ColorRes.color_B9A2FD.withOpacity(0.1),
-                                      ColorRes.color_B9A2FD.withOpacity(0.1),
-                                      ColorRes.color_B9A2FD.withOpacity(0.1),
-                                    ],
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
                                   ),
-                                ),
-                              ),
-                            )
-                          ],
+                                )
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                       const SizedBox(
@@ -349,35 +385,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onTap: controller.onNewStoryTap,
                                 child: Stack(
                                   children: [
-                                    Container(
-                                      height: 56,
-                                      width: 78,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: controller.controller
-                                                      .viewProfile.data ==
-                                                  null
-                                              ? null
-                                              : controller
-                                                          .controller
-                                                          .viewProfile
-                                                          .data!
-                                                          .profileImage
-                                                          .toString() ==
-                                                      ""
-                                                  ? const DecorationImage(
-                                                      image: AssetImage(AssetRes
-                                                          .selfiePicture))
-                                                  : DecorationImage(
-                                                      image: NetworkImage(
-                                                          controller
-                                                              .controller
-                                                              .viewProfile
-                                                              .data!
-                                                              .profileImage
-                                                              .toString()),
-                                                      fit: BoxFit.cover)),
-                                    ),
+                                    ClipRRect(
+                                        borderRadius: BorderRadius.circular(50),
+                                        child: FadeInImage(
+                                          height: 56,
+                                          width: 56,
+                                          placeholder: const AssetImage(
+                                              AssetRes.portrait_placeholder),
+                                          image: NetworkImage(controller
+                                              .controller
+                                              .viewProfile
+                                              .data!
+                                              .profileImage
+                                              .toString()),
+                                          fit: BoxFit.cover,
+                                        )),
                                     // Positioned(
                                     //   top: Get.height * 0.04,
                                     //   child: Container(
@@ -442,6 +464,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                         child: Row(
                           children: [
+                            const SizedBox(
+                              width: 15,
+                            ),
                             Column(
                               children: [
                                 SizedBox(
@@ -452,57 +477,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                       controller.onFriedStoryTap(index),
                                   child: ClipRRect(
                                       borderRadius: BorderRadius.circular(50),
-                                      child: Image.network(
-                                        viewStoryController
+                                      child: FadeInImage(
+                                        height: 56,
+                                        width: 56,
+                                        placeholder: const AssetImage(
+                                            AssetRes.portrait_placeholder),
+                                        image: NetworkImage(viewStoryController
                                             .storyModel
                                             .friendsStory![index]
                                             .userDetail!
                                             .profileImage
-                                            .toString(),
-                                        height: 56,
-                                        width: 56,
+                                            .toString()),
                                         fit: BoxFit.cover,
-                                        errorBuilder: (context, url, error) =>
-                                            const SizedBox(
-                                          height: 56,
-                                          width: 56,
-                                          child: Icon(
-                                            Icons.error,
-                                            color: Colors.grey,
-                                          ),
-                                        ),
-                                      )
-                                      // CachedNetworkImage(
-                                      //   imageUrl: viewStoryController
-                                      //       .storyModel
-                                      //       .friendsStory![index]
-                                      //       .userDetail!
-                                      //       .profileImage
-                                      //       .toString(),
-                                      //   imageBuilder: (context, imageProvider) =>
-                                      //       Container(
-                                      //     decoration: BoxDecoration(
-                                      //       shape: BoxShape.circle,
-                                      //       image: DecorationImage(
-                                      //         image: imageProvider,
-                                      //         fit: BoxFit.cover,
-                                      //       ),
-                                      //     ),
-                                      //   ),
-                                      //   // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
-                                      //   errorWidget: (context, url, error) =>
-                                      //       Container(
-                                      //     height: Get.height * 0.2857,
-                                      //     width: Get.width,
-                                      //     decoration: const BoxDecoration(
-                                      //         shape: BoxShape.circle,
-                                      //         image: DecorationImage(
-                                      //             image: AssetImage(
-                                      //                 AssetRes.homePro))),
-                                      //   ),
-                                      //   fit: BoxFit.fill,
-                                      // ),
-                                      ),
+                                      )),
                                 ),
                                 const SizedBox(
                                   height: 12,
@@ -690,7 +677,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: gilroyBoldTextStyle(fontSize: 20),
                   ),
                 ),
-                controller.friendPostViewModel.data == null
+                controller.friendPostListData == null
                     ? SizedBox(
                         child: Center(
                           child: Text(
@@ -704,7 +691,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         // itemCount: controller.isAd.length,
-                        itemCount: controller.friendPostViewModel.data!.length,
+                        itemCount: controller.friendPostListData!.length,
                         itemBuilder: (context, index) {
                           return /* controller.isAd[index]
                           ?*/
@@ -732,12 +719,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                               child: ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(50),
-                                                child:  FadeInImage(  height: 40,
+                                                child: FadeInImage(
+                                                  height: 40,
                                                   width: 40,
-                                                  placeholder: const AssetImage(AssetRes.portrait_placeholder),
-                                                  image: NetworkImage(  controller
-                                                      .friendPostViewModel
-                                                      .data![index]
+                                                  placeholder: const AssetImage(
+                                                      AssetRes
+                                                          .portrait_placeholder),
+                                                  image: NetworkImage(controller.friendPostListData![index]
                                                       .postUser!
                                                       .profileImage
                                                       .toString()),
@@ -769,9 +757,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    controller
-                                                        .friendPostViewModel
-                                                        .data![index]
+                                                    controller.friendPostListData![index]
                                                         .postUser!
                                                         .fullName
                                                         .toString(),
@@ -783,9 +769,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ),
                                                   Text(
                                                     DateFormat.Hm().format(
-                                                        controller
-                                                            .friendPostViewModel
-                                                            .data![index]
+                                                        controller.friendPostListData![index]
                                                             .createdAt!),
                                                     style:
                                                         textStyleFont12White400,
@@ -798,29 +782,25 @@ class _HomeScreenState extends State<HomeScreen> {
                                         SizedBox(
                                           height: Get.height * 0.02,
                                         ),
-                                        controller
-                                            .friendPostViewModel
-                                            .data![index]
-                                            .description ==
-                                            null?const SizedBox():Center(
-                                          child: SizedBox(
-                                            width: Get.width * 0.85333,
-                                            child:Text(
-                                                    controller
-                                                        .friendPostViewModel
-                                                        .data![index]
+                                        controller.friendPostListData![index].description ==
+                                                null
+                                            ? const SizedBox()
+                                            : Center(
+                                                child: SizedBox(
+                                                  width: Get.width * 0.85333,
+                                                  child: Text(
+                                                    controller.friendPostListData![index]
                                                         .description
                                                         .toString(),
                                                     style:
                                                         textStyleFont16WhitLight,
                                                   ),
-                                          ),
-                                        ),
+                                                ),
+                                              ),
                                         SizedBox(
                                           height: Get.height * 0.025,
                                         ),
-                                        controller.friendPostViewModel
-                                                    .data![index].postList ==
+                                        controller.friendPostListData![index].postList ==
                                                 null
                                             ? const SizedBox()
                                             : Container(
@@ -834,24 +814,25 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   shrinkWrap: true,
                                                   physics:
                                                       const NeverScrollableScrollPhysics(),
-                                                  itemCount: controller
-                                                      .friendPostViewModel
-                                                      .data![index]
+                                                  itemCount:controller.friendPostListData![index]
                                                       .postList!
                                                       .length,
                                                   itemBuilder:
                                                       (context, index2) {
                                                     return Padding(
                                                       padding:
-                                                           const EdgeInsets.only(
+                                                          const EdgeInsets.only(
                                                               left: 5,
                                                               right: 5),
-                                                      child: FadeInImage(  height: 80,
+                                                      child:controller.friendPostListData![index]
+                                                          .postList![index2]==null?const SizedBox(): FadeInImage(
+                                                        height: 80,
                                                         width: 80,
-                                                        placeholder: const AssetImage(AssetRes.placeholderImage),
-                                                        image: NetworkImage(  controller
-                                                            .friendPostViewModel
-                                                            .data![index]
+                                                        placeholder:
+                                                            const AssetImage(
+                                                                AssetRes
+                                                                    .placeholderImage),
+                                                        image: NetworkImage(controller.friendPostListData![index]
                                                             .postList![index2]),
                                                         fit: BoxFit.cover,
                                                       ), /*Image.network(
@@ -862,12 +843,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         height: 80,
                                                         width: 80,
                                                         fit: BoxFit.cover,loadingBuilder: AssetRes.se_profile,
-                                                    *//*    errorBuilder: (context,
+                                                    */ /*    errorBuilder: (context,
                                                                 url, error) =>
                                                             const Icon(
                                                           Icons.error,
                                                           color: Colors.grey,
-                                                        ),*//*
+                                                        ),*/ /*
                                                       ),*/
                                                     );
                                                   },
@@ -876,62 +857,76 @@ class _HomeScreenState extends State<HomeScreen> {
                                         SizedBox(
                                           height: Get.height * 0.025,
                                         ),
-                                        controller
-                                            .friendPostViewModel
-                                            .data![index]
-                                            .postLikeUser!.isEmpty?const SizedBox(): Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 15.0),
-                                          child: SizedBox(
-                                            height: 32,
-                                            width: 140,
-                                            child: Stack(
-                                              children: [
-                                                ListView.builder(
-                                                  itemCount: 3,
-                                                  itemBuilder:
-                                                      (context, index2) {
-                                                    return Row(
-                                                      children: [
-                                                        controller
-                                                                .friendPostViewModel
-                                                                .data![index]
-                                                                .postLikeUser!
-                                                                .isEmpty
-                                                            ? const SizedBox()
-                                                            : ImageStack(
-                                                                  imageList: controller
-                                                              .friendPostViewModel
-                                                              .data![
-                                                                  index]
-                                                              .postLikeUser!
-                                                              .map((e) => e
-                                                                  .profileImage
-                                                                  .toString())
-                                                              .toList(),
-                                                                  totalCount: 3,
-                                                                  // If larger than images.length, will show extra empty circle
-                                                                  imageRadius:
-                                                              32,
-                                                                  // Radius of each images
-                                                                  imageCount: 3,
-                                                                  // Maximum number of images to be shown in stack
-                                                                  imageBorderWidth:
-                                                              2,imageBorderColor: Colors.white,showTotalCount: false,
-                                                                  // Border width around the images
-                                                                ),
-                                                        const SizedBox(width: 8,),
-                                                        controller.friendPostViewModel.data![index].postLikeCount.toString()=="0"?const Text(""):Text(
-                                                          "+${controller.friendPostViewModel.data![index].postLikeCount.toString()} likes",
-                                                          style:
-                                                              textStyleFont14White,
-                                                        )
-                                                      ],
-                                                    );
-                                                  },
-                                                ),
+                                        controller.friendPostListData![index]
+                                                .postLikeUser!
+                                                .isEmpty
+                                            ? const SizedBox()
+                                            : Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 15.0),
+                                                child: SizedBox(
+                                                  height: 32,
+                                                  width: 140,
+                                                  child: Stack(
+                                                    children: [
+                                                      ListView.builder(
+                                                        itemCount: 3,
+                                                        itemBuilder:
+                                                            (context, index2) {
+                                                          return Row(
+                                                            children: [
+                                                              controller.friendPostListData![
+                                                                          index]
+                                                                      .postLikeUser!
+                                                                      .isEmpty
+                                                                  ? const SizedBox()
+                                                                  : ImageStack(
+                                                                      imageList: controller.friendPostListData![
+                                                                              index]
+                                                                          .postLikeUser!
+                                                                          .map((e) => e
+                                                                              .profileImage
+                                                                              .toString())
+                                                                          .toList(),
+                                                                      totalCount:
+                                                                          3,
+                                                                      // If larger than images.length, will show extra empty circle
+                                                                      imageRadius:
+                                                                          32,
+                                                                      // Radius of each images
+                                                                      imageCount:
+                                                                          3,
+                                                                      // Maximum number of images to be shown in stack
+                                                                      imageBorderWidth:
+                                                                          2,
+                                                                      imageBorderColor:
+                                                                          Colors
+                                                                              .white,
+                                                                      showTotalCount:
+                                                                          false,
+                                                                      // Border width around the images
+                                                                    ),
+                                                              const SizedBox(
+                                                                width: 8,
+                                                              ),
+                                                              controller.friendPostListData![
+                                                                              index]
+                                                                          .postLikeCount
+                                                                          .toString() ==
+                                                                      "0"
+                                                                  ? const Text(
+                                                                      "")
+                                                                  : Text(
+                                                                      "+${controller.friendPostListData![index].postLikeCount.toString()} likes",
+                                                                      style:
+                                                                          textStyleFont14White,
+                                                                    )
+                                                            ],
+                                                          );
+                                                        },
+                                                      ),
 
-                                                /*Positioned(
+                                                      /*Positioned(
                                                   left: 24,
                                                   child:   controller
                                                       .friendPostViewModel
@@ -968,7 +963,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ),
                                                 ),*/
 
-                                                /*   Positioned(
+                                                      /*   Positioned(
                                                     left: Get.width * 0.25,
                                                     top: Get.height * 0.01,
                                                     child: Text(
@@ -980,10 +975,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       style:
                                                           textStyleFont14White,
                                                     ))*/
-                                              ],
-                                            ),
-                                          ),
-                                        ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
                                         const SizedBox(
                                           height: 7,
                                         ),
@@ -999,8 +994,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       image: AssetImage(
                                                           AssetRes.eye))),
                                               Text(
-                                                controller.friendPostViewModel
-                                                    .data![index].postViewcount
+                                                controller.friendPostListData![index].postViewcount
                                                     .toString(),
                                                 style: gilroyMediumTextStyle(
                                                     fontSize: 10),
@@ -1008,13 +1002,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                               const Spacer(),
                                               InkWell(
                                                 onTap: () async {
-
-                                                  controller.share(controller
-                                                      .friendPostViewModel
-                                                      .data![index]
+                                                  controller.share(controller.friendPostListData![index]
                                                       .id
                                                       .toString());
-                                              /*    controller.sharePostData(
+                                                  /*    controller.sharePostData(
                                                       controller
                                                           .friendPostViewModel
                                                           .data![index]
@@ -1035,9 +1026,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 padding: const EdgeInsets.only(
                                                     top: 2.0),
                                                 child: Text(
-                                                  controller
-                                                      .friendPostViewModel
-                                                      .data![index]
+                                                  controller.friendPostListData![index]
                                                       .postShareCount
                                                       .toString(),
                                                   style: gilroyMediumTextStyle(
@@ -1051,26 +1040,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 onTap: () async {
                                                   await controller
                                                       .commentPostListData(
-                                                          controller
-                                                              .friendPostViewModel
-                                                              .data![index]
+                                                      controller.friendPostListData![index]
                                                               .id
                                                               .toString());
                                                   Get.to(() => CommentScreen(
-                                                        idPost: controller
-                                                            .friendPostViewModel
-                                                            .data![index]
+                                                        idPost: controller.friendPostListData![index]
                                                             .id
                                                             .toString(),
-                                                        fullName: controller
-                                                            .friendPostViewModel
-                                                            .data![index]
+                                                        fullName:controller.friendPostListData![index]
                                                             .postUser!
                                                             .fullName
                                                             .toString(),
-                                                        profileImage: controller
-                                                            .friendPostViewModel
-                                                            .data![index]
+                                                        profileImage:controller.friendPostListData![index]
                                                             .postUser!
                                                             .profileImage
                                                             .toString(),
@@ -1094,9 +1075,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 padding: const EdgeInsets.only(
                                                     top: 2.0),
                                                 child: Text(
-                                                  controller
-                                                      .friendPostViewModel
-                                                      .data![index]
+                                                  controller.friendPostListData![index]
                                                       .postCommentCount
                                                       .toString(),
                                                   style: gilroyMediumTextStyle(
@@ -1106,17 +1085,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                               SizedBox(
                                                 width: Get.width * 0.05,
                                               ),
-                                              controller
-                                                          .friendPostViewModel
-                                                          .data![index]
+                                              controller.friendPostListData![index]
                                                           .isLike ==
                                                       "no"
                                                   ? InkWell(
                                                       onTap: () {
                                                         controller.likePostData(
-                                                            controller
-                                                                .friendPostViewModel
-                                                                .data![index]
+                                                            controller.friendPostListData![index]
                                                                 .id
                                                                 .toString());
                                                       },
@@ -1131,9 +1106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   : InkWell(
                                                       onTap: () {
                                                         controller.unLikePostData(
-                                                            controller
-                                                                .friendPostViewModel
-                                                                .data![index]
+                                                            controller.friendPostListData![index]
                                                                 .id
                                                                 .toString());
                                                       },
@@ -1153,9 +1126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 padding: const EdgeInsets.only(
                                                     top: 5.0),
                                                 child: Text(
-                                                  controller
-                                                      .friendPostViewModel
-                                                      .data![index]
+                                                  controller.friendPostListData![index]
                                                       .postLikeCount
                                                       .toString(),
                                                   style: gilroyMediumTextStyle(

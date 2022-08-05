@@ -218,7 +218,7 @@ class StoryScreen extends StatelessWidget {
                             ],
                           ),
                         ),*/
-                        Row(
+                        controller.image.length==3?SizedBox():Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [

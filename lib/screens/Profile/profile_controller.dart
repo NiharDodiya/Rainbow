@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_api.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
@@ -8,6 +9,7 @@ import 'package:url_launcher/url_launcher.dart';
 class ProfileController extends GetxController {
   RxBool loader = false.obs;
   bool seeMoreAndLess = false;
+  TextEditingController postTestimonials = TextEditingController();
   String? url;
   List<String> image = [
     AssetRes.lt1,

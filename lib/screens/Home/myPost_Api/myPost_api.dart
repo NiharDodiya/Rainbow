@@ -135,14 +135,17 @@ class MyPostApi {
     }
   }
 
-  static Future friendPostApi() async {
+  static Future friendPostApi(int page,int limit) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
 
     try {
+  /*    String url = "${EndPoints.friendPostList}?page=${page}&limit=${limit}";*/
       String url = EndPoints.friendPostList;
+      Map<String, dynamic> param = { "page":page,
+        "limit":limit};
 
       http.Response? response = await HttpService.postApi(
-          url: url, body: {}, header: {"x-access-token": accesToken});
+          url: url, body:jsonEncode(param) , header: {"Content-Type": "application/json","x-access-token": accesToken});
 
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
