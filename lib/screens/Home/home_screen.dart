@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_stack/image_stack.dart';
 import 'package:intl/intl.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/model/request_user_model.dart';
@@ -16,6 +15,7 @@ import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 import 'settings/connections/connections_controller.dart';
 
@@ -32,15 +32,16 @@ class _HomeScreenState extends State<HomeScreen> {
   ConnectionsController connectionsController =
       Get.put(ConnectionsController());
 
+
   @override
   void initState() {
-    controller.refreshController = RefreshController();
+    /*controller.refreshController = RefreshController();*/
     super.initState();
   }
 
   @override
   void dispose() {
-    controller.refreshController?.dispose();
+    /*controller.refreshController?.dispose();*/
     super.dispose();
   }
 
@@ -162,7 +163,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     )
                   ],
                 ),
-                body: SmartRefresher(
+                body: RefreshIndicator(
+                  onRefresh: () => controller.onRefresh(),
+                  child: SingleChildScrollView(
+                    controller: controller.scrollController,
+                    child: Column(
+                      children: [discover(), seeAll(), latestFeed()],
+                    ),
+                  ),
+                ),
+                /* SmartRefresher(
                   controller: controller.refreshController!,
                   header: CustomHeader(
                     builder: (context, status) {
@@ -190,7 +200,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [discover(), seeAll(), latestFeed()],
                     ),
                   ),
-                ),
+                ),*/
                 floatingActionButton: GetBuilder<HomeController>(
                   id: "home",
                   builder: (controller) {
@@ -201,8 +211,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 24,
                       ),
                       onPressed: () {
-                        Get.to(() => StoryScreen())!.then((value) {
-                          controller.friendPostData();
+                        Get.to(() => StoryScreen(
+                                  image: controller
+                                      .controller.viewProfile.data!.profileImage
+                                      .toString(),
+                                ))!
+                            .then((value) {
+                          controller.friendPostDataWithOutPagination();
                         });
                       },
                     );
@@ -366,10 +381,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 // my story
 
-                controller.controller.viewProfile == null ||
-                        controller.myStoryController.viewStoryController
-                                .storyModel.myStory ==
-                            null
+                controller.myStoryController.viewStoryController.storyModel
+                            .myStory ==
+                        null
                     ? const SizedBox()
                     : Visibility(
                         visible: controller.myStoryController
@@ -691,464 +705,535 @@ class _HomeScreenState extends State<HomeScreen> {
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         // itemCount: controller.isAd.length,
-                        itemCount: controller.friendPostListData!.length,
+                        itemCount: controller.friendPostListData.length,
                         itemBuilder: (context, index) {
                           return /* controller.isAd[index]
                           ?*/
-                              Padding(
+                            VisibilityDetector(key:Key(index.toString()), onVisibilityChanged:(info) {
+                              if(info.visibleFraction == 1){
+                                controller.postViewData(controller.friendPostListData[index].id.toString());
+                                print("++++++++++++++++++$index");
+                              }
+
+                            },child: Padding(
                             padding: const EdgeInsets.only(bottom: 22.0),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Center(
-                                  child: Container(
-                                    width: Get.width * 0.92266,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        border:
-                                            Border.all(color: Colors.white)),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 15.0, top: 20),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(50),
-                                                child: FadeInImage(
-                                                  height: 40,
-                                                  width: 40,
-                                                  placeholder: const AssetImage(
-                                                      AssetRes
-                                                          .portrait_placeholder),
-                                                  image: NetworkImage(controller.friendPostListData![index]
-                                                      .postUser!
-                                                      .profileImage
-                                                      .toString()),
-                                                  fit: BoxFit.cover,
-                                                ),
-                                                /*Image.network(
-                                                  controller
-                                                      .friendPostViewModel
-                                                      .data![index]
-                                                      .postUser!
-                                                      .profileImage
-                                                      .toString(),
-                                                  fit: BoxFit.cover,
-                                                  height: 40,
-                                                  width: 40,
-                                                  errorBuilder: (context, error,
-                                                      stackTrace) {
-                                                    return const Icon(
-                                                        Icons.error);
-                                                  },
-                                                )*/
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 20.0, left: 12),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    controller.friendPostListData![index]
-                                                        .postUser!
-                                                        .fullName
-                                                        .toString(),
-                                                    style: gilroyBoldTextStyle(
-                                                        fontSize: 16),
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 3,
-                                                  ),
-                                                  Text(
-                                                    DateFormat.Hm().format(
-                                                        controller.friendPostListData![index]
-                                                            .createdAt!),
-                                                    style:
-                                                        textStyleFont12White400,
-                                                  ),
-                                                ],
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: Get.height * 0.02,
-                                        ),
-                                        controller.friendPostListData![index].description ==
-                                                null
-                                            ? const SizedBox()
-                                            : Center(
-                                                child: SizedBox(
-                                                  width: Get.width * 0.85333,
-                                                  child: Text(
-                                                    controller.friendPostListData![index]
-                                                        .description
-                                                        .toString(),
-                                                    style:
-                                                        textStyleFont16WhitLight,
-                                                  ),
-                                                ),
-                                              ),
-                                        SizedBox(
-                                          height: Get.height * 0.025,
-                                        ),
-                                        controller.friendPostListData![index].postList ==
-                                                null
-                                            ? const SizedBox()
-                                            : Container(
-                                                margin: const EdgeInsets.only(
-                                                    left: 10),
-                                                height: 80,
-                                                width: 300,
-                                                child: ListView.builder(
-                                                  scrollDirection:
-                                                      Axis.horizontal,
-                                                  shrinkWrap: true,
-                                                  physics:
-                                                      const NeverScrollableScrollPhysics(),
-                                                  itemCount:controller.friendPostListData![index]
-                                                      .postList!
-                                                      .length,
-                                                  itemBuilder:
-                                                      (context, index2) {
-                                                    return Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 5,
-                                                              right: 5),
-                                                      child:controller.friendPostListData![index]
-                                                          .postList![index2]==null?const SizedBox(): FadeInImage(
-                                                        height: 80,
-                                                        width: 80,
-                                                        placeholder:
-                                                            const AssetImage(
-                                                                AssetRes
-                                                                    .placeholderImage),
-                                                        image: NetworkImage(controller.friendPostListData![index]
-                                                            .postList![index2]),
-                                                        fit: BoxFit.cover,
-                                                      ), /*Image.network(
-                                                        controller
-                                                            .friendPostViewModel
-                                                            .data![index]
-                                                            .postList![index2],
-                                                        height: 80,
-                                                        width: 80,
-                                                        fit: BoxFit.cover,loadingBuilder: AssetRes.se_profile,
-                                                    */ /*    errorBuilder: (context,
-                                                                url, error) =>
-                                                            const Icon(
-                                                          Icons.error,
-                                                          color: Colors.grey,
-                                                        ),*/ /*
-                                                      ),*/
-                                                    );
-                                                  },
-                                                ),
-                                              ),
-                                        SizedBox(
-                                          height: Get.height * 0.025,
-                                        ),
-                                        controller.friendPostListData![index]
-                                                .postLikeUser!
-                                                .isEmpty
-                                            ? const SizedBox()
-                                            : Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 15.0),
-                                                child: SizedBox(
-                                                  height: 32,
-                                                  width: 140,
-                                                  child: Stack(
-                                                    children: [
-                                                      ListView.builder(
-                                                        itemCount: 3,
-                                                        itemBuilder:
-                                                            (context, index2) {
-                                                          return Row(
-                                                            children: [
-                                                              controller.friendPostListData![
-                                                                          index]
-                                                                      .postLikeUser!
-                                                                      .isEmpty
-                                                                  ? const SizedBox()
-                                                                  : ImageStack(
-                                                                      imageList: controller.friendPostListData![
-                                                                              index]
-                                                                          .postLikeUser!
-                                                                          .map((e) => e
-                                                                              .profileImage
-                                                                              .toString())
-                                                                          .toList(),
-                                                                      totalCount:
-                                                                          3,
-                                                                      // If larger than images.length, will show extra empty circle
-                                                                      imageRadius:
-                                                                          32,
-                                                                      // Radius of each images
-                                                                      imageCount:
-                                                                          3,
-                                                                      // Maximum number of images to be shown in stack
-                                                                      imageBorderWidth:
-                                                                          2,
-                                                                      imageBorderColor:
-                                                                          Colors
-                                                                              .white,
-                                                                      showTotalCount:
-                                                                          false,
-                                                                      // Border width around the images
-                                                                    ),
-                                                              const SizedBox(
-                                                                width: 8,
-                                                              ),
-                                                              controller.friendPostListData![
-                                                                              index]
-                                                                          .postLikeCount
-                                                                          .toString() ==
-                                                                      "0"
-                                                                  ? const Text(
-                                                                      "")
-                                                                  : Text(
-                                                                      "+${controller.friendPostListData![index].postLikeCount.toString()} likes",
-                                                                      style:
-                                                                          textStyleFont14White,
-                                                                    )
-                                                            ],
-                                                          );
-                                                        },
-                                                      ),
-
-                                                      /*Positioned(
-                                                  left: 24,
-                                                  child:   controller
-                                                      .friendPostViewModel
-                                                      .data![index].postLikeUser!.isEmpty?const SizedBox():Container(
-                                                    height: 32,
-                                                    width: 32,
-                                                    decoration: BoxDecoration(
-                                                        border: Border.all(
-                                                            color: Colors.white,
-                                                            width: 2),
-                                                        shape: BoxShape.circle,
-                                                        image: DecorationImage(
-                                                                image: NetworkImage(
-                                                                    controller
-                                                                        .friendPostViewModel
-                                                                        .data![index].postLikeUser![index].profileImage.toString()))),
-                                                  ),
-                                                ),
-                                                Positioned(
-                                                  left: 48,
-                                                  child: Container(
-                                                    height: 32,
-                                                    width: 32,
-                                                    decoration: BoxDecoration(
-                                                        border: Border.all(
-                                                            color: Colors.white,
-                                                            width: 2),
-                                                        shape: BoxShape.circle,
-                                                        image:
-                                                            const DecorationImage(
-                                                                image: AssetImage(
-                                                                    AssetRes
-                                                                        .lt3))),
-                                                  ),
-                                                ),*/
-
-                                                      /*   Positioned(
-                                                    left: Get.width * 0.25,
-                                                    top: Get.height * 0.01,
-                                                    child: Text(
-                                                      "+${ controller
-                                                          .friendPostViewModel
-                                                          .data![index]
-                                                          .postLikeCount
-                                                          .toString()} likes",
-                                                      style:
-                                                          textStyleFont14White,
-                                                    ))*/
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                        const SizedBox(
-                                          height: 7,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 20.0),
-                                          child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Center(
+                                    child: Container(
+                                      width: Get.width * 0.92266,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          border:
+                                              Border.all(color: Colors.white)),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
                                             children: [
-                                              const SizedBox(
-                                                  height: 16,
-                                                  width: 16,
-                                                  child: Image(
-                                                      image: AssetImage(
-                                                          AssetRes.eye))),
-                                              Text(
-                                                controller.friendPostListData![index].postViewcount
-                                                    .toString(),
-                                                style: gilroyMediumTextStyle(
-                                                    fontSize: 10),
-                                              ),
-                                              const Spacer(),
-                                              InkWell(
-                                                onTap: () async {
-                                                  controller.share(controller.friendPostListData![index]
-                                                      .id
-                                                      .toString());
-                                                  /*    controller.sharePostData(
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 15.0, top: 20),
+                                                child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(50),
+                                                    child: /* FadeInImage(
+                                                    height: 40,
+                                                    width: 40,
+                                                    placeholder: const AssetImage(
+                                                        AssetRes
+                                                            .portrait_placeholder),
+                                                    image: NetworkImage(controller
+                                                        .friendPostListData[
+                                                            index]
+                                                        .postUser!
+                                                        .profileImage
+                                                        .toString()),
+                                                    fit: BoxFit.cover,
+                                                  )*/
+                                                        Image.network(
                                                       controller
-                                                          .friendPostViewModel
-                                                          .data![index]
-                                                          .id
-                                                          .toString());*/
-                                                },
-                                                child: const SizedBox(
-                                                    height: 16,
-                                                    width: 16,
-                                                    child: Image(
-                                                        image: AssetImage(
-                                                            AssetRes.vector))),
-                                              ),
-                                              const SizedBox(
-                                                width: 2,
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 2.0),
-                                                child: Text(
-                                                  controller.friendPostListData![index]
-                                                      .postShareCount
-                                                      .toString(),
-                                                  style: gilroyMediumTextStyle(
-                                                      fontSize: 10),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: Get.width * 0.05,
-                                              ),
-                                              InkWell(
-                                                onTap: () async {
-                                                  await controller
-                                                      .commentPostListData(
-                                                      controller.friendPostListData![index]
-                                                              .id
-                                                              .toString());
-                                                  Get.to(() => CommentScreen(
-                                                        idPost: controller.friendPostListData![index]
-                                                            .id
-                                                            .toString(),
-                                                        fullName:controller.friendPostListData![index]
-                                                            .postUser!
-                                                            .fullName
-                                                            .toString(),
-                                                        profileImage:controller.friendPostListData![index]
-                                                            .postUser!
-                                                            .profileImage
-                                                            .toString(),
-                                                      ));
-                                                },
-                                                child: const SizedBox(
-                                                  height: 16,
-                                                  width: 16,
-                                                  child: Image(
-                                                    image: AssetImage(
-                                                      AssetRes.comment,
-                                                    ),
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 2,
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 2.0),
-                                                child: Text(
-                                                  controller.friendPostListData![index]
-                                                      .postCommentCount
-                                                      .toString(),
-                                                  style: gilroyMediumTextStyle(
-                                                      fontSize: 10),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: Get.width * 0.05,
-                                              ),
-                                              controller.friendPostListData![index]
-                                                          .isLike ==
-                                                      "no"
-                                                  ? InkWell(
-                                                      onTap: () {
-                                                        controller.likePostData(
-                                                            controller.friendPostListData![index]
-                                                                .id
-                                                                .toString());
+                                                          .friendPostListData[
+                                                              index]
+                                                          .postUser!
+                                                          .profileImage
+                                                          .toString(),
+                                                      fit: BoxFit.cover,
+                                                      height: 40,
+                                                      width: 40,
+                                                      errorBuilder: (context,
+                                                          error, stackTrace) {
+                                                        return const Icon(
+                                                            Icons.error);
                                                       },
-                                                      child: const SizedBox(
-                                                          height: 16,
-                                                          width: 16,
-                                                          child: Image(
-                                                              image: AssetImage(
-                                                                  AssetRes
-                                                                      .thumbs))),
-                                                    )
-                                                  : InkWell(
-                                                      onTap: () {
-                                                        controller.unLikePostData(
-                                                            controller.friendPostListData![index]
-                                                                .id
-                                                                .toString());
-                                                      },
-                                                      child: const SizedBox(
-                                                          height: 16,
-                                                          width: 16,
-                                                          child: Image(
-                                                              color: Colors.red,
-                                                              image: AssetImage(
-                                                                AssetRes.thumbs,
-                                                              ))),
-                                                    ),
-                                              const SizedBox(
-                                                width: 2,
+                                                    )),
                                               ),
                                               Padding(
                                                 padding: const EdgeInsets.only(
-                                                    top: 5.0),
-                                                child: Text(
-                                                  controller.friendPostListData![index]
-                                                      .postLikeCount
-                                                      .toString(),
-                                                  style: gilroyMediumTextStyle(
-                                                      fontSize: 10),
+                                                    top: 20.0, left: 12),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      controller
+                                                          .friendPostListData![
+                                                              index]
+                                                          .postUser!
+                                                          .fullName
+                                                          .toString(),
+                                                      style: gilroyBoldTextStyle(
+                                                          fontSize: 16),
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 3,
+                                                    ),
+                                                    Text(controller.timeAgo(controller
+                                                        .friendPostListData[
+                                                        index]
+                                                        .createdAt!)
+                                                   /*   DateFormat.Hm().format(
+                                                          controller
+                                                              .friendPostListData[
+                                                                  index]
+                                                              .createdAt!.toLocal())*/,
+                                                      style:
+                                                          textStyleFont12White400,
+                                                    ),
+                                                  ],
                                                 ),
-                                              ),
-                                              SizedBox(
-                                                width: Get.width * 0.05,
                                               )
                                             ],
                                           ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        )
-                                      ],
+                                          SizedBox(
+                                            height: Get.height * 0.02,
+                                          ),
+                                          controller.friendPostListData[index]
+                                                      .description ==
+                                                  null
+                                              ? const SizedBox()
+                                              : Center(
+                                                  child: SizedBox(
+                                                    width: Get.width * 0.85333,
+                                                    child: Text(
+                                                      controller
+                                                          .friendPostListData[
+                                                              index]
+                                                          .description
+                                                          .toString(),
+                                                      style:
+                                                          textStyleFont16WhitLight,
+                                                    ),
+                                                  ),
+                                                ),
+                                          SizedBox(
+                                            height: Get.height * 0.025,
+                                          ),
+                                          controller.friendPostListData[index]
+                                                  .postList!.isEmpty
+                                              ? const SizedBox()
+                                              : Container(
+                                                  margin: const EdgeInsets.only(
+                                                      left: 10),
+                                                  height: 80,
+                                                  width: 300,
+                                                  child: ListView.builder(
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    shrinkWrap: true,
+                                                    physics:
+                                                        const NeverScrollableScrollPhysics(),
+                                                    itemCount: controller
+                                                        .friendPostListData[index]
+                                                        .postList!
+                                                        .length,
+                                                    itemBuilder:
+                                                        (context, index2) {
+                                                      return Padding(
+                                                        padding:
+                                                            const EdgeInsets.only(
+                                                                left: 5,
+                                                                right: 5),
+                                                        child: controller
+                                                                        .friendPostListData[
+                                                                            index]
+                                                                        .postList![
+                                                                    index2] ==
+                                                                null
+                                                            ? const SizedBox()
+                                                            : Image.network(
+                                                                controller
+                                                                    .friendPostListData[
+                                                                        index]
+                                                                    .postList![index2],
+                                                                height: 80,
+                                                                width: 80,
+                                                                errorBuilder:
+                                                                    (context,
+                                                                        error,
+                                                                        stackTrace) {
+                                                                  return Image.asset(
+                                                                      AssetRes
+                                                                          .placeholderImage);
+                                                                },
+                                                                fit: BoxFit.cover,
+                                                              ), /*Image.network(
+                                                          controller
+                                                              .friendPostViewModel
+                                                              .data![index]
+                                                              .postList![index2],
+                                                          height: 80,
+                                                          width: 80,
+                                                          fit: BoxFit.cover,loadingBuilder: AssetRes.se_profile,
+                                                      */ /*    errorBuilder: (context,
+                                                                  url, error) =>
+                                                              const Icon(
+                                                            Icons.error,
+                                                            color: Colors.grey,
+                                                          ),*/ /*
+                                                        ),*/
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+                                          SizedBox(
+                                            height: Get.height * 0.01,
+                                          ),
+                                          controller.friendPostListData[index]
+                                                  .postLikeUser!.isEmpty
+                                              ? const SizedBox()
+                                              : Padding(
+                                                  padding: const EdgeInsets.only(
+                                                      left: 15.0),
+                                                  child: SizedBox(
+                                                    height: 32,
+                                                    width: 140,
+                                                    child: Stack(
+                                                      children: [
+                                                        ListView.builder(
+                                                          itemCount: 3,
+                                                          itemBuilder:
+                                                              (context, index2) {
+                                                            return Row(
+                                                              children: [
+                                                                controller
+                                                                        .friendPostListData![
+                                                                            index]
+                                                                        .postLikeUser!
+                                                                        .isEmpty
+                                                                    ? const SizedBox()
+                                                                    : ImageStack(
+                                                                        imageList: controller
+                                                                            .friendPostListData![
+                                                                                index]
+                                                                            .postLikeUser!
+                                                                            .map((e) => e
+                                                                                .profileImage
+                                                                                .toString())
+                                                                            .toList(),
+                                                                        totalCount:
+                                                                            3,
+                                                                        // If larger than images.length, will show extra empty circle
+                                                                        imageRadius:
+                                                                            32,
+                                                                        // Radius of each images
+                                                                        imageCount:
+                                                                            3,
+                                                                        // Maximum number of images to be shown in stack
+                                                                        imageBorderWidth:
+                                                                            2,
+                                                                        imageBorderColor:
+                                                                            Colors
+                                                                                .white,
+                                                                        showTotalCount:
+                                                                            false,
+                                                                        // Border width around the images
+                                                                      ),
+                                                                const SizedBox(
+                                                                  width: 8,
+                                                                ),
+                                                                controller
+                                                                            .friendPostListData[
+                                                                                index]
+                                                                            .postLikeCount
+                                                                            .toString() ==
+                                                                        "0"
+                                                                    ? const Text("")
+                                                                    : InkWell(
+                                                                        onTap:
+                                                                            () {
+                                                                          controller.onLikeBtnTap(
+                                                                              postId:
+                                                                                  controller.friendPostListData[index].id.toString(),
+                                                                              friendPost: controller.friendPostListData[index]);
+                                                                        },
+                                                                        child:
+                                                                            Text(
+                                                                          "+${controller.friendPostListData[index].postLikeCount.toString()} likes",
+                                                                          style:
+                                                                              textStyleFont14White,
+                                                                        ),
+                                                                      )
+                                                              ],
+                                                            );
+                                                          },
+                                                        ),
+
+                                                        /*Positioned(
+                                                    left: 24,
+                                                    child:   controller
+                                                        .friendPostViewModel
+                                                        .data![index].postLikeUser!.isEmpty?const SizedBox():Container(
+                                                      height: 32,
+                                                      width: 32,
+                                                      decoration: BoxDecoration(
+                                                          border: Border.all(
+                                                              color: Colors.white,
+                                                              width: 2),
+                                                          shape: BoxShape.circle,
+                                                          image: DecorationImage(
+                                                                  image: NetworkImage(
+                                                                      controller
+                                                                          .friendPostViewModel
+                                                                          .data![index].postLikeUser![index].profileImage.toString()))),
+                                                    ),
+                                                  ),
+                                                  Positioned(
+                                                    left: 48,
+                                                    child: Container(
+                                                      height: 32,
+                                                      width: 32,
+                                                      decoration: BoxDecoration(
+                                                          border: Border.all(
+                                                              color: Colors.white,
+                                                              width: 2),
+                                                          shape: BoxShape.circle,
+                                                          image:
+                                                              const DecorationImage(
+                                                                  image: AssetImage(
+                                                                      AssetRes
+                                                                          .lt3))),
+                                                    ),
+                                                  ),*/
+
+                                                        /*   Positioned(
+                                                      left: Get.width * 0.25,
+                                                      top: Get.height * 0.01,
+                                                      child: Text(
+                                                        "+${ controller
+                                                            .friendPostViewModel
+                                                            .data![index]
+                                                            .postLikeCount
+                                                            .toString()} likes",
+                                                        style:
+                                                            textStyleFont14White,
+                                                      ))*/
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                          const SizedBox(
+                                            height: 7,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 20.0),
+                                            child: Row(
+                                              children: [
+                                                InkWell(onTap:() {
+                                                  controller.onPostViewUser(postId:
+                                                  controller.friendPostListData[index].id.toString(),
+                                                      friendPost: controller.friendPostListData[index]);
+                                                },
+                                                  child: const SizedBox(
+                                                      height: 16,
+                                                      width: 16,
+                                                      child: Image(
+                                                          image: AssetImage(
+                                                              AssetRes.eye))),
+                                                ),
+                                                Text(
+                                                  controller
+                                                      .friendPostListData[index]
+                                                      .postViewcount
+                                                      .toString(),
+                                                  style: gilroyMediumTextStyle(
+                                                      fontSize: 10),
+                                                ),
+                                                const Spacer(),
+                                                InkWell(
+                                                  onTap: () async {
+                                                    controller.share(controller
+                                                        .friendPostListData![
+                                                            index]
+                                                        .id
+                                                        .toString());
+                                                    /*    controller.sharePostData(
+                                                        controller
+                                                            .friendPostViewModel
+                                                            .data![index]
+                                                            .id
+                                                            .toString());*/
+                                                  },
+                                                  child: const SizedBox(
+                                                      height: 16,
+                                                      width: 16,
+                                                      child: Image(
+                                                          image: AssetImage(
+                                                              AssetRes.vector))),
+                                                ),
+                                                const SizedBox(
+                                                  width: 2,
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(
+                                                      top: 2.0),
+                                                  child: Text(
+                                                    controller
+                                                        .friendPostListData![
+                                                            index]
+                                                        .postShareCount
+                                                        .toString(),
+                                                    style: gilroyMediumTextStyle(
+                                                        fontSize: 10),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: Get.width * 0.05,
+                                                ),
+                                                InkWell(
+                                                  onTap: () async {
+                                                    await controller
+                                                        .commentPostListData(
+                                                            controller
+                                                                .friendPostListData[
+                                                                    index]
+                                                                .id
+                                                                .toString());
+                                                    Get.to(() => CommentScreen(
+                                                          idPost: controller
+                                                              .friendPostListData[
+                                                                  index]
+                                                              .id
+                                                              .toString(),
+                                                          fullName: controller
+                                                              .friendPostListData[
+                                                                  index]
+                                                              .postUser!
+                                                              .fullName
+                                                              .toString(),
+                                                          profileImage: controller
+                                                              .friendPostListData[
+                                                                  index]
+                                                              .postUser!
+                                                              .profileImage
+                                                              .toString(),
+                                                        ));
+                                                  },
+                                                  child: const SizedBox(
+                                                    height: 16,
+                                                    width: 16,
+                                                    child: Image(
+                                                      image: AssetImage(
+                                                        AssetRes.comment,
+                                                      ),
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  width: 2,
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(
+                                                      top: 2.0),
+                                                  child: Text(
+                                                    controller
+                                                        .friendPostListData![
+                                                            index]
+                                                        .postCommentCount
+                                                        .toString(),
+                                                    style: gilroyMediumTextStyle(
+                                                        fontSize: 10),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: Get.width * 0.05,
+                                                ),
+                                                controller
+                                                            .friendPostListData[
+                                                                index]
+                                                            .isLike ==
+                                                        "no"
+                                                    ? InkWell(
+                                                        onTap: () {
+                                                          controller.likePostData(
+                                                              controller
+                                                                  .friendPostListData[
+                                                                      index]
+                                                                  .id
+                                                                  .toString());
+                                                        },
+                                                        child: const SizedBox(
+                                                            height: 16,
+                                                            width: 16,
+                                                            child: Image(
+                                                                image: AssetImage(
+                                                                    AssetRes
+                                                                        .thumbs))),
+                                                      )
+                                                    : InkWell(
+                                                        onTap: () {
+                                                          controller.unLikePostData(
+                                                              controller
+                                                                  .friendPostListData[
+                                                                      index]
+                                                                  .id
+                                                                  .toString());
+                                                        },
+                                                        child: const SizedBox(
+                                                            height: 16,
+                                                            width: 16,
+                                                            child: Image(
+                                                                color: Colors.red,
+                                                                image: AssetImage(
+                                                                  AssetRes.thumbs,
+                                                                ))),
+                                                      ),
+                                                const SizedBox(
+                                                  width: 2,
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(
+                                                      top: 5.0),
+                                                  child: Text(
+                                                    controller
+                                                        .friendPostListData[index]
+                                                        .postLikeCount
+                                                        .toString(),
+                                                    style: gilroyMediumTextStyle(
+                                                        fontSize: 10),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: Get.width * 0.05,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                )
-                              ],
+                                  )
+                                ],
                             ),
-                          );
+                          ),
+                              );
                           // : adInLatestFeed();
                         },
                       ),

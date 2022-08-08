@@ -19,7 +19,7 @@ class DashboardController extends GetxController {
   void onBottomBarChange(int index) {
     currentTab = index;
     if (index == 0) {
-  /*    homeController.init();*/
+      homeController.init();
     } else if (index == 1) {
       searchController.init();
     } else if (index == 2) {

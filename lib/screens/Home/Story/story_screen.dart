@@ -9,8 +9,9 @@ import 'package:rainbow/utils/strings.dart';
 
 class StoryScreen extends StatelessWidget {
   String? id;
+  String? image;
 
-  StoryScreen({Key? key, this.id}) : super(key: key);
+  StoryScreen({Key? key, this.id,this.image}) : super(key: key);
 
   ViewStoryController controller = Get.put(ViewStoryController());
 
@@ -37,7 +38,7 @@ class StoryScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: Get.width * 0.6,
+                width: Get.width * 0.655,
               ),
               InkWell(
                 onTap: () {
@@ -175,14 +176,16 @@ class StoryScreen extends StatelessWidget {
                 Positioned(
                   top: Get.height * 0.025,
                   left: 15,
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                            image: AssetImage(AssetRes.se_profile))),
-                  ),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: FadeInImage(
+                        height: 40,
+                        width: 40,
+                        placeholder: const AssetImage(
+                            AssetRes.portrait_placeholder),
+                        image: NetworkImage(image.toString()),
+                        fit: BoxFit.cover,
+                      )),
                 ),
                 Positioned(
                   bottom: 0,
@@ -218,7 +221,7 @@ class StoryScreen extends StatelessWidget {
                             ],
                           ),
                         ),*/
-                        controller.image.length==3?SizedBox():Row(
+                        controller.image.length==3?const SizedBox():Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [

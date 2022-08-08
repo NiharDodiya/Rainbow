@@ -417,7 +417,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                       Text(Strings.comments,
                                                           style:
                                                               sfProTextReguler()),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         width: 2,
                                                       ),
                                                       Text(
@@ -473,6 +473,9 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                           bottom: MediaQuery.of(context).viewInsets.bottom + 10,
                           child: Row(
                             children: [
+                              const SizedBox(
+                                width: 15,
+                              ),
                               SizedBox(
                                 height: 40,
                                 width: 280,

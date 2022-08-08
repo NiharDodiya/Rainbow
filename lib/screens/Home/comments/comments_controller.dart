@@ -134,7 +134,7 @@ void onTapSendMsg(BuildContext context,String id){
       }
 
       await homeController.commentPostListData(idPost);
-      await homeController.friendPostData();
+      await homeController.friendPostDataWithOutPagination();
 
       homeController.update(["home"]);
       update(['commentPost']);

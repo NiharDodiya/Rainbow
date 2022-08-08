@@ -123,9 +123,9 @@ class MyPostApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          errorToast(jsonDecode(response.body)["message"]);
+        /*  errorToast(jsonDecode(response.body)["message"]);*/
         } else if (status == true) {
-          flutterToast(jsonDecode(response.body)["message"]);
+        /*  flutterToast(jsonDecode(response.body)["message"]);*/
         }
         return postViewModelFromJson(response.body);
       }
@@ -139,9 +139,9 @@ class MyPostApi {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
 
     try {
-  /*    String url = "${EndPoints.friendPostList}?page=${page}&limit=${limit}";*/
-      String url = EndPoints.friendPostList;
-      Map<String, dynamic> param = { "page":page,
+      String url = "${EndPoints.friendPostList}?page=${page}&limit=${limit}";
+      // String url = EndPoints.friendPostList;
+      Map<String, dynamic> param = {"page":page,
         "limit":limit};
 
       http.Response? response = await HttpService.postApi(
@@ -255,6 +255,7 @@ class MyPostApi {
       Map<String, dynamic> param = {"id_post": idPost};
       http.Response? response = await HttpService.postApi(
           url: url, body: param, header: {"x-access-token": accesToken});
+
 
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];

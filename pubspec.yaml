@@ -55,7 +55,7 @@ dependencies:
     path: ./story
   intl: ^0.17.0
   flutter_keyboard_visibility: ^5.3.0
-  pull_to_refresh: ^2.0.0
+#  pull_to_refresh: ^2.0.0
 
   #____________________________________________verification code_______________________________________
   pinput: ^2.2.11

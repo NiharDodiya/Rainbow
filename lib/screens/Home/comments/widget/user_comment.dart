@@ -28,7 +28,7 @@ Widget userComment(
                     shape: BoxShape.circle,
                   ),
                   child: ClipRRect(
-                    borderRadius:  const BorderRadius.all(const Radius.circular(50)),
+                    borderRadius:  const BorderRadius.all(Radius.circular(50)),
                     child:FadeInImage(
                       placeholder:  const AssetImage(AssetRes.portrait_placeholder),
                       image: NetworkImage( profileImage.toString()),
@@ -231,9 +231,9 @@ Widget userComment(
                                       ),*/
                                 reply[index].postCommentItem.toString() == ""
                                     ? const SizedBox()
-                                    : image == ""
-                                        ? const SizedBox()
-                                        : FadeInImage(   height: 100,
+                                    : /*image == ""
+                                        ? const SizedBox()*/
+                                         FadeInImage(   height: 100,
                                   width: 100,
                                   placeholder:  const AssetImage(AssetRes.placeholderImage),
                                   image: NetworkImage(  reply[index]

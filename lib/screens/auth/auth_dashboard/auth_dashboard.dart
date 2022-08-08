@@ -15,7 +15,7 @@ class AuthDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.onInti();
+    controller.onInit();
     return GetBuilder<AuthDashBordController>(
       id: "auth",
       builder: (controller) {

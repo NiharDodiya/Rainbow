@@ -1,14 +1,9 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_share/flutter_share.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:rainbow/common/blocList_api/blockList_api.dart';
 import 'package:rainbow/common/helper.dart';
-import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/blockList_model.dart';
 import 'package:rainbow/model/friendPostView_Model.dart';
 import 'package:rainbow/model/listOfFriendRequest_model.dart';
@@ -28,6 +23,8 @@ import 'package:rainbow/screens/Home/my_story/my_story_screen.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_screen.dart';
+import 'package:rainbow/screens/Home/view_story/widgets/postLike_listScreen.dart';
+import 'package:rainbow/screens/Home/view_story/widgets/postView_bottomshit.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/widget/listOfFriendRequest_api/listOfFriendRequest_api.dart';
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
@@ -44,7 +41,7 @@ class HomeController extends GetxController {
   ViewStoryController viewStoryController = Get.put(ViewStoryController());
   List<bool> isAd = List.generate(10, (index) => Random().nextInt(2) == 1);
   MyStoryController myStoryController = Get.put(MyStoryController());
-  RefreshController? refreshController;
+  // RefreshController? refreshController;
   NotificationsController notificationsController =
       Get.put(NotificationsController());
   MyPostListModel myPostListModel = MyPostListModel();
@@ -59,11 +56,12 @@ class HomeController extends GetxController {
   PostCommentListModel postCommentListModel = PostCommentListModel();
   String? deepLinkPath;
   List<FriendPost> friendPostListData = [];
+   List listOfUserView = [];
 
 
   ScrollController scrollController = ScrollController();
-  int page=0;
-  int limit=5;
+  int page =0;
+  int limit =5;
 
   // final storyController = EditStoryController();
   ConnectionsController connectionsController =
@@ -76,6 +74,7 @@ class HomeController extends GetxController {
     scrollController.addListener(pagination);
 
     await deepLinkInt();
+    await totalDistance();
 
     update(['home']);
     super.onInit();
@@ -91,7 +90,6 @@ class HomeController extends GetxController {
     update(['home']);
   }
 
-
   Future<void> countryName() async {
     try {
       await ListOfCountryApi.postRegister()
@@ -99,7 +97,7 @@ class HomeController extends GetxController {
       debugPrint(listCountryModel.toJson().toString());
       getCountry();
     } catch (e) {
-      errorToast(e.toString());
+    /*  errorToast(e.toString());*/
       debugPrint(e.toString());
     }
   }
@@ -142,6 +140,28 @@ class HomeController extends GetxController {
       debugPrint(e.toString());
     }
   }
+  List<PostLikeUser>? postLikeUser = [];
+  List<PostUser>? postViewUser = [];
+  /// post like list
+  void onLikeBtnTap({required FriendPost friendPost,String? postId}) {
+    postLikeUser = friendPost.postLikeUser ?? [];
+    print(postLikeUser);
+    Get.bottomSheet(
+      const PostLikeListScreen(),
+      isScrollControlled: true,
+    ).then((value) {
+
+    });
+  } void onPostViewUser({required FriendPost friendPost,String? postId}) {
+    postViewUser = friendPost.postViewUser ?? [];
+    print(postViewUser);
+    Get.bottomSheet(
+      const PostViewBottomScreen(),
+      isScrollControlled: true,
+    ).then((value) {
+
+    });
+  }
 
   ///On Share
 
@@ -169,7 +189,7 @@ class HomeController extends GetxController {
     try {
       loader.value = true;
       sharePostModel = await MyPostApi.sharPostApi(id);
-      await friendPostData();
+      await friendPostDataWithOutPagination();
       update(['home']);
       loader.value = false;
     } catch (e) {
@@ -182,7 +202,7 @@ class HomeController extends GetxController {
     try {
       loader.value = true;
       postLikeModel = await MyPostApi.postLikeApi(id);
-      await friendPostData();
+      await friendPostDataWithOutPagination();
       update(['home']);
       loader.value = false;
     } catch (e) {
@@ -195,7 +215,7 @@ class HomeController extends GetxController {
     try {
       loader.value = true;
       postUnlikeModel = await MyPostApi.postUnLikeApi(id);
-      await friendPostData();
+      await friendPostDataWithOutPagination();
       update(['home']);
       loader.value = false;
     } catch (e) {
@@ -205,8 +225,12 @@ class HomeController extends GetxController {
   }
 
   Future<void> postViewData(String id) async {
+    if(listOfUserView.contains(id)){
+      return ;
+    }
     try {
       postViewModel = await MyPostApi.postViewApi(id);
+      listOfUserView.add(id);
       update(['home']);
     } catch (e) {
       debugPrint(e.toString());
@@ -227,6 +251,22 @@ class HomeController extends GetxController {
       loader.value = false;
     }
   }
+  Future<void> friendPostDataWithOutPagination() async {
+    try {
+      loader.value = true;
+      friendPostViewModel = await MyPostApi.friendPostApi(0,friendPostListData.length);
+      friendPostListData = friendPostViewModel.data!;
+      update(['home']);
+
+      loader.value = false;
+    } catch (e) {
+      debugPrint(e.toString());
+      loader.value = false;
+    }
+  }
+
+
+
 
   Future<void> commentPostListData(String idPost) async {
     try {
@@ -255,7 +295,8 @@ class HomeController extends GetxController {
     await controller.viewProfileDetails();
     await onStory();
     notificationsController.getNotifications();
-    await friendPostData();
+    friendPostListData = [];
+    await friendPostDataWithOutPagination();
     await connectionsController.callRequestApi();
   }
 
@@ -298,18 +339,18 @@ class HomeController extends GetxController {
   Future<void> onRefresh() async {
     /*await init()*/
     await refreshCode();
-    refreshController!.refreshCompleted();
+    // refreshController!.refreshCompleted();
   }
 
   void changeLoader(bool status) {
-    if (refreshController == null || refreshController!.headerMode == null) {
+    /*if (refreshController == null || refreshController!.headerMode == null) {
       loader.value = status;
       return;
     }
     if (refreshController!.headerMode!.value == RefreshStatus.refreshing) {
       return;
     }
-    loader.value = status;
+    loader.value = status;*/
   }
 
   void onNotyIconBtnTap() {
@@ -318,7 +359,37 @@ class HomeController extends GetxController {
     notificationsController.init();
     Get.to(() => NotificationScreen());
   }
+  double calculateDistance(lat1, lon1, lat2, lon2){
+    var p = 0.017453292519943295;
+    var c = cos;
+    var a = 0.5 - c((lat2 - lat1) * p)/2 +
+        c(lat1 * p) * c(lat2 * p) *
+            (1 - c((lon2 - lon1) * p))/2;
+    return 12742 * asin(sqrt(a));
+  }
 
+  List<dynamic> data = [
+    {
+      "lat": 21.1591857,
+      "lng": 72.752256
+    },{
+      "lat": 21.2372228,
+      "lng": 72.8855694
+    },  {
+      "lat": 21.1591857,
+      "lng": 72.752256
+    },{
+      "lat": 21.2372228,
+      "lng": 72.8855694
+    },
+  ];
+  totalDistance(){
+    double totalDistance = 0;
+    for(var i = 0; i < 2; i++){
+      totalDistance += calculateDistance(data[i]["lat"], data[i]["lng"], data[i+1]["lat"], data[i+1]["lng"]);
+    }
+    print(totalDistance);
+  }
   Future<void> onFriedStoryTap(int index) async {
     viewStoryController.currentPage = index;
     viewStoryController.storyIndex = 0;
@@ -332,5 +403,32 @@ class HomeController extends GetxController {
     }
     loader.value = false;*/
     Get.to(() => const ViewStoryScreen());
+  }
+  String timeAgo(DateTime d) {
+    Duration diff = DateTime.now().difference(d);
+    if (diff.inDays > 365)
+      return "${(diff.inDays / 365).floor()} ${(diff.inDays / 365).floor() == 1 ? "year" : "years"} ago";
+    if (diff.inDays > 30)
+      return "${(diff.inDays / 30).floor()} ${(diff.inDays / 30).floor() == 1 ? "month" : "months"} ago";
+    if (diff.inDays > 7)
+      return "${(diff.inDays / 7).floor()} ${(diff.inDays / 7).floor() == 1 ? "week" : "weeks"} ago";
+    if (diff.inDays > 0)
+      return "${diff.inDays} ${diff.inDays == 1 ? "day" : "days"} ago";
+    if (diff.inHours > 0)
+      return "${diff.inHours} ${diff.inHours == 1 ? "hour" : "hours"} ago";
+    if (diff.inMinutes > 0)
+      return "${diff.inMinutes} ${diff.inMinutes == 1 ? "minute" : "minutes"} ago";
+    return "just now";
+  }
+  bool isToday(DateTime time) {
+    DateTime now = DateTime.now();
+
+    if (now.day == time.day &&
+        now.month == time.month &&
+        now.year == time.year) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

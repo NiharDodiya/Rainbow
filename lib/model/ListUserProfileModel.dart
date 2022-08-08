@@ -1,177 +1,58 @@
 // To parse this JSON data, do
 //
-//     final myPostListModel = myPostListModelFromJson(jsonString);
+//     final listUseProfileModel = listUseProfileModelFromJson(jsonString);
 
 import 'dart:convert';
 
-MyPostListModel myPostListModelFromJson(String? str) =>
-    MyPostListModel.fromJson(json.decode(str!));
+ListUseProfileModel listUseProfileModelFromJson(String? str) =>
+    ListUseProfileModel.fromJson(json.decode(str!));
 
-String? myPostListModelToJson(MyPostListModel data) =>
+String? listUseProfileModelToJson(ListUseProfileModel data) =>
     json.encode(data.toJson());
 
-class MyPostListModel {
-  MyPostListModel({
+class ListUseProfileModel {
+  ListUseProfileModel({
     this.status,
     this.message,
+    this.cuurentPage,
+    this.totalPage,
+    this.count,
     this.data,
   });
 
   bool? status;
   String? message;
-  List<Datum>? data;
+  int? cuurentPage;
+  int? totalPage;
+  int? count;
+  List<ListUserData>? data;
 
-  factory MyPostListModel.fromJson(Map<String, dynamic> json) =>
-      MyPostListModel(
+  factory ListUseProfileModel.fromJson(Map<String, dynamic> json) =>
+      ListUseProfileModel(
         status: json["status"] == null ? null : json["status"],
         message: json["message"] == null ? null : json["message"],
+        cuurentPage: json["cuurentPage"] == null ? null : json["cuurentPage"],
+        totalPage: json["totalPage"] == null ? null : json["totalPage"],
+        count: json["count"] == null ? null : json["count"],
         data: json["data"] == null
             ? null
-            : List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+            : List<ListUserData>.from(json["data"].map((x) => ListUserData.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
         "status": status == null ? null : status,
         "message": message == null ? null : message,
+        "cuurentPage": cuurentPage == null ? null : cuurentPage,
+        "totalPage": totalPage == null ? null : totalPage,
+        "count": count == null ? null : count,
         "data": data == null
             ? null
             : List<dynamic>.from(data!.map((x) => x.toJson())),
       };
 }
 
-class Datum {
-  Datum({
-    this.id,
-    this.idUser,
-    this.postUser,
-    this.title,
-    this.description,
-    this.status,
-    this.createdAt,
-    this.updatedAt,
-    this.postList,
-    this.isLike,
-    this.postLikeCount,
-    this.postLikeUser,
-    this.postShareCount,
-    this.postTag,
-    this.isView,
-    this.postViewcount,
-    this.postViewUser,
-    this.postCommentCount,
-  });
-
-  int? id;
-  int? idUser;
-  PostViewUser? postUser;
-  String? title;
-  String? description;
-  String? status;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  List<String>? postList;
-  String? isLike;
-  int? postLikeCount;
-  List<dynamic>? postLikeUser;
-  int? postShareCount;
-  List<PostTag>? postTag;
-  String? isView;
-  int? postViewcount;
-  List<dynamic>? postViewUser;
-  int? postCommentCount;
-
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        id: json["id"] == null ? null : json["id"],
-        idUser: json["id_user"] == null ? null : json["id_user"],
-        postUser: json["post_user"] == null
-            ? null
-            : PostViewUser.fromJson(json["post_user"]),
-        title: json["title"] == null ? null : json["title"],
-        description: json["description"] == null ? null : json["description"],
-        status: json["status"] == null ? null : json["status"],
-        createdAt: json["createdAt"] == null
-            ? null
-            : DateTime.parse(json["createdAt"]),
-        updatedAt: json["updatedAt"] == null
-            ? null
-            : DateTime.parse(json["updatedAt"]),
-        postList: json["postList"] == null
-            ? null
-            : List<String>.from(json["postList"].map((x) => x)),
-        isLike: json["isLike"] == null ? null : json["isLike"],
-        postLikeCount:
-            json["postLikeCount"] == null ? null : json["postLikeCount"],
-        postLikeUser: json["postLikeUser"] == null
-            ? null
-            : List<dynamic>.from(json["postLikeUser"].map((x) => x)),
-        postShareCount:
-            json["postShareCount"] == null ? null : json["postShareCount"],
-        postTag: json["postTag"] == null
-            ? null
-            : List<PostTag>.from(
-                json["postTag"].map((x) => PostTag.fromJson(x))),
-        isView: json["isView"] == null ? null : json["isView"],
-        postViewcount:
-            json["postViewcount"] == null ? null : json["postViewcount"],
-        postViewUser: json["postViewUser"] == null
-            ? null
-            : List<dynamic>.from(json["postViewUser"].map((x) => x)),
-        postCommentCount:
-            json["postCommentCount"] == null ? null : json["postCommentCount"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id == null ? null : id,
-        "id_user": idUser == null ? null : idUser,
-        "post_user": postUser == null ? null : postUser!.toJson(),
-        "title": title == null ? null : title,
-        "description": description == null ? null : description,
-        "status": status == null ? null : status,
-        "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
-        "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
-        "postList": postList == null
-            ? null
-            : List<dynamic>.from(postList!.map((x) => x)),
-        "isLike": isLike == null ? null : isLike,
-        "postLikeCount": postLikeCount == null ? null : postLikeCount,
-        "postLikeUser": postLikeUser == null
-            ? null
-            : List<dynamic>.from(postLikeUser!.map((x) => x)),
-        "postShareCount": postShareCount == null ? null : postShareCount,
-        "postTag": postTag == null
-            ? null
-            : List<dynamic>.from(postTag!.map((x) => x.toJson())),
-        "isView": isView == null ? null : isView,
-        "postViewcount": postViewcount == null ? null : postViewcount,
-        "postViewUser": postViewUser == null
-            ? null
-            : List<dynamic>.from(postViewUser!.map((x) => x)),
-        "postCommentCount": postCommentCount == null ? null : postCommentCount,
-      };
-}
-
-class PostTag {
-  PostTag({
-    this.idUser,
-    this.name,
-  });
-
-  int? idUser;
-  String? name;
-
-  factory PostTag.fromJson(Map<String, dynamic> json) => PostTag(
-        idUser: json["id_user"] == null ? null : json["id_user"],
-        name: json["name"] == null ? null : json["name"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id_user": idUser == null ? null : idUser,
-        "name": name == null ? null : name,
-      };
-}
-
-class PostViewUser {
-  PostViewUser({
+class ListUserData {
+  ListUserData({
     this.id,
     this.idSocial,
     this.fullName,
@@ -180,12 +61,17 @@ class PostViewUser {
     this.address2,
     this.phoneNumber,
     this.maritalStatus,
+    this.onlineStatus,
     this.idEthnicity,
     this.birthDate,
     this.noKids,
     this.mobileStatus,
     this.role,
+    this.referrallCode,
     this.idStatus,
+    this.latitude,
+    this.longitude,
+    this.userType,
     this.selfiStatus,
     this.userStatus,
     this.age,
@@ -201,6 +87,8 @@ class PostViewUser {
     this.backgroundImage,
     this.profileImage,
     this.status,
+    this.isFriends,
+    this.isBlock,
   });
 
   int? id;
@@ -211,12 +99,17 @@ class PostViewUser {
   String? address2;
   String? phoneNumber;
   String? maritalStatus;
+  String? onlineStatus;
   String? idEthnicity;
   DateTime? birthDate;
   int? noKids;
   String? mobileStatus;
   String? role;
+  String? referrallCode;
   String? idStatus;
+  double? latitude;
+  double? longitude;
+  String? userType;
   String? selfiStatus;
   String? userStatus;
   int? age;
@@ -232,8 +125,10 @@ class PostViewUser {
   String? backgroundImage;
   String? profileImage;
   String? status;
+  String? isFriends;
+  String? isBlock;
 
-  factory PostViewUser.fromJson(Map<String, dynamic> json) => PostViewUser(
+  factory ListUserData.fromJson(Map<String, dynamic> json) => ListUserData(
         id: json["id"] == null ? null : json["id"],
         idSocial: json["id_social"] == null ? null : json["id_social"],
         fullName: json["full_name"] == null ? null : json["full_name"],
@@ -243,6 +138,8 @@ class PostViewUser {
         phoneNumber: json["phone_number"] == null ? null : json["phone_number"],
         maritalStatus:
             json["marital_status"] == null ? null : json["marital_status"],
+        onlineStatus:
+            json["online_status"] == null ? null : json["online_status"],
         idEthnicity: json["id_ethnicity"] == null ? null : json["id_ethnicity"],
         birthDate: json["birth_date"] == null
             ? null
@@ -251,7 +148,13 @@ class PostViewUser {
         mobileStatus:
             json["mobile_status"] == null ? null : json["mobile_status"],
         role: json["role"] == null ? null : json["role"],
+        referrallCode:
+            json["referrall_code"] == null ? null : json["referrall_code"],
         idStatus: json["id_status"] == null ? null : json["id_status"],
+        latitude: json["latitude"] == null ? null : json["latitude"].toDouble(),
+        longitude:
+            json["longitude"] == null ? null : json["longitude"].toDouble(),
+        userType: json["user_type"] == null ? null : json["user_type"],
         selfiStatus: json["selfi_status"] == null ? null : json["selfi_status"],
         userStatus: json["user_status"] == null ? null : json["user_status"],
         age: json["age"] == null ? null : json["age"],
@@ -271,6 +174,8 @@ class PostViewUser {
         profileImage:
             json["profile_image"] == null ? null : json["profile_image"],
         status: json["status"] == null ? null : json["status"],
+        isFriends: json["isFriends"] == null ? null : json["isFriends"],
+        isBlock: json["isBlock"] == null ? null : json["isBlock"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -282,6 +187,7 @@ class PostViewUser {
         "address2": address2 == null ? null : address2,
         "phone_number": phoneNumber == null ? null : phoneNumber,
         "marital_status": maritalStatus == null ? null : maritalStatus,
+        "online_status": onlineStatus == null ? null : onlineStatus,
         "id_ethnicity": idEthnicity == null ? null : idEthnicity,
         "birth_date": birthDate == null
             ? null
@@ -289,7 +195,11 @@ class PostViewUser {
         "no_kids": noKids == null ? null : noKids,
         "mobile_status": mobileStatus == null ? null : mobileStatus,
         "role": role == null ? null : role,
+        "referrall_code": referrallCode == null ? null : referrallCode,
         "id_status": idStatus == null ? null : idStatus,
+        "latitude": latitude == null ? null : latitude,
+        "longitude": longitude == null ? null : longitude,
+        "user_type": userType == null ? null : userType,
         "selfi_status": selfiStatus == null ? null : selfiStatus,
         "user_status": userStatus == null ? null : userStatus,
         "age": age == null ? null : age,
@@ -306,5 +216,7 @@ class PostViewUser {
         "background_image": backgroundImage == null ? null : backgroundImage,
         "profile_image": profileImage == null ? null : profileImage,
         "status": status == null ? null : status,
+        "isFriends": isFriends == null ? null : isFriends,
+        "isBlock": isBlock == null ? null : isBlock,
       };
 }

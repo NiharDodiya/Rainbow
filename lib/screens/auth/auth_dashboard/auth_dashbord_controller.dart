@@ -18,7 +18,8 @@ import '../login/login_screen.dart';
 class AuthDashBordController extends GetxController {
   RxBool loading = false.obs;
 
-  void onInti() {
+  @override
+  void onInit() {
     super.onInit();
     countryName();
     countryNationalites();

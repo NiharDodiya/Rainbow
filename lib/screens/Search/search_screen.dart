@@ -161,7 +161,8 @@ class SearchScreen extends StatelessWidget {
                   controller: controller.searchBar,
                   obscureText: false,
                   style: textFieldText,
-                  minLines: 1,
+                  minLines: 1,          onChanged:   controller.onSearch,
+                  onSubmitted: controller.onSearch,
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.only(top: 6),
                     border: InputBorder.none,
@@ -199,8 +200,16 @@ class SearchScreen extends StatelessWidget {
                 shrinkWrap: true,
                 padding: const EdgeInsets.only(top: 16),
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: controller.search.length,
+                itemCount: controller.listUseProfileModel.data!.length,
+                // itemCount: controller.search.length,
                 itemBuilder: (context, index) {
+                  final data = controller.listUseProfileModel.data!.where(((item) {
+                    if (controller.keyword.isEmpty) {
+                      return true;
+                    }
+                    return item.fullName!.toUpperCase()
+                        .contains(controller.keyword.toUpperCase());
+                  })).toList();
                   return Column(
                     children: [
                       Stack(
@@ -212,20 +221,32 @@ class SearchScreen extends StatelessWidget {
                                 const Image(image: AssetImage(AssetRes.woman)),
                           ),
                           Positioned(
-                            top: Get.height * 0.03,
-                            left: Get.width * 0.05,
-                            child: Container(
-                              height: 40,
-                              width: 40,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border:
-                                    Border.all(color: Colors.white, width: 3),
-                              ),
-                              child:
-                                  const Image(image: AssetImage(AssetRes.se)),
-                            ),
-                          ),
+                              top: Get.height * 0.03,
+                              left: Get.width * 0.05,
+                              child: data[index]
+                                          .profileImage
+                                          .toString() ==
+                                      ""
+                                  ?  ClipRRect(
+                                borderRadius: BorderRadius.circular(50),
+                                    child: SizedBox( height: 40,
+                                width: 40,
+                                child: Image.asset(
+                                    AssetRes.portrait_placeholder),),
+                                  )
+                                  : ClipRRect(
+                                      borderRadius: BorderRadius.circular(50),
+                                      child: FadeInImage(
+                                        height: 40,
+                                        width: 40,
+                                        placeholder: const AssetImage(
+                                            AssetRes.portrait_placeholder),
+                                        image: NetworkImage(data[index]
+                                            .profileImage
+                                            .toString()),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    )),
                           Container(
                               height: 232,
                               width: Get.width * 0.90133,
@@ -247,14 +268,17 @@ class SearchScreen extends StatelessWidget {
                               top: Get.height * 0.255,
                               left: 15,
                               child: Text(
-                                "Sallie Wilson",
+                                data[index]
+                                    .fullName
+                                    .toString(),
                                 style: textStyleFont14WhiteBold,
                               )),
                           Positioned(
                               top: Get.height * 0.28,
                               left: 15,
-                              child: Text(
-                                "SURROGATE MOM",
+                              child: Text(data[index]
+                                    .userStatus
+                                    .toString(),
                                 style: textStyleFont12White400,
                               )),
                           Positioned(
