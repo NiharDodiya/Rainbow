@@ -1,26 +1,26 @@
 import 'dart:convert';
 
+
+import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/model/ListUserProfileModel.dart';
+import 'package:rainbow/model/listTestimonials_model.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 import 'package:http/http.dart' as http;
 
-class ListUserProfileApi {
-  static Future listUserProfileApi(int page,int limit,String keyWords) async {
+class PostTestimonialsApi {
+  static Future postTestimonials(String id,String textTestimonials, BuildContext context) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
     // int userId = PrefService.getInt(PrefKeys.userId);
     try {
-      String url = "${EndPoints.listUserProfile}";
+      String url = "${EndPoints.testimonial}";
       Map<String, dynamic> param = {
-        "page":page,
-        "limit":limit,
-        "latitude": "",
-        "longitude": "",
-        "distance": "",
-        "user_status":keyWords
+        "id_reciever" : id,
+        "testimonial" : textTestimonials
       };
 
       http.Response? response = await HttpService.postApi(
@@ -34,11 +34,12 @@ class ListUserProfileApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          // errorToast(jsonDecode(response.body)["message"]);
+          errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          // flutterToast(jsonDecode(response.body)["message"]);
+           flutterToast(jsonDecode(response.body)["message"]);
+           Navigator.pop(context);
         }
-        return listUseProfileModelFromJson(response.body);
+        return postTestimonialsModelFromJson(response.body);
       }
     } catch (e) {
       print(e.toString());

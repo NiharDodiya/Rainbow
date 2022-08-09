@@ -9,10 +9,13 @@ class SearchController extends GetxController {
   bool advance = false;
   ListUseProfileModel listUseProfileModel=ListUseProfileModel();
 
+
   // RxBool connect = false.obs;
   TextEditingController searchBar = TextEditingController();
   List<int> search = [0, 1, 2, 3, 4];
-  List<ListUserData>? data ;
+  List<ListUserData> data = [];
+
+  ScrollController scrollController = ScrollController();
   List advanceSearch = [
     "Surrogate Mom  ",
     "Sperm Donor",
@@ -22,6 +25,7 @@ class SearchController extends GetxController {
   ];
 
   List<bool> connect = [];
+  String keyword = '';
 
   void onScreenTap() {
     advance = false;
@@ -52,28 +56,42 @@ class SearchController extends GetxController {
   }
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     init();
-    listUserProfile();
-/*    serchList();*/
+    runFilter('');
+
+    scrollController.addListener(pagination);
+
     super.onInit();
   }
-  String keyword = '';
+
   void onSearch(String text) {
     keyword = text;
     update(["Search"]);
-
+  }
+  void pagination() async {
+    print("Hello");
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent) {
+      await listUserProfile();
+    }
+    update(['Search']);
   }
 
   Future<void> init() async {
     connect = List.filled(search.length, false);
-    loader.value = true;
+    await listUserProfile();
+/*    loader.value = true;*/
   }
-
+  List<ListUserData> listUserData = [];
+  int page = 1;
+  int limit = 5;
   Future<void> listUserProfile() async {
     try {
       loader.value = true;
-      listUseProfileModel = await ListUserProfileApi.listUserProfileApi();
+      listUseProfileModel = await ListUserProfileApi.listUserProfileApi(page,limit,"");
+      listUserData.addAll(listUseProfileModel.data!);
+      page++;
       update(['Search']);
       loader.value = false;
     } catch (e) {
@@ -81,16 +99,26 @@ class SearchController extends GetxController {
       loader.value = false;
     }
   }
-/*  void serchList()
-  {
-    data = listUseProfileModel.data!.where(((item) {
-      if (keyword.isEmpty) {
-        return true;
-      }
-      return item.fullName!.toUpperCase()
-          .contains(keyword.toUpperCase());
 
-    })).toList();
+
+  Future<void> runFilter(String enteredKeyword) async {
+    List<ListUserData> dataStore = [];
+    loader.value=true;
+    page=0;
+    listUseProfileModel = await ListUserProfileApi.listUserProfileApi(page,limit,enteredKeyword);
+    data.addAll(listUseProfileModel.data!);
+    loader.value=false;
+
+    if (enteredKeyword.isEmpty) {
+      dataStore = listUseProfileModel.data!;
+    } else {
+       dataStore = listUseProfileModel.data!
+          .where((user) =>
+          user.userStatus!.toLowerCase().contains(enteredKeyword.toLowerCase()))
+          .toList();
+      // we use the toLowerCase() method to make it case-insensitive
+    } // Refresh the UI
+    data.addAll(dataStore);
     update(['Search']);
-  }*/
+  }
 }

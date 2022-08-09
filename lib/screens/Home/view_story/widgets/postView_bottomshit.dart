@@ -98,7 +98,7 @@ class PostViewBottomScreen extends StatelessWidget {
                 ),
               ),
               Text(
-                "Likes",
+                "Views",
                 style: gilroyBoldTextStyle(color: Colors.black),
               ),
               SizedBox(height: Get.height * 0.02463),
@@ -119,7 +119,9 @@ class PostViewBottomScreen extends StatelessWidget {
                 style: gilroyBoldTextStyle(color: Colors.black),
               ),
             )
-                : */Expanded(
+                : */controller.postViewUser!.isEmpty?Center(child: Padding
+                (padding: EdgeInsets.only(top: Get.height*0.35),
+                  child: SizedBox(child: Text("No Views",style: gilroyBoldTextStyle(color: Colors.black),),))):Expanded(
                 child: ListView.builder(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   shrinkWrap: true,

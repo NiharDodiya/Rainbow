@@ -22,7 +22,7 @@ Widget otherVisitorsViewed() {
         SizedBox(
           height: 130,
           child: ListView.builder(
-            padding: EdgeInsets.only(top: 5),
+            padding: const EdgeInsets.only(top: 5),
             itemCount: controller.viewProfile.data == null
                 ? 0
                 : controller.viewProfile.data!.userView!.length,

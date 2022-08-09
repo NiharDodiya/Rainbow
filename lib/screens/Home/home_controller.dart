@@ -41,6 +41,7 @@ class HomeController extends GetxController {
   ViewStoryController viewStoryController = Get.put(ViewStoryController());
   List<bool> isAd = List.generate(10, (index) => Random().nextInt(2) == 1);
   MyStoryController myStoryController = Get.put(MyStoryController());
+
   // RefreshController? refreshController;
   NotificationsController notificationsController =
       Get.put(NotificationsController());
@@ -56,26 +57,22 @@ class HomeController extends GetxController {
   PostCommentListModel postCommentListModel = PostCommentListModel();
   String? deepLinkPath;
   List<FriendPost> friendPostListData = [];
-   List listOfUserView = [];
-
+  List listOfUserView = [];
 
   ScrollController scrollController = ScrollController();
-  int page =0;
-  int limit =5;
+  int page = 1;
+  int limit = 5;
 
   // final storyController = EditStoryController();
   ConnectionsController connectionsController =
       Get.put(ConnectionsController());
 
   @override
-  Future<void> onInit() async {
-
+  void onInit() async {
     init();
     scrollController.addListener(pagination);
-
     await deepLinkInt();
     await totalDistance();
-
     update(['home']);
     super.onInit();
   }
@@ -86,7 +83,6 @@ class HomeController extends GetxController {
         scrollController.position.maxScrollExtent) {
       await friendPostData();
     }
-
     update(['home']);
   }
 
@@ -97,7 +93,7 @@ class HomeController extends GetxController {
       debugPrint(listCountryModel.toJson().toString());
       getCountry();
     } catch (e) {
-    /*  errorToast(e.toString());*/
+      /*  errorToast(e.toString());*/
       debugPrint(e.toString());
     }
   }
@@ -140,27 +136,27 @@ class HomeController extends GetxController {
       debugPrint(e.toString());
     }
   }
+
   List<PostLikeUser>? postLikeUser = [];
   List<PostUser>? postViewUser = [];
+
   /// post like list
-  void onLikeBtnTap({required FriendPost friendPost,String? postId}) {
+  void onLikeBtnTap({required FriendPost friendPost, String? postId}) {
     postLikeUser = friendPost.postLikeUser ?? [];
     print(postLikeUser);
     Get.bottomSheet(
       const PostLikeListScreen(),
       isScrollControlled: true,
-    ).then((value) {
+    ).then((value) {});
+  }
 
-    });
-  } void onPostViewUser({required FriendPost friendPost,String? postId}) {
+  void onPostViewUser({required FriendPost friendPost, String? postId}) {
     postViewUser = friendPost.postViewUser ?? [];
     print(postViewUser);
     Get.bottomSheet(
       const PostViewBottomScreen(),
       isScrollControlled: true,
-    ).then((value) {
-
-    });
+    ).then((value) {});
   }
 
   ///On Share
@@ -225,8 +221,8 @@ class HomeController extends GetxController {
   }
 
   Future<void> postViewData(String id) async {
-    if(listOfUserView.contains(id)){
-      return ;
+    if (listOfUserView.contains(id)) {
+      return;
     }
     try {
       postViewModel = await MyPostApi.postViewApi(id);
@@ -240,7 +236,7 @@ class HomeController extends GetxController {
   Future<void> friendPostData() async {
     try {
       loader.value = true;
-      friendPostViewModel = await MyPostApi.friendPostApi(page,limit);
+      friendPostViewModel = await MyPostApi.friendPostApi(page, limit);
       page++;
       friendPostListData.addAll(friendPostViewModel.data!);
       update(['home']);
@@ -251,10 +247,12 @@ class HomeController extends GetxController {
       loader.value = false;
     }
   }
+
   Future<void> friendPostDataWithOutPagination() async {
     try {
       loader.value = true;
-      friendPostViewModel = await MyPostApi.friendPostApi(0,friendPostListData.length);
+      friendPostViewModel =
+          await MyPostApi.friendPostApi(1, friendPostListData.length);
       friendPostListData = friendPostViewModel.data!;
       update(['home']);
 
@@ -264,9 +262,6 @@ class HomeController extends GetxController {
       loader.value = false;
     }
   }
-
-
-
 
   Future<void> commentPostListData(String idPost) async {
     try {
@@ -359,37 +354,32 @@ class HomeController extends GetxController {
     notificationsController.init();
     Get.to(() => NotificationScreen());
   }
-  double calculateDistance(lat1, lon1, lat2, lon2){
+
+  double calculateDistance(lat1, lon1, lat2, lon2) {
     var p = 0.017453292519943295;
     var c = cos;
-    var a = 0.5 - c((lat2 - lat1) * p)/2 +
-        c(lat1 * p) * c(lat2 * p) *
-            (1 - c((lon2 - lon1) * p))/2;
+    var a = 0.5 -
+        c((lat2 - lat1) * p) / 2 +
+        c(lat1 * p) * c(lat2 * p) * (1 - c((lon2 - lon1) * p)) / 2;
     return 12742 * asin(sqrt(a));
   }
 
   List<dynamic> data = [
-    {
-      "lat": 21.1591857,
-      "lng": 72.752256
-    },{
-      "lat": 21.2372228,
-      "lng": 72.8855694
-    },  {
-      "lat": 21.1591857,
-      "lng": 72.752256
-    },{
-      "lat": 21.2372228,
-      "lng": 72.8855694
-    },
+    {"lat": 21.1591857, "lng": 72.752256},
+    {"lat": 21.2372228, "lng": 72.8855694},
+    {"lat": 21.1591857, "lng": 72.752256},
+    {"lat": 21.2372228, "lng": 72.8855694},
   ];
-  totalDistance(){
+
+  totalDistance() {
     double totalDistance = 0;
-    for(var i = 0; i < 2; i++){
-      totalDistance += calculateDistance(data[i]["lat"], data[i]["lng"], data[i+1]["lat"], data[i+1]["lng"]);
+    for (var i = 0; i < 2; i++) {
+      totalDistance += calculateDistance(data[i]["lat"], data[i]["lng"],
+          data[i + 1]["lat"], data[i + 1]["lng"]);
     }
     print(totalDistance);
   }
+
   Future<void> onFriedStoryTap(int index) async {
     viewStoryController.currentPage = index;
     viewStoryController.storyIndex = 0;
@@ -404,6 +394,7 @@ class HomeController extends GetxController {
     loader.value = false;*/
     Get.to(() => const ViewStoryScreen());
   }
+
   String timeAgo(DateTime d) {
     Duration diff = DateTime.now().difference(d);
     if (diff.inDays > 365)
@@ -420,6 +411,7 @@ class HomeController extends GetxController {
       return "${diff.inMinutes} ${diff.inMinutes == 1 ? "minute" : "minutes"} ago";
     return "just now";
   }
+
   bool isToday(DateTime time) {
     DateTime now = DateTime.now();
 

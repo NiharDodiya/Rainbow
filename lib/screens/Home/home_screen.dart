@@ -33,17 +33,17 @@ class _HomeScreenState extends State<HomeScreen> {
       Get.put(ConnectionsController());
 
 
-  @override
+/*  @override
   void initState() {
-    /*controller.refreshController = RefreshController();*/
+   controller.scrollController.addListener(controller.pagination);
     super.initState();
   }
 
   @override
   void dispose() {
-    /*controller.refreshController?.dispose();*/
+    controller.scrollController.addListener(controller.pagination);
     super.dispose();
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -919,14 +919,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             return Row(
                                                               children: [
                                                                 controller
-                                                                        .friendPostListData![
+                                                                        .friendPostListData[
                                                                             index]
                                                                         .postLikeUser!
                                                                         .isEmpty
                                                                     ? const SizedBox()
                                                                     : ImageStack(
                                                                         imageList: controller
-                                                                            .friendPostListData![
+                                                                            .friendPostListData[
                                                                                 index]
                                                                             .postLikeUser!
                                                                             .map((e) => e

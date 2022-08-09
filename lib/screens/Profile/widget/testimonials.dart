@@ -6,7 +6,7 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
-Widget testimonials() {
+/*Widget testimonials({required bool testimonials, String? id}) {
   return Padding(
     padding: const EdgeInsets.only(left: 30, right: 30),
     child: SizedBox(
@@ -23,16 +23,21 @@ Widget testimonials() {
               Text(
                 Strings.testimonials,
                 style: beVietnamProBoldTextStyle(fontSize: 18),
-              ),const Spacer(),
-              InkWell(onTap: () {
-                Get.to(()=>const PostTestimonialScreen());
-
-              },
-                child: Text(
-                  "Add",
-                  style: beVietnamProBoldTextStyle(fontSize: 18),
-                ),
               ),
+              const Spacer(),
+              testimonials == false
+                  ? const SizedBox()
+                  : InkWell(
+                      onTap: () {
+                        Get.to(() => PostTestimonialScreen(
+                              id: id.toString(),
+                            ));
+                      },
+                      child: Text(
+                        "Add",
+                        style: beVietnamProBoldTextStyle(fontSize: 18),
+                      ),
+                    ),
             ],
           ),
           const SizedBox(
@@ -48,10 +53,18 @@ Widget testimonials() {
           const SizedBox(
             height: 10,
           ),
-          /*      ListView.separated(padding: const EdgeInsets.only(top: 15),
+          ListView.separated(
+            padding: const EdgeInsets.only(top: 15),
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              return listOfTestimonials();
+              return  listOfTestimonials(
+                  title: controller.viewProfile.data!
+                      .testimonialsList![index].userSender!.fullName.toString(),
+                  subtitle: controller.viewProfile.data!
+                      .testimonialsList![index].userSender!.userStatus.toString(),descriptions:controller.viewProfile.data!
+                  .testimonialsList![index].testimonial.toString(),*//*date:DateFormat("Dd-MM-yyyy").format(controller.viewProfile.data!
+                    .testimonialsList![index].userSender!.createdAt!)*//*profile:controller.viewProfile.data!
+                  .testimonialsList![index].userSender!.profileImage.toString() );
             },
             separatorBuilder: (context, index) {
               return Divider(
@@ -59,7 +72,7 @@ Widget testimonials() {
                 color: ColorRes.white.withOpacity(0.7),
               );
             },
-            itemCount: 2,
+            itemCount: controller.viewProfile.data!.testimonialsList!.length,
             shrinkWrap: true,
           ),
           Divider(
@@ -74,7 +87,7 @@ Widget testimonials() {
               Container(
                 height: 20,
                 width: 30,
-                margin: const EdgeInsets.only(bottom: 10,top: 5),
+                margin: const EdgeInsets.only(bottom: 10, top: 5),
                 alignment: Alignment.center,
                 child: Text(
                   "1",
@@ -83,12 +96,12 @@ Widget testimonials() {
               ),
               iconForSlider(AssetRes.rightIcon),
             ],
-          )*/
+          )
         ],
       ),
     ),
   );
-}
+}*/
 
 Widget iconForSlider(String image) {
   return Container(
@@ -103,27 +116,29 @@ Widget iconForSlider(String image) {
   );
 }
 
-Widget listOfTestimonials({
-  String? title,
-  String? subtitle,
-  String? date,
-}) {
+Widget listOfTestimonials(
+    {String? title,
+    String? subtitle,
+    String? date,
+    String? descriptions,
+    String? profile}) {
   return Column(
+    mainAxisAlignment: MainAxisAlignment.start,
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Row(
         children: [
-          Container(
-            height: 50,
-            width: 50,
-            margin: const EdgeInsets.only(right: 8),
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: AssetImage(
-                  AssetRes.selfiePicture,
-                ),
-              ),
-            ),
+          ClipRRect(
+              borderRadius: BorderRadius.circular(50),
+              child: FadeInImage(
+                height: 50,
+                width: 50,
+                placeholder: const AssetImage(AssetRes.portrait_placeholder),
+                image: NetworkImage(profile.toString()),
+                fit: BoxFit.cover,
+              )),
+          const SizedBox(
+            width: 10,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -160,7 +175,7 @@ Widget listOfTestimonials({
         height: 14,
       ),
       Text(
-        '"${Strings.aboutMeDes} ${Strings.aboutMeDes}"',
+        descriptions.toString(),
         style: gilroyRegularTextStyle(fontSize: 14),
       ),
     ],

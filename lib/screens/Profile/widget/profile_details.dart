@@ -53,7 +53,6 @@ Widget profileDetails() {
                 : controller.viewProfile.data!.city.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
-          // controller.viewProfile.data!.city.toString() != ""
           controller.viewProfile.data!.city.toString() != ""
               ? Container(
                   height: 4,

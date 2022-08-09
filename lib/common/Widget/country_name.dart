@@ -23,12 +23,12 @@ Widget dropdownButton({
               title!,
               style: gilroySemiBoldTextStyle(fontSize: 14),
             )
-          : Container(),
+          : SizedBox(),
       showtitle
           ? const SizedBox(
               height: 10,
             )
-          : Container(),
+          : SizedBox(),
       DropdownButtonHideUnderline(
         child: DropdownButton2<String>(
           isExpanded: true,

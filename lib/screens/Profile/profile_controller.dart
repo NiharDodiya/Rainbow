@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_api.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
+import 'package:rainbow/screens/Profile/widget/postTestimonials_api/postTestimonials_api.dart';
 import 'package:rainbow/screens/dashboard/dashboard_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -49,28 +50,9 @@ class ProfileController extends GetxController {
     try {
       print("data Calling is here");
       loader.value = true;
-      /*EditProfileController editProfileController =
-      Get.put(EditProfileController());*/
       await ViewProfileApi.postRegister().then((value) {
         viewProfile = value;
       });
-
-      /*editProfileController.fullName.text = viewProfile.data!.fullName!;
-        editProfileController.status1.text = viewProfile.data!.maritalStatus!;
-        editProfileController.age.text = viewProfile.data!.age.toString();
-        editProfileController.city.text = viewProfile.data!.city!;
-        editProfileController.height.text = viewProfile.data!.height!;
-        editProfileController.weight.text = viewProfile.data!.weight!;
-        editProfileController.ethnicity.text = viewProfile.data!.idEthnicity!;
-        editProfileController.selectedEthicity = viewProfile.data!.idEthnicity!;
-        editProfileController.haveKids.text = viewProfile.data!.noKids!.toString();
-        editProfileController.noKidsSelected = viewProfile.data!.noKids!.toString();
-        editProfileController.hobbies.text = viewProfile.data!.hobbiesAndInterest!.toString();
-         editProfileController.instagram.text = viewProfile.data!.instagram!.toString();
-         editProfileController.youTube.text = viewProfile.data!.youtube!.toString();
-         editProfileController.twitter.text = viewProfile.data!.twitter!.toString();
-         editProfileController.faceBook.text = viewProfile.data!.facebook!.toString();*/
-      // await PrefService.setValue(PrefKeys.registerToken, registerUser.token.toString());
       loader.value = false;
     } catch (e) {
       loader.value = false;
@@ -86,5 +68,18 @@ class ProfileController extends GetxController {
   onTapToHomeScreen() {
     DashboardController dashboardController = Get.find();
     dashboardController.onBottomBarChange(0);
+  }
+  RxBool loaderTestimonials = false.obs;
+  Future<void> postTestimonialsApi(String id, BuildContext context) async {
+    try {
+      loaderTestimonials.value = true;
+      await PostTestimonialsApi.postTestimonials(id,postTestimonials.text,context);
+      postTestimonials.clear();
+
+      update(["testimonials"]);
+      loaderTestimonials.value = false;
+    } catch (e) {
+      loaderTestimonials.value = false;
+    }
   }
 }

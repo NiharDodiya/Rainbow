@@ -10,9 +10,11 @@ import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/widget/about_me.dart';
 import 'package:rainbow/screens/Profile/widget/connect_block.dart';
 import 'package:rainbow/screens/Profile/widget/other_visitors_viewed.dart';
+import 'package:rainbow/screens/Profile/widget/postTestimonial_screen/postTestimonial_screen.dart';
 import 'package:rainbow/screens/Profile/widget/profileImage.dart';
 import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
 import 'package:rainbow/screens/Profile/widget/testimonials.dart';
+import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
@@ -101,8 +103,8 @@ class ConnectionsProfileScreen extends StatelessWidget {
                                     data.hobbiesInterest == true
                                         ? HobbiesArea()
                                         : const SizedBox(),
-                                    data.hobbiesInterest == true
-                                        ? testimonials()
+                                    data.testimonials == true
+                                        ? testimonial()
                                         : const SizedBox(),
                                     data.visitors == true
                                         ? otherVisitorsViewed()
@@ -120,5 +122,99 @@ class ConnectionsProfileScreen extends StatelessWidget {
         },
       ),
     );
+  }
+  Widget testimonial() {
+    return SizedBox()/*Padding(
+      padding: const EdgeInsets.only(left: 30, right: 30),
+      child: SizedBox(
+        // height: 435,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Text(
+                  Strings.testimonials,
+                  style: beVietnamProBoldTextStyle(fontSize: 18),
+                ),
+                const Spacer(),
+                InkWell(
+                  onTap: () {
+                    Get.to(() => PostTestimonialScreen(
+                      id: id.toString(),
+                    ));
+                  },
+                  child: Text(
+                    "Add",
+                    style: beVietnamProBoldTextStyle(fontSize: 18),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Center(
+              child: Text(
+                Strings.noTestimonials,
+                style: beVietnamProBoldTextStyle(
+                    color: ColorRes.white.withOpacity(0.70), fontSize: 16),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            ListView.separated(
+              padding: const EdgeInsets.only(top: 15),
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return  listOfTestimonials(
+                    title: controller.viewProfile.data!
+                        .testimonialsList![index].userSender!.fullName.toString(),
+                    subtitle: controller.viewProfile.data!
+                        .testimonialsList![index].userSender!.userStatus.toString(),descriptions:controller.viewProfile.data!
+                    .testimonialsList![index].testimonial.toString(),*//*date:DateFormat("Dd-MM-yyyy").format(controller.viewProfile.data!
+                    .testimonialsList![index].userSender!.createdAt!)*//*profile:controller.viewProfile.data!
+                    .testimonialsList![index].userSender!.profileImage.toString() );
+              },
+              separatorBuilder: (context, index) {
+                return Divider(
+                  height: 24,
+                  color: ColorRes.white.withOpacity(0.7),
+                );
+              },
+              itemCount: controller.viewProfile.data!.testimonialsList!.length,
+              shrinkWrap: true,
+            ),
+            Divider(
+              height: 25,
+              color: ColorRes.white.withOpacity(0.7),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                iconForSlider(AssetRes.leftIcon),
+                Container(
+                  height: 20,
+                  width: 30,
+                  margin: const EdgeInsets.only(bottom: 10, top: 5),
+                  alignment: Alignment.center,
+                  child: Text(
+                    "1",
+                    style: gilroyMediumTextStyle(fontSize: 14),
+                  ),
+                ),
+                iconForSlider(AssetRes.rightIcon),
+              ],
+            )
+          ],
+        ),
+      ),
+    )*/;
   }
 }
