@@ -108,7 +108,6 @@ class MyPostApi {
 
   static Future postViewApi(String id) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
-
     try {
       String url = EndPoints.postView;
       Map<String, String> param = {"id_post": id};
@@ -137,7 +136,6 @@ class MyPostApi {
 
   static Future friendPostApi(int page,int limit) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
-
     try {
       String url = "${EndPoints.friendPostList}?page=${page}&limit=${limit}";
       // String url = EndPoints.friendPostList;

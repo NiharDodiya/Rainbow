@@ -33,8 +33,8 @@ class EditProfileApi {
     String accessToken = PrefService.getString(PrefKeys.registerToken);
     try {
       String url = EndPoints.editProfile;
+
       Map<String, String> param = {
-        "id_item_background": idItemBackGround,
         "id_item_profile": idItemProfile,
         "latitude" :latitude,
         "longitude" : longitude,
@@ -54,6 +54,10 @@ class EditProfileApi {
         "hobbies_interest": hobbiesInterest,
         "no_kids": noKids,
       };
+      if( idItemBackGround!=""){
+        param["id_item_background"] = idItemBackGround;
+      }
+
       print(param);
       http.Response? response = await HttpService.postApi(
           url: url,

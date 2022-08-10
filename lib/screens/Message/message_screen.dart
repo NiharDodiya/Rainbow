@@ -134,88 +134,91 @@ class MessageScreen extends StatelessWidget {
               stream:
                   FirebaseFirestore.instance.collection('users').snapshots(),
               builder: (context, snapshot) {
-                return ListView.builder(
-                    itemCount: snapshot.data!.docs.length,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (BuildContext context, int index) {
-                        return   snapshot.data!.docs[index]['uid'] ==
-                            controller.userUid
-                            ? const SizedBox()
-                            : InkWell(
-                          onTap: () {
-                            controller.gotoChatScreen(
-                                snapshot.data!.docs[index]['uid'],
-                                snapshot.data!.docs[index]
-                                ['email']);
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10),
-                            child: Dismissible(
-                              key: ValueKey<int>(index),
-                              direction:
-                              DismissDirection.endToStart,
-                              onDismissed: (direction) {
-                                if (direction ==
-                                    DismissDirection.startToEnd) {}
-                              },
-                              child: Row(
-                                children: [
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Container(
-                                    margin:
-                                    const EdgeInsets.symmetric(
-                                        horizontal: 10),
-                                    height: 60,
-                                    width: 60,
-                                    decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Colors.grey),
-                                    child: const Center(
-                                      child: Icon(Icons.person),
+                return SizedBox(
+                  height: Get.height *0.53,
+                  child: ListView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (BuildContext context, int index) {
+                          return   snapshot.data!.docs[index]['uid'] ==
+                              controller.userUid
+                              ? const SizedBox()
+                              : InkWell(
+                            onTap: () {
+                              controller.gotoChatScreen(
+                                  snapshot.data!.docs[index]['uid'],
+                                  snapshot.data!.docs[index]
+                                  ['email']);
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 10),
+                              child: Dismissible(
+                                key: ValueKey<int>(index),
+                                direction:
+                                DismissDirection.endToStart,
+                                onDismissed: (direction) {
+                                  if (direction ==
+                                      DismissDirection.startToEnd) {}
+                                },
+                                child: Row(
+                                  children: [
+                                    const SizedBox(
+                                      width: 5,
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "${snapshot.data!.docs[index]['email'].toString()}",
-                                        style: sfProTextReguler(
-                                            fontSize: 17),
+                                    Container(
+                                      margin:
+                                      const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                      height: 60,
+                                      width: 60,
+                                      decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.grey),
+                                      child: const Center(
+                                        child: Icon(Icons.person),
                                       ),
-                                      Text(
-                                        "You:ok",
-                                        style: sfProTextReguler(
-                                            fontSize: 14,
-                                            color: ColorRes
-                                                .color_F0F0F0),
-                                      )
-                                    ],
-                                  ),
-                                  const Spacer(),
-                                  Image.asset(
-                                    AssetRes.read,
-                                    height: 16,
-                                    width: 16,
-                                  ),
-                                  const SizedBox(
-                                    width: 15,
-                                  )
-                                ],
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Column(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "${snapshot.data!.docs[index]['email'].toString()}",
+                                          style: sfProTextReguler(
+                                              fontSize: 17),
+                                        ),
+                                        Text(
+                                          "You:ok",
+                                          style: sfProTextReguler(
+                                              fontSize: 14,
+                                              color: ColorRes
+                                                  .color_F0F0F0),
+                                        )
+                                      ],
+                                    ),
+                                    const Spacer(),
+                                    Image.asset(
+                                      AssetRes.read,
+                                      height: 16,
+                                      width: 16,
+                                    ),
+                                    const SizedBox(
+                                      width: 15,
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                    });
+                          );
+                      }),
+                );
               },
             );
           },

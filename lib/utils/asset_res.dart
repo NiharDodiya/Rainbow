@@ -59,6 +59,7 @@ class AssetRes {
   static const chatImage = '${icons}chatImage.png';
   static const placeholderImage = '${icons}placeholderimage.jpeg';
   static const portrait_placeholder = '${icons}Portrait_Placeholder.png';
+  static const addPeople = '${icons}addPeople.png';
 
   ///--------------------------------------------- iconsBottom---------------------------------------------
   static const home = '${iconsBottom}home.png';

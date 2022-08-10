@@ -23,30 +23,32 @@ class SettingsScreen extends StatelessWidget {
       body: GetBuilder<SettingsController>(
         id: "settings",
         builder: (controller) {
-          return SafeArea(
-            child: Stack(
-              children: [
-                Column(
-                  children: [
-                    appBar(),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            profile(),
-                            settingsProperties(),
-                          ],
+          return Obx(() {
+            return SafeArea(
+              child: Stack(
+                children: [
+                  Column(
+                    children: [
+                      appBar(),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              profile(),
+                              settingsProperties(),
+                            ],
+                          ),
                         ),
-                      ),
-                    )
-                  ],
-                ),
-                controller.loader.isTrue
-                    ? const FullScreenLoader()
-                    : const SizedBox()
-              ],
-            ),
-          );
+                      )
+                    ],
+                  ),
+                  controller.loader.isTrue
+                      ? const FullScreenLoader()
+                      : const SizedBox()
+                ],
+              ),
+            );
+          });
         },
       ),
     );

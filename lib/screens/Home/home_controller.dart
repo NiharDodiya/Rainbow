@@ -69,10 +69,9 @@ class HomeController extends GetxController {
 
   @override
   void onInit() async {
-    init();
+    await init();
     scrollController.addListener(pagination);
     await deepLinkInt();
-    await totalDistance();
     update(['home']);
     super.onInit();
   }
@@ -93,7 +92,6 @@ class HomeController extends GetxController {
       debugPrint(listCountryModel.toJson().toString());
       getCountry();
     } catch (e) {
-      /*  errorToast(e.toString());*/
       debugPrint(e.toString());
     }
   }
@@ -227,6 +225,7 @@ class HomeController extends GetxController {
     try {
       postViewModel = await MyPostApi.postViewApi(id);
       listOfUserView.add(id);
+      await friendPostDataWithOutPagination();
       update(['home']);
     } catch (e) {
       debugPrint(e.toString());
@@ -240,7 +239,6 @@ class HomeController extends GetxController {
       page++;
       friendPostListData.addAll(friendPostViewModel.data!);
       update(['home']);
-
       loader.value = false;
     } catch (e) {
       debugPrint(e.toString());
@@ -299,17 +297,13 @@ class HomeController extends GetxController {
     changeLoader(true);
     countryName();
     countryNationalites();
-    // await blockListDetailes();
-    // await listOfFriedRequestDetails();
     await controller.viewProfileDetails();
     await onStory();
-    notificationsController.getNotifications();
     await friendPostData();
+    notificationsController.getNotifications();
+
     await connectionsController.callRequestApi();
     changeLoader(false);
-    // await myStoryList();
-    // viewStoryController.friendStoryApiData();
-    // loader.value = true;
   }
 
   Future<void> onStory() async {
@@ -364,22 +358,6 @@ class HomeController extends GetxController {
     return 12742 * asin(sqrt(a));
   }
 
-  List<dynamic> data = [
-    {"lat": 21.1591857, "lng": 72.752256},
-    {"lat": 21.2372228, "lng": 72.8855694},
-    {"lat": 21.1591857, "lng": 72.752256},
-    {"lat": 21.2372228, "lng": 72.8855694},
-  ];
-
-  totalDistance() {
-    double totalDistance = 0;
-    for (var i = 0; i < 2; i++) {
-      totalDistance += calculateDistance(data[i]["lat"], data[i]["lng"],
-          data[i + 1]["lat"], data[i + 1]["lng"]);
-    }
-    print(totalDistance);
-  }
-
   Future<void> onFriedStoryTap(int index) async {
     viewStoryController.currentPage = index;
     viewStoryController.storyIndex = 0;
@@ -397,18 +375,24 @@ class HomeController extends GetxController {
 
   String timeAgo(DateTime d) {
     Duration diff = DateTime.now().difference(d);
-    if (diff.inDays > 365)
+    if (diff.inDays > 365) {
       return "${(diff.inDays / 365).floor()} ${(diff.inDays / 365).floor() == 1 ? "year" : "years"} ago";
-    if (diff.inDays > 30)
+    }
+    if (diff.inDays > 30) {
       return "${(diff.inDays / 30).floor()} ${(diff.inDays / 30).floor() == 1 ? "month" : "months"} ago";
-    if (diff.inDays > 7)
+    }
+    if (diff.inDays > 7) {
       return "${(diff.inDays / 7).floor()} ${(diff.inDays / 7).floor() == 1 ? "week" : "weeks"} ago";
-    if (diff.inDays > 0)
+    }
+    if (diff.inDays > 0) {
       return "${diff.inDays} ${diff.inDays == 1 ? "day" : "days"} ago";
-    if (diff.inHours > 0)
+    }
+    if (diff.inHours > 0) {
       return "${diff.inHours} ${diff.inHours == 1 ? "hour" : "hours"} ago";
-    if (diff.inMinutes > 0)
+    }
+    if (diff.inMinutes > 0) {
       return "${diff.inMinutes} ${diff.inMinutes == 1 ? "minute" : "minutes"} ago";
+    }
     return "just now";
   }
 

@@ -287,7 +287,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             width: 80,
                             child: Stack(
                               children: [
-                                controller.controller.viewProfile.data == null
+                                controller.controller.viewProfile.data == null ||controller
+                                .controller
+                                .viewProfile
+                                .data!
+                                .profileImage
+                                .toString()==""
                                     ? Container(
                                         height: 56,
                                         width: 56,
@@ -299,12 +304,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                       )
                                     : ClipRRect(
                                         borderRadius: BorderRadius.circular(50),
-                                        child: FadeInImage(
+                                        child:  FadeInImage(
                                           height: 56,
                                           width: 56,
                                           placeholder: const AssetImage(
                                               AssetRes.portrait_placeholder),
-                                          image: NetworkImage(controller
+                                          image:NetworkImage(controller
                                               .controller
                                               .viewProfile
                                               .data!
@@ -312,15 +317,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                               .toString()),
                                           fit: BoxFit.cover,
                                         )),
-                                /*     Container(
-                                  height: 56,
-                                  width: 78,
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(
-                                          image:
-                                              AssetImage(AssetRes.selfiePicture))),
-                                ),*/
                                 Positioned(
                                     top: Get.height * 0.04,
                                     left: Get.width * 0.1,
@@ -691,7 +687,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: gilroyBoldTextStyle(fontSize: 20),
                   ),
                 ),
-                controller.friendPostListData == null
+                controller.friendPostListData.isEmpty
                     ? SizedBox(
                         child: Center(
                           child: Text(
@@ -779,7 +775,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   children: [
                                                     Text(
                                                       controller
-                                                          .friendPostListData![
+                                                          .friendPostListData[
                                                               index]
                                                           .postUser!
                                                           .fullName
@@ -1066,7 +1062,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 InkWell(
                                                   onTap: () async {
                                                     controller.share(controller
-                                                        .friendPostListData![
+                                                        .friendPostListData[
                                                             index]
                                                         .id
                                                         .toString());
@@ -1092,7 +1088,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       top: 2.0),
                                                   child: Text(
                                                     controller
-                                                        .friendPostListData![
+                                                        .friendPostListData[
                                                             index]
                                                         .postShareCount
                                                         .toString(),
@@ -1151,7 +1147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       top: 2.0),
                                                   child: Text(
                                                     controller
-                                                        .friendPostListData![
+                                                        .friendPostListData[
                                                             index]
                                                         .postCommentCount
                                                         .toString(),

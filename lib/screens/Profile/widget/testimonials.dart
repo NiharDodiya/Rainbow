@@ -128,7 +128,13 @@ Widget listOfTestimonials(
     children: [
       Row(
         children: [
-          ClipRRect(
+       /*   profile.toString()==""? ClipRRect(
+      borderRadius: BorderRadius.circular(50),
+      child: SizedBox(   height: 50,
+        width: 50,
+        child:  Image.asset(AssetRes.portrait_placeholder),
+
+      )):*/ClipRRect(
               borderRadius: BorderRadius.circular(50),
               child: FadeInImage(
                 height: 50,

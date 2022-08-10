@@ -96,10 +96,10 @@ class EditProfileController extends GetxController {
   }
 
   bool validation() {
-    if (backImage == null) {
+ /*   if (backImage == null) {
       errorToast(Strings.captureImageBack);
       return false;
-    } else if (frontImage == null) {
+    } else*/ if (frontImage == null) {
       errorToast(Strings.captureImageFront);
       return false;
     } else if (fullName.text.isEmpty) {
@@ -324,7 +324,7 @@ class EditProfileController extends GetxController {
       await uploadImageApi();
       await uploadImageBackApi();
       EditProfile? data = await EditProfileApi.postRegister(
-        uploadImage2.data!.id.toString(),
+          uploadImage2.data==null?"":uploadImage2.data!.id.toString(),
         uploadImage1.data!.id.toString(),
         lat.toString(),
         lan.toString(),

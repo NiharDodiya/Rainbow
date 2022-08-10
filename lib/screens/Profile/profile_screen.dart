@@ -90,27 +90,25 @@ class ProfileScreen extends StatelessWidget {
                   imageUrl: controller.viewProfile.data == null
                       ? ""
                       : controller.viewProfile.data!.backgroundImage.toString(),
-                  imageBuilder: (context, imageProvider) =>
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
                       ),
+                    ),
+                  ),
                   // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
-                  errorWidget: (context, url, error) =>
-                      Container(
-                        height: Get.height * 0.2857,
-                        width: Get.width,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            image: const DecorationImage(
-                                image: AssetImage(AssetRes.overlay),
-                                fit: BoxFit.cover)),
-                      ),
+                  errorWidget: (context, url, error) => Container(
+                    height: Get.height * 0.2857,
+                    width: Get.width,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: const DecorationImage(
+                            image: AssetImage(AssetRes.overlay),
+                            fit: BoxFit.cover)),
+                  ),
                   fit: BoxFit.fill,
                 ),
               )),
@@ -124,16 +122,15 @@ class ProfileScreen extends StatelessWidget {
                 imageUrl: controller.viewProfile.data == null
                     ? ""
                     : controller.viewProfile.data!.profileImage.toString(),
-                imageBuilder: (context, imageProvider) =>
-                    Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: imageProvider,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
                     ),
+                  ),
+                ),
                 // placeholder: (context, url) => const Center(child:  CircularProgressIndicator(),),
                 errorWidget: (context, url, error) =>
                     Image.asset(AssetRes.se_profile),
@@ -162,48 +159,48 @@ class ProfileScreen extends StatelessWidget {
 
   Widget hobbiesAndInterest() {
     return controller.viewProfile.data == null
-        ? SizedBox()
+        ? const SizedBox()
         : Padding(
-      padding: const EdgeInsets.only(left: 30, right: 30),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: 10,
-          ),
-          Text(
-            Strings.hobbies,
-            style: beVietnamProBoldTextStyle(fontSize: 18),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 15),
-            child: ReadMoreText(
-              controller.viewProfile.data!.hobbiesAndInterest
-                  .toString() ==
-                  ""
-                  ? ""
-                  : controller.viewProfile.data!.hobbiesAndInterest
-                  .toString(),
-              /* aboutMe,*/
-              trimLines: 3,
-              trimMode: TrimMode.Line,
-              delimiter: " ",
-              trimCollapsedText: Strings.seeMore,
-              trimExpandedText: Strings.seeLess,
-              style: beVietnamProRegularTextStyle(
-                color: ColorRes.white.withOpacity(0.70),
-              ),
-              moreStyle: beVietnamProRegularTextStyle(
-                color: ColorRes.color_FF6B97,
-              ),
-              lessStyle: beVietnamProRegularTextStyle(
-                color: ColorRes.color_FF6B97,
-              ),
+            padding: const EdgeInsets.only(left: 30, right: 30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  Strings.hobbies,
+                  style: beVietnamProBoldTextStyle(fontSize: 18),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 15),
+                  child: ReadMoreText(
+                    controller.viewProfile.data!.hobbiesAndInterest
+                                .toString() ==
+                            ""
+                        ? ""
+                        : controller.viewProfile.data!.hobbiesAndInterest
+                            .toString(),
+                    /* aboutMe,*/
+                    trimLines: 3,
+                    trimMode: TrimMode.Line,
+                    delimiter: " ",
+                    trimCollapsedText: Strings.seeMore,
+                    trimExpandedText: Strings.seeLess,
+                    style: beVietnamProRegularTextStyle(
+                      color: ColorRes.white.withOpacity(0.70),
+                    ),
+                    moreStyle: beVietnamProRegularTextStyle(
+                      color: ColorRes.color_FF6B97,
+                    ),
+                    lessStyle: beVietnamProRegularTextStyle(
+                      color: ColorRes.color_FF6B97,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-    );
+          );
   }
 
   Widget testimonial(ProfileController controller) {
@@ -229,57 +226,73 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-
-            controller.viewProfile.data!.testimonialsList!.isEmpty ? Center(
-              child: Text(
-                Strings.noTestimonials,
-                style: beVietnamProBoldTextStyle(
-                    color: ColorRes.white.withOpacity(0.70), fontSize: 16),
-              ),
-            ) : ListView.separated(
-              padding: const EdgeInsets.only(top: 15),
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                return listOfTestimonials(
-                    title: controller.viewProfile.data!
-                        .testimonialsList![index].userSender!.fullName.toString(),
-                    subtitle: controller.viewProfile.data!
-                        .testimonialsList![index].userSender!.userStatus.toString(),descriptions:controller.viewProfile.data!
-                    .testimonialsList![index].testimonial.toString(),/*date:DateFormat("Dd-MM-yyyy").format(controller.viewProfile.data!
-                    .testimonialsList![index].userSender!.createdAt!)*/profile:controller.viewProfile.data!
-                    .testimonialsList![index].userSender!.profileImage.toString() );
-              },
-              separatorBuilder: (context, index) {
-                return Divider(
-                  height: 24,
-                  color: ColorRes.white.withOpacity(0.7),
-                );
-              },
-              itemCount: controller.viewProfile.data!.testimonialsList!.length,
-              shrinkWrap: true,
-            ),
-            Divider(
-              height: 25,
-              color: ColorRes.white.withOpacity(0.7),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                iconForSlider(AssetRes.leftIcon),
-                Container(
-                  height: 20,
-                  width: 30,
-                  margin: const EdgeInsets.only(bottom: 10, top: 5),
-                  alignment: Alignment.center,
-                  child: Text(
-                    "1",
-                    style: gilroyMediumTextStyle(fontSize: 14),
+            controller.viewProfile.data!.testimonialsList!.isEmpty
+                ? Center(
+                    child: Text(
+                      Strings.noTestimonials,
+                      style: beVietnamProBoldTextStyle(
+                          color: ColorRes.white.withOpacity(0.70),
+                          fontSize: 16),
+                    ),
+                  )
+                : ListView.separated(
+                    padding: const EdgeInsets.only(top: 15),
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return listOfTestimonials(
+                          title: controller.viewProfile.data!
+                              .testimonialsList![index].userSender!.fullName
+                              .toString(),
+                          subtitle: controller.viewProfile.data!
+                              .testimonialsList![index].userSender!.userStatus
+                              .toString(),
+                          descriptions: controller.viewProfile.data!
+                              .testimonialsList![index].testimonial
+                              .toString(),
+                          date:DateFormat("dd/MM/yyyy").format(controller.viewProfile.data!
+                    .testimonialsList![index].createdAt!),
+                          profile: controller.viewProfile.data!
+                              .testimonialsList![index].userSender!.profileImage
+                              .toString());
+                    },
+                    separatorBuilder: (context, index) {
+                      return Divider(
+                        height: 24,
+                        color: ColorRes.white.withOpacity(0.7),
+                      );
+                    },
+                    itemCount:
+                        controller.viewProfile.data!.testimonialsList!.length,
+                    shrinkWrap: true,
                   ),
-                ),
-                iconForSlider(AssetRes.rightIcon),
-              ],
-            )
+            controller.viewProfile.data!.testimonialsList!.isEmpty
+                ? const SizedBox()
+                : Column(
+                    children: [
+                      Divider(
+                        height: 25,
+                        color: ColorRes.white.withOpacity(0.7),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          iconForSlider(AssetRes.leftIcon),
+                          Container(
+                            height: 20,
+                            width: 30,
+                            margin: const EdgeInsets.only(bottom: 10, top: 5),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "1",
+                              style: gilroyMediumTextStyle(fontSize: 14),
+                            ),
+                          ),
+                          iconForSlider(AssetRes.rightIcon),
+                        ],
+                      ),
+                    ],
+                  )
           ],
         ),
       ),

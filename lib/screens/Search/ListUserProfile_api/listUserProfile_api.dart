@@ -9,17 +9,23 @@ import 'package:rainbow/utils/pref_keys.dart';
 import 'package:http/http.dart' as http;
 
 class ListUserProfileApi {
-  static Future listUserProfileApi(int page,int limit,String keyWords) async {
+  static Future listUserProfileApi(
+      {int? page,
+      int? limit,
+      String? keyWords,
+      double? latitude,
+      double? longitude}) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
     // int userId = PrefService.getInt(PrefKeys.userId);
     try {
-      String url = "${EndPoints.listUserProfile}";
+      String url =  EndPoints.listUserProfile;
+
       Map<String, dynamic> param = {
         "page":page,
         "limit":limit,
-        "latitude": "",
-        "longitude": "",
-        "distance": "",
+        "latitude": latitude,
+        "longitude": longitude,
+        "distance": 50,
         "user_status":keyWords
       };
 

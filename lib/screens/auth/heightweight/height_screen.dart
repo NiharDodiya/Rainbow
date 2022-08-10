@@ -82,7 +82,7 @@ class HeightScreen extends StatelessWidget {
                                   controller.heightFeet = index + 1;
                                 },
                                 children: List.generate(
-                                    15,
+                                    8,
                                     (index) => Center(
                                             child: Text(
                                           "${index + 1} ft",

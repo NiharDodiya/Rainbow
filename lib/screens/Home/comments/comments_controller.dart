@@ -31,30 +31,34 @@ class CommentsController extends GetxController {
 
     super.onInit();
   }
-bool validation(){
-    if(msgController.text.isEmpty){
+
+  bool validation() {
+    if (msgController.text.isEmpty) {
       errorToast("replay required");
       return false;
     }
     return true;
-}
-void onTapSendMsg(BuildContext context,String id){
-    if(validation()){
+  }
+
+  void onTapSendMsg(BuildContext context, String id) {
+    if (validation()) {
       commentPostData(context, id);
     }
-}
+  }
+
   Future cameraImage() async {
- try{
-   var pickedFile = await ImagePicker().pickImage(source: ImageSource.camera);
-   final imageTemp = File(pickedFile!.path);
-   imageCamera = imageTemp;
-   if (pickedFile != null) {
-     return pickedFile.path;
-   }
-   update(["commentPost"]);
- }catch(e){
-   print(e.toString());
- }
+    try {
+      var pickedFile =
+          await ImagePicker().pickImage(source: ImageSource.camera);
+      final imageTemp = File(pickedFile!.path);
+      imageCamera = imageTemp;
+      if (pickedFile != null) {
+        return pickedFile.path;
+      }
+      update(["commentPost"]);
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   navigateToCamera() async {
@@ -66,17 +70,18 @@ void onTapSendMsg(BuildContext context,String id){
   }
 
   Future galleryImage() async {
-  try{
-    var pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
-    final imageTemp = File(pickedFile!.path);
-    imageCamera = imageTemp;
-    if (pickedFile != null) {
-      return pickedFile.path;
+    try {
+      var pickedFile =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
+      final imageTemp = File(pickedFile!.path);
+      imageCamera = imageTemp;
+      if (pickedFile != null) {
+        return pickedFile.path;
+      }
+      update(["commentPost"]);
+    } catch (e) {
+      print(e.toString());
     }
-    update(["commentPost"]);
-  }catch(e){
-    print(e.toString());
-  }
   }
 
   navigateToGallery() async {
@@ -119,7 +124,6 @@ void onTapSendMsg(BuildContext context,String id){
             uploadImage.data == null ? "" : uploadImage.data!.id.toString(),
             msgController.text,
             list);
-
       } else {
         if (imageForCamera != null) {
           await uploadImageApi();

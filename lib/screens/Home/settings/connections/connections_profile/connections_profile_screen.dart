@@ -104,7 +104,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
                                         ? HobbiesArea()
                                         : const SizedBox(),
                                     data.testimonials == true
-                                        ? testimonial()
+                                        ? testimonial(  data.id.toString())
                                         : const SizedBox(),
                                     data.visitors == true
                                         ? otherVisitorsViewed()
@@ -123,8 +123,8 @@ class ConnectionsProfileScreen extends StatelessWidget {
       ),
     );
   }
-  Widget testimonial() {
-    return SizedBox()/*Padding(
+  Widget testimonial(String id) {
+    return Padding(
       padding: const EdgeInsets.only(left: 30, right: 30),
       child: SizedBox(
         // height: 435,
@@ -168,18 +168,18 @@ class ConnectionsProfileScreen extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            ListView.separated(
+           /* ListView.separated(
               padding: const EdgeInsets.only(top: 15),
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
-                return  listOfTestimonials(
+                return  SizedBox()*//*listOfTestimonials(
                     title: controller.viewProfile.data!
                         .testimonialsList![index].userSender!.fullName.toString(),
                     subtitle: controller.viewProfile.data!
                         .testimonialsList![index].userSender!.userStatus.toString(),descriptions:controller.viewProfile.data!
-                    .testimonialsList![index].testimonial.toString(),*//*date:DateFormat("Dd-MM-yyyy").format(controller.viewProfile.data!
-                    .testimonialsList![index].userSender!.createdAt!)*//*profile:controller.viewProfile.data!
-                    .testimonialsList![index].userSender!.profileImage.toString() );
+                    .testimonialsList![index].testimonial.toString(),date:DateFormat("Dd-MM-yyyy").format(controller.viewProfile.data!
+                    .testimonialsList![index].userSender!.createdAt!)profile:controller.viewProfile.data!
+                    .testimonialsList![index].userSender!.profileImage.toString() )*//*;
               },
               separatorBuilder: (context, index) {
                 return Divider(
@@ -189,7 +189,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
               },
               itemCount: controller.viewProfile.data!.testimonialsList!.length,
               shrinkWrap: true,
-            ),
+            ),*/
             Divider(
               height: 25,
               color: ColorRes.white.withOpacity(0.7),
@@ -215,6 +215,6 @@ class ConnectionsProfileScreen extends StatelessWidget {
           ],
         ),
       ),
-    )*/;
+    );
   }
 }

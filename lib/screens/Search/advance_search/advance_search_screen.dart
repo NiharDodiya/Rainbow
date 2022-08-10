@@ -24,6 +24,7 @@ class AdvanceSearchScreen extends StatelessWidget {
           return SingleChildScrollView(
             child: SafeArea(
               child: Container(
+                height: Get.height,
                 width: Get.width,
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
@@ -35,122 +36,137 @@ class AdvanceSearchScreen extends StatelessWidget {
                     end: Alignment.bottomCenter,
                   ),
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                child: Stack(
                   children: [
                     appBar(title: title),
                     const SizedBox(
                       height: 20,
                     ),
-                    Container(
-                      height: 45,
-                      width: Get.width,
-                      padding: const EdgeInsets.only(
-                        left: 36,
-                        right: 36,
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Container(
+                    Positioned(top: Get.height*0.1,
+                      child: Container(
+                        height: 45,
+                        width: Get.width,
+                        padding: const EdgeInsets.only(
+                          left: 36,
+                          right: 36,
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                height: 45,
+                                decoration: const BoxDecoration(
+                                  color: ColorRes.white,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(15),
+                                  ),
+                                ),
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      width: Get.width * 0.04,
+                                    ),
+                                    const Image(
+                                      image: AssetImage(AssetRes.search),
+                                      color: Colors.black,
+                                      height: 16,
+                                      width: 16,
+                                    ),
+                                    SizedBox(
+                                      width: Get.width * 0.03,
+                                    ),
+                                    Expanded(
+                                      child: SizedBox(
+                                        height: 56,
+                                        child: TextField(
+                                          obscureText: false,
+                                          style: textFieldText,
+                                          minLines: 1,
+                                          decoration: InputDecoration(
+                                            contentPadding:
+                                                const EdgeInsets.only(),
+                                            border: InputBorder.none,
+                                            hintStyle: textStyleFont16Grey,
+                                            hintText: Strings.enterLocation,
+                                            /*   filled: true,
+                                fillColor: ColorRes.color_9597A1.withOpacity(0.1)*/
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
                               height: 45,
+                              width: 45,
+                              margin: const EdgeInsets.only(left: 9),
+                              padding: const EdgeInsets.all(15),
                               decoration: const BoxDecoration(
-                                color: ColorRes.white,
+                                color: ColorRes.black,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(15),
                                 ),
                               ),
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: Get.width * 0.04,
-                                  ),
-                                  const Image(
-                                    image: AssetImage(AssetRes.search),
-                                    color: Colors.black,
-                                    height: 16,
-                                    width: 16,
-                                  ),
-                                  SizedBox(
-                                    width: Get.width * 0.03,
-                                  ),
-                                  Expanded(
-                                    child: SizedBox(
-                                      height: 56,
-                                      child: TextField(
-                                        obscureText: false,
-                                        style: textFieldText,
-                                        minLines: 1,
-                                        decoration: InputDecoration(
-                                          contentPadding:
-                                              const EdgeInsets.only(),
-                                          border: InputBorder.none,
-                                          hintStyle: textStyleFont16Grey,
-                                          hintText: Strings.enterLocation,
-                                          /*   filled: true,
-                              fillColor: ColorRes.color_9597A1.withOpacity(0.1)*/
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                              child: Image.asset(
+                                AssetRes.filterIcon,
+                                height: 15,
+                                width: 15,
                               ),
-                            ),
-                          ),
-                          Container(
-                            height: 45,
-                            width: 45,
-                            margin: const EdgeInsets.only(left: 9),
-                            padding: const EdgeInsets.all(15),
-                            decoration: const BoxDecoration(
-                              color: ColorRes.black,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(15),
-                              ),
-                            ),
-                            child: Image.asset(
-                              AssetRes.filterIcon,
-                              height: 15,
-                              width: 15,
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                    Image.asset(
-                      AssetRes.searchBackground,
-                      height: 400,
-                      width: 400,
+                    Padding(padding: EdgeInsets.only(top: Get.height * 0.15),
+                      child: Image.asset(
+                        AssetRes.searchBackground,
+                        height: 400,
+                        width: 400,
+                      ),
                     ),
-                    Container(
-                      width: Get.width,
-                      height: 247,
-                      decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(12),
-                              topRight: Radius.circular(12))),
-                      child: ListView.builder(
-                        itemCount: controller.imageList.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(15),
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(
-                                          image: AssetImage(controller
-                                              .imageList[index]
-                                              .toString()))),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
+                    Positioned(top: Get.height*0.6,
+                      child: Container(
+                        width: Get.width,
+                        height: 258,
+                        decoration: const BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(12),
+                                topRight: Radius.circular(12))),
+                        child: ListView.builder(
+                          itemCount: controller.imageList.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(top: 25,left: 20),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        image: DecorationImage(
+                                            image: AssetImage(controller
+                                                .imageList[index]
+                                                .toString()))),
+                                  ),
+                                  const SizedBox(width: 10,),
+                                  Column(crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text("amber delvis",style: gilroyMediumTextStyle(fontSize: 16,color: ColorRes.color_303030),),
+                                      Text("sorrogate mom",style:gilroyMediumTextStyle(fontSize: 16,color: ColorRes.color_979797)),
+                                    ],
+                                  ),
+                                  const Spacer(),
+                                  Image.asset(AssetRes.addPeople,height: 40,width: 40,),
+                                  const SizedBox(width: 16,)
+                                ],
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ],

@@ -37,17 +37,22 @@ class TestimonialsList {
   TestimonialsList({
     this.id,
     this.testimonial,
+    this.createdAt,
     this.userSender,
   });
 
   int? id;
   String? testimonial;
+  DateTime? createdAt;
   Data? userSender;
 
   factory TestimonialsList.fromJson(Map<String, dynamic> json) =>
       TestimonialsList(
         id: json["id"] == null ? null : json["id"],
         testimonial: json["testimonial"] == null ? null : json["testimonial"],
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
         userSender: json["user_sender"] == null
             ? null
             : Data.fromJson(json["user_sender"]),
@@ -56,6 +61,7 @@ class TestimonialsList {
   Map<String, dynamic> toJson() => {
         "id": id == null ? null : id,
         "testimonial": testimonial == null ? null : testimonial,
+        "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
         "user_sender": userSender == null ? null : userSender!.toJson(),
       };
 }
@@ -178,8 +184,8 @@ class Data {
         referrallCode:
             json["referrall_code"] == null ? null : json["referrall_code"],
         idStatus: json["id_status"] == null ? null : json["id_status"],
-           latitude: json["latitude"].toString().isEmpty?null: json["latitude"] is String?double.parse(json["latitude"]):json["latitude"],
-           longitude: json["longitude"].toString().isEmpty?null: json["longitude"] is String? double.parse(json["longitude"]):json["latitude"],
+             latitude: json["latitude"].toString().isEmpty?null: json["latitude"] is String?double.parse(json["latitude"]):json["latitude"],
+             longitude: json["longitude"].toString().isEmpty?null: json["longitude"] is String? double.parse(json["longitude"]):json["latitude"],
 
         userType: json["user_type"] == null ? null : json["user_type"],
         selfiStatus: json["selfi_status"] == null ? null : json["selfi_status"],
