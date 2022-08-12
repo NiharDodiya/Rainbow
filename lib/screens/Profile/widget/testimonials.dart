@@ -136,12 +136,14 @@ Widget listOfTestimonials(
 
       )):*/ClipRRect(
               borderRadius: BorderRadius.circular(50),
-              child: FadeInImage(
+              child: Image.network(
+                profile.toString(),
                 height: 50,
                 width: 50,
-                placeholder: const AssetImage(AssetRes.portrait_placeholder),
-                image: NetworkImage(profile.toString()),
                 fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Image.asset(AssetRes.portrait_placeholder);
+                },
               )),
           const SizedBox(
             width: 10,

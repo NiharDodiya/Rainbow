@@ -7,8 +7,14 @@ import 'package:rainbow/model/ListUserProfileModel.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/api/OtherProfileApi.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_screen.dart';
+import 'package:rainbow/screens/Profile/acceptFriendRequest_api/accaeptFriedRequest_api.dart';
+import 'package:rainbow/screens/Profile/sendFriendRequest_api/sendFriendRequest_api.dart';
+import 'package:rainbow/screens/Profile/unFriendRequest_api/unFriendRequest_api.dart';
+import 'package:rainbow/screens/Profile/widget/block_unblock%20_Api/block_api.dart';
+import 'package:rainbow/screens/Profile/widget/block_unblock%20_Api/unblock_api.dart';
 import 'package:rainbow/screens/Search/ListUserProfile_api/listUserProfile_api.dart';
 import 'package:rainbow/screens/Search/advance_search/advance_search_screen.dart';
+import 'package:rainbow/utils/asset_res.dart';
 
 class SearchController extends GetxController {
   RxBool loader = false.obs;
@@ -33,7 +39,7 @@ class SearchController extends GetxController {
 
   void onScreenTap() {
     advance = false;
-    listConnectBlock = List.filled(listUserData.length, false);
+    /* listConnectBlock = List.filled(listUserData.length, false);*/
     update(["Search"]);
   }
 
@@ -45,7 +51,11 @@ class SearchController extends GetxController {
   List<ListUserData> listUserData = [];
 
   void onMoreButtonTap(int index) {
-    listConnectBlock[index] = true;
+    if (listConnectBlock[index] == false) {
+      listConnectBlock[index] = true;
+    } else {
+      listConnectBlock[index] = false;
+    }
     update(["Search"]);
   }
 
@@ -81,11 +91,16 @@ class SearchController extends GetxController {
     );
   }
 
+  List imageList = [
+    AssetRes.i1,
+    AssetRes.i2,
+    AssetRes.i3,
+  ];
+
   @override
   void onInit() async {
     init();
-    runFilter('');
-
+    /*runFilter('');*/
     scrollController.addListener(pagination);
     update(['Search']);
     super.onInit();
@@ -107,6 +122,7 @@ class SearchController extends GetxController {
   void init() async {
     position = await getCurrentPosition();
     await listUserProfile();
+    searchBar.clear();
   }
 
   Future<void> listUserProfile() async {
@@ -121,7 +137,8 @@ class SearchController extends GetxController {
           limit: limit,
           keyWords: "",
           latitude: latitude,
-          longitude: longitude);
+          longitude: longitude,
+          fullName: "");
       page++;
       listUserData.addAll(listUseProfileModel.data!);
       listConnectBlock = List.filled(listUserData.length, false);
@@ -139,52 +156,21 @@ class SearchController extends GetxController {
     try {
       latitude = position!.latitude;
       longitude = position!.longitude;
-      print(latitude);
-      print(latitude);
       loader.value = true;
       listUseProfileModel = await ListUserProfileApi.listUserProfileApi(
           page: 1,
-          limit: listUseProfileModel.data!.length,
+          limit: listUserData.length,
           keyWords: "",
           latitude: latitude,
-          longitude: longitude);
-      listUserData.addAll(listUseProfileModel.data!);
-      listConnectBlock = List.filled(listUserData.length, false);
-
+          longitude: longitude,
+          fullName:"");
+      listUserData = listUseProfileModel.data!;
       update(['Search']);
       loader.value = false;
     } catch (e) {
       debugPrint(e.toString());
       loader.value = false;
     }
-  }
-
-  List<dynamic> dataLocation = [
-    {"lat": 21.1591857, "lng": 72.752256},
-    {"lat": 21.2372228, "lng": 72.8855694},
-    {"lat": 21.1591857, "lng": 72.752256},
-    {"lat": 21.2372228, "lng": 72.8855694},
-  ];
-
-  totalDistance() {
-    double totalDistance = 0;
-    for (var i = 0; i < 2; i++) {
-      totalDistance += calculateDistance(
-          dataLocation[i]["lat"],
-          dataLocation[i]["lng"],
-          dataLocation[i + 1]["lat"],
-          dataLocation[i + 1]["lng"]);
-    }
-    print(totalDistance);
-  }
-
-  double calculateDistance(lat1, lon1, lat2, lon2) {
-    var p = 0.017453292519943295;
-    var c = cos;
-    var a = 0.5 -
-        c((lat2 - lat1) * p) / 2 +
-        c(lat1 * p) * c(lat2 * p) * (1 - c((lon2 - lon1) * p)) / 2;
-    return 12742 * asin(sqrt(a));
   }
 
   Future<void> runFilter(String enteredKeyword) async {
@@ -194,23 +180,13 @@ class SearchController extends GetxController {
     listUseProfileModel = await ListUserProfileApi.listUserProfileApi(
         page: page,
         limit: limit,
-        keyWords: enteredKeyword,
+        keyWords: "",
         longitude: longitude,
-        latitude: latitude);
-    /*   data.addAll(listUseProfileModel.data!);*/
+        latitude: latitude,
+        fullName: enteredKeyword);
     loader.value = false;
-
-    if (enteredKeyword.isEmpty) {
-      dataStore = listUseProfileModel.data!;
-    } else {
-      dataStore = listUseProfileModel.data!
-          .where((user) => user.userStatus!
-              .toLowerCase()
-              .contains(enteredKeyword.toLowerCase()))
-          .toList();
-      // we use the toLowerCase() method to make it case-insensitive
-    } // Refresh the UI
-    data.addAll(dataStore);
+    dataStore = listUseProfileModel.data ?? [];
+    listUserData = dataStore;
     update(['Search']);
   }
 
@@ -220,10 +196,71 @@ class SearchController extends GetxController {
   onTapViewProfile(String userId) async {
     connectionsProfileController.callApi(userId);
     loader.value = true;
-    // int userId= PrefService.getInt(PrefKeys.userId);
+
     connectionsProfileController.profileModel =
         (await OtherProfileApi.getOtherUerData(userId.toString()))!;
     loader.value = false;
     Get.to(() => ConnectionsProfileScreen());
+  }
+
+  void sendFriendRequest(String id) async {
+    loader.value = true;
+    await SendFriendRequestApi.postRegister(id);
+    await listUserProfileWithOutPagination();
+    /*   connectionsProfileController.sendFriendRequestDetails(id);*/
+    loader.value = false;
+
+    update(['Search']);
+  }
+
+  void acceptFriendRequest(String id) async {
+    loader.value = true;
+    await AcceptFriendRequestApi.postRegister(id);
+    await listUserProfileWithOutPagination();
+/*    connectionsProfileController.acceptFriendRequestDetails(id);*/
+    loader.value = false;
+
+    update(['Search']);
+  }
+
+  void cancelFriendRequest(String id) async {
+    loader.value = true;
+    await OtherProfileApi.cancelRequest(id);
+    await listUserProfileWithOutPagination();
+/*    connectionsProfileController.cancelFriendRequestDetails(id);*/
+    loader.value = false;
+
+    update(['Search']);
+  }
+
+  void unFriendRequest(String id) async {
+    loader.value = true;
+    await UnFriendRequestApi.postRegister(id);
+/*    connectionsProfileController.unFriendRequestDetails(id);*/
+    await listUserProfileWithOutPagination();
+    loader.value = false;
+
+    update(['Search']);
+  }
+
+  void blockOnTap(String id) async {
+    loader.value = true;
+    await BlockApi.postRegister(id.toString());
+    /*   connectionsProfileController.blockUserDetails(id);*/
+    await listUserProfileWithOutPagination();
+
+    loader.value = false;
+
+    update(['Search']);
+  }
+
+  void unblockOnTap(String id) async {
+    loader.value = true;
+    await UnBlockApi.postRegister(id);
+    /*   connectionsProfileController.unBlockUserDetails(id);*/
+    await listUserProfileWithOutPagination();
+    loader.value = false;
+
+    update(['Search']);
   }
 }

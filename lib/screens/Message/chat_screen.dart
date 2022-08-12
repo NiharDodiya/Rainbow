@@ -278,6 +278,7 @@ class ChatScreen extends StatelessWidget {
                               Expanded(
                                 child: TextFormField(
                                   controller: controller.msgController,
+                                  style: const TextStyle(color: Colors.black),
                                   decoration: InputDecoration(
                                       hintText: "Type your message...",
                                       hintStyle: sfProTextReguler(

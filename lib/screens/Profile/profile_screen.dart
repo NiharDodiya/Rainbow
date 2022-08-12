@@ -235,36 +235,7 @@ class ProfileScreen extends StatelessWidget {
                           fontSize: 16),
                     ),
                   )
-                : ListView.separated(
-                    padding: const EdgeInsets.only(top: 15),
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return listOfTestimonials(
-                          title: controller.viewProfile.data!
-                              .testimonialsList![index].userSender!.fullName
-                              .toString(),
-                          subtitle: controller.viewProfile.data!
-                              .testimonialsList![index].userSender!.userStatus
-                              .toString(),
-                          descriptions: controller.viewProfile.data!
-                              .testimonialsList![index].testimonial
-                              .toString(),
-                          date:DateFormat("dd/MM/yyyy").format(controller.viewProfile.data!
-                    .testimonialsList![index].createdAt!),
-                          profile: controller.viewProfile.data!
-                              .testimonialsList![index].userSender!.profileImage
-                              .toString());
-                    },
-                    separatorBuilder: (context, index) {
-                      return Divider(
-                        height: 24,
-                        color: ColorRes.white.withOpacity(0.7),
-                      );
-                    },
-                    itemCount:
-                        controller.viewProfile.data!.testimonialsList!.length,
-                    shrinkWrap: true,
-                  ),
+                : controller.viewTestimonials(),
             controller.viewProfile.data!.testimonialsList!.isEmpty
                 ? const SizedBox()
                 : Column(
@@ -277,18 +248,49 @@ class ProfileScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          iconForSlider(AssetRes.leftIcon),
+                         controller.count == 1?const SizedBox():InkWell(onTap: () {
+                            controller.count--;
+                            controller.update(["profile"]);
+                          },
+                            child: Container(
+                              height: 20,
+                              width: 20,
+                              margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 5),
+                              child: Image.asset(
+                                AssetRes.leftIcon,
+                                height: 20,
+                                width: 20,
+                              ),
+                            ),
+                          ),
+
                           Container(
                             height: 20,
                             width: 30,
                             margin: const EdgeInsets.only(bottom: 10, top: 5),
                             alignment: Alignment.center,
                             child: Text(
-                              "1",
+                              controller.count.toString(),
                               style: gilroyMediumTextStyle(fontSize: 14),
                             ),
                           ),
-                          iconForSlider(AssetRes.rightIcon),
+                         /* controller.count*2 ==controller.testimonialsData!.length ?const SizedBox():*/
+                          controller.count*2 == controller.viewProfile.data!.testimonialsList!.length?const SizedBox():InkWell(onTap: () {
+                            controller.count++;
+                            controller.update(["profile"]);
+                          },
+                            child: Container(
+                              height: 20,
+                              width: 20,
+                              margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 5),
+                              child: Image.asset(
+                                AssetRes.rightIcon,
+                                height: 20,
+                                width: 20,
+                              ),
+                            ),
+                          )
+
                         ],
                       ),
                     ],

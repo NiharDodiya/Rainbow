@@ -235,7 +235,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     left: Get.width * 0.4,
                     child: InkWell(
                         onTap: () {
-                          // controller.frontCamera();
                           showModalBottomSheet(
                               elevation: 10,
                               barrierColor: ColorRes.black.withOpacity(0.4),
@@ -357,6 +356,99 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                     ),
                   ),
+           /*       SizedBox(
+                    height: Get.height * 0.026,
+                  ),
+
+                  SizedBox(
+                    width: Get.width * 0.85,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          Strings.status,
+                          style: gilroySemiBoldTextStyle(fontSize: 14),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        GetBuilder<EditProfileController>(
+                          id: "Edit_profile",
+                          builder: (controller) {
+                            return DropdownButtonHideUnderline(
+                              child: DropdownButton2(
+                                isExpanded: true,
+                                hint: Row(
+                                  children: [
+                                    const SizedBox(
+                                      width: 4,
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        Strings.sorrogateMom,
+                                        style: gilroyMediumTextStyle(
+                                            fontSize: 16,
+                                            color: ColorRes.black
+                                                .withOpacity(0.3)),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                items: controller.advanceSearch
+                                    .map((item) => DropdownMenuItem<String>(
+                                          value: item,
+                                          child: Text(
+                                            item,
+                                            style: gilroyMediumTextStyle(
+                                                fontSize: 16,
+                                                color: ColorRes.black),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ))
+                                    .toList(),
+                                value: controller.statusv,
+                                onChanged: (value) {
+                                  controller.statusv = value as String;
+                                  controller.status.text = value;
+                                  controller.update(["Edit_profile"]);
+                                },
+                                icon:
+                                    Image.asset(AssetRes.arrowDown, height: 17),
+                                iconSize: 14,
+                                iconEnabledColor: Colors.grey,
+                                iconDisabledColor: Colors.grey,
+                                buttonHeight: 60,
+                                buttonWidth: Get.width * 0.85,
+                                buttonPadding:
+                                    const EdgeInsets.only(left: 14, right: 23),
+                                buttonDecoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.white,
+                                ),
+                                buttonElevation: 2,
+                                itemHeight: 40,
+                                itemPadding:
+                                    const EdgeInsets.only(left: 20, right: 14),
+                                dropdownMaxHeight: Get.height * 0.3,
+                                *//* height: Get.height*0.19,*//*
+                                dropdownWidth: Get.width * 0.85,
+                                dropdownPadding: null,
+                                dropdownDecoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(14),
+                                  color: Colors.white,
+                                ),
+                                dropdownElevation: 8,
+                                scrollbarRadius: const Radius.circular(40),
+                                scrollbarThickness: 6,
+                                scrollbarAlwaysShow: true,
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),*/
                   SizedBox(
                     height: Get.height * 0.026,
                   ),

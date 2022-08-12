@@ -1,11 +1,15 @@
-import 'package:flutter/cupertino.dart';
+
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_api.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
 import 'package:rainbow/screens/Profile/widget/postTestimonials_api/postTestimonials_api.dart';
+import 'package:rainbow/screens/Profile/widget/testimonials.dart';
 import 'package:rainbow/screens/dashboard/dashboard_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
+import 'package:rainbow/utils/color_res.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:intl/intl.dart';
 
 class ProfileController extends GetxController {
   RxBool loader = false.obs;
@@ -50,9 +54,7 @@ class ProfileController extends GetxController {
     try {
       print("data Calling is here");
       loader.value = true;
-      await ViewProfileApi.postRegister().then((value) {
-        viewProfile = value;
-      });
+      viewProfile=await ViewProfileApi.postRegister();
       loader.value = false;
     } catch (e) {
       loader.value = false;
@@ -81,5 +83,40 @@ class ProfileController extends GetxController {
     } catch (e) {
       loaderTestimonials.value = false;
     }
+  }
+
+  int count = 1;
+
+  Widget viewTestimonials(){
+
+    List?  testimonialsData =[];
+    testimonialsData.add(viewProfile.data!.testimonialsList![(2*count) - 2]);
+    testimonialsData.add(viewProfile.data!.testimonialsList![(2*count) - 1]);
+    update(["profile"]);
+    return ListView.separated(
+      padding: const EdgeInsets.only(top: 15),
+      physics: const NeverScrollableScrollPhysics(),
+      itemBuilder: (context, index) {
+        return listOfTestimonials(
+            title: testimonialsData[index].userSender!.fullName
+                .toString(),
+            subtitle: testimonialsData[index].userSender!.userStatus
+                .toString(),
+            descriptions: testimonialsData[index].testimonial
+                .toString(),
+            date:DateFormat("dd/MM/yyyy").format(testimonialsData[index].createdAt!),
+            profile: testimonialsData[index].userSender!.profileImage
+                .toString());
+      },
+      separatorBuilder: (context, index) {
+        return Divider(
+          height: 24,
+          color: ColorRes.white.withOpacity(0.7),
+        );
+      },
+      itemCount:
+      testimonialsData!.length,
+      shrinkWrap: true,
+    );
   }
 }

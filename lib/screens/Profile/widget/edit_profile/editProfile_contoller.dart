@@ -36,6 +36,7 @@ class EditProfileController extends GetxController {
   String aboutTextCounter = '';
   String hobbiesTextCounter = '';
   String? selectedEthicity;
+  String? statusv;
   File? frontImage;
   File? backImage;
   RxBool loader = false.obs;
@@ -50,13 +51,23 @@ class EditProfileController extends GetxController {
   String? lat;
   String? lan;
   Position? position;
+  void onInit(){
+    update(["Edit_profile"]);
+    super.onInit();
+  }
   Future<void> init() async {
 
     await determinePosition();
     position = await getCurrentPosition();
     setInitData();
   }
-
+  List advanceSearch = [
+    "Surrogate Mom",
+    "Sperm Donor",
+    "Egg Donor",
+    "Intended Parents",
+    "Retired Surrogate"
+  ];
   Future<void> onTapTextField(context) async {
     if (validation()) {
       for (int i = 0; i < listNationalities.data!.length; i++) {
@@ -76,6 +87,7 @@ class EditProfileController extends GetxController {
     ProfileController profileController = Get.find();
     fullName.text = profileController.viewProfile.data!.fullName!;
     status.text = profileController.viewProfile.data!.userStatus!;
+    statusv = profileController.viewProfile.data!.userStatus!;
     status1.text = profileController.viewProfile.data!.maritalStatus!;
     age.text = profileController.viewProfile.data!.age.toString();
     city.text = profileController.viewProfile.data!.city!;
@@ -93,6 +105,7 @@ class EditProfileController extends GetxController {
     faceBook.text = profileController.viewProfile.data!.facebook!.toString();
     aboutMe.text = profileController.viewProfile.data!.about!.toString();
     // await PrefService.setValue(PrefKeys.registerToken, registerUser.token.toString());
+    update(["Edit_profile"]);
   }
 
   bool validation() {

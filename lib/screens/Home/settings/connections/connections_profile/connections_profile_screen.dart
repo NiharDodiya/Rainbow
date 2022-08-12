@@ -198,7 +198,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                iconForSlider(AssetRes.leftIcon),
+
                 Container(
                   height: 20,
                   width: 30,

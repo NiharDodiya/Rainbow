@@ -4,6 +4,7 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Search/advance_search/advance_search_controller.dart';
+import 'package:rainbow/screens/Search/search_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -12,14 +13,13 @@ class AdvanceSearchScreen extends StatelessWidget {
   final String title;
 
   AdvanceSearchScreen({Key? key, required this.title}) : super(key: key);
-  AdvanceSearchController advanceSearchController =
-      Get.put(AdvanceSearchController());
-
+  SearchController searchController =
+      Get.put(SearchController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GetBuilder<AdvanceSearchController>(
-        id: "advancedSearch",
+      body: GetBuilder<SearchController>(
+        id: "Search",
         builder: (controller) {
           return SingleChildScrollView(
             child: SafeArea(
@@ -42,7 +42,8 @@ class AdvanceSearchScreen extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    Positioned(top: Get.height*0.1,
+                    Positioned(
+                      top: Get.height * 0.1,
                       child: Container(
                         height: 45,
                         width: Get.width,
@@ -119,14 +120,16 @@ class AdvanceSearchScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.only(top: Get.height * 0.15),
+                    Padding(
+                      padding: EdgeInsets.only(top: Get.height * 0.16),
                       child: Image.asset(
                         AssetRes.searchBackground,
                         height: 400,
                         width: 400,
                       ),
                     ),
-                    Positioned(top: Get.height*0.6,
+                    Positioned(
+                      top: Get.height * 0.6155,
                       child: Container(
                         width: Get.width,
                         height: 258,
@@ -139,7 +142,7 @@ class AdvanceSearchScreen extends StatelessWidget {
                           itemCount: controller.imageList.length,
                           itemBuilder: (context, index) {
                             return Padding(
-                              padding: const EdgeInsets.only(top: 25,left: 20),
+                              padding: const EdgeInsets.only(top: 25, left: 20),
                               child: Row(
                                 children: [
                                   Container(
@@ -152,16 +155,34 @@ class AdvanceSearchScreen extends StatelessWidget {
                                                 .imageList[index]
                                                 .toString()))),
                                   ),
-                                  const SizedBox(width: 10,),
-                                  Column(crossAxisAlignment: CrossAxisAlignment.start,
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text("amber delvis",style: gilroyMediumTextStyle(fontSize: 16,color: ColorRes.color_303030),),
-                                      Text("sorrogate mom",style:gilroyMediumTextStyle(fontSize: 16,color: ColorRes.color_979797)),
+                                      Text(
+                                        "Amber delvis",
+                                        style: gilroyMediumTextStyle(
+                                            fontSize: 16,
+                                            color: ColorRes.color_303030),
+                                      ),
+                                      Text("Surrogate mom",
+                                          style: gilroyMediumTextStyle(
+                                              fontSize: 16,
+                                              color: ColorRes.color_979797)),
                                     ],
                                   ),
                                   const Spacer(),
-                                  Image.asset(AssetRes.addPeople,height: 40,width: 40,),
-                                  const SizedBox(width: 16,)
+                                  Image.asset(
+                                    AssetRes.addPeople,
+                                    height: 40,
+                                    width: 40,
+                                  ),
+                                  const SizedBox(
+                                    width: 16,
+                                  )
                                 ],
                               ),
                             );

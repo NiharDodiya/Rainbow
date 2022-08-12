@@ -61,6 +61,7 @@ class Strings {
       'We’ll update you on the status of your verification by email and on your account limits page';
   static const gotIt = "OK, GOT IT";
   static const cancel = "CANCEL";
+  static const cancelRequest = "cancel request";
   static const idVerification = "ID Verification";
   static const idType = "ID Type";
   static const idNo = "ID No.";
@@ -231,6 +232,9 @@ class Strings {
   static const advancedSearch = "Advance Search";
   static const connect = "Connect";
   static const block = "Block";
+  static const unBlock = "UnBlock";
+  static const unFriend= "UnFriend";
+  static const accept= "accept";
   static const myCompanyDes =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem a commodo consequat  ";
   static const typeYourReply = "Type your reply...";

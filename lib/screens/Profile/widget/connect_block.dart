@@ -4,6 +4,7 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
+import 'package:rainbow/utils/strings.dart';
 
 Widget connectAndBlock({
   String? title,
@@ -106,7 +107,7 @@ Widget connectAndBlock({
                                     ),
                                   ),
                                   Text(
-                                    "UnFriend",
+                                    Strings.unFriend,
                                     style: beVietnamSemiBoldTextStyle(
                                         fontSize: 12),
                                   ),
@@ -156,7 +157,7 @@ Widget connectAndBlock({
                                         ),
                                       ),
                                       Text(
-                                        "Cancel",
+                                        Strings.cancel,
                                         style: beVietnamSemiBoldTextStyle(
                                             fontSize: 12),
                                       ),

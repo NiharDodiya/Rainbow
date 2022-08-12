@@ -295,11 +295,12 @@ class HomeController extends GetxController {
 
   Future<void> init() async {
     changeLoader(true);
-    countryName();
-    countryNationalites();
+
     await controller.viewProfileDetails();
     await onStory();
     await friendPostData();
+    countryName();
+    countryNationalites();
     notificationsController.getNotifications();
 
     await connectionsController.callRequestApi();
