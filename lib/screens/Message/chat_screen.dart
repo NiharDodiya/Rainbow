@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -277,7 +279,7 @@ class ChatScreen extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: TextFormField(
-                                  controller: controller.msgController,
+                                  controller: controller.msController,
                                   style: const TextStyle(color: Colors.black),
                                   decoration: InputDecoration(
                                       hintText: "Type your message...",

@@ -36,7 +36,7 @@ class EditProfileController extends GetxController {
   String aboutTextCounter = '';
   String hobbiesTextCounter = '';
   String? selectedEthicity;
-  String? statusv;
+  String? selectedStatus;
   File? frontImage;
   File? backImage;
   RxBool loader = false.obs;
@@ -68,6 +68,7 @@ class EditProfileController extends GetxController {
     "Intended Parents",
     "Retired Surrogate"
   ];
+
   Future<void> onTapTextField(context) async {
     if (validation()) {
       for (int i = 0; i < listNationalities.data!.length; i++) {
@@ -87,7 +88,7 @@ class EditProfileController extends GetxController {
     ProfileController profileController = Get.find();
     fullName.text = profileController.viewProfile.data!.fullName!;
     status.text = profileController.viewProfile.data!.userStatus!;
-    statusv = profileController.viewProfile.data!.userStatus!;
+    selectedStatus = profileController.viewProfile.data!.userStatus!;
     status1.text = profileController.viewProfile.data!.maritalStatus!;
     age.text = profileController.viewProfile.data!.age.toString();
     city.text = profileController.viewProfile.data!.city!;
@@ -112,10 +113,10 @@ class EditProfileController extends GetxController {
  /*   if (backImage == null) {
       errorToast(Strings.captureImageBack);
       return false;
-    } else*/ if (frontImage == null) {
+    } else if (frontImage == null) {
       errorToast(Strings.captureImageFront);
       return false;
-    } else if (fullName.text.isEmpty) {
+    } else */if (fullName.text.isEmpty) {
       errorToast(Strings.fullName);
       return false;
     } else if (status.text.isEmpty) {
@@ -338,7 +339,7 @@ class EditProfileController extends GetxController {
       await uploadImageBackApi();
       EditProfile? data = await EditProfileApi.postRegister(
           uploadImage2.data==null?"":uploadImage2.data!.id.toString(),
-        uploadImage1.data!.id.toString(),
+        uploadImage1.data==null?"":uploadImage1.data!.id.toString(),
         lat.toString(),
         lan.toString(),
         fullName.text,

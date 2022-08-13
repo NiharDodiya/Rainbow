@@ -189,6 +189,9 @@ class MyPostApi {
           commentsController.replyId = "";
           commentsController.nameComment = "";
           commentsController.imageForCamera =null;
+          print(commentsController.imageCamera);
+          commentsController.uploadImage.data =null;
+          print(commentsController.uploadImage.data);
            flutterToast(jsonDecode(response.body)["message"]);
 
         }

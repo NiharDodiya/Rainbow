@@ -295,7 +295,6 @@ class HomeController extends GetxController {
 
   Future<void> init() async {
     changeLoader(true);
-
     await controller.viewProfileDetails();
     await onStory();
     await friendPostData();

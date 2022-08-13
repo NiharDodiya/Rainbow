@@ -12,6 +12,7 @@ import 'package:rainbow/utils/pref_keys.dart';
 
 class MessageController extends GetxController {
   TextEditingController msgController = TextEditingController();
+  TextEditingController msController = TextEditingController();
   final ScrollController listScrollController = ScrollController();
   RxBool loader = false.obs;
   UserModel receiver = UserModel();
@@ -21,6 +22,7 @@ class MessageController extends GetxController {
   bool showScrollDownBtn = false;
   String? userUid;
   String? roomId;
+
   var data;
   @override
   void onInit() {
@@ -108,6 +110,7 @@ class MessageController extends GetxController {
       }
     });
   }
+
   gotoChatScreen(String otherUid, name) async {
     loader.value = true;
     await getRoomId(otherUid);
@@ -120,7 +123,7 @@ class MessageController extends GetxController {
     ));
   }
   sendMessage(String roomId, otherUid) async {
-    String msg = msgController.text;
+    String msg = msController.text;
     final userUid1 = userUid;
 
     await setMessage(roomId, msg, userUid);
@@ -137,7 +140,7 @@ class MessageController extends GetxController {
         .collection(roomId)
         .doc()
         .set({"content": msg, "senderUid": userUid, "time": DateTime.now()});
-    msgController.clear();
+    msController.clear();
     update(['message']);
     update(['chats']);
   }

@@ -1,10 +1,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_api.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
 import 'package:rainbow/screens/Profile/widget/postTestimonials_api/postTestimonials_api.dart';
 import 'package:rainbow/screens/Profile/widget/testimonials.dart';
+import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
 import 'package:rainbow/screens/dashboard/dashboard_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -36,6 +39,8 @@ class ProfileController extends GetxController {
 
   @override
   void onInit() async {
+
+
     init();
     viewProfileDetails();
     update(["profile"]);

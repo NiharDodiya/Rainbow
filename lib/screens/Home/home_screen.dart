@@ -32,18 +32,19 @@ class _HomeScreenState extends State<HomeScreen> {
   ConnectionsController connectionsController =
       Get.put(ConnectionsController());
 
-
-/*  @override
-  void initState() {
-   controller.scrollController.addListener(controller.pagination);
-    super.initState();
-  }
+/*
 
   @override
+  void initState() {
+
+    super.initState();
+  }
+*/
+/* @override
   void dispose() {
     controller.scrollController.addListener(controller.pagination);
     super.dispose();
-  }*/
+}*/
 
   @override
   Widget build(BuildContext context) {

@@ -206,7 +206,6 @@ class ViewStoryController extends GetxController {
     // loader.value = true;
     try {
       imgIdList = [];
-
       for (var e in image) {
         uploadImage = await UploadImageApi.postRegister(e.path);
         imgIdList.add(uploadImage.data!.id!);

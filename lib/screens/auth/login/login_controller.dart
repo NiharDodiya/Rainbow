@@ -123,13 +123,13 @@ class LoginController extends GetxController {
           //"name": nameController.text,
           "online": true
         });
-        setCount();
+ /*       setCount();*/
       } else {
         await firebaseFirestore
             .collection("users")
             .doc(uid)
             .update({"online": true});
-        setCount();
+     /*   setCount();*/
       }
     });
   }

@@ -91,7 +91,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                         ),*/
                         Image.network(
                           story.storyItem.toString(),
-                          height: Get.height * 0.9,
+                          height: Get.height * 0.89,
                           width: Get.width,
                           fit: BoxFit.cover,
                           errorBuilder: (context, url, error) => Container(
@@ -386,7 +386,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                           ),
                         ),
                         Positioned(
-                          bottom: 5,
+                          bottom: 0,
                           left: 15,
                           child: Row(
                             children: [

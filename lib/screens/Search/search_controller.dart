@@ -28,7 +28,7 @@ class SearchController extends GetxController {
   int limit = 3;
   ScrollController scrollController = ScrollController();
   List advanceSearch = [
-    "Surrogate Mom  ",
+    "Surrogate Mom",
     "Sperm Donor",
     "Egg Donor",
     "Intended Parents",
@@ -83,12 +83,39 @@ class SearchController extends GetxController {
     update(["Search"]);
   }
 
-  void onTapAdvanceSearchMenu(int index) {
+  Future<void> onTapAdvanceSearchMenu(int index) async {
+    advance = false;
+   await  listUserProfileAdvanceSearch(advanceSearch[index]);
     Get.to(
       AdvanceSearchScreen(
         title: advanceSearch[index],
-      ),
-    );
+      )
+    )!.then((value) async {
+      await listUserProfile();
+
+
+    });
+  }
+  Future<void> listUserProfileAdvanceSearch(String keyWords) async {
+    try {
+      latitude = position!.latitude;
+      longitude = position!.longitude;
+      print(latitude);
+      print(latitude);
+      loader.value = true;
+      listUseProfileModel = await ListUserProfileApi.listUserProfileAdvanceSearchApi(
+          keyWords: keyWords,
+          latitude: latitude,
+          longitude: longitude,
+          fullName: "");
+
+      print("pagggggggggggggggggggggggg===${page}");
+      update(['Search']);
+      loader.value = false;
+    } catch (e) {
+      debugPrint(e.toString());
+      loader.value = false;
+    }
   }
 
   List imageList = [

@@ -356,10 +356,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                     ),
                   ),
-           /*       SizedBox(
-                    height: Get.height * 0.026,
+                  SizedBox(
+                    height: Get.height * 0.01,
                   ),
-
                   SizedBox(
                     width: Get.width * 0.85,
                     child: Column(
@@ -407,9 +406,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                           ),
                                         ))
                                     .toList(),
-                                value: controller.statusv,
+                                value: controller.selectedStatus,
                                 onChanged: (value) {
-                                  controller.statusv = value as String;
+                                  controller.selectedStatus = value as String;
                                   controller.status.text = value;
                                   controller.update(["Edit_profile"]);
                                 },
@@ -431,7 +430,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 itemPadding:
                                     const EdgeInsets.only(left: 20, right: 14),
                                 dropdownMaxHeight: Get.height * 0.3,
-                                *//* height: Get.height*0.19,*//*
                                 dropdownWidth: Get.width * 0.85,
                                 dropdownPadding: null,
                                 dropdownDecoration: BoxDecoration(
@@ -448,11 +446,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                       ],
                     ),
-                  ),*/
+                  ),
                   SizedBox(
                     height: Get.height * 0.026,
                   ),
-                  SizedBox(
+               /*   SizedBox(
                     width: Get.width * 0.85,
                     child: GestureDetector(
                       onTap: () {},
@@ -466,7 +464,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                   SizedBox(
                     height: Get.height * 0.026,
-                  ),
+                  ),*/
                   SizedBox(
                     width: Get.width * 0.85,
                     child: GestureDetector(

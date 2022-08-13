@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
+import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/screens/Search/advance_search/advance_search_controller.dart';
 import 'package:rainbow/screens/Search/search_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -13,8 +15,9 @@ class AdvanceSearchScreen extends StatelessWidget {
   final String title;
 
   AdvanceSearchScreen({Key? key, required this.title}) : super(key: key);
-  SearchController searchController =
-      Get.put(SearchController());
+  SearchController searchController = Get.put(SearchController());
+  HomeController homeController = Get.put(HomeController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,38 +125,82 @@ class AdvanceSearchScreen extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: Get.height * 0.16),
-                      child: Image.asset(
-                        AssetRes.searchBackground,
+                      child: SizedBox(
                         height: 400,
                         width: 400,
+                        child: Stack(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(100),
+                              child: Image.asset(
+                                AssetRes.searchBackground,
+                                height: 400,
+                                width: 400,
+                              ),
+                            ),
+                            Align(alignment: Alignment.center,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(100),
+                                child: Image.network(
+                                  homeController
+                                      .controller.viewProfile.data!.profileImage
+                                      .toString(),
+                                  height: 100,
+                                  width: 100,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Image.asset(
+                                      AssetRes.portrait_placeholder,
+                                      height: 100,
+                                      width: 100,
+                                    );
+                                  },
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     Positioned(
                       top: Get.height * 0.6155,
                       child: Container(
                         width: Get.width,
-                        height: 258,
+                        height: 250,
                         decoration: const BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(12),
                                 topRight: Radius.circular(12))),
                         child: ListView.builder(
-                          itemCount: controller.imageList.length,
+                          shrinkWrap: true,
+                          padding: const EdgeInsets.only(top: 5, bottom: 20),
+                          itemCount: controller.listUseProfileModel.data == null
+                              ? 0
+                              : controller.listUseProfileModel.data!.length,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.only(top: 25, left: 20),
                               child: Row(
                                 children: [
-                                  Container(
-                                    height: 50,
-                                    width: 50,
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        image: DecorationImage(
-                                            image: AssetImage(controller
-                                                .imageList[index]
-                                                .toString()))),
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(50),
+                                    child: Image.network(
+                                      controller.listUseProfileModel
+                                          .data![index].profileImage
+                                          .toString(),
+                                      height: 50,
+                                      width: 50,
+                                      fit: BoxFit.cover,
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
+                                        return Image.asset(
+                                          AssetRes.portrait_placeholder,
+                                          height: 50,
+                                          width: 50,
+                                        );
+                                      },
+                                    ),
                                   ),
                                   const SizedBox(
                                     width: 10,
@@ -163,12 +210,17 @@ class AdvanceSearchScreen extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Amber delvis",
+                                        controller.listUseProfileModel
+                                            .data![index].fullName
+                                            .toString(),
                                         style: gilroyMediumTextStyle(
                                             fontSize: 16,
                                             color: ColorRes.color_303030),
                                       ),
-                                      Text("Surrogate mom",
+                                      Text(
+                                          controller.listUseProfileModel
+                                              .data![index].userStatus
+                                              .toString(),
                                           style: gilroyMediumTextStyle(
                                               fontSize: 16,
                                               color: ColorRes.color_979797)),
