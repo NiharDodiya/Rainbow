@@ -263,7 +263,6 @@ class ProfileScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-
                           Container(
                             height: 20,
                             width: 30,
@@ -274,8 +273,7 @@ class ProfileScreen extends StatelessWidget {
                               style: gilroyMediumTextStyle(fontSize: 14),
                             ),
                           ),
-                         /* controller.count*2 ==controller.testimonialsData!.length ?const SizedBox():*/
-                          controller.count*2 == controller.viewProfile.data!.testimonialsList!.length?const SizedBox():InkWell(onTap: () {
+                          controller.count ==   (controller.viewProfile.data!.testimonialsList!.length/2).ceil()?const SizedBox():InkWell(onTap: () {
                             controller.count++;
                             controller.update(["profile"]);
                           },

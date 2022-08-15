@@ -92,11 +92,9 @@ class ViewStoryController extends GetxController {
         /*allowedExtensions: ["jpg","png","jpeg"],*/
         allowMultiple: false,
         type: FileType.image);
-
     if (filePickerResult != null) {
       image.add(File(filePickerResult.files.first.path!));
     }
-
     update(["createStory"]);
     return null;
   }

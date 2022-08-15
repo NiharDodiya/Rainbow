@@ -13,7 +13,7 @@ class DashboardController extends GetxController {
 
   @override
   void onInit() async{
-    await homeController.init();
+
     update(['bottom_bar']);
     super.onInit();
   }

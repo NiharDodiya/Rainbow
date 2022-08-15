@@ -59,6 +59,7 @@ class HomeController extends GetxController {
   List<FriendPost> friendPostListData = [];
   List listOfUserView = [];
 
+
   ScrollController scrollController = ScrollController();
   int page = 1;
   int limit = 5;
@@ -296,8 +297,8 @@ class HomeController extends GetxController {
   Future<void> init() async {
     changeLoader(true);
     await controller.viewProfileDetails();
-    await onStory();
     await friendPostData();
+    await onStory();
     countryName();
     countryNationalites();
     notificationsController.getNotifications();
@@ -305,6 +306,7 @@ class HomeController extends GetxController {
     await connectionsController.callRequestApi();
     changeLoader(false);
   }
+
 
   Future<void> onStory() async {
     await viewStoryController.friendStoryApiData();

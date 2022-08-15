@@ -176,7 +176,11 @@ class StoryScreen extends StatelessWidget {
                 Positioned(
                   top: Get.height * 0.025,
                   left: 15,
-                  child: ClipRRect(
+                  child: image.toString()==""?ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: SizedBox(   height: 40,
+                      width: 40,child: Image.asset(AssetRes.portrait_placeholder),),
+                  ):ClipRRect(
                       borderRadius: BorderRadius.circular(50),
                       child: FadeInImage(
                         height: 40,

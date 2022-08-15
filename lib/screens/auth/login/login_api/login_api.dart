@@ -71,10 +71,14 @@ class LoginApi {
                 "pending") {
               Get.to(() => const SelfieVerificationScreen());
             } else {
+
               await PrefService.setValue(
                   PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
               await PrefService.setValue(PrefKeys.loginRole,
                   jsonDecode(response.body)["data"]["role"]);
+
+              HomeController homeController = Get.put(HomeController());
+              await homeController.init();
               Get.offAll(() =>
                   jsonDecode(response.body)["data"]["role"] == "end_user"
                       ? const Dashboard()
@@ -98,6 +102,8 @@ class LoginApi {
               advertiserVerifyController.phoneNumberRegister();
               Get.to(() => AdvertiserVerifyOtpScreen());
             } else {
+              HomeController homeController = Get.put(HomeController());
+               await homeController.init();
               Get.offAll(() =>
                   jsonDecode(response.body)["data"]["role"] == "end_user"
                       ? const Dashboard()

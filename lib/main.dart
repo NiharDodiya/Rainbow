@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
           : (PrefService.getBool(PrefKeys.isLogin) ||
                   PrefService.getBool(PrefKeys.register))
               ? PrefService.getBool(PrefKeys.showTermsCondition)
-                  ? const TermsConditionsScreen(showBackBtn: false)
+                  ?  TermsConditionsScreen(showBackBtn: false)
                   : PrefService.getString(PrefKeys.loginRole) == "end_user"
                       ? const Dashboard()
                       : PrefService.getString(PrefKeys.loginRole) == ""

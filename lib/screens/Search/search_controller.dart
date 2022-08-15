@@ -27,6 +27,15 @@ class SearchController extends GetxController {
   int page = 1;
   int limit = 3;
   ScrollController scrollController = ScrollController();
+
+  int length = 5;
+  double innerSpacingDivider = 10;
+  double radiusOfItemDivider = 6;
+  double centerWidgetRadiusDivider = 3;
+
+  double startAngleDeg = -90;
+  double totalArchDeg = 360;
+  bool isClockwise = true;
   List advanceSearch = [
     "Surrogate Mom",
     "Sperm Donor",
@@ -234,6 +243,13 @@ class SearchController extends GetxController {
     loader.value = true;
     await SendFriendRequestApi.postRegister(id);
     await listUserProfileWithOutPagination();
+    /*   connectionsProfileController.sendFriendRequestDetails(id);*/
+    loader.value = false;
+
+    update(['Search']);
+  }  void sendFriendRequestAdvance(String id) async {
+    loader.value = true;
+    await SendFriendRequestApi.postRegister(id);
     /*   connectionsProfileController.sendFriendRequestDetails(id);*/
     loader.value = false;
 

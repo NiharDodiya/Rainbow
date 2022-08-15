@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_stack/image_stack.dart';
@@ -305,19 +306,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                       )
                                     : ClipRRect(
                                         borderRadius: BorderRadius.circular(50),
-                                        child:  FadeInImage(
-                                          height: 56,
-                                          width: 56,
-                                          placeholder: const AssetImage(
-                                              AssetRes.portrait_placeholder),
-                                          image:NetworkImage(controller
-                                              .controller
-                                              .viewProfile
-                                              .data!
-                                              .profileImage
-                                              .toString()),
-                                          fit: BoxFit.cover,
-                                        )),
+                                        child: Image.network(controller
+                                            .controller
+                                            .viewProfile
+                                            .data!
+                                            .profileImage
+                                            .toString(),height: 56,width: 56,fit:BoxFit.cover,errorBuilder: (context, error, stackTrace) {
+                                              return Image.asset(AssetRes.portrait_placeholder);
+                                            },)),
                                 Positioned(
                                     top: Get.height * 0.04,
                                     left: Get.width * 0.1,
@@ -749,23 +745,26 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         .profileImage
                                                         .toString()),
                                                     fit: BoxFit.cover,
-                                                  )*/
-                                                        Image.network(
-                                                      controller
-                                                          .friendPostListData[
-                                                              index]
-                                                          .postUser!
-                                                          .profileImage
-                                                          .toString(),
-                                                      fit: BoxFit.cover,
+                                                  )*/CachedNetworkImage(
                                                       height: 40,
                                                       width: 40,
-                                                      errorBuilder: (context,
-                                                          error, stackTrace) {
-                                                        return const Icon(
-                                                            Icons.error);
-                                                      },
-                                                    )),
+                                                      imageUrl:  controller
+                                                          .friendPostListData[
+                                                      index]
+                                                          .postUser!
+                                                          .profileImage
+                                                          .toString(),fit: BoxFit.cover,
+                                                      placeholder: (context, url) =>  Image.asset(
+                                                        AssetRes.placeholderImage,
+                                                        height: 40,
+                                                        width: 40,
+                                                      ),
+                                                      errorWidget: (context, url, error) => Image.asset(
+                                                        AssetRes.placeholderImage,
+                                                        height: 40,
+                                                        width: 40,
+                                                      ),)
+                                                      ),
                                               ),
                                               Padding(
                                                 padding: const EdgeInsets.only(
@@ -790,12 +789,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     Text(controller.timeAgo(controller
                                                         .friendPostListData[
                                                         index]
-                                                        .createdAt!)
-                                                   /*   DateFormat.Hm().format(
-                                                          controller
-                                                              .friendPostListData[
-                                                                  index]
-                                                              .createdAt!.toLocal())*/,
+                                                        .createdAt!),
                                                       style:
                                                           textStyleFont12White400,
                                                     ),
@@ -860,38 +854,35 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                     index2] ==
                                                                 null
                                                             ? const SizedBox()
-                                                            : Image.network(
-                                                                controller
-                                                                    .friendPostListData[
-                                                                        index]
-                                                                    .postList![index2],
-                                                                height: 80,
-                                                                width: 80,
-                                                                errorBuilder:
-                                                                    (context,
-                                                                        error,
-                                                                        stackTrace) {
-                                                                  return Image.asset(
-                                                                      AssetRes
-                                                                          .placeholderImage);
-                                                                },
-                                                                fit: BoxFit.cover,
-                                                              ), /*Image.network(
-                                                          controller
-                                                              .friendPostViewModel
-                                                              .data![index]
-                                                              .postList![index2],
-                                                          height: 80,
-                                                          width: 80,
-                                                          fit: BoxFit.cover,loadingBuilder: AssetRes.se_profile,
-                                                      */ /*    errorBuilder: (context,
-                                                                  url, error) =>
-                                                              const Icon(
-                                                            Icons.error,
-                                                            color: Colors.grey,
-                                                          ),*/ /*
-                                                        ),*/
-                                                      );
+                                                            : CachedNetworkImage(
+                                                                  height: 80,
+                                                                  width: 80,
+                                                                  imageUrl: controller
+                                                                      .friendPostListData[
+                                                                          index]
+                                                                      .postList![index2],
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                  placeholder: (context,
+                                                                          url) =>
+                                                                      Image
+                                                                          .asset(
+                                                                    AssetRes
+                                                                        .placeholderImage,
+                                                                    height: 80,
+                                                                    width: 80,
+                                                                  ),
+                                                                  errorWidget: (context,
+                                                                          url,
+                                                                          error) =>
+                                                                      Image
+                                                                          .asset(
+                                                                    AssetRes
+                                                                        .placeholderImage,
+                                                                    height: 80,
+                                                                    width: 80,
+                                                                  ),
+                                                                ));
                                                     },
                                                   ),
                                                 ),

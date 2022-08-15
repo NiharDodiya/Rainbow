@@ -38,7 +38,7 @@ class ScanYourFaceApi {
               PrefKeys.loginRole, jsonDecode(response.body)["data"]["role"]);
           PrefService.setValue(PrefKeys.showTermsCondition, true);
           PrefService.setValue(PrefKeys.register, true);
-          Get.to(() => const TermsConditionsScreen());
+          Get.to(() =>  TermsConditionsScreen());
           flutterToast(jsonDecode(response.body)["message"]);
         }
         return selfiVerificationFromJson(response.body);

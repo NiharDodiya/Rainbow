@@ -92,11 +92,16 @@ class ProfileController extends GetxController {
 
   int count = 1;
 
-  Widget viewTestimonials(){
 
+  Widget viewTestimonials(){
     List?  testimonialsData =[];
-    testimonialsData.add(viewProfile.data!.testimonialsList![(2*count) - 2]);
+    testimonialsData
+        .add(viewProfile.data!.testimonialsList![(2 * count) - 2]);
     testimonialsData.add(viewProfile.data!.testimonialsList![(2*count) - 1]);
+/*    if((viewProfile.data!.testimonialsList!.length % 2) == 0){
+      testimonialsData
+          .add(viewProfile.data!.testimonialsList![(2 * count) - 2]);
+    }*/
     update(["profile"]);
     return ListView.separated(
       padding: const EdgeInsets.only(top: 15),

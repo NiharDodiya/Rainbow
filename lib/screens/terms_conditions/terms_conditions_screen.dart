@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -10,7 +11,8 @@ import 'package:rainbow/utils/strings.dart';
 class TermsConditionsScreen extends StatelessWidget {
   final bool? showBackBtn;
 
-  const TermsConditionsScreen({Key? key, this.showBackBtn}) : super(key: key);
+   TermsConditionsScreen({Key? key, this.showBackBtn}) : super(key: key);
+  HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +90,7 @@ class TermsConditionsScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 15),
                     child: GestureDetector(
                       onTap: () async {
+                        homeController.init();
                         await PrefService.setValue(
                             PrefKeys.showTermsCondition, false);
                         Get.offAll(() => const Dashboard());

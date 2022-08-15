@@ -12,6 +12,7 @@ import 'package:rainbow/screens/Profile/widget/edit_profile/edit_api/edit_api.da
 import 'package:rainbow/screens/Profile/widget/edit_profile/edit_api/edit_model.dart';
 import 'package:rainbow/utils/strings.dart';
 import 'package:geolocator/geolocator.dart';
+
 class EditProfileController extends GetxController {
   TextEditingController fullName = TextEditingController(/*text: "ramika"*/);
   TextEditingController status =
@@ -51,16 +52,18 @@ class EditProfileController extends GetxController {
   String? lat;
   String? lan;
   Position? position;
-  void onInit(){
+
+  void onInit() {
     update(["Edit_profile"]);
     super.onInit();
   }
-  Future<void> init() async {
 
+  Future<void> init() async {
     await determinePosition();
     position = await getCurrentPosition();
     setInitData();
   }
+
   List advanceSearch = [
     "Surrogate Mom",
     "Sperm Donor",
@@ -88,7 +91,9 @@ class EditProfileController extends GetxController {
     ProfileController profileController = Get.find();
     fullName.text = profileController.viewProfile.data!.fullName!;
     status.text = profileController.viewProfile.data!.userStatus!;
-    selectedStatus = profileController.viewProfile.data!.userStatus!;
+    if (profileController.viewProfile.data!.userStatus != "") {
+      selectedStatus = profileController.viewProfile.data!.userStatus!;
+    }
     status1.text = profileController.viewProfile.data!.maritalStatus!;
     age.text = profileController.viewProfile.data!.age.toString();
     city.text = profileController.viewProfile.data!.city!;
@@ -110,13 +115,14 @@ class EditProfileController extends GetxController {
   }
 
   bool validation() {
- /*   if (backImage == null) {
+    /*   if (backImage == null) {
       errorToast(Strings.captureImageBack);
       return false;
     } else if (frontImage == null) {
       errorToast(Strings.captureImageFront);
       return false;
-    } else */if (fullName.text.isEmpty) {
+    } else */
+    if (fullName.text.isEmpty) {
       errorToast(Strings.fullName);
       return false;
     } else if (status.text.isEmpty) {
@@ -291,6 +297,7 @@ class EditProfileController extends GetxController {
   }
 
   EditProfile editProfile = EditProfile();
+
   Future<Position> determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -327,10 +334,10 @@ class EditProfileController extends GetxController {
     // continue accessing the position of the device.
     return await Geolocator.getCurrentPosition();
   }
+
   Future<void> editProfileApi(BuildContext context) async {
     loader.value = true;
     try {
-
       lat = position!.latitude.toString();
       lan = position!.longitude.toString();
       print(lat);
@@ -338,8 +345,8 @@ class EditProfileController extends GetxController {
       await uploadImageApi();
       await uploadImageBackApi();
       EditProfile? data = await EditProfileApi.postRegister(
-          uploadImage2.data==null?"":uploadImage2.data!.id.toString(),
-        uploadImage1.data==null?"":uploadImage1.data!.id.toString(),
+        uploadImage2.data == null ? "" : uploadImage2.data!.id.toString(),
+        uploadImage1.data == null ? "" : uploadImage1.data!.id.toString(),
         lat.toString(),
         lan.toString(),
         fullName.text,
@@ -383,6 +390,7 @@ class EditProfileController extends GetxController {
 
     return _currentPosition;
   }
+
   void onHeightSave() {
     height.text = "$heightFeet'$heightInches";
     update(["Edit_profile"]);
