@@ -20,10 +20,8 @@ class AdvanceSearchScreen extends StatelessWidget {
   SearchController searchController = Get.put(SearchController());
   HomeController homeController = Get.put(HomeController());
 
-
   @override
   Widget build(BuildContext context) {
-    searchController.findUserDistance();
     return Scaffold(
         body: GetBuilder<SearchController>(
       id: "Search",
@@ -53,7 +51,7 @@ class AdvanceSearchScreen extends StatelessWidget {
                       ),
                       searchUser(),
                       userProfile(controller),
-                      listOfUser(controller)
+                      listOfUser(controller),
                     ],
                   ),
                 ),
@@ -255,9 +253,9 @@ class AdvanceSearchScreen extends StatelessWidget {
         child: ListView.builder(
           shrinkWrap: true,
           padding: const EdgeInsets.only(top: 5, bottom: 20),
-          itemCount: controller.listUseProfileModel.data == null
+          itemCount: controller.listLatLongData == null
               ? 0
-              : controller.listUseProfileModel.data!.length,
+              : controller.listLatLongData.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.only(top: 25, left: 20),
@@ -266,8 +264,7 @@ class AdvanceSearchScreen extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(50),
                     child: Image.network(
-                      controller.listUseProfileModel.data![index].profileImage
-                          .toString(),
+                      controller.listLatLongData[index].profileImage.toString(),
                       height: 50,
                       width: 50,
                       fit: BoxFit.cover,
@@ -287,13 +284,12 @@ class AdvanceSearchScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        controller.listUseProfileModel.data![index].fullName
-                            .toString(),
+                        controller.listLatLongData[index].fullName.toString(),
                         style: gilroyMediumTextStyle(
                             fontSize: 16, color: ColorRes.color_303030),
                       ),
                       Text(
-                          controller.listUseProfileModel.data![index].userStatus
+                          controller.listLatLongData[index].userStatus
                               .toString(),
                           style: gilroyMediumTextStyle(
                               fontSize: 16, color: ColorRes.color_979797)),
@@ -302,9 +298,8 @@ class AdvanceSearchScreen extends StatelessWidget {
                   const Spacer(),
                   InkWell(
                     onTap: () {
-                      searchController.sendFriendRequestAdvance(controller
-                          .listUseProfileModel.data![index].id
-                          .toString());
+                      searchController.sendFriendRequestAdvance(
+                          controller.listLatLongData[index].id.toString());
                     },
                     child: Image.asset(
                       AssetRes.addPeople,
@@ -393,6 +388,32 @@ class AdvanceSearchScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),*/
+            Padding(
+              padding:const EdgeInsets.only(top:45,left:45),
+              child: SizedBox(
+                height: 240,
+                width: 240,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: controller.listLatLongData.length,
+                  itemBuilder: (context, index) {
+                    return Stack(
+                      children: [
+                        ClipRRect(borderRadius: BorderRadius.circular(50),
+                          child: Image.network(
+                            controller.listLatLongData[index].profileImage
+                                .toString(),
+                            fit: BoxFit.cover,
+                            height: 60,
+                            width: 60,
+                          ),
+                        )
+                      ],
+                    );
+                  },
+                ),
+              ),
+            )
           ],
         ),
       ),

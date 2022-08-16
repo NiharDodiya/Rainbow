@@ -19,6 +19,7 @@ import 'package:rainbow/utils/asset_res.dart';
 class SearchController extends GetxController {
   RxBool loader = false.obs;
   bool advance = false;
+  int count=2;
   ListUseProfileModel listUseProfileModel = ListUseProfileModel();
 
   // RxBool connect = false.obs;
@@ -129,11 +130,13 @@ class SearchController extends GetxController {
     AssetRes.i2,
     AssetRes.i3,
   ];
+
   void init() async {
     position = await getCurrentPosition();
     await listUserProfile();
     searchBar.clear();
   }
+
   @override
   void onInit() async {
     init();
@@ -157,8 +160,6 @@ class SearchController extends GetxController {
     }
     update(['Search']);
   }
-
-
 
   Future<void> listUserProfile() async {
     try {
@@ -187,11 +188,12 @@ class SearchController extends GetxController {
     }
   }
 
-  List<ListUserData> listLatLongData=[];
+  List<ListUserData> listLatLongData = [];
   double? newLat;
   double? newLong;
 
   findUserDistance({index}) async {
+
     await listUserProfileAdvanceSearch(advanceSearch[index]);
     position = await getCurrentPosition();
     newLat = position!.latitude;
@@ -200,15 +202,15 @@ class SearchController extends GetxController {
     print(newLong);
 
     for (var e in listUseProfileModel.data!) {
-
-      final double distance = Geolocator.distanceBetween(e.latitude!, e.longitude!,
-          newLat!, newLong!);
+      final double distance = Geolocator.distanceBetween(
+          e.latitude!, e.longitude!, newLat!, newLong!);
       print(distance);
-      if (distance <= 235) {
+      if (distance <= 100) {
         listLatLongData.add(e);
       }
     }
     print(listLatLongData);
+    update(['Search']);
   }
 
   double calculateDistance(lat1, lon1, lat2, lon2) {
@@ -219,10 +221,6 @@ class SearchController extends GetxController {
         c(lat1 * p) * c(lat2 * p) * (1 - c((lon2 - lon1) * p)) / 2;
     return 12742 * asin(sqrt(a));
   }
-
-
-
-
 
   Future<void> listUserProfileWithOutPagination() async {
     try {
