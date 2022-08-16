@@ -9,7 +9,7 @@ class EditAdvertiesementController extends GetxController {
   String imageName = '';
 
   getImagePath() {
-    imageName = createAdvertisementController.imagePath!.path;
+    imageName = createAdvertisementController.imagePath.first.path;
     imageList = imageName.split("/");
     imageName = imageList.last;
   }

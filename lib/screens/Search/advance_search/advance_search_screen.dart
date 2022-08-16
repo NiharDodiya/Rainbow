@@ -389,7 +389,7 @@ class AdvanceSearchScreen extends StatelessWidget {
                                   ),
                                 ),*/
             Padding(
-              padding:const EdgeInsets.only(top:45,left:45),
+              padding:const EdgeInsets.only(top:45/2,left:45),
               child: SizedBox(
                 height: 240,
                 width: 240,

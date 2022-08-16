@@ -199,7 +199,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                     fit: BoxFit.cover)
                 : DecorationImage(
                     image: FileImage(
-                      File(createAdvertisementController.imagePath!.path),
+                      File(createAdvertisementController.imagePath.first.path),
                     ),
                     fit: BoxFit.cover),
           ),

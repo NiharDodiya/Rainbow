@@ -332,7 +332,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        createAdvertisementController.preovinceController.text,
+                        createAdvertisementController.provinceController.text,
                         style: poppinsRegularBold(
                           fontSize: 14,
                         ),

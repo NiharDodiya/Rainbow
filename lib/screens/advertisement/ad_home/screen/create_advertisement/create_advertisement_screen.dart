@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/country_name.dart';
+import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
+import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
 
 import '../../../../../common/Widget/buttons.dart';
@@ -20,8 +22,8 @@ class CreateAdvertisementScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
+      body: GetBuilder<CreateAdvertisementController>(id: "advertiser",builder:(controller){
+        return Container(
           width: Get.width,
           height: Get.height,
           decoration: const BoxDecoration(
@@ -36,30 +38,39 @@ class CreateAdvertisementScreen extends StatelessWidget {
               end: Alignment.bottomCenter,
             ),
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: Get.height * 0.035,
-                ),
-                appBar(),
-                body(context),
-                SubmitButton(
-                  onTap: () {
-                    advertisementController.createAdvertisement();
-                    // Get.to(()=> const SupportcreateScreen());
-                  },
-                  child: Text(
-                    "Create Advertisement",
-                    style:
-                        gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
+          child: Obx((){
+            return SingleChildScrollView(
+              child
+                  : Stack(
+                children: [
+                  Column(
+                    children: [
+                      SizedBox(
+                        height: Get.height * 0.035,
+                      ),
+                      appBar(),
+                      body(context),
+                      SubmitButton(
+                        onTap: () {
+                          advertisementController.createAdvertisement();
+                          // Get.to(()=> const SupportcreateScreen());
+                        },
+                        child: Text(
+                          "Create Advertisement",
+                          style:
+                          gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
+                        ),
+                      ),
+                      SizedBox(height: Get.height * 0.02),
+                    ],
                   ),
-                ),
-                SizedBox(height: Get.height * 0.02),
-              ],
-            ),
-          ),
-        ),
+                  controller.loader.isTrue?FullScreenLoader():SizedBox()
+                ],
+              ),
+            );
+          }),
+        );
+      },
       ),
     );
   }
@@ -143,9 +154,100 @@ class CreateAdvertisementScreen extends StatelessWidget {
                 ),
               ),
             ),
+            GetBuilder<CreateAdvertisementController>(
+              id: 'advertiser',
+              builder: (controller) {
+                if (controller.filterList.isEmpty) {
+                  return const SizedBox();
+                } else {
+                  return Container(
+                    constraints: const BoxConstraints(
+                        maxHeight: 200 - 20 - 50, minHeight: 30),
+                    // height: 200,
+                    width: Get.width,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 5),
+                      ],
+                    ),
+                    child: ListView.builder(
+                      itemCount: controller.filterList.length,
+                      shrinkWrap: true,
+                      itemBuilder: (con, index) {
+                        return InkWell(
+                          onTap: () =>
+                              controller.onTagTap(controller.filterList[index]),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10.0, horizontal: 10),
+                            child: Row(
+                              children: [
+                                ClipRRect(
+                                    borderRadius: BorderRadius.circular(50),
+                                    child: Image.network(
+                                      controller.filterList[index].profileImage
+                                          .toString(),
+                                      height: 30,
+                                      width: 30,
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (con, str, dy) {
+                                        return Container(
+                                          height: 30,
+                                          width: 30,
+                                          decoration: BoxDecoration(
+                                            color: ColorRes.white,
+                                            shape: BoxShape.circle,
+                                            border: Border.all(
+                                                color: ColorRes.black,
+                                                width: 0.7),
+                                          ),
+                                          child: const Center(
+                                            child: Icon(
+                                              Icons.account_circle_outlined,
+                                              color: ColorRes.black,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    )),
+                                const SizedBox(width: 10),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      controller.filterList[index].fullName
+                                          .toString(),
+                                      style: const TextStyle(
+                                        color: ColorRes.black,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                    Text(
+                                      controller.filterList[index].email
+                                          .toString(),
+                                      style: const TextStyle(
+                                        color: ColorRes.black,
+                                        fontSize: 10,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                }
+              },
+            ),
             SizedBox(height: Get.height * 0.0197),
             GetBuilder<CreateAdvertisementController>(
-              id: "Getpic",
+              id: "advertiser",
               builder: (controller) => InkWell(
                 onTap: () {
                   showModalBottomSheet(
@@ -163,7 +265,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             GestureDetector(
-                              onTap: controller.navigateToCamera,
+                              onTap: controller.cameraPickImage,
                               child: const ListTile(
                                 leading: Icon(Icons.camera),
                                 title: Text(Strings.camera),
@@ -175,7 +277,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                               color: ColorRes.white,
                             ),
                             GestureDetector(
-                              onTap: controller.navigateToGallary,
+                              onTap: controller.gallaryPickImage,
                               child: const ListTile(
                                 leading: Icon(
                                     Icons.photo_size_select_actual_outlined),
@@ -196,21 +298,32 @@ class CreateAdvertisementScreen extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      Container(
+                      SizedBox(
                         height: 56,
-                        width: Get.width * 0.20266,
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(19)),
-                          image: controller.imagePath == null
-                              ? const DecorationImage(
-                                  image: AssetImage(AssetRes.imageHint),
-                                )
-                              : DecorationImage(
-                                  image: FileImage(
-                                    File(controller.imagePath!.path),
-                                  ),
-                                  fit: BoxFit.cover),
+                        width: 200,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: controller.imagePath.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              height: 56,
+                              width: 56,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(19)),
+                                image: controller.imagePath == null
+                                    ? const DecorationImage(
+                                        image: AssetImage(AssetRes.imageHint),
+                                      )
+                                    : DecorationImage(
+                                        image: FileImage(
+                                          File(controller.imagePath[index].path
+                                              .toString()),
+                                        ),
+                                        fit: BoxFit.cover),
+                              ),
+                            );
+                          },
                         ),
                       ),
                       const SizedBox(height: 5),
@@ -233,7 +346,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
               showTitle: false,
             ),
             GetBuilder<CreateAdvertisementController>(
-              id: "location",
+              id: "advertiser",
               builder: (controller) => InkWell(
                 onTap: () {
                   controller.getCurrentLocation();
@@ -273,12 +386,19 @@ class CreateAdvertisementScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: Get.height * 0.0197),
-            AppTextFiled(
-              controller: advertisementController.canedaController,
-              title: "",
-              titleBottomPadding: 0,
-              hintText: Strings.caneda,
-              showTitle: false,
+            GetBuilder<CreateAdvertisementController>(
+              id: 'advertiser',
+              builder: (controller) {
+                return dropdownButton(
+                  showtitle: false,
+                  title: "",
+                  hintText: "caneda",
+                  selectedValue: controller.selectedCity,
+                  onTap: controller.onTapEthnicity,
+                  dropdownList: countryNationCity,
+                  height: Get.height * 0.3,
+                );
+              },
             ),
             AppTextFiled(
               controller: advertisementController.streetController,
@@ -301,7 +421,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
               showTitle: false,
             ),
             AppTextFiled(
-              controller: advertisementController.preovinceController,
+              controller: advertisementController.provinceController,
               title: "",
               titleBottomPadding: 0,
               hintText: Strings.proviceHint,
@@ -314,12 +434,24 @@ class CreateAdvertisementScreen extends StatelessWidget {
               hintText: Strings.postalHint,
               showTitle: false,
             ),
-            AppTextFiled(
-              controller: advertisementController.dateController,
-              title: "",
-              titleBottomPadding: 0,
-              hintText: Strings.date,
-              showTitle: false,
+            GetBuilder<CreateAdvertisementController>(
+              id: 'advertiser',
+              builder: (controller) {
+                return InkWell(
+                  onTap: () {
+                    controller.showDatePicker(context);
+                    FocusScope.of(context).unfocus();
+                  },
+                  child: AppTextFiled(
+                    controller: advertisementController.dateController,
+                    title: "",
+                    titleBottomPadding: 0,
+                    hintText: Strings.date,
+                    showTitle: false,
+                    enable: false,
+                  ),
+                );
+              },
             ),
             Container(
               height: 151,
@@ -345,7 +477,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
             ),
             SizedBox(height: Get.height * 0.0197),
             GetBuilder<CreateAdvertisementController>(
-              id: "callToAction",
+              id: "advertiser",
               builder: (controller) => dropdownButton(
                 dropdownList: advertisementController.dropDList,
                 selectedValue: advertisementController.callToAction,

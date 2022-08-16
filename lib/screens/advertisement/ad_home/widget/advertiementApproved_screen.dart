@@ -517,91 +517,94 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
   Widget top() {
     CreateAdvertisementController createAdvertisementController =
         Get.put(CreateAdvertisementController());
-    return Column(
-      children: [
-        Container(
-          width: Get.width,
-          height: 202,
-          decoration: BoxDecoration(
-            image: createAdvertisementController.imagePath == null
-                ? const DecorationImage(
-                    image: AssetImage(
-                      AssetRes.adsdetail,
-                    ),
-                    fit: BoxFit.fill)
-                : DecorationImage(
-                    image: FileImage(
-                      File(createAdvertisementController.imagePath!.path),
-                    ),
-                    fit: BoxFit.fill),
-          ),
-          child: Column(
-            children: [
-              const SizedBox(height: 46),
-              Padding(
-                padding: EdgeInsets.only(
-                    left: Get.width * 0.0853, right: Get.width * 0.0373),
-                child: Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: Container(
-                        height: 32,
-                        width: 34,
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(8),
+    return GetBuilder<CreateAdvertisementController>(id: "addverDetails",builder: (controller){
+      return Column(
+        children: [
+          Container(
+            width: Get.width,
+            height: 202,
+              decoration: BoxDecoration(
+              image: /*createAdvertisementController.imagePath == null
+                  ? */const DecorationImage(
+                      image: AssetImage(
+                        AssetRes.adsdetail,
+                      ),
+                      fit: BoxFit.fill)
+                /*  : DecorationImage(
+                      image: FileImage(
+                        File(createAdvertisementController.imagePath.first.path),
+                      ),
+                      fit: BoxFit.fill),*/
+            ),
+            child: Column(
+              children: [
+                const SizedBox(height: 46),
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: Get.width * 0.0853, right: Get.width * 0.0373),
+                  child: Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Container(
+                          height: 32,
+                          width: 34,
+                          decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(8),
+                              ),
+                              color: ColorRes.white),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 12),
+                            child: Image.asset(
+                              AssetRes.backIcon,
+                              color: ColorRes.color_50369C,
                             ),
-                            color: ColorRes.white),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 8.0, horizontal: 12),
-                          child: Image.asset(
-                            AssetRes.backIcon,
-                            color: ColorRes.color_50369C,
                           ),
                         ),
                       ),
-                    ),
-                    const Spacer(),
-                    Container(
-                      height: 33.3,
-                      width: 33.3,
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle, color: ColorRes.white),
-                      child: Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Image.asset(
-                          AssetRes.share,
-                          color: ColorRes.black,
+                      const Spacer(),
+                      Container(
+                        height: 33.3,
+                        width: 33.3,
+                        decoration: const BoxDecoration(
+                            shape: BoxShape.circle, color: ColorRes.white),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Image.asset(
+                            AssetRes.share,
+                            color: ColorRes.black,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      height: 33.3,
-                      width: 33.3,
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle, color: ColorRes.white),
-                      child: Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Image.asset(
-                          AssetRes.editicons,
-                          color: ColorRes.black,
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                        height: 33.3,
+                        width: 33.3,
+                        decoration: const BoxDecoration(
+                            shape: BoxShape.circle, color: ColorRes.white),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Image.asset(
+                            AssetRes.editicons,
+                            color: ColorRes.black,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              )
-            ],
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      );
+    },
     );
   }
 }

@@ -61,6 +61,7 @@ class EndPoints {
   static const commentPostList = "$baseUrl/user/post/comment/list";
   static const listUserProfile = "$baseUrl/user/userprofile/list";
   static const testimonial = "$baseUrl/user/testimonial/add";
+  static const createAdvertisement = "$baseUrl/advirtisers/advertisement/create";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";
