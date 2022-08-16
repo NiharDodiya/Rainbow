@@ -161,7 +161,7 @@ class ListUserData {
             ? null
             : json["longitude"] is String
                 ? double.parse(json["longitude"])
-                : json["latitude"],
+                : json["longitude"],
         userType: json["user_type"] == null ? null : json["user_type"],
         selfiStatus: json["selfi_status"] == null ? null : json["selfi_status"],
         userStatus: json["user_status"] == null ? null : json["user_status"],
