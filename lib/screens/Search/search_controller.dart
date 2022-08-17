@@ -79,9 +79,9 @@ class SearchController extends GetxController {
 
   List<Marker> markers = <Marker>[];
 
-  loadData() async {
+/*  loadData() async {
     loader.value == true;
-    for (int i = 0; i < listLatLongData.length; i++) {
+    for (int i = 0; i <=listLatLongData.length; i++) {
       Uint8List? image1 = await loadNetWorkImage(
           "https://firebasestorage.googleapis.com/v0/b/rainbow-convrtx.appspot.com/o/d6f1178b5be84cc4dbae9eb05?alt=media&token=6cfccc46-c22f-4cb5-b1e8-5e7a15305511");
       final ui.Codec markerImageCodec = await ui.instantiateImageCodec(
@@ -100,10 +100,10 @@ class SearchController extends GetxController {
             LatLng(listLatLongData[i].latitude!,listLatLongData[i].longitude!),
         icon: BitmapDescriptor.fromBytes(resizedImagePicker),
       ));
-      update(["googleMap"]);
+      update(["Search"]);
       loader.value == false;
     }
-  }
+  }*/
 
   Future<Uint8List> loadNetWorkImage(String path) async {
     final completed = Completer<ImageInfo>();
@@ -157,12 +157,13 @@ class SearchController extends GetxController {
   Future<void> onTapAdvanceSearchMenu(int index) async {
     advance = false;
     await listUserProfileAdvanceSearch(advanceSearch[index]);
+
     Get.to(AdvanceSearchScreen(
       title: advanceSearch[index],
-    ))!
-        .then((value) async {
+    ))!.then((value) async {
       await listUserProfile();
     });
+/*    await loadData();*/
     findUserDistance(index: index);
   }
 
@@ -199,7 +200,7 @@ class SearchController extends GetxController {
     position = await getCurrentPosition();
     await listUserProfile();
     searchBar.clear();
-    loadData();
+
   }
 
   Uint8List? customMarker;
@@ -209,8 +210,8 @@ class SearchController extends GetxController {
     init();
     /*runFilter('');*/
     scrollController.addListener(pagination);
-
     await findUserDistance();
+
     update(['Search']);
     super.onInit();
   }
@@ -229,6 +230,8 @@ class SearchController extends GetxController {
         .buffer
         .asUint8List();
   }
+
+
 
   void pagination() async {
     if (scrollController.position.pixels ==

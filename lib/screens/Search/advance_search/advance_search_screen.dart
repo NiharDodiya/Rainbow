@@ -41,34 +41,35 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
     loadData();
     super.initState();
   }
-
   loadData() async {
+
     for (int i = 0; i < searchController.listLatLongData.length; i++) {
-      Uint8List? image1 = await loadNetWorkImage(
-          "https://firebasestorage.googleapis.com/v0/b/rainbow-convrtx.appspot.com/o/2e8fc85500166700f43b2710a?alt=media&token=455e385b-3f74-4453-8e41-64700e859d51");
+
+      Uint8List? image1 = await loadNetWorkImage(searchController.listLatLongData[i].profileImage.toString());
       final ui.Codec markerImageCodec = await ui.instantiateImageCodec(
           image1.buffer.asUint8List(),
-          targetHeight: 100,
-          targetWidth: 100);
+          targetHeight: 80,
+          targetWidth: 80);
       final ui.FrameInfo frameInfo = await markerImageCodec.getNextFrame();
       final ByteData? byteData =
           await frameInfo.image.toByteData(format: ui.ImageByteFormat.png);
       final Uint8List resizedImagePicker = byteData!.buffer.asUint8List();
       markers.add(Marker(
-          markerId: MarkerId(
-            i.toString(),
-          ),position: LatLng(searchController.listLatLongData[i].latitude!, searchController.listLatLongData[i].longitude!),
-          icon: BitmapDescriptor.fromBytes(resizedImagePicker),));
-      setState(() {
-
-      });
+        markerId: MarkerId(
+          searchController.listLatLongData[i].fullName.toString(),
+        ),
+        position: LatLng(searchController.listLatLongData[i].latitude!,
+            searchController.listLatLongData[i].longitude!),
+        icon: BitmapDescriptor.fromBytes(resizedImagePicker),
+      ));
+      setState(() {});
     }
   }
 
   Future<Uint8List> loadNetWorkImage(String path) async {
     final completed = Completer<ImageInfo>();
     var image = NetworkImage(path);
-    image.resolve(ImageConfiguration()).addListener(ImageStreamListener(
+    image.resolve(const ImageConfiguration()).addListener(ImageStreamListener(
         (image, synchronousCall) => completed.complete(image)));
 
     final imageInfo = await completed.future;
@@ -408,95 +409,6 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                     ),
                   ),
                 ),
-
-                /*ClipRRect(
-                borderRadius: BorderRadius.circular(100),
-                child: Image.asset(
-                  AssetRes.searchBackground,
-                  height: 400,
-                  width: 400,
-                ),
-              ),*/
-                /*  Align(
-                alignment: Alignment.center,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: CachedNetworkImage(
-                    height: 100,
-                    width: 100,
-                    imageUrl: homeController
-                        .controller.viewProfile.data!.profileImage
-                        .toString(),
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) => Image.asset(
-                      AssetRes.portrait_placeholder,
-                      height: 100,
-                      width: 100,
-                    ),
-                    errorWidget: (context, url, error) => Image.asset(
-                      AssetRes.portrait_placeholder,
-                      height: 100,
-                      width: 100,
-                    ),
-                  ),
-                  */ /* Image.network( ,
-                                        height: 100,
-                                        width: 100,
-                                        fit: BoxFit.cover,
-                                        errorBuilder: (context, error, stackTrace) {
-                                          return Image.asset(
-                                            AssetRes.portrait_placeholder,
-                                            height: 100,
-                                            width: 100,
-                                          );
-                                        },
-                                      ),*/ /*
-                ),
-              ),*/
-
-                /*       Padding(
-                                    padding: const EdgeInsets.only(top: 5.0),
-                                    child: ListTile(
-                                      title: const Text('Responsive Item Radius'),
-                                      subtitle: Slider(
-                                        min: 1,
-                                        max: 20,
-                                        // divisions: 18,
-                                        label: controller.radiusOfItemDivider.toStringAsFixed(2),
-                                        value: controller.radiusOfItemDivider,
-                                        onChanged: (newVal) {
-                                          homeController.radiusOfItemDivider = newVal;
-                                          homeController.update(["Search"]);
-                                        },
-                                      ),
-                                    ),
-                                  ),*/
-                /* Padding(
-                padding:const EdgeInsets.only(top:45,left:45),
-                child: SizedBox(
-                  height: 280,
-                  width: 300,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: controller.listLatLongData.length,
-                    itemBuilder: (context, index) {
-                      return Stack(
-                        children: [
-                          ClipRRect(borderRadius: BorderRadius.circular(50),
-                            child: Image.network(
-                              controller.listLatLongData[index].profileImage
-                                  .toString(),
-                              fit: BoxFit.cover,
-                              height: 60,
-                              width: 60,
-                            ),
-                          )
-                        ],
-                      );
-                    },
-                  ),
-                ),
-              )*/
               ],
             ),
           ),
