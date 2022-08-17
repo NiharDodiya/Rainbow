@@ -125,7 +125,7 @@ class ProfileController extends GetxController {
         );
       },
       itemCount:
-      testimonialsData!.length,
+      testimonialsData.length,
       shrinkWrap: true,
     );
   }

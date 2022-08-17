@@ -1,8 +1,13 @@
+import 'dart:async';
 import 'dart:math';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rainbow/model/ListUserProfileModel.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/api/OtherProfileApi.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
@@ -19,7 +24,7 @@ import 'package:rainbow/utils/asset_res.dart';
 class SearchController extends GetxController {
   RxBool loader = false.obs;
   bool advance = false;
-  int count=2;
+  int count = 2;
   ListUseProfileModel listUseProfileModel = ListUseProfileModel();
 
   // RxBool connect = false.obs;
@@ -37,6 +42,8 @@ class SearchController extends GetxController {
   double startAngleDeg = -90;
   double totalArchDeg = 360;
   bool isClockwise = true;
+  Completer<GoogleMapController> gMapController = Completer();
+
   List advanceSearch = [
     "Surrogate Mom",
     "Sperm Donor",
@@ -45,12 +52,69 @@ class SearchController extends GetxController {
     "Retired Surrogate"
   ];
 
+  Marker markersMap() {
+    /*   markers.add(
+        const Marker(
+            markerId: MarkerId('SomeId'),
+            position: LatLng(38.123,35.123),
+            infoWindow: InfoWindow(
+                title: 'The title of the marker'
+            )
+        )
+    );*/
+    update(["googleMap"]);
+    return const Marker(
+        markerId: MarkerId('SomeId'),
+        position: LatLng(38.123, 35.123),
+        infoWindow: InfoWindow(title: 'The title of the marker'));
+  }
+
   String keyword = '';
 
   void onScreenTap() {
     advance = false;
     /* listConnectBlock = List.filled(listUserData.length, false);*/
     update(["Search"]);
+  }
+
+  List<Marker> markers = <Marker>[];
+
+  loadData() async {
+    loader.value == true;
+    for (int i = 0; i < listLatLongData.length; i++) {
+      Uint8List? image1 = await loadNetWorkImage(
+          "https://firebasestorage.googleapis.com/v0/b/rainbow-convrtx.appspot.com/o/d6f1178b5be84cc4dbae9eb05?alt=media&token=6cfccc46-c22f-4cb5-b1e8-5e7a15305511");
+      final ui.Codec markerImageCodec = await ui.instantiateImageCodec(
+          image1.buffer.asUint8List(),
+          targetHeight: 100,
+          targetWidth: 100);
+      final ui.FrameInfo frameInfo = await markerImageCodec.getNextFrame();
+      final ByteData? byteData =
+          await frameInfo.image.toByteData(format: ui.ImageByteFormat.png);
+      final Uint8List resizedImagePicker = byteData!.buffer.asUint8List();
+      markers.add(Marker(
+        markerId: MarkerId(
+          i.toString(),
+        ),
+        position:
+            LatLng(listLatLongData[i].latitude!,listLatLongData[i].longitude!),
+        icon: BitmapDescriptor.fromBytes(resizedImagePicker),
+      ));
+      update(["googleMap"]);
+      loader.value == false;
+    }
+  }
+
+  Future<Uint8List> loadNetWorkImage(String path) async {
+    final completed = Completer<ImageInfo>();
+    var image = NetworkImage(path);
+    image.resolve(const ImageConfiguration()).addListener(ImageStreamListener(
+        (image, synchronousCall) => completed.complete(image)));
+
+    final imageInfo = await completed.future;
+    final byteData =
+        await imageInfo.image.toByteData(format: ui.ImageByteFormat.png);
+    return byteData!.buffer.asUint8List();
   }
 
   double? latitude;
@@ -135,7 +199,10 @@ class SearchController extends GetxController {
     position = await getCurrentPosition();
     await listUserProfile();
     searchBar.clear();
+    loadData();
   }
+
+  Uint8List? customMarker;
 
   @override
   void onInit() async {
@@ -151,6 +218,16 @@ class SearchController extends GetxController {
   void onSearch(String text) {
     keyword = text;
     update(["Search"]);
+  }
+
+  getBytesFromAsset({String? path, int? width}) async {
+    ByteData data = await rootBundle.load(path!);
+    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
+        targetWidth: width);
+    ui.FrameInfo fi = await codec.getNextFrame();
+    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
+        .buffer
+        .asUint8List();
   }
 
   void pagination() async {
@@ -193,7 +270,6 @@ class SearchController extends GetxController {
   double? newLong;
 
   findUserDistance({index}) async {
-
     await listUserProfileAdvanceSearch(advanceSearch[index]);
     position = await getCurrentPosition();
     newLat = position!.latitude;
