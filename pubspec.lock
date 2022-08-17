@@ -954,6 +954,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.3.1"
+  search_map_place_updated:
+    dependency: "direct main"
+    description:
+      name: search_map_place_updated
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.4"
   shared_preferences:
     dependency: "direct main"
     description:

@@ -19,6 +19,7 @@ import 'package:rainbow/screens/Search/search_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
+import 'package:search_map_place_updated/search_map_place_updated.dart';
 
 class AdvanceSearchScreen extends StatefulWidget {
   final String title;
@@ -35,17 +36,19 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
   HomeController homeController = Get.put(HomeController());
   BitmapDescriptor? mapMakers;
   List<Marker> markers = <Marker>[];
+  GoogleMapController? googleMapController;
 
   @override
   void initState() {
     loadData();
     super.initState();
   }
+
   loadData() async {
-
     for (int i = 0; i < searchController.listLatLongData.length; i++) {
+      Uint8List? image1 = await loadNetWorkImage(
+          searchController.listLatLongData[i].profileImage.toString());
 
-      Uint8List? image1 = await loadNetWorkImage(searchController.listLatLongData[i].profileImage.toString());
       final ui.Codec markerImageCodec = await ui.instantiateImageCodec(
           image1.buffer.asUint8List(),
           targetHeight: 80,
@@ -108,6 +111,16 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                         height: 20,
                       ),
                       searchUser(),
+                  /*    SearchMapPlaceWidget(placeholder: 'Enter the location',placeType: PlaceType.address,
+                        apiKey: "AIzaSyCfQ9JFG6q9mLRWjny8_OwN_zP83tRGmis",
+                        onSelected: (Place place) async {
+                          Geolocation? geolocation = await place.geolocation;
+                          googleMapController!.animateCamera(
+                              CameraUpdate.newLatLng(geolocation!.coordinates));
+                          googleMapController!.animateCamera(
+                              CameraUpdate.newLatLngBounds(geolocation.bounds, 0));
+                        },
+                      ),*/
                       userProfile(),
                       listOfUser(controller),
                     ],
@@ -388,6 +401,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
             width: 400,
             child: Stack(
               children: [
+
                 ClipRRect(
                   borderRadius: BorderRadius.circular(200),
                   child: SizedBox(
@@ -402,8 +416,11 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                                   .controller.viewProfile.data!.latitude!,
                               homeController
                                   .controller.viewProfile.data!.longitude!),
-                          zoom: 14.5),
+                          zoom: 22),
                       onMapCreated: (GoogleMapController controller) {
+                        setState(() {
+                          googleMapController = controller;
+                        });
                         searchController.gMapController.complete();
                       },
                     ),

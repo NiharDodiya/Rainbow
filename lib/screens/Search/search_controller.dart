@@ -210,7 +210,7 @@ class SearchController extends GetxController {
     init();
     /*runFilter('');*/
     scrollController.addListener(pagination);
-    await findUserDistance();
+/*    await findUserDistance();*/
 
     update(['Search']);
     super.onInit();
