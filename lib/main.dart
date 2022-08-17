@@ -12,6 +12,9 @@ import 'package:rainbow/screens/splash/splash_screen.dart';
 import 'package:rainbow/screens/terms_conditions/terms_conditions_screen.dart';
 
 import 'package:rainbow/service/notification_service.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:rainbow/screens/myScreen.dart';
+import 'package:rainbow/screens/splash_screen.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/pref_keys.dart';
