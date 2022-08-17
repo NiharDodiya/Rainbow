@@ -258,3 +258,42 @@ class RPSCustomPainter extends CustomPainter {
     return true;
   }
 }
+
+class CustomClipPath extends CustomClipper<Path> {
+  var radius = 50.0;
+  var corner = 50.0;
+
+  @override
+  Path getClip(Size size) {
+    Path path = Path();
+    path.lineTo(size.width, 0);
+
+    path.lineTo(size.width, size.height - radius - corner);
+    path.quadraticBezierTo(
+      size.width - (corner / 2) + 20,
+      size.height - radius - (corner / 2) + 20,
+      size.width - corner,
+      size.height - radius,
+    );
+    path.lineTo(size.width / 2 + (radius / 2), size.height - radius);
+    path.arcToPoint(Offset(size.width / 2, size.height),
+        clockwise: true, radius: Radius.circular(radius / 1.5));
+    path.arcToPoint(Offset(size.width / 2 - (radius / 2), size.height - radius),
+        clockwise: true, radius: Radius.circular(radius / 1.5));
+    path.lineTo(corner, size.height - radius);
+    path.quadraticBezierTo(
+        (corner / 2) - 20,
+        size.height - radius - (corner / 2) + 20,
+        0,
+        size.height - radius - corner);
+
+    path.quadraticBezierTo(
+        size.width / 2, size.height, 0, size.height - radius);
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+}

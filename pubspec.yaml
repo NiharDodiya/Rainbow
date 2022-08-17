@@ -1,4 +1,3 @@
-
 name: rainbow
 description: A new Flutter project.
 
@@ -193,20 +192,20 @@ flutter:
         - asset: assets/fonts/Montserrat-Regular.ttf
     - family: SF-Pro-Text
       fonts:
-        - asset: assets/fonts/SF-Pro-Text.ttf    
+        - asset: assets/fonts/SF-Pro-Text.ttf
     - family: Inter
       fonts:
         - asset: assets/fonts/Inter.ttf
     - family: Poppins-SemiBold
       fonts:
-        - asset: assets/fonts/Poppins-SemiBold.ttf 
+        - asset: assets/fonts/Poppins-SemiBold.ttf
     - family: Poppins-Medium
       fonts:
-        - asset: assets/fonts/Poppins-Medium.ttf  
+        - asset: assets/fonts/Poppins-Medium.ttf
     - family: Poppins-Regular
       fonts:
-        - asset: assets/fonts/Poppins-Regular.ttf              
-        
+        - asset: assets/fonts/Poppins-Regular.ttf
+
 
 
 
