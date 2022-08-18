@@ -84,7 +84,8 @@ class CommentScreen extends StatelessWidget {
                                         .data![index].postCommentReply,
                                     commentId: homeController
                                         .postCommentListModel.data![index].id
-                                        .toString());
+                                        .toString(),date: homeController
+                                    .postCommentListModel.data![index].createdAt);
                               },
                               separatorBuilder: (context, index) {
                                 return Divider(

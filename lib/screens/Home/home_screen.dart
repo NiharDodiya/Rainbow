@@ -1098,13 +1098,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             controller
                                                                 .friendPostListData[
                                                                     index]
-                                                                .id
+                                                                .idUser
                                                                 .toString());
                                                     Get.to(() => CommentScreen(
-                                                          idPost: controller
+                                                      idPost: controller
                                                               .friendPostListData[
                                                                   index]
-                                                              .id
+                                                              .idUser
                                                               .toString(),
                                                           fullName: controller
                                                               .friendPostListData[

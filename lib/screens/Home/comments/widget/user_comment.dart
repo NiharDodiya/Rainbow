@@ -12,6 +12,7 @@ Widget userComment(
     String? profileImage,
     String? image,
     String? commentId,
+      DateTime? date,
     List<PostCommentReply>? reply = const []}) {
   return GetBuilder<CommentsController>(
       id: "commentPost",
@@ -31,7 +32,7 @@ Widget userComment(
                     borderRadius:  const BorderRadius.all(Radius.circular(50)),
                     child:FadeInImage(
                       placeholder:  const AssetImage(AssetRes.portrait_placeholder),
-                      image: NetworkImage( profileImage.toString()),
+                      image: NetworkImage(profileImage.toString()),
                       fit: BoxFit.cover,
                     )/* Image.network(
                       profileImage.toString(),
@@ -80,8 +81,8 @@ Widget userComment(
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(
-                          "1 min ago",
+
+                        Text(controller.timeAgo(date!),
                           style: beVietnamProRegularTextStyle(
                             fontSize: 10,
                             color: ColorRes.color_959595,
@@ -180,7 +181,8 @@ Widget userComment(
                                       color: ColorRes.black),
                                 ),
                                 Text(
-                                  "1 min ago",
+                                  controller.timeAgo( reply[index]
+                                      .createdAt!),
                                   style: beVietnamProRegularTextStyle(
                                     fontSize: 10,
                                     color: ColorRes.color_959595,
