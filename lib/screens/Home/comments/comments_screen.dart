@@ -33,7 +33,7 @@ class CommentScreen extends StatelessWidget {
             ),
           ),
           title: Text(
-            "Comments",
+            "",
             style: beVietnamProBoldTextStyle(
               fontSize: 16,
               color: ColorRes.black,
