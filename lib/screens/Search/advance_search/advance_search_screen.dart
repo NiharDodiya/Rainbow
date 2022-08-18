@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'dart:typed_data';
 import 'dart:math';
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
@@ -13,8 +12,6 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
-import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
-import 'package:rainbow/screens/Search/advance_search/advance_search_controller.dart';
 import 'package:rainbow/screens/Search/search_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -37,6 +34,12 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
   BitmapDescriptor? mapMakers;
   List<Marker> markers = <Marker>[];
   GoogleMapController? googleMapController;
+
+  double latitude = 0;
+  double longitude = 0;
+  var addressSomeOne = "";
+  String? cityName;
+  final kInitialPosition = LatLng(-33.8567844, 151.213108);
 
   @override
   void initState() {
@@ -84,57 +87,108 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: GetBuilder<SearchController>(
-      id: "Search",
-      builder: (controller) {
-        return Obx(() {
-          return Stack(
-            children: [
-              SafeArea(
-                child: Container(
-                  height: Get.height,
-                  width: Get.width,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        ColorRes.color_50369C,
-                        ColorRes.color_D18EEE,
+      body: GetBuilder<SearchController>(
+        id: "Search",
+        builder: (controller) {
+          return Obx(() {
+            return Stack(
+              children: [
+                SafeArea(
+                  child: Container(
+                    height: Get.height,
+                    width: Get.width,
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          ColorRes.color_50369C,
+                          ColorRes.color_D18EEE,
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                      ),
+                    ),
+                    child: Stack(
+                      children: [
+                        appBar(title: widget.title),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        /*    searchUser(),*/
+
+                        Positioned(
+                          top: Get.height * 0.08,
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: Get.width * 0.04,
+                              ),
+                              SizedBox(
+                                width: 248.77,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: SearchMapPlaceWidget(
+                                    firstIcon: const Image(
+                                      image: AssetImage(AssetRes.search),
+                                      color: Colors.black,
+                                      height: 16,
+                                      width: 16,
+                                    ),
+                                    icon: Icons.home,
+                                    placeholder: 'Enter the location',
+                                    bgColor: Colors.white,
+                                    textColor: ColorRes.color_09110E,
+                                    iconColor: Colors.black,
+                                    placeType: PlaceType.address,
+                                    apiKey:
+                                        "AIzaSyDE5nLKKZxChxQBQnOg12kiWrTHzN4uDQ4",
+                                    onSelected: (Place place) async {
+                                      Geolocation? geolocation =
+                                          await place.geolocation;
+                                      googleMapController!.animateCamera(
+                                          CameraUpdate.newLatLng(
+                                              geolocation!.coordinates));
+                                      googleMapController!.animateCamera(
+                                          CameraUpdate.newLatLngBounds(
+                                              geolocation.bounds, 0));
+                                    },
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: 52,
+                                width: 50,
+                                margin: const EdgeInsets.only(left: 9),
+                                padding: const EdgeInsets.all(15),
+                                decoration: const BoxDecoration(
+                                  color: ColorRes.black,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(15),
+                                  ),
+                                ),
+                                child: Image.asset(
+                                  AssetRes.filterIcon,
+                                  height: 15,
+                                  width: 15,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        userProfile(),
+                        listOfUser(controller),
                       ],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
                     ),
                   ),
-                  child: Stack(
-                    children: [
-                      appBar(title: widget.title),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      searchUser(),
-                  /*    SearchMapPlaceWidget(placeholder: 'Enter the location',placeType: PlaceType.address,
-                        apiKey: "AIzaSyCfQ9JFG6q9mLRWjny8_OwN_zP83tRGmis",
-                        onSelected: (Place place) async {
-                          Geolocation? geolocation = await place.geolocation;
-                          googleMapController!.animateCamera(
-                              CameraUpdate.newLatLng(geolocation!.coordinates));
-                          googleMapController!.animateCamera(
-                              CameraUpdate.newLatLngBounds(geolocation.bounds, 0));
-                        },
-                      ),*/
-                      userProfile(),
-                      listOfUser(controller),
-                    ],
-                  ),
                 ),
-              ),
-              controller.loader.isTrue
-                  ? const FullScreenLoader()
-                  : const SizedBox()
-            ],
-          );
-        });
-      },
-    ));
+                controller.loader.isTrue
+                    ? const FullScreenLoader()
+                    : const SizedBox()
+              ],
+            );
+          });
+        },
+      ),
+    );
   }
 
   Widget appBar({String? title}) {
@@ -401,7 +455,6 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
             width: 400,
             child: Stack(
               children: [
-
                 ClipRRect(
                   borderRadius: BorderRadius.circular(200),
                   child: SizedBox(

@@ -104,4 +104,5 @@ class ColorRes {
   static const  color_2931A5 = Color(0xFF2931A5);
 
 
+
 }

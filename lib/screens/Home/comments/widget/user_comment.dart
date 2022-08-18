@@ -12,7 +12,7 @@ Widget userComment(
     String? profileImage,
     String? image,
     String? commentId,
-      DateTime? date,
+    DateTime? date,
     List<PostCommentReply>? reply = const []}) {
   return GetBuilder<CommentsController>(
       id: "commentPost",
@@ -29,19 +29,21 @@ Widget userComment(
                     shape: BoxShape.circle,
                   ),
                   child: ClipRRect(
-                    borderRadius:  const BorderRadius.all(Radius.circular(50)),
-                    child:FadeInImage(
-                      placeholder:  const AssetImage(AssetRes.portrait_placeholder),
+                    borderRadius: const BorderRadius.all(Radius.circular(50)),
+                    child: FadeInImage(
+                      placeholder:
+                          const AssetImage(AssetRes.portrait_placeholder),
                       image: NetworkImage(profileImage.toString()),
                       fit: BoxFit.cover,
-                    )/* Image.network(
+                    ) /* Image.network(
                       profileImage.toString(),
                       fit: BoxFit.cover,
                       errorBuilder: (context, url, error) => const Icon(
                         Icons.error,
                         color: Colors.grey,
                       ),
-                    )*/,
+                    )*/
+                    ,
                   ),
                 ),
                 Column(
@@ -81,8 +83,8 @@ Widget userComment(
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-
-                        Text(controller.timeAgo(date!),
+                        Text(
+                          controller.timeAgo(date!),
                           style: beVietnamProRegularTextStyle(
                             fontSize: 10,
                             color: ColorRes.color_959595,
@@ -134,12 +136,15 @@ Widget userComment(
                               Icons.error,
                               color: Colors.grey,
                             ),
-                          )*/FadeInImage(   height: 100,
-                      width: 100,
-                      placeholder:  const AssetImage(AssetRes.placeholderImage),
-                      image: NetworkImage( image.toString()),
-                      fit: BoxFit.cover,
-                    )
+                          )*/
+                        FadeInImage(
+                            height: 100,
+                            width: 100,
+                            placeholder:
+                                const AssetImage(AssetRes.placeholderImage),
+                            image: NetworkImage(image.toString()),
+                            fit: BoxFit.cover,
+                          )
                   ],
                 )
               ],
@@ -181,8 +186,7 @@ Widget userComment(
                                       color: ColorRes.black),
                                 ),
                                 Text(
-                                  controller.timeAgo( reply[index]
-                                      .createdAt!),
+                                  controller.timeAgo(reply[index].createdAt!),
                                   style: beVietnamProRegularTextStyle(
                                     fontSize: 10,
                                     color: ColorRes.color_959595,
@@ -210,7 +214,9 @@ Widget userComment(
                                     ],
                                   ),
                                 ),
-                                const SizedBox(height: 5,),
+                                const SizedBox(
+                                  height: 5,
+                                ),
                                 /*reply[index].postCommentItem.toString() == ""
                                     ? const SizedBox()
                                     : CachedNetworkImage(
@@ -235,14 +241,16 @@ Widget userComment(
                                     ? const SizedBox()
                                     : /*image == ""
                                         ? const SizedBox()*/
-                                         FadeInImage(   height: 100,
-                                  width: 100,
-                                  placeholder:  const AssetImage(AssetRes.placeholderImage),
-                                  image: NetworkImage(  reply[index]
-                                      .postCommentItem
-                                      .toString()),
-                                  fit: BoxFit.cover,
-                                ),
+                                    FadeInImage(
+                                        height: 100,
+                                        width: 100,
+                                        placeholder: const AssetImage(
+                                            AssetRes.placeholderImage),
+                                        image: NetworkImage(reply[index]
+                                            .postCommentItem
+                                            .toString()),
+                                        fit: BoxFit.cover,
+                                      ),
                               ],
                             ),
                           )
