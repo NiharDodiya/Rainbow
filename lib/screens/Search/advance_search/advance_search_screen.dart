@@ -39,7 +39,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
   double longitude = 0;
   var addressSomeOne = "";
   String? cityName;
-  final kInitialPosition = LatLng(-33.8567844, 151.213108);
+  final kInitialPosition = const LatLng(-33.8567844, 151.213108);
 
   @override
   void initState() {
@@ -127,7 +127,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(15),
                                   child: SearchMapPlaceWidget(
-                                    firstIcon:Icon(Icons.search,size: 16,color: Colors.black,),
+                                    firstIcon:const Icon(Icons.search,size: 16,color: Colors.black,),
                                     placeholder: 'Enter the location',
                                     bgColor: Colors.white,
                                     textColor: ColorRes.color_09110E,

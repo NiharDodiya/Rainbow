@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Home/settings/support/endUserSupprotCreateScreen.dart';
 import 'package:rainbow/screens/Home/settings/support/support_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_support/screen/support_create/support_create_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -111,78 +112,82 @@ class SupportScreen extends StatelessWidget {
               padding: const EdgeInsets.only(top: 5, bottom: 10),
               child: Column(
                 children: [
-                  Container(
-                    height: 104,
-                    width: Get.width * 0.8933,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.white),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15),
-                          child: Container(
-                            height: 46,
-                            width: 46,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: LinearGradient(
-                                colors: [
-                                  ColorRes.color_50369C,
-                                  ColorRes.color_D18EEE,
-                                ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
+                  InkWell(onTap:() {
+                    Get.to(()=> SupportCreateEndUserScreen());
+                  },
+                    child: Container(
+                      height: 104,
+                      width: Get.width * 0.8933,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Colors.white),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15),
+                            child: Container(
+                              height: 46,
+                              width: 46,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                gradient: LinearGradient(
+                                  colors: [
+                                    ColorRes.color_50369C,
+                                    ColorRes.color_D18EEE,
+                                  ],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                ),
+                              ),
+                              child: Center(
+                                child: Container(
+                                  height: 36.37,
+                                  width: 22,
+                                  decoration: const BoxDecoration(
+                                      image: DecorationImage(
+                                    image: AssetImage(AssetRes.duck),
+                                  )),
+                                ),
                               ),
                             ),
-                            child: Center(
-                              child: Container(
-                                height: 36.37,
-                                width: 22,
-                                decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                  image: AssetImage(AssetRes.duck),
-                                )),
-                              ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15, top: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "12/30/2021",
+                                  style: gilroyMediumTextStyle(
+                                      color: ColorRes.color_9597A1, fontSize: 16),
+                                ),
+                                Text(
+                                  "1235CA2B2",
+                                  style: gilroyMediumTextStyle(
+                                      color: ColorRes.color_6306B2, fontSize: 16),
+                                ),
+                                Text(
+                                  Strings.loremIpsum,
+                                  style: gilroyMediumTextStyle(
+                                      color: Colors.black, fontSize: 13.11),
+                                ),
+                              ],
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15, top: 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "12/30/2021",
-                                style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_9597A1, fontSize: 16),
-                              ),
-                              Text(
-                                "1235CA2B2",
-                                style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_6306B2, fontSize: 16),
-                              ),
-                              Text(
-                                Strings.loremIpsum,
-                                style: gilroyMediumTextStyle(
-                                    color: Colors.black, fontSize: 13.11),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(bottom: Get.height * 0.1),
-                          child: Text(
-                            controller.supportList[index],
-                            style: controller.supportList[index].toString() ==
-                                    "Pending"
-                                ? gilroyMediumTextStyle(
-                                    color: ColorRes.color_FFA800, fontSize: 16)
-                                : gilroyMediumTextStyle(
-                                    color: ColorRes.color_49A510, fontSize: 16),
-                          ),
-                        )
-                      ],
+                          Padding(
+                            padding: EdgeInsets.only(bottom: Get.height * 0.1),
+                            child: Text(
+                              controller.supportList[index],
+                              style: controller.supportList[index].toString() ==
+                                      "Pending"
+                                  ? gilroyMediumTextStyle(
+                                      color: ColorRes.color_FFA800, fontSize: 16)
+                                  : gilroyMediumTextStyle(
+                                      color: ColorRes.color_49A510, fontSize: 16),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   )
                 ],
