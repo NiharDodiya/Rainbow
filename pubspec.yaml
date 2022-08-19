@@ -116,6 +116,9 @@ dependencies:
     path: ./search_map_place_updated-0.0.4
   flutter_google_places: ^0.3.0
   flutter_typeahead: ^4.0.0
+  #_______________________________image Download__________
+  image_gallery_saver: ^1.7.1
+  dio: ^4.0.6
 
 
 

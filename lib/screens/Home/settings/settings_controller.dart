@@ -5,6 +5,8 @@ import 'package:rainbow/model/logout_model.dart';
 import 'package:rainbow/screens/Home/settings/logOut_Api/LogOut_Api.dart';
 import 'package:rainbow/screens/Home/settings/privacy/privacy_controller.dart';
 import 'package:rainbow/screens/Home/settings/privacy/privacy_screen.dart';
+import 'package:rainbow/screens/Home/settings/support/support_controller.dart';
+import 'package:rainbow/screens/Home/settings/support/support_screen.dart';
 
 class SettingsController extends GetxController {
   RxBool loader = false.obs;
@@ -30,7 +32,12 @@ class SettingsController extends GetxController {
     controller.init();
     Get.to(() => PrivacyScreen());
   }
+   onTapSupport() async {
+    SupportController supportController = Get.put(SupportController());
+    await supportController.getListOfUserTicket();
+    Get.to(() => SupportScreen());
 
+   }
   Future<void> logOutDetails() async {
     loader.value = true;
     try {
