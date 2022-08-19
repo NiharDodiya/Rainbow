@@ -253,7 +253,7 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
     return InputDecoration(
       hintText: this.widget.placeholder,
       border: InputBorder.none,
-      suffixIcon: widget.firstIcon,
+      prefixIcon: widget.firstIcon,
       contentPadding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
       hintStyle: TextStyle(
         color: widget.textColor,

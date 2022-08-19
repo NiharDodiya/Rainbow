@@ -127,20 +127,14 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(15),
                                   child: SearchMapPlaceWidget(
-                                    firstIcon: const Image(
-                                      image: AssetImage(AssetRes.search),
-                                      color: Colors.black,
-                                      height: 16,
-                                      width: 16,
-                                    ),
-                                    icon: Icons.home,
+                                    firstIcon:Icon(Icons.search,size: 16,color: Colors.black,),
                                     placeholder: 'Enter the location',
                                     bgColor: Colors.white,
                                     textColor: ColorRes.color_09110E,
-                                    iconColor: Colors.black,
+                                    iconColor: Colors.white,
                                     placeType: PlaceType.address,
                                     apiKey:
-                                        "AIzaSyDE5nLKKZxChxQBQnOg12kiWrTHzN4uDQ4",
+                                        "svddsdssdsd",
                                     onSelected: (Place place) async {
                                       Geolocation? geolocation =
                                           await place.geolocation;
