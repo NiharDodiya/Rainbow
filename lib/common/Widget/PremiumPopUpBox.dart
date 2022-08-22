@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/utils/color_res.dart';
+import 'package:rainbow/utils/font_res.dart';
 
 Widget premiumPopUpBox() {
   return Container(
@@ -20,10 +21,10 @@ Widget premiumPopUpBox() {
             "Subscribe to our Premium Version",
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontFamily: 'Gilroy-SemiBold',
+              fontFamily: FontRes.gilroySemiBold,
               color: ColorRes.appBlack,
               fontSize: 16,
-              fontWeight: FontWeight.w500
+              fontWeight: FontWeight.bold
             ),
           ),
         ),
@@ -31,9 +32,9 @@ Widget premiumPopUpBox() {
         Row(
          mainAxisAlignment: MainAxisAlignment.center,
           children: const[
-            Text("£9.99", style: TextStyle(fontSize: 35, fontWeight: FontWeight.w100 ,color: ColorRes.appBlack,  fontFamily: 'Gilroy-SemiBold',),),
+            Text("£9.99", style: TextStyle(fontSize: 35, fontWeight: FontWeight.w100 ,color: ColorRes.appBlack,  fontFamily: FontRes.gilroySemiBold,),),
             Text("/", style: TextStyle(color: ColorRes.appBlack, fontSize: 35),),
-            Text("month", style: TextStyle(fontSize: 35,  color: ColorRes.appBlack,  fontFamily: 'Gilroy-SemiBold',),),
+            Text("month", style: TextStyle(fontSize: 35,  color: ColorRes.appBlack,  fontFamily: FontRes.gilroySemiBold,),),
           ],
         ),
         Spacer(),
@@ -52,7 +53,7 @@ Widget premiumPopUpBox() {
                 ],
               )
           ),
-          child: const Text("Subscribe", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
+          child: const Text("Subscribe", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, fontFamily: FontRes.gilroySemiBold, color: ColorRes.white),),
         ),
         Spacer(),
       ],
