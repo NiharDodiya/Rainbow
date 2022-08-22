@@ -1,0 +1,19 @@
+name: search_map_place_updated
+description: A Search Widget that allows users to search for a place while getting autocompletion feedback. This package is an improvement of search_map_place package.
+version: 0.0.4
+homepage: https://github.com/Destiny-Ed/search_map_place_updated_updated
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_maps_flutter: ^2.1.1
+  http: ^0.13.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:

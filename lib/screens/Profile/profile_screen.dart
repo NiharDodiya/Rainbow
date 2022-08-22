@@ -86,7 +86,27 @@ class ProfileScreen extends StatelessWidget {
               child: SizedBox(
                 height: Get.height * 0.2857,
                 width: Get.width,
-                child: CachedNetworkImage(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.network( controller.viewProfile.data == null
+                      ? ""
+                      : controller.viewProfile.data!.backgroundImage.toString(),     height: Get.height * 0.2857,
+                    width: Get.width,fit:BoxFit.cover,errorBuilder: (context, error, stackTrace) {
+                        return  Container(
+                          height: Get.height * 0.2857,
+                          width: Get.width,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              image: const DecorationImage(
+                                  image: AssetImage(AssetRes.overlay),
+                                  fit: BoxFit.cover)),
+                        );
+                      },),
+                ),
+
+
+
+              /*  CachedNetworkImage(
                   imageUrl: controller.viewProfile.data == null
                       ? ""
                       : controller.viewProfile.data!.backgroundImage.toString(),
@@ -110,7 +130,7 @@ class ProfileScreen extends StatelessWidget {
                             fit: BoxFit.cover)),
                   ),
                   fit: BoxFit.fill,
-                ),
+                ),*/
               )),
           Positioned(
             top: Get.height * 0.11,

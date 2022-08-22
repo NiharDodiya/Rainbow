@@ -268,7 +268,7 @@ class SettingsScreen extends StatelessWidget {
           //Support
           InkWell(
             onTap: () {
-              Get.to(() => SupportScreen());
+             controller.onTapSupport();
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 5, bottom: 5),

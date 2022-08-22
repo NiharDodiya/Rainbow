@@ -188,8 +188,7 @@ class MyPostApi {
           commentsController.msgController.clear();
           commentsController.replyId = "";
           commentsController.nameComment = "";
-          commentsController.imageForCamera =null;
-          print(commentsController.imageCamera);
+          commentsController.imageForCamera = null;
           commentsController.uploadImage.data =null;
           print(commentsController.uploadImage.data);
            flutterToast(jsonDecode(response.body)["message"]);
@@ -238,6 +237,8 @@ class MyPostApi {
           commentsController.replyId = "";
           commentsController.nameComment = "";
           commentsController.imageForCamera =null;
+          commentsController.uploadImage.data =null;
+          print(commentsController.uploadImage.data);
            flutterToast(jsonDecode(response.body)["message"]);
 
         }
@@ -255,7 +256,7 @@ class MyPostApi {
       String url = EndPoints.commentPostList;
       Map<String, dynamic> param = {"id_post": idPost};
       http.Response? response = await HttpService.postApi(
-          url: url, body: param, header: {"x-access-token": accesToken});
+          url: url, body: jsonEncode(param), header: {"Content-Type": "application/json","x-access-token": accesToken});
 
 
       if (response != null && response.statusCode == 200) {

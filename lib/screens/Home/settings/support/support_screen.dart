@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Home/settings/support/endUserSupprotCreateScreen.dart';
 import 'package:rainbow/screens/Home/settings/support/support_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_support/screen/support_create/support_create_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -13,39 +16,54 @@ class SupportScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller.getListOfUserTicket();
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          width: Get.width,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                ColorRes.color_50369C,
-                ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
-                ColorRes.color_D18EEE,
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+      body: GetBuilder<SupportController>(
+        id: "Support",
+        builder: (controller) {
+          return SingleChildScrollView(
+            child: Container(
+              width: Get.width,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    ColorRes.color_50369C,
+                    ColorRes.color_50369C,
+                    ColorRes.color_D18EEE,
+                    ColorRes.color_D18EEE,
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+              ),
+              child: Obx(() {
+                return Stack(
+                  children: [
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: Get.height * 0.035,
+                        ),
+                        appBar(),
+                        supports(),
+                        SizedBox(
+                          height: Get.height * 0.07,
+                        ),
+                        sendNewMessage(),
+                        SizedBox(
+                          height: Get.height * 0.05,
+                        ),
+                      ],
+                    ),
+                    controller.loader.isTrue
+                        ? const FullScreenLoader()
+                        : const SizedBox()
+                  ],
+                );
+              }),
             ),
-          ),
-          child: Column(
-            children: [
-              SizedBox(
-                height: Get.height * 0.035,
-              ),
-              appBar(),
-              supports(),
-              SizedBox(
-                height: Get.height * 0.07,
-              ),
-              sendNewMessage(),
-              SizedBox(
-                height: Get.height * 0.05,
-              ),
-            ],
-          ),
-        ),
+          );
+        },
       ),
     );
   }
@@ -99,98 +117,140 @@ class SupportScreen extends StatelessWidget {
   }
 
   Widget supports() {
-    return Column(
-      children: [
-        ListView.builder(
-          padding: const EdgeInsets.only(top: 10),
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: controller.supportList.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 5, bottom: 10),
-              child: Column(
-                children: [
-                  Container(
-                    height: 104,
-                    width: Get.width * 0.8933,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.white),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15),
-                          child: Container(
-                            height: 46,
-                            width: 46,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: LinearGradient(
-                                colors: [
-                                  ColorRes.color_50369C,
-                                  ColorRes.color_D18EEE,
-                                ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                              ),
-                            ),
-                            child: Center(
-                              child: Container(
-                                height: 36.37,
-                                width: 22,
-                                decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                  image: AssetImage(AssetRes.duck),
-                                )),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15, top: 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+    return GetBuilder<SupportController>(
+      id: "Support",
+      builder: (controller) {
+        return Column(
+          children: [
+            controller.listSupportTicketModel.data==null?SizedBox(height: Get.height*0.66,
+
+              child: Center(child: Text("Send New SupportMessage",style: gilroyMediumTextStyle(fontSize: 20),)),):ListView.builder(
+              padding: const EdgeInsets.only(top: 10),
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: controller.listSupportTicketModel.data==null?0:controller.listSupportTicketModel.data!.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(top: 5, bottom: 10),
+                  child: Column(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          controller.onTap(
+                              id: controller
+                                  .listSupportTicketModel.data![index].id
+                                  .toString(),
+                              status: controller
+                                  .listSupportTicketModel.data![index].status
+                                  .toString(),
+                          code: controller
+                              .listSupportTicketModel.data![index].tickit
+                              .toString());
+                        },
+                        child: Container(
+                          height: 104,
+                          width: Get.width * 0.8933,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: Colors.white),
+                          child: Row(
                             children: [
-                              Text(
-                                "12/30/2021",
-                                style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_9597A1, fontSize: 16),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 15),
+                                child: Container(
+                                  height: 46,
+                                  width: 46,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        ColorRes.color_50369C,
+                                        ColorRes.color_D18EEE,
+                                      ],
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: Container(
+                                      height: 36.37,
+                                      width: 22,
+                                      decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                        image: AssetImage(AssetRes.duck),
+                                      )),
+                                    ),
+                                  ),
+                                ),
                               ),
-                              Text(
-                                "1235CA2B2",
-                                style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_6306B2, fontSize: 16),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 15, top: 10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      DateFormat("dd/MM/yyyy").format(controller
+                                          .listSupportTicketModel
+                                          .data![index]
+                                          .createdAt!),
+                                      style: gilroyMediumTextStyle(
+                                          color: ColorRes.color_9597A1,
+                                          fontSize: 16),
+                                    ),
+                                    Text(
+                                      controller.listSupportTicketModel
+                                          .data![index].tickit
+                                          .toString(),
+                                      style: gilroyMediumTextStyle(
+                                          color: ColorRes.color_6306B2,
+                                          fontSize: 16),
+                                    ),
+                                    Text(
+                                      controller.listSupportTicketModel
+                                          .data![index].title
+                                          .toString(),
+                                      style: gilroyMediumTextStyle(
+                                          color: Colors.black, fontSize: 13.11),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              Text(
-                                Strings.loremIpsum,
-                                style: gilroyMediumTextStyle(
-                                    color: Colors.black, fontSize: 13.11),
+                              const Spacer(),
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(bottom: Get.height * 0.1),
+                                child: Text(
+                                  controller.listSupportTicketModel.data![index]
+                                      .status
+                                      .toString(),
+                                  style: controller.listSupportTicketModel
+                                              .data![index].status
+                                              .toString() ==
+                                          "pending"
+                                      ? gilroyMediumTextStyle(
+                                          color: ColorRes.color_FFA800,
+                                          fontSize: 16)
+                                      : gilroyMediumTextStyle(
+                                          color: ColorRes.color_49A510,
+                                          fontSize: 16),
+                                ),
                               ),
+                              const SizedBox(
+                                width: 18,
+                              )
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(bottom: Get.height * 0.1),
-                          child: Text(
-                            controller.supportList[index],
-                            style: controller.supportList[index].toString() ==
-                                    "Pending"
-                                ? gilroyMediumTextStyle(
-                                    color: ColorRes.color_FFA800, fontSize: 16)
-                                : gilroyMediumTextStyle(
-                                    color: ColorRes.color_49A510, fontSize: 16),
-                          ),
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            );
-          },
-        )
-      ],
+                      )
+                    ],
+                  ),
+                );
+              },
+            )
+          ],
+        );
+      },
     );
   }
 

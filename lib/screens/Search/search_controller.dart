@@ -2,9 +2,11 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -20,6 +22,10 @@ import 'package:rainbow/screens/Profile/widget/block_unblock%20_Api/unblock_api.
 import 'package:rainbow/screens/Search/ListUserProfile_api/listUserProfile_api.dart';
 import 'package:rainbow/screens/Search/advance_search/advance_search_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
+
+import 'package:http/http.dart' as http;
+
+import 'package:google_maps_webservice/src/places.dart';
 
 class SearchController extends GetxController {
   RxBool loader = false.obs;
@@ -44,6 +50,10 @@ class SearchController extends GetxController {
   bool isClockwise = true;
   Completer<GoogleMapController> gMapController = Completer();
 
+  Placemark placeMark = Placemark();
+
+  Placemark get pickPlaceMark => placeMark;
+  List<Prediction> _predictionList = [];
   List advanceSearch = [
     "Surrogate Mom",
     "Sperm Donor",
@@ -77,32 +87,34 @@ class SearchController extends GetxController {
     update(["Search"]);
   }
 
-  List<Marker> markers = <Marker>[];
-
-  loadData() async {
-    loader.value == true;
-    for (int i = 0; i < listLatLongData.length; i++) {
-      Uint8List? image1 = await loadNetWorkImage(
-          "https://firebasestorage.googleapis.com/v0/b/rainbow-convrtx.appspot.com/o/d6f1178b5be84cc4dbae9eb05?alt=media&token=6cfccc46-c22f-4cb5-b1e8-5e7a15305511");
-      final ui.Codec markerImageCodec = await ui.instantiateImageCodec(
-          image1.buffer.asUint8List(),
-          targetHeight: 100,
-          targetWidth: 100);
-      final ui.FrameInfo frameInfo = await markerImageCodec.getNextFrame();
-      final ByteData? byteData =
-          await frameInfo.image.toByteData(format: ui.ImageByteFormat.png);
-      final Uint8List resizedImagePicker = byteData!.buffer.asUint8List();
-      markers.add(Marker(
-        markerId: MarkerId(
-          i.toString(),
-        ),
-        position:
-            LatLng(listLatLongData[i].latitude!,listLatLongData[i].longitude!),
-        icon: BitmapDescriptor.fromBytes(resizedImagePicker),
-      ));
-      update(["googleMap"]);
-      loader.value == false;
+  Future<List<Prediction>> searchLocation(
+      BuildContext context, String text) async {
+    if (text != null && text.isNotEmpty) {
+      http.Response response = await getLocationData(text);
+      var data = jsonDecode(response.body.toString());
+      print("my status is " + data["status"]);
+      if (data['status'] == 'OK') {
+        _predictionList = [];
+        data['predictions'].forEach((prediction) =>
+            _predictionList.add(Prediction.fromJson(prediction)));
+      } else {
+        // ApiChecker.checkApi(response);
+      }
     }
+    return _predictionList;
+  }
+
+  Future<http.Response> getLocationData(String text) async {
+    http.Response response;
+
+    response = await http.get(
+      Uri.parse(
+          "http://mvs.bslmeiyu.com/api/v1/config/place-api-autocomplete?search_text=$text"),
+      headers: {"Content-Type": "application/json"},
+    );
+
+    print(jsonDecode(response.body));
+    return response;
   }
 
   Future<Uint8List> loadNetWorkImage(String path) async {
@@ -157,12 +169,14 @@ class SearchController extends GetxController {
   Future<void> onTapAdvanceSearchMenu(int index) async {
     advance = false;
     await listUserProfileAdvanceSearch(advanceSearch[index]);
+
     Get.to(AdvanceSearchScreen(
       title: advanceSearch[index],
     ))!
         .then((value) async {
       await listUserProfile();
     });
+/*    await loadData();*/
     findUserDistance(index: index);
   }
 
@@ -199,7 +213,6 @@ class SearchController extends GetxController {
     position = await getCurrentPosition();
     await listUserProfile();
     searchBar.clear();
-    loadData();
   }
 
   Uint8List? customMarker;
@@ -209,8 +222,8 @@ class SearchController extends GetxController {
     init();
     /*runFilter('');*/
     scrollController.addListener(pagination);
+/*    await findUserDistance();*/
 
-    await findUserDistance();
     update(['Search']);
     super.onInit();
   }
