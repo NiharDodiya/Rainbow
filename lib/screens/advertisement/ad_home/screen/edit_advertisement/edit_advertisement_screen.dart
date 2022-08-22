@@ -119,10 +119,14 @@ class EditAdvertisementscreen extends StatelessWidget {
                         style: poppinsMediumBold(fontSize: 18),
                       ),
                       const Spacer(),
-                      Text(
-                        "Edit",
-                        style: poppinsMediumBold(fontSize: 18)
-                            .copyWith(decoration: TextDecoration.underline),
+                      InkWell(onTap: () {
+
+                      },
+                        child: Text(
+                          "Edit",
+                          style: poppinsMediumBold(fontSize: 18)
+                              .copyWith(decoration: TextDecoration.underline),
+                        ),
                       ),
                     ],
                   ),

@@ -3,27 +3,31 @@ import 'package:flutter_share/flutter_share.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/model/logout_model.dart';
 import 'package:rainbow/screens/Home/settings/logOut_Api/LogOut_Api.dart';
+import 'package:rainbow/screens/Home/settings/notificationOnOff_api/notificationOnOff_api.dart';
 import 'package:rainbow/screens/Home/settings/privacy/privacy_controller.dart';
 import 'package:rainbow/screens/Home/settings/privacy/privacy_screen.dart';
 import 'package:rainbow/screens/Home/settings/support/support_controller.dart';
 import 'package:rainbow/screens/Home/settings/support/support_screen.dart';
+import 'package:rainbow/service/pref_services.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 
 class SettingsController extends GetxController {
   RxBool loader = false.obs;
   LogOutModel logOutModel = LogOutModel();
 
+  @override
   void onInit() {
     super.onInit();
     update();
   }
 
-  bool isSwitched = false;
+  bool? isSwitched =false ;
 
   Future<void> share() async {
     await FlutterShare.share(
-        title: 'Example share',
-        text: 'Example share text',
-        linkUrl: 'https://flutter.dev/',
+        title: 'RainBow App',
+        text: 'refferalCode',
+        linkUrl: '$refferalCode',
         chooserTitle: 'Example Chooser Title');
   }
 
@@ -49,6 +53,37 @@ class SettingsController extends GetxController {
     } catch (e) {
       loader.value = false;
       debugPrint(e.toString());
+    }
+  }
+
+void notification(){
+  isSwitched  = PrefService.getBool(PrefKeys.notification);
+  print(isSwitched);
+}
+
+String? refferalCode;
+void getRefferralsCode(){
+    refferalCode = PrefService.getString(PrefKeys.referrallCode);
+}
+  Future<void> notificationOnOffApi() async {
+    try{
+      loader.value = true;
+      if(isSwitched==false){
+        PrefService.setValue(PrefKeys.notification, false);
+        await   NotificationOnOffApi.notificationOff();
+
+      }else{
+        PrefService.setValue(PrefKeys.notification, true);
+        await   NotificationOnOffApi.notificationOn();
+      }
+      update(["settings"]);
+
+      loader.value = false;
+
+    }catch(e){
+      print(e.toString());
+      loader.value = false;
+
     }
   }
 }

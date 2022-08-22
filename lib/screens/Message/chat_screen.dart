@@ -15,9 +15,9 @@ class ChatScreen extends StatelessWidget {
   final String? roomId;
   final String? otherUserUid;
   final String? userUid;
-
+  final String? profileImage;
   ChatScreen(
-      {Key? key, this.name, this.userUid, this.otherUserUid, this.roomId})
+      {Key? key, this.name, this.userUid, this.otherUserUid, this.roomId,this.profileImage})
       : super(key: key);
   MessageController messageController = Get.put(MessageController());
 
@@ -74,8 +74,24 @@ class ChatScreen extends StatelessWidget {
                             height: 50,
                             width: 50,
                             decoration: const BoxDecoration(
-                                shape: BoxShape.circle, color: Colors.grey),
+                              shape: BoxShape.circle,
+                            ),
+                            child: ClipRRect(
+                              borderRadius: const BorderRadius.all(Radius.circular(50)),
+                              child: FadeInImage(
+                                placeholder:
+                                const AssetImage(AssetRes.portrait_placeholder),
+                                image: NetworkImage(profileImage.toString()),
+                                fit: BoxFit.cover,
+                              )                     ,
+                            ),
                           ),
+                       /*   Container(
+                            height: 50,
+                            width: 50,
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle, color: Colors.grey),
+                          ),*/
                           const SizedBox(
                             width: 10,
                           ),

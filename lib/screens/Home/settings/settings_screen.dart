@@ -9,8 +9,10 @@ import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
 import 'package:rainbow/screens/Home/settings/subscription/subscription_screen.dart';
 import 'package:rainbow/screens/Home/settings/support/support_screen.dart';
+import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -19,6 +21,8 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller.notification();
+    controller.getRefferralsCode();
     return Scaffold(
       body: GetBuilder<SettingsController>(
         id: "settings",
@@ -401,9 +405,10 @@ class SettingsScreen extends StatelessWidget {
                   return Transform.scale(
                     scale: 0.7,
                     child: CupertinoSwitch(
-                      value: controller.isSwitched,
+                      value: controller.isSwitched!,
                       onChanged: (value) {
                         controller.isSwitched = value;
+                        controller.notificationOnOffApi();
                         controller.update(["switch"]);
                       },
                       activeColor: Colors.yellow,
@@ -464,7 +469,7 @@ class SettingsScreen extends StatelessWidget {
             height: Get.height * 0.01,
           ),
           Text(
-            "ASG45S12",
+            controller.refferalCode.toString(),
             style: gilroyBoldTextStyle(fontSize: 32),
           ),
           SizedBox(

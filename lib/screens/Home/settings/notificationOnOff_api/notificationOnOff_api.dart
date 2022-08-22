@@ -10,21 +10,15 @@ import 'package:http/http.dart' as http;
 
 class NotificationOnOffApi{
 
-
-
-  static Future notificationOnOff({String? id}) async {
+  static Future notificationOn() async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
 
     try {
-      String url = EndPoints.addCartDetails;
-
-      Map<String, String> param = {"id_support": id.toString()};
-      print(param);
+      String url = EndPoints.notificationOn;
       http.Response? response = await HttpService.postApi(
           url: url,
-          body: jsonEncode(param),
+          body: {},
           header: {
-            "Content-Type": "application/json",
             "x-access-token": accesToken
           });
       if (response != null && response.statusCode == 200) {
@@ -32,7 +26,32 @@ class NotificationOnOffApi{
         if (status == false) {
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          /*    flutterToast(jsonDecode(response.body)["message"]);*/
+              flutterToast(jsonDecode(response.body)["message"]);
+        }
+              return notificationModelFromJson(response.body);
+      }
+    } catch (e) {
+      print(e.toString());
+      return [];
+    }
+  }
+  static Future notificationOff() async {
+    String accesToken = PrefService.getString(PrefKeys.registerToken);
+
+    try {
+      String url = EndPoints.notificationOff;
+      http.Response? response = await HttpService.postApi(
+          url: url,
+          body: {},
+          header: {
+            "x-access-token": accesToken
+          });
+      if (response != null && response.statusCode == 200) {
+        bool? status = jsonDecode(response.body)["status"];
+        if (status == false) {
+          errorToast(jsonDecode(response.body)["message"]);
+        } else if (status == true) {
+              flutterToast(jsonDecode(response.body)["message"]);
         }
               return notificationModelFromJson(response.body);
       }

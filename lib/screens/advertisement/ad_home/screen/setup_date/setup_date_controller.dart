@@ -1,6 +1,11 @@
 import 'package:country_picker/country_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_screen.dart';
+import 'package:rainbow/screens/advertisement/boostadvertisement_api/boostAdvertisement_api.dart';
 import 'package:rainbow/utils/asset_res.dart';
+import 'package:rainbow/utils/color_res.dart';
 
 class SetupDateController extends GetxController {
   DateTime startTime = DateTime.now();
@@ -12,6 +17,7 @@ class SetupDateController extends GetxController {
   String currency = "\$";
   List<String> currencyList = ["\$", "₹"];
   String select = 'Caneda';
+  RxBool loader = false.obs;
 
   rangSelect(start, end, range) {
     startTime = start;
@@ -48,5 +54,62 @@ class SetupDateController extends GetxController {
         update(['Phone']);
       },
     );
+  }
+
+  bool validation() {
+    if (startTime.toString().isEmpty ) {
+      errorToast("please select date");
+      return false;
+    } else if (endtime.toString().isEmpty) {
+      errorToast("please select date");
+      return false;
+    }else if(currency.isEmpty){
+      errorToast("please enter your amount");
+    }
+    return true;
+  }
+
+  void onTapNext(){
+
+    if(validation()){
+      Get.bottomSheet(
+        enableDrag: false,
+        BottomSheet(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
+          ),
+          backgroundColor: ColorRes.white,
+          onClosing: () {},
+          constraints: BoxConstraints(
+            maxHeight: Get.height - (Get.height * 0.0480),
+          ),
+
+          // enableDrag: true,
+          builder: (_) =>  ShowBottomNext(amount: currency,),
+        ),
+        isScrollControlled: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(35),
+        ),
+        ignoreSafeArea: true,
+      );
+      print("cbsacfdtasdfasfyasydsyi");
+/*      boostAdvertisementApi();*/
+    }
+  }
+
+  Future<void> boostAdvertisementApi() async {
+    loader.value = true;
+    try {
+      await BoostAdvertisementApi.boostAdvertisement();
+      loader.value = true;
+      update(["advertiser"]);
+    } catch (e) {
+      print(e.toString());
+      loader.value = true;
+    }
   }
 }
