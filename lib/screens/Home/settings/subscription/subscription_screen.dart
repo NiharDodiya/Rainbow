@@ -308,7 +308,7 @@ class PremiumPackage extends StatelessWidget {
             ]),
           ),
           SizedBox(
-            height: Get.height * 0.0492,
+            height: Get.height * 0.035,
           )
         ],
       ),

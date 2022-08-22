@@ -66,6 +66,8 @@ class EndPoints {
   static const viewSupportTicket = "$baseUrl/user/support/message/view";
   static const sendSupport = "$baseUrl/user/support/send";
   static const userSupport = "$baseUrl/user/support/tickit";
+  static const addCartDetails = "$baseUrl/advirtisers/register";
+  static const notificationOnOff = "$baseUrl/advirtisers/register";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

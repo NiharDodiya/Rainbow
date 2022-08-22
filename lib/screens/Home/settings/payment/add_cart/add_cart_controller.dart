@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/screens/Home/settings/payment/add_cart/addCart_api/addCart_api.dart';
 
 import '../../../../../common/popup.dart';
 import '../../../../../utils/strings.dart';
@@ -14,7 +15,7 @@ class AddCartController extends GetxController {
   TextEditingController cardNmberController = TextEditingController();
   TextEditingController expiryDateController = TextEditingController();
   TextEditingController cvvController = TextEditingController();
-
+  String? selectCountry;
   void onInit() {
     update();
     super.onInit();
@@ -60,5 +61,23 @@ class AddCartController extends GetxController {
       return false;
     }
     return true;
+  }
+
+  void onCountryCoCityChange(String value) {
+    selectCountry = value;
+    countryController.text = value;
+    update(['addCard']);
+  }
+
+
+  void addCartDetails(){
+
+    try{
+      AddCartApi.addCartDetailsApi();
+
+    }catch(e){
+
+
+    }
   }
 }
