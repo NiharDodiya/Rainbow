@@ -171,7 +171,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                         Radius.circular(9),
                       ),
                     ),
-                    child: ListView.builder(shrinkWrap: true,scrollDirection: Axis.horizontal,itemCount: controller.viewSupportTicketModel.data![index]
+                    child: ListView.builder(scrollDirection: Axis.horizontal,itemCount: controller.viewSupportTicketModel.data![index]
                         .itmeList!.length ,itemBuilder: (context, index1) {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -198,7 +198,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                           const SizedBox(width: 5,),
                           Padding(
                             padding: EdgeInsets.symmetric(
-                                vertical: Get.height * 0.035),
+                                vertical: Get.height * 0.015),
                             child: InkWell(
                                 onTap: () {
                                   controller.save(controller

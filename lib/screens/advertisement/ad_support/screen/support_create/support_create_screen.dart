@@ -132,7 +132,7 @@ class SupportcreateScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
+               /*   Container(
                     height: 200,
                     width: 200,
                     decoration: BoxDecoration(
@@ -140,7 +140,7 @@ class SupportcreateScreen extends StatelessWidget {
                         image: FileImage(),
                       )
                     ),
-                  ),
+                  ),*/
                   GetBuilder<SupportCreateController>(
                       id: "img",
                       builder: (controller){

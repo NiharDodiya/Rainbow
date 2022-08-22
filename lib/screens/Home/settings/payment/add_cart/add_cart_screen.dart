@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/country_name.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
+import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/screens/Home/settings/payment/add_cart/add_cart_controller.dart';
 
 import '../../../../../common/Widget/buttons.dart';
@@ -16,7 +18,7 @@ class AddCartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GetBuilder<AddCartController>(
+      body: GetBuilder<AddCartController>(id: "addCard",
         builder: (controller) => SafeArea(
           child: Container(
             width: Get.width,
@@ -87,12 +89,25 @@ class AddCartScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        AppTextFiled(
+                        GetBuilder<AddCartController>(
+                          id: 'addCard',
+                          builder: (controller) {
+                            return dropdownButton(
+                                title: "Country",
+                                hintText: "Canada",
+                                selectedValue: controller.selectCountry,
+                                onTap: controller.onCountryCoCityChange,
+                                dropdownList: countryCity,
+                                height: Get.height * 0.3);
+
+                          },
+                        ),
+                      /*  AppTextFiled(
                           controller: controller.countryController,
                           title: Strings.country,
                           hintText: Strings.london,
                           bottomPadding: 0,
-                        ),
+                        ),*/
                         const SizedBox(
                           height: 30,
                         ),
@@ -138,7 +153,7 @@ class AddCartScreen extends StatelessWidget {
                               ),
                             ),
                           ],
-                        ),
+                        ),const SizedBox(height: 10,),
                         SubmitButton(
                           text: Strings.addCard,
                           onTap: controller.addCart,
