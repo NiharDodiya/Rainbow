@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/Home/settings/support/support_controller.dart';
 
 import 'package:rainbow/utils/asset_res.dart';
@@ -214,31 +215,102 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                 const SizedBox(
                                     width: 5
                                 ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: Get.height * 0.015),
+                                  child: InkWell(
+                                      onTap: (){
+                                        print( controller.save(controller
+                                            .viewSupportTicketModel
+                                            .data![index]
+                                            .itmeList![index1]
+                                            .image
+                                            .toString()));
+                                        controller.save(controller
+                                            .viewSupportTicketModel
+                                            .data![index]
+                                            .itmeList![index1]
+                                            .image
+                                            .toString());
+                                        // (controller.imgIdList.length==0)
+                                        //     ?  errorToast("Image is not found")
+                                        //     : (controller.imgIdList.length == 1)
+                                        //        ?controller.save(controller
+                                        //     .viewSupportTicketModel
+                                        //     .data![index]
+                                        //     .itmeList![0]
+                                        //     .image
+                                        //     .toString())
+                                        //     :Column(
+                                        //   children: [
+                                        //     controller.save(controller
+                                        //         .viewSupportTicketModel
+                                        //         .data![index]
+                                        //         .itmeList![0]
+                                        //         .image
+                                        //         .toString()),
+                                        //     controller.save(controller
+                                        //         .viewSupportTicketModel
+                                        //         .data![index]
+                                        //         .itmeList![1]
+                                        //         .image
+                                        //         .toString()),
+                                        //   ],
+                                        // );
 
+                                      },
+                                      child: Image.asset(AssetRes.downlode)),
+                                ),
                               ],
                             );
                           },
                         ),
-                        Padding(
-                      padding: EdgeInsets.symmetric(
-                          vertical: Get.height * 0.015),
-                      child: InkWell(
-                          onTap: (){
-                             controller.save(controller
-                                .viewSupportTicketModel
-                                .data![index]
-                                .itmeList![0]
-                                .image
-                                .toString());
-                             controller.save(controller
-                                .viewSupportTicketModel
-                                .data![index]
-                                .itmeList![1]
-                                .image
-                                .toString());
-                          },
-                          child: Image.asset(AssetRes.downlode)),
-                    ),
+                        // Padding(
+                        //   padding: EdgeInsets.symmetric(
+                        //       vertical: Get.height * 0.015),
+                        //   child: InkWell(
+                        //       onTap: (){
+                        //         print( controller.save(controller
+                        //             .viewSupportTicketModel
+                        //             .data![index]
+                        //             .itmeList![0]
+                        //             .image
+                        //             .toString()));
+                        //         controller.save(controller
+                        //             .viewSupportTicketModel
+                        //             .data![index]
+                        //             .itmeList![0]
+                        //             .image
+                        //             .toString());
+                        //         // (controller.imgIdList.length==0)
+                        //         //     ?  errorToast("Image is not found")
+                        //         //     : (controller.imgIdList.length == 1)
+                        //         //        ?controller.save(controller
+                        //         //     .viewSupportTicketModel
+                        //         //     .data![index]
+                        //         //     .itmeList![0]
+                        //         //     .image
+                        //         //     .toString())
+                        //         //     :Column(
+                        //         //   children: [
+                        //         //     controller.save(controller
+                        //         //         .viewSupportTicketModel
+                        //         //         .data![index]
+                        //         //         .itmeList![0]
+                        //         //         .image
+                        //         //         .toString()),
+                        //         //     controller.save(controller
+                        //         //         .viewSupportTicketModel
+                        //         //         .data![index]
+                        //         //         .itmeList![1]
+                        //         //         .image
+                        //         //         .toString()),
+                        //         //   ],
+                        //         // );
+                        //
+                        //       },
+                        //       child: Image.asset(AssetRes.downlode)),
+                        // ),
                       ],
                     ),
 

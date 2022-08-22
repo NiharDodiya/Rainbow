@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/Home/settings/support/endUserSupprotCreateScreen.dart';
 import 'package:rainbow/screens/Home/settings/support/support_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_support/screen/support_create/support_create_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -24,6 +23,7 @@ class SupportScreen extends StatelessWidget {
           return SingleChildScrollView(
             child: Container(
               width: Get.width,
+              height: Get.height,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
