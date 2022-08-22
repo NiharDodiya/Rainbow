@@ -33,8 +33,10 @@ class SettingsController extends GetxController {
     Get.to(() => PrivacyScreen());
   }
    onTapSupport() async {
+ /*   loader.value= true;
     SupportController supportController = Get.put(SupportController());
     await supportController.getListOfUserTicket();
+    loader.value= false;*/
     Get.to(() => SupportScreen());
 
    }

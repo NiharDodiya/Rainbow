@@ -9,8 +9,11 @@ import 'package:get/get.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
+import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/model/ListSupportTicketModel.dart';
 import 'package:rainbow/model/ViewSupportTicketModel.dart';
+import 'package:rainbow/model/sendSupportModel.dart';
 import 'package:rainbow/screens/Home/settings/support/endUserSupprotCreateScreen.dart';
 import 'package:rainbow/screens/Home/settings/support/support_api/support_api.dart';
 import 'package:http/http.dart' as http;
@@ -20,15 +23,19 @@ import '../../../../utils/strings.dart';
 class SupportController extends GetxController {
   List supportList = ["Pending", "Complete", "Complete", "Complete"];
   TextEditingController yourMsgController = TextEditingController();
+  TextEditingController yourMsgSendController = TextEditingController();
   File? imagePath;
   RxBool loader =false.obs;
+  List<int> imgIdList = [];
+  List<File> image = [];
+  UploadImage uploadImage =   UploadImage();
 @override
   Future<void> onInit() async {
 
   super.onInit();
 }
   //call Camera
-  navigateToCamera() async {
+ /* navigateToCamera() async {
     String? path = await cameraPickImage();
 
     if (path != null) {
@@ -47,6 +54,16 @@ class SupportController extends GetxController {
     update(["Getpic"]);
 
     return null;
+  }*/
+// camaera to pick image
+  Future<String?> cameraImage() async {
+    XFile? pickedFile =
+    await ImagePicker().pickImage(source: ImageSource.camera,imageQuality: 100);
+    if (pickedFile != null) {
+      image.add(File(pickedFile.path));
+    }
+    update(["createStory"]);
+    return null;
   }
 
   onTap({String? status, String? id,String? code}) async {
@@ -62,9 +79,6 @@ class SupportController extends GetxController {
   }
 
   ListSupportTicketModel listSupportTicketModel = ListSupportTicketModel();
-
-
-
   Future<void> getListOfUserTicket() async {
     try {
       loader.value = true;
@@ -74,6 +88,7 @@ class SupportController extends GetxController {
       loader.value = false;
 
     } catch (e) {
+      loader.value = false;
       debugPrint(e.toString());
     }
   }
@@ -83,12 +98,28 @@ class SupportController extends GetxController {
   Future<void> viewSupportTicketData(String id) async {
     try {
       loader.value = true;
-      viewSupportTicketModel=await  SupportApi.viewSupportTicket(id:id );
+      viewSupportTicketModel=await  SupportApi.viewSupportTicket(id:id);
       print(viewSupportTicketModel);
       update(["Support"]);
       loader.value = false;
 
     } catch (e) {
+      loader.value = false;
+      debugPrint(e.toString());
+    }
+  }
+  SendSupportModel sendSupportModel =SendSupportModel();
+  Future<void> sendSupportApiData(String id) async {
+    try {
+      loader.value = true;
+      sendSupportModel=await  SupportApi.sendSupportApi(id:id ,description:yourMsgSendController.text);
+      print(sendSupportModel);
+      update(["Support"]);
+      loader.value = false;
+      yourMsgSendController.clear();
+
+    } catch (e) {
+      loader.value = false;
       debugPrint(e.toString());
     }
   }
@@ -104,5 +135,22 @@ class SupportController extends GetxController {
     print(result);
     loader.value=false;
     flutterToast("Image Save successFull");
+  }
+
+
+  Future<void> uploadImageData() async {
+    // loader.value = true;
+    try {
+      imgIdList = [];
+      for (var e in image) {
+        uploadImage = await UploadImageApi.postRegister(e.path);
+        imgIdList.add(uploadImage.data!.id!);
+      }
+
+      // loader.value = false;
+    } catch (e) {
+      // loader.value = false;
+      debugPrint(e.toString());
+    }
   }
 }

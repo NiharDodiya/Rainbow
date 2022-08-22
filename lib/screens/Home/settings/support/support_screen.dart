@@ -16,6 +16,7 @@ class SupportScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller.getListOfUserTicket();
     return Scaffold(
       body: GetBuilder<SupportController>(
         id: "Support",
@@ -235,7 +236,7 @@ class SupportScreen extends StatelessWidget {
                                           fontSize: 16),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 18,
                               )
                             ],
