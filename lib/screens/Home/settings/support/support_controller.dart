@@ -29,13 +29,13 @@ class SupportController extends GetxController {
   List<int> imgIdList = [];
   List<File> image = [];
   UploadImage uploadImage =   UploadImage();
-@override
+  @override
   Future<void> onInit() async {
 
-  super.onInit();
-}
+    super.onInit();
+  }
   //call Camera
- /* navigateToCamera() async {
+  /* navigateToCamera() async {
     String? path = await cameraPickImage();
 
     if (path != null) {
@@ -67,7 +67,7 @@ class SupportController extends GetxController {
   }
 
   onTap({String? status, String? id,String? code}) async {
-  await viewSupportTicketData(id.toString());
+    await viewSupportTicketData(id.toString());
     Get.to(()=> SupportCreateEndUserScreen(com: status,code: code,));
     update(["Support"]);
   }
@@ -126,7 +126,7 @@ class SupportController extends GetxController {
   save(String url) async {
     loader.value=true;
     var response = await Dio().get(
-       url,
+        url,
         options: Options(responseType: ResponseType.bytes));
     final result = await ImageGallerySaver.saveImage(
         Uint8List.fromList(response.data),

@@ -1,11 +1,13 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+
 import 'package:cropperx/cropperx.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/utils/color_res.dart';
 

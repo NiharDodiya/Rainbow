@@ -8,6 +8,7 @@ import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
 import 'package:rainbow/screens/advertisement/ad_support/screen/support_details/support_details_screen.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
+import 'package:rainbow/screens/myScreen.dart';
 import 'package:rainbow/screens/scanyour_face/scanyourface_controller.dart';
 import 'package:rainbow/screens/splash/splash_screen.dart';
 import 'package:rainbow/screens/terms_conditions/terms_conditions_screen.dart';

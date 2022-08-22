@@ -1,10 +1,11 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
+import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
+import 'package:rainbow/screens/Home/settings/support/api/creat_support_api.dart';
 import 'package:rainbow/utils/strings.dart';
-
 import '../../../../../common/popup.dart';
 
 class SupportCreateController extends GetxController {
@@ -12,26 +13,52 @@ class SupportCreateController extends GetxController {
   TextEditingController yourMsgController = TextEditingController();
   TextEditingController subjectController = TextEditingController();
 
-  //call Camera
-  navigateToCamera() async {
-    String? path = await cameraPickImage();
+  RxBool loader = false.obs;
 
-    if (path != null) {
-      imagePath = File(path);
+  List<File> image = [];
+
+  Future<String?> navigateToCamera() async {
+    XFile? pickedFile = await ImagePicker()
+        .pickImage(source: ImageSource.camera, imageQuality: 100);
+    if (pickedFile != null) {
+      image.add(File(pickedFile.path));
     }
-    update(["Getpic"]);
+    update(["img"]);
+    return null;
   }
 
-  //Open Camera
-  Future<String?> cameraPickImage() async {
-    XFile? pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.camera);
-    if (pickedFile != null) {
-      return pickedFile.path;
-    }
-    update(["Getpic"]);
+  UploadImage uploadImage = UploadImage();
+  List<int> imgIdList = [];
 
-    return null;
+  Future<void> uploadImageData() async {
+    // loader.value = true;
+    try {
+      imgIdList = [];
+      for (var e in image) {
+        uploadImage = await UploadImageApi.postRegister(e.path);
+        imgIdList.add(uploadImage.data!.id!);
+      }
+
+      // loader.value = false;
+    } catch (e) {
+      // loader.value = false;
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> supportApi() async {
+
+    loader.value = true;
+    await uploadImageData();
+
+
+    int res = await SupportAPI.supportAPI.postSupportAPI(data: {
+      'title': subjectController.text,
+      'description': yourMsgController.text,
+      'id_item': imgIdList,
+    });
+
+    loader.value = false;
   }
 
   valid() {
@@ -41,4 +68,9 @@ class SupportCreateController extends GetxController {
       errorToast(Strings.supporterror01);
     }
   }
+
+void onSendMsgTap()async{
+  valid();
+  await supportApi();
+}
 }

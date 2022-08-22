@@ -257,7 +257,7 @@ class SupportScreen extends StatelessWidget {
   Widget sendNewMessage() {
     return InkWell(
       onTap: () {
-        Get.to(() => const SupportcreateScreen());
+        Get.to(() =>  SupportcreateScreen());
       },
       child: Container(
         height: 60,

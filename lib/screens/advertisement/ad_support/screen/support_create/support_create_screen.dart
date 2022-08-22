@@ -1,48 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/screens/advertisement/ad_support/screen/support_create/support_create_controller.dart';
-
 import '../../../../../common/Widget/buttons.dart';
 import '../../../../../common/Widget/text_styles.dart';
 import '../../../../../utils/asset_res.dart';
 import '../../../../../utils/color_res.dart';
 import '../../../../../utils/strings.dart';
+import 'package:rainbow/common/Widget/loaders.dart';
 
 class SupportcreateScreen extends StatelessWidget {
-  const SupportcreateScreen({
+   SupportcreateScreen({
     Key? key,
   }) : super(key: key);
+
+ final SupportCreateController controller = Get.put(SupportCreateController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          width: Get.width,
-          height: Get.height,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                ColorRes.color_50369C,
-                ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
-                ColorRes.color_D18EEE,
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-          ),
-          child: Column(
-            children: [
-              SizedBox(
-                height: Get.height * 0.035,
+      body: Obx((){
+        return  Stack(
+          children: [
+            SingleChildScrollView(
+              child: Container(
+                width: Get.width,
+                height: Get.height,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      ColorRes.color_50369C,
+                      ColorRes.color_50369C,
+                      ColorRes.color_D18EEE,
+                      ColorRes.color_D18EEE,
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: Get.height * 0.035,
+                    ),
+                    appBar(),
+                    body(),
+                  ],
+                ),
               ),
-              appBar(),
-              body(),
-            ],
-          ),
-        ),
-      ),
+            ),
+            controller.loader.isTrue
+                ?  const FullScreenLoader()
+                : const SizedBox(),
+          ],
+        );
+      }),
     );
   }
 
@@ -118,16 +129,23 @@ class SupportcreateScreen extends StatelessWidget {
               SizedBox(
                 height: Get.height * 0.01477,
               ),
-              Center(
-                child: SizedBox(
-                  height: Get.height * 0.0474,
-                  child: InkWell(
-                      onTap: () {
-                        controller.navigateToCamera();
-                      },
-                      child: Image.asset(AssetRes.cameraPic)),
-                ),
-              ),
+              GetBuilder<SupportCreateController>(
+                id: "img",
+                  builder: (controller){
+                return  Center(
+                  child: SizedBox(
+                    height: Get.height * 0.0474,
+                    child: InkWell(
+                        onTap: () async{
+
+                          controller.navigateToCamera();
+
+                        },
+                        child: Image.asset(AssetRes.cameraPic)),
+                  ),
+                );
+              }),
+
               SizedBox(
                 height: Get.height * 0.0190,
               ),
@@ -141,9 +159,7 @@ class SupportcreateScreen extends StatelessWidget {
                 height: Get.height * 0.05,
               ),
               SubmitButton(
-                onTap: () {
-                  controller.valid();
-                },
+                onTap: controller.onSendMsgTap,
                 child: Text(
                   Strings.sendMessage,
                   style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
