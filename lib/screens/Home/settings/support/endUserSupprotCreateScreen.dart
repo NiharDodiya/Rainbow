@@ -53,7 +53,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                 ],
               ),
             ),
-            controller.loader.value? Center(child: CircularProgressIndicator(),):SizedBox(),
+            controller.loader.value? const Center(child: const CircularProgressIndicator(),):const SizedBox(),
           ],
         );
       })
@@ -171,7 +171,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                   Container(
                     height: Get.height * 0.07279,
                     width: Get.width * 0.354666,
-                    padding: EdgeInsets.only(right: 5),
+                    padding: const EdgeInsets.only(right: 5),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: ColorRes.white,
@@ -369,7 +369,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(15),
                               ),
                             ),
-                            SizedBox(width: 20,),
+                            const SizedBox(width: 20,),
                             (controller.image.length == 2)
                                 ? Container(
                               height: Get.height / 12,

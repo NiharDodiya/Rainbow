@@ -128,9 +128,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: GetBuilder<NotificationsController>(
                                     id: 'notification_badge',
                                     builder: (notificationController) {
-                                      return      notificationController
+                                      return  notificationController
                                           .notificationModel!.pendingCount.toString()==
-                                              "0"
+                                              "null" ||   notificationController
+                                          .notificationModel!.pendingCount.toString()=="0"
                                           ? const SizedBox()
                                           : Container(
                                               height: 16,
