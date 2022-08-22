@@ -24,6 +24,7 @@ class SupportCreateController extends GetxController {
       image.add(File(pickedFile.path));
     }
     update(["img"]);
+    update();
     return null;
   }
 

@@ -9,17 +9,17 @@ import '../../../../../utils/strings.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 
 class SupportcreateScreen extends StatelessWidget {
-   SupportcreateScreen({
+  SupportcreateScreen({
     Key? key,
   }) : super(key: key);
 
- final SupportCreateController controller = Get.put(SupportCreateController());
+  final SupportCreateController controller = Get.put(SupportCreateController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx((){
-        return  Stack(
+      body: Obx(() {
+        return Stack(
           children: [
             SingleChildScrollView(
               child: Container(
@@ -127,48 +127,92 @@ class SupportcreateScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: Get.height * 0.01477,
+                height: Get.height * 0.01488,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-               /*   Container(
-                    height: 200,
-                    width: 200,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: FileImage(),
-                      )
+              GetBuilder<SupportCreateController>(
+                id: "img",
+                  builder: (controller){
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    (controller.image.isEmpty)
+                        ? const SizedBox()
+                        : Container(
+                      height: Get.height / 8,
+                      width: Get.width / 4,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          image: DecorationImage(
+                              image: FileImage(controller.image[0]),
+                              fit: BoxFit.cover)),
                     ),
-                  ),*/
-                  GetBuilder<SupportCreateController>(
-                      id: "img",
-                      builder: (controller){
-                        return  Center(
+                    SizedBox(
+                      width: 20,
+                    ),
+                    (controller.image.length == 2)?Container(
+                      height: Get.height / 8,
+                      width: Get.width / 4,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          image: DecorationImage(
+                              image: FileImage(controller.image[1]),
+                              fit: BoxFit.cover)),
+                    ):
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Center(
                           child: SizedBox(
                             height: Get.height * 0.0474,
                             child: InkWell(
-                                onTap: () async{
-
+                                onTap: () async {
                                   controller.navigateToCamera();
-
                                 },
                                 child: Image.asset(AssetRes.cameraPic)),
                           ),
-                        );
-                      }),
-                ],
-              ),
-
-              SizedBox(
-                height: Get.height * 0.0190,
-              ),
-              Center(
-                child: Text(
-                  Strings.attachImage,
-                  style: gilroyMediumTextStyle(fontSize: 14),
-                ),
-              ),
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.0190,
+                        ),
+                        Center(
+                          child: Text(
+                            Strings.attachImage,
+                            style: gilroyMediumTextStyle(fontSize: 14),
+                          ),
+                        ),
+                      ],
+                    ),
+                    // GetBuilder<SupportCreateController>(
+                    //     id: "img",
+                    //     builder: (controller) {
+                    //       return Column(
+                    //         mainAxisAlignment: MainAxisAlignment.center,
+                    //         children: [
+                    //           Center(
+                    //             child: SizedBox(
+                    //               height: Get.height * 0.0474,
+                    //               child: InkWell(
+                    //                   onTap: () async {
+                    //                     controller.navigateToCamera();
+                    //                   },
+                    //                   child: Image.asset(AssetRes.cameraPic)),
+                    //             ),
+                    //           ),
+                    //           SizedBox(
+                    //             height: Get.height * 0.0190,
+                    //           ),
+                    //           Center(
+                    //             child: Text(
+                    //               Strings.attachImage,
+                    //               style: gilroyMediumTextStyle(fontSize: 14),
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       );
+                    //     }),
+                  ],
+                );
+              }),
               SizedBox(
                 height: Get.height * 0.05,
               ),
