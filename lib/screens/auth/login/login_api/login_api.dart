@@ -42,6 +42,7 @@ class LoginApi {
         if (status == false) {
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
+          await PrefService.setValue(PrefKeys.referrallCode, jsonDecode(response.body)["data"]["referrall_code"]);
           await PrefService.setValue(
               PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
           await PrefService.setValue(PrefKeys.isLogin, true);

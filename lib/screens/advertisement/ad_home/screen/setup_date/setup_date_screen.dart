@@ -124,7 +124,7 @@ class SetupDateScreen extends StatelessWidget {
               Container(
                 width: Get.width,
                 height: 308,
-                padding: EdgeInsets.only(bottom: 5),
+                padding: const EdgeInsets.only(bottom: 5),
                 decoration: const BoxDecoration(
                   color: ColorRes.white,
                   borderRadius: BorderRadius.all(
@@ -236,13 +236,6 @@ class SetupDateScreen extends StatelessWidget {
                     startingDayOfWeek: StartingDayOfWeek.monday,
                   ),
                 ),
-                // SfDateRangePicker(
-                //   onSelectionChanged: _onSelectionChanged,
-                //   selectionMode: DateRangePickerSelectionMode.range,
-                //   initialSelectedRange: PickerDateRange(
-                //       DateTime.now().subtract(const Duration(days: 4)),
-                //       DateTime.now().add(const Duration(days: 3))),
-                // ),
               ),
               const SizedBox(height: 19),
               Container(
@@ -396,7 +389,7 @@ class SetupDateScreen extends StatelessWidget {
                                             ),
                                           ),
                                         )
-                                      : Container(),
+                                      : const SizedBox(),
                                 ],
                               ),
                             ),
@@ -412,8 +405,10 @@ class SetupDateScreen extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               SubmitButton(
+
                 onTap: () {
-                  Get.bottomSheet(
+                  setupDateController.onTapNext();
+      /*            Get.bottomSheet(
                     enableDrag: false,
                     BottomSheet(
                       shape: const RoundedRectangleBorder(
@@ -429,14 +424,14 @@ class SetupDateScreen extends StatelessWidget {
                       ),
 
                       // enableDrag: true,
-                      builder: (_) => ShowBottomNext(),
+                      builder: (_) => const ShowBottomNext(),
                     ),
                     isScrollControlled: true,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(35),
                     ),
                     ignoreSafeArea: true,
-                  );
+                  );*/
                 },
                 child: Text(
                   "Next",
@@ -456,8 +451,9 @@ class SetupDateScreen extends StatelessWidget {
 }
 
 class ShowBottomNext extends StatelessWidget {
-  const ShowBottomNext({
-    Key? key,
+  String? amount;
+   ShowBottomNext({
+    Key? key,this.amount
   }) : super(key: key);
 
   @override
@@ -524,7 +520,7 @@ class ShowBottomNext extends StatelessWidget {
                         RichText(
                           text: TextSpan(children: [
                             TextSpan(
-                              text: "120",
+                              text: amount,
                               style: poppinsSemiBold(fontSize: 64),
                             ),
                             TextSpan(

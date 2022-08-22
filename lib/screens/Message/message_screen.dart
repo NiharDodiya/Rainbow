@@ -12,6 +12,7 @@ class MessageScreen extends StatelessWidget {
   MessageController messageController =Get.put(MessageController());
   @override
   Widget build(BuildContext context) {
+    messageController.getChatUserId();
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -72,7 +73,6 @@ class MessageScreen extends StatelessWidget {
                                     child: TextFormField(
                                       controller: controller.msgController,
                                       onChanged: (value) {
-
                                         controller.update(["message"]);
                                       },
                                       style: const TextStyle(color: Colors.black),
@@ -98,8 +98,6 @@ class MessageScreen extends StatelessWidget {
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (BuildContext context, int index) {
-
-
                               return snapshot.data!.docs[index]['uid'] ==
                                       controller.userUid
                                   ? const SizedBox()
@@ -108,18 +106,34 @@ class MessageScreen extends StatelessWidget {
                                           children: [
                                             Stack(
                                               children: [
-                                                Container(
-                                                  margin: const EdgeInsets.symmetric(
-                                                      horizontal: 10),
+                                                Container(  margin: const EdgeInsets.symmetric(
+                                                    horizontal: 10),
                                                   height: 50,
                                                   width: 50,
                                                   decoration: const BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                      color: Colors.grey),
-                                                  child: const Center(
-                                                    child: Icon(Icons.person),
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: ClipRRect(
+                                                    borderRadius: const BorderRadius.all(Radius.circular(50)),
+                                                    child: FadeInImage(
+                                                      placeholder:
+                                                      const AssetImage(AssetRes.portrait_placeholder),
+                                                      image: NetworkImage(snapshot.data!.docs[index]['image'].toString()),
+                                                      fit: BoxFit.cover,
+                                                    )                     ,
                                                   ),
                                                 ),
+                                               /* Container(
+                                                  margin: const EdgeInsets.symmetric(
+                                                      horizontal: 10),
+                                                  child: ClipRRect(
+                                                    borderRadius: BorderRadius.circular(50),
+                                                    child: Image.network(snapshot.data!.docs[index]['image'].toString(),   height: 50,
+                                                      width: 50,fit: BoxFit.cover,errorBuilder: (context, error, stackTrace) {
+                                                        return Image.asset(AssetRes.placeholderImage);
+                                                      },),
+                                                  )
+                                                ),*/
                                                 Positioned(
                                                     top: Get.height * 0.05,
                                                     right: 12,
@@ -133,7 +147,7 @@ class MessageScreen extends StatelessWidget {
                                             const SizedBox(
                                               height: 10,
                                             ),
-                                            const Text("Name")
+                                             Text(snapshot.data!.docs[index]['name'])
                                           ],
                                         )
                                       : const SizedBox();
@@ -174,7 +188,8 @@ class MessageScreen extends StatelessWidget {
                                 controller.gotoChatScreen(
                                     snapshot.data!.docs[index]['uid'],
                                     snapshot.data!.docs[index]
-                                    ['email']);
+                                    ['name'],  snapshot.data!.docs[index]
+                                ['image']);
                               },
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -192,8 +207,25 @@ class MessageScreen extends StatelessWidget {
                                       const SizedBox(
                                         width: 5,
                                       ),
-                                      Container(
-                                        margin:
+                                      Container(  margin: const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                        height: 60,
+                                        width: 60,
+                                        decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius: const BorderRadius.all(Radius.circular(50)),
+                                          child: FadeInImage(
+                                            placeholder:
+                                            const AssetImage(AssetRes.portrait_placeholder),
+                                            image: NetworkImage(snapshot.data!.docs[index]['image'].toString()),
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                     /* Container(
+                                            margin:
                                         const EdgeInsets.symmetric(
                                             horizontal: 10),
                                         height: 60,
@@ -204,7 +236,7 @@ class MessageScreen extends StatelessWidget {
                                         child: const Center(
                                           child: Icon(Icons.person),
                                         ),
-                                      ),
+                                      ),*/
                                       const SizedBox(
                                         width: 5,
                                       ),
@@ -214,8 +246,8 @@ class MessageScreen extends StatelessWidget {
                                         crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            "${snapshot.data!.docs[index]['email'].toString()}",
+                                          snapshot.data!.docs[index]['name'].toString().isEmpty?SizedBox(): Text(
+                                            "${snapshot.data!.docs[index]['name'].toString()}",
                                             style: sfProTextReguler(
                                                 fontSize: 17),
                                           ),

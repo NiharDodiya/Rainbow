@@ -15,4 +15,7 @@ class PrefKeys {
   static const phonSaveNumberEndUser = "phonSaveNumber";
   static const phonSaveNumberAdvertiser = "phonSaveNumberAdvertiser";
   static const uid = "uid";
+  static const notification = "notification";
+  static const referrallCode = "referrallCode";
+
 }

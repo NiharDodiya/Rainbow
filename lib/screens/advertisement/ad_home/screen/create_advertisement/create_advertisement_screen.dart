@@ -64,7 +64,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                       SizedBox(height: Get.height * 0.02),
                     ],
                   ),
-                  controller.loader.isTrue?FullScreenLoader():SizedBox()
+                  controller.loader.isTrue?const FullScreenLoader():const SizedBox()
                 ],
               ),
             );

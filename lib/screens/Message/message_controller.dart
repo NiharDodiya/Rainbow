@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/helper.dart';
@@ -22,6 +23,7 @@ class MessageController extends GetxController {
   bool showScrollDownBtn = false;
   String? userUid;
   String? roomId;
+  String? id;
 
   var data;
   @override
@@ -85,6 +87,14 @@ class MessageController extends GetxController {
     UserService.updateUserModel(GlobalData.user);
     loader.value = false;
   }
+  getChatUserId() async {
+    final snapShot2 =
+    await FirebaseFirestore.instance.collection("users").doc(userUid).get();
+    Map<String, dynamic> daysDocs = snapShot2.data() as Map<String, dynamic>;
+    id = daysDocs["id"];
+   print(id);
+
+  }
   getRoomId(String otherUid) async {
     await FirebaseFirestore.instance
         .collection("chats")
@@ -111,7 +121,7 @@ class MessageController extends GetxController {
     });
   }
 
-  gotoChatScreen(String otherUid, name) async {
+  gotoChatScreen(String otherUid, name,image) async {
     loader.value = true;
     await getRoomId(otherUid);
     loader.value = false;
@@ -120,6 +130,7 @@ class MessageController extends GetxController {
       name: name,
       otherUserUid: otherUid,
       userUid: userUid,
+      profileImage:image ,
     ));
   }
   sendMessage(String roomId, otherUid) async {
