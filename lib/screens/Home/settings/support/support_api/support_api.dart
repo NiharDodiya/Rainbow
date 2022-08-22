@@ -73,16 +73,17 @@ class SupportApi {
     }
   }
 
-  static Future sendSupportApi({String? id,String? description}) async {
+  static Future sendSupportApi({String? id,String? description, List<int>? item}) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
 
     try {
       String url = EndPoints.sendSupport;
 
-      Map<String, String> param = {
+      Map<String, dynamic> param = {
         "type" : "user",
-        "id_support" : id.toString(),
-        "description" :description.toString()
+        "id_support" : id,
+        "description" :description,
+        "id_item": item,
       };
       print(param);
       http.Response? response = await HttpService.postApi(
@@ -93,11 +94,12 @@ class SupportApi {
             "x-access-token": accesToken
           });
       if (response != null && response.statusCode == 200) {
+        print('=======${response.statusCode}');
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-              flutterToast(jsonDecode(response.body)["message"]);
+          flutterToast(jsonDecode(response.body)["message"]);
         }
         return sendSupportModelFromJson(response.body);
       }

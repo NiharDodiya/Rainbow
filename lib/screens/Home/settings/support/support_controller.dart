@@ -34,27 +34,7 @@ class SupportController extends GetxController {
 
     super.onInit();
   }
-  //call Camera
-  /* navigateToCamera() async {
-    String? path = await cameraPickImage();
 
-    if (path != null) {
-      imagePath = File(path);
-    }
-    update(["Getpic"]);
-  }
-
-  //Open Camera
-  Future<String?> cameraPickImage() async {
-    XFile? pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.camera);
-    if (pickedFile != null) {
-      return pickedFile.path;
-    }
-    update(["Getpic"]);
-
-    return null;
-  }*/
 // camaera to pick image
   Future<String?> cameraImage() async {
     XFile? pickedFile =
@@ -62,8 +42,38 @@ class SupportController extends GetxController {
     if (pickedFile != null) {
       image.add(File(pickedFile.path));
     }
+    Get.back();
     update(["createStory"]);
+    update();
     return null;
+  }
+
+  Future<String?> galleryImage() async {
+    XFile? pickedFile =
+    await ImagePicker().pickImage(source: ImageSource.gallery,imageQuality: 100);
+    if (pickedFile != null) {
+      image.add(File(pickedFile.path));
+    }
+    Get.back();
+    update(["createStory"]);
+    update();
+    return null;
+  }
+
+  Future<void> uploadImageData() async {
+    // loader.value = true;
+    try {
+      imgIdList = [];
+      for (var e in image) {
+        uploadImage = await UploadImageApi.postRegister(e.path);
+        imgIdList.add(uploadImage.data!.id!);
+      }
+
+      // loader.value = false;
+    } catch (e) {
+      // loader.value = false;
+      debugPrint(e.toString());
+    }
   }
 
   onTap({String? status, String? id,String? code}) async {
@@ -73,7 +83,7 @@ class SupportController extends GetxController {
   }
 
   valid() {
-    if (yourMsgController.text.isEmpty) {
+    if (yourMsgSendController.text.isEmpty) {
       errorToast(Strings.supporterror01);
     }
   }
@@ -109,20 +119,20 @@ class SupportController extends GetxController {
     }
   }
   SendSupportModel sendSupportModel =SendSupportModel();
+
   Future<void> sendSupportApiData(String id) async {
     try {
       loader.value = true;
-      sendSupportModel=await  SupportApi.sendSupportApi(id:id ,description:yourMsgSendController.text);
-      print(sendSupportModel);
+      sendSupportModel = await  SupportApi.sendSupportApi(id:id ,description:yourMsgSendController.text, item: imgIdList);
       update(["Support"]);
       loader.value = false;
-      yourMsgSendController.clear();
 
     } catch (e) {
       loader.value = false;
       debugPrint(e.toString());
     }
   }
+
   save(String url) async {
     loader.value=true;
     var response = await Dio().get(
@@ -137,20 +147,20 @@ class SupportController extends GetxController {
     flutterToast("Image Save successFull");
   }
 
+  // save(String url) async {
+  //   loader.value=true;
+  //   var response = await Dio().get(
+  //       url,
+  //       options: Options(responseType: ResponseType.bytes));
+  //   final result = await ImageGallerySaver.saveImage(
+  //       Uint8List.fromList(response.data),
+  //       quality: 60,
+  //       name: "rain");
+  //   print('====$result');
+  //   loader.value=false;
+  //   flutterToast("Image Save successFull");
+  // }
 
-  Future<void> uploadImageData() async {
-    // loader.value = true;
-    try {
-      imgIdList = [];
-      for (var e in image) {
-        uploadImage = await UploadImageApi.postRegister(e.path);
-        imgIdList.add(uploadImage.data!.id!);
-      }
 
-      // loader.value = false;
-    } catch (e) {
-      // loader.value = false;
-      debugPrint(e.toString());
-    }
-  }
+
 }

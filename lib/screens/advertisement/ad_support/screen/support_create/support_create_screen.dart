@@ -43,7 +43,7 @@ class SupportcreateScreen extends StatelessWidget {
                       height: Get.height * 0.035,
                     ),
                     appBar(),
-                    body(),
+                    body(context),
                   ],
                 ),
               ),
@@ -57,7 +57,7 @@ class SupportcreateScreen extends StatelessWidget {
     );
   }
 
-  Widget body() {
+  Widget body(context) {
     SupportCreateController controller = Get.put(SupportCreateController());
     return SingleChildScrollView(
       child: Padding(
@@ -138,8 +138,8 @@ class SupportcreateScreen extends StatelessWidget {
                     (controller.image.isEmpty)
                         ? const SizedBox()
                         : Container(
-                      height: Get.height / 8,
-                      width: Get.width / 4,
+                      height: Get.height / 12,
+                      width: Get.width / 5,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           image: DecorationImage(
@@ -149,9 +149,10 @@ class SupportcreateScreen extends StatelessWidget {
                     SizedBox(
                       width: 20,
                     ),
-                    (controller.image.length == 2)?Container(
-                      height: Get.height / 8,
-                      width: Get.width / 4,
+                    (controller.image.length == 2)
+                        ?Container(
+                      height: Get.height / 12,
+                      width: Get.width / 5,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           image: DecorationImage(
@@ -161,14 +162,55 @@ class SupportcreateScreen extends StatelessWidget {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Center(
-                          child: SizedBox(
-                            height: Get.height * 0.0474,
-                            child: InkWell(
-                                onTap: () async {
-                                  controller.navigateToCamera();
-                                },
-                                child: Image.asset(AssetRes.cameraPic)),
+                        Positioned(
+                          top: Get.height * 0.24,
+                          left: Get.width * 0.4,
+                          child: InkWell(
+                              onTap: () {
+                                showModalBottomSheet(
+                                    elevation: 10,
+                                    barrierColor: ColorRes.black.withOpacity(0.4),
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10.0),
+                                      ),
+                                    ),
+                                    backgroundColor: ColorRes.color_4F359B,
+                                    context: context,
+                                    builder: (context) {
+                                      return Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          GestureDetector(
+                                            onTap: controller.navigateToCamera,
+                                            child: const ListTile(
+                                              leading: Icon(Icons.camera),
+                                              title: Text(Strings.camera),
+                                            ),
+                                          ),
+                                          Container(
+                                            height: 0.5,
+                                            width: Get.width,
+                                            color: ColorRes.white,
+                                          ),
+                                          GestureDetector(
+                                            onTap: controller.navigateToGallery,
+                                            child: const ListTile(
+                                              leading: Icon(Icons
+                                                  .photo_size_select_actual_outlined),
+                                              title: Text(Strings.gallery),
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    });
+                              },
+                              child: SizedBox(
+                                height: Get.height * 0.0474,
+                                child: const Image(
+                                    image: AssetImage(AssetRes.cameraPic),
+                                ),
+                              ),
                           ),
                         ),
                         SizedBox(
@@ -282,3 +324,5 @@ Widget appBar() {
     ),
   );
 }
+
+

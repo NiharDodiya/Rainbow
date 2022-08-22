@@ -23,6 +23,19 @@ class SupportCreateController extends GetxController {
     if (pickedFile != null) {
       image.add(File(pickedFile.path));
     }
+    Get.back();
+    update(["img"]);
+    update();
+    return null;
+  }
+
+  Future<String?> navigateToGallery() async {
+    XFile? pickedFile = await ImagePicker()
+        .pickImage(source: ImageSource.gallery, imageQuality: 100);
+    if (pickedFile != null) {
+      image.add(File(pickedFile.path));
+    }
+    Get.back();
     update(["img"]);
     update();
     return null;

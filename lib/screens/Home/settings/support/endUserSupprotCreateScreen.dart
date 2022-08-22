@@ -20,34 +20,43 @@ class SupportCreateEndUserScreen extends StatelessWidget {
       {Key? key, this.com, this.title, this.profileImage, this.code, this.time})
       : super(key: key);
 
+  final SupportController controller = Get.put(SupportController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: Get.width,
-        height: Get.height,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              ColorRes.color_50369C,
-              ColorRes.color_50369C,
-              ColorRes.color_D18EEE,
-              ColorRes.color_D18EEE,
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: Column(
+      body: Obx((){
+        return Stack(
           children: [
-            SizedBox(
-              height: Get.height * 0.035,
+            Container(
+              width: Get.width,
+              height: Get.height,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    ColorRes.color_50369C,
+                    ColorRes.color_50369C,
+                    ColorRes.color_D18EEE,
+                    ColorRes.color_D18EEE,
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+              ),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: Get.height * 0.035,
+                  ),
+                  appBar(),
+                  body(com.toString()),
+                ],
+              ),
             ),
-            appBar(),
-            body(com.toString()),
+            controller.loader.value? Center(child: CircularProgressIndicator(),):SizedBox(),
           ],
-        ),
-      ),
+        );
+      })
     );
   }
 
@@ -162,6 +171,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                   Container(
                     height: Get.height * 0.07279,
                     width: Get.width * 0.354666,
+                    padding: EdgeInsets.only(right: 5),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: ColorRes.white,
@@ -171,48 +181,67 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                         Radius.circular(9),
                       ),
                     ),
-                    child: ListView.builder(scrollDirection: Axis.horizontal,itemCount: controller.viewSupportTicketModel.data![index]
-                        .itmeList!.length ,itemBuilder: (context, index1) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          SizedBox(
-                            height: 42.98,
-                            width: 42.98,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: Image.network(
-                                controller.viewSupportTicketModel.data![index]
-                                    .itmeList![index1].image
-                                    .toString(),
-                                fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) {
-                                  return Image.asset(
-                                    AssetRes.portrait_placeholder,
-                                    fit: BoxFit.cover,
-                                  );
-                                },
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 5,),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: Get.height * 0.015),
-                            child: InkWell(
-                                onTap: () {
-                                  controller.save(controller
-                                      .viewSupportTicketModel
-                                      .data![index]
-                                      .itmeList![index1]
-                                      .image
-                                      .toString());
-                                },
-                                child: Image.asset(AssetRes.downlode)),
-                          ),
-                        ],
-                      );
-                    },),
+                    child: Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                        ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: controller
+                              .viewSupportTicketModel.data![index].itmeList!.length,
+                          itemBuilder: (context, index1) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                SizedBox(
+                                  height: 42.98,
+                                  width: 42.98,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.network(
+                                      controller.viewSupportTicketModel.data![index]
+                                          .itmeList![index1].image
+                                          .toString(),
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (context, error, stackTrace) {
+                                        return Image.asset(
+                                          AssetRes.portrait_placeholder,
+                                          fit: BoxFit.cover,
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                    width: 5
+                                ),
+
+                              ],
+                            );
+                          },
+                        ),
+                        Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: Get.height * 0.015),
+                      child: InkWell(
+                          onTap: (){
+                             controller.save(controller
+                                .viewSupportTicketModel
+                                .data![index]
+                                .itmeList![0]
+                                .image
+                                .toString());
+                             controller.save(controller
+                                .viewSupportTicketModel
+                                .data![index]
+                                .itmeList![1]
+                                .image
+                                .toString());
+                          },
+                          child: Image.asset(AssetRes.downlode)),
+                    ),
+                      ],
+                    ),
+
                   ),
                   SizedBox(
                     height: Get.height * 0.0300,
@@ -320,49 +349,110 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                   SizedBox(
                     height: Get.height * 0.01477,
                   ),
-                  controller.image.isEmpty
-                      ? const SizedBox()
-                      : SizedBox(
-                          height: 100,
-                          width: Get.width * 0.3,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: controller.image.length,
-                            itemBuilder: (context, index) {
-                              return Image.file(
-                                controller.image[index],
-                                height: 60,
-                                width: 60,
-                              );
-                            },
-                          ),
-                        ),
-                  Center(
-                    child: SizedBox(
-                      height: Get.height * 0.0474,
-                      child: InkWell(
-                          onTap: () {
-                            controller.cameraImage();
-                          },
-                          child: Image.asset(AssetRes.cameraPic)),
-                    ),
-                  ),
-                  SizedBox(
-                    height: Get.height * 0.0190,
-                  ),
-                  Center(
-                    child: Text(
-                      Strings.attachImagesOrproof,
-                      style: gilroyMediumTextStyle(fontSize: 14),
-                    ),
-                  ),
+                  //pic Image
+                  GetBuilder<SupportController>(
+                      id: "createStory",
+                      builder: (controller) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            controller.image.isEmpty
+                                ? const SizedBox()
+                                : Container(
+                              height: Get.height / 12,
+                              width: Get.width / 5,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: FileImage(controller.image[0]),
+                                      fit: BoxFit.cover
+                                  ),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                            ),
+                            SizedBox(width: 20,),
+                            (controller.image.length == 2)
+                                ? Container(
+                              height: Get.height / 12,
+                              width: Get.width / 5,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  image: DecorationImage(
+                                      image: FileImage(controller.image[1]),
+                                      fit: BoxFit.cover)),
+                            )
+                                :  Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                InkWell(
+                                    onTap: () {
+                                      showModalBottomSheet(
+                                          elevation: 10,
+                                          barrierColor: ColorRes.black.withOpacity(0.4),
+                                          shape: const RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(10.0),
+                                            ),
+                                          ),
+                                          backgroundColor: ColorRes.color_4F359B,
+                                          context: context,
+                                          builder: (context) {
+                                            return Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: <Widget>[
+                                                GestureDetector(
+                                                  onTap: controller.cameraImage,
+                                                  child: const ListTile(
+                                                    leading: Icon(Icons.camera),
+                                                    title: Text(Strings.camera),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  height: 0.5,
+                                                  width: Get.width,
+                                                  color: ColorRes.white,
+                                                ),
+                                                GestureDetector(
+                                                  onTap: controller.galleryImage,
+                                                  child: const ListTile(
+                                                    leading: Icon(Icons
+                                                        .photo_size_select_actual_outlined),
+                                                    title: Text(Strings.gallery),
+                                                  ),
+                                                ),
+                                              ],
+                                            );
+                                          });
+                                    },
+                                    child: SizedBox(
+                                      height: Get.height * 0.0474,
+                                      child: const Image(
+                                        image: AssetImage(AssetRes.cameraPic),
+                                      ),
+                                    ),
+                                ),
+                                SizedBox(
+                                  height: Get.height * 0.0190
+                                ),
+                                Center(
+                                  child: Text(
+                                    Strings.attachImage,
+                                    style: gilroyMediumTextStyle(fontSize: 14),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        );
+                      }),
                   SizedBox(
                     height: Get.height * 0.05,
                   ),
                   SubmitButton(
                     onTap: () {
                       controller.valid();
+                      controller.sendSupportApiData(controller
+                          .viewSupportTicketModel.data![index].id
+                          .toString());
                     },
                     child: Text(
                       Strings.sendMessage,
@@ -431,3 +521,27 @@ Widget appBar() {
     ),
   );
 }
+
+// Widget downloadButton(int i){
+//    SupportController controller = Get.put(SupportController());
+//   return Padding(
+//     padding: EdgeInsets.symmetric(
+//         vertical: Get.height * 0.015),
+//     child: InkWell(
+//         onTap: () {
+//           controller.save(controller
+//               .viewSupportTicketModel
+//               .data![i]
+//               .itmeList![0]
+//               .image
+//               .toString());
+//           controller.save(controller
+//               .viewSupportTicketModel
+//               .data![i]
+//               .itmeList![1]
+//               .image
+//               .toString());
+//         },
+//         child: Image.asset(AssetRes.downlode)),
+//   );
+// }
