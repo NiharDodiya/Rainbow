@@ -29,6 +29,7 @@ class SupportController extends GetxController {
   List<int> imgIdList = [];
   List<File> image = [];
   UploadImage uploadImage =   UploadImage();
+  bool clickFirstTime = false;
   @override
   Future<void> onInit() async {
 
