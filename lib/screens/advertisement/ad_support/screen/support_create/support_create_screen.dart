@@ -129,22 +129,36 @@ class SupportcreateScreen extends StatelessWidget {
               SizedBox(
                 height: Get.height * 0.01477,
               ),
-              GetBuilder<SupportCreateController>(
-                id: "img",
-                  builder: (controller){
-                return  Center(
-                  child: SizedBox(
-                    height: Get.height * 0.0474,
-                    child: InkWell(
-                        onTap: () async{
-
-                          controller.navigateToCamera();
-
-                        },
-                        child: Image.asset(AssetRes.cameraPic)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 200,
+                    width: 200,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: FileImage(),
+                      )
+                    ),
                   ),
-                );
-              }),
+                  GetBuilder<SupportCreateController>(
+                      id: "img",
+                      builder: (controller){
+                        return  Center(
+                          child: SizedBox(
+                            height: Get.height * 0.0474,
+                            child: InkWell(
+                                onTap: () async{
+
+                                  controller.navigateToCamera();
+
+                                },
+                                child: Image.asset(AssetRes.cameraPic)),
+                          ),
+                        );
+                      }),
+                ],
+              ),
 
               SizedBox(
                 height: Get.height * 0.0190,
