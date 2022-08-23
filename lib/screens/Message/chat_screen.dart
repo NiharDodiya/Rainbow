@@ -217,8 +217,7 @@ class ChatScreen extends StatelessWidget {
                                 const SizedBox(
                                   width: 12,
                                 ),
-
-                                Container(
+                                controller.data['type']=="text"?Container(
                                   margin: const EdgeInsets.only(bottom: 10),
                                   padding: const EdgeInsets.all(10),
                                   constraints: BoxConstraints(
@@ -233,11 +232,13 @@ class ChatScreen extends StatelessWidget {
                                         : ColorRes.color_E9D224,
                                   ),
                                   child: Text(
-                                    controller.data['content'],
+                                    controller.data['content'].toString(),
                                     style: gilroyBoldTextStyle(
                                         fontSize: 17, color: Colors.black),
                                   ),
-                                ),
+                                ):Container(height: 200,
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                                child: Image.network( controller.data['image']),),
                                 const SizedBox(
                                   width: 5,
                                 ),
@@ -349,27 +350,27 @@ class ChatScreen extends StatelessWidget {
                   ],
                 ),
               )
-            : SendImage();
+            : SendImage(controller);
       },
     ));
   }
 
-  Widget SendImage() {
+  Widget SendImage(MessageController controller) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
-          padding: EdgeInsets.only(left: 5),
+          padding: const EdgeInsets.only(left: 5),
           child: IconButton(
             onPressed: messageController.back,
-            icon: Icon(
+            icon: const Icon(
               Icons.cancel,
               size: 40,
             ),
           ),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Container(
           height: Get.height / 1.4,
           width: Get.width,
@@ -379,20 +380,20 @@ class ChatScreen extends StatelessWidget {
                 fit: BoxFit.cover,
               )),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Align(
           alignment: Alignment.topRight,
           child: Padding(
-            padding: EdgeInsets.only(right: 20),
+            padding: const EdgeInsets.only(right: 20),
             child: FloatingActionButton(
               onPressed: () {
-
+                controller.imageSend();
               },
-              child: Icon(
+              backgroundColor: ColorRes.color_4F359B,
+              child: const Icon(
                 Icons.send,
                 color: Colors.white,
               ),
-              backgroundColor: ColorRes.color_4F359B,
             ),
           ),
         ),

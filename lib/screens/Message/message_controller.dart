@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,6 +30,7 @@ class MessageController extends GetxController {
   String? userUid;
   String? roomId;
   String? id;
+  final _storage = FirebaseStorage.instance;
 
   var data;
 
@@ -147,6 +149,10 @@ class MessageController extends GetxController {
     });
   }
 
+  File? image;
+  String imageName = "";
+  var dowanloadurl;
+
   gotoChatScreen(String otherUid, name, image) async {
     loader.value = true;
     await getRoomId(otherUid);
@@ -158,6 +164,36 @@ class MessageController extends GetxController {
           userUid: userUid,
           profileImage: image,
         ));
+  }
+
+  imageSend() async {
+    if (image != null) {
+      var snapshote = await _storage
+          .ref()
+          .child(userUid.toString())
+          .child(DateTime.now().millisecondsSinceEpoch.toString())
+          .putFile(image!);
+      dowanloadurl = await snapshote.ref.getDownloadURL();
+      print(dowanloadurl);
+    } else {
+      print("no path recievd");
+    }
+
+    await FirebaseFirestore.instance
+        .collection("chats")
+        .doc(roomId)
+        .collection(roomId!)
+        .doc()
+        .set({
+      "image": dowanloadurl,
+      "senderUid": userUid,
+      "type":"image",
+      "time": DateTime.now()
+    });
+    msController.clear();
+    update(['message']);
+    update(['chats']);
+    image =null;
   }
 
   sendMessage(String roomId, otherUid) async {
@@ -177,13 +213,11 @@ class MessageController extends GetxController {
         .doc(roomId)
         .collection(roomId)
         .doc()
-        .set({"content": msg, "senderUid": userUid, "time": DateTime.now()});
+        .set({"content": msg, "type":"text", "senderUid": userUid, "time": DateTime.now()});
     msController.clear();
     update(['message']);
     update(['chats']);
   }
-
-  File? image;
 
   navigateToCamera() async {
     String? path = await cameraPickImage1();
