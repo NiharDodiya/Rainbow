@@ -26,6 +26,7 @@ class SupportAPI {
 
       Get.back();
       flutterToast( jsonDecode(response.body)["message"]);
+      print(jsonDecode(response.body)["message"]);
 
       return response.statusCode;
 

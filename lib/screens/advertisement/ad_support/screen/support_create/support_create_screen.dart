@@ -21,22 +21,22 @@ class SupportcreateScreen extends StatelessWidget {
       body: Obx(() {
         return Stack(
           children: [
-            SingleChildScrollView(
-              child: Container(
-                width: Get.width,
-                height: Get.height,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      ColorRes.color_50369C,
-                      ColorRes.color_50369C,
-                      ColorRes.color_D18EEE,
-                      ColorRes.color_D18EEE,
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                  ),
+            Container(
+              width: Get.width,
+              height: Get.height,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    ColorRes.color_50369C,
+                    ColorRes.color_50369C,
+                    ColorRes.color_D18EEE,
+                    ColorRes.color_D18EEE,
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
                 ),
+              ),
+              child: SingleChildScrollView(
                 child: Column(
                   children: [
                     SizedBox(
@@ -59,266 +59,249 @@ class SupportcreateScreen extends StatelessWidget {
 
   Widget body(context) {
     SupportCreateController controller = Get.put(SupportCreateController());
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: Get.width * 0.08),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                Strings.subject,
-                style: gilroySemiBoldTextStyle(fontSize: 14),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: Get.width * 0.08),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+
+          //subject
+          Text(
+            Strings.subject,
+            style: gilroySemiBoldTextStyle(fontSize: 14),
+          ),
+          SizedBox(
+            height: Get.height * 0.005,
+          ),
+          Container(
+            height: 50,
+            width: Get.width * 0.89333,
+            padding: const EdgeInsets.only(left: 10),
+            decoration: BoxDecoration(
+              color: ColorRes.white,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: TextField(
+              onChanged: (value) {},
+              controller: controller.subjectController,
+              style: textFieldText,
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.only(top: 0),
+                border: InputBorder.none,
+                hintStyle: gilroyMediumTextStyle(
+                    fontSize: 18, color: ColorRes.black.withOpacity(0.3)),
+                hintText: Strings.writesomethinghere,
               ),
-              SizedBox(
-                height: Get.height * 0.005,
+            ),
+          ),
+          SizedBox(
+            height: Get.height * 0.018472,
+          ),
+
+          //message
+          Text(
+            Strings.yourMessage,
+            style: gilroySemiBoldTextStyle(fontSize: 14),
+          ),
+          SizedBox(
+            height: Get.height * 0.005,
+          ),
+          Container(
+            height: Get.height * 0.29679,
+            width: Get.width * 0.89333,
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: ColorRes.white,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: TextField(
+              onChanged: (value) {},
+              maxLines: 7,
+              controller: controller.yourMsgController,
+              style: textFieldText,
+
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.only(top: 0),
+                border: InputBorder.none,
+                hintStyle: gilroyMediumTextStyle(
+                    fontSize: 18, color: ColorRes.black.withOpacity(0.3)),
+                hintText: Strings.writesomethinghere,
               ),
-              Container(
-                height: 50,
-                width: Get.width * 0.89333,
-                padding: const EdgeInsets.only(left: 10),
-                decoration: BoxDecoration(
-                  color: ColorRes.white,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: TextField(
-                  onChanged: (value) {},
-                  controller: controller.subjectController,
-                  style: textFieldText,
-                  decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.only(top: 0),
-                    border: InputBorder.none,
-                    hintStyle: gilroyMediumTextStyle(
-                        fontSize: 18, color: ColorRes.black.withOpacity(0.3)),
-                    hintText: Strings.writesomethinghere,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: Get.height * 0.018472,
-              ),
-              Text(
-                Strings.yourMessage,
-                style: gilroySemiBoldTextStyle(fontSize: 14),
-              ),
-              SizedBox(
-                height: Get.height * 0.005,
-              ),
-              Container(
-                height: Get.height * 0.29679,
-                width: Get.width * 0.89333,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: ColorRes.white,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: TextField(
-                  onChanged: (value) {},
-                  maxLines: 7,
-                  controller: controller.yourMsgController,
-                  style: textFieldText,
-                  decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.only(top: 0),
-                    border: InputBorder.none,
-                    hintStyle: gilroyMediumTextStyle(
-                        fontSize: 18, color: ColorRes.black.withOpacity(0.3)),
-                    hintText: Strings.writesomethinghere,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: Get.height * 0.01488,
-              ),
-              GetBuilder<SupportCreateController>(
-                  id: "img",
-                  builder: (controller) {
-                    return Row(
+            ),
+          ),
+          SizedBox(
+            height: Get.height * 0.01488,
+          ),
+          //pic img
+          GetBuilder<SupportCreateController>(
+              id: "img",
+              builder: (controller) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    (controller.image.isEmpty)
+                        ? const SizedBox()
+                        : Stack(
+                      alignment: Alignment(1.2, -1.3),
+                      children: [
+                        Container(
+                          height: Get.height / 12,
+                          width: Get.width / 5,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              image: DecorationImage(
+                                  image:
+                                  FileImage(controller.image[0]),
+                                  fit: BoxFit.cover)),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            FocusScopeNode currentfocus = FocusScope.of(context);
+                            if (!currentfocus.hasPrimaryFocus) {
+                              currentfocus.unfocus();
+                            }
+                            controller.image.removeAt(0);
+                            controller.update(["img"]);
+                          },
+                          child: Container(
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.black),
+                              child: const Icon(
+                                Icons.clear,
+                                color: Colors.white,
+                              )),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    (controller.image.length == 2)
+                        ? Stack(
+                      alignment: Alignment(1.2, -1.3),
+                      children: [
+                        Container(
+                          height: Get.height / 12,
+                          width: Get.width / 5,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              image: DecorationImage(
+                                  image:
+                                  FileImage(controller.image[1]),
+                                  fit: BoxFit.cover)),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            FocusScopeNode currentfocus = FocusScope.of(context);
+                            if (!currentfocus.hasPrimaryFocus) {
+                              currentfocus.unfocus();
+                            }
+                            controller.image.removeAt(1);
+                            controller.update(["img"]);
+                          },
+                          child: Container(
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.black),
+                              child: const Icon(
+                                Icons.clear,
+                                color: Colors.white,
+                              )),
+                        ),
+                      ],
+                    )
+                        : Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        (controller.image.isEmpty)
-                            ? const SizedBox()
-                            : Stack(
-                                alignment: Alignment(1.2, -1.3),
-                                children: [
-                                  Container(
-                                    height: Get.height / 12,
-                                    width: Get.width / 5,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
-                                        image: DecorationImage(
-                                            image:
-                                                FileImage(controller.image[0]),
-                                            fit: BoxFit.cover)),
+                        InkWell(
+                          onTap: () {
+                            FocusScopeNode currentfocus = FocusScope.of(context);
+                            if (!currentfocus.hasPrimaryFocus) {
+                              currentfocus.unfocus();
+                            }
+                            showModalBottomSheet(
+                                elevation: 10,
+                                barrierColor:
+                                ColorRes.black.withOpacity(0.4),
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
                                   ),
-                                  InkWell(
-                                    onTap: () {
-                                      controller.image.removeAt(0);
-                                      controller.update(["img"]);
-                                    },
-                                    child: Container(
-                                        decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.black),
-                                        child: const Icon(
-                                          Icons.clear,
-                                          color: Colors.white,
-                                        )),
-                                  ),
-                                ],
-                              ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        (controller.image.length == 2)
-                            ? Stack(
-                                alignment: Alignment(1.2, -1.3),
-                                children: [
-                                  Container(
-                                    height: Get.height / 12,
-                                    width: Get.width / 5,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
-                                        image: DecorationImage(
-                                            image:
-                                                FileImage(controller.image[1]),
-                                            fit: BoxFit.cover)),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      controller.image.removeAt(1);
-                                      controller.update(["img"]);
-                                    },
-                                    child: Container(
-                                        decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.black),
-                                        child: const Icon(
-                                          Icons.clear,
-                                          color: Colors.white,
-                                        )),
-                                  ),
-                                ],
-                              )
-                            : Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Positioned(
-                                    top: Get.height * 0.24,
-                                    left: Get.width * 0.4,
-                                    child: InkWell(
-                                      onTap: () {
-                                        showModalBottomSheet(
-                                            elevation: 10,
-                                            barrierColor:
-                                                ColorRes.black.withOpacity(0.4),
-                                            shape: const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(10.0),
-                                              ),
-                                            ),
-                                            backgroundColor:
-                                                ColorRes.color_4F359B,
-                                            context: context,
-                                            builder: (context) {
-                                              return Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: <Widget>[
-                                                  GestureDetector(
-                                                    onTap: controller
-                                                        .navigateToCamera,
-                                                    child: const ListTile(
-                                                      leading:
-                                                          Icon(Icons.camera),
-                                                      title:
-                                                          Text(Strings.camera),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    height: 0.5,
-                                                    width: Get.width,
-                                                    color: ColorRes.white,
-                                                  ),
-                                                  GestureDetector(
-                                                    onTap: controller
-                                                        .navigateToGallery,
-                                                    child: const ListTile(
-                                                      leading: Icon(Icons
-                                                          .photo_size_select_actual_outlined),
-                                                      title:
-                                                          Text(Strings.gallery),
-                                                    ),
-                                                  ),
-                                                ],
-                                              );
-                                            });
-                                      },
-                                      child: SizedBox(
-                                        height: Get.height * 0.0474,
-                                        child: const Image(
-                                          image: AssetImage(AssetRes.cameraPic),
+                                ),
+                                backgroundColor:
+                                ColorRes.color_4F359B,
+                                context: context,
+                                builder: (context) {
+                                  return Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      GestureDetector(
+                                        onTap: controller
+                                            .navigateToCamera,
+                                        child: const ListTile(
+                                          leading:
+                                          Icon(Icons.camera),
+                                          title:
+                                          Text(Strings.camera),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: Get.height * 0.0190,
-                                  ),
-                                  Center(
-                                    child: Text(
-                                      Strings.attachImage,
-                                      style:
-                                          gilroyMediumTextStyle(fontSize: 14),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                        // GetBuilder<SupportCreateController>(
-                        //     id: "img",
-                        //     builder: (controller) {
-                        //       return Column(
-                        //         mainAxisAlignment: MainAxisAlignment.center,
-                        //         children: [
-                        //           Center(
-                        //             child: SizedBox(
-                        //               height: Get.height * 0.0474,
-                        //               child: InkWell(
-                        //                   onTap: () async {
-                        //                     controller.navigateToCamera();
-                        //                   },
-                        //                   child: Image.asset(AssetRes.cameraPic)),
-                        //             ),
-                        //           ),
-                        //           SizedBox(
-                        //             height: Get.height * 0.0190,
-                        //           ),
-                        //           Center(
-                        //             child: Text(
-                        //               Strings.attachImage,
-                        //               style: gilroyMediumTextStyle(fontSize: 14),
-                        //             ),
-                        //           ),
-                        //         ],
-                        //       );
-                        //     }),
+                                      Container(
+                                        height: 0.5,
+                                        width: Get.width,
+                                        color: ColorRes.white,
+                                      ),
+                                      GestureDetector(
+                                        onTap: controller
+                                            .navigateToGallery,
+                                        child: const ListTile(
+                                          leading: Icon(Icons
+                                              .photo_size_select_actual_outlined),
+                                          title:
+                                          Text(Strings.gallery),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                });
+                          },
+                          child: SizedBox(
+                            height: Get.height * 0.0474,
+                            child: const Image(
+                              image: AssetImage(AssetRes.cameraPic),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.0190,
+                        ),
+                        Center(
+                          child: Text(
+                            Strings.attachImage,
+                            style:
+                            gilroyMediumTextStyle(fontSize: 14),
+                          ),
+                        ),
                       ],
-                    );
-                  }),
-              SizedBox(
-                height: Get.height * 0.05,
-              ),
-              SubmitButton(
-                onTap: controller.onSendMsgTap,
-                child: Text(
-                  Strings.sendMessage,
-                  style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
-                ),
-              ),
-              SizedBox(
-                height: Get.height * 0.05,
-              ),
-            ],
+                    ),
+
+                  ],
+                );
+              }),
+          SizedBox(
+            height: Get.height * 0.05,
           ),
-        ),
+          SubmitButton(
+            onTap: controller.onSendMsgTap,
+            child: Text(
+              Strings.sendMessage,
+              style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
+            ),
+          ),
+          SizedBox(
+            height: Get.height * 0.05,
+          ),
+        ],
       ),
     );
   }

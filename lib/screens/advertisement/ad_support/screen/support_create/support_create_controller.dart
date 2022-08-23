@@ -17,6 +17,8 @@ class SupportCreateController extends GetxController {
 
   List<File> image = [];
 
+  //FocusNode focusNode = FocusNode();
+
   Future<String?> navigateToCamera() async {
     XFile? pickedFile = await ImagePicker()
         .pickImage(source: ImageSource.camera, imageQuality: 100);

@@ -173,7 +173,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                   Container(
                     height: Get.height * 0.07279,
                     width: Get.width * 0.354666,
-                    padding: EdgeInsets.only(right: 5),
+                    padding: EdgeInsets.only(right: 5, left: 5),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: ColorRes.white,
@@ -360,6 +360,10 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                 ),
                                 InkWell(
                                   onTap: () {
+                                    FocusScopeNode currentfocus = FocusScope.of(context);
+                                    if (!currentfocus.hasPrimaryFocus) {
+                                      currentfocus.unfocus();
+                                    }
                                     controller.image.removeAt(0);
                                     controller.update(["createStory"]);
                                   },
@@ -391,6 +395,10 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                 ),
                                 InkWell(
                                   onTap: () {
+                                    FocusScopeNode currentfocus = FocusScope.of(context);
+                                    if (!currentfocus.hasPrimaryFocus) {
+                                      currentfocus.unfocus();
+                                    }
                                     controller.image.removeAt(1);
                                     controller.update(["createStory"]);
                                   },
@@ -410,6 +418,10 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                               children: [
                                 InkWell(
                                     onTap: () {
+                                      FocusScopeNode currentfocus = FocusScope.of(context);
+                                      if (!currentfocus.hasPrimaryFocus) {
+                                        currentfocus.unfocus();
+                                      }
                                       showModalBottomSheet(
                                           elevation: 10,
                                           barrierColor: ColorRes.black.withOpacity(0.4),
@@ -547,45 +559,7 @@ Widget appBar() {
   );
 }
 
-/*
-(controller.imgIdList.isEmpty)
-                            ? SizedBox()
-                            :(controller.imgIdList.length == 1)
-                            ?Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: Get.height * 0.015),
-                          child: InkWell(
-                              onTap: (){
-                                controller.save(controller
-                                    .viewSupportTicketModel
-                                    .data![index]
-                                    .itmeList![0]
-                                    .image
-                                    .toString());
-                              },
-                              child: Image.asset(AssetRes.downlode)),
-                        )
-                            :Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: Get.height * 0.015),
-                          child: InkWell(
-                              onTap: (){
-                                controller.save(controller
-                                    .viewSupportTicketModel
-                                    .data![index]
-                                    .itmeList![0]
-                                    .image
-                                    .toString());
-                                controller.save(controller
-                                    .viewSupportTicketModel
-                                    .data![index]
-                                    .itmeList![1]
-                                    .image
-                                    .toString());
-                              },
-                              child: Image.asset(AssetRes.downlode)),
-                        ),
- */
+
 
 Widget downloadButton2(int i){
    SupportController controller = Get.put(SupportController());
