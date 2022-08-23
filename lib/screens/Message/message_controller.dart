@@ -185,7 +185,7 @@ class MessageController extends GetxController {
     }
 
 
-update();
+update(['chats']);
   }
 
   navigateToGallery() async {
@@ -195,7 +195,7 @@ update();
       image = File(path);
     }
 
-    update();
+    update(['chats']);
   }
 
   Future<String?> cameraPickImage1() async {
@@ -205,7 +205,7 @@ update();
 
       return pickedFile.path;
     }
-    update();
+    update(['chats']);
 
     return null;
   }
@@ -216,11 +216,14 @@ update();
     if (pickedFile != null) {
       return pickedFile.path;
     }
-    update();
+    update(['chats']);
     return null;
   }
 
-
+  back(){
+    image=null;
+    update(['chats']);
+  }
 
 
 
