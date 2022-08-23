@@ -1,12 +1,11 @@
 import 'dart:async';
 import 'dart:typed_data';
-import 'dart:math';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:rainbow/common/Widget/custom_marker.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
@@ -40,6 +39,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
   var addressSomeOne = "";
   String? cityName;
   final kInitialPosition = const LatLng(-33.8567844, 151.213108);
+  bool markerLoader = true;
 
   @override
   void initState() {
@@ -47,9 +47,20 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
     super.initState();
   }
 
-  loadData() async {
+  Future<void> loadData() async {
     for (int i = 0; i < searchController.listLatLongData.length; i++) {
-      Uint8List? image1 = await loadNetWorkImage(
+      markers.add(Marker(
+        markerId: MarkerId(
+          searchController.listLatLongData[i].fullName.toString(),
+        ),
+        position: LatLng(searchController.listLatLongData[i].latitude!,
+            searchController.listLatLongData[i].longitude!),
+        icon: await MarkerIcon.downloadResizePictureCircle(
+          searchController.listLatLongData[i].profileImage.toString(),
+          size: 120,
+        ),
+      ));
+      /*Uint8List? image1 = await loadNetWorkImage(
           searchController.listLatLongData[i].profileImage.toString());
 
       final ui.Codec markerImageCodec = await ui.instantiateImageCodec(
@@ -67,9 +78,10 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
         position: LatLng(searchController.listLatLongData[i].latitude!,
             searchController.listLatLongData[i].longitude!),
         icon: BitmapDescriptor.fromBytes(resizedImagePicker),
-      ));
-      setState(() {});
+      ));*/
     }
+    markerLoader = false;
+    setState(() {});
   }
 
   Future<Uint8List> loadNetWorkImage(String path) async {
@@ -318,9 +330,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
         child: ListView.builder(
           shrinkWrap: true,
           padding: const EdgeInsets.only(top: 5, bottom: 20),
-          itemCount: controller.listLatLongData == null
-              ? 0
-              : controller.listLatLongData.length,
+          itemCount: controller.listLatLongData.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.only(top: 25, left: 20),
@@ -385,113 +395,122 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
   }
 
   Widget userProfile() {
-    return GetBuilder<SearchController>(
-      id: "googleMap",
-      builder: (searchController) {
-        return Stack(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: Get.height * 0.16),
-              child: SizedBox(
-                height: 400,
-                width: 400,
-                child: Stack(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(200),
-                      child: SizedBox(
-                        height: 400,
-                        width: 400,
-                        child: GoogleMap(
-                          mapType: MapType.normal,
-                          markers: Set<Marker>.of(markers),
-                          initialCameraPosition: CameraPosition(
-                              target: LatLng(
-                                  homeController
-                                      .controller.viewProfile.data!.latitude!,
-                                  homeController
-                                      .controller.viewProfile.data!.longitude!),
-                              zoom: 15),
-                          onMapCreated: (GoogleMapController controller) {
-                            setState(() {
-                              googleMapController = controller;
-                            });
-                            searchController.gMapController.complete();
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Positioned(
-              top: Get.height * 0.08,
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: Get.width * 0.1,
-                  ),
-                  SizedBox(
-                    width: 248.77,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: SearchMapPlaceWidget(
-                        firstIcon: const Padding(
-                          padding: EdgeInsets.only(right: 10,left: 10),
+    return Stack(
+      children: [
+        GetBuilder<SearchController>(
+          id: "googleMap",
+          builder: (searchController) {
+            return Stack(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: Get.height * 0.16),
+                  child: SizedBox(
+                    height: 400,
+                    width: 400,
+                    child: Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(200),
                           child: SizedBox(
-                            child: Image(height: 18,width: 18,
-                              image: AssetImage(AssetRes.search),
-                              color: Colors.black,
+                            height: 400,
+                            width: 400,
+                            child: GoogleMap(
+                              mapType: MapType.normal,
+                              markers: Set<Marker>.of(markers),
+                              initialCameraPosition: CameraPosition(
+                                  target: LatLng(
+                                      homeController.controller.viewProfile
+                                          .data!.latitude!,
+                                      homeController.controller.viewProfile
+                                          .data!.longitude!),
+                                  zoom: 15),
+                              onMapCreated: (GoogleMapController controller) {
+                                setState(() {
+                                  googleMapController = controller;
+                                });
+                                searchController.gMapController.complete();
+                              },
                             ),
                           ),
                         ),
-                        placeholder: 'Enter the location',
-                        bgColor: Colors.white,
-                        textColor: ColorRes.color_09110E,
-                        iconColor: Colors.white,
-                        placeType: PlaceType.address,
-                        apiKey:
-                        "sqdcfhhjdsgvfuydsgbv",
-                        onSelected: (Place place) async {
-                          Geolocation? geolocation =
-                          await place.geolocation;
-                          googleMapController!.animateCamera(
-                              CameraUpdate.newLatLng(
-                                  geolocation!.coordinates));
-                          googleMapController!.animateCamera(
-                              CameraUpdate.newLatLngBounds(
-                                  geolocation.bounds, 0));
-                        },
-                      ),
+                      ],
                     ),
                   ),
-
-                ],
-              ),
-            ),
-            Positioned(top: 55,left: 285,
-              child: Container(
-                height: 52,
-                width: 50,
-                margin: const EdgeInsets.only(left: 9),
-                padding: const EdgeInsets.all(15),
-                decoration: const BoxDecoration(
-                  color: ColorRes.black,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(15),
+                ),
+                Positioned(
+                  top: Get.height * 0.08,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: Get.width * 0.1,
+                      ),
+                      SizedBox(
+                        width: 248.77,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: SearchMapPlaceWidget(
+                            firstIcon: const Padding(
+                              padding: EdgeInsets.only(right: 10, left: 10),
+                              child: SizedBox(
+                                child: Image(
+                                  height: 18,
+                                  width: 18,
+                                  image: AssetImage(AssetRes.search),
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                            placeholder: 'Enter the location',
+                            bgColor: Colors.white,
+                            textColor: ColorRes.color_09110E,
+                            iconColor: Colors.white,
+                            placeType: PlaceType.address,
+                            apiKey: "sqdcfhhjdsgvfuydsgbv",
+                            onSelected: (Place place) async {
+                              Geolocation? geolocation =
+                                  await place.geolocation;
+                              googleMapController!.animateCamera(
+                                  CameraUpdate.newLatLng(
+                                      geolocation!.coordinates));
+                              googleMapController!.animateCamera(
+                                  CameraUpdate.newLatLngBounds(
+                                      geolocation.bounds, 0));
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                child: Image.asset(
-                  AssetRes.filterIcon,
-                  height: 15,
-                  width: 15,
-                ),
-              ),
-            )
-          ],
-        );
-      },
+                Positioned(
+                  top: 55,
+                  left: 285,
+                  child: Container(
+                    height: 52,
+                    width: 50,
+                    margin: const EdgeInsets.only(left: 9),
+                    padding: const EdgeInsets.all(15),
+                    decoration: const BoxDecoration(
+                      color: ColorRes.black,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(15),
+                      ),
+                    ),
+                    child: Image.asset(
+                      AssetRes.filterIcon,
+                      height: 15,
+                      width: 15,
+                    ),
+                  ),
+                )
+              ],
+            );
+          },
+        ),
+        markerLoader
+            ? const Center(child: CircularProgressIndicator())
+            : const SizedBox(),
+      ],
     );
   }
 }

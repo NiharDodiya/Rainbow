@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import '../story_stack_controller.dart';
@@ -17,7 +16,7 @@ class Gestures extends StatelessWidget {
   final Future<void> Function()? loadImage;
 
   Future<void> downloadImage() async {
-    await Future.delayed(800.milliseconds);
+    await Future.delayed(Duration(milliseconds: 800));
 
     animationController!.stop();
     if(loadImage != null){

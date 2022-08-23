@@ -170,6 +170,8 @@ class SearchController extends GetxController {
     advance = false;
     await listUserProfileAdvanceSearch(advanceSearch[index]);
 
+    await findUserDistance(index: index);
+
     Get.to(AdvanceSearchScreen(
       title: advanceSearch[index],
     ))!
@@ -177,7 +179,7 @@ class SearchController extends GetxController {
       await listUserProfile();
     });
 /*    await loadData();*/
-    findUserDistance(index: index);
+
   }
 
   Future<void> listUserProfileAdvanceSearch(String keyWords) async {
@@ -282,8 +284,8 @@ class SearchController extends GetxController {
   double? newLat;
   double? newLong;
 
-  findUserDistance({index}) async {
-    await listUserProfileAdvanceSearch(advanceSearch[index]);
+  Future<void> findUserDistance({index}) async {
+    listLatLongData = [];
     position = await getCurrentPosition();
     newLat = position!.latitude;
     newLong = position!.longitude;
