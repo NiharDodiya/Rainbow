@@ -55,6 +55,7 @@ class ChatScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 20, bottom: 20),
                         child: InkWell(
                           onTap: () {
+                            controller.msgController.clear();
                             Get.back();
                           },
                           child: const Icon(
