@@ -142,10 +142,10 @@ class SupportController extends GetxController {
     final result = await ImageGallerySaver.saveImage(
         Uint8List.fromList(response.data),
         quality: 60,
-        name: "rainBow");
+        name: "ra",
+    );
     print(result);
     loader.value=false;
-    flutterToast("Image Save successFull");
   }
 
   // save(String url) async {

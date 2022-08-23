@@ -54,7 +54,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                 ],
               ),
             ),
-            controller.loader.value? const Center(child: const CircularProgressIndicator(),):const SizedBox(),
+            controller.loader.value? Center(child: CircularProgressIndicator(),):SizedBox(),
           ],
         );
       })
@@ -169,10 +169,11 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                   SizedBox(
                     height: Get.height * 0.0184,
                   ),
+                  //image
                   Container(
                     height: Get.height * 0.07279,
                     width: Get.width * 0.354666,
-                    padding: const EdgeInsets.only(right: 5),
+                    padding: EdgeInsets.only(right: 5, left: 5),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: ColorRes.white,
@@ -215,102 +216,16 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                 const SizedBox(
                                     width: 5
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: Get.height * 0.015),
-                                  child: InkWell(
-                                      onTap: (){
-                                        print( controller.save(controller
-                                            .viewSupportTicketModel
-                                            .data![index]
-                                            .itmeList![index1]
-                                            .image
-                                            .toString()));
-                                        controller.save(controller
-                                            .viewSupportTicketModel
-                                            .data![index]
-                                            .itmeList![index1]
-                                            .image
-                                            .toString());
-                                        // (controller.imgIdList.length==0)
-                                        //     ?  errorToast("Image is not found")
-                                        //     : (controller.imgIdList.length == 1)
-                                        //        ?controller.save(controller
-                                        //     .viewSupportTicketModel
-                                        //     .data![index]
-                                        //     .itmeList![0]
-                                        //     .image
-                                        //     .toString())
-                                        //     :Column(
-                                        //   children: [
-                                        //     controller.save(controller
-                                        //         .viewSupportTicketModel
-                                        //         .data![index]
-                                        //         .itmeList![0]
-                                        //         .image
-                                        //         .toString()),
-                                        //     controller.save(controller
-                                        //         .viewSupportTicketModel
-                                        //         .data![index]
-                                        //         .itmeList![1]
-                                        //         .image
-                                        //         .toString()),
-                                        //   ],
-                                        // );
-
-                                      },
-                                      child: Image.asset(AssetRes.downlode)),
-                                ),
                               ],
                             );
                           },
                         ),
-                        // Padding(
-                        //   padding: EdgeInsets.symmetric(
-                        //       vertical: Get.height * 0.015),
-                        //   child: InkWell(
-                        //       onTap: (){
-                        //         print( controller.save(controller
-                        //             .viewSupportTicketModel
-                        //             .data![index]
-                        //             .itmeList![0]
-                        //             .image
-                        //             .toString()));
-                        //         controller.save(controller
-                        //             .viewSupportTicketModel
-                        //             .data![index]
-                        //             .itmeList![0]
-                        //             .image
-                        //             .toString());
-                        //         // (controller.imgIdList.length==0)
-                        //         //     ?  errorToast("Image is not found")
-                        //         //     : (controller.imgIdList.length == 1)
-                        //         //        ?controller.save(controller
-                        //         //     .viewSupportTicketModel
-                        //         //     .data![index]
-                        //         //     .itmeList![0]
-                        //         //     .image
-                        //         //     .toString())
-                        //         //     :Column(
-                        //         //   children: [
-                        //         //     controller.save(controller
-                        //         //         .viewSupportTicketModel
-                        //         //         .data![index]
-                        //         //         .itmeList![0]
-                        //         //         .image
-                        //         //         .toString()),
-                        //         //     controller.save(controller
-                        //         //         .viewSupportTicketModel
-                        //         //         .data![index]
-                        //         //         .itmeList![1]
-                        //         //         .image
-                        //         //         .toString()),
-                        //         //   ],
-                        //         // );
-                        //
-                        //       },
-                        //       child: Image.asset(AssetRes.downlode)),
-                        // ),
+                        (controller.viewSupportTicketModel.data![index].itmeList!.isEmpty)
+                            ?SizedBox()
+                            :(controller.viewSupportTicketModel.data![index].itmeList!.length == 1)
+                              ?downloadButton1(index)
+                              :downloadButton2(index),
+
                       ],
                     ),
 
@@ -430,33 +345,83 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                           children: [
                             controller.image.isEmpty
                                 ? const SizedBox()
-                                : Container(
-                              height: Get.height / 12,
-                              width: Get.width / 5,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: FileImage(controller.image[0]),
-                                      fit: BoxFit.cover
-                                  ),
-                                borderRadius: BorderRadius.circular(15),
-                              ),
+                                : Stack(
+                              alignment: Alignment(1.2, -1.3),
+                              children: [
+                                Container(
+                                  height: Get.height / 12,
+                                  width: Get.width / 5,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      image: DecorationImage(
+                                          image:
+                                          FileImage(controller.image[0]),
+                                          fit: BoxFit.cover)),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    FocusScopeNode currentfocus = FocusScope.of(context);
+                                    if (!currentfocus.hasPrimaryFocus) {
+                                      currentfocus.unfocus();
+                                    }
+                                    controller.image.removeAt(0);
+                                    controller.update(["createStory"]);
+                                  },
+                                  child: Container(
+                                      decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.black),
+                                      child: const Icon(
+                                        Icons.clear,
+                                        color: Colors.white,
+                                      )),
+                                ),
+                              ],
                             ),
-                            const SizedBox(width: 20,),
+                            SizedBox(width: 20,),
                             (controller.image.length == 2)
-                                ? Container(
-                              height: Get.height / 12,
-                              width: Get.width / 5,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  image: DecorationImage(
-                                      image: FileImage(controller.image[1]),
-                                      fit: BoxFit.cover)),
+                                ? Stack(
+                              alignment: Alignment(1.2, -1.3),
+                              children: [
+                                Container(
+                                  height: Get.height / 12,
+                                  width: Get.width / 5,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      image: DecorationImage(
+                                          image:
+                                          FileImage(controller.image[1]),
+                                          fit: BoxFit.cover)),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    FocusScopeNode currentfocus = FocusScope.of(context);
+                                    if (!currentfocus.hasPrimaryFocus) {
+                                      currentfocus.unfocus();
+                                    }
+                                    controller.image.removeAt(1);
+                                    controller.update(["createStory"]);
+                                  },
+                                  child: Container(
+                                      decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.black),
+                                      child: const Icon(
+                                        Icons.clear,
+                                        color: Colors.white,
+                                      )),
+                                ),
+                              ],
                             )
                                 :  Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 InkWell(
                                     onTap: () {
+                                      FocusScopeNode currentfocus = FocusScope.of(context);
+                                      if (!currentfocus.hasPrimaryFocus) {
+                                        currentfocus.unfocus();
+                                      }
                                       showModalBottomSheet(
                                           elevation: 10,
                                           barrierColor: ColorRes.black.withOpacity(0.4),
@@ -594,26 +559,51 @@ Widget appBar() {
   );
 }
 
-// Widget downloadButton(int i){
-//    SupportController controller = Get.put(SupportController());
-//   return Padding(
-//     padding: EdgeInsets.symmetric(
-//         vertical: Get.height * 0.015),
-//     child: InkWell(
-//         onTap: () {
-//           controller.save(controller
-//               .viewSupportTicketModel
-//               .data![i]
-//               .itmeList![0]
-//               .image
-//               .toString());
-//           controller.save(controller
-//               .viewSupportTicketModel
-//               .data![i]
-//               .itmeList![1]
-//               .image
-//               .toString());
-//         },
-//         child: Image.asset(AssetRes.downlode)),
-//   );
-// }
+
+
+Widget downloadButton2(int i){
+   SupportController controller = Get.put(SupportController());
+  return Padding(
+    padding: EdgeInsets.symmetric(
+        vertical: Get.height * 0.015),
+    child: InkWell(
+        onTap: () {
+          controller.save(controller
+              .viewSupportTicketModel
+              .data![i]
+              .itmeList![0]
+              .image
+              .toString());
+          controller.save(controller
+              .viewSupportTicketModel
+              .data![i]
+              .itmeList![1]
+              .image
+              .toString());
+          flutterToast("Image Save successFull");
+         // (controller.loader.value == false)? flutterToast("Image Save successFull"):SizedBox();
+        },
+        child: Image.asset(AssetRes.downlode)),
+  );
+}
+
+Widget downloadButton1(int i){
+  SupportController controller = Get.put(SupportController());
+  return Padding(
+    padding: EdgeInsets.symmetric(
+        vertical: Get.height * 0.015),
+    child: InkWell(
+        onTap: () {
+          controller.save(controller
+              .viewSupportTicketModel
+              .data![i]
+              .itmeList![0]
+              .image
+              .toString());
+          flutterToast("Image Save successFull");
+          //controller.loader.value == false? flutterToast("Image Save successFull"):SizedBox();
+
+        },
+        child: Image.asset(AssetRes.downlode)),
+  );
+}

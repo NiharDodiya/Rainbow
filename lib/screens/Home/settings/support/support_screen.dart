@@ -20,48 +20,48 @@ class SupportScreen extends StatelessWidget {
       body: GetBuilder<SupportController>(
         id: "Support",
         builder: (controller) {
-          return SingleChildScrollView(
-            child: Container(
-              width: Get.width,
-              height: Get.height,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    ColorRes.color_50369C,
-                    ColorRes.color_50369C,
-                    ColorRes.color_D18EEE,
-                    ColorRes.color_D18EEE,
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
+          return Container(
+            width: Get.width,
+            height: Get.height,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  ColorRes.color_50369C,
+                  ColorRes.color_50369C,
+                  ColorRes.color_D18EEE,
+                  ColorRes.color_D18EEE,
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
               ),
-              child: Obx(() {
-                return Stack(
-                  children: [
-                    Column(
-                      children: [
-                        SizedBox(
-                          height: Get.height * 0.035,
-                        ),
-                        appBar(),
-                        supports(),
-                        SizedBox(
-                          height: Get.height * 0.07,
-                        ),
-                        sendNewMessage(),
-                        SizedBox(
-                          height: Get.height * 0.05,
-                        ),
-                      ],
-                    ),
-                    controller.loader.isTrue
-                        ? const FullScreenLoader()
-                        : const SizedBox()
-                  ],
-                );
-              }),
             ),
+            child: Obx(() {
+              return Stack(
+                children: [
+                 SingleChildScrollView(
+                   child:  Column(
+                     children: [
+                       SizedBox(
+                         height: Get.height * 0.035,
+                       ),
+                       appBar(),
+                       supports(),
+                       SizedBox(
+                         height: Get.height * 0.07,
+                       ),
+                       sendNewMessage(),
+                       SizedBox(
+                         height: Get.height * 0.05,
+                       ),
+                     ],
+                   ),
+                 ),
+                  controller.loader.isTrue
+                      ? const FullScreenLoader()
+                      : const SizedBox()
+                ],
+              );
+            }),
           );
         },
       ),
