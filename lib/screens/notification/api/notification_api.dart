@@ -37,10 +37,7 @@ class NotificationApi {
     try {
       String url = EndPoints.notificationRead;
       http.Response? response = await HttpService.getApi(
-          url: url,
-          header: {
-            "x-access-token": accesToken
-          });
+          url: url, header: {"x-access-token": accesToken});
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
@@ -48,7 +45,7 @@ class NotificationApi {
         } else if (status == true) {
           /*flutterToast(jsonDecode(response.body)["message"]);*/
         }
-    /*    return notificationModelFromJson(response.body);*/
+        /*    return notificationModelFromJson(response.body);*/
       }
     } catch (e) {
       print(e.toString());

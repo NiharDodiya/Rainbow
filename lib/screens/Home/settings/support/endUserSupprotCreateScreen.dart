@@ -25,40 +25,42 @@ class SupportCreateEndUserScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Obx((){
-        return Stack(
-          children: [
-            Container(
-              width: Get.width,
-              height: Get.height,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    ColorRes.color_50369C,
-                    ColorRes.color_50369C,
-                    ColorRes.color_D18EEE,
-                    ColorRes.color_D18EEE,
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
-              ),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: Get.height * 0.035,
-                  ),
-                  appBar(),
-                  body(com.toString()),
+    return Scaffold(body: Obx(() {
+      return Stack(
+        children: [
+          Container(
+            width: Get.width,
+            height: Get.height,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  ColorRes.color_50369C,
+                  ColorRes.color_50369C,
+                  ColorRes.color_D18EEE,
+                  ColorRes.color_D18EEE,
                 ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
               ),
             ),
-            controller.loader.value? Center(child: CircularProgressIndicator(),):SizedBox(),
-          ],
-        );
-      })
-    );
+            child: Column(
+              children: [
+                SizedBox(
+                  height: Get.height * 0.035,
+                ),
+                appBar(),
+                body(com.toString()),
+              ],
+            ),
+          ),
+          controller.loader.value
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : SizedBox(),
+        ],
+      );
+    }));
   }
 
   Widget body(String comp) {
@@ -188,8 +190,8 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                       children: [
                         ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: controller
-                              .viewSupportTicketModel.data![index].itmeList!.length,
+                          itemCount: controller.viewSupportTicketModel
+                              .data![index].itmeList!.length,
                           itemBuilder: (context, index1) {
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -200,11 +202,12 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.network(
-                                      controller.viewSupportTicketModel.data![index]
-                                          .itmeList![index1].image
+                                      controller.viewSupportTicketModel
+                                          .data![index].itmeList![index1].image
                                           .toString(),
                                       fit: BoxFit.cover,
-                                      errorBuilder: (context, error, stackTrace) {
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
                                         return Image.asset(
                                           AssetRes.portrait_placeholder,
                                           fit: BoxFit.cover,
@@ -213,22 +216,21 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(
-                                    width: 5
-                                ),
+                                const SizedBox(width: 5),
                               ],
                             );
                           },
                         ),
-                        (controller.viewSupportTicketModel.data![index].itmeList!.isEmpty)
-                            ?SizedBox()
-                            :(controller.viewSupportTicketModel.data![index].itmeList!.length == 1)
-                              ?downloadButton1(index)
-                              :downloadButton2(index),
-
+                        (controller.viewSupportTicketModel.data![index]
+                                .itmeList!.isEmpty)
+                            ? SizedBox()
+                            : (controller.viewSupportTicketModel.data![index]
+                                        .itmeList!.length ==
+                                    1)
+                                ? downloadButton1(index)
+                                : downloadButton2(index),
                       ],
                     ),
-
                   ),
                   SizedBox(
                     height: Get.height * 0.0300,
@@ -346,138 +348,154 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                             controller.image.isEmpty
                                 ? const SizedBox()
                                 : Stack(
-                              alignment: Alignment(1.2, -1.3),
-                              children: [
-                                Container(
-                                  height: Get.height / 12,
-                                  width: Get.width / 5,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      image: DecorationImage(
-                                          image:
-                                          FileImage(controller.image[0]),
-                                          fit: BoxFit.cover)),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    FocusScopeNode currentfocus = FocusScope.of(context);
-                                    if (!currentfocus.hasPrimaryFocus) {
-                                      currentfocus.unfocus();
-                                    }
-                                    controller.image.removeAt(0);
-                                    controller.update(["createStory"]);
-                                  },
-                                  child: Container(
-                                      decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.black),
-                                      child: const Icon(
-                                        Icons.clear,
-                                        color: Colors.white,
-                                      )),
-                                ),
-                              ],
+                                    alignment: Alignment(1.2, -1.3),
+                                    children: [
+                                      Container(
+                                        height: Get.height / 12,
+                                        width: Get.width / 5,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            image: DecorationImage(
+                                                image: FileImage(
+                                                    controller.image[0]),
+                                                fit: BoxFit.cover)),
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          FocusScopeNode currentfocus =
+                                              FocusScope.of(context);
+                                          if (!currentfocus.hasPrimaryFocus) {
+                                            currentfocus.unfocus();
+                                          }
+                                          controller.image.removeAt(0);
+                                          controller.update(["createStory"]);
+                                        },
+                                        child: Container(
+                                            decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Colors.black),
+                                            child: const Icon(
+                                              Icons.clear,
+                                              color: Colors.white,
+                                            )),
+                                      ),
+                                    ],
+                                  ),
+                            SizedBox(
+                              width: 20,
                             ),
-                            SizedBox(width: 20,),
                             (controller.image.length == 2)
                                 ? Stack(
-                              alignment: Alignment(1.2, -1.3),
-                              children: [
-                                Container(
-                                  height: Get.height / 12,
-                                  width: Get.width / 5,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
-                                      image: DecorationImage(
-                                          image:
-                                          FileImage(controller.image[1]),
-                                          fit: BoxFit.cover)),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    FocusScopeNode currentfocus = FocusScope.of(context);
-                                    if (!currentfocus.hasPrimaryFocus) {
-                                      currentfocus.unfocus();
-                                    }
-                                    controller.image.removeAt(1);
-                                    controller.update(["createStory"]);
-                                  },
-                                  child: Container(
-                                      decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.black),
-                                      child: const Icon(
-                                        Icons.clear,
-                                        color: Colors.white,
-                                      )),
-                                ),
-                              ],
-                            )
-                                :  Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                InkWell(
-                                    onTap: () {
-                                      FocusScopeNode currentfocus = FocusScope.of(context);
-                                      if (!currentfocus.hasPrimaryFocus) {
-                                        currentfocus.unfocus();
-                                      }
-                                      showModalBottomSheet(
-                                          elevation: 10,
-                                          barrierColor: ColorRes.black.withOpacity(0.4),
-                                          shape: const RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(10.0),
-                                            ),
-                                          ),
-                                          backgroundColor: ColorRes.color_4F359B,
-                                          context: context,
-                                          builder: (context) {
-                                            return Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: <Widget>[
-                                                GestureDetector(
-                                                  onTap: controller.cameraImage,
-                                                  child: const ListTile(
-                                                    leading: Icon(Icons.camera),
-                                                    title: Text(Strings.camera),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  height: 0.5,
-                                                  width: Get.width,
-                                                  color: ColorRes.white,
-                                                ),
-                                                GestureDetector(
-                                                  onTap: controller.galleryImage,
-                                                  child: const ListTile(
-                                                    leading: Icon(Icons
-                                                        .photo_size_select_actual_outlined),
-                                                    title: Text(Strings.gallery),
-                                                  ),
-                                                ),
-                                              ],
-                                            );
-                                          });
-                                    },
-                                    child: SizedBox(
-                                      height: Get.height * 0.0474,
-                                      child: const Image(
-                                        image: AssetImage(AssetRes.cameraPic),
+                                    alignment: Alignment(1.2, -1.3),
+                                    children: [
+                                      Container(
+                                        height: Get.height / 12,
+                                        width: Get.width / 5,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            image: DecorationImage(
+                                                image: FileImage(
+                                                    controller.image[1]),
+                                                fit: BoxFit.cover)),
                                       ),
-                                    ),
-                                ),
-                                SizedBox(
-                                  height: Get.height * 0.0190
-                                ),
-                                Center(
-                                  child: Text(
-                                    Strings.attachImage,
-                                    style: gilroyMediumTextStyle(fontSize: 14),
+                                      InkWell(
+                                        onTap: () {
+                                          FocusScopeNode currentfocus =
+                                              FocusScope.of(context);
+                                          if (!currentfocus.hasPrimaryFocus) {
+                                            currentfocus.unfocus();
+                                          }
+                                          controller.image.removeAt(1);
+                                          controller.update(["createStory"]);
+                                        },
+                                        child: Container(
+                                            decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Colors.black),
+                                            child: const Icon(
+                                              Icons.clear,
+                                              color: Colors.white,
+                                            )),
+                                      ),
+                                    ],
+                                  )
+                                : Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          FocusScopeNode currentfocus =
+                                              FocusScope.of(context);
+                                          if (!currentfocus.hasPrimaryFocus) {
+                                            currentfocus.unfocus();
+                                          }
+                                          showModalBottomSheet(
+                                              elevation: 10,
+                                              barrierColor: ColorRes.black
+                                                  .withOpacity(0.4),
+                                              shape:
+                                                  const RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(10.0),
+                                                ),
+                                              ),
+                                              backgroundColor:
+                                                  ColorRes.color_4F359B,
+                                              context: context,
+                                              builder: (context) {
+                                                return Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: <Widget>[
+                                                    GestureDetector(
+                                                      onTap: controller
+                                                          .cameraImage,
+                                                      child: const ListTile(
+                                                        leading:
+                                                            Icon(Icons.camera),
+                                                        title: Text(
+                                                            Strings.camera),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      height: 0.5,
+                                                      width: Get.width,
+                                                      color: ColorRes.white,
+                                                    ),
+                                                    GestureDetector(
+                                                      onTap: controller
+                                                          .galleryImage,
+                                                      child: const ListTile(
+                                                        leading: Icon(Icons
+                                                            .photo_size_select_actual_outlined),
+                                                        title: Text(
+                                                            Strings.gallery),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                );
+                                              });
+                                        },
+                                        child: SizedBox(
+                                          height: Get.height * 0.0474,
+                                          child: const Image(
+                                            image:
+                                                AssetImage(AssetRes.cameraPic),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: Get.height * 0.0190),
+                                      Center(
+                                        child: Text(
+                                          Strings.attachImage,
+                                          style: gilroyMediumTextStyle(
+                                              fontSize: 14),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                              ],
-                            ),
                           ],
                         );
                       }),
@@ -559,50 +577,36 @@ Widget appBar() {
   );
 }
 
-
-
-Widget downloadButton2(int i){
-   SupportController controller = Get.put(SupportController());
+Widget downloadButton2(int i) {
+  SupportController controller = Get.put(SupportController());
   return Padding(
-    padding: EdgeInsets.symmetric(
-        vertical: Get.height * 0.015),
+    padding: EdgeInsets.symmetric(vertical: Get.height * 0.015),
     child: InkWell(
         onTap: () {
           controller.save(controller
-              .viewSupportTicketModel
-              .data![i]
-              .itmeList![0]
-              .image
+              .viewSupportTicketModel.data![i].itmeList![0].image
               .toString());
           controller.save(controller
-              .viewSupportTicketModel
-              .data![i]
-              .itmeList![1]
-              .image
+              .viewSupportTicketModel.data![i].itmeList![1].image
               .toString());
           flutterToast("Image Save successFull");
-         // (controller.loader.value == false)? flutterToast("Image Save successFull"):SizedBox();
+          // (controller.loader.value == false)? flutterToast("Image Save successFull"):SizedBox();
         },
         child: Image.asset(AssetRes.downlode)),
   );
 }
 
-Widget downloadButton1(int i){
+Widget downloadButton1(int i) {
   SupportController controller = Get.put(SupportController());
   return Padding(
-    padding: EdgeInsets.symmetric(
-        vertical: Get.height * 0.015),
+    padding: EdgeInsets.symmetric(vertical: Get.height * 0.015),
     child: InkWell(
         onTap: () {
           controller.save(controller
-              .viewSupportTicketModel
-              .data![i]
-              .itmeList![0]
-              .image
+              .viewSupportTicketModel.data![i].itmeList![0].image
               .toString());
           flutterToast("Image Save successFull");
           //controller.loader.value == false? flutterToast("Image Save successFull"):SizedBox();
-
         },
         child: Image.asset(AssetRes.downlode)),
   );

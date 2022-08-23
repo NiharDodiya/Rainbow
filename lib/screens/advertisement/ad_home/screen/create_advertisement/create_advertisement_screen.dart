@@ -22,55 +22,58 @@ class CreateAdvertisementScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GetBuilder<CreateAdvertisementController>(id: "advertiser",builder:(controller){
-        return Container(
-          width: Get.width,
-          height: Get.height,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                ColorRes.color_50369C,
-                ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
-                ColorRes.color_D18EEE,
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-          ),
-          child: Obx((){
-            return SingleChildScrollView(
-              child
-                  : Stack(
-                children: [
-                  Column(
-                    children: [
-                      SizedBox(
-                        height: Get.height * 0.035,
-                      ),
-                      appBar(),
-                      body(context),
-                      SubmitButton(
-                        onTap: () {
-                          advertisementController.createAdvertisement();
-                          // Get.to(()=> const SupportcreateScreen());
-                        },
-                        child: Text(
-                          "Create Advertisement",
-                          style:
-                          gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
-                        ),
-                      ),
-                      SizedBox(height: Get.height * 0.02),
-                    ],
-                  ),
-                  controller.loader.isTrue?const FullScreenLoader():const SizedBox()
+      body: GetBuilder<CreateAdvertisementController>(
+        id: "advertiser",
+        builder: (controller) {
+          return Container(
+            width: Get.width,
+            height: Get.height,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  ColorRes.color_50369C,
+                  ColorRes.color_50369C,
+                  ColorRes.color_D18EEE,
+                  ColorRes.color_D18EEE,
                 ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
               ),
-            );
-          }),
-        );
-      },
+            ),
+            child: Obx(() {
+              return SingleChildScrollView(
+                child: Stack(
+                  children: [
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: Get.height * 0.035,
+                        ),
+                        appBar(),
+                        body(context),
+                        SubmitButton(
+                          onTap: () {
+                            advertisementController.createAdvertisement();
+                            // Get.to(()=> const SupportcreateScreen());
+                          },
+                          child: Text(
+                            "Create Advertisement",
+                            style: gilroyBoldTextStyle(
+                                color: Colors.black, fontSize: 16),
+                          ),
+                        ),
+                        SizedBox(height: Get.height * 0.02),
+                      ],
+                    ),
+                    controller.loader.isTrue
+                        ? const FullScreenLoader()
+                        : const SizedBox()
+                  ],
+                ),
+              );
+            }),
+          );
+        },
       ),
     );
   }

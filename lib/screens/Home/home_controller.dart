@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:get/get.dart';
@@ -58,7 +59,6 @@ class HomeController extends GetxController {
   String? deepLinkPath;
   List<FriendPost> friendPostListData = [];
   List listOfUserView = [];
-
 
   ScrollController scrollController = ScrollController();
   int page = 1;
@@ -306,7 +306,6 @@ class HomeController extends GetxController {
     await connectionsController.callRequestApi();
     changeLoader(false);
   }
-
 
   Future<void> onStory() async {
     await viewStoryController.friendStoryApiData();

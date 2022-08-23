@@ -119,9 +119,8 @@ class EditAdvertisementscreen extends StatelessWidget {
                         style: poppinsMediumBold(fontSize: 18),
                       ),
                       const Spacer(),
-                      InkWell(onTap: () {
-
-                      },
+                      InkWell(
+                        onTap: () {},
                         child: Text(
                           "Edit",
                           style: poppinsMediumBold(fontSize: 18)

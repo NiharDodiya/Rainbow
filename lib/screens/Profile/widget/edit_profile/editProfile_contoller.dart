@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rainbow/common/helper.dart';
@@ -11,7 +12,6 @@ import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/edit_api/edit_api.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/edit_api/edit_model.dart';
 import 'package:rainbow/utils/strings.dart';
-import 'package:geolocator/geolocator.dart';
 
 class EditProfileController extends GetxController {
   TextEditingController fullName = TextEditingController(/*text: "ramika"*/);
@@ -220,8 +220,6 @@ class EditProfileController extends GetxController {
     Get.back();
     update(["Edit_profile"]);
   }
-
-
 
   Future<String?> cameraPickImage1() async {
     XFile? pickedFile =

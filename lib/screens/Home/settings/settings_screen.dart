@@ -8,11 +8,8 @@ import 'package:rainbow/screens/Home/settings/connections/connections_screen.dar
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
 import 'package:rainbow/screens/Home/settings/subscription/subscription_screen.dart';
-import 'package:rainbow/screens/Home/settings/support/support_screen.dart';
-import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
-import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -272,7 +269,7 @@ class SettingsScreen extends StatelessWidget {
           //Support
           InkWell(
             onTap: () {
-             controller.onTapSupport();
+              controller.onTapSupport();
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 5, bottom: 5),

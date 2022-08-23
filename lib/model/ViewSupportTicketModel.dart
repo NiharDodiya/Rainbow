@@ -1,8 +1,4 @@
-
-
 import 'dart:convert';
-
-
 
 ViewSupportTicketModel viewSupportTicketModelFromJson(String? str) =>
     ViewSupportTicketModel.fromJson(json.decode(str!));

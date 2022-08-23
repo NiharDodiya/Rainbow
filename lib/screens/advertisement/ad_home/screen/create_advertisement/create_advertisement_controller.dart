@@ -10,9 +10,7 @@ import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/model/listUserTag_model.dart';
-import 'package:rainbow/screens/advertisement/ad_home/screen/advertisement_deatail/advertisement_deatail_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/createadvertisement_api/createAdvertisement_api.dart';
-import 'package:rainbow/screens/advertisement/boostadvertisement_api/boostAdvertisement_api.dart';
 
 import '../../../../../common/popup.dart';
 import '../../../../../utils/strings.dart';
@@ -295,8 +293,6 @@ class CreateAdvertisementController extends GetxController {
     loader.value = false;
     update(["advertiser"]);
   }
-
-
 }
 // await PrefService.setValue(PrefKeys.latitude, position.latitude);
 // await PrefService.setValue(PrefKeys.longitude, position.longitude);

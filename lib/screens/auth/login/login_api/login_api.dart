@@ -42,7 +42,8 @@ class LoginApi {
         if (status == false) {
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          await PrefService.setValue(PrefKeys.referrallCode, jsonDecode(response.body)["data"]["referrall_code"]);
+          await PrefService.setValue(PrefKeys.referrallCode,
+              jsonDecode(response.body)["data"]["referrall_code"]);
           await PrefService.setValue(
               PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
           await PrefService.setValue(PrefKeys.isLogin, true);
@@ -72,7 +73,6 @@ class LoginApi {
                 "pending") {
               Get.to(() => const SelfieVerificationScreen());
             } else {
-
               await PrefService.setValue(
                   PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
               await PrefService.setValue(PrefKeys.loginRole,
@@ -104,7 +104,7 @@ class LoginApi {
               Get.to(() => AdvertiserVerifyOtpScreen());
             } else {
               HomeController homeController = Get.put(HomeController());
-               await homeController.init();
+              await homeController.init();
               Get.offAll(() =>
                   jsonDecode(response.body)["data"]["role"] == "end_user"
                       ? const Dashboard()

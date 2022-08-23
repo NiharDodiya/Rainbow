@@ -1,12 +1,9 @@
 import 'dart:io';
 
-
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-
-import 'package:rainbow/common/helper.dart';
+import 'package:image_picker/image_picker.dart';import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/screens/account_Information/ad_information_api/ad_information_api.dart';

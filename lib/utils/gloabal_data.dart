@@ -5,6 +5,7 @@ import 'package:rainbow/model/user_model.dart';
 class GlobalData {
   static UserModel user = UserModel();
   static String chatId = '';
+
   // static  AudioPlayer player = AudioPlayer();
 
   static late Uint8List audiobytes;

@@ -36,7 +36,8 @@ class ListSupportTicketModel {
         count: json["count"] == null ? null : json["count"],
         data: json["data"] == null
             ? null
-            : List<ListTicketData>.from(json["data"].map((x) => ListTicketData.fromJson(x))),
+            : List<ListTicketData>.from(
+                json["data"].map((x) => ListTicketData.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -75,8 +76,7 @@ class ListTicketData {
         tickit: json["tickit"] == null ? null : json["tickit"],
         idUser: json["id_user"] == null ? null : json["id_user"],
         title: json["title"] == null ? null : json["title"],
-        status:
-            json["status"] == null ? null : json["status"],
+        status: json["status"] == null ? null : json["status"],
         createdAt: json["createdAt"] == null
             ? null
             : DateTime.parse(json["createdAt"]),

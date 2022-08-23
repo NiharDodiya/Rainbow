@@ -387,7 +387,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                                 .viewStoryController
                                                                 .storyModel
                                                                 .myStory![
-                                                        storyIndex]
+                                                                    storyIndex]
                                                                 .storyLikeCount
                                                                 .toString(),
                                                         style: sfProTextReguler(
@@ -434,7 +434,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                                   .viewStoryController
                                                                   .storyModel
                                                                   .myStory![
-                                                          storyIndex]
+                                                                      storyIndex]
                                                                   .storyCommentCount
                                                                   .toString(),
                                                           style:

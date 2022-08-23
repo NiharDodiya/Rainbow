@@ -15,7 +15,7 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  controller.notificationReadApi();
+    controller.notificationReadApi();
     return Scaffold(
       body: Stack(
         children: [

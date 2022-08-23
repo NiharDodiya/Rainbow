@@ -17,5 +17,4 @@ class PrefKeys {
   static const uid = "uid";
   static const notification = "notification";
   static const referrallCode = "referrallCode";
-
 }

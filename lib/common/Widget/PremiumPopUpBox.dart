@@ -13,37 +13,54 @@ Widget premiumPopUpBox() {
     ),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children:  [
+      children: [
         Spacer(),
         const SizedBox(
           width: 130,
-          child:  Text(
+          child: Text(
             "Subscribe to our Premium Version",
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontFamily: FontRes.gilroySemiBold,
-              color: ColorRes.appBlack,
-              fontSize: 16,
-              fontWeight: FontWeight.bold
-            ),
+                fontFamily: FontRes.gilroySemiBold,
+                color: ColorRes.appBlack,
+                fontSize: 16,
+                fontWeight: FontWeight.bold),
           ),
         ),
         Spacer(),
         Row(
-         mainAxisAlignment: MainAxisAlignment.center,
-          children: const[
-            Text("£9.99", style: TextStyle(fontSize: 35, fontWeight: FontWeight.w100 ,color: ColorRes.appBlack,  fontFamily: FontRes.gilroySemiBold,),),
-            Text("/", style: TextStyle(color: ColorRes.appBlack, fontSize: 35),),
-            Text("month", style: TextStyle(fontSize: 35,  color: ColorRes.appBlack,  fontFamily: FontRes.gilroySemiBold,),),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Text(
+              "£9.99",
+              style: TextStyle(
+                fontSize: 35,
+                fontWeight: FontWeight.w100,
+                color: ColorRes.appBlack,
+                fontFamily: FontRes.gilroySemiBold,
+              ),
+            ),
+            Text(
+              "/",
+              style: TextStyle(color: ColorRes.appBlack, fontSize: 35),
+            ),
+            Text(
+              "month",
+              style: TextStyle(
+                fontSize: 35,
+                color: ColorRes.appBlack,
+                fontFamily: FontRes.gilroySemiBold,
+              ),
+            ),
           ],
         ),
         Spacer(),
         Container(
-          height: Get.height/18,
-          width: Get.width/2.5,
+          height: Get.height / 18,
+          width: Get.width / 2.5,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(30),
               gradient: const LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
@@ -51,9 +68,15 @@ Widget premiumPopUpBox() {
                   ColorRes.color_B279DB,
                   ColorRes.color_4F359B,
                 ],
-              )
+              )),
+          child: const Text(
+            "Subscribe",
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                fontFamily: FontRes.gilroySemiBold,
+                color: ColorRes.white),
           ),
-          child: const Text("Subscribe", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, fontFamily: FontRes.gilroySemiBold, color: ColorRes.white),),
         ),
         Spacer(),
       ],

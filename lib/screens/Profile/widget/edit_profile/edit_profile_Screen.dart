@@ -450,7 +450,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   SizedBox(
                     height: Get.height * 0.026,
                   ),
-               /*   SizedBox(
+                  /*   SizedBox(
                     width: Get.width * 0.85,
                     child: GestureDetector(
                       onTap: () {},

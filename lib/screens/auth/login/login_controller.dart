@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/screens/Home/Story/friendStory_api/friendStory_api.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_api.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
 import 'package:rainbow/screens/auth/phonenumber/phonenumber_Screen.dart';
@@ -121,7 +120,7 @@ class LoginController extends GetxController {
           "uid": userUid,
           "id": PrefService.getInt(PrefKeys.userId),
           "name": loginModel.data!.fullName,
-          "image":loginModel.data!.profileImage,
+          "image": loginModel.data!.profileImage,
           "online": true
         });
         setCount();

@@ -7,7 +7,6 @@ import 'package:image_stack/image_stack.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Message/message_controller.dart';
-
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
@@ -17,6 +16,7 @@ class ChatScreen extends StatelessWidget {
   final String? otherUserUid;
   final String? userUid;
   final String? profileImage;
+
   ChatScreen(
       {Key? key,
       this.name,
@@ -217,28 +217,38 @@ class ChatScreen extends StatelessWidget {
                                 const SizedBox(
                                   width: 12,
                                 ),
-                                controller.data['type']=="text"?Container(
-                                  margin: const EdgeInsets.only(bottom: 10),
-                                  padding: const EdgeInsets.all(10),
-                                  constraints: BoxConstraints(
-                                    maxWidth: Get.width / 1.3,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50),
-                                    color: controller.data['senderUid']
-                                                .toString() ==
-                                            userUid
-                                        ? Colors.white
-                                        : ColorRes.color_E9D224,
-                                  ),
-                                  child: Text(
-                                    controller.data['content'].toString(),
-                                    style: gilroyBoldTextStyle(
-                                        fontSize: 17, color: Colors.black),
-                                  ),
-                                ):Container(height: 200,
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                                child: Image.network( controller.data['image']),),
+                                controller.data['type'] == "text"
+                                    ? Container(
+                                        margin:
+                                            const EdgeInsets.only(bottom: 10),
+                                        padding: const EdgeInsets.all(10),
+                                        constraints: BoxConstraints(
+                                          maxWidth: Get.width / 1.3,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          color: controller.data['senderUid']
+                                                      .toString() ==
+                                                  userUid
+                                              ? Colors.white
+                                              : ColorRes.color_E9D224,
+                                        ),
+                                        child: Text(
+                                          controller.data['content'].toString(),
+                                          style: gilroyBoldTextStyle(
+                                              fontSize: 17,
+                                              color: Colors.black),
+                                        ),
+                                      )
+                                    : Container(
+                                        height: 200,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: Image.network(
+                                            controller.data['image']),
+                                      ),
                                 const SizedBox(
                                   width: 5,
                                 ),
@@ -376,9 +386,9 @@ class ChatScreen extends StatelessWidget {
           width: Get.width,
           decoration: BoxDecoration(
               image: DecorationImage(
-                image: FileImage(messageController.image!),
-                fit: BoxFit.cover,
-              )),
+            image: FileImage(messageController.image!),
+            fit: BoxFit.cover,
+          )),
         ),
         const SizedBox(height: 20),
         Align(
@@ -400,7 +410,6 @@ class ChatScreen extends StatelessWidget {
       ],
     );
   }
-
 }
 
 /*

@@ -98,15 +98,12 @@ class ColorRes {
   static const color_3083FF = Color(0xFF3083FF);
   static const color_DCDCDC = Color(0xFFDCDCDC);
   static const color_8E8E93 = Color(0xFF8E8E93);
-  static const  color_999999 = Color(0xFF999999);
-  static const  color_000000 = Color(0xFF000000);
-  static const  color_F0F0F0 = Color(0xFFF0F0F0);
-  static const  color_E9D224 = Color(0xFFE9D224);
-  static const  color_2931A5 = Color(0xFF2931A5);
-  static const  color_007AFF = Color(0xFF007AFF);
-  static const  color_B1B1B3 = Color(0xFFB1B1B3);
-  static const  color_F2F2F2 = Color(0xFFF2F2F2);
-
-
-
+  static const color_999999 = Color(0xFF999999);
+  static const color_000000 = Color(0xFF000000);
+  static const color_F0F0F0 = Color(0xFFF0F0F0);
+  static const color_E9D224 = Color(0xFFE9D224);
+  static const color_2931A5 = Color(0xFF2931A5);
+  static const color_007AFF = Color(0xFF007AFF);
+  static const color_B1B1B3 = Color(0xFFB1B1B3);
+  static const color_F2F2F2 = Color(0xFFF2F2F2);
 }

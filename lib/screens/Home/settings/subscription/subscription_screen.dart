@@ -45,7 +45,7 @@ class SubscriptionScreen extends StatelessWidget {
                             cursorHeight: 28,
                             decoration: InputDecoration(
                               contentPadding:
-                              const EdgeInsets.only(bottom: 0, top: 15),
+                                  const EdgeInsets.only(bottom: 0, top: 15),
                               hintText: Strings.enterPromoCode,
                               hintStyle: sfProTextReguler(fontSize: 28),
                             ),
@@ -67,58 +67,57 @@ class SubscriptionScreen extends StatelessWidget {
                             physics: const BouncingScrollPhysics(),
                             itemCount: 3,
                             itemBuilder: (context, index) =>
-                            const PremiumPackage(),
+                                const PremiumPackage(),
                           )),
                       Center(
                         child: GetBuilder<SubscriptionController>(
                           id: 'index',
-                          builder: (controller) =>
-                              Row(
-                                children: [
-                                  const Spacer(),
-                                  Container(
-                                    height: Get.width * 0.016,
-                                    width: Get.width * 0.016,
-                                    decoration: BoxDecoration(
-                                        color: controller.selectedIndex == 0
-                                            ? ColorRes.color_989898
-                                            : ColorRes.color_D8D8D8,
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(9))),
-                                  ),
-                                  SizedBox(
-                                    width: Get.width * 0.014,
-                                  ),
-                                  Container(
-                                    height: Get.width * 0.016,
-                                    width: Get.width * 0.016,
-                                    decoration: BoxDecoration(
-                                      color: controller.selectedIndex == 1
-                                          ? ColorRes.color_989898
-                                          : ColorRes.color_D8D8D8,
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(9),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: Get.width * 0.014,
-                                  ),
-                                  Container(
-                                    height: Get.width * 0.016,
-                                    width: Get.width * 0.016,
-                                    decoration: BoxDecoration(
-                                      color: controller.selectedIndex == 2
-                                          ? ColorRes.color_989898
-                                          : ColorRes.color_D8D8D8,
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(9),
-                                      ),
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                ],
+                          builder: (controller) => Row(
+                            children: [
+                              const Spacer(),
+                              Container(
+                                height: Get.width * 0.016,
+                                width: Get.width * 0.016,
+                                decoration: BoxDecoration(
+                                    color: controller.selectedIndex == 0
+                                        ? ColorRes.color_989898
+                                        : ColorRes.color_D8D8D8,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(9))),
                               ),
+                              SizedBox(
+                                width: Get.width * 0.014,
+                              ),
+                              Container(
+                                height: Get.width * 0.016,
+                                width: Get.width * 0.016,
+                                decoration: BoxDecoration(
+                                  color: controller.selectedIndex == 1
+                                      ? ColorRes.color_989898
+                                      : ColorRes.color_D8D8D8,
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(9),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: Get.width * 0.014,
+                              ),
+                              Container(
+                                height: Get.width * 0.016,
+                                width: Get.width * 0.016,
+                                decoration: BoxDecoration(
+                                  color: controller.selectedIndex == 2
+                                      ? ColorRes.color_989898
+                                      : ColorRes.color_D8D8D8,
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(9),
+                                  ),
+                                ),
+                              ),
+                              const Spacer(),
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -217,8 +216,8 @@ class PremiumPackage extends StatelessWidget {
                 width: Get.width * 0.12,
                 decoration: const BoxDecoration(
                     color: ColorRes.color_FFEC5C, shape: BoxShape.circle
-                  // image: DecorationImage(image: AssetImage(AssetRes.poket),)
-                ),
+                    // image: DecorationImage(image: AssetImage(AssetRes.poket),)
+                    ),
                 child: Image.asset(
                   AssetRes.poket,
                   width: 20,
@@ -248,7 +247,7 @@ class PremiumPackage extends StatelessWidget {
           ),
           Text(Strings.whatYoullGet,
               style:
-              interTextReguler(fontSize: 22, color: ColorRes.color_E9E9E9)),
+                  interTextReguler(fontSize: 22, color: ColorRes.color_E9E9E9)),
           SizedBox(
             height: Get.height * 0.029556,
           ),

@@ -103,7 +103,9 @@ class CommentsController extends GetxController {
       loader.value = false;
       debugPrint(e.toString());
     }
-  }  String timeAgo(DateTime d) {
+  }
+
+  String timeAgo(DateTime d) {
     Duration diff = DateTime.now().difference(d);
     if (diff.inDays > 365) {
       return "${(diff.inDays / 365).floor()} ${(diff.inDays / 365).floor() == 1 ? "year" : "years"} ago";
@@ -125,6 +127,7 @@ class CommentsController extends GetxController {
     }
     return "just now";
   }
+
   Future<void> commentPostData(BuildContext context, String idPost) async {
     try {
       loader.value = true;
@@ -156,7 +159,7 @@ class CommentsController extends GetxController {
             msgController.text,
             list);
       }
-      uploadImage.data =null;
+      uploadImage.data = null;
       imageForCamera = null;
 
       await homeController.commentPostListData(idPost);

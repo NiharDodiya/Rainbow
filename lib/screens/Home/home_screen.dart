@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_stack/image_stack.dart';
-import 'package:intl/intl.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/model/request_user_model.dart';
@@ -128,10 +127,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: GetBuilder<NotificationsController>(
                                     id: 'notification_badge',
                                     builder: (notificationController) {
-                                      return  notificationController
-                                          .notificationModel!.pendingCount.toString()==
-                                              "null" ||   notificationController
-                                          .notificationModel!.pendingCount.toString()=="0"
+                                      return notificationController
+                                                      .notificationModel!
+                                                      .pendingCount
+                                                      .toString() ==
+                                                  "null" ||
+                                              notificationController
+                                                      .notificationModel!
+                                                      .pendingCount
+                                                      .toString() ==
+                                                  "0"
                                           ? const SizedBox()
                                           : Container(
                                               height: 16,
@@ -141,8 +146,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   shape: BoxShape.circle,
                                                   color: ColorRes.color_FF6B97),
                                               child: Text(
-                                      notificationController
-                                          .notificationModel!.pendingCount.toString(),
+                                                notificationController
+                                                    .notificationModel!
+                                                    .pendingCount
+                                                    .toString(),
                                                 style: const TextStyle(
                                                   color: ColorRes.white,
                                                   fontSize: 8,
@@ -288,12 +295,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             width: 80,
                             child: Stack(
                               children: [
-                                controller.controller.viewProfile.data == null ||controller
-                                .controller
-                                .viewProfile
-                                .data!
-                                .profileImage
-                                .toString()==""
+                                controller.controller.viewProfile.data ==
+                                            null ||
+                                        controller.controller.viewProfile.data!
+                                                .profileImage
+                                                .toString() ==
+                                            ""
                                     ? Container(
                                         height: 56,
                                         width: 56,
@@ -305,14 +312,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                       )
                                     : ClipRRect(
                                         borderRadius: BorderRadius.circular(50),
-                                        child: Image.network(controller
-                                            .controller
-                                            .viewProfile
-                                            .data!
-                                            .profileImage
-                                            .toString(),height: 56,width: 56,fit:BoxFit.cover,errorBuilder: (context, error, stackTrace) {
-                                              return Image.asset(AssetRes.portrait_placeholder);
-                                            },)),
+                                        child: Image.network(
+                                          controller.controller.viewProfile
+                                              .data!.profileImage
+                                              .toString(),
+                                          height: 56,
+                                          width: 56,
+                                          fit: BoxFit.cover,
+                                          errorBuilder:
+                                              (context, error, stackTrace) {
+                                            return Image.asset(
+                                                AssetRes.portrait_placeholder);
+                                          },
+                                        )),
                                 Positioned(
                                     top: Get.height * 0.04,
                                     left: Get.width * 0.1,
@@ -701,22 +713,27 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemBuilder: (context, index) {
                           return /* controller.isAd[index]
                           ?*/
-                            VisibilityDetector(key:Key(index.toString()), onVisibilityChanged:(info) {
-                              if(info.visibleFraction == 1){
-                                controller.postViewData(controller.friendPostListData[index].id.toString());
+                              VisibilityDetector(
+                            key: Key(index.toString()),
+                            onVisibilityChanged: (info) {
+                              if (info.visibleFraction == 1) {
+                                controller.postViewData(controller
+                                    .friendPostListData[index].id
+                                    .toString());
                                 print("++++++++++++++++++$index");
                               }
-
-                            },child: Padding(
-                            padding: const EdgeInsets.only(bottom: 22.0),
-                            child: Column(
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 22.0),
+                              child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Center(
                                     child: Container(
                                       width: Get.width * 0.92266,
                                       decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                           border:
                                               Border.all(color: Colors.white)),
                                       child: Column(
@@ -730,7 +747,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     left: 15.0, top: 20),
                                                 child: ClipRRect(
                                                     borderRadius:
-                                                        BorderRadius.circular(50),
+                                                        BorderRadius.circular(
+                                                            50),
                                                     child: /* FadeInImage(
                                                     height: 40,
                                                     width: 40,
@@ -744,26 +762,34 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         .profileImage
                                                         .toString()),
                                                     fit: BoxFit.cover,
-                                                  )*/CachedNetworkImage(
+                                                  )*/
+                                                        CachedNetworkImage(
                                                       height: 40,
                                                       width: 40,
-                                                      imageUrl:  controller
+                                                      imageUrl: controller
                                                           .friendPostListData[
-                                                      index]
+                                                              index]
                                                           .postUser!
                                                           .profileImage
-                                                          .toString(),fit: BoxFit.cover,
-                                                      placeholder: (context, url) =>  Image.asset(
-                                                        AssetRes.placeholderImage,
+                                                          .toString(),
+                                                      fit: BoxFit.cover,
+                                                      placeholder:
+                                                          (context, url) =>
+                                                              Image.asset(
+                                                        AssetRes
+                                                            .placeholderImage,
                                                         height: 40,
                                                         width: 40,
                                                       ),
-                                                      errorWidget: (context, url, error) => Image.asset(
-                                                        AssetRes.placeholderImage,
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          Image.asset(
+                                                        AssetRes
+                                                            .placeholderImage,
                                                         height: 40,
                                                         width: 40,
-                                                      ),)
                                                       ),
+                                                    )),
                                               ),
                                               Padding(
                                                 padding: const EdgeInsets.only(
@@ -779,16 +805,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                                           .postUser!
                                                           .fullName
                                                           .toString(),
-                                                      style: gilroyBoldTextStyle(
-                                                          fontSize: 16),
+                                                      style:
+                                                          gilroyBoldTextStyle(
+                                                              fontSize: 16),
                                                     ),
                                                     const SizedBox(
                                                       height: 3,
                                                     ),
-                                                    Text(controller.timeAgo(controller
-                                                        .friendPostListData[
-                                                        index]
-                                                        .createdAt!),
+                                                    Text(
+                                                      controller.timeAgo(
+                                                          controller
+                                                              .friendPostListData[
+                                                                  index]
+                                                              .createdAt!),
                                                       style:
                                                           textStyleFont12White400,
                                                     ),
@@ -836,24 +865,25 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     physics:
                                                         const NeverScrollableScrollPhysics(),
                                                     itemCount: controller
-                                                        .friendPostListData[index]
+                                                        .friendPostListData[
+                                                            index]
                                                         .postList!
                                                         .length,
                                                     itemBuilder:
                                                         (context, index2) {
                                                       return Padding(
-                                                        padding:
-                                                            const EdgeInsets.only(
-                                                                left: 5,
-                                                                right: 5),
-                                                        child: controller
-                                                                        .friendPostListData[
-                                                                            index]
-                                                                        .postList![
-                                                                    index2] ==
-                                                                null
-                                                            ? const SizedBox()
-                                                            : CachedNetworkImage(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  left: 5,
+                                                                  right: 5),
+                                                          child: controller
+                                                                      .friendPostListData[
+                                                                          index]
+                                                                      .postList![index2] ==
+                                                                  null
+                                                              ? const SizedBox()
+                                                              : CachedNetworkImage(
                                                                   height: 80,
                                                                   width: 80,
                                                                   imageUrl: controller
@@ -892,8 +922,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   .postLikeUser!.isEmpty
                                               ? const SizedBox()
                                               : Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      left: 15.0),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 15.0),
                                                   child: SizedBox(
                                                     height: 32,
                                                     width: 140,
@@ -901,8 +932,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       children: [
                                                         ListView.builder(
                                                           itemCount: 3,
-                                                          itemBuilder:
-                                                              (context, index2) {
+                                                          itemBuilder: (context,
+                                                              index2) {
                                                             return Row(
                                                               children: [
                                                                 controller
@@ -916,9 +947,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                             .friendPostListData[
                                                                                 index]
                                                                             .postLikeUser!
-                                                                            .map((e) => e
-                                                                                .profileImage
-                                                                                .toString())
+                                                                            .map((e) =>
+                                                                                e.profileImage.toString())
                                                                             .toList(),
                                                                         totalCount:
                                                                             3,
@@ -932,8 +962,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                         imageBorderWidth:
                                                                             2,
                                                                         imageBorderColor:
-                                                                            Colors
-                                                                                .white,
+                                                                            Colors.white,
                                                                         showTotalCount:
                                                                             false,
                                                                         // Border width around the images
@@ -947,13 +976,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                             .postLikeCount
                                                                             .toString() ==
                                                                         "0"
-                                                                    ? const Text("")
+                                                                    ? const Text(
+                                                                        "")
                                                                     : InkWell(
                                                                         onTap:
                                                                             () {
                                                                           controller.onLikeBtnTap(
-                                                                              postId:
-                                                                                  controller.friendPostListData[index].id.toString(),
+                                                                              postId: controller.friendPostListData[index].id.toString(),
                                                                               friendPost: controller.friendPostListData[index]);
                                                                         },
                                                                         child:
@@ -1025,15 +1054,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                             height: 7,
                                           ),
                                           Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 20.0),
+                                            padding: const EdgeInsets.only(
+                                                left: 20.0),
                                             child: Row(
                                               children: [
-                                                InkWell(onTap:() {
-                                                  controller.onPostViewUser(postId:
-                                                  controller.friendPostListData[index].id.toString(),
-                                                      friendPost: controller.friendPostListData[index]);
-                                                },
+                                                InkWell(
+                                                  onTap: () {
+                                                    controller.onPostViewUser(
+                                                        postId: controller
+                                                            .friendPostListData[
+                                                                index]
+                                                            .id
+                                                            .toString(),
+                                                        friendPost: controller
+                                                                .friendPostListData[
+                                                            index]);
+                                                  },
                                                   child: const SizedBox(
                                                       height: 16,
                                                       width: 16,
@@ -1069,22 +1105,25 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       width: 16,
                                                       child: Image(
                                                           image: AssetImage(
-                                                              AssetRes.vector))),
+                                                              AssetRes
+                                                                  .vector))),
                                                 ),
                                                 const SizedBox(
                                                   width: 2,
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      top: 2.0),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 2.0),
                                                   child: Text(
                                                     controller
                                                         .friendPostListData[
                                                             index]
                                                         .postShareCount
                                                         .toString(),
-                                                    style: gilroyMediumTextStyle(
-                                                        fontSize: 10),
+                                                    style:
+                                                        gilroyMediumTextStyle(
+                                                            fontSize: 10),
                                                   ),
                                                 ),
                                                 SizedBox(
@@ -1100,7 +1139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                 .id
                                                                 .toString());
                                                     Get.to(() => CommentScreen(
-                                                      idPost: controller
+                                                          idPost: controller
                                                               .friendPostListData[
                                                                   index]
                                                               .id
@@ -1134,16 +1173,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   width: 2,
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      top: 2.0),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 2.0),
                                                   child: Text(
                                                     controller
                                                         .friendPostListData[
                                                             index]
                                                         .postCommentCount
                                                         .toString(),
-                                                    style: gilroyMediumTextStyle(
-                                                        fontSize: 10),
+                                                    style:
+                                                        gilroyMediumTextStyle(
+                                                            fontSize: 10),
                                                   ),
                                                 ),
                                                 SizedBox(
@@ -1184,24 +1225,30 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             height: 16,
                                                             width: 16,
                                                             child: Image(
-                                                                color: Colors.red,
-                                                                image: AssetImage(
-                                                                  AssetRes.thumbs,
+                                                                color:
+                                                                    Colors.red,
+                                                                image:
+                                                                    AssetImage(
+                                                                  AssetRes
+                                                                      .thumbs,
                                                                 ))),
                                                       ),
                                                 const SizedBox(
                                                   width: 2,
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      top: 5.0),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 5.0),
                                                   child: Text(
                                                     controller
-                                                        .friendPostListData[index]
+                                                        .friendPostListData[
+                                                            index]
                                                         .postLikeCount
                                                         .toString(),
-                                                    style: gilroyMediumTextStyle(
-                                                        fontSize: 10),
+                                                    style:
+                                                        gilroyMediumTextStyle(
+                                                            fontSize: 10),
                                                   ),
                                                 ),
                                                 SizedBox(
@@ -1218,9 +1265,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   )
                                 ],
+                              ),
                             ),
-                          ),
-                              );
+                          );
                           // : adInLatestFeed();
                         },
                       ),

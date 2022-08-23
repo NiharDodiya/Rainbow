@@ -8,10 +8,12 @@ import 'package:rainbow/utils/color_res.dart';
 
 class PostLikeListScreen extends StatelessWidget {
   const PostLikeListScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.put(HomeController());
-    return GetBuilder<HomeController>(id: "postLikeList",
+    return GetBuilder<HomeController>(
+      id: "postLikeList",
       builder: (controller) {
         return Container(
           width: Get.width,
@@ -119,11 +121,12 @@ class PostLikeListScreen extends StatelessWidget {
                 style: gilroyBoldTextStyle(color: Colors.black),
               ),
             )
-                : */Expanded(
+                : */
+              Expanded(
                 child: ListView.builder(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   shrinkWrap: true,
-                  itemCount:controller.postLikeUser!.length,
+                  itemCount: controller.postLikeUser!.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.only(top: 20.0),
@@ -142,27 +145,27 @@ class PostLikeListScreen extends StatelessWidget {
                           CachedNetworkImage(
                             height: 56,
                             width: 56,
-                            imageUrl: controller.postLikeUser![index].profileImage.toString(),
-                            imageBuilder: (context, imageProvider) =>
-                                Container(
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                      image: imageProvider,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
+                            imageUrl: controller
+                                .postLikeUser![index].profileImage
+                                .toString(),
+                            imageBuilder: (context, imageProvider) => Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  image: imageProvider,
+                                  fit: BoxFit.cover,
                                 ),
+                              ),
+                            ),
                             // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
-                            errorWidget: (context, url, error) =>
-                                Container(
-                                  height: 56,
-                                  width: 56,
-                                  decoration:  const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(
-                                          image: AssetImage(AssetRes.homePro))),
-                                ),
+                            errorWidget: (context, url, error) => Container(
+                              height: 56,
+                              width: 56,
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      image: AssetImage(AssetRes.homePro))),
+                            ),
                             fit: BoxFit.fill,
                           ),
                           const SizedBox(width: 16),
@@ -170,7 +173,8 @@ class PostLikeListScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                controller.postLikeUser![index].fullName.toString(),
+                                controller.postLikeUser![index].fullName
+                                    .toString(),
                                 style: sfProTextReguler().copyWith(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w700,
@@ -178,7 +182,8 @@ class PostLikeListScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                controller.postLikeUser![index].userStatus.toString(),
+                                controller.postLikeUser![index].userStatus
+                                    .toString(),
                                 style: sfProTextReguler().copyWith(
                                   fontWeight: FontWeight.w300,
                                   color: ColorRes.black,

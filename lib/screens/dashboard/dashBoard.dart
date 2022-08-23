@@ -42,7 +42,7 @@ class DashboardState extends State<Dashboard> {
             } else if (controller.currentTab == 1) {
               return SearchScreen();
             } else if (controller.currentTab == 2) {
-              return  MessageScreen();
+              return MessageScreen();
             } else {
               return ProfileScreen();
             }

@@ -16,45 +16,47 @@ class PostTestimonialScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:GetBuilder<ProfileController>(id: "testimonials",builder: (controller) {
-        return Obx(() {
-          return Stack(
-            children: [
-              Container(
-                height: Get.height,
-                width: Get.width,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      ColorRes.color_50369C,
-                      ColorRes.color_D18EEE,
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
+      body: GetBuilder<ProfileController>(
+        id: "testimonials",
+        builder: (controller) {
+          return Obx(() {
+            return Stack(
+              children: [
+                Container(
+                  height: Get.height,
+                  width: Get.width,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        ColorRes.color_50369C,
+                        ColorRes.color_D18EEE,
+                      ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                  ),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 45,
+                        ),
+                        appBar(),
+                        const SizedBox(
+                          height: 38,
+                        ),
+                        textField(context)
+                      ],
+                    ),
                   ),
                 ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: 45,
-                      ),
-                      appBar(),
-                      const SizedBox(
-                        height: 38,
-                      ),
-                      textField(context)
-                    ],
-                  ),
-                ),
-              ),
-              controller.loaderTestimonials.isTrue?const FullScreenLoader():const SizedBox()
-
-            ],
-          );
-        });
-      },
-
+                controller.loaderTestimonials.isTrue
+                    ? const FullScreenLoader()
+                    : const SizedBox()
+              ],
+            );
+          });
+        },
       ),
     );
   }
@@ -107,7 +109,7 @@ class PostTestimonialScreen extends StatelessWidget {
               child: TextField(
                 maxLines: 7,
                 controller: controller.postTestimonials,
-                style: gilroyBoldTextStyle(fontSize: 18,color: Colors.black),
+                style: gilroyBoldTextStyle(fontSize: 18, color: Colors.black),
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.only(top: 0),
                   border: InputBorder.none,
@@ -123,7 +125,7 @@ class PostTestimonialScreen extends StatelessWidget {
             SubmitButton(
               text: Strings.post,
               onTap: () {
-                controller.postTestimonialsApi(id.toString(),context);
+                controller.postTestimonialsApi(id.toString(), context);
               },
             )
           ],

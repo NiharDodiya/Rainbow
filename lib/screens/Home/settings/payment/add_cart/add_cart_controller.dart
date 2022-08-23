@@ -16,6 +16,7 @@ class AddCartController extends GetxController {
   TextEditingController expiryDateController = TextEditingController();
   TextEditingController cvvController = TextEditingController();
   String? selectCountry;
+
   void onInit() {
     update();
     super.onInit();
@@ -69,15 +70,9 @@ class AddCartController extends GetxController {
     update(['addCard']);
   }
 
-
-  void addCartDetails(){
-
-    try{
+  void addCartDetails() {
+    try {
       AddCartApi.addCartDetailsApi();
-
-    }catch(e){
-
-
-    }
+    } catch (e) {}
   }
 }

@@ -6,15 +6,12 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/widget/about_me.dart';
 import 'package:rainbow/screens/Profile/widget/other_visitors_viewed.dart';
-import 'package:rainbow/screens/Profile/widget/postTestimonial_screen/postTestimonial_screen.dart';
 import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
 import 'package:rainbow/screens/Profile/widget/profile_details.dart';
-import 'package:rainbow/screens/Profile/widget/testimonials.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 import 'package:readmore/readmore.dart';
-import 'package:intl/intl.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({Key? key}) : super(key: key);
@@ -88,25 +85,29 @@ class ProfileScreen extends StatelessWidget {
                 width: Get.width,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Image.network( controller.viewProfile.data == null
-                      ? ""
-                      : controller.viewProfile.data!.backgroundImage.toString(),     height: Get.height * 0.2857,
-                    width: Get.width,fit:BoxFit.cover,errorBuilder: (context, error, stackTrace) {
-                        return  Container(
-                          height: Get.height * 0.2857,
-                          width: Get.width,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: const DecorationImage(
-                                  image: AssetImage(AssetRes.overlay),
-                                  fit: BoxFit.cover)),
-                        );
-                      },),
+                  child: Image.network(
+                    controller.viewProfile.data == null
+                        ? ""
+                        : controller.viewProfile.data!.backgroundImage
+                            .toString(),
+                    height: Get.height * 0.2857,
+                    width: Get.width,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        height: Get.height * 0.2857,
+                        width: Get.width,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: const DecorationImage(
+                                image: AssetImage(AssetRes.overlay),
+                                fit: BoxFit.cover)),
+                      );
+                    },
+                  ),
                 ),
 
-
-
-              /*  CachedNetworkImage(
+                /*  CachedNetworkImage(
                   imageUrl: controller.viewProfile.data == null
                       ? ""
                       : controller.viewProfile.data!.backgroundImage.toString(),
@@ -268,21 +269,28 @@ class ProfileScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                         controller.count == 1?const SizedBox():InkWell(onTap: () {
-                            controller.count--;
-                            controller.update(["profile"]);
-                          },
-                            child: Container(
-                              height: 20,
-                              width: 20,
-                              margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 5),
-                              child: Image.asset(
-                                AssetRes.leftIcon,
-                                height: 20,
-                                width: 20,
-                              ),
-                            ),
-                          ),
+                          controller.count == 1
+                              ? const SizedBox()
+                              : InkWell(
+                                  onTap: () {
+                                    controller.count--;
+                                    controller.update(["profile"]);
+                                  },
+                                  child: Container(
+                                    height: 20,
+                                    width: 20,
+                                    margin: const EdgeInsets.only(
+                                        left: 10,
+                                        right: 10,
+                                        bottom: 10,
+                                        top: 5),
+                                    child: Image.asset(
+                                      AssetRes.leftIcon,
+                                      height: 20,
+                                      width: 20,
+                                    ),
+                                  ),
+                                ),
                           Container(
                             height: 20,
                             width: 30,
@@ -293,22 +301,32 @@ class ProfileScreen extends StatelessWidget {
                               style: gilroyMediumTextStyle(fontSize: 14),
                             ),
                           ),
-                          controller.count ==   (controller.viewProfile.data!.testimonialsList!.length/2).ceil()?const SizedBox():InkWell(onTap: () {
-                            controller.count++;
-                            controller.update(["profile"]);
-                          },
-                            child: Container(
-                              height: 20,
-                              width: 20,
-                              margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 5),
-                              child: Image.asset(
-                                AssetRes.rightIcon,
-                                height: 20,
-                                width: 20,
-                              ),
-                            ),
-                          )
-
+                          controller.count ==
+                                  (controller.viewProfile.data!
+                                              .testimonialsList!.length /
+                                          2)
+                                      .ceil()
+                              ? const SizedBox()
+                              : InkWell(
+                                  onTap: () {
+                                    controller.count++;
+                                    controller.update(["profile"]);
+                                  },
+                                  child: Container(
+                                    height: 20,
+                                    width: 20,
+                                    margin: const EdgeInsets.only(
+                                        left: 10,
+                                        right: 10,
+                                        bottom: 10,
+                                        top: 5),
+                                    child: Image.asset(
+                                      AssetRes.rightIcon,
+                                      height: 20,
+                                      width: 20,
+                                    ),
+                                  ),
+                                )
                         ],
                       ),
                     ],

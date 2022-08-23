@@ -34,12 +34,11 @@ class AdStoryApi {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
           errorToast(jsonDecode(response.body)["message"]);
-        }else if(status==true)
-          {
-            Get.back();
-            Get.back();
-            return adStoryModelFromJson(response.body);
-          }
+        } else if (status == true) {
+          Get.back();
+          Get.back();
+          return adStoryModelFromJson(response.body);
+        }
         return null;
       }
     } catch (e) {

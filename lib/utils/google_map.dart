@@ -1,17 +1,11 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_google_places/flutter_google_places.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_api_headers/google_api_headers.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
-import 'package:google_api_headers/google_api_headers.dart';
-
 
 class GoogleMapScreen extends StatefulWidget {
   const GoogleMapScreen({Key? key}) : super(key: key);
@@ -24,35 +18,40 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:  SizedBox(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Column(
           children: [
-            ElevatedButton(onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-                return const SimpleMapScreen();
-              }));
-            }, child: const Text("Simple Map")),
-
-            ElevatedButton(onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-                return const CurrentLocationScreen();
-              }));
-            }, child: const Text("User current location")),
-
-            ElevatedButton(onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
-                return const SearchPlacesScreen();
-              }));
-            }, child: const Text("Search Places"))
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext context) {
+                    return const SimpleMapScreen();
+                  }));
+                },
+                child: const Text("Simple Map")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext context) {
+                    return const CurrentLocationScreen();
+                  }));
+                },
+                child: const Text("User current location")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext context) {
+                    return const SearchPlacesScreen();
+                  }));
+                },
+                child: const Text("Search Places"))
           ],
         ),
       ),
     );
   }
 }
-
-
 
 class SimpleMapScreen extends StatefulWidget {
   const SimpleMapScreen({Key? key}) : super(key: key);
@@ -64,9 +63,14 @@ class SimpleMapScreen extends StatefulWidget {
 class _SimpleMapScreenState extends State<SimpleMapScreen> {
   final Completer<GoogleMapController> _controller = Completer();
 
-  static const CameraPosition initialPosition = CameraPosition(target: LatLng(37.42796133580664, -122.085749655962), zoom: 14.0);
+  static const CameraPosition initialPosition = CameraPosition(
+      target: LatLng(37.42796133580664, -122.085749655962), zoom: 14.0);
 
-  static const CameraPosition targetPosition = CameraPosition(target: LatLng(37.43296265331129, -122.08832357078792), zoom: 14.0, bearing: 192.0, tilt: 60);
+  static const CameraPosition targetPosition = CameraPosition(
+      target: LatLng(37.43296265331129, -122.08832357078792),
+      zoom: 14.0,
+      bearing: 192.0,
+      tilt: 60);
 
   @override
   Widget build(BuildContext context) {
@@ -98,12 +102,6 @@ class _SimpleMapScreenState extends State<SimpleMapScreen> {
   }
 }
 
-
-
-
-
-
-
 class CurrentLocationScreen extends StatefulWidget {
   const CurrentLocationScreen({Key? key}) : super(key: key);
 
@@ -114,7 +112,8 @@ class CurrentLocationScreen extends StatefulWidget {
 class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
   late GoogleMapController googleMapController;
 
-  static const CameraPosition initialCameraPosition = CameraPosition(target: LatLng(37.42796133580664, -122.085749655962), zoom: 14);
+  static const CameraPosition initialCameraPosition = CameraPosition(
+      target: LatLng(37.42796133580664, -122.085749655962), zoom: 14);
 
   Set<Marker> markers = {};
 
@@ -138,16 +137,18 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
         onPressed: () async {
           Position position = await _determinePosition();
 
-          googleMapController
-              .animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(position.latitude, position.longitude), zoom: 14)));
-
+          googleMapController.animateCamera(CameraUpdate.newCameraPosition(
+              CameraPosition(
+                  target: LatLng(position.latitude, position.longitude),
+                  zoom: 14)));
 
           markers.clear();
 
-          markers.add(Marker(markerId: const MarkerId('currentLocation'),position: LatLng(position.latitude, position.longitude)));
+          markers.add(Marker(
+              markerId: const MarkerId('currentLocation'),
+              position: LatLng(position.latitude, position.longitude)));
 
           setState(() {});
-
         },
         label: const Text("Current Location"),
         icon: const Icon(Icons.location_history),
@@ -185,9 +186,6 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
   }
 }
 
-
-
-
 class SearchPlacesScreen extends StatefulWidget {
   const SearchPlacesScreen({Key? key}) : super(key: key);
 
@@ -199,7 +197,8 @@ const kGoogleApiKey = 'AIzaSyCfQ9JFG6q9mLRWjny8_OwN_zP83tRGmis';
 final homeScaffoldKey = GlobalKey<ScaffoldState>();
 
 class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
-  static const CameraPosition initialCameraPosition = CameraPosition(target: LatLng(37.42796, -122.08574), zoom: 14.0);
+  static const CameraPosition initialCameraPosition =
+      CameraPosition(target: LatLng(37.42796, -122.08574), zoom: 14.0);
 
   Set<Marker> markersList = {};
 
@@ -224,7 +223,8 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
               googleMapController = controller;
             },
           ),
-          ElevatedButton(onPressed: _handlePressButton, child: const Text("Search Places"))
+          ElevatedButton(
+              onPressed: _handlePressButton, child: const Text("Search Places"))
         ],
       ),
     );
@@ -241,23 +241,27 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
         types: [""],
         decoration: InputDecoration(
             hintText: 'Search',
-            focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20), borderSide: BorderSide(color: Colors.white))),
-        components: [Component(Component.country,"pk"),Component(Component.country,"usa")]);
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(color: Colors.white))),
+        components: [
+          Component(Component.country, "pk"),
+          Component(Component.country, "usa")
+        ]);
 
-
-    displayPrediction(p!,homeScaffoldKey.currentState);
+    displayPrediction(p!, homeScaffoldKey.currentState);
   }
 
-  void onError(PlacesAutocompleteResponse response){
-    homeScaffoldKey.currentState!.showSnackBar(SnackBar(content: Text(response.errorMessage!)));
+  void onError(PlacesAutocompleteResponse response) {
+    homeScaffoldKey.currentState!
+        .showSnackBar(SnackBar(content: Text(response.errorMessage!)));
   }
 
-  Future<void> displayPrediction(Prediction p, ScaffoldState? currentState) async {
-
+  Future<void> displayPrediction(
+      Prediction p, ScaffoldState? currentState) async {
     GoogleMapsPlaces places = GoogleMapsPlaces(
         apiKey: kGoogleApiKey,
-        apiHeaders: await const GoogleApiHeaders().getHeaders()
-    );
+        apiHeaders: await const GoogleApiHeaders().getHeaders());
 
     PlacesDetailsResponse detail = await places.getDetailsByPlaceId(p.placeId!);
 
@@ -265,13 +269,14 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
     final lng = detail.result.geometry!.location.lng;
 
     markersList.clear();
-    markersList.add(Marker(markerId: const MarkerId("0"),position: LatLng(lat, lng),infoWindow: InfoWindow(title: detail.result.name)));
+    markersList.add(Marker(
+        markerId: const MarkerId("0"),
+        position: LatLng(lat, lng),
+        infoWindow: InfoWindow(title: detail.result.name)));
 
     setState(() {});
 
-    googleMapController.animateCamera(CameraUpdate.newLatLngZoom(LatLng(lat, lng), 14.0));
-
+    googleMapController
+        .animateCamera(CameraUpdate.newLatLngZoom(LatLng(lat, lng), 14.0));
   }
 }
-
-

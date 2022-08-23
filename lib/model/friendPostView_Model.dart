@@ -328,7 +328,8 @@ class FriendPostViewModel {
         count: json["count"] == null ? null : json["count"],
         data: json["data"] == null
             ? null
-            : List<FriendPost>.from(json["data"].map((x) => FriendPost.fromJson(x))),
+            : List<FriendPost>.from(
+                json["data"].map((x) => FriendPost.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -387,12 +388,18 @@ class FriendPost {
   factory FriendPost.fromJson(Map<String, dynamic> json) => FriendPost(
         id: json["id"] == null ? null : json["id"],
         idUser: json["id_user"] == null ? null : json["id_user"],
-        postUser: json["post_user"] == null ? null : PostUser.fromJson(json["post_user"]),
+        postUser: json["post_user"] == null
+            ? null
+            : PostUser.fromJson(json["post_user"]),
         title: json["title"] == null ? null : json["title"],
         description: json["description"] == null ? null : json["description"],
         status: json["status"] == null ? null : json["status"],
-        createdAt: json["createdAt"] == null ? null :  DateTime.parse(json["createdAt"]),
-        updatedAt: json["updatedAt"] == null ? null :  DateTime.parse(json["updatedAt"]),
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
         postList: json["postList"] == null
             ? null
             : List<String>.from(json["postList"].map((x) => x)),
@@ -409,7 +416,7 @@ class FriendPost {
             ? null
             : List<PostTag>.from(
                 json["postTag"].map((x) => PostTag.fromJson(x))),
-        isView: json["isView"] == null ? null :json["isView"],
+        isView: json["isView"] == null ? null : json["isView"],
         postViewcount:
             json["postViewcount"] == null ? null : json["postViewcount"],
         postViewUser: json["postViewUser"] == null
@@ -531,34 +538,33 @@ class PostLikeUser {
         address1: json["address1"] == null ? null : json["address1"],
         address2: json["address2"] == null ? null : json["address2"],
         phoneNumber: json["phone_number"] == null ? null : json["phone_number"],
-        maritalStatus: json["marital_status"] == null
-            ? null
-            : json["marital_status"],
-        onlineStatus: json["online_status"] == null
-            ? null
-            : json["online_status"],
-        idEthnicity: json["id_ethnicity"] == null
-            ? null
-            : json["id_ethnicity"],
+        maritalStatus:
+            json["marital_status"] == null ? null : json["marital_status"],
+        onlineStatus:
+            json["online_status"] == null ? null : json["online_status"],
+        idEthnicity: json["id_ethnicity"] == null ? null : json["id_ethnicity"],
         birthDate: json["birth_date"] == null
             ? null
-            :DateTime.parse(json["birth_date"]),
+            : DateTime.parse(json["birth_date"]),
         noKids: json["no_kids"] == null ? null : json["no_kids"],
-        mobileStatus: json["mobile_status"] == null
-            ? null
-            : json["mobile_status"],
-        role: json["role"] == null ? null :json["role"],
+        mobileStatus:
+            json["mobile_status"] == null ? null : json["mobile_status"],
+        role: json["role"] == null ? null : json["role"],
         referrallCode:
             json["referrall_code"] == null ? null : json["referrall_code"],
-        idStatus: json["id_status"] == null
+        idStatus: json["id_status"] == null ? null : json["id_status"],
+        latitude: json["latitude"].toString().isEmpty
             ? null
-            : json["id_status"],
-        latitude: json["latitude"].toString().isEmpty?null: json["latitude"] is String?double.parse(json["latitude"]):json["latitude"],
-        longitude: json["longitude"].toString().isEmpty?null: json["longitude"] is String? double.parse(json["longitude"]):json["longitude"],
+            : json["latitude"] is String
+                ? double.parse(json["latitude"])
+                : json["latitude"],
+        longitude: json["longitude"].toString().isEmpty
+            ? null
+            : json["longitude"] is String
+                ? double.parse(json["longitude"])
+                : json["longitude"],
         userType: json["user_type"] == null ? null : json["user_type"],
-        selfiStatus: json["selfi_status"] == null
-            ? null
-            : json["selfi_status"],
+        selfiStatus: json["selfi_status"] == null ? null : json["selfi_status"],
         userStatus: json["user_status"] == null ? null : json["user_status"],
         age: json["age"] == null ? null : json["age"],
         city: json["city"] == null ? null : json["city"],
@@ -576,8 +582,7 @@ class PostLikeUser {
             json["background_image"] == null ? null : json["background_image"],
         profileImage:
             json["profile_image"] == null ? null : json["profile_image"],
-        status:
-            json["status"] == null ? null : json["status"],
+        status: json["status"] == null ? null : json["status"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -588,27 +593,21 @@ class PostLikeUser {
         "address1": address1 == null ? null : address1,
         "address2": address2 == null ? null : address2,
         "phone_number": phoneNumber == null ? null : phoneNumber,
-        "marital_status": maritalStatus == null
-            ? null
-            : maritalStatus,
-        "online_status":
-            onlineStatus == null ? null : onlineStatus,
-        "id_ethnicity":
-            idEthnicity == null ? null : idEthnicity,
+        "marital_status": maritalStatus == null ? null : maritalStatus,
+        "online_status": onlineStatus == null ? null : onlineStatus,
+        "id_ethnicity": idEthnicity == null ? null : idEthnicity,
         "birth_date": birthDate == null
             ? null
             : "${birthDate!.year.toString().padLeft(4, '0')}-${birthDate!.month.toString().padLeft(2, '0')}-${birthDate!.day.toString().padLeft(2, '0')}",
         "no_kids": noKids == null ? null : noKids,
-        "mobile_status":
-            mobileStatus == null ? null : mobileStatus,
+        "mobile_status": mobileStatus == null ? null : mobileStatus,
         "role": role == null ? null : role,
         "referrall_code": referrallCode == null ? null : referrallCode,
         "id_status": idStatus == null ? null : idStatus,
         "latitude": latitude == null ? null : latitude,
         "longitude": longitude == null ? null : longitude,
         "user_type": userType == null ? null : userType,
-        "selfi_status":
-            selfiStatus == null ? null : selfiStatus,
+        "selfi_status": selfiStatus == null ? null : selfiStatus,
         "user_status": userStatus == null ? null : userStatus,
         "age": age == null ? null : age,
         "city": city == null ? null : city,
@@ -723,62 +722,48 @@ class PostUser {
   factory PostUser.fromJson(Map<String, dynamic> json) => PostUser(
         id: json["id"] == null ? null : json["id"],
         idSocial: json["id_social"] == null ? null : json["id_social"],
-        fullName: json["full_name"] == null
-            ? null
-            : json["full_name"],
-        email: json["email"] == null ? null :json["email"],
-        address1: json["address1"] == null
-            ? null
-            :json["address1"],
-        address2: json["address2"] == null
-            ? null
-            :json["address2"],
-        phoneNumber: json["phone_number"] == null
-            ? null
-            : json["phone_number"],
-        maritalStatus: json["marital_status"] == null
-            ? null
-            : json["marital_status"],
-        onlineStatus: json["online_status"] == null
-            ? null
-            : json["online_status"],
-        idEthnicity: json["id_ethnicity"] == null
-            ? null
-            :json["id_ethnicity"],
+        fullName: json["full_name"] == null ? null : json["full_name"],
+        email: json["email"] == null ? null : json["email"],
+        address1: json["address1"] == null ? null : json["address1"],
+        address2: json["address2"] == null ? null : json["address2"],
+        phoneNumber: json["phone_number"] == null ? null : json["phone_number"],
+        maritalStatus:
+            json["marital_status"] == null ? null : json["marital_status"],
+        onlineStatus:
+            json["online_status"] == null ? null : json["online_status"],
+        idEthnicity: json["id_ethnicity"] == null ? null : json["id_ethnicity"],
         birthDate: json["birth_date"] == null
             ? null
             : DateTime.parse(json["birth_date"]),
         noKids: json["no_kids"] == null ? null : json["no_kids"],
-        mobileStatus: json["mobile_status"] == null
-            ? null
-            : json["mobile_status"],
+        mobileStatus:
+            json["mobile_status"] == null ? null : json["mobile_status"],
         role: json["role"] == null ? null : json["role"],
         referrallCode:
             json["referrall_code"] == null ? null : json["referrall_code"],
-        idStatus: json["id_status"] == null
+        idStatus: json["id_status"] == null ? null : json["id_status"],
+        latitude: json["latitude"].toString().isEmpty
             ? null
-            : json["id_status"],
-         latitude: json["latitude"].toString().isEmpty?null: json["latitude"] is String?double.parse(json["latitude"]):json["latitude"],
-         longitude: json["longitude"].toString().isEmpty?null: json["longitude"] is String? double.parse(json["longitude"]):json["latitude"],
-
+            : json["latitude"] is String
+                ? double.parse(json["latitude"])
+                : json["latitude"],
+        longitude: json["longitude"].toString().isEmpty
+            ? null
+            : json["longitude"] is String
+                ? double.parse(json["longitude"])
+                : json["latitude"],
         userType: json["user_type"] == null ? null : json["user_type"],
-        selfiStatus: json["selfi_status"] == null
-            ? null
-            : json["selfi_status"],
-        userStatus: json["user_status"] == null
-            ? null
-            : json["user_status"],
+        selfiStatus: json["selfi_status"] == null ? null : json["selfi_status"],
+        userStatus: json["user_status"] == null ? null : json["user_status"],
         age: json["age"] == null ? null : json["age"],
         city: json["city"] == null ? null : json["city"],
-        height:
-            json["height"] == null ? null : json["height"],
-        weight:
-            json["weight"] == null ? null : json["weight"],
+        height: json["height"] == null ? null : json["height"],
+        weight: json["weight"] == null ? null : json["weight"],
         instagram: json["instagram"] == null ? null : json["instagram"],
         youtube: json["youtube"] == null ? null : json["youtube"],
         facebook: json["facebook"] == null ? null : json["facebook"],
         twitter: json["twitter"] == null ? null : json["twitter"],
-        about: json["about"] == null ? null :json["about"],
+        about: json["about"] == null ? null : json["about"],
         hobbiesAndInterest: json["hobbies_and_Interest"] == null
             ? null
             : json["hobbies_and_Interest"],
@@ -786,8 +771,7 @@ class PostUser {
             json["background_image"] == null ? null : json["background_image"],
         profileImage:
             json["profile_image"] == null ? null : json["profile_image"],
-        status:
-            json["status"] == null ? null : json["status"],
+        status: json["status"] == null ? null : json["status"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -797,43 +781,34 @@ class PostUser {
         "email": email == null ? null : email,
         "address1": address1 == null ? null : address1,
         "address2": address2 == null ? null : address2,
-        "phone_number":
-            phoneNumber == null ? null : phoneNumber,
-        "marital_status": maritalStatus == null
-            ? null
-            : maritalStatus,
-        "online_status":
-            onlineStatus == null ? null : onlineStatus,
-        "id_ethnicity":
-            idEthnicity == null ? null : idEthnicity,
+        "phone_number": phoneNumber == null ? null : phoneNumber,
+        "marital_status": maritalStatus == null ? null : maritalStatus,
+        "online_status": onlineStatus == null ? null : onlineStatus,
+        "id_ethnicity": idEthnicity == null ? null : idEthnicity,
         "birth_date": birthDate == null
             ? null
             : "${birthDate!.year.toString().padLeft(4, '0')}-${birthDate!.month.toString().padLeft(2, '0')}-${birthDate!.day.toString().padLeft(2, '0')}",
         "no_kids": noKids == null ? null : noKids,
-        "mobile_status":
-            mobileStatus == null ? null : mobileStatus,
+        "mobile_status": mobileStatus == null ? null : mobileStatus,
         "role": role == null ? null : role,
         "referrall_code": referrallCode == null ? null : referrallCode,
         "id_status": idStatus == null ? null : idStatus,
         "latitude": latitude == null ? null : latitude,
         "longitude": longitude == null ? null : longitude,
         "user_type": userType == null ? null : userType,
-        "selfi_status":
-            selfiStatus == null ? null : selfiStatus,
-        "user_status":
-            userStatus == null ? null : userStatus,
+        "selfi_status": selfiStatus == null ? null : selfiStatus,
+        "user_status": userStatus == null ? null : userStatus,
         "age": age == null ? null : age,
-        "city": city == null ? null :city,
-        "height": height == null ? null :height,
+        "city": city == null ? null : city,
+        "height": height == null ? null : height,
         "weight": weight == null ? null : weight,
         "instagram": instagram == null ? null : instagram,
         "youtube": youtube == null ? null : youtube,
         "facebook": facebook == null ? null : facebook,
         "twitter": twitter == null ? null : twitter,
         "about": about == null ? null : about,
-        "hobbies_and_Interest": hobbiesAndInterest == null
-            ? null
-            : hobbiesAndInterest,
+        "hobbies_and_Interest":
+            hobbiesAndInterest == null ? null : hobbiesAndInterest,
         "background_image": backgroundImage == null ? null : backgroundImage,
         "profile_image": profileImage == null ? null : profileImage,
         "status": status == null ? null : status,

@@ -8,10 +8,11 @@ import 'package:rainbow/utils/color_res.dart';
 
 class PostViewBottomScreen extends StatelessWidget {
   const PostViewBottomScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-
-    return GetBuilder<HomeController>(id: "postLikeList",
+    return GetBuilder<HomeController>(
+      id: "postLikeList",
       builder: (controller) {
         return Container(
           width: Get.width,
@@ -119,20 +120,29 @@ class PostViewBottomScreen extends StatelessWidget {
                 style: gilroyBoldTextStyle(color: Colors.black),
               ),
             )
-                : */controller.postViewUser!.isEmpty?Center(child: Padding
-                (padding: EdgeInsets.only(top: Get.height*0.35),
-                  child: SizedBox(child: Text("No Views",style: gilroyBoldTextStyle(color: Colors.black),),))):Expanded(
-                child: ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  shrinkWrap: true,
-                  itemCount:controller.postViewUser!.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 20.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          /*   ClipRRect(
+                : */
+              controller.postViewUser!.isEmpty
+                  ? Center(
+                      child: Padding(
+                          padding: EdgeInsets.only(top: Get.height * 0.35),
+                          child: SizedBox(
+                            child: Text(
+                              "No Views",
+                              style: gilroyBoldTextStyle(color: Colors.black),
+                            ),
+                          )))
+                  : Expanded(
+                      child: ListView.builder(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        shrinkWrap: true,
+                        itemCount: controller.postViewUser!.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 20.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                /*   ClipRRect(
                           borderRadius: BorderRadius.circular(50),
                           child: Image.asset(
                           ,
@@ -141,60 +151,65 @@ class PostViewBottomScreen extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                         ),*/
-                          CachedNetworkImage(
-                            height: 56,
-                            width: 56,
-                            imageUrl: controller.postViewUser![index].profileImage.toString(),
-                            imageBuilder: (context, imageProvider) =>
-                                Container(
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                      image: imageProvider,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                            // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
-                            errorWidget: (context, url, error) =>
-                                Container(
+                                CachedNetworkImage(
                                   height: 56,
                                   width: 56,
-                                  decoration:  const BoxDecoration(
+                                  imageUrl: controller
+                                      .postViewUser![index].profileImage
+                                      .toString(),
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                    decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       image: DecorationImage(
-                                          image: AssetImage(AssetRes.homePro))),
+                                        image: imageProvider,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
+                                  errorWidget: (context, url, error) =>
+                                      Container(
+                                    height: 56,
+                                    width: 56,
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        image: DecorationImage(
+                                            image:
+                                                AssetImage(AssetRes.homePro))),
+                                  ),
+                                  fit: BoxFit.fill,
                                 ),
-                            fit: BoxFit.fill,
-                          ),
-                          const SizedBox(width: 16),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                controller.postViewUser![index].fullName.toString(),
-                                style: sfProTextReguler().copyWith(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w700,
-                                  color: ColorRes.black,
+                                const SizedBox(width: 16),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      controller.postViewUser![index].fullName
+                                          .toString(),
+                                      style: sfProTextReguler().copyWith(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w700,
+                                        color: ColorRes.black,
+                                      ),
+                                    ),
+                                    Text(
+                                      controller.postViewUser![index].userStatus
+                                          .toString(),
+                                      style: sfProTextReguler().copyWith(
+                                        fontWeight: FontWeight.w300,
+                                        color: ColorRes.black,
+                                        fontSize: 11,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              Text(
-                                controller.postViewUser![index].userStatus.toString(),
-                                style: sfProTextReguler().copyWith(
-                                  fontWeight: FontWeight.w300,
-                                  color: ColorRes.black,
-                                  fontSize: 11,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
-              ),
+                    ),
             ],
           ),
         );

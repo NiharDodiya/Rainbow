@@ -234,8 +234,8 @@ class Strings {
   static const connect = "Connect";
   static const block = "Block";
   static const unBlock = "UnBlock";
-  static const unFriend= "UnFriend";
-  static const accept= "accept";
+  static const unFriend = "UnFriend";
+  static const accept = "accept";
   static const myCompanyDes =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem a commodo consequat  ";
   static const typeYourReply = "Type your reply...";
@@ -417,7 +417,8 @@ class Strings {
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium sem sit amet venenatis commodo. Nullam aliquam lacus nisl, varius luctus mauris hendrerit ut. Etiam eros lectus, commodo nec nisl in, aliquet congue quam. Morbi condimentum lectus id urna gravida, at facilisis lectus consectetur. Nam viverra augue est, ut cursus mi bibendum sit amet. Duis hendrerit hendrerit molestie. Ut iaculis tellus risus, id facilisis purus finibus vel. In hac habitasse platea dictumst. Ut efficitur lacus eu risus aliquam mollis. Nullam gravida sit amet lorem vitae maximus.";
   static const supportCode = "1235CA2B2";
   static const supporterror01 = "Message is required";
-  static const thankYouForSending = "Thank you for sending your concern, we will get back to you as soon as an agent comes in. ";
+  static const thankYouForSending =
+      "Thank you for sending your concern, we will get back to you as soon as an agent comes in. ";
   static const subject = "Subject";
   static const supportError02 = "Subject is requred";
 

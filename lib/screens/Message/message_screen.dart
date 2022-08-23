@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/common/draggableTile_screen.dart';
@@ -105,106 +104,104 @@ class MessageScreen extends StatelessWidget {
                           const SizedBox(
                             height: 20,
                           ),
-                        /*  messageController.msgController.text.isEmpty
-                              ?*/ SizedBox(
-                                  width: Get.width,
-                                  height: 80,
-                                  child: ListView.builder(
-                                      itemCount: snapshot.data!.docs.length,
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        List<dynamic> idList = snapshot
-                                            .data!.docs[index]
-                                            .data()['uidList'];
-                                        String userId = "";
-                                        for (var value in idList) {
-                                          if (value != controller.userUid) {
-                                            userId = value;
-                                          }
-                                        }
-                                        return StreamBuilder<
-                                            DocumentSnapshot<
-                                                Map<String, dynamic>>>(
-                                          stream: FirebaseFirestore.instance
-                                              .collection('users')
-                                              .doc(userId)
-                                              .snapshots(),
-                                          builder: (context, snapshot2) {
-                                            Map<String, dynamic>? data =
-                                                snapshot2.data?.data();
-                                            if (data == null) {
-                                              return const SizedBox();
-                                            }
-                                            return /* snapshot.data!.docs[index]['uid'] ==
+                          /*  messageController.msgController.text.isEmpty
+                              ?*/
+                          SizedBox(
+                            width: Get.width,
+                            height: 80,
+                            child: ListView.builder(
+                                itemCount: snapshot.data!.docs.length,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (BuildContext context, int index) {
+                                  List<dynamic> idList = snapshot
+                                      .data!.docs[index]
+                                      .data()['uidList'];
+                                  String userId = "";
+                                  for (var value in idList) {
+                                    if (value != controller.userUid) {
+                                      userId = value;
+                                    }
+                                  }
+                                  return StreamBuilder<
+                                      DocumentSnapshot<Map<String, dynamic>>>(
+                                    stream: FirebaseFirestore.instance
+                                        .collection('users')
+                                        .doc(userId)
+                                        .snapshots(),
+                                    builder: (context, snapshot2) {
+                                      Map<String, dynamic>? data =
+                                          snapshot2.data?.data();
+                                      if (data == null) {
+                                        return const SizedBox();
+                                      }
+                                      return /* snapshot.data!.docs[index]['uid'] ==
                                               controller.userUid
                                           ? const SizedBox()
                                           : */
-                                                data['online'] == true
-                                                    ? Column(
-                                                        children: [
-                                                          Stack(
-                                                            children: [
-                                                              Container(
-                                                                margin: const EdgeInsets
-                                                                        .symmetric(
-                                                                    horizontal:
-                                                                        10),
-                                                                height: 50,
-                                                                width: 50,
-                                                                decoration:
-                                                                    const BoxDecoration(
-                                                                  shape: BoxShape
-                                                                      .circle,
-                                                                ),
-                                                                child:
-                                                                    ClipRRect(
-                                                                  borderRadius: const BorderRadius
-                                                                          .all(
-                                                                      Radius.circular(
-                                                                          50)),
-                                                                  child:
-                                                                      FadeInImage(
-                                                                    placeholder:
-                                                                        const AssetImage(
-                                                                            AssetRes.portrait_placeholder),
-                                                                    image: NetworkImage(
-                                                                        data['image']
-                                                                            .toString()),
-                                                                    fit: BoxFit
-                                                                        .cover,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Positioned(
-                                                                  top:
-                                                                      Get.height *
-                                                                          0.05,
-                                                                  right: 12,
-                                                                  child: Image
-                                                                      .asset(
-                                                                    AssetRes
-                                                                        .oval,
-                                                                    height: 12,
-                                                                    width: 12,
-                                                                  ))
-                                                            ],
+                                          data['online'] == true
+                                              ? Column(
+                                                  children: [
+                                                    Stack(
+                                                      children: [
+                                                        Container(
+                                                          margin:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  horizontal:
+                                                                      10),
+                                                          height: 50,
+                                                          width: 50,
+                                                          decoration:
+                                                              const BoxDecoration(
+                                                            shape:
+                                                                BoxShape.circle,
                                                           ),
-                                                          const SizedBox(
-                                                            height: 10,
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                const BorderRadius
+                                                                        .all(
+                                                                    Radius
+                                                                        .circular(
+                                                                            50)),
+                                                            child: FadeInImage(
+                                                              placeholder:
+                                                                  const AssetImage(
+                                                                      AssetRes
+                                                                          .portrait_placeholder),
+                                                              image: NetworkImage(
+                                                                  data['image']
+                                                                      .toString()),
+                                                              fit: BoxFit.cover,
+                                                            ),
                                                           ),
-                                                          Text(data['name'])
-                                                        ],
-                                                      )
-                                                    : const SizedBox();
-                                          },
-                                        );
-                                      }),
-                                )
-                            /*  : const SizedBox(
+                                                        ),
+                                                        Positioned(
+                                                            top: Get.height *
+                                                                0.05,
+                                                            right: 12,
+                                                            child: Image.asset(
+                                                              AssetRes.oval,
+                                                              height: 12,
+                                                              width: 12,
+                                                            ))
+                                                      ],
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 10,
+                                                    ),
+                                                    Text(data['name'])
+                                                  ],
+                                                )
+                                              : const SizedBox();
+                                    },
+                                  );
+                                }),
+                          )
+                          /*  : const SizedBox(
                                   child: Text("user SearchFiled"),
-                                )*/,
+                                )*/
+                          ,
                         ],
                       );
                     },
@@ -372,7 +369,6 @@ class MessageScreen extends StatelessWidget {
                                   scrollDirection: Axis.vertical,
                                   itemBuilder:
                                       (BuildContext context, int index) {
-
                                     return snapshot.data!.docs[index]['uid'] ==
                                             controller.userUid
                                         ? const SizedBox()

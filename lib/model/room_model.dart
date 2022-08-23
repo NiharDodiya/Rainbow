@@ -1,6 +1,3 @@
-
-
-
 import 'package:rainbow/model/user_model.dart';
 
 class RoomModel {
@@ -20,10 +17,10 @@ class RoomModel {
   });
 
   factory RoomModel.fromMap(Map<String, dynamic> data) => RoomModel(
-    id: data['id'],
-    lastMessageTime: data['lastMessageTime'].toDate(),
-    lastMessage: data['lastMessage'],
-    isGroup: data['isGroup'],
-    membersId: data['membersId'].cast<String>(),
-  );
+        id: data['id'],
+        lastMessageTime: data['lastMessageTime'].toDate(),
+        lastMessage: data['lastMessage'],
+        isGroup: data['isGroup'],
+        membersId: data['membersId'].cast<String>(),
+      );
 }

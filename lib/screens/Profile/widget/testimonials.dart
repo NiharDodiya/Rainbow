@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/Profile/widget/postTestimonial_screen/postTestimonial_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
-import 'package:rainbow/utils/color_res.dart';
-import 'package:rainbow/utils/strings.dart';
 
 /*Widget testimonials({required bool testimonials, String? id}) {
   return Padding(
@@ -62,8 +59,8 @@ import 'package:rainbow/utils/strings.dart';
                       .testimonialsList![index].userSender!.fullName.toString(),
                   subtitle: controller.viewProfile.data!
                       .testimonialsList![index].userSender!.userStatus.toString(),descriptions:controller.viewProfile.data!
-                  .testimonialsList![index].testimonial.toString(),*//*date:DateFormat("Dd-MM-yyyy").format(controller.viewProfile.data!
-                    .testimonialsList![index].userSender!.createdAt!)*//*profile:controller.viewProfile.data!
+                  .testimonialsList![index].testimonial.toString(),*/ /*date:DateFormat("Dd-MM-yyyy").format(controller.viewProfile.data!
+                    .testimonialsList![index].userSender!.createdAt!)*/ /*profile:controller.viewProfile.data!
                   .testimonialsList![index].userSender!.profileImage.toString() );
             },
             separatorBuilder: (context, index) {
@@ -128,13 +125,14 @@ Widget listOfTestimonials(
     children: [
       Row(
         children: [
-       /*   profile.toString()==""? ClipRRect(
+          /*   profile.toString()==""? ClipRRect(
       borderRadius: BorderRadius.circular(50),
       child: SizedBox(   height: 50,
         width: 50,
         child:  Image.asset(AssetRes.portrait_placeholder),
 
-      )):*/ClipRRect(
+      )):*/
+          ClipRRect(
               borderRadius: BorderRadius.circular(50),
               child: Image.network(
                 profile.toString(),

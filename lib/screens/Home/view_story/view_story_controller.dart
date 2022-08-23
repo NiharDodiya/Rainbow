@@ -45,7 +45,6 @@ class ViewStoryController extends GetxController {
   ListUserTagModel listUserTagModel = ListUserTagModel();
   List<UserData> filterList = [];
 
-
   List<File> image = [];
   bool textShow = false;
 
@@ -100,15 +99,14 @@ class ViewStoryController extends GetxController {
   }
 
   Future<String?> cameraImage() async {
-    XFile? pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.camera,imageQuality: 100);
+    XFile? pickedFile = await ImagePicker()
+        .pickImage(source: ImageSource.camera, imageQuality: 100);
     if (pickedFile != null) {
       image.add(File(pickedFile.path));
     }
     update(["createStory"]);
     return null;
   }
-
 
   Future<void> onChange(String? value) async {
     String sent = tagController.text;

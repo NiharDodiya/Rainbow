@@ -1,15 +1,13 @@
 import 'dart:convert';
 
+import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
 import 'package:rainbow/utils/pref_keys.dart';
-import 'package:http/http.dart' as http;
 
-class AddCartApi{
-
-
+class AddCartApi {
   static Future addCartDetailsApi({String? id}) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
 
@@ -32,14 +30,11 @@ class AddCartApi{
         } else if (status == true) {
           /*    flutterToast(jsonDecode(response.body)["message"]);*/
         }
-  /*      return viewSupportTicketModelFromJson(response.body);*/
+        /*      return viewSupportTicketModelFromJson(response.body);*/
       }
     } catch (e) {
       print(e.toString());
       return [];
     }
   }
-
-
-
 }

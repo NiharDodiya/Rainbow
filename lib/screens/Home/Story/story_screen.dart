@@ -11,7 +11,7 @@ class StoryScreen extends StatelessWidget {
   String? id;
   String? image;
 
-  StoryScreen({Key? key, this.id,this.image}) : super(key: key);
+  StoryScreen({Key? key, this.id, this.image}) : super(key: key);
 
   ViewStoryController controller = Get.put(ViewStoryController());
 
@@ -115,81 +115,88 @@ class StoryScreen extends StatelessWidget {
                     SizedBox(
                       height: Get.height * 0.2,
                     ),
-                  GetBuilder<ViewStoryController>(
-                            id: "createStory",
-                            builder: (controller) {
-                              return controller.image == null
-                                  ? const SizedBox()
-                                  : SizedBox(
-                                      height: Get.height * 0.35,
-                                      child: ListView.builder(
-                                        scrollDirection: Axis.horizontal,
-                                        itemCount: controller.image.length,
-                                        itemBuilder: (context, index) {
-                                          return Padding(
-                                            padding: const EdgeInsets.all(3),
-                                            child: SizedBox(
-                                              height: Get.height * 0.34,
-                                              width: Get.width * 0.32,
-                                              child: Stack(
-                                                children: [
-                                                  Positioned(
-                                                    top: 10,
-                                                    child: Image.file(
-                                                      height: Get.height * 0.27,
-                                                      width: Get.width * 0.28,
-                                                      controller.image[index],
-                                                      fit: BoxFit.contain,
-                                                    ),
-                                                  ),
-                                                  Positioned(
-                                                    left: 85,
-                                                    child: InkWell(
-                                                      onTap: () {
-                                                        controller.image.removeAt(index);
-                                                        controller.update(["createStory"]);
-                                                        },
-                                                      child: Container(
-                                                          decoration:
-                                                              const BoxDecoration(
-                                                                  shape: BoxShape
-                                                                      .circle,
-                                                                  color: Colors
-                                                                      .black),
-                                                          child: const Icon(
-                                                            Icons.clear,
-                                                            color: Colors.white,
-                                                          )),
-                                                    ),
-                                                  ),
-                                                ],
+                    GetBuilder<ViewStoryController>(
+                      id: "createStory",
+                      builder: (controller) {
+                        return controller.image == null
+                            ? const SizedBox()
+                            : SizedBox(
+                                height: Get.height * 0.35,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: controller.image.length,
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.all(3),
+                                      child: SizedBox(
+                                        height: Get.height * 0.34,
+                                        width: Get.width * 0.32,
+                                        child: Stack(
+                                          children: [
+                                            Positioned(
+                                              top: 10,
+                                              child: Image.file(
+                                                height: Get.height * 0.27,
+                                                width: Get.width * 0.28,
+                                                controller.image[index],
+                                                fit: BoxFit.contain,
                                               ),
                                             ),
-                                          );
-                                        },
+                                            Positioned(
+                                              left: 85,
+                                              child: InkWell(
+                                                onTap: () {
+                                                  controller.image
+                                                      .removeAt(index);
+                                                  controller
+                                                      .update(["createStory"]);
+                                                },
+                                                child: Container(
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                            shape:
+                                                                BoxShape.circle,
+                                                            color:
+                                                                Colors.black),
+                                                    child: const Icon(
+                                                      Icons.clear,
+                                                      color: Colors.white,
+                                                    )),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     );
-                            },
-                          ),
+                                  },
+                                ),
+                              );
+                      },
+                    ),
                   ],
                 ),
                 Positioned(
                   top: Get.height * 0.025,
                   left: 15,
-                  child: image.toString()==""?ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: SizedBox(   height: 40,
-                      width: 40,child: Image.asset(AssetRes.portrait_placeholder),),
-                  ):ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      child: FadeInImage(
-                        height: 40,
-                        width: 40,
-                        placeholder: const AssetImage(
-                            AssetRes.portrait_placeholder),
-                        image: NetworkImage(image.toString()),
-                        fit: BoxFit.cover,
-                      )),
+                  child: image.toString() == ""
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: SizedBox(
+                            height: 40,
+                            width: 40,
+                            child: Image.asset(AssetRes.portrait_placeholder),
+                          ),
+                        )
+                      : ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: FadeInImage(
+                            height: 40,
+                            width: 40,
+                            placeholder:
+                                const AssetImage(AssetRes.portrait_placeholder),
+                            image: NetworkImage(image.toString()),
+                            fit: BoxFit.cover,
+                          )),
                 ),
                 Positioned(
                   bottom: 0,
@@ -225,41 +232,41 @@ class StoryScreen extends StatelessWidget {
                             ],
                           ),
                         ),*/
-                        controller.image.length==3
-                            ?const SizedBox()
-                            :Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                controller.cameraImage();
-                                controller.update(["createStory"]);
-                              },
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 5, top: 15),
-                                child: Image.asset(
-                                  AssetRes.commentCamera,
-                                  height: 22,
-                                ),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                controller.galleryImage();
-                                controller.update(["createStory"]);
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 15.0, right: 5, top: 15),
-                                child: Image.asset(
-                                  AssetRes.commentGallery,
-                                  height: 22,
-                                ),
-                              ),
-                            ),
-                            /*  Expanded(
+                        controller.image.length == 3
+                            ? const SizedBox()
+                            : Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      controller.cameraImage();
+                                      controller.update(["createStory"]);
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: 5, top: 15),
+                                      child: Image.asset(
+                                        AssetRes.commentCamera,
+                                        height: 22,
+                                      ),
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      controller.galleryImage();
+                                      controller.update(["createStory"]);
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 15.0, right: 5, top: 15),
+                                      child: Image.asset(
+                                        AssetRes.commentGallery,
+                                        height: 22,
+                                      ),
+                                    ),
+                                  ),
+                                  /*  Expanded(
                               child: Container(
                                 height: 40,
                                 margin: const EdgeInsets.only(left: 5, top: 7),
@@ -310,9 +317,9 @@ class StoryScreen extends StatelessWidget {
                                 ),
                               ),
                             ),*/
-                            const SizedBox(width: 5),
-                          ],
-                        ),
+                                  const SizedBox(width: 5),
+                                ],
+                              ),
                       ],
                     ),
                   ),

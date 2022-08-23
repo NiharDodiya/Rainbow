@@ -187,13 +187,13 @@ class MessageController extends GetxController {
         .set({
       "image": dowanloadurl,
       "senderUid": userUid,
-      "type":"image",
+      "type": "image",
       "time": DateTime.now()
     });
     msController.clear();
     update(['message']);
     update(['chats']);
-    image =null;
+    image = null;
   }
 
   sendMessage(String roomId, otherUid) async {
@@ -213,7 +213,12 @@ class MessageController extends GetxController {
         .doc(roomId)
         .collection(roomId)
         .doc()
-        .set({"content": msg, "type":"text", "senderUid": userUid, "time": DateTime.now()});
+        .set({
+      "content": msg,
+      "type": "text",
+      "senderUid": userUid,
+      "time": DateTime.now()
+    });
     msController.clear();
     update(['message']);
     update(['chats']);

@@ -35,8 +35,8 @@ class EditProfileApi {
       String url = EndPoints.editProfile;
 
       Map<String, String> param = {
-        "latitude" :latitude,
-        "longitude" : longitude,
+        "latitude": latitude,
+        "longitude": longitude,
         "full_name": fullName,
         "user_status": userStatus,
         "height": height,
@@ -54,9 +54,9 @@ class EditProfileApi {
         "no_kids": noKids,
       };
 
-      if( idItemBackGround != ""){
+      if (idItemBackGround != "") {
         param["id_item_background"] = idItemBackGround;
-      }else if(idItemProfile != ""){
+      } else if (idItemProfile != "") {
         param["id_item_profile"] = idItemProfile;
       }
 

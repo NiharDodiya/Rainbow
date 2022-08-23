@@ -1,12 +1,11 @@
 import 'dart:convert';
 
-import 'package:rainbow/common/popup.dart';
+import 'package:http/http.dart' as http;
 import 'package:rainbow/model/ListUserProfileModel.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
 import 'package:rainbow/utils/pref_keys.dart';
-import 'package:http/http.dart' as http;
 
 class ListUserProfileApi {
   static Future listUserProfileApi(
@@ -19,16 +18,16 @@ class ListUserProfileApi {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
     // int userId = PrefService.getInt(PrefKeys.userId);
     try {
-      String url =  EndPoints.listUserProfile;
+      String url = EndPoints.listUserProfile;
 
       Map<String, dynamic> param = {
-        "page":page,
-        "limit":limit,
+        "page": page,
+        "limit": limit,
         "latitude": latitude,
         "longitude": longitude,
         "distance": 50,
-        "user_status":keyWords,
-        "full_name" : fullName
+        "user_status": keyWords,
+        "full_name": fullName
       };
 
       http.Response? response = await HttpService.postApi(
@@ -57,23 +56,23 @@ class ListUserProfileApi {
   static Future listUserProfileAdvanceSearchApi(
       {/*int? page,
         int? limit,*/
-        String? keyWords,
-        double? latitude,
-        double? longitude,
-        String? fullName}) async {
+      String? keyWords,
+      double? latitude,
+      double? longitude,
+      String? fullName}) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
     // int userId = PrefService.getInt(PrefKeys.userId);
     try {
-      String url =  EndPoints.listUserProfile;
+      String url = EndPoints.listUserProfile;
 
       Map<String, dynamic> param = {
-     /*   "page":page,
+        /*   "page":page,
         "limit":limit,*/
         "latitude": latitude,
         "longitude": longitude,
         "distance": 50,
-        "user_status":keyWords,
-        "full_name" : fullName
+        "user_status": keyWords,
+        "full_name": fullName
       };
 
       http.Response? response = await HttpService.postApi(

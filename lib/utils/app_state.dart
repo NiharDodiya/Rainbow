@@ -7,7 +7,7 @@ class AppState {
     return _singleton;
   }
 
-  AppState.internal()  {
+  AppState.internal() {
     throw UnimplementedError();
   }
 

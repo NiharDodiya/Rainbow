@@ -97,7 +97,6 @@ class SearchScreen extends StatelessWidget {
     );
   }
 
-
   Widget appBar() {
     return GetBuilder<SearchController>(
       id: "Search",
@@ -242,15 +241,16 @@ class SearchScreen extends StatelessWidget {
                                       )
                                     : ClipRRect(
                                         borderRadius: BorderRadius.circular(15),
-                                        child: Image.network(controller
-                                            .listUserData[index]
-                                            .backgroundImage
-                                            .toString(),
+                                        child: Image.network(
+                                          controller.listUserData[index]
+                                              .backgroundImage
+                                              .toString(),
                                           height: 232,
                                           width: Get.width * 0.90133,
                                           fit: BoxFit.cover,
-                                          errorBuilder: (context, error, stackTrace) {
-                                            return  Image.asset(
+                                          errorBuilder:
+                                              (context, error, stackTrace) {
+                                            return Image.asset(
                                                 AssetRes.placeholderImage);
                                           },
                                         ),
@@ -265,15 +265,16 @@ class SearchScreen extends StatelessWidget {
                                         ? ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(50),
-                                            child: Image.network(controller
-                                                .listUserData[index]
-                                                .profileImage
-                                                .toString(),
+                                            child: Image.network(
+                                              controller.listUserData[index]
+                                                  .profileImage
+                                                  .toString(),
                                               height: 40,
                                               width: 40,
                                               fit: BoxFit.cover,
-                                              errorBuilder: (context, error, stackTrace) {
-                                                return Image.asset(  AssetRes
+                                              errorBuilder:
+                                                  (context, error, stackTrace) {
+                                                return Image.asset(AssetRes
                                                     .portrait_placeholder);
                                               },
                                             ),

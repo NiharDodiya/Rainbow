@@ -21,6 +21,7 @@ class AddStoryController extends GetxController {
   RxBool loader = false.obs;
   bool textShow = false;
   UploadImage uploadImage = UploadImage();
+
   void onTextTap() {
     if (textShow == false) {
       textShow = true;
@@ -56,8 +57,6 @@ class AddStoryController extends GetxController {
     // DashboardController dashboardController = Get.find();
     // dashboardController.onBottomBarChange(0);
   }
-
-
 
   Future<void> uploadImageApi() async {
     loader.value = true;
@@ -106,8 +105,6 @@ class AddStoryController extends GetxController {
       flutterToast(adStoryModel.message.toString());
       await Get.find<HomeController>().onStory();
       loader.value = false;
-
-
     } catch (e) {
       loader.value = false;
     }

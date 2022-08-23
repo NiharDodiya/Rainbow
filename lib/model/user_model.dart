@@ -30,26 +30,26 @@ class UserModel {
   String? fcmToken;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-    uid: json["uid"],
-    email: json["email"],
-    photo: json["photo"],
-    name: json["name"],
-    userName: json["userName"],
-    role: json["role"],
-    isOnline: json["isOnline"],
-    fcmToken: json["fcmToken"],
-  );
+        uid: json["uid"],
+        email: json["email"],
+        photo: json["photo"],
+        name: json["name"],
+        userName: json["userName"],
+        role: json["role"],
+        isOnline: json["isOnline"],
+        fcmToken: json["fcmToken"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "uid": uid,
-    "email": email,
-    "photo": photo,
-    "name": name,
-    "userName": userName,
-    "role": role,
-    "isOnline": isOnline,
-    "fcmToken": fcmToken,
-  };
+        "uid": uid,
+        "email": email,
+        "photo": photo,
+        "name": name,
+        "userName": userName,
+        "role": role,
+        "isOnline": isOnline,
+        "fcmToken": fcmToken,
+      };
 
   Map<String, dynamic> updateJson() {
     Map<String, dynamic> map = {

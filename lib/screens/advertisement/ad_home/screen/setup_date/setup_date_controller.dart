@@ -57,21 +57,20 @@ class SetupDateController extends GetxController {
   }
 
   bool validation() {
-    if (startTime.toString().isEmpty ) {
+    if (startTime.toString().isEmpty) {
       errorToast("please select date");
       return false;
     } else if (endtime.toString().isEmpty) {
       errorToast("please select date");
       return false;
-    }else if(currency.isEmpty){
+    } else if (currency.isEmpty) {
       errorToast("please enter your amount");
     }
     return true;
   }
 
-  void onTapNext(){
-
-    if(validation()){
+  void onTapNext() {
+    if (validation()) {
       Get.bottomSheet(
         enableDrag: false,
         BottomSheet(
@@ -88,7 +87,9 @@ class SetupDateController extends GetxController {
           ),
 
           // enableDrag: true,
-          builder: (_) =>  ShowBottomNext(amount: currency,),
+          builder: (_) => ShowBottomNext(
+            amount: currency,
+          ),
         ),
         isScrollControlled: true,
         shape: RoundedRectangleBorder(

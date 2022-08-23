@@ -1,8 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,6 +10,8 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_webservice/src/places.dart';
+import 'package:http/http.dart' as http;
 import 'package:rainbow/model/ListUserProfileModel.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/api/OtherProfileApi.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
@@ -22,10 +24,6 @@ import 'package:rainbow/screens/Profile/widget/block_unblock%20_Api/unblock_api.
 import 'package:rainbow/screens/Search/ListUserProfile_api/listUserProfile_api.dart';
 import 'package:rainbow/screens/Search/advance_search/advance_search_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
-
-import 'package:http/http.dart' as http;
-
-import 'package:google_maps_webservice/src/places.dart';
 
 class SearchController extends GetxController {
   RxBool loader = false.obs;
@@ -179,7 +177,6 @@ class SearchController extends GetxController {
       await listUserProfile();
     });
 /*    await loadData();*/
-
   }
 
   Future<void> listUserProfileAdvanceSearch(String keyWords) async {

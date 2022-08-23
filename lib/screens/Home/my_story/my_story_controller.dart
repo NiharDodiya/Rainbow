@@ -54,9 +54,9 @@ class MyStoryController extends GetxController {
     if (validation()) {
       pauseAnimation();
 
-        commentData(id);
+      commentData(id);
 
-       update(["my_story"]);
+      update(["my_story"]);
       FocusScope.of(context).unfocus();
     }
   }
@@ -69,9 +69,9 @@ class MyStoryController extends GetxController {
       storyCommentModel = (await StoryCommentApi.sendNewComment(
               id, writeSomething.text.toString()) ??
           StoryCommentModel());
-       await viewStoryController.friendStoryApiData();
+      await viewStoryController.friendStoryApiData();
       playAnimation();
-       update(["my_story"]);
+      update(["my_story"]);
       writeSomething.clear();
       loader.value = false;
     } catch (e) {
@@ -85,6 +85,7 @@ class MyStoryController extends GetxController {
     }
     // update(["friendStory"]);
   }
+
   LikeStoryModel likeStoryModel = LikeStoryModel();
 
   Future<void> likeStory(String id) async {
@@ -108,7 +109,9 @@ class MyStoryController extends GetxController {
 
     // update(["friendStory"]);
   }
-  UnLikeStoryModel unLikeStoryModel=UnLikeStoryModel();
+
+  UnLikeStoryModel unLikeStoryModel = UnLikeStoryModel();
+
   Future<void> unLikeStory(String id) async {
     try {
       loader.value = true;
@@ -123,6 +126,7 @@ class MyStoryController extends GetxController {
       loader.value = false;
     }
   }
+
   StoryViewListModel storyViewListModel = StoryViewListModel();
 
   Future<void> getStoryViewList(String id) async {

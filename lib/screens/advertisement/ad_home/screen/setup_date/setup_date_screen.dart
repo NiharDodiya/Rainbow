@@ -405,10 +405,9 @@ class SetupDateScreen extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               SubmitButton(
-
                 onTap: () {
                   setupDateController.onTapNext();
-      /*            Get.bottomSheet(
+                  /*            Get.bottomSheet(
                     enableDrag: false,
                     BottomSheet(
                       shape: const RoundedRectangleBorder(
@@ -452,9 +451,8 @@ class SetupDateScreen extends StatelessWidget {
 
 class ShowBottomNext extends StatelessWidget {
   String? amount;
-   ShowBottomNext({
-    Key? key,this.amount
-  }) : super(key: key);
+
+  ShowBottomNext({Key? key, this.amount}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

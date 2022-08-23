@@ -180,5 +180,6 @@ class AssetRes {
   static const blurBack = "${images}blurBack.png";
   static const drop = "${icons}drop.png";
 }
+
 ChatServices chatServices = ChatServices();
 MessagingService messagingService = MessagingService();

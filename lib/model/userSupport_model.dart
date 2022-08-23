@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-UserSupportModel userSupportModelFromJson(String str) => UserSupportModel.fromJson(json.decode(str));
+UserSupportModel userSupportModelFromJson(String str) =>
+    UserSupportModel.fromJson(json.decode(str));
 
-String userSupportModelToJson(UserSupportModel data) => json.encode(data.toJson());
+String userSupportModelToJson(UserSupportModel data) =>
+    json.encode(data.toJson());
 
 class UserSupportModel {
   UserSupportModel({
@@ -13,13 +15,14 @@ class UserSupportModel {
   bool? status;
   String? message;
 
-  factory UserSupportModel.fromJson(Map<String, dynamic> json) => UserSupportModel(
-    status: json["status"],
-    message: json["message"],
-  );
+  factory UserSupportModel.fromJson(Map<String, dynamic> json) =>
+      UserSupportModel(
+        status: json["status"],
+        message: json["message"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-  };
+        "status": status,
+        "message": message,
+      };
 }

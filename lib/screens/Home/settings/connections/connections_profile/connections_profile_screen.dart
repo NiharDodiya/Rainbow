@@ -104,7 +104,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
                                         ? HobbiesArea()
                                         : const SizedBox(),
                                     data.testimonials == true
-                                        ? testimonial(  data.id.toString())
+                                        ? testimonial(data.id.toString())
                                         : const SizedBox(),
                                     data.visitors == true
                                         ? otherVisitorsViewed()
@@ -123,6 +123,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
       ),
     );
   }
+
   Widget testimonial(String id) {
     return Padding(
       padding: const EdgeInsets.only(left: 30, right: 30),
@@ -145,8 +146,8 @@ class ConnectionsProfileScreen extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     Get.to(() => PostTestimonialScreen(
-                      id: id.toString(),
-                    ));
+                          id: id.toString(),
+                        ));
                   },
                   child: Text(
                     "Add",
@@ -168,18 +169,18 @@ class ConnectionsProfileScreen extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-           /* ListView.separated(
+            /* ListView.separated(
               padding: const EdgeInsets.only(top: 15),
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
-                return  SizedBox()*//*listOfTestimonials(
+                return  SizedBox()*/ /*listOfTestimonials(
                     title: controller.viewProfile.data!
                         .testimonialsList![index].userSender!.fullName.toString(),
                     subtitle: controller.viewProfile.data!
                         .testimonialsList![index].userSender!.userStatus.toString(),descriptions:controller.viewProfile.data!
                     .testimonialsList![index].testimonial.toString(),date:DateFormat("Dd-MM-yyyy").format(controller.viewProfile.data!
                     .testimonialsList![index].userSender!.createdAt!)profile:controller.viewProfile.data!
-                    .testimonialsList![index].userSender!.profileImage.toString() )*//*;
+                    .testimonialsList![index].userSender!.profileImage.toString() )*/ /*;
               },
               separatorBuilder: (context, index) {
                 return Divider(
@@ -198,7 +199,6 @@ class ConnectionsProfileScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-
                 Container(
                   height: 20,
                   width: 30,

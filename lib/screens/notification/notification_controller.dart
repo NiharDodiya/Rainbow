@@ -16,7 +16,9 @@ class NotificationsController extends GetxController {
   Future<void> init() async {
     getNotifications();
   }
-  NotificationModel?  notificationModel = NotificationModel();
+
+  NotificationModel? notificationModel = NotificationModel();
+
   Future<void> getNotifications() async {
     loader.value = true;
     notificationModel = await NotificationApi.getNotificationList();
@@ -27,14 +29,12 @@ class NotificationsController extends GetxController {
     loader.value = false;
   }
 
-
   Future<void> notificationReadApi() async {
-    try{
-       await NotificationApi.notificationRead();
-       await getNotifications();
-    }catch(e){
+    try {
+      await NotificationApi.notificationRead();
+      await getNotifications();
+    } catch (e) {
       print(e.toString());
     }
   }
-
 }

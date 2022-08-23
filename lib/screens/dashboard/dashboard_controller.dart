@@ -12,8 +12,7 @@ class DashboardController extends GetxController {
   final ProfileController profileController = Get.put(ProfileController());
 
   @override
-  void onInit() async{
-
+  void onInit() async {
     update(['bottom_bar']);
     super.onInit();
   }

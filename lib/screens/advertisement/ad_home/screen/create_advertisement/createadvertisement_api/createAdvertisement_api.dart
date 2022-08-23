@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/createAdvertiserModel.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/advertisement_deatail/advertisement_deatail_screen.dart';
@@ -8,11 +9,12 @@ import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
 import 'package:rainbow/utils/pref_keys.dart';
-import 'package:http/http.dart' as http;
 
 class AddAdvertisement {
   static Future addAdvertisementApi(
-      {List? tagUser,String? title,List? idItem,
+      {List? tagUser,
+      String? title,
+      List? idItem,
       String? location,
       String? description,
       String? date,
@@ -22,28 +24,27 @@ class AddAdvertisement {
       String? city,
       String? street,
       String? countryCode,
-        String? callAction
-      }) async {
+      String? callAction}) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
     // int userId = PrefService.getInt(PrefKeys.userId);
     try {
       String url = EndPoints.createAdvertisement;
       Map<String, dynamic> param = {
-        "tags" : tagUser!,
-        "id_item" : idItem!,
-        "title" : title.toString(),
-        "location" : location.toString(),
-        "city" : city.toString() ,
-        "street" : street.toString(),
-        "id_country" : countryCode.toString(),
-        "postal_code" :postalCode.toString(),
-        "province" : province.toString(),
-        "date" :date.toString(),
-        "description" : description.toString(),
+        "tags": tagUser!,
+        "id_item": idItem!,
+        "title": title.toString(),
+        "location": location.toString(),
+        "city": city.toString(),
+        "street": street.toString(),
+        "id_country": countryCode.toString(),
+        "postal_code": postalCode.toString(),
+        "province": province.toString(),
+        "date": date.toString(),
+        "description": description.toString(),
         "call_action": callAction.toString(),
-        "start_date" : date.toString(),
-        "end_date" : date.toString() ,
-        "url_link" : urlLink.toString()
+        "start_date": date.toString(),
+        "end_date": date.toString(),
+        "url_link": urlLink.toString()
       };
 
       http.Response? response = await HttpService.postApi(

@@ -18,7 +18,8 @@ class AddCartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GetBuilder<AddCartController>(id: "addCard",
+      body: GetBuilder<AddCartController>(
+        id: "addCard",
         builder: (controller) => SafeArea(
           child: Container(
             width: Get.width,
@@ -99,10 +100,9 @@ class AddCartScreen extends StatelessWidget {
                                 onTap: controller.onCountryCoCityChange,
                                 dropdownList: countryCity,
                                 height: Get.height * 0.3);
-
                           },
                         ),
-                      /*  AppTextFiled(
+                        /*  AppTextFiled(
                           controller: controller.countryController,
                           title: Strings.country,
                           hintText: Strings.london,
@@ -153,7 +153,10 @@ class AddCartScreen extends StatelessWidget {
                               ),
                             ),
                           ],
-                        ),const SizedBox(height: 10,),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
                         SubmitButton(
                           text: Strings.addCard,
                           onTap: controller.addCart,

@@ -84,8 +84,9 @@ class CommentScreen extends StatelessWidget {
                                         .data![index].postCommentReply,
                                     commentId: homeController
                                         .postCommentListModel.data![index].id
-                                        .toString(),date: homeController
-                                    .postCommentListModel.data![index].createdAt);
+                                        .toString(),
+                                    date: homeController.postCommentListModel
+                                        .data![index].createdAt);
                               },
                               separatorBuilder: (context, index) {
                                 return Divider(
@@ -223,7 +224,7 @@ class CommentScreen extends StatelessWidget {
                                           ),
                                           InkWell(
                                             onTap: () async {
-                                               controller.onTapSendMsg(
+                                              controller.onTapSendMsg(
                                                   context, idPost.toString());
                                               FocusScope.of(context).unfocus();
                                             },

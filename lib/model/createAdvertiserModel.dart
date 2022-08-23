@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-AdvertisersCreateModel advertisersCreateModelFromJson(String str) => AdvertisersCreateModel.fromJson(json.decode(str));
+AdvertisersCreateModel advertisersCreateModelFromJson(String str) =>
+    AdvertisersCreateModel.fromJson(json.decode(str));
 
-String advertisersCreateModelToJson(AdvertisersCreateModel data) => json.encode(data.toJson());
+String advertisersCreateModelToJson(AdvertisersCreateModel data) =>
+    json.encode(data.toJson());
 
 class AdvertisersCreateModel {
   AdvertisersCreateModel({
@@ -17,13 +19,14 @@ class AdvertisersCreateModel {
   bool? status;
   String? message;
 
-  factory AdvertisersCreateModel.fromJson(Map<String, dynamic> json) => AdvertisersCreateModel(
-    status: json["status"],
-    message: json["message"],
-  );
+  factory AdvertisersCreateModel.fromJson(Map<String, dynamic> json) =>
+      AdvertisersCreateModel(
+        status: json["status"],
+        message: json["message"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-  };
+        "status": status,
+        "message": message,
+      };
 }

@@ -61,7 +61,8 @@ class EndPoints {
   static const commentPostList = "$baseUrl/user/post/comment/list";
   static const listUserProfile = "$baseUrl/user/userprofile/list";
   static const testimonial = "$baseUrl/user/testimonial/add";
-  static const createAdvertisement = "$baseUrl/advirtisers/advertisement/create";
+  static const createAdvertisement =
+      "$baseUrl/advirtisers/advertisement/create";
   static const supportListTicket = "$baseUrl/user/support/tickit/list";
   static const viewSupportTicket = "$baseUrl/user/support/message/view";
   static const sendSupport = "$baseUrl/user/support/send";
@@ -70,7 +71,6 @@ class EndPoints {
   static const notificationOn = "$baseUrl/user/notification/on";
   static const notificationOff = "$baseUrl/user/notification/off";
   static const notificationRead = "$baseUrl/user/notification/read";
-
 
   ///____________________________________________ advertisement_________________
   static const boostAdvertisement = "$baseUrl/advirtisers/advertisement/boost";

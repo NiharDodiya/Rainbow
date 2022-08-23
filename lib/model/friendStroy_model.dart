@@ -685,4 +685,3 @@ class StorycommentList {
             storyUserComment == null ? null : storyUserComment!.toJson(),
       };
 }
-
