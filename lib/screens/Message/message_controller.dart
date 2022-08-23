@@ -99,12 +99,12 @@ class MessageController extends GetxController {
   deleteUserChat() {
     FirebaseFirestore.instance
         .collection('chats')
-        .doc("1Zs8OmF0lkaXn8WiMEu8im2XMH723k99XCdpQ9TCIGRn2CjtfWmr0u92")
-        .collection("content")
+        .doc(roomId)
+        .collection(roomId.toString())
         .get()
         .then((value) {
       for (var element in value.docs) {
-        element.reference.delete();
+        /*element.reference.delete();*/
       }
     });
     Get.back();
@@ -113,23 +113,23 @@ class MessageController extends GetxController {
   getRoomId(String otherUid) async {
     await FirebaseFirestore.instance
         .collection("chats")
-        .doc(userUid! + otherUid)
-        .collection(userUid! + otherUid)
+        .doc("${userUid}_$otherUid")
+        .collection("${userUid}_$otherUid")
         .get()
         .then((value) async {
       if (value.docs.isNotEmpty) {
-        roomId = userUid! + otherUid;
+        roomId = "${userUid}_$otherUid";
       } else {
         await FirebaseFirestore.instance
             .collection("chats")
-            .doc(otherUid + userUid!)
-            .collection(otherUid + userUid!)
+            .doc("${userUid}_$otherUid")
+            .collection("${userUid}_$otherUid")
             .get()
             .then((value) {
           if (value.docs.isNotEmpty) {
-            roomId = otherUid + userUid!;
+            roomId = "${userUid}_$otherUid";
           } else {
-            roomId = userUid! + otherUid;
+            roomId = "${userUid}_$otherUid";
           }
         });
       }
