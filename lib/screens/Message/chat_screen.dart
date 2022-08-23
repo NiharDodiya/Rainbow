@@ -7,7 +7,7 @@ import 'package:image_stack/image_stack.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Message/message_controller.dart';
-import 'package:rainbow/screens/Message/sendImage_screen.dart';
+
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
@@ -17,7 +17,6 @@ class ChatScreen extends StatelessWidget {
   final String? otherUserUid;
   final String? userUid;
   final String? profileImage;
-
   ChatScreen(
       {Key? key,
       this.name,
