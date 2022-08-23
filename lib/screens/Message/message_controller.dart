@@ -111,12 +111,15 @@ class MessageController extends GetxController {
     update(["message"]);
   }
   getRoomId(String otherUid) async {
-    await FirebaseFirestore.instance
+    DocumentReference doc = FirebaseFirestore.instance
         .collection("chats")
-        .doc("${userUid}_$otherUid")
+        .doc("${userUid}_$otherUid");
+
+    await doc
         .collection("${userUid}_$otherUid")
         .get()
         .then((value) async {
+      await doc.set({"uidList": [userUid,otherUid],});
       if (value.docs.isNotEmpty) {
         roomId = "${userUid}_$otherUid";
       } else {
@@ -134,6 +137,7 @@ class MessageController extends GetxController {
         });
       }
     });
+
   }
 
   gotoChatScreen(String otherUid, name,image) async {

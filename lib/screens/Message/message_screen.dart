@@ -160,7 +160,7 @@ class MessageScreen extends StatelessWidget {
               );
             },
           ),
-          GetBuilder<MessageController>(
+        /*  GetBuilder<MessageController>(
             id: "message",
             builder: (controller) {
               return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
@@ -255,6 +255,116 @@ class MessageScreen extends StatelessWidget {
                                 ),
                             ),
                               ):const SizedBox();
+                        }),
+                  );
+                },
+              );
+            },
+          )  ,*/
+          GetBuilder<MessageController>(
+            id: "message",
+            builder: (controller) {
+              return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                stream:
+                    FirebaseFirestore.instance.collection('chats').where("uidList",arrayContains: controller.userUid).snapshots(),
+                builder: (context, snapshot) {
+                  if(snapshot.hasData==false){
+                    return const SizedBox();
+                  }
+                  return SizedBox(
+                    height: Get.height *0.53,
+                    child: ListView.builder(
+                        itemCount: snapshot.data!.docs.length,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemBuilder: (BuildContext context, int index) {
+                          List<dynamic> idList = snapshot.data!.docs[index].data()['uidList'];
+                          String userId = "";
+                          for (var value in idList) {
+                            if(value != controller.userUid){
+                              userId = value;
+                            }
+                          }
+
+                            return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+                                stream:
+                            FirebaseFirestore.instance.collection('users').doc(userId).snapshots(),builder: (context, snapshot2) {
+                                  Map<String,dynamic>? data = snapshot2.data?.data();
+                                  if(data==null){
+                                    return const SizedBox();
+                                  }
+                              return
+                              DraggableTile(
+                                child: InkWell(
+                                  onTap: () {
+                                    controller.gotoChatScreen(
+                                     data['uid'],
+                                        data['name'],  data
+                                    ['image']);
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10),
+                                    child: Row(
+                                      children: [
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        Container(  margin: const EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                          height: 60,
+                                          width: 60,
+                                          decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: ClipRRect(
+                                            borderRadius: const BorderRadius.all(Radius.circular(50)),
+                                            child: FadeInImage(
+                                              placeholder:
+                                              const AssetImage(AssetRes.portrait_placeholder),
+                                              image: NetworkImage(data['image'].toString()),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        Column(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                        data['name'].toString().isEmpty?const SizedBox(): Text(
+                                              "${data['name'].toString()}",
+                                              style: sfProTextReguler(
+                                                  fontSize: 17),
+                                            ),
+                                            Text(
+                                              "You:ok",
+                                              style: sfProTextReguler(
+                                                  fontSize: 14,
+                                                  color: ColorRes
+                                                      .color_F0F0F0),
+                                            )
+                                          ],
+                                        ),
+                                        const Spacer(),
+                                        Image.asset(
+                                          AssetRes.read,
+                                          height: 16,
+                                          width: 16,
+                                        ),
+                                        const SizedBox(
+                                          width: 15,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },);
                         }),
                   );
                 },
