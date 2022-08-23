@@ -15,6 +15,7 @@ class MessageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /* messageController.getChatUserId();*/
+    messageController.getUid();
     return GetBuilder<MessageController>(
       id: "message",
       builder: (controller) {

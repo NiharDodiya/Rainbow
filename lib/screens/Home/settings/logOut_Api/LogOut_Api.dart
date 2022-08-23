@@ -27,6 +27,8 @@ class LogOutApi {
       /*    await PrefService.clear();*/
           PrefService.setValue(PrefKeys.skipBoardingScreen, true);
           await PrefService.setValue(PrefKeys.loginRole, "");
+          await PrefService.setValue(PrefKeys.uid, "");
+
           Get.offAll(() => AuthDashboard());
         }
         return logOutModelFromJson(response.body);
