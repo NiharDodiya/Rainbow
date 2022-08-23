@@ -1,10 +1,15 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/model/user_model.dart';
 import 'package:rainbow/screens/Message/chat_screen.dart';
+
 import 'package:rainbow/service/Users_services.dart';
 import 'package:rainbow/service/chat_service.dart';
 import 'package:rainbow/service/pref_services.dart';
@@ -26,6 +31,7 @@ class MessageController extends GetxController {
   String? id;
 
   var data;
+
   @override
   void onInit() {
     init();
@@ -47,15 +53,18 @@ class MessageController extends GetxController {
       }
     }
   }
+
   void onScrollDownTap() {
     listScrollController.position.jumpTo(0);
   }
-   doNothing(BuildContext context) {}
+
+  doNothing(BuildContext context) {}
 
   Future<void> init() async {
     loader.value = true;
     listScrollController.addListener(manageScrollDownBtn);
   }
+
   Future<void> getChatRoomId() async {
     loader.value = true;
     receiver = await ChatServices.getUserModel(receiverId) ?? UserModel();
@@ -69,16 +78,16 @@ class MessageController extends GetxController {
     loader.value = false;
   }
 
-  getUid()
-  async {
-   userUid= PrefService.getString(PrefKeys.uid).toString();
-   update(["message"]);
+  getUid() async {
+    userUid = PrefService.getString(PrefKeys.uid).toString();
+    print(userUid);
+    update(["message"]);
   }
 
   Future<void> getUserDetail() async {
     loader.value = true;
     UserModel? user =
-    await UserService.getUserModel(PrefService.getString(PrefKeys.uid));
+        await UserService.getUserModel(PrefService.getString(PrefKeys.uid));
 
     if (user != null) {
       GlobalData.user = user;
@@ -87,13 +96,12 @@ class MessageController extends GetxController {
     UserService.updateUserModel(GlobalData.user);
     loader.value = false;
   }
+
   getChatUserId() async {
     final snapShot2 =
-    await FirebaseFirestore.instance.collection("users").doc(userUid).get();
+        await FirebaseFirestore.instance.collection("users").doc(userUid).get();
     Map<String, dynamic> daysDocs = snapShot2.data() as Map<String, dynamic>;
     id = daysDocs["id"];
-   print(id);
-
   }
 
   deleteUserChat() {
@@ -110,13 +118,16 @@ class MessageController extends GetxController {
     Get.back();
     update(["message"]);
   }
+
   getRoomId(String otherUid) async {
-    await FirebaseFirestore.instance
+    DocumentReference doc = FirebaseFirestore.instance
         .collection("chats")
-        .doc("${userUid}_$otherUid")
-        .collection("${userUid}_$otherUid")
-        .get()
-        .then((value) async {
+        .doc("${userUid}_$otherUid");
+
+    await doc.collection("${userUid}_$otherUid").get().then((value) async {
+      await doc.set({
+        "uidList": [userUid, otherUid],
+      });
       if (value.docs.isNotEmpty) {
         roomId = "${userUid}_$otherUid";
       } else {
@@ -136,18 +147,19 @@ class MessageController extends GetxController {
     });
   }
 
-  gotoChatScreen(String otherUid, name,image) async {
+  gotoChatScreen(String otherUid, name, image) async {
     loader.value = true;
     await getRoomId(otherUid);
     loader.value = false;
     Get.to(() => ChatScreen(
-      roomId: roomId,
-      name: name,
-      otherUserUid: otherUid,
-      userUid: userUid,
-      profileImage:image ,
-    ));
+          roomId: roomId,
+          name: name,
+          otherUserUid: otherUid,
+          userUid: userUid,
+          profileImage: image,
+        ));
   }
+
   sendMessage(String roomId, otherUid) async {
     String msg = msController.text;
     final userUid1 = userUid;
@@ -168,6 +180,52 @@ class MessageController extends GetxController {
         .set({"content": msg, "senderUid": userUid, "time": DateTime.now()});
     msController.clear();
     update(['message']);
+    update(['chats']);
+  }
+
+  File? image;
+
+  navigateToCamera() async {
+    String? path = await cameraPickImage1();
+    if (path != null) {
+      image = File(path);
+    }
+    update(['chats']);
+  }
+
+  navigateToGallery() async {
+    String? path = await gallaryPickImage1();
+
+    if (path != null) {
+      image = File(path);
+    }
+
+    update(['chats']);
+  }
+
+  Future<String?> cameraPickImage1() async {
+    XFile? pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+      return pickedFile.path;
+    }
+    update(['chats']);
+
+    return null;
+  }
+
+  Future<String?> gallaryPickImage1() async {
+    XFile? pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      return pickedFile.path;
+    }
+    update(['chats']);
+    return null;
+  }
+
+  back() {
+    image = null;
     update(['chats']);
   }
 }

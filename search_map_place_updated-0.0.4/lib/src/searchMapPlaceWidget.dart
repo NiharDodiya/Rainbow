@@ -108,10 +108,10 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
   void initState() {
     geocode = Geocoding(apiKey: widget.apiKey, language: widget.language);
     _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
     _containerHeight = Tween<double>(begin: 55, end: 364).animate(
       CurvedAnimation(
-        curve: Interval(0.0, 0.5, curve: Curves.easeInOut),
+        curve: const Interval(0.0, 0.5, curve: Curves.easeInOut),
         parent: _animationController,
       ),
     );
@@ -120,7 +120,7 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
       end: 1,
     ).animate(
       CurvedAnimation(
-        curve: Interval(0.5, 1.0, curve: Curves.easeInOut),
+        curve: const Interval(0.5, 1.0, curve: Curves.easeInOut),
         parent: _animationController,
       ),
     );
@@ -211,7 +211,7 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
               // child: Icon(_inputIcon, color: this.widget.iconColor),
               child: AnimatedCrossFade(
                 crossFadeState: _crossFadeState!,
-                duration: Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 300),
                 firstChild: Icon(widget.icon, color: widget.iconColor),
                 secondChild: Icon(Icons.clear, color: widget.iconColor),
               ),
@@ -226,7 +226,7 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
     String place = prediction.description!;
 
     return MaterialButton(
-      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
       onPressed: () => _selectPlace(prediction: prediction),
       child: ListTile(
         title: Text(
@@ -239,7 +239,7 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
           ),
           maxLines: 1,
         ),
-        contentPadding: EdgeInsets.symmetric(
+        contentPadding: const EdgeInsets.symmetric(
           horizontal: 10,
           vertical: 0,
         ),
@@ -254,7 +254,7 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
     return InputDecoration(
       hintText: this.widget.placeholder,
       border: InputBorder.none,
-      contentPadding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
       hintStyle: textStyleFont16Grey,
     );
   }
@@ -262,9 +262,9 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
   BoxDecoration _containerDecoration() {
     return BoxDecoration(
       color: widget.bgColor,
-      borderRadius: BorderRadius.all(Radius.circular(6.0)),
+      borderRadius: const BorderRadius.all(const Radius.circular(6.0)),
       boxShadow: [
-        BoxShadow(color: Colors.black12, blurRadius: 20, spreadRadius: 10)
+        const BoxShadow(color: Colors.black12, blurRadius: 20, spreadRadius: 10)
       ],
     );
   }
@@ -300,7 +300,7 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
         return;
       }
 
-      Future.delayed(Duration(milliseconds: 500), () {
+      Future.delayed(const Duration(milliseconds: 500), () {
         _textEditingController.addListener(_autocompletePlace);
         if (_isEditing == true) _autocompletePlace();
       });
@@ -347,7 +347,7 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
         ),
       );
     } else {
-      await Future.delayed(Duration(milliseconds: 500));
+      await Future.delayed(const Duration(milliseconds: 500));
     }
 
     // Makes animation
@@ -372,7 +372,7 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
 
   /// Will listen for input changes every 0.5 seconds, allowing us to make API requests only when the user stops typing.
   void customListener() {
-    Future.delayed(Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 500), () {
       setState(() => _tempInput = _textEditingController.text);
       customListener();
     });
