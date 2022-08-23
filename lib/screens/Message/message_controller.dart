@@ -95,6 +95,21 @@ class MessageController extends GetxController {
    print(id);
 
   }
+
+  deleteUserChat() {
+    FirebaseFirestore.instance
+        .collection('chats')
+        .doc("1Zs8OmF0lkaXn8WiMEu8im2XMH723k99XCdpQ9TCIGRn2CjtfWmr0u92")
+        .collection("content")
+        .get()
+        .then((value) {
+      for (var element in value.docs) {
+        element.reference.delete();
+      }
+    });
+    Get.back();
+    update(["message"]);
+  }
   getRoomId(String otherUid) async {
     await FirebaseFirestore.instance
         .collection("chats")

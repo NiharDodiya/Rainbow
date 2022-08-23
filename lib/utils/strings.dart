@@ -61,6 +61,7 @@ class Strings {
       'We’ll update you on the status of your verification by email and on your account limits page';
   static const gotIt = "OK, GOT IT";
   static const cancel = "CANCEL";
+  static const cancelSmall = "Cancel";
   static const cancelRequest = "cancel request";
   static const idVerification = "ID Verification";
   static const idType = "ID Type";

@@ -390,7 +390,6 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
       builder: (searchController) {
         return Stack(
           children: [
-
             Padding(
               padding: EdgeInsets.only(top: Get.height * 0.16),
               child: SizedBox(

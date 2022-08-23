@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/common/draggableTile_screen.dart';
 import 'package:rainbow/screens/Message/message_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -183,25 +184,18 @@ class MessageScreen extends StatelessWidget {
                                   .toLowerCase()
                                   .contains(controller.msgController.text
                                   .toString()) ?
-                              InkWell(
-                              onTap: () {
-                                controller.gotoChatScreen(
-                                    snapshot.data!.docs[index]['uid'],
-                                    snapshot.data!.docs[index]
-                                    ['name'],  snapshot.data!.docs[index]
-                                ['image']);
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 10),
-                                child: Dismissible(
-                                  key: ValueKey<int>(index),
-                                  direction:
-                                  DismissDirection.endToStart,
-                                  onDismissed: (direction) {
-                                    if (direction ==
-                                        DismissDirection.startToEnd) {}
-                                  },
+                              DraggableTile(
+                                child: InkWell(
+                                onTap: () {
+                                  controller.gotoChatScreen(
+                                      snapshot.data!.docs[index]['uid'],
+                                      snapshot.data!.docs[index]
+                                      ['name'],  snapshot.data!.docs[index]
+                                  ['image']);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 10),
                                   child: Row(
                                     children: [
                                       const SizedBox(
@@ -224,19 +218,6 @@ class MessageScreen extends StatelessWidget {
                                           ),
                                         ),
                                       ),
-                                     /* Container(
-                                            margin:
-                                        const EdgeInsets.symmetric(
-                                            horizontal: 10),
-                                        height: 60,
-                                        width: 60,
-                                        decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.grey),
-                                        child: const Center(
-                                          child: Icon(Icons.person),
-                                        ),
-                                      ),*/
                                       const SizedBox(
                                         width: 5,
                                       ),
@@ -246,7 +227,7 @@ class MessageScreen extends StatelessWidget {
                                         crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                         children: [
-                                          snapshot.data!.docs[index]['name'].toString().isEmpty?SizedBox(): Text(
+                                          snapshot.data!.docs[index]['name'].toString().isEmpty?const SizedBox(): Text(
                                             "${snapshot.data!.docs[index]['name'].toString()}",
                                             style: sfProTextReguler(
                                                 fontSize: 17),
@@ -272,8 +253,8 @@ class MessageScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                              ),
-                            ):const SizedBox();
+                            ),
+                              ):const SizedBox();
                         }),
                   );
                 },
