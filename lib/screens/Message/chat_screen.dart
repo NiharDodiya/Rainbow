@@ -7,6 +7,7 @@ import 'package:image_stack/image_stack.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Message/message_controller.dart';
+import 'package:rainbow/screens/Message/sendImage_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
@@ -24,7 +25,8 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GetBuilder<MessageController>(
+      body: (messageController.image == null)
+          ?GetBuilder<MessageController>(
         id: "chats",
         builder: (controller) {
           return Container(
@@ -259,75 +261,87 @@ class ChatScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.6),
                   ),
-                  child: Row(
-                    children: [
-                      InkWell(
-                        onTap: () {},
-                        child: Image.asset(
-                          AssetRes.shapeCamera,
-                          height: 16,
-                          width: 18.4,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Image.asset(
-                          AssetRes.chatImage,
-                          height: 16,
-                          width: 18.4,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 0,
-                      ),
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 20),
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: Colors.white.withOpacity(0.4),
+                  child: GetBuilder<MessageController>(
+                    id: "pic",
+                      builder: (controller){
+                    return Row(
+                      children: [
+                        InkWell(
+                          onTap: controller.navigateToCamera,
+                          child: Image.asset(
+                            AssetRes.shapeCamera,
+                            height: 16,
+                            width: 18.4,
                           ),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: TextFormField(
-                                  controller: controller.msController,
-                                  style: const TextStyle(color: Colors.black),
-                                  decoration: InputDecoration(
-                                      hintText: "Type your message...",
-                                      hintStyle: sfProTextReguler(
-                                          fontSize: 17,
-                                          color: ColorRes.color_999999),
-                                      border: InputBorder.none),
+                        ),
+
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        InkWell(
+                          onTap: controller.navigateToGallery,
+                          child: Image.asset(
+                            AssetRes.chatImage,
+                            height: 16,
+                            width: 18.4,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 0,
+                        ),
+                        Expanded(
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 20),
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: Colors.white.withOpacity(0.4),
+                            ),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: TextFormField(
+                                    controller: controller.msController,
+                                    style: const TextStyle(color: Colors.black),
+                                    decoration: InputDecoration(
+                                        hintText: "Type your message...",
+                                        hintStyle: sfProTextReguler(
+                                            fontSize: 17,
+                                            color: ColorRes.color_999999),
+                                        border: InputBorder.none),
+                                  ),
                                 ),
-                              ),
-                              InkWell(
-                                  onTap: () {
-                                    controller.sendMessage(
-                                        roomId.toString(), otherUserUid);
-                                    FocusScope.of(context).unfocus();
-                                  },
-                                  child: Image.asset(
-                                    AssetRes.chatSend,
-                                    height: 16,
-                                    width: 18.4,
-                                  ))
-                            ],
+                                InkWell(
+                                    onTap: () {
+                                      controller.sendMessage(
+                                          roomId.toString(), otherUserUid);
+                                      FocusScope.of(context).unfocus();
+                                    },
+                                    child: Image.asset(
+                                      AssetRes.chatSend,
+                                      height: 16,
+                                      width: 18.4,
+                                    ))
+                              ],
+                            ),
                           ),
-                        ),
-                      )
-                    ],
-                  ),
+                        )
+                      ],
+                    );
+                  }),
                 ),
               ],
             ),
           );
         },
-      ),
+      )
+          :GetBuilder<MessageController>(
+          builder: (messageController){
+            return SendImageScreen();
+      }),
+
     );
   }
+
+
 }

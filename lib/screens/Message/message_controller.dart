@@ -1,10 +1,16 @@
+
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/model/user_model.dart';
 import 'package:rainbow/screens/Message/chat_screen.dart';
+import 'package:rainbow/screens/Message/sendImage_screen.dart';
 import 'package:rainbow/service/Users_services.dart';
 import 'package:rainbow/service/chat_service.dart';
 import 'package:rainbow/service/pref_services.dart';
@@ -92,8 +98,6 @@ class MessageController extends GetxController {
     await FirebaseFirestore.instance.collection("users").doc(userUid).get();
     Map<String, dynamic> daysDocs = snapShot2.data() as Map<String, dynamic>;
     id = daysDocs["id"];
-   print(id);
-
   }
 
   deleteUserChat() {
@@ -170,4 +174,55 @@ class MessageController extends GetxController {
     update(['message']);
     update(['chats']);
   }
+
+  File? image;
+
+  navigateToCamera() async {
+    String? path = await cameraPickImage1();
+
+    if (path != null) {
+      image = File(path);
+    }
+
+
+update();
+  }
+
+  navigateToGallery() async {
+    String? path = await gallaryPickImage1();
+
+    if (path != null) {
+      image = File(path);
+    }
+
+    update();
+  }
+
+  Future<String?> cameraPickImage1() async {
+    XFile? pickedFile =
+    await ImagePicker().pickImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+
+      return pickedFile.path;
+    }
+    update();
+
+    return null;
+  }
+
+  Future<String?> gallaryPickImage1() async {
+    XFile? pickedFile =
+    await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      return pickedFile.path;
+    }
+    update();
+    return null;
+  }
+
+
+
+
+
+
 }

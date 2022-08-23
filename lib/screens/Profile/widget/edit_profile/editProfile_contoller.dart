@@ -187,6 +187,18 @@ class EditProfileController extends GetxController {
     update(["Edit_profile"]);
   }
 
+  navigateToGallaryFront() async {
+    String? path = await gallaryPickImage1();
+
+    if (path != null) {
+      frontImage = File(path);
+    }
+    // uploadImageApi();
+    Get.back();
+
+    update(["Edit_profile"]);
+  }
+
   navigateToCameraBack() async {
     String? path = await cameraPickImage1();
 
@@ -209,17 +221,7 @@ class EditProfileController extends GetxController {
     update(["Edit_profile"]);
   }
 
-  navigateToGallaryFront() async {
-    String? path = await gallaryPickImage1();
 
-    if (path != null) {
-      frontImage = File(path);
-    }
-    // uploadImageApi();
-    Get.back();
-
-    update(["Edit_profile"]);
-  }
 
   Future<String?> cameraPickImage1() async {
     XFile? pickedFile =
