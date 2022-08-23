@@ -49,7 +49,7 @@ class SupportcreateScreen extends StatelessWidget {
               ),
             ),
             controller.loader.isTrue
-                ?  const FullScreenLoader()
+                ? const FullScreenLoader()
                 : const SizedBox(),
           ],
         );
@@ -130,131 +130,179 @@ class SupportcreateScreen extends StatelessWidget {
                 height: Get.height * 0.01488,
               ),
               GetBuilder<SupportCreateController>(
-                id: "img",
-                  builder: (controller){
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    (controller.image.isEmpty)
-                        ? const SizedBox()
-                        : Container(
-                      height: Get.height / 12,
-                      width: Get.width / 5,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                              image: FileImage(controller.image[0]),
-                              fit: BoxFit.cover)),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    (controller.image.length == 2)
-                        ?Container(
-                      height: Get.height / 12,
-                      width: Get.width / 5,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                              image: FileImage(controller.image[1]),
-                              fit: BoxFit.cover)),
-                    ):
-                    Column(
+                  id: "img",
+                  builder: (controller) {
+                    return Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Positioned(
-                          top: Get.height * 0.24,
-                          left: Get.width * 0.4,
-                          child: InkWell(
-                              onTap: () {
-                                showModalBottomSheet(
-                                    elevation: 10,
-                                    barrierColor: ColorRes.black.withOpacity(0.4),
-                                    shape: const RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(10.0),
+                        (controller.image.isEmpty)
+                            ? const SizedBox()
+                            : Stack(
+                                alignment: Alignment(1.2, -1.3),
+                                children: [
+                                  Container(
+                                    height: Get.height / 12,
+                                    width: Get.width / 5,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        image: DecorationImage(
+                                            image:
+                                                FileImage(controller.image[0]),
+                                            fit: BoxFit.cover)),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      controller.image.removeAt(0);
+                                      controller.update(["img"]);
+                                    },
+                                    child: Container(
+                                        decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.black),
+                                        child: const Icon(
+                                          Icons.clear,
+                                          color: Colors.white,
+                                        )),
+                                  ),
+                                ],
+                              ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        (controller.image.length == 2)
+                            ? Stack(
+                                alignment: Alignment(1.2, -1.3),
+                                children: [
+                                  Container(
+                                    height: Get.height / 12,
+                                    width: Get.width / 5,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        image: DecorationImage(
+                                            image:
+                                                FileImage(controller.image[1]),
+                                            fit: BoxFit.cover)),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      controller.image.removeAt(1);
+                                      controller.update(["img"]);
+                                    },
+                                    child: Container(
+                                        decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.black),
+                                        child: const Icon(
+                                          Icons.clear,
+                                          color: Colors.white,
+                                        )),
+                                  ),
+                                ],
+                              )
+                            : Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Positioned(
+                                    top: Get.height * 0.24,
+                                    left: Get.width * 0.4,
+                                    child: InkWell(
+                                      onTap: () {
+                                        showModalBottomSheet(
+                                            elevation: 10,
+                                            barrierColor:
+                                                ColorRes.black.withOpacity(0.4),
+                                            shape: const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0),
+                                              ),
+                                            ),
+                                            backgroundColor:
+                                                ColorRes.color_4F359B,
+                                            context: context,
+                                            builder: (context) {
+                                              return Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: <Widget>[
+                                                  GestureDetector(
+                                                    onTap: controller
+                                                        .navigateToCamera,
+                                                    child: const ListTile(
+                                                      leading:
+                                                          Icon(Icons.camera),
+                                                      title:
+                                                          Text(Strings.camera),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    height: 0.5,
+                                                    width: Get.width,
+                                                    color: ColorRes.white,
+                                                  ),
+                                                  GestureDetector(
+                                                    onTap: controller
+                                                        .navigateToGallery,
+                                                    child: const ListTile(
+                                                      leading: Icon(Icons
+                                                          .photo_size_select_actual_outlined),
+                                                      title:
+                                                          Text(Strings.gallery),
+                                                    ),
+                                                  ),
+                                                ],
+                                              );
+                                            });
+                                      },
+                                      child: SizedBox(
+                                        height: Get.height * 0.0474,
+                                        child: const Image(
+                                          image: AssetImage(AssetRes.cameraPic),
+                                        ),
                                       ),
                                     ),
-                                    backgroundColor: ColorRes.color_4F359B,
-                                    context: context,
-                                    builder: (context) {
-                                      return Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: <Widget>[
-                                          GestureDetector(
-                                            onTap: controller.navigateToCamera,
-                                            child: const ListTile(
-                                              leading: Icon(Icons.camera),
-                                              title: Text(Strings.camera),
-                                            ),
-                                          ),
-                                          Container(
-                                            height: 0.5,
-                                            width: Get.width,
-                                            color: ColorRes.white,
-                                          ),
-                                          GestureDetector(
-                                            onTap: controller.navigateToGallery,
-                                            child: const ListTile(
-                                              leading: Icon(Icons
-                                                  .photo_size_select_actual_outlined),
-                                              title: Text(Strings.gallery),
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    });
-                              },
-                              child: SizedBox(
-                                height: Get.height * 0.0474,
-                                child: const Image(
-                                    image: AssetImage(AssetRes.cameraPic),
-                                ),
+                                  ),
+                                  SizedBox(
+                                    height: Get.height * 0.0190,
+                                  ),
+                                  Center(
+                                    child: Text(
+                                      Strings.attachImage,
+                                      style:
+                                          gilroyMediumTextStyle(fontSize: 14),
+                                    ),
+                                  ),
+                                ],
                               ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: Get.height * 0.0190,
-                        ),
-                        Center(
-                          child: Text(
-                            Strings.attachImage,
-                            style: gilroyMediumTextStyle(fontSize: 14),
-                          ),
-                        ),
+                        // GetBuilder<SupportCreateController>(
+                        //     id: "img",
+                        //     builder: (controller) {
+                        //       return Column(
+                        //         mainAxisAlignment: MainAxisAlignment.center,
+                        //         children: [
+                        //           Center(
+                        //             child: SizedBox(
+                        //               height: Get.height * 0.0474,
+                        //               child: InkWell(
+                        //                   onTap: () async {
+                        //                     controller.navigateToCamera();
+                        //                   },
+                        //                   child: Image.asset(AssetRes.cameraPic)),
+                        //             ),
+                        //           ),
+                        //           SizedBox(
+                        //             height: Get.height * 0.0190,
+                        //           ),
+                        //           Center(
+                        //             child: Text(
+                        //               Strings.attachImage,
+                        //               style: gilroyMediumTextStyle(fontSize: 14),
+                        //             ),
+                        //           ),
+                        //         ],
+                        //       );
+                        //     }),
                       ],
-                    ),
-                    // GetBuilder<SupportCreateController>(
-                    //     id: "img",
-                    //     builder: (controller) {
-                    //       return Column(
-                    //         mainAxisAlignment: MainAxisAlignment.center,
-                    //         children: [
-                    //           Center(
-                    //             child: SizedBox(
-                    //               height: Get.height * 0.0474,
-                    //               child: InkWell(
-                    //                   onTap: () async {
-                    //                     controller.navigateToCamera();
-                    //                   },
-                    //                   child: Image.asset(AssetRes.cameraPic)),
-                    //             ),
-                    //           ),
-                    //           SizedBox(
-                    //             height: Get.height * 0.0190,
-                    //           ),
-                    //           Center(
-                    //             child: Text(
-                    //               Strings.attachImage,
-                    //               style: gilroyMediumTextStyle(fontSize: 14),
-                    //             ),
-                    //           ),
-                    //         ],
-                    //       );
-                    //     }),
-                  ],
-                );
-              }),
+                    );
+                  }),
               SizedBox(
                 height: Get.height * 0.05,
               ),
@@ -324,5 +372,3 @@ Widget appBar() {
     ),
   );
 }
-
-
