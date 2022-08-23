@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -6,6 +7,7 @@ import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/screens/Home/settings/support/api/creat_support_api.dart';
 import 'package:rainbow/utils/strings.dart';
+
 import '../../../../../common/popup.dart';
 
 class SupportCreateController extends GetxController {
@@ -63,10 +65,8 @@ class SupportCreateController extends GetxController {
   }
 
   Future<void> supportApi() async {
-
     loader.value = true;
     await uploadImageData();
-
 
     int res = await SupportAPI.supportAPI.postSupportAPI(data: {
       'title': subjectController.text,
@@ -85,8 +85,8 @@ class SupportCreateController extends GetxController {
     }
   }
 
-void onSendMsgTap()async{
-  valid();
-  await supportApi();
-}
+  void onSendMsgTap() async {
+    valid();
+    await supportApi();
+  }
 }

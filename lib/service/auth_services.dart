@@ -1,18 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rainbow/model/user_model.dart';
-import 'package:rainbow/service/chat_service.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
-class AuthService{
-
+class AuthService {
   static FirebaseAuth auth = FirebaseAuth.instance;
 
   static Future<Object> loginUser(
-      { required UserModel userModel,required String email, required String pwd}) async {
+      {required UserModel userModel,
+      required String email,
+      required String pwd}) async {
     try {
-      UserCredential userCredential =
-      await auth.createUserWithEmailAndPassword(email: email, password: pwd);
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+          email: email, password: pwd);
 
       if (userCredential.user != null) {
         await PrefService.setValue(PrefKeys.isLogin, true);
@@ -26,11 +26,8 @@ class AuthService{
       }
       return false;
     } catch (e) {
-    print(e.toString());
+      print(e.toString());
       return false;
     }
   }
-
-
-
 }

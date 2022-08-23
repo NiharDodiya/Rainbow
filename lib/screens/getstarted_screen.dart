@@ -112,7 +112,7 @@ class GetStartedScreens extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 335, top: Get.height *0.51),
+              padding: EdgeInsets.only(left: 335, top: Get.height * 0.51),
               child: const Align(
                 alignment: Alignment.topRight,
                 child: Image(

@@ -1,4 +1,3 @@
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 class MessagingService {
@@ -9,19 +8,19 @@ class MessagingService {
   Future<String?> getFcmToken() async {
     return await message.getToken();
   }
-  //
-  // void sendNotification(SendNotificationModel notification) async {
-  //   print("token = ${notification.fcmTokens}");
-  //   Response response = await http.post(
-  //     Uri.parse('https://fcm.googleapis.com/fcm/send'),
-  //     headers: <String, String>{
-  //       'Content-Type': 'application/json; charset=UTF-8',
-  //       'Authorization': 'key=$serverToken',
-  //     },
-  //     body: jsonEncode(notification.toMap()),
-  //   );
-  //
-  //   print(response.statusCode);
-  //   print(response.body);
-  // }
+//
+// void sendNotification(SendNotificationModel notification) async {
+//   print("token = ${notification.fcmTokens}");
+//   Response response = await http.post(
+//     Uri.parse('https://fcm.googleapis.com/fcm/send'),
+//     headers: <String, String>{
+//       'Content-Type': 'application/json; charset=UTF-8',
+//       'Authorization': 'key=$serverToken',
+//     },
+//     body: jsonEncode(notification.toMap()),
+//   );
+//
+//   print(response.statusCode);
+//   print(response.body);
+// }
 }

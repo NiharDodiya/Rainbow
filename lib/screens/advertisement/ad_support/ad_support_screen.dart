@@ -46,7 +46,7 @@ class AdSupportScreen extends StatelessWidget {
                   ),
                   SubmitButton(
                     onTap: () {
-                      Get.to(() =>  SupportcreateScreen());
+                      Get.to(() => SupportcreateScreen());
                     },
                     child: Text(
                       Strings.sendNewMessage,

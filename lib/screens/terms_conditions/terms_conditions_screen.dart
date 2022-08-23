@@ -11,7 +11,7 @@ import 'package:rainbow/utils/strings.dart';
 class TermsConditionsScreen extends StatelessWidget {
   final bool? showBackBtn;
 
-   TermsConditionsScreen({Key? key, this.showBackBtn}) : super(key: key);
+  TermsConditionsScreen({Key? key, this.showBackBtn}) : super(key: key);
   HomeController homeController = Get.put(HomeController());
 
   @override

@@ -5,18 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
-import 'package:rainbow/screens/advertisement/ad_support/screen/support_details/support_details_screen.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
-import 'package:rainbow/screens/myScreen.dart';
 import 'package:rainbow/screens/scanyour_face/scanyourface_controller.dart';
 import 'package:rainbow/screens/splash/splash_screen.dart';
 import 'package:rainbow/screens/terms_conditions/terms_conditions_screen.dart';
-
 import 'package:rainbow/service/notification_service.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/color_res.dart';
-import 'package:rainbow/utils/google_map.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
 Future<void> main() async {
@@ -43,6 +39,7 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Get.lazyPut<ScanYourFaceController>(() => ScanYourFaceController());
@@ -57,12 +54,13 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       // home: ScanYourFaceScreen(),
-      home:/*const GoogleMapScreen()*/ /*SupportDetailsScreen(com: "")*/!PrefService.getBool(PrefKeys.skipBoardingScreen)
+      home: /*const GoogleMapScreen()*/ /*SupportDetailsScreen(com: "")*/ !PrefService
+              .getBool(PrefKeys.skipBoardingScreen)
           ? SplashScreen()
           : (PrefService.getBool(PrefKeys.isLogin) ||
                   PrefService.getBool(PrefKeys.register))
               ? PrefService.getBool(PrefKeys.showTermsCondition)
-                  ?  TermsConditionsScreen(showBackBtn: false)
+                  ? TermsConditionsScreen(showBackBtn: false)
                   : PrefService.getString(PrefKeys.loginRole) == "end_user"
                       ? const Dashboard()
                       : PrefService.getString(PrefKeys.loginRole) == ""
