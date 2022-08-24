@@ -361,7 +361,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 25,
                                   ),
                                   Container(
@@ -371,14 +371,14 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                         color: ColorRes.color_B180EF,
                                         shape: BoxShape.circle),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Text(
                                     Strings.sun,
                                     style: gilroyMediumTextStyle(
                                         color: ColorRes.color_C4C4C4,
                                         fontSize: 10),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Container(
                                     height: 10,
                                     width: 10,
@@ -386,14 +386,14 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                         color: ColorRes.color_FF737D,
                                         shape: BoxShape.circle),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Text(
                                     Strings.mon,
                                     style: gilroyMediumTextStyle(
                                         color: ColorRes.color_C4C4C4,
                                         fontSize: 10),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Container(
                                     height: 10,
                                     width: 10,
@@ -401,14 +401,14 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                         color: ColorRes.color_61BDFF,
                                         shape: BoxShape.circle),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Text(
                                     Strings.tue,
                                     style: gilroyMediumTextStyle(
                                         color: ColorRes.color_C4C4C4,
                                         fontSize: 10),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Container(
                                     height: 10,
                                     width: 10,
@@ -416,14 +416,14 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                         color: ColorRes.color_3294DB,
                                         shape: BoxShape.circle),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Text(
                                     Strings.wed,
                                     style: gilroyMediumTextStyle(
                                         color: ColorRes.color_C4C4C4,
                                         fontSize: 10),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Container(
                                     height: 10,
                                     width: 10,
@@ -431,14 +431,14 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                         color: ColorRes.color_73E6FF,
                                         shape: BoxShape.circle),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Text(
                                     Strings.th,
                                     style: gilroyMediumTextStyle(
                                         color: ColorRes.color_C4C4C4,
                                         fontSize: 10),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Container(
                                     height: 10,
                                     width: 10,
@@ -446,14 +446,14 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                         color: ColorRes.color_4075FF,
                                         shape: BoxShape.circle),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Text(
                                     Strings.fri,
                                     style: gilroyMediumTextStyle(
                                         color: ColorRes.color_C4C4C4,
                                         fontSize: 10),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Container(
                                     height: 10,
                                     width: 10,
@@ -461,14 +461,14 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                         color: ColorRes.color_FF61D3,
                                         shape: BoxShape.circle),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Text(
                                     Strings.sat,
                                     style: gilroyMediumTextStyle(
                                         color: ColorRes.color_C4C4C4,
                                         fontSize: 10),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 25,
                                   ),
                                 ],
@@ -523,10 +523,10 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
             Container(
               width: Get.width,
               height: 202,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   image: /*createAdvertisementController.imagePath == null
                   ? */
-                      const DecorationImage(
+                      DecorationImage(
                           image: AssetImage(
                             AssetRes.adsdetail,
                           ),

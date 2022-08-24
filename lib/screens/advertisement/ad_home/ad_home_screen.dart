@@ -11,9 +11,10 @@ import '../../dashboard/dashboard_controller.dart';
 class AdHomeScreen extends StatelessWidget {
   AdHomeScreen({Key? key}) : super(key: key);
   DashboardController dashboardController = Get.put(DashboardController());
-
+  AdHomeController adHomeController = Get.put(AdHomeController());
   @override
   Widget build(BuildContext context) {
+    adHomeController.myAdvertiserListData();
     return Scaffold(
 // key: dashboardController.key,
 // drawer: Drawer(),
