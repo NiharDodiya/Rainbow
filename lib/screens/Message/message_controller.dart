@@ -131,7 +131,7 @@ class MessageController extends GetxController {
         .doc(getChatId(userUid.toString(), otherUid));
 
     await doc.collection(getChatId(userUid.toString(), otherUid)).get().then((value) async {
-      await doc.set({
+      await doc.update({
         "uidList": [userUid, otherUid],
       });
       if (value.docs.isNotEmpty) {
