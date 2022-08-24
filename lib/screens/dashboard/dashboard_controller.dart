@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Message/message_controller.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Search/search_controller.dart';
+import 'package:rainbow/service/Users_services.dart';
+import 'package:rainbow/service/pref_services.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 
 class DashboardController extends GetxController {
   int currentTab = 0;
@@ -29,5 +33,12 @@ class DashboardController extends GetxController {
       profileController.init();
     }
     update(['bottom_bar']);
+  }
+
+  Future<void> setUserOnlineStatus(bool status) async {
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(PrefService.getString(PrefKeys.uid))
+        .update({"online": status});
   }
 }

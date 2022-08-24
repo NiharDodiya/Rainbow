@@ -17,10 +17,33 @@ class Dashboard extends StatefulWidget {
   State<Dashboard> createState() => DashboardState();
 }
 
-class DashboardState extends State<Dashboard> {
+class DashboardState extends State<Dashboard> with WidgetsBindingObserver{
+  final DashboardController controller = Get.put(DashboardController());
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+
+    if (state.index == 0) {
+      controller.setUserOnlineStatus(true);
+    } else if (state.index == 2) {
+      controller.setUserOnlineStatus(false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final DashboardController controller = Get.put(DashboardController());
     return Scaffold(
       backgroundColor: ColorRes.white,
       body: Container(
