@@ -313,7 +313,7 @@ class AdvertisementDashBord extends StatelessWidget {
               ),
             ),
 
-            /// Profile
+            /// support
             SalomonBottomBarItem(
               icon: Image.asset(
                 AssetRes.supportIcon,

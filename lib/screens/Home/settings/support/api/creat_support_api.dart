@@ -23,7 +23,7 @@ class SupportAPI {
     });
 
     if (response.statusCode == 200) {
-      print("============ ${response.statusCode} ==============");
+      print("========= ${response.statusCode} ==============");
       print(PrefService.getString(PrefKeys.registerToken));
 
       Map<String, dynamic> allData = jsonDecode(response.body);
