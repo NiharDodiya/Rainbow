@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_stack/image_stack.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
+import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Message/message_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -51,7 +52,7 @@ class ChatScreen extends StatelessWidget {
                       height: 30,
                     ),
                     Container(
-                      height: 96,
+                      height: 86,
                       padding: const EdgeInsets.only(bottom: 10),
                       decoration:
                           BoxDecoration(color: Colors.white.withOpacity(0.6)),
@@ -168,9 +169,9 @@ class ChatScreen extends StatelessWidget {
                                 height: 50,
                                 width: 50,
                                 child: ImageStack(
-                                  imageList: const [
-                                    'https://www.google.com/search?q=profile+image&rlz=1C5CHFA_enIN999IN999&sxsrf=ALiCzsZvXZ7y5bj1eNTv8xHZTa4CVsYw4Q:1659178155367&tbm=isch&source=iu&ictx=1&vet=1&fir=QsatBu9zpFWl5M%252Cy7i4Swccn0rqpM%252C_%253BeHQKa74ZnnpTfM%252CSixlWtBpRVa7SM%252C_%253Bedem4rwzS1opXM%252Cb5C9ViMmmhpq-M%252C_%253BH6pHpB03ZEAgeM%252Cwg0CyFWNfK7o5M%252C_%253BnfkyptoYx2OzJM%252CFvQHUVZ-cx81xM%252C_%253BkEuHdfl2sp9d1M%252C-m0v_GLbqugcoM%252C_%253B-H_ExttvR7ahYM%252Cb5C9ViMmmhpq-M%252C_%253BvzXbYZ4nxFQ_JM%252Ct12EXnbCus7-DM%252C_%253Blcjtk8drNcGL8M%252COgWk3wP_2xVHMM%252C_%253BVT5qYdgyTZyr8M%252CSixlWtBpRVa7SM%252C_%253BD6gTFSDWaohX4M%252C9DRWIkHC4pkATM%252C_%253B4-QuSdqRU8BF_M%252CUL2sEtRo5j7P-M%252C_%253B-h20Jdis7Qx6mM%252C-m0v_GLbqugcoM%252C_%253B__-QXXUnC94QWM%252C1fZ7G0LIFjb7EM%252C_%253Bbr1AoC-ks5mzIM%252ClmqFVLnPa43AfM%252C_%253Bk9HuIjooyhqMwM%252CLIdqNVo-afJ0fM%252C_&usg=AI4_-kQdR3wYIdk7FQbASM6-C-NgNqCY7A&sa=X&ved=2ahUKEwjZgsekuKD5AhUDfN4KHUm3BUkQ9QF6BAgREAE#imgrc=H6pHpB03ZEAgeM',
-                                    'https://www.google.com/search?q=profile+image&rlz=1C5CHFA_enIN999IN999&sxsrf=ALiCzsZvXZ7y5bj1eNTv8xHZTa4CVsYw4Q:1659178155367&tbm=isch&source=iu&ictx=1&vet=1&fir=QsatBu9zpFWl5M%252Cy7i4Swccn0rqpM%252C_%253BeHQKa74ZnnpTfM%252CSixlWtBpRVa7SM%252C_%253Bedem4rwzS1opXM%252Cb5C9ViMmmhpq-M%252C_%253BH6pHpB03ZEAgeM%252Cwg0CyFWNfK7o5M%252C_%253BnfkyptoYx2OzJM%252CFvQHUVZ-cx81xM%252C_%253BkEuHdfl2sp9d1M%252C-m0v_GLbqugcoM%252C_%253B-H_ExttvR7ahYM%252Cb5C9ViMmmhpq-M%252C_%253BvzXbYZ4nxFQ_JM%252Ct12EXnbCus7-DM%252C_%253Blcjtk8drNcGL8M%252COgWk3wP_2xVHMM%252C_%253BVT5qYdgyTZyr8M%252CSixlWtBpRVa7SM%252C_%253BD6gTFSDWaohX4M%252C9DRWIkHC4pkATM%252C_%253B4-QuSdqRU8BF_M%252CUL2sEtRo5j7P-M%252C_%253B-h20Jdis7Qx6mM%252C-m0v_GLbqugcoM%252C_%253B__-QXXUnC94QWM%252C1fZ7G0LIFjb7EM%252C_%253Bbr1AoC-ks5mzIM%252ClmqFVLnPa43AfM%252C_%253Bk9HuIjooyhqMwM%252CLIdqNVo-afJ0fM%252C_&usg=AI4_-kQdR3wYIdk7FQbASM6-C-NgNqCY7A&sa=X&ved=2ahUKEwjZgsekuKD5AhUDfN4KHUm3BUkQ9QF6BAgUEAE#imgrc=nfkyptoYx2OzJM'
+                                  imageList: [
+                                    profileImage.toString(),
+                                    profileImage.toString()
                                   ],
                                   totalCount: 2,
                                   // If larger than images.length, will show extra empty circle
@@ -206,14 +207,18 @@ class ChatScreen extends StatelessWidget {
                                 controller.data!['senderUid'].toString() ==
                                         userUid
                                     ? const SizedBox()
-                                    : Container(
-                                        margin: const EdgeInsets.only(top: 5),
-                                        height: 28,
-                                        width: 28,
-                                        decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: Colors.grey),
-                                      ),
+                                    : ClipRRect(
+                                  borderRadius: BorderRadius.circular(50),
+                                      child: FadeInImage(
+                                          placeholder:  const AssetImage(
+                                              AssetRes.portrait_placeholder,),
+                                          image: NetworkImage(
+                                            profileImage.toString(),
+                                          ),
+                                          height: 28,
+                                          width: 28,fit: BoxFit.cover,
+                                        ),
+                                    ),
                                 const SizedBox(
                                   width: 12,
                                 ),
@@ -241,14 +246,31 @@ class ChatScreen extends StatelessWidget {
                                               color: Colors.black),
                                         ),
                                       )
-                                    : Container(
-                                        height: 200,
-                                        decoration: BoxDecoration(
+                                    : Padding(
+                                        padding: const EdgeInsets.all(5),
+                                        child: Container(
+                                          height: 200,
+                                          width: 200,
+                                          decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  color: Colors.white),
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          child: ClipRRect(
                                             borderRadius:
-                                                BorderRadius.circular(10)),
-                                        child: Image.network(
-                                            controller.data['image']),
-                                      ),
+                                                const BorderRadius.all(
+                                                    Radius.circular(10)),
+                                            child: FadeInImage(
+                                              placeholder: const AssetImage(
+                                                  AssetRes
+                                                      .portrait_placeholder),
+                                              image: NetworkImage(
+                                                controller.data['image'],
+                                              ),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        )),
                                 const SizedBox(
                                   width: 5,
                                 ),
@@ -366,49 +388,56 @@ class ChatScreen extends StatelessWidget {
   }
 
   Widget SendImage(MessageController controller) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 5),
-          child: IconButton(
-            onPressed: messageController.back,
-            icon: const Icon(
-              Icons.cancel,
-              size: 40,
-            ),
-          ),
-        ),
-        const SizedBox(height: 20),
-        Container(
-          height: Get.height / 1.4,
-          width: Get.width,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-            image: FileImage(messageController.image!),
-            fit: BoxFit.cover,
-          )),
-        ),
-        const SizedBox(height: 20),
-        Align(
-          alignment: Alignment.topRight,
-          child: Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: FloatingActionButton(
-              onPressed: () {
-                controller.imageSend();
-              },
-              backgroundColor: ColorRes.color_4F359B,
-              child: const Icon(
-                Icons.send,
-                color: Colors.white,
+    return Obx(() {
+      return Stack(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 5),
+                child: IconButton(
+                  onPressed: messageController.back,
+                  icon: const Icon(
+                    Icons.cancel,
+                    size: 40,
+                  ),
+                ),
               ),
-            ),
+              const SizedBox(height: 20),
+              Container(
+                height: Get.height / 1.4,
+                width: Get.width,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                  image: FileImage(messageController.image!),
+                  fit: BoxFit.cover,
+                )),
+              ),
+              const SizedBox(height: 20),
+              Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      controller.imageSend();
+                    },
+                    backgroundColor: ColorRes.color_4F359B,
+                    child: const Icon(
+                      Icons.send,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ),
-      ],
-    );
+          controller.loader.isTrue ? const FullScreenLoader() : const SizedBox()
+        ],
+      );
+    });
   }
 }
 

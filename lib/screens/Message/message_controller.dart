@@ -120,29 +120,35 @@ class MessageController extends GetxController {
     Get.back();
     update(["message"]);
   }
-
+  String getChatId(String uid1, String uid2) {
+    if (uid1.hashCode > uid2.hashCode) {
+      return uid1 + '_' + uid2;
+    } else {
+      return uid2 + '_' + uid1;
+    }
+  }
   getRoomId(String otherUid) async {
     DocumentReference doc = FirebaseFirestore.instance
         .collection("chats")
-        .doc("${userUid}_$otherUid");
+        .doc(getChatId(userUid.toString(), otherUid));
 
-    await doc.collection("${userUid}_$otherUid").get().then((value) async {
+    await doc.collection(getChatId(userUid.toString(), otherUid)).get().then((value) async {
       await doc.set({
         "uidList": [userUid, otherUid],
       });
       if (value.docs.isNotEmpty) {
-        roomId = "${userUid}_$otherUid";
+        roomId = getChatId(userUid.toString(), otherUid);
       } else {
         await FirebaseFirestore.instance
             .collection("chats")
-            .doc("${userUid}_$otherUid")
-            .collection("${userUid}_$otherUid")
+            .doc(getChatId(userUid.toString(), otherUid))
+            .collection(getChatId(userUid.toString(), otherUid))
             .get()
             .then((value) {
           if (value.docs.isNotEmpty) {
-            roomId = "${userUid}_$otherUid";
+            roomId = getChatId(userUid.toString(), otherUid);
           } else {
-            roomId = "${userUid}_$otherUid";
+            roomId = getChatId(userUid.toString(), otherUid);
           }
         });
       }
@@ -167,6 +173,7 @@ class MessageController extends GetxController {
   }
 
   imageSend() async {
+    loader.value=true;
     if (image != null) {
       var snapshote = await _storage
           .ref()
@@ -194,6 +201,7 @@ class MessageController extends GetxController {
     update(['message']);
     update(['chats']);
     image = null;
+    loader.value=false;
   }
 
   sendMessage(String roomId, otherUid) async {
