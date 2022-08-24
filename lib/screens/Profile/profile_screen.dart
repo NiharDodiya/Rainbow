@@ -270,7 +270,7 @@ class ProfileScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           controller.count == 1
-                              ? const SizedBox()
+                              ? const SizedBox(width: 20)
                               : InkWell(
                                   onTap: () {
                                     controller.count--;
@@ -280,10 +280,11 @@ class ProfileScreen extends StatelessWidget {
                                     height: 20,
                                     width: 20,
                                     margin: const EdgeInsets.only(
-                                        left: 10,
-                                        right: 10,
-                                        bottom: 10,
-                                        top: 5),
+                                      left: 10,
+                                      right: 10,
+                                      bottom: 10,
+                                      top: 5,
+                                    ),
                                     child: Image.asset(
                                       AssetRes.leftIcon,
                                       height: 20,
@@ -306,7 +307,7 @@ class ProfileScreen extends StatelessWidget {
                                               .testimonialsList!.length /
                                           2)
                                       .ceil()
-                              ? const SizedBox()
+                              ? const SizedBox(width: 40)
                               : InkWell(
                                   onTap: () {
                                     controller.count++;
@@ -316,10 +317,11 @@ class ProfileScreen extends StatelessWidget {
                                     height: 20,
                                     width: 20,
                                     margin: const EdgeInsets.only(
-                                        left: 10,
-                                        right: 10,
-                                        bottom: 10,
-                                        top: 5),
+                                      left: 10,
+                                      right: 10,
+                                      bottom: 10,
+                                      top: 5,
+                                    ),
                                     child: Image.asset(
                                       AssetRes.rightIcon,
                                       height: 20,

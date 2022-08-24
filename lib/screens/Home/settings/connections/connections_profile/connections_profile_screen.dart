@@ -13,8 +13,6 @@ import 'package:rainbow/screens/Profile/widget/other_visitors_viewed.dart';
 import 'package:rainbow/screens/Profile/widget/postTestimonial_screen/postTestimonial_screen.dart';
 import 'package:rainbow/screens/Profile/widget/profileImage.dart';
 import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
-import 'package:rainbow/screens/Profile/widget/testimonials.dart';
-import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
@@ -156,10 +154,8 @@ class ConnectionsProfileScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            Center(
+            const SizedBox(height: 10),
+            /*Center(
               child: Text(
                 Strings.noTestimonials,
                 style: beVietnamProBoldTextStyle(
@@ -168,7 +164,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
             ),
             const SizedBox(
               height: 10,
-            ),
+            ),*/
             /* ListView.separated(
               padding: const EdgeInsets.only(top: 15),
               physics: const NeverScrollableScrollPhysics(),
@@ -195,7 +191,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
               height: 25,
               color: ColorRes.white.withOpacity(0.7),
             ),
-            Row(
+            /*Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -211,7 +207,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
                 ),
                 iconForSlider(AssetRes.rightIcon),
               ],
-            )
+            )*/
           ],
         ),
       ),
