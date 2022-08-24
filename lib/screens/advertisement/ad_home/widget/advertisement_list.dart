@@ -130,15 +130,13 @@ Widget advertisementList() {
                           child: Row(
                             children: [
                               Text(
-                                controller.myAdvertiserModel.data![index].amount
-                                    .toString(),
+                                controller.myAdvertiserModel.data?[index].amount??"mom",
                                 style: gilroySemiBoldTextStyle(
                                     fontSize: 14, color: ColorRes.black),
                               ),
                               const Spacer(),
                               Text(
-                                controller.myAdvertiserModel.data![index].amount
-                                    .toString(),
+                                controller.myAdvertiserModel.data?[index].amount??"\$",
                                 style: gilroySemiBoldTextStyle(
                                     fontSize: 14, color: ColorRes.black),
                               ),
@@ -168,7 +166,7 @@ Widget advertisementList() {
                                             if (index == 0) {
                                               Get.to( DeletApprove(idAdvertiser: controller.myAdvertiserModel.data![index].id.toString(),));
                                             } else if (index == 2) {
-                                              Get.to(const CancelApprove());
+                                              Get.to( CancelApprove(idAdvertiser: controller.myAdvertiserModel.data![index].id.toString(),));
                                             }
                                             print(index);
                                           },

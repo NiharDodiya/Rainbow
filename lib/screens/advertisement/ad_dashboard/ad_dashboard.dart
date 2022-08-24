@@ -9,6 +9,7 @@ import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/advertisement_controlle.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/AdvertiserVerifyController.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/AdvertiserVerifyOtpScreen.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_notification/ad_notification_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_support/ad_support_screen.dart';
@@ -20,12 +21,14 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 class AdvertisementDashBord extends StatelessWidget {
   AdvertisementDashBord({Key? key}) : super(key: key);
 
-  final AdvertisementController controller = Get.put(AdvertisementController());
+  final AdvertisementController advertisementController = Get.put(AdvertisementController());
+  final AdHomeController adHomeController = Get.put(AdHomeController());
 
   @override
   Widget build(BuildContext context) {
+    adHomeController.viewAdvertiserData();
     return Scaffold(
-      key: controller.key,
+      key: advertisementController.key,
       drawer: Drawer(
         backgroundColor: ColorRes.white,
         child: Padding(
@@ -34,62 +37,86 @@ class AdvertisementDashBord extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Container(
-                    height: Get.width * 0.1730,
-                    width: Get.width * 0.1730,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: AssetImage(AssetRes.account),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: Get.width * 0.0255,
-                  ),
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          Strings.raymondMarcos,
-                          style: gilroyRegularTextStyle(
-                              fontSize: 24, color: ColorRes.color_09110E),
-                        ),
-                        SizedBox(
-                          height: Get.height * 0.0086,
-                        ),
-                        Text(
-                          Strings.myEmail,
-                          style: gilroyBoldTextStyle(
-                              fontSize: 14, color: ColorRes.color_09110E),
+              GetBuilder<AdHomeController>(id: "dashBoard",builder: (controller) {
+                return  Row(
+                  children: [
+                    adHomeController.viewAdvertiserModel.data==null?SizedBox(): ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: adHomeController.viewAdvertiserModel.data!.profileImage
+                            .toString()
+                            .isEmpty
+                            ? Image.asset(
+                          AssetRes.portrait_placeholder,
+                          height: Get.width * 0.1730,
+                          width: Get.width * 0.1730,
                         )
-                      ]),
-                  const Spacer(),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          controller.key.currentState!.closeDrawer();
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: Get.width * 0.0293,
-                          ),
-                          child: const Icon(
-                            Icons.close,
-                            color: ColorRes.black,
-                          ),
+                            : FadeInImage(
+                          placeholder: const AssetImage(AssetRes.portrait_placeholder),
+                          image: NetworkImage(adHomeController
+                              .viewAdvertiserModel.data!.profileImage
+                              .toString()),
+                          height: Get.width * 0.1730,
+                          width: Get.width * 0.1730,
+                        )),
+                    /*       Container(
+                      height: Get.width * 0.1730,
+                      width: Get.width * 0.1730,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: AssetImage(AssetRes.account),
                         ),
                       ),
-                      Container(
-                        height: Get.height * 0.0555,
-                      )
-                    ],
-                  ),
-                ],
+                    ),*/
+                    SizedBox(
+                      width: Get.width * 0.0255,
+                    ),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            adHomeController
+                                .viewAdvertiserModel.data?.fullName ?? "",
+                            style: gilroyRegularTextStyle(
+                                fontSize: 24, color: ColorRes.color_09110E),
+                          ),
+                          SizedBox(
+                            height: Get.height * 0.0086,
+                          ),
+                          Text(
+                            adHomeController
+                                .viewAdvertiserModel.data?.email??"",
+                            style: gilroyBoldTextStyle(
+                                fontSize: 14, color: ColorRes.color_09110E),
+                          )
+                        ]),
+                    const Spacer(),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            advertisementController.key.currentState!.closeDrawer();
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: Get.width * 0.0293,
+                            ),
+                            child: const Icon(
+                              Icons.close,
+                              color: ColorRes.black,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          height: Get.height * 0.0555,
+                        )
+                      ],
+                    ),
+                  ],
+                );
+              },
+
               ),
               SizedBox(
                 height: Get.height * 0.0467,
@@ -127,7 +154,7 @@ class AdvertisementDashBord extends StatelessWidget {
               ),
               //Account Information
               InkWell(
-                onTap: () => controller.inTapAccountInfo(),
+                onTap: () => advertisementController.inTapAccountInfo(),
                 child: SizedBox(
                   height: Get.height * 0.06,
                   child: Row(
@@ -199,7 +226,7 @@ class AdvertisementDashBord extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(right: Get.width * 0.0498),
                 child: SubmitButton(
-                  onTap: controller.onTapLogOut,
+                  onTap: advertisementController.onTapLogOut,
                   child: Row(
                     children: [
                       const Spacer(),
@@ -262,15 +289,15 @@ class AdvertisementDashBord extends StatelessWidget {
           margin: const EdgeInsets.all(12),
           selectedItemColor: ColorRes.color_2F80ED,
           unselectedItemColor: ColorRes.color_9597A1,
-          currentIndex: controller.currentTab,
-          onTap: (i) => controller.onBottomBarChange(i),
+          currentIndex: advertisementController.currentTab,
+          onTap: (i) => advertisementController.onBottomBarChange(i),
           items: [
             /// Home
             SalomonBottomBarItem(
               icon: Image.asset(
                 AssetRes.home,
                 height: 16,
-                color: controller.currentTab == 0
+                color: advertisementController.currentTab == 0
                     ? ColorRes.color_2F80ED
                     : ColorRes.color_9597A1,
               ),
@@ -286,7 +313,7 @@ class AdvertisementDashBord extends StatelessWidget {
               icon: Image.asset(
                 AssetRes.paymentIcon,
                 height: 16,
-                color: controller.currentTab == 1
+                color: advertisementController.currentTab == 1
                     ? ColorRes.color_2F80ED
                     : ColorRes.color_9597A1,
               ),
@@ -302,7 +329,7 @@ class AdvertisementDashBord extends StatelessWidget {
               icon: Image.asset(
                 AssetRes.adeNotificationIcon,
                 height: 20,
-                color: controller.currentTab == 2
+                color: advertisementController.currentTab == 2
                     ? ColorRes.color_2F80ED
                     : ColorRes.color_9597A1,
               ),
@@ -318,7 +345,7 @@ class AdvertisementDashBord extends StatelessWidget {
               icon: Image.asset(
                 AssetRes.supportIcon,
                 height: 16,
-                color: controller.currentTab == 3
+                color: advertisementController.currentTab == 3
                     ? ColorRes.color_2F80ED
                     : ColorRes.color_9597A1,
               ),

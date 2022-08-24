@@ -71,4 +71,34 @@ class MyAdvertiserApi{
       return [];
     }
   }
+  static Future cancelAdvertiser(String? id,BuildContext context) async {
+    String accesToken = PrefService.getString(PrefKeys.registerToken);
+    try {
+      String url = EndPoints.cancelAdvertiser;
+
+      Map<String, String> param = {
+        "id_advertisement" : id.toString()
+      };
+      print(param);
+      http.Response? response = await HttpService.postApi(
+          url: url,
+          body: jsonEncode(param),
+          header: {
+            "Content-Type": "application/json",
+            "x-access-token": accesToken
+          });
+      if (response != null && response.statusCode == 200) {
+        bool? status = jsonDecode(response.body)["status"];
+        if (status == false) {
+        /*  errorToast(jsonDecode(response.body)["message"]);*/
+        } else if (status == true) {
+          flutterToast(jsonDecode(response.body)["message"]);
+          Navigator.pop(context);
+        }
+      }
+    } catch (e) {
+      print(e.toString());
+      return [];
+    }
+  }
 }

@@ -79,6 +79,8 @@ class EndPoints {
   static const myAdvertiserList = "$baseUrl/advirtisers/advertisement/my";
   static const boostAdvertisement = "$baseUrl/advirtisers/advertisement/boost";
   static const deleteAdvertiser = "$baseUrl/advirtisers/advertisement/delete";
+  static const cancelAdvertiser = "$baseUrl/advirtisers/advertisement/cancel";
+  static const viewUserAdvertiser = "$baseUrl/user/profile/view";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

@@ -8,6 +8,7 @@ import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/screens/account_Information/ad_information_api/ad_information_api.dart';
 import 'package:rainbow/screens/account_Information/ad_information_api/ad_information_model.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
@@ -57,7 +58,7 @@ class AccountInformationController extends GetxController {
     "display_name_no_e164_cc": "Canada (CA)",
     "e164_key": "1-CA-0"
   });
-
+AdHomeController adHomeController = Get.put(AdHomeController());
   Future<void> onGetData() async {
     loader.value = true;
     imageID = PrefService.getInt(PrefKeys.advertiserProfileID);
@@ -89,12 +90,14 @@ class AccountInformationController extends GetxController {
       website.text = adViewProfile.data!.compnayWebsite!;
 
       // countryModel = CountryParser.parseCountryCode("+91");
+
       update(['doctor']);
       update(['update']);
       update(['phone_filed']);
       update(['Getpic']);
       loader.value = false;
     });
+    await adHomeController.viewAdvertiserData();
   }
 
   void onCountryChange(String value) {

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/model/myAdvertiser_model.dart';
+import 'package:rainbow/model/viewAdvertiserModel.dart';
 import 'package:rainbow/screens/advertisement/ad_home/myAdvertiser_api/myAdvertiser_api.dart';
+import 'package:rainbow/screens/advertisement/ad_home/viewAdvertiserProfile_api/viewAdvertiser_api.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/utils/asset_res.dart';
 
@@ -54,6 +56,7 @@ class AdHomeController extends GetxController {
   }
 
   Future<void> init() async {
+    await viewAdvertiserData();
     loader.value = true;
   }
 
@@ -102,6 +105,33 @@ class AdHomeController extends GetxController {
       myAdvertiserListData();
       loader.value =false;
       update(['delete']);
+    }catch(e){
+      loader.value =false;
+      print(e.toString());
+    }
+  }
+  Future<void> cancelAdvertiser(id,context) async {
+    try{
+      loader.value =true;
+      await MyAdvertiserApi.cancelAdvertiser(id,context);
+      myAdvertiserListData();
+      loader.value =false;
+      update(['cancel']);
+
+    }catch(e){
+      loader.value =false;
+
+      print(e.toString());
+    }
+  }
+  ViewAdvertiserModel viewAdvertiserModel = ViewAdvertiserModel();
+  Future<void> viewAdvertiserData() async {
+    try{
+      loader.value =true;
+      viewAdvertiserModel = await ViewAdvertiserApi.viewAdvertiserData();
+      loader.value =false;
+      update(['cancel']);
+      update(["dashBoard"]);
 
     }catch(e){
       loader.value =false;

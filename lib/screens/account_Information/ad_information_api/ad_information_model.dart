@@ -76,7 +76,7 @@ class Data {
   String? city;
   String? country;
   int? idCountry;
-  int? postalCode;
+  String? postalCode;
   String? profileImage;
   String? role;
   String? status;
@@ -87,7 +87,7 @@ class Data {
   String? compnayCity;
   String? companyCountry;
   int? compnayIdCountry;
-  int? compnayPostalCode;
+  String? compnayPostalCode;
   String? compnayWebsite;
   bool? profilePhoto;
   bool? basicInfo;
