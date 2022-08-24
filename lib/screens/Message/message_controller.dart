@@ -30,6 +30,7 @@ class MessageController extends GetxController {
   String? userUid;
   String? roomId;
   String? id;
+  bool? showUserProfile =true;
   final _storage = FirebaseStorage.instance;
 
   @override
@@ -157,10 +158,11 @@ class MessageController extends GetxController {
   String imageName = "";
   var dowanloadurl;
 
-  void gotoChatScreen(String otherUid, name, image) async {
+  gotoChatScreen(String otherUid, name, image) async {
     loader.value = true;
     await getRoomId(otherUid);
     loader.value = false;
+    showUserProfile=true;
     Get.to(() => ChatScreen(
           roomId: roomId,
           name: name,
@@ -170,7 +172,7 @@ class MessageController extends GetxController {
         ));
   }
 
-  void imageSend() async {
+  imageSend() async {
     loader.value=true;
     if (image != null) {
       var snapshote = await _storage
@@ -195,26 +197,25 @@ class MessageController extends GetxController {
       "type": "image",
       "time": DateTime.now()
     });
-    setLastMsgInDoc("📷 Image");
     msController.clear();
     update(['message']);
-    image = null;
     update(['chats']);
+    image = null;
     loader.value=false;
   }
 
-  void sendMessage(String roomId, otherUid) async {
+  sendMessage(String roomId, otherUid) async {
     String msg = msController.text;
     final userUid1 = userUid;
 
     await setMessage(roomId, msg, userUid);
-    setLastMsgInDoc(msg);
 
     //setMsgCount(roomId, loginController.userUid, msg, userUid);
     update(['message']);
+    update(['chats']);
   }
 
-  Future<void> setMessage(String roomId, msg, userUid) async {
+  setMessage(String roomId, msg, userUid) async {
     await FirebaseFirestore.instance
         .collection("chats")
         .doc(roomId)
@@ -228,9 +229,10 @@ class MessageController extends GetxController {
     });
     msController.clear();
     update(['message']);
+    update(['chats']);
   }
 
-  void navigateToCamera() async {
+  navigateToCamera() async {
     String? path = await cameraPickImage1();
     if (path != null) {
       image = File(path);
@@ -238,7 +240,7 @@ class MessageController extends GetxController {
     update(['chats']);
   }
 
-  void navigateToGallery() async {
+  navigateToGallery() async {
     String? path = await gallaryPickImage1();
 
     if (path != null) {
@@ -254,6 +256,7 @@ class MessageController extends GetxController {
     if (pickedFile != null) {
       return pickedFile.path;
     }
+    update(['chats']);
 
     return null;
   }
@@ -264,22 +267,12 @@ class MessageController extends GetxController {
     if (pickedFile != null) {
       return pickedFile.path;
     }
+    update(['chats']);
     return null;
   }
 
-  void back() {
+  back() {
     image = null;
     update(['chats']);
-  }
-
-  Future<void> setLastMsgInDoc(String msg) async {
-    await FirebaseFirestore.instance
-        .collection("chats")
-        .doc(roomId)
-        .update({
-      "lastMessage": msg,
-      "lastMessageSender": userUid,
-      "lastMessageTime": DateTime.now()
-    });
   }
 }

@@ -4,10 +4,8 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/common/draggableTile_screen.dart';
 import 'package:rainbow/screens/Message/message_controller.dart';
-import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
-import 'package:rainbow/utils/pref_keys.dart';
 
 class MessageScreen extends StatelessWidget {
   MessageScreen({Key? key}) : super(key: key);
@@ -220,7 +218,6 @@ class MessageScreen extends StatelessWidget {
                               .collection('chats')
                               .where("uidList",
                                   arrayContains: controller.userUid)
-                              .orderBy("lastMessageTime", descending: true)
                               .snapshots(),
                           builder: (context, snapshot) {
                             if (snapshot.hasData == false) {
@@ -234,11 +231,9 @@ class MessageScreen extends StatelessWidget {
                                   scrollDirection: Axis.vertical,
                                   itemBuilder:
                                       (BuildContext context, int index) {
-                                    List<String> idList = (snapshot
+                                    List<dynamic> idList = snapshot
                                         .data!.docs[index]
-                                        .data()['uidList'] ?? []).map<String>((e)=>e.toString()).toList();
-                                    Map<String, dynamic> docData =
-                                        snapshot.data!.docs[index].data();
+                                        .data()['uidList'];
                                     String userId = "";
                                     for (var value in idList) {
                                       if (value != controller.userUid) {
@@ -324,7 +319,7 @@ class MessageScreen extends StatelessWidget {
                                                                           17),
                                                             ),
                                                       Text(
-                                                        "${docData['lastMessageSender'] == PrefService.getString(PrefKeys.uid) ? "You" : ""}:${docData['lastMessage']}",
+                                                        "You:ok",
                                                         style: sfProTextReguler(
                                                             fontSize: 14,
                                                             color: ColorRes
