@@ -32,8 +32,6 @@ class MessageController extends GetxController {
   String? id;
   final _storage = FirebaseStorage.instance;
 
-  var data;
-
   @override
   void onInit() {
     init();

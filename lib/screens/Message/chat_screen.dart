@@ -7,6 +7,7 @@ import 'package:image_stack/image_stack.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Message/chatView_image.dart';
 import 'package:rainbow/screens/Message/message_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -136,7 +137,7 @@ class ChatScreen extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
-                    controller.data == null
+                /*    data == null
                         ? Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -184,18 +185,18 @@ class ChatScreen extends StatelessWidget {
                               )
                             ],
                           )
-                        : const SizedBox(),
+                        : const SizedBox(),*/
                     Expanded(
                       child: PaginateFirestore(
                           scrollController: controller.listScrollController,
                           isLive: true,
                           reverse: true,
                           itemBuilder: (context, docementSnapshot, index) {
-                            controller.data =
-                                docementSnapshot[index].data() as Map?;
+                          Map<String,dynamic> data =
+                                docementSnapshot[index].data() as Map<String,dynamic>;
                             return Row(
                               mainAxisAlignment:
-                                  controller.data!['senderUid'].toString() ==
+                                 data['senderUid'].toString() ==
                                           userUid
                                       ? MainAxisAlignment.end
                                       : MainAxisAlignment.start,
@@ -204,25 +205,27 @@ class ChatScreen extends StatelessWidget {
                                 const SizedBox(
                                   width: 9,
                                 ),
-                                controller.data!['senderUid'].toString() ==
+                              data['senderUid'].toString() ==
                                         userUid
                                     ? const SizedBox()
                                     : ClipRRect(
-                                  borderRadius: BorderRadius.circular(50),
-                                      child: FadeInImage(
-                                          placeholder:  const AssetImage(
-                                              AssetRes.portrait_placeholder,),
+                                        borderRadius: BorderRadius.circular(50),
+                                        child: FadeInImage(
+                                          placeholder: const AssetImage(
+                                            AssetRes.portrait_placeholder,
+                                          ),
                                           image: NetworkImage(
                                             profileImage.toString(),
                                           ),
                                           height: 28,
-                                          width: 28,fit: BoxFit.cover,
+                                          width: 28,
+                                          fit: BoxFit.cover,
                                         ),
-                                    ),
+                                      ),
                                 const SizedBox(
                                   width: 12,
                                 ),
-                                controller.data['type'] == "text"
+                              data['type'] == "text"
                                     ? Container(
                                         margin:
                                             const EdgeInsets.only(bottom: 10),
@@ -233,14 +236,14 @@ class ChatScreen extends StatelessWidget {
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(50),
-                                          color: controller.data['senderUid']
+                                          color: data['senderUid']
                                                       .toString() ==
                                                   userUid
                                               ? Colors.white
                                               : ColorRes.color_E9D224,
                                         ),
                                         child: Text(
-                                          controller.data['content'].toString(),
+                                       data['content'].toString(),
                                           style: gilroyBoldTextStyle(
                                               fontSize: 17,
                                               color: Colors.black),
@@ -260,21 +263,29 @@ class ChatScreen extends StatelessWidget {
                                             borderRadius:
                                                 const BorderRadius.all(
                                                     Radius.circular(10)),
-                                            child: FadeInImage(
-                                              placeholder: const AssetImage(
-                                                  AssetRes
-                                                      .portrait_placeholder),
-                                              image: NetworkImage(
-                                                controller.data['image'],
+                                            child: InkWell(
+                                              onTap: () {
+                                                Get.to(
+                                                    () => ChatViewImageScreen(
+                                                          image:data['image'],
+                                                        ));
+                                              },
+                                              child: FadeInImage(
+                                                placeholder: const AssetImage(
+                                                    AssetRes
+                                                        .portrait_placeholder),
+                                                image: NetworkImage(
+                                                  data['image'],
+                                                ),
+                                                fit: BoxFit.cover,
                                               ),
-                                              fit: BoxFit.cover,
                                             ),
                                           ),
                                         )),
                                 const SizedBox(
                                   width: 5,
                                 ),
-                                controller.data!['senderUid'].toString() ==
+                              data['senderUid'].toString() ==
                                         userUid
                                     ? Container(
                                         margin: const EdgeInsets.only(top: 15),
