@@ -137,55 +137,55 @@ class ChatScreen extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
-                /*    data == null
-                        ? Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                height: 100,
-                                width: 100,
-                                decoration: const BoxDecoration(
-                                    shape: BoxShape.circle, color: Colors.grey),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Text(
-                                name.toString(),
-                                style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              const Text(
-                                "You’re connection on Rainbow",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 15),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              SizedBox(
-                                height: 50,
-                                width: 50,
-                                child: ImageStack(
-                                  imageList: [
-                                    profileImage.toString(),
-                                    profileImage.toString()
-                                  ],
-                                  totalCount: 2,
-                                  // If larger than images.length, will show extra empty circle
-                                  imageRadius: 25,
-                                  // Radius of each images
-                                  imageCount: 3,
-                                  // Maximum number of images to be shown in stack
-                                  imageBorderWidth: 1,
-                                ),
-                              )
-                            ],
-                          )
-                        : const SizedBox(),*/
+            controller.showUserProfile == true
+                ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  height: 100,
+                  width: 100,
+                  decoration: const BoxDecoration(
+                      shape: BoxShape.circle, color: Colors.grey),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  name.toString(),
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w600),
+                ),
+                const Text(
+                  "You’re connection on Rainbow",
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 15),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: ImageStack(
+                    imageList: [
+                      profileImage.toString(),
+                      profileImage.toString()
+                    ],
+                    totalCount: 2,
+                    // If larger than images.length, will show extra empty circle
+                    imageRadius: 25,
+                    // Radius of each images
+                    imageCount: 3,
+                    // Maximum number of images to be shown in stack
+                    imageBorderWidth: 1,
+                  ),
+                )
+              ],
+            )
+                : const SizedBox(),
                     Expanded(
                       child: PaginateFirestore(
                           scrollController: controller.listScrollController,
@@ -194,7 +194,8 @@ class ChatScreen extends StatelessWidget {
                           itemBuilder: (context, docementSnapshot, index) {
                           Map<String,dynamic> data =
                                 docementSnapshot[index].data() as Map<String,dynamic>;
-                            return Row(
+                          controller.showUserProfile=false;
+                          return Row(
                               mainAxisAlignment:
                                  data['senderUid'].toString() ==
                                           userUid

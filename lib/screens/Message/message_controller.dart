@@ -30,6 +30,7 @@ class MessageController extends GetxController {
   String? userUid;
   String? roomId;
   String? id;
+  bool? showUserProfile =true;
   final _storage = FirebaseStorage.instance;
 
   @override
@@ -161,6 +162,7 @@ class MessageController extends GetxController {
     loader.value = true;
     await getRoomId(otherUid);
     loader.value = false;
+    showUserProfile=true;
     Get.to(() => ChatScreen(
           roomId: roomId,
           name: name,
