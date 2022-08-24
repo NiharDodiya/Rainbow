@@ -137,68 +137,67 @@ class ChatScreen extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
-            controller.showUserProfile == true
-                ? Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  height: 100,
-                  width: 100,
-                  decoration: const BoxDecoration(
-                      shape: BoxShape.circle, color: Colors.grey),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  name.toString(),
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w600),
-                ),
-                const Text(
-                  "You’re connection on Rainbow",
-                  style: TextStyle(
-                      color: Colors.white, fontSize: 15),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  height: 50,
-                  width: 50,
-                  child: ImageStack(
-                    imageList: [
-                      profileImage.toString(),
-                      profileImage.toString()
-                    ],
-                    totalCount: 2,
-                    // If larger than images.length, will show extra empty circle
-                    imageRadius: 25,
-                    // Radius of each images
-                    imageCount: 3,
-                    // Maximum number of images to be shown in stack
-                    imageBorderWidth: 1,
-                  ),
-                )
-              ],
-            )
-                : const SizedBox(),
+                    controller.showUserProfile == true
+                        ? Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 100,
+                                width: 100,
+                                decoration: const BoxDecoration(
+                                    shape: BoxShape.circle, color: Colors.grey),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                name.toString(),
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              const Text(
+                                "You’re connection on Rainbow",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              SizedBox(
+                                height: 50,
+                                width: 50,
+                                child: ImageStack(
+                                  imageList: [
+                                    profileImage.toString(),
+                                    profileImage.toString()
+                                  ],
+                                  totalCount: 2,
+                                  // If larger than images.length, will show extra empty circle
+                                  imageRadius: 25,
+                                  // Radius of each images
+                                  imageCount: 3,
+                                  // Maximum number of images to be shown in stack
+                                  imageBorderWidth: 1,
+                                ),
+                              )
+                            ],
+                          )
+                        : const SizedBox(),
                     Expanded(
                       child: PaginateFirestore(
                           scrollController: controller.listScrollController,
                           isLive: true,
                           reverse: true,
                           itemBuilder: (context, docementSnapshot, index) {
-                          Map<String,dynamic> data =
-                                docementSnapshot[index].data() as Map<String,dynamic>;
-                          controller.showUserProfile=false;
-                          return Row(
+                            Map<String, dynamic> data = docementSnapshot[index]
+                                .data() as Map<String, dynamic>;
+                            controller.showUserProfile = false;
+                            return Row(
                               mainAxisAlignment:
-                                 data['senderUid'].toString() ==
-                                          userUid
+                                  data['senderUid'].toString() == userUid
                                       ? MainAxisAlignment.end
                                       : MainAxisAlignment.start,
                               children: [
@@ -206,8 +205,7 @@ class ChatScreen extends StatelessWidget {
                                 const SizedBox(
                                   width: 9,
                                 ),
-                              data['senderUid'].toString() ==
-                                        userUid
+                                data['senderUid'].toString() == userUid
                                     ? const SizedBox()
                                     : ClipRRect(
                                         borderRadius: BorderRadius.circular(50),
@@ -226,7 +224,7 @@ class ChatScreen extends StatelessWidget {
                                 const SizedBox(
                                   width: 12,
                                 ),
-                              data['type'] == "text"
+                                data['type'] == "text"
                                     ? Container(
                                         margin:
                                             const EdgeInsets.only(bottom: 10),
@@ -237,14 +235,13 @@ class ChatScreen extends StatelessWidget {
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(50),
-                                          color: data['senderUid']
-                                                      .toString() ==
+                                          color: data['senderUid'].toString() ==
                                                   userUid
                                               ? Colors.white
                                               : ColorRes.color_E9D224,
                                         ),
                                         child: Text(
-                                       data['content'].toString(),
+                                          data['content'].toString(),
                                           style: gilroyBoldTextStyle(
                                               fontSize: 17,
                                               color: Colors.black),
@@ -268,7 +265,7 @@ class ChatScreen extends StatelessWidget {
                                               onTap: () {
                                                 Get.to(
                                                     () => ChatViewImageScreen(
-                                                          image:data['image'],
+                                                          image: data['image'],
                                                         ));
                                               },
                                               child: FadeInImage(
@@ -286,8 +283,7 @@ class ChatScreen extends StatelessWidget {
                                 const SizedBox(
                                   width: 5,
                                 ),
-                              data['senderUid'].toString() ==
-                                        userUid
+                                data['senderUid'].toString() == userUid
                                     ? Container(
                                         margin: const EdgeInsets.only(top: 15),
                                         child: Image.asset(
