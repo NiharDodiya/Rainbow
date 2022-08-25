@@ -31,6 +31,7 @@ class MessageController extends GetxController {
   String? roomId;
   String? id;
   final _storage = FirebaseStorage.instance;
+  DateTime lastMsg = DateTime.now();
 
   @override
   void onInit() {
@@ -172,6 +173,9 @@ class MessageController extends GetxController {
 
   void imageSend() async {
     loader.value=true;
+    if (isToday(lastMsg) == false) {
+      await sendAlertMsg();
+    }
     if (image != null) {
       var snapshote = await _storage
           .ref()
@@ -206,6 +210,10 @@ class MessageController extends GetxController {
   void sendMessage(String roomId, otherUid) async {
     String msg = msController.text;
     final userUid1 = userUid;
+
+    if (isToday(lastMsg) == false) {
+      await sendAlertMsg();
+    }
 
     await setMessage(roomId, msg, userUid);
     setLastMsgInDoc(msg);
@@ -282,4 +290,19 @@ class MessageController extends GetxController {
       "lastMessageTime": DateTime.now()
     });
   }
+
+  Future<void> sendAlertMsg() async {
+    await FirebaseFirestore.instance
+        .collection("chats")
+        .doc(roomId)
+        .collection(roomId!)
+        .doc()
+        .set({
+      "content": "new Day",
+      "senderUid": userUid,
+      "type": "alert",
+      "time": DateTime.now()
+    });
+  }
+
 }
