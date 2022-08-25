@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/advertisement_controlle.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
@@ -84,7 +85,9 @@ Widget appbar() {
           ),
           const Spacer(),
           InkWell(
-            onTap: () => controller.onTapAddList(),
+            onTap: () {
+              Get.to(() => CreateAdvertisementScreen());
+            },
             child: Container(
               height: 31,
               width: 31,

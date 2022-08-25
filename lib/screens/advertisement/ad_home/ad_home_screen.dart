@@ -40,9 +40,11 @@ class AdHomeScreen extends StatelessWidget {
                     appbar(),
                     GetBuilder<AdHomeController>(
                       id: 'list',
-                      builder: (controller) => controller.listShow
-                          ? advertisementList()
-                          : noAdvertisement(),
+                      builder: (controller) {
+                        return controller.myAdvertiserModel.data!=null
+                            ? advertisementList()
+                            : noAdvertisement();
+                      }
                     ),
                   ],
                 ),

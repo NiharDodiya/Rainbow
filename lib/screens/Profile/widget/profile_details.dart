@@ -24,17 +24,17 @@ Widget profileDetails() {
       const SizedBox(
         height: 6,
       ),
-      Row(
+      controller.viewProfile.data==null?SizedBox():Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          controller.viewProfile.data!.age == 0
+          controller.viewProfile.data?.age == 0
               ? const Text("")
               : Text(
-                  controller.viewProfile.data!.age.toString(),
+                  controller.viewProfile.data?.age.toString() ?? "",
                   style: gilroyRegularTextStyle(fontSize: 14),
                 ),
-          controller.viewProfile.data!.age.toString() != "0"
+          controller.viewProfile.data?.age.toString() != "0"
               ? Container(
                   height: 4,
                   width: 4,
@@ -53,7 +53,7 @@ Widget profileDetails() {
                 : controller.viewProfile.data!.city.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
-          controller.viewProfile.data!.city.toString() != ""
+          controller.viewProfile.data?.city.toString() != ""
               ? Container(
                   height: 4,
                   width: 4,
@@ -72,7 +72,7 @@ Widget profileDetails() {
                 : controller.viewProfile.data!.height.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
-          controller.viewProfile.data!.height != ""
+          controller.viewProfile.data?.height != ""
               ? Container(
                   height: 4,
                   width: 4,
@@ -133,7 +133,7 @@ Widget profileDetails() {
       const SizedBox(
         height: 15,
       ),
-      Row(
+      controller.viewProfile.data==null?SizedBox():Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [

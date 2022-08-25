@@ -500,10 +500,11 @@ class SupportDetailsScreen extends StatelessWidget {
                   ),
                   SubmitButton(
                     onTap: () {
-                      controller.valid();
-                      controller.sendSupportApiData(controller
+
+                      controller.onTapSendMessage(controller
                           .viewSupportTicketModel.data![index].id
                           .toString());
+
                     },
                     child: Text(
                       Strings.sendMessage,

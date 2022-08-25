@@ -503,10 +503,10 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                   ),
                   SubmitButton(
                     onTap: () {
-                      controller.valid();
-                      controller.sendSupportApiData(controller
-                          .viewSupportTicketModel.data![index].id
-                          .toString());
+                      controller.onTapSendMessage(controller
+                          .viewSupportTicketModel.data![index].userDetail!.id.toString());
+
+
                     },
                     child: Text(
                       Strings.sendMessage,

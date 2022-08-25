@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/model/myAdvertiser_model.dart';
 import 'package:rainbow/model/viewAdvertiserModel.dart';
 import 'package:rainbow/screens/advertisement/ad_home/myAdvertiser_api/myAdvertiser_api.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/viewAdvertiserProfile_api/viewAdvertiser_api.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -56,13 +57,14 @@ class AdHomeController extends GetxController {
   }
 
   Future<void> init() async {
+
     await viewAdvertiserData();
-    loader.value = true;
+    await myAdvertiserListData();
   }
 
   void onTapAddList() {
-    listShow = !listShow;
-    update(['list']);
+    Get.to(() => CreateAdvertisementScreen());
+
   }
 
   void onTapMore(int index) {
@@ -89,8 +91,8 @@ class AdHomeController extends GetxController {
       loader.value =true;
       myAdvertiserModel = await MyAdvertiserApi.myAdvertiserDataList();
       moreOption = List.filled(myAdvertiserModel.data!.length, false);
-      loader.value =false;
       update(['more']);
+      loader.value =false;
 
     }catch(e){
       loader.value =false;

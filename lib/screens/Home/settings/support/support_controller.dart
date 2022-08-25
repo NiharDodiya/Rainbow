@@ -82,12 +82,18 @@ class SupportController extends GetxController {
     update(["Support"]);
   }
 
-  valid() {
+ bool valid() {
     if (yourMsgSendController.text.isEmpty) {
       errorToast(Strings.supporterror01);
+      return false;
     }
+    return true;
   }
-
+onTapSendMessage(id){
+    if(valid()){
+      sendSupportApiData(id);
+    }
+}
   ListSupportTicketModel listSupportTicketModel = ListSupportTicketModel();
 
   Future<void> getListOfUserTicket() async {
@@ -126,6 +132,7 @@ class SupportController extends GetxController {
       sendSupportModel = await SupportApi.sendSupportApi(
           id: id, description: yourMsgSendController.text, item: imgIdList);
       update(["Support"]);
+
       loader.value = false;
     } catch (e) {
       loader.value = false;
