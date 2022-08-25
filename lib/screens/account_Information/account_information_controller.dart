@@ -97,7 +97,7 @@ AdHomeController adHomeController = Get.put(AdHomeController());
       update(['Getpic']);
       loader.value = false;
     });
-    await adHomeController.viewAdvertiserData();
+
   }
 
   void onCountryChange(String value) {
@@ -366,5 +366,7 @@ AdHomeController adHomeController = Get.put(AdHomeController());
       },
     );
     loader.value = false;
+    await adHomeController.viewAdvertiserData();
+    adHomeController.update(["dashBoard"]);
   }
 }

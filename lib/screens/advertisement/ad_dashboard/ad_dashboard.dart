@@ -54,7 +54,7 @@ class AdvertisementDashBord extends StatelessWidget {
                           placeholder: const AssetImage(AssetRes.portrait_placeholder),
                           image: NetworkImage(adHomeController
                               .viewAdvertiserModel.data!.profileImage
-                              .toString()),
+                              .toString()),fit: BoxFit.cover,
                           height: Get.width * 0.1730,
                           width: Get.width * 0.1730,
                         )),

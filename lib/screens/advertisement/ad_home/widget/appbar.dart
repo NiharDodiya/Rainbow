@@ -37,7 +37,7 @@ Widget appbar() {
                           placeholder: const AssetImage(AssetRes.portrait_placeholder),
                           image: NetworkImage(controller
                               .viewAdvertiserModel.data!.profileImage
-                              .toString()),
+                              .toString()),fit: BoxFit.cover,
                           height: 34,
                           width: 34,
                         )),
