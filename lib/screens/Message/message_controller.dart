@@ -32,8 +32,6 @@ class MessageController extends GetxController {
   String? id;
   final _storage = FirebaseStorage.instance;
 
-  var data;
-
   @override
   void onInit() {
     init();
@@ -89,7 +87,7 @@ class MessageController extends GetxController {
   Future<void> getUserDetail() async {
     loader.value = true;
     UserModel? user =
-        await UserService.getUserModel(PrefService.getString(PrefKeys.uid));
+    await UserService.getUserModel(PrefService.getString(PrefKeys.uid));
 
     if (user != null) {
       GlobalData.user = user;
@@ -101,7 +99,7 @@ class MessageController extends GetxController {
 
   getChatUserId() async {
     final snapShot2 =
-        await FirebaseFirestore.instance.collection("users").doc(userUid).get();
+    await FirebaseFirestore.instance.collection("users").doc(userUid).get();
     Map<String, dynamic> daysDocs = snapShot2.data() as Map<String, dynamic>;
     id = daysDocs["id"];
   }
@@ -120,29 +118,35 @@ class MessageController extends GetxController {
     Get.back();
     update(["message"]);
   }
-
+  String getChatId(String uid1, String uid2) {
+    if (uid1.hashCode > uid2.hashCode) {
+      return uid1 + '_' + uid2;
+    } else {
+      return uid2 + '_' + uid1;
+    }
+  }
   getRoomId(String otherUid) async {
     DocumentReference doc = FirebaseFirestore.instance
         .collection("chats")
-        .doc("${userUid}_$otherUid");
+        .doc(getChatId(userUid.toString(), otherUid));
 
-    await doc.collection("${userUid}_$otherUid").get().then((value) async {
-      await doc.set({
+    await doc.collection(getChatId(userUid.toString(), otherUid)).get().then((value) async {
+      await doc.update({
         "uidList": [userUid, otherUid],
       });
       if (value.docs.isNotEmpty) {
-        roomId = "${userUid}_$otherUid";
+        roomId = getChatId(userUid.toString(), otherUid);
       } else {
         await FirebaseFirestore.instance
             .collection("chats")
-            .doc("${userUid}_$otherUid")
-            .collection("${userUid}_$otherUid")
+            .doc(getChatId(userUid.toString(), otherUid))
+            .collection(getChatId(userUid.toString(), otherUid))
             .get()
             .then((value) {
           if (value.docs.isNotEmpty) {
-            roomId = "${userUid}_$otherUid";
+            roomId = getChatId(userUid.toString(), otherUid);
           } else {
-            roomId = "${userUid}_$otherUid";
+            roomId = getChatId(userUid.toString(), otherUid);
           }
         });
       }
@@ -153,20 +157,21 @@ class MessageController extends GetxController {
   String imageName = "";
   var dowanloadurl;
 
-  gotoChatScreen(String otherUid, name, image) async {
+  void gotoChatScreen(String otherUid, name, image) async {
     loader.value = true;
     await getRoomId(otherUid);
     loader.value = false;
     Get.to(() => ChatScreen(
-          roomId: roomId,
-          name: name,
-          otherUserUid: otherUid,
-          userUid: userUid,
-          profileImage: image,
-        ));
+      roomId: roomId,
+      name: name,
+      otherUserUid: otherUid,
+      userUid: userUid,
+      profileImage: image,
+    ));
   }
 
-  imageSend() async {
+  void imageSend() async {
+    loader.value=true;
     if (image != null) {
       var snapshote = await _storage
           .ref()
@@ -190,24 +195,26 @@ class MessageController extends GetxController {
       "type": "image",
       "time": DateTime.now()
     });
+    setLastMsgInDoc("📷 Image");
     msController.clear();
     update(['message']);
-    update(['chats']);
     image = null;
+    update(['chats']);
+    loader.value=false;
   }
 
-  sendMessage(String roomId, otherUid) async {
+  void sendMessage(String roomId, otherUid) async {
     String msg = msController.text;
     final userUid1 = userUid;
 
     await setMessage(roomId, msg, userUid);
+    setLastMsgInDoc(msg);
 
     //setMsgCount(roomId, loginController.userUid, msg, userUid);
     update(['message']);
-    update(['chats']);
   }
 
-  setMessage(String roomId, msg, userUid) async {
+  Future<void> setMessage(String roomId, msg, userUid) async {
     await FirebaseFirestore.instance
         .collection("chats")
         .doc(roomId)
@@ -221,10 +228,9 @@ class MessageController extends GetxController {
     });
     msController.clear();
     update(['message']);
-    update(['chats']);
   }
 
-  navigateToCamera() async {
+  void navigateToCamera() async {
     String? path = await cameraPickImage1();
     if (path != null) {
       image = File(path);
@@ -232,7 +238,7 @@ class MessageController extends GetxController {
     update(['chats']);
   }
 
-  navigateToGallery() async {
+  void navigateToGallery() async {
     String? path = await gallaryPickImage1();
 
     if (path != null) {
@@ -244,27 +250,36 @@ class MessageController extends GetxController {
 
   Future<String?> cameraPickImage1() async {
     XFile? pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.camera);
+    await ImagePicker().pickImage(source: ImageSource.camera);
     if (pickedFile != null) {
       return pickedFile.path;
     }
-    update(['chats']);
 
     return null;
   }
 
   Future<String?> gallaryPickImage1() async {
     XFile? pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+    await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       return pickedFile.path;
     }
-    update(['chats']);
     return null;
   }
 
-  back() {
+  void back() {
     image = null;
     update(['chats']);
+  }
+
+  Future<void> setLastMsgInDoc(String msg) async {
+    await FirebaseFirestore.instance
+        .collection("chats")
+        .doc(roomId)
+        .update({
+      "lastMessage": msg,
+      "lastMessageSender": userUid,
+      "lastMessageTime": DateTime.now()
+    });
   }
 }

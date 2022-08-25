@@ -4,8 +4,10 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/common/draggableTile_screen.dart';
 import 'package:rainbow/screens/Message/message_controller.dart';
+import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 
 class MessageScreen extends StatelessWidget {
   MessageScreen({Key? key}) : super(key: key);
@@ -65,7 +67,7 @@ class MessageScreen extends StatelessWidget {
                             builder: (controller) {
                               return Container(
                                 padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
+                                const EdgeInsets.symmetric(horizontal: 20),
                                 margin: const EdgeInsets.symmetric(
                                     vertical: 20, horizontal: 10),
                                 decoration: BoxDecoration(
@@ -83,19 +85,19 @@ class MessageScreen extends StatelessWidget {
                                     ),
                                     Expanded(
                                         child: TextFormField(
-                                      controller: controller.msgController,
-                                      onChanged: (value) {
-                                        controller.update(["message"]);
-                                      },
-                                      style:
+                                          controller: controller.msgController,
+                                          onChanged: (value) {
+                                            controller.update(["message"]);
+                                          },
+                                          style:
                                           const TextStyle(color: Colors.black),
-                                      decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          hintText: "Search",
-                                          hintStyle: sfProTextReguler(
-                                              fontSize: 17,
-                                              color: ColorRes.color_8E8E93)),
-                                    ))
+                                          decoration: InputDecoration(
+                                              border: InputBorder.none,
+                                              hintText: "Search",
+                                              hintStyle: sfProTextReguler(
+                                                  fontSize: 17,
+                                                  color: ColorRes.color_8E8E93)),
+                                        ))
                                   ],
                                 ),
                               );
@@ -131,7 +133,7 @@ class MessageScreen extends StatelessWidget {
                                         .snapshots(),
                                     builder: (context, snapshot2) {
                                       Map<String, dynamic>? data =
-                                          snapshot2.data?.data();
+                                      snapshot2.data?.data();
                                       if (data == null) {
                                         return const SizedBox();
                                       }
@@ -139,61 +141,61 @@ class MessageScreen extends StatelessWidget {
                                               controller.userUid
                                           ? const SizedBox()
                                           : */
-                                          data['online'] == true
-                                              ? Column(
-                                                  children: [
-                                                    Stack(
-                                                      children: [
-                                                        Container(
-                                                          margin:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  horizontal:
-                                                                      10),
-                                                          height: 50,
-                                                          width: 50,
-                                                          decoration:
-                                                              const BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                          ),
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                const BorderRadius
-                                                                        .all(
-                                                                    Radius
-                                                                        .circular(
-                                                                            50)),
-                                                            child: FadeInImage(
-                                                              placeholder:
-                                                                  const AssetImage(
-                                                                      AssetRes
-                                                                          .portrait_placeholder),
-                                                              image: NetworkImage(
-                                                                  data['image']
-                                                                      .toString()),
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Positioned(
-                                                            top: Get.height *
-                                                                0.05,
-                                                            right: 12,
-                                                            child: Image.asset(
-                                                              AssetRes.oval,
-                                                              height: 12,
-                                                              width: 12,
-                                                            ))
-                                                      ],
+                                        data['online'] == true
+                                            ? Column(
+                                          children: [
+                                            Stack(
+                                              children: [
+                                                Container(
+                                                  margin:
+                                                  const EdgeInsets
+                                                      .symmetric(
+                                                      horizontal:
+                                                      10),
+                                                  height: 50,
+                                                  width: 50,
+                                                  decoration:
+                                                  const BoxDecoration(
+                                                    shape:
+                                                    BoxShape.circle,
+                                                  ),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                    const BorderRadius
+                                                        .all(
+                                                        Radius
+                                                            .circular(
+                                                            50)),
+                                                    child: FadeInImage(
+                                                      placeholder:
+                                                      const AssetImage(
+                                                          AssetRes
+                                                              .portrait_placeholder),
+                                                      image: NetworkImage(
+                                                          data['image']
+                                                              .toString()),
+                                                      fit: BoxFit.cover,
                                                     ),
-                                                    const SizedBox(
-                                                      height: 10,
-                                                    ),
-                                                    Text(data['name'])
-                                                  ],
-                                                )
-                                              : const SizedBox();
+                                                  ),
+                                                ),
+                                                Positioned(
+                                                    top: Get.height *
+                                                        0.05,
+                                                    right: 12,
+                                                    child: Image.asset(
+                                                      AssetRes.oval,
+                                                      height: 12,
+                                                      width: 12,
+                                                    ))
+                                              ],
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(data['name'])
+                                          ],
+                                        )
+                                            : const SizedBox();
                                     },
                                   );
                                 }),
@@ -210,288 +212,291 @@ class MessageScreen extends StatelessWidget {
               ),
               controller.msgController.text.isEmpty
                   ? GetBuilder<MessageController>(
-                      id: "message",
-                      builder: (controller) {
-                        return StreamBuilder<
-                            QuerySnapshot<Map<String, dynamic>>>(
-                          stream: FirebaseFirestore.instance
-                              .collection('chats')
-                              .where("uidList",
-                                  arrayContains: controller.userUid)
-                              .snapshots(),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData == false) {
-                              return const SizedBox();
-                            }
-                            return SizedBox(
-                              height: Get.height * 0.53,
-                              child: ListView.builder(
-                                  itemCount: snapshot.data!.docs.length,
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    List<dynamic> idList = snapshot
-                                        .data!.docs[index]
-                                        .data()['uidList'];
-                                    String userId = "";
-                                    for (var value in idList) {
-                                      if (value != controller.userUid) {
-                                        userId = value;
-                                      }
-                                    }
-                                    return StreamBuilder<
-                                        DocumentSnapshot<Map<String, dynamic>>>(
-                                      stream: FirebaseFirestore.instance
-                                          .collection('users')
-                                          .doc(userId)
-                                          .snapshots(),
-                                      builder: (context, snapshot2) {
-                                        Map<String, dynamic>? data =
-                                            snapshot2.data?.data();
-                                        if (data == null) {
-                                          return const SizedBox();
-                                        }
-                                        return DraggableTile(
-                                          child: InkWell(
-                                            onTap: () {
-                                              controller.gotoChatScreen(
-                                                  data['uid'],
-                                                  data['name'],
-                                                  data['image']);
-                                            },
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 10),
-                                              child: Row(
-                                                children: [
-                                                  const SizedBox(
-                                                    width: 5,
-                                                  ),
-                                                  Container(
-                                                    margin: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 10),
-                                                    height: 60,
-                                                    width: 60,
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                    ),
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                          const BorderRadius
-                                                                  .all(
-                                                              Radius.circular(
-                                                                  50)),
-                                                      child: FadeInImage(
-                                                        placeholder:
-                                                            const AssetImage(
-                                                                AssetRes
-                                                                    .portrait_placeholder),
-                                                        image: NetworkImage(
-                                                            data['image']
-                                                                .toString()),
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 5,
-                                                  ),
-                                                  Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      data['name']
-                                                              .toString()
-                                                              .isEmpty
-                                                          ? const SizedBox()
-                                                          : Text(
-                                                              "${data['name'].toString()}",
-                                                              style:
-                                                                  sfProTextReguler(
-                                                                      fontSize:
-                                                                          17),
-                                                            ),
-                                                      Text(
-                                                        "You:ok",
-                                                        style: sfProTextReguler(
-                                                            fontSize: 14,
-                                                            color: ColorRes
-                                                                .color_F0F0F0),
-                                                      )
-                                                    ],
-                                                  ),
-                                                  const Spacer(),
-                                                  Image.asset(
-                                                    AssetRes.read,
-                                                    height: 16,
-                                                    width: 16,
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 15,
-                                                  )
-                                                ],
+                id: "message",
+                builder: (controller) {
+                  return StreamBuilder<
+                      QuerySnapshot<Map<String, dynamic>>>(
+                    stream: FirebaseFirestore.instance
+                        .collection('chats')
+                        .where("uidList",
+                        arrayContains: controller.userUid)
+                        .orderBy("lastMessageTime", descending: true)
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData == false) {
+                        return const SizedBox();
+                      }
+                      return SizedBox(
+                        height: Get.height * 0.53,
+                        child: ListView.builder(
+                            itemCount: snapshot.data!.docs.length,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            itemBuilder:
+                                (BuildContext context, int index) {
+                              List<String> idList = (snapshot
+                                  .data!.docs[index]
+                                  .data()['uidList'] ?? []).map<String>((e)=>e.toString()).toList();
+                              Map<String, dynamic> docData =
+                              snapshot.data!.docs[index].data();
+                              String userId = "";
+                              for (var value in idList) {
+                                if (value != controller.userUid) {
+                                  userId = value;
+                                }
+                              }
+                              return StreamBuilder<
+                                  DocumentSnapshot<Map<String, dynamic>>>(
+                                stream: FirebaseFirestore.instance
+                                    .collection('users')
+                                    .doc(userId)
+                                    .snapshots(),
+                                builder: (context, snapshot2) {
+                                  Map<String, dynamic>? data =
+                                  snapshot2.data?.data();
+                                  if (data == null) {
+                                    return const SizedBox();
+                                  }
+                                  return DraggableTile(
+                                    child: InkWell(
+                                      onTap: () {
+                                        controller.gotoChatScreen(
+                                            data['uid'],
+                                            data['name'],
+                                            data['image']);
+                                      },
+                                      child: Padding(
+                                        padding:
+                                        const EdgeInsets.symmetric(
+                                            vertical: 10),
+                                        child: Row(
+                                          children: [
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Container(
+                                              margin: const EdgeInsets
+                                                  .symmetric(
+                                                  horizontal: 10),
+                                              height: 60,
+                                              width: 60,
+                                              decoration:
+                                              const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                const BorderRadius
+                                                    .all(
+                                                    Radius.circular(
+                                                        50)),
+                                                child: FadeInImage(
+                                                  placeholder:
+                                                  const AssetImage(
+                                                      AssetRes
+                                                          .portrait_placeholder),
+                                                  image: NetworkImage(
+                                                      data['image']
+                                                          .toString()),
+                                                  fit: BoxFit.cover,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  }),
-                            );
-                          },
-                        );
-                      },
-                    )
-                  : GetBuilder<MessageController>(
-                      id: "message",
-                      builder: (controller) {
-                        return StreamBuilder<
-                            QuerySnapshot<Map<String, dynamic>>>(
-                          stream: FirebaseFirestore.instance
-                              .collection('users')
-                              .snapshots(),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData == false) {
-                              return const SizedBox();
-                            }
-                            return SizedBox(
-                              height: Get.height * 0.53,
-                              child: ListView.builder(
-                                  itemCount: snapshot.data!.docs.length,
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return snapshot.data!.docs[index]['uid'] ==
-                                            controller.userUid
-                                        ? const SizedBox()
-                                        : snapshot.data!.docs[index]['email']
-                                                .trim()
-                                                .toString()
-                                                .toLowerCase()
-                                                .contains(controller
-                                                    .msgController.text
-                                                    .toString())
-                                            ? DraggableTile(
-                                                child: InkWell(
-                                                  onTap: () {
-                                                    controller.gotoChatScreen(
-                                                        snapshot.data!
-                                                            .docs[index]['uid'],
-                                                        snapshot.data!
-                                                                .docs[index]
-                                                            ['name'],
-                                                        snapshot.data!
-                                                                .docs[index]
-                                                            ['image']);
-                                                  },
-                                                  child: Padding(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        vertical: 10),
-                                                    child: Row(
-                                                      children: [
-                                                        const SizedBox(
-                                                          width: 5,
-                                                        ),
-                                                        Container(
-                                                          margin:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  horizontal:
-                                                                      10),
-                                                          height: 60,
-                                                          width: 60,
-                                                          decoration:
-                                                              const BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                          ),
-                                                          child: ClipRRect(
-                                                            borderRadius:
-                                                                const BorderRadius
-                                                                        .all(
-                                                                    Radius
-                                                                        .circular(
-                                                                            50)),
-                                                            child: FadeInImage(
-                                                              placeholder:
-                                                                  const AssetImage(
-                                                                      AssetRes
-                                                                          .portrait_placeholder),
-                                                              image: NetworkImage(
-                                                                  snapshot
-                                                                      .data!
-                                                                      .docs[
-                                                                          index]
-                                                                          [
-                                                                          'image']
-                                                                      .toString()),
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 5,
-                                                        ),
-                                                        Column(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            snapshot
-                                                                    .data!
-                                                                    .docs[index]
-                                                                        ['name']
-                                                                    .toString()
-                                                                    .isEmpty
-                                                                ? const SizedBox()
-                                                                : Text(
-                                                                    "${snapshot.data!.docs[index]['name'].toString()}",
-                                                                    style: sfProTextReguler(
-                                                                        fontSize:
-                                                                            17),
-                                                                  ),
-                                                            Text(
-                                                              "You:ok",
-                                                              style: sfProTextReguler(
-                                                                  fontSize: 14,
-                                                                  color: ColorRes
-                                                                      .color_F0F0F0),
-                                                            )
-                                                          ],
-                                                        ),
-                                                        const Spacer(),
-                                                        Image.asset(
-                                                          AssetRes.read,
-                                                          height: 16,
-                                                          width: 16,
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 15,
-                                                        )
-                                                      ],
-                                                    ),
-                                                  ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Column(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment
+                                                  .start,
+                                              children: [
+                                                data['name']
+                                                    .toString()
+                                                    .isEmpty
+                                                    ? const SizedBox()
+                                                    : Text(
+                                                  "${data['name'].toString()}",
+                                                  style:
+                                                  sfProTextReguler(
+                                                      fontSize:
+                                                      17),
                                                 ),
-                                              )
-                                            : const SizedBox();
-                                  }),
-                            );
-                          },
-                        );
-                      },
-                    ),
+                                                Text(
+                                                  "${docData['lastMessageSender'] == PrefService.getString(PrefKeys.uid) ? "You" : ""}:${docData['lastMessage']}",
+                                                  style: sfProTextReguler(
+                                                      fontSize: 14,
+                                                      color: ColorRes
+                                                          .color_F0F0F0),
+                                                )
+                                              ],
+                                            ),
+                                            const Spacer(),
+                                            Image.asset(
+                                              AssetRes.read,
+                                              height: 16,
+                                              width: 16,
+                                            ),
+                                            const SizedBox(
+                                              width: 15,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            }),
+                      );
+                    },
+                  );
+                },
+              )
+                  : GetBuilder<MessageController>(
+                id: "message",
+                builder: (controller) {
+                  return StreamBuilder<
+                      QuerySnapshot<Map<String, dynamic>>>(
+                    stream: FirebaseFirestore.instance
+                        .collection('users')
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData == false) {
+                        return const SizedBox();
+                      }
+                      return SizedBox(
+                        height: Get.height * 0.53,
+                        child: ListView.builder(
+                            itemCount: snapshot.data!.docs.length,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            itemBuilder:
+                                (BuildContext context, int index) {
+                              return snapshot.data!.docs[index]['uid'] ==
+                                  controller.userUid
+                                  ? const SizedBox()
+                                  : snapshot.data!.docs[index]['email']
+                                  .trim()
+                                  .toString()
+                                  .toLowerCase()
+                                  .contains(controller
+                                  .msgController.text
+                                  .toString())
+                                  ? DraggableTile(
+                                child: InkWell(
+                                  onTap: () {
+                                    controller.gotoChatScreen(
+                                        snapshot.data!
+                                            .docs[index]['uid'],
+                                        snapshot.data!
+                                            .docs[index]
+                                        ['name'],
+                                        snapshot.data!
+                                            .docs[index]
+                                        ['image']);
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets
+                                        .symmetric(
+                                        vertical: 10),
+                                    child: Row(
+                                      children: [
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        Container(
+                                          margin:
+                                          const EdgeInsets
+                                              .symmetric(
+                                              horizontal:
+                                              10),
+                                          height: 60,
+                                          width: 60,
+                                          decoration:
+                                          const BoxDecoration(
+                                            shape:
+                                            BoxShape.circle,
+                                          ),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                            const BorderRadius
+                                                .all(
+                                                Radius
+                                                    .circular(
+                                                    50)),
+                                            child: FadeInImage(
+                                              placeholder:
+                                              const AssetImage(
+                                                  AssetRes
+                                                      .portrait_placeholder),
+                                              image: NetworkImage(
+                                                  snapshot
+                                                      .data!
+                                                      .docs[
+                                                  index]
+                                                  [
+                                                  'image']
+                                                      .toString()),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        Column(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment
+                                              .start,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment
+                                              .start,
+                                          children: [
+                                            snapshot
+                                                .data!
+                                                .docs[index]
+                                            ['name']
+                                                .toString()
+                                                .isEmpty
+                                                ? const SizedBox()
+                                                : Text(
+                                              "${snapshot.data!.docs[index]['name'].toString()}",
+                                              style: sfProTextReguler(
+                                                  fontSize:
+                                                  17),
+                                            ),
+                                            Text(
+                                              "You:ok",
+                                              style: sfProTextReguler(
+                                                  fontSize: 14,
+                                                  color: ColorRes
+                                                      .color_F0F0F0),
+                                            )
+                                          ],
+                                        ),
+                                        const Spacer(),
+                                        Image.asset(
+                                          AssetRes.read,
+                                          height: 16,
+                                          width: 16,
+                                        ),
+                                        const SizedBox(
+                                          width: 15,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              )
+                                  : const SizedBox();
+                            }),
+                      );
+                    },
+                  );
+                },
+              ),
             ],
           ),
         );

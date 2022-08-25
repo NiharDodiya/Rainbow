@@ -674,10 +674,10 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
             Container(
               width: Get.width,
               height: 202,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   image: /*createAdvertisementController.imagePath == null
                   ? */
-                      const DecorationImage(
+                      DecorationImage(
                           image: AssetImage(
                             AssetRes.adsdetail,
                           ),

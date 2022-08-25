@@ -42,6 +42,7 @@ class ProfileController extends GetxController {
   }
 
   Future<void> init() async {
+    count = 1;
     loader.value = true;
   }
 
@@ -92,7 +93,11 @@ class ProfileController extends GetxController {
   Widget viewTestimonials() {
     List? testimonialsData = [];
     testimonialsData.add(viewProfile.data!.testimonialsList![(2 * count) - 2]);
-    testimonialsData.add(viewProfile.data!.testimonialsList![(2 * count) - 1]);
+
+    if(viewProfile.data!.testimonialsList!.length >= (count*2)){
+      testimonialsData
+          .add(viewProfile.data!.testimonialsList![(2 * count) - 1]);
+    }
 /*    if((viewProfile.data!.testimonialsList!.length % 2) == 0){
       testimonialsData
           .add(viewProfile.data!.testimonialsList![(2 * count) - 2]);

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/model/myAdvertiser_model.dart';
+import 'package:rainbow/model/viewAdvertiserModel.dart';
+import 'package:rainbow/screens/advertisement/ad_home/myAdvertiser_api/myAdvertiser_api.dart';
+import 'package:rainbow/screens/advertisement/ad_home/viewAdvertiserProfile_api/viewAdvertiser_api.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/utils/asset_res.dart';
 
@@ -10,6 +14,7 @@ class AdHomeController extends GetxController {
   RxBool loader = false.obs;
   String? selectedItem;
   bool listShow = false;
+  MyAdvertiserModel myAdvertiserModel = MyAdvertiserModel();
   List<String> months = [
     'January',
     'February',
@@ -41,7 +46,8 @@ class AdHomeController extends GetxController {
     "Licensed Mid - Wife",
     "Breast Milk Donor",
   ];
-  List<bool> moreOption = List.generate(6, (index) => false);
+  List<bool> moreOption = [];
+
 
   @override
   void onInit() {
@@ -50,6 +56,7 @@ class AdHomeController extends GetxController {
   }
 
   Future<void> init() async {
+    await viewAdvertiserData();
     loader.value = true;
   }
 
@@ -59,8 +66,11 @@ class AdHomeController extends GetxController {
   }
 
   void onTapMore(int index) {
-    moreOption = List.generate(6, (index) => false);
-    moreOption[index] = true;
+    if(moreOption[index]==false){
+      moreOption[index] = true;
+    }else{
+      moreOption[index] = false;
+    }
     update(['more']);
   }
 
@@ -69,7 +79,64 @@ class AdHomeController extends GetxController {
   }
 
   void onCloseMenu() {
-    moreOption = List.generate(6, (index) => false);
+    moreOption =  List.filled(myAdvertiserModel.data!.length, false);
     update(['more']);
+  }
+
+
+  Future<void> myAdvertiserListData() async {
+    try{
+      loader.value =true;
+      myAdvertiserModel = await MyAdvertiserApi.myAdvertiserDataList();
+      moreOption = List.filled(myAdvertiserModel.data!.length, false);
+      loader.value =false;
+      update(['more']);
+
+    }catch(e){
+      loader.value =false;
+
+      print(e.toString());
+    }
+  }
+  Future<void> deleteAdvertiser(id,context) async {
+    try{
+      loader.value =true;
+      await MyAdvertiserApi.deleteAdvertiser(id,context);
+      myAdvertiserListData();
+      loader.value =false;
+      update(['delete']);
+    }catch(e){
+      loader.value =false;
+      print(e.toString());
+    }
+  }
+  Future<void> cancelAdvertiser(id,context) async {
+    try{
+      loader.value =true;
+      await MyAdvertiserApi.cancelAdvertiser(id,context);
+      myAdvertiserListData();
+      loader.value =false;
+      update(['cancel']);
+
+    }catch(e){
+      loader.value =false;
+
+      print(e.toString());
+    }
+  }
+  ViewAdvertiserModel viewAdvertiserModel = ViewAdvertiserModel();
+  Future<void> viewAdvertiserData() async {
+    try{
+      loader.value =true;
+      viewAdvertiserModel = await ViewAdvertiserApi.viewAdvertiserData();
+      loader.value =false;
+      update(['cancel']);
+      update(["dashBoard"]);
+
+    }catch(e){
+      loader.value =false;
+
+      print(e.toString());
+    }
   }
 }

@@ -13,10 +13,9 @@ class EndPoints {
   static const idVerification = "$baseUrl/user/idverification";
   static const selfieVerification = "$baseUrl/user/selfiverification";
   static const verifyCode = "$baseUrl/user/verifycode";
-  static const advirtisersRegister = "$baseUrl/advirtisers/register";
+
   static const createPassword = "$baseUrl/user/createpassword";
-  static const createPasswordForAdvertiser =
-      "$baseUrl/advirtisers/changepassword";
+
   static const mobileCheck = "$baseUrl/user/mobilecheck";
   static const countryList = "$baseUrl/admin/country/list";
   static const nationalitiesList = "$baseUrl/admin/nationalities/list";
@@ -61,8 +60,7 @@ class EndPoints {
   static const commentPostList = "$baseUrl/user/post/comment/list";
   static const listUserProfile = "$baseUrl/user/userprofile/list";
   static const testimonial = "$baseUrl/user/testimonial/add";
-  static const createAdvertisement =
-      "$baseUrl/advirtisers/advertisement/create";
+
   static const supportListTicket = "$baseUrl/user/support/tickit/list";
   static const viewSupportTicket = "$baseUrl/user/support/message/view";
   static const sendSupport = "$baseUrl/user/support/send";
@@ -73,7 +71,16 @@ class EndPoints {
   static const notificationRead = "$baseUrl/user/notification/read";
 
   ///____________________________________________ advertisement_________________
+  static const createAdvertisement =
+      "$baseUrl/advirtisers/advertisement/create";
+  static const advirtisersRegister = "$baseUrl/advirtisers/register";
+  static const createPasswordForAdvertiser =
+      "$baseUrl/advirtisers/changepassword";
+  static const myAdvertiserList = "$baseUrl/advirtisers/advertisement/my";
   static const boostAdvertisement = "$baseUrl/advirtisers/advertisement/boost";
+  static const deleteAdvertiser = "$baseUrl/advirtisers/advertisement/delete";
+  static const cancelAdvertiser = "$baseUrl/advirtisers/advertisement/cancel";
+  static const viewUserAdvertiser = "$baseUrl/user/profile/view";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/utils/strings.dart';
 
 import '../../../../common/Widget/text_styles.dart';
@@ -8,7 +9,8 @@ import '../../../../utils/asset_res.dart';
 import '../../../../utils/color_res.dart';
 
 class CancelApprove extends StatelessWidget {
-  const CancelApprove({Key? key}) : super(key: key);
+  String? idAdvertiser;
+   CancelApprove({Key? key,this.idAdvertiser}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -68,11 +70,16 @@ class CancelApprove extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              SubmitButton(
-                  child: Text(
-                Strings.confirm,
-                style: gilroyBoldTextStyle(fontSize: 16, color: ColorRes.black),
-              )),
+              GetBuilder<AdHomeController>(id: "cancel",builder: (controller) {
+                return  SubmitButton(onTap: () {
+                     controller.cancelAdvertiser(idAdvertiser, context);
+                },
+                    child: Text(
+                      Strings.confirm,
+                      style: gilroyBoldTextStyle(fontSize: 16, color: ColorRes.black),
+                    ));
+              },
+              ),
               SizedBox(height: Get.height * 0.04926)
             ],
           ),

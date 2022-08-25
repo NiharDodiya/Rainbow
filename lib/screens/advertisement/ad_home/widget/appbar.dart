@@ -21,7 +21,28 @@ Widget appbar() {
             onTap: () {
               advertisementController.key.currentState!.openDrawer();
             },
-            child: Container(
+            child: Padding(
+              padding: const EdgeInsets.only(right: 9),
+              child: controller.viewAdvertiserModel.data==null? SizedBox():ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: controller.viewAdvertiserModel.data!.profileImage
+                          .toString()
+                          .isEmpty
+                      ? Image.asset(
+                          AssetRes.portrait_placeholder,
+                          height: 34,
+                          width: 34,
+                        )
+                      : FadeInImage(
+                          placeholder: const AssetImage(AssetRes.portrait_placeholder),
+                          image: NetworkImage(controller
+                              .viewAdvertiserModel.data!.profileImage
+                              .toString()),fit: BoxFit.cover,
+                          height: 34,
+                          width: 34,
+                        )),
+            ),
+            /*   Container(
               height: 34,
               width: 34,
               margin: const EdgeInsets.only(right: 9),
@@ -33,7 +54,7 @@ Widget appbar() {
                   ),
                 ),
               ),
-            ),
+            ),*/
           ),
           Image.asset(
             AssetRes.handIcon,
@@ -56,7 +77,7 @@ Widget appbar() {
                 height: 3,
               ),
               Text(
-                "Hello Raymond",
+                "Hello ${controller.viewAdvertiserModel.data?.fullName ?? ""}",
                 style: gilroyBoldTextStyle(fontSize: 20),
               ),
             ],
