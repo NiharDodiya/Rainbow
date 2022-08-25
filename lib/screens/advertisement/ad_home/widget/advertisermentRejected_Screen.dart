@@ -12,22 +12,22 @@ class AdvertisermentRejectedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
+      body: Container(
 
-          width: Get.width,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                ColorRes.color_50369C,
-                ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
-                ColorRes.color_D18EEE,
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
+        width: Get.width,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              ColorRes.color_50369C,
+              ColorRes.color_50369C,
+              ColorRes.color_D18EEE,
+              ColorRes.color_D18EEE,
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
+        ),
+        child: SingleChildScrollView(
           child: Column(
             children: [
               textDetails(),
@@ -37,7 +37,10 @@ class AdvertisermentRejectedScreen extends StatelessWidget {
               SizedBox(
                 height: Get.height * 0.02,
               ),
-              backToHome()
+              backToHome(),
+              SizedBox(
+                height: Get.height * 0.1,
+              ),
             ],
           ),
         ),
