@@ -26,7 +26,6 @@ class AdSupportController extends GetxController {
   UploadImage uploadImage = UploadImage();
   bool clickFirstTime = false;
 
-
   @override
   void onInit() {
     init();
@@ -81,15 +80,23 @@ class AdSupportController extends GetxController {
   onTap({String? status, String? id, String? code}) async {
     await viewSupportTicketData(id.toString());
     Get.to(() => SupportDetailsScreen(
-      com: status,
-      code: code,
-    ));
+          com: status,
+          code: code,
+        ));
     update(["Support"]);
   }
 
-  valid() {
+  bool valid() {
     if (yourMsgSendController.text.isEmpty) {
       errorToast(Strings.supporterror01);
+      return false;
+    }
+    return true;
+  }
+
+  onTapSendMessage(String id) {
+    if (valid()) {
+  /*    sendSupportApiData(id);*/
     }
   }
 

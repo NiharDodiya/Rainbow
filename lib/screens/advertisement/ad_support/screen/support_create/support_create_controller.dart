@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/screens/Home/settings/support/api/creat_support_api.dart';
+import 'package:rainbow/screens/Home/settings/support/support_controller.dart';
 import 'package:rainbow/utils/strings.dart';
 
 import '../../../../../common/popup.dart';
@@ -67,8 +68,7 @@ class SupportCreateController extends GetxController {
   Future<void> supportApi() async {
     loader.value = true;
     await uploadImageData();
-
-    int res = await SupportAPI.supportAPI.postSupportAPI(data: {
+    await SupportAPI.supportAPI.postSupportAPI(data: {
       'title': subjectController.text,
       'description': yourMsgController.text,
       'id_item': imgIdList,
@@ -77,16 +77,24 @@ class SupportCreateController extends GetxController {
     loader.value = false;
   }
 
-  valid() {
+  bool valid() {
     if (subjectController.text.isEmpty) {
       errorToast(Strings.supportError02);
-    } else if (subjectController.text.isEmpty) {
-      errorToast(Strings.supporterror01);
+      return false;
+    } else if (yourMsgController.text.isEmpty) {
+      errorToast("Your message is required");
+      return false;
     }
+    return true;
   }
 
+SupportController supportController=Get.put(SupportController());
   void onSendMsgTap() async {
-    valid();
-    await supportApi();
+   if(valid()){
+     await supportApi();
+     await supportController.getListOfUserTicket();
+
+   }
+
   }
 }

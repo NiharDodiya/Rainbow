@@ -63,9 +63,9 @@ class MyApp extends StatelessWidget {
                   ? TermsConditionsScreen(showBackBtn: false)
                   : PrefService.getString(PrefKeys.loginRole) == "end_user"
                       ? const Dashboard()
-                      : PrefService.getString(PrefKeys.loginRole) == ""
-                          ? AuthDashboard()
-                          : AdvertisementDashBord()
+                      : PrefService.getString(PrefKeys.loginRole) == "advertisers"
+                          ?AdvertisementDashBord()
+                          :PrefService.getBool(PrefKeys.isLogin)==true? const Dashboard():AuthDashboard()
               : AuthDashboard(),
     );
   }

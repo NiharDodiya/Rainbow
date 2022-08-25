@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -11,6 +12,8 @@ import 'package:rainbow/screens/auth/register/register_controller.dart';
 import 'package:rainbow/screens/auth/register/register_screen.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/register_adviser.dart';
+import 'package:rainbow/service/pref_services.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 import '../login/login_screen.dart';
@@ -51,7 +54,7 @@ class AuthDashBordController extends GetxController {
       debugPrint(e.toString());
     }
   }
-
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   Future signWithGoogle() async {
     loading.value = true;
     if (await googleSignIn.isSignedIn()) {
@@ -78,16 +81,69 @@ class AuthDashBordController extends GetxController {
     // GoogleIdVerification.postRegister(user.uid).then((value) {print(value);});
     try {
       await GoogleIdVerification.postRegister(user.uid, user: user)
-          .then((value) {
+          .then((value) async {
         print(value);
+
+        await firebaseFirestore
+            .collection("users")
+            .doc(user.uid)
+            .get()
+            .then((value) async {
+          if (value.exists) {
+            await firebaseFirestore.collection("users").doc(user.uid).set({
+              "email": user.email,
+              "uid": user.uid,
+              "name": user.displayName,
+              "image": user.photoURL,
+              "online": true
+            });
+            await PrefService.setValue(PrefKeys.uid,user.uid);
+            setCount();
+          } else {
+            DocumentSnapshot<Map<String, dynamic>> documentReference = await firebaseFirestore
+                .collection("users")
+                .doc(user.uid).get();
+            if(documentReference.exists==false){
+              await firebaseFirestore
+                  .collection("users")
+                  .doc(user.uid)
+                  .set({"online": true});
+            }else
+              {
+                await firebaseFirestore
+                    .collection("users")
+                    .doc(user.uid)
+                    .update({"online": true});
+              }
+            setCount();
+          }
+        });
       });
     } catch (e) {
       errorToast(e.toString());
       debugPrint(e.toString());
       loading.value == false;
     }
+    loading.value == false;
+
 
     flutterToast(Strings.googleSignInSuccess);
+  }
+  setCount() async {
+    int? count;
+    await FirebaseFirestore.instance
+        .collection("onlineCount")
+        .doc("onlineCount")
+        .get()
+        .then((value) {
+      if (value.exists) {
+        count = value.data()!['count'];
+      } else {}
+    });
+    await FirebaseFirestore.instance
+        .collection("onlineCount")
+        .doc("onlineCount")
+        .update({"count": count! + 1});
   }
 
   void onSignInTap() {
@@ -135,4 +191,5 @@ class AuthDashBordController extends GetxController {
   void onSignUpTap() {
     Get.to(() => AdviserRegisterScreen());
   }
+
 }

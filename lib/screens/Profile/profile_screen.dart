@@ -227,7 +227,7 @@ class ProfileScreen extends StatelessWidget {
   Widget testimonial(ProfileController controller) {
     return Padding(
       padding: const EdgeInsets.only(left: 30, right: 30),
-      child: SizedBox(
+      child:  controller.viewProfile.data==null?SizedBox(): SizedBox(
         // height: 435,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

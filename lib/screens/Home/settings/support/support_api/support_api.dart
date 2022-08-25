@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/ListSupportTicketModel.dart';
@@ -101,6 +102,7 @@ class SupportApi {
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           flutterToast(jsonDecode(response.body)["message"]);
+          Get.back();
         }
         return sendSupportModelFromJson(response.body);
       }

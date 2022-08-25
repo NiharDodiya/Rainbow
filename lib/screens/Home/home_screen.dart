@@ -389,7 +389,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onTap: controller.onNewStoryTap,
                                 child: Stack(
                                   children: [
-                                    ClipRRect(
+                                    controller
+                                        .controller
+                                        .viewProfile
+                                        .data==null?SizedBox():ClipRRect(
                                         borderRadius: BorderRadius.circular(50),
                                         child: FadeInImage(
                                           height: 56,
