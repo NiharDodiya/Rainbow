@@ -106,18 +106,20 @@ class SetupDateController extends GetxController {
   }
 
   Future<void> boostAdvertisementApi() async {
-    loader.value = true;
+
     try {
+      loader.value = true;
       await BoostAdvertisementApi.boostAdvertisement(
           startDate: startTime.toString(),
           endDate: endtime.toString(),
           amount: amountController.text,
           currency: currency,
       );
+      loader.value = false;
       print("=========Amount: ${amountController.text}");
 
       update(["advertiser"]);
-      loader.value = false;
+
     } catch (e) {
       print('==========error: ${e.toString()}');
       loader.value = true;

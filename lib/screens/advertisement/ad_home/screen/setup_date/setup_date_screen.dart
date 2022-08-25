@@ -5,10 +5,10 @@ import 'package:flutter_multi_formatter/formatters/money_input_formatter.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_failed.dart/payment_failed_screen.dart';
-import 'package:rainbow/screens/advertisement/ad_home/screen/payment_successful/payment_successful_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_controller.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../../../../../common/Widget/loaders.dart';
 import '../../../../../common/Widget/text_styles.dart';
 import '../../../../../utils/asset_res.dart';
 import '../../../../../utils/color_res.dart';
@@ -460,7 +460,7 @@ class ShowBottomNext extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SetupDateController setupDateController = Get.put(SetupDateController());
-    return Stack(
+    return Obx(() => Stack(
       children: [
         DraggableScrollableSheet(
           initialChildSize: 0.99,
@@ -595,7 +595,7 @@ class ShowBottomNext extends StatelessWidget {
                     SubmitButton(
                       onTap: () {
                         setupDateController.boostAdvertisementApi();
-                        Get.to(() => const PaymentSuccessfulScreen());
+
                       },
                       child: Text(
                         "Pat ${setupDateController.amountController.text}",
@@ -630,12 +630,10 @@ class ShowBottomNext extends StatelessWidget {
             ),
           ),
         ),
-        setupDateController.loader.value == true
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : SizedBox(),
+        setupDateController.loader.isTrue
+            ? const FullScreenLoader()
+            : const SizedBox(),
       ],
-    );
+    ),);
   }
 }

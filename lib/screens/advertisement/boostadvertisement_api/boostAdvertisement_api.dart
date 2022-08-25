@@ -1,11 +1,15 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/payment_failed.dart/payment_failed_screen.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
 import 'package:rainbow/utils/pref_keys.dart';
+
+import '../ad_home/screen/payment_successful/payment_successful_screen.dart';
 
 class BoostAdvertisementApi {
   static Future boostAdvertisement({
@@ -43,8 +47,10 @@ class BoostAdvertisementApi {
         print('========== ${response.statusCode}');
         print("======== Id: $userId");
         if (status == false) {
+          Get.to(() => const PaymentFailedScreen());
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
+          Get.to(() => const PaymentSuccessfulScreen());
           flutterToast(jsonDecode(response.body)["message"]);
         }
       }
