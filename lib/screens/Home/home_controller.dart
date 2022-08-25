@@ -32,6 +32,8 @@ import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalite
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/screens/notification/notification_screen.dart';
+import 'package:rainbow/service/pref_services.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 import 'package:uni_links/uni_links.dart';
 
 class HomeController extends GetxController {
