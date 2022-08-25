@@ -54,7 +54,6 @@ class CreateAdvertisementScreen extends StatelessWidget {
                         SubmitButton(
                           onTap: () {
                             advertisementController.createAdvertisement();
-                            // Get.to(()=> const SupportcreateScreen());
                           },
                           child: Text(
                             "Create Advertisement",
