@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/screens/Message/chatView_image.dart';
 import 'package:rainbow/screens/Message/message_controller.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
@@ -211,14 +212,18 @@ class ChatScreen extends StatelessWidget {
                         if (data == null) {
                           return const SizedBox();
                         }
-                        Widget box = Column(
+                        if (index == 0) {
+                          controller.lastMsg = data['time'].toDate();
+                        }
+
+                        Widget box = data['type'] == "alert" ? alertBox(data['time'].toDate()) : Column(
                           children: [
                             SizedBox(
                               width: Get.width,
                               height: 35,
                               child: Center(
                                 child: Text(
-                                  DateFormat("dd:mm").format(
+                                  DateFormat("hh:mm").format(
                                     data['time'].toDate(),
                                   ),
                                   style:
@@ -554,6 +559,26 @@ class ChatScreen extends StatelessWidget {
         ],
       );
     });
+  }
+
+  Widget alertBox(DateTime time) {
+    return Center(
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(15, 5, 15, 7),
+        margin: const EdgeInsets.only(bottom: 10,top: 15),
+        decoration: BoxDecoration(
+          color: ColorRes.color_2F80ED.withOpacity(0.5),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Text(
+          getAlertString(time),
+          style: textStyleFont12.copyWith(
+            color: ColorRes.bgColor1.withOpacity(0.78),
+            fontSize: 10,
+          ),
+        ),
+      ),
+    );
   }
 }
 
