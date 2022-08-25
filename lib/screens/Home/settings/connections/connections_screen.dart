@@ -39,7 +39,7 @@ class ConnectionsScreen extends StatelessWidget {
                 child: Stack(
                   children: [
                     SingleChildScrollView(
-                      child: Column(
+                      child: Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           listOfRequest(),
                           listOfSuggestions(),
@@ -116,7 +116,7 @@ class ConnectionsScreen extends StatelessWidget {
       id: "connection",
       builder: (control) => Column(
         children: [
-          ListView.builder(
+          controller.requestUsers.isEmpty?Text("No FriendRequest"):  ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: controller.requestUsers.length,
@@ -142,8 +142,8 @@ class ConnectionsScreen extends StatelessWidget {
   Widget listOfSuggestions() {
     return GetBuilder<ConnectionsController>(
       id: "connection",
-      builder: (control) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      builder: (control) => Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.start,
+
         children: [
           Padding(
             padding: EdgeInsets.only(
@@ -153,7 +153,7 @@ class ConnectionsScreen extends StatelessWidget {
               style: textStyleFont20W700,
             ),
           ),
-          ListView.builder(
+          controller.suggestionConnection.isEmpty?const Text("No Suggested Connection"): ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: controller.suggestionConnection.length,

@@ -7,13 +7,15 @@ import 'package:rainbow/screens/Home/settings/notificationOnOff_api/notification
 import 'package:rainbow/screens/Home/settings/privacy/privacy_controller.dart';
 import 'package:rainbow/screens/Home/settings/privacy/privacy_screen.dart';
 import 'package:rainbow/screens/Home/settings/support/support_screen.dart';
+import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
+import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
 class SettingsController extends GetxController {
   RxBool loader = false.obs;
   LogOutModel logOutModel = LogOutModel();
-
+ProfileController profileController = Get.put(ProfileController());
   @override
   void onInit() {
     super.onInit();

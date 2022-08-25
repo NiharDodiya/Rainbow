@@ -29,6 +29,7 @@ class _RegisterOtpScreenState extends State<RegisterOtpScreen> {
   @override
   Widget build(BuildContext context) {
     RegisterController registerController = Get.put(RegisterController());
+    controller.getPhoneNumber();
     return Scaffold(
       backgroundColor: Colors.white,
       body: Obx(
@@ -83,14 +84,14 @@ class _RegisterOtpScreenState extends State<RegisterOtpScreen> {
                                   height: Get.height * 0.009,
                                 ),
                                 GetBuilder<RegisterController>(
-                                  builder: (controller) {
+                                  builder: (controller1) {
                                     return Padding(
                                         padding:
                                             const EdgeInsets.only(left: 15),
                                         child: Row(
                                           children: [
                                             Text(
-                                              "${Strings.codeSent}${controller.phoneController.text.toString()}",
+                                              "${Strings.codeSent}${controller.showPhoneNumber.toString().isEmpty?controller.phoneNumber.toString():controller.showPhoneNumber.toString()}",
                                               style: TextStyle(
                                                   color: ColorRes.white
                                                       .withOpacity(0.5),

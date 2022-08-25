@@ -153,8 +153,14 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
                 // placeholder: (context, url) => const Center(child:  CircularProgressIndicator(),),
-                errorWidget: (context, url, error) =>
-                    Image.asset(AssetRes.se_profile),
+                errorWidget: (context, url, error) => Container(
+                    decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: AssetImage(AssetRes.portrait_placeholder),
+
+                  ),
+                )),
               ),
             ),
           ),
@@ -227,115 +233,118 @@ class ProfileScreen extends StatelessWidget {
   Widget testimonial(ProfileController controller) {
     return Padding(
       padding: const EdgeInsets.only(left: 30, right: 30),
-      child:  controller.viewProfile.data==null?SizedBox(): SizedBox(
-        // height: 435,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              children: [
-                Text(
-                  Strings.testimonials,
-                  style: beVietnamProBoldTextStyle(fontSize: 18),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            controller.viewProfile.data!.testimonialsList!.isEmpty
-                ? Center(
-                    child: Text(
-                      Strings.noTestimonials,
-                      style: beVietnamProBoldTextStyle(
-                          color: ColorRes.white.withOpacity(0.70),
-                          fontSize: 16),
-                    ),
-                  )
-                : controller.viewTestimonials(),
-            controller.viewProfile.data!.testimonialsList!.isEmpty
-                ? const SizedBox()
-                : Column(
+      child: controller.viewProfile.data == null
+          ? const SizedBox()
+          : SizedBox(
+              // height: 435,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
                     children: [
-                      Divider(
-                        height: 25,
-                        color: ColorRes.white.withOpacity(0.7),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          controller.count == 1
-                              ? const SizedBox(width: 20)
-                              : InkWell(
-                                  onTap: () {
-                                    controller.count--;
-                                    controller.update(["profile"]);
-                                  },
-                                  child: Container(
-                                    height: 20,
-                                    width: 20,
-                                    margin: const EdgeInsets.only(
-                                      left: 10,
-                                      right: 10,
-                                      bottom: 10,
-                                      top: 5,
-                                    ),
-                                    child: Image.asset(
-                                      AssetRes.leftIcon,
-                                      height: 20,
-                                      width: 20,
-                                    ),
-                                  ),
-                                ),
-                          Container(
-                            height: 20,
-                            width: 30,
-                            margin: const EdgeInsets.only(bottom: 10, top: 5),
-                            alignment: Alignment.center,
-                            child: Text(
-                              controller.count.toString(),
-                              style: gilroyMediumTextStyle(fontSize: 14),
-                            ),
-                          ),
-                          controller.count ==
-                                  (controller.viewProfile.data!
-                                              .testimonialsList!.length /
-                                          2)
-                                      .ceil()
-                              ? const SizedBox(width: 40)
-                              : InkWell(
-                                  onTap: () {
-                                    controller.count++;
-                                    controller.update(["profile"]);
-                                  },
-                                  child: Container(
-                                    height: 20,
-                                    width: 20,
-                                    margin: const EdgeInsets.only(
-                                      left: 10,
-                                      right: 10,
-                                      bottom: 10,
-                                      top: 5,
-                                    ),
-                                    child: Image.asset(
-                                      AssetRes.rightIcon,
-                                      height: 20,
-                                      width: 20,
-                                    ),
-                                  ),
-                                )
-                        ],
+                      Text(
+                        Strings.testimonials,
+                        style: beVietnamProBoldTextStyle(fontSize: 18),
                       ),
                     ],
-                  )
-          ],
-        ),
-      ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  controller.viewProfile.data!.testimonialsList!.isEmpty
+                      ? Center(
+                          child: Text(
+                          "-",
+                            style: beVietnamProBoldTextStyle(
+                                color: ColorRes.white.withOpacity(0.70),
+                                fontSize: 16),
+                          ),
+                        )
+                      : controller.viewTestimonials(),
+                  controller.viewProfile.data!.testimonialsList!.isEmpty
+                      ? const SizedBox()
+                      : Column(
+                          children: [
+                            Divider(
+                              height: 25,
+                              color: ColorRes.white.withOpacity(0.7),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                controller.count == 1
+                                    ? const SizedBox(width: 20)
+                                    : InkWell(
+                                        onTap: () {
+                                          controller.count--;
+                                          controller.update(["profile"]);
+                                        },
+                                        child: Container(
+                                          height: 20,
+                                          width: 20,
+                                          margin: const EdgeInsets.only(
+                                            left: 10,
+                                            right: 10,
+                                            bottom: 10,
+                                            top: 5,
+                                          ),
+                                          child: Image.asset(
+                                            AssetRes.leftIcon,
+                                            height: 20,
+                                            width: 20,
+                                          ),
+                                        ),
+                                      ),
+                                Container(
+                                  height: 20,
+                                  width: 30,
+                                  margin:
+                                      const EdgeInsets.only(bottom: 10, top: 5),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    controller.count.toString(),
+                                    style: gilroyMediumTextStyle(fontSize: 14),
+                                  ),
+                                ),
+                                controller.count ==
+                                        (controller.viewProfile.data!
+                                                    .testimonialsList!.length /
+                                                2)
+                                            .ceil()
+                                    ? const SizedBox(width: 40)
+                                    : InkWell(
+                                        onTap: () {
+                                          controller.count++;
+                                          controller.update(["profile"]);
+                                        },
+                                        child: Container(
+                                          height: 20,
+                                          width: 20,
+                                          margin: const EdgeInsets.only(
+                                            left: 10,
+                                            right: 10,
+                                            bottom: 10,
+                                            top: 5,
+                                          ),
+                                          child: Image.asset(
+                                            AssetRes.rightIcon,
+                                            height: 20,
+                                            width: 20,
+                                          ),
+                                        ),
+                                      )
+                              ],
+                            ),
+                          ],
+                        )
+                ],
+              ),
+            ),
     );
   }
 }

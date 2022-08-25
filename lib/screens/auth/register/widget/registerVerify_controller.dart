@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
+import 'package:rainbow/screens/auth/login/login_controller.dart';
 import 'package:rainbow/screens/auth/phonenumber/phonenumber_api/phonenumber_api.dart';
 import 'package:rainbow/screens/auth/verify_phone/verifyPhone_api/VerifyPhone_json.dart';
 import 'package:rainbow/screens/auth/verify_phone/verifyPhone_api/verifyphone_api.dart';
@@ -14,15 +15,23 @@ import 'package:rainbow/utils/strings.dart';
 class RegisterVerifyController extends GetxController {
   TextEditingController verifyController = TextEditingController();
   RxBool loader = false.obs;
-  String phoneNumber = "";
+  String? phoneNumber;
+
   LoginModel loginModel = LoginModel();
   int seconds = 60;
   Timer? _countDown;
+  String? showPhoneNumber;
 
   @override
   Future<void> onInit() async {
     super.onInit();
   }
+
+
+  getPhoneNumber(){
+  showPhoneNumber = PrefService.getString(PrefKeys.phoneNumber);
+  }
+
 
   bool validation() {
     if (verifyController.text.isEmpty) {
@@ -48,7 +57,7 @@ class RegisterVerifyController extends GetxController {
   Future<void> sendOtp() async {
     try {
       loader.value = true;
-      await PhoneNumberApi.sendOtp(phoneNumber);
+      await PhoneNumberApi.sendOtp(phoneNumber!);
 
       loader.value = false;
     } catch (e) {

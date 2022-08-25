@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/blocList_api/blockList_api.dart';
 import 'package:rainbow/common/helper.dart';
@@ -61,6 +63,10 @@ class HomeController extends GetxController {
   String? deepLinkPath;
   List<FriendPost> friendPostListData = [];
   List listOfUserView = [];
+  String? address;
+  String? addCountry;
+  String? addCity;
+  String? addStreet;
 
   ScrollController scrollController = ScrollController();
   int page = 1;
@@ -87,7 +93,32 @@ class HomeController extends GetxController {
     }
     update(['home']);
   }
+  Future getCurrentLocation() async {
+    LocationPermission permission = await Geolocator.checkPermission();
+    loader.value = true;
+    if (permission == LocationPermission.denied) {
+      LocationPermission result = await Geolocator.requestPermission();
+      return (result == LocationPermission.always ||
+          result == LocationPermission.whileInUse);
+    } else {
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+      List<Placemark> placemarks =
+      await placemarkFromCoordinates(position.latitude, position.longitude);
 
+      Placemark place = placemarks[0];
+      addCity = place.locality;
+      addCountry = place.country;
+      addStreet = place.street;
+      address =
+      '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
+      print(
+          "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<$address>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+      update(["advertiser"]);
+    }
+    loader.value = false;
+  }
   Future<void> countryName() async {
     try {
       await ListOfCountryApi.postRegister()

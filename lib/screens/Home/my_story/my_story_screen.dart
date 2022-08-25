@@ -73,37 +73,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                     return Stack(
                       children: [
                         Container(color: Colors.black),
-                        /*Positioned.fill(
-                          child: CachedNetworkImage(
-                            imageUrl: story.storyItem.toString(),
 
-                            imageBuilder: (context, imageProvider) =>
-                                Container(
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: imageProvider,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                            // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
-                            errorWidget: (context, url, error) =>
-                                Container(
-                                  height: Get.height * 0.2857,
-                                  width: Get.width,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                      image: AssetImage(AssetRes.homePro),
-                                    ),
-                                  ),
-                                ),
-                            progressIndicatorBuilder: (con, str, progress) {
-                              return const SizedBox();
-                            },
-                            fit: BoxFit.fill,
-                          ),
-                        ),*/
                         Image.network(
                           story.storyItem.toString(),
                           height: Get.height * 0.9,
@@ -255,7 +225,21 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                   Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Container(
+                                      profileController.viewProfile
+                                          .data!.profileImage
+                                          .toString()==""?Container(
+                                        height: 56,
+                                        width: 56,
+                                        decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                              AssetRes.portrait_placeholder,
+                                            ),
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ):Container(
                                         height: 56,
                                         width: 56,
                                         decoration: BoxDecoration(
@@ -404,7 +388,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                     myStory: controller
                                                         .viewStoryController
                                                         .storyModel
-                                                        .myStory![pageIndex],
+                                                        .myStory![storyIndex],
                                                     storyindex: storyIndex);
                                               },
                                               child: Column(

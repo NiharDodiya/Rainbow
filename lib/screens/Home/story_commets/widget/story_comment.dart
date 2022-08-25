@@ -28,7 +28,7 @@ Widget storyComment(String comments, String profileImage, String name) {
           width: 40,
           decoration: const BoxDecoration(
               shape: BoxShape.circle,
-              image: DecorationImage(image: AssetImage(AssetRes.homePro))),
+              image: DecorationImage(image: AssetImage(AssetRes.portrait_placeholder))),
         ),
         fit: BoxFit.fill,
       ),
@@ -47,21 +47,26 @@ Widget storyComment(String comments, String profileImage, String name) {
             ),
             margin: const EdgeInsets.only(left: 5),
             padding: const EdgeInsets.all(7),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Row(
               children: [
-                Text(
-                  name,
-                  style: beVietnamProMediumTextStyle(color: ColorRes.black),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name,
+                      style: beVietnamProMediumTextStyle(color: ColorRes.black),
+                    ),
+                    const SizedBox(
+                      height: 7,
+                    ),
+                    Text(
+                      comments,
+                      style: beVietnamProRegularTextStyle(
+                          fontSize: 12, color: ColorRes.black),
+                    ),
+                  ],
                 ),
-                const SizedBox(
-                  height: 7,
-                ),
-                Text(
-                  comments,
-                  style: beVietnamProRegularTextStyle(
-                      fontSize: 12, color: ColorRes.black),
-                ),
+
               ],
             ),
           ),

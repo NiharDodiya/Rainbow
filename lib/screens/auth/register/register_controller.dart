@@ -252,6 +252,8 @@ class RegisterController extends GetxController {
   Future<void> registerDetails() async {
     try {
       loader.value = true;
+      await PrefService.setValue(
+          PrefKeys.phoneNumber, phoneController.text);
       await RegisterApi.postRegister(
               fullNameController.text,
               emailController.text,
@@ -268,6 +270,8 @@ class RegisterController extends GetxController {
           .then((value) => registerUser = value);
       await PrefService.setValue(
           PrefKeys.registerToken, registerUser.token.toString());
+
+
       await LoginApi.updateDeviceToken();
       UserModel userModel = UserModel(
         name: fullNameController.text,
@@ -280,6 +284,17 @@ class RegisterController extends GetxController {
       userModel.uid = uid;
       // await UserService.createUser(userModel);
       loader.value = false;
+      fullNameController.clear();
+    emailController.clear();
+    pwdController.clear();
+    confirmPwdController.clear();
+    address1Controller.clear();
+    address2Controller.clear();
+
+    phoneController.clear();
+    statusController.clear();
+
+
     } catch (e) {
       loader.value = false;
     }
