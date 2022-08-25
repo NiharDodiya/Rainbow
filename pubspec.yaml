@@ -118,6 +118,8 @@ dependencies:
   #_______________________________image Download__________
   image_gallery_saver: ^1.7.1
   dio: ^4.0.6
+  #--------------------------chart---------
+  syncfusion_flutter_charts: ^20.2.45
 
 
 

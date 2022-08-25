@@ -2,12 +2,15 @@ import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_screen.dart';
 import 'package:rainbow/screens/advertisement/boostadvertisement_api/boostAdvertisement_api.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
 class SetupDateController extends GetxController {
+
+
   DateTime startTime = DateTime.now();
   DateTime endtime = DateTime.now();
   String flag = AssetRes.flag01;
@@ -18,6 +21,8 @@ class SetupDateController extends GetxController {
   List<String> currencyList = ["\$", "₹"];
   String select = 'Caneda';
   RxBool loader = false.obs;
+
+  TextEditingController amountController = TextEditingController();
 
   rangSelect(start, end, range) {
     startTime = start;
@@ -50,7 +55,6 @@ class SetupDateController extends GetxController {
       onSelect: (country) {
         // countryModel = country;
         select = country.toString();
-
         update(['Phone']);
       },
     );
@@ -97,19 +101,27 @@ class SetupDateController extends GetxController {
         ),
         ignoreSafeArea: true,
       );
-      print("cbsacfdtasdfasfyasydsyi");
 /*      boostAdvertisementApi();*/
     }
   }
 
   Future<void> boostAdvertisementApi() async {
-    loader.value = true;
+
     try {
-      await BoostAdvertisementApi.boostAdvertisement();
       loader.value = true;
+      await BoostAdvertisementApi.boostAdvertisement(
+          startDate: startTime.toString(),
+          endDate: endtime.toString(),
+          amount: amountController.text,
+          currency: currency,
+      );
+      loader.value = false;
+      print("=========Amount: ${amountController.text}");
+
       update(["advertiser"]);
+
     } catch (e) {
-      print(e.toString());
+      print('==========error: ${e.toString()}');
       loader.value = true;
     }
   }

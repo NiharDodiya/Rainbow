@@ -220,9 +220,16 @@ class UserDetail {
         referrallCode:
             json["referrall_code"] == null ? null : json["referrall_code"],
         idStatus: json["id_status"] == null ? null : json["id_status"],
-        latitude: json["latitude"] == null ? null : json["latitude"].toDouble(),
-        longitude:
-            json["longitude"] == null ? null : json["longitude"].toDouble(),
+    latitude: json["latitude"].toString().isEmpty
+        ? null
+        : json["latitude"] is String
+        ? double.parse(json["latitude"])
+        : json["latitude"],
+    longitude: json["longitude"].toString().isEmpty
+        ? null
+        : json["longitude"] is String
+        ? double.parse(json["longitude"])
+        : json["longitude"],
         userType: json["user_type"] == null ? null : json["user_type"],
         selfiStatus: json["selfi_status"] == null ? null : json["selfi_status"],
         userStatus: json["user_status"] == null ? null : json["user_status"],

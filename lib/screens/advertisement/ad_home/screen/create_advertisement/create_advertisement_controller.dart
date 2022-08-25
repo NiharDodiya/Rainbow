@@ -126,14 +126,14 @@ class CreateAdvertisementController extends GetxController {
     }
   }
 
-  String? codeId;
+  int? codeId;
 
   createAdvertisement() {
     tagsListSet();
     if (validation()) {
       for (int i = 0; i < listNationalities.data!.length; i++) {
         if (listNationalities.data![i].name == countryController.text) {
-          codeId = listNationalities.data![i].id!.toString();
+          codeId = listNationalities.data![i].id;
         }
       }
       uploadImageApi();

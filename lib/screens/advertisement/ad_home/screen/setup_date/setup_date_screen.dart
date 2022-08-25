@@ -5,10 +5,10 @@ import 'package:flutter_multi_formatter/formatters/money_input_formatter.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_failed.dart/payment_failed_screen.dart';
-import 'package:rainbow/screens/advertisement/ad_home/screen/payment_successful/payment_successful_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_controller.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../../../../../common/Widget/loaders.dart';
 import '../../../../../common/Widget/text_styles.dart';
 import '../../../../../utils/asset_res.dart';
 import '../../../../../utils/color_res.dart';
@@ -261,24 +261,27 @@ class SetupDateScreen extends StatelessWidget {
                       width: Get.width,
                       child: Center(
                         child: GetBuilder<SetupDateController>(
-                          id: 'selectC',
-                          builder: (controller) => TextField(
-                            inputFormatters: [
-                              MoneyInputFormatter(
-                                  leadingSymbol: controller.currency)
-                            ],
-                            controller: TextEditingController(),
-                            style: gilroySemiBoldTextStyle(fontSize: 24),
-                            textAlign: TextAlign.center,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              counterStyle:
-                                  gilroySemiBoldTextStyle(fontSize: 24),
-                              hintText: "${controller.currency}00.00",
-                              hintStyle: gilroySemiBoldTextStyle(fontSize: 24),
-                            ),
-                          ),
-                        ),
+                            id: 'selectC',
+                            builder: (controller) {
+                              return TextField(
+                                inputFormatters: [
+                                  MoneyInputFormatter(
+                                      leadingSymbol: controller.currency),
+                                ],
+                                controller:
+                                    setupDateController.amountController,
+                                style: gilroySemiBoldTextStyle(fontSize: 24),
+                                textAlign: TextAlign.center,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  counterStyle:
+                                      gilroySemiBoldTextStyle(fontSize: 24),
+                                  hintText: "${controller.currency}00.00",
+                                  hintStyle:
+                                      gilroySemiBoldTextStyle(fontSize: 24),
+                                ),
+                              );
+                            }),
                       ),
                     ),
                     Column(
@@ -456,169 +459,181 @@ class ShowBottomNext extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DraggableScrollableSheet(
-      initialChildSize: 0.99,
-      minChildSize: 0.95,
-      maxChildSize: 0.99,
-      builder: (context, scrollController) => GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        child: SingleChildScrollView(
-          controller: scrollController,
-          child: Padding(
-            padding: EdgeInsets.only(
-                top: Get.height * 0.1169,
-                left: Get.width * 0.0853,
-                right: Get.width * 0.0853),
-            child: Column(
-              children: [
-                Text(
-                  "Confirm Advertisement Details And Pay",
-                  style: gilroySemiBoldTextStyle(
-                    fontSize: 24,
-                    color: ColorRes.black,
-                  ),
-                ),
-                SizedBox(
-                  height: Get.height * 0.03078,
-                ),
-                Container(
-                  width: Get.width * 0.8293,
-                  height: 350,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        ColorRes.color_50369C,
-                        ColorRes.color_50369C,
-                        ColorRes.color_D18EEE,
-                        ColorRes.color_D18EEE,
-                      ],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
+    SetupDateController setupDateController = Get.put(SetupDateController());
+    return Obx(() => Stack(
+      children: [
+        DraggableScrollableSheet(
+          initialChildSize: 0.99,
+          minChildSize: 0.95,
+          maxChildSize: 0.99,
+          builder: (context, scrollController) => GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            child: SingleChildScrollView(
+              controller: scrollController,
+              child: Padding(
+                padding: EdgeInsets.only(
+                    top: Get.height * 0.1169,
+                    left: Get.width * 0.0853,
+                    right: Get.width * 0.0853),
+                child: Column(
+                  children: [
+                    Text(
+                      "Confirm Advertisement Details And Pay",
+                      style: gilroySemiBoldTextStyle(
+                        fontSize: 24,
+                        color: ColorRes.black,
+                      ),
                     ),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(8),
+                    SizedBox(
+                      height: Get.height * 0.03078,
                     ),
-                  ),
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: Get.width * 0.0666),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: Get.height * 0.0320,
+                    Container(
+                      width: Get.width * 0.8293,
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            ColorRes.color_50369C,
+                            ColorRes.color_50369C,
+                            ColorRes.color_D18EEE,
+                            ColorRes.color_D18EEE,
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
                         ),
-                        Text(
-                          "You have to pay",
-                          style: gilroySemiBoldTextStyle(fontSize: 12),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8),
                         ),
-                        // SizedBox(
-                        //   height: Get.height * 0.0320,
-                        // ),
-                        RichText(
-                          text: TextSpan(children: [
-                            TextSpan(
-                              text: amount,
-                              style: poppinsSemiBold(fontSize: 64),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: Get.width * 0.0666),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: Get.height * 0.0320,
                             ),
-                            TextSpan(
-                              text: ".00USD",
+                            Text(
+                              "You have to pay",
+                              style: gilroySemiBoldTextStyle(fontSize: 12),
+                            ),
+                            // SizedBox(
+                            //   height: Get.height * 0.0320,
+                            // ),
+                            Text(
+                              setupDateController.amountController.text,
                               style: poppinsSemiBold(fontSize: 24),
-                            )
-                          ]),
-                        ),
+                            ),
+                            // RichText(
+                            //   text: TextSpan(children: [
+                            //     TextSpan(
+                            //       text: amount,
+                            //       style: poppinsSemiBold(fontSize: 64),
+                            //     ),
+                            //     TextSpan(
+                            //       text: setupDateController.amountController.text,
+                            //       style: poppinsSemiBold(fontSize: 24),
+                            //     )
+                            //   ]),
+                            // ),
 
-                        Divider(
-                          color: ColorRes.black.withOpacity(0.5),
+                            Divider(
+                              color: ColorRes.black.withOpacity(0.5),
+                            ),
+                            SizedBox(
+                              height: Get.height * 0.036,
+                            ),
+                            Text(
+                              "Payer’s Name",
+                              style: poppinsRegularBold(fontSize: 12),
+                            ),
+                            SizedBox(
+                              height: Get.height * 0.007389,
+                            ),
+                            Text(
+                              "Miracle Keen",
+                              style: poppinsMediumBold(fontSize: 14),
+                            ),
+                            SizedBox(
+                              height: Get.height * 0.0209,
+                            ),
+                            Text(
+                              "Transaction Number",
+                              style: poppinsRegularBold(fontSize: 12),
+                            ),
+                            SizedBox(
+                              height: Get.height * 0.007389,
+                            ),
+                            Text(
+                              "122900083HN",
+                              style: poppinsMediumBold(fontSize: 14),
+                            ),
+                            SizedBox(
+                              height: Get.height * 0.0209,
+                            ),
+                            Text(
+                              "Service",
+                              style: poppinsRegularBold(fontSize: 12),
+                            ),
+                            SizedBox(
+                              height: Get.height * 0.007389,
+                            ),
+                            Text(
+                              "Post Ads",
+                              style: poppinsMediumBold(fontSize: 14),
+                            ),
+                            SizedBox(
+                              height: Get.height * 0.0209,
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          height: Get.height * 0.036,
+                      ),
+                    ),
+                    SizedBox(
+                      height: Get.height * 0.0665,
+                    ),
+                    SubmitButton(
+                      onTap: () {
+                        setupDateController.boostAdvertisementApi();
+
+                      },
+                      child: Text(
+                        "Pat ${setupDateController.amountController.text}",
+                        style: gilroyBoldTextStyle(
+                          fontSize: 16,
+                          color: ColorRes.black,
                         ),
-                        Text(
-                          "Payer’s Name",
-                          style: poppinsRegularBold(fontSize: 12),
-                        ),
-                        SizedBox(
-                          height: Get.height * 0.007389,
-                        ),
-                        Text(
-                          "Miracle Keen",
-                          style: poppinsMediumBold(fontSize: 14),
-                        ),
-                        SizedBox(
-                          height: Get.height * 0.0209,
-                        ),
-                        Text(
-                          "Transaction Number",
-                          style: poppinsRegularBold(fontSize: 12),
-                        ),
-                        SizedBox(
-                          height: Get.height * 0.007389,
-                        ),
-                        Text(
-                          "122900083HN",
-                          style: poppinsMediumBold(fontSize: 14),
-                        ),
-                        SizedBox(
-                          height: Get.height * 0.0209,
-                        ),
-                        Text(
-                          "Service",
-                          style: poppinsRegularBold(fontSize: 12),
-                        ),
-                        SizedBox(
-                          height: Get.height * 0.007389,
-                        ),
-                        Text(
-                          "Post Ads",
-                          style: poppinsMediumBold(fontSize: 14),
-                        ),
-                        SizedBox(
-                          height: Get.height * 0.0209,
-                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: Get.height * 0.0246,
+                    ),
+                    SubmitButton(
+                      onTap: () {
+                        Get.to(() => const PaymentFailedScreen());
+                      },
+                      child: Text(
+                        "Cancel",
+                        style: gilroySemiBoldTextStyle(fontSize: 16),
+                      ),
+                      colors: const [
+                        ColorRes.color_F86666,
+                        ColorRes.color_F82222,
                       ],
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: Get.height * 0.0665,
-                ),
-                SubmitButton(
-                  onTap: () {
-                    Get.to(() => const PaymentSuccessfulScreen());
-                  },
-                  child: Text(
-                    "Pay 120.00USD",
-                    style: gilroyBoldTextStyle(
-                      fontSize: 16,
-                      color: ColorRes.black,
+                    SizedBox(
+                      height: Get.height * 0.0320,
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: Get.height * 0.0246,
-                ),
-                SubmitButton(
-                  onTap: () {
-                    Get.to(() => const PaymentFailedScreen());
-                  },
-                  child: Text(
-                    "Cancel",
-                    style: gilroySemiBoldTextStyle(fontSize: 16),
-                  ),
-                  colors: const [
-                    ColorRes.color_F86666,
-                    ColorRes.color_F82222,
                   ],
                 ),
-                SizedBox(
-                  height: Get.height * 0.0320,
-                ),
-              ],
+              ),
             ),
           ),
         ),
-      ),
-    );
+        setupDateController.loader.isTrue
+            ? const FullScreenLoader()
+            : const SizedBox(),
+      ],
+    ),);
   }
 }
