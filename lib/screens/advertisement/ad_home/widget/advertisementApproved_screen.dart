@@ -12,22 +12,21 @@ class AdvertisementApprovedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          height: 680,
-          width: Get.width,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                ColorRes.color_50369C,
-                ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
-                ColorRes.color_D18EEE,
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
+      body: Container(
+        width: Get.width,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              ColorRes.color_50369C,
+              ColorRes.color_50369C,
+              ColorRes.color_D18EEE,
+              ColorRes.color_D18EEE,
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
+        ),
+        child: SingleChildScrollView(
           child: Column(
             children: [
               textDetails(),
@@ -38,7 +37,10 @@ class AdvertisementApprovedScreen extends StatelessWidget {
               SizedBox(
                 height: Get.height * 0.1,
               ),
-              backToHome()
+              backToHome(),
+              SizedBox(
+                height: Get.height * 0.1,
+              ),
             ],
           ),
         ),
@@ -146,8 +148,13 @@ class AdvertisementApprovedScreen extends StatelessWidget {
   }
 
   Widget backToHome() {
-    return SubmitButton(
-      text: Strings.backToHome,
+    return InkWell(
+      onTap: (){
+        Get.back();
+      },
+      child: SubmitButton(
+        text: Strings.backToHome,
+      ),
     );
   }
 }

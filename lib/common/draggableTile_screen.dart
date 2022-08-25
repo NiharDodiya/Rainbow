@@ -98,93 +98,95 @@ class _DraggableTileState extends State<DraggableTile> {
                   borderRadius: BorderRadius.all(Radius.circular(15))),
               actions: [
                 SizedBox(
-                  height: 182,
                   width: 270,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: Get.height * 0.015,
-                      ),
-                      Center(
-                        child: Text(
-                          Strings.delete,
-                          style: gilroyBoldTextStyle(
-                              color: Colors.black, fontSize: 17),
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: Get.height * 0.015,
                         ),
-                      ),
-                      SizedBox(
-                        height: Get.height * 0.05755,
-                        width: Get.width * 0.74,
-                        child: const Center(
+                        Center(
                           child: Text(
-                            Strings.deleteConversation,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 13,
-                              fontFamily: FontRes.sFProText,
-                            ),
-                            textAlign: TextAlign.center,
+                            Strings.delete,
+                            style: gilroyBoldTextStyle(
+                                color: Colors.black, fontSize: 17),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: Get.height * 0.01,
-                      ),
-                      const Divider(
-                        thickness: 1,
-                        color: ColorRes.color_B1B1B3,
-                      ),
-                      SizedBox(
-                        height: Get.height * 0.005,
-                      ),
-                      Center(
-                        child: InkWell(
-                          onTap: () {
-                            controller.deleteUserChat();
-                          },
-                          child: const SizedBox(
-                              height: 22,
-                              width: 65,
-                              child: Text(
-                                Strings.confirm,
-                                style: TextStyle(
-                                  color: ColorRes.color_007AFF,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 17,
-                                  fontFamily: FontRes.sFProText,
-                                ),
-                              )),
-                        ),
-                      ),
-                      SizedBox(
-                        height: Get.height * 0.015,
-                      ),
-                      const Divider(
-                        thickness: 1,
-                        color: ColorRes.color_B1B1B3,
-                      ),
-                      SizedBox(
-                        height: Get.height * 0.005,
-                      ),
-                      Center(
-                        child: InkWell(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: SizedBox(
-                            height: 22,
-                            width: 65,
+                        SizedBox(
+                          height: Get.height * 0.05755,
+                          width: Get.width * 0.74,
+                          child: const Center(
                             child: Text(
-                              Strings.cancelSmall,
-                              style: sfProTextReguler(
-                                  color: ColorRes.color_007AFF, fontSize: 17),
+                              Strings.deleteConversation,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 13,
+                                fontFamily: FontRes.sFProText,
+                              ),
                               textAlign: TextAlign.center,
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                        SizedBox(
+                          height: Get.height * 0.01,
+                        ),
+                        const Divider(
+                          thickness: 1,
+                          color: ColorRes.color_B1B1B3,
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.005,
+                        ),
+                        Center(
+                          child: InkWell(
+                            onTap: () {
+                              controller.deleteUserChat();
+                            },
+                            child: const SizedBox(
+                                height: 22,
+                                width: 65,
+                                child: Text(
+                                  Strings.confirm,
+                                  style: TextStyle(
+                                    color: ColorRes.color_007AFF,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 17,
+                                    fontFamily: FontRes.sFProText,
+                                  ),
+                                )),
+                          ),
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.015,
+                        ),
+                        const Divider(
+                          thickness: 1,
+                          color: ColorRes.color_B1B1B3,
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.005,
+                        ),
+                        Center(
+                          child: InkWell(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: SizedBox(
+                              height: 22,
+                              width: 65,
+                              child: Text(
+                                Strings.cancelSmall,
+                                style: sfProTextReguler(
+                                    color: ColorRes.color_007AFF, fontSize: 17),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 )
               ],
@@ -209,88 +211,91 @@ class _DraggableTileState extends State<DraggableTile> {
                   borderRadius: BorderRadius.all(Radius.circular(15))),
               actions: [
                 SizedBox(
-                  height: 182,
+
                   width: 270,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: Get.height * 0.015,
-                      ),
-                      Center(
-                        child: Text(
-                          Strings.block,
-                          style: gilroyBoldTextStyle(
-                              color: Colors.black, fontSize: 17),
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: Get.height * 0.015,
                         ),
-                      ),
-                      SizedBox(
-                        height: Get.height * 0.05755,
-                        width: Get.width * 0.74,
-                        child: const Center(
+                        Center(
                           child: Text(
-                            Strings.blockPerson,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 13,
-                              fontFamily: FontRes.sFProText,
-                            ),
-                            textAlign: TextAlign.center,
+                            Strings.block,
+                            style: gilroyBoldTextStyle(
+                                color: Colors.black, fontSize: 17),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: Get.height * 0.01,
-                      ),
-                      const Divider(
-                        thickness: 1,
-                        color: ColorRes.color_B1B1B3,
-                      ),
-                      SizedBox(
-                        height: Get.height * 0.005,
-                      ),
-                      const Center(
-                        child: SizedBox(
-                            height: 22,
-                            width: 65,
+                        SizedBox(
+                          height: Get.height * 0.05755,
+                          width: Get.width * 0.74,
+                          child: const Center(
                             child: Text(
-                              Strings.confirm,
+                              Strings.blockPerson,
                               style: TextStyle(
-                                color: ColorRes.color_007AFF,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 17,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 13,
                                 fontFamily: FontRes.sFProText,
                               ),
-                            )),
-                      ),
-                      SizedBox(
-                        height: Get.height * 0.015,
-                      ),
-                      const Divider(
-                        thickness: 1,
-                        color: ColorRes.color_B1B1B3,
-                      ),
-                      SizedBox(
-                        height: Get.height * 0.005,
-                      ),
-                      Center(
-                        child: InkWell(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: SizedBox(
-                            height: 22,
-                            width: 65,
-                            child: Text(
-                              Strings.cancelSmall,
-                              style: sfProTextReguler(
-                                  color: ColorRes.color_007AFF, fontSize: 17),
                               textAlign: TextAlign.center,
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                        SizedBox(
+                          height: Get.height * 0.01,
+                        ),
+                        const Divider(
+                          thickness: 1,
+                          color: ColorRes.color_B1B1B3,
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.005,
+                        ),
+                        const Center(
+                          child: SizedBox(
+                              height: 22,
+                              width: 65,
+                              child: Text(
+                                Strings.confirm,
+                                style: TextStyle(
+                                  color: ColorRes.color_007AFF,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 17,
+                                  fontFamily: FontRes.sFProText,
+                                ),
+                              )),
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.015,
+                        ),
+                        const Divider(
+                          thickness: 1,
+                          color: ColorRes.color_B1B1B3,
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.005,
+                        ),
+                        Center(
+                          child: InkWell(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: SizedBox(
+                              height: 22,
+                              width: 65,
+                              child: Text(
+                                Strings.cancelSmall,
+                                style: sfProTextReguler(
+                                    color: ColorRes.color_007AFF, fontSize: 17),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 )
               ],

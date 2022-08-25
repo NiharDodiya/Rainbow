@@ -363,7 +363,9 @@ class CreateAdvertisementScreen extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        const Spacer(),
+                        const SizedBox(
+                          width: 28,
+                        ),
                         const Icon(
                           Icons.location_on,
                           color: ColorRes.black,

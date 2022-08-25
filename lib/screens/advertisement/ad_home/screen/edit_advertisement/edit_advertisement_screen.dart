@@ -22,7 +22,6 @@ class EditAdvertisementscreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           width: Get.width,
-          height: Get.height,
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
@@ -35,11 +34,13 @@ class EditAdvertisementscreen extends StatelessWidget {
               end: Alignment.bottomCenter,
             ),
           ),
-          child: Column(
-            children: [
-              appBar(),
-              body(),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                appBar(),
+                body(),
+              ],
+            ),
           ),
         ),
       ),

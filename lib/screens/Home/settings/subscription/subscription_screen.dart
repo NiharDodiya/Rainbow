@@ -56,7 +56,7 @@ class SubscriptionScreen extends StatelessWidget {
                         height: Get.height * 0.065,
                       ),
                       SizedBox(
-                          height: 267,
+
                           width: Get.width,
                           child: PageView.builder(
                             onPageChanged: (index) {
@@ -149,9 +149,7 @@ class SubscriptionScreen extends StatelessWidget {
       width: Get.width,
       child: Column(
         children: [
-          SizedBox(
-            height: Get.height * 0.03,
-          ),
+          SizedBox(height: 40,),
           Row(
             children: [
               SizedBox(
@@ -298,17 +296,15 @@ class PremiumPackage extends StatelessWidget {
             text: TextSpan(children: [
               TextSpan(
                 text: Strings.textSpan01,
-                style: interTextMedium(fontSize: 32, color: ColorRes.white),
+                style: interTextMedium(fontSize: 30, color: ColorRes.white),
               ),
               TextSpan(
                 text: Strings.textspan02,
-                style: interTextReguler(fontSize: 18, color: ColorRes.white),
+                style: interTextReguler(fontSize: 16, color: ColorRes.white),
               ),
             ]),
           ),
-          SizedBox(
-            height: Get.height * 0.035,
-          )
+
         ],
       ),
     );
