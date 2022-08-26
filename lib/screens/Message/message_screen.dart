@@ -388,6 +388,10 @@ class MessageScreen extends StatelessWidget {
                                 : GetBuilder<MessageController>(
                                     id: "message",
                                     builder: (controller) {
+                                      if(controller
+                                          .getFriendIdList().isEmpty){
+                                        return const SizedBox();
+                                      }
                                       return StreamBuilder<
                                           QuerySnapshot<Map<String, dynamic>>>(
                                         stream: FirebaseFirestore.instance

@@ -119,6 +119,7 @@ class HomeController extends GetxController {
     }
     loader.value = false;
   }
+
   Future<void> countryName() async {
     try {
       await ListOfCountryApi.postRegister()

@@ -358,6 +358,12 @@ class StoryScreen extends StatelessWidget {
                           itemCount: controller.filterList.length,
                           shrinkWrap: true,
                           itemBuilder: (con, index) {
+
+                            if(controller.tagUserList.where((element) => element.id == controller.filterList[index].id).toList().isNotEmpty){
+                              return const SizedBox();
+                            }else if (controller.filterList.length == 1 && controller.tagUserList.where((element) => element.id == controller.filterList.first.id).toList().isNotEmpty) {
+                              return const SizedBox();
+                            }
                             return InkWell(
                               onTap: () => controller
                                   .onTagTap(controller.filterList[index]),
@@ -394,7 +400,7 @@ class StoryScreen extends StatelessWidget {
                                             ),
                                           );
                                         },
-                                      )
+                                      ),
                                       /*CachedNetworkImage(
                                         imageUrl: controller
                                             .filterList[index]
@@ -418,7 +424,6 @@ class StoryScreen extends StatelessWidget {
                                           );
                                         },
                                       )*/
-                                      ,
                                     ),
                                     const SizedBox(width: 10),
                                     Column(

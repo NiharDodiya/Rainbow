@@ -43,12 +43,14 @@ class AddStoryController extends GetxController {
     final imageTemp = File(getImage.path);
     image = imageTemp;
     update(["Edit_profile"]);
+    resetAllData();
     Get.to(() => AddStoryViewScreen());
   }
 
   void onImageTap(Future<File?> futureFile) async {
     image = await futureFile;
     update(["Edit_profile"]);
+    resetAllData();
     Get.to(() => AddStoryViewScreen());
   }
 
@@ -158,5 +160,10 @@ class AddStoryController extends GetxController {
     update(['mention_popUp']);
     msgController.selection =
         TextSelection.collapsed(offset: msgController.text.length);
+  }
+
+  void resetAllData(){
+    filterList = [];
+    msgController.clear();
   }
 }

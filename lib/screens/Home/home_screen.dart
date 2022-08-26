@@ -179,6 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 24,
                       ),
                       onPressed: () {
+                        viewStoryController.resetAllData();
                         Get.to(() => StoryScreen(
                                   image: controller
                                       .controller.viewProfile.data!.profileImage

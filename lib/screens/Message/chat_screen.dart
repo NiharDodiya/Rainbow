@@ -24,11 +24,11 @@ class ChatScreen extends StatelessWidget {
 
   ChatScreen(
       {Key? key,
-        this.name,
-        this.userUid,
-        this.otherUserUid,
-        this.roomId,
-        this.profileImage})
+      this.name,
+      this.userUid,
+      this.otherUserUid,
+      this.roomId,
+      this.profileImage})
       : super(key: key);
   MessageController messageController = Get.put(MessageController());
 
@@ -40,468 +40,489 @@ class ChatScreen extends StatelessWidget {
         builder: (controller) {
           return (messageController.image == null)
               ? Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  ColorRes.color_50369C,
-                  ColorRes.color_D18EEE,
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
-            ),
-            child: Column(
-              children: [
-                Container(
-                  height: 30,
-                ),
-                Container(
-                  height: 86,
-                  padding: const EdgeInsets.only(bottom: 10),
-                  decoration:
-                  BoxDecoration(color: Colors.white.withOpacity(0.6)),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        ColorRes.color_50369C,
+                        ColorRes.color_D18EEE,
+                      ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                  ),
+                  child: Column(
                     children: [
-                      Padding(
-                        padding:
-                        const EdgeInsets.only(left: 20, bottom: 20),
-                        child: InkWell(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: const Icon(
-                            Icons.arrow_back_ios,
-                            color: Colors.white,
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 29,
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Container(
-                            height: 50,
-                            width: 50,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                            ),
-                            child: ClipRRect(
-                              borderRadius: const BorderRadius.all(
-                                  Radius.circular(50)),
-                              child: FadeInImage(
-                                placeholder: const AssetImage(
-                                    AssetRes.portrait_placeholder),
-                                image:
-                                NetworkImage(profileImage.toString()),
-                                fit: BoxFit.cover,
+                      Container(height: 30),
+                      Container(
+                        height: 86,
+                        padding: const EdgeInsets.only(bottom: 10),
+                        decoration:
+                            BoxDecoration(color: Colors.white.withOpacity(0.6)),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Get.back();
+                              },
+                              child: const Padding(
+                                padding: EdgeInsets.only(
+                                  left: 20,
+                                  bottom: 20,
+                                  right: 20,
+                                ),
+                                child: Icon(
+                                  Icons.arrow_back_ios,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
                               ),
                             ),
-                          ),
-                          /*   Container(
+                            const SizedBox(width: 9),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(50)),
+                                    child: FadeInImage(
+                                      placeholder: const AssetImage(
+                                          AssetRes.portrait_placeholder),
+                                      image:
+                                          NetworkImage(profileImage.toString()),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                /*   Container(
                             height: 50,
                             width: 50,
                             decoration: const BoxDecoration(
                                 shape: BoxShape.circle, color: Colors.grey),
                           ),*/
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                name.toString(),
-                                style: sfProTextReguler(
-                                  fontSize: 17,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                "Connection",
-                                style: sfProTextReguler(
-                                    fontSize: 13,
-                                    color: ColorRes.color_000000
-                                        .withOpacity(0.5)),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: PaginateFirestore(
-                      onEmpty: SizedBox(
-                        height: Get.height - (86 + 80),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              height: 100,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.grey,
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                    profileImage.toString(),
-                                  ),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Text(
-                              name.toString(),
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            const Text(
-                              "You’re connection on Rainbow",
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 15),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            SizedBox(
-                              height: 50,
-                              width: 50,
-                              child: ImageStack(
-                                imageList: [
-                                  profileImage.toString(),
-                                  (Get.find<ProfileController>()
-                                      .viewProfile
-                                      .data
-                                      ?.profileImage ??
-                                      ''),
-                                ],
-                                totalCount: 2,
-                                // If larger than images.length, will show extra empty circle
-                                imageRadius: 25,
-                                // Radius of each images
-                                imageCount: 3,
-                                // Maximum number of images to be shown in stack
-                                imageBorderWidth: 1,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      padding: const EdgeInsets.only(top: 30),
-                      scrollController: controller.listScrollController,
-                      isLive: true,
-                      reverse: true,
-                      itemBuilder: (context, docementSnapshot, index) {
-
-                        Map<String, dynamic>? data =
-                        docementSnapshot[index].data()
-                        as Map<String, dynamic>?;
-                        if (data == null) {
-                          return const SizedBox();
-                        }
-                        if (index == 0) {
-                          controller.lastMsg = data['time'].toDate();
-                        }
-
-                        Widget box = data['type'] == "alert" ? alertBox(data['time'].toDate()) : Column(
-                          children: [
-                            SizedBox(
-                              width: Get.width,
-                              height: 35,
-                              child: Center(
-                                child: Text(
-                                  DateFormat("hh:mm").format(
-                                    data['time'].toDate(),
-                                  ),
-                                  style:
-                                  textStyleFont14WhiteW500.copyWith(
-                                    color: ColorRes.color_F0F0F0
-                                        .withOpacity(0.5),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment:
-                              data['senderUid'].toString() == userUid
-                                  ? MainAxisAlignment.end
-                                  : MainAxisAlignment.start,
-                              children: [
-                                // Text(controller.data['time'].toString(),style: sfProTextReguler(fontSize: 12,color:ColorRes.color_F0F0F0 ),),
                                 const SizedBox(
-                                  width: 9,
+                                  width: 10,
                                 ),
-                                data['senderUid'].toString() == userUid
-                                    ? const SizedBox()
-                                    : ClipRRect(
-                                  borderRadius:
-                                  BorderRadius.circular(50),
-                                  child: FadeInImage(
-                                    placeholder: const AssetImage(
-                                      AssetRes.portrait_placeholder,
-                                    ),
-                                    image: NetworkImage(
-                                      profileImage.toString(),
-                                    ),
-                                    height: 28,
-                                    width: 28,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 12,
-                                ),
-                                data['type'] == "text"
-                                    ? Container(
-                                  margin: const EdgeInsets.only(
-                                      bottom: 10),
-                                  padding: const EdgeInsets.all(10),
-                                  constraints: BoxConstraints(
-                                    maxWidth: Get.width / 1.3,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.circular(50),
-                                    color: data['senderUid']
-                                        .toString() ==
-                                        userUid
-                                        ? Colors.white
-                                        : ColorRes.color_E9D224,
-                                  ),
-                                  child: Text(
-                                    data['content'].toString(),
-                                    style: gilroyBoldTextStyle(
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      name.toString(),
+                                      style: sfProTextReguler(
                                         fontSize: 17,
-                                        color: Colors.black),
-                                  ),
-                                )
-                                    : Padding(
-                                    padding: const EdgeInsets.all(5),
-                                    child: Container(
-                                      height: 200,
-                                      width: 200,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Colors.white),
-                                          borderRadius:
-                                          BorderRadius.circular(
-                                              10)),
-                                      child: ClipRRect(
-                                        borderRadius:
-                                        const BorderRadius.all(
-                                            Radius.circular(10)),
-                                        child: InkWell(
-                                          onTap: () {
-                                            Get.to(() =>
-                                                ChatViewImageScreen(
-                                                  image:
-                                                  data['image'],
-                                                ));
-                                          },
-                                          child: FadeInImage(
-                                            placeholder:
-                                            const AssetImage(AssetRes
-                                                .portrait_placeholder),
-                                            image: NetworkImage(
-                                              data['image'],
-                                            ),
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
                                       ),
-                                    )),
-                                const SizedBox(
-                                  width: 5,
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      "Connection",
+                                      style: sfProTextReguler(
+                                          fontSize: 13,
+                                          color: ColorRes.color_000000
+                                              .withOpacity(0.5)),
+                                    ),
+                                  ],
                                 ),
-                                data['senderUid'].toString() == userUid
-                                    ? Container(
-                                  margin: const EdgeInsets.only(
-                                      top: 15),
-                                  child: Image.asset(
-                                    AssetRes.read,
-                                    color: Colors.white,
-                                    height: 16,
-                                    width: 16,
-                                  ),
-                                )
-                                    : const SizedBox(),
-                                const SizedBox(
-                                  width: 5,
-                                )
                               ],
                             ),
                           ],
-                        );
-                        if ((index+1) == docementSnapshot.length) {
-                          return Column(
-                            // mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                height: 100,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.grey,
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                      profileImage.toString(),
-                                    ),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Text(
-                                name.toString(),
-                                style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              const Text(
-                                "You’re connection on Rainbow",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 15),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              SizedBox(
-                                height: 50,
-                                width: 50,
-                                child: ImageStack(
-                                  imageList: [
-                                    profileImage.toString(),
-                                    (Get.find<ProfileController>()
-                                        .viewProfile
-                                        .data
-                                        ?.profileImage ??
-                                        ''),
-                                  ],
-                                  totalCount: 2,
-                                  // If larger than images.length, will show extra empty circle
-                                  imageRadius: 25,
-                                  // Radius of each images
-                                  imageCount: 3,
-                                  // Maximum number of images to be shown in stack
-                                  imageBorderWidth: 1,
-                                ),
-                              ),
-                              box,
-                            ],
-                          );
-                        }
-
-                        return box;
-                      },
-                      query: FirebaseFirestore.instance
-                          .collection("chats")
-                          .doc(roomId)
-                          .collection(roomId!)
-                          .orderBy("time", descending: true),
-                      itemBuilderType: PaginateBuilderType.listView),
-                ),
-                Container(
-                  height: 80,
-                  padding: const EdgeInsets.only(left: 10, right: 10),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.6),
-                  ),
-                  child: GetBuilder<MessageController>(
-                      id: "pic",
-                      builder: (controller) {
-                        return Row(
-                          children: [
-                            InkWell(
-                              onTap: controller.navigateToCamera,
-                              child: Image.asset(
-                                AssetRes.shapeCamera,
-                                height: 16,
-                                width: 18.4,
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            InkWell(
-                              onTap: controller.navigateToGallery,
-                              child: Image.asset(
-                                AssetRes.chatImage,
-                                height: 16,
-                                width: 18.4,
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 0,
-                            ),
-                            Expanded(
-                              child: Container(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 20),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color: Colors.white.withOpacity(0.4),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: TextFormField(
-                                        controller:
-                                        controller.msController,
-                                        style: const TextStyle(
-                                            color: Colors.black),
-                                        decoration: InputDecoration(
-                                            hintText:
-                                            "Type your message...",
-                                            hintStyle: sfProTextReguler(
-                                                fontSize: 17,
-                                                color: ColorRes
-                                                    .color_999999),
-                                            border: InputBorder.none),
+                        ),
+                      ),
+                      Expanded(
+                        child: PaginateFirestore(
+                            onEmpty: SizedBox(
+                              height: Get.height - (86 + 80),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    height: 100,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.grey,
+                                      image: DecorationImage(
+                                        image: NetworkImage(
+                                          profileImage.toString(),
+                                        ),
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
-                                    InkWell(
-                                        onTap: () {
-                                          controller.sendMessage(
-                                              roomId.toString(),
-                                              otherUserUid);
-                                          FocusScope.of(context)
-                                              .unfocus();
-                                        },
-                                        child: Image.asset(
-                                          AssetRes.chatSend,
-                                          height: 16,
-                                          width: 18.4,
-                                        ))
-                                  ],
-                                ),
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    name.toString(),
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  const Text(
+                                    "You’re connection on Rainbow",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 15),
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  SizedBox(
+                                    height: 50,
+                                    width: 50,
+                                    child: ImageStack(
+                                      imageList: [
+                                        profileImage.toString(),
+                                        (Get.find<ProfileController>()
+                                                .viewProfile
+                                                .data
+                                                ?.profileImage ??
+                                            ''),
+                                      ],
+                                      totalCount: 2,
+                                      // If larger than images.length, will show extra empty circle
+                                      imageRadius: 25,
+                                      // Radius of each images
+                                      imageCount: 3,
+                                      // Maximum number of images to be shown in stack
+                                      imageBorderWidth: 1,
+                                    ),
+                                  )
+                                ],
                               ),
-                            )
-                          ],
-                        );
-                      }),
-                ),
-              ],
-            ),
-          )
+                            ),
+                            padding: const EdgeInsets.only(top: 30),
+                            scrollController: controller.listScrollController,
+                            isLive: true,
+                            reverse: true,
+                            itemBuilder: (context, docementSnapshot, index) {
+                              Map<String, dynamic>? data =
+                                  docementSnapshot[index].data()
+                                      as Map<String, dynamic>?;
+                              if (data == null) {
+                                return const SizedBox();
+                              }
+                              if (index == 0) {
+                                controller.lastMsg = data['time'].toDate();
+                              }
+
+                              Widget box = data['type'] == "alert"
+                                  ? alertBox(data['time'].toDate())
+                                  : Column(
+                                      children: [
+                                        SizedBox(
+                                          width: Get.width,
+                                          height: 35,
+                                          child: Center(
+                                            child: Text(
+                                              DateFormat("hh:mm").format(
+                                                data['time'].toDate(),
+                                              ),
+                                              style: textStyleFont14WhiteW500
+                                                  .copyWith(
+                                                color: ColorRes.color_F0F0F0
+                                                    .withOpacity(0.5),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              data['senderUid'].toString() ==
+                                                      userUid
+                                                  ? MainAxisAlignment.end
+                                                  : MainAxisAlignment.start,
+                                          children: [
+                                            // Text(controller.data['time'].toString(),style: sfProTextReguler(fontSize: 12,color:ColorRes.color_F0F0F0 ),),
+                                            const SizedBox(
+                                              width: 9,
+                                            ),
+                                            data['senderUid'].toString() ==
+                                                    userUid
+                                                ? const SizedBox()
+                                                : ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50),
+                                                    child: FadeInImage(
+                                                      placeholder:
+                                                          const AssetImage(
+                                                        AssetRes
+                                                            .portrait_placeholder,
+                                                      ),
+                                                      image: NetworkImage(
+                                                        profileImage.toString(),
+                                                      ),
+                                                      height: 28,
+                                                      width: 28,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
+                                            const SizedBox(
+                                              width: 12,
+                                            ),
+                                            data['type'] == "text"
+                                                ? Container(
+                                                    margin:
+                                                        const EdgeInsets.only(
+                                                            bottom: 10),
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            10),
+                                                    constraints: BoxConstraints(
+                                                      maxWidth: Get.width / 1.3,
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              50),
+                                                      color: data['senderUid']
+                                                                  .toString() ==
+                                                              userUid
+                                                          ? Colors.white
+                                                          : ColorRes
+                                                              .color_E9D224,
+                                                    ),
+                                                    child: Text(
+                                                      data['content']
+                                                          .toString(),
+                                                      style:
+                                                          gilroyBoldTextStyle(
+                                                              fontSize: 17,
+                                                              color:
+                                                                  Colors.black),
+                                                    ),
+                                                  )
+                                                : Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(5),
+                                                    child: Container(
+                                                      height: 200,
+                                                      width: 200,
+                                                      decoration: BoxDecoration(
+                                                          border: Border.all(
+                                                              color:
+                                                                  Colors.white),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10)),
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            const BorderRadius
+                                                                    .all(
+                                                                Radius.circular(
+                                                                    10)),
+                                                        child: InkWell(
+                                                          onTap: () {
+                                                            Get.to(() =>
+                                                                ChatViewImageScreen(
+                                                                  image: data[
+                                                                      'image'],
+                                                                ));
+                                                          },
+                                                          child: FadeInImage(
+                                                            placeholder:
+                                                                const AssetImage(
+                                                                    AssetRes
+                                                                        .portrait_placeholder),
+                                                            image: NetworkImage(
+                                                              data['image'],
+                                                            ),
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    )),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            data['senderUid'].toString() ==
+                                                    userUid
+                                                ? Container(
+                                                    margin:
+                                                        const EdgeInsets.only(
+                                                            top: 15),
+                                                    child: Image.asset(
+                                                      AssetRes.read,
+                                                      color: Colors.white,
+                                                      height: 16,
+                                                      width: 16,
+                                                    ),
+                                                  )
+                                                : const SizedBox(),
+                                            const SizedBox(
+                                              width: 5,
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    );
+                              if ((index + 1) == docementSnapshot.length) {
+                                return Column(
+                                  // mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      height: 100,
+                                      width: 100,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.grey,
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                            profileImage.toString(),
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Text(
+                                      name.toString(),
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    const Text(
+                                      "You’re connection on Rainbow",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15),
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    SizedBox(
+                                      height: 50,
+                                      width: 50,
+                                      child: ImageStack(
+                                        imageList: [
+                                          profileImage.toString(),
+                                          (Get.find<ProfileController>()
+                                                  .viewProfile
+                                                  .data
+                                                  ?.profileImage ??
+                                              ''),
+                                        ],
+                                        totalCount: 2,
+                                        // If larger than images.length, will show extra empty circle
+                                        imageRadius: 25,
+                                        // Radius of each images
+                                        imageCount: 3,
+                                        // Maximum number of images to be shown in stack
+                                        imageBorderWidth: 1,
+                                      ),
+                                    ),
+                                    box,
+                                  ],
+                                );
+                              }
+
+                              return box;
+                            },
+                            query: FirebaseFirestore.instance
+                                .collection("chats")
+                                .doc(roomId)
+                                .collection(roomId!)
+                                .orderBy("time", descending: true),
+                            itemBuilderType: PaginateBuilderType.listView),
+                      ),
+                      Container(
+                        height: 80,
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.6),
+                        ),
+                        child: GetBuilder<MessageController>(
+                            id: "pic",
+                            builder: (controller) {
+                              return Row(
+                                children: [
+                                  InkWell(
+                                    onTap: controller.navigateToCamera,
+                                    child: Image.asset(
+                                      AssetRes.shapeCamera,
+                                      height: 16,
+                                      width: 18.4,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  InkWell(
+                                    onTap: controller.navigateToGallery,
+                                    child: Image.asset(
+                                      AssetRes.chatImage,
+                                      height: 16,
+                                      width: 18.4,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 0,
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 20),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
+                                        color: Colors.white.withOpacity(0.4),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            child: TextFormField(
+                                              controller:
+                                                  controller.msController,
+                                              style: const TextStyle(
+                                                  color: Colors.black),
+                                              decoration: InputDecoration(
+                                                  hintText:
+                                                      "Type your message...",
+                                                  hintStyle: sfProTextReguler(
+                                                      fontSize: 17,
+                                                      color: ColorRes
+                                                          .color_999999),
+                                                  border: InputBorder.none),
+                                            ),
+                                          ),
+                                          InkWell(
+                                              onTap: () {
+                                                controller.sendMessage(
+                                                    roomId.toString(),
+                                                    otherUserUid);
+                                                FocusScope.of(context)
+                                                    .unfocus();
+                                              },
+                                              child: Image.asset(
+                                                AssetRes.chatSend,
+                                                height: 16,
+                                                width: 18.4,
+                                              ))
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              );
+                            }),
+                      ),
+                    ],
+                  ),
+                )
               : SendImage(controller);
         },
       ),
@@ -532,9 +553,9 @@ class ChatScreen extends StatelessWidget {
                 width: Get.width,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: FileImage(messageController.image!),
-                      fit: BoxFit.cover,
-                    )),
+                  image: FileImage(messageController.image!),
+                  fit: BoxFit.cover,
+                )),
               ),
               const SizedBox(height: 20),
               Align(
@@ -565,7 +586,7 @@ class ChatScreen extends StatelessWidget {
     return Center(
       child: Container(
         padding: const EdgeInsets.fromLTRB(15, 5, 15, 7),
-        margin: const EdgeInsets.only(bottom: 10,top: 15),
+        margin: const EdgeInsets.only(bottom: 10, top: 15),
         decoration: BoxDecoration(
           color: ColorRes.color_2F80ED.withOpacity(0.5),
           borderRadius: BorderRadius.circular(8),
