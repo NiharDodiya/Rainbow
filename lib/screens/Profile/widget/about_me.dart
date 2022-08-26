@@ -20,7 +20,7 @@ Widget aboutProfiler(String title, String aboutMe) {
         aboutMe == ""
             ? Center(
                 child: Text(
-                  "No about",
+                  "-",
                   style: beVietnamProBoldTextStyle(
                       color: ColorRes.white.withOpacity(0.70), fontSize: 16),
                 ),

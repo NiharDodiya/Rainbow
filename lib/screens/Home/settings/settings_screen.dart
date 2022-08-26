@@ -8,6 +8,7 @@ import 'package:rainbow/screens/Home/settings/connections/connections_screen.dar
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
 import 'package:rainbow/screens/Home/settings/subscription/subscription_screen.dart';
+import 'package:rainbow/screens/Profile/profile_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -73,24 +74,21 @@ class SettingsScreen extends StatelessWidget {
                 onTap: () {
                   Get.back();
                 },
-                child: Image.asset(
-                  AssetRes.backIcon,
-                  height: 16,
-                  width: 16,
-                  color: Colors.white,
+                child: SizedBox(height: 15,width: 9,
+                  child: Image.asset(
+                    AssetRes.backIcon,
+                    height: 16,
+                    width: 16,
+                    color: Colors.white,
+                  ),
                 ),
               ),
               SizedBox(
                 width: Get.width * 0.3,
               ),
-              GestureDetector(
-                onTap: () {
-                  Get.back();
-                },
-                child: Text(
-                  Strings.others,
-                  style: gilroyBoldTextStyle(),
-                ),
+              Text(
+                Strings.others,
+                style: gilroyBoldTextStyle(),
               ),
               SizedBox(
                 width: Get.width * 0.05,
@@ -119,15 +117,24 @@ class SettingsScreen extends StatelessWidget {
             padding: EdgeInsets.only(left: Get.width * 0.08),
             child: Row(
               children: [
-                Container(
+                controller.profileController.viewProfile.data!.profileImage!
+                    .toString().isEmpty ? Container(
                   height: 56,
                   width: 56,
                   decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                          image: AssetImage(AssetRes.se_profile))),
-                ),
-                const SizedBox(
+                          image: AssetImage(AssetRes.portrait_placeholder))),
+                ) : ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: FadeInImage(
+                      placeholder: const AssetImage(AssetRes.portrait_placeholder,),
+                      image: NetworkImage(
+                          controller.profileController.viewProfile.data!
+                              .profileImage!.toString()),      height: 56,
+                    width: 56,fit: BoxFit.cover,),
+                )
+                , const SizedBox(
                   width: 20,
                 ),
                 Row(
@@ -137,32 +144,37 @@ class SettingsScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Natalie Nara ",
+                          controller.profileController.viewProfile.data
+                              ?.fullName ?? "",
                           style: gilroyBoldTextStyle(
                               color: Colors.black, fontSize: 26),
                         ),
                         const SizedBox(
                           height: 8,
                         ),
-                        Row(
-                          children: [
-                            SizedBox(
-                              height: 15.35,
-                              width: 15.35,
-                              child: Image.asset(
-                                AssetRes.profileSettinges,
-                                color: ColorRes.color_4F359B,
+                        InkWell(onTap: () {
+                          Get.to(()=>ProfileScreen());
+                        },
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                height: 15.35,
+                                width: 15.35,
+                                child: Image.asset(
+                                  AssetRes.profileSettinges,
+                                  color: ColorRes.color_4F359B,
+                                ),
                               ),
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              Strings.viewProfile,
-                              style: gilroyBoldTextStyle(
-                                  fontSize: 15, color: ColorRes.color_4F359B),
-                            )
-                          ],
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                Strings.viewProfile,
+                                style: gilroyBoldTextStyle(
+                                    fontSize: 15, color: ColorRes.color_4F359B),
+                              )
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -231,7 +243,7 @@ class SettingsScreen extends StatelessWidget {
           InkWell(
             onTap: () {
               ConnectionsController connectionController =
-                  Get.put(ConnectionsController());
+              Get.put(ConnectionsController());
               connectionController.init();
               Get.to(() => ConnectionsScreen());
             },
@@ -484,9 +496,9 @@ class SettingsScreen extends StatelessWidget {
                   color: ColorRes.color_6306B2),
               child: Center(
                   child: Text(
-                Strings.inviteNow,
-                style: gilroyBoldTextStyle(fontSize: 11.9619),
-              )),
+                    Strings.inviteNow,
+                    style: gilroyBoldTextStyle(fontSize: 11.9619),
+                  )),
             ),
           ),
           SizedBox(
@@ -504,21 +516,21 @@ class SettingsScreen extends StatelessWidget {
                   color: ColorRes.color_FFEC5C),
               child: Center(
                   child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                      height: 15,
-                      width: 15,
-                      child: Image.asset(AssetRes.logout)),
-                  const SizedBox(
-                    width: 11,
-                  ),
-                  Text(Strings.logout,
-                      style: gilroyMediumTextStyle(
-                          color: Colors.black, fontSize: 16)),
-                ],
-              )),
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                          height: 15,
+                          width: 15,
+                          child: Image.asset(AssetRes.logout)),
+                      const SizedBox(
+                        width: 11,
+                      ),
+                      Text(Strings.logout,
+                          style: gilroyMediumTextStyle(
+                              color: Colors.black, fontSize: 16)),
+                    ],
+                  )),
             ),
           ),
           SizedBox(

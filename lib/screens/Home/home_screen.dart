@@ -34,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    controller.getCurrentLocation();
     return Obx(() {
       return Stack(
         children: [
@@ -61,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             width: Get.width * 0.02,
                           ),
                           Text(
-                            "Bexley, London",
+                            "${controller.addCity?? ""}, ${controller.addCountry??""}",
                             style: gilroyBoldTextStyle(
                                 color: Colors.black, fontSize: 16),
                           ),
@@ -392,7 +393,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                     controller
                                         .controller
                                         .viewProfile
-                                        .data==null?SizedBox():ClipRRect(
+                                        .data==null ||controller
+                                        .controller
+                                        .viewProfile
+                                        .data!
+                                        .profileImage
+                                        .toString()=="" ?Container(
+                                      height: 56,
+                                      width: 56,
+                                      decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                              image: AssetImage(AssetRes
+                                                  .portrait_placeholder))),
+                                    ):ClipRRect(
                                         borderRadius: BorderRadius.circular(50),
                                         child: FadeInImage(
                                           height: 56,
@@ -685,7 +699,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 controller.friendPostListData.isEmpty
-                    ? SizedBox(
+                    ? SizedBox(height: Get.height/3.5,
                         child: Center(
                           child: Text(
                             "No feed Available",
