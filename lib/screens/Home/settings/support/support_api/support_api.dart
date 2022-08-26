@@ -100,8 +100,9 @@ class SupportApi {
         if (status == false) {
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          flutterToast(jsonDecode(response.body)["message"]);
           Get.back();
+          flutterToast(jsonDecode(response.body)["message"]);
+
         }
         return sendSupportModelFromJson(response.body);
       }
