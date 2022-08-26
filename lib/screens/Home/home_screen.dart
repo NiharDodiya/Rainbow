@@ -847,44 +847,54 @@ class _HomeScreenState extends State<HomeScreen> {
                                           SizedBox(
                                             height: Get.height * 0.02,
                                           ),
-                                          ListView.builder(
-                                            shrinkWrap: true,
-                                            physics:
-                                                NeverScrollableScrollPhysics(),
-                                            itemCount: controller
-                                                    .friendPostListData[index]
-                                                    .postTag
-                                                    ?.length ??
-                                                0,
-                                            itemBuilder: (context, index1) {
-                                              return Text(
-                                                " @${controller.friendPostListData[index].postTag?[index1].name.toString()}" ??
-                                                    "",
-                                                style: sfProTextReguler(
-                                                    fontSize: 16,
-                                                    color:
-                                                        ColorRes.color_FED785),
-                                              );
-                                            },
-                                          ),
-                                          controller.friendPostListData[index]
-                                                      .description ==
+                                          Stack(
+                                            alignment: Alignment.topRight,
+                                            children: [
+                                             Container(
+                                               width: Get.width,
+                                               child:  ListView.builder(
+                                                 shrinkWrap: true,
+                                                 physics:
+                                                 NeverScrollableScrollPhysics(),
+                                                 itemCount: controller
+                                                     .friendPostListData[index]
+                                                     .postTag
+                                                     ?.length ??
+                                                     0,
+                                                 itemBuilder: (context, index1) {
+                                                   return Text(
+                                                     " @${controller.friendPostListData[index].postTag?[index1].name.toString()}" ??
+                                                         "",
+                                                     style: sfProTextReguler(
+                                                         fontSize: 16,
+                                                         color:
+                                                         ColorRes.color_FED785),
+                                                   );
+                                                 },
+                                               ),
+                                             ),
+                                              controller.friendPostListData[index]
+                                                  .description ==
                                                   null
-                                              ? const SizedBox()
-                                              : Center(
-                                                  child: SizedBox(
-                                                    width: Get.width * 0.85333,
-                                                    child: Text(
-                                                      controller
-                                                          .friendPostListData[
-                                                              index]
-                                                          .description
-                                                          .toString(),
-                                                      style:
-                                                          textStyleFont16WhitLight,
-                                                    ),
+                                                  ? const SizedBox()
+                                                  : Center(
+                                                child: SizedBox(
+                                                  width: Get.width * 0.85333,
+                                                  child: Text(
+                                                    controller
+                                                        .friendPostListData[
+                                                    index]
+                                                        .description
+                                                        .toString(),
+                                                    style:
+                                                    textStyleFont16WhitLight,
                                                   ),
                                                 ),
+                                              ),
+                                            ],
+                                          ),
+
+
                                           SizedBox(
                                             height: Get.height * 0.025,
                                           ),
