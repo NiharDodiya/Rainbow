@@ -21,8 +21,7 @@ Widget aboutProfiler(String title, String aboutMe) {
             ? Center(
                 child: Text(
                   "-",
-                  style: beVietnamProBoldTextStyle(
-                      color: ColorRes.white.withOpacity(0.70), fontSize: 16),
+                  style:  gilroyBoldTextStyle(fontSize: 18),
                 ),
               )
             :Container(

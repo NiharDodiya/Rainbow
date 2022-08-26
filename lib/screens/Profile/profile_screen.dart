@@ -216,8 +216,8 @@ class ProfileScreen extends StatelessWidget {
         Container(
           margin: const EdgeInsets.only(top: 15),
           child: (controller.viewProfile.data!.hobbiesAndInterest.toString() == '')
-              ?const Center(
-            child: Text("-"),
+              ? Center(
+            child: Text("-",style:  gilroyBoldTextStyle(fontSize: 18),),
           )
               :Padding(padding: const EdgeInsets.only(left: 28),child: Align(
             alignment: Alignment.topLeft,
@@ -300,9 +300,7 @@ class ProfileScreen extends StatelessWidget {
                       ? Center(
                           child: Text(
                             "-",
-                            style: beVietnamProBoldTextStyle(
-                                color: ColorRes.white.withOpacity(0.70),
-                                fontSize: 16),
+                            style:  gilroyBoldTextStyle(fontSize: 18),
                           ),
                         )
                       : controller.viewTestimonials(),

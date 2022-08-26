@@ -179,11 +179,13 @@ class MyStoryController extends GetxController {
   }
 
   void onCommentButtonTap({required MyStory myStory, required int storyindex}) {
-    pauseAnimation();
+
     comments = myStory.storycommentList ?? [];
+    pauseAnimation();
     Get.to(() => const MyStoryCommentsScreen())!.whenComplete(() {
       playAnimation();
     });
+
   }
 
   void onMoreBtnTap() {}

@@ -15,7 +15,7 @@ Widget otherVisitorsViewed() {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 20,),
+        const SizedBox(height: 20,),
         Align(
           alignment: Alignment.topLeft,
           child: Text(
@@ -23,9 +23,9 @@ Widget otherVisitorsViewed() {
             style: beVietnamProBoldTextStyle(fontSize: 18),
           ),
         ),
-        SizedBox(height: 10,),
-        (controller.viewProfile.data?.userView?.toString() ?? "").isEmpty
-            ?Center(child: Text("-",style: TextStyle(fontSize: 18),),)
+        const SizedBox(height: 10,),
+        controller.viewProfile.data!.userView!.isEmpty
+            ? Center(child: Text("-",style: gilroyBoldTextStyle(fontSize: 18)),)
             :SizedBox(
           height: 130,
           child: ListView.builder(
@@ -84,7 +84,7 @@ Widget otherVisitorsViewed() {
             },
           ),
         ),
-        SizedBox(height: 20,),
+        const SizedBox(height: 20,),
       ],
     ),
   );
