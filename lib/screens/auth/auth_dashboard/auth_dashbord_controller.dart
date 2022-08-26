@@ -7,6 +7,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/api/google_id_verification_api.dart';
+import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
 import 'package:rainbow/screens/auth/register/register_controller.dart';
 import 'package:rainbow/screens/auth/register/register_screen.dart';
@@ -31,6 +32,7 @@ class AuthDashBordController extends GetxController {
 
   final FirebaseAuth auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
+  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
   Future<void> countryName() async {
     try {
@@ -54,7 +56,7 @@ class AuthDashBordController extends GetxController {
       debugPrint(e.toString());
     }
   }
-  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
   Future signWithGoogle() async {
     loading.value = true;
     if (await googleSignIn.isSignedIn()) {
@@ -81,8 +83,8 @@ class AuthDashBordController extends GetxController {
     // GoogleIdVerification.postRegister(user.uid).then((value) {print(value);});
     try {
       await GoogleIdVerification.postRegister(user.uid, user: user)
-          .then((value) async {
-        print(value);
+          .then((LoginModel? model) async {
+        print(model);
 
         await firebaseFirestore
             .collection("users")
@@ -90,32 +92,20 @@ class AuthDashBordController extends GetxController {
             .get()
             .then((value) async {
           if (value.exists) {
+            await firebaseFirestore
+                .collection("users")
+                .doc(user.uid)
+                .update({"online": true});
+            await PrefService.setValue(PrefKeys.uid, user.uid);
+          } else {
             await firebaseFirestore.collection("users").doc(user.uid).set({
+              "id": model?.data?.id,
               "email": user.email,
               "uid": user.uid,
               "name": user.displayName,
               "image": user.photoURL,
-              "online": true
+              "online": true,
             });
-            await PrefService.setValue(PrefKeys.uid,user.uid);
-            setCount();
-          } else {
-            DocumentSnapshot<Map<String, dynamic>> documentReference = await firebaseFirestore
-                .collection("users")
-                .doc(user.uid).get();
-            if(documentReference.exists==false){
-              await firebaseFirestore
-                  .collection("users")
-                  .doc(user.uid)
-                  .set({"online": true});
-            }else
-              {
-                await firebaseFirestore
-                    .collection("users")
-                    .doc(user.uid)
-                    .update({"online": true});
-              }
-            setCount();
           }
         });
       });
@@ -126,24 +116,7 @@ class AuthDashBordController extends GetxController {
     }
     loading.value == false;
 
-
     flutterToast(Strings.googleSignInSuccess);
-  }
-  setCount() async {
-    int? count;
-    await FirebaseFirestore.instance
-        .collection("onlineCount")
-        .doc("onlineCount")
-        .get()
-        .then((value) {
-      if (value.exists) {
-        count = value.data()!['count'];
-      } else {}
-    });
-    await FirebaseFirestore.instance
-        .collection("onlineCount")
-        .doc("onlineCount")
-        .update({"count": count! + 1});
   }
 
   void onSignInTap() {
@@ -165,11 +138,35 @@ class AuthDashBordController extends GetxController {
       );
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithCredential(facebookAuthCredential);
+      final User? user = userCredential.user;
       try {
         await GoogleIdVerification.postRegister(userCredential.user!.uid,
                 user: userCredential.user)
-            .then((value) {
-          print(value);
+            .then((LoginModel? model) async {
+          print(model);
+
+          await firebaseFirestore
+              .collection("users")
+              .doc(user!.uid)
+              .get()
+              .then((value) async {
+            if (value.exists) {
+              await firebaseFirestore
+                  .collection("users")
+                  .doc(user.uid)
+                  .update({"online": true});
+              await PrefService.setValue(PrefKeys.uid, user.uid);
+            } else {
+              await firebaseFirestore.collection("users").doc(user.uid).set({
+                "id": model?.data?.id,
+                "email": user.email,
+                "uid": user.uid,
+                "name": user.displayName,
+                "image": user.photoURL,
+                "online": true,
+              });
+            }
+          });
         });
       } catch (e) {
         errorToast(e.toString());
@@ -191,5 +188,4 @@ class AuthDashBordController extends GetxController {
   void onSignUpTap() {
     Get.to(() => AdviserRegisterScreen());
   }
-
 }

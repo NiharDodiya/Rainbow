@@ -23,6 +23,7 @@ class DashboardState extends State<Dashboard> with WidgetsBindingObserver{
   @override
   void initState() {
     super.initState();
+    controller.setUserOnlineStatus(true);
     WidgetsBinding.instance.addObserver(this);
   }
 
