@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
+controller.getCurrentLocation();
     return Obx(() {
       return Stack(
         children: [

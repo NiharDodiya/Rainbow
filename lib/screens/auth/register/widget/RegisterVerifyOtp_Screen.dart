@@ -194,8 +194,8 @@ class _RegisterOtpScreenState extends State<RegisterOtpScreen> {
                                 InkWell(
                                   onTap: () {
                                     controller.startTimer();
-                                    controller.phoneNumberRegister(controller.phoneNumber.toString()
-                                      /*  "${"+${registerController.countryModel.phoneCode}"}${registerController.phoneController.text.toString()}"*/);
+                                    controller.phoneNumberRegister(controller.phoneNumber==null?
+                                    controller.showPhoneNumber.toString():controller.phoneNumber.toString());
                                   },
                                   child: Center(
                                     child: Text(

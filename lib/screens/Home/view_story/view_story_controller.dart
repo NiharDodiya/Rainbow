@@ -231,8 +231,8 @@ class ViewStoryController extends GetxController {
       // writeSomethings.clear();
       // list!.clear();
       // imageCamera==null?"":imageCamera!.delete();
-      /*    HomeController homeController = Get.find();
-      homeController.friendPostData();
+       /*   HomeController homeController = Get.find();
+      homeController.friendPostListData = [];
        homeController.update(['home']);*/
       // onPageChange(currentPage);
       update(["createStory"]);

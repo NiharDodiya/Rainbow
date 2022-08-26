@@ -253,7 +253,7 @@ class RegisterController extends GetxController {
     try {
       loader.value = true;
       await PrefService.setValue(
-          PrefKeys.phoneNumber, phoneController.text);
+          PrefKeys.phoneNumber,  "+${countryModel.phoneCode + phoneController.text}");
       await RegisterApi.postRegister(
               fullNameController.text,
               emailController.text,
