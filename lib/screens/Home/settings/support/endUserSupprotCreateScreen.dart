@@ -208,7 +208,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                           child: Image.network(
                                             controller
                                                 .viewSupportTicketModel
-                                                .data![index]
+                                                .data![0]
                                                 .itmeList![index1]
                                                 .image
                                                 .toString(),

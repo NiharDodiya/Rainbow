@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/model/notification_model.dart';
+import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/utils/color_res.dart';
 
@@ -12,6 +13,7 @@ import '../../../utils/asset_res.dart';
 class NotificationScreen extends StatelessWidget {
   NotificationScreen({Key? key}) : super(key: key);
   final NotificationsController controller = Get.put(NotificationsController());
+  ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -64,24 +66,26 @@ class NotificationScreen extends StatelessWidget {
                                       shape: BoxShape.circle,
                                       border: Border.all(
                                           color: ColorRes.white, width: 1),
-                                      gradient: const LinearGradient(
-                                        colors: [
-                                          ColorRes.color_50369C,
-                                          ColorRes.color_D18EEE,
-                                        ],
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                      ),
                                     ),
                                     child: Center(
-                                      child: Container(
+                                      child:   profileController.viewProfile.data!.profileImage!.isEmpty?Container(
                                         height: 42.69,
                                         width: 25.83,
-                                        decoration: const BoxDecoration(
+                                        decoration:  BoxDecoration(
                                           image: DecorationImage(
                                             image: AssetImage(
-                                              AssetRes.greenDuck,
-                                            ),
+                                            AssetRes.portrait_placeholder,
+                                            ),fit: BoxFit.cover
+                                          ),
+                                        ),
+                                      ):Container(
+                                        height: 42.69,
+                                        width: 25.83,
+                                        decoration:  BoxDecoration(
+                                          image: DecorationImage(
+                                            image: NetworkImage(
+                                              profileController.viewProfile.data!.profileImage.toString(),
+                                            ),fit: BoxFit.cover
                                           ),
                                         ),
                                       ),
@@ -105,7 +109,7 @@ class NotificationScreen extends StatelessWidget {
                                               fontSize: 12),
                                         ),
                                         Text(
-                                          model.title.toString(),
+                                          model.description.toString()??"",
                                           style: gilroyMediumTextStyle(
                                               fontSize: 14,
                                               letterSpacing: -0.03),
