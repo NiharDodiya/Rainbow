@@ -17,6 +17,7 @@ class DashboardController extends GetxController {
 
   @override
   void onInit() async {
+    homeController.getCurrentLocation();
     update(['bottom_bar']);
     super.onInit();
   }

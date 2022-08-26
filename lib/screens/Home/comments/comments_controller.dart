@@ -28,13 +28,12 @@ class CommentsController extends GetxController {
   @override
   void onInit() {
     update(["commentPost"]);
-
     super.onInit();
   }
 
   bool validation() {
     if (msgController.text.isEmpty) {
-      errorToast("replay required");
+      errorToast("please enter reply");
       return false;
     }
     return true;

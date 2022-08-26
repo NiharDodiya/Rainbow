@@ -55,7 +55,7 @@ class ProfileScreen extends StatelessWidget {
                     Expanded(
                       flex: 13,
                       child: SingleChildScrollView(
-                        physics: BouncingScrollPhysics(),
+                        physics: const BouncingScrollPhysics(),
                         child: Column(
                           children: [
                             profileImagesLoad(controller),
@@ -208,7 +208,7 @@ class ProfileScreen extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        Padding(padding: EdgeInsets.only(left: 28),
+        Padding(padding: const EdgeInsets.only(left: 28),
         child: Text(
           Strings.hobbies,
           style: beVietnamProBoldTextStyle(fontSize: 18),
@@ -216,10 +216,10 @@ class ProfileScreen extends StatelessWidget {
         Container(
           margin: const EdgeInsets.only(top: 15),
           child: (controller.viewProfile.data!.hobbiesAndInterest.toString() == '')
-              ?Center(
+              ?const Center(
             child: Text("-"),
           )
-              :Padding(padding: EdgeInsets.only(left: 28),child: Align(
+              :Padding(padding: const EdgeInsets.only(left: 28),child: Align(
             alignment: Alignment.topLeft,
             child: ReadMoreText(
               controller.viewProfile.data!.hobbiesAndInterest

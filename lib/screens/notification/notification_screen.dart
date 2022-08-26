@@ -67,20 +67,24 @@ class NotificationScreen extends StatelessWidget {
                                       border: Border.all(
                                           color: ColorRes.white, width: 1),
                                     ),
-                                    child: Center(
-                                      child:   profileController.viewProfile.data!.profileImage!.isEmpty?Container(
-                                        height: 42.69,
-                                        width: 25.83,
-                                        decoration:  BoxDecoration(
+                                    child: profileController.viewProfile.data!.profileImage!.isEmpty?ClipRRect(
+                                      borderRadius: BorderRadius.circular(50),
+                                      child: Container(
+                                        height: 53,
+                                        width: 53,
+                                        decoration:  const BoxDecoration(
                                           image: DecorationImage(
                                             image: AssetImage(
                                             AssetRes.portrait_placeholder,
                                             ),fit: BoxFit.cover
                                           ),
                                         ),
-                                      ):Container(
-                                        height: 42.69,
-                                        width: 25.83,
+                                      ),
+                                    ):ClipRRect(
+                                      borderRadius: BorderRadius.circular(50),
+                                      child: Container(
+                                        height: 53,
+                                        width: 53,
                                         decoration:  BoxDecoration(
                                           image: DecorationImage(
                                             image: NetworkImage(

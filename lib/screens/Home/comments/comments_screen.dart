@@ -24,12 +24,18 @@ class CommentScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          leading: InkWell(
-            onTap: () => Get.back(),
-            child: const Icon(
-              Icons.chevron_left,
-              color: ColorRes.black,
-              size: 25,
+          leading: GestureDetector(
+            onTap: () {
+              Get.back();
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Image.asset(
+                AssetRes.backIcon,
+                height: 16,
+                width: 16,
+                color: Colors.black,
+              ),
             ),
           ),
           title: Text(

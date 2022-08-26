@@ -37,7 +37,7 @@ Widget aboutProfiler(String title, String aboutMe) {
             trimCollapsedText: Strings.seeMore,
             trimExpandedText: Strings.seeLess,
             style: beVietnamProRegularTextStyle(
-              color: ColorRes.white.withOpacity(0.70),
+              color: ColorRes.white.withOpacity(0.70),fontSize: 18
             ),
             moreStyle: beVietnamProRegularTextStyle(
               color: ColorRes.color_FF6B97,
