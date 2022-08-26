@@ -7,6 +7,8 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
+import '../../../common/popup.dart';
+
 class StoryScreen extends StatelessWidget {
   String? id;
   String? image;
@@ -234,41 +236,48 @@ class StoryScreen extends StatelessWidget {
                             ],
                           ),
                         ),*/
-                        controller.image.length == 3
-                            ? const SizedBox()
-                            : Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      controller.cameraImage();
-                                      controller.update(["createStory"]);
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 5, top: 15),
-                                      child: Image.asset(
-                                        AssetRes.commentCamera,
-                                        height: 22,
-                                      ),
-                                    ),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      controller.galleryImage();
-                                      controller.update(["createStory"]);
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 15.0, right: 5, top: 15),
-                                      child: Image.asset(
-                                        AssetRes.commentGallery,
-                                        height: 22,
-                                      ),
-                                    ),
-                                  ),
-                                  /*  Expanded(
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                if (controller.image.length == 3) {
+                                  errorToast("you can take only 3 images");
+                                } else {
+                                  controller.cameraImage();
+                                  controller.update(["createStory"]);
+                                }
+                              },
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(right: 5, top: 15),
+                                child: Image.asset(
+                                  AssetRes.commentCamera,
+                                  height: 22,
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                if (controller.image.length == 3) {
+                                  errorToast("you can take only 3 images");
+                                } else {
+                                  controller.galleryImage();
+                                  controller.update(["createStory"]);
+                                }
+
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 15.0, right: 5, top: 15),
+                                child: Image.asset(
+                                  AssetRes.commentGallery,
+                                  height: 22,
+                                ),
+                              ),
+                            ),
+                            /*  Expanded(
                               child: Container(
                                 height: 40,
                                 margin: const EdgeInsets.only(left: 5, top: 7),
@@ -319,9 +328,9 @@ class StoryScreen extends StatelessWidget {
                                 ),
                               ),
                             ),*/
-                                  const SizedBox(width: 5),
-                                ],
-                              ),
+                            const SizedBox(width: 5),
+                          ],
+                        ),
                       ],
                     ),
                   ),
