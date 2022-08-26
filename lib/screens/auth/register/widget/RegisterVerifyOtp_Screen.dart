@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -17,12 +19,13 @@ class RegisterOtpScreen extends StatefulWidget {
 
 class _RegisterOtpScreenState extends State<RegisterOtpScreen> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final RegisterVerifyController controller =
+   final controller =
       Get.put(RegisterVerifyController());
 
   @override
   void initState() {
     controller.startTimer();
+    controller.verifyController = TextEditingController();
     super.initState();
   }
 
@@ -191,8 +194,8 @@ class _RegisterOtpScreenState extends State<RegisterOtpScreen> {
                                 InkWell(
                                   onTap: () {
                                     controller.startTimer();
-                                    controller.phoneNumberRegister(
-                                        "${"+${registerController.countryModel.phoneCode}"}${registerController.phoneController.text.toString()}");
+                                    controller.phoneNumberRegister(controller.phoneNumber.toString()
+                                      /*  "${"+${registerController.countryModel.phoneCode}"}${registerController.phoneController.text.toString()}"*/);
                                   },
                                   child: Center(
                                     child: Text(

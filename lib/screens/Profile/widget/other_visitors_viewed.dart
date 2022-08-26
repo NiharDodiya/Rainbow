@@ -19,7 +19,7 @@ Widget otherVisitorsViewed() {
           controller.viewProfile.data == null ? "" : "Other Visitors Viewed",
           style: beVietnamProBoldTextStyle(fontSize: 18),
         ),
-        SizedBox(
+        controller.viewProfile.data!.userView!.isEmpty?Text("-",style: TextStyle(fontSize: 18),):SizedBox(
           height: 130,
           child: ListView.builder(
             padding: const EdgeInsets.only(top: 5),

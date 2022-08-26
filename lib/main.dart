@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
+import 'package:rainbow/screens/auth/register/widget/RegisterVerifyOtp_Screen.dart';
 import 'package:rainbow/screens/dashboard/dashBoard.dart';
 import 'package:rainbow/screens/scanyour_face/scanyourface_controller.dart';
 import 'package:rainbow/screens/splash/splash_screen.dart';
@@ -14,6 +15,8 @@ import 'package:rainbow/service/notification_service.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/pref_keys.dart';
+
+import 'screens/auth/register/widget/registerVerify_controller.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,6 +56,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
+      getPages: [GetPage(name: "/RegisterOtpScreen", page: ()=> const RegisterOtpScreen(),binding: BindingsBuilder(()=>RegisterVerifyController()))],
       // home: ScanYourFaceScreen(),
       home: /*const GoogleMapScreen()*/ /*SupportDetailsScreen(com: "")*/ !PrefService
               .getBool(PrefKeys.skipBoardingScreen)

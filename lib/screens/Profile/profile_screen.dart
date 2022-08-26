@@ -217,8 +217,7 @@ class ProfileScreen extends StatelessWidget {
                     controller.viewProfile.data!.hobbiesAndInterest
                                 .toString() ==
                             ""
-                        ? ""
-                        : controller.viewProfile.data!.hobbiesAndInterest
+                        ? "-": controller.viewProfile.data!.hobbiesAndInterest
                             .toString(),
                     /* aboutMe,*/
                     trimLines: 3,
@@ -227,7 +226,7 @@ class ProfileScreen extends StatelessWidget {
                     trimCollapsedText: Strings.seeMore,
                     trimExpandedText: Strings.seeLess,
                     style: beVietnamProRegularTextStyle(
-                      color: ColorRes.white.withOpacity(0.70),
+                      color: ColorRes.white.withOpacity(0.70),fontSize: 18
                     ),
                     moreStyle: beVietnamProRegularTextStyle(
                       color: ColorRes.color_FF6B97,
