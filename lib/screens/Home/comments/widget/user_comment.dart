@@ -22,20 +22,34 @@ Widget userComment(
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  height: 40,
-                  width: 40,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                  ),
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(50)),
-                    child: FadeInImage(
-                      placeholder:
-                          const AssetImage(AssetRes.portrait_placeholder),
-                      image: NetworkImage(profileImage.toString()),
-                      fit: BoxFit.cover,
-                    ) /* Image.network(
+
+
+                     Container(
+                        height: 40,
+                        width: 40,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                        ),
+                        child:  profileImage.toString() == ""
+                            ?const ClipRRect(
+                          borderRadius:
+                           BorderRadius.all(Radius.circular(50)),
+                          child: FadeInImage(
+                            placeholder:
+                             AssetImage(AssetRes.portrait_placeholder),
+                            image: AssetImage(AssetRes.portrait_placeholder),
+                            fit: BoxFit.cover,
+                          )
+                        )
+                            :ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(50)),
+                          child: FadeInImage(
+                            placeholder:
+                                const AssetImage(AssetRes.portrait_placeholder),
+                            image: NetworkImage(profileImage.toString()),
+                            fit: BoxFit.cover,
+                          ) /* Image.network(
                       profileImage.toString(),
                       fit: BoxFit.cover,
                       errorBuilder: (context, url, error) => const Icon(
@@ -43,9 +57,9 @@ Widget userComment(
                         color: Colors.grey,
                       ),
                     )*/
-                    ,
-                  ),
-                ),
+                          ,
+                        ),
+                      ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,

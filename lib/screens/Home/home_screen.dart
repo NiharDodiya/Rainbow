@@ -163,7 +163,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: SingleChildScrollView(
                     controller: controller.scrollController,
                     child: Column(
-                      children: [discover(), seeAll(), latestFeed()],
+                      children: [
+                        discover(),
+                        seeAll(),
+                        latestFeed(),
+                      ],
                     ),
                   ),
                 ),
@@ -1191,7 +1195,28 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   width: Get.width * 0.05,
                                                 ),
                                                 InkWell(
-                                                  onTap: () async {
+                                                  onTap: ()  async{
+
+                                                    Get.to(() => CommentScreen(
+                                                      idPost: controller
+                                                          .friendPostListData[
+                                                      index]
+                                                          .id
+                                                          .toString(),
+                                                      fullName: controller
+                                                          .friendPostListData[
+                                                      index]
+                                                          .postUser!
+                                                          .fullName
+                                                          .toString(),
+                                                      profileImage: controller
+                                                          .friendPostListData[
+                                                      index]
+                                                          .postUser!
+                                                          .profileImage
+                                                          .toString(),
+                                                    ));
+
                                                     await controller
                                                         .commentPostListData(
                                                             controller
@@ -1199,25 +1224,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                     index]
                                                                 .id
                                                                 .toString());
-                                                    Get.to(() => CommentScreen(
-                                                          idPost: controller
-                                                              .friendPostListData[
-                                                                  index]
-                                                              .id
-                                                              .toString(),
-                                                          fullName: controller
-                                                              .friendPostListData[
-                                                                  index]
-                                                              .postUser!
-                                                              .fullName
-                                                              .toString(),
-                                                          profileImage: controller
-                                                              .friendPostListData[
-                                                                  index]
-                                                              .postUser!
-                                                              .profileImage
-                                                              .toString(),
-                                                        ));
+
                                                   },
                                                   child: const SizedBox(
                                                     height: 18,
