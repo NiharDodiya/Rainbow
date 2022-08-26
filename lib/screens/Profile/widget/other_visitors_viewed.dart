@@ -15,11 +15,13 @@ Widget otherVisitorsViewed() {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        SizedBox(height: 20,),
         Text(
           controller.viewProfile.data == null ? "" : "Other Visitors Viewed",
           style: beVietnamProBoldTextStyle(fontSize: 18),
         ),
-        controller.viewProfile.data!.userView!.isEmpty?Text("-",style: TextStyle(fontSize: 18),):SizedBox(
+        SizedBox(height: 10,),
+        controller.viewProfile.data!.userView!.isEmpty?Center(child: Text("-",style: TextStyle(fontSize: 18),),):SizedBox(
           height: 130,
           child: ListView.builder(
             padding: const EdgeInsets.only(top: 5),
@@ -76,7 +78,8 @@ Widget otherVisitorsViewed() {
               );
             },
           ),
-        )
+        ),
+        SizedBox(height: 20,),
       ],
     ),
   );

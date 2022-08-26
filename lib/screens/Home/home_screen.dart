@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             width: Get.width * 0.02,
                           ),
                           Text(
-                            "${controller.addCity?? ""}, ${controller.addCountry??""}",
+                            "${controller.addCity ?? ""}, ${controller.addCountry ?? ""}",
                             style: gilroyBoldTextStyle(
                                 color: Colors.black, fontSize: 16),
                           ),
@@ -390,37 +390,38 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onTap: controller.onNewStoryTap,
                                 child: Stack(
                                   children: [
-                                    controller
-                                        .controller
-                                        .viewProfile
-                                        .data==null ||controller
-                                        .controller
-                                        .viewProfile
-                                        .data!
-                                        .profileImage
-                                        .toString()=="" ?Container(
-                                      height: 56,
-                                      width: 56,
-                                      decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: DecorationImage(
-                                              image: AssetImage(AssetRes
-                                                  .portrait_placeholder))),
-                                    ):ClipRRect(
-                                        borderRadius: BorderRadius.circular(50),
-                                        child: FadeInImage(
-                                          height: 56,
-                                          width: 56,
-                                          placeholder: const AssetImage(
-                                              AssetRes.portrait_placeholder),
-                                          image: NetworkImage(controller
-                                              .controller
-                                              .viewProfile
-                                              .data!
-                                              .profileImage
-                                              .toString()),
-                                          fit: BoxFit.cover,
-                                        )),
+                                    controller.controller.viewProfile.data ==
+                                                null ||
+                                            controller.controller.viewProfile
+                                                    .data!.profileImage
+                                                    .toString() ==
+                                                ""
+                                        ? Container(
+                                            height: 56,
+                                            width: 56,
+                                            decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                image: DecorationImage(
+                                                    image: AssetImage(AssetRes
+                                                        .portrait_placeholder))),
+                                          )
+                                        : ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(50),
+                                            child: FadeInImage(
+                                              height: 56,
+                                              width: 56,
+                                              placeholder: const AssetImage(
+                                                  AssetRes
+                                                      .portrait_placeholder),
+                                              image: NetworkImage(controller
+                                                  .controller
+                                                  .viewProfile
+                                                  .data!
+                                                  .profileImage
+                                                  .toString()),
+                                              fit: BoxFit.cover,
+                                            )),
                                     // Positioned(
                                     //   top: Get.height * 0.04,
                                     //   child: Container(
@@ -699,15 +700,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 controller.friendPostListData.isEmpty
-                    ? SizedBox(height: Get.height/3.5,
-                        child: Center(
-                          child: Text(
-                            "No feed Available",
-                            style: gilroyBoldTextStyle(
-                                fontSize: 20, color: Colors.black),
-                          ),
-                        ),
-                      )
+                    ?Container(
+                     width: Get.width,
+                      height: Get.height/2.5,
+                      child:  Center(
+                    child: Text(
+                      "No feed Available",
+                      style: gilroyBoldTextStyle(
+                          fontSize: 20, color: Colors.black),
+                    ),
+                  ),
+                )
                     : ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),

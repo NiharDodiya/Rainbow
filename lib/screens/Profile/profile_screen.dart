@@ -39,7 +39,7 @@ class ProfileScreen extends StatelessWidget {
                     end: Alignment.bottomCenter,
                   ),
                 ),
-                child:  Column(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
@@ -47,32 +47,34 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     Expanded(
                       flex: 1,
-                      child:  profileAppbar(
-                        Strings.profile, true, controller.onTapToHomeScreen),
+                      child: profileAppbar(
+                          Strings.profile, true, controller.onTapToHomeScreen),
                     ),
                     Expanded(
                       flex: 13,
                       child: SingleChildScrollView(
                         physics: BouncingScrollPhysics(),
                         child: Column(
-                        children: [
-                          profileImagesLoad(controller),
-                          profileDetails(),
-                          aboutProfiler(
-                            Strings.aboutMe,
-                            controller.viewProfile.data == null
-                                ? ""
-                                : controller.viewProfile.data!.about.toString(),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          hobbiesAndInterest(),
-                          testimonial(controller),
-                          otherVisitorsViewed(),
-                        ],
+                          children: [
+                            profileImagesLoad(controller),
+                            profileDetails(),
+                            aboutProfiler(
+                              Strings.aboutMe,
+                              controller.viewProfile.data == null
+                                  ? ""
+                                  : controller.viewProfile.data!.about
+                                      .toString(),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            hobbiesAndInterest(),
+                            testimonial(controller),
+                            otherVisitorsViewed(),
+                          ],
+                        ),
+                      ),
                     ),
-                      ),),
                   ],
                 ),
               );
@@ -170,7 +172,6 @@ class ProfileScreen extends StatelessWidget {
                   shape: BoxShape.circle,
                   image: DecorationImage(
                     image: AssetImage(AssetRes.portrait_placeholder),
-
                   ),
                 )),
               ),
@@ -199,46 +200,46 @@ class ProfileScreen extends StatelessWidget {
   Widget hobbiesAndInterest() {
     return controller.viewProfile.data == null
         ? const SizedBox()
-        : Padding(
-            padding: const EdgeInsets.only(left: 30, right: 30),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  Strings.hobbies,
-                  style: beVietnamProBoldTextStyle(fontSize: 18),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 15),
-                  child: ReadMoreText(
-                    controller.viewProfile.data!.hobbiesAndInterest
-                                .toString() ==
-                            ""
-                        ? "-": controller.viewProfile.data!.hobbiesAndInterest
-                            .toString(),
-                    /* aboutMe,*/
-                    trimLines: 3,
-                    trimMode: TrimMode.Line,
-                    delimiter: " ",
-                    trimCollapsedText: Strings.seeMore,
-                    trimExpandedText: Strings.seeLess,
-                    style: beVietnamProRegularTextStyle(
-                      color: ColorRes.white.withOpacity(0.70),fontSize: 18
-                    ),
-                    moreStyle: beVietnamProRegularTextStyle(
-                      color: ColorRes.color_FF6B97,
-                    ),
-                    lessStyle: beVietnamProRegularTextStyle(
-                      color: ColorRes.color_FF6B97,
-                    ),
-                  ),
-                ),
-              ],
+        :  Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(
+          height: 10,
+        ),
+        Padding(padding: EdgeInsets.only(left: 28),
+        child: Text(
+          Strings.hobbies,
+          style: beVietnamProBoldTextStyle(fontSize: 18),
+        ),),
+        Center(
+          child: Container(
+            margin: const EdgeInsets.only(top: 15),
+            child: ReadMoreText(
+              controller.viewProfile.data!.hobbiesAndInterest
+                  .toString() ==
+                  ""
+                  ? "-": controller.viewProfile.data!.hobbiesAndInterest
+                  .toString(),
+              /* aboutMe,*/
+              trimLines: 3,
+              trimMode: TrimMode.Line,
+              delimiter: " ",
+              trimCollapsedText: Strings.seeMore,
+              trimExpandedText: Strings.seeLess,
+              style: beVietnamProRegularTextStyle(
+                  color: ColorRes.white.withOpacity(0.70),fontSize: 18
+              ),
+              moreStyle: beVietnamProRegularTextStyle(
+                color: ColorRes.color_FF6B97,
+              ),
+              lessStyle: beVietnamProRegularTextStyle(
+                color: ColorRes.color_FF6B97,
+              ),
             ),
-          );
+          ),
+        ),
+      ],
+    );
   }
 
   Widget testimonial(ProfileController controller) {
@@ -269,7 +270,7 @@ class ProfileScreen extends StatelessWidget {
                   controller.viewProfile.data!.testimonialsList!.isEmpty
                       ? Center(
                           child: Text(
-                          "-",
+                            "-",
                             style: beVietnamProBoldTextStyle(
                                 color: ColorRes.white.withOpacity(0.70),
                                 fontSize: 16),

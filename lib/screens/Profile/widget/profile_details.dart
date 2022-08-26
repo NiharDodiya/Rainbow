@@ -8,6 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 Widget profileDetails() {
   ProfileController controller = Get.put(ProfileController());
   return Column(
+
     children: [
       Text(
         controller.viewProfile.data == null
@@ -24,71 +25,106 @@ Widget profileDetails() {
       const SizedBox(
         height: 6,
       ),
-      controller.viewProfile.data==null?SizedBox():Row(
+      controller.viewProfile.data==null
+          ? Row(
+  mainAxisAlignment: MainAxisAlignment.center,
+  crossAxisAlignment: CrossAxisAlignment.end,
+  children: [
+  controller.viewProfile.data?.age == 0
+  ? const Text("")
+      : Text(
+  controller.viewProfile.data?.age.toString() ?? "",
+  style: gilroyRegularTextStyle(fontSize: 14),
+  ),
+  controller.viewProfile.data?.age.toString() != "0"
+  ? Container(
+  height: 4,
+  width: 4,
+  margin: const EdgeInsets.only(left: 8, right: 8, bottom: 3),
+  child: Image.asset(
+  AssetRes.yellowDot,
+  height: 4,
+  width: 4,
+  ),
+  )
+      : const SizedBox(),
+  // dot(controller,controller.viewProfile.data!.age.toString()),
+  Text(
+  controller.viewProfile.data == null
+  ? ""
+      : controller.viewProfile.data!.city.toString(),
+  style: gilroyRegularTextStyle(fontSize: 14),
+  ),
+  controller.viewProfile.data?.city.toString() != ""
+  ? Container(
+  height: 4,
+  width: 4,
+  margin: const EdgeInsets.only(left: 8, right: 8, bottom: 3),
+  child: Image.asset(
+  AssetRes.yellowDot,
+  height: 4,
+  width: 4,
+  ),
+  )
+      : const SizedBox(),
+  // dot(controller,controller.viewProfile.data!.city.toString()),
+  Text(
+  controller.viewProfile.data == null
+  ? ""
+      : controller.viewProfile.data!.height.toString(),
+  style: gilroyRegularTextStyle(fontSize: 14),
+  ),
+  controller.viewProfile.data?.height != ""
+  ? Container(
+  height: 4,
+  width: 4,
+  margin: const EdgeInsets.only(left: 8, right: 8, bottom: 3),
+  child: Image.asset(
+  AssetRes.yellowDot,
+  height: 4,
+  width: 4,
+  ),
+  )
+      : const SizedBox(),
+  // dot(controller,controller.viewProfile.data!.height.toString()),
+  Text(
+  controller.viewProfile.data == null
+  ? ""
+      : controller.viewProfile.data!.weight.toString(),
+  style: gilroyRegularTextStyle(fontSize: 14),
+  ),
+  ],
+  )
+          : Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          controller.viewProfile.data?.age == 0
-              ? const Text("")
-              : Text(
-                  controller.viewProfile.data?.age.toString() ?? "",
-                  style: gilroyRegularTextStyle(fontSize: 14),
-                ),
-          controller.viewProfile.data?.age.toString() != "0"
-              ? Container(
-                  height: 4,
-                  width: 4,
-                  margin: const EdgeInsets.only(left: 8, right: 8, bottom: 3),
-                  child: Image.asset(
-                    AssetRes.yellowDot,
-                    height: 4,
-                    width: 4,
-                  ),
-                )
-              : const SizedBox(),
-          // dot(controller,controller.viewProfile.data!.age.toString()),
           Text(
             controller.viewProfile.data == null
                 ? ""
-                : controller.viewProfile.data!.city.toString(),
+                : controller.viewProfile.data!.idEthnicity.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
-          controller.viewProfile.data?.city.toString() != ""
-              ? Container(
-                  height: 4,
-                  width: 4,
-                  margin: const EdgeInsets.only(left: 8, right: 8, bottom: 3),
-                  child: Image.asset(
-                    AssetRes.yellowDot,
-                    height: 4,
-                    width: 4,
-                  ),
-                )
-              : const SizedBox(),
-          // dot(controller,controller.viewProfile.data!.city.toString()),
+          dot(
+              controller,
+              controller.viewProfile.data == null
+                  ? ""
+                  : controller.viewProfile.data!.idEthnicity.toString()),
           Text(
             controller.viewProfile.data == null
                 ? ""
-                : controller.viewProfile.data!.height.toString(),
+                : controller.viewProfile.data!.maritalStatus.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
-          controller.viewProfile.data?.height != ""
-              ? Container(
-                  height: 4,
-                  width: 4,
-                  margin: const EdgeInsets.only(left: 8, right: 8, bottom: 3),
-                  child: Image.asset(
-                    AssetRes.yellowDot,
-                    height: 4,
-                    width: 4,
-                  ),
-                )
-              : const SizedBox(),
-          // dot(controller,controller.viewProfile.data!.height.toString()),
+          dot(
+              controller,
+              controller.viewProfile.data == null
+                  ? ""
+                  : controller.viewProfile.data!.maritalStatus.toString()),
           Text(
             controller.viewProfile.data == null
                 ? ""
-                : controller.viewProfile.data!.weight.toString(),
+                : controller.viewProfile.data!.noKids.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
         ],
@@ -96,7 +132,8 @@ Widget profileDetails() {
       const SizedBox(
         height: 15,
       ),
-      Row(
+      //indian.single.0
+      (controller.viewProfile.data != null)?SizedBox():Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
