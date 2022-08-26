@@ -9,6 +9,9 @@ import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
+
+ConnectionsController controller = Get.put(ConnectionsController());
+
 Widget profileAppbar(String text, bool show, context, int i, VoidCallback? onTap) {
   return Padding(
     padding: const EdgeInsets.only(top: 10, left: 18.50, right: 18.50),
@@ -85,7 +88,9 @@ Widget profileAppbar(String text, bool show, context, int i, VoidCallback? onTap
                       child: Image.asset(AssetRes.notificationIcon),
                     ),
                   ),
-                  Positioned(
+                  (controller.requestUsers.length.toString() == '0')
+                      ?SizedBox()
+                      :Positioned(
                     top: 0,
                     right: 0,
                     child: GetBuilder<NotificationsController>(
@@ -99,8 +104,7 @@ Widget profileAppbar(String text, bool show, context, int i, VoidCallback? onTap
                               shape: BoxShape.circle,
                               color: ColorRes.color_FF6B97),
                           child: Text(
-                            notificationController.notificationList.length
-                                .toString(),
+                            controller.requestUsers.length.toString(),
                             style: const TextStyle(
                               color: ColorRes.white,
                               fontSize: 8,

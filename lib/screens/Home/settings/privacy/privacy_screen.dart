@@ -86,15 +86,22 @@ class PrivacyScreen extends StatelessWidget {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5)),
                                   value: controller.isChecked[index],
-                                  onChanged: (val) =>
-                                      controller.onCheckMarkChange(val, index),
+                                  onChanged: (val) =>  controller.onCheckMarkChange(val, index),
                                   materialTapTargetSize:
                                       MaterialTapTargetSize.shrinkWrap,
                                 ),
-                                Text(
-                                  controller.privacyList[index],
-                                  style: gilroyMediumTextStyle(),
-                                )
+                                GestureDetector(
+                                 onTap: (){
+                                   controller.checkBoxText(
+                                       check: controller.isChecked[index],
+                                   );
+                                   controller.isChecked[index] == false?controller.isChecked[index]=true:controller.isChecked[index]=false;
+                                 },
+                                  child: Text(
+                                    controller.privacyList[index],
+                                    style: gilroyMediumTextStyle(),
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -174,4 +181,5 @@ class PrivacyScreen extends StatelessWidget {
       ),
     );
   }
+
 }
