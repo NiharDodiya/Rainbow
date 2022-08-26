@@ -210,7 +210,7 @@ class SupportScreen extends StatelessWidget {
                                           color: ColorRes.color_9597A1,
                                           fontSize: 16),
                                     ),
-                                    SizedBox(height: 5,),
+                                    const SizedBox(height: 5,),
                                     Text(
                                       controller.listSupportTicketModel
                                           .data![index].tickit
@@ -219,14 +219,16 @@ class SupportScreen extends StatelessWidget {
                                           color: ColorRes.color_6306B2,
                                           fontSize: 16),
                                     ),
-                                    SizedBox(height: 5,),
-                                    Text(
-                                      controller.listSupportTicketModel
-                                          .data![index].title
-                                          .toString(),
-                                      style: gilroyMediumTextStyle(
-                                          color: Colors.black,
-                                          fontSize: 13.11),
+                                    const SizedBox(height: 5,),
+                                    SizedBox(width: 150,
+                                      child: Text(
+                                        controller.listSupportTicketModel
+                                            .data![index].title
+                                            .toString(),
+                                        style: gilroyMediumTextStyle(
+                                            color: Colors.black,
+                                            fontSize: 13.11),
+                                      ),
                                     ),
                                   ],
                                 ),

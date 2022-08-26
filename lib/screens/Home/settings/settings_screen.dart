@@ -117,8 +117,7 @@ class SettingsScreen extends StatelessWidget {
             padding: EdgeInsets.only(left: Get.width * 0.08),
             child: Row(
               children: [
-                controller.profileController.viewProfile.data!.profileImage!
-                    .toString().isEmpty ? Container(
+                (controller.profileController.viewProfile.data?.profileImage?.toString()?? "").isEmpty ? Container(
                   height: 56,
                   width: 56,
                   decoration: const BoxDecoration(

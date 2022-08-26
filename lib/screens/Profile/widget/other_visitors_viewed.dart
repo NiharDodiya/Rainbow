@@ -21,7 +21,7 @@ Widget otherVisitorsViewed() {
           style: beVietnamProBoldTextStyle(fontSize: 18),
         ),
         SizedBox(height: 10,),
-        controller.viewProfile.data!.userView!.isEmpty?Center(child: Text("-",style: TextStyle(fontSize: 18),),):SizedBox(
+        (controller.viewProfile.data?.userView?.toString() ?? "").isEmpty?Center(child: Text("-",style: TextStyle(fontSize: 18),),):SizedBox(
           height: 130,
           child: ListView.builder(
             padding: const EdgeInsets.only(top: 5),

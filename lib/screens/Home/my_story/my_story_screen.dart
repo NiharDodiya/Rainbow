@@ -504,7 +504,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                 onTap: () {
                                   controller.commentSendTap(
                                       controller.viewStoryController.storyModel
-                                          .myStory![pageIndex].id
+                                          .myStory![storyIndex].id
                                           .toString(),
                                       context);
                                 },
