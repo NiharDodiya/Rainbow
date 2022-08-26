@@ -376,4 +376,9 @@ class ViewStoryController extends GetxController {
     }
     indicatorAnimationController!.value = IndicatorAnimationCommand.pause;
   }
+
+  void resetAllData(){
+    filterList = [];
+    tagController.clear();
+  }
 }
