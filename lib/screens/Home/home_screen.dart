@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    /* controller.getCurrentLocation();*/
+
     return Obx(() {
       return Stack(
         children: [
@@ -67,10 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Colors.black, fontSize: 16),
                           ),
                           const Spacer(),
-                          /* InkWell(
-                            onTap: controller.onNewStoryTap,
-                            child: const Icon(Icons.add, color: ColorRes.black),
-                          ),*/
+
                           const SizedBox(width: 10),
                           GestureDetector(
                             onTap: () {
@@ -167,35 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                /* SmartRefresher(
-                  controller: controller.refreshController!,
-                  header: CustomHeader(
-                    builder: (context, status) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 15.0),
-                        child: Center(
-                          child: SizedBox(
-                            height: 30,
-                            width: 30,
-                            child: CircularProgressIndicator(
-                              color: ColorRes.color_4F359B,
-                              backgroundColor: ColorRes.black2.withOpacity(0.2),
-                              strokeWidth: 2.2,
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                  enablePullDown: true,
-                  onRefresh: controller.onRefresh,
-                  child: SingleChildScrollView(
-                    controller: controller.scrollController,
-                    child: Column(
-                      children: [discover(), seeAll(), latestFeed()],
-                    ),
-                  ),
-                ),*/
+
                 floatingActionButton: GetBuilder<HomeController>(
                   id: "home",
                   builder: (controller) {
@@ -712,7 +681,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 controller.friendPostListData.isEmpty
-                    ? Container(
+                    ? SizedBox(
                         width: Get.width,
                         height: Get.height / 2.5,
                         child: Center(
@@ -847,23 +816,26 @@ class _HomeScreenState extends State<HomeScreen> {
                                           SizedBox(
                                             height: Get.height * 0.02,
                                           ),
-                                          RichText(text: TextSpan(
-                                            children:       controller
-                                                .friendPostListData[index]
-                                                .postTag!.map<TextSpan>((e) => TextSpan(
-                                              text:   " @${e.name.toString()}",
-                                                style: sfProTextReguler(
-                                                    fontSize: 16,
-                                                    color:
-                                                    ColorRes.color_FED785)
-                                            )).toList()..add(TextSpan(text: " ${controller
-                                                .friendPostListData[
-                                            index]
-                                                .description
-                                                .toString()}",
-                                                style:
-                                                textStyleFont16WhitLight)),
-                                          ),),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 8,right: 8),
+                                            child: RichText(text: TextSpan(
+                                              children:       controller
+                                                  .friendPostListData[index]
+                                                  .postTag!.map<TextSpan>((e) => TextSpan(
+                                                text:   " @${e.name.toString()}",
+                                                  style: sfProTextReguler(
+                                                      fontSize: 16,
+                                                      color:
+                                                      ColorRes.color_FED785)
+                                              )).toList()..add(TextSpan(text: " ${controller
+                                                  .friendPostListData[
+                                              index]
+                                                  .description
+                                                  .toString()}",
+                                                  style:
+                                                  textStyleFont16WhitLight)),
+                                            ),),
+                                          ),
                                       /*    Row(
                                             children: [
                                               Expanded(
