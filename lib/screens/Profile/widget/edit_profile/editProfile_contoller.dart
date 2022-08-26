@@ -95,7 +95,7 @@ class EditProfileController extends GetxController {
       selectedStatus = profileController.viewProfile.data!.userStatus!;
     }
     status1.text = profileController.viewProfile.data!.maritalStatus!;
-    age.text = profileController.viewProfile.data!.age as String;
+    age.text = profileController.viewProfile.data!.age.toString() == '0'?"":profileController.viewProfile.data!.age.toString();
     city.text = profileController.viewProfile.data!.city!;
     height.text = profileController.viewProfile.data!.height!;
     weight.text = profileController.viewProfile.data!.weight!;

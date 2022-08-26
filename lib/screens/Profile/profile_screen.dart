@@ -211,14 +211,16 @@ class ProfileScreen extends StatelessWidget {
           Strings.hobbies,
           style: beVietnamProBoldTextStyle(fontSize: 18),
         ),),
-        Center(
-          child: Container(
-            margin: const EdgeInsets.only(top: 15),
+        Container(
+          margin: const EdgeInsets.only(top: 15),
+          child: (controller.viewProfile.data!.hobbiesAndInterest.toString() == '')
+              ?Center(
+            child: Text("-"),
+          )
+              :Padding(padding: EdgeInsets.only(left: 28),child: Align(
+            alignment: Alignment.topLeft,
             child: ReadMoreText(
               controller.viewProfile.data!.hobbiesAndInterest
-                  .toString() ==
-                  ""
-                  ? "-": controller.viewProfile.data!.hobbiesAndInterest
                   .toString(),
               /* aboutMe,*/
               trimLines: 3,
@@ -236,7 +238,32 @@ class ProfileScreen extends StatelessWidget {
                 color: ColorRes.color_FF6B97,
               ),
             ),
-          ),
+          ),),
+          // child: ReadMoreText(
+          //   controller.viewProfile.data!.hobbiesAndInterest
+          //       .toString() ==
+          //       ""
+          //       ? "-": controller.viewProfile.data!.hobbiesAndInterest
+          //       .toString(),
+          //   /* aboutMe,*/
+          //   trimLines: 3,
+          //   trimMode: TrimMode.Line,
+          //   delimiter: " ",
+          //   trimCollapsedText: Strings.seeMore,
+          //   trimExpandedText: Strings.seeLess,
+          //   style: beVietnamProRegularTextStyle(
+          //       color: ColorRes.white.withOpacity(0.70),fontSize: 18
+          //   ),
+          //   moreStyle: beVietnamProRegularTextStyle(
+          //     color: ColorRes.color_FF6B97,
+          //   ),
+          //   lessStyle: beVietnamProRegularTextStyle(
+          //     color: ColorRes.color_FF6B97,
+          //   ),
+          // ),
+        ),
+        const SizedBox(
+          height: 10,
         ),
       ],
     );
