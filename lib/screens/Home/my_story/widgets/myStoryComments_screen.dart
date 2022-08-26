@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_controller.dart';
 import 'package:rainbow/screens/Home/story_commets/widget/story_comment.dart';
+import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
 class MyStoryCommentsScreen extends StatelessWidget {
@@ -13,12 +14,18 @@ class MyStoryCommentsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        leading: InkWell(
-          onTap: () => Get.back(),
-          child: const Icon(
-            Icons.chevron_left,
-            color: ColorRes.black,
-            size: 35,
+        leading: GestureDetector(
+          onTap: () {
+            Get.back();
+          },
+          child: Padding(
+            padding:  EdgeInsets.all(20),
+            child: Image.asset(
+              AssetRes.backIcon,
+              height: 16,
+              width: 16,
+              color: Colors.black,
+            ),
           ),
         ),
         title: Text(

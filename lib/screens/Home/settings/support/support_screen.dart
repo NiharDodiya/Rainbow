@@ -164,7 +164,6 @@ class SupportScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(15),
                               color: Colors.white),
                           child: Row(
-
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(left: 15),

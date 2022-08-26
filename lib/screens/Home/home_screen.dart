@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-   /* controller.getCurrentLocation();*/
+    /* controller.getCurrentLocation();*/
     return Obx(() {
       return Stack(
         children: [
@@ -544,135 +544,143 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (controller) {
         return controller.requestUsers.isEmpty
             ? const SizedBox()
-            :Obx(() {
-              return  SizedBox(
-                width: Get.width,
-                child: Stack(
-                  children: [
-                    Column(
-                      children: [
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: InkWell(
-                            onTap: () {
-                              ConnectionsController connectionController =
-                              Get.put(ConnectionsController());
-                              connectionController.init();
-                              Get.to(() => ConnectionsScreen());
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 12.0),
-                              child: Text(
-                                Strings.seeAll,
-                                style: gilroyBoldTextStyle(
-                                    fontSize: 12, color: ColorRes.color_9597A1),
+            : Obx(() {
+                return SizedBox(
+                  width: Get.width,
+                  child: Stack(
+                    children: [
+                      Column(
+                        children: [
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: InkWell(
+                              onTap: () {
+                                ConnectionsController connectionController =
+                                    Get.put(ConnectionsController());
+                                connectionController.init();
+                                Get.to(() => ConnectionsScreen());
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 12.0),
+                                child: Text(
+                                  Strings.seeAll,
+                                  style: gilroyBoldTextStyle(
+                                      fontSize: 12,
+                                      color: ColorRes.color_9597A1),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          scrollDirection: Axis.vertical,
-                          itemCount: controller.requestUsers.length < 2
-                              ? controller.requestUsers.length
-                              : 2,
-                          itemBuilder: (context, index) {
-                            RequestUser user = controller.requestUsers[index];
-                            return Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10, right: 10, bottom: 14),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
-                                    child: Image.network(
-                                      user.profileImage.toString(),
-                                      fit: BoxFit.cover,
-                                      height: 50,
-                                      width: 50,
-                                      errorBuilder: (context, url, error) =>
-                                      const Icon(
-                                        Icons.error,
-                                        color: Colors.grey,
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            scrollDirection: Axis.vertical,
+                            itemCount: controller.requestUsers.length < 2
+                                ? controller.requestUsers.length
+                                : 2,
+                            itemBuilder: (context, index) {
+                              RequestUser user = controller.requestUsers[index];
+                              return Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10, right: 10, bottom: 14),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(50),
+                                      child: Image.network(
+                                        user.profileImage.toString(),
+                                        fit: BoxFit.cover,
+                                        height: 50,
+                                        width: 50,
+                                        errorBuilder: (context, url, error) =>
+                                            const Icon(
+                                          Icons.error,
+                                          color: Colors.grey,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      user.fullName.toString(),
-                                      style: montserratRegularTextStyle(
-                                          color: Colors.black, fontSize: 16),
-                                    ),
-                                    SizedBox(
-                                      width: Get.width * 0.4,
-                                      child: Text(
-                                        user.userStatus.toString(),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        user.fullName.toString(),
                                         style: montserratRegularTextStyle(
-                                            color: Colors.black, fontSize: 12),
+                                            color: Colors.black, fontSize: 16),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: Get.height * 0.03,
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  width: Get.width * 0.11,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 20.0),
-                                  child: InkWell(
-                                    onTap: () {
-                                      controller.onAddBtnTap(
-                                          user.id.toString(), false);
-                                    },
-                                    child: const SizedBox(
-                                      height: 40,
-                                      width: 40,
-                                      child: Image(
-                                        image: AssetImage(AssetRes.profilep),
+                                      SizedBox(
+                                        width: Get.width * 0.4,
+                                        child: Text(
+                                          user.userStatus.toString(),
+                                          style: montserratRegularTextStyle(
+                                              color: Colors.black,
+                                              fontSize: 12),
+                                        ),
                                       ),
-                                    ),
+                                      SizedBox(
+                                        height: Get.height * 0.03,
+                                      )
+                                    ],
                                   ),
-                                ),
-                                SizedBox(
-                                  width: Get.width * 0.04,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 20.0),
-                                  child: InkWell(
-                                    onTap: () {
-                                      controller.onDeleteBtnTap(
-                                          user.id.toString(), false);
-                                    },
-                                    child: const SizedBox(
+                                  SizedBox(
+                                    width: Get.width * 0.11,
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(bottom: 20.0),
+                                    child: InkWell(
+                                      onTap: () {
+                                        controller.onAddBtnTap(
+                                            user.id.toString(), false);
+                                      },
+                                      child: const SizedBox(
                                         height: 40,
                                         width: 40,
                                         child: Image(
-                                            image: AssetImage(AssetRes.delete))),
+                                          image: AssetImage(AssetRes.profilep),
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ],
-                            );
-                          },
-                        )
-                      ],
-                    ),
-                    controller.loader.isTrue?const SmallLoader():const SizedBox()
-                  ],
-                ),
-              );
-        });
+                                  SizedBox(
+                                    width: Get.width * 0.04,
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(bottom: 20.0),
+                                    child: InkWell(
+                                      onTap: () {
+                                        controller.onDeleteBtnTap(
+                                            user.id.toString(), false);
+                                      },
+                                      child: const SizedBox(
+                                          height: 40,
+                                          width: 40,
+                                          child: Image(
+                                              image:
+                                                  AssetImage(AssetRes.delete))),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          )
+                        ],
+                      ),
+                      controller.loader.isTrue
+                          ? const SmallLoader()
+                          : const SizedBox()
+                    ],
+                  ),
+                );
+              });
       },
     );
   }
@@ -704,17 +712,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 controller.friendPostListData.isEmpty
-                    ?Container(
-                     width: Get.width,
-                      height: Get.height/2.5,
-                      child:  Center(
-                    child: Text(
-                      "No feed Available",
-                      style: gilroyBoldTextStyle(
-                          fontSize: 20, color: Colors.black),
-                    ),
-                  ),
-                )
+                    ? Container(
+                        width: Get.width,
+                        height: Get.height / 2.5,
+                        child: Center(
+                          child: Text(
+                            "No feed Available",
+                            style: gilroyBoldTextStyle(
+                                fontSize: 20, color: Colors.black),
+                          ),
+                        ),
+                      )
                     : ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
@@ -838,6 +846,26 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                           SizedBox(
                                             height: Get.height * 0.02,
+                                          ),
+                                          ListView.builder(
+                                            shrinkWrap: true,
+                                            physics:
+                                                NeverScrollableScrollPhysics(),
+                                            itemCount: controller
+                                                    .friendPostListData[index]
+                                                    .postTag
+                                                    ?.length ??
+                                                0,
+                                            itemBuilder: (context, index1) {
+                                              return Text(
+                                                " @${controller.friendPostListData[index].postTag?[index1].name.toString()}" ??
+                                                    "",
+                                                style: sfProTextReguler(
+                                                    fontSize: 16,
+                                                    color:
+                                                        ColorRes.color_FED785),
+                                              );
+                                            },
                                           ),
                                           controller.friendPostListData[index]
                                                       .description ==
