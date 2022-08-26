@@ -127,13 +127,25 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                   top: 25, left: 5, right: 5),
                               child: Row(
                                 children: [
-                                  IconButton(
+
+                                  GestureDetector(onTap:controller.onBackTap,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 5),
+                                      child: Image.asset(
+                                        AssetRes.backIcon,
+                                        height: 16,
+                                        width: 16,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  )
+                                /*  IconButton(
                                     padding: EdgeInsets.zero,
                                     color: Colors.white,
                                     icon: const Icon(Icons.arrow_back_ios,
                                         size: 20),
                                     onPressed: controller.onBackTap,
-                                  ),
+                                  ),*/,
                                   const Spacer(),
                                   IconButton(
                                       onPressed: () {

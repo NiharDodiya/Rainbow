@@ -70,7 +70,7 @@ class HomeController extends GetxController {
 
   ScrollController scrollController = ScrollController();
   int page = 1;
-  int limit = 5;
+  int limit = 10;
 
   // final storyController = EditStoryController();
   ConnectionsController connectionsController =
