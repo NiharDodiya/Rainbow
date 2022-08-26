@@ -96,7 +96,6 @@ class SupportApi {
             "x-access-token": accesToken
           });
       if (response != null && response.statusCode == 200) {
-        print('=======${response.statusCode}');
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
           errorToast(jsonDecode(response.body)["message"]);

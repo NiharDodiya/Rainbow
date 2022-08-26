@@ -28,6 +28,8 @@ class StoryScreen extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () {
+                  controller.tagController.clear();
+                  controller.writeSomethings.clear();
                   Get.back();
                 },
                 child: Image.asset(
@@ -70,7 +72,7 @@ class StoryScreen extends StatelessWidget {
                   child: Text(
                     Strings.post,
                     style:
-                        gilroyBoldTextStyle(fontSize: 13, color: Colors.black),
+                        gilroyBoldTextStyle(fontSize: 16, color: Colors.black),
                   )),
               SizedBox(
                 width: Get.width * 0.05,

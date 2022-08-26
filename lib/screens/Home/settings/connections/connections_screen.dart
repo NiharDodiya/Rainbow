@@ -32,14 +32,14 @@ class ConnectionsScreen extends StatelessWidget {
               end: Alignment.bottomCenter,
             ),
           ),
-          child: Column(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               appBar(),
               Expanded(
                 child: Stack(
                   children: [
                     SingleChildScrollView(
-                      child: Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.start,
+                      child: Column(
                         children: [
                           listOfRequest(),
                           listOfSuggestions(),
@@ -116,24 +116,32 @@ class ConnectionsScreen extends StatelessWidget {
       id: "connection",
       builder: (control) => Column(
         children: [
-          controller.requestUsers.isEmpty?Text("No FriendRequest"):  ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: controller.requestUsers.length,
-            itemBuilder: (context, index) {
-              RequestUser user = controller.requestUsers[index];
-              return infoRow(
-                name: user.fullName,
-                image: user.profileImage,
-                label: user.email,
-                onPlusTap: () => control.onAddBtnTap(user.id.toString(), false),
-                onDeleteTap: () =>
-                    controller.onDeleteBtnTap(user.id.toString(), false),
-                onProfileTap: () =>
-                    controller.onTapViewProfile(user.id.toString()),
-              );
-            },
-          )
+          controller.requestUsers.isEmpty
+              ? Center(
+                child: Text(
+                    "No FriendRequest",
+                    style: gilroyMediumTextStyle(fontSize: 18),
+                  ),
+              )
+              : ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: controller.requestUsers.length,
+                  itemBuilder: (context, index) {
+                    RequestUser user = controller.requestUsers[index];
+                    return infoRow(
+                      name: user.fullName,
+                      image: user.profileImage,
+                      label: user.email,
+                      onPlusTap: () =>
+                          control.onAddBtnTap(user.id.toString(), false),
+                      onDeleteTap: () =>
+                          controller.onDeleteBtnTap(user.id.toString(), false),
+                      onProfileTap: () =>
+                          controller.onTapViewProfile(user.id.toString()),
+                    );
+                  },
+                )
         ],
       ),
     );
@@ -142,8 +150,8 @@ class ConnectionsScreen extends StatelessWidget {
   Widget listOfSuggestions() {
     return GetBuilder<ConnectionsController>(
       id: "connection",
-      builder: (control) => Column(crossAxisAlignment: CrossAxisAlignment.start,mainAxisAlignment: MainAxisAlignment.start,
-
+      builder: (control) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: EdgeInsets.only(
@@ -153,24 +161,36 @@ class ConnectionsScreen extends StatelessWidget {
               style: textStyleFont20W700,
             ),
           ),
-          controller.suggestionConnection.isEmpty?const Text("No Suggested Connection"): ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: controller.suggestionConnection.length,
-            itemBuilder: (context, index) {
-              SuggestionUser user = controller.suggestionConnection[index];
-              return infoRow(
-                name: user.fullName,
-                image: user.profileImage,
-                label: user.email,
-                onPlusTap: () => control.onAddBtnTap(user.id.toString(), true),
-                onDeleteTap: () =>
-                    controller.onDeleteBtnTap(user.id.toString(), true),
-                onProfileTap: () =>
-                    controller.onTapViewProfile(user.id.toString()),
-              );
-            },
-          )
+          controller.suggestionConnection.isEmpty
+              ? Center(
+                child: Padding(
+                  padding:  EdgeInsets.only(top: Get.height/3.5),
+                  child: Text(
+                      "No Suggested Connection",
+                      style: gilroyMediumTextStyle(fontSize: 18),
+                    ),
+                ),
+              )
+              : ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: controller.suggestionConnection.length,
+                  itemBuilder: (context, index) {
+                    SuggestionUser user =
+                        controller.suggestionConnection[index];
+                    return infoRow(
+                      name: user.fullName,
+                      image: user.profileImage,
+                      label: user.email,
+                      onPlusTap: () =>
+                          control.onAddBtnTap(user.id.toString(), true),
+                      onDeleteTap: () =>
+                          controller.onDeleteBtnTap(user.id.toString(), true),
+                      onProfileTap: () =>
+                          controller.onTapViewProfile(user.id.toString()),
+                    );
+                  },
+                )
         ],
       ),
     );
