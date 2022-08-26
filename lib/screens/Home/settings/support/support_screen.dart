@@ -38,23 +38,35 @@ class SupportScreen extends StatelessWidget {
             child: Obx(() {
               return Stack(
                 children: [
-                  SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: Get.height * 0.035,
+                  Column(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Column(
+                        children: [
+                          SizedBox(
+                            height: Get.height * 0.035,
+                          ),
+                          appBar(),
+                        ],
+                      ),),
+                      Expanded(
+                        flex: 6,
+                        child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            supports(),
+                            SizedBox(
+                              height: Get.height * 0.07,
+                            ),
+                            sendNewMessage(),
+                            SizedBox(
+                              height: Get.height * 0.05,
+                            ),
+                          ],
                         ),
-                        appBar(),
-                        supports(),
-                        SizedBox(
-                          height: Get.height * 0.07,
-                        ),
-                        sendNewMessage(),
-                        SizedBox(
-                          height: Get.height * 0.05,
-                        ),
-                      ],
-                    ),
+                      ),),
+                    ],
                   ),
                   controller.loader.isTrue
                       ? const FullScreenLoader()

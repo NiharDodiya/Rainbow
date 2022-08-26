@@ -39,29 +39,41 @@ class ProfileScreen extends StatelessWidget {
                     end: Alignment.bottomCenter,
                   ),
                 ),
-                child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      profileAppbar(
-                          Strings.profile, true, controller.onTapToHomeScreen),
-                      profileImagesLoad(controller),
-                      profileDetails(),
-                      aboutProfiler(
-                        Strings.aboutMe,
-                        controller.viewProfile.data == null
-                            ? ""
-                            : controller.viewProfile.data!.about.toString(),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      hobbiesAndInterest(),
-                      testimonial(controller),
-                      otherVisitorsViewed(),
-                    ],
-                  ),
+                child:  Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: Get.height * 0.035,
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child:  profileAppbar(
+                        Strings.profile, true, controller.onTapToHomeScreen),
+                    ),
+                    Expanded(
+                      flex: 13,
+                      child: SingleChildScrollView(
+                        physics: BouncingScrollPhysics(),
+                        child: Column(
+                        children: [
+                          profileImagesLoad(controller),
+                          profileDetails(),
+                          aboutProfiler(
+                            Strings.aboutMe,
+                            controller.viewProfile.data == null
+                                ? ""
+                                : controller.viewProfile.data!.about.toString(),
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          hobbiesAndInterest(),
+                          testimonial(controller),
+                          otherVisitorsViewed(),
+                        ],
+                    ),
+                      ),),
+                  ],
                 ),
               );
             },
