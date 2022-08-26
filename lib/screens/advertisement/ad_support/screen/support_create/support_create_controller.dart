@@ -82,7 +82,7 @@ class SupportCreateController extends GetxController {
       errorToast(Strings.supportError02);
       return false;
     } else if (yourMsgController.text.isEmpty) {
-      errorToast("Your message is required");
+      errorToast("please enter your message");
       return false;
     }
     return true;

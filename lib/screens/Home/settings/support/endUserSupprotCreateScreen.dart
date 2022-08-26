@@ -53,10 +53,10 @@ class SupportCreateEndUserScreen extends StatelessWidget {
             ),
           ),
           controller.loader.value
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(),
                 )
-              : SizedBox(),
+              : const SizedBox(),
         ],
       );
     }));
@@ -109,7 +109,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                             fit: BoxFit.cover,
                             errorBuilder: (context, error, stackTrace) {
                               return Image.asset(
-                                AssetRes.posterProfile,
+                                AssetRes.portrait_placeholder,
                                 height: Get.width * 0.144,
                                 width: Get.width * 0.144,
                               );
@@ -145,7 +145,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                 height: Get.height * 0.0086,
                               ),
                               Text(
-                                "${DateFormat().add_yMMMMd().format(controller.viewSupportTicketModel.data![index].createdAt!)}|${DateFormat().add_jm().format(controller.viewSupportTicketModel.data![index].createdAt!)}",
+                                "${DateFormat().add_yMMMMd().format(controller.viewSupportTicketModel.data![index].createdAt!.toLocal())} | ${DateFormat().add_jm().format(controller.viewSupportTicketModel.data![index].createdAt!.toLocal())}",
                                 style: gilroySemiBoldTextStyle(
                                   fontSize: 18,
                                 ),
@@ -174,7 +174,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                   Container(
                     height: Get.height * 0.07279,
                     width: Get.width * 0.354666,
-                    padding: EdgeInsets.only(right: 5, left: 5),
+                    padding: const EdgeInsets.only(right: 5, left: 5),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: ColorRes.white,
@@ -230,7 +230,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                               ),
                               (controller.viewSupportTicketModel.data![index]
                                       .itmeList!.isEmpty)
-                                  ? SizedBox()
+                                  ? const SizedBox()
                                   : downloadButton1(index)
                             ],
                           )
@@ -277,7 +277,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                               ),
                               (controller.viewSupportTicketModel.data![index]
                                       .itmeList!.isEmpty)
-                                  ? SizedBox()
+                                  ? const SizedBox()
                                   : downloadButton2(index)
                             ],
                           ),
@@ -331,7 +331,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                 height: Get.height * 0.0086,
                               ),
                               Text(
-                                "${DateFormat().add_yMMMMd().format(controller.viewSupportTicketModel.data![index].createdAt!)}|${DateFormat().add_jm().format(controller.viewSupportTicketModel.data![index].createdAt!)}",
+                                "${DateFormat().add_yMMMMd().format(controller.viewSupportTicketModel.data![index].createdAt!.toLocal())} | ${DateFormat().add_jm().format(controller.viewSupportTicketModel.data![index].createdAt!.toLocal())}",
                                 style: gilroySemiBoldTextStyle(
                                   fontSize: 18,
                                 ),
@@ -387,19 +387,19 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                   ),
                   //pic Image
                   Padding(
-                    padding: EdgeInsets.only(left: 25, top: 30),
+                    padding: const EdgeInsets.only(left: 25, top: 30),
                     child: GetBuilder<SupportController>(
                         id: "img",
                         builder: (controller) {
                           return Column(
                             children: [
                               (controller.image.isEmpty)
-                                  ? SizedBox()
+                                  ? const SizedBox()
                                   : (controller.image.length == 3)
                                       ? Row(
                                           children: [
                                             Stack(
-                                              alignment: Alignment(1.2, -1.3),
+                                              alignment: const Alignment(1.2, -1.3),
                                               children: [
                                                 Container(
                                                   height: Get.height / 12,
@@ -441,9 +441,9 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                                 ),
                                               ],
                                             ),
-                                            SizedBox(width: 20),
+                                            const SizedBox(width: 20),
                                             Stack(
-                                              alignment: Alignment(1.2, -1.3),
+                                              alignment: const Alignment(1.2, -1.3),
                                               children: [
                                                 Container(
                                                   height: Get.height / 12,
@@ -485,9 +485,9 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                                 ),
                                               ],
                                             ),
-                                            SizedBox(width: 20),
+                                            const SizedBox(width: 20),
                                             Stack(
-                                              alignment: Alignment(1.2, -1.3),
+                                              alignment: const Alignment(1.2, -1.3),
                                               children: [
                                                 Container(
                                                   height: Get.height / 12,
@@ -536,7 +536,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                               children: [
                                                 Stack(
                                                   alignment:
-                                                      Alignment(1.2, -1.3),
+                                                      const Alignment(1.2, -1.3),
                                                   children: [
                                                     Container(
                                                       height: Get.height / 12,
@@ -583,10 +583,10 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                                     ),
                                                   ],
                                                 ),
-                                                SizedBox(width: 20),
+                                                const SizedBox(width: 20),
                                                 Stack(
                                                   alignment:
-                                                      Alignment(1.2, -1.3),
+                                                      const Alignment(1.2, -1.3),
                                                   children: [
                                                     Container(
                                                       height: Get.height / 12,
@@ -638,7 +638,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                           : (controller.image.length == 1)
                                               ? Stack(
                                                   alignment:
-                                                      Alignment(1.2, -1.3),
+                                                      const Alignment(1.2, -1.3),
                                                   children: [
                                                     Container(
                                                       height: Get.height / 12,
@@ -689,7 +689,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                                   children: [
                                                     Stack(
                                                       alignment:
-                                                          Alignment(1.2, -1.3),
+                                                          const Alignment(1.2, -1.3),
                                                       children: [
                                                         Container(
                                                           height:
@@ -738,10 +738,10 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                                         ),
                                                       ],
                                                     ),
-                                                    SizedBox(width: 20),
+                                                    const SizedBox(width: 20),
                                                     Stack(
                                                       alignment:
-                                                          Alignment(1.2, -1.3),
+                                                          const Alignment(1.2, -1.3),
                                                       children: [
                                                         Container(
                                                           height:
@@ -790,10 +790,10 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                                         ),
                                                       ],
                                                     ),
-                                                    SizedBox(width: 20),
+                                                    const SizedBox(width: 20),
                                                     Stack(
                                                       alignment:
-                                                          Alignment(1.2, -1.3),
+                                                          const Alignment(1.2, -1.3),
                                                       children: [
                                                         Container(
                                                           height:
@@ -844,11 +844,11 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                                     ),
                                                   ],
                                                 ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               Padding(
-                                padding: EdgeInsets.only(right: 30),
+                                padding: const EdgeInsets.only(right: 30),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [

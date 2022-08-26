@@ -144,7 +144,7 @@ class SupportDetailsScreen extends StatelessWidget {
                                 height: Get.height * 0.0086,
                               ),
                               Text(
-                                "${DateFormat().add_yMMMMd().format(controller.viewSupportTicketModel.data![index].createdAt!)}|${DateFormat().add_jm().format(controller.viewSupportTicketModel.data![index].createdAt!)}",
+                                "${DateFormat().add_yMMMMd().format(controller.viewSupportTicketModel.data![index].createdAt!.toLocal())} | ${DateFormat().add_jm().format(controller.viewSupportTicketModel.data![index].createdAt!.toLocal())}",
                                 style: gilroySemiBoldTextStyle(
                                   fontSize: 18,
                                 ),
@@ -330,7 +330,7 @@ class SupportDetailsScreen extends StatelessWidget {
                                 height: Get.height * 0.0086,
                               ),
                               Text(
-                                "${DateFormat().add_yMMMMd().format(controller.viewSupportTicketModel.data![index].createdAt!)}|${DateFormat().add_jm().format(controller.viewSupportTicketModel.data![index].createdAt!)}",
+                                "${DateFormat().add_yMMMMd().format(controller.viewSupportTicketModel.data![index].createdAt!.toLocal())} | ${DateFormat().add_jm().format(controller.viewSupportTicketModel.data![index].createdAt!.toLocal())}",
                                 style: gilroySemiBoldTextStyle(
                                   fontSize: 18,
                                 ),

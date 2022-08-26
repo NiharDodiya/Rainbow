@@ -420,7 +420,7 @@ class Strings {
   static const thankYouForSending =
       "Thank you for sending your concern, we will get back to you as soon as an agent comes in. ";
   static const subject = "Subject";
-  static const supportError02 = "Subject is requred";
+  static const supportError02 = "please enter subject";
 
   ///____________________________________Support123__________________________________________
   static const delete = "Delete";

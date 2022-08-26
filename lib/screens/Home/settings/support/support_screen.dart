@@ -97,24 +97,22 @@ class SupportScreen extends StatelessWidget {
                 onTap: () {
                   Get.back();
                 },
-                child: Image.asset(
-                  AssetRes.backIcon,
-                  height: 16,
-                  width: 16,
-                  color: Colors.white,
+                child: SizedBox(height: 15,width: 9,
+                  child: Image.asset(
+                    AssetRes.backIcon,
+                    height: 16,
+                    width: 16,
+                    color: Colors.white,
+                  ),
                 ),
               ),
               SizedBox(
                 width: Get.width * 0.32,
               ),
-              GestureDetector(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: Text(
-                    Strings.support,
-                    style: gilroyBoldTextStyle(),
-                  )),
+              Text(
+                Strings.support,
+                style: gilroyBoldTextStyle(),
+              ),
               SizedBox(
                 width: Get.width * 0.05,
               ),
