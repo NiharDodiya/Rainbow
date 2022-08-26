@@ -17,7 +17,7 @@ import 'package:rainbow/utils/end_points.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
 class GoogleIdVerification {
-  static Future postRegister(
+  static Future<LoginModel?> postRegister(
     String id, {
     User? user,
   }) async {
@@ -68,10 +68,11 @@ class GoogleIdVerification {
       } else if (response!.statusCode == 500) {
         flutterToast(jsonDecode(response.body)["message"]);
       }
+      return null;
     } catch (e) {
       print(e.toString());
 
-      return [];
+      return null;
     }
   }
 }

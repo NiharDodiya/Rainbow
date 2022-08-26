@@ -113,7 +113,7 @@ class NotificationScreen extends StatelessWidget {
                                               fontSize: 12),
                                         ),
                                         Text(
-                                          model.description.toString()??"",
+                                          model.description?.toString()??"",
                                           style: gilroyMediumTextStyle(
                                               fontSize: 14,
                                               letterSpacing: -0.03),

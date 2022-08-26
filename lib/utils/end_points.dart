@@ -69,6 +69,7 @@ class EndPoints {
   static const notificationOn = "$baseUrl/user/notification/on";
   static const notificationOff = "$baseUrl/user/notification/off";
   static const notificationRead = "$baseUrl/user/notification/read";
+  static const userFriendList = "$baseUrl/user/friend/list";
 
   ///____________________________________________ advertisement_________________
   static const createAdvertisement =

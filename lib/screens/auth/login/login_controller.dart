@@ -82,7 +82,7 @@ class LoginController extends GetxController {
     }
   }
 
-  firebaseSignIn() async {
+  Future<void> firebaseSignIn() async {
     FirebaseAuth firebaseAuth = FirebaseAuth.instance;
     try {
       final userCredential = await firebaseAuth.signInWithEmailAndPassword(
@@ -108,7 +108,7 @@ class LoginController extends GetxController {
     update(['login']);
   }
 
-  addUser(String uid) async {
+  Future<void> addUser(String uid) async {
     await firebaseFirestore
         .collection("users")
         .doc(uid)
@@ -134,7 +134,7 @@ class LoginController extends GetxController {
     });
   }
 
-  setCount() async {
+  Future<void> setCount() async {
     int? count;
     await FirebaseFirestore.instance
         .collection("onlineCount")

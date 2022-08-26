@@ -1,16 +1,16 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rainbow/common/helper.dart';
+import 'package:rainbow/model/friend_model.dart';
 import 'package:rainbow/model/user_model.dart';
+import 'package:rainbow/screens/Message/api/message_api.dart';
 import 'package:rainbow/screens/Message/chat_screen.dart';
-
 import 'package:rainbow/service/Users_services.dart';
 import 'package:rainbow/service/chat_service.dart';
 import 'package:rainbow/service/pref_services.dart';
@@ -32,6 +32,8 @@ class MessageController extends GetxController {
   String? id;
   final _storage = FirebaseStorage.instance;
   DateTime lastMsg = DateTime.now();
+  List<Friend> friendList = [];
+  bool apiLoader = false;
 
   @override
   void onInit() {
@@ -63,6 +65,7 @@ class MessageController extends GetxController {
 
   Future<void> init() async {
     loader.value = true;
+    getFriendListData();
     listScrollController.addListener(manageScrollDownBtn);
   }
 
@@ -88,7 +91,7 @@ class MessageController extends GetxController {
   Future<void> getUserDetail() async {
     loader.value = true;
     UserModel? user =
-    await UserService.getUserModel(PrefService.getString(PrefKeys.uid));
+        await UserService.getUserModel(PrefService.getString(PrefKeys.uid));
 
     if (user != null) {
       GlobalData.user = user;
@@ -100,7 +103,7 @@ class MessageController extends GetxController {
 
   getChatUserId() async {
     final snapShot2 =
-    await FirebaseFirestore.instance.collection("users").doc(userUid).get();
+        await FirebaseFirestore.instance.collection("users").doc(userUid).get();
     Map<String, dynamic> daysDocs = snapShot2.data() as Map<String, dynamic>;
     id = daysDocs["id"];
   }
@@ -119,6 +122,7 @@ class MessageController extends GetxController {
     Get.back();
     update(["message"]);
   }
+
   String getChatId(String uid1, String uid2) {
     if (uid1.hashCode > uid2.hashCode) {
       return uid1 + '_' + uid2;
@@ -126,18 +130,22 @@ class MessageController extends GetxController {
       return uid2 + '_' + uid1;
     }
   }
+
   getRoomId(String otherUid) async {
     DocumentReference doc = FirebaseFirestore.instance
         .collection("chats")
         .doc(getChatId(userUid.toString(), otherUid));
 
-    await doc.collection(getChatId(userUid.toString(), otherUid)).get().then((value) async {
-      DocumentSnapshot<Object?> i= await doc.get();
-    if(i.exists==false){
-      await doc.set({
-        "uidList": [userUid, otherUid],
-      });
-    }
+    await doc
+        .collection(getChatId(userUid.toString(), otherUid))
+        .get()
+        .then((value) async {
+      DocumentSnapshot<Object?> i = await doc.get();
+      if (i.exists == false) {
+        await doc.set({
+          "uidList": [userUid, otherUid],
+        });
+      }
       if (value.docs.isNotEmpty) {
         roomId = getChatId(userUid.toString(), otherUid);
       } else {
@@ -166,16 +174,16 @@ class MessageController extends GetxController {
     await getRoomId(otherUid);
     loader.value = false;
     Get.to(() => ChatScreen(
-      roomId: roomId,
-      name: name,
-      otherUserUid: otherUid,
-      userUid: userUid,
-      profileImage: image,
-    ));
+          roomId: roomId,
+          name: name,
+          otherUserUid: otherUid,
+          userUid: userUid,
+          profileImage: image,
+        ));
   }
 
   void imageSend() async {
-    loader.value=true;
+    loader.value = true;
     if (isToday(lastMsg) == false) {
       await sendAlertMsg();
     }
@@ -207,7 +215,7 @@ class MessageController extends GetxController {
     update(['message']);
     image = null;
     update(['chats']);
-    loader.value=false;
+    loader.value = false;
   }
 
   void sendMessage(String roomId, otherUid) async {
@@ -261,7 +269,7 @@ class MessageController extends GetxController {
 
   Future<String?> cameraPickImage1() async {
     XFile? pickedFile =
-    await ImagePicker().pickImage(source: ImageSource.camera);
+        await ImagePicker().pickImage(source: ImageSource.camera);
     if (pickedFile != null) {
       return pickedFile.path;
     }
@@ -271,7 +279,7 @@ class MessageController extends GetxController {
 
   Future<String?> gallaryPickImage1() async {
     XFile? pickedFile =
-    await ImagePicker().pickImage(source: ImageSource.gallery);
+        await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       return pickedFile.path;
     }
@@ -284,10 +292,7 @@ class MessageController extends GetxController {
   }
 
   Future<void> setLastMsgInDoc(String msg) async {
-    await FirebaseFirestore.instance
-        .collection("chats")
-        .doc(roomId)
-        .update({
+    await FirebaseFirestore.instance.collection("chats").doc(roomId).update({
       "lastMessage": msg,
       "lastMessageSender": userUid,
       "lastMessageTime": DateTime.now()
@@ -308,4 +313,18 @@ class MessageController extends GetxController {
     });
   }
 
+  Future<void> getFriendListData() async {
+    apiLoader = true;
+    update(['message']);
+    FriendModel? model = await MessageApi.friendApi();
+    if (model?.data != null) {
+      friendList = model!.data!;
+    }
+    apiLoader = false;
+    update(['message']);
+  }
+
+  List<int> getFriendIdList() {
+    return friendList.map<int>((e) => e.id ?? 0).toList();
+  }
 }
