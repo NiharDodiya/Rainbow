@@ -153,7 +153,7 @@ class SettingsScreen extends StatelessWidget {
                           height: 8,
                         ),
                         InkWell(onTap: () {
-                          Get.to(()=>ProfileScreen());
+                          Get.to(()=>ProfileScreen(i: 2,));
                         },
                           child: Row(
                             children: [

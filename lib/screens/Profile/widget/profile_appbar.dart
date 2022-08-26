@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Home/home_screen.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/editProfile_contoller.dart';
@@ -9,7 +10,7 @@ import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
-Widget profileAppbar(String text, bool show, final VoidCallback? onTap) {
+Widget profileAppbar(String text, bool show, context, int i, VoidCallback? onTap) {
   return Padding(
     padding: const EdgeInsets.only(top: 10, left: 18.50, right: 18.50),
     child: Stack(
@@ -26,7 +27,14 @@ Widget profileAppbar(String text, bool show, final VoidCallback? onTap) {
         Row(
           children: [
             InkWell(
-              onTap: onTap,
+              onTap: (){
+                if(i == 2){
+                  Navigator.of(context).pop();
+                }
+                else if(i==1){
+                  onTap!();
+                }
+              },
               child: Container(
                 padding: const EdgeInsets.all(7),
                 height: 30,

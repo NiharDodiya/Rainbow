@@ -67,7 +67,7 @@ class DashboardState extends State<Dashboard> with WidgetsBindingObserver{
             } else if (controller.currentTab == 2) {
               return MessageScreen();
             } else {
-              return ProfileScreen();
+              return ProfileScreen(i: 1,);
             }
           },
         ),

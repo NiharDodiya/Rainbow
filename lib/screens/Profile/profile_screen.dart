@@ -14,7 +14,8 @@ import 'package:rainbow/utils/strings.dart';
 import 'package:readmore/readmore.dart';
 
 class ProfileScreen extends StatelessWidget {
-  ProfileScreen({Key? key}) : super(key: key);
+  int i;
+  ProfileScreen({Key? key, required this.i}) : super(key: key);
   ProfileController controller = Get.put(ProfileController());
 
   @override
@@ -48,8 +49,9 @@ class ProfileScreen extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: profileAppbar(
-                          Strings.profile, true, controller.onTapToHomeScreen),
+                          Strings.profile, true, context, i, controller.onTapToHomeScreen),
                     ),
+                    //controller.onTapToHomeScreen
                     Expanded(
                       flex: 13,
                       child: SingleChildScrollView(
