@@ -8,6 +8,7 @@ import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
 import 'package:rainbow/screens/auth/phonenumber/phonenumber_Screen.dart';
 import 'package:rainbow/screens/auth/register/register_screen.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/register_adviser.dart';
+import 'package:rainbow/screens/dashboard/dashboard_controller.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -92,8 +93,10 @@ class LoginController extends GetxController {
         print(userCredential.user!.uid);
         userUid = userCredential.user!.uid;
         await PrefService.setValue(PrefKeys.uid, userCredential.user!.uid);
-
         await addUser(userCredential.user!.uid);
+
+        DashboardController dashboardController = Get.put(DashboardController());
+        dashboardController.setUserOnlineStatus(true);
         // Get.snackbar("Success", "Login SuccessFull");
         //Get.to(() => const UserListScreen());
       }
@@ -123,31 +126,12 @@ class LoginController extends GetxController {
           "image": loginModel.data!.profileImage,
           "online": true
         });
-        setCount();
       } else {
         await firebaseFirestore
             .collection("users")
             .doc(uid)
             .update({"online": true});
-        setCount();
       }
     });
-  }
-
-  Future<void> setCount() async {
-    int? count;
-    await FirebaseFirestore.instance
-        .collection("onlineCount")
-        .doc("onlineCount")
-        .get()
-        .then((value) {
-      if (value.exists) {
-        count = value.data()!['count'];
-      } else {}
-    });
-    await FirebaseFirestore.instance
-        .collection("onlineCount")
-        .doc("onlineCount")
-        .update({"count": count! + 1});
   }
 }
