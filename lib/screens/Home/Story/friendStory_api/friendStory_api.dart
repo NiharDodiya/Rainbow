@@ -94,9 +94,8 @@ class FriendStoryApi {
           ViewStoryController viewStoryController = Get.find();
           viewStoryController.writeSomethings.clear();
           viewStoryController.image.clear();
-
+          Get.back(result: true);
           flutterToast(jsonDecode(response.body)["message"]);
-          Navigator.pop(context);
         }
         return createPostModelFromJson(response.body);
       }

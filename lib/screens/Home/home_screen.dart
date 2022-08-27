@@ -67,7 +67,6 @@ controller.getCurrentLocation();
                                 color: Colors.black, fontSize: 16),
                           ),
                           const Spacer(),
-
                           const SizedBox(width: 10),
                           GestureDetector(
                             onTap: () {
@@ -168,7 +167,6 @@ controller.getCurrentLocation();
                     ),
                   ),
                 ),
-
                 floatingActionButton: GetBuilder<HomeController>(
                   id: "home",
                   builder: (controller) {
@@ -186,7 +184,12 @@ controller.getCurrentLocation();
                                       .toString(),
                                 ))!
                             .then((value) {
-                          controller.friendPostDataWithOutPagination();
+                          if (value == true) {
+                            controller.friendPostDataWithOutPagination(
+                              pageLength:
+                                  controller.friendPostListData.length + 1,
+                            );
+                          }
                         });
                       },
                     );
@@ -822,26 +825,30 @@ controller.getCurrentLocation();
                                             height: Get.height * 0.02,
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.only(left: 8,right: 8),
-                                            child: RichText(text: TextSpan(
-                                              children:       controller
-                                                  .friendPostListData[index]
-                                                  .postTag!.map<TextSpan>((e) => TextSpan(
-                                                text:   " @${e.name.toString()}",
-                                                  style: sfProTextReguler(
-                                                      fontSize: 16,
-                                                      color:
-                                                      ColorRes.color_FED785)
-                                              )).toList()..add(TextSpan(text: " ${controller
-                                                  .friendPostListData[
-                                              index]
-                                                  .description
-                                                  .toString()}",
-                                                  style:
-                                                  textStyleFont16WhitLight)),
-                                            ),),
+                                            padding: const EdgeInsets.only(
+                                                left: 8, right: 8),
+                                            child: RichText(
+                                              text: TextSpan(
+                                                children: controller
+                                                    .friendPostListData[index]
+                                                    .postTag!
+                                                    .map<TextSpan>((e) => TextSpan(
+                                                        text:
+                                                            " @${e.name.toString()}",
+                                                        style: sfProTextReguler(
+                                                            fontSize: 16,
+                                                            color: ColorRes
+                                                                .color_FED785)))
+                                                    .toList()
+                                                  ..add(TextSpan(
+                                                      text:
+                                                          " ${controller.friendPostListData[index].description.toString()}",
+                                                      style:
+                                                          textStyleFont16WhitLight)),
+                                              ),
+                                            ),
                                           ),
-                                      /*    Row(
+                                          /*    Row(
                                             children: [
                                               Expanded(
                                                 child: ListView.builder(
@@ -1168,27 +1175,26 @@ controller.getCurrentLocation();
                                                   width: Get.width * 0.05,
                                                 ),
                                                 InkWell(
-                                                  onTap: ()  async{
-
+                                                  onTap: () async {
                                                     Get.to(() => CommentScreen(
-                                                      idPost: controller
-                                                          .friendPostListData[
-                                                      index]
-                                                          .id
-                                                          .toString(),
-                                                      fullName: controller
-                                                          .friendPostListData[
-                                                      index]
-                                                          .postUser!
-                                                          .fullName
-                                                          .toString(),
-                                                      profileImage: controller
-                                                          .friendPostListData[
-                                                      index]
-                                                          .postUser!
-                                                          .profileImage
-                                                          .toString(),
-                                                    ));
+                                                          idPost: controller
+                                                              .friendPostListData[
+                                                                  index]
+                                                              .id
+                                                              .toString(),
+                                                          fullName: controller
+                                                              .friendPostListData[
+                                                                  index]
+                                                              .postUser!
+                                                              .fullName
+                                                              .toString(),
+                                                          profileImage: controller
+                                                              .friendPostListData[
+                                                                  index]
+                                                              .postUser!
+                                                              .profileImage
+                                                              .toString(),
+                                                        ));
 
                                                     await controller
                                                         .commentPostListData(
@@ -1197,7 +1203,6 @@ controller.getCurrentLocation();
                                                                     index]
                                                                 .id
                                                                 .toString());
-
                                                   },
                                                   child: const SizedBox(
                                                     height: 18,
