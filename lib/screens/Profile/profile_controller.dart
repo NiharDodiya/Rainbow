@@ -43,7 +43,7 @@ class ProfileController extends GetxController {
 
   Future<void> init() async {
     count = 1;
-    loader.value = true;
+/*    loader.value = true;*/
   }
 
   void onShowMoreTap(bool value) {

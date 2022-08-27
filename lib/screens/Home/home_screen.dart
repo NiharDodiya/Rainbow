@@ -61,7 +61,7 @@ controller.getCurrentLocation();
                           SizedBox(
                             width: Get.width * 0.02,
                           ),
-                          Text(
+                          controller.addCity==null?const SizedBox():Text(
                             "${controller.addCity ?? ""}, ${controller.addCountry ?? ""}",
                             style: gilroyBoldTextStyle(
                                 color: Colors.black, fontSize: 16),

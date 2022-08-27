@@ -27,6 +27,7 @@ class LogOutApi {
           /*    await PrefService.clear();*/
           PrefService.setValue(PrefKeys.skipBoardingScreen, true);
           await PrefService.setValue(PrefKeys.loginRole, "");
+          await PrefService.setValue(PrefKeys.register, false);
           await PrefService.setValue(PrefKeys.uid, "");
           await PrefService.setValue(PrefKeys.isLogin, false);
 

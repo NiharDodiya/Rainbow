@@ -347,9 +347,11 @@ class HomeController extends GetxController {
   }
 
   Future<void> onStory() async {
+    loader.value=true;
     await viewStoryController.friendStoryApiData();
     // await myStoryController.init();
     update(['home']);
+    loader.value=false;
   }
 
   Future<void> myStoryOnTap() async {
