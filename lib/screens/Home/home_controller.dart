@@ -284,13 +284,12 @@ class HomeController extends GetxController {
     }
   }
 
-  Future<void> friendPostDataWithOutPagination() async {
+  Future<void> friendPostDataWithOutPagination({int? pageLength}) async {
     try {
       loader.value = true;
 
       friendPostViewModel =
-          await MyPostApi.friendPostApi(1, friendPostListData.length);
-      friendPostListData = [];
+          await MyPostApi.friendPostApi(1, pageLength ?? friendPostListData.length);
       friendPostListData = friendPostViewModel.data!;
       update(['home']);
 

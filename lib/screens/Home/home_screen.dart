@@ -34,7 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Obx(() {
       return Stack(
         children: [
@@ -67,7 +66,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Colors.black, fontSize: 16),
                           ),
                           const Spacer(),
-
                           const SizedBox(width: 10),
                           GestureDetector(
                             onTap: () {
@@ -168,7 +166,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-
                 floatingActionButton: GetBuilder<HomeController>(
                   id: "home",
                   builder: (controller) {
@@ -186,7 +183,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                       .toString(),
                                 ))!
                             .then((value) {
-                          controller.friendPostDataWithOutPagination();
+                          if (value == true) {
+                            controller.friendPostDataWithOutPagination(
+                              pageLength:
+                                  controller.friendPostListData.length + 1,
+                            );
+                          }
                         });
                       },
                     );
@@ -822,26 +824,30 @@ class _HomeScreenState extends State<HomeScreen> {
                                             height: Get.height * 0.02,
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.only(left: 8,right: 8),
-                                            child: RichText(text: TextSpan(
-                                              children:       controller
-                                                  .friendPostListData[index]
-                                                  .postTag!.map<TextSpan>((e) => TextSpan(
-                                                text:   " @${e.name.toString()}",
-                                                  style: sfProTextReguler(
-                                                      fontSize: 16,
-                                                      color:
-                                                      ColorRes.color_FED785)
-                                              )).toList()..add(TextSpan(text: " ${controller
-                                                  .friendPostListData[
-                                              index]
-                                                  .description
-                                                  .toString()}",
-                                                  style:
-                                                  textStyleFont16WhitLight)),
-                                            ),),
+                                            padding: const EdgeInsets.only(
+                                                left: 8, right: 8),
+                                            child: RichText(
+                                              text: TextSpan(
+                                                children: controller
+                                                    .friendPostListData[index]
+                                                    .postTag!
+                                                    .map<TextSpan>((e) => TextSpan(
+                                                        text:
+                                                            " @${e.name.toString()}",
+                                                        style: sfProTextReguler(
+                                                            fontSize: 16,
+                                                            color: ColorRes
+                                                                .color_FED785)))
+                                                    .toList()
+                                                  ..add(TextSpan(
+                                                      text:
+                                                          " ${controller.friendPostListData[index].description.toString()}",
+                                                      style:
+                                                          textStyleFont16WhitLight)),
+                                              ),
+                                            ),
                                           ),
-                                      /*    Row(
+                                          /*    Row(
                                             children: [
                                               Expanded(
                                                 child: ListView.builder(
@@ -1168,27 +1174,26 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   width: Get.width * 0.05,
                                                 ),
                                                 InkWell(
-                                                  onTap: ()  async{
-
+                                                  onTap: () async {
                                                     Get.to(() => CommentScreen(
-                                                      idPost: controller
-                                                          .friendPostListData[
-                                                      index]
-                                                          .id
-                                                          .toString(),
-                                                      fullName: controller
-                                                          .friendPostListData[
-                                                      index]
-                                                          .postUser!
-                                                          .fullName
-                                                          .toString(),
-                                                      profileImage: controller
-                                                          .friendPostListData[
-                                                      index]
-                                                          .postUser!
-                                                          .profileImage
-                                                          .toString(),
-                                                    ));
+                                                          idPost: controller
+                                                              .friendPostListData[
+                                                                  index]
+                                                              .id
+                                                              .toString(),
+                                                          fullName: controller
+                                                              .friendPostListData[
+                                                                  index]
+                                                              .postUser!
+                                                              .fullName
+                                                              .toString(),
+                                                          profileImage: controller
+                                                              .friendPostListData[
+                                                                  index]
+                                                              .postUser!
+                                                              .profileImage
+                                                              .toString(),
+                                                        ));
 
                                                     await controller
                                                         .commentPostListData(
@@ -1197,7 +1202,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                     index]
                                                                 .id
                                                                 .toString());
-
                                                   },
                                                   child: const SizedBox(
                                                     height: 18,
