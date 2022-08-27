@@ -40,7 +40,7 @@ class SupportController extends GetxController {
       image.add(File(pickedFile.path));
     }
     Get.back();
-    update(["createStory"]);
+    update(["img"]);
     update();
     return null;
   }
@@ -52,7 +52,7 @@ class SupportController extends GetxController {
       image.add(File(pickedFile.path));
     }
     Get.back();
-    update(["createStory"]);
+    update(["img"]);
     update();
     return null;
   }
