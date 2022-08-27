@@ -17,7 +17,7 @@ import 'package:rainbow/utils/pref_keys.dart';
 class SettingsController extends GetxController {
   RxBool loader = false.obs;
   LogOutModel logOutModel = LogOutModel();
-ProfileController profileController = Get.put(ProfileController());
+
   @override
   void onInit() {
     super.onInit();

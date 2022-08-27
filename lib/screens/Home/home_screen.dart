@@ -6,6 +6,7 @@ import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/model/request_user_model.dart';
 import 'package:rainbow/screens/Home/Story/story_screen.dart';
+import 'package:rainbow/screens/Home/comments/comments_controller.dart';
 import 'package:rainbow/screens/Home/comments/comments_screen.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
@@ -31,10 +32,11 @@ class _HomeScreenState extends State<HomeScreen> {
   ViewStoryController viewStoryController = Get.put(ViewStoryController());
   ConnectionsController connectionsController =
       Get.put(ConnectionsController());
+  CommentsController commentsController = Get.put(CommentsController());
+
 
   @override
   Widget build(BuildContext context) {
-controller.getCurrentLocation();
     return Obx(() {
       return Stack(
         children: [
@@ -1177,6 +1179,13 @@ controller.getCurrentLocation();
                                                 ),
                                                 InkWell(
                                                   onTap: () async {
+                                                     commentsController
+                                                        .commentPostListData(
+                                                        controller
+                                                            .friendPostListData[
+                                                        index]
+                                                            .id
+                                                            .toString());
                                                     Get.to(() => CommentScreen(
                                                           idPost: controller
                                                               .friendPostListData[
@@ -1197,13 +1206,7 @@ controller.getCurrentLocation();
                                                               .toString(),
                                                         ));
 
-                                                    await controller
-                                                        .commentPostListData(
-                                                            controller
-                                                                .friendPostListData[
-                                                                    index]
-                                                                .id
-                                                                .toString());
+
                                                   },
                                                   child: const SizedBox(
                                                     height: 18,

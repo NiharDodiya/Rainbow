@@ -8,6 +8,7 @@ import 'package:rainbow/screens/Home/settings/connections/connections_screen.dar
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
 import 'package:rainbow/screens/Home/settings/subscription/subscription_screen.dart';
+import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/profile_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -16,6 +17,7 @@ import 'package:rainbow/utils/strings.dart';
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({Key? key}) : super(key: key);
   SettingsController controller = Get.put(SettingsController());
+  ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +119,7 @@ class SettingsScreen extends StatelessWidget {
             padding: EdgeInsets.only(left: Get.width * 0.08),
             child: Row(
               children: [
-                (controller.profileController.viewProfile.data?.profileImage?.toString()?? "").isEmpty ? Container(
+                (profileController.viewProfile.data?.profileImage?.toString()?? "").isEmpty ? Container(
                   height: 56,
                   width: 56,
                   decoration: const BoxDecoration(
@@ -129,7 +131,7 @@ class SettingsScreen extends StatelessWidget {
                   child: FadeInImage(
                       placeholder: const AssetImage(AssetRes.portrait_placeholder,),
                       image: NetworkImage(
-                          controller.profileController.viewProfile.data!
+                          profileController.viewProfile.data!
                               .profileImage!.toString()),      height: 56,
                     width: 56,fit: BoxFit.cover,),
                 )
@@ -143,7 +145,7 @@ class SettingsScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          controller.profileController.viewProfile.data
+                         profileController.viewProfile.data
                               ?.fullName ?? "",
                           style: gilroyBoldTextStyle(
                               color: Colors.black, fontSize: 26),
@@ -153,7 +155,7 @@ class SettingsScreen extends StatelessWidget {
                         ),
                         InkWell(onTap: () {
                           Get.to(()=>ProfileScreen(i: 2,))!.then((value) async {
-                            await controller.profileController.viewProfileDetails();
+                            await profileController.viewProfileDetails();
                           });
                         },
                           child: Row(

@@ -59,7 +59,7 @@ class HomeController extends GetxController {
   SharePostModel sharePostModel = SharePostModel();
   PostViewModel postViewModel = PostViewModel();
   FriendPostViewModel friendPostViewModel = FriendPostViewModel();
-  PostCommentListModel postCommentListModel = PostCommentListModel();
+/*  PostCommentListModel postCommentListModel = PostCommentListModel();*/
   String? deepLinkPath;
   List<FriendPost> friendPostListData = [];
   List listOfUserView = [];
@@ -300,7 +300,7 @@ class HomeController extends GetxController {
     }
   }
 
-  Future<void> commentPostListData(String idPost) async {
+/*  Future<void> commentPostListData(String idPost) async {
     try {
       loader.value = true;
       postCommentListModel = await MyPostApi.commentPostListApi(idPost);
@@ -310,7 +310,7 @@ class HomeController extends GetxController {
       loader.value = false;
       debugPrint(e.toString());
     }
-  }
+  }*/
 
   Future<void> listOfFriedRequestDetails() async {
     try {
@@ -334,6 +334,7 @@ class HomeController extends GetxController {
 
   Future<void> init() async {
     changeLoader(true);
+    await getCurrentLocation();
     loader.value = true;
     await controller.viewProfileDetails();
     await friendPostData();

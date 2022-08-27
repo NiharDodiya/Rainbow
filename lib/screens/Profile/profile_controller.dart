@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:rainbow/screens/Home/settings/settings_controller.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_api.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
 import 'package:rainbow/screens/Profile/widget/postTestimonials_api/postTestimonials_api.dart';
@@ -49,12 +50,13 @@ class ProfileController extends GetxController {
   void onShowMoreTap(bool value) {
     seeMoreAndLess = value;
   }
-
+  SettingsController controller = Get.put(SettingsController());
   Future<void> viewProfileDetails() async {
     try {
       print("data Calling is here");
       loader.value = true;
       viewProfile = await ViewProfileApi.postRegister();
+      controller.update(["settings"]);
       loader.value = false;
     } catch (e) {
       loader.value = false;

@@ -9,6 +9,7 @@ import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/model/listUserTag_model.dart';
+import 'package:rainbow/model/postCommentList_model.dart';
 import 'package:rainbow/model/postComment_model.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/myPost_Api/myPost_api.dart';
@@ -80,6 +81,18 @@ class CommentsController extends GetxController {
       update(["commentPost"]);
     } catch (e) {
       print(e.toString());
+    }
+  }
+  PostCommentListModel postCommentListModel = PostCommentListModel();
+  Future<void> commentPostListData(String idPost) async {
+    try {
+      loader.value = true;
+      postCommentListModel = await MyPostApi.commentPostListApi(idPost);
+      update(['home']);
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+      debugPrint(e.toString());
     }
   }
 
@@ -161,7 +174,7 @@ class CommentsController extends GetxController {
       uploadImage.data = null;
       imageForCamera = null;
 
-      await homeController.commentPostListData(idPost);
+      await commentPostListData(idPost);
       await homeController.friendPostDataWithOutPagination();
 
       homeController.update(["home"]);

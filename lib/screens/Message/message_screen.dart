@@ -211,7 +211,7 @@ class MessageScreen extends StatelessWidget {
                                           if (snapshot.hasData == false) {
                                             return const SizedBox();
                                           }
-                                          return SizedBox(
+                                          return  SizedBox(
                                             height: Get.height * 0.53,
                                             child: ListView.builder(
                                               itemCount:
@@ -390,7 +390,7 @@ class MessageScreen extends StatelessWidget {
                                     builder: (controller) {
                                       if(controller
                                           .getFriendIdList().isEmpty){
-                                        return const SizedBox();
+                                        return const Text("No Result Found");
                                       }
                                       return StreamBuilder<
                                           QuerySnapshot<Map<String, dynamic>>>(
@@ -404,7 +404,7 @@ class MessageScreen extends StatelessWidget {
                                           if (snapshot.hasData == false) {
                                             return const SizedBox();
                                           }
-                                          return SizedBox(
+                                          return  snapshot.data!.docs.isEmpty?const Text("No Result Found"):SizedBox(
                                             height: Get.height * 0.53,
                                             child: ListView.builder(
                                               itemCount:

@@ -17,7 +17,7 @@ class CommentScreen extends StatelessWidget {
   CommentScreen({this.idPost, this.profileImage, this.fullName, Key? key})
       : super(key: key);
   CommentsController controller = Get.put(CommentsController());
-  HomeController homeController = Get.put(HomeController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -71,27 +71,27 @@ class CommentScreen extends StatelessWidget {
                               padding: const EdgeInsets.only(top: 10),
                               itemBuilder: (context, index) {
                                 return userComment(
-                                    image: homeController.postCommentListModel
+                                    image: controller.postCommentListModel
                                         .data![index].postCommentItem
                                         .toString(),
-                                    description: homeController
+                                    description: controller
                                         .postCommentListModel
                                         .data![index]
                                         .description
                                         .toString(),
-                                    fullName: homeController
+                                    fullName: controller
                                         .postCommentListModel
                                         .data![index]
                                         .postCommentUser!
                                         .fullName
                                         .toString(),
                                     profileImage: profileImage,
-                                    reply: homeController.postCommentListModel
+                                    reply: controller.postCommentListModel
                                         .data![index].postCommentReply,
-                                    commentId: homeController
+                                    commentId: controller
                                         .postCommentListModel.data![index].id
                                         .toString(),
-                                    date: homeController.postCommentListModel
+                                    date: controller.postCommentListModel
                                         .data![index].createdAt);
                               },
                               separatorBuilder: (context, index) {
@@ -101,10 +101,10 @@ class CommentScreen extends StatelessWidget {
                                 );
                               },
                               itemCount:
-                                  homeController.postCommentListModel.data ==
+                              controller.postCommentListModel.data ==
                                           null
                                       ? 0
-                                      : homeController
+                                      : controller
                                           .postCommentListModel.data!.length,
                             ),
                           ),
