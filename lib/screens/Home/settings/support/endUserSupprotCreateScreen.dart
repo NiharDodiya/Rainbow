@@ -15,9 +15,10 @@ class SupportCreateEndUserScreen extends StatelessWidget {
   String? profileImage;
   String? title;
   String? time;
+String? id;
 
   SupportCreateEndUserScreen(
-      {Key? key, this.com, this.title, this.profileImage, this.code, this.time})
+      {Key? key, this.com, this.title, this.profileImage, this.code, this.time,this.id})
       : super(key: key);
 
   final SupportController controller = Get.put(SupportController());
@@ -661,8 +662,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                   ),
                   SubmitButton(
                     onTap: () {
-                      controller.onTapSendMessage(controller
-                          .viewSupportTicketModel.idUser.toString());
+                      controller.onTapSendMessage(id.toString());
                     },
                     child: Text(
                       Strings.sendMessage,

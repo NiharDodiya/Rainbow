@@ -78,6 +78,7 @@ class SupportController extends GetxController {
     Get.to(() => SupportCreateEndUserScreen(
           com: status,
           code: code,
+      id: id,
         ));
     update(["Support"]);
   }
