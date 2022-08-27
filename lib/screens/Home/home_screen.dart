@@ -176,9 +176,10 @@ controller.getCurrentLocation();
                         height: 24,
                         width: 24,
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         viewStoryController.resetAllData();
-                        Get.to(() => StoryScreen(
+
+                        await Get.to(() => StoryScreen(
                                   image: controller
                                       .controller.viewProfile.data!.profileImage
                                       .toString(),

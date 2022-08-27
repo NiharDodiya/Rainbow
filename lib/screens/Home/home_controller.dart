@@ -341,7 +341,7 @@ class HomeController extends GetxController {
     countryName();
     countryNationalites();
     notificationsController.getNotifications();
-
+    await friendPostDataWithOutPagination();
     await connectionsController.callRequestApi();
     changeLoader(false);
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/model/logout_model.dart';
+import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/logOut_Api/LogOut_Api.dart';
 import 'package:rainbow/screens/Home/settings/notificationOnOff_api/notificationOnOff_api.dart';
 import 'package:rainbow/screens/Home/settings/privacy/privacy_controller.dart';
@@ -9,6 +10,7 @@ import 'package:rainbow/screens/Home/settings/privacy/privacy_screen.dart';
 import 'package:rainbow/screens/Home/settings/support/support_screen.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
+import 'package:rainbow/screens/dashboard/dashboard_controller.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
@@ -49,6 +51,8 @@ ProfileController profileController = Get.put(ProfileController());
   Future<void> logOutDetails() async {
     loader.value = true;
     try {
+      DashboardController dashboardController = Get.find();
+      await dashboardController.setUserOnlineStatus(false);
       await LogOutApi.postRegister();
 
       loader.value = false;

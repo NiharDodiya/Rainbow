@@ -19,11 +19,6 @@ class AuthService {
         await PrefService.setValue(PrefKeys.uid, userCredential.user!.uid);
         return userCredential.user!.uid;
       }
-
-      if (userCredential.user != null) {
-        await PrefService.setValue(PrefKeys.uid, userCredential.user!.uid);
-        return true;
-      }
       return false;
     } catch (e) {
       print(e.toString());
