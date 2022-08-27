@@ -93,13 +93,16 @@ class HomeController extends GetxController {
     }
     update(['home']);
   }
+
   Future getCurrentLocation() async {
     LocationPermission permission = await Geolocator.checkPermission();
-    loader.value = true;
+    // loader.value = true;
     if (permission == LocationPermission.denied) {
       LocationPermission result = await Geolocator.requestPermission();
-      return (result == LocationPermission.always ||
-          result == LocationPermission.whileInUse);
+      if(result == LocationPermission.always ||
+          result == LocationPermission.whileInUse){
+        getCurrentLocation();
+      }
     } else {
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
@@ -117,7 +120,7 @@ class HomeController extends GetxController {
           "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<$address>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
       update(["advertiser"]);
     }
-    loader.value = false;
+    // loader.value = false;
   }
 
   Future<void> countryName() async {
@@ -332,6 +335,7 @@ class HomeController extends GetxController {
 
   Future<void> init() async {
     changeLoader(true);
+    loader.value = true;
     await controller.viewProfileDetails();
     await friendPostData();
     await onStory();
