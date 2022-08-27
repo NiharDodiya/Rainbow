@@ -117,7 +117,7 @@ class LoginController extends GetxController {
         .doc(uid)
         .get()
         .then((value) async {
-      if (value.exists) {
+      if (!value.exists) {
         await firebaseFirestore.collection("users").doc(uid).set({
           "email": emailController.text,
           "uid": userUid,

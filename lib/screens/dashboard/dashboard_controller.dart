@@ -39,9 +39,13 @@ class DashboardController extends GetxController {
     if (PrefService.getString(PrefKeys.uid).isEmpty) {
       return;
     }
+  try{
     await FirebaseFirestore.instance
         .collection("users")
         .doc(PrefService.getString(PrefKeys.uid))
         .update({"online": status});
+  }catch(e){
+      print(e.toString());
+  }
   }
 }

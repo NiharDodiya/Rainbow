@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Home/settings/settings_controller.dart';
 import 'package:rainbow/screens/Home/settings/support/support_controller.dart';
+import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_support/screen/support_create/support_create_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -12,6 +14,8 @@ import 'package:rainbow/utils/strings.dart';
 class SupportScreen extends StatelessWidget {
   SupportScreen({Key? key}) : super(key: key);
   SupportController controller = Get.put(SupportController());
+  ProfileController profileController = Get.put(ProfileController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -167,28 +171,30 @@ class SupportScreen extends StatelessWidget {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(left: 15),
-                                child: Container(
-                                  height: 46,
-                                  width: 46,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        ColorRes.color_50369C,
-                                        ColorRes.color_D18EEE,
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
+                                child: profileController.viewProfile.data!.profileImage!.isEmpty?ClipRRect(
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: Container(
+                                    height: 46,
+                                    width: 46,
+                                    decoration:  const BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                            AssetRes.portrait_placeholder,
+                                          ),fit: BoxFit.cover
+                                      ),
                                     ),
                                   ),
-                                  child: Center(
-                                    child: Container(
-                                      height: 36.37,
-                                      width: 22,
-                                      decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                            image: AssetImage(AssetRes.duck),
-                                          )),
+                                ):ClipRRect(
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: Container(
+                                    height: 46,
+                                    width: 46,
+                                    decoration:  BoxDecoration(
+                                      image: DecorationImage(
+                                          image: NetworkImage(
+                                            profileController.viewProfile.data!.profileImage.toString(),
+                                          ),fit: BoxFit.cover
+                                      ),
                                     ),
                                   ),
                                 ),
