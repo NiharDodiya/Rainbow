@@ -70,8 +70,11 @@ String? id;
                       ),
                     ],
                   ),
+
                   body(com.toString()),
+
                   const SizedBox(height: 15,),
+
                   Align(alignment:Alignment.topLeft
                     ,child: Padding(
                       padding: const EdgeInsets.only(left: 30),
@@ -109,7 +112,7 @@ String? id;
                   ),
                   //pic Image
                   Padding(
-                    padding: const EdgeInsets.only(left: 25, top: 30),
+                    padding: const EdgeInsets.only(left: 60, top: 30),
                     child: GetBuilder<SupportController>(
                         id: "img",
                         builder: (controller) {
@@ -570,7 +573,7 @@ String? id;
                                 height: 20,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(right: 30),
+                                padding: const EdgeInsets.only(right: 60),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -693,12 +696,9 @@ String? id;
       itemBuilder: (context, index) {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: Get.width * 0.08),
-          child: Column(
+          child:  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: Get.height * 0.032,
-              ),
               SizedBox(
                 height: Get.width * 0.144,
                 child: Row(
@@ -722,15 +722,15 @@ String? id;
                       ),
                     ),
                     /* Container(
-                      height: Get.width * 0.144,
-                      width: Get.width * 0.144,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: AssetImage(AssetRes.account),
+                        height: Get.width * 0.144,
+                        width: Get.width * 0.144,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            image: AssetImage(AssetRes.account),
+                          ),
                         ),
-                      ),
-                    ),*/
+                      ),*/
                     SizedBox(
                       width: Get.width * 0.04,
                     ),
@@ -772,12 +772,13 @@ String? id;
                     .toString(),
                 style: gilroySemiBoldTextStyle(fontSize: 14),
               ),
-         /*     SizedBox(
-                height: Get.height * 0.0184,
-              ),*/
+              /*     SizedBox(
+                  height: Get.height * 0.0184,
+                ),*/
               //image
-              controller.viewSupportTicketModel.data![index]
-                  .itmeList!.isEmpty?SizedBox():Container(
+              controller.viewSupportTicketModel.data![index].itmeList!.isEmpty
+                  ?SizedBox()
+                  :Container(
                 height: Get.height * 0.07279,
                 width: Get.width * 0.354666,
                 padding: const EdgeInsets.only(right: 5, left: 5),
@@ -791,102 +792,139 @@ String? id;
                   ),
                 ),
                 child: (controller.viewSupportTicketModel.data![index]
-                            .itmeList!.length ==
-                        1)
+                    .itmeList!.length == 1)
                     ? Stack(
                   alignment: Alignment.center,
-                        children: [
-                          ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: controller.viewSupportTicketModel
-                                .data![index].itmeList!.length,
-                            itemBuilder: (context, index1) {
-                              return Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  SizedBox(
-                                    height: 42.98,
-                                    width: 42.98,
-                                    child: ClipRRect(
-                                      borderRadius:
-                                          BorderRadius.circular(10),
-                                      child: Image.network(
-                                        controller
-                                            .viewSupportTicketModel
-                                            .data![0]
-                                            .itmeList![index1]
-                                            .image
-                                            .toString(),
-                                        fit: BoxFit.cover,
-                                        errorBuilder:
-                                            (context, error, stackTrace) {
-                                          return Image.asset(
-                                            AssetRes.portrait_placeholder,
-                                            fit: BoxFit.cover,
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 5),
-                                ],
-                              );
-                            },
-                          ),
-                          (controller.viewSupportTicketModel.data![index]
-                                  .itmeList!.isEmpty)
-                              ? const SizedBox()
-                              : downloadButton1(index)
-                        ],
-                      )
-                    : Stack(
+                  children: [
+                    ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.viewSupportTicketModel
+                          .data![index].itmeList!.length,
+                      itemBuilder: (context, index1) {
+                        return Row(
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceAround,
+                          children: [
+                            SizedBox(
+                              height: 42.98,
+                              width: 42.98,
+                              child: ClipRRect(
+                                borderRadius:
+                                BorderRadius.circular(10),
+                                child: Image.network(
+                                  controller
+                                      .viewSupportTicketModel
+                                      .data![0]
+                                      .itmeList![index1]
+                                      .image
+                                      .toString(),
+                                  fit: BoxFit.cover,
+                                  errorBuilder:
+                                      (context, error, stackTrace) {
+                                    return Image.asset(
+                                      AssetRes.portrait_placeholder,
+                                      fit: BoxFit.cover,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 5),
+                          ],
+                        );
+                      },
+                    ),
+                    downloadButton1(index)
+                  ],
+                )
+                    : (controller.viewSupportTicketModel.data![index].itmeList!.length == 2)
+                    ?Stack(
                   alignment: Alignment.topRight,
-                        children: [
-                          ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: controller.viewSupportTicketModel
-                                .data![index].itmeList!.length,
-                            itemBuilder: (context, index1) {
-                              return Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  SizedBox(
-                                    height: 42.98,
-                                    width: 42.98,
-                                    child: ClipRRect(
-                                      borderRadius:
-                                          BorderRadius.circular(10),
-                                      child: Image.network(
-                                        controller
-                                            .viewSupportTicketModel
-                                            .data![index]
-                                            .itmeList![index1]
-                                            .image
-                                            .toString(),
-                                        fit: BoxFit.cover,
-                                        errorBuilder:
-                                            (context, error, stackTrace) {
-                                          return Image.asset(
-                                            AssetRes.portrait_placeholder,
-                                            fit: BoxFit.cover,
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 5),
-                                ],
-                              );
-                            },
-                          ),
-                          (controller.viewSupportTicketModel.data![index]
-                                  .itmeList!.isEmpty)
-                              ? const SizedBox()
-                              : downloadButton2(index)
-                        ],
-                      ),
+                  children: [
+                    ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.viewSupportTicketModel
+                          .data![index].itmeList!.length,
+                      itemBuilder: (context, index1) {
+                        return Row(
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceAround,
+                          children: [
+                            SizedBox(
+                              height: 42.98,
+                              width: 42.98,
+                              child: ClipRRect(
+                                borderRadius:
+                                BorderRadius.circular(10),
+                                child: Image.network(
+                                  controller
+                                      .viewSupportTicketModel
+                                      .data![index]
+                                      .itmeList![index1]
+                                      .image
+                                      .toString(),
+                                  fit: BoxFit.cover,
+                                  errorBuilder:
+                                      (context, error, stackTrace) {
+                                    return Image.asset(
+                                      AssetRes.portrait_placeholder,
+                                      fit: BoxFit.cover,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 5),
+                          ],
+                        );
+                      },
+                    ),
+                    downloadButton2(index)
+                  ],
+                ):Stack(
+                  alignment: Alignment.topRight,
+                  children: [
+                    ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.viewSupportTicketModel
+                          .data![index].itmeList!.length,
+                      itemBuilder: (context, index1) {
+                        return Row(
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceAround,
+                          children: [
+                            SizedBox(
+                              height: 42.98,
+                              width: 42.98,
+                              child: ClipRRect(
+                                borderRadius:
+                                BorderRadius.circular(10),
+                                child: Image.network(
+                                  controller
+                                      .viewSupportTicketModel
+                                      .data![index]
+                                      .itmeList![index1]
+                                      .image
+                                      .toString(),
+                                  fit: BoxFit.cover,
+                                  errorBuilder:
+                                      (context, error, stackTrace) {
+                                    return Image.asset(
+                                      AssetRes.portrait_placeholder,
+                                      fit: BoxFit.cover,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 5),
+                          ],
+                        );
+                      },
+                    ),
+                    downloadButton3(index)
+                  ],
+                ),
               ),
 
               SizedBox(
@@ -976,6 +1014,28 @@ Widget downloadButton1(int i) {
         onTap: () {
           controller.save(controller
               .viewSupportTicketModel.data![i].itmeList![0].image
+              .toString());
+          flutterToast("Image Save successFull");
+          //controller.loader.value == false? flutterToast("Image Save successFull"):SizedBox();
+        },
+        child: Image.asset(AssetRes.downlode)),
+  );
+}
+
+Widget downloadButton3(int i) {
+  SupportController controller = Get.put(SupportController());
+  return Padding(
+    padding: EdgeInsets.symmetric(vertical: Get.height * 0.015),
+    child: InkWell(
+        onTap: () {
+          controller.save(controller
+              .viewSupportTicketModel.data![i].itmeList![0].image
+              .toString());
+          controller.save(controller
+              .viewSupportTicketModel.data![i].itmeList![1].image
+              .toString());
+          controller.save(controller
+              .viewSupportTicketModel.data![i].itmeList![2].image
               .toString());
           flutterToast("Image Save successFull");
           //controller.loader.value == false? flutterToast("Image Save successFull"):SizedBox();
