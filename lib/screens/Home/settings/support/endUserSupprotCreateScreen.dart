@@ -54,7 +54,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                 SizedBox(
                   height: Get.height * 0.035,
                 ),
-                appBar(context),
+                appBar(),
 
                 Expanded(
                   child: SingleChildScrollView(
@@ -862,9 +862,9 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                     .toString(),
                 style: gilroySemiBoldTextStyle(fontSize: 14),
               ),
-              /*     SizedBox(
+                   SizedBox(
                   height: Get.height * 0.0184,
-                ),*/
+                ),
               //image
               controller.viewSupportTicketModel.data![index].itmeList!.isEmpty
                   ? SizedBox()
@@ -1059,7 +1059,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
   }
 }
 
-Widget appBar(context) {
+Widget appBar() {
   final SupportController controller = Get.put(SupportController());
   return SizedBox(
     width: Get.width,
@@ -1077,15 +1077,8 @@ Widget appBar(context) {
               onTap: () {
                 Get.back();
                 controller.yourMsgSendController.clear();
-                controller.image.removeAt(0);
-                controller.image.removeAt(1);
-                controller.image.removeAt(2);
-                // (controller.image.isEmpty)
-                //     ?""
-                //     : (controller.image.length == 1)
-                //     ?controller.image.removeAt(0)
-                //     : (controller.image.length == 2)
-                //     ?(controller.image.removeAt(0)controller.image.removeAt(1)):
+               controller.image.length = 0;
+               controller.image.clear();
                 controller.update(["img"]);
               },
               child: Image.asset(

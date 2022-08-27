@@ -144,6 +144,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
   }
 
   Widget appBar({String? title}) {
+    ConnectionsController controller = Get.put(ConnectionsController());
     return SizedBox(
       width: Get.width,
       child: Column(
@@ -204,7 +205,9 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                         child: Image.asset(AssetRes.notificationIcon),
                       ),
                     ),
-                    Positioned(
+                    (controller.requestUsers.isEmpty)
+                        ?SizedBox()
+                        :Positioned(
                       top: 0,
                       right: 0,
                       child: Container(
@@ -214,8 +217,8 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                         decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: ColorRes.color_FF6B97),
-                        child: const Text(
-                          "0",
+                        child: Text(
+                          "${controller.requestUsers.length}",
                           style: TextStyle(
                             color: ColorRes.white,
                             fontSize: 8,

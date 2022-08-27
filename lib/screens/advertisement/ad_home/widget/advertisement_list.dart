@@ -153,7 +153,8 @@ Widget advertisementList() {
                         id: 'more',
                         builder: (controller) {
                           return controller.moreOption[index] == true
-                              ? Container(
+                              ? (controller.myAdvertiserModel.data?[index].adminStatus == "pending")
+                              ?Container(
                                   height: 115,
                                   width: Get.width * 0.40,
                                   color: ColorRes.color_50369C,
@@ -219,7 +220,67 @@ Widget advertisementList() {
                                     itemCount: 3,
                                   ),
                                 )
-                              : const SizedBox();
+                              : Container(
+                            height:80,
+                            width: Get.width * 0.40,
+                            color: ColorRes.color_50369C,
+                            child: ListView.separated(
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  padding: const EdgeInsets.all(9),
+                                  child: InkWell(
+                                    onTap: () {
+                                      if (index == 0) {
+                                        Get.to( DeletApprove(idAdvertiser: controller.myAdvertiserModel.data![index].id.toString(),));
+                                      }
+                                      print(index);
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          height: 20,
+                                          width: 35,
+                                          padding:
+                                          const EdgeInsets.all(2.5),
+                                          decoration: BoxDecoration(
+                                            color: index == 0
+                                                ? ColorRes.color_D18EEE
+                                                : ColorRes.color_49A510,
+                                            borderRadius:
+                                            const BorderRadius.all(
+                                                Radius.circular(10)),
+                                          ),
+                                          child: Image.asset(
+                                            index == 0
+                                                ? AssetRes.deleteIcon
+                                                : AssetRes.calendarIcon,
+                                            height: 15,
+                                            width: 15,
+                                          ),
+                                        ),
+                                        SizedBox(width: 2,),
+                                        Text(
+                                          index == 0
+                                              ? " Delete"
+                                              : "Follow Up",
+                                          style: gilroyMediumTextStyle(
+                                              fontSize: 14),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                              separatorBuilder: (context, index) {
+                                return Divider(
+                                  height: 0,
+                                  color: ColorRes.white.withOpacity(0.5),
+                                );
+                              },
+                              itemCount: 2,
+                            ),
+                          )
+                              :SizedBox();
                         }),
                   ),
                 ],

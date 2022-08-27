@@ -564,6 +564,7 @@ class SupportcreateScreen extends StatelessWidget {
 }
 
 Widget appBar() {
+  final SupportCreateController controller = Get.put(SupportCreateController());
   return SizedBox(
     width: Get.width,
     child: Column(
@@ -579,6 +580,10 @@ Widget appBar() {
             GestureDetector(
               onTap: () {
                 Get.back();
+                controller.yourMsgController.clear();
+                controller.subjectController.clear();
+                controller.image.clear();
+                controller.image.length = 0;
               },
               child: Image.asset(
                 AssetRes.backIcon,
