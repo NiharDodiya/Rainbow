@@ -49,7 +49,7 @@ String? id;
                   SizedBox(
                     height: Get.height * 0.035,
                   ),
-                  appBar(),
+                  appBar(context),
                   Row(
                     children: [
                       SizedBox(
@@ -778,6 +778,66 @@ String? id;
               //image
               controller.viewSupportTicketModel.data![index].itmeList!.isEmpty
                   ?SizedBox()
+                  : (controller.viewSupportTicketModel.data![index]
+                  .itmeList!.length == 3)
+                  ?Container(
+                height: Get.height * 0.07279,
+                width: Get.width * 0.49,
+                padding: const EdgeInsets.only(right: 5, left: 5),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: ColorRes.white,
+                    width: 2,
+                  ),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(9),
+                  ),
+                ),
+                child: Stack(
+                  alignment: Alignment.topRight,
+                  children: [
+                    ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.viewSupportTicketModel
+                          .data![index].itmeList!.length,
+                      itemBuilder: (context, index1) {
+                        return Row(
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceAround,
+                          children: [
+                            SizedBox(
+                              height: 42.98,
+                              width: 42.98,
+                              child: ClipRRect(
+                                borderRadius:
+                                BorderRadius.circular(10),
+                                child: Image.network(
+                                  controller
+                                      .viewSupportTicketModel
+                                      .data![index]
+                                      .itmeList![index1]
+                                      .image
+                                      .toString(),
+                                  fit: BoxFit.cover,
+                                  errorBuilder:
+                                      (context, error, stackTrace) {
+                                    return Image.asset(
+                                      AssetRes.portrait_placeholder,
+                                      fit: BoxFit.cover,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 5),
+                          ],
+                        );
+                      },
+                    ),
+                    downloadButton3(index)
+                  ],
+                ),
+              )
                   :Container(
                 height: Get.height * 0.07279,
                 width: Get.width * 0.354666,
@@ -881,50 +941,8 @@ String? id;
                     ),
                     downloadButton2(index)
                   ],
-                ):Stack(
-                  alignment: Alignment.topRight,
-                  children: [
-                    ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: controller.viewSupportTicketModel
-                          .data![index].itmeList!.length,
-                      itemBuilder: (context, index1) {
-                        return Row(
-                          mainAxisAlignment:
-                          MainAxisAlignment.spaceAround,
-                          children: [
-                            SizedBox(
-                              height: 42.98,
-                              width: 42.98,
-                              child: ClipRRect(
-                                borderRadius:
-                                BorderRadius.circular(10),
-                                child: Image.network(
-                                  controller
-                                      .viewSupportTicketModel
-                                      .data![index]
-                                      .itmeList![index1]
-                                      .image
-                                      .toString(),
-                                  fit: BoxFit.cover,
-                                  errorBuilder:
-                                      (context, error, stackTrace) {
-                                    return Image.asset(
-                                      AssetRes.portrait_placeholder,
-                                      fit: BoxFit.cover,
-                                    );
-                                  },
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 5),
-                          ],
-                        );
-                      },
-                    ),
-                    downloadButton3(index)
-                  ],
-                ),
+                )
+                    :SizedBox(),
               ),
 
               SizedBox(
@@ -938,7 +956,8 @@ String? id;
   }
 }
 
-Widget appBar() {
+Widget appBar(context) {
+  final SupportController controller = Get.put(SupportController());
   return SizedBox(
     width: Get.width,
     child: Column(
@@ -954,6 +973,17 @@ Widget appBar() {
             GestureDetector(
               onTap: () {
                 Get.back();
+                controller.yourMsgSendController.clear();
+                controller.image.removeAt(0);
+                controller.image.removeAt(1);
+                controller.image.removeAt(2);
+                // (controller.image.isEmpty)
+                //     ?""
+                //     : (controller.image.length == 1)
+                //     ?controller.image.removeAt(0)
+                //     : (controller.image.length == 2)
+                //     ?(controller.image.removeAt(0)controller.image.removeAt(1)):
+                controller.update(["img"]);
               },
               child: Image.asset(
                 AssetRes.backIcon,
