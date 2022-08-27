@@ -73,7 +73,6 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                     return Stack(
                       children: [
                         Container(color: Colors.black),
-
                         Image.network(
                           story.storyItem.toString(),
                           height: Get.height * 0.9,
@@ -127,8 +126,8 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                   top: 25, left: 5, right: 5),
                               child: Row(
                                 children: [
-
-                                  GestureDetector(onTap:controller.onBackTap,
+                                  GestureDetector(
+                                    onTap: controller.onBackTap,
                                     child: Padding(
                                       padding: const EdgeInsets.only(left: 5),
                                       child: Image.asset(
@@ -139,13 +138,14 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                       ),
                                     ),
                                   )
-                                /*  IconButton(
+                                  /*  IconButton(
                                     padding: EdgeInsets.zero,
                                     color: Colors.white,
                                     icon: const Icon(Icons.arrow_back_ios,
                                         size: 20),
                                     onPressed: controller.onBackTap,
-                                  ),*/,
+                                  ),*/
+                                  ,
                                   const Spacer(),
                                   IconButton(
                                       onPressed: () {
@@ -237,35 +237,41 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                   Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      profileController.viewProfile
-                                          .data!.profileImage
-                                          .toString()==""?Container(
-                                        height: 56,
-                                        width: 56,
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: DecorationImage(
-                                            image: AssetImage(
-                                              AssetRes.portrait_placeholder,
+                                      profileController.viewProfile.data!
+                                                  .profileImage
+                                                  .toString() ==
+                                              ""
+                                          ? Container(
+                                              height: 56,
+                                              width: 56,
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                image: DecorationImage(
+                                                  image: AssetImage(
+                                                    AssetRes
+                                                        .portrait_placeholder,
+                                                  ),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            )
+                                          : Container(
+                                              height: 56,
+                                              width: 56,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                image: DecorationImage(
+                                                  image: NetworkImage(
+                                                    profileController
+                                                        .viewProfile
+                                                        .data!
+                                                        .profileImage
+                                                        .toString(),
+                                                  ),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
                                             ),
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ):Container(
-                                        height: 56,
-                                        width: 56,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: DecorationImage(
-                                            image: NetworkImage(
-                                              profileController.viewProfile
-                                                  .data!.profileImage
-                                                  .toString(),
-                                            ),
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
                                       const SizedBox(width: 16),
                                       Column(
                                         crossAxisAlignment:
@@ -292,7 +298,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                       ),
                                       const Spacer(),
                                       Text(
-                                        "${controller.viewStoryController.storyModel.myStory![storyIndex].createdAt!.hour.toString()}:${controller.viewStoryController.storyModel.myStory![storyIndex].createdAt!.minute.toString()}",
+                                        "${controller.viewStoryController.storyModel.myStory![storyIndex].createdAt!.toLocal().hour.toString()}:${controller.viewStoryController.storyModel.myStory![storyIndex].createdAt!.toLocal().minute.toString()}",
                                         style: sfProTextReguler().copyWith(
                                             decoration:
                                                 TextDecoration.underline),

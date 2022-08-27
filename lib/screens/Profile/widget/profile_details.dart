@@ -15,56 +15,90 @@ Widget profileDetails() {
             : controller.viewProfile.data!.fullName.toString(),
         style: gilroySemiBoldTextStyle(fontSize: 24),
       ),
-      (controller.viewProfile.data?.userStatus?.toString()??"").isEmpty?const SizedBox():Text(
-        /*   controller.viewProfile.data == null
-            ? ""
-            :*/ controller.viewProfile.data?.userStatus?.toString()??"",
-        style: gilroyRegularTextStyle(fontSize: controller.viewProfile.data!.userStatus.toString()!="null" ?14:0),
-      ),
+      (controller.viewProfile.data?.userStatus?.toString() ?? "").isEmpty
+          ? const SizedBox()
+          : Text(
+              controller.viewProfile.data?.userStatus?.toString() ?? "",
+              style: gilroyRegularTextStyle(
+                  fontSize:
+                      controller.viewProfile.data!.userStatus.toString() !=
+                              ""
+                          ? 14
+                          : 0),
+            ),
       const SizedBox(
-        height: 6,
+        height: 3,
       ),
-      controller.viewProfile.data == null
-          ? SizedBox()
+      controller.viewProfile.data!.age!.toString() == "0"
+          ? const SizedBox()
           : Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(
-                  controller.viewProfile.data == null
+                (controller.viewProfile.data?.age?.toString()??"")=="0"?SizedBox():Text(
+                  controller.viewProfile.data?.age?.toString() == "0"
                       ? ""
-                      : controller.viewProfile.data!.age.toString(),
+                      : (controller.viewProfile.data?.age?.toString()) ?? "",
                   style: gilroyRegularTextStyle(fontSize: 14),
                 ),
-                dot(
+                controller.viewProfile.data!.age?.toString() == "0"?const SizedBox():Container(
+                  height: 4,
+                  width: 4,
+                  margin: const EdgeInsets.only(left: 8, right: 8, bottom: 3),
+                  child: Image.asset(
+                    AssetRes.yellowDot,
+                    height: 4,
+                    width: 4,
+                  ),
+                ),
+             /*   dot(
                     controller,
-                    controller.viewProfile.data == null
+                    controller.viewProfile.data!.age?.toString() == "0"
                         ? ""
-                        : controller.viewProfile.data!.idEthnicity.toString()),
-                Text(
-                  controller.viewProfile.data == null
+                        : (controller.viewProfile.data!.age?.toString()) ?? ""),*/
+                (controller.viewProfile.data?.city?.toString()??"").isEmpty?SizedBox():Text(
+                  (controller.viewProfile.data?.city?.toString() ?? "").isEmpty
                       ? ""
                       : controller.viewProfile.data!.city.toString(),
                   style: gilroyRegularTextStyle(fontSize: 14),
                 ),
-                dot(
+                controller.viewProfile.data!.city!.toString().isEmpty?const SizedBox():Container(
+                  height: 4,
+                  width: 4,
+                  margin: const EdgeInsets.only(left: 8, right: 8, bottom: 3),
+                  child: Image.asset(
+                    AssetRes.yellowDot,
+                    height: 4,
+                    width: 4,
+                  ),
+                ),
+             /*   dot(
                     controller,
-                    controller.viewProfile.data == null
+                    (controller.viewProfile.data?.city?.toString() ?? "")
+                            .isEmpty
                         ? ""
-                        : controller.viewProfile.data!.maritalStatus
-                            .toString()),
-                Text(
+                        : controller.viewProfile.data!.city.toString()),*/
+                (controller.viewProfile.data?.height?.toString()??"").isEmpty?SizedBox():Text(
                   controller.viewProfile.data == null
                       ? ""
                       : controller.viewProfile.data!.height.toString(),
                   style: gilroyRegularTextStyle(fontSize: 14),
                 ),
-                dot(
+                controller.viewProfile.data!.height!.toString().isEmpty?const SizedBox():Container(
+                  height: 4,
+                  width: 4,
+                  margin: const EdgeInsets.only(left: 8, right: 8, bottom: 3),
+                  child: Image.asset(
+                    AssetRes.yellowDot,
+                    height: 4,
+                    width: 4,
+                  ),
+                ),
+                /*dot(
                     controller,
                     controller.viewProfile.data == null
                         ? ""
-                        : controller.viewProfile.data!.weight
-                        .toString()),
+                        : controller.viewProfile.data!.weight.toString()),*/
                 Text(
                   controller.viewProfile.data == null
                       ? ""
