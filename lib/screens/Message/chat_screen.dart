@@ -214,7 +214,7 @@ class ChatScreen extends StatelessWidget {
                                 controller.lastMsg = data['time'].toDate();
                               }
 
-                              if (data['false'] != true &&
+                              if (data['read'] != true &&
                                   data['senderUid'].toString() !=
                                       userUid) {
                                 controller.setReadTrue(docementSnapshot[index].id);
