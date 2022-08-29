@@ -55,6 +55,8 @@ class RegisterApi {
           Get.offAll(() => const RegisterOtpScreen());
           await PrefService.setValue(
               PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
+          await PrefService.setValue(PrefKeys.referrallCode,
+              jsonDecode(response.body)["data"]["referrall_code"]);
 
           flutterToast(jsonDecode(response.body)["message"]);
         }
