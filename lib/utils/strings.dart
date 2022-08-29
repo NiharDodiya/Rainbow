@@ -115,9 +115,9 @@ class Strings {
   static const houseNumberHint = "123";
   static const noOfKids = 'No of Kids';
   static const noOfKidsHint = '0';
-  static const fullNameError = 'Full name is required';
-  static const emailError = 'Email is required';
-  static const enterYourOtp = 'Enter your otp';
+  static const fullNameError = 'please enter Full name';
+  static const emailError = 'please enter Email';
+  static const enterYourOtp = 'please Enter your otp';
   static const emailValidError = 'Email is invalid';
   static const emailValidError1 = 'Email is invalid';
   static const passwordError = 'Password is required';
@@ -126,17 +126,17 @@ class Strings {
   static const passwordValidError = 'Password is invalid';
   static const reTypePasswordError = 'Re-Type Password is required';
   static const reTypePasswordValidError = 'Re-Type Password is Mismatch';
-  static const addressLine1Error = 'Address Line 1 is required';
-  static const addressLine2Error = 'Address Line 2 is required';
-  static const phoneNumberError = 'Phone Number is required';
+  static const addressLine1Error = 'please enter Address';
+  static const addressLine2Error = 'please enter Address';
+  static const phoneNumberError = 'please enter Phone Number';
   static const phoneNumberValidError = 'Phone Number is invalid';
 
-  static const maritalStatusError = 'Marital Status is required';
+  static const maritalStatusError = 'please enter Marital Status';
 
-  static const ethnicityError = 'Ethnicity is required';
-  static const birthDateError = 'Birth date is required';
-  static const postalCodeError = 'PostalCode is required';
-  static const noOfKidsError = 'No of Kids is required';
+  static const ethnicityError = 'please enter Ethnicity';
+  static const birthDateError = 'please enter Birth date';
+  static const postalCodeError = 'please enter PostalCode';
+  static const noOfKidsError = 'please enter No of kids';
   static const alreadyHaveAnAccount = 'Already have an account? ';
   static const privacyPolicyText =
       'By continuing you agree Rainbow’s Terms of Services & Privacy Policy.';
@@ -208,8 +208,8 @@ class Strings {
   static const youtubeError = 'Enter youtube';
   static const faceBookError = 'Enter faceBook';
   static const twitterError = 'Enter twitter';
-  static const aboutMeError = 'Enter about';
-  static const hobbiesError = 'Enter your hobbies';
+  static const aboutMeError = 'please enter  about';
+  static const hobbiesError = 'please enter your hobbies';
 
   ///___________________________dashboard--Home_______________________________________
   static const aA = "Aa";
@@ -234,7 +234,7 @@ class Strings {
   static const connect = "Connect";
   static const block = "Block";
   static const unBlock = "UnBlock";
-  static const unFriend = "UnFriend";
+  static const unFriend = "Unfriend";
   static const accept = "accept";
   static const myCompanyDes =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem a commodo consequat  ";
@@ -492,4 +492,12 @@ class Strings {
   static const pixsellz = "Pixsellz";
   static const designProcess =
       "Pixsellz Ad Make design process easier View More";
+
+  ///________________ error text_____________
+  static const name="please enter name";
+  static const statusErrorEdit="please enter status";
+  static const ageError="please enter age";
+  static const cityErrorEdit="please enter city";
+  static const heightError="please enter height";
+  static const weightError="please enter weight";
 }

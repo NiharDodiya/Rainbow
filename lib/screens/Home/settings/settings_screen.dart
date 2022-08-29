@@ -33,7 +33,7 @@ class SettingsScreen extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      appBar(),
+                      appBar(context),
                       Expanded(
                         child: SingleChildScrollView(
                           child: Column(
@@ -58,7 +58,7 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Widget appBar() {
+  Widget appBar(BuildContext context) {
     return Container(
       width: Get.width,
       color: ColorRes.color_4F359B,
@@ -70,17 +70,16 @@ class SettingsScreen extends StatelessWidget {
           Stack(
             children: [
               GestureDetector(
-                onTap: Get.back,
+                onTap: () {
+                  Navigator.pop(context);
+                },
                 child: Padding(
                   padding: EdgeInsets.only(left: Get.width * 0.05),
-                  child: SizedBox(
-                    height: 15,width: 9,
-                    child: Image.asset(
+                  child: Container(
+                    height: 15,width: 18,
+                    decoration: const BoxDecoration(image: DecorationImage(image: AssetImage(
                       AssetRes.backIcon,
-                      height: 16,
-                      width: 16,
-                      color: Colors.white,
-                    ),
+                    ),)),
                   ),
                 ),
               ),

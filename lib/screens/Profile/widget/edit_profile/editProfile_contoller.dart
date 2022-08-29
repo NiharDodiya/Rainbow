@@ -123,25 +123,25 @@ class EditProfileController extends GetxController {
       return false;
     } else */
     if (fullName.text.isEmpty) {
-      errorToast(Strings.fullName);
+      errorToast(Strings.fullNameError);
       return false;
     } else if (status.text.isEmpty) {
-      errorToast(Strings.status);
+      errorToast(Strings.statusErrorEdit);
       return false;
     } else if (age.text.isEmpty) {
-      errorToast(Strings.age);
+      errorToast(Strings.ageError);
       return false;
     } else if (city.text.isEmpty) {
-      errorToast(Strings.city);
+      errorToast(Strings.cityError);
       return false;
     } else if (height.text.isEmpty) {
-      errorToast(Strings.height);
+      errorToast(Strings.heightError);
       return false;
     } else if (weight.text.isEmpty) {
-      errorToast(Strings.weight);
+      errorToast(Strings.weightError);
       return false;
     } else if (ethnicity.text.isEmpty) {
-      errorToast(Strings.ethnicity);
+      errorToast(Strings.ethnicityError);
       return false;
     } else if (haveKids.text.isEmpty) {
       errorToast(Strings.haveKids);
@@ -150,24 +150,11 @@ class EditProfileController extends GetxController {
       errorToast(Strings.status);
       return false;
     }
-    /*else if (instagram.text.isEmpty) {
-      errorToast(Strings.instagram);
-      return false;
-    } else if (youTube.text.isEmpty) {
-      errorToast(Strings.youTube);
-      return false;
-    } else if (faceBook.text.isEmpty) {
-      errorToast(Strings.faceBook);
-      return false;
-    } else if (twitter.text.isEmpty) {
-      errorToast(Strings.twitter);
-      return false;
-    }*/
     else if (aboutMe.text.isEmpty) {
-      errorToast(Strings.aboutMe);
+      errorToast(Strings.aboutMeError);
       return false;
     } else if (hobbies.text.isEmpty) {
-      errorToast(Strings.hobbies);
+      errorToast(Strings.hobbiesError);
       return false;
     }
     return true;

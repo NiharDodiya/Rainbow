@@ -4,7 +4,7 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
-Widget editProfilePicture() {
+Widget editProfilePicture(BuildContext context) {
   return Column(
     children: [
       SizedBox(height: Get.height * 0.038),
@@ -12,12 +12,12 @@ Widget editProfilePicture() {
         children: [
           InkWell(
             onTap: () {
-              Get.back();
+              Navigator.pop(context);
             },
             child: Container(
               padding: const EdgeInsets.all(7),
               height: 30,
-              width: 30,
+              width: 40,
               child: Image.asset(
                 AssetRes.backIcon,
                 height: 15,

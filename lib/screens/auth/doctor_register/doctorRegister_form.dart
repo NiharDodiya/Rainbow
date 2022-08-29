@@ -43,6 +43,7 @@ class DoctorRegisterForm extends StatelessWidget {
               title: Strings.companyNumber,
               hintText: Strings.companyNumberDigit,
               obscure: false,
+              textInputType: TextInputType.phone,
             ),
             AppTextFiled(
               controller: controller.streetName,
