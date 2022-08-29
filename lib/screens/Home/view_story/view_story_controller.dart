@@ -6,6 +6,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:rainbow/common/Widget/rich_text_controller.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
@@ -22,6 +23,7 @@ import 'package:rainbow/screens/Home/my_story/api/myStroy_api.dart';
 import 'package:rainbow/screens/Home/story_commets/api/story_comment_api.dart';
 import 'package:rainbow/screens/Home/story_commets/story_comments_screen.dart';
 import 'package:rainbow/screens/Home/story_commets/story_commets_controller.dart';
+import 'package:rainbow/utils/color_res.dart';
 import 'package:story/story_page_view/story_page_view.dart';
 
 import '../../../model/friendStroy_model.dart';
@@ -34,7 +36,7 @@ class ViewStoryController extends GetxController {
   UnLikeStoryModel unLikeStoryModel = UnLikeStoryModel();
   LikeStoryModel likeStoryModel = LikeStoryModel();
   StoryCommentModel storyCommentModel = StoryCommentModel();
-  TextEditingController writeSomethings = TextEditingController();
+  late RichTextController writeSomethings;
   TextEditingController tagController = TextEditingController();
   ValueNotifier<IndicatorAnimationCommand>? indicatorAnimationController;
   List<UserDetail> storyLikesList = [];
@@ -57,8 +59,17 @@ class ViewStoryController extends GetxController {
   @override
   void onInit() {
     update(["createStory"]);
+    writeSomethings = RichTextController(
+        onMatch: onHashTagMatch,
+        patternMatchMap: {
+          RegExp(r"\B#[a-zA-Z0-9]+\b"):
+              const TextStyle(color: ColorRes.color_FED785),
+        },
+        deleteOnBack: true);
     super.onInit();
   }
+
+  void onHashTagMatch(List<String> list) {}
 
   void onStoryComplete() {}
 
@@ -231,7 +242,7 @@ class ViewStoryController extends GetxController {
       // writeSomethings.clear();
       // list!.clear();
       // imageCamera==null?"":imageCamera!.delete();
-       /*   HomeController homeController = Get.find();
+      /*   HomeController homeController = Get.find();
       homeController.friendPostListData = [];
        homeController.update(['home']);*/
       // onPageChange(currentPage);
@@ -377,7 +388,7 @@ class ViewStoryController extends GetxController {
     indicatorAnimationController!.value = IndicatorAnimationCommand.pause;
   }
 
-  void resetAllData(){
+  void resetAllData() {
     filterList = [];
     tagController.clear();
   }

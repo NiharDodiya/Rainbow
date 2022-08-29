@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_decorated_text/flutter_decorated_text.dart';
 import 'package:get/get.dart';
 import 'package:image_stack/image_stack.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
@@ -10,7 +11,6 @@ import 'package:rainbow/screens/Home/comments/comments_controller.dart';
 import 'package:rainbow/screens/Home/comments/comments_screen.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
-import 'package:rainbow/screens/Home/settings/settings_screen.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -815,7 +815,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 8, right: 8),
-                              child: RichText(
+                              /*child: RichText(
                                 text: TextSpan(
                                   children: controller
                                       .friendPostListData[index].postTag!
@@ -830,6 +830,29 @@ class _HomeScreenState extends State<HomeScreen> {
                                             " ${controller.friendPostListData[index].description.toString()}",
                                         style: textStyleFont16WhitLight)),
                                 ),
+                              ),*/
+                              child: DecoratedText(
+                                text: controller
+                                    .friendPostListData[index].postTag!.map<String>((e) => "@${e.name}").toList().join(' ') + controller
+                                    .friendPostListData[index].description
+                                    .toString(),
+                                rules: [
+                                  DecoratorRule.startsWith(
+                                    text: "@",
+                                    style: sfProTextReguler(
+                                      fontSize: 16,
+                                      color: ColorRes.color_FED785,
+                                    ),
+
+                                  ),
+                                  DecoratorRule.startsWith(
+                                    text: "#",
+                                    style: sfProTextReguler(
+                                      fontSize: 16,
+                                      color: ColorRes.color_FED785,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             /*    Row(
