@@ -214,6 +214,12 @@ class ChatScreen extends StatelessWidget {
                                 controller.lastMsg = data['time'].toDate();
                               }
 
+                              if (data['false'] != true &&
+                                  data['senderUid'].toString() !=
+                                      userUid) {
+                                controller.setReadTrue(docementSnapshot[index].id);
+                              }
+
                               Widget box = data['type'] == "alert"
                                   ? alertBox(data['time'].toDate())
                                   : Column(
@@ -235,6 +241,7 @@ class ChatScreen extends StatelessWidget {
                                           ),
                                         ),
                                         Row(
+                                          crossAxisAlignment: CrossAxisAlignment.end,
                                           mainAxisAlignment:
                                               data['senderUid'].toString() ==
                                                       userUid
@@ -271,9 +278,6 @@ class ChatScreen extends StatelessWidget {
                                             ),
                                             data['type'] == "text"
                                                 ? Container(
-                                                    margin:
-                                                        const EdgeInsets.only(
-                                                            bottom: 10),
                                                     padding:
                                                         const EdgeInsets.all(
                                                             10),
@@ -301,69 +305,62 @@ class ChatScreen extends StatelessWidget {
                                                                   Colors.black),
                                                     ),
                                                   )
-                                                : Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(5),
-                                                    child: Container(
-                                                      height: 200,
-                                                      width: 200,
-                                                      decoration: BoxDecoration(
-                                                          border: Border.all(
-                                                              color:
-                                                                  Colors.white),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      10)),
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                    .all(
-                                                                Radius.circular(
-                                                                    10)),
-                                                        child: InkWell(
-                                                          onTap: () {
-                                                            Get.to(() =>
-                                                                ChatViewImageScreen(
-                                                                  image: data[
-                                                                      'image'],
-                                                                ));
-                                                          },
-                                                          child: FadeInImage(
-                                                            placeholder:
-                                                                const AssetImage(
-                                                                    AssetRes
-                                                                        .portrait_placeholder),
-                                                            image: NetworkImage(
-                                                              data['image'],
-                                                            ),
-                                                            fit: BoxFit.cover,
-                                                          ),
+                                                : Container(
+                                                  height: 200,
+                                                  width: 200,
+                                                  decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                          color:
+                                                              Colors.white),
+                                                      borderRadius:
+                                                          BorderRadius
+                                                              .circular(
+                                                                  10)),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        const BorderRadius
+                                                                .all(
+                                                            Radius.circular(
+                                                                10)),
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        Get.to(() =>
+                                                            ChatViewImageScreen(
+                                                              image: data[
+                                                                  'image'],
+                                                            ));
+                                                      },
+                                                      child: FadeInImage(
+                                                        placeholder:
+                                                            const AssetImage(
+                                                                AssetRes
+                                                                    .portrait_placeholder),
+                                                        image: NetworkImage(
+                                                          data['image'],
                                                         ),
+                                                        fit: BoxFit.cover,
                                                       ),
-                                                    )),
+                                                    ),
+                                                  ),
+                                                ),
                                             const SizedBox(
                                               width: 5,
                                             ),
-                                            data['senderUid'].toString() ==
-                                                    userUid
-                                                ? Container(
-                                                    margin:
-                                                        const EdgeInsets.only(
-                                                            top: 15),
-                                                    child: Image.asset(
-                                                      AssetRes.read,
-                                                      color: Colors.white,
-                                                      height: 16,
-                                                      width: 16,
-                                                    ),
-                                                  )
+                                            (data['senderUid'].toString() ==
+                                                    userUid) && (data['read'] == true)
+                                                ? Image.asset(
+                                                  AssetRes.read,
+                                                  color: Colors.white,
+                                                  height: 16,
+                                                  width: 16,
+                                                )
                                                 : const SizedBox(),
                                             const SizedBox(
                                               width: 5,
                                             )
                                           ],
                                         ),
+                                        const SizedBox(height: 10),
                                       ],
                                     );
                               if ((index + 1) == docementSnapshot.length) {

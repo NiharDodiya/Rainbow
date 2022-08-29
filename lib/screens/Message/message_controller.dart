@@ -208,7 +208,8 @@ class MessageController extends GetxController {
       "image": dowanloadurl,
       "senderUid": userUid,
       "type": "image",
-      "time": DateTime.now()
+      "time": DateTime.now(),
+      "read": false,
     });
     setLastMsgInDoc("📷 Image");
     msController.clear();
@@ -243,7 +244,8 @@ class MessageController extends GetxController {
       "content": msg,
       "type": "text",
       "senderUid": userUid,
-      "time": DateTime.now()
+      "time": DateTime.now(),
+      "read": false,
     });
     msController.clear();
     update(['message']);
@@ -326,5 +328,22 @@ class MessageController extends GetxController {
 
   List<int> getFriendIdList() {
     return friendList.map<int>((e) => e.id ?? 0).toList();
+  }
+
+  Future<void> setReadTrue(String docId) async {
+    await FirebaseFirestore.instance
+        .collection("chats")
+        .doc(roomId)
+        .collection(roomId!)
+        .doc(docId)
+        .update({"read": true});
+    await setReadTrueInChatDoc();
+  }
+
+  Future<void> setReadTrueInChatDoc() async {
+    await FirebaseFirestore.instance
+        .collection("chats")
+        .doc(roomId)
+        .update({"lastMessageRead": true});
   }
 }
