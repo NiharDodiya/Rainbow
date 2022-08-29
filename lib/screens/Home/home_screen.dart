@@ -1177,6 +1177,14 @@ controller.getCurrentLocation();
                                                 ),
                                                 InkWell(
                                                   onTap: () async {
+                                                    await controller
+                                                        .commentPostListData(
+                                                        controller
+                                                            .friendPostListData[
+                                                        index]
+                                                            .id
+                                                            .toString());
+
                                                     Get.to(() => CommentScreen(
                                                           idPost: controller
                                                               .friendPostListData[
@@ -1197,13 +1205,8 @@ controller.getCurrentLocation();
                                                               .toString(),
                                                         ));
 
-                                                    await controller
-                                                        .commentPostListData(
-                                                            controller
-                                                                .friendPostListData[
-                                                                    index]
-                                                                .id
-                                                                .toString());
+
+
                                                   },
                                                   child: const SizedBox(
                                                     height: 18,

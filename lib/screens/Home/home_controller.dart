@@ -302,7 +302,7 @@ class HomeController extends GetxController {
 
   Future<void> commentPostListData(String idPost) async {
     try {
-      loader.value = true;
+
       postCommentListModel = await MyPostApi.commentPostListApi(idPost);
       update(['home']);
       loader.value = false;

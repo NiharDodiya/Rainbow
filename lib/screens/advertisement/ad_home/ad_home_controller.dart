@@ -126,6 +126,20 @@ class AdHomeController extends GetxController {
       print(e.toString());
     }
   }
+
+  Future<void> followUpAdvertiser(id,context) async {
+    try{
+      loader.value =true;
+      await MyAdvertiserApi.followUpAdvertiser(id,context);
+      myAdvertiserListData();
+      loader.value =false;
+      update(['followUp']);
+    }catch(e){
+      loader.value =false;
+      print(e.toString());
+    }
+  }
+
   ViewAdvertiserModel viewAdvertiserModel = ViewAdvertiserModel();
   Future<void> viewAdvertiserData() async {
     try{

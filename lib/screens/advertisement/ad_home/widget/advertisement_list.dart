@@ -153,8 +153,8 @@ Widget advertisementList() {
                         id: 'more',
                         builder: (controller) {
                           return controller.moreOption[index] == true
-                              ? (controller.myAdvertiserModel.data?[index].adminStatus == "pending")
-                              ?Container(
+                              ? (controller.myAdvertiserModel.data?[index].adminStatus == "approve")
+                              ? Container(
                                   height: 115,
                                   width: Get.width * 0.40,
                                   color: ColorRes.color_50369C,
@@ -233,6 +233,9 @@ Widget advertisementList() {
                                       if (index == 0) {
                                         Get.to( DeletApprove(idAdvertiser: controller.myAdvertiserModel.data![index].id.toString(),));
                                       }
+                                      else if(index == 1){
+                                       controller.followUpAdvertiser(controller.myAdvertiserModel.data![index].id.toString(), context);
+                                      }
                                       print(index);
                                     },
                                     child: Row(
@@ -258,11 +261,11 @@ Widget advertisementList() {
                                             width: 15,
                                           ),
                                         ),
-                                        SizedBox(width: 2,),
+                                        SizedBox(width: 3,),
                                         Text(
                                           index == 0
                                               ? " Delete"
-                                              : "Follow Up",
+                                              : " Follow Up",
                                           style: gilroyMediumTextStyle(
                                               fontSize: 14),
                                         )
