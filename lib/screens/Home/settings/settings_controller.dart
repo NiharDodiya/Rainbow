@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/model/logout_model.dart';
+import 'package:rainbow/model/notoficationData_model.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/logOut_Api/LogOut_Api.dart';
 import 'package:rainbow/screens/Home/settings/notificationOnOff_api/notificationOnOff_api.dart';
@@ -83,6 +84,19 @@ class SettingsController extends GetxController {
         PrefService.setValue(PrefKeys.notification, true);
         await NotificationOnOffApi.notificationOn();
       }
+      update(["settings"]);
+
+      loader.value = false;
+    } catch (e) {
+      print(e.toString());
+      loader.value = false;
+    }
+  }
+  NotificationDataModel notificationDataModel = NotificationDataModel();
+  Future<void> notificationGetData() async {
+    try {
+      loader.value = true;
+      notificationDataModel = await NotificationOnOffApi.notificationGetData();
       update(["settings"]);
 
       loader.value = false;

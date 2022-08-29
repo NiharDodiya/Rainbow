@@ -195,7 +195,7 @@ void onTapSetting(){
     postViewUser = friendPost.postViewUser ?? [];
     print(postViewUser);
     Get.bottomSheet(
-      const PostViewBottomScreen(),
+       PostViewBottomScreen(),
       isScrollControlled: true,
     ).then((value) {});
   }

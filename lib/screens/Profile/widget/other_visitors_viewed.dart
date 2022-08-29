@@ -19,7 +19,8 @@ Widget otherVisitorsViewed() {
         child: Padding(
           padding: const EdgeInsets.only(left: 30.0),
           child: Text(
-            controller.viewProfile.data == null ? "" : "Other Visitors Viewed",
+            controller.viewProfile.data == null ? "" : ""
+                "Other Visitors Viewed",
             style: beVietnamProBoldTextStyle(fontSize: 18),
           ),
         ),
