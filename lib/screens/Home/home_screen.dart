@@ -681,7 +681,6 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.only(bottom: 60),
           itemCount: controller.friendPostListData.length + 3,
           itemBuilder: (context, index) {
-            print("@@@@@@@ => $index");
             if (index == 0) {
               return discover();
             } else if (index == 1) {
