@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_controller.dart';
+import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
@@ -10,6 +11,7 @@ class MyStoryListLike extends StatelessWidget {
   MyStoryListLike({Key? key}) : super(key: key);
 
   MyStoryController myStoryController = Get.put(MyStoryController());
+  ConnectionsProfileController connectionsProfileController =Get.put(ConnectionsProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -42,58 +44,15 @@ class MyStoryListLike extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                /* CachedNetworkImage(height: 56,
-                  width: 56,
-                  imageUrl: myStoryController.myStoryModel.data.p,
-                  imageBuilder: (context, imageProvider) =>
-                      Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                  // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
-                  errorWidget: (context, url, error) => Container(
-                    height: 56,
-                    width: 56,
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                            image: AssetImage(AssetRes.homePro))),
-                  ),
-                  fit: BoxFit.fill,
-                ),*/
+
                 const SizedBox(width: 16),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    /*Text(
-                      myStoryController.friendStoryModel.data!.first.userDetail!.fullName.toString(),
-                      style: sfProTextReguler().copyWith(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w700,
-                        color: ColorRes.black,
-                      ),
-                    ),*/
-                    /*  Text(
-                      controller.friendStoryModel.data!.first.userDetail!.userStatus.toString(),
-                      style: sfProTextReguler().copyWith(
-                        fontWeight: FontWeight.w300,
-                        color: ColorRes.black,
-                      ),
-                    ),*/
+
                   ],
                 ),
-                /*  const Spacer(),
-                Text(
-                  "12:30",
-                  style: sfProTextReguler().copyWith(
-                    color: ColorRes.black,
-                  ),
-                ),*/
+
               ],
             ),
           ),
@@ -126,74 +85,69 @@ class MyStoryListLike extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(top: 20.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            /*   ClipRRect(
-                        borderRadius: BorderRadius.circular(50),
-                        child: Image.asset(
-                        ,
-                          height: Get.width * 0.11,
-                          width: Get.width * 0.11,
-                          fit: BoxFit.cover,
-                        ),
-                      ),*/
-                            CachedNetworkImage(
-                              height: 56,
-                              width: 56,
-                              imageUrl: myStoryController
-                                  .storyLikeList[index].profileImage
-                                  .toString(),
-                              imageBuilder: (context, imageProvider) =>
-                                  Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    image: imageProvider,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
-                              errorWidget: (context, url, error) => Container(
+                        child: InkWell(onTap: () {
+                          connectionsProfileController.callApi(myStoryController.storyLikeList[index].id.toString());
+                        },
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              CachedNetworkImage(
                                 height: 56,
                                 width: 56,
-                                decoration: const BoxDecoration(
+                                imageUrl: myStoryController
+                                    .storyLikeList[index].profileImage
+                                    .toString(),
+                                imageBuilder: (context, imageProvider) =>
+                                    Container(
+                                  decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     image: DecorationImage(
-                                        image: AssetImage(AssetRes.portrait_placeholder))),
+                                      image: imageProvider,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
+                                errorWidget: (context, url, error) => Container(
+                                  height: 56,
+                                  width: 56,
+                                  decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                          image: AssetImage(AssetRes.portrait_placeholder))),
+                                ),
+                                fit: BoxFit.fill,
                               ),
-                              fit: BoxFit.fill,
-                            ),
-                            const SizedBox(width: 16),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  myStoryController
-                                      .storyLikeList[index].fullName
-                                      .toString(),
-                                  style: sfProTextReguler().copyWith(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w700,
-                                    color: ColorRes.black,
+                              const SizedBox(width: 16),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    myStoryController
+                                        .storyLikeList[index].fullName
+                                        .toString(),
+                                    style: sfProTextReguler().copyWith(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w700,
+                                      color: ColorRes.black,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  myStoryController
-                                      .storyLikeList[index].userStatus
-                                      .toString(),
-                                  style: sfProTextReguler().copyWith(
-                                    fontWeight: FontWeight.w300,
-                                    color: ColorRes.black,
-                                    fontSize: 11,
+                                  Text(
+                                    myStoryController
+                                        .storyLikeList[index].userStatus
+                                        .toString(),
+                                    style: sfProTextReguler().copyWith(
+                                      fontWeight: FontWeight.w300,
+                                      color: ColorRes.black,
+                                      fontSize: 11,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            const Spacer(),
-                            const Icon(Icons.favorite, color: ColorRes.red),
-                          ],
+                                ],
+                              ),
+                              const Spacer(),
+                              const Icon(Icons.favorite, color: ColorRes.red),
+                            ],
+                          ),
                         ),
                       );
                     },

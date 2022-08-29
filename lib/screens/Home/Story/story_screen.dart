@@ -37,7 +37,7 @@ class StoryScreen extends StatelessWidget {
                 child: Image.asset(
                   AssetRes.backIcon,
                   height: 16,
-                  width: 16,
+                  width: 20,
                   color: ColorRes.color_252525,
                 ),
               ),

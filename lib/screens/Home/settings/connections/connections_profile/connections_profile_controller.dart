@@ -48,10 +48,11 @@ class ConnectionsProfileController extends GetxController {
   Future<void> callApi(String? userId) async {
     loader.value = true;
     // int userId= PrefService.getInt(PrefKeys.userId);
+    Get.to(() => ConnectionsProfileScreen());
     profileModel = await OtherProfileApi.getOtherUerData(userId.toString())
         .then((value) => profileModel = value!);
     loader.value = false;
-    Get.to(() => ConnectionsProfileScreen());
+
   }
 
   Future<void> blockUserDetails(String? id) async {
