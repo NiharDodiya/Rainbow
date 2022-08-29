@@ -5,6 +5,7 @@ import 'package:rainbow/screens/Home/settings/connections/api/connections_api.da
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_screen.dart';
 import 'package:rainbow/screens/Profile/acceptFriendRequest_api/accaeptFriedRequest_api.dart';
+import 'package:rainbow/screens/Profile/sendFriendRequest_api/sendFriendRequest_api.dart';
 
 import '../../../Profile/cancleFriendRequest_api/cancelFriendRequest_api.dart';
 
@@ -30,6 +31,16 @@ class ConnectionsController extends GetxController {
   Future<void> onAddBtnTap(String userId, bool suggestionUser) async {
     loader.value = true;
     await AcceptFriendRequestApi.postRegister(userId);
+    if (suggestionUser) {
+      await callSuggestionApi();
+    } else {
+      await callRequestApi();
+    }
+  }
+
+  Future<void> onAddBtnTapConnection(String userId, bool suggestionUser) async {
+    loader.value = true;
+    await SendFriendRequestApi.postRegister(userId);
     if (suggestionUser) {
       await callSuggestionApi();
     } else {
