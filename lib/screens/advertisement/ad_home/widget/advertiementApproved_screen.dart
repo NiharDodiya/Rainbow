@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/edit_advertisement/edit_advertisement_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/widget/advertisementApproved_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/widget/advertisermentRejected_Screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/widget/charrr.dart';
@@ -14,7 +15,8 @@ import 'package:rainbow/utils/strings.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class AdvertisementDetailsApprovedScreen extends StatelessWidget {
-  AdvertisementDetailsApprovedScreen({Key? key}) : super(key: key);
+  int i;
+  AdvertisementDetailsApprovedScreen({Key? key, required this.i}) : super(key: key);
 
   final List<DeveloperSeries> data = [
     // DeveloperSeries(
@@ -46,7 +48,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
   List<chart.Series<DeveloperSeries, String>> series = [];
   CreateAdvertisementController createAdvertisementController =
       Get.put(CreateAdvertisementController());
-  AdHomeController adHomeController = Get.put(AdHomeController());
+
 
   void init() {
     series = [
@@ -86,11 +88,11 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    top(),
+                    top(i, context),
                     Expanded(
                         child: SingleChildScrollView(
                             physics: const BouncingScrollPhysics(),
-                            child: bottom(context))),
+                            child: bottom(context, i))),
                   ],
                 ),
               ),
@@ -101,7 +103,121 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
     );
   }
 
-  Widget bottom(BuildContext context) {
+  Widget top(int index, context) {
+    AdHomeController adHomeController = Get.put(AdHomeController());
+    return GetBuilder<CreateAdvertisementController>(
+      id: "addverDetails",
+      builder: (controller) {
+        return Column(
+          children: [
+            Container(
+              width: Get.width,
+              height: 202,
+              child: Stack(
+                children: [
+                  ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemCount: adHomeController.myAdvertiserModel.data?[index].itemsList?.length ??
+                        0,
+                    itemBuilder: (context, index1) {
+                      return Container(
+                        width: Get.width,
+                        child: FadeInImage(
+                          placeholder:
+                          const AssetImage(AssetRes.placeholderImage),
+                          image: NetworkImage(
+                            adHomeController.myAdvertiserModel.data![index]
+                                .itemsList![index1]
+                                .toString(),
+                          ),
+                          width: Get.width - 60,
+                          fit: BoxFit.cover,
+                        ),
+                      );
+                    },
+                  ),
+                  Column(
+                    children: [
+                      const SizedBox(height: 46),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: Get.width * 0.0853, right: Get.width * 0.0373),
+                        child: Row(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Get.back();
+                              },
+                              child: Container(
+                                height: 32,
+                                width: 34,
+                                decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(8),
+                                    ),
+                                    color: ColorRes.white),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 8.0, horizontal: 12),
+                                  child: Image.asset(
+                                    AssetRes.backIcon,
+                                    color: ColorRes.color_50369C,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const Spacer(),
+                            Container(
+                              height: 33.3,
+                              width: 33.3,
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle, color: ColorRes.white),
+                              child: Padding(
+                                padding: const EdgeInsets.all(12),
+                                child: Image.asset(
+                                  AssetRes.share,
+                                  color: ColorRes.black,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            InkWell(
+                              onTap: (){
+
+                              },
+                              child: Container(
+                                height: 33.3,
+                                width: 33.3,
+                                decoration: const BoxDecoration(
+                                    shape: BoxShape.circle, color: ColorRes.white),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12),
+                                  child: Image.asset(
+                                    AssetRes.editicons,
+                                    color: ColorRes.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget bottom(BuildContext context, int index) {
+    AdHomeController adHomeController = Get.put(AdHomeController());
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: Get.width * 0.08533),
       child: Column(
@@ -117,6 +233,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                 style: gilroySemiBoldTextStyle(fontSize: 18),
               ),
               const Spacer(),
+              ( adHomeController.myAdvertiserModel.data?[index].adminStatus.toString() == 'approve')?
               InkWell(
                 onTap: () {
                   Get.to(() => const AdvertisementApprovedScreen());
@@ -126,39 +243,36 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                   style: gilroySemiBoldTextStyle(
                       fontSize: 18, color: ColorRes.color_49A510),
                 ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Text(
-                "\$200",
+              ): ( adHomeController.myAdvertiserModel.data?[index].adminStatus.toString() == 'pending')
+                  ?Text(
+                'Pending',
                 style: gilroySemiBoldTextStyle(
-                  fontSize: 14,
-                ),
-              ),
-              const Spacer(),
-              InkWell(
+                    fontSize: 18, color: ColorRes.color_49A510),
+              )
+              :InkWell(
                 onTap: () {
                   Get.to(() => const AdvertisermentRejectedScreen());
                 },
                 child: Text(
                   Strings.rejected,
                   style:
-                      gilroySemiBoldTextStyle(fontSize: 18, color: Colors.red),
+                  gilroySemiBoldTextStyle(fontSize: 18, color: Colors.red),
                 ),
               ),
             ],
           ),
+          Text(
+            adHomeController.myAdvertiserModel.data![index].amount.toString(),
+            style: gilroySemiBoldTextStyle(
+              fontSize: 14,
+            ),
+          ),
           const SizedBox(
             height: 8,
           ),
+
           Text(
-            Strings.sampleDescriptions,
-            style: gilroyRegularTextStyle(fontSize: 14),
-          ),
-          Text(
-            createAdvertisementController.descriptoionController.text,
+            adHomeController.myAdvertiserModel.data![index].description.toString(),
             style: gilroyMediumTextStyle(
               fontSize: 14,
             ),
@@ -181,10 +295,8 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                  itemCount: createAdvertisementController.tags.length > 3
-                      ? 3
-                      : createAdvertisementController.tags.length,
-                  itemBuilder: (context, index) => Padding(
+                  itemCount:  adHomeController.myAdvertiserModel.data![index].tagsList!.length ,
+                  itemBuilder: (context, index1) => Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Container(
                       height: 25,
@@ -197,7 +309,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          createAdvertisementController.tags[index],
+                          adHomeController.myAdvertiserModel.data![index].tagsList![index1].toString(),
                           style: gilroyMediumTextStyle(
                               fontSize: 12, color: ColorRes.color_696D6D),
                         ),
@@ -219,7 +331,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
             height: 10,
           ),
           Text(
-            createAdvertisementController.callToAction.toString(),
+            adHomeController.myAdvertiserModel.data![index].callAction.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
           const SizedBox(
@@ -233,10 +345,12 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
             height: 10,
           ),
           Text(
-            createAdvertisementController.urlLinkController.text.toString(),
+            adHomeController.myAdvertiserModel.data![index].urlLink.toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
-          const SizedBox(),
+          const SizedBox(
+            height: 20,
+          ),
           InkWell(
             onTap: () {
               showModalBottomSheet(
@@ -296,20 +410,20 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                     ),
                                     items: adHomeController.months
                                         .map((item) => DropdownMenuItem<String>(
-                                              value: item,
-                                              child: Text(
-                                                item,
-                                                style: gilroyMediumTextStyle(
-                                                    fontSize: 16,
-                                                    color: ColorRes.black),
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ))
+                                      value: item,
+                                      child: Text(
+                                        item,
+                                        style: gilroyMediumTextStyle(
+                                            fontSize: 16,
+                                            color: ColorRes.black),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ))
                                         .toList(),
                                     value: adHomeController.selectedItem,
                                     onChanged: (value) {
                                       adHomeController.selectedItem =
-                                          value as String?;
+                                      value as String?;
                                       adHomeController.update(["add"]);
                                     },
                                     icon: Image.asset(
@@ -477,149 +591,149 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                       primaryXAxis: CategoryAxis(),
                                       //enableAxisAnimation: false,
                                       series: <ChartSeries>[
-                                    StackedBarSeries<ChartData, String>(
-                                      dataSource: chartData,
-                                      xValueMapper: (ChartData data, _) =>
+                                        StackedBarSeries<ChartData, String>(
+                                          dataSource: chartData,
+                                          xValueMapper: (ChartData data, _) =>
                                           data.x,
-                                      yValueMapper: (ChartData data, _) =>
+                                          yValueMapper: (ChartData data, _) =>
                                           data.y,
-                                      color: ColorRes.color_B180EF,
-                                    ),
-                                    StackedBarSeries<ChartData, String>(
-                                      dataSource: chartData,
+                                          color: ColorRes.color_B180EF,
+                                        ),
+                                        StackedBarSeries<ChartData, String>(
+                                          dataSource: chartData,
 
-                                      xValueMapper: (ChartData data, _) =>
+                                          xValueMapper: (ChartData data, _) =>
                                           data.x,
-                                      yValueMapper: (ChartData data, _) =>
+                                          yValueMapper: (ChartData data, _) =>
                                           data.y,
-                                      color: ColorRes.color_FF737D,
-                                    ),
-                                    StackedBarSeries<ChartData, String>(
-                                      dataSource: chartData,
-                                      xValueMapper: (ChartData data, _) =>
+                                          color: ColorRes.color_FF737D,
+                                        ),
+                                        StackedBarSeries<ChartData, String>(
+                                          dataSource: chartData,
+                                          xValueMapper: (ChartData data, _) =>
                                           data.x,
-                                      yValueMapper: (ChartData data, _) =>
+                                          yValueMapper: (ChartData data, _) =>
                                           data.y,
-                                      color: ColorRes.color_61BDFF,
-                                    ),
-                                    StackedBarSeries<ChartData, String>(
-                                      dataSource: chartData,
-                                      xValueMapper: (ChartData data, _) =>
+                                          color: ColorRes.color_61BDFF,
+                                        ),
+                                        StackedBarSeries<ChartData, String>(
+                                          dataSource: chartData,
+                                          xValueMapper: (ChartData data, _) =>
                                           data.x,
-                                      yValueMapper: (ChartData data, _) =>
+                                          yValueMapper: (ChartData data, _) =>
                                           data.y,
-                                      color: ColorRes.color_3294DB,
-                                    ),
-                                    StackedBarSeries<ChartData, String>(
-                                      dataSource: chartData,
-                                      xValueMapper: (ChartData data, _) =>
+                                          color: ColorRes.color_3294DB,
+                                        ),
+                                        StackedBarSeries<ChartData, String>(
+                                          dataSource: chartData,
+                                          xValueMapper: (ChartData data, _) =>
                                           data.x,
-                                      yValueMapper: (ChartData data, _) =>
+                                          yValueMapper: (ChartData data, _) =>
                                           data.y,
-                                      color: ColorRes.color_73E6FF,
-                                    ),
-                                    StackedBarSeries<ChartData, String>(
-                                      dataSource: chartData,
-                                      xValueMapper: (ChartData data, _) =>
+                                          color: ColorRes.color_73E6FF,
+                                        ),
+                                        StackedBarSeries<ChartData, String>(
+                                          dataSource: chartData,
+                                          xValueMapper: (ChartData data, _) =>
                                           data.x,
-                                      yValueMapper: (ChartData data, _) =>
+                                          yValueMapper: (ChartData data, _) =>
                                           data.y,
-                                      color: ColorRes.color_4075FF,
-                                    ),
-                                    StackedBarSeries<ChartData, String>(
-                                      dataSource: chartData,
-                                      xValueMapper: (ChartData data, _) =>
+                                          color: ColorRes.color_4075FF,
+                                        ),
+                                        StackedBarSeries<ChartData, String>(
+                                          dataSource: chartData,
+                                          xValueMapper: (ChartData data, _) =>
                                           data.x,
-                                      yValueMapper: (ChartData data, _) =>
+                                          yValueMapper: (ChartData data, _) =>
                                           data.y,
-                                      color: ColorRes.color_FF61D3,
-                                    )
-                                  ])),
+                                          color: ColorRes.color_FF61D3,
+                                        )
+                                      ])),
                               Padding(padding: EdgeInsets.only(right: 10),
-                              child: Column(
-                                children: [
-                                  SizedBox(height: 20,),
-                                  Container(
-                                    alignment: Alignment.center,
-                                    height: 55,
-                                    width: 55,
-                                    decoration: BoxDecoration(
-                                      color: ColorRes.white,
-                                      borderRadius: BorderRadius.circular(40),
-                                      border: Border.all(
-                                          color: Colors.grey),
-                                      boxShadow:  [
-                                        BoxShadow(
-                                            color: Colors.grey.shade300,
-                                            offset: Offset(0, 5),
-                                            blurRadius: 5,
-                                            spreadRadius: 5
-                                        ),
-                                      ],),
-                                    child: Text("225", style: TextStyle(fontWeight: FontWeight.w500, color: ColorRes.black),),
-                                  ),
-                                  SizedBox(height: 5,),
-                                  Container(
-                                    alignment: Alignment.center,
-                                    height: 55,
-                                    width: 55,
-                                    decoration: BoxDecoration(
-                                      color: ColorRes.white,
-                                      borderRadius: BorderRadius.circular(40),
-                                      border: Border.all(
-                                          color: Colors.grey),
-                                      boxShadow:  [
-                                        BoxShadow(
-                                            color: Colors.grey.shade300,
-                                            offset: Offset(0, 5),
-                                            blurRadius: 5,
-                                            spreadRadius: 5
-                                        ),
-                                      ],),
-                                    child: Text("60", style: TextStyle(fontWeight: FontWeight.w500, color: ColorRes.black),),
-                                  ),
-                                  SizedBox(height: 5,),
-                                  Container(
-                                    alignment: Alignment.center,
-                                    height: 55,
-                                    width: 55,
-                                    decoration: BoxDecoration(
-                                      color: ColorRes.white,
-                                      borderRadius: BorderRadius.circular(40),
-                                      border: Border.all(
-                                          color: Colors.grey),
-                                      boxShadow:  [
-                                        BoxShadow(
-                                            color: Colors.grey.shade300,
-                                            offset: Offset(0, 5),
-                                            blurRadius: 5,
-                                            spreadRadius: 5
-                                        ),
-                                      ],),
-                                    child: Text("198", style: TextStyle(fontWeight: FontWeight.w500, color: ColorRes.black),),
-                                  ),
-                                  SizedBox(height: 5,),
-                                  Container(
-                                    alignment: Alignment.center,
-                                    height: 55,
-                                    width: 55,
-                                    decoration: BoxDecoration(
-                                      color: ColorRes.white,
-                                      borderRadius: BorderRadius.circular(40),
-                                      border: Border.all(
-                                          color: Colors.grey),
-                                      boxShadow:  [
-                                        BoxShadow(
-                                            color: Colors.grey.shade300,
-                                            offset: Offset(0, 5),
-                                            blurRadius: 5,
-                                            spreadRadius: 5
-                                        ),
-                                      ],),
-                                    child: Text("80", style: TextStyle(fontWeight: FontWeight.w500, color: ColorRes.black),),
-                                  ),
-                                ],
-                              ),),
+                                child: Column(
+                                  children: [
+                                    SizedBox(height: 20,),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      height: 55,
+                                      width: 55,
+                                      decoration: BoxDecoration(
+                                        color: ColorRes.white,
+                                        borderRadius: BorderRadius.circular(40),
+                                        border: Border.all(
+                                            color: Colors.grey),
+                                        boxShadow:  [
+                                          BoxShadow(
+                                              color: Colors.grey.shade300,
+                                              offset: Offset(0, 5),
+                                              blurRadius: 5,
+                                              spreadRadius: 5
+                                          ),
+                                        ],),
+                                      child: Text("225", style: TextStyle(fontWeight: FontWeight.w500, color: ColorRes.black),),
+                                    ),
+                                    SizedBox(height: 5,),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      height: 55,
+                                      width: 55,
+                                      decoration: BoxDecoration(
+                                        color: ColorRes.white,
+                                        borderRadius: BorderRadius.circular(40),
+                                        border: Border.all(
+                                            color: Colors.grey),
+                                        boxShadow:  [
+                                          BoxShadow(
+                                              color: Colors.grey.shade300,
+                                              offset: Offset(0, 5),
+                                              blurRadius: 5,
+                                              spreadRadius: 5
+                                          ),
+                                        ],),
+                                      child: Text("60", style: TextStyle(fontWeight: FontWeight.w500, color: ColorRes.black),),
+                                    ),
+                                    SizedBox(height: 5,),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      height: 55,
+                                      width: 55,
+                                      decoration: BoxDecoration(
+                                        color: ColorRes.white,
+                                        borderRadius: BorderRadius.circular(40),
+                                        border: Border.all(
+                                            color: Colors.grey),
+                                        boxShadow:  [
+                                          BoxShadow(
+                                              color: Colors.grey.shade300,
+                                              offset: Offset(0, 5),
+                                              blurRadius: 5,
+                                              spreadRadius: 5
+                                          ),
+                                        ],),
+                                      child: Text("198", style: TextStyle(fontWeight: FontWeight.w500, color: ColorRes.black),),
+                                    ),
+                                    SizedBox(height: 5,),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      height: 55,
+                                      width: 55,
+                                      decoration: BoxDecoration(
+                                        color: ColorRes.white,
+                                        borderRadius: BorderRadius.circular(40),
+                                        border: Border.all(
+                                            color: Colors.grey),
+                                        boxShadow:  [
+                                          BoxShadow(
+                                              color: Colors.grey.shade300,
+                                              offset: Offset(0, 5),
+                                              blurRadius: 5,
+                                              spreadRadius: 5
+                                          ),
+                                        ],),
+                                      child: Text("80", style: TextStyle(fontWeight: FontWeight.w500, color: ColorRes.black),),
+                                    ),
+                                  ],
+                                ),),
                             ],
                           ),
                         ],
@@ -659,104 +773,6 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
           ),*/
         ],
       ),
-    );
-  }
-
-// f
-  Widget top() {
-    CreateAdvertisementController createAdvertisementController =
-        Get.put(CreateAdvertisementController());
-    return GetBuilder<CreateAdvertisementController>(
-      id: "addverDetails",
-      builder: (controller) {
-        return Column(
-          children: [
-            Container(
-              width: Get.width,
-              height: 202,
-              decoration: const BoxDecoration(
-                  image: /*createAdvertisementController.imagePath == null
-                  ? */
-                      DecorationImage(
-                          image: AssetImage(
-                            AssetRes.adsdetail,
-                          ),
-                          fit: BoxFit.fill)
-                  /*  : DecorationImage(
-                      image: FileImage(
-                        File(createAdvertisementController.imagePath.first.path),
-                      ),
-                      fit: BoxFit.fill),*/
-                  ),
-              child: Column(
-                children: [
-                  const SizedBox(height: 46),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: Get.width * 0.0853, right: Get.width * 0.0373),
-                    child: Row(
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: Container(
-                            height: 32,
-                            width: 34,
-                            decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(8),
-                                ),
-                                color: ColorRes.white),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 8.0, horizontal: 12),
-                              child: Image.asset(
-                                AssetRes.backIcon,
-                                color: ColorRes.color_50369C,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const Spacer(),
-                        Container(
-                          height: 33.3,
-                          width: 33.3,
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle, color: ColorRes.white),
-                          child: Padding(
-                            padding: const EdgeInsets.all(12),
-                            child: Image.asset(
-                              AssetRes.share,
-                              color: ColorRes.black,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Container(
-                          height: 33.3,
-                          width: 33.3,
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle, color: ColorRes.white),
-                          child: Padding(
-                            padding: const EdgeInsets.all(12),
-                            child: Image.asset(
-                              AssetRes.editicons,
-                              color: ColorRes.black,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ],
-        );
-      },
     );
   }
 }
