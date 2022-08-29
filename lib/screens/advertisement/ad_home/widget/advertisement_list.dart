@@ -16,18 +16,18 @@ Widget advertisementList() {
       child: ListView.builder(
         itemCount: controller.myAdvertiserModel.data?.length ?? 0,
         shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
+        physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              Get.to(() => AdvertisementDetailsApprovedScreen());
+              Get.to(AdvertisementDetailsApprovedScreen(i: index,));
             },
             child: Container(
               height: 202,
               width: Get.width - 60,
               padding: EdgeInsets.zero,
-              margin:  const EdgeInsets.only(bottom: 14, left: 30, right: 30),
-                 decoration:  BoxDecoration(
+              margin: const EdgeInsets.only(bottom: 14, left: 30, right: 30),
+              decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: ColorRes.white,
               ),
@@ -36,8 +36,8 @@ Widget advertisementList() {
                   ListView.builder(
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
-                    itemCount: controller.myAdvertiserModel.data?[index]
-                            .itemsList?.length ??
+                    itemCount: controller
+                            .myAdvertiserModel.data?[index].itemsList?.length ??
                         0,
                     itemBuilder: (context, index1) {
                       return ClipRRect(
@@ -49,14 +49,19 @@ Widget advertisementList() {
                             controller.myAdvertiserModel.data![index]
                                 .itemsList![index1]
                                 .toString(),
-                          ),width: Get.width - 60,
+                          ),
+                          width: Get.width - 60,
                           fit: BoxFit.cover,
                         ),
                       );
                     },
                   ),
                   InkWell(
-                    onTap: controller.onCloseMenu,
+                    onTap: () {
+                      (controller.moreOption[index] == true)
+                          ? controller.onCloseMenu()
+                          : Get.to(AdvertisementDetailsApprovedScreen(i: index,));
+                    },
                     child: Column(
                       children: [
                         Row(
@@ -79,21 +84,29 @@ Widget advertisementList() {
                                         "",
                                     style: gilroySemiBoldTextStyle(
                                         fontSize: 18,
-                                        color: controller.myAdvertiserModel.data?[index]
-                                            .adminStatus.toString() == "pending"?ColorRes.color_FFA620:ColorRes.color_49A510),
+                                        color: controller.myAdvertiserModel
+                                                    .data?[index].adminStatus
+                                                    .toString() ==
+                                                "pending"
+                                            ? ColorRes.color_FFA620
+                                            : ColorRes.color_49A510),
                                   ),
                                   const SizedBox(
                                     height: 5,
                                   ),
                                   controller.myAdvertiserModel.data?[index]
-                                      .adminStatus.toString() == "pending"?SizedBox():Text(
-                                    controller.myAdvertiserModel.data?[index]
-                                            .status ??
-                                        "",
-                                    style: gilroyMediumTextStyle(
-                                        fontSize: 10,
-                                        color: ColorRes.color_F86666),
-                                  ),
+                                              .adminStatus
+                                              .toString() ==
+                                          "pending"
+                                      ? SizedBox()
+                                      : Text(
+                                          controller.myAdvertiserModel
+                                                  .data?[index].status ??
+                                              "",
+                                          style: gilroyMediumTextStyle(
+                                              fontSize: 10,
+                                              color: ColorRes.color_F86666),
+                                        ),
                                 ],
                               ),
                             ),
@@ -130,13 +143,17 @@ Widget advertisementList() {
                           child: Row(
                             children: [
                               Text(
-                                controller.myAdvertiserModel.data?[index].amount??"mom",
+                                controller.myAdvertiserModel.data?[index]
+                                        .amount ??
+                                    "mom",
                                 style: gilroySemiBoldTextStyle(
                                     fontSize: 14, color: ColorRes.black),
                               ),
                               const Spacer(),
                               Text(
-                                controller.myAdvertiserModel.data?[index].amount??"\$",
+                                controller.myAdvertiserModel.data?[index]
+                                        .amount ??
+                                    "\$",
                                 style: gilroySemiBoldTextStyle(
                                     fontSize: 14, color: ColorRes.black),
                               ),

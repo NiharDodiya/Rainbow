@@ -5,6 +5,7 @@ import 'package:rainbow/model/viewAdvertiserModel.dart';
 import 'package:rainbow/screens/advertisement/ad_home/myAdvertiser_api/myAdvertiser_api.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/viewAdvertiserProfile_api/viewAdvertiser_api.dart';
+import 'package:rainbow/screens/advertisement/ad_home/widget/advertiementApproved_screen.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/utils/asset_res.dart';
 
@@ -47,6 +48,7 @@ class AdHomeController extends GetxController {
     "Licensed Mid - Wife",
     "Breast Milk Donor",
   ];
+
   List<bool> moreOption = [];
 
 
@@ -141,6 +143,7 @@ class AdHomeController extends GetxController {
   }
 
   ViewAdvertiserModel viewAdvertiserModel = ViewAdvertiserModel();
+
   Future<void> viewAdvertiserData() async {
     try{
       loader.value =true;
@@ -155,4 +158,6 @@ class AdHomeController extends GetxController {
       print(e.toString());
     }
   }
+
+
 }
