@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/formatters/money_input_formatter.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_failed.dart/payment_failed_screen.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/payment_successful/payment_successful_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_controller.dart';
+import 'package:rainbow/utils/strings.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../../common/Widget/loaders.dart';
@@ -15,7 +18,7 @@ import '../../../../../utils/color_res.dart';
 
 class SetupDateScreen extends StatelessWidget {
   SetupDateScreen({Key? key}) : super(key: key);
-  SetupDateController setupDateController = Get.put(SetupDateController());
+  CreateAdvertisementController createAdvertisementController = Get.put(CreateAdvertisementController());
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +134,7 @@ class SetupDateScreen extends StatelessWidget {
                     Radius.circular(12),
                   ),
                 ),
-                child: GetBuilder<SetupDateController>(
+                child: GetBuilder<CreateAdvertisementController>(
                   id: 'range',
                   builder: (controller) => TableCalendar(
                     calendarBuilders: const CalendarBuilders(),
@@ -202,7 +205,7 @@ class SetupDateScreen extends StatelessWidget {
                       print(
                           "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<$as>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                     },
-                    rangeEndDay: controller.endtime,
+                    rangeEndDay: controller.endTime,
                     rangeSelectionMode: RangeSelectionMode.toggledOn,
                     headerStyle: HeaderStyle(
                       titleTextStyle: gilroyBoldTextStyle(
@@ -260,16 +263,16 @@ class SetupDateScreen extends StatelessWidget {
                       height: 191,
                       width: Get.width,
                       child: Center(
-                        child: GetBuilder<SetupDateController>(
+                        child: GetBuilder<CreateAdvertisementController>(
                             id: 'selectC',
                             builder: (controller) {
-                              return TextField(
+                              return TextField(enabled: false,
                                 inputFormatters: [
                                   MoneyInputFormatter(
                                       leadingSymbol: controller.currency),
                                 ],
                                 controller:
-                                    setupDateController.amountController,
+                                    createAdvertisementController.amountController,
                                 style: gilroySemiBoldTextStyle(fontSize: 24),
                                 textAlign: TextAlign.center,
                                 decoration: InputDecoration(
@@ -296,7 +299,7 @@ class SetupDateScreen extends StatelessWidget {
                               style: gilroyMediumTextStyle(fontSize: 18),
                             ),
                             const Spacer(),
-                            GetBuilder<SetupDateController>(
+                           /* GetBuilder<SetupDateController>(
                               id: 'selectC',
                               builder: (controller) => Column(
                                 children: [
@@ -395,7 +398,7 @@ class SetupDateScreen extends StatelessWidget {
                                       : const SizedBox(),
                                 ],
                               ),
-                            ),
+                            ),*/
                             SizedBox(
                               width: Get.width * 0.0293,
                             )
@@ -409,7 +412,7 @@ class SetupDateScreen extends StatelessWidget {
               const SizedBox(height: 12),
               SubmitButton(
                 onTap: () {
-                  setupDateController.onTapNext();
+                  createAdvertisementController.onTapNext();
                   /*            Get.bottomSheet(
                     enableDrag: false,
                     BottomSheet(
@@ -459,7 +462,7 @@ class ShowBottomNext extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SetupDateController setupDateController = Get.put(SetupDateController());
+    CreateAdvertisementController createAdvertisementController = Get.put(CreateAdvertisementController());
     return Obx(() => Stack(
       children: [
         DraggableScrollableSheet(
@@ -521,7 +524,7 @@ class ShowBottomNext extends StatelessWidget {
                             //   height: Get.height * 0.0320,
                             // ),
                             Text(
-                              setupDateController.amountController.text,
+                              createAdvertisementController.amountController.text,
                               style: poppinsSemiBold(fontSize: 24),
                             ),
                             // RichText(
@@ -594,11 +597,13 @@ class ShowBottomNext extends StatelessWidget {
                     ),
                     SubmitButton(
                       onTap: () {
-                        setupDateController.boostAdvertisementApi();
+                        Get.to(() => const PaymentSuccessfulScreen());
+                       /* setupDateController.boostAdvertisementApi();*/
 
                       },
                       child: Text(
-                        "Pat ${setupDateController.amountController.text}",
+                        /*"Pay ${setupDateController.amountController.text}",*/
+                        "Pay 120.00USD",
                         style: gilroyBoldTextStyle(
                           fontSize: 16,
                           color: ColorRes.black,
@@ -630,7 +635,7 @@ class ShowBottomNext extends StatelessWidget {
             ),
           ),
         ),
-        setupDateController.loader.isTrue
+        createAdvertisementController.loader.isTrue
             ? const FullScreenLoader()
             : const SizedBox(),
       ],

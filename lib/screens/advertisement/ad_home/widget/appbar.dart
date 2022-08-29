@@ -27,8 +27,8 @@ Widget appbar() {
               child: controller.viewAdvertiserModel.data==null? SizedBox():ClipRRect(
                   borderRadius: BorderRadius.circular(50),
                   child: controller.viewAdvertiserModel.data!.profileImage
-                          .toString()
-                          .isEmpty
+                      .toString()
+                      .isEmpty
                       ? Image.asset(
                           AssetRes.portrait_placeholder,
                           height: 34,

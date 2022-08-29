@@ -28,7 +28,7 @@ class Strings {
   static const postalCode = 'Postal Code';
   static const postalCodeDigitHint = '123125';
   static const website = 'Website';
-  static const websiteError = 'Website is Required';
+  static const websiteError = 'please enter Website';
   static const websiteHint = 'www.mymom.com';
   static const sign_Up = 'Signup';
   static const forAdvertise = " for advertiser's account";
@@ -244,8 +244,8 @@ class Strings {
   ///___________________________dashboard--Profile_______________________________________
   static const profile = "Profile";
   static const city = "City";
-  static const cityError = "City name is Required";
-  static const streetError = "street name is Required";
+  static const cityError = "please enter city name";
+  static const streetError = "please enter street name";
   static const london = "London";
   static const haveKids = "Have kids?";
   static const editProfile = "Edit Profile";
@@ -440,15 +440,15 @@ class Strings {
 
   ///------------------------------Ad _home --->Create Advertisement--------
   static const callToAction = "Call to Action";
-  static const urlLink = "URL Link";
-  static const tagsError = "Tags is required";
-  static const imageError = "image is required";
-  static const titleError = "Title is required";
-  static const canedaError = "Caneda is required";
-  static const provinceError = "Province is required";
-  static const dateError = "Date is requreid";
-  static const descriptionError = "Description is requreid";
-  static const callActionError = "select call To Action is requreid";
+  static const urlLink = "please enter URL Link";
+  static const tagsError = "please enter Tags";
+  static const imageError = "please add image ";
+  static const titleError = "please enter Title";
+  static const canedaError = "please enter city";
+  static const provinceError = "please enter Province ";
+  static const dateError = "please enter Date ";
+  static const descriptionError = "please enter Description ";
+  static const callActionError = "please enter Action ";
   static const addAdvertisement = "Add advertisement";
   static const tagsSeparated = "Tags(Separated by space)";
   static const uploadImage = "Upload Images";

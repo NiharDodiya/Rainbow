@@ -12,7 +12,7 @@ import 'package:rainbow/utils/pref_keys.dart';
 
 class AddAdvertisement {
   static Future addAdvertisementApi(
-      {List? tagUser,
+      {String? tagUser,
       String? title,
       List? idItem,
       String? location,
@@ -21,6 +21,8 @@ class AddAdvertisement {
       String? urlLink,
       String? postalCode,
       String? province,
+      String? startDate,
+      String? endDate,
       String? city,
       String? street,
       String? countryCode,
@@ -42,8 +44,8 @@ class AddAdvertisement {
         "date": date.toString(),
         "description": description.toString(),
         "call_action": callAction.toString(),
-        "start_date": date.toString(),
-        "end_date": date.toString(),
+        "start_date": startDate.toString(),
+        "end_date": endDate.toString(),
         "url_link": urlLink.toString()
       };
 
@@ -61,7 +63,7 @@ class AddAdvertisement {
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           flutterToast(jsonDecode(response.body)["message"]);
-          Get.to(() => AdvertisementDeatailScreen());
+
         }
         return advertisersCreateModelFromJson(response.body);
       }

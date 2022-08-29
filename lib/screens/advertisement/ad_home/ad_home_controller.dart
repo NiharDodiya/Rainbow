@@ -104,7 +104,7 @@ class AdHomeController extends GetxController {
     try{
       loader.value =true;
       await MyAdvertiserApi.deleteAdvertiser(id,context);
-      myAdvertiserListData();
+      await myAdvertiserListData();
       loader.value =false;
       update(['delete']);
     }catch(e){
@@ -116,7 +116,7 @@ class AdHomeController extends GetxController {
     try{
       loader.value =true;
       await MyAdvertiserApi.cancelAdvertiser(id,context);
-      myAdvertiserListData();
+      await myAdvertiserListData();
       loader.value =false;
       update(['cancel']);
 
@@ -131,7 +131,7 @@ class AdHomeController extends GetxController {
     try{
       loader.value =true;
       await MyAdvertiserApi.followUpAdvertiser(id,context);
-      myAdvertiserListData();
+     await  myAdvertiserListData();
       loader.value =false;
       update(['followUp']);
     }catch(e){

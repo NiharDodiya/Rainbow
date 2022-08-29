@@ -225,18 +225,18 @@ Widget advertisementList() {
                             width: Get.width * 0.40,
                             color: ColorRes.color_50369C,
                             child: ListView.separated(
-                              itemBuilder: (context, index) {
+                              itemBuilder: (context, index1) {
                                 return Container(
                                   padding: const EdgeInsets.all(9),
                                   child: InkWell(
                                     onTap: () {
-                                      if (index == 0) {
-                                        Get.to( DeletApprove(idAdvertiser: controller.myAdvertiserModel.data![index].id.toString(),));
+                                      if (index1 == 0) {
+                                        Get.to(DeletApprove(idAdvertiser: controller.myAdvertiserModel.data![index].id.toString(),));
                                       }
-                                      else if(index == 1){
+                                      else if(index1 == 1){
                                        controller.followUpAdvertiser(controller.myAdvertiserModel.data![index].id.toString(), context);
                                       }
-                                      print(index);
+                                      print(index1);
                                     },
                                     child: Row(
                                       children: [
@@ -246,7 +246,7 @@ Widget advertisementList() {
                                           padding:
                                           const EdgeInsets.all(2.5),
                                           decoration: BoxDecoration(
-                                            color: index == 0
+                                            color: index1 == 0
                                                 ? ColorRes.color_D18EEE
                                                 : ColorRes.color_49A510,
                                             borderRadius:
@@ -254,7 +254,7 @@ Widget advertisementList() {
                                                 Radius.circular(10)),
                                           ),
                                           child: Image.asset(
-                                            index == 0
+                                            index1 == 0
                                                 ? AssetRes.deleteIcon
                                                 : AssetRes.calendarIcon,
                                             height: 15,
@@ -263,7 +263,7 @@ Widget advertisementList() {
                                         ),
                                         SizedBox(width: 3,),
                                         Text(
-                                          index == 0
+                                          index1 == 0
                                               ? " Delete"
                                               : " Follow Up",
                                           style: gilroyMediumTextStyle(
@@ -283,7 +283,7 @@ Widget advertisementList() {
                               itemCount: 2,
                             ),
                           )
-                              :SizedBox();
+                              :const SizedBox();
                         }),
                   ),
                 ],

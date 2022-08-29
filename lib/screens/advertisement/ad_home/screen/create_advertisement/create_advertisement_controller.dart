@@ -1,16 +1,24 @@
 import 'dart:io';
 
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/model/listUserTag_model.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/advertisement_deatail/advertisement_deatail_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/createadvertisement_api/createAdvertisement_api.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_controller.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_screen.dart';
+import 'package:rainbow/utils/asset_res.dart';
+import 'package:rainbow/utils/color_res.dart';
 
 import '../../../../../common/popup.dart';
 import '../../../../../utils/strings.dart';
@@ -35,6 +43,19 @@ class CreateAdvertisementController extends GetxController {
   TextEditingController callToActionController = TextEditingController();
   List<String> dropDList = ["Learn More", "Contact Us"];
 
+
+  DateTime startTime = DateTime.now();
+  DateTime endTime = DateTime.now();
+  String flag = AssetRes.flag01;
+  bool showDropDown = false;
+  List<String> flagList = [AssetRes.flag01, AssetRes.flag02];
+  List<String> list = ["Caneda", "India"];
+  String currency = "\$";
+  List<String> currencyList = ["\$", "₹"];
+  String select = 'Caneda';
+
+
+  TextEditingController amountController = TextEditingController(text: "\$200.00");
   // File? imagePath;
   List<File> imagePath = [];
   RxBool loader = false.obs;
@@ -135,8 +156,9 @@ class CreateAdvertisementController extends GetxController {
         if (listNationalities.data![i].name == countryController.text) {
           codeId = listNationalities.data![i].id;
         }
-      }
-      uploadImageApi();
+      }/*uploadImageApi();*/
+      Get.to(() => AdvertisementDeatailScreen());
+
     }
   }
 
@@ -249,6 +271,7 @@ class CreateAdvertisementController extends GetxController {
   List<UserData> tagUserList = [];
   List<UserData> filterList = [];
 
+/*
   void onTagTap(UserData userData) {
     tagUserList.add(userData);
     String sent = tagsController.text;
@@ -264,20 +287,16 @@ class CreateAdvertisementController extends GetxController {
     tagsController.selection =
         TextSelection.collapsed(offset: tagsController.text.length);
   }
+*/
 
   List<int> imgIdList = [];
-
+  AdHomeController adHomeController =Get.put(AdHomeController());
   void addAdvertisement(List imageId) async {
     loader.value = true;
-    List<Map<String, dynamic>> list = tagUserList
-        .map<Map<String, dynamic>>((e) => {
-              "id_user": e.id.toString(),
-              "name": e.fullName,
-            })
-        .toList();
 
-    await AddAdvertisement.addAdvertisementApi(
-        tagUser: list,
+
+   await AddAdvertisement.addAdvertisementApi(
+        tagUser: tagsController.text,
         idItem: imageId,
         title: titleController.text,
         callAction: callToActionController.text,
@@ -289,15 +308,100 @@ class CreateAdvertisementController extends GetxController {
         province: provinceController.text,
         street: streetController.text,
         urlLink: urlLinkController.text,
-        countryCode: codeId.toString());
+        countryCode: codeId.toString(),
+    startDate: DateFormat().add_yMd().format(startTime),
+    endDate:DateFormat().add_yMd().format(endTime));
+   adHomeController.myAdvertiserListData();
+   adHomeController.update(['more']);
     loader.value = false;
     update(["advertiser"]);
   }
+
+
+
+  rangSelect(start, end, range) {
+    startTime = start;
+    endTime = end;
+    update(['range']);
+  }
+
+  showDrop() {
+    showDropDown = true;
+    update(['selectC']);
+  }
+
+  selectContry(index) {
+    showDropDown = false;
+    select = list[index];
+    flag = flagList[index];
+    currency = currencyList[index];
+    update(['selectC']);
+  }
+
+  drop(val) {
+    select = val;
+    update(['drop']);
+  }
+
+  void onCountryTap(context) {
+    showCountryPicker(
+      context: context,
+      showPhoneCode: false,
+      onSelect: (country) {
+        // countryModel = country;
+        select = country.toString();
+        update(['Phone']);
+      },
+    );
+  }
+
+  bool validation1() {
+    if (startTime.toString().isEmpty) {
+      errorToast("please select date");
+      return false;
+    } else if (endTime.toString().isEmpty) {
+      errorToast("please select date");
+      return false;
+    } else if (currency.isEmpty) {
+      errorToast("please enter your amount");
+    }
+    return true;
+  }
+/*  CreateAdvertisementController createAdvertisementController =Get.put(CreateAdvertisementController());*/
+  Future<void> onTapNext() async {
+    if (validation()) {
+/*      print(DateFormat().add_yMd().format(startTime));*/
+/*    await  createAdvertisementController.uploadImageApi();*/
+       await uploadImageApi();
+
+      Get.bottomSheet(
+        enableDrag: false,
+        BottomSheet(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
+          ),
+          backgroundColor: ColorRes.white,
+          onClosing: () {},
+          constraints: BoxConstraints(
+            maxHeight: Get.height - (Get.height * 0.0480),
+          ),
+
+          // enableDrag: true,
+          builder: (_) => ShowBottomNext(
+            amount: currency,
+          ),
+        ),
+        isScrollControlled: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(35),
+        ),
+        ignoreSafeArea: true,
+      );
+/*      boostAdvertisementApi();*/
+    }
+  }
+
 }
-// await PrefService.setValue(PrefKeys.latitude, position.latitude);
-// await PrefService.setValue(PrefKeys.longitude, position.longitude);
-
-//   List<Placemark> placeMarks =
-//       await placemarkFromCoordinates(position.latitude, position.longitude);
-
-//   await PrefService.setValue(PrefKeys.locality, placeMarks.first.locality);

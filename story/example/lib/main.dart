@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:story/story_page_view/story_page_view.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class UserModel {

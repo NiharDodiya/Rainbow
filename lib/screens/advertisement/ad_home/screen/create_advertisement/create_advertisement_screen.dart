@@ -156,7 +156,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                 ),
               ),
             ),
-            GetBuilder<CreateAdvertisementController>(
+           /* GetBuilder<CreateAdvertisementController>(
               id: 'advertiser',
               builder: (controller) {
                 if (controller.filterList.isEmpty) {
@@ -246,7 +246,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                   );
                 }
               },
-            ),
+            ),*/
             SizedBox(height: Get.height * 0.0197),
             GetBuilder<CreateAdvertisementController>(
               id: "advertiser",
