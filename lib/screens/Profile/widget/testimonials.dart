@@ -133,19 +133,22 @@ Widget listOfTestimonials(
 
       )):*/
           ClipRRect(
-              borderRadius: BorderRadius.circular(50),
-              child: Image.network(
-                profile.toString(),
-                height: 50,
-                width: 50,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return Image.asset(AssetRes.portrait_placeholder);
-                },
-              )),
-          const SizedBox(
-            width: 10,
+            borderRadius: BorderRadius.circular(50),
+            child: Image.network(
+              profile.toString(),
+              height: 50,
+              width: 50,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return Image.asset(
+                  AssetRes.portrait_placeholder,
+                  height: 50,
+                  width: 50,
+                );
+              },
+            ),
           ),
+          const SizedBox(width: 10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -166,9 +169,7 @@ Widget listOfTestimonials(
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 3,
-              ),
+              const SizedBox(height: 3),
               Text(
                 subtitle ?? "SURROGATE MOM",
                 style: gilroyRegularTextStyle(fontSize: 12),
@@ -177,9 +178,7 @@ Widget listOfTestimonials(
           ),
         ],
       ),
-      const SizedBox(
-        height: 14,
-      ),
+      const SizedBox(height: 14),
       Text(
         descriptions.toString(),
         style: gilroyRegularTextStyle(fontSize: 14),

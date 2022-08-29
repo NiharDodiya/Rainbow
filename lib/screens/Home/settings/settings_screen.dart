@@ -67,33 +67,28 @@ class SettingsScreen extends StatelessWidget {
           SizedBox(
             height: Get.height * 0.03,
           ),
-          Row(
+          Stack(
             children: [
-              SizedBox(
-                width: Get.width * 0.05,
-              ),
               GestureDetector(
-                onTap: () {
-                  Get.back();
-                },
-                child: SizedBox(height: 15,width: 9,
-                  child: Image.asset(
-                    AssetRes.backIcon,
-                    height: 16,
-                    width: 16,
-                    color: Colors.white,
+                onTap: Get.back,
+                child: Padding(
+                  padding: EdgeInsets.only(left: Get.width * 0.05),
+                  child: SizedBox(
+                    height: 15,width: 9,
+                    child: Image.asset(
+                      AssetRes.backIcon,
+                      height: 16,
+                      width: 16,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
-              SizedBox(
-                width: Get.width * 0.3,
-              ),
-              Text(
-                Strings.others,
-                style: gilroyBoldTextStyle(),
-              ),
-              SizedBox(
-                width: Get.width * 0.05,
+              Center(
+                child: Text(
+                  Strings.others,
+                  style: gilroyBoldTextStyle(),
+                ),
               ),
             ],
           ),

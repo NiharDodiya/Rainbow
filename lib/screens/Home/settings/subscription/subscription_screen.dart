@@ -56,7 +56,7 @@ class SubscriptionScreen extends StatelessWidget {
                         height: Get.height * 0.065,
                       ),
                       SizedBox(
-
+                        height: 300,
                           width: Get.width,
                           child: PageView.builder(
                             onPageChanged: (index) {

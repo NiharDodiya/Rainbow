@@ -259,128 +259,126 @@ class MessageScreen extends StatelessWidget {
                                                     if (data == null) {
                                                       return const SizedBox();
                                                     }
-                                                    return DraggableTile(
-                                                      child: InkWell(
-                                                        onTap: () {
-                                                          controller
-                                                              .gotoChatScreen(
-                                                            data['uid'],
-                                                            data['name'],
-                                                            data['image'],
-                                                          );
-                                                        },
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
+                                                    return InkWell(
+                                                      onTap: () {
+                                                        controller
+                                                            .gotoChatScreen(
+                                                          data['uid'],
+                                                          data['name'],
+                                                          data['image'],
+                                                        );
+                                                      },
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                vertical: 10),
+                                                        child: Row(
+                                                          children: [
+                                                            const SizedBox(
+                                                                width: 5),
+                                                            Container(
+                                                              margin:
+                                                                  const EdgeInsets
                                                                       .symmetric(
-                                                                  vertical: 10),
-                                                          child: Row(
-                                                            children: [
-                                                              const SizedBox(
-                                                                  width: 5),
-                                                              Container(
-                                                                margin:
-                                                                    const EdgeInsets
-                                                                        .symmetric(
-                                                                  horizontal:
-                                                                      10,
+                                                                horizontal:
+                                                                    10,
+                                                              ),
+                                                              height: 60,
+                                                              width: 60,
+                                                              decoration: const BoxDecoration(
+                                                                  shape: BoxShape
+                                                                      .circle),
+                                                              child:
+                                                                  ClipRRect(
+                                                                borderRadius:
+                                                                    const BorderRadius
+                                                                        .all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          50),
                                                                 ),
-                                                                height: 60,
-                                                                width: 60,
-                                                                decoration: const BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle),
                                                                 child:
-                                                                    ClipRRect(
-                                                                  borderRadius:
-                                                                      const BorderRadius
-                                                                          .all(
-                                                                    Radius
-                                                                        .circular(
-                                                                            50),
+                                                                    FadeInImage(
+                                                                  placeholder:
+                                                                      const AssetImage(
+                                                                          AssetRes.portrait_placeholder),
+                                                                  image:
+                                                                      NetworkImage(
+                                                                    data['image']
+                                                                        .toString(),
                                                                   ),
-                                                                  child:
-                                                                      FadeInImage(
-                                                                    placeholder:
-                                                                        const AssetImage(
-                                                                            AssetRes.portrait_placeholder),
-                                                                    image:
-                                                                        NetworkImage(
-                                                                      data['image']
-                                                                          .toString(),
-                                                                    ),
-                                                                    fit: BoxFit
-                                                                        .cover,
-                                                                  ),
+                                                                  fit: BoxFit
+                                                                      .cover,
                                                                 ),
                                                               ),
-                                                              const SizedBox(
-                                                                  width: 5),
-                                                              Column(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .start,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  data['name']
-                                                                          .toString()
-                                                                          .isEmpty
-                                                                      ? const SizedBox()
-                                                                      : Text(
-                                                                          data['name']
-                                                                              .toString(),
-                                                                          style:
-                                                                              sfProTextReguler(
-                                                                            fontSize:
-                                                                                17,
-                                                                          ),
-                                                                        ),
-                                                                  Row(
-                                                                    children: [
-                                                                      Text(
-                                                                        "${docData['lastMessageSender'] == PrefService.getString(PrefKeys.uid) ? "You:" : ""}${docData['lastMessage']}",
+                                                            ),
+                                                            const SizedBox(
+                                                                width: 5),
+                                                            Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                data['name']
+                                                                        .toString()
+                                                                        .isEmpty
+                                                                    ? const SizedBox()
+                                                                    : Text(
+                                                                        data['name']
+                                                                            .toString(),
                                                                         style:
                                                                             sfProTextReguler(
                                                                           fontSize:
-                                                                              14,
-                                                                          color:
-                                                                              ColorRes.color_F0F0F0,
+                                                                              17,
                                                                         ),
                                                                       ),
-                                                                      Text(
-                                                                        " · ${getFormattedTime(docData['lastMessageTime'].toDate())}",
-                                                                        style:
-                                                                            sfProTextReguler(
-                                                                          fontSize:
-                                                                              14,
-                                                                          color:
-                                                                              ColorRes.color_F0F0F0,
-                                                                        ),
+                                                                Row(
+                                                                  children: [
+                                                                    Text(
+                                                                      "${docData['lastMessageSender'] == PrefService.getString(PrefKeys.uid) ? "You:" : ""}${docData['lastMessage']}",
+                                                                      style:
+                                                                          sfProTextReguler(
+                                                                        fontSize:
+                                                                            14,
+                                                                        color:
+                                                                            ColorRes.color_F0F0F0,
                                                                       ),
-                                                                    ],
+                                                                    ),
+                                                                    Text(
+                                                                      " · ${getFormattedTime(docData['lastMessageTime'].toDate())}",
+                                                                      style:
+                                                                          sfProTextReguler(
+                                                                        fontSize:
+                                                                            14,
+                                                                        color:
+                                                                            ColorRes.color_F0F0F0,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                )
+                                                              ],
+                                                            ),
+                                                            const Spacer(),
+                                                            (docData['lastMessageSender'] ==
+                                                                PrefService.getString(PrefKeys.uid)) &&
+                                                                    (docData[
+                                                                            'lastMessageRead'] ==
+                                                                        true)
+                                                                ? Image.asset(
+                                                                    AssetRes
+                                                                        .read,
+                                                                    height:
+                                                                        16,
+                                                                    width: 16,
                                                                   )
-                                                                ],
-                                                              ),
-                                                              const Spacer(),
-                                                              (docData['lastMessageSender'] ==
-                                                                  PrefService.getString(PrefKeys.uid)) &&
-                                                                      (docData[
-                                                                              'lastMessageRead'] ==
-                                                                          true)
-                                                                  ? Image.asset(
-                                                                      AssetRes
-                                                                          .read,
-                                                                      height:
-                                                                          16,
-                                                                      width: 16,
-                                                                    )
-                                                                  : const SizedBox(),
-                                                              const SizedBox(
-                                                                  width: 15)
-                                                            ],
-                                                          ),
+                                                                : const SizedBox(),
+                                                            const SizedBox(
+                                                                width: 15)
+                                                          ],
                                                         ),
                                                       ),
                                                     );
@@ -451,124 +449,122 @@ class MessageScreen extends StatelessWidget {
                                                               .contains(controller
                                                                   .msgController
                                                                   .text))) {
-                                                        return DraggableTile(
-                                                          child: InkWell(
-                                                            onTap: () {
-                                                              controller.gotoChatScreen(
-                                                                  snapshot
-                                                                          .data!
-                                                                          .docs[
-                                                                              index]
-                                                                          .data()[
-                                                                      'uid'],
-                                                                  snapshot
-                                                                          .data!
-                                                                          .docs[
-                                                                              index]
-                                                                          .data()[
-                                                                      'name'],
-                                                                  snapshot
-                                                                          .data!
-                                                                          .docs[
-                                                                              index]
-                                                                          .data()[
-                                                                      'image']);
-                                                            },
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                          .symmetric(
-                                                                      vertical:
-                                                                          10),
-                                                              child: Row(
-                                                                children: [
-                                                                  const SizedBox(
-                                                                      width: 5),
-                                                                  Container(
-                                                                    margin: const EdgeInsets
+                                                        return InkWell(
+                                                          onTap: () {
+                                                            controller.gotoChatScreen(
+                                                                snapshot
+                                                                        .data!
+                                                                        .docs[
+                                                                            index]
+                                                                        .data()[
+                                                                    'uid'],
+                                                                snapshot
+                                                                        .data!
+                                                                        .docs[
+                                                                            index]
+                                                                        .data()[
+                                                                    'name'],
+                                                                snapshot
+                                                                        .data!
+                                                                        .docs[
+                                                                            index]
+                                                                        .data()[
+                                                                    'image']);
+                                                          },
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
                                                                         .symmetric(
-                                                                      horizontal:
-                                                                          10,
-                                                                    ),
-                                                                    height: 60,
-                                                                    width: 60,
-                                                                    decoration:
-                                                                        const BoxDecoration(
-                                                                      shape: BoxShape
-                                                                          .circle,
+                                                                    vertical:
+                                                                        10),
+                                                            child: Row(
+                                                              children: [
+                                                                const SizedBox(
+                                                                    width: 5),
+                                                                Container(
+                                                                  margin: const EdgeInsets
+                                                                      .symmetric(
+                                                                    horizontal:
+                                                                        10,
+                                                                  ),
+                                                                  height: 60,
+                                                                  width: 60,
+                                                                  decoration:
+                                                                      const BoxDecoration(
+                                                                    shape: BoxShape
+                                                                        .circle,
+                                                                  ),
+                                                                  child:
+                                                                      ClipRRect(
+                                                                    borderRadius:
+                                                                        const BorderRadius
+                                                                            .all(
+                                                                      Radius
+                                                                          .circular(
+                                                                        50,
+                                                                      ),
                                                                     ),
                                                                     child:
-                                                                        ClipRRect(
-                                                                      borderRadius:
-                                                                          const BorderRadius
-                                                                              .all(
-                                                                        Radius
-                                                                            .circular(
-                                                                          50,
-                                                                        ),
+                                                                        FadeInImage(
+                                                                      placeholder:
+                                                                          const AssetImage(
+                                                                        AssetRes
+                                                                            .portrait_placeholder,
                                                                       ),
-                                                                      child:
-                                                                          FadeInImage(
-                                                                        placeholder:
-                                                                            const AssetImage(
-                                                                          AssetRes
-                                                                              .portrait_placeholder,
-                                                                        ),
-                                                                        image:
-                                                                            NetworkImage(
-                                                                          snapshot
-                                                                              .data!
-                                                                              .docs[index]
-                                                                              .data()['image']
-                                                                              .toString(),
-                                                                        ),
-                                                                        fit: BoxFit
-                                                                            .cover,
+                                                                      image:
+                                                                          NetworkImage(
+                                                                        snapshot
+                                                                            .data!
+                                                                            .docs[index]
+                                                                            .data()['image']
+                                                                            .toString(),
                                                                       ),
+                                                                      fit: BoxFit
+                                                                          .cover,
                                                                     ),
                                                                   ),
-                                                                  const SizedBox(
-                                                                      width: 5),
-                                                                  Column(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    children: [
-                                                                      snapshot.data!
-                                                                              .docs[index]
-                                                                              .data()['name']
-                                                                              .toString()
-                                                                              .isEmpty
-                                                                          ? const SizedBox()
-                                                                          : Text(
-                                                                              snapshot.data!.docs[index].data()['name'].toString(),
-                                                                              style: sfProTextReguler(
-                                                                                fontSize: 17,
-                                                                              ),
+                                                                ),
+                                                                const SizedBox(
+                                                                    width: 5),
+                                                                Column(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    snapshot.data!
+                                                                            .docs[index]
+                                                                            .data()['name']
+                                                                            .toString()
+                                                                            .isEmpty
+                                                                        ? const SizedBox()
+                                                                        : Text(
+                                                                            snapshot.data!.docs[index].data()['name'].toString(),
+                                                                            style: sfProTextReguler(
+                                                                              fontSize: 17,
                                                                             ),
-                                                                      /*Text(
-                                                            "You:ok",
-                                                            style: sfProTextReguler(
-                                                                fontSize: 14,
-                                                                color: ColorRes
-                                                                    .color_F0F0F0),
-                                                          )*/
-                                                                    ],
-                                                                  ),
-                                                                  const Spacer(),
-                                                                  Image.asset(
-                                                                    AssetRes
-                                                                        .read,
-                                                                    height: 16,
-                                                                    width: 16,
-                                                                  ),
-                                                                  const SizedBox(
-                                                                      width: 15)
-                                                                ],
-                                                              ),
+                                                                          ),
+                                                                    /*Text(
+                                                          "You:ok",
+                                                          style: sfProTextReguler(
+                                                              fontSize: 14,
+                                                              color: ColorRes
+                                                                  .color_F0F0F0),
+                                                        )*/
+                                                                  ],
+                                                                ),
+                                                                const Spacer(),
+                                                                Image.asset(
+                                                                  AssetRes
+                                                                      .read,
+                                                                  height: 16,
+                                                                  width: 16,
+                                                                ),
+                                                                const SizedBox(
+                                                                    width: 15)
+                                                              ],
                                                             ),
                                                           ),
                                                         );
