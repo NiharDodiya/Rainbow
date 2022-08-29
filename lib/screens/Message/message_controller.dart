@@ -297,7 +297,8 @@ class MessageController extends GetxController {
     await FirebaseFirestore.instance.collection("chats").doc(roomId).update({
       "lastMessage": msg,
       "lastMessageSender": userUid,
-      "lastMessageTime": DateTime.now()
+      "lastMessageTime": DateTime.now(),
+      "lastMessageRead": false,
     });
   }
 
@@ -337,13 +338,13 @@ class MessageController extends GetxController {
         .collection(roomId!)
         .doc(docId)
         .update({"read": true});
-    await setReadTrueInChatDoc();
+    await setReadInChatDoc(true);
   }
 
-  Future<void> setReadTrueInChatDoc() async {
+  Future<void> setReadInChatDoc(bool status) async {
     await FirebaseFirestore.instance
         .collection("chats")
         .doc(roomId)
-        .update({"lastMessageRead": true});
+        .update({"lastMessageRead": status});
   }
 }
