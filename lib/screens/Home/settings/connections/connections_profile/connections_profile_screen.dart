@@ -49,67 +49,76 @@ class ConnectionsProfileScreen extends StatelessWidget {
                   ),
                   child: data.id == null
                       ? const SizedBox()
-                      : SingleChildScrollView(
-                          physics: const BouncingScrollPhysics(),
-                          child: data.isBlock == "block"
-                              ? Container(
-                                  height: Get.height,
-                                  width: Get.width,
-                                  padding: const EdgeInsets.only(top: 25),
-                                  decoration: const BoxDecoration(
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        ColorRes.color_50369C,
-                                        ColorRes.color_D18EEE,
+                      : data.isBlock == "block"
+                          ? Container(
+                              height: Get.height,
+                              width: Get.width,
+                              padding: const EdgeInsets.only(top: 25),
+                              decoration: const BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [
+                                    ColorRes.color_50369C,
+                                    ColorRes.color_D18EEE,
+                                  ],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                ),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Profile Not Visible",
+                                  style: gilroyBoldTextStyle(),
+                                ),
+                              ),
+                            )
+                          : Column(
+                              children: [
+                                profileAppbar(data.fullName.toString(), false,
+                                    context, 2, controller.onTapGetBack),
+                                const SizedBox(height: 10),
+                                Expanded(
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const SizedBox(height: 10),
+                                        profileImage(
+                                          data.profileImage,
+                                          data.backgroundImage,
+                                          data.profilePhoto,
+                                        ),
+                                        connectAndBlock(
+                                          title: data.fullName,
+                                          subTitle: data.basicInfo == true
+                                              ? data.userStatus
+                                              : null,
+                                          id: data.id.toString(),
+                                          connect: data.isFriends.toString(),
+                                          block: data.isBlock,
+                                        ),
+                                        data.socialMedia == true
+                                            ? SocialIcons()
+                                            : const SizedBox(),
+                                        data.aboutMe == false
+                                            ? const SizedBox()
+                                            : aboutProfiler(Strings.aboutMe,
+                                                data.about.toString()),
+                                        data.hobbiesInterest == true
+                                            ? HobbiesArea()
+                                            : const SizedBox(),
+                                        data.testimonials == true
+                                            ? testimonial(data.id.toString())
+                                            : const SizedBox(),
+                                        data.visitors == true
+                                            ? otherVisitorsViewed()
+                                            : const SizedBox(),
                                       ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
                                     ),
                                   ),
-                                  child: Center(
-                                      child: Text(
-                                    "Profile Not Visible",
-                                    style: gilroyBoldTextStyle(),
-                                  )))
-                              : Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    profileAppbar(data.fullName.toString(),
-                                        false,context,0, controller.onTapGetBack),
-                                    const SizedBox(height: 20),
-                                    profileImage(
-                                      data.profileImage,
-                                      data.backgroundImage,
-                                      data.profilePhoto,
-                                    ),
-                                    connectAndBlock(
-                                      title: data.fullName,
-                                      subTitle: data.basicInfo == true
-                                          ? data.userStatus
-                                          : null,
-                                      id: data.id.toString(),
-                                      connect: data.isFriends.toString(),
-                                      block: data.isBlock,
-                                    ),
-                                    data.socialMedia == true
-                                        ? SocialIcons()
-                                        : const SizedBox(),
-                                    data.aboutMe == false
-                                        ? const SizedBox()
-                                        : aboutProfiler(Strings.aboutMe,
-                                            data.about.toString()),
-                                    data.hobbiesInterest == true
-                                        ? HobbiesArea()
-                                        : const SizedBox(),
-                                    data.testimonials == true
-                                        ? testimonial(data.id.toString())
-                                        : const SizedBox(),
-                                    data.visitors == true
-                                        ? otherVisitorsViewed()
-                                        : const SizedBox(),
-                                  ],
                                 ),
-                        ),
+                              ],
+                            ),
                 ),
                 controller.loader.isTrue
                     ? const FullScreenLoader()
