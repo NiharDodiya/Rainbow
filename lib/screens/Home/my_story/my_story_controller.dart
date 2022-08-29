@@ -32,6 +32,7 @@ class MyStoryController extends GetxController {
   ValueNotifier<IndicatorAnimationCommand>? indicatorAnimationController;
   TextEditingController writeSomething = TextEditingController();
   ViewStoryController viewStoryController = Get.put(ViewStoryController());
+  int? currentStoryId;
 
   Future<void> init() async {
     // myStoryModel = MyStoryModel();
@@ -52,8 +53,6 @@ class MyStoryController extends GetxController {
 
   void commentSendTap(String id, BuildContext context) {
     if (validation()) {
-      pauseAnimation();
-
       commentData(id);
 
       update(["my_story"]);
@@ -70,8 +69,10 @@ class MyStoryController extends GetxController {
               id, writeSomething.text.toString()) ??
           StoryCommentModel());
       await viewStoryController.friendStoryApiData();
-      playAnimation();
-      update(["my_story"]);
+      comments = viewStoryController
+              .storyModel.myStory![storyIndex].storycommentList ??
+          [];
+      update(["my_story","myStoryComments"]);
       writeSomething.clear();
       loader.value = false;
     } catch (e) {
@@ -179,13 +180,12 @@ class MyStoryController extends GetxController {
   }
 
   void onCommentButtonTap({required MyStory myStory, required int storyindex}) {
-
     comments = myStory.storycommentList ?? [];
+    currentStoryId = myStory.id;
     pauseAnimation();
     Get.to(() => const MyStoryCommentsScreen())!.whenComplete(() {
       playAnimation();
     });
-
   }
 
   void onMoreBtnTap() {}

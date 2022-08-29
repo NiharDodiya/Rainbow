@@ -75,7 +75,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                         Container(color: Colors.black),
                         Image.network(
                           story.storyItem.toString(),
-                          height: Get.height * 0.9,
+                          height: Get.height ,
                           width: Get.width,
                           fit: BoxFit.cover,
                           errorBuilder: (context, url, error) => Container(
@@ -192,7 +192,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                           ),
                         ),
                         Positioned(
-                          bottom: 60,
+                          bottom: 15,
                           child: SizedBox(
                             width: Get.width,
                             child: Padding(
@@ -471,7 +471,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                             ),
                           ),
                         ),
-                        Positioned(
+                        /*Positioned(
                           bottom: MediaQuery.of(context).viewInsets.bottom + 10,
                           child: Row(
                             children: [
@@ -523,7 +523,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                               )
                             ],
                           ),
-                        ),
+                        ),*/
                       ],
                     );
                   },
