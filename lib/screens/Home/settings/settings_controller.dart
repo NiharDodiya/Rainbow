@@ -3,14 +3,11 @@ import 'package:flutter_share/flutter_share.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/model/logout_model.dart';
 import 'package:rainbow/model/notoficationData_model.dart';
-import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/logOut_Api/LogOut_Api.dart';
 import 'package:rainbow/screens/Home/settings/notificationOnOff_api/notificationOnOff_api.dart';
 import 'package:rainbow/screens/Home/settings/privacy/privacy_controller.dart';
 import 'package:rainbow/screens/Home/settings/privacy/privacy_screen.dart';
 import 'package:rainbow/screens/Home/settings/support/support_screen.dart';
-import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
-import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/dashboard/dashboard_controller.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
@@ -22,7 +19,12 @@ class SettingsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    init();
     update();
+  }
+
+  void init() {
+    notificationGetData();
   }
 
   bool? isSwitched = false;
@@ -92,12 +94,15 @@ class SettingsController extends GetxController {
       loader.value = false;
     }
   }
+
   NotificationDataModel notificationDataModel = NotificationDataModel();
+
   Future<void> notificationGetData() async {
     try {
       loader.value = true;
       notificationDataModel = await NotificationOnOffApi.notificationGetData();
-      update(["settings"]);
+      isSwitched = notificationDataModel.data == "off" ? false : true;
+      update(["switch"]);
 
       loader.value = false;
     } catch (e) {
