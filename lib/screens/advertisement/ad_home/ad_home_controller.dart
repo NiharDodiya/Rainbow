@@ -65,6 +65,8 @@ class AdHomeController extends GetxController {
   }
 
   void onTapAddList() {
+
+
     Get.to(() => CreateAdvertisementScreen());
 
   }
@@ -97,6 +99,7 @@ class AdHomeController extends GetxController {
       loader.value =false;
 
     }catch(e){
+
       loader.value =false;
 
       print(e.toString());

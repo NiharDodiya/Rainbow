@@ -105,7 +105,6 @@ class CreateAdvertisementController extends GetxController {
       imagePath.add(File(pickedFile.path));
     }
     update(["advertiser"]);
-    Get.back();
 
     return null;
   }

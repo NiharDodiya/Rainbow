@@ -6,11 +6,15 @@ import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
+import 'package:rainbow/utils/strings.dart';
+
+import '../screen/create_advertisement/create_advertisement_controller.dart';
 
 Widget appbar() {
   AdHomeController controller = Get.find<AdHomeController>();
   AdvertisementController advertisementController =
       Get.put(AdvertisementController());
+  CreateAdvertisementController advertisementControllers = Get.put(CreateAdvertisementController());
   return SizedBox(
     width: Get.width,
     child: Padding(
@@ -86,6 +90,21 @@ Widget appbar() {
           const Spacer(),
           InkWell(
             onTap: () {
+              advertisementControllers.tagsController.clear();
+              advertisementControllers.titleController.clear();
+              advertisementControllers.countryController.clear();
+              advertisementControllers.streetController.clear();
+              advertisementControllers.cityController.clear();
+              advertisementControllers.provinceController.clear();
+              advertisementControllers.postalCodeController.clear();
+              advertisementControllers.dateController.clear();
+              advertisementControllers.descriptoionController.clear();
+              advertisementControllers.urlLinkController.clear();
+              advertisementControllers.callToActionController.clear();
+              advertisementControllers.address =  Strings.useCurrentLocation;
+              advertisementControllers.callToAction = null;
+              advertisementControllers.imagePath = [];
+
               Get.to(() => CreateAdvertisementScreen());
             },
             child: Container(

@@ -118,8 +118,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                   ListView.builder(
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
-                    itemCount: adHomeController.myAdvertiserModel.data?[index].itemsList?.length ??
-                        0,
+                    itemCount: adHomeController.myAdvertiserModel.data?[index].itemsList!.length,
                     itemBuilder: (context, index1) {
                       return Container(
                         width: Get.width,
@@ -168,25 +167,9 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                               ),
                             ),
                             const Spacer(),
-                            Container(
-                              height: 33.3,
-                              width: 33.3,
-                              decoration: const BoxDecoration(
-                                  shape: BoxShape.circle, color: ColorRes.white),
-                              child: Padding(
-                                padding: const EdgeInsets.all(12),
-                                child: Image.asset(
-                                  AssetRes.share,
-                                  color: ColorRes.black,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
                             InkWell(
                               onTap: (){
-
+                                // Get.to(EditAdvertisementscreen());
                               },
                               child: Container(
                                 height: 33.3,
