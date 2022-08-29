@@ -112,25 +112,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                   gestureItemBuilder: (context, pageIndex, storyIndex) {
                     return Stack(
                       children: [
-                        /*    Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Container(
-                              width: Get.width,
-                              height: Get.height * 0.3,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    ColorRes.color_141414.withOpacity(0.9),
-                                    Colors.transparent,
-                                    Colors.transparent
-                                  ],
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter,
-                                  stops: const [0, 0.99, 1],
-                                ),
-                              ),
-                            ),
-                          ),*/
+
                         Align(
                           alignment: Alignment.topLeft,
                           child: SizedBox(
@@ -140,13 +122,23 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                   top: 32, left: 5, right: 5),
                               child: Row(
                                 children: [
-                                  IconButton(
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 5),
+                                    child: InkWell(onTap:() {
+                                      Navigator.pop(context);
+                                    },
+                                      child: SizedBox(height:
+                                          16,width: 30,
+                                          child: Image.asset(AssetRes.backIcon,color: Colors.white,)),
+                                    ),
+                                  ),
+                              /*    IconButton(
                                     padding: EdgeInsets.zero,
                                     color: Colors.white,
                                     icon: const Icon(Icons.arrow_back_ios,
                                         size: 20),
                                     onPressed: controller.onBackTap,
-                                  ),
+                                  ),*/
                                   const Spacer(),
                                   /*    SizedBox(
                                       height: 30,

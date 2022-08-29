@@ -531,8 +531,9 @@ class _HomeScreenState extends State<HomeScreen> {
         return controller.requestUsers.isEmpty
             ? const SizedBox()
             : Obx(() {
-                return SizedBox(
+                return Container(
                   width: Get.width,
+                  color: Colors.white,
                   child: Stack(
                     children: [
                       Column(

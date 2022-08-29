@@ -52,12 +52,14 @@ class StoryCommentsScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 10),
                       itemBuilder: (context, index) {
                         return storyComment(
-                          controller.comments[index].description.toString(),
-                          controller
-                              .comments[index].storyUserComment!.profileImage
-                              .toString(),
-                          controller.comments[index].storyUserComment!.fullName
-                              .toString(),
+                        comments:  controller.comments[index].description.toString() ,
+                         profileImage:  controller
+                             .comments[index].storyUserComment!.profileImage
+                             .toString(),
+                        name:   controller.comments[index].storyUserComment!.fullName
+                            .toString(),
+                          id:   controller.comments[index].storyUserComment!.id
+                              .toString()
                         );
                       },
                       separatorBuilder: (context, index) {

@@ -183,7 +183,7 @@ class MyStoryController extends GetxController {
     comments = myStory.storycommentList ?? [];
     currentStoryId = myStory.id;
     pauseAnimation();
-    Get.to(() => const MyStoryCommentsScreen())!.whenComplete(() {
+    Get.to(() =>  MyStoryCommentsScreen())!.whenComplete(() {
       playAnimation();
     });
   }
