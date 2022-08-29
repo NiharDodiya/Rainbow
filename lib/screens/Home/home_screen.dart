@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           const SizedBox(width: 10),
                           GestureDetector(
                             onTap: () {
-                              Get.to(() => SettingsScreen());
+                              controller.onTapSetting();
                             },
                             child: const Image(
                               image: AssetImage(

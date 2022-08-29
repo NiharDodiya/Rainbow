@@ -24,6 +24,7 @@ import 'package:rainbow/screens/Home/myPost_Api/myPost_api.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_controller.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_screen.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
+import 'package:rainbow/screens/Home/settings/settings_screen.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_screen.dart';
 import 'package:rainbow/screens/Home/view_story/widgets/postLike_listScreen.dart';
@@ -84,7 +85,11 @@ class HomeController extends GetxController {
     update(['home']);
     super.onInit();
   }
-
+void onTapSetting(){
+  Get.to(() => SettingsScreen())!.then((value) async {
+    await controller.viewProfileDetails();
+  });
+}
   void pagination() async {
     print("Hello");
     if (scrollController.position.pixels ==
