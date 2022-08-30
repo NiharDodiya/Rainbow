@@ -117,7 +117,7 @@ class Strings {
   static const noOfKidsHint = '0';
   static const fullNameError = 'please enter Full name';
   static const emailError = 'please enter Email';
-  static const enterYourOtp = 'please Enter your otp';
+  static const enterYourOtp = 'please enter your otp';
   static const emailValidError = 'Email is invalid';
   static const emailValidError1 = 'Email is invalid';
   static const passwordError = 'Password is required';

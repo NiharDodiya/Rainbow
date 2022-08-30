@@ -15,14 +15,14 @@ class NotificationOnOffApi {
 
     try {
       String url = EndPoints.notificationGetData;
-      http.Response? response = await HttpService.postApi(
-          url: url, body: {}, header: {"x-access-token": accesToken});
+      http.Response? response = await HttpService.getApi(
+          url: url, header: {"x-access-token": accesToken});
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          flutterToast(jsonDecode(response.body)["message"]);
+          /*flutterToast(jsonDecode(response.body)["message"]);*/
         }
         return notificationDataModelFromJson(response.body);
       }

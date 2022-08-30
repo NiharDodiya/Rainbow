@@ -60,7 +60,7 @@ class RegisterApi {
 
           flutterToast(jsonDecode(response.body)["message"]);
         }
-        return registerUserFromJson(response.body);
+        return registerUserModelFromJson(response.body);
       } else if (response!.statusCode == 500) {
         errorToast(jsonDecode(response.body)["message"]);
       } else {
@@ -68,7 +68,7 @@ class RegisterApi {
       }
     } catch (e) {
       print(e.toString());
-      return registerUserFromJson("");
+      return registerUserModelFromJson("");
     }
   }
 }

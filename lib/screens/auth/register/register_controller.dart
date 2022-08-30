@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -247,7 +248,8 @@ class RegisterController extends GetxController {
     Get.off(() => LoginScreen(), transition: Transition.cupertino);
   }
 
-  RegisterUser registerUser = RegisterUser();
+  RegisterUserModel registerUser = RegisterUserModel();
+  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
   Future<void> registerDetails() async {
     try {
@@ -283,6 +285,30 @@ class RegisterController extends GetxController {
           pwd: pwdController.text)) as String?;
       userModel.uid = uid;
       // await UserService.createUser(userModel);
+      if(uid!=null){
+        await firebaseFirestore
+            .collection("users")
+            .doc(uid)
+            .get()
+            .then((value) async {
+          if (value.exists) {
+            await firebaseFirestore
+                .collection("users")
+                .doc(uid)
+                .update({"online": true});
+            await PrefService.setValue(PrefKeys.uid, uid);
+          } else {
+            await firebaseFirestore.collection("users").doc(uid).set({
+              "id": registerUser.data!.id.toString(),
+              "email": registerUser.data!.email.toString(),
+              "uid": uid,
+              "name":registerUser.data!.fullName.toString(),
+              "image": registerUser.data!.profileImage.toString(),
+              "online": true,
+            });
+          }
+        });
+      }
       loader.value = false;
       fullNameController.clear();
     emailController.clear();

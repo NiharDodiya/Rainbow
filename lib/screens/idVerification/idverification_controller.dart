@@ -55,10 +55,10 @@ class IdVerificationController extends GetxController {
   }*/
   bool validation() {
     if (idType.text.isEmpty) {
-      errorToast(Strings.maritalStatusError);
+      errorToast("please enter id Type");
       return false;
     } else if (idNO.text.isEmpty) {
-      errorToast(Strings.ethnicityError);
+      errorToast("please enter id no.");
       return false;
     } else if (imageFront == null) {
       errorToast(Strings.imageFrontError);

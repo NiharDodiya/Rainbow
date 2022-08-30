@@ -17,7 +17,7 @@ class NotificationDataModel {
 
   bool? status;
   String? message;
-  String? data;
+  bool? data;
 
   factory NotificationDataModel.fromJson(Map<String, dynamic> json) => NotificationDataModel(
     status: json["status"] == null ? null : json["status"],

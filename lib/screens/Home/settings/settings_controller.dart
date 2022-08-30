@@ -65,10 +65,12 @@ class SettingsController extends GetxController {
     }
   }
 
+/*
   void notification() {
     isSwitched = PrefService.getBool(PrefKeys.notification);
     print(isSwitched);
   }
+*/
 
   String? refferalCode;
 
@@ -101,7 +103,7 @@ class SettingsController extends GetxController {
     try {
       loader.value = true;
       notificationDataModel = await NotificationOnOffApi.notificationGetData();
-      isSwitched = notificationDataModel.data == "off" ? false : true;
+      isSwitched = notificationDataModel.data ==false? false : true;
       update(["switch"]);
 
       loader.value = false;

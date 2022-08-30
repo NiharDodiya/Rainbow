@@ -21,7 +21,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.notification();
+/*    controller.notification();*/
     controller.getRefferralsCode();
     return Scaffold(
       body: GetBuilder<SettingsController>(
