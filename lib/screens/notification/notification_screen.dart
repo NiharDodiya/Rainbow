@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/model/notification_model.dart';
+import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -14,7 +15,7 @@ class NotificationScreen extends StatelessWidget {
   NotificationScreen({Key? key}) : super(key: key);
   final NotificationsController controller = Get.put(NotificationsController());
   ProfileController profileController = Get.put(ProfileController());
-
+ConnectionsProfileController connectionsProfileController = Get.put(ConnectionsProfileController());
   @override
   Widget build(BuildContext context) {
     controller.notificationReadApi();
@@ -57,71 +58,75 @@ class NotificationScreen extends StatelessWidget {
                               padding: EdgeInsets.only(
                                   left: Get.width * 0.05,
                                   right: Get.width * 0.16),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    height: 54,
-                                    width: 54,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                          color: ColorRes.white, width: 1),
-                                    ),
-                                    child: profileController.viewProfile.data!.profileImage!.isEmpty?ClipRRect(
-                                      borderRadius: BorderRadius.circular(50),
-                                      child: Container(
-                                        height: 53,
-                                        width: 53,
-                                        decoration:  const BoxDecoration(
-                                          image: DecorationImage(
-                                            image: AssetImage(
-                                            AssetRes.portrait_placeholder,
-                                            ),fit: BoxFit.cover
+                              child: InkWell(onTap: () {
+                                connectionsProfileController.callApi(controller.notificationList[index].idUserReceiver.toString());
+                              },
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 54,
+                                      width: 54,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                            color: ColorRes.white, width: 1),
+                                      ),
+                                      child: profileController.viewProfile.data!.profileImage!.isEmpty?ClipRRect(
+                                        borderRadius: BorderRadius.circular(50),
+                                        child: Container(
+                                          height: 53,
+                                          width: 53,
+                                          decoration:  const BoxDecoration(
+                                            image: DecorationImage(
+                                              image: AssetImage(
+                                              AssetRes.portrait_placeholder,
+                                              ),fit: BoxFit.cover
+                                            ),
+                                          ),
+                                        ),
+                                      ):ClipRRect(
+                                        borderRadius: BorderRadius.circular(50),
+                                        child: Container(
+                                          height: 53,
+                                          width: 53,
+                                          decoration:  BoxDecoration(
+                                            image: DecorationImage(
+                                              image: NetworkImage(
+                                                profileController.viewProfile.data!.profileImage.toString(),
+                                              ),fit: BoxFit.cover
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ):ClipRRect(
-                                      borderRadius: BorderRadius.circular(50),
-                                      child: Container(
-                                        height: 53,
-                                        width: 53,
-                                        decoration:  BoxDecoration(
-                                          image: DecorationImage(
-                                            image: NetworkImage(
-                                              profileController.viewProfile.data!.profileImage.toString(),
-                                            ),fit: BoxFit.cover
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const SizedBox(
+                                            height: 35,
                                           ),
-                                        ),
+                                          Text(
+                                            model.createdAt == null
+                                                ? ''
+                                                : DateFormat('dd/MM/yyyy')
+                                                    .format(model.createdAt!),
+                                            style: gilroySemiBoldTextStyle(
+                                                fontSize: 12),
+                                          ),
+                                          Text(
+                                            model.description?.toString()??"",
+                                            style: gilroyMediumTextStyle(
+                                                fontSize: 14,
+                                                letterSpacing: -0.03),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 12),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const SizedBox(
-                                          height: 35,
-                                        ),
-                                        Text(
-                                          model.createdAt == null
-                                              ? ''
-                                              : DateFormat('dd/MM/yyyy')
-                                                  .format(model.createdAt!),
-                                          style: gilroySemiBoldTextStyle(
-                                              fontSize: 12),
-                                        ),
-                                        Text(
-                                          model.description?.toString()??"",
-                                          style: gilroyMediumTextStyle(
-                                              fontSize: 14,
-                                              letterSpacing: -0.03),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -173,7 +178,7 @@ class NotificationScreen extends StatelessWidget {
                   child: Image.asset(
                     AssetRes.backIcon,
                     height: 16,
-                    width: 16,
+                    width: 35,
                     color: Colors.white,
                   ),
                 ),

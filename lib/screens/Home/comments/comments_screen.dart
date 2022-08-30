@@ -33,7 +33,7 @@ class CommentScreen extends StatelessWidget {
               child: Image.asset(
                 AssetRes.backIcon,
                 height: 16,
-                width: 16,
+                width: 35,
                 color: Colors.black,
               ),
             ),

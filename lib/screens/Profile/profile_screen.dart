@@ -116,7 +116,7 @@ class ProfileScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: const DecorationImage(
-                                image: AssetImage(AssetRes.overlay),
+                                image: AssetImage(AssetRes.placeholderImage),
                                 fit: BoxFit.cover)),
                       );
                     },

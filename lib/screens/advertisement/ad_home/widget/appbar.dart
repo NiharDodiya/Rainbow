@@ -24,7 +24,14 @@ Widget appbar() {
             },
             child: Padding(
               padding: const EdgeInsets.only(right: 9),
-              child: controller.viewAdvertiserModel.data==null? SizedBox():ClipRRect(
+              child: controller.viewAdvertiserModel.data==null?  ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: Image.asset(
+                  AssetRes.portrait_placeholder,
+                  height: 34,
+                  width: 34,
+                ),
+              ):ClipRRect(
                   borderRadius: BorderRadius.circular(50),
                   child: controller.viewAdvertiserModel.data!.profileImage
                       .toString()

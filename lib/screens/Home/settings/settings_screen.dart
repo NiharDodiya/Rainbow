@@ -76,7 +76,7 @@ class SettingsScreen extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(left: Get.width * 0.05),
                   child: Container(
-                    height: 15,width: 30,
+                    height: 15,width: 35,
                     decoration: const BoxDecoration(image: DecorationImage(image: AssetImage(
                       AssetRes.backIcon,
                     ),)),

@@ -208,7 +208,7 @@ class Strings {
   static const youtubeError = 'Enter youtube';
   static const faceBookError = 'Enter faceBook';
   static const twitterError = 'Enter twitter';
-  static const aboutMeError = 'please enter  about';
+  static const aboutMeError = 'please enter about me';
   static const hobbiesError = 'please enter your hobbies';
 
   ///___________________________dashboard--Home_______________________________________

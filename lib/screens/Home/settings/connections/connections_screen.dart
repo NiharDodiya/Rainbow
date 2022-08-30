@@ -83,12 +83,12 @@ class ConnectionsScreen extends StatelessWidget {
                 child: Image.asset(
                   AssetRes.backIcon,
                   height: 16,
-                  width: 16,
+                  width: 35,
                   color: Colors.white,
                 ),
               ),
               SizedBox(
-                width: Get.width * 0.2,
+                width: Get.width * 0.15,
               ),
               GestureDetector(
                   onTap: () {
@@ -183,7 +183,7 @@ class ConnectionsScreen extends StatelessWidget {
                       image: user.profileImage,
                       label: user.email,
                       onPlusTap: () =>
-                          control.onAddBtnTap(user.id.toString(), true),
+                          control.onAddBtnTapConnection(user.id.toString(), true),
                       onDeleteTap: () =>
                           controller.onDeleteBtnTap(user.id.toString(), true),
                       onProfileTap: () =>
@@ -229,7 +229,8 @@ class ConnectionsScreen extends StatelessWidget {
                   ),
                   // placeholder: (context, url) => const Center(child:  CircularProgressIndicator(),),
                   errorWidget: (context, url, error) =>
-                      Image.asset(AssetRes.se_profile),
+                      ClipRRect(borderRadius: BorderRadius.circular(50),
+                          child: Image.asset(AssetRes.portrait_placeholder)),
                 ),
               ),
               SizedBox(width: Get.width * 0.04),

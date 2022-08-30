@@ -129,11 +129,11 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                   GestureDetector(
                                     onTap: controller.onBackTap,
                                     child: Padding(
-                                      padding: const EdgeInsets.only(left: 5),
+                                      padding:  EdgeInsets.only(left: Get.width *0.03),
                                       child: Image.asset(
                                         AssetRes.backIcon,
                                         height: 16,
-                                        width: 16,
+                                        width: 35,
                                         color: Colors.white,
                                       ),
                                     ),

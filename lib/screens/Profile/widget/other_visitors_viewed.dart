@@ -67,7 +67,8 @@ Widget otherVisitorsViewed() {
                       ),
                       // placeholder: (context, url) => const Center(child:  CircularProgressIndicator(),),
                       errorWidget: (context, url, error) =>
-                          Image.asset(AssetRes.se_profile),
+                          ClipRRect(borderRadius: BorderRadius.circular(50),
+                              child: Image.asset(AssetRes.portrait_placeholder)),
                     ),
                   ),
                 ),

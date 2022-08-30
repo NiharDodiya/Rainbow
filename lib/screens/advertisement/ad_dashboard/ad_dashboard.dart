@@ -39,7 +39,13 @@ class AdvertisementDashBord extends StatelessWidget {
               GetBuilder<AdHomeController>(id: "dashBoard",builder: (controller) {
                 return  Row(
                   children: [
-                    adHomeController.viewAdvertiserModel.data==null?SizedBox(): ClipRRect(
+                    adHomeController.viewAdvertiserModel.data==null? ClipRRect(borderRadius: BorderRadius.circular(50),
+                      child: Image.asset(
+                        AssetRes.portrait_placeholder,
+                        height: Get.width * 0.1730,
+                        width: Get.width * 0.1730,
+                      ),
+                    ): ClipRRect(
                         borderRadius: BorderRadius.circular(50),
                         child: adHomeController.viewAdvertiserModel.data!.profileImage
                             .toString()

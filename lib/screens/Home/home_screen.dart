@@ -10,6 +10,7 @@ import 'package:rainbow/screens/Home/Story/story_screen.dart';
 import 'package:rainbow/screens/Home/comments/comments_controller.dart';
 import 'package:rainbow/screens/Home/comments/comments_screen.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
+import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
@@ -33,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
   ConnectionsController connectionsController =
       Get.put(ConnectionsController());
   CommentsController commentsController = Get.put(CommentsController());
+  ConnectionsProfileController connectionsProfileController = Get.put(ConnectionsProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -586,10 +588,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         height: 50,
                                         width: 50,
                                         errorBuilder: (context, url, error) =>
-                                            const Icon(
-                                          Icons.error,
-                                          color: Colors.grey,
-                                        ),
+                                            ClipRRect(borderRadius: BorderRadius.circular(50),
+                                              child: Image.asset(
+                                                AssetRes
+                                                    .portrait_placeholder,  height: 50,
+                                                width: 50,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
                                       ),
                                     ),
                                   ),
@@ -832,28 +838,33 @@ class _HomeScreenState extends State<HomeScreen> {
                                         style: textStyleFont16WhitLight)),
                                 ),
                               ),*/
-                              child: DecoratedText(
-                                text: controller
-                                    .friendPostListData[index].postTag!.map<String>((e) => "@${e.name}").toList().join(' ') + controller
-                                    .friendPostListData[index].description
-                                    .toString(),
-                                rules: [
-                                  DecoratorRule.startsWith(
-                                    text: "@",
-                                    style: sfProTextReguler(
-                                      fontSize: 16,
-                                      color: ColorRes.color_FED785,
-                                    ),
+                              child: InkWell(onTap: () {
+                                connectionsProfileController.callApi(controller
+                                    .friendPostListData[index].idUser.toString());
+                              },
+                                child: DecoratedText(
+                                  text: controller
+                                      .friendPostListData[index].postTag!.map<String>((e) => "@${e.name}").toList().join(' ') + controller
+                                      .friendPostListData[index].description
+                                      .toString(),
+                                  rules: [
+                                    DecoratorRule.startsWith(
+                                      text: "@",
+                                      style: sfProTextReguler(
+                                        fontSize: 16,
+                                        color: ColorRes.color_FED785,
+                                      ),
 
-                                  ),
-                                  DecoratorRule.startsWith(
-                                    text: "#",
-                                    style: sfProTextReguler(
-                                      fontSize: 16,
-                                      color: ColorRes.color_FED785,
                                     ),
-                                  ),
-                                ],
+                                    DecoratorRule.startsWith(
+                                      text: "#",
+                                      style: sfProTextReguler(
+                                        fontSize: 16,
+                                        color: ColorRes.color_FED785,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             /*    Row(

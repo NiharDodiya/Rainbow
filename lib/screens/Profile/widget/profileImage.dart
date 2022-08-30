@@ -46,7 +46,7 @@ Widget profileImage(/*ProfileController controller*/ String? profileImage,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         image: const DecorationImage(
-                          image: AssetImage(AssetRes.overlay),
+                          image: AssetImage(AssetRes.placeholderImage),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -63,7 +63,7 @@ Widget profileImage(/*ProfileController controller*/ String? profileImage,
             child: showImages == false
                 ? Container(
                     padding: EdgeInsets.all(Get.width * 0.11),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       gradient: LinearGradient(
                         colors: [
@@ -91,7 +91,13 @@ Widget profileImage(/*ProfileController controller*/ String? profileImage,
                     ),
                     // placeholder: (context, url) => const Center(child:CircularProgressIndicator(),),
                     errorWidget: (context, url, error) =>
-                        Image.asset(AssetRes.se_profile),
+                        Container(
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: AssetImage(AssetRes.portrait_placeholder),
+                              ),
+                            )),
                   ),
           ),
         ),
