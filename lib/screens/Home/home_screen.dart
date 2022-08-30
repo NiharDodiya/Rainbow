@@ -34,7 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
   ConnectionsController connectionsController =
       Get.put(ConnectionsController());
   CommentsController commentsController = Get.put(CommentsController());
-  ConnectionsProfileController connectionsProfileController = Get.put(ConnectionsProfileController());
+  ConnectionsProfileController connectionsProfileController =
+      Get.put(ConnectionsProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -588,14 +589,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                         height: 50,
                                         width: 50,
                                         errorBuilder: (context, url, error) =>
-                                            ClipRRect(borderRadius: BorderRadius.circular(50),
-                                              child: Image.asset(
-                                                AssetRes
-                                                    .portrait_placeholder,  height: 50,
-                                                width: 50,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
+                                            ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          child: Image.asset(
+                                            AssetRes.portrait_placeholder,
+                                            height: 50,
+                                            width: 50,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -838,15 +841,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                         style: textStyleFont16WhitLight)),
                                 ),
                               ),*/
-                              child: InkWell(onTap: () {
-                                connectionsProfileController.callApi(controller
-                                    .friendPostListData[index].idUser.toString());
-                              },
+                              child: InkWell(
+                                onTap: () {
+                                  connectionsProfileController.callApi(
+                                      controller
+                                          .friendPostListData[index].idUser
+                                          .toString());
+                                },
                                 child: DecoratedText(
-                                  text: controller
-                                      .friendPostListData[index].postTag!.map<String>((e) => "@${e.name}").toList().join(' ') + controller
-                                      .friendPostListData[index].description
-                                      .toString(),
+                                  text:
+                                      "${controller.friendPostListData[index].postTag!.map<String>((e) => "@${e.name}").toList().join(' ')} ${controller.friendPostListData[index].description}",
                                   rules: [
                                     DecoratorRule.startsWith(
                                       text: "@",
@@ -854,7 +858,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                         fontSize: 16,
                                         color: ColorRes.color_FED785,
                                       ),
-
                                     ),
                                     DecoratorRule.startsWith(
                                       text: "#",
@@ -1035,7 +1038,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                         index]);
                                                           },
                                                           child: Text(
-                                                            "+${controller.friendPostListData[index].postLikeCount.toString()} likes",
+                                                            controller
+                                                                        .friendPostListData[
+                                                                            index]
+                                                                        .postLikeCount
+                                                                        .toString() ==
+                                                                    "1"
+                                                                ? "${controller.friendPostListData[index].postLikeCount.toString()} likes"
+                                                                : "+${controller.friendPostListData[index].postLikeCount.toString()} likes",
                                                             style:
                                                                 textStyleFont14White,
                                                           ),
@@ -1165,9 +1175,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   InkWell(
                                     onTap: () async {
                                       commentsController.commentPostListData(
-                                          controller
-                                              .friendPostListData[index].id
-                                              .toString());
+                                         idPost:  controller
+                                             .friendPostListData[index].id
+                                             .toString());
                                       Get.to(() => CommentScreen(
                                             idPost: controller
                                                 .friendPostListData[index].id

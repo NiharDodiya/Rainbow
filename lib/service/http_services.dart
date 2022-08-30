@@ -23,7 +23,7 @@ class HttpService {
       return http.get(
         Uri.parse(url),
         headers: header,
-      )..timeout(const Duration(seconds: 40));
+      );
     } catch (e) {
       // showToast(e.toString());
       return null;
@@ -52,7 +52,7 @@ class HttpService {
         Uri.parse(url),
         headers: header,
         body: body,
-      )..timeout(const Duration(seconds: 40));
+      );
     } catch (e) {
       // showToast(e.toString());
       return null;

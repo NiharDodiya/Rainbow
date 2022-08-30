@@ -22,9 +22,7 @@ Widget userComment(
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
-
-                     Container(
+                Container(
                         height: 40,
                         width: 40,
                         decoration: const BoxDecoration(
@@ -49,14 +47,7 @@ Widget userComment(
                                 const AssetImage(AssetRes.portrait_placeholder),
                             image: NetworkImage(profileImage.toString()),
                             fit: BoxFit.cover,
-                          ) /* Image.network(
-                      profileImage.toString(),
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, url, error) => const Icon(
-                        Icons.error,
-                        color: Colors.grey,
-                      ),
-                    )*/
+                          )
                           ,
                         ),
                       ),

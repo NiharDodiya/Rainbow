@@ -239,6 +239,7 @@ class ViewStoryController extends GetxController {
           .toList();
       storyModel = await FriendStoryApi.createPost(
           context, imgIdList, writeSomethings.text, writeSomethings.text, list);
+      print(tagUserList);
       // writeSomethings.clear();
       // list!.clear();
       // imageCamera==null?"":imageCamera!.delete();

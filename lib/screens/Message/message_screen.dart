@@ -281,16 +281,15 @@ class MessageScreen extends StatelessWidget {
                                                               margin:
                                                                   const EdgeInsets
                                                                       .symmetric(
-                                                                horizontal:
-                                                                    10,
+                                                                horizontal: 10,
                                                               ),
                                                               height: 60,
                                                               width: 60,
-                                                              decoration: const BoxDecoration(
-                                                                  shape: BoxShape
-                                                                      .circle),
-                                                              child:
-                                                                  ClipRRect(
+                                                              decoration:
+                                                                  const BoxDecoration(
+                                                                      shape: BoxShape
+                                                                          .circle),
+                                                              child: ClipRRect(
                                                                 borderRadius:
                                                                     const BorderRadius
                                                                         .all(
@@ -302,7 +301,8 @@ class MessageScreen extends StatelessWidget {
                                                                     FadeInImage(
                                                                   placeholder:
                                                                       const AssetImage(
-                                                                          AssetRes.portrait_placeholder),
+                                                                          AssetRes
+                                                                              .portrait_placeholder),
                                                                   image:
                                                                       NetworkImage(
                                                                     data['image']
@@ -344,8 +344,8 @@ class MessageScreen extends StatelessWidget {
                                                                           sfProTextReguler(
                                                                         fontSize:
                                                                             14,
-                                                                        color:
-                                                                            ColorRes.color_F0F0F0,
+                                                                        color: ColorRes
+                                                                            .color_F0F0F0,
                                                                       ),
                                                                     ),
                                                                     Text(
@@ -354,8 +354,8 @@ class MessageScreen extends StatelessWidget {
                                                                           sfProTextReguler(
                                                                         fontSize:
                                                                             14,
-                                                                        color:
-                                                                            ColorRes.color_F0F0F0,
+                                                                        color: ColorRes
+                                                                            .color_F0F0F0,
                                                                       ),
                                                                     ),
                                                                   ],
@@ -364,15 +364,15 @@ class MessageScreen extends StatelessWidget {
                                                             ),
                                                             const Spacer(),
                                                             (docData['lastMessageSender'] ==
-                                                                PrefService.getString(PrefKeys.uid)) &&
+                                                                        PrefService.getString(PrefKeys
+                                                                            .uid)) &&
                                                                     (docData[
                                                                             'lastMessageRead'] ==
                                                                         true)
                                                                 ? Image.asset(
                                                                     AssetRes
                                                                         .read,
-                                                                    height:
-                                                                        16,
+                                                                    height: 16,
                                                                     width: 16,
                                                                   )
                                                                 : const SizedBox(),
@@ -394,6 +394,7 @@ class MessageScreen extends StatelessWidget {
                                 : GetBuilder<MessageController>(
                                     id: "message",
                                     builder: (controller) {
+
                                       if (controller
                                           .getFriendIdList()
                                           .isEmpty) {
@@ -403,12 +404,14 @@ class MessageScreen extends StatelessWidget {
                                           QuerySnapshot<Map<String, dynamic>>>(
                                         stream: FirebaseFirestore.instance
                                             .collection('users')
-                                            .where('id',
+                                            /*   .where('id',
                                                 whereIn: controller
-                                                    .getFriendIdList())
+                                                    .getFriendIdList())*/
                                             .snapshots(),
                                         builder: (context, snapshot) {
+
                                           if (snapshot.hasData == false) {
+
                                             return const SizedBox();
                                           }
                                           return snapshot.data!.docs.isEmpty
@@ -416,6 +419,7 @@ class MessageScreen extends StatelessWidget {
                                               : SizedBox(
                                                   height: Get.height * 0.53,
                                                   child: ListView.builder(
+
                                                     itemCount: snapshot
                                                         .data!.docs.length,
                                                     shrinkWrap: true,
@@ -428,6 +432,8 @@ class MessageScreen extends StatelessWidget {
                                                               .data!.docs[index]
                                                               .data()['uid'] ==
                                                           controller.userUid) {
+                                                        return const SizedBox();
+                                                      } else if (controller.friendList.where((element) => element.id.toString() ==snapshot.data!.docs[index].data()['id'].toString()).isEmpty) {
                                                         return const SizedBox();
                                                       } else if ((snapshot
                                                               .data!.docs[index]
@@ -452,22 +458,16 @@ class MessageScreen extends StatelessWidget {
                                                         return InkWell(
                                                           onTap: () {
                                                             controller.gotoChatScreen(
-                                                                snapshot
-                                                                        .data!
-                                                                        .docs[
-                                                                            index]
+                                                                snapshot.data!
+                                                                        .docs[index]
                                                                         .data()[
                                                                     'uid'],
-                                                                snapshot
-                                                                        .data!
-                                                                        .docs[
-                                                                            index]
+                                                                snapshot.data!
+                                                                        .docs[index]
                                                                         .data()[
                                                                     'name'],
-                                                                snapshot
-                                                                        .data!
-                                                                        .docs[
-                                                                            index]
+                                                                snapshot.data!
+                                                                        .docs[index]
                                                                         .data()[
                                                                     'image']);
                                                           },
@@ -495,7 +495,15 @@ class MessageScreen extends StatelessWidget {
                                                                         .circle,
                                                                   ),
                                                                   child:
-                                                                      ClipRRect(
+                                                                  snapshot
+                                                                      .data!
+                                                                      .docs[index]
+                                                                      .data()['image']
+                                                                      .toString()==""?ClipRRect(
+                                                                    borderRadius: BorderRadius.circular(50),
+                                                                        child: Image.asset( AssetRes
+                                                                        .portrait_placeholder),
+                                                                      ):ClipRRect(
                                                                     borderRadius:
                                                                         const BorderRadius
                                                                             .all(
@@ -542,7 +550,8 @@ class MessageScreen extends StatelessWidget {
                                                                         ? const SizedBox()
                                                                         : Text(
                                                                             snapshot.data!.docs[index].data()['name'].toString(),
-                                                                            style: sfProTextReguler(
+                                                                            style:
+                                                                                sfProTextReguler(
                                                                               fontSize: 17,
                                                                             ),
                                                                           ),
@@ -557,8 +566,7 @@ class MessageScreen extends StatelessWidget {
                                                                 ),
                                                                 const Spacer(),
                                                                 Image.asset(
-                                                                  AssetRes
-                                                                      .read,
+                                                                  AssetRes.read,
                                                                   height: 16,
                                                                   width: 16,
                                                                 ),

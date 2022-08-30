@@ -26,6 +26,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
   @override
   void initState() {
     super.initState();
+
     controller.indicatorAnimationController =
         ValueNotifier<IndicatorAnimationCommand>(
             IndicatorAnimationCommand.resume);
@@ -56,6 +57,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    controller.onInitStateCall();
     return Scaffold(
       body: SafeArea(
         child: Stack(

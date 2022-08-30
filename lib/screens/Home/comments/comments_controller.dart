@@ -31,7 +31,12 @@ class CommentsController extends GetxController {
     update(["commentPost"]);
     super.onInit();
   }
+  onRefreshCode(String id) async {
 
+    await commentPostListData(idPost:id );
+    update(["commentPost"]);
+
+  }
   bool validation() {
     if (msgController.text.isEmpty) {
       errorToast("please enter reply");
@@ -84,10 +89,10 @@ class CommentsController extends GetxController {
     }
   }
   PostCommentListModel postCommentListModel = PostCommentListModel();
-  Future<void> commentPostListData(String idPost) async {
+  Future<void> commentPostListData({String? idPost}) async {
     try {
       loader.value = true;
-      postCommentListModel = await MyPostApi.commentPostListApi(idPost);
+      postCommentListModel = await MyPostApi.commentPostListApi(idPost!);
       update(['home']);
       loader.value = false;
     } catch (e) {
@@ -174,7 +179,7 @@ class CommentsController extends GetxController {
       uploadImage.data = null;
       imageForCamera = null;
 
-      await commentPostListData(idPost);
+      await commentPostListData(idPost: idPost);
       await homeController.friendPostDataWithOutPagination();
 
       homeController.update(["home"]);

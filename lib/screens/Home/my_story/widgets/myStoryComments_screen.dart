@@ -21,7 +21,7 @@ ConnectionsProfileController connectionsProfileController = Get.put(ConnectionsP
             Get.back();
           },
           child: Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Image.asset(
               AssetRes.backIcon,
               height: 16,
@@ -48,16 +48,16 @@ ConnectionsProfileController connectionsProfileController = Get.put(ConnectionsP
             children: [
               SafeArea(
                   child:Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       controller.comments.isEmpty
-                          ? Center(
+                          ? Expanded(
+                            child: Center(
                         child: Text(
-                          "No comments",
-                          style: gilroyBoldTextStyle(color: Colors.black),
+                            "No comments",
+                            style: gilroyBoldTextStyle(color: Colors.black),
                         ),
-                      )
+                      ),
+                          )
                           : Expanded(
                         child: Container(
                           height: Get.height,
@@ -274,7 +274,7 @@ ConnectionsProfileController connectionsProfileController = Get.put(ConnectionsP
                   )
               ),
               Obx(() {
-                return controller.loader.isTrue?FullScreenLoader():SizedBox();
+                return controller.loader.isTrue?const FullScreenLoader():const SizedBox();
               })
             ],
           );

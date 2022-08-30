@@ -94,6 +94,7 @@ class FriendStoryApi {
           ViewStoryController viewStoryController = Get.find();
           viewStoryController.writeSomethings.clear();
           viewStoryController.image.clear();
+          viewStoryController.tagUserList.clear();
           Get.back(result: true);
           flutterToast(jsonDecode(response.body)["message"]);
         }

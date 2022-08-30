@@ -51,10 +51,16 @@ class MyStoryController extends GetxController {
     return true;
   }
 
+  Future<void> onInitStateCall() async {
+    loader.value = true;
+   await viewStoryController.friendStoryApiData();
+    update(["my_story"]);
+    loader.value = false;
+  }
+
   void commentSendTap(String id, BuildContext context) {
     if (validation()) {
       commentData(id);
-
       update(["my_story"]);
       FocusScope.of(context).unfocus();
     }
@@ -72,7 +78,7 @@ class MyStoryController extends GetxController {
       comments = viewStoryController
               .storyModel.myStory![storyIndex].storycommentList ??
           [];
-      update(["my_story","myStoryComments"]);
+      update(["my_story", "myStoryComments"]);
       writeSomething.clear();
       loader.value = false;
     } catch (e) {
@@ -183,7 +189,7 @@ class MyStoryController extends GetxController {
     comments = myStory.storycommentList ?? [];
     currentStoryId = myStory.id;
     pauseAnimation();
-    Get.to(() =>  MyStoryCommentsScreen())!.whenComplete(() {
+    Get.to(() => MyStoryCommentsScreen())!.whenComplete(() {
       playAnimation();
     });
   }
