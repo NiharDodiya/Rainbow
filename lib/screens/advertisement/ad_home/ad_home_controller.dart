@@ -4,6 +4,8 @@ import 'package:rainbow/model/myAdvertiser_model.dart';
 import 'package:rainbow/model/viewAdvertiserModel.dart';
 import 'package:rainbow/screens/advertisement/ad_home/myAdvertiser_api/myAdvertiser_api.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_screen.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/edit_advertisement/edit_advertisement_controller.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/edit_advertisement/edit_advertisement_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/viewAdvertiserProfile_api/viewAdvertiser_api.dart';
 import 'package:rainbow/screens/advertisement/ad_home/widget/advertiementApproved_screen.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
@@ -161,6 +163,8 @@ class AdHomeController extends GetxController {
       print(e.toString());
     }
   }
+  EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertiesementController());
+
 
 
 }

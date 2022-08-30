@@ -181,7 +181,6 @@ class AdvertisementDeatailScreen extends StatelessWidget {
 
 // f
   Widget top() {
-    AdHomeController adHomeController = Get.put(AdHomeController());
     return Column(
       children: [
         Container(
@@ -239,7 +238,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                         const Spacer(),
                         InkWell(
                           onTap: (){
-                            // Get.to(EditAdvertisementscreen());
+                             Get.to(EditAdvertisementscreen());
                           },
                           child: Container(
                             height: 33.3,

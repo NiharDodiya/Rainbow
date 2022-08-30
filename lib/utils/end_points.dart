@@ -83,6 +83,7 @@ class EndPoints {
   static const cancelAdvertiser = "$baseUrl/advirtisers/advertisement/cancel";
   static const followUpAdvertiser = "$baseUrl/advirtisers/advertisement/followup";
   static const viewUserAdvertiser = "$baseUrl/user/profile/view";
+  static const editAdvertiser = '$baseUrl/advirtisers/advertisement/view';
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

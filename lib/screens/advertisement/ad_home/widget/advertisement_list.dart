@@ -26,9 +26,7 @@ Widget advertisementList() {
               SizedBox(height: 20,),
               InkWell(
                 onTap: () {
-                  Get.to(AdvertisementDetailsApprovedScreen(
-                    i: index,
-                  ));
+                  Get.to(AdvertisementDetailsApprovedScreen(i: index,));
                 },
                 child: Container(
                   height: 202,
