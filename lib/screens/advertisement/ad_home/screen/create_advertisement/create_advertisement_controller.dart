@@ -137,10 +137,12 @@ class CreateAdvertisementController extends GetxController {
     try {
       imgIdList = [];
       for (var e in imagePath) {
+        loader.value = true;
         uploadImage = await UploadImageApi.postRegister(e.path);
         imgIdList.add(uploadImage.data!.id!);
       }
       addAdvertisement(imgIdList);
+      loader.value = false;
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -319,7 +321,7 @@ class CreateAdvertisementController extends GetxController {
 
 
   rangSelect(start, end, range) {
-    startTime = start;
+    startTime = DateTime.now();
     endTime = end;
     update(['range']);
   }

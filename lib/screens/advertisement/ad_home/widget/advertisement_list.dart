@@ -26,7 +26,10 @@ Widget advertisementList() {
               SizedBox(height: 20,),
               InkWell(
                 onTap: () {
-                  Get.to(AdvertisementDetailsApprovedScreen(i: index,));
+
+                  Get.to(AdvertisementDetailsApprovedScreen(i: index, id: controller.myAdvertiserModel.data?[index].id ?? 0,));
+
+
                 },
                 child: Container(
                   height: 202,
@@ -44,6 +47,7 @@ Widget advertisementList() {
                           ? controller.onCloseMenu()
                           : Get.to(AdvertisementDetailsApprovedScreen(
                               i: index,
+                        id: controller.myAdvertiserModel.data?[index].id ?? 0,
                             ));
                     },
                     child: Stack(

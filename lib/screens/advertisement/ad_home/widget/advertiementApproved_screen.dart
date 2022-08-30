@@ -18,7 +18,8 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 
 class AdvertisementDetailsApprovedScreen extends StatelessWidget {
   int i;
-  AdvertisementDetailsApprovedScreen({Key? key, required this.i}) : super(key: key);
+  int id;
+  AdvertisementDetailsApprovedScreen({Key? key, required this.i, required this.id}) : super(key: key);
 
   final List<DeveloperSeries> data = [
     // DeveloperSeries(
@@ -95,7 +96,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          top(i, context),
+                          top(i, context, id),
                           Expanded(
                               child: SingleChildScrollView(
                                   physics: const BouncingScrollPhysics(),
@@ -117,7 +118,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
     );
   }
 
-  Widget top(int index, context) {
+  Widget top(int index, context, int id) {
     AdHomeController adHomeController = Get.put(AdHomeController());
 EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertiesementController());
     return GetBuilder<CreateAdvertisementController>(
@@ -185,7 +186,7 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
                             InkWell(
                               onTap: () async{
 
-                                await editAdvertiesementController.myEditAdvertiserListData(id: index);
+                                await editAdvertiesementController.myEditAdvertiserListData(id: id);
 
                                 Get.to(EditAdvertisementscreen());
 

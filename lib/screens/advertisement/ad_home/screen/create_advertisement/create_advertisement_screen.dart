@@ -754,7 +754,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                             : Text(
                                 controller.address!,
                                 style: gilroyBoldTextStyle(
-                                    fontSize: 9, color: ColorRes.black),
+                                    fontSize: 12, color: ColorRes.black),
                               ),
                         const Spacer()
                       ],
@@ -768,7 +768,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                 return dropdownButton(
                   showtitle: false,
                   title: "",
-                  hintText: "caneda",
+                  hintText: "canada",
                   selectedValue: controller.selectedCity,
                   onTap: controller.onTapEthnicity,
                   dropdownList: countryNationCity,
@@ -822,7 +822,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                     controller: advertisementController.dateController,
                     title: "",
                     titleBottomPadding: 0,
-                    hintText: Strings.date,
+                    hintText: 'Date',
                     showTitle: false,
                     enable: false,
                   ),

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/utils/color_res.dart';
 
 import '../../../common/Widget/text_styles.dart';
 import '../../../utils/asset_res.dart';
 
 class AdNotificationsScreen extends StatelessWidget {
-  const AdNotificationsScreen({Key? key}) : super(key: key);
-
+   AdNotificationsScreen({Key? key}) : super(key: key);
+  AdHomeController controller = Get.find<AdHomeController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +50,19 @@ class AdNotificationsScreen extends StatelessWidget {
                               child: Row(
                                 children: [
                                   Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration:  BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                        image: NetworkImage(controller
+                                          .viewAdvertiserModel.data!.profileImage
+                                          .toString()),fit: BoxFit.cover,)
+
+                                    ),
+
+                                  ),
+                                 /* Container(
                                     height: 54,
                                     width: 54,
                                     decoration: BoxDecoration(
@@ -77,7 +91,7 @@ class AdNotificationsScreen extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                  ),
+                                  ),*/
                                   const SizedBox(
                                     width: 12,
                                   ),

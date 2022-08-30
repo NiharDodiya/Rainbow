@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
-import 'package:rainbow/common/Widget/loaders.dart';
-import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/edit_advertisement/edit_advertisement_controller.dart';
@@ -18,9 +16,7 @@ class EditAdvertisementscreen extends StatelessWidget {
 
  final EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertiesementController());
 
-
-
-  @override
+ @override
   Widget build(BuildContext context) {
      //editAdvertiesementController.getImagePath();
     return Scaffold(
@@ -125,16 +121,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                         style: poppinsMediumBold(fontSize: 18),
                       ),
                       const Spacer(),
-                      InkWell(
-                        onTap: () {
-                           Get.to(CreateAdvertisementScreen());
-                        },
-                        child: Text(
-                          "Edit",
-                          style: poppinsMediumBold(fontSize: 18)
-                              .copyWith(decoration: TextDecoration.underline),
-                        ),
-                      ),
+                      editButton(),
                     ],
                   ),
                   const SizedBox(
@@ -146,7 +133,6 @@ class EditAdvertisementscreen extends StatelessWidget {
                         width: Get.width * 0.496,
                         height: 25,
                         child: ListView.builder(
-
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: true,
                           itemCount: editAdvertiesementController.editAdvertisementModel.data?.tagsList?.length ?? 0,
@@ -164,7 +150,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                               ),
                               child: Center(
                                 child: Text(
-                                   editAdvertiesementController.editAdvertisementModel.data!.tagsList![index].toString(),
+                                  editAdvertiesementController.editAdvertisementModel.data?.tagsList![index].toString() ?? "",
                                   style: gilroyMediumTextStyle(
                                       fontSize: 12,
                                       color: ColorRes.color_696D6D),
@@ -194,11 +180,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                     children: [
                       Text("Images", style: poppinsMediumBold(fontSize: 18)),
                       const Spacer(),
-                      Text(
-                        "Edit",
-                        style: poppinsMediumBold(fontSize: 18)
-                            .copyWith(decoration: TextDecoration.underline),
-                      ),
+                      editButton(),
                     ],
                   ),
                   const SizedBox(
@@ -206,7 +188,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                   ),
                   ListView.builder(
                     shrinkWrap: true,
-                      itemCount: editAdvertiesementController.editAdvertisementModel.data!.itemsList!.length,
+                      itemCount: editAdvertiesementController.editAdvertisementModel.data?.itemsList?.length ?? 0,
                       itemBuilder: (context, index){
                       return Column(
                         children: [
@@ -214,7 +196,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                         height: 40,
                         width: Get.width - (Get.width * 0.0853 * 2),
                         child: Text(
-                          editAdvertiesementController.editAdvertisementModel.data!.itemsList![index].toString(),
+                          editAdvertiesementController.editAdvertisementModel.data?.itemsList![index].toString() ?? "",
                           style: poppinsRegularBold(
                             fontSize: 14,
                             color: ColorRes.color_3083FF,
@@ -244,11 +226,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                     children: [
                       Text("Title", style: poppinsMediumBold(fontSize: 18)),
                       const Spacer(),
-                      Text(
-                        "Edit",
-                        style: poppinsMediumBold(fontSize: 18)
-                            .copyWith(decoration: TextDecoration.underline),
-                      ),
+                      editButton(),
                     ],
                   ),
                   const SizedBox(
@@ -257,7 +235,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        editAdvertiesementController.editAdvertisementModel.data!.title.toString(),
+                        editAdvertiesementController.editAdvertisementModel.data?.title.toString() ?? "",
                         style: poppinsRegularBold(
                           fontSize: 14,
                         ),
@@ -284,11 +262,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                       Text(Strings.location,
                           style: poppinsMediumBold(fontSize: 18)),
                       const Spacer(),
-                      Text(
-                        Strings.edit,
-                        style: poppinsMediumBold(fontSize: 18)
-                            .copyWith(decoration: TextDecoration.underline),
-                      ),
+                      editButton(),
                     ],
                   ),
                   const SizedBox(
@@ -298,19 +272,19 @@ class EditAdvertisementscreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${Strings.country} : ${editAdvertiesementController.editAdvertisementModel.data!.userDetail!.country.toString()}",
+                        "${Strings.country} : ${editAdvertiesementController.editAdvertisementModel.data?.userDetail?.country.toString()??""}",
                         style: poppinsRegularBold(
                           fontSize: 14,
                         ),
                       ),
                       Text(
-                        "${Strings.street} : ${editAdvertiesementController.editAdvertisementModel.data!.userDetail!.streetName.toString()}",
+                        "${Strings.street} : ${editAdvertiesementController.editAdvertisementModel.data?.userDetail?.streetName.toString()??""}",
                         style: poppinsRegularBold(
                           fontSize: 14,
                         ),
                       ),
                       Text(
-                        "${Strings.city} : ${editAdvertiesementController.editAdvertisementModel.data!.location.toString()}",
+                        "${Strings.city} : ${editAdvertiesementController.editAdvertisementModel.data?.userDetail?.city.toString()??""}",
                         style: poppinsRegularBold(
                           fontSize: 14,
                         ),
@@ -335,11 +309,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                     children: [
                       Text("Province", style: poppinsMediumBold(fontSize: 18)),
                       const Spacer(),
-                      Text(
-                        "Edit",
-                        style: poppinsMediumBold(fontSize: 18)
-                            .copyWith(decoration: TextDecoration.underline),
-                      ),
+                      editButton(),
                     ],
                   ),
                   const SizedBox(
@@ -348,7 +318,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        editAdvertiesementController.editAdvertisementModel.data!.province.toString(),
+                        editAdvertiesementController.editAdvertisementModel.data?.province.toString()??"",
                         style: poppinsRegularBold(
                           fontSize: 14,
                         ),
@@ -374,11 +344,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                       Text("Postal code",
                           style: poppinsMediumBold(fontSize: 18)),
                       const Spacer(),
-                      Text(
-                        "Edit",
-                        style: poppinsMediumBold(fontSize: 18)
-                            .copyWith(decoration: TextDecoration.underline),
-                      ),
+                      editButton(),
                     ],
                   ),
                   const SizedBox(
@@ -387,7 +353,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        editAdvertiesementController.editAdvertisementModel.data!.postalCode.toString(),
+                        editAdvertiesementController.editAdvertisementModel.data?.postalCode.toString()??"",
                         style: poppinsRegularBold(
                           fontSize: 14,
                         ),
@@ -412,11 +378,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                     children: [
                       Text("Date", style: poppinsMediumBold(fontSize: 18)),
                       const Spacer(),
-                      Text(
-                        "Edit",
-                        style: poppinsMediumBold(fontSize: 18)
-                            .copyWith(decoration: TextDecoration.underline),
-                      ),
+                      editButton(),
                     ],
                   ),
                   const SizedBox(
@@ -425,7 +387,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        editAdvertiesementController.editAdvertisementModel.data!.startDate.toString().split(" ")[0],
+                        editAdvertiesementController.editAdvertisementModel.data?.startDate.toString().split(" ")[0] ??"",
                         style: poppinsRegularBold(
                           fontSize: 14,
                         ),
@@ -451,11 +413,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                       Text("Description",
                           style: poppinsMediumBold(fontSize: 18)),
                       const Spacer(),
-                      Text(
-                        "Edit",
-                        style: poppinsMediumBold(fontSize: 18)
-                            .copyWith(decoration: TextDecoration.underline),
-                      ),
+                      editButton(),
                     ],
                   ),
                   const SizedBox(
@@ -464,7 +422,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        editAdvertiesementController.editAdvertisementModel.data!.description.toString(),
+                        editAdvertiesementController.editAdvertisementModel.data?.description.toString()??"",
                         style: poppinsRegularBold(
                           fontSize: 14,
                         ),
@@ -490,11 +448,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                       Text("Call to Action",
                           style: poppinsMediumBold(fontSize: 18)),
                       const Spacer(),
-                      Text(
-                        "Edit",
-                        style: poppinsMediumBold(fontSize: 18)
-                            .copyWith(decoration: TextDecoration.underline),
-                      ),
+                      editButton(),
                     ],
                   ),
                   const SizedBox(
@@ -503,7 +457,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        editAdvertiesementController.editAdvertisementModel.data!.callAction.toString(),
+                        editAdvertiesementController.editAdvertisementModel.data?.callAction.toString() ?? "",
                         style: poppinsRegularBold(
                           fontSize: 14,
                         ),
@@ -528,11 +482,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                     children: [
                       Text("URL Link", style: poppinsMediumBold(fontSize: 18)),
                       const Spacer(),
-                      Text(
-                        "Edit",
-                        style: poppinsMediumBold(fontSize: 18)
-                            .copyWith(decoration: TextDecoration.underline),
-                      ),
+                      editButton(),
                     ],
                   ),
                   const SizedBox(
@@ -541,7 +491,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        editAdvertiesementController.editAdvertisementModel.data!.urlLink.toString(),
+                        editAdvertiesementController.editAdvertisementModel.data?.urlLink.toString()??"",
                         style: poppinsRegularBold(
                           fontSize: 14,
                         ),
@@ -562,6 +512,18 @@ class EditAdvertisementscreen extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+  Widget editButton(){
+    return  InkWell(
+      onTap: () {
+        Get.to(CreateAdvertisementScreen());
+      },
+      child: Text(
+        "Edit",
+        style: poppinsMediumBold(fontSize: 18)
+            .copyWith(decoration: TextDecoration.underline),
       ),
     );
   }

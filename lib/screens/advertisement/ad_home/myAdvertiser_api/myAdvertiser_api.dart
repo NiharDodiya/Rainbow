@@ -139,7 +139,6 @@ class MyAdvertiserApi{
     try {
       String url = EndPoints.editAdvertiser;
 
-      //Map<String, String> param = {};
 
       http.Response? response = await HttpService.postApi(
           url: url,
