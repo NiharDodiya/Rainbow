@@ -113,23 +113,6 @@ Widget userComment(
                         ),
                       ],
                     ),
-                    /*          image == ""
-                        ? const SizedBox()
-                        : CachedNetworkImage(
-                            imageUrl: image.toString(),
-                            height: 100,
-                            width: 100,
-                            fit: BoxFit.cover,
-                            progressIndicatorBuilder:
-                                (context, url, downloadProgress) {
-                              return Center(
-                                child: CircularProgressIndicator(
-                                    value: downloadProgress.progress),
-                              );
-                            },
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
-                          ),*/
                     image == ""
                         ? const SizedBox()
                         : /*Image.network(
@@ -167,98 +150,100 @@ Widget userComment(
                   itemCount: reply!.length,
                   itemBuilder: (context, index) {
                     return reply.isNotEmpty
-                        ? Container(
-                            width: Get.width - 110,
-                            decoration: BoxDecoration(
-                              color: ColorRes.color_959595.withOpacity(0.1),
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(15),
+                        ? Padding(padding: EdgeInsets.only(bottom: 8),
+                          child: Container(
+                              width: Get.width - 110,
+                              decoration: BoxDecoration(
+                                color: ColorRes.color_959595.withOpacity(0.1),
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(15),
+                                ),
+                              ),
+                              margin: const EdgeInsets.only(
+                                left: 25,
+                              ),
+                              padding: const EdgeInsets.all(7),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    reply[index]
+                                        .postCommentUser!
+                                        .fullName
+                                        .toString(),
+                                    style: beVietnamProMediumTextStyle(
+                                        color: ColorRes.black),
+                                  ),
+                                  Text(
+                                    controller.timeAgo(reply[index].createdAt!),
+                                    style: beVietnamProRegularTextStyle(
+                                      fontSize: 10,
+                                      color: ColorRes.color_959595,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 7,
+                                  ),
+                                  RichText(
+                                    text: TextSpan(
+                                      text: "",
+                                      style: beVietnamProRegularTextStyle(
+                                        color: ColorRes.themeColor,
+                                        fontSize: 12,
+                                      ),
+                                      children: [
+                                        TextSpan(
+                                          text:
+                                              reply[index].description.toString(),
+                                          style: beVietnamProRegularTextStyle(
+                                            fontSize: 12,
+                                            color: ColorRes.black,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  /*reply[index].postCommentItem.toString() == ""
+                                      ? const SizedBox()
+                                      : CachedNetworkImage(
+                                          imageUrl: reply[index]
+                                              .postCommentItem
+                                              .toString(),
+                                          height: 100,
+                                          width: 100,
+                                          fit: BoxFit.cover,
+                                          progressIndicatorBuilder:
+                                              (context, url, downloadProgress) {
+                                            return Center(
+                                              child: CircularProgressIndicator(
+                                                  value:
+                                                      downloadProgress.progress),
+                                            );
+                                          },
+                                          errorWidget: (context, url, error) =>
+                                              const Icon(Icons.error),
+                                        ),*/
+                                  reply[index].postCommentItem.toString() == ""
+                                      ? const SizedBox()
+                                      : /*image == ""
+                                          ? const SizedBox()*/
+                                      FadeInImage(
+                                          height: 100,
+                                          width: 100,
+                                          placeholder: const AssetImage(
+                                              AssetRes.placeholderImage),
+                                          image: NetworkImage(reply[index]
+                                              .postCommentItem
+                                              .toString()),
+                                          fit: BoxFit.cover,
+                                        ),
+                                ],
                               ),
                             ),
-                            margin: const EdgeInsets.only(
-                              left: 25,
-                            ),
-                            padding: const EdgeInsets.all(7),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  reply[index]
-                                      .postCommentUser!
-                                      .fullName
-                                      .toString(),
-                                  style: beVietnamProMediumTextStyle(
-                                      color: ColorRes.black),
-                                ),
-                                Text(
-                                  controller.timeAgo(reply[index].createdAt!),
-                                  style: beVietnamProRegularTextStyle(
-                                    fontSize: 10,
-                                    color: ColorRes.color_959595,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 7,
-                                ),
-                                RichText(
-                                  text: TextSpan(
-                                    text: "",
-                                    style: beVietnamProRegularTextStyle(
-                                      color: ColorRes.themeColor,
-                                      fontSize: 12,
-                                    ),
-                                    children: [
-                                      TextSpan(
-                                        text:
-                                            reply[index].description.toString(),
-                                        style: beVietnamProRegularTextStyle(
-                                          fontSize: 12,
-                                          color: ColorRes.black,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                /*reply[index].postCommentItem.toString() == ""
-                                    ? const SizedBox()
-                                    : CachedNetworkImage(
-                                        imageUrl: reply[index]
-                                            .postCommentItem
-                                            .toString(),
-                                        height: 100,
-                                        width: 100,
-                                        fit: BoxFit.cover,
-                                        progressIndicatorBuilder:
-                                            (context, url, downloadProgress) {
-                                          return Center(
-                                            child: CircularProgressIndicator(
-                                                value:
-                                                    downloadProgress.progress),
-                                          );
-                                        },
-                                        errorWidget: (context, url, error) =>
-                                            const Icon(Icons.error),
-                                      ),*/
-                                reply[index].postCommentItem.toString() == ""
-                                    ? const SizedBox()
-                                    : /*image == ""
-                                        ? const SizedBox()*/
-                                    FadeInImage(
-                                        height: 100,
-                                        width: 100,
-                                        placeholder: const AssetImage(
-                                            AssetRes.placeholderImage),
-                                        image: NetworkImage(reply[index]
-                                            .postCommentItem
-                                            .toString()),
-                                        fit: BoxFit.cover,
-                                      ),
-                              ],
-                            ),
-                          )
+                        )
                         : const SizedBox();
                   },
                 ),

@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -25,18 +26,21 @@ class CommentsController extends GetxController {
   String? nameComment;
   File? imageCamera;
   File? imageForCamera;
+  RxBool refreshLoader = false.obs;
 
   @override
   void onInit() {
     update(["commentPost"]);
     super.onInit();
   }
+
   onRefreshCode(String id) async {
-
-    await commentPostListData(idPost:id );
+    refreshLoader.value = true;
+    await commentPostListData(idPost: id);
     update(["commentPost"]);
-
+    refreshLoader.value = false;
   }
+
   bool validation() {
     if (msgController.text.isEmpty) {
       errorToast("please enter reply");
@@ -50,7 +54,11 @@ class CommentsController extends GetxController {
       commentPostData(context, id);
     }
   }
-
+void clearNameCommentOnTap(){
+    nameComment = null;
+    replyId=null;
+    update(["commentPost"]);
+}
   Future cameraImage() async {
     try {
       var pickedFile =
@@ -88,7 +96,9 @@ class CommentsController extends GetxController {
       print(e.toString());
     }
   }
+
   PostCommentListModel postCommentListModel = PostCommentListModel();
+
   Future<void> commentPostListData({String? idPost}) async {
     try {
       loader.value = true;
@@ -192,7 +202,10 @@ class CommentsController extends GetxController {
     }
   }
 
+  bool replay = false;
+
   void onReplyTap(String? commentId, String? name) {
+
     replyId = commentId;
     nameComment = name;
     update(['commentPost']);

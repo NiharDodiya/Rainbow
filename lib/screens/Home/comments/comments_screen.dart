@@ -23,19 +23,23 @@ class CommentScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          leading: GestureDetector(
-            onTap: () {
-              Get.back();
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Image.asset(
-                AssetRes.backIcon,
-                height: 16,
-                width: 35,
-                color: Colors.black,
+          leading: GetBuilder<CommentsController>(id: "commentPost",builder: (controller) {
+            return GestureDetector(
+              onTap: () {
+                controller.clearNameCommentOnTap();
+                Get.back();
+                },
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Image.asset(
+                  AssetRes.backIcon,
+                  height: 16,
+                  width: 35,
+                  color: Colors.black,
+                ),
               ),
-            ),
+            );
+          },
           ),
           title: Text(
             "Comments",
@@ -56,7 +60,7 @@ class CommentScreen extends StatelessWidget {
                 return Stack(
                   children: [
                     commentList(context),
-                    controller.loader.isTrue
+                    controller.refreshLoader.isFalse && controller.loader.isTrue
                         ? const FullScreenLoader()
                         : const SizedBox()
                   ],
@@ -72,12 +76,13 @@ class CommentScreen extends StatelessWidget {
       children: [
         Expanded(
           child: RefreshIndicator(
-            onRefresh: () => controller.onRefreshCode(controller
-                .postCommentListModel.data![0].id.toString()),
+            onRefresh: () => controller.onRefreshCode(idPost.toString()),
             child: ListView.separated(
-              physics: const BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
               padding: EdgeInsets.only(
-                  left: 19, right: 19, top: 10, bottom: Get.height * 0.7),
+                  left: 19, right: 19, top: 12, bottom: Get.height * 0.1),
               itemBuilder: (context, index) {
                 return userComment(
                     image: controller
@@ -100,7 +105,7 @@ class CommentScreen extends StatelessWidget {
               separatorBuilder: (context, index) {
                 return Divider(
                   color: ColorRes.black.withOpacity(0.6),
-                  height: 20,
+                  height: 22,
                 );
               },
               itemCount: controller.postCommentListModel.data == null
@@ -137,24 +142,45 @@ class CommentScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              RichText(
-                text: TextSpan(
-                  text:
-                      'Replying to ${controller.nameComment == null ? "" : controller.nameComment.toString()}...',
-                  style: beVietnamProRegularTextStyle(
-                    fontSize: 14,
-                    color: ColorRes.black,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: "",
-                      style: beVietnamProMediumTextStyle(
-                        color: ColorRes.themeColor,
+              Row(
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      text:
+                          'Replying to ${controller.nameComment == null ? "" : controller.nameComment.toString()}...',
+                      style: beVietnamProRegularTextStyle(
                         fontSize: 14,
+                        color: ColorRes.black,
                       ),
+                      children: [
+                        TextSpan(
+                          text: "",
+                          style: beVietnamProMediumTextStyle(
+                            color: ColorRes.themeColor,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  controller.nameComment == null || controller.nameComment!.isEmpty
+                      ? const SizedBox()
+                      : InkWell(
+                          onTap: () {
+                            controller.clearNameCommentOnTap();
+                          },
+                          child: Container(
+                              height: 22,
+                              width: 22,
+                              decoration: const BoxDecoration(
+                                  color: Colors.black, shape: BoxShape.circle),
+                              child: const Icon(
+                                Icons.close,
+                                color: Colors.white,
+                                size: 20,
+                              )),
+                        )
+                ],
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -224,6 +250,7 @@ class CommentScreen extends StatelessWidget {
                               controller.onTapSendMsg(
                                   context, idPost.toString());
                               FocusScope.of(context).unfocus();
+                             controller.clearNameCommentOnTap();
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(

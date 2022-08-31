@@ -1,7 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/model/listUserTag_model.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -335,6 +337,7 @@ class StoryScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+            /*    tagUserList(controller),*/
                 GetBuilder<ViewStoryController>(
                   id: 'createStory',
                   builder: (controller) {

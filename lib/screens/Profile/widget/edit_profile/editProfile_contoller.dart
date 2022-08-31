@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,8 @@ import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/edit_api/edit_api.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/edit_api/edit_model.dart';
+import 'package:rainbow/service/pref_services.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class EditProfileController extends GetxController {
@@ -321,7 +324,7 @@ class EditProfileController extends GetxController {
     // continue accessing the position of the device.
     return await Geolocator.getCurrentPosition();
   }
-
+FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   Future<void> editProfileApi(BuildContext context) async {
     loader.value = true;
     try {
@@ -352,11 +355,14 @@ class EditProfileController extends GetxController {
         hobbies.text,
         haveKids.text,
       );
+
       if (data != null) {
         editProfile = data;
         Navigator.pop(context);
       }
       loader.value = false;
+      await  firebaseFirestore.collection("users").doc(PrefService.getString(PrefKeys.uid)).update({"image":uploadImage1.data!.itemUrl.toString()});
+
     } catch (e) {
       loader.value = false;
       debugPrint(e.toString());

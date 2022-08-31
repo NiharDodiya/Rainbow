@@ -82,7 +82,14 @@ class ChatScreen extends StatelessWidget {
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Container(
+                                profileImage.toString().isEmpty?Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(image: AssetImage(AssetRes.portrait_placeholder)),
+                                  ),
+                                ):Container(
                                   height: 50,
                                   width: 50,
                                   decoration: const BoxDecoration(

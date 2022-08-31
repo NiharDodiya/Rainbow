@@ -1192,7 +1192,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 .postUser!
                                                 .profileImage
                                                 .toString(),
-                                          ));
+                                          ))!.then((value) async {
+
+                                        await  controller.friendPostDataWithOutPagination();
+                                      });
                                     },
                                     child: const SizedBox(
                                       height: 18,
