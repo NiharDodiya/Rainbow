@@ -25,7 +25,9 @@ class UploadImageApi {
       print(response);
       var responsed = await http.Response.fromStream(response);
       final responseData = json.decode(responsed.body);
+      print(responseData);
       return uploadImageFromJson(responsed.body);
+
     } catch (e) {
       print(e.toString());
       return [];

@@ -19,65 +19,69 @@ class UploadImage {
   Data? data;
 
   factory UploadImage.fromJson(Map<String, dynamic> json) => UploadImage(
-        status: json["status"] == null ? null : json["status"],
+        status: json["status"] ?? null,
         data: json["data"] == null ? null : Data.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "status": status == null ? null : status,
+        "status": status ?? null,
         "data": data == null ? null : data!.toJson(),
       };
 }
 
 class Data {
   Data({
+    this.id,
     this.createdAt,
     this.updatedAt,
     this.status,
-    this.id,
     this.name,
     this.type,
     this.firebaseToken,
     this.ext,
     this.idUser,
+    this.itemUrl,
   });
 
+  int? id;
   DateTime? createdAt;
   DateTime? updatedAt;
   String? status;
-  int? id;
   String? name;
   String? type;
   String? firebaseToken;
   String? ext;
   int? idUser;
+  String? itemUrl;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
+        id: json["id"] ?? null,
         createdAt: json["createdAt"] == null
             ? null
             : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null
             ? null
             : DateTime.parse(json["updatedAt"]),
-        status: json["status"] == null ? null : json["status"],
-        id: json["id"] == null ? null : json["id"],
-        name: json["name"] == null ? null : json["name"],
-        type: json["type"] == null ? null : json["type"],
+        status: json["status"] ?? null,
+        name: json["name"] ?? null,
+        type: json["type"],
         firebaseToken:
-            json["firebase_token"] == null ? null : json["firebase_token"],
-        ext: json["ext"] == null ? null : json["ext"],
-        idUser: json["id_user"] == null ? null : json["id_user"],
+            json["firebase_token"] ?? null,
+        ext: json["ext"] ?? null,
+        idUser: json["id_user"] ?? null,
+        itemUrl: json["itemUrl"] ?? null,
       );
 
   Map<String, dynamic> toJson() => {
+        "id": id ?? null,
         "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
         "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
-        "status": status == null ? null : status,
-        "id": id == null ? null : id,
-        "name": name == null ? null : name,
-        "type": type == null ? null : type,
-        "firebase_token": firebaseToken == null ? null : firebaseToken,
-        "ext": ext == null ? null : ext,
-        "id_user": idUser == null ? null : idUser,
+        "status": status ?? null,
+        "name": name ?? null,
+        "type": type,
+        "firebase_token": firebaseToken ?? null,
+        "ext": ext ?? null,
+        "id_user": idUser ?? null,
+        "itemUrl": itemUrl ?? null,
       };
 }
