@@ -22,7 +22,7 @@ class AdHomeScreen extends StatelessWidget {
       body: SafeArea(
         child:Container(
           width: Get.width,
-          height: Get.height - 80,
+          //height: Get.height - 80,
           //padding: const EdgeInsets.only(left: 30,right: 30,top: 40),
           decoration: const BoxDecoration(
             gradient: LinearGradient(
