@@ -49,7 +49,23 @@ class AdNotificationsScreen extends StatelessWidget {
                                   right: Get.width * 0.16),
                               child: Row(
                                 children: [
-                                  Container(
+                                  (controller.viewAdvertiserModel.data!.profileImage
+                                      .toString()
+                                      .isEmpty)
+                                      ?Container(
+                              height: 50,
+                              width: 50,
+                              decoration:  const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                      AssetRes.portrait_placeholder,
+                                    ),
+
+                              ),
+
+                            ))
+                                      :Container(
                                     height: 50,
                                     width: 50,
                                     decoration:  BoxDecoration(
@@ -62,36 +78,6 @@ class AdNotificationsScreen extends StatelessWidget {
                                     ),
 
                                   ),
-                                 /* Container(
-                                    height: 54,
-                                    width: 54,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                          color: ColorRes.white, width: 1),
-                                      gradient: const LinearGradient(
-                                        colors: [
-                                          ColorRes.color_50369C,
-                                          ColorRes.color_D18EEE,
-                                        ],
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                      ),
-                                    ),
-                                    child: Center(
-                                      child: Container(
-                                        height: 42.69,
-                                        width: 25.83,
-                                        decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                            image: AssetImage(
-                                              AssetRes.greenDuck,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),*/
                                   const SizedBox(
                                     width: 12,
                                   ),

@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/edit_advertise_model.dart';
 import 'package:rainbow/model/myAdvertiser_model.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
@@ -10,6 +12,8 @@ import 'package:rainbow/utils/pref_keys.dart';
 import 'package:http/http.dart' as http;
 
 class MyAdvertiserApi{
+
+
 
   static Future deleteAdvertiser(String? id,BuildContext context) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
@@ -165,4 +169,36 @@ class MyAdvertiserApi{
       return [];
     }
   }
+
+  static Future updatePostAdvertiseAPI({required Map<String, dynamic> data}) async {
+
+    AdHomeController adHomeController = Get.put(AdHomeController());
+
+    Uri url = Uri.parse(EndPoints.updateAdvertiser);
+
+    http.Response response =
+    await http.post(url, body: jsonEncode(data), headers: {
+      "Content-Type": "application/json",
+      "x-access-token": PrefService.getString(PrefKeys.registerToken)
+    });
+
+    if (response.statusCode == 200) {
+      print("========= updated...${response.statusCode} ==============");
+      print(PrefService.getString(PrefKeys.registerToken));
+
+      //Map<String, dynamic> allData = jsonDecode(response.body);
+
+      jsonDecode(response.body);
+
+      adHomeController.myAdvertiserListData();
+
+      flutterToast(jsonDecode(response.body)["message"]);
+
+      return response.statusCode;
+    } else {
+      print("============ ${response.statusCode} ==============");
+      return response.statusCode;
+    }
+  }
+
 }

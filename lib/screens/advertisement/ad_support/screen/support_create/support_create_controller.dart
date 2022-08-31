@@ -90,6 +90,7 @@ class SupportCreateController extends GetxController {
   }
 
 SupportController supportController=Get.put(SupportController());
+
   void onSendMsgTap() async {
    if(valid()){
      await supportApi();
