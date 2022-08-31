@@ -94,7 +94,7 @@ class CommentScreen extends StatelessWidget {
                     fullName: controller.postCommentListModel.data![index]
                         .postCommentUser!.fullName
                         .toString(),
-                    profileImage: profileImage,
+                    profileImage: controller.postCommentListModel.data![index].postCommentUser!.profileImage.toString(),
                     reply: controller
                         .postCommentListModel.data![index].postCommentReply,
                     commentId: controller.postCommentListModel.data![index].id

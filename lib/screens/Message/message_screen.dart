@@ -133,7 +133,21 @@ class MessageScreen extends StatelessWidget {
                                                           height: 20),
                                                       Stack(
                                                         children: [
-                                                          Container(
+                                                          data['image']
+                                                              .toString().isEmpty?Container(
+                                                            margin:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                              horizontal: 10,
+                                                            ),
+                                                            height: 50,
+                                                            width: 50,
+                                                            decoration:
+                                                            const BoxDecoration(
+                                                              shape: BoxShape
+                                                                  .circle,image: DecorationImage(image: AssetImage(AssetRes.portrait_placeholder))
+                                                            ),
+                                                          ):Container(
                                                             margin:
                                                                 const EdgeInsets
                                                                     .symmetric(

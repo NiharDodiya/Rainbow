@@ -103,6 +103,7 @@ void clearNameCommentOnTap(){
     try {
       loader.value = true;
       postCommentListModel = await MyPostApi.commentPostListApi(idPost!);
+      print(postCommentListModel);
       update(['home']);
       loader.value = false;
     } catch (e) {
