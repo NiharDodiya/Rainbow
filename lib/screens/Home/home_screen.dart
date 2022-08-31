@@ -841,33 +841,39 @@ class _HomeScreenState extends State<HomeScreen> {
                                         style: textStyleFont16WhitLight)),
                                 ),
                               ),*/
-                              child: InkWell(
-                                onTap: () {
-                                  connectionsProfileController.callApi(
-                                      controller
-                                          .friendPostListData[index].idUser
-                                          .toString());
-                                },
-                                child: DecoratedText(
-                                  text:
-                                      "${controller.friendPostListData[index].postTag!.map<String>((e) => "@${e.name}").toList().join(' ')} ${controller.friendPostListData[index].description}",
-                                  rules: [
-                                    DecoratorRule.startsWith(
-                                      text: "@",
-                                      style: sfProTextReguler(
-                                        fontSize: 16,
-                                        color: ColorRes.color_FED785,
-                                      ),
+                              child: DecoratedText(
+                                text: controller
+                                        .friendPostListData[index].postTag!
+                                        .map<String>((e) => "@${e.name}")
+                                        .toList()
+                                        .join(' ') +
+                                    controller
+                                        .friendPostListData[index].description
+                                        .toString(),
+                                rules: [
+                                  DecoratorRule.startsWith(
+                                    text: "@",
+                                    style: sfProTextReguler(
+                                      fontSize: 16,
+                                      color: ColorRes.color_FED785,
                                     ),
-                                    DecoratorRule.startsWith(
-                                      text: "#",
-                                      style: sfProTextReguler(
-                                        fontSize: 16,
-                                        color: ColorRes.color_FED785,
-                                      ),
+                                    onTap: (val) => controller.onTagTap(
+                                        controller
+                                            .friendPostListData[index].postTag
+                                            ?.firstWhereOrNull((element) =>
+                                                element.name ==
+                                                val.replaceAll('@', ''))
+                                            ?.idUser
+                                            ?.toString()),
+                                  ),
+                                  DecoratorRule.startsWith(
+                                    text: "#",
+                                    style: sfProTextReguler(
+                                      fontSize: 16,
+                                      color: ColorRes.color_FED785,
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
                             /*    Row(

@@ -24,6 +24,7 @@ import 'package:rainbow/screens/Home/myPost_Api/myPost_api.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_controller.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_screen.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
+import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
 import 'package:rainbow/screens/Home/settings/settings_screen.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_screen.dart';
@@ -454,5 +455,10 @@ void onTapSetting(){
     } else {
       return false;
     }
+  }
+
+  void onTagTap(String? userId){
+    ConnectionsProfileController connectionsProfileController = Get.put(ConnectionsProfileController());
+    connectionsProfileController.callApi(userId);
   }
 }
