@@ -842,14 +842,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),*/
                               child: DecoratedText(
-                                text: controller
+                                text: '${controller
                                         .friendPostListData[index].postTag!
                                         .map<String>((e) => "@${e.name}")
                                         .toList()
-                                        .join(' ') +
-                                    controller
-                                        .friendPostListData[index].description
-                                        .toString(),
+                                        .join(' ')} ${controller
+                                        .friendPostListData[index].description}',
                                 rules: [
                                   DecoratorRule.startsWith(
                                     text: "@",
