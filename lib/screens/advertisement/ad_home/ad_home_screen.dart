@@ -7,7 +7,6 @@ import 'package:rainbow/screens/advertisement/ad_home/widget/advertisement_list.
 import 'package:rainbow/screens/advertisement/ad_home/widget/appbar.dart';
 import 'package:rainbow/screens/advertisement/ad_home/widget/no_advertisement.dart';
 import 'package:rainbow/utils/color_res.dart';
-
 import '../../dashboard/dashboard_controller.dart';
 
 class AdHomeScreen extends StatelessWidget {
@@ -18,45 +17,50 @@ class AdHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     adHomeController.myAdvertiserListData();
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: (){
+
+      },
+        child: Scaffold(
       body: SafeArea(
-        child:Container(
-          width: Get.width,
-          //height: Get.height - 80,
-          //padding: const EdgeInsets.only(left: 30,right: 30,top: 40),
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+          child:Container(
+            width: Get.width,
+            //height: Get.height - 80,
+            //padding: const EdgeInsets.only(left: 30,right: 30,top: 40),
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  ColorRes.color_50369C,
+                  ColorRes.color_D18EEE,
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
             ),
-          ),
-          child: Obx(() {
-            return Stack(
-              children: [
-                Column(
-                  children: [
-                    appbar(),
-                    GetBuilder<AdHomeController>(
-                      id: 'list',
-                      builder: (controller) {
-                        return (controller.myAdvertiserModel.data?.length ?? 0)==0
-                            ? noAdvertisement()
-                            :  advertisementList();
-                      }
-                    ),
-                  ],
-                ),
-                adHomeController.loader.isTrue?const FullScreenLoader():const SizedBox(),
-                updateAdvertiseController.loader.value==true?FullScreenLoader():SizedBox(),
-              ],
-            );
-          }),
-        )
+            child: Obx(() {
+              return Stack(
+                children: [
+                  Column(
+                    children: [
+                      appbar(),
+                      GetBuilder<AdHomeController>(
+                          id: 'list',
+                          builder: (controller) {
+                            return (controller.myAdvertiserModel.data?.length ?? 0)==0
+                                ? noAdvertisement()
+                                : advertisementList();
+                          }
+                      ),
+                    ],
+                  ),
+                  adHomeController.loader.isTrue?const FullScreenLoader():const SizedBox(),
+                  updateAdvertiseController.loader.value==true?const FullScreenLoader():const SizedBox(),
+                ],
+              );
+            }),
+          )
       ),
+    ),
     );
   }
 }

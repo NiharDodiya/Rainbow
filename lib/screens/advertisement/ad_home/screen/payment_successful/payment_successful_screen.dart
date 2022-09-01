@@ -52,12 +52,20 @@ class PaymentSuccessfulScreen extends StatelessWidget {
                       color: ColorRes.color_3835A6,
                       border: Border.all(
                         color: ColorRes.color_514EC6,
-                        width: 15,
+                        width: 14,
                       ),
                       shape: BoxShape.circle),
-                  child: const Icon(
-                    Icons.check_rounded,
-                    size: 50,
+                  child:Container(
+                    height: 10,
+                    width: 10,
+                    decoration: const BoxDecoration(
+                      color: Color(0XFF2C32A5),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.check_rounded,
+                      size: 50,
+                    ),
                   ),
                 ),
                 // SizedBox(

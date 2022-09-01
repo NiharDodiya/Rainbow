@@ -308,7 +308,7 @@ class SetupDateScreen extends StatelessWidget {
                               style: gilroyMediumTextStyle(fontSize: 18),
                             ),
                             const Spacer(),
-                          /*  GetBuilder<SetupDateController>(
+                           /* GetBuilder<SetupDateController>(
                               id: 'selectC',
                               builder: (controller) => Column(
                                 children: [
