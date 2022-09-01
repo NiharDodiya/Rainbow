@@ -4,10 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
-import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
-import 'package:rainbow/screens/Home/settings/settings_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/advertisement_controlle.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/AdvertiserVerifyController.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/AdvertiserVerifyOtpScreen.dart';
@@ -26,46 +24,12 @@ class AdvertisementDashBord extends StatelessWidget {
   final AdvertisementController advertisementController = Get.put(AdvertisementController());
   final AdHomeController adHomeController = Get.put(AdHomeController());
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: advertisementController.key,
       drawer: Drawer(
         backgroundColor: ColorRes.white,
-        child: GetBuilder<AdvertisementController>(
-          id: "settings",
-            builder: (controller){
-          return Stack(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                    top: Get.height * 0.0775, left: Get.width * 0.05210),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GetBuilder<AdHomeController>(id: "dashBoard",builder: (controller) {
-                      return  Row(
-                        children: [
-                          adHomeController.viewAdvertiserModel.data==null?SizedBox(): ClipRRect(
-                              borderRadius: BorderRadius.circular(50),
-                              child: adHomeController.viewAdvertiserModel.data!.profileImage
-                                  .toString()
-                                  .isEmpty
-                                  ? Image.asset(
-                                AssetRes.portrait_placeholder,
-                                height: Get.width * 0.1730,
-                                width: Get.width * 0.1730,
-                              )
-                                  : FadeInImage(
-                                placeholder: const AssetImage(AssetRes.portrait_placeholder),
-                                image: NetworkImage(adHomeController
-                                    .viewAdvertiserModel.data!.profileImage
-                                    .toString()),fit: BoxFit.cover,
-                                height: Get.width * 0.1730,
-                                width: Get.width * 0.1730,
-                              )),
-                          /*       Container(
         child: Padding(
           padding: EdgeInsets.only(
               top: Get.height * 0.0775, left: Get.width * 0.05210),
@@ -75,13 +39,7 @@ class AdvertisementDashBord extends StatelessWidget {
               GetBuilder<AdHomeController>(id: "dashBoard",builder: (controller) {
                 return  Row(
                   children: [
-                    adHomeController.viewAdvertiserModel.data==null? ClipRRect(borderRadius: BorderRadius.circular(50),
-                      child: Image.asset(
-                        AssetRes.portrait_placeholder,
-                        height: Get.width * 0.1730,
-                        width: Get.width * 0.1730,
-                      ),
-                    ): ClipRRect(
+                    adHomeController.viewAdvertiserModel.data==null?SizedBox(): ClipRRect(
                         borderRadius: BorderRadius.circular(50),
                         child: adHomeController.viewAdvertiserModel.data!.profileImage
                             .toString()
@@ -109,198 +67,194 @@ class AdvertisementDashBord extends StatelessWidget {
                         ),
                       ),
                     ),*/
+                    SizedBox(
+                      width: Get.width * 0.0255,
+                    ),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            adHomeController
+                                .viewAdvertiserModel.data?.fullName ?? "",
+                            style: gilroyRegularTextStyle(
+                                fontSize: 24, color: ColorRes.color_09110E),
+                          ),
                           SizedBox(
-                            width: Get.width * 0.0255,
+                            height: Get.height * 0.0086,
                           ),
-                          Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  adHomeController
-                                      .viewAdvertiserModel.data?.fullName ?? "",
-                                  style: gilroyRegularTextStyle(
-                                      fontSize: 24, color: ColorRes.color_09110E),
-                                ),
-                                SizedBox(
-                                  height: Get.height * 0.0086,
-                                ),
-                                Text(
-                                  adHomeController
-                                      .viewAdvertiserModel.data?.email??"",
-                                  style: gilroyBoldTextStyle(
-                                      fontSize: 14, color: ColorRes.color_09110E),
-                                )
-                              ]),
-                          const Spacer(),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  advertisementController.key.currentState!.closeDrawer();
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: Get.width * 0.0293,
-                                  ),
-                                  child: const Icon(
-                                    Icons.close,
-                                    color: ColorRes.black,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                height: Get.height * 0.0555,
-                              )
-                            ],
-                          ),
-                        ],
-                      );
-                    },
-
-                    ),
-                    SizedBox(
-                      height: Get.height * 0.0467,
-                    ),
-
-                    ///Change Password
-                    InkWell(
-                      onTap: () {
-                        AdvertiserVerifyController adController =
-                        Get.put(AdvertiserVerifyController());
-                        adController.backScreen = 'AdvertisementDashBord';
-                        Get.to(() => AdvertiserVerifyOtpScreen());
-                      },
-                      child: SizedBox(
-                        height: Get.height * 0.06,
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              AssetRes.lockicon,
-                              width: Get.width * 0.04706,
-                            ),
-                            SizedBox(
-                              width: Get.width * 0.0853,
-                            ),
-                            Text(
-                              Strings.changePassword,
-                              style: gilroyMediumTextStyle(
-                                fontSize: 16,
-                                color: ColorRes.color_09110E,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    //Account Information
-                    InkWell(
-                      onTap: () => advertisementController.inTapAccountInfo(),
-                      child: SizedBox(
-                        height: Get.height * 0.06,
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              AssetRes.profileicon,
-                              width: Get.width * 0.04706,
-                            ),
-                            SizedBox(
-                              width: Get.width * 0.0853,
-                            ),
-                            Text(
-                              Strings.accountInformation,
-                              style: gilroyMediumTextStyle(
-                                fontSize: 16,
-                                color: ColorRes.color_09110E,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    // Notification
-                    GetBuilder<AdvertisementController>(
-                      id: 'settings',
-                      builder: (controller) => InkWell(
-                        onTap: controller.notification,
-                        child: SizedBox(
-                          height: Get.height * 0.06,
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                AssetRes.notificationicon,
-                                color: ColorRes.color_EDB933,
-                                width: Get.width * 0.04706,
-                              ),
-                              SizedBox(
-                                width: Get.width * 0.0853,
-                              ),
-                              Text(
-                                Strings.notification,
-                                style: gilroyMediumTextStyle(
-                                  fontSize: 16,
-                                  color: ColorRes.color_09110E,
-                                ),
-                              ),
-                              const Spacer(),
-                              SizedBox(
-                                width: Get.width * 0.09066,
-                                height: Get.height * 0.02545,
-                                child: Transform.scale(
-                                  scale: .7,
-                                  child:  CupertinoSwitch(
-                                    value: controller.isSwitched!,
-                                    onChanged: (value) {
-                                      controller.isSwitched = value;
-                                      controller.notificationOnOffApi();
-                                      controller.update(["settings"]);
-                                    },
-                                    activeColor: ColorRes.color_CE8CEC,
-                                    trackColor: Colors.grey.shade300,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(width: Get.width * 0.0483)
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                          Text(
+                            adHomeController
+                                .viewAdvertiserModel.data?.email??"",
+                            style: gilroyBoldTextStyle(
+                                fontSize: 14, color: ColorRes.color_09110E),
+                          )
+                        ]),
                     const Spacer(),
-                    Padding(
-                      padding: EdgeInsets.only(right: Get.width * 0.0498),
-                      child: SubmitButton(
-                        onTap: advertisementController.onTapLogOut,
-                        child: Row(
-                          children: [
-                            const Spacer(),
-                            Image.asset(
-                              AssetRes.logouticon,
-                              height: 22,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            advertisementController.key.currentState!.closeDrawer();
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: Get.width * 0.0293,
                             ),
-                            const SizedBox(
-                              width: 26,
+                            child: const Icon(
+                              Icons.close,
+                              color: ColorRes.black,
                             ),
-                            Text(
-                              Strings.logout02,
-                              style: gilroyBoldTextStyle(
-                                  fontSize: 16, color: ColorRes.black),
-                            ),
-                            const Spacer(),
-                          ],
+                          ),
+                        ),
+                        Container(
+                          height: Get.height * 0.0555,
+                        )
+                      ],
+                    ),
+                  ],
+                );
+              },
+
+              ),
+              SizedBox(
+                height: Get.height * 0.0467,
+              ),
+
+              ///Change Password
+              InkWell(
+                onTap: () {
+                  AdvertiserVerifyController adController =
+                      Get.put(AdvertiserVerifyController());
+                  adController.backScreen = 'AdvertisementDashBord';
+                  Get.to(() => AdvertiserVerifyOtpScreen());
+                },
+                child: SizedBox(
+                  height: Get.height * 0.06,
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        AssetRes.lockicon,
+                        width: Get.width * 0.04706,
+                      ),
+                      SizedBox(
+                        width: Get.width * 0.0853,
+                      ),
+                      Text(
+                        Strings.changePassword,
+                        style: gilroyMediumTextStyle(
+                          fontSize: 16,
+                          color: ColorRes.color_09110E,
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: Get.height * 0.0665,
-                    )
-                  ],
+                    ],
+                  ),
                 ),
               ),
-              controller.loader.value==true?const FullScreenLoader():const SizedBox(),
+              //Account Information
+              InkWell(
+                onTap: () => advertisementController.inTapAccountInfo(),
+                child: SizedBox(
+                  height: Get.height * 0.06,
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        AssetRes.profileicon,
+                        width: Get.width * 0.04706,
+                      ),
+                      SizedBox(
+                        width: Get.width * 0.0853,
+                      ),
+                      Text(
+                        Strings.accountInformation,
+                        style: gilroyMediumTextStyle(
+                          fontSize: 16,
+                          color: ColorRes.color_09110E,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              // Notification
+              GetBuilder<AdvertisementController>(
+                id: 'settings',
+                builder: (controller) => InkWell(
+                  onTap: controller.notification,
+                  child: SizedBox(
+                    height: Get.height * 0.06,
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          AssetRes.notificationicon,
+                          color: ColorRes.color_EDB933,
+                          width: Get.width * 0.04706,
+                        ),
+                        SizedBox(
+                          width: Get.width * 0.0853,
+                        ),
+                        Text(
+                          Strings.notification,
+                          style: gilroyMediumTextStyle(
+                            fontSize: 16,
+                            color: ColorRes.color_09110E,
+                          ),
+                        ),
+                        const Spacer(),
+                        SizedBox(
+                          width: Get.width * 0.09066,
+                          height: Get.height * 0.02545,
+                          child: Transform.scale(
+                            scale: .7,
+                            child:  CupertinoSwitch(
+                              value: controller.isSwitched!,
+                              onChanged: (value) {
+                                controller.isSwitched = value;
+                                controller.notificationOnOffApi();
+                                controller.update(["settings"]);
+                              },
+                              activeColor: ColorRes.color_CE8CEC,
+                              trackColor: Colors.grey.shade300,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: Get.width * 0.0483)
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const Spacer(),
+              Padding(
+                padding: EdgeInsets.only(right: Get.width * 0.0498),
+                child: SubmitButton(
+                  onTap: advertisementController.onTapLogOut,
+                  child: Row(
+                    children: [
+                      const Spacer(),
+                      Image.asset(
+                        AssetRes.logouticon,
+                        height: 22,
+                      ),
+                      const SizedBox(
+                        width: 26,
+                      ),
+                      Text(
+                        Strings.logout02,
+                        style: gilroyBoldTextStyle(
+                            fontSize: 16, color: ColorRes.black),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: Get.height * 0.0665,
+              )
             ],
-          );
-        }),
+          ),
+        ),
         width: Get.width - (Get.width * 0.0853),
       ),
       backgroundColor: ColorRes.white,

@@ -18,7 +18,7 @@ Widget appbar() {
   return SizedBox(
     width: Get.width,
     child: Padding(
-      padding: const EdgeInsets.only(left: 30, right: 30, top: 15, bottom: 10),
+      padding: const EdgeInsets.only(left: 30, right: 30, top: 30, bottom: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
