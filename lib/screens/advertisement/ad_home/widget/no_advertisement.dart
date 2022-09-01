@@ -7,9 +7,11 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
+import '../screen/create_advertisement/create_advertisement_controller.dart';
 import '../screen/create_advertisement/create_advertisement_screen.dart';
 
 Widget noAdvertisement() {
+  CreateAdvertisementController advertisementControllers = Get.put(CreateAdvertisementController());
   return GetBuilder<AdHomeController>(
     builder: (controller) {
       return Expanded(
@@ -47,6 +49,20 @@ Widget noAdvertisement() {
                 ),
                 SubmitButton(
                   onTap: () {
+                    advertisementControllers.tagsController.clear();
+                    advertisementControllers.titleController.clear();
+                    advertisementControllers.countryController.clear();
+                    advertisementControllers.streetController.clear();
+                    advertisementControllers.cityController.clear();
+                    advertisementControllers.provinceController.clear();
+                    advertisementControllers.postalCodeController.clear();
+                    advertisementControllers.dateController.clear();
+                    advertisementControllers.descriptoionController.clear();
+                    advertisementControllers.urlLinkController.clear();
+                    advertisementControllers.callToActionController.clear();
+                    advertisementControllers.address =  Strings.useCurrentLocation;
+                    advertisementControllers.callToAction = null;
+                    advertisementControllers.imagePath = [];
                     Get.to(() => CreateAdvertisementScreen());
                   },
                   text: Strings.createAdvertisement,

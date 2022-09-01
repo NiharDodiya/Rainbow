@@ -68,7 +68,8 @@ class SupportCreateController extends GetxController {
   Future<void> supportApi() async {
     loader.value = true;
     await uploadImageData();
-    await SupportAPI.supportAPI.postSupportAPI(data: {
+    await SupportAPI.supportAPI.postSupportAPI(
+        data: {
       'title': subjectController.text,
       'description': yourMsgController.text,
       'id_item': imgIdList,
@@ -89,6 +90,7 @@ class SupportCreateController extends GetxController {
   }
 
 SupportController supportController=Get.put(SupportController());
+
   void onSendMsgTap() async {
    if(valid()){
      await supportApi();

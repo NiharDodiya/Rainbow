@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/update_advertisement/update_advertisement_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/widget/advertisement_list.dart';
 import 'package:rainbow/screens/advertisement/ad_home/widget/appbar.dart';
 import 'package:rainbow/screens/advertisement/ad_home/widget/no_advertisement.dart';
@@ -13,6 +14,7 @@ class AdHomeScreen extends StatelessWidget {
   AdHomeScreen({Key? key}) : super(key: key);
   DashboardController dashboardController = Get.put(DashboardController());
   AdHomeController adHomeController = Get.put(AdHomeController());
+  UpdateAdvertiseController updateAdvertiseController = Get.put(UpdateAdvertiseController());
   @override
   Widget build(BuildContext context) {
     adHomeController.myAdvertiserListData();
@@ -20,7 +22,7 @@ class AdHomeScreen extends StatelessWidget {
       body: SafeArea(
         child:Container(
           width: Get.width,
-          height: Get.height - 80,
+          //height: Get.height - 80,
           //padding: const EdgeInsets.only(left: 30,right: 30,top: 40),
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -48,8 +50,8 @@ class AdHomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                adHomeController.loader.isTrue?const FullScreenLoader():const SizedBox()
-
+                adHomeController.loader.isTrue?const FullScreenLoader():const SizedBox(),
+                updateAdvertiseController.loader.value==true?FullScreenLoader():SizedBox(),
               ],
             );
           }),

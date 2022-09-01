@@ -1,3 +1,5 @@
+
+
 import 'dart:io';
 
 import 'package:country_picker/country_picker.dart';
@@ -13,6 +15,8 @@ import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/model/listUserTag_model.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_screen.dart';
+import 'package:rainbow/screens/advertisement/ad_home/myAdvertiser_api/myAdvertiser_api.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/advertisement_deatail/advertisement_deatail_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/createadvertisement_api/createAdvertisement_api.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_controller.dart';
@@ -23,7 +27,7 @@ import 'package:rainbow/utils/color_res.dart';
 import '../../../../../common/popup.dart';
 import '../../../../../utils/strings.dart';
 
-class CreateAdvertisementController extends GetxController {
+class UpdateAdvertiseController extends GetxController {
   List tags = [];
   String? callToAction;
   String? address;
@@ -100,7 +104,7 @@ class CreateAdvertisementController extends GetxController {
   //Open Camera
   Future<String?> cameraPickImage() async {
     XFile? pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.camera);
+    await ImagePicker().pickImage(source: ImageSource.camera);
     if (pickedFile != null) {
       imagePath.add(File(pickedFile.path));
     }
@@ -120,7 +124,7 @@ class CreateAdvertisementController extends GetxController {
 //open Gallary
   Future<String?> gallaryPickImage() async {
     XFile? pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+    await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       update(["advertiser"]);
 
@@ -133,7 +137,7 @@ class CreateAdvertisementController extends GetxController {
 
   UploadImage uploadImage = UploadImage();
 
-  Future<void> uploadImageApi() async {
+  Future<void> uploadImageApi({int? id}) async {
     try {
       imgIdList = [];
       for (var e in imagePath) {
@@ -141,16 +145,42 @@ class CreateAdvertisementController extends GetxController {
         uploadImage = await UploadImageApi.postRegister(e.path);
         imgIdList.add(uploadImage.data!.id!);
       }
-      addAdvertisement(imgIdList);
+      await updateApi(id: id);
       loader.value = false;
     } catch (e) {
       debugPrint(e.toString());
     }
   }
 
+  Future<void> updateApi({int? id}) async {
+    loader.value = true;
+
+    await MyAdvertiserApi.updatePostAdvertiseAPI(
+        data: {
+          "id_advertisement" : id,
+          "tags" : tags,
+          "id_item" : imgIdList,
+          "title" : titleController.text,
+          "location" : address,
+          "city" :  cityController.text ,
+          "street" : streetController.text,
+          "id_country" : codeId,
+          "postal_code" : postalCodeController.text,
+          "province" : provinceController.text,
+          "date" : dateController.text,
+          "description" : descriptoionController.text,
+          "call_action": callToActionController.text,
+          "start_date" :DateFormat().add_yMd().format(startTime),
+          "end_date" : DateFormat().add_yMd().format(endTime),
+          "url_link" : urlLinkController.text
+        });
+
+    loader.value = false;
+  }
+
   int? codeId;
 
-  createAdvertisement() {
+  editAdvertisement({int? id}) async{
     tagsListSet();
     if (validation()) {
       for (int i = 0; i < listNationalities.data!.length; i++) {
@@ -158,7 +188,8 @@ class CreateAdvertisementController extends GetxController {
           codeId = listNationalities.data![i].id;
         }
       }/*uploadImageApi();*/
-      Get.to(() => AdvertisementDeatailScreen());
+
+      Get.to(() => AdHomeScreen());
 
     }
   }
@@ -216,14 +247,14 @@ class CreateAdvertisementController extends GetxController {
         desiredAccuracy: LocationAccuracy.high,
       );
       List<Placemark> placemarks =
-          await placemarkFromCoordinates(position.latitude, position.longitude);
+      await placemarkFromCoordinates(position.latitude, position.longitude);
 
       Placemark place = placemarks[0];
       addCity = place.locality;
       addCountry = place.country;
       addStreet = place.street;
       address =
-          '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
+      '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
       print(
           "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<$address>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
       update(["advertiser"]);
@@ -292,11 +323,11 @@ class CreateAdvertisementController extends GetxController {
 
   List<int> imgIdList = [];
   AdHomeController adHomeController =Get.put(AdHomeController());
-  void addAdvertisement(List imageId) async {
+ /* void addAdvertisement(List imageId) async {
     loader.value = true;
 
 
-   await AddAdvertisement.addAdvertisementApi(
+    await AddAdvertisement.addAdvertisementApi(
         tagUser: tagsController.text,
         idItem: imageId,
         title: titleController.text,
@@ -310,13 +341,13 @@ class CreateAdvertisementController extends GetxController {
         street: streetController.text,
         urlLink: urlLinkController.text,
         countryCode: codeId.toString(),
-    startDate: DateFormat().add_yMd().format(startTime),
-    endDate:DateFormat().add_yMd().format(endTime));
-   adHomeController.myAdvertiserListData();
-   adHomeController.update(['more']);
+        startDate: DateFormat().add_yMd().format(startTime),
+        endDate:DateFormat().add_yMd().format(endTime));
+    adHomeController.myAdvertiserListData();
+    adHomeController.update(['more']);
     loader.value = false;
     update(["advertiser"]);
-  }
+  }*/
 
 
 
@@ -368,12 +399,12 @@ class CreateAdvertisementController extends GetxController {
     }
     return true;
   }
-/*  CreateAdvertisementController createAdvertisementController =Get.put(CreateAdvertisementController());*/
-  Future<void> onTapNext() async {
+/*  UpdateAdvertiseController UpdateAdvertiseController =Get.put(UpdateAdvertiseController());*/
+  Future<void> onTapNext(int id) async {
     if (validation()) {
 /*      print(DateFormat().add_yMd().format(startTime));*/
-/*    await  createAdvertisementController.uploadImageApi();*/
-       await uploadImageApi();
+/*    await  UpdateAdvertiseController.uploadImageApi();*/
+
 
       Get.bottomSheet(
         enableDrag: false,

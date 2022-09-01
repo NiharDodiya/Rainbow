@@ -10,9 +10,11 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
+import '../../ad_home_controller.dart';
 import '../create_advertisement/create_advertisement_controller.dart';
 
 class AdvertisementDeatailScreen extends StatelessWidget {
+
   AdvertisementDeatailScreen({Key? key}) : super(key: key);
   CreateAdvertisementController createAdvertisementController =
       Get.put(CreateAdvertisementController());
@@ -179,82 +181,84 @@ class AdvertisementDeatailScreen extends StatelessWidget {
 
 // f
   Widget top() {
-    CreateAdvertisementController createAdvertisementController =
-        Get.put(CreateAdvertisementController());
     return Column(
       children: [
         Container(
           width: Get.width,
           height: 202,
-          decoration: BoxDecoration(
-            // borderRadius: const BorderRadius.only(
-            //   topLeft: Radius.circular(30),
-            //   topRight: Radius.circular(30),
-            // ),
-            image: createAdvertisementController.imagePath == null
-                ? const DecorationImage(
-                    image: AssetImage(
-                      AssetRes.adsDetail,
-                    ),
-                    fit: BoxFit.cover)
-                : DecorationImage(
-                    image: FileImage(
-                      File(createAdvertisementController.imagePath.first.path),
-                    ),
-                    fit: BoxFit.cover),
-          ),
-          child: Column(
+          child: Stack(
             children: [
-              const SizedBox(height: 46),
-              Padding(
-                padding: EdgeInsets.only(
-                    left: Get.width * 0.0853, right: Get.width * 0.0373),
-                child: Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: Container(
-                        height: 32,
-                        width: 34,
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(8),
+              ListView.builder(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                itemCount: createAdvertisementController.imagePath.length,
+                itemBuilder: (context, index1) {
+                  return Container(
+                    width: Get.width,
+                    child: FadeInImage(
+                      placeholder:
+                      const AssetImage(AssetRes.placeholderImage),
+                      image: FileImage(createAdvertisementController.imagePath[index1]),
+                      width: Get.width - 60,
+                      fit: BoxFit.cover,
+                    ),
+                  );
+                },
+              ),
+              Column(
+                children: [
+                  const SizedBox(height: 46),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: Get.width * 0.0853, right: Get.width * 0.0373),
+                    child: Row(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Container(
+                            height: 32,
+                            width: 34,
+                            decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(8),
+                                ),
+                                color: ColorRes.white),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 8.0, horizontal: 12),
+                              child: Image.asset(
+                                AssetRes.backIcon,
+                                color: ColorRes.color_50369C,
+                              ),
                             ),
-                            color: ColorRes.white),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 8.0, horizontal: 12),
-                          child: Image.asset(
-                            AssetRes.backIcon,
-                            color: ColorRes.color_50369C,
                           ),
                         ),
-                      ),
-                    ),
-                    const Spacer(),
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(() => const EditAdvertisementscreen());
-                      },
-                      child: Container(
-                        height: 33.3,
-                        width: 33.3,
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: ColorRes.white),
-                        child: Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: Image.asset(
-                            AssetRes.editicons,
-                            color: ColorRes.black,
+                        const Spacer(),
+                        InkWell(
+                          onTap: (){
+                             Get.to(EditAdvertisementscreen());
+                          },
+                          child: Container(
+                            height: 33.3,
+                            width: 33.3,
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle, color: ColorRes.white),
+                            child: Padding(
+                              padding: const EdgeInsets.all(12),
+                              child: Image.asset(
+                                AssetRes.editicons,
+                                color: ColorRes.black,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
-              )
+                  )
+                ],
+              ),
             ],
           ),
         ),

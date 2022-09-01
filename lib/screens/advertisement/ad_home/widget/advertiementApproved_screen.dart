@@ -2,9 +2,11 @@ import 'package:charts_flutter/flutter.dart' as chart;
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/edit_advertisement/edit_advertisement_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/edit_advertisement/edit_advertisement_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/widget/advertisementApproved_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/widget/advertisermentRejected_Screen.dart';
@@ -16,7 +18,8 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 
 class AdvertisementDetailsApprovedScreen extends StatelessWidget {
   int i;
-  AdvertisementDetailsApprovedScreen({Key? key, required this.i}) : super(key: key);
+  int id;
+  AdvertisementDetailsApprovedScreen({Key? key, required this.i, required this.id}) : super(key: key);
 
   final List<DeveloperSeries> data = [
     // DeveloperSeries(
@@ -62,49 +65,62 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
     ];
   }
 
+  EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertiesementController());
+
   @override
   Widget build(BuildContext context) {
     init();
     return Scaffold(
-      body: GetBuilder<AdHomeController>(
-        id: "add",
-        builder: (controller) {
-          return SafeArea(
-            child: SingleChildScrollView(
-              child: Container(
-                width: Get.width,
-                height: 720,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      ColorRes.color_50369C,
-                      ColorRes.color_50369C,
-                      ColorRes.color_D18EEE,
-                      ColorRes.color_D18EEE,
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
+      body: Obx(() {
+        return Stack(
+          children: [
+            GetBuilder<AdHomeController>(
+              id: "add",
+              builder: (controller) {
+                return SafeArea(
+                  child: SingleChildScrollView(
+                    child: Container(
+                      width: Get.width,
+                      height: 790,
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            ColorRes.color_50369C,
+                            ColorRes.color_50369C,
+                            ColorRes.color_D18EEE,
+                            ColorRes.color_D18EEE,
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        ),
+                      ),
+                      child: Column(
+                        children: [
+                          top(i, context, id),
+                          Expanded(
+                              child: SingleChildScrollView(
+                                  physics: const BouncingScrollPhysics(),
+                                  child: bottom(context, i))),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-                child: Column(
-                  children: [
-                    top(i, context),
-                    Expanded(
-                        child: SingleChildScrollView(
-                            physics: const BouncingScrollPhysics(),
-                            child: bottom(context, i))),
-                  ],
-                ),
-              ),
+                );
+              },
             ),
-          );
-        },
-      ),
+            editAdvertiesementController.loader.isTrue
+                ? const FullScreenLoader()
+                : const SizedBox(),
+          ],
+        );
+    },
+    ),
     );
   }
 
-  Widget top(int index, context) {
+  Widget top(int index, context, int id) {
     AdHomeController adHomeController = Get.put(AdHomeController());
+EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertiesementController());
     return GetBuilder<CreateAdvertisementController>(
       id: "addverDetails",
       builder: (controller) {
@@ -118,8 +134,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                   ListView.builder(
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
-                    itemCount: adHomeController.myAdvertiserModel.data?[index].itemsList?.length ??
-                        0,
+                    itemCount: adHomeController.myAdvertiserModel.data?[index].itemsList!.length,
                     itemBuilder: (context, index1) {
                       return Container(
                         width: Get.width,
@@ -168,24 +183,13 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                               ),
                             ),
                             const Spacer(),
-                            Container(
-                              height: 33.3,
-                              width: 33.3,
-                              decoration: const BoxDecoration(
-                                  shape: BoxShape.circle, color: ColorRes.white),
-                              child: Padding(
-                                padding: const EdgeInsets.all(12),
-                                child: Image.asset(
-                                  AssetRes.share,
-                                  color: ColorRes.black,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
                             InkWell(
-                              onTap: (){
+                              onTap: () async{
+
+                                await editAdvertiesementController.myEditAdvertiserListData(id: id);
+
+                                Get.to(EditAdvertisementscreen());
+
 
                               },
                               child: Container(
@@ -247,7 +251,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                   ?Text(
                 'Pending',
                 style: gilroySemiBoldTextStyle(
-                    fontSize: 18, color: ColorRes.color_49A510),
+                    fontSize: 18, color: ColorRes.color_EED82F),
               )
               :InkWell(
                 onTap: () {

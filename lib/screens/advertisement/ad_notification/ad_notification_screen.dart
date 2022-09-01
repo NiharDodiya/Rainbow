@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/utils/color_res.dart';
 
 import '../../../common/Widget/text_styles.dart';
 import '../../../utils/asset_res.dart';
 
 class AdNotificationsScreen extends StatelessWidget {
-  const AdNotificationsScreen({Key? key}) : super(key: key);
-
+   AdNotificationsScreen({Key? key}) : super(key: key);
+  AdHomeController controller = Get.find<AdHomeController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,35 +49,34 @@ class AdNotificationsScreen extends StatelessWidget {
                                   right: Get.width * 0.16),
                               child: Row(
                                 children: [
-                                  Container(
-                                    height: 54,
-                                    width: 54,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                          color: ColorRes.white, width: 1),
-                                      gradient: const LinearGradient(
-                                        colors: [
-                                          ColorRes.color_50369C,
-                                          ColorRes.color_D18EEE,
-                                        ],
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                      ),
+                                  (controller.viewAdvertiserModel.data!.profileImage
+                                      .toString()
+                                      .isEmpty)
+                                      ?Container(
+                              height: 50,
+                              width: 50,
+                              decoration:  const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                      AssetRes.portrait_placeholder,
                                     ),
-                                    child: Center(
-                                      child: Container(
-                                        height: 42.69,
-                                        width: 25.83,
-                                        decoration: const BoxDecoration(
-                                          image: DecorationImage(
-                                            image: AssetImage(
-                                              AssetRes.greenDuck,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
+
+                              ),
+
+                            ))
+                                      :Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration:  BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                        image: NetworkImage(controller
+                                          .viewAdvertiserModel.data!.profileImage
+                                          .toString()),fit: BoxFit.cover,)
+
                                     ),
+
                                   ),
                                   const SizedBox(
                                     width: 12,
