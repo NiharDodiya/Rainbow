@@ -133,7 +133,8 @@ onTapSendMessage(id){
       sendSupportModel = await SupportApi.sendSupportApi(
           id: id, description: yourMsgSendController.text, item: imgIdList);
       update(["Support"]);
-yourMsgSendController.clear();
+        yourMsgSendController.clear();
+      await viewSupportTicketData(id.toString());
 
       loader.value = false;
     } catch (e) {

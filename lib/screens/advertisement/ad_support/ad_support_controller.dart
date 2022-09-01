@@ -145,6 +145,8 @@ class AdSupportController extends GetxController {
       sendSupportModel = await SupportApi.sendSupportApi(
           id: id, description: yourMsgSendController.text, item: imgIdList);
       update(["Support"]);
+      yourMsgSendController.clear();
+      await viewSupportTicketData(id.toString());
       loader.value = false;
     } catch (e) {
       loader.value = false;
@@ -165,59 +167,6 @@ class AdSupportController extends GetxController {
     loader.value = false;
   }
 
-// save(String url) async {
-//   loader.value=true;
-//   var response = await Dio().get(
-//       url,
-//       options: Options(responseType: ResponseType.bytes));
-//   final result = await ImageGallerySaver.saveImage(
-//       Uint8List.fromList(response.data),
-//       quality: 60,
-//       name: "rain");
-//   print('====$result');
-//   loader.value=false;
-//   flutterToast("Image Save successFull");
-// }
 
 }
 
-// class AdSupportController extends GetxController {
-//   List supportList = ["Pending", "Complete", "Complete", "Complete"];
-//   RxBool loader = false.obs;
-//
-//   @override
-//   void onInit() {
-//     init();
-//     super.onInit();
-//   }
-//
-//   Future<void> init() async {
-//     loader.value = true;
-//   }
-//
-//   ListSupportTicketModel listSupportTicketModel = ListSupportTicketModel();
-//
-//   onTap({String? status, String? id, String? code}) async {
-//     await viewSupportTicketData(id.toString());
-//     Get.to(() => SupportCreateEndUserScreen(
-//       com: status,
-//       code: code,
-//     ));
-//     update(["Support"]);
-//   }
-//
-//   ViewSupportTicketModel viewSupportTicketModel = ViewSupportTicketModel();
-//
-//   Future<void> viewSupportTicketData(String id) async {
-//     try {
-//       loader.value = true;
-//       viewSupportTicketModel = await SupportApi.viewSupportTicket(id: id);
-//       print(viewSupportTicketModel);
-//       update(["Support"]);
-//       loader.value = false;
-//     } catch (e) {
-//       loader.value = false;
-//       debugPrint(e.toString());
-//     }
-//   }
-// }

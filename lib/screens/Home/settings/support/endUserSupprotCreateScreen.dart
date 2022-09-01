@@ -872,13 +872,13 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                               .length ==
                           3)
                       ? Container(
-                          height: Get.height * 0.07279,
+                          height: Get.height * 0.09,
                           width: Get.width * 0.49,
                           padding: const EdgeInsets.only(right: 5, left: 5),
                           decoration: BoxDecoration(
                             border: Border.all(
                               color: ColorRes.white,
-                              width: 2,
+                              width: 1,
                             ),
                             borderRadius: const BorderRadius.all(
                               Radius.circular(9),
@@ -930,13 +930,13 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                           ),
                         )
                       : Container(
-                          height: Get.height * 0.07279,
+                          height: Get.height * 0.09,
                           width: Get.width * 0.354666,
                           padding: const EdgeInsets.only(right: 5, left: 5),
                           decoration: BoxDecoration(
                             border: Border.all(
                               color: ColorRes.white,
-                              width: 2,
+                              width: 1,
                             ),
                             borderRadius: const BorderRadius.all(
                               Radius.circular(9),
@@ -1128,7 +1128,7 @@ Widget downloadButton2(int i) {
           flutterToast("Image Save successFull");
           // (controller.loader.value == false)? flutterToast("Image Save successFull"):SizedBox();
         },
-        child: Image.asset(AssetRes.downlode)),
+        child: Image.asset(AssetRes.downlode,height: 20,)),
   );
 }
 
@@ -1144,7 +1144,7 @@ Widget downloadButton1(int i) {
           flutterToast("Image Save successFull");
           //controller.loader.value == false? flutterToast("Image Save successFull"):SizedBox();
         },
-        child: Image.asset(AssetRes.downlode)),
+        child: Image.asset(AssetRes.downlode,height: 20,)),
   );
 }
 
@@ -1166,6 +1166,6 @@ Widget downloadButton3(int i) {
           flutterToast("Image Save successFull");
           //controller.loader.value == false? flutterToast("Image Save successFull"):SizedBox();
         },
-        child: Image.asset(AssetRes.downlode)),
+        child: Image.asset(AssetRes.downlode,height: 20,)),
   );
 }

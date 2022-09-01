@@ -44,19 +44,15 @@ class AdSupportScreen extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      Expanded(
-                        flex: 1,
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: Get.height * 0.035,
-                            ),
-                            appBar(),
-                          ],
-                        ),
+                      Column(
+                        children: [
+                          SizedBox(
+                            height: Get.height * 0.035,
+                          ),
+                          appBar(),
+                        ],
                       ),
                       Expanded(
-                          flex: 6,
                           child: SingleChildScrollView(
                             child: Column(
                               children: [
@@ -64,13 +60,17 @@ class AdSupportScreen extends StatelessWidget {
                                 SizedBox(
                                   height: Get.height * 0.07,
                                 ),
-                                sendNewMessage(),
-                                SizedBox(
-                                  height: Get.height * 0.05,
-                                ),
+
+
                               ],
                             ),
                           )),
+                      const SizedBox(height: 10,),
+                      sendNewMessage(),
+                      SizedBox(
+                        height: Get.height * 0.02,
+                      ),
+
                     ],
                   ),
                   controller.loader.isTrue
@@ -160,7 +160,7 @@ class AdSupportScreen extends StatelessWidget {
                                 color: Colors.white),
                             child: Row(
                               children: [
-                                SizedBox(width: 10),
+                                const SizedBox(width: 10),
                                 (adHomeController.viewAdvertiserModel.data!.profileImage.toString().isEmpty)
                                     ?Container(
                                     height: 50,
@@ -223,7 +223,7 @@ class AdSupportScreen extends StatelessWidget {
                                 ),
                                 const Spacer(),
                                 Padding(
-                                  padding: EdgeInsets.only(bottom: 50),
+                                  padding: const EdgeInsets.only(bottom: 50),
                                   child: Text(
                                     controller.listSupportTicketModel.data![index]
                                         .status
@@ -270,8 +270,15 @@ class AdSupportScreen extends StatelessWidget {
         height: 60,
         width: 300,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(13.67),
-            color: ColorRes.color_FFED62),
+            borderRadius: BorderRadius.circular(20),
+        color: ColorRes.color_E7D01F,
+          gradient: const LinearGradient(
+            colors: [ColorRes.color_FFEC5C, ColorRes.color_DFC60B],
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+          ),
+
+        ),
         child: Center(
             child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,

@@ -746,7 +746,6 @@ class SupportDetailsScreen extends StatelessWidget {
                           SubmitButton(
                             onTap: () {
                               controller.onTapSendMessage(id.toString());
-                              Get.back();
                             },
                             child: Text(
                               Strings.sendMessage,
@@ -766,10 +765,10 @@ class SupportDetailsScreen extends StatelessWidget {
             );
           }),
           controller.loader.value
-              ? Center(
-            child: CircularProgressIndicator(),
+              ? const Center(
+            child: const CircularProgressIndicator(),
           )
-              : SizedBox(),
+              : const SizedBox(),
         ],
       );
     }));
@@ -780,7 +779,7 @@ class SupportDetailsScreen extends StatelessWidget {
       id: "Support",
         builder: (controller){
       return  ListView.builder(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: controller.viewSupportTicketModel.data!.length,
         itemBuilder: (context, index) {
@@ -811,16 +810,6 @@ class SupportDetailsScreen extends StatelessWidget {
                           },
                         ),
                       ),
-                      /* Container(
-                        height: Get.width * 0.144,
-                        width: Get.width * 0.144,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: AssetImage(AssetRes.account),
-                          ),
-                        ),
-                      ),*/
                       SizedBox(
                         width: Get.width * 0.04,
                       ),
@@ -867,18 +856,18 @@ class SupportDetailsScreen extends StatelessWidget {
                 ),
                 //image
                 controller.viewSupportTicketModel.data![index].itmeList!.isEmpty
-                    ? SizedBox()
+                    ? const SizedBox()
                     : (controller.viewSupportTicketModel.data![index].itmeList!
                     .length ==
                     3)
                     ? Container(
-                  height: Get.height * 0.07279,
+                  height: Get.height * 0.09,
                   width: Get.width * 0.49,
                   padding: const EdgeInsets.only(right: 5, left: 5),
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: ColorRes.white,
-                      width: 2,
+                      width: 1,
                     ),
                     borderRadius: const BorderRadius.all(
                       Radius.circular(9),
@@ -930,13 +919,13 @@ class SupportDetailsScreen extends StatelessWidget {
                   ),
                 )
                     : Container(
-                  height: Get.height * 0.07279,
+                  height: Get.height * 0.09,
                   width: Get.width * 0.354666,
                   padding: const EdgeInsets.only(right: 5, left: 5),
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: ColorRes.white,
-                      width: 2,
+                      width: 1,
                     ),
                     borderRadius: const BorderRadius.all(
                       Radius.circular(9),
@@ -1045,7 +1034,7 @@ class SupportDetailsScreen extends StatelessWidget {
                       downloadButton2(index)
                     ],
                   )
-                      : SizedBox(),
+                      : const SizedBox(),
                 ),
 
                 SizedBox(
@@ -1129,7 +1118,7 @@ Widget downloadButton2(int i) {
           flutterToast("Image Save successFull");
           // (controller.loader.value == false)? flutterToast("Image Save successFull"):SizedBox();
         },
-        child: Image.asset(AssetRes.downlode)),
+        child: Image.asset(AssetRes.downlode,height: 20,)),
   );
 }
 
@@ -1145,7 +1134,7 @@ Widget downloadButton1(int i) {
           flutterToast("Image Save successFull");
           //controller.loader.value == false? flutterToast("Image Save successFull"):SizedBox();
         },
-        child: Image.asset(AssetRes.downlode)),
+        child: Image.asset(AssetRes.downlode,height: 20,)),
   );
 }
 
@@ -1167,6 +1156,6 @@ Widget downloadButton3(int i) {
           flutterToast("Image Save successFull");
           //controller.loader.value == false? flutterToast("Image Save successFull"):SizedBox();
         },
-        child: Image.asset(AssetRes.downlode)),
+        child: Image.asset(AssetRes.downlode,height: 20)),
   );
 }

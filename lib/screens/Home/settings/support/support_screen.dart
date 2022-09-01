@@ -44,18 +44,15 @@ class SupportScreen extends StatelessWidget {
                 children: [
                   Column(
                     children: [
+                      Column(
+                      children: [
+                        SizedBox(
+                          height: Get.height * 0.035,
+                        ),
+                        appBar(),
+                      ],
+                      ),
                       Expanded(
-                        flex: 1,
-                        child: Column(
-                        children: [
-                          SizedBox(
-                            height: Get.height * 0.035,
-                          ),
-                          appBar(),
-                        ],
-                      ),),
-                      Expanded(
-                        flex: 6,
                         child: SingleChildScrollView(
                         child: Column(
                           children: [
@@ -63,13 +60,15 @@ class SupportScreen extends StatelessWidget {
                             SizedBox(
                               height: Get.height * 0.07,
                             ),
-                            sendNewMessage(),
-                            SizedBox(
-                              height: Get.height * 0.05,
-                            ),
+
                           ],
                         ),
                       ),),
+                      const SizedBox(height: 10,),
+                      sendNewMessage(),
+                      SizedBox(
+                        height: Get.height * 0.02,
+                      ),
                     ],
                   ),
                   controller.loader.isTrue
