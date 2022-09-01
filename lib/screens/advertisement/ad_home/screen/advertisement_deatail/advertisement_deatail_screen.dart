@@ -9,16 +9,17 @@ import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_da
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../ad_home_controller.dart';
 import '../create_advertisement/create_advertisement_controller.dart';
 import '../edit_advertisement/edit_advertisement_controller.dart';
 
 class AdvertisementDeatailScreen extends StatelessWidget {
-
   AdvertisementDeatailScreen({Key? key}) : super(key: key);
   CreateAdvertisementController createAdvertisementController =
       Get.put(CreateAdvertisementController());
+
 
 
   @override
@@ -44,8 +45,9 @@ class AdvertisementDeatailScreen extends StatelessWidget {
             children: [
               top(),
               Expanded(
-                  child: SingleChildScrollView(
-                      physics: const BouncingScrollPhysics(), child: bottom())),
+                child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(), child: bottom()),
+              ),
             ],
           ),
         ),
@@ -54,6 +56,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
   }
 
   Widget bottom() {
+    CreateAdvertisementController createAdvertisementController = Get.put(CreateAdvertisementController());
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: Get.width * 0.08533),
       child: Column(
@@ -76,11 +79,15 @@ class AdvertisementDeatailScreen extends StatelessWidget {
               ),
             ],
           ),
+          SizedBox(height: 5,),
           Text(
-            Strings.doller200,
+            createAdvertisementController.titleController.text,
             style: gilroySemiBoldTextStyle(
               fontSize: 14,
             ),
+          ),
+          const SizedBox(
+            height: 20,
           ),
           Text(
             createAdvertisementController.descriptoionController.text,
@@ -157,9 +164,12 @@ class AdvertisementDeatailScreen extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          Text(
-            createAdvertisementController.urlLinkController.text.toString(),
-            style: gilroyRegularTextStyle(fontSize: 14),
+          InkWell(
+           onTap: (){},
+            child: Text(
+              createAdvertisementController.urlLinkController.text.toString(),
+              style: gilroyRegularTextStyle(fontSize: 14),
+            ),
           ),
           const SizedBox(
             height: 87,
@@ -183,7 +193,8 @@ class AdvertisementDeatailScreen extends StatelessWidget {
 
 // f
   Widget top() {
-    EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertiesementController());
+    EditAdvertiesementController editAdvertiesementController =
+        Get.put(EditAdvertiesementController());
     AdHomeController adHomeController = Get.put(AdHomeController());
     return Column(
       children: [
@@ -200,9 +211,9 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                   return Container(
                     width: Get.width,
                     child: FadeInImage(
-                      placeholder:
-                      const AssetImage(AssetRes.placeholderImage),
-                      image: FileImage(createAdvertisementController.imagePath[index1]),
+                      placeholder: const AssetImage(AssetRes.placeholderImage),
+                      image: FileImage(
+                          createAdvertisementController.imagePath[index1]),
                       width: Get.width - 60,
                       fit: BoxFit.cover,
                     ),
@@ -246,4 +257,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
       ],
     );
   }
+
+
+
 }

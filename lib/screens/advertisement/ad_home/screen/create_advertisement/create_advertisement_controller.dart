@@ -19,6 +19,7 @@ import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_da
 import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../common/popup.dart';
 import '../../../../../utils/strings.dart';
@@ -271,6 +272,14 @@ class CreateAdvertisementController extends GetxController {
 
   List<UserData> tagUserList = [];
   List<UserData> filterList = [];
+
+
+  Future<void> _launchUrl() async {
+    final Uri _url = Uri.parse(urlLinkController.text);
+    if (!await launchUrl(_url)) {
+      throw 'Could not launch $_url';
+    }
+  }
 
 /*
   void onTagTap(UserData userData) {

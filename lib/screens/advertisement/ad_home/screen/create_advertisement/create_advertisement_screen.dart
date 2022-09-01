@@ -52,6 +52,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                         ),
                         appBar(),
                         body(context),
+                        SizedBox(height: Get.height * 0.03),
                         SubmitButton(
                           onTap: () {
                             advertisementController.createAdvertisement();
@@ -62,7 +63,8 @@ class CreateAdvertisementScreen extends StatelessWidget {
                                 color: Colors.black, fontSize: 16),
                           ),
                         ),
-                        SizedBox(height: Get.height * 0.02),
+                        SizedBox(height: Get.height * 0.05),
+
                       ],
                     ),
                     controller.loader.isTrue
@@ -162,7 +164,6 @@ class CreateAdvertisementScreen extends StatelessWidget {
                 id: "img",
                 builder: (controller) {
                   return Container(
-                      height: 150,
                       width: Get.width * 0.89333,
                       padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
@@ -170,75 +171,10 @@ class CreateAdvertisementScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   ),
                     child:  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         (controller.imagePath.isEmpty)
-                            ?Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(height: 30,),
-                        InkWell(
-                          onTap: () {
-                            if(controller.imagePath.length==3){
-                              errorToast("you can take only 3 images");
-                            }
-                            else{
-                              showModalBottomSheet(
-                                  elevation: 10,
-                                  barrierColor:
-                                  ColorRes.black.withOpacity(0.4),
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(10.0),
-                                    ),
-                                  ),
-                                  backgroundColor: ColorRes.color_4F359B,
-                                  context: context,
-                                  builder: (context) {
-                                    return Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        GestureDetector(
-                                          onTap:
-                                          controller.navigateToCamera,
-                                          child: const ListTile(
-                                            leading: Icon(Icons.camera),
-                                            title: Text(Strings.camera),
-                                          ),
-                                        ),
-                                        Container(
-                                          height: 0.5,
-                                          width: Get.width,
-                                          color: ColorRes.white,
-                                        ),
-                                        GestureDetector(
-                                          onTap:
-                                          controller.navigateToGallary,
-                                          child: const ListTile(
-                                            leading: Icon(Icons
-                                                .photo_size_select_actual_outlined),
-                                            title: Text(Strings.gallery),
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  });
-                            }
-                          },
-                          child: SizedBox(
-                            height: Get.height * 0.0474,
-                            child: const Image(
-                              image: AssetImage(AssetRes.imageHint),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        Text(
-                          Strings.uploadImage,
-                          style: gilroyMediumTextStyle(
-                              fontSize: 16, color: ColorRes.color_ADB1B1),
-                        )
-                      ],
-                    )
+                            ?SizedBox()
                             : (controller.imagePath.length == 3)
                             ?Row(
                           children: [
@@ -420,79 +356,11 @@ class CreateAdvertisementScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(width: 20),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(height: 30,),
-                                InkWell(
-                                  onTap: () {
-                                    if(controller.imagePath.length==3){
-                                      errorToast("you can take only 3 images");
-                                    }
-                                    else{
-                                      showModalBottomSheet(
-                                          elevation: 10,
-                                          barrierColor:
-                                          ColorRes.black.withOpacity(0.4),
-                                          shape: const RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(10.0),
-                                            ),
-                                          ),
-                                          backgroundColor: ColorRes.color_4F359B,
-                                          context: context,
-                                          builder: (context) {
-                                            return Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: <Widget>[
-                                                GestureDetector(
-                                                  onTap:
-                                                  controller.navigateToCamera,
-                                                  child: const ListTile(
-                                                    leading: Icon(Icons.camera),
-                                                    title: Text(Strings.camera),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  height: 0.5,
-                                                  width: Get.width,
-                                                  color: ColorRes.white,
-                                                ),
-                                                GestureDetector(
-                                                  onTap:
-                                                  controller.navigateToGallary,
-                                                  child: const ListTile(
-                                                    leading: Icon(Icons
-                                                        .photo_size_select_actual_outlined),
-                                                    title: Text(Strings.gallery),
-                                                  ),
-                                                ),
-                                              ],
-                                            );
-                                          });
-                                    }
-                                  },
-                                  child: SizedBox(
-                                    height: Get.height * 0.0474,
-                                    child: const Image(
-                                      image: AssetImage(AssetRes.imageHint),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 5),
-                                Text(
-                                  Strings.uploadImage,
-                                  style: gilroyMediumTextStyle(
-                                      fontSize: 16, color: ColorRes.color_ADB1B1),
-                                )
-                              ],
-                            ),
                           ],
                         )
                             :(controller.imagePath.length==1)
                             ?Row(children: [
-                          Stack(
+                             Stack(
                             alignment: Alignment(1.2, -1.3),
                             children: [
                               Container(
@@ -524,74 +392,6 @@ class CreateAdvertisementScreen extends StatelessWidget {
                                       color: Colors.white,
                                     )),
                               ),
-                            ],
-                          ),
-                          SizedBox(width: 20),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(height: 30,),
-                              InkWell(
-                                onTap: () {
-                                  if(controller.imagePath.length==3){
-                                    errorToast("you can take only 3 images");
-                                  }
-                                  else{
-                                    showModalBottomSheet(
-                                        elevation: 10,
-                                        barrierColor:
-                                        ColorRes.black.withOpacity(0.4),
-                                        shape: const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(10.0),
-                                          ),
-                                        ),
-                                        backgroundColor: ColorRes.color_4F359B,
-                                        context: context,
-                                        builder: (context) {
-                                          return Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: <Widget>[
-                                              GestureDetector(
-                                                onTap:
-                                                controller.navigateToCamera,
-                                                child: const ListTile(
-                                                  leading: Icon(Icons.camera),
-                                                  title: Text(Strings.camera),
-                                                ),
-                                              ),
-                                              Container(
-                                                height: 0.5,
-                                                width: Get.width,
-                                                color: ColorRes.white,
-                                              ),
-                                              GestureDetector(
-                                                onTap:
-                                                controller.navigateToGallary,
-                                                child: const ListTile(
-                                                  leading: Icon(Icons
-                                                      .photo_size_select_actual_outlined),
-                                                  title: Text(Strings.gallery),
-                                                ),
-                                              ),
-                                            ],
-                                          );
-                                        });
-                                  }
-                                },
-                                child: SizedBox(
-                                  height: Get.height * 0.0474,
-                                  child: const Image(
-                                    image: AssetImage(AssetRes.imageHint),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 5),
-                              Text(
-                                Strings.uploadImage,
-                                style: gilroyMediumTextStyle(
-                                    fontSize: 16, color: ColorRes.color_ADB1B1),
-                              )
                             ],
                           ),
                         ],)
@@ -702,7 +502,75 @@ class CreateAdvertisementScreen extends StatelessWidget {
                             ),
                           ],
                         ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(height: 30,),
+                            InkWell(
+                              onTap: () {
+                                FocusScope.of(context).unfocus();
+                                if(controller.imagePath.length==3){
+                                  errorToast("you can take only 3 images");
+                                }
+                                else{
+                                  showModalBottomSheet(
+                                      elevation: 10,
+                                      barrierColor:
+                                      ColorRes.black.withOpacity(0.4),
+                                      shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10.0),
+                                        ),
+                                      ),
+                                      backgroundColor: ColorRes.color_4F359B,
+                                      context: context,
+                                      builder: (context) {
+                                        return Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            GestureDetector(
+                                              onTap:
+                                              controller.navigateToCamera,
+                                              child: const ListTile(
+                                                leading: Icon(Icons.camera),
+                                                title: Text(Strings.camera),
+                                              ),
+                                            ),
+                                            Container(
+                                              height: 0.5,
+                                              width: Get.width,
+                                              color: ColorRes.white,
+                                            ),
+                                            GestureDetector(
+                                              onTap:
+                                              controller.navigateToGallary,
+                                              child: const ListTile(
+                                                leading: Icon(Icons
+                                                    .photo_size_select_actual_outlined),
+                                                title: Text(Strings.gallery),
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      });
+                                }
 
+                              },
+                              child: SizedBox(
+                                height: Get.height * 0.0474,
+                                child: const Image(
+                                  image: AssetImage(AssetRes.imageHint),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 5),
+                            Text(
+                              Strings.uploadImage,
+                              style: gilroyMediumTextStyle(
+                                  fontSize: 16, color: ColorRes.color_ADB1B1),
+                            )
+                          ],
+                        )
                       ],
                     ),
                   );
@@ -723,7 +591,9 @@ class CreateAdvertisementScreen extends StatelessWidget {
               id: "advertiser",
               builder: (controller) => InkWell(
                 onTap: () {
+                  FocusScope.of(context).unfocus();
                   controller.getCurrentLocation();
+
                 },
                 child: Container(
                     height: 60,
@@ -786,7 +656,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
             Text(
               Strings.plase,
               style: gilroyBoldTextStyle(
-                  fontSize: 14, color: Colors.black.withOpacity(0.3)),
+                  fontSize: 14, color: Colors.white.withOpacity(0.5)),
             ),
             SizedBox(height: Get.height * 0.0197),
             AppTextFiled(

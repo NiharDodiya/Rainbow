@@ -123,6 +123,8 @@ dependencies:
   #--------------------------chart---------
   syncfusion_flutter_charts: ^20.2.45
 
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
