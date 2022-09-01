@@ -338,6 +338,7 @@ class StoryScreen extends StatelessWidget {
                   ),
                 ),
             /*    tagUserList(controller),*/
+
                 GetBuilder<ViewStoryController>(
                   id: 'createStory',
                   builder: (controller) {

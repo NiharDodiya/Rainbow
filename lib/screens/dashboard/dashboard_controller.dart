@@ -34,7 +34,6 @@ class DashboardController extends GetxController {
     }
     update(['bottom_bar']);
   }
-
   Future<void> setUserOnlineStatus(bool status) async {
     if (PrefService.getString(PrefKeys.uid).isEmpty) {
       return;

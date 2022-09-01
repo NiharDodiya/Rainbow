@@ -9,6 +9,7 @@ class AssetRes {
   static const settingsImage = 'assets/settings/';
 
   ///--------------------------------------------- icons ---------------------------------------------
+  static const lockSub = '${icons}lockSub.png';
   static const rightIcon = '${icons}right_icon.png';
   static const leftIcon = '${icons}left_icon.png';
   static const yellowDot = '${icons}yellow_dot.png';

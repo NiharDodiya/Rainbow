@@ -181,29 +181,107 @@ class _HomeScreenState extends State<HomeScreen> {
                 floatingActionButton: GetBuilder<HomeController>(
                   id: "home",
                   builder: (controller) {
-                    return FloatingActionButton(
-                      child: Image.asset(
-                        AssetRes.add,
-                        height: 24,
-                        width: 24,
-                      ),
-                      onPressed: () async {
-                        viewStoryController.resetAllData();
-
-                        await Get.to(() => StoryScreen(
-                                  image: controller
-                                      .controller.viewProfile.data!.profileImage
-                                      .toString(),
-                                ))!
-                            .then((value) {
-                          if (value == true) {
-                            controller.friendPostDataWithOutPagination(
-                              pageLength:
-                                  controller.friendPostListData.length + 1,
-                            );
-                          }
-                        });
-                      },
+                    return Stack(
+                      children: [
+                        FloatingActionButton(
+                          child: Image.asset(
+                            AssetRes.add,
+                            height: 24,
+                            width: 24,
+                          ),
+                          onPressed: () async {
+                            viewStoryController.resetAllData();
+                            // if user have not subcription show pop up
+                            subscribePopUp == true
+                                ? showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        backgroundColor: Colors.white,
+                                        actions: <Widget>[
+                                          const SizedBox(
+                                            height: 34,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 30),
+                                            child: Center(
+                                                child: SizedBox(
+                                                    height: 40,
+                                                    width: 152,
+                                                    child: Text(
+                                                      Strings.subscriptionPremium,
+                                                      style:
+                                                          gilroySemiBoldTextStyle(
+                                                              fontSize: 16,
+                                                              color: Colors.black),
+                                                    ))),
+                                          ),
+                                          const SizedBox(
+                                            height: 12,
+                                          ),
+                                          Center(
+                                              child: Text(
+                                            "£9.99 / month",
+                                            style: gilroySemiBoldTextStyle(
+                                                fontSize: 26, color: Colors.black),
+                                          )),
+                                          const SizedBox(
+                                            height: 16,
+                                          ),
+                                          Center(
+                                            child: Container(
+                                              height: 30,
+                                              width: 101,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(46.2),
+                                                gradient: const LinearGradient(
+                                                  colors: [
+                                                    ColorRes.color_4F359B,
+                                                    ColorRes.color_B279DB,
+                                                  ],
+                                                  begin: Alignment.topLeft,
+                                                  end: Alignment.topRight,
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: Text(
+                                                  "Subscribe",
+                                                  style: gilroyBoldTextStyle(
+                                                      fontSize: 9.6),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 21,
+                                          ),
+                                        ],
+                                      );
+                                    })
+                                : await Get.to(() => StoryScreen(
+                                          image: controller.controller.viewProfile
+                                              .data!.profileImage
+                                              .toString(),
+                                        ))!
+                                    .then((value) {
+                                    if (value == true) {
+                                      controller.friendPostDataWithOutPagination(
+                                        pageLength:
+                                            controller.friendPostListData.length +
+                                                1,
+                                      );
+                                    }
+                                  });
+                          },
+                        ),
+                      /*  subscribePopUp==true?Positioned(bottom: 0,
+                            child: Image.asset(AssetRes.lockSub,height: 18,width: 18,)):const SizedBox()*/
+                      ],
                     );
                   },
                 ),
@@ -266,7 +344,84 @@ class _HomeScreenState extends State<HomeScreen> {
                       Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: InkWell(
-                          onTap: controller.myStoryOnTap,
+                          onTap: () {
+                            // if user have not subcription show pop up
+                            subscribePopUp == true
+                                ? showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        backgroundColor: Colors.white,
+                                        actions: <Widget>[
+                                          const SizedBox(
+                                            height: 34,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 30),
+                                            child: Center(
+                                                child: SizedBox(
+                                                    height: 40,
+                                                    width: 152,
+                                                    child: Text(
+                                                      Strings
+                                                          .subscriptionPremium,
+                                                      style:
+                                                          gilroySemiBoldTextStyle(
+                                                              fontSize: 16,
+                                                              color:
+                                                                  Colors.black),
+                                                    ))),
+                                          ),
+                                          const SizedBox(
+                                            height: 12,
+                                          ),
+                                          Center(
+                                              child: Text(
+                                            "£9.99 / month",
+                                            style: gilroySemiBoldTextStyle(
+                                                fontSize: 26,
+                                                color: Colors.black),
+                                          )),
+                                          const SizedBox(
+                                            height: 16,
+                                          ),
+                                          Center(
+                                            child: Container(
+                                              height: 30,
+                                              width: 101,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(46.2),
+                                                gradient: const LinearGradient(
+                                                  colors: [
+                                                    ColorRes.color_4F359B,
+                                                    ColorRes.color_B279DB,
+                                                  ],
+                                                  begin: Alignment.topLeft,
+                                                  end: Alignment.topRight,
+                                                ),
+                                              ),
+                                              child: Center(
+                                                child: Text(
+                                                  "Subscribe",
+                                                  style: gilroyBoldTextStyle(
+                                                      fontSize: 9.6),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 21,
+                                          ),
+                                        ],
+                                      );
+                                    })
+                                : controller.myStoryOnTap;
+                          },
                           child: SizedBox(
                             width: 80,
                             child: Stack(
@@ -340,7 +495,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                   ),
-                                )
+                                ),/*subscribePopUp==true?Positioned(top: Get.height*0.058,
+                                    child: Image.asset(AssetRes.lockSub,height: 18,width: 18,)):const SizedBox()*/
                               ],
                             ),
                           ),
@@ -842,12 +998,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),*/
                               child: DecoratedText(
-                                text: '${controller
-                                        .friendPostListData[index].postTag!
-                                        .map<String>((e) => "@${e.name}")
-                                        .toList()
-                                        .join(' ')} ${controller
-                                        .friendPostListData[index].description}',
+                                text:
+                                    '${controller.friendPostListData[index].postTag!.map<String>((e) => "@${e.name}").toList().join(' ')} ${controller.friendPostListData[index].description}',
                                 rules: [
                                   DecoratorRule.startsWith(
                                     text: "@",
@@ -1179,26 +1331,28 @@ class _HomeScreenState extends State<HomeScreen> {
                                   InkWell(
                                     onTap: () async {
                                       commentsController.commentPostListData(
-                                         idPost:  controller
-                                             .friendPostListData[index].id
-                                             .toString());
+                                          idPost: controller
+                                              .friendPostListData[index].id
+                                              .toString());
                                       Get.to(() => CommentScreen(
-                                            idPost: controller
-                                                .friendPostListData[index].id
-                                                .toString(),
-                                            fullName: controller
-                                                .friendPostListData[index]
-                                                .postUser!
-                                                .fullName
-                                                .toString(),
-                                            profileImage: controller
-                                                .friendPostListData[index]
-                                                .postUser!
-                                                .profileImage
-                                                .toString(),
-                                          ))!.then((value) async {
-
-                                        await  controller.friendPostDataWithOutPagination();
+                                                idPost: controller
+                                                    .friendPostListData[index]
+                                                    .id
+                                                    .toString(),
+                                                fullName: controller
+                                                    .friendPostListData[index]
+                                                    .postUser!
+                                                    .fullName
+                                                    .toString(),
+                                                profileImage: controller
+                                                    .friendPostListData[index]
+                                                    .postUser!
+                                                    .profileImage
+                                                    .toString(),
+                                              ))!
+                                          .then((value) async {
+                                        await controller
+                                            .friendPostDataWithOutPagination();
                                       });
                                     },
                                     child: const SizedBox(
