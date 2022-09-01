@@ -49,6 +49,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
     ),
   ];
   List<chart.Series<DeveloperSeries, String>> series = [];
+
   CreateAdvertisementController createAdvertisementController =
       Get.put(CreateAdvertisementController());
 
@@ -299,7 +300,7 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                  itemCount:  adHomeController.myAdvertiserModel.data![index].tagsList!.length ,
+                  itemCount:  adHomeController.myAdvertiserModel.data![index].tagsList!.length,
                   itemBuilder: (context, index1) => Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Container(
@@ -653,6 +654,7 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
                                           color: ColorRes.color_FF61D3,
                                         )
                                       ])),
+
                               Padding(padding: EdgeInsets.only(right: 10),
                                 child: Column(
                                   children: [

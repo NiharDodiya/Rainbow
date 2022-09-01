@@ -14,8 +14,7 @@ import 'package:rainbow/utils/color_res.dart';
 Widget advertisementList() {
   AdHomeController controller = Get.put(AdHomeController());
 
-  return
-      Expanded(
+  return Expanded(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: ListView.builder(
@@ -30,7 +29,8 @@ Widget advertisementList() {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.to(AdvertisementDetailsApprovedScreen(
+                      Get.to(
+                          AdvertisementDetailsApprovedScreen(
                         i: index,
                         id: controller.myAdvertiserModel.data?[index].id ?? 0,
                       ));

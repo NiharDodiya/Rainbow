@@ -12,12 +12,14 @@ import 'package:rainbow/utils/strings.dart';
 
 import '../../ad_home_controller.dart';
 import '../create_advertisement/create_advertisement_controller.dart';
+import '../edit_advertisement/edit_advertisement_controller.dart';
 
 class AdvertisementDeatailScreen extends StatelessWidget {
 
   AdvertisementDeatailScreen({Key? key}) : super(key: key);
   CreateAdvertisementController createAdvertisementController =
       Get.put(CreateAdvertisementController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -181,6 +183,8 @@ class AdvertisementDeatailScreen extends StatelessWidget {
 
 // f
   Widget top() {
+    EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertiesementController());
+    AdHomeController adHomeController = Get.put(AdHomeController());
     return Column(
       children: [
         Container(
@@ -211,50 +215,27 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(
                         left: Get.width * 0.0853, right: Get.width * 0.0373),
-                    child: Row(
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: Container(
-                            height: 32,
-                            width: 34,
-                            decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(8),
-                                ),
-                                color: ColorRes.white),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 8.0, horizontal: 12),
-                              child: Image.asset(
-                                AssetRes.backIcon,
-                                color: ColorRes.color_50369C,
-                              ),
+                    child: InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Container(
+                        height: 32,
+                        width: 34,
+                        decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
                             ),
+                            color: ColorRes.white),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 8.0, horizontal: 12),
+                          child: Image.asset(
+                            AssetRes.backIcon,
+                            color: ColorRes.color_50369C,
                           ),
                         ),
-                        const Spacer(),
-                        InkWell(
-                          onTap: (){
-                             Get.to(EditAdvertisementscreen());
-                          },
-                          child: Container(
-                            height: 33.3,
-                            width: 33.3,
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle, color: ColorRes.white),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12),
-                              child: Image.asset(
-                                AssetRes.editicons,
-                                color: ColorRes.black,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   )
                 ],

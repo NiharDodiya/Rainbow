@@ -63,7 +63,7 @@ class PaymentFailedScreen extends StatelessWidget {
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
-                      Icons.check_rounded,
+                      Icons.close_rounded,
                       size: 50,
                     ),
                   ),

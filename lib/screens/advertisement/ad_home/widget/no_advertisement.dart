@@ -45,7 +45,7 @@ Widget noAdvertisement() {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
-                  height: Get.height * 0.12,
+                  height: Get.height * 0.25,
                 ),
                 SubmitButton(
                   onTap: () {

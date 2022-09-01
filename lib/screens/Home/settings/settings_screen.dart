@@ -405,6 +405,8 @@ class SettingsScreen extends StatelessWidget {
               SizedBox(
                 width: Get.width * 0.395,
               ),
+
+              //notification
               GetBuilder<SettingsController>(
                 id: "switch",
                 builder: (controller) {

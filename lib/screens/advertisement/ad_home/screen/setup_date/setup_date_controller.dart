@@ -11,8 +11,10 @@ import 'package:rainbow/utils/color_res.dart';
 class SetupDateController extends GetxController {
 
 
-/*
-  Future<void> boostAdvertisementApi() async {
+
+
+
+  /*Future<void> boostAdvertisementApi() async {
 
     try {
       loader.value = true;

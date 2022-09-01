@@ -74,8 +74,7 @@ class SupportApi {
     }
   }
 
-  static Future sendSupportApi(
-      {String? id, String? description, List<int>? item}) async {
+  static Future sendSupportApi({String? id, String? description, List<int>? item}) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
 
     try {
@@ -100,7 +99,6 @@ class SupportApi {
         if (status == false) {
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          Get.back();
           flutterToast(jsonDecode(response.body)["message"]);
 
         }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/screens/Home/settings/notificationOnOff_api/notificationOnOff_api.dart';
 import 'package:rainbow/screens/account_Information/account_Information_screen.dart';
 import 'package:rainbow/screens/account_Information/account_information_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
@@ -25,7 +26,9 @@ class AdvertisementController extends GetxController {
   final AdSupportController supportController = Get.put(AdSupportController());
 
   final GlobalKey<ScaffoldState> key = GlobalKey();
-  bool isSwitched = false;
+
+  RxBool loader = false.obs;
+  bool? isSwitched = false;
 
   @override
   void onInit() {
@@ -71,10 +74,7 @@ class AdvertisementController extends GetxController {
     update(['bottom_bar']);
   }
 
-  notification() {
-    isSwitched = !isSwitched;
-    update(['notifi']);
-  }
+
 
   void fun(bool flage) {}
 
@@ -89,5 +89,29 @@ class AdvertisementController extends GetxController {
     await PrefService.clear();
     Get.offAll(() => AuthDashboard());
     PrefService.setValue(PrefKeys.skipBoardingScreen, true);
+  }
+
+  void notification() {
+    isSwitched = PrefService.getBool(PrefKeys.notification);
+    print(isSwitched);
+  }
+
+  Future<void> notificationOnOffApi() async {
+    try {
+      loader.value = true;
+      if (isSwitched == false) {
+        PrefService.setValue(PrefKeys.notification, false);
+        await NotificationOnOffApi.notificationOff();
+      } else {
+        PrefService.setValue(PrefKeys.notification, true);
+        await NotificationOnOffApi.notificationOn();
+      }
+      update(["settings"]);
+
+      loader.value = false;
+    } catch (e) {
+      print(e.toString());
+      loader.value = false;
+    }
   }
 }

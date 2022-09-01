@@ -11,6 +11,7 @@ import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/model/ListSupportTicketModel.dart';
 import 'package:rainbow/model/ViewSupportTicketModel.dart';
 import 'package:rainbow/model/sendSupportModel.dart';
+import 'package:rainbow/model/viewAdvertiserModel.dart';
 import 'package:rainbow/screens/Home/settings/support/support_api/support_api.dart';
 import 'package:rainbow/screens/advertisement/ad_support/screen/support_details/support_details_screen.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -26,6 +27,8 @@ class AdSupportController extends GetxController {
   UploadImage uploadImage = UploadImage();
   bool clickFirstTime = false;
 
+
+
   @override
   void onInit() {
     init();
@@ -36,6 +39,8 @@ class AdSupportController extends GetxController {
     loader.value = true;
   }
 
+
+
 // camaera to pick image
   Future<String?> cameraImage() async {
     XFile? pickedFile = await ImagePicker()
@@ -44,7 +49,7 @@ class AdSupportController extends GetxController {
       image.add(File(pickedFile.path));
     }
     Get.back();
-    update(["createStory"]);
+    update(["img"]);
     update();
     return null;
   }
@@ -56,7 +61,7 @@ class AdSupportController extends GetxController {
       image.add(File(pickedFile.path));
     }
     Get.back();
-    update(["createStory"]);
+    update(["img"]);
     update();
     return null;
   }
@@ -82,6 +87,7 @@ class AdSupportController extends GetxController {
     Get.to(() => SupportDetailsScreen(
           com: status,
           code: code,
+          id: id,
         ));
     update(["Support"]);
   }
@@ -96,7 +102,8 @@ class AdSupportController extends GetxController {
 
   onTapSendMessage(String id) {
     if (valid()) {
-  /*    sendSupportApiData(id);*/
+     sendSupportApiData(id);
+     update(["Support"]);
     }
   }
 

@@ -59,10 +59,11 @@ class DeletApprove extends StatelessWidget {
                   height: 30,
                   width: 30,
                   child: Padding(
-                    padding: EdgeInsets.all(Get.width * 0.055),
+                    padding: EdgeInsets.all(Get.width * 0.09),
                     child: Image.asset(
                       AssetRes.deleticon,
                       color: ColorRes.color_C20606,
+
                     ),
                   ),
                 ),

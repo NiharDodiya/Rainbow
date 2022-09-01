@@ -75,7 +75,7 @@ class AdvirtisersApi {
               Get.put(AdvertiserVerifyController());
           adController.backScreen = 'DoctorRegisterScreen';
           advertiserVerifyController.phoneNumberRegister();
-          Get.offAll(() => AdvertiserVerifyOtpScreen());
+          Get.to(() => AdvertiserVerifyOtpScreen());
           await PrefService.setValue(PrefKeys.companyRegister, true);
           // flutterToast(jsonDecode(response.body)["message"]);
         }

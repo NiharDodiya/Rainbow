@@ -749,7 +749,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                             ? Text(
                                 Strings.useCurrentLocation,
                                 style: gilroyBoldTextStyle(
-                                    fontSize: 16, color: ColorRes.black),
+                                    fontSize: 18, color: ColorRes.black),
                               )
                             : Text(
                                 controller.address!,
@@ -786,7 +786,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
             Text(
               Strings.plase,
               style: gilroyBoldTextStyle(
-                  fontSize: 12, color: ColorRes.color_979B9B),
+                  fontSize: 14, color: Colors.black.withOpacity(0.3)),
             ),
             SizedBox(height: Get.height * 0.0197),
             AppTextFiled(

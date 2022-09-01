@@ -44,8 +44,7 @@ class HomeController extends GetxController {
 
   RxBool loader = false.obs;
   ProfileController controller = Get.put(ProfileController());
-  ListOfFriendRequestModel listOfFriendRequestModel =
-      ListOfFriendRequestModel();
+  ListOfFriendRequestModel listOfFriendRequestModel = ListOfFriendRequestModel();
   ViewStoryController viewStoryController = Get.put(ViewStoryController());
   List<bool> isAd = List.generate(10, (index) => Random().nextInt(2) == 1);
   MyStoryController myStoryController = Get.put(MyStoryController());

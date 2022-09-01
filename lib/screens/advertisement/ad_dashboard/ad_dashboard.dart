@@ -39,13 +39,7 @@ class AdvertisementDashBord extends StatelessWidget {
               GetBuilder<AdHomeController>(id: "dashBoard",builder: (controller) {
                 return  Row(
                   children: [
-                    adHomeController.viewAdvertiserModel.data==null? ClipRRect(borderRadius: BorderRadius.circular(50),
-                      child: Image.asset(
-                        AssetRes.portrait_placeholder,
-                        height: Get.width * 0.1730,
-                        width: Get.width * 0.1730,
-                      ),
-                    ): ClipRRect(
+                    adHomeController.viewAdvertiserModel.data==null?SizedBox(): ClipRRect(
                         borderRadius: BorderRadius.circular(50),
                         child: adHomeController.viewAdvertiserModel.data!.profileImage
                             .toString()
@@ -184,7 +178,7 @@ class AdvertisementDashBord extends StatelessWidget {
               ),
               // Notification
               GetBuilder<AdvertisementController>(
-                id: 'notifi',
+                id: 'settings',
                 builder: (controller) => InkWell(
                   onTap: controller.notification,
                   child: SizedBox(
@@ -212,12 +206,15 @@ class AdvertisementDashBord extends StatelessWidget {
                           height: Get.height * 0.02545,
                           child: Transform.scale(
                             scale: .7,
-                            child: CupertinoSwitch(
-                              activeColor: ColorRes.color_CE8CEC,
-                              value: controller.isSwitched,
-                              onChanged: (bool value) {
-                                // context.read<HomeBloc>().add(TapSwitch());
+                            child:  CupertinoSwitch(
+                              value: controller.isSwitched!,
+                              onChanged: (value) {
+                                controller.isSwitched = value;
+                                controller.notificationOnOffApi();
+                                controller.update(["settings"]);
                               },
+                              activeColor: ColorRes.color_CE8CEC,
+                              trackColor: Colors.grey.shade300,
                             ),
                           ),
                         ),
