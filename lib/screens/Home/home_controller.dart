@@ -39,8 +39,9 @@ import 'package:rainbow/screens/notification/notification_screen.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 import 'package:uni_links/uni_links.dart';
-
+bool subscribePopUp = false;
 class HomeController extends GetxController {
+
   RxBool loader = false.obs;
   ProfileController controller = Get.put(ProfileController());
   ListOfFriendRequestModel listOfFriendRequestModel = ListOfFriendRequestModel();

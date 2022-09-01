@@ -262,7 +262,9 @@ class ChatScreen extends StatelessWidget {
                                             data['senderUid'].toString() ==
                                                     userUid
                                                 ? const SizedBox()
-                                                : ClipRRect(
+                                                :  profileImage.toString()==""?ClipRRect(borderRadius: BorderRadius.circular(50),
+                                                child: Image.asset(AssetRes.portrait_placeholder,   height: 28,
+                                                  width: 28,)):ClipRRect(
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             50),
@@ -505,11 +507,14 @@ class ChatScreen extends StatelessWidget {
                                           ),
                                           InkWell(
                                               onTap: () {
-                                                controller.sendMessage(
-                                                    roomId.toString(),
-                                                    otherUserUid);
-                                                FocusScope.of(context)
-                                                    .unfocus();
+                                                if(controller.validation()){
+                                                  controller.sendMessage(
+                                                      roomId.toString(),
+                                                      otherUserUid);
+                                                  FocusScope.of(context)
+                                                      .unfocus();
+                                                }
+
                                               },
                                               child: Image.asset(
                                                 AssetRes.chatSend,

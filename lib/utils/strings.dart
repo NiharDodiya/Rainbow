@@ -362,6 +362,8 @@ class Strings {
   static const dateSupport = "24/7 Support";
   static const textSpan01 = "£24.99";
   static const textspan02 = "/month";
+  static const subscriptionPremium = "Subscribe to our Premium Version";
+
 
   ///----------------------------------SubScription Payment---------------------------
   static const iAMPROUDMOM = "IAMPROUDMOM";

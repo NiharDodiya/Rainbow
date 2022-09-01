@@ -276,7 +276,7 @@ class MessageScreen extends StatelessWidget {
                                                     return InkWell(
                                                       onTap: () {
                                                         controller
-                                                            .gotoChatScreen(
+                                                            .gotoChatScreen(context,
                                                           data['uid'],
                                                           data['name'],
                                                           data['image'],
@@ -422,7 +422,6 @@ class MessageScreen extends StatelessWidget {
                                 : GetBuilder<MessageController>(
                                     id: "message",
                                     builder: (controller) {
-
                                       if (controller
                                           .getFriendIdList()
                                           .isEmpty) {
@@ -485,7 +484,7 @@ class MessageScreen extends StatelessWidget {
                                                                   .text))) {
                                                         return InkWell(
                                                           onTap: () {
-                                                            controller.gotoChatScreen(
+                                                            controller.gotoChatScreen(context,
                                                                 snapshot.data!
                                                                         .docs[index]
                                                                         .data()[
