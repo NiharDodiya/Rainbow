@@ -93,20 +93,14 @@ class AdvertisementDeatailScreen extends StatelessWidget {
       ReadMoreText(
         createAdvertisementController.descriptoionController.text,
         trimLines: 3,
-        colorClickableText: Colors.black,
         trimMode: TrimMode.Line,
-        trimCollapsedText: 'Show more',
-        trimExpandedText: '...Show less',
+        trimCollapsedText: 'see more',
+        lessStyle: gilroyMediumTextStyle(fontSize: 14,color: Colors.white.withOpacity(0.5)),
+        trimExpandedText: '...see less',
         moreStyle: gilroyMediumTextStyle(
-          fontSize: 14,
+          fontSize: 14,color: Colors.white.withOpacity(0.5)
         ),
       ),
-          // Text(
-          //   createAdvertisementController.descriptoionController.text,
-          //   style: gilroyMediumTextStyle(
-          //     fontSize: 14,
-          //   ),
-          // ),
           const SizedBox(
             height: 24,
           ),
