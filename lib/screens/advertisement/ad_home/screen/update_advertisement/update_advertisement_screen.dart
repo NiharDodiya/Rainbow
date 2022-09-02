@@ -602,7 +602,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                      child: Row(
                        children: [
                          const SizedBox(
-                           width: 28,
+                           width: 20,
                          ),
                          const Icon(
                            Icons.location_on,
@@ -617,10 +617,20 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                            style: gilroyBoldTextStyle(
                                fontSize: 16, color: ColorRes.black),
                          )
-                             : Text(
-                           controller.address!,
-                           style: gilroyBoldTextStyle(
-                               fontSize: 12, color: ColorRes.black),
+                             :  Container(
+                           width: MediaQuery.of(context).size.width/1.8,
+                           child: SingleChildScrollView(
+                             scrollDirection: Axis.horizontal,
+                             child: Row(
+                               children: [
+                                 Text(
+                                   controller.address!,
+                                   style: gilroyBoldTextStyle(
+                                       fontSize: 16, color: ColorRes.black),
+                                 ),
+                               ],
+                             ),
+                           ),
                          ),
                          const Spacer()
                        ],
