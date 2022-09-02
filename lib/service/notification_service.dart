@@ -4,9 +4,11 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/model/send_notification_model.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
+import 'package:http/http.dart' as http;
 
 class NotificationService {
   static final NotificationsController _notyController =
@@ -129,5 +131,19 @@ class NotificationService {
       debugPrint(e.toString());
       return null;
     }
+  }
+
+  static const String serverToken =
+      'AAAAL9JBq0Q:APA91bH7KcxUY1NPODam1pA3LX3o_P4AxR4v0X2QsEU61W-h-pfxAt_vLGhWGCNFTIvZyPNddz8rDs-Eu2yPQQ9y_oQ3VyeBk3Ys62aNL9hutFtJh3Vwn-2JR9zU2FEUV40urCPm30Pd';
+  static Future<void> sendNotification(
+      SendNotificationModel notification) async {
+    await http.post(
+      Uri.parse('https://fcm.googleapis.com/fcm/send'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'key=$serverToken',
+      },
+      body: jsonEncode(notification.toMap()),
+    );
   }
 }
