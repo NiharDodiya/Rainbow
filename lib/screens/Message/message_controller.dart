@@ -185,7 +185,7 @@ class MessageController extends GetxController {
   var dowanloadurl;
   Future<void> sendNotification(String body) async {
     await NotificationService.sendNotification(SendNotificationModel(
-      id: GlobalData.user.uid,
+      id: userUid,
       chatId: chatId,
       body: body,
       title: receiver.userName,
