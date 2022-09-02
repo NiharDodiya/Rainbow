@@ -206,27 +206,27 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                       ),
                     ),
                     (controller.requestUsers.isEmpty)
-                        ?SizedBox()
-                        :Positioned(
-                      top: 0,
-                      right: 0,
-                      child: Container(
-                        height: 16,
-                        width: 16,
-                        alignment: Alignment.center,
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: ColorRes.color_FF6B97),
-                        child: Text(
-                          "${controller.requestUsers.length}",
-                          style: TextStyle(
-                            color: ColorRes.white,
-                            fontSize: 8,
-                            fontWeight: FontWeight.w800,
+                        ? const SizedBox()
+                        : Positioned(
+                            top: 0,
+                            right: 0,
+                            child: Container(
+                              height: 16,
+                              width: 16,
+                              alignment: Alignment.center,
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: ColorRes.color_FF6B97),
+                              child: Text(
+                                "${controller.requestUsers.length}",
+                                style: const TextStyle(
+                                  color: ColorRes.white,
+                                  fontSize: 8,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -412,27 +412,32 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                     width: 400,
                     child: Stack(
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(200),
-                          child: SizedBox(
-                            height: 400,
-                            width: 400,
-                            child: GoogleMap(
-                              mapType: MapType.normal,
-                              markers: Set<Marker>.of(markers),
-                              initialCameraPosition: CameraPosition(
-                                  target: LatLng(
-                                      homeController.controller.viewProfile
-                                          .data!.latitude!,
-                                      homeController.controller.viewProfile
-                                          .data!.longitude!),
-                                  zoom: 15),
-                              onMapCreated: (GoogleMapController controller) {
-                                setState(() {
-                                  googleMapController = controller;
-                                });
-                                searchController.gMapController.complete();
-                              },
+                        Positioned(
+                          top: 20,
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20)),
+                            child: SizedBox(
+                              height: 400,
+                              width: Get.width,
+                              child: GoogleMap(
+                                mapType: MapType.normal,
+                                markers: Set<Marker>.of(markers),
+                                initialCameraPosition: CameraPosition(
+                                    target: LatLng(
+                                        homeController.controller.viewProfile
+                                            .data!.latitude!,
+                                        homeController.controller.viewProfile
+                                            .data!.longitude!),
+                                    zoom: 15),
+                                onMapCreated: (GoogleMapController controller) {
+                                  setState(() {
+                                    googleMapController = controller;
+                                  });
+                                  searchController.gMapController.complete();
+                                },
+                              ),
                             ),
                           ),
                         ),

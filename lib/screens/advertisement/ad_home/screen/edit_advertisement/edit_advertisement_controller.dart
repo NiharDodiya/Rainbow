@@ -48,6 +48,7 @@ updateAdvertiseController.postalCodeController.text = editAdvertisementModel.dat
 updateAdvertiseController.dateController.text = DateFormat('yyyy-MM-dd').format(DateTime.parse(editAdvertisementModel.data!.date.toString()));
 updateAdvertiseController.descriptoionController.text = editAdvertisementModel.data!.description.toString();
 updateAdvertiseController.callToAction = editAdvertisementModel.data!.callAction.toString();
+updateAdvertiseController.callToActionController.text = editAdvertisementModel.data!.callAction.toString();
 updateAdvertiseController.urlLinkController.text = editAdvertisementModel.data!.urlLink.toString();
 updateAdvertiseController.countryController.text  = editAdvertisementModel.data!.userDetail!.idCountry.toString();
 updateAdvertiseController.selectedCity  = editAdvertisementModel.data!.userDetail!.idCountry;
