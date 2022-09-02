@@ -10,12 +10,14 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/friend_model.dart';
+import 'package:rainbow/model/send_notification_model.dart';
 import 'package:rainbow/model/user_model.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Message/api/message_api.dart';
 import 'package:rainbow/screens/Message/chat_screen.dart';
 import 'package:rainbow/service/Users_services.dart';
 import 'package:rainbow/service/chat_service.dart';
+import 'package:rainbow/service/notification_service.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/gloabal_data.dart';
@@ -181,6 +183,15 @@ class MessageController extends GetxController {
   File? image;
   String imageName = "";
   var dowanloadurl;
+  Future<void> sendNotification(String body) async {
+    await NotificationService.sendNotification(SendNotificationModel(
+      id: GlobalData.user.uid,
+      chatId: chatId,
+      body: body,
+      title: receiver.userName,
+      fcmTokens: [receiver.fcmToken.toString()],
+    ));
+  }
 
   void gotoChatScreen(
       BuildContext context, String otherUid, name, image) async {
@@ -296,6 +307,7 @@ class MessageController extends GetxController {
     update(['message']);
     image = null;
     update(['chats']);
+    sendNotification("📷 Image");
     loader.value = false;
   }
 
@@ -311,6 +323,7 @@ class MessageController extends GetxController {
     setLastMsgInDoc(msg);
 
     //setMsgCount(roomId, loginController.userUid, msg, userUid);
+    sendNotification(msg);
     update(['message']);
   }
 
