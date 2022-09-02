@@ -95,6 +95,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
         createAdvertisementController.descriptoionController.text,
         trimLines: 3,
         trimMode: TrimMode.Line,
+        style: gilroyMediumTextStyle(fontSize: 14),
         trimCollapsedText: 'see more',
         lessStyle: gilroyMediumTextStyle(fontSize: 14,color: Colors.white.withOpacity(0.5)),
         trimExpandedText: '...see less',

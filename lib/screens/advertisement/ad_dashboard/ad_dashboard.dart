@@ -26,11 +26,10 @@ class AdvertisementDashBord extends StatelessWidget {
 
   final AdvertisementController advertisementController = Get.put(AdvertisementController());
   final AdHomeController adHomeController = Get.put(AdHomeController());
-  final DashboardController controller = Get.put(DashboardController());
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DashboardController>(
+    return GetBuilder<AdvertisementController>(
       id: "bottom_bar",
         builder: (controller){
       return WillPopScope(
@@ -73,7 +72,7 @@ class AdvertisementDashBord extends StatelessWidget {
                   GetBuilder<AdHomeController>(id: "dashBoard",builder: (controller) {
                     return  Row(
                       children: [
-                        adHomeController.viewAdvertiserModel.data==null?SizedBox(): ClipRRect(
+                        adHomeController.viewAdvertiserModel.data==null?const SizedBox(): ClipRRect(
                             borderRadius: BorderRadius.circular(50),
                             child: adHomeController.viewAdvertiserModel.data!.profileImage
                                 .toString()

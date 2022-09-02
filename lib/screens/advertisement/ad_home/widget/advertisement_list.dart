@@ -20,11 +20,11 @@ Widget advertisementList() {
           child: ListView.builder(
             itemCount: controller.myAdvertiserModel.data?.length ?? 0,
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   InkWell(
@@ -122,7 +122,7 @@ Widget advertisementList() {
                                                       .data?[index].adminStatus
                                                       .toString() ==
                                                   "pending"
-                                              ? SizedBox()
+                                              ? const SizedBox()
                                               : Text(
                                                   controller
                                                           .myAdvertiserModel
@@ -176,8 +176,7 @@ Widget advertisementList() {
                                     children: [
                                       Text(
                                         controller.myAdvertiserModel
-                                                .data?[index].amount ??
-                                            "mom",
+                                                .data?[index].title ?? "",
                                         style: gilroySemiBoldTextStyle(
                                             fontSize: 14,
                                             color: ColorRes.black),
@@ -372,7 +371,7 @@ Widget advertisementList() {
                                                                 width: 15,
                                                               ),
                                                             ),
-                                                            SizedBox(
+                                                            const SizedBox(
                                                               width: 3,
                                                             ),
                                                             Text(

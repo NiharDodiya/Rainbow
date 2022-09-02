@@ -295,7 +295,7 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
           ),
           ReadMoreText(
             adHomeController.myAdvertiserModel.data![index].description.toString(),
-            trimLines: 3,
+            trimLines: 3,style: gilroyMediumTextStyle(fontSize: 14),
             trimMode: TrimMode.Line,
             trimCollapsedText: 'see more',
             lessStyle: gilroyMediumTextStyle(fontSize: 14,color: Colors.white.withOpacity(0.5)),
