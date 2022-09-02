@@ -25,41 +25,13 @@ class _AdHomeScreenState extends State<AdHomeScreen> {
 
   UpdateAdvertiseController updateAdvertiseController = Get.put(UpdateAdvertiseController());
 
-  final DashboardController controller = Get.put(DashboardController());
 
 
 
   @override
   Widget build(BuildContext context) {
     adHomeController.myAdvertiserListData();
-    return WillPopScope(
-      onWillPop: () async {
-        if (controller.currentTab == 0) {
-          showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(backgroundColor: Colors.white,
-                  title: Text("Are you sure you want exit app",
-                    style: gilroyBoldTextStyle(
-                        fontSize: 20, color: Colors.black),),
-                  actions: <Widget>[
-                    FlatButton(
-                      child: Text("ok", style: gilroyBoldTextStyle(
-                          fontSize: 18, color: Colors.black),),
-                      onPressed: () {
-                        SystemNavigator.pop();
-                      },
-                    )
-                  ],
-                );
-              });
-        } else {
-          controller.onBottomBarChange(0);
-          setState(() {});
-        }
-        return false;
-      },
-        child: Scaffold(
+    return Scaffold(
       body: SafeArea(
           child:Container(
             width: Get.width,
@@ -98,7 +70,6 @@ class _AdHomeScreenState extends State<AdHomeScreen> {
             }),
           )
       ),
-    ),
     );
   }
 }
