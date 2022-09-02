@@ -788,7 +788,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
              Text(
                Strings.plase,
                style: gilroyBoldTextStyle(
-                   fontSize: 12, color: ColorRes.color_979B9B),
+                   fontSize: 12, color: Colors.white.withOpacity(0.5)),
              ),
              SizedBox(height: Get.height * 0.0197),
              AppTextFiled(

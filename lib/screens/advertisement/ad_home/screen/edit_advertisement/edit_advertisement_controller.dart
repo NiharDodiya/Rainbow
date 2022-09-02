@@ -1,5 +1,6 @@
 import 'package:flutter/src/widgets/editable_text.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:rainbow/model/edit_advertise_model.dart';
 import 'package:rainbow/screens/advertisement/ad_home/myAdvertiser_api/myAdvertiser_api.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/update_advertisement/update_advertisement_controller.dart';
@@ -39,11 +40,12 @@ updateAdvertiseController.address = editAdvertisementModel.data!.location.toStri
 
 
 updateAdvertiseController.titleController.text = editAdvertisementModel.data!.title.toString();
-updateAdvertiseController.streetController.text = editAdvertisementModel.data!.street.toString() ;
+updateAdvertiseController.streetController.text = editAdvertisementModel.data!.street.toString();
 updateAdvertiseController.cityController.text = editAdvertisementModel.data!.userDetail!.city.toString();
 updateAdvertiseController.provinceController.text = editAdvertisementModel.data!.province.toString();
 updateAdvertiseController.postalCodeController.text = editAdvertisementModel.data!.postalCode.toString();
-updateAdvertiseController.dateController.text = editAdvertisementModel.data!.date.toString();
+/*updateAdvertiseController.dateController.text = DateFormat('dd/MM/yyyy').format(editAdvertisementModel.data!.date as DateTime);*/
+updateAdvertiseController.dateController.text = DateFormat('yyyy-MM-dd').format(DateTime.parse(editAdvertisementModel.data!.date.toString()));
 updateAdvertiseController.descriptoionController.text = editAdvertisementModel.data!.description.toString();
 updateAdvertiseController.callToAction = editAdvertisementModel.data!.callAction.toString();
 updateAdvertiseController.urlLinkController.text = editAdvertisementModel.data!.urlLink.toString();
