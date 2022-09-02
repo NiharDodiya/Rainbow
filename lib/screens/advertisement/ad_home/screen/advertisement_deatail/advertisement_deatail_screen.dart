@@ -13,7 +13,6 @@ import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:carousel_indicator/carousel_indicator.dart';
 import '../../ad_home_controller.dart';
 import '../create_advertisement/create_advertisement_controller.dart';
 import '../edit_advertisement/edit_advertisement_controller.dart';
@@ -75,8 +74,10 @@ class AdvertisementDeatailScreen extends StatelessWidget {
           Row(
             children: [
               Text(
-                Strings.surrogateMom,
-                style: gilroySemiBoldTextStyle(fontSize: 18),
+                createAdvertisementController.titleController.text,
+                style: gilroySemiBoldTextStyle(
+                  fontSize: 18,
+                ),
               ),
               const Spacer(),
               Text(
@@ -86,13 +87,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 5,),
-          Text(
-            createAdvertisementController.titleController.text,
-            style: gilroySemiBoldTextStyle(
-              fontSize: 14,
-            ),
-          ),
+
           const SizedBox(
             height: 20,
           ),
@@ -272,9 +267,9 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                     ),
                   ),
                   (controller.imagePath.length == 1)
-                      ?SizedBox()
+                      ?const SizedBox()
                       :Padding(
-                    padding: EdgeInsets.only(top: 100),
+                    padding: const EdgeInsets.only(top: 100),
                     child: Align(
                       alignment: Alignment.center,
                       child: CarouselIndicator(

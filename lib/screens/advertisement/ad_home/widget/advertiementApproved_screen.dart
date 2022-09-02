@@ -218,9 +218,9 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
                     ),
                   ),
                   (adHomeController.myAdvertiserModel.data?[index].itemsList!.length == 1)
-                      ?SizedBox()
+                      ?const SizedBox()
                       :Padding(
-                    padding: EdgeInsets.only(top: 100),
+                    padding: const EdgeInsets.only(top: 100),
                     child: Align(
                       alignment: Alignment.center,
                       child: CarouselIndicator(
@@ -254,10 +254,12 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
           ),
           Row(
             children: [
-              Text(
-                "Surrogate Mom",
-                style: gilroySemiBoldTextStyle(fontSize: 18),
-              ),
+          Text(
+          adHomeController.myAdvertiserModel.data![index].title.toString(),
+      style: gilroySemiBoldTextStyle(
+        fontSize: 18,
+      ),
+    ),
               const Spacer(),
               ( adHomeController.myAdvertiserModel.data?[index].adminStatus.toString() == 'approve')?
               InkWell(
@@ -287,13 +289,7 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
               ),
             ],
           ),
-          SizedBox(height: 5,),
-          Text(
-            adHomeController.myAdvertiserModel.data![index].title.toString(),
-            style: gilroySemiBoldTextStyle(
-              fontSize: 14,
-            ),
-          ),
+
           const SizedBox(
             height: 20,
           ),
