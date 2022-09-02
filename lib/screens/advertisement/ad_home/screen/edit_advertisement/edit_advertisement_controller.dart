@@ -1,6 +1,8 @@
+import 'package:flutter/src/widgets/editable_text.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/model/edit_advertise_model.dart';
 import 'package:rainbow/screens/advertisement/ad_home/myAdvertiser_api/myAdvertiser_api.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/update_advertisement/update_advertisement_controller.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
@@ -18,8 +20,10 @@ class EditAdvertiesementController extends GetxController {
   //   imageName = imageList.last;
   //   update(['edit']);
   // }
+  UpdateAdvertiseController updateAdvertiseController = Get.put(UpdateAdvertiseController());
   RxBool loader = false.obs;
   EditAdvertisementModel editAdvertisementModel = EditAdvertisementModel();
+
 
   Future<void> myEditAdvertiserListData({required int id}) async {
     try{
@@ -29,6 +33,19 @@ class EditAdvertiesementController extends GetxController {
             "id_advertisement": id
           }
       );
+updateAdvertiseController.tagsController.text = editAdvertisementModel.data!.tagsList.toString();
+      updateAdvertiseController.countryController.text  = editAdvertisementModel.data!.userDetail!.country.toString();
+   /*   selectedEthicity = profileController.viewProfile.data!.idEthnicity!;*/
+updateAdvertiseController.titleController.text = editAdvertisementModel.data!.title.toString();
+updateAdvertiseController.streetController.text = editAdvertisementModel.data!.street.toString() ;
+updateAdvertiseController.cityController.text = editAdvertisementModel.data!.userDetail!.city.toString();
+updateAdvertiseController.provinceController.text = editAdvertisementModel.data!.province.toString();
+updateAdvertiseController.postalCodeController.text = editAdvertisementModel.data!.postalCode.toString();
+updateAdvertiseController.dateController.text = editAdvertisementModel.data!.date.toString();
+updateAdvertiseController.descriptoionController.text = editAdvertisementModel.data!.description.toString();
+updateAdvertiseController.callToAction = editAdvertisementModel.data!.callAction.toString();
+updateAdvertiseController.urlLinkController.text = editAdvertisementModel.data!.urlLink.toString();
+
       update(['more']);
       loader.value =false;
 

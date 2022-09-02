@@ -54,7 +54,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                           height: Get.height * 0.035,
                         ),
                         appBar(),
-                        body(context),
+                        body(context,controller),
                         SubmitButton(
                           onTap: () {
                             updateAdvertiseController.uploadImageApi(id: id);
@@ -101,12 +101,12 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                  child: Image.asset(
                    AssetRes.backIcon,
                    height: 16,
-                   width: 16,
+                   width: 35,
                    color: Colors.white,
                  ),
                ),
                SizedBox(
-                 width: Get.width * 0.25,
+                 width: Get.width * 0.15,
                ),
                GestureDetector(
                  onTap: () {
@@ -130,8 +130,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
      );
    }
 
-   Widget body(context) {
-     UpdateAdvertiseController controller = Get.put(UpdateAdvertiseController());
+   Widget body(context, UpdateAdvertiseController controller) {
      return SingleChildScrollView(
        child: Padding(
          padding: EdgeInsets.symmetric(horizontal: Get.width * 0.0853),
@@ -148,7 +147,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                child: TextField(
                  onChanged: (value) {},
                  maxLines: 7,
-                 controller: updateAdvertiseController.tagsController,
+                 controller: controller.tagsController,
                  style: textFieldText,
                  decoration: InputDecoration(
                    contentPadding: const EdgeInsets.only(top: 0),
@@ -178,7 +177,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                              ?Column(
                            mainAxisAlignment: MainAxisAlignment.center,
                            children: [
-                             SizedBox(height: 30,),
+                             const SizedBox(height: 30,),
                              InkWell(
                                onTap: () {
                                  if(controller.imagePath.length==3){
@@ -246,7 +245,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                              ?Row(
                            children: [
                              Stack(
-                               alignment: Alignment(1.2, -1.3),
+                               alignment: const Alignment(1.2, -1.3),
                                children: [
                                  Container(
                                    height: Get.height / 12,
@@ -279,9 +278,9 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                  ),
                                ],
                              ),
-                             SizedBox(width: 20),
+                             const SizedBox(width: 20),
                              Stack(
-                               alignment: Alignment(1.2, -1.3),
+                               alignment: const Alignment(1.2, -1.3),
                                children: [
                                  Container(
                                    height: Get.height / 12,
@@ -314,9 +313,9 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                  ),
                                ],
                              ),
-                             SizedBox(width: 20),
+                             const SizedBox(width: 20),
                              Stack(
-                               alignment: Alignment(1.2, -1.3),
+                               alignment: const Alignment(1.2, -1.3),
                                children: [
                                  Container(
                                    height: Get.height / 12,
@@ -355,7 +354,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                              ?Row(
                            children: [
                              Stack(
-                               alignment: Alignment(1.2, -1.3),
+                               alignment: const Alignment(1.2, -1.3),
                                children: [
                                  Container(
                                    height: Get.height / 12,
@@ -388,9 +387,9 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                  ),
                                ],
                              ),
-                             SizedBox(width: 20),
+                             const SizedBox(width: 20),
                              Stack(
-                               alignment: Alignment(1.2, -1.3),
+                               alignment: const Alignment(1.2, -1.3),
                                children: [
                                  Container(
                                    height: Get.height / 12,
@@ -423,11 +422,11 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                  ),
                                ],
                              ),
-                             SizedBox(width: 20),
+                             const SizedBox(width: 20),
                              Column(
                                mainAxisAlignment: MainAxisAlignment.center,
                                children: [
-                                 SizedBox(height: 30,),
+                                 const SizedBox(height: 30,),
                                  InkWell(
                                    onTap: () {
                                      if(controller.imagePath.length==3){
@@ -496,7 +495,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                              :(controller.imagePath.length==1)
                              ?Row(children: [
                            Stack(
-                             alignment: Alignment(1.2, -1.3),
+                             alignment: const Alignment(1.2, -1.3),
                              children: [
                                Container(
                                  height: Get.height / 12,
@@ -529,11 +528,11 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                ),
                              ],
                            ),
-                           SizedBox(width: 20),
+                           const SizedBox(width: 20),
                            Column(
                              mainAxisAlignment: MainAxisAlignment.center,
                              children: [
-                               SizedBox(height: 30,),
+                               const SizedBox(height: 30,),
                                InkWell(
                                  onTap: () {
                                    if(controller.imagePath.length==3){
@@ -601,7 +600,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                              :Row(
                            children: [
                              Stack(
-                               alignment: Alignment(1.2, -1.3),
+                               alignment: const Alignment(1.2, -1.3),
                                children: [
                                  Container(
                                    height: Get.height / 12,
@@ -634,9 +633,9 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                  ),
                                ],
                              ),
-                             SizedBox(width: 20),
+                             const SizedBox(width: 20),
                              Stack(
-                               alignment: Alignment(1.2, -1.3),
+                               alignment: const Alignment(1.2, -1.3),
                                children: [
                                  Container(
                                    height: Get.height / 12,
@@ -669,9 +668,9 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                  ),
                                ],
                              ),
-                             SizedBox(width: 20),
+                             const SizedBox(width: 20),
                              Stack(
-                               alignment: Alignment(1.2, -1.3),
+                               alignment: const Alignment(1.2, -1.3),
                                children: [
                                  Container(
                                    height: Get.height / 12,

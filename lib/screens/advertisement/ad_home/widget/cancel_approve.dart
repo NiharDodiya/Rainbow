@@ -33,7 +33,7 @@ class CancelApprove extends StatelessWidget {
           ),
           child: Column(
             children: [
-              appbar(),
+              appbar(context),
               SizedBox(
                 height: Get.height * 0.07881,
               ),
@@ -89,18 +89,21 @@ class CancelApprove extends StatelessWidget {
   }
 }
 
-Widget appbar() {
+Widget appbar(BuildContext context) {
   return SizedBox(
     width: Get.width,
     child: Padding(
       padding: const EdgeInsets.only(left: 20, right: 30, top: 15, bottom: 10),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: const Icon(Icons.arrow_back_ios),
-        )
+        InkWell(onTap: () {
+          Navigator.pop(context);
+        },
+          child: Image.asset(
+            AssetRes.backIcon,
+            height: 15,
+            width: 35,
+          ),
+        ),
       ]),
     ),
   );

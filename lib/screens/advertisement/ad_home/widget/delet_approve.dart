@@ -10,7 +10,8 @@ import '../../../../utils/color_res.dart';
 
 class DeletApprove extends StatelessWidget {
   String? idAdvertiser;
-   DeletApprove({Key? key,this.idAdvertiser}) : super(key: key);
+
+  DeletApprove({Key? key, this.idAdvertiser}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class DeletApprove extends StatelessWidget {
           ),
           child: Column(
             children: [
-              appbar(),
+              appbar(context),
               SizedBox(
                 height: Get.height * 0.07881,
               ),
@@ -63,7 +64,6 @@ class DeletApprove extends StatelessWidget {
                     child: Image.asset(
                       AssetRes.deleticon,
                       color: ColorRes.color_C20606,
-
                     ),
                   ),
                 ),
@@ -80,17 +80,19 @@ class DeletApprove extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              GetBuilder<AdHomeController>(id: "delete",builder: (controller) {
-                return SubmitButton(
-                    onTap: () {
-                      controller.deleteAdvertiser(idAdvertiser,context);
-                    },
-                    child: Text(
-                      Strings.confirm,
-                      style: gilroyBoldTextStyle(fontSize: 16, color: ColorRes.black),
-                    ));
-              },
-
+              GetBuilder<AdHomeController>(
+                id: "delete",
+                builder: (controller) {
+                  return SubmitButton(
+                      onTap: () {
+                        controller.deleteAdvertiser(idAdvertiser, context);
+                      },
+                      child: Text(
+                        Strings.confirm,
+                        style: gilroyBoldTextStyle(
+                            fontSize: 16, color: ColorRes.black),
+                      ));
+                },
               ),
               SizedBox(height: Get.height * 0.04926)
             ],
@@ -101,18 +103,21 @@ class DeletApprove extends StatelessWidget {
   }
 }
 
-Widget appbar() {
+Widget appbar(BuildContext context) {
   return SizedBox(
     width: Get.width,
     child: Padding(
       padding: const EdgeInsets.only(left: 20, right: 30, top: 15, bottom: 10),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: const Icon(Icons.arrow_back_ios),
-        )
+        InkWell(onTap: () {
+          Navigator.pop(context);
+        },
+          child: Image.asset(
+            AssetRes.backIcon,
+            height: 15,
+            width: 35,
+          ),
+        ),
       ]),
     ),
   );

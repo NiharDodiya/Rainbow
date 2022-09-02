@@ -163,7 +163,6 @@ class AdHomeController extends GetxController {
       print(e.toString());
     }
   }
-  EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertiesementController());
 
 
 
