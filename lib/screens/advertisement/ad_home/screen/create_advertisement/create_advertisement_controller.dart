@@ -45,7 +45,8 @@ class CreateAdvertisementController extends GetxController {
   List<String> dropDList = ["Learn More", "Contact Us"];
 
 
-  DateTime startTime = DateTime.now();
+  DateTime? startTime=DateTime.now();
+  DateTime selectableDate = DateTime.now();
   DateTime endTime = DateTime.now();
   String flag = AssetRes.flag01;
   bool showDropDown = false;
@@ -161,7 +162,8 @@ class CreateAdvertisementController extends GetxController {
         if (listNationalities.data![i].name == countryController.text) {
           codeId = listNationalities.data![i].id;
         }
-      }/*uploadImageApi();*/
+      }
+      /*uploadImageApi();*/
       Get.to(() => AdvertisementDeatailScreen());
 
     }
@@ -318,7 +320,7 @@ class CreateAdvertisementController extends GetxController {
         street: streetController.text,
         urlLink: urlLinkController.text,
         countryCode: codeId.toString(),
-    startDate: DateFormat().add_yMd().format(startTime),
+    startDate: DateFormat().add_yMd().format(startTime!),
     endDate:DateFormat().add_yMd().format(endTime));
    adHomeController.myAdvertiserListData();
    adHomeController.update(['more']);
@@ -329,7 +331,7 @@ class CreateAdvertisementController extends GetxController {
 
 
   rangSelect(start, end, range) {
-    startTime = DateTime.now();
+    startTime = start;
     endTime = end;
     update(['range']);
   }
@@ -382,7 +384,7 @@ class CreateAdvertisementController extends GetxController {
 /*      print(DateFormat().add_yMd().format(startTime));*/
 /*    await  createAdvertisementController.uploadImageApi();*/
      /*  await uploadImageApi();*/
-
+print(tagsController.text);
       Get.bottomSheet(
         enableDrag: false,
         BottomSheet(

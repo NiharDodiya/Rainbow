@@ -150,10 +150,7 @@ class SetupDateScreen extends StatelessWidget {
                   builder: (controller) => TableCalendar(
                     calendarBuilders: const CalendarBuilders(),
                     shouldFillViewport: true,
-                    firstDay: DateTime(
-                      2022,
-                      DateTime.now().month,
-                    ),
+                    firstDay:DateTime.now(),
                     lastDay: DateTime(2050),
                     onFormatChanged: (CalendarFormat ca) {
                       CalendarFormat.month;
