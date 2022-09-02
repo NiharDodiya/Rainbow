@@ -442,7 +442,7 @@ class Strings {
 
   ///------------------------------Ad _home --->Create Advertisement--------
   static const callToAction = "Call to Action";
-  static const urlLink = "please enter URL Link";
+  static const urlLink = "URL Link";
   static const tagsError = "please enter Tags";
   static const imageError = "please add image ";
   static const titleError = "please enter Title";

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/formatters/money_input_formatter.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_failed.dart/payment_failed_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_successful/payment_successful_screen.dart';
@@ -19,6 +20,7 @@ import '../../../../../utils/color_res.dart';
 class SetupDateScreen extends StatelessWidget {
   SetupDateScreen({Key? key}) : super(key: key);
   CreateAdvertisementController createAdvertisementController = Get.put(CreateAdvertisementController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -472,6 +474,7 @@ class ShowBottomNext extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CreateAdvertisementController createAdvertisementController = Get.put(CreateAdvertisementController());
+    AdHomeController adHomeController = Get.find<AdHomeController>();
     return Obx(() => Stack(
       children: [
         DraggableScrollableSheet(
@@ -563,7 +566,7 @@ class ShowBottomNext extends StatelessWidget {
                               height: Get.height * 0.007389,
                             ),
                             Text(
-                              "Miracle Keen",
+                             "${adHomeController.viewAdvertiserModel.data?.fullName ?? ""}",
                               style: poppinsMediumBold(fontSize: 14),
                             ),
                             SizedBox(
@@ -606,7 +609,7 @@ class ShowBottomNext extends StatelessWidget {
                     ),
                     SubmitButton(
                       onTap: () {
-                        Get.to(() => const PaymentSuccessfulScreen());
+                        Get.to(() =>  PaymentSuccessfulScreen());
                        /* setupDateController.boostAdvertisementApi();*/
                       },
                       child: Text(
@@ -623,7 +626,7 @@ class ShowBottomNext extends StatelessWidget {
                     ),
                     SubmitButton(
                       onTap: () {
-                        Get.to(() => const PaymentFailedScreen());
+                        Get.to(() =>  PaymentFailedScreen());
                       },
                       child: Text(
                         "Cancel",

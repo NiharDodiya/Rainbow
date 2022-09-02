@@ -381,7 +381,7 @@ class CreateAdvertisementController extends GetxController {
     if (validation()) {
 /*      print(DateFormat().add_yMd().format(startTime));*/
 /*    await  createAdvertisementController.uploadImageApi();*/
-       await uploadImageApi();
+     /*  await uploadImageApi();*/
 
       Get.bottomSheet(
         enableDrag: false,
@@ -395,7 +395,7 @@ class CreateAdvertisementController extends GetxController {
           backgroundColor: ColorRes.white,
           onClosing: () {},
           constraints: BoxConstraints(
-            maxHeight: Get.height - (Get.height * 0.0480),
+            maxHeight: Get.height - (Get.height * 0.2),
           ),
 
           // enableDrag: true,

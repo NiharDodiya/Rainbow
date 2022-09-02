@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
@@ -11,8 +12,8 @@ import '../../../../../utils/color_res.dart';
 import '../../../ad_dashboard/ad_dashboard.dart';
 
 class PaymentSuccessfulScreen extends StatelessWidget {
-  const PaymentSuccessfulScreen({Key? key}) : super(key: key);
-
+   PaymentSuccessfulScreen({Key? key}) : super(key: key);
+AdHomeController adHomeController = Get.put(AdHomeController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,9 +25,8 @@ class PaymentSuccessfulScreen extends StatelessWidget {
             gradient: LinearGradient(
               colors: [
                 ColorRes.color_50369C,
-                ColorRes.color_50369C,
                 ColorRes.color_D18EEE,
-                ColorRes.color_D18EEE,
+
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -42,8 +42,8 @@ class PaymentSuccessfulScreen extends StatelessWidget {
                   Strings.paymentSuccessful,
                   style: gilroySemiBoldTextStyle(fontSize: 24),
                 ),
-                SizedBox(
-                  height: Get.height * 0.02832,
+                const SizedBox(
+                  height: 23,
                 ),
                 Container(
                   height: 177,
@@ -53,24 +53,12 @@ class PaymentSuccessfulScreen extends StatelessWidget {
                       border: Border.all(
                         color: ColorRes.color_514EC6,
                         width: 14,
-                      ),
+                      ),image: const DecorationImage(image: AssetImage(AssetRes.paymentSuccessfulMark)),
                       shape: BoxShape.circle),
-                  child:Container(
-                    height: 10,
-                    width: 10,
-                    decoration: const BoxDecoration(
-                      color: Color(0XFF2C32A5),
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.check_rounded,
-                      size: 50,
-                    ),
-                  ),
                 ),
-                // SizedBox(
-                //   height: Get.height * 0.04064,
-                // ),
+                SizedBox(
+                  height: 23,
+                ),
                 Container(
                   height: 250,
                   width: Get.width,
@@ -101,7 +89,7 @@ class PaymentSuccessfulScreen extends StatelessWidget {
                               height: Get.height * 0.007389,
                             ),
                             Text(
-                              Strings.miracleKeen,
+                              "${adHomeController.viewAdvertiserModel.data?.fullName ?? ""}",
                               style: poppinsMediumBold(fontSize: 14),
                             ),
                             SizedBox(

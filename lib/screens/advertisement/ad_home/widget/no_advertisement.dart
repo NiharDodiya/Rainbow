@@ -16,7 +16,7 @@ Widget noAdvertisement() {
     builder: (controller) {
       return Expanded(
         child: Container(
-          margin: EdgeInsets.only(top: 20),
+          margin: const EdgeInsets.only(top: 20),
           width: Get.width,
           decoration: const BoxDecoration(
             gradient: LinearGradient(

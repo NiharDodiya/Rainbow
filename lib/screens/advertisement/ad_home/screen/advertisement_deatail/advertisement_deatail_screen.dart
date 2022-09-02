@@ -80,7 +80,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 5,),
+          const SizedBox(height: 5,),
           Text(
             createAdvertisementController.titleController.text,
             style: gilroySemiBoldTextStyle(

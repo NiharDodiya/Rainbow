@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/utils/strings.dart';
 
 import '../../../../../common/Widget/buttons.dart';
@@ -9,8 +10,8 @@ import '../../../../../utils/color_res.dart';
 import '../../../ad_dashboard/ad_dashboard.dart';
 
 class PaymentFailedScreen extends StatelessWidget {
-  const PaymentFailedScreen({Key? key}) : super(key: key);
-
+   PaymentFailedScreen({Key? key}) : super(key: key);
+AdHomeController adHomeController = Get.put(AdHomeController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,7 +102,7 @@ class PaymentFailedScreen extends StatelessWidget {
                               height: Get.height * 0.007389,
                             ),
                             Text(
-                              Strings.miracleKeen,
+                              "${adHomeController.viewAdvertiserModel.data?.fullName ?? ""}",
                               style: poppinsMediumBold(fontSize: 14),
                             ),
                             SizedBox(

@@ -47,10 +47,10 @@ class BoostAdvertisementApi {
         print('========== ${response.statusCode}');
         print("======== Id: $userId");
         if (status == false) {
-          Get.to(() => const PaymentFailedScreen());
+          Get.to(() =>  PaymentFailedScreen());
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          Get.to(() => const PaymentSuccessfulScreen());
+          Get.to(() =>  PaymentSuccessfulScreen());
           flutterToast(jsonDecode(response.body)["message"]);
         }
       }
