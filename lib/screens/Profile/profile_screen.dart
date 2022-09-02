@@ -15,6 +15,7 @@ import 'package:readmore/readmore.dart';
 
 class ProfileScreen extends StatelessWidget {
   int i;
+
   ProfileScreen({Key? key, required this.i}) : super(key: key);
   ProfileController controller = Get.put(ProfileController());
 
@@ -48,8 +49,8 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     Expanded(
                       flex: 1,
-                      child: profileAppbar(
-                          Strings.profile, true, context, i, controller.onTapToHomeScreen),
+                      child: profileAppbar(Strings.profile, true, context, i,
+                          controller.onTapToHomeScreen),
                     ),
                     //controller.onTapToHomeScreen
                     Expanded(
@@ -202,73 +203,83 @@ class ProfileScreen extends StatelessWidget {
   Widget hobbiesAndInterest() {
     return controller.viewProfile.data == null
         ? const SizedBox()
-        :  Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(
-          height: 10,
-        ),
-        Padding(padding: const EdgeInsets.only(left: 28),
-        child: Text(
-          Strings.hobbies,
-          style: beVietnamProBoldTextStyle(fontSize: 18),
-        ),),
-        Container(
-          margin: const EdgeInsets.only(top: 15),
-          child: (controller.viewProfile.data!.hobbiesAndInterest.toString() == '')
-              ? Center(
-            child: Text("-",style:  gilroyBoldTextStyle(fontSize: 18),),
-          )
-              :Padding(padding: const EdgeInsets.only(left: 28),child: Align(
-            alignment: Alignment.topLeft,
-            child: ReadMoreText(
-              controller.viewProfile.data!.hobbiesAndInterest
-                  .toString(),
-              /* aboutMe,*/
-              trimLines: 3,
-              trimMode: TrimMode.Line,
-              delimiter: " ",
-              trimCollapsedText: Strings.seeMore,
-              trimExpandedText: Strings.seeLess,
-              style: beVietnamProRegularTextStyle(
-                  color: ColorRes.white.withOpacity(0.70),fontSize: 18
+        : Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 10,
               ),
-              moreStyle: beVietnamProRegularTextStyle(
-                color: ColorRes.color_FF6B97,
+              Padding(
+                padding: const EdgeInsets.only(left: 28),
+                child: Text(
+                  Strings.hobbies,
+                  style: beVietnamProBoldTextStyle(fontSize: 18),
+                ),
               ),
-              lessStyle: beVietnamProRegularTextStyle(
-                color: ColorRes.color_FF6B97,
+              Container(
+                margin: const EdgeInsets.only(top: 15),
+                child: (controller.viewProfile.data!.hobbiesAndInterest
+                            .toString() ==
+                        '')
+                    ? Center(
+                        child: Text(
+                          "-",
+                          style: gilroyBoldTextStyle(fontSize: 18),
+                        ),
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.only(left: 28),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: ReadMoreText(
+                            controller.viewProfile.data!.hobbiesAndInterest
+                                .toString(),
+                            /* aboutMe,*/
+                            trimLines: 3,
+                            trimMode: TrimMode.Line,
+                            delimiter: " ",
+                            trimCollapsedText: Strings.seeMore,
+                            trimExpandedText: Strings.seeLess,
+                            style: beVietnamProRegularTextStyle(
+                                color: ColorRes.white.withOpacity(0.70),
+                                fontSize: 18),
+                            moreStyle: beVietnamProRegularTextStyle(
+                              color: ColorRes.color_FF6B97,
+                            ),
+                            lessStyle: beVietnamProRegularTextStyle(
+                              color: ColorRes.color_FF6B97,
+                            ),
+                          ),
+                        ),
+                      ),
+                // child: ReadMoreText(
+                //   controller.viewProfile.data!.hobbiesAndInterest
+                //       .toString() ==
+                //       ""
+                //       ? "-": controller.viewProfile.data!.hobbiesAndInterest
+                //       .toString(),
+                //   /* aboutMe,*/
+                //   trimLines: 3,
+                //   trimMode: TrimMode.Line,
+                //   delimiter: " ",
+                //   trimCollapsedText: Strings.seeMore,
+                //   trimExpandedText: Strings.seeLess,
+                //   style: beVietnamProRegularTextStyle(
+                //       color: ColorRes.white.withOpacity(0.70),fontSize: 18
+                //   ),
+                //   moreStyle: beVietnamProRegularTextStyle(
+                //     color: ColorRes.color_FF6B97,
+                //   ),
+                //   lessStyle: beVietnamProRegularTextStyle(
+                //     color: ColorRes.color_FF6B97,
+                //   ),
+                // ),
               ),
-            ),
-          ),),
-          // child: ReadMoreText(
-          //   controller.viewProfile.data!.hobbiesAndInterest
-          //       .toString() ==
-          //       ""
-          //       ? "-": controller.viewProfile.data!.hobbiesAndInterest
-          //       .toString(),
-          //   /* aboutMe,*/
-          //   trimLines: 3,
-          //   trimMode: TrimMode.Line,
-          //   delimiter: " ",
-          //   trimCollapsedText: Strings.seeMore,
-          //   trimExpandedText: Strings.seeLess,
-          //   style: beVietnamProRegularTextStyle(
-          //       color: ColorRes.white.withOpacity(0.70),fontSize: 18
-          //   ),
-          //   moreStyle: beVietnamProRegularTextStyle(
-          //     color: ColorRes.color_FF6B97,
-          //   ),
-          //   lessStyle: beVietnamProRegularTextStyle(
-          //     color: ColorRes.color_FF6B97,
-          //   ),
-          // ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-      ],
-    );
+              const SizedBox(
+                height: 10,
+              ),
+            ],
+          );
   }
 
   Widget testimonial(ProfileController controller) {
@@ -300,7 +311,7 @@ class ProfileScreen extends StatelessWidget {
                       ? Center(
                           child: Text(
                             "-",
-                            style:  gilroyBoldTextStyle(fontSize: 18),
+                            style: gilroyBoldTextStyle(fontSize: 18),
                           ),
                         )
                       : controller.viewTestimonials(),

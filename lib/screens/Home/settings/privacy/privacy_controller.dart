@@ -85,16 +85,12 @@ class PrivacyController extends GetxController {
     update(["check"]);
   }
 
-  checkBoxText({required bool check})
-  {
-    if(check==true)
-      {
-        check=false;
-      }
-    else
-      {
-        check=true;
-      }
+  checkBoxText({required bool check}) {
+    if (check == true) {
+      check = false;
+    } else {
+      check = true;
+    }
     update(['check']);
   }
 }

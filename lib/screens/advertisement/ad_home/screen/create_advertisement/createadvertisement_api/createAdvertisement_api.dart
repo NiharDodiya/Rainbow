@@ -1,10 +1,8 @@
 import 'dart:convert';
 
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/createAdvertiserModel.dart';
-import 'package:rainbow/screens/advertisement/ad_home/screen/advertisement_deatail/advertisement_deatail_screen.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
@@ -63,7 +61,6 @@ class AddAdvertisement {
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           flutterToast(jsonDecode(response.body)["message"]);
-
         }
         return advertisersCreateModelFromJson(response.body);
       }

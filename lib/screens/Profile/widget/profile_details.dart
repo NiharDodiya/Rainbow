@@ -21,8 +21,7 @@ Widget profileDetails() {
               controller.viewProfile.data?.userStatus?.toString() ?? "",
               style: gilroyRegularTextStyle(
                   fontSize:
-                      controller.viewProfile.data!.userStatus.toString() !=
-                              ""
+                      controller.viewProfile.data!.userStatus.toString() != ""
                           ? 14
                           : 0),
             ),
@@ -35,65 +34,82 @@ Widget profileDetails() {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                (controller.viewProfile.data?.age?.toString()??"")=="0"?SizedBox():Text(
-                  controller.viewProfile.data?.age?.toString() == "0"
-                      ? ""
-                      : (controller.viewProfile.data?.age?.toString()) ?? "",
-                  style: gilroyRegularTextStyle(fontSize: 14),
-                ),
-                controller.viewProfile.data!.age?.toString() == "0"?const SizedBox():Container(
-                  height: 4,
-                  width: 4,
-                  margin: const EdgeInsets.only(left: 8, right: 8, bottom: 3),
-                  child: Image.asset(
-                    AssetRes.yellowDot,
-                    height: 4,
-                    width: 4,
-                  ),
-                ),
-             /*   dot(
+                (controller.viewProfile.data?.age?.toString() ?? "") == "0"
+                    ? SizedBox()
+                    : Text(
+                        controller.viewProfile.data?.age?.toString() == "0"
+                            ? ""
+                            : (controller.viewProfile.data?.age?.toString()) ??
+                                "",
+                        style: gilroyRegularTextStyle(fontSize: 14),
+                      ),
+                controller.viewProfile.data!.age?.toString() == "0"
+                    ? const SizedBox()
+                    : Container(
+                        height: 4,
+                        width: 4,
+                        margin:
+                            const EdgeInsets.only(left: 8, right: 8, bottom: 3),
+                        child: Image.asset(
+                          AssetRes.yellowDot,
+                          height: 4,
+                          width: 4,
+                        ),
+                      ),
+                /*   dot(
                     controller,
                     controller.viewProfile.data!.age?.toString() == "0"
                         ? ""
                         : (controller.viewProfile.data!.age?.toString()) ?? ""),*/
-                (controller.viewProfile.data?.city?.toString()??"").isEmpty?SizedBox():Text(
-                  (controller.viewProfile.data?.city?.toString() ?? "").isEmpty
-                      ? ""
-                      : controller.viewProfile.data!.city.toString(),
-                  style: gilroyRegularTextStyle(fontSize: 14),
-                ),
-                controller.viewProfile.data!.city!.toString().isEmpty?const SizedBox():Container(
-                  height: 4,
-                  width: 4,
-                  margin: const EdgeInsets.only(left: 8, right: 8, bottom: 3),
-                  child: Image.asset(
-                    AssetRes.yellowDot,
-                    height: 4,
-                    width: 4,
-                  ),
-                ),
-             /*   dot(
+                (controller.viewProfile.data?.city?.toString() ?? "").isEmpty
+                    ? SizedBox()
+                    : Text(
+                        (controller.viewProfile.data?.city?.toString() ?? "")
+                                .isEmpty
+                            ? ""
+                            : controller.viewProfile.data!.city.toString(),
+                        style: gilroyRegularTextStyle(fontSize: 14),
+                      ),
+                controller.viewProfile.data!.city!.toString().isEmpty
+                    ? const SizedBox()
+                    : Container(
+                        height: 4,
+                        width: 4,
+                        margin:
+                            const EdgeInsets.only(left: 8, right: 8, bottom: 3),
+                        child: Image.asset(
+                          AssetRes.yellowDot,
+                          height: 4,
+                          width: 4,
+                        ),
+                      ),
+                /*   dot(
                     controller,
                     (controller.viewProfile.data?.city?.toString() ?? "")
                             .isEmpty
                         ? ""
                         : controller.viewProfile.data!.city.toString()),*/
-                (controller.viewProfile.data?.height?.toString()??"").isEmpty?SizedBox():Text(
-                  controller.viewProfile.data == null
-                      ? ""
-                      : controller.viewProfile.data!.height.toString(),
-                  style: gilroyRegularTextStyle(fontSize: 14),
-                ),
-                controller.viewProfile.data!.height!.toString().isEmpty?const SizedBox():Container(
-                  height: 4,
-                  width: 4,
-                  margin: const EdgeInsets.only(left: 8, right: 8, bottom: 3),
-                  child: Image.asset(
-                    AssetRes.yellowDot,
-                    height: 4,
-                    width: 4,
-                  ),
-                ),
+                (controller.viewProfile.data?.height?.toString() ?? "").isEmpty
+                    ? SizedBox()
+                    : Text(
+                        controller.viewProfile.data == null
+                            ? ""
+                            : controller.viewProfile.data!.height.toString(),
+                        style: gilroyRegularTextStyle(fontSize: 14),
+                      ),
+                controller.viewProfile.data!.height!.toString().isEmpty
+                    ? const SizedBox()
+                    : Container(
+                        height: 4,
+                        width: 4,
+                        margin:
+                            const EdgeInsets.only(left: 8, right: 8, bottom: 3),
+                        child: Image.asset(
+                          AssetRes.yellowDot,
+                          height: 4,
+                          width: 4,
+                        ),
+                      ),
                 /*dot(
                     controller,
                     controller.viewProfile.data == null

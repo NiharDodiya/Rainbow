@@ -21,32 +21,30 @@ Widget aboutProfiler(String title, String aboutMe) {
             ? Center(
                 child: Text(
                   "-",
-                  style:  gilroyBoldTextStyle(fontSize: 18),
+                  style: gilroyBoldTextStyle(fontSize: 18),
                 ),
               )
-            :Container(
-          alignment: Alignment.topLeft,
-          margin: const EdgeInsets.only(top: 15),
-          child: ReadMoreText(
-            /* "${Strings.aboutMeDes}${Strings.aboutMeDes} ",*/
-            aboutMe,
-            trimLines: 3,
-            trimMode: TrimMode.Line,
-            delimiter: " ",
-            trimCollapsedText: Strings.seeMore,
-            trimExpandedText: Strings.seeLess,
-            style: beVietnamProRegularTextStyle(
-              color: ColorRes.white.withOpacity(0.70),fontSize: 18
-            ),
-            moreStyle: beVietnamProRegularTextStyle(
-              color: ColorRes.color_FF6B97,
-            ),
-            lessStyle: beVietnamProRegularTextStyle(
-              color: ColorRes.color_FF6B97,
-            ),
-          ),
-        ),
-
+            : Container(
+                alignment: Alignment.topLeft,
+                margin: const EdgeInsets.only(top: 15),
+                child: ReadMoreText(
+                  /* "${Strings.aboutMeDes}${Strings.aboutMeDes} ",*/
+                  aboutMe,
+                  trimLines: 3,
+                  trimMode: TrimMode.Line,
+                  delimiter: " ",
+                  trimCollapsedText: Strings.seeMore,
+                  trimExpandedText: Strings.seeLess,
+                  style: beVietnamProRegularTextStyle(
+                      color: ColorRes.white.withOpacity(0.70), fontSize: 18),
+                  moreStyle: beVietnamProRegularTextStyle(
+                    color: ColorRes.color_FF6B97,
+                  ),
+                  lessStyle: beVietnamProRegularTextStyle(
+                    color: ColorRes.color_FF6B97,
+                  ),
+                ),
+              ),
       ],
     ),
   );

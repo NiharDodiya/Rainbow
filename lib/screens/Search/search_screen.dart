@@ -233,14 +233,12 @@ class SearchScreen extends StatelessWidget {
                             : ClipRRect(
                                 borderRadius: BorderRadius.circular(15),
                                 child: Image.network(
-                                  controller.listUserData[index]
-                                      .backgroundImage
+                                  controller.listUserData[index].backgroundImage
                                       .toString(),
                                   height: 232,
                                   width: Get.width * 0.90133,
                                   fit: BoxFit.cover,
-                                  errorBuilder:
-                                      (context, error, stackTrace) {
+                                  errorBuilder: (context, error, stackTrace) {
                                     return Image.asset(
                                         AssetRes.placeholderImage);
                                   },
@@ -249,35 +247,32 @@ class SearchScreen extends StatelessWidget {
                         Positioned(
                             top: Get.height * 0.03,
                             left: Get.width * 0.05,
-                            child: controller.listUserData[index]
-                                        .profileImage
+                            child: controller.listUserData[index].profileImage
                                         .toString() !=
                                     ""
                                 ? ClipRRect(
-                                    borderRadius:
-                                        BorderRadius.circular(50),
+                                    borderRadius: BorderRadius.circular(50),
                                     child: Image.network(
-                                      controller.listUserData[index]
-                                          .profileImage
+                                      controller
+                                          .listUserData[index].profileImage
                                           .toString(),
                                       height: 40,
                                       width: 40,
                                       fit: BoxFit.cover,
                                       errorBuilder:
                                           (context, error, stackTrace) {
-                                        return Image.asset(AssetRes
-                                            .portrait_placeholder);
+                                        return Image.asset(
+                                            AssetRes.portrait_placeholder);
                                       },
                                     ),
                                   )
                                 : ClipRRect(
-                                    borderRadius:
-                                        BorderRadius.circular(50),
+                                    borderRadius: BorderRadius.circular(50),
                                     child: SizedBox(
                                       height: 40,
                                       width: 40,
-                                      child: Image.asset(AssetRes
-                                          .portrait_placeholder),
+                                      child: Image.asset(
+                                          AssetRes.portrait_placeholder),
                                     ),
                                   )),
                         Container(
@@ -287,14 +282,10 @@ class SearchScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(15),
                               gradient: LinearGradient(
                                 colors: [
-                                  ColorRes.color_141414
-                                      .withOpacity(0.1),
-                                  ColorRes.color_141414
-                                      .withOpacity(0.1),
-                                  ColorRes.color_141414
-                                      .withOpacity(0.5),
-                                  ColorRes.color_141414
-                                      .withOpacity(0.8),
+                                  ColorRes.color_141414.withOpacity(0.1),
+                                  ColorRes.color_141414.withOpacity(0.1),
+                                  ColorRes.color_141414.withOpacity(0.5),
+                                  ColorRes.color_141414.withOpacity(0.8),
                                   ColorRes.color_141414
                                 ],
                                 begin: Alignment.topCenter,
@@ -332,31 +323,25 @@ class SearchScreen extends StatelessWidget {
                                 child: Container(
                                   height: 69,
                                   width: 105,
-                                  color: ColorRes.color_50369C
-                                      .withOpacity(0.45),
+                                  color:
+                                      ColorRes.color_50369C.withOpacity(0.45),
                                   child: Column(
                                     children: [
                                       const SizedBox(
                                         height: 5,
                                       ),
-                                      controller.listUserData[index]
-                                                  .isFriends
+                                      controller.listUserData[index].isFriends
                                                   .toString() ==
                                               "no"
                                           ? GestureDetector(
                                               onTap: () {
-                                                controller
-                                                    .sendFriendRequest(
-                                                        controller
-                                                            .listUserData[
-                                                                index]
-                                                            .id
-                                                            .toString());
-                                                controller
-                                                        .listConnectBlock[
+                                                controller.sendFriendRequest(
+                                                    controller
+                                                        .listUserData[index].id
+                                                        .toString());
+                                                controller.listConnectBlock[
                                                     index] = false;
-                                                controller
-                                                    .update(["Search"]);
+                                                controller.update(["Search"]);
                                               },
                                               child: Row(
                                                 children: [
@@ -367,41 +352,37 @@ class SearchScreen extends StatelessWidget {
                                                     AssetRes.profilep,
                                                     height: 22,
                                                     width: 22,
-                                                    color: ColorRes
-                                                        .color_FFB2B2,
+                                                    color:
+                                                        ColorRes.color_FFB2B2,
                                                   ),
                                                   const SizedBox(
                                                     width: 10,
                                                   ),
                                                   Text(
                                                     Strings.connect,
-                                                    style:
-                                                        gilroyBoldTextStyle(
-                                                            fontSize:
-                                                                12),
+                                                    style: gilroyBoldTextStyle(
+                                                        fontSize: 12),
                                                   )
                                                 ],
                                               ),
                                             )
-                                          : controller
-                                                      .listUserData[
-                                                          index]
+                                          : controller.listUserData[index]
                                                       .isFriends
                                                       .toString() ==
                                                   "sent"
                                               ? GestureDetector(
                                                   onTap: () {
-                                                    controller.cancelFriendRequest(
-                                                        controller
-                                                            .listUserData[
-                                                                index]
-                                                            .id
-                                                            .toString());
                                                     controller
-                                                            .listConnectBlock[
+                                                        .cancelFriendRequest(
+                                                            controller
+                                                                .listUserData[
+                                                                    index]
+                                                                .id
+                                                                .toString());
+                                                    controller.listConnectBlock[
                                                         index] = false;
-                                                    controller.update(
-                                                        ["Search"]);
+                                                    controller
+                                                        .update(["Search"]);
                                                   },
                                                   child: Row(
                                                     children: [
@@ -409,8 +390,7 @@ class SearchScreen extends StatelessWidget {
                                                         width: 10,
                                                       ),
                                                       Image.asset(
-                                                        AssetRes
-                                                            .profilep,
+                                                        AssetRes.profilep,
                                                         height: 22,
                                                         width: 22,
                                                         color: ColorRes
@@ -423,36 +403,32 @@ class SearchScreen extends StatelessWidget {
                                                         height: 26,
                                                         width: 54,
                                                         child: Text(
-                                                          Strings
-                                                              .cancelRequest,
-                                                          style: gilroyBoldTextStyle(
-                                                              fontSize:
-                                                                  12),
+                                                          Strings.cancelRequest,
+                                                          style:
+                                                              gilroyBoldTextStyle(
+                                                                  fontSize: 12),
                                                         ),
                                                       )
                                                     ],
                                                   ),
                                                 )
-                                              : controller
-                                                          .listUserData[
-                                                              index]
+                                              : controller.listUserData[index]
                                                           .isFriends
                                                           .toString() ==
                                                       "yes"
                                                   ? GestureDetector(
                                                       onTap: () {
-                                                        controller.unFriendRequest(controller
-                                                            .listUserData[
-                                                                index]
-                                                            .id
-                                                            .toString());
-                                                        controller.listConnectBlock[
-                                                                index] =
-                                                            false;
+                                                        controller.unFriendRequest(
+                                                            controller
+                                                                .listUserData[
+                                                                    index]
+                                                                .id
+                                                                .toString());
                                                         controller
-                                                            .update([
-                                                          "Search"
-                                                        ]);
+                                                                .listConnectBlock[
+                                                            index] = false;
+                                                        controller
+                                                            .update(["Search"]);
                                                       },
                                                       child: Row(
                                                         children: [
@@ -460,8 +436,7 @@ class SearchScreen extends StatelessWidget {
                                                             width: 10,
                                                           ),
                                                           Image.asset(
-                                                            AssetRes
-                                                                .profilep,
+                                                            AssetRes.profilep,
                                                             height: 22,
                                                             width: 22,
                                                             color: ColorRes
@@ -471,11 +446,11 @@ class SearchScreen extends StatelessWidget {
                                                             width: 10,
                                                           ),
                                                           Text(
-                                                            Strings
-                                                                .unFriend,
-                                                            style: gilroyBoldTextStyle(
-                                                                fontSize:
-                                                                    12),
+                                                            Strings.unFriend,
+                                                            style:
+                                                                gilroyBoldTextStyle(
+                                                                    fontSize:
+                                                                        12),
                                                           )
                                                         ],
                                                       ),
@@ -488,92 +463,80 @@ class SearchScreen extends StatelessWidget {
                                                           "accept"
                                                       ? GestureDetector(
                                                           onTap: () {
-                                                            controller.acceptFriendRequest(controller
-                                                                .listUserData[
-                                                                    index]
-                                                                .id
-                                                                .toString());
-                                                            controller.listConnectBlock[
-                                                                    index] =
-                                                                false;
+                                                            controller.acceptFriendRequest(
+                                                                controller
+                                                                    .listUserData[
+                                                                        index]
+                                                                    .id
+                                                                    .toString());
                                                             controller
-                                                                .update([
-                                                              "Search"
-                                                            ]);
+                                                                    .listConnectBlock[
+                                                                index] = false;
+                                                            controller.update(
+                                                                ["Search"]);
                                                           },
                                                           child: Row(
                                                             children: [
                                                               const SizedBox(
-                                                                width:
-                                                                    10,
+                                                                width: 10,
                                                               ),
-                                                              Image
-                                                                  .asset(
+                                                              Image.asset(
                                                                 AssetRes
                                                                     .profilep,
-                                                                height:
-                                                                    22,
-                                                                width:
-                                                                    22,
+                                                                height: 22,
+                                                                width: 22,
                                                                 color: ColorRes
                                                                     .color_FFB2B2,
                                                               ),
                                                               const SizedBox(
-                                                                width:
-                                                                    10,
+                                                                width: 10,
                                                               ),
                                                               Text(
-                                                                Strings
-                                                                    .accept,
-                                                                style: gilroyBoldTextStyle(
-                                                                    fontSize:
-                                                                        12),
+                                                                Strings.accept,
+                                                                style:
+                                                                    gilroyBoldTextStyle(
+                                                                        fontSize:
+                                                                            12),
                                                               )
                                                             ],
                                                           ),
                                                         )
                                                       : GestureDetector(
                                                           onTap: () {
-                                                            controller.cancelFriendRequest(controller
-                                                                .listUserData[
-                                                                    index]
-                                                                .id
-                                                                .toString());
-                                                            controller.listConnectBlock[
-                                                                    index] =
-                                                                false;
+                                                            controller.cancelFriendRequest(
+                                                                controller
+                                                                    .listUserData[
+                                                                        index]
+                                                                    .id
+                                                                    .toString());
                                                             controller
-                                                                .update([
-                                                              "Search"
-                                                            ]);
+                                                                    .listConnectBlock[
+                                                                index] = false;
+                                                            controller.update(
+                                                                ["Search"]);
                                                           },
                                                           child: Row(
                                                             children: [
                                                               const SizedBox(
-                                                                width:
-                                                                    10,
+                                                                width: 10,
                                                               ),
-                                                              Image
-                                                                  .asset(
+                                                              Image.asset(
                                                                 AssetRes
                                                                     .profilep,
-                                                                height:
-                                                                    22,
-                                                                width:
-                                                                    22,
+                                                                height: 22,
+                                                                width: 22,
                                                                 color: ColorRes
                                                                     .color_FFB2B2,
                                                               ),
                                                               const SizedBox(
-                                                                width:
-                                                                    10,
+                                                                width: 10,
                                                               ),
                                                               Text(
-                                                                Strings
-                                                                    .cancel,
-                                                                style: gilroyBoldTextStyle(
-                                                                    fontSize:
-                                                                        12),
+                                                                Strings.cancel,
+                                                                style:
+                                                                    gilroyBoldTextStyle(
+                                                                        fontSize:
+                                                                            12),
                                                               )
                                                             ],
                                                           ),
@@ -582,23 +545,17 @@ class SearchScreen extends StatelessWidget {
                                         thickness: 1.5,
                                         color: Colors.white,
                                       ),
-                                      controller.listUserData[index]
-                                                  .isBlock
+                                      controller.listUserData[index].isBlock
                                                   .toString() ==
                                               "no"
                                           ? GestureDetector(
                                               onTap: () {
-                                                controller.blockOnTap(
-                                                    controller
-                                                        .listUserData[
-                                                            index]
-                                                        .id
-                                                        .toString());
-                                                controller
-                                                        .listConnectBlock[
+                                                controller.blockOnTap(controller
+                                                    .listUserData[index].id
+                                                    .toString());
+                                                controller.listConnectBlock[
                                                     index] = false;
-                                                controller
-                                                    .update(["Search"]);
+                                                controller.update(["Search"]);
                                               },
                                               child: Row(
                                                 children: [
@@ -609,18 +566,16 @@ class SearchScreen extends StatelessWidget {
                                                     AssetRes.block,
                                                     height: 22,
                                                     width: 22,
-                                                    color: ColorRes
-                                                        .color_FFB2B2,
+                                                    color:
+                                                        ColorRes.color_FFB2B2,
                                                   ),
                                                   const SizedBox(
                                                     width: 10,
                                                   ),
                                                   Text(
                                                     Strings.block,
-                                                    style:
-                                                        gilroyBoldTextStyle(
-                                                            fontSize:
-                                                                12),
+                                                    style: gilroyBoldTextStyle(
+                                                        fontSize: 12),
                                                   )
                                                 ],
                                               ),
@@ -629,15 +584,11 @@ class SearchScreen extends StatelessWidget {
                                               onTap: () {
                                                 controller.unblockOnTap(
                                                     controller
-                                                        .listUserData[
-                                                            index]
-                                                        .id
+                                                        .listUserData[index].id
                                                         .toString());
-                                                controller
-                                                        .listConnectBlock[
+                                                controller.listConnectBlock[
                                                     index] = false;
-                                                controller
-                                                    .update(["Search"]);
+                                                controller.update(["Search"]);
                                               },
                                               child: Row(
                                                 children: [
@@ -648,18 +599,16 @@ class SearchScreen extends StatelessWidget {
                                                     AssetRes.block,
                                                     height: 22,
                                                     width: 22,
-                                                    color: ColorRes
-                                                        .color_FFB2B2,
+                                                    color:
+                                                        ColorRes.color_FFB2B2,
                                                   ),
                                                   const SizedBox(
                                                     width: 10,
                                                   ),
                                                   Text(
                                                     Strings.unBlock,
-                                                    style:
-                                                        gilroyBoldTextStyle(
-                                                            fontSize:
-                                                                12),
+                                                    style: gilroyBoldTextStyle(
+                                                        fontSize: 12),
                                                   )
                                                 ],
                                               ),

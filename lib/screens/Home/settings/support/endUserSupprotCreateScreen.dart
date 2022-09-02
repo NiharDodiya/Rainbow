@@ -55,7 +55,6 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                   height: Get.height * 0.035,
                 ),
                 appBar(),
-
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
@@ -862,9 +861,9 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                     .toString(),
                 style: gilroySemiBoldTextStyle(fontSize: 14),
               ),
-                   SizedBox(
-                  height: Get.height * 0.0184,
-                ),
+              SizedBox(
+                height: Get.height * 0.0184,
+              ),
               //image
               controller.viewSupportTicketModel.data![index].itmeList!.isEmpty
                   ? SizedBox()
@@ -1077,8 +1076,8 @@ Widget appBar() {
               onTap: () {
                 Get.back();
                 controller.yourMsgSendController.clear();
-               controller.image.length = 0;
-               controller.image.clear();
+                controller.image.length = 0;
+                controller.image.clear();
                 controller.update(["img"]);
               },
               child: Image.asset(
@@ -1128,7 +1127,10 @@ Widget downloadButton2(int i) {
           flutterToast("Image Save successFull");
           // (controller.loader.value == false)? flutterToast("Image Save successFull"):SizedBox();
         },
-        child: Image.asset(AssetRes.downlode,height: 20,)),
+        child: Image.asset(
+          AssetRes.downlode,
+          height: 20,
+        )),
   );
 }
 
@@ -1144,7 +1146,10 @@ Widget downloadButton1(int i) {
           flutterToast("Image Save successFull");
           //controller.loader.value == false? flutterToast("Image Save successFull"):SizedBox();
         },
-        child: Image.asset(AssetRes.downlode,height: 20,)),
+        child: Image.asset(
+          AssetRes.downlode,
+          height: 20,
+        )),
   );
 }
 
@@ -1166,6 +1171,9 @@ Widget downloadButton3(int i) {
           flutterToast("Image Save successFull");
           //controller.loader.value == false? flutterToast("Image Save successFull"):SizedBox();
         },
-        child: Image.asset(AssetRes.downlode,height: 20,)),
+        child: Image.asset(
+          AssetRes.downlode,
+          height: 20,
+        )),
   );
 }

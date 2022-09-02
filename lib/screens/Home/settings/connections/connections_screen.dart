@@ -32,7 +32,8 @@ class ConnectionsScreen extends StatelessWidget {
               end: Alignment.bottomCenter,
             ),
           ),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               appBar(),
               Expanded(
@@ -118,11 +119,11 @@ class ConnectionsScreen extends StatelessWidget {
         children: [
           controller.requestUsers.isEmpty
               ? Center(
-                child: Text(
+                  child: Text(
                     "No FriendRequest",
                     style: gilroyMediumTextStyle(fontSize: 18),
                   ),
-              )
+                )
               : ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -163,14 +164,14 @@ class ConnectionsScreen extends StatelessWidget {
           ),
           controller.suggestionConnection.isEmpty
               ? Center(
-                child: Padding(
-                  padding:  EdgeInsets.only(top: Get.height/3.5),
-                  child: Text(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: Get.height / 3.5),
+                    child: Text(
                       "No Suggested Connection",
                       style: gilroyMediumTextStyle(fontSize: 18),
                     ),
-                ),
-              )
+                  ),
+                )
               : ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
@@ -182,8 +183,8 @@ class ConnectionsScreen extends StatelessWidget {
                       name: user.fullName,
                       image: user.profileImage,
                       label: user.email,
-                      onPlusTap: () =>
-                          control.onAddBtnTapConnection(user.id.toString(), true),
+                      onPlusTap: () => control.onAddBtnTapConnection(
+                          user.id.toString(), true),
                       onDeleteTap: () =>
                           controller.onDeleteBtnTap(user.id.toString(), true),
                       onProfileTap: () =>
@@ -228,9 +229,9 @@ class ConnectionsScreen extends StatelessWidget {
                     ),
                   ),
                   // placeholder: (context, url) => const Center(child:  CircularProgressIndicator(),),
-                  errorWidget: (context, url, error) =>
-                      ClipRRect(borderRadius: BorderRadius.circular(50),
-                          child: Image.asset(AssetRes.portrait_placeholder)),
+                  errorWidget: (context, url, error) => ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.asset(AssetRes.portrait_placeholder)),
                 ),
               ),
               SizedBox(width: Get.width * 0.04),

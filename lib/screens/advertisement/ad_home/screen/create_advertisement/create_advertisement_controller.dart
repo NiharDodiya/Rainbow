@@ -16,11 +16,9 @@ import 'package:rainbow/model/listUserTag_model.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/advertisement_deatail/advertisement_deatail_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/createadvertisement_api/createAdvertisement_api.dart';
-import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../common/popup.dart';
 import '../../../../../utils/strings.dart';
@@ -45,8 +43,7 @@ class CreateAdvertisementController extends GetxController {
   TextEditingController callToActionController = TextEditingController();
   List<String> dropDList = ["Learn More", "Contact Us"];
 
-
-  DateTime? startTime=DateTime.now();
+  DateTime? startTime = DateTime.now();
   DateTime selectableDate = DateTime.now();
   DateTime endTime = DateTime.now();
   String flag = AssetRes.flag01;
@@ -57,11 +54,11 @@ class CreateAdvertisementController extends GetxController {
   List<String> currencyList = ["\$", "₹"];
   String select = 'Caneda';
 
-
   int pageIndex = 0;
 
+  TextEditingController amountController =
+      TextEditingController(text: "\$200.00");
 
-  TextEditingController amountController = TextEditingController(text: "\$200.00");
   // File? imagePath;
   List<File> imagePath = [];
   RxBool loader = false.obs;
@@ -166,7 +163,6 @@ class CreateAdvertisementController extends GetxController {
       }
       /*uploadImageApi();*/
       Get.to(() => AdvertisementDeatailScreen());
-
     }
   }
 
@@ -204,7 +200,7 @@ class CreateAdvertisementController extends GetxController {
     } else if (callToAction == null) {
       errorToast(Strings.callActionError);
       return false;
-    } else if (hasValidUrl(urlLinkController.text)==false) {
+    } else if (hasValidUrl(urlLinkController.text) == false) {
       errorToast(Strings.websiteError);
       return false;
     }
@@ -279,10 +275,6 @@ class CreateAdvertisementController extends GetxController {
   List<UserData> tagUserList = [];
   List<UserData> filterList = [];
 
-
-
-
-
 /*
   void onTagTap(UserData userData) {
     tagUserList.add(userData);
@@ -302,12 +294,12 @@ class CreateAdvertisementController extends GetxController {
 */
 
   List<int> imgIdList = [];
-  AdHomeController adHomeController =Get.put(AdHomeController());
+  AdHomeController adHomeController = Get.put(AdHomeController());
+
   void addAdvertisement(List imageId) async {
     loader.value = true;
 
-
-   await AddAdvertisement.addAdvertisementApi(
+    await AddAdvertisement.addAdvertisementApi(
         tagUser: tags,
         idItem: imageId,
         title: titleController.text,
@@ -321,15 +313,13 @@ class CreateAdvertisementController extends GetxController {
         street: streetController.text,
         urlLink: urlLinkController.text,
         countryCode: codeId.toString(),
-    startDate: DateFormat().add_yMd().format(startTime!),
-    endDate:DateFormat().add_yMd().format(endTime));
-   adHomeController.myAdvertiserListData();
-   adHomeController.update(['more']);
+        startDate: DateFormat().add_yMd().format(startTime!),
+        endDate: DateFormat().add_yMd().format(endTime));
+    adHomeController.myAdvertiserListData();
+    adHomeController.update(['more']);
     loader.value = false;
     update(["advertiser"]);
   }
-
-
 
   rangSelect(start, end, range) {
     startTime = start;
@@ -379,13 +369,14 @@ class CreateAdvertisementController extends GetxController {
     }
     return true;
   }
+
 /*  CreateAdvertisementController createAdvertisementController =Get.put(CreateAdvertisementController());*/
   Future<void> onTapNext() async {
     if (validation()) {
 /*      print(DateFormat().add_yMd().format(startTime));*/
 /*    await  createAdvertisementController.uploadImageApi();*/
 
-print(tagsController.text);
+      print(tagsController.text);
       Get.bottomSheet(
         enableDrag: false,
         BottomSheet(
@@ -412,9 +403,8 @@ print(tagsController.text);
         ),
         ignoreSafeArea: true,
       );
-     await uploadImageApi();
+      await uploadImageApi();
 /*      boostAdvertisementApi();*/
     }
   }
-
 }

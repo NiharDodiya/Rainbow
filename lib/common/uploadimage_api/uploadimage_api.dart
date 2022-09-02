@@ -27,7 +27,6 @@ class UploadImageApi {
       final responseData = json.decode(responsed.body);
       print(responseData);
       return uploadImageFromJson(responsed.body);
-
     } catch (e) {
       print(e.toString());
       return [];

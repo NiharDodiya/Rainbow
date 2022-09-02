@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -67,8 +68,7 @@ class SupportCreateController extends GetxController {
   Future<void> supportApi() async {
     loader.value = true;
     await uploadImageData();
-    await SupportAPI.supportAPI.postSupportAPI(
-        data: {
+    await SupportAPI.supportAPI.postSupportAPI(data: {
       'title': subjectController.text,
       'description': yourMsgController.text,
       'id_item': imgIdList,
@@ -88,14 +88,14 @@ class SupportCreateController extends GetxController {
     return true;
   }
 
-SupportController supportController=Get.put(SupportController());
+  SupportController supportController = Get.put(SupportController());
 
   void onSendMsgTap() async {
-   if(valid()){
-     await supportApi();
-    supportController.getListOfUserTicket();
-     update(["Support"]);
-   }
+    if (valid()) {
+      await supportApi();
+      supportController.getListOfUserTicket();
+      update(["Support"]);
+    }
     update(["Support"]);
   }
 }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/common/draggableTile_screen.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/screens/Message/message_controller.dart';
 import 'package:rainbow/service/pref_services.dart';
@@ -134,53 +133,57 @@ class MessageScreen extends StatelessWidget {
                                                       Stack(
                                                         children: [
                                                           data['image']
-                                                              .toString().isEmpty?Container(
-                                                            margin:
-                                                            const EdgeInsets
-                                                                .symmetric(
-                                                              horizontal: 10,
-                                                            ),
-                                                            height: 50,
-                                                            width: 50,
-                                                            decoration:
-                                                            const BoxDecoration(
-                                                              shape: BoxShape
-                                                                  .circle,image: DecorationImage(image: AssetImage(AssetRes.portrait_placeholder))
-                                                            ),
-                                                          ):Container(
-                                                            margin:
-                                                                const EdgeInsets
-                                                                    .symmetric(
-                                                              horizontal: 10,
-                                                            ),
-                                                            height: 50,
-                                                            width: 50,
-                                                            decoration:
-                                                                const BoxDecoration(
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                            ),
-                                                            child: ClipRRect(
-                                                              borderRadius:
-                                                                  const BorderRadius
-                                                                      .all(
-                                                                Radius.circular(
-                                                                    50),
-                                                              ),
-                                                              child:
-                                                                  FadeInImage(
-                                                                placeholder:
-                                                                    const AssetImage(
-                                                                        AssetRes
-                                                                            .portrait_placeholder),
-                                                                image: NetworkImage(
-                                                                    data['image']
-                                                                        .toString()),
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                              ),
-                                                            ),
-                                                          ),
+                                                                  .toString()
+                                                                  .isEmpty
+                                                              ? Container(
+                                                                  margin: const EdgeInsets
+                                                                      .symmetric(
+                                                                    horizontal:
+                                                                        10,
+                                                                  ),
+                                                                  height: 50,
+                                                                  width: 50,
+                                                                  decoration: const BoxDecoration(
+                                                                      shape: BoxShape
+                                                                          .circle,
+                                                                      image: DecorationImage(
+                                                                          image:
+                                                                              AssetImage(AssetRes.portrait_placeholder))),
+                                                                )
+                                                              : Container(
+                                                                  margin: const EdgeInsets
+                                                                      .symmetric(
+                                                                    horizontal:
+                                                                        10,
+                                                                  ),
+                                                                  height: 50,
+                                                                  width: 50,
+                                                                  decoration:
+                                                                      const BoxDecoration(
+                                                                    shape: BoxShape
+                                                                        .circle,
+                                                                  ),
+                                                                  child:
+                                                                      ClipRRect(
+                                                                    borderRadius:
+                                                                        const BorderRadius
+                                                                            .all(
+                                                                      Radius.circular(
+                                                                          50),
+                                                                    ),
+                                                                    child:
+                                                                        FadeInImage(
+                                                                      placeholder:
+                                                                          const AssetImage(
+                                                                              AssetRes.portrait_placeholder),
+                                                                      image: NetworkImage(
+                                                                          data['image']
+                                                                              .toString()),
+                                                                      fit: BoxFit
+                                                                          .cover,
+                                                                    ),
+                                                                  ),
+                                                                ),
                                                           Positioned(
                                                             top: Get.height *
                                                                 0.05,
@@ -276,7 +279,8 @@ class MessageScreen extends StatelessWidget {
                                                     return InkWell(
                                                       onTap: () {
                                                         controller
-                                                            .gotoChatScreen(context,
+                                                            .gotoChatScreen(
+                                                          context,
                                                           data['uid'],
                                                           data['name'],
                                                           data['image'],
@@ -292,55 +296,57 @@ class MessageScreen extends StatelessWidget {
                                                             const SizedBox(
                                                                 width: 5),
                                                             data['image']
-                                                                .toString().isEmpty?Container(
-                                                              margin:
-                                                              const EdgeInsets
-                                                                  .symmetric(
-                                                                horizontal: 10,
-                                                              ),
-                                                              height: 60,
-                                                              width: 60,
-                                                              decoration:
-                                                              const BoxDecoration(
-                                                                  shape: BoxShape
-                                                                      .circle,image: DecorationImage(image: AssetImage( AssetRes
-                                                                  .portrait_placeholder))),
-                                                            ):Container(
-                                                              margin:
-                                                                  const EdgeInsets
-                                                                      .symmetric(
-                                                                horizontal: 10,
-                                                              ),
-                                                              height: 60,
-                                                              width: 60,
-                                                              decoration:
-                                                                  const BoxDecoration(
-                                                                      shape: BoxShape
-                                                                          .circle),
-                                                              child: ClipRRect(
-                                                                borderRadius:
-                                                                    const BorderRadius
-                                                                        .all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          50),
-                                                                ),
-                                                                child:
-                                                                    FadeInImage(
-                                                                  placeholder:
-                                                                      const AssetImage(
-                                                                          AssetRes
-                                                                              .portrait_placeholder),
-                                                                  image:
-                                                                      NetworkImage(
-                                                                    data['image']
-                                                                        .toString(),
+                                                                    .toString()
+                                                                    .isEmpty
+                                                                ? Container(
+                                                                    margin: const EdgeInsets
+                                                                        .symmetric(
+                                                                      horizontal:
+                                                                          10,
+                                                                    ),
+                                                                    height: 60,
+                                                                    width: 60,
+                                                                    decoration: const BoxDecoration(
+                                                                        shape: BoxShape
+                                                                            .circle,
+                                                                        image: DecorationImage(
+                                                                            image:
+                                                                                AssetImage(AssetRes.portrait_placeholder))),
+                                                                  )
+                                                                : Container(
+                                                                    margin: const EdgeInsets
+                                                                        .symmetric(
+                                                                      horizontal:
+                                                                          10,
+                                                                    ),
+                                                                    height: 60,
+                                                                    width: 60,
+                                                                    decoration:
+                                                                        const BoxDecoration(
+                                                                            shape:
+                                                                                BoxShape.circle),
+                                                                    child:
+                                                                        ClipRRect(
+                                                                      borderRadius:
+                                                                          const BorderRadius
+                                                                              .all(
+                                                                        Radius.circular(
+                                                                            50),
+                                                                      ),
+                                                                      child:
+                                                                          FadeInImage(
+                                                                        placeholder:
+                                                                            const AssetImage(AssetRes.portrait_placeholder),
+                                                                        image:
+                                                                            NetworkImage(
+                                                                          data['image']
+                                                                              .toString(),
+                                                                        ),
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                      ),
+                                                                    ),
                                                                   ),
-                                                                  fit: BoxFit
-                                                                      .cover,
-                                                                ),
-                                                              ),
-                                                            ),
                                                             const SizedBox(
                                                                 width: 5),
                                                             Column(
@@ -436,9 +442,7 @@ class MessageScreen extends StatelessWidget {
                                                     .getFriendIdList())*/
                                             .snapshots(),
                                         builder: (context, snapshot) {
-
                                           if (snapshot.hasData == false) {
-
                                             return const SizedBox();
                                           }
                                           return snapshot.data!.docs.isEmpty
@@ -446,7 +450,6 @@ class MessageScreen extends StatelessWidget {
                                               : SizedBox(
                                                   height: Get.height * 0.53,
                                                   child: ListView.builder(
-
                                                     itemCount: snapshot
                                                         .data!.docs.length,
                                                     shrinkWrap: true,
@@ -460,7 +463,16 @@ class MessageScreen extends StatelessWidget {
                                                               .data()['uid'] ==
                                                           controller.userUid) {
                                                         return const SizedBox();
-                                                      } else if (controller.friendList.where((element) => element.id.toString() ==snapshot.data!.docs[index].data()['id'].toString()).isEmpty) {
+                                                      } else if (controller
+                                                          .friendList
+                                                          .where((element) =>
+                                                              element.id
+                                                                  .toString() ==
+                                                              snapshot.data!
+                                                                  .docs[index]
+                                                                  .data()['id']
+                                                                  .toString())
+                                                          .isEmpty) {
                                                         return const SizedBox();
                                                       } else if ((snapshot
                                                               .data!.docs[index]
@@ -484,7 +496,8 @@ class MessageScreen extends StatelessWidget {
                                                                   .text))) {
                                                         return InkWell(
                                                           onTap: () {
-                                                            controller.gotoChatScreen(context,
+                                                            controller.gotoChatScreen(
+                                                                context,
                                                                 snapshot.data!
                                                                         .docs[index]
                                                                         .data()[
@@ -521,43 +534,39 @@ class MessageScreen extends StatelessWidget {
                                                                     shape: BoxShape
                                                                         .circle,
                                                                   ),
-                                                                  child:
-                                                                  snapshot
-                                                                      .data!
-                                                                      .docs[index]
-                                                                      .data()['image']
-                                                                      .toString()==""?ClipRRect(
-                                                                    borderRadius: BorderRadius.circular(50),
-                                                                        child: Image.asset( AssetRes
-                                                                        .portrait_placeholder),
-                                                                      ):ClipRRect(
-                                                                    borderRadius:
-                                                                        const BorderRadius
-                                                                            .all(
-                                                                      Radius
-                                                                          .circular(
-                                                                        50,
-                                                                      ),
-                                                                    ),
-                                                                    child:
-                                                                        FadeInImage(
-                                                                      placeholder:
-                                                                          const AssetImage(
-                                                                        AssetRes
-                                                                            .portrait_placeholder,
-                                                                      ),
-                                                                      image:
-                                                                          NetworkImage(
-                                                                        snapshot
-                                                                            .data!
-                                                                            .docs[index]
-                                                                            .data()['image']
-                                                                            .toString(),
-                                                                      ),
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                    ),
-                                                                  ),
+                                                                  child: snapshot
+                                                                              .data!
+                                                                              .docs[index]
+                                                                              .data()['image']
+                                                                              .toString() ==
+                                                                          ""
+                                                                      ? ClipRRect(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(50),
+                                                                          child:
+                                                                              Image.asset(AssetRes.portrait_placeholder),
+                                                                        )
+                                                                      : ClipRRect(
+                                                                          borderRadius:
+                                                                              const BorderRadius.all(
+                                                                            Radius.circular(
+                                                                              50,
+                                                                            ),
+                                                                          ),
+                                                                          child:
+                                                                              FadeInImage(
+                                                                            placeholder:
+                                                                                const AssetImage(
+                                                                              AssetRes.portrait_placeholder,
+                                                                            ),
+                                                                            image:
+                                                                                NetworkImage(
+                                                                              snapshot.data!.docs[index].data()['image'].toString(),
+                                                                            ),
+                                                                            fit:
+                                                                                BoxFit.cover,
+                                                                          ),
+                                                                        ),
                                                                 ),
                                                                 const SizedBox(
                                                                     width: 5),

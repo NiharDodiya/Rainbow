@@ -9,10 +9,10 @@ import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
-
 ConnectionsController controller = Get.put(ConnectionsController());
 
-Widget profileAppbar(String text, bool show, context, int i, VoidCallback? onTap) {
+Widget profileAppbar(
+    String text, bool show, context, int i, VoidCallback? onTap) {
   return Padding(
     padding: const EdgeInsets.only(top: 10, left: 18.50, right: 18.50),
     child: Stack(
@@ -29,11 +29,10 @@ Widget profileAppbar(String text, bool show, context, int i, VoidCallback? onTap
         Row(
           children: [
             InkWell(
-              onTap: (){
-                if(i == 2){
+              onTap: () {
+                if (i == 2) {
                   Navigator.of(context).pop();
-                }
-                else if(i==1){
+                } else if (i == 1) {
                   onTap!();
                 }
               },
@@ -89,32 +88,32 @@ Widget profileAppbar(String text, bool show, context, int i, VoidCallback? onTap
                     ),
                   ),
                   (controller.requestUsers.length.toString() == '0')
-                      ?SizedBox()
-                      :Positioned(
-                    top: 0,
-                    right: 0,
-                    child: GetBuilder<NotificationsController>(
-                      id: 'notification_badge',
-                      builder: (notificationController) {
-                        return Container(
-                          height: 16,
-                          width: 16,
-                          alignment: Alignment.center,
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: ColorRes.color_FF6B97),
-                          child: Text(
-                            controller.requestUsers.length.toString(),
-                            style: const TextStyle(
-                              color: ColorRes.white,
-                              fontSize: 8,
-                              fontWeight: FontWeight.w800,
-                            ),
+                      ? SizedBox()
+                      : Positioned(
+                          top: 0,
+                          right: 0,
+                          child: GetBuilder<NotificationsController>(
+                            id: 'notification_badge',
+                            builder: (notificationController) {
+                              return Container(
+                                height: 16,
+                                width: 16,
+                                alignment: Alignment.center,
+                                decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: ColorRes.color_FF6B97),
+                                child: Text(
+                                  controller.requestUsers.length.toString(),
+                                  style: const TextStyle(
+                                    color: ColorRes.white,
+                                    fontSize: 8,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ),
+                              );
+                            },
                           ),
-                        );
-                      },
-                    ),
-                  ),
+                        ),
                 ],
               ),
             ),

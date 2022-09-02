@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/Home/settings/settings_controller.dart';
 import 'package:rainbow/screens/Home/settings/support/support_controller.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_support/screen/support_create/support_create_screen.dart';
@@ -15,7 +14,6 @@ class SupportScreen extends StatelessWidget {
   SupportScreen({Key? key}) : super(key: key);
   SupportController controller = Get.put(SupportController());
   ProfileController profileController = Get.put(ProfileController());
-
 
   @override
   Widget build(BuildContext context) {
@@ -45,26 +43,28 @@ class SupportScreen extends StatelessWidget {
                   Column(
                     children: [
                       Column(
-                      children: [
-                        SizedBox(
-                          height: Get.height * 0.035,
-                        ),
-                        appBar(),
-                      ],
+                        children: [
+                          SizedBox(
+                            height: Get.height * 0.035,
+                          ),
+                          appBar(),
+                        ],
                       ),
                       Expanded(
                         child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            supports(),
-                            SizedBox(
-                              height: Get.height * 0.07,
-                            ),
-
-                          ],
+                          child: Column(
+                            children: [
+                              supports(),
+                              SizedBox(
+                                height: Get.height * 0.07,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),),
-                      const SizedBox(height: 10,),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       sendNewMessage(),
                       SizedBox(
                         height: Get.height * 0.02,
@@ -96,12 +96,15 @@ class SupportScreen extends StatelessWidget {
               SizedBox(
                 width: Get.width * 0.05,
               ),
-              Padding(padding: EdgeInsets.only(left: Get.width * 0.05),
+              Padding(
+                padding: EdgeInsets.only(left: Get.width * 0.05),
                 child: GestureDetector(
                   onTap: () {
                     Get.back();
                   },
-                  child: SizedBox(height: 15,width: 9,
+                  child: SizedBox(
+                    height: 15,
+                    width: 9,
                     child: Image.asset(
                       AssetRes.backIcon,
                       height: 16,
@@ -155,11 +158,11 @@ class SupportScreen extends StatelessWidget {
                               id: controller
                                   .listSupportTicketModel.data![index].id
                                   .toString(),
-                              status: controller.listSupportTicketModel
-                                  .data![index].status
+                              status: controller
+                                  .listSupportTicketModel.data![index].status
                                   .toString(),
-                              code: controller.listSupportTicketModel
-                                  .data![index].tickit
+                              code: controller
+                                  .listSupportTicketModel.data![index].tickit
                                   .toString());
                         },
                         child: Container(
@@ -172,52 +175,57 @@ class SupportScreen extends StatelessWidget {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(left: 15),
-                                child: profileController.viewProfile.data!.profileImage!.isEmpty?ClipRRect(
-                                  borderRadius: BorderRadius.circular(50),
-                                  child: Container(
-                                    height: 46,
-                                    width: 46,
-                                    decoration:  const BoxDecoration(
-                                      image: DecorationImage(
-                                          image: AssetImage(
-                                            AssetRes.portrait_placeholder,
-                                          ),fit: BoxFit.cover
+                                child: profileController
+                                        .viewProfile.data!.profileImage!.isEmpty
+                                    ? ClipRRect(
+                                        borderRadius: BorderRadius.circular(50),
+                                        child: Container(
+                                          height: 46,
+                                          width: 46,
+                                          decoration: const BoxDecoration(
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                  AssetRes.portrait_placeholder,
+                                                ),
+                                                fit: BoxFit.cover),
+                                          ),
+                                        ),
+                                      )
+                                    : ClipRRect(
+                                        borderRadius: BorderRadius.circular(50),
+                                        child: Container(
+                                          height: 46,
+                                          width: 46,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: NetworkImage(
+                                                  profileController.viewProfile
+                                                      .data!.profileImage
+                                                      .toString(),
+                                                ),
+                                                fit: BoxFit.cover),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                ):ClipRRect(
-                                  borderRadius: BorderRadius.circular(50),
-                                  child: Container(
-                                    height: 46,
-                                    width: 46,
-                                    decoration:  BoxDecoration(
-                                      image: DecorationImage(
-                                          image: NetworkImage(
-                                            profileController.viewProfile.data!.profileImage.toString(),
-                                          ),fit: BoxFit.cover
-                                      ),
-                                    ),
-                                  ),
-                                ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 15, top: 18),
+                                padding:
+                                    const EdgeInsets.only(left: 15, top: 18),
                                 child: Column(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      DateFormat("dd/MM/yyyy").format(
-                                          controller
-                                              .listSupportTicketModel
-                                              .data![index]
-                                              .createdAt!),
+                                      DateFormat("dd/MM/yyyy").format(controller
+                                          .listSupportTicketModel
+                                          .data![index]
+                                          .createdAt!),
                                       style: gilroyMediumTextStyle(
                                           color: ColorRes.color_9597A1,
                                           fontSize: 16),
                                     ),
-                                    const SizedBox(height: 5,),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
                                     Text(
                                       controller.listSupportTicketModel
                                           .data![index].tickit
@@ -226,8 +234,11 @@ class SupportScreen extends StatelessWidget {
                                           color: ColorRes.color_6306B2,
                                           fontSize: 16),
                                     ),
-                                    const SizedBox(height: 5,),
-                                    SizedBox(width: 150,
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    SizedBox(
+                                      width: 150,
                                       child: Text(
                                         controller.listSupportTicketModel
                                             .data![index].title
@@ -242,22 +253,21 @@ class SupportScreen extends StatelessWidget {
                               ),
                               const Spacer(),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    bottom: 55),
+                                padding: const EdgeInsets.only(bottom: 55),
                                 child: Text(
-                                  controller.listSupportTicketModel
-                                      .data![index].status
+                                  controller.listSupportTicketModel.data![index]
+                                      .status
                                       .toString(),
                                   style: controller.listSupportTicketModel
-                                      .data![index].status
-                                      .toString() ==
-                                      "pending"
+                                              .data![index].status
+                                              .toString() ==
+                                          "pending"
                                       ? gilroyMediumTextStyle(
-                                      color: ColorRes.color_FFA800,
-                                      fontSize: 16)
+                                          color: ColorRes.color_FFA800,
+                                          fontSize: 16)
                                       : gilroyMediumTextStyle(
-                                      color: ColorRes.color_49A510,
-                                      fontSize: 16),
+                                          color: ColorRes.color_49A510,
+                                          fontSize: 16),
                                 ),
                               ),
                               const SizedBox(

@@ -18,7 +18,7 @@ class Dashboard extends StatefulWidget {
   State<Dashboard> createState() => DashboardState();
 }
 
-class DashboardState extends State<Dashboard> with WidgetsBindingObserver{
+class DashboardState extends State<Dashboard> with WidgetsBindingObserver {
   final DashboardController controller = Get.put(DashboardController());
 
   @override
@@ -36,7 +36,6 @@ class DashboardState extends State<Dashboard> with WidgetsBindingObserver{
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-
     if (state.index == 0) {
       controller.setUserOnlineStatus(true);
     } else if (state.index == 2) {
@@ -47,16 +46,25 @@ class DashboardState extends State<Dashboard> with WidgetsBindingObserver{
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async{
-        if(controller.currentTab==0){
+      onWillPop: () async {
+        if (controller.currentTab == 0) {
           showDialog(
               context: context,
               builder: (BuildContext context) {
-                return AlertDialog(backgroundColor: Colors.white,
-                  title:  Text("Are you sure you want exit app",style: gilroyBoldTextStyle(fontSize: 20,color: Colors.black),),
+                return AlertDialog(
+                  backgroundColor: Colors.white,
+                  title: Text(
+                    "Are you sure you want exit app",
+                    style:
+                        gilroyBoldTextStyle(fontSize: 20, color: Colors.black),
+                  ),
                   actions: <Widget>[
                     FlatButton(
-                      child:  Text("ok",style: gilroyBoldTextStyle(fontSize: 18,color: Colors.black),),
+                      child: Text(
+                        "ok",
+                        style: gilroyBoldTextStyle(
+                            fontSize: 18, color: Colors.black),
+                      ),
                       onPressed: () {
                         SystemNavigator.pop();
                       },
@@ -64,11 +72,11 @@ class DashboardState extends State<Dashboard> with WidgetsBindingObserver{
                   ],
                 );
               });
-        }else{
+        } else {
           controller.onBottomBarChange(0);
           setState(() {});
         }
-       return false;
+        return false;
       },
       child: Scaffold(
         backgroundColor: ColorRes.white,
@@ -93,7 +101,9 @@ class DashboardState extends State<Dashboard> with WidgetsBindingObserver{
               } else if (controller.currentTab == 2) {
                 return MessageScreen();
               } else {
-                return ProfileScreen(i: 1,);
+                return ProfileScreen(
+                  i: 1,
+                );
               }
             },
           ),

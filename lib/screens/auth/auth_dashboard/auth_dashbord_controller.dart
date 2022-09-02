@@ -188,6 +188,4 @@ class AuthDashBordController extends GetxController {
   void onSignUpTap() {
     Get.to(() => AdviserRegisterScreen());
   }
-
-
 }

@@ -12,7 +12,6 @@ import 'package:rainbow/model/friendPostView_Model.dart';
 import 'package:rainbow/model/listOfFriendRequest_model.dart';
 import 'package:rainbow/model/listUserTag_model.dart';
 import 'package:rainbow/model/myPostList_model.dart';
-import 'package:rainbow/model/postCommentList_model.dart';
 import 'package:rainbow/model/postLike_model.dart';
 import 'package:rainbow/model/postView_model.dart';
 import 'package:rainbow/model/sharePost_model.dart';
@@ -36,15 +35,15 @@ import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalite
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/screens/notification/notification_screen.dart';
-import 'package:rainbow/service/pref_services.dart';
-import 'package:rainbow/utils/pref_keys.dart';
 import 'package:uni_links/uni_links.dart';
-bool subscribePopUp = false;
-class HomeController extends GetxController {
 
+bool subscribePopUp = false;
+
+class HomeController extends GetxController {
   RxBool loader = false.obs;
   ProfileController controller = Get.put(ProfileController());
-  ListOfFriendRequestModel listOfFriendRequestModel = ListOfFriendRequestModel();
+  ListOfFriendRequestModel listOfFriendRequestModel =
+      ListOfFriendRequestModel();
   ViewStoryController viewStoryController = Get.put(ViewStoryController());
   List<bool> isAd = List.generate(10, (index) => Random().nextInt(2) == 1);
   MyStoryController myStoryController = Get.put(MyStoryController());
@@ -61,6 +60,7 @@ class HomeController extends GetxController {
   SharePostModel sharePostModel = SharePostModel();
   PostViewModel postViewModel = PostViewModel();
   FriendPostViewModel friendPostViewModel = FriendPostViewModel();
+
 /*  PostCommentListModel postCommentListModel = PostCommentListModel();*/
   String? deepLinkPath;
   List<FriendPost> friendPostListData = [];
@@ -86,11 +86,13 @@ class HomeController extends GetxController {
     update(['home']);
     super.onInit();
   }
-void onTapSetting(){
-  Get.to(() => SettingsScreen())!.then((value) async {
-    await controller.viewProfileDetails();
-  });
-}
+
+  void onTapSetting() {
+    Get.to(() => SettingsScreen())!.then((value) async {
+      await controller.viewProfileDetails();
+    });
+  }
+
   void pagination() async {
     print("Hello");
     if (scrollController.position.pixels ==
@@ -105,8 +107,8 @@ void onTapSetting(){
     // loader.value = true;
     if (permission == LocationPermission.denied) {
       LocationPermission result = await Geolocator.requestPermission();
-      if(result == LocationPermission.always ||
-          result == LocationPermission.whileInUse){
+      if (result == LocationPermission.always ||
+          result == LocationPermission.whileInUse) {
         getCurrentLocation();
       }
     } else {
@@ -114,14 +116,14 @@ void onTapSetting(){
         desiredAccuracy: LocationAccuracy.high,
       );
       List<Placemark> placemarks =
-      await placemarkFromCoordinates(position.latitude, position.longitude);
+          await placemarkFromCoordinates(position.latitude, position.longitude);
 
       Placemark place = placemarks[0];
       addCity = place.locality;
       addCountry = place.country;
       addStreet = place.street;
       address =
-      '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
+          '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
       print(
           "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<$address>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
       update(["advertiser"]);
@@ -196,7 +198,7 @@ void onTapSetting(){
     postViewUser = friendPost.postViewUser ?? [];
     print(postViewUser);
     Get.bottomSheet(
-       PostViewBottomScreen(),
+      PostViewBottomScreen(),
       isScrollControlled: true,
     ).then((value) {});
   }
@@ -294,8 +296,8 @@ void onTapSetting(){
     try {
       loader.value = true;
 
-      friendPostViewModel =
-          await MyPostApi.friendPostApi(1, pageLength ?? friendPostListData.length);
+      friendPostViewModel = await MyPostApi.friendPostApi(
+          1, pageLength ?? friendPostListData.length);
       friendPostListData = friendPostViewModel.data!;
       update(['home']);
 
@@ -354,11 +356,11 @@ void onTapSetting(){
   }
 
   Future<void> onStory() async {
-    loader.value=true;
+    loader.value = true;
     await viewStoryController.friendStoryApiData();
     // await myStoryController.init();
     update(['home']);
-    loader.value=false;
+    loader.value = false;
   }
 
   Future<void> myStoryOnTap() async {
@@ -457,8 +459,9 @@ void onTapSetting(){
     }
   }
 
-  void onTagTap(String? userId){
-    ConnectionsProfileController connectionsProfileController = Get.put(ConnectionsProfileController());
+  void onTagTap(String? userId) {
+    ConnectionsProfileController connectionsProfileController =
+        Get.put(ConnectionsProfileController());
     connectionsProfileController.callApi(userId);
   }
 }

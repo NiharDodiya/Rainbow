@@ -97,9 +97,6 @@ class Data {
             : List<String>.from(json["itemsList"].map((x) => x)),
         title: json["title"] == null ? null : json["title"],
         location: json["location"] == null ? null : json["location"],
-
-
-
         street: json["street"] == null ? null : json["street"],
         province: json["province"] == null ? null : json["province"],
         postalCode: json["postal_code"] == null ? null : json["postal_code"],

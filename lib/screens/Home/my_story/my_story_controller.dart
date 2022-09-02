@@ -53,7 +53,7 @@ class MyStoryController extends GetxController {
 
   Future<void> onInitStateCall() async {
     loader.value = true;
-   await viewStoryController.friendStoryApiData();
+    await viewStoryController.friendStoryApiData();
     update(["my_story"]);
     loader.value = false;
   }

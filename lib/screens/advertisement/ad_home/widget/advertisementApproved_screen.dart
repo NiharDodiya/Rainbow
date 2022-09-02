@@ -149,7 +149,7 @@ class AdvertisementApprovedScreen extends StatelessWidget {
 
   Widget backToHome() {
     return InkWell(
-      onTap: (){
+      onTap: () {
         Get.back();
       },
       child: SubmitButton(

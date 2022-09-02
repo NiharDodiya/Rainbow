@@ -82,7 +82,8 @@ class EndPoints {
   static const boostAdvertisement = "$baseUrl/advirtisers/advertisement/boost";
   static const deleteAdvertiser = "$baseUrl/advirtisers/advertisement/delete";
   static const cancelAdvertiser = "$baseUrl/advirtisers/advertisement/cancel";
-  static const followUpAdvertiser = "$baseUrl/advirtisers/advertisement/followup";
+  static const followUpAdvertiser =
+      "$baseUrl/advirtisers/advertisement/followup";
   static const viewUserAdvertiser = "$baseUrl/user/profile/view";
   static const editAdvertiser = '$baseUrl/advirtisers/advertisement/view';
   static const updateAdvertiser = '$baseUrl/advirtisers/advertisement/update';

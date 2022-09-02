@@ -95,7 +95,8 @@ class LoginController extends GetxController {
         await PrefService.setValue(PrefKeys.uid, userCredential.user!.uid);
         await addUser(userCredential.user!.uid);
 
-        DashboardController dashboardController = Get.put(DashboardController());
+        DashboardController dashboardController =
+            Get.put(DashboardController());
         dashboardController.setUserOnlineStatus(true);
         // Get.snackbar("Success", "Login SuccessFull");
         //Get.to(() => const UserListScreen());

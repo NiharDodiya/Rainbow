@@ -98,7 +98,9 @@ class EditProfileController extends GetxController {
       selectedStatus = profileController.viewProfile.data!.userStatus!;
     }
     status1.text = profileController.viewProfile.data!.maritalStatus!;
-    age.text = profileController.viewProfile.data!.age.toString() == '0'?"":profileController.viewProfile.data!.age.toString();
+    age.text = profileController.viewProfile.data!.age.toString() == '0'
+        ? ""
+        : profileController.viewProfile.data!.age.toString();
     city.text = profileController.viewProfile.data!.city!;
     height.text = profileController.viewProfile.data!.height!;
     weight.text = profileController.viewProfile.data!.weight!;
@@ -152,8 +154,7 @@ class EditProfileController extends GetxController {
     } else if (status1.text.isEmpty) {
       errorToast(Strings.status);
       return false;
-    }
-    else if (aboutMe.text.isEmpty) {
+    } else if (aboutMe.text.isEmpty) {
       errorToast(Strings.aboutMeError);
       return false;
     } else if (hobbies.text.isEmpty) {
@@ -324,7 +325,9 @@ class EditProfileController extends GetxController {
     // continue accessing the position of the device.
     return await Geolocator.getCurrentPosition();
   }
-FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
   Future<void> editProfileApi(BuildContext context) async {
     loader.value = true;
     try {
@@ -361,8 +364,10 @@ FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
         Navigator.pop(context);
       }
       loader.value = false;
-      await  firebaseFirestore.collection("users").doc(PrefService.getString(PrefKeys.uid)).update({"image":uploadImage1.data!.itemUrl.toString()});
-
+      await firebaseFirestore
+          .collection("users")
+          .doc(PrefService.getString(PrefKeys.uid))
+          .update({"image": uploadImage1.data!.itemUrl.toString()});
     } catch (e) {
       loader.value = false;
       debugPrint(e.toString());

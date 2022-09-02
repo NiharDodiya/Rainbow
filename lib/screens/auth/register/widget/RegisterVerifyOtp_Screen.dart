@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -19,8 +17,7 @@ class RegisterOtpScreen extends StatefulWidget {
 
 class _RegisterOtpScreenState extends State<RegisterOtpScreen> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-   final controller =
-      Get.put(RegisterVerifyController());
+  final controller = Get.put(RegisterVerifyController());
 
   @override
   void initState() {
@@ -94,7 +91,7 @@ class _RegisterOtpScreenState extends State<RegisterOtpScreen> {
                                         child: Row(
                                           children: [
                                             Text(
-                                              "${Strings.codeSent}${controller.showPhoneNumber.toString().isEmpty?controller.phoneNumber.toString():controller.showPhoneNumber.toString()}",
+                                              "${Strings.codeSent}${controller.showPhoneNumber.toString().isEmpty ? controller.phoneNumber.toString() : controller.showPhoneNumber.toString()}",
                                               style: TextStyle(
                                                   color: ColorRes.white
                                                       .withOpacity(0.5),
@@ -194,8 +191,11 @@ class _RegisterOtpScreenState extends State<RegisterOtpScreen> {
                                 InkWell(
                                   onTap: () {
                                     controller.startTimer();
-                                    controller.phoneNumberRegister(controller.phoneNumber==null?
-                                    controller.showPhoneNumber.toString():controller.phoneNumber.toString());
+                                    controller.phoneNumberRegister(controller
+                                                .phoneNumber ==
+                                            null
+                                        ? controller.showPhoneNumber.toString()
+                                        : controller.phoneNumber.toString());
                                   },
                                   child: Center(
                                     child: Text(

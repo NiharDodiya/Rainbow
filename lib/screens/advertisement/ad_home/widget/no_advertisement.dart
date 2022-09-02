@@ -11,7 +11,8 @@ import '../screen/create_advertisement/create_advertisement_controller.dart';
 import '../screen/create_advertisement/create_advertisement_screen.dart';
 
 Widget noAdvertisement() {
-  CreateAdvertisementController advertisementControllers = Get.put(CreateAdvertisementController());
+  CreateAdvertisementController advertisementControllers =
+      Get.put(CreateAdvertisementController());
   return GetBuilder<AdHomeController>(
     builder: (controller) {
       return Expanded(
@@ -60,7 +61,8 @@ Widget noAdvertisement() {
                     advertisementControllers.descriptoionController.clear();
                     advertisementControllers.urlLinkController.clear();
                     advertisementControllers.callToActionController.clear();
-                    advertisementControllers.address =  Strings.useCurrentLocation;
+                    advertisementControllers.address =
+                        Strings.useCurrentLocation;
                     advertisementControllers.callToAction = null;
                     advertisementControllers.imagePath = [];
                     Get.to(() => CreateAdvertisementScreen());

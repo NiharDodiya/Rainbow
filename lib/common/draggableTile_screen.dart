@@ -211,7 +211,6 @@ class _DraggableTileState extends State<DraggableTile> {
                   borderRadius: BorderRadius.all(Radius.circular(15))),
               actions: [
                 SizedBox(
-
                   width: 270,
                   child: Padding(
                     padding: EdgeInsets.only(bottom: 10),

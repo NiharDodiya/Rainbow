@@ -1,11 +1,9 @@
 import 'dart:convert';
 
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/ListSupportTicketModel.dart';
 import 'package:rainbow/model/ViewSupportTicketModel.dart';
-
 import 'package:rainbow/model/sendSupportModel.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
@@ -74,7 +72,8 @@ class SupportApi {
     }
   }
 
-  static Future sendSupportApi({String? id, String? description, List<int>? item}) async {
+  static Future sendSupportApi(
+      {String? id, String? description, List<int>? item}) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
 
     try {
@@ -100,7 +99,6 @@ class SupportApi {
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           flutterToast(jsonDecode(response.body)["message"]);
-
         }
         return sendSupportModelFromJson(response.body);
       }

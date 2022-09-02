@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -54,11 +53,13 @@ class CommentsController extends GetxController {
       commentPostData(context, id);
     }
   }
-void clearNameCommentOnTap(){
+
+  void clearNameCommentOnTap() {
     nameComment = null;
-    replyId=null;
+    replyId = null;
     update(["commentPost"]);
-}
+  }
+
   Future cameraImage() async {
     try {
       var pickedFile =
@@ -206,7 +207,6 @@ void clearNameCommentOnTap(){
   bool replay = false;
 
   void onReplyTap(String? commentId, String? name) {
-
     replyId = commentId;
     nameComment = name;
     update(['commentPost']);

@@ -8,7 +8,7 @@ class StoryCommentsController extends GetxController {
   List<StoryCommentList> comments = [];
   MyStory story = MyStory();
   TextEditingController commentController = TextEditingController();
-  HomeController homeController =Get.put(HomeController());
+  HomeController homeController = Get.put(HomeController());
   List<bool> reply = [
     true,
     true,

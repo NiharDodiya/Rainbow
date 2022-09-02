@@ -14,7 +14,8 @@ Widget appbar() {
   AdHomeController controller = Get.find<AdHomeController>();
   AdvertisementController advertisementController =
       Get.put(AdvertisementController());
-  CreateAdvertisementController advertisementControllers = Get.put(CreateAdvertisementController());
+  CreateAdvertisementController advertisementControllers =
+      Get.put(CreateAdvertisementController());
   return SizedBox(
     width: Get.width,
     child: Padding(
@@ -28,31 +29,35 @@ Widget appbar() {
             },
             child: Padding(
               padding: const EdgeInsets.only(right: 9),
-              child: controller.viewAdvertiserModel.data==null?  ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: Image.asset(
-                  AssetRes.portrait_placeholder,
-                  height: 34,
-                  width: 34,
-                ),
-              ):ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: controller.viewAdvertiserModel.data!.profileImage
-                      .toString()
-                      .isEmpty
-                      ? Image.asset(
-                          AssetRes.portrait_placeholder,
-                          height: 34,
-                          width: 34,
-                        )
-                      : FadeInImage(
-                          placeholder: const AssetImage(AssetRes.portrait_placeholder),
-                          image: NetworkImage(controller
-                              .viewAdvertiserModel.data!.profileImage
-                              .toString()),fit: BoxFit.cover,
-                          height: 34,
-                          width: 34,
-                        )),
+              child: controller.viewAdvertiserModel.data == null
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.asset(
+                        AssetRes.portrait_placeholder,
+                        height: 34,
+                        width: 34,
+                      ),
+                    )
+                  : ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: controller.viewAdvertiserModel.data!.profileImage
+                              .toString()
+                              .isEmpty
+                          ? Image.asset(
+                              AssetRes.portrait_placeholder,
+                              height: 34,
+                              width: 34,
+                            )
+                          : FadeInImage(
+                              placeholder: const AssetImage(
+                                  AssetRes.portrait_placeholder),
+                              image: NetworkImage(controller
+                                  .viewAdvertiserModel.data!.profileImage
+                                  .toString()),
+                              fit: BoxFit.cover,
+                              height: 34,
+                              width: 34,
+                            )),
             ),
             /*   Container(
               height: 34,

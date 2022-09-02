@@ -11,7 +11,8 @@ class MyStoryListLike extends StatelessWidget {
   MyStoryListLike({Key? key}) : super(key: key);
 
   MyStoryController myStoryController = Get.put(MyStoryController());
-  ConnectionsProfileController connectionsProfileController =Get.put(ConnectionsProfileController());
+  ConnectionsProfileController connectionsProfileController =
+      Get.put(ConnectionsProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -44,15 +45,11 @@ class MyStoryListLike extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-
                 const SizedBox(width: 16),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-
-                  ],
+                  children: [],
                 ),
-
               ],
             ),
           ),
@@ -85,9 +82,12 @@ class MyStoryListLike extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(top: 20.0),
-                        child: InkWell(onTap: () {
-                          connectionsProfileController.callApi(myStoryController.storyLikeList[index].id.toString());
-                        },
+                        child: InkWell(
+                          onTap: () {
+                            connectionsProfileController.callApi(
+                                myStoryController.storyLikeList[index].id
+                                    .toString());
+                          },
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -114,7 +114,8 @@ class MyStoryListLike extends StatelessWidget {
                                   decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
                                       image: DecorationImage(
-                                          image: AssetImage(AssetRes.portrait_placeholder))),
+                                          image: AssetImage(
+                                              AssetRes.portrait_placeholder))),
                                 ),
                                 fit: BoxFit.fill,
                               ),

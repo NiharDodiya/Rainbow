@@ -105,13 +105,15 @@ class MessageController extends GetxController {
     UserService.updateUserModel(GlobalData.user);
     loader.value = false;
   }
-bool validation(){
-    if(msController.text.isEmpty){
-       errorToast("please enter message");
+
+  bool validation() {
+    if (msController.text.isEmpty) {
+      errorToast("please enter message");
       return false;
     }
     return true;
-}
+  }
+
   getChatUserId() async {
     final snapShot2 =
         await FirebaseFirestore.instance.collection("users").doc(userUid).get();
@@ -180,85 +182,84 @@ bool validation(){
   String imageName = "";
   var dowanloadurl;
 
-  void gotoChatScreen(BuildContext context,String otherUid, name, image) async {
+  void gotoChatScreen(
+      BuildContext context, String otherUid, name, image) async {
     loader.value = true;
     await getRoomId(otherUid);
     loader.value = false;
     // if user have not subcription show pop up
-    subscribePopUp==true?showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20)),
-            backgroundColor: Colors.white,
-            actions: <Widget>[
-              const SizedBox(
-                height: 34,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 30),
-                child: Center(
-                    child: SizedBox(
-                        height: 40,
-                        width: 152,
-                        child: Text(
-                          Strings.subscriptionPremium,
-                          style: gilroySemiBoldTextStyle(
-                              fontSize: 16,
-                              color: Colors.black),
-                        ))),
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              Center(
-                  child: Text(
+    subscribePopUp == true
+        ? showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                backgroundColor: Colors.white,
+                actions: <Widget>[
+                  const SizedBox(
+                    height: 34,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30),
+                    child: Center(
+                        child: SizedBox(
+                            height: 40,
+                            width: 152,
+                            child: Text(
+                              Strings.subscriptionPremium,
+                              style: gilroySemiBoldTextStyle(
+                                  fontSize: 16, color: Colors.black),
+                            ))),
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  Center(
+                      child: Text(
                     "£9.99 / month",
                     style: gilroySemiBoldTextStyle(
                         fontSize: 26, color: Colors.black),
                   )),
-              const SizedBox(
-                height: 16,
-              ),
-              Center(
-                child: Container(
-                  height: 30,
-                  width: 101,
-                  decoration: BoxDecoration(
-                    borderRadius:
-                    BorderRadius.circular(46.2),
-                    gradient:  LinearGradient(
-                      colors: [
-                        ColorRes.color_4F359B,
-                        ColorRes.color_B279DB,
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.topRight,
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Center(
+                    child: Container(
+                      height: 30,
+                      width: 101,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(46.2),
+                        gradient: LinearGradient(
+                          colors: [
+                            ColorRes.color_4F359B,
+                            ColorRes.color_B279DB,
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.topRight,
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Subscribe",
+                          style: gilroyBoldTextStyle(fontSize: 9.6),
+                        ),
+                      ),
                     ),
                   ),
-                  child: Center(
-                    child: Text(
-                      "Subscribe",
-                      style: gilroyBoldTextStyle(
-                          fontSize: 9.6),
-                    ),
+                  const SizedBox(
+                    height: 21,
                   ),
-                ),
-              ),
-              const SizedBox(
-                height: 21,
-              ),
-            ],
-          );
-        }):
-    Get.to(() => ChatScreen(
-          roomId: roomId,
-          name: name,
-          otherUserUid: otherUid,
-          userUid: userUid,
-          profileImage: image,
-        ));
+                ],
+              );
+            })
+        : Get.to(() => ChatScreen(
+              roomId: roomId,
+              name: name,
+              otherUserUid: otherUid,
+              userUid: userUid,
+              profileImage: image,
+            ));
   }
 
   void imageSend() async {

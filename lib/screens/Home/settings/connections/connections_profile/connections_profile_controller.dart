@@ -52,7 +52,6 @@ class ConnectionsProfileController extends GetxController {
     profileModel = await OtherProfileApi.getOtherUerData(userId.toString())
         .then((value) => profileModel = value!);
     loader.value = false;
-
   }
 
   Future<void> blockUserDetails(String? id) async {

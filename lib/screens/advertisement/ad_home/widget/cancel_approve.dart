@@ -10,7 +10,8 @@ import '../../../../utils/color_res.dart';
 
 class CancelApprove extends StatelessWidget {
   String? idAdvertiser;
-   CancelApprove({Key? key,this.idAdvertiser}) : super(key: key);
+
+  CancelApprove({Key? key, this.idAdvertiser}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -70,15 +71,19 @@ class CancelApprove extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              GetBuilder<AdHomeController>(id: "cancel",builder: (controller) {
-                return  SubmitButton(onTap: () {
-                     controller.cancelAdvertiser(idAdvertiser, context);
+              GetBuilder<AdHomeController>(
+                id: "cancel",
+                builder: (controller) {
+                  return SubmitButton(
+                      onTap: () {
+                        controller.cancelAdvertiser(idAdvertiser, context);
+                      },
+                      child: Text(
+                        Strings.confirm,
+                        style: gilroyBoldTextStyle(
+                            fontSize: 16, color: ColorRes.black),
+                      ));
                 },
-                    child: Text(
-                      Strings.confirm,
-                      style: gilroyBoldTextStyle(fontSize: 16, color: ColorRes.black),
-                    ));
-              },
               ),
               SizedBox(height: Get.height * 0.04926)
             ],
@@ -95,9 +100,10 @@ Widget appbar(BuildContext context) {
     child: Padding(
       padding: const EdgeInsets.only(left: 20, right: 30, top: 15, bottom: 10),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        InkWell(onTap: () {
-          Navigator.pop(context);
-        },
+        InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
           child: Image.asset(
             AssetRes.backIcon,
             height: 15,

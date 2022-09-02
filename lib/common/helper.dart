@@ -45,7 +45,6 @@ String getChatId(String uid1, String uid2) {
   }
 }
 
-
 String getFormattedTime(DateTime time, {DateFormat? format}) {
   if (isToday(time)) {
     if (format != null) {
@@ -78,8 +77,9 @@ bool isToday(DateTime time) {
 bool isYesterday(DateTime time) {
   DateTime now = DateTime.now();
 
-  if (now.year == time.year && now.month == time.month &&
-      ((now.day-1) == time.day)) {
+  if (now.year == time.year &&
+      now.month == time.month &&
+      ((now.day - 1) == time.day)) {
     return true;
   }
   return false;
@@ -88,8 +88,9 @@ bool isYesterday(DateTime time) {
 bool isInWeek(DateTime time) {
   DateTime now = DateTime.now();
 
-  if (now.year == time.year && now.month == time.month &&
-      ((now.day-6) > time.day)) {
+  if (now.year == time.year &&
+      now.month == time.month &&
+      ((now.day - 6) > time.day)) {
     return false;
   }
   return true;

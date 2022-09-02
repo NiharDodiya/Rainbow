@@ -10,8 +10,9 @@ import '../../../../../utils/color_res.dart';
 import '../../../ad_dashboard/ad_dashboard.dart';
 
 class PaymentFailedScreen extends StatelessWidget {
-   PaymentFailedScreen({Key? key}) : super(key: key);
-AdHomeController adHomeController = Get.put(AdHomeController());
+  PaymentFailedScreen({Key? key}) : super(key: key);
+  AdHomeController adHomeController = Get.put(AdHomeController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

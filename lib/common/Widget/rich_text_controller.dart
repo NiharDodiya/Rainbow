@@ -46,14 +46,14 @@ class RichTextController extends TextEditingController {
     required this.onMatch,
     this.deleteOnBack = false,
   })  : assert((patternMatchMap != null && stringMatchMap == null) ||
-      (patternMatchMap == null && stringMatchMap != null)),
+            (patternMatchMap == null && stringMatchMap != null)),
         super(text: text);
 
   @override
   TextSpan buildTextSpan(
       {required BuildContext context,
-        TextStyle? style,
-        required bool withComposing}) {
+      TextStyle? style,
+      required bool withComposing}) {
     List<TextSpan> children = [];
     List<String> matches = [];
 

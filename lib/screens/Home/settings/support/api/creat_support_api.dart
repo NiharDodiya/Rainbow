@@ -11,7 +11,8 @@ import '../support_controller.dart';
 
 class SupportAPI {
   SupportAPI._();
-  SupportController supportController=Get.put(SupportController());
+
+  SupportController supportController = Get.put(SupportController());
   static final SupportAPI supportAPI = SupportAPI._();
 
   postSupportAPI({required Map<String, dynamic> data}) async {

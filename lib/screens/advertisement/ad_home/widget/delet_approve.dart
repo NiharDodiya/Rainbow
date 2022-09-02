@@ -109,9 +109,10 @@ Widget appbar(BuildContext context) {
     child: Padding(
       padding: const EdgeInsets.only(left: 20, right: 30, top: 15, bottom: 10),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        InkWell(onTap: () {
-          Navigator.pop(context);
-        },
+        InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
           child: Image.asset(
             AssetRes.backIcon,
             height: 15,

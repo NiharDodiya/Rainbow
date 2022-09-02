@@ -11,7 +11,8 @@ class StoryViewListScreen extends StatelessWidget {
   StoryViewListScreen({Key? key}) : super(key: key);
 
   MyStoryController myStoryController = Get.put(MyStoryController());
-  ConnectionsProfileController connectionsProfileController = Get.put(ConnectionsProfileController());
+  ConnectionsProfileController connectionsProfileController =
+      Get.put(ConnectionsProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -124,18 +125,21 @@ class StoryViewListScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(top: 20.0),
-                        child: InkWell(onTap: () {
-                          connectionsProfileController.callApi( myStoryController.storyViewListModel.data![index].id.toString());
-                        },
+                        child: InkWell(
+                          onTap: () {
+                            connectionsProfileController.callApi(
+                                myStoryController
+                                    .storyViewListModel.data![index].id
+                                    .toString());
+                          },
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-
                               CachedNetworkImage(
                                 height: 56,
                                 width: 56,
-                                imageUrl: myStoryController
-                                    .storyViewListModel.data![index].profileImage
+                                imageUrl: myStoryController.storyViewListModel
+                                    .data![index].profileImage
                                     .toString(),
                                 imageBuilder: (context, imageProvider) =>
                                     Container(
@@ -163,8 +167,8 @@ class StoryViewListScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    myStoryController
-                                        .storyViewListModel.data![index].fullName
+                                    myStoryController.storyViewListModel
+                                        .data![index].fullName
                                         .toString(),
                                     style: sfProTextReguler().copyWith(
                                       fontSize: 13,
