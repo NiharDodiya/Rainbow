@@ -122,6 +122,7 @@ dependencies:
   dio: ^4.0.6
   #--------------------------chart---------
   syncfusion_flutter_charts: ^20.2.45
+  carousel_indicator: ^1.0.6
 
 
 

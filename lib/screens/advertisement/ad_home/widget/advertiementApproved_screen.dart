@@ -1,9 +1,11 @@
+import 'package:carousel_indicator/carousel_indicator.dart';
 import 'package:charts_flutter/flutter.dart' as chart;
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/edit_advertisement/edit_advertisement_controller.dart';
@@ -14,7 +16,9 @@ import 'package:rainbow/screens/advertisement/ad_home/widget/charrr.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
+import 'package:readmore/readmore.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AdvertisementDetailsApprovedScreen extends StatelessWidget {
   int i;
@@ -122,102 +126,119 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
   Widget top(int index, context, int id) {
     AdHomeController adHomeController = Get.put(AdHomeController());
 EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertiesementController());
-    return GetBuilder<CreateAdvertisementController>(
-      id: "addverDetails",
-      builder: (controller) {
-        return Column(
-          children: [
-            SizedBox(
-              width: Get.width,
-              height: 202,
-              child: Stack(
+    return Column(
+      children: [
+      GetBuilder<CreateAdvertisementController>(
+        id: "img",
+          builder: (controller){
+        return   SizedBox(
+          width: Get.width,
+          height: 202,
+          child: Stack(
+            children: [
+              PageView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: adHomeController.myAdvertiserModel.data?[index].itemsList!.length,
+                onPageChanged: (index){
+                  createAdvertisementController.pageIndex = index;
+                  createAdvertisementController.update(["img"]);
+                },
+                itemBuilder: (context, index1) {
+                  return SizedBox(
+                    width: Get.width,
+                    child: FadeInImage(
+                      placeholder:
+                      const AssetImage(AssetRes.placeholderImage),
+                      image: NetworkImage(
+                        adHomeController.myAdvertiserModel.data![index]
+                            .itemsList![index1]
+                            .toString(),
+                      ),
+                      width: Get.width - 60,
+                      fit: BoxFit.cover,
+                    ),
+                  );
+                },
+              ),
+              Column(
                 children: [
-                  ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemCount: adHomeController.myAdvertiserModel.data?[index].itemsList!.length,
-                    itemBuilder: (context, index1) {
-                      return SizedBox(
-                        width: Get.width,
-                        child: FadeInImage(
-                          placeholder:
-                          const AssetImage(AssetRes.placeholderImage),
-                          image: NetworkImage(
-                            adHomeController.myAdvertiserModel.data![index]
-                                .itemsList![index1]
-                                .toString(),
+                  const SizedBox(height: 46),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: Get.width * 0.0853, right: Get.width * 0.0373),
+                    child: Row(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Container(
+                            height: 32,
+                            width: 34,
+                            decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(8),
+                                ),
+                                color: ColorRes.white),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 8.0, horizontal: 12),
+                              child: Image.asset(
+                                AssetRes.backIcon,
+                                color: ColorRes.color_50369C,
+                              ),
+                            ),
                           ),
-                          width: Get.width - 60,
-                          fit: BoxFit.cover,
                         ),
-                      );
-                    },
+                        const Spacer(),
+                        InkWell(
+                          onTap: () async{
+
+                            await editAdvertiesementController.myEditAdvertiserListData(id: id);
+
+                            Get.to(EditAdvertisementscreen());
+
+
+                          },
+                          child: Container(
+                            height: 33.3,
+                            width: 33.3,
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle, color: ColorRes.white),
+                            child: Padding(
+                              padding: const EdgeInsets.all(12),
+                              child: Image.asset(
+                                AssetRes.editicons,
+                                color: ColorRes.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  Column(
-                    children: [
-                      const SizedBox(height: 46),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: Get.width * 0.0853, right: Get.width * 0.0373),
-                        child: Row(
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Get.back();
-                              },
-                              child: Container(
-                                height: 32,
-                                width: 34,
-                                decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(8),
-                                    ),
-                                    color: ColorRes.white),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 8.0, horizontal: 12),
-                                  child: Image.asset(
-                                    AssetRes.backIcon,
-                                    color: ColorRes.color_50369C,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const Spacer(),
-                            InkWell(
-                              onTap: () async{
-
-                                await editAdvertiesementController.myEditAdvertiserListData(id: id);
-
-                                Get.to(EditAdvertisementscreen());
-
-
-                              },
-                              child: Container(
-                                height: 33.3,
-                                width: 33.3,
-                                decoration: const BoxDecoration(
-                                    shape: BoxShape.circle, color: ColorRes.white),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(12),
-                                  child: Image.asset(
-                                    AssetRes.editicons,
-                                    color: ColorRes.black,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
+                  (adHomeController.myAdvertiserModel.data?[index].itemsList!.length == 1)
+                      ?SizedBox()
+                      :Padding(
+                    padding: EdgeInsets.only(top: 100),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: CarouselIndicator(
+                        cornerRadius: 30,
+                        height: 6,
+                        width: 6,
+                        count: adHomeController.myAdvertiserModel.data?[index].itemsList!.length,
+                        index: createAdvertisementController.pageIndex,
+                      ),
+                    ),
                   ),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         );
-      },
+      }),
+      ],
     );
   }
 
@@ -266,6 +287,7 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
               ),
             ],
           ),
+          SizedBox(height: 5,),
           Text(
             adHomeController.myAdvertiserModel.data![index].title.toString(),
             style: gilroySemiBoldTextStyle(
@@ -273,17 +295,21 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
             ),
           ),
           const SizedBox(
-            height: 8,
+            height: 20,
           ),
-
-          Text(
+          ReadMoreText(
             adHomeController.myAdvertiserModel.data![index].description.toString(),
-            style: gilroyMediumTextStyle(
-              fontSize: 14,
+            trimLines: 3,
+            trimMode: TrimMode.Line,
+            trimCollapsedText: 'see more',
+            lessStyle: gilroyMediumTextStyle(fontSize: 14,color: Colors.white.withOpacity(0.5)),
+            trimExpandedText: '...see less',
+            moreStyle: gilroyMediumTextStyle(
+                fontSize: 14,color: Colors.white.withOpacity(0.5)
             ),
           ),
           const SizedBox(
-            height: 10,
+            height: 20,
           ),
           Row(
             children: [
@@ -349,14 +375,30 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
           const SizedBox(
             height: 10,
           ),
-          Text(
-            adHomeController.myAdvertiserModel.data![index].urlLink.toString(),
-            style: gilroyRegularTextStyle(fontSize: 14),
+          InkWell(
+
+            onTap: () async{
+              final Uri _url = Uri.parse('https://${adHomeController.myAdvertiserModel.data![index].urlLink.toString()}');
+
+              if (await launchUrl(_url)) {
+                await launchUrl(_url);
+              } else {
+                throw 'Could not launch $_url';
+              }
+            },
+            child: Text(
+              adHomeController.myAdvertiserModel.data![index].urlLink.toString(),
+              style: gilroyRegularTextStyle(fontSize: 14),
+            ),
           ),
+
           const SizedBox(
             height: 20,
           ),
-          InkWell(
+
+         // chart
+
+         /* InkWell(
             onTap: () {
               showModalBottomSheet(
                   backgroundColor: Colors.white,
@@ -454,7 +496,7 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
                                     itemPadding: const EdgeInsets.only(
                                         left: 20, right: 14),
                                     dropdownMaxHeight: Get.height * 0.3,
-                                    /* height: Get.height*0.19,*/
+                                    *//* height: Get.height*0.19,*//*
                                     dropdownWidth: Get.width * 0.85,
                                     dropdownPadding: null,
                                     dropdownDecoration: BoxDecoration(
@@ -754,13 +796,13 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
                   height: 22,
                   width: 22,
                 ),
-                Text(
-                  "563 views",
-                  style: gilroyRegularTextStyle(fontSize: 14),
-                )
+                // Text(
+                //   "563 views",
+                //   style: gilroyRegularTextStyle(fontSize: 14),
+                // )
               ],
             ),
-          )
+          )*/
 
           /*        const SizedBox(
             height: 87,

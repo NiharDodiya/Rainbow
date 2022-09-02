@@ -11,6 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
+import 'package:rainbow/helper.dart';
 import 'package:rainbow/model/listUserTag_model.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/advertisement_deatail/advertisement_deatail_screen.dart';
@@ -57,7 +58,7 @@ class CreateAdvertisementController extends GetxController {
   String select = 'Caneda';
 
 
-
+  int pageIndex = 0;
 
 
   TextEditingController amountController = TextEditingController(text: "\$200.00");
@@ -203,7 +204,7 @@ class CreateAdvertisementController extends GetxController {
     } else if (callToAction == null) {
       errorToast(Strings.callActionError);
       return false;
-    } else if (urlLinkController.text.isEmpty) {
+    } else if (hasValidUrl(urlLinkController.text)==false) {
       errorToast(Strings.websiteError);
       return false;
     }

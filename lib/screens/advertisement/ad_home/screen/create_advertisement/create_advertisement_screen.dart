@@ -619,13 +619,23 @@ class CreateAdvertisementScreen extends StatelessWidget {
                             ? Text(
                                 Strings.useCurrentLocation,
                                 style: gilroyBoldTextStyle(
-                                    fontSize: 18, color: ColorRes.black),
+                                    fontSize: 16, color: ColorRes.black),
                               )
-                            : Text(
-                                controller.address!,
-                                style: gilroyBoldTextStyle(
-                                    fontSize: 12, color: ColorRes.black),
-                              ),
+                            : Container(
+                              width: 255,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                Text(
+                                  controller.address!,
+                                  style: gilroyBoldTextStyle(
+                                      fontSize: 16, color: ColorRes.black),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                         const Spacer()
                       ],
                     )),

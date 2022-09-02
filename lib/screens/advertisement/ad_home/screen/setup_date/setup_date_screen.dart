@@ -206,6 +206,7 @@ class SetupDateScreen extends StatelessWidget {
                     rangeStartDay: controller.startTime,
                     onRangeSelected: (start, end, as) {
                       controller.rangSelect(start, end, as);
+                      //controller.startTime = DateTime.utc(start);
                       print(
                           "<<<<<<<<<<<<<<<<<<<<<<<<<<<<  starn<$start>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                       print(

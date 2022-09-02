@@ -58,9 +58,8 @@ Widget advertisementList() {
                         },
                         child: Stack(
                           children: [
-                            ListView.builder(
+                            PageView.builder(
                               scrollDirection: Axis.horizontal,
-                              shrinkWrap: true,
                               itemCount: controller.myAdvertiserModel
                                   .data?[index].itemsList!.length,
                               itemBuilder: (context, index1) {
@@ -80,9 +79,6 @@ Widget advertisementList() {
                                                     .toString(),
                                               ),
                                               fit: BoxFit.cover)),
-                                    ),
-                                    SizedBox(
-                                      width: 5,
                                     ),
                                   ],
                                 );

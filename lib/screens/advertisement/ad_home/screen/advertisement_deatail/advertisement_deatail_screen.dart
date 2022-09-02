@@ -1,9 +1,11 @@
 import 'dart:io';
 
+import 'package:carousel_indicator/carousel_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/edit_advertisement/edit_advertisement_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -11,7 +13,7 @@ import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:carousel_indicator/carousel_indicator.dart';
 import '../../ad_home_controller.dart';
 import '../create_advertisement/create_advertisement_controller.dart';
 import '../edit_advertisement/edit_advertisement_controller.dart';
@@ -26,33 +28,37 @@ class AdvertisementDeatailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          width: Get.width,
-          height: Get.height,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                ColorRes.color_50369C,
-                ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
-                ColorRes.color_D18EEE,
+      body: GetBuilder<CreateAdvertisementController>(
+        id: "img",
+          builder: (controller){
+        return  SafeArea(
+          child: Container(
+            width: Get.width,
+            height: Get.height,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  ColorRes.color_50369C,
+                  ColorRes.color_50369C,
+                  ColorRes.color_D18EEE,
+                  ColorRes.color_D18EEE,
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
+            child: Column(
+              children: [
+                top(controller),
+                Expanded(
+                  child: SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(), child: bottom()),
+                ),
               ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
             ),
           ),
-          child: Column(
-            children: [
-              top(),
-              Expanded(
-                child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(), child: bottom()),
-              ),
-            ],
-          ),
-        ),
-      ),
+        );
+      }),
     );
   }
 
@@ -169,7 +175,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
             height: 10,
           ),
           InkWell(
-            //onTap: ()=>launchUrl('https://docs.flutter.io/flutter/services/UrlLauncher-class.html'),
+
            onTap: () async{
              final Uri _url = Uri.parse('https://${createAdvertisementController.urlLinkController.text}');
 
@@ -205,10 +211,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
   }
 
 // f
-  Widget top() {
-    EditAdvertiesementController editAdvertiesementController =
-        Get.put(EditAdvertiesementController());
-    AdHomeController adHomeController = Get.put(AdHomeController());
+  Widget top(CreateAdvertisementController controller) {
     return Column(
       children: [
         Container(
@@ -216,24 +219,29 @@ class AdvertisementDeatailScreen extends StatelessWidget {
           height: 202,
           child: Stack(
             children: [
-              ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: createAdvertisementController.imagePath.length,
-                itemBuilder: (context, index1) {
-                  return Container(
-                    width: Get.width,
-                    child: FadeInImage(
-                      placeholder: const AssetImage(AssetRes.placeholderImage),
-                      image: FileImage(
-                          createAdvertisementController.imagePath[index1]),
-                      width: Get.width - 60,
-                      fit: BoxFit.cover,
-                    ),
-                  );
-                },
+              PageView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: controller.imagePath.length,
+                  onPageChanged: (index){
+                    controller.pageIndex = index;
+                    controller.update(["img"]);
+                  },
+                  itemBuilder: (context, index1){
+                    return Container(
+                      width: Get.width,
+                      child: FadeInImage(
+                        placeholder: const AssetImage(AssetRes.placeholderImage),
+                        image: FileImage(
+                            controller.imagePath[index1]),
+                        width: Get.width - 60,
+                        fit: BoxFit.cover,
+                      ),
+                    );
+                  }
+
               ),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 46),
                   Padding(
@@ -241,7 +249,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                         left: Get.width * 0.0853, right: Get.width * 0.0373),
                     child: InkWell(
                       onTap: () {
-                        createAdvertisementController.tags.length = 0;
+                        controller.tags.length = 0;
                         Get.back();
                       },
                       child: Container(
@@ -262,12 +270,27 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                  )
+                  ),
+                  (controller.imagePath.length == 1)
+                      ?SizedBox()
+                      :Padding(
+                    padding: EdgeInsets.only(top: 100),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: CarouselIndicator(
+                        cornerRadius: 30,
+                        height: 6,
+                        width: 6,
+                        count: controller.imagePath.length,
+                        index: controller.pageIndex,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ],
           ),
-        ),
+        )
       ],
     );
   }

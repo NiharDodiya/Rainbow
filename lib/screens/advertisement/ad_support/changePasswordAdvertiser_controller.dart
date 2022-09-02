@@ -44,6 +44,7 @@ class ChangeAdvertiserController extends GetxController {
       errorToast(Strings.confirmPasswordMismatch);
       return false;
     }
+
     return true;
   }
 
