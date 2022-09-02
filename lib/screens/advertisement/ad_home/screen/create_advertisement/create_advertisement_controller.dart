@@ -307,7 +307,7 @@ class CreateAdvertisementController extends GetxController {
 
 
    await AddAdvertisement.addAdvertisementApi(
-        tagUser: tagsController.text,
+        tagUser: tags,
         idItem: imageId,
         title: titleController.text,
         callAction: callToActionController.text,
@@ -383,7 +383,7 @@ class CreateAdvertisementController extends GetxController {
     if (validation()) {
 /*      print(DateFormat().add_yMd().format(startTime));*/
 /*    await  createAdvertisementController.uploadImageApi();*/
-     /*  await uploadImageApi();*/
+       await uploadImageApi();
 print(tagsController.text);
       Get.bottomSheet(
         enableDrag: false,

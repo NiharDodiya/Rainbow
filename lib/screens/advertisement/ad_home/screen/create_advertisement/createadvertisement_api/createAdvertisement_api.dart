@@ -12,7 +12,7 @@ import 'package:rainbow/utils/pref_keys.dart';
 
 class AddAdvertisement {
   static Future addAdvertisementApi(
-      {String? tagUser,
+      {List? tagUser,
       String? title,
       List? idItem,
       String? location,

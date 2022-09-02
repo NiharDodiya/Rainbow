@@ -127,7 +127,7 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
       builder: (controller) {
         return Column(
           children: [
-            Container(
+            SizedBox(
               width: Get.width,
               height: 202,
               child: Stack(
@@ -137,7 +137,7 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
                     shrinkWrap: true,
                     itemCount: adHomeController.myAdvertiserModel.data?[index].itemsList!.length,
                     itemBuilder: (context, index1) {
-                      return Container(
+                      return SizedBox(
                         width: Get.width,
                         child: FadeInImage(
                           placeholder:
@@ -267,7 +267,7 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
             ],
           ),
           Text(
-            adHomeController.myAdvertiserModel.data![index].amount.toString(),
+            adHomeController.myAdvertiserModel.data![index].title.toString(),
             style: gilroySemiBoldTextStyle(
               fontSize: 14,
             ),
