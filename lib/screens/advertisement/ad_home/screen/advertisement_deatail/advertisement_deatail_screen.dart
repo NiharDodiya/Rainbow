@@ -9,6 +9,7 @@ import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_da
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
+import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../ad_home_controller.dart';
@@ -89,12 +90,23 @@ class AdvertisementDeatailScreen extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Text(
-            createAdvertisementController.descriptoionController.text,
-            style: gilroyMediumTextStyle(
-              fontSize: 14,
-            ),
-          ),
+      ReadMoreText(
+        createAdvertisementController.descriptoionController.text,
+        trimLines: 3,
+        colorClickableText: Colors.black,
+        trimMode: TrimMode.Line,
+        trimCollapsedText: 'Show more',
+        trimExpandedText: '...Show less',
+        moreStyle: gilroyMediumTextStyle(
+          fontSize: 14,
+        ),
+      ),
+          // Text(
+          //   createAdvertisementController.descriptoionController.text,
+          //   style: gilroyMediumTextStyle(
+          //     fontSize: 14,
+          //   ),
+          // ),
           const SizedBox(
             height: 24,
           ),
@@ -113,9 +125,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                  itemCount: createAdvertisementController.tags.length > 3
-                      ? 3
-                      : createAdvertisementController.tags.length,
+                  itemCount: createAdvertisementController.tags.length,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Container(
@@ -165,7 +175,16 @@ class AdvertisementDeatailScreen extends StatelessWidget {
             height: 10,
           ),
           InkWell(
-           onTap: (){},
+            //onTap: ()=>launchUrl('https://docs.flutter.io/flutter/services/UrlLauncher-class.html'),
+           onTap: () async{
+             final Uri _url = Uri.parse('https://${createAdvertisementController.urlLinkController.text}');
+
+             if (await launchUrl(_url)) {
+             await launchUrl(_url);
+             } else {
+             throw 'Could not launch $_url';
+             }
+           },
             child: Text(
               createAdvertisementController.urlLinkController.text.toString(),
               style: gilroyRegularTextStyle(fontSize: 14),
@@ -228,6 +247,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                         left: Get.width * 0.0853, right: Get.width * 0.0373),
                     child: InkWell(
                       onTap: () {
+                        createAdvertisementController.tags.length = 0;
                         Get.back();
                       },
                       child: Container(

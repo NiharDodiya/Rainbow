@@ -56,6 +56,9 @@ class CreateAdvertisementController extends GetxController {
   String select = 'Caneda';
 
 
+
+
+
   TextEditingController amountController = TextEditingController(text: "\$200.00");
   // File? imagePath;
   List<File> imagePath = [];
@@ -274,12 +277,8 @@ class CreateAdvertisementController extends GetxController {
   List<UserData> filterList = [];
 
 
-  Future<void> _launchUrl() async {
-    final Uri _url = Uri.parse(urlLinkController.text);
-    if (!await launchUrl(_url)) {
-      throw 'Could not launch $_url';
-    }
-  }
+
+
 
 /*
   void onTagTap(UserData userData) {
