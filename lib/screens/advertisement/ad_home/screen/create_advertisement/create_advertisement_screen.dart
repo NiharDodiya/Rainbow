@@ -622,7 +622,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                                     fontSize: 16, color: ColorRes.black),
                               )
                             : Container(
-                              width: 255,
+                              width: MediaQuery.of(context).size.width/1.8,
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
