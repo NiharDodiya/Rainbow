@@ -114,7 +114,7 @@ dependencies:
   #____________________________________googlemap____________________________
   google_maps_flutter: ^2.1.10
   search_map_place_updated:
-  path: ./search_map_place_updated-0.0.4
+   path: ./search_map_place_updated-0.0.4
   flutter_google_places: ^0.3.0
   flutter_typeahead: ^4.0.0
   #_______________________________image Download__________

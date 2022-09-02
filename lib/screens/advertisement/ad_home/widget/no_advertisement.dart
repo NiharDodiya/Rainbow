@@ -28,45 +28,47 @@ Widget noAdvertisement() {
               end: Alignment.bottomCenter,
             ),
           ),
-          child: Column(
-            children: [
-              Container(
-                height: 142,
-                margin: const EdgeInsets.only(top: 34, bottom: 30),
-                child: Image.asset(
-                  AssetRes.frameImage,
-                  fit: BoxFit.fitHeight,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  height: 142,
+                  margin: const EdgeInsets.only(top: 34, bottom: 30),
+                  child: Image.asset(
+                    AssetRes.frameImage,
+                    fit: BoxFit.fitHeight,
+                  ),
                 ),
-              ),
-              Text(
-                Strings.noAdvertisement,
-                style: gilroySemiBoldTextStyle(fontSize: 24),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(
-                height: Get.height * 0.25,
-              ),
-              SubmitButton(
-                onTap: () {
-                  advertisementControllers.tagsController.clear();
-                  advertisementControllers.titleController.clear();
-                  advertisementControllers.countryController.clear();
-                  advertisementControllers.streetController.clear();
-                  advertisementControllers.cityController.clear();
-                  advertisementControllers.provinceController.clear();
-                  advertisementControllers.postalCodeController.clear();
-                  advertisementControllers.dateController.clear();
-                  advertisementControllers.descriptoionController.clear();
-                  advertisementControllers.urlLinkController.clear();
-                  advertisementControllers.callToActionController.clear();
-                  advertisementControllers.address =  Strings.useCurrentLocation;
-                  advertisementControllers.callToAction = null;
-                  advertisementControllers.imagePath = [];
-                  Get.to(() => CreateAdvertisementScreen());
-                },
-                text: Strings.createAdvertisement,
-              ),
-            ],
+                Text(
+                  Strings.noAdvertisement,
+                  style: gilroySemiBoldTextStyle(fontSize: 24),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: Get.height * 0.25,
+                ),
+                SubmitButton(
+                  onTap: () {
+                    advertisementControllers.tagsController.clear();
+                    advertisementControllers.titleController.clear();
+                    advertisementControllers.countryController.clear();
+                    advertisementControllers.streetController.clear();
+                    advertisementControllers.cityController.clear();
+                    advertisementControllers.provinceController.clear();
+                    advertisementControllers.postalCodeController.clear();
+                    advertisementControllers.dateController.clear();
+                    advertisementControllers.descriptoionController.clear();
+                    advertisementControllers.urlLinkController.clear();
+                    advertisementControllers.callToActionController.clear();
+                    advertisementControllers.address =  Strings.useCurrentLocation;
+                    advertisementControllers.callToAction = null;
+                    advertisementControllers.imagePath = [];
+                    Get.to(() => CreateAdvertisementScreen());
+                  },
+                  text: Strings.createAdvertisement,
+                ),
+              ],
+            ),
           ),
         ),
       );
