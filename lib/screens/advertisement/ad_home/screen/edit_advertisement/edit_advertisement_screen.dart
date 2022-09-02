@@ -6,6 +6,7 @@ import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisemen
 import 'package:rainbow/screens/advertisement/ad_home/screen/edit_advertisement/edit_advertisement_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/update_advertisement/update_advertisement_screen.dart';
 import 'package:rainbow/utils/strings.dart';
+import 'package:readmore/readmore.dart';
 
 import '../../../../../common/Widget/text_styles.dart';
 import '../../../../../utils/asset_res.dart';
@@ -420,15 +421,19 @@ class EditAdvertisementscreen extends StatelessWidget {
                   const SizedBox(
                     height: 28,
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        editAdvertiesementController.editAdvertisementModel.data?.description.toString()??"",
-                        style: poppinsRegularBold(
-                          fontSize: 14,
-                        ),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: ReadMoreText(
+                      editAdvertiesementController.editAdvertisementModel.data?.description.toString()??"",
+                      trimLines: 3,
+                      trimMode: TrimMode.Line,
+                      trimCollapsedText: 'see more',
+                      lessStyle: gilroyMediumTextStyle(fontSize: 14,color: Colors.white.withOpacity(0.5)),
+                      trimExpandedText: '...see less',
+                      moreStyle: gilroyMediumTextStyle(
+                          fontSize: 14,color: Colors.white.withOpacity(0.5)
                       ),
-                    ],
+                    ),
                   ),
                 ],
               ),

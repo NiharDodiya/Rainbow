@@ -384,7 +384,7 @@ class CreateAdvertisementController extends GetxController {
     if (validation()) {
 /*      print(DateFormat().add_yMd().format(startTime));*/
 /*    await  createAdvertisementController.uploadImageApi();*/
-       await uploadImageApi();
+
 print(tagsController.text);
       Get.bottomSheet(
         enableDrag: false,
@@ -412,6 +412,7 @@ print(tagsController.text);
         ),
         ignoreSafeArea: true,
       );
+     await uploadImageApi();
 /*      boostAdvertisementApi();*/
     }
   }

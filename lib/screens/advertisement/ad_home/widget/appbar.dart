@@ -109,6 +109,9 @@ Widget appbar() {
               advertisementControllers.urlLinkController.clear();
               advertisementControllers.callToActionController.clear();
               advertisementControllers.callToAction = null;
+              advertisementControllers.address = Strings.useCurrentLocation;
+              advertisementControllers.countryController.clear();
+              advertisementControllers.selectedCity = null;
               advertisementControllers.imagePath = [];
 
               Get.to(() => CreateAdvertisementScreen());
