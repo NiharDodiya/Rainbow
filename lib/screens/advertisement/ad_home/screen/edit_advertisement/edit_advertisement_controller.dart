@@ -33,9 +33,11 @@ class EditAdvertiesementController extends GetxController {
             "id_advertisement": id
           }
       );
-updateAdvertiseController.tagsController.text = editAdvertisementModel.data!.tagsList.toString();
-      updateAdvertiseController.countryController.text  = editAdvertisementModel.data!.userDetail!.country.toString();
-   /*   selectedEthicity = profileController.viewProfile.data!.idEthnicity!;*/
+updateAdvertiseController.tagsController.text = editAdvertisementModel.data!.tagsList.toString().replaceAll("[", "").replaceAll("]", "");
+
+updateAdvertiseController.address = editAdvertisementModel.data!.location.toString();
+
+
 updateAdvertiseController.titleController.text = editAdvertisementModel.data!.title.toString();
 updateAdvertiseController.streetController.text = editAdvertisementModel.data!.street.toString() ;
 updateAdvertiseController.cityController.text = editAdvertisementModel.data!.userDetail!.city.toString();
@@ -45,6 +47,8 @@ updateAdvertiseController.dateController.text = editAdvertisementModel.data!.dat
 updateAdvertiseController.descriptoionController.text = editAdvertisementModel.data!.description.toString();
 updateAdvertiseController.callToAction = editAdvertisementModel.data!.callAction.toString();
 updateAdvertiseController.urlLinkController.text = editAdvertisementModel.data!.urlLink.toString();
+updateAdvertiseController.countryController.text  = editAdvertisementModel.data!.userDetail!.idCountry.toString();
+updateAdvertiseController.selectedCity  = editAdvertisementModel.data!.userDetail!.idCountry;
 
       update(['more']);
       loader.value =false;
