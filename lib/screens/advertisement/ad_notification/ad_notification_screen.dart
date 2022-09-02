@@ -141,7 +141,7 @@ class AdNotificationsScreen extends StatelessWidget {
               SizedBox(
                 width: Get.width * 0.05,
               ),
-              GestureDetector(
+              /*GestureDetector(
                 onTap: () {
                   Get.back();
                 },
@@ -151,18 +151,13 @@ class AdNotificationsScreen extends StatelessWidget {
                   width: 16,
                   color: Colors.white,
                 ),
-              ),
+              ),*/
               SizedBox(
                 width: Get.width * 0.32,
               ),
-              GestureDetector(
-                onTap: () {
-                  Get.back();
-                },
-                child: Text(
-                  "Notification",
-                  style: gilroyBoldTextStyle(),
-                ),
+              Text(
+                "Notification",
+                style: gilroyBoldTextStyle(),
               ),
               SizedBox(
                 width: Get.width * 0.05,

@@ -92,8 +92,9 @@ class AdSupportScreen extends StatelessWidget {
         children: [
           SizedBox(height: Get.height * 0.03),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(width: Get.width * 0.05),
+              /*SizedBox(width: Get.width * 0.05),
               GestureDetector(
                 onTap: () {
                   Get.back();
@@ -105,7 +106,7 @@ class AdSupportScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              SizedBox(width: Get.width * 0.32),
+              SizedBox(width: Get.width * 0.32),*/
               Text(
                 Strings.support,
                 style: gilroyBoldTextStyle(),
