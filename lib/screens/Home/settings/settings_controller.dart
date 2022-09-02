@@ -103,7 +103,7 @@ class SettingsController extends GetxController {
     try {
       loader.value = true;
       notificationDataModel = await NotificationOnOffApi.notificationGetData();
-      isSwitched = notificationDataModel.data ==false? false : true;
+      isSwitched = notificationDataModel.data == false? false : true;
       update(["switch"]);
 
       loader.value = false;
