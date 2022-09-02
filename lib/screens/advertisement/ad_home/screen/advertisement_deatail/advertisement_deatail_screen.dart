@@ -209,25 +209,31 @@ class AdvertisementDeatailScreen extends StatelessWidget {
           height: 202,
           child: Stack(
             children: [
-              PageView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: controller.imagePath.length,
-                  onPageChanged: (index) {
-                    controller.pageIndex = index;
-                    controller.update(["img"]);
-                  },
-                  itemBuilder: (context, index1) {
-                    return Container(
+              (controller.imagePath.length == 0)
+                  ? Image.asset(
+                      AssetRes.placeholderImage,
                       width: Get.width,
-                      child: FadeInImage(
-                        placeholder:
-                            const AssetImage(AssetRes.placeholderImage),
-                        image: FileImage(controller.imagePath[index1]),
-                        width: Get.width - 60,
-                        fit: BoxFit.cover,
-                      ),
-                    );
-                  }),
+                      fit: BoxFit.cover,
+                    )
+                  : PageView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.imagePath.length,
+                      onPageChanged: (index) {
+                        controller.pageIndex = index;
+                        controller.update(["img"]);
+                      },
+                      itemBuilder: (context, index1) {
+                        return Container(
+                          width: Get.width,
+                          child: FadeInImage(
+                            placeholder:
+                                const AssetImage(AssetRes.placeholderImage),
+                            image: FileImage(controller.imagePath[index1]),
+                            width: Get.width - 60,
+                            fit: BoxFit.cover,
+                          ),
+                        );
+                      }),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -259,7 +265,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  (controller.imagePath.length == 1)
+                  (controller.imagePath.length == 1 || controller.imagePath.length == 0)
                       ? const SizedBox()
                       : Padding(
                           padding: const EdgeInsets.only(top: 100),

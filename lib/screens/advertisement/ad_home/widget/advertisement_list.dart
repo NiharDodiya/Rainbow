@@ -54,7 +54,18 @@ Widget advertisementList() {
                     },
                     child: Stack(
                       children: [
-                        PageView.builder(
+                        (controller.myAdvertiserModel.data?[index].itemsList!.length == 0)
+                            ?Container(
+                          width: Get.width - 60,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              image: const DecorationImage(
+                                  image: AssetImage(
+                                    AssetRes.placeholderImage
+                                  ),
+                                  fit: BoxFit.cover)),
+                        )
+                            :PageView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: controller
                               .myAdvertiserModel.data?[index].itemsList!.length,
