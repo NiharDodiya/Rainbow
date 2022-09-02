@@ -31,6 +31,7 @@ class NotificationOnOffApi {
       return [];
     }
   }
+
   static Future notificationOn() async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
 

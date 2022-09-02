@@ -77,7 +77,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                         Container(color: Colors.black),
                         Image.network(
                           story.storyItem.toString(),
-                          height: Get.height ,
+                          height: Get.height,
                           width: Get.width,
                           fit: BoxFit.cover,
                           errorBuilder: (context, url, error) => Container(
@@ -131,7 +131,8 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                   GestureDetector(
                                     onTap: controller.onBackTap,
                                     child: Padding(
-                                      padding:  EdgeInsets.only(left: Get.width *0.03),
+                                      padding: EdgeInsets.only(
+                                          left: Get.width * 0.03),
                                       child: Image.asset(
                                         AssetRes.backIcon,
                                         height: 16,

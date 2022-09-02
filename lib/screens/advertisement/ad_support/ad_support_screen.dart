@@ -7,8 +7,8 @@ import 'package:rainbow/screens/advertisement/ad_support/screen/support_create/s
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
+
 import '../../../common/Widget/loaders.dart';
-import '../ad_dashboard/ad_dashboard.dart';
 import '../ad_home/ad_home_controller.dart';
 import 'ad_support_controller.dart';
 
@@ -54,23 +54,22 @@ class AdSupportScreen extends StatelessWidget {
                       ),
                       Expanded(
                           child: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                supports(),
-                                SizedBox(
-                                  height: Get.height * 0.07,
-                                ),
-
-
-                              ],
+                        child: Column(
+                          children: [
+                            supports(),
+                            SizedBox(
+                              height: Get.height * 0.07,
                             ),
-                          )),
-                      const SizedBox(height: 10,),
+                          ],
+                        ),
+                      )),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       sendNewMessage(),
                       SizedBox(
                         height: Get.height * 0.02,
                       ),
-
                     ],
                   ),
                   controller.loader.isTrue
@@ -136,7 +135,7 @@ class AdSupportScreen extends StatelessWidget {
                     ? 0
                     : controller.listSupportTicketModel.data!.length,
                 itemBuilder: (context, index) {
-                  return  Padding(
+                  return Padding(
                     padding: const EdgeInsets.only(top: 5, bottom: 10),
                     child: Column(
                       children: [
@@ -162,44 +161,47 @@ class AdSupportScreen extends StatelessWidget {
                             child: Row(
                               children: [
                                 const SizedBox(width: 10),
-                                (adHomeController.viewAdvertiserModel.data!.profileImage.toString().isEmpty)
-                                    ?Container(
-                                    height: 50,
-                                    width: 50,
-                                    decoration:  const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                          AssetRes.portrait_placeholder,
-                                        ),
-
+                                (adHomeController
+                                        .viewAdvertiserModel.data!.profileImage
+                                        .toString()
+                                        .isEmpty)
+                                    ? Container(
+                                        height: 50,
+                                        width: 50,
+                                        decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                              AssetRes.portrait_placeholder,
+                                            ),
+                                          ),
+                                        ))
+                                    : Container(
+                                        height: 50,
+                                        width: 50,
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                              image: NetworkImage(
+                                                  adHomeController
+                                                      .viewAdvertiserModel
+                                                      .data!
+                                                      .profileImage
+                                                      .toString()),
+                                              fit: BoxFit.cover,
+                                            )),
                                       ),
-
-                                    ))
-                                    :Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration:  BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      image: DecorationImage(
-                                        image: NetworkImage(adHomeController
-                                            .viewAdvertiserModel.data!.profileImage
-                                            .toString()),fit: BoxFit.cover,)
-
-                                  ),
-
-                                ),
                                 Padding(
                                   padding:
-                                  const EdgeInsets.only(left: 15, top: 25),
+                                      const EdgeInsets.only(left: 15, top: 25),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        DateFormat("dd/MM/yyyy").format(controller
-                                            .listSupportTicketModel
-                                            .data![index]
-                                            .createdAt!),
+                                        DateFormat("dd/MM/yyyy").format(
+                                            controller.listSupportTicketModel
+                                                .data![index].createdAt!),
                                         style: gilroyMediumTextStyle(
                                             color: ColorRes.color_9597A1,
                                             fontSize: 16),
@@ -217,7 +219,8 @@ class AdSupportScreen extends StatelessWidget {
                                             .data![index].title
                                             .toString(),
                                         style: gilroyMediumTextStyle(
-                                            color: Colors.black, fontSize: 13.11),
+                                            color: Colors.black,
+                                            fontSize: 13.11),
                                       ),
                                     ],
                                   ),
@@ -226,19 +229,19 @@ class AdSupportScreen extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 50),
                                   child: Text(
-                                    controller.listSupportTicketModel.data![index]
-                                        .status
+                                    controller.listSupportTicketModel
+                                        .data![index].status
                                         .toString(),
                                     style: controller.listSupportTicketModel
-                                        .data![index].status
-                                        .toString() ==
-                                        "pending"
+                                                .data![index].status
+                                                .toString() ==
+                                            "pending"
                                         ? gilroyMediumTextStyle(
-                                        color: ColorRes.color_FFA800,
-                                        fontSize: 16)
+                                            color: ColorRes.color_FFA800,
+                                            fontSize: 16)
                                         : gilroyMediumTextStyle(
-                                        color: ColorRes.color_49A510,
-                                        fontSize: 16),
+                                            color: ColorRes.color_49A510,
+                                            fontSize: 16),
                                   ),
                                 ),
                                 const SizedBox(
@@ -264,21 +267,20 @@ class AdSupportScreen extends StatelessWidget {
     return InkWell(
       onTap: () {
         Get.to(() => SupportcreateScreen())!.then((value) async {
-         await controller.getListOfUserTicket();
+          await controller.getListOfUserTicket();
         });
       },
       child: Container(
         height: 60,
         width: 300,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-        color: ColorRes.color_E7D01F,
+          borderRadius: BorderRadius.circular(20),
+          color: ColorRes.color_E7D01F,
           gradient: const LinearGradient(
             colors: [ColorRes.color_FFEC5C, ColorRes.color_DFC60B],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),
-
         ),
         child: Center(
             child: Row(

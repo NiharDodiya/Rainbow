@@ -7,8 +7,9 @@ import '../../../common/Widget/text_styles.dart';
 import '../../../utils/asset_res.dart';
 
 class AdNotificationsScreen extends StatelessWidget {
-   AdNotificationsScreen({Key? key}) : super(key: key);
+  AdNotificationsScreen({Key? key}) : super(key: key);
   AdHomeController controller = Get.find<AdHomeController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,35 +50,35 @@ class AdNotificationsScreen extends StatelessWidget {
                                   right: Get.width * 0.16),
                               child: Row(
                                 children: [
-                                  (controller.viewAdvertiserModel.data!.profileImage
-                                      .toString()
-                                      .isEmpty)
-                                      ?Container(
-                              height: 50,
-                              width: 50,
-                              decoration:  const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    image: AssetImage(
-                                      AssetRes.portrait_placeholder,
-                                    ),
-
-                              ),
-
-                            ))
-                                      :Container(
-                                    height: 50,
-                                    width: 50,
-                                    decoration:  BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      image: DecorationImage(
-                                        image: NetworkImage(controller
-                                          .viewAdvertiserModel.data!.profileImage
-                                          .toString()),fit: BoxFit.cover,)
-
-                                    ),
-
-                                  ),
+                                  (controller.viewAdvertiserModel.data!
+                                          .profileImage
+                                          .toString()
+                                          .isEmpty)
+                                      ? Container(
+                                          height: 50,
+                                          width: 50,
+                                          decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                              image: AssetImage(
+                                                AssetRes.portrait_placeholder,
+                                              ),
+                                            ),
+                                          ))
+                                      : Container(
+                                          height: 50,
+                                          width: 50,
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                image: NetworkImage(controller
+                                                    .viewAdvertiserModel
+                                                    .data!
+                                                    .profileImage
+                                                    .toString()),
+                                                fit: BoxFit.cover,
+                                              )),
+                                        ),
                                   const SizedBox(
                                     width: 12,
                                   ),

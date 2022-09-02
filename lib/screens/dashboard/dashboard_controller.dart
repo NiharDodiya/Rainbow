@@ -34,17 +34,18 @@ class DashboardController extends GetxController {
     }
     update(['bottom_bar']);
   }
+
   Future<void> setUserOnlineStatus(bool status) async {
     if (PrefService.getString(PrefKeys.uid).isEmpty) {
       return;
     }
-  try{
-    await FirebaseFirestore.instance
-        .collection("users")
-        .doc(PrefService.getString(PrefKeys.uid))
-        .update({"online": status});
-  }catch(e){
+    try {
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(PrefService.getString(PrefKeys.uid))
+          .update({"online": status});
+    } catch (e) {
       print(e.toString());
-  }
+    }
   }
 }

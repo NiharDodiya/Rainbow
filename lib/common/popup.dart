@@ -29,22 +29,22 @@ void commonAlert(
     VoidCallback? onOkTap,
     VoidCallback? onCancelTap}) {
   Get.dialog(
-      AlertDialog(
-        title: title == null ? null : Text(title),
-        content: content == null ? null : Text(content),
-        actions: [
-          TextButton(
-            onPressed: onOkTap,
-            child: const Text(
-              "Ok",
-              style: TextStyle(color: ColorRes.red),
-            ),
+    AlertDialog(
+      title: title == null ? null : Text(title),
+      content: content == null ? null : Text(content),
+      actions: [
+        TextButton(
+          onPressed: onOkTap,
+          child: const Text(
+            "Ok",
+            style: TextStyle(color: ColorRes.red),
           ),
-          TextButton(
-            onPressed: onCancelTap ?? Get.back,
-            child: const Text("Cancel"),
-          ),
-        ],
-      ),
+        ),
+        TextButton(
+          onPressed: onCancelTap ?? Get.back,
+          child: const Text("Cancel"),
+        ),
+      ],
+    ),
   );
 }

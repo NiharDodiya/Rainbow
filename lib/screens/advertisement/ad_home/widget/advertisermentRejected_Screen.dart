@@ -13,7 +13,6 @@ class AdvertisermentRejectedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-
         width: Get.width,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -178,10 +177,10 @@ class AdvertisermentRejectedScreen extends StatelessWidget {
 
   Widget backToHome() {
     return InkWell(
-      onTap: (){
+      onTap: () {
         Get.back();
       },
-      child:  SubmitButton(
+      child: SubmitButton(
         text: Strings.backToHome,
       ),
     );

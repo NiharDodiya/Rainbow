@@ -4,10 +4,7 @@ import 'package:rainbow/model/myAdvertiser_model.dart';
 import 'package:rainbow/model/viewAdvertiserModel.dart';
 import 'package:rainbow/screens/advertisement/ad_home/myAdvertiser_api/myAdvertiser_api.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_screen.dart';
-import 'package:rainbow/screens/advertisement/ad_home/screen/edit_advertisement/edit_advertisement_controller.dart';
-import 'package:rainbow/screens/advertisement/ad_home/screen/edit_advertisement/edit_advertisement_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/viewAdvertiserProfile_api/viewAdvertiser_api.dart';
-import 'package:rainbow/screens/advertisement/ad_home/widget/advertiementApproved_screen.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/utils/asset_res.dart';
 
@@ -53,7 +50,6 @@ class AdHomeController extends GetxController {
 
   List<bool> moreOption = [];
 
-
   @override
   void onInit() {
     init();
@@ -61,22 +57,18 @@ class AdHomeController extends GetxController {
   }
 
   Future<void> init() async {
-
     await viewAdvertiserData();
     await myAdvertiserListData();
   }
 
   void onTapAddList() {
-
-
     Get.to(() => CreateAdvertisementScreen());
-
   }
 
   void onTapMore(int index) {
-    if(moreOption[index]==false){
+    if (moreOption[index] == false) {
       moreOption[index] = true;
-    }else{
+    } else {
       moreOption[index] = false;
     }
     update(['more']);
@@ -87,62 +79,60 @@ class AdHomeController extends GetxController {
   }
 
   void onCloseMenu() {
-    moreOption =  List.filled(myAdvertiserModel.data!.length, false);
+    moreOption = List.filled(myAdvertiserModel.data!.length, false);
     update(['more']);
   }
 
-
   Future<void> myAdvertiserListData() async {
-    try{
-      loader.value =true;
+    try {
+      loader.value = true;
       myAdvertiserModel = await MyAdvertiserApi.myAdvertiserDataList();
       moreOption = List.filled(myAdvertiserModel.data!.length, false);
       update(['more']);
-      loader.value =false;
-
-    }catch(e){
-
-      loader.value =false;
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
 
       print(e.toString());
     }
   }
-  Future<void> deleteAdvertiser(id,context) async {
-    try{
-      loader.value =true;
-      await MyAdvertiserApi.deleteAdvertiser(id,context);
+
+  Future<void> deleteAdvertiser(id, context) async {
+    try {
+      loader.value = true;
+      await MyAdvertiserApi.deleteAdvertiser(id, context);
       await myAdvertiserListData();
-      loader.value =false;
+      loader.value = false;
       update(['delete']);
-    }catch(e){
-      loader.value =false;
+    } catch (e) {
+      loader.value = false;
       print(e.toString());
     }
   }
-  Future<void> cancelAdvertiser(id,context) async {
-    try{
-      loader.value =true;
-      await MyAdvertiserApi.cancelAdvertiser(id,context);
+
+  Future<void> cancelAdvertiser(id, context) async {
+    try {
+      loader.value = true;
+      await MyAdvertiserApi.cancelAdvertiser(id, context);
       await myAdvertiserListData();
-      loader.value =false;
+      loader.value = false;
       update(['cancel']);
-
-    }catch(e){
-      loader.value =false;
+    } catch (e) {
+      loader.value = false;
 
       print(e.toString());
     }
   }
 
-  Future<void> followUpAdvertiser(id,context) async {
-    try{
-      loader.value =true;
-      await MyAdvertiserApi.followUpAdvertiser(id,context);
-     await  myAdvertiserListData();
-      loader.value =false;
+  Future<void> followUpAdvertiser(id, context) async {
+    try {
+      loader.value = true;
+      await MyAdvertiserApi.followUpAdvertiser(id, context);
+      await myAdvertiserListData();
+      loader.value = false;
       update(['followUp']);
-    }catch(e){
-      loader.value =false;
+    } catch (e) {
+      loader.value = false;
       print(e.toString());
     }
   }
@@ -150,20 +140,16 @@ class AdHomeController extends GetxController {
   ViewAdvertiserModel viewAdvertiserModel = ViewAdvertiserModel();
 
   Future<void> viewAdvertiserData() async {
-    try{
-      loader.value =true;
+    try {
+      loader.value = true;
       viewAdvertiserModel = await ViewAdvertiserApi.viewAdvertiserData();
-      loader.value =false;
+      loader.value = false;
       update(['cancel']);
       update(["dashBoard"]);
-
-    }catch(e){
-      loader.value =false;
+    } catch (e) {
+      loader.value = false;
 
       print(e.toString());
     }
   }
-
-
-
 }

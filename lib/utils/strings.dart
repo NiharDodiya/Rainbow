@@ -364,7 +364,6 @@ class Strings {
   static const textspan02 = "/month";
   static const subscriptionPremium = "Subscribe to our Premium Version";
 
-
   ///----------------------------------SubScription Payment---------------------------
   static const iAMPROUDMOM = "IAMPROUDMOM";
   static const cardName01 = "Visa Ending in 4151 ";
@@ -496,10 +495,10 @@ class Strings {
       "Pixsellz Ad Make design process easier View More";
 
   ///________________ error text_____________
-  static const name="please enter name";
-  static const statusErrorEdit="please enter status";
-  static const ageError="please enter age";
-  static const cityErrorEdit="please enter city";
-  static const heightError="please enter height";
-  static const weightError="please enter weight";
+  static const name = "please enter name";
+  static const statusErrorEdit = "please enter status";
+  static const ageError = "please enter age";
+  static const cityErrorEdit = "please enter city";
+  static const heightError = "please enter height";
+  static const weightError = "please enter weight";
 }

@@ -13,7 +13,8 @@ class PostLikeListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.put(HomeController());
-    ConnectionsProfileController connectionsProfileController = Get.put(ConnectionsProfileController());
+    ConnectionsProfileController connectionsProfileController =
+        Get.put(ConnectionsProfileController());
     return GetBuilder<HomeController>(
       id: "postLikeList",
       builder: (controller) {
@@ -46,13 +47,10 @@ class PostLikeListScreen extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-
                     const SizedBox(width: 16),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-
-                      ],
+                      children: [],
                     ),
                   ],
                 ),
@@ -70,7 +68,6 @@ class PostLikeListScreen extends StatelessWidget {
                   color: ColorRes.lightGrey,
                 ),
               ),
-
               Expanded(
                 child: ListView.builder(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -79,9 +76,11 @@ class PostLikeListScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.only(top: 20.0),
-                      child: InkWell(onTap: () {
-                        connectionsProfileController.callApi(controller.postLikeUser![index].id.toString());
-                      },
+                      child: InkWell(
+                        onTap: () {
+                          connectionsProfileController.callApi(
+                              controller.postLikeUser![index].id.toString());
+                        },
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -100,7 +99,8 @@ class PostLikeListScreen extends StatelessWidget {
                               imageUrl: controller
                                   .postLikeUser![index].profileImage
                                   .toString(),
-                              imageBuilder: (context, imageProvider) => Container(
+                              imageBuilder: (context, imageProvider) =>
+                                  Container(
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   image: DecorationImage(

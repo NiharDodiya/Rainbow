@@ -19,5 +19,4 @@ class PrefKeys {
   static const notification = "notification";
   static const referrallCode = "referrallCode";
   static const googleSignIn = "googleSignIn";
-
 }

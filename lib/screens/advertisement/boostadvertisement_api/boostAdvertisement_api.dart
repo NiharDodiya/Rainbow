@@ -41,20 +41,18 @@ class BoostAdvertisementApi {
             "x-access-token": accesToken
           });
 
-      if (response != null && response.statusCode == 200)
-      {
+      if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         print('========== ${response.statusCode}');
         print("======== Id: $userId");
         if (status == false) {
-          Get.to(() =>  PaymentFailedScreen());
+          Get.to(() => PaymentFailedScreen());
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          Get.to(() =>  PaymentSuccessfulScreen());
+          Get.to(() => PaymentSuccessfulScreen());
           flutterToast(jsonDecode(response.body)["message"]);
         }
-      }
-      else{
+      } else {
         print('========== ${response!.statusCode}');
       }
     } catch (e) {

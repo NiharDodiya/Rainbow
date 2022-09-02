@@ -74,8 +74,6 @@ class AdvertisementController extends GetxController {
     update(['bottom_bar']);
   }
 
-
-
   void fun(bool flage) {}
 
   Future<void> inTapAccountInfo() async {

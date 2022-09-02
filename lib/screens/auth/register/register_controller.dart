@@ -48,7 +48,7 @@ class RegisterController extends GetxController {
     "1",
     "2",
   ];
-  List<String> noOfKids = [ "1", "2", "3", "4", "5", "6"];
+  List<String> noOfKids = ["1", "2", "3", "4", "5", "6"];
   bool martialStatusDropdown = false;
   bool ethnicityDropdown = false;
   bool kidsDropdown = false;
@@ -254,8 +254,8 @@ class RegisterController extends GetxController {
   Future<void> registerDetails() async {
     try {
       loader.value = true;
-      await PrefService.setValue(
-          PrefKeys.phoneNumber,  "+${countryModel.phoneCode + phoneController.text}");
+      await PrefService.setValue(PrefKeys.phoneNumber,
+          "+${countryModel.phoneCode + phoneController.text}");
       await RegisterApi.postRegister(
               fullNameController.text,
               emailController.text,
@@ -273,7 +273,6 @@ class RegisterController extends GetxController {
       await PrefService.setValue(
           PrefKeys.registerToken, registerUser.token.toString());
 
-
       await LoginApi.updateDeviceToken();
       UserModel userModel = UserModel(
         name: fullNameController.text,
@@ -285,7 +284,7 @@ class RegisterController extends GetxController {
           pwd: pwdController.text)) as String?;
       userModel.uid = uid;
       // await UserService.createUser(userModel);
-      if(uid!=null){
+      if (uid != null) {
         await firebaseFirestore
             .collection("users")
             .doc(uid)
@@ -302,7 +301,7 @@ class RegisterController extends GetxController {
               "id": registerUser.data!.id.toString(),
               "email": registerUser.data!.email.toString(),
               "uid": uid,
-              "name":registerUser.data!.fullName.toString(),
+              "name": registerUser.data!.fullName.toString(),
               "image": registerUser.data!.profileImage.toString(),
               "online": true,
             });
@@ -311,16 +310,14 @@ class RegisterController extends GetxController {
       }
       loader.value = false;
       fullNameController.clear();
-    emailController.clear();
-    pwdController.clear();
-    confirmPwdController.clear();
-    address1Controller.clear();
-    address2Controller.clear();
+      emailController.clear();
+      pwdController.clear();
+      confirmPwdController.clear();
+      address1Controller.clear();
+      address2Controller.clear();
 
-    phoneController.clear();
-    statusController.clear();
-
-
+      phoneController.clear();
+      statusController.clear();
     } catch (e) {
       loader.value = false;
     }

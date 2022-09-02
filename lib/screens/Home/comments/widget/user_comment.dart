@@ -23,23 +23,21 @@ Widget userComment(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                        height: 40,
-                        width: 40,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        child:  profileImage.toString() == ""
-                            ?const ClipRRect(
-                          borderRadius:
-                           BorderRadius.all(Radius.circular(50)),
+                  height: 40,
+                  width: 40,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  child: profileImage.toString() == ""
+                      ? const ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
                           child: FadeInImage(
                             placeholder:
-                             AssetImage(AssetRes.portrait_placeholder),
+                                AssetImage(AssetRes.portrait_placeholder),
                             image: AssetImage(AssetRes.portrait_placeholder),
                             fit: BoxFit.cover,
-                          )
-                        )
-                            :ClipRRect(
+                          ))
+                      : ClipRRect(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(50)),
                           child: FadeInImage(
@@ -47,10 +45,9 @@ Widget userComment(
                                 const AssetImage(AssetRes.portrait_placeholder),
                             image: NetworkImage(profileImage.toString()),
                             fit: BoxFit.cover,
-                          )
-                          ,
+                          ),
                         ),
-                      ),
+                ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -150,8 +147,9 @@ Widget userComment(
                   itemCount: reply!.length,
                   itemBuilder: (context, index) {
                     return reply.isNotEmpty
-                        ? Padding(padding: EdgeInsets.only(bottom: 8),
-                          child: Container(
+                        ? Padding(
+                            padding: EdgeInsets.only(bottom: 8),
+                            child: Container(
                               width: Get.width - 110,
                               decoration: BoxDecoration(
                                 color: ColorRes.color_959595.withOpacity(0.1),
@@ -193,8 +191,9 @@ Widget userComment(
                                       ),
                                       children: [
                                         TextSpan(
-                                          text:
-                                              reply[index].description.toString(),
+                                          text: reply[index]
+                                              .description
+                                              .toString(),
                                           style: beVietnamProRegularTextStyle(
                                             fontSize: 12,
                                             color: ColorRes.black,
@@ -243,7 +242,7 @@ Widget userComment(
                                 ],
                               ),
                             ),
-                        )
+                          )
                         : const SizedBox();
                   },
                 ),

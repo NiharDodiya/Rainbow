@@ -27,7 +27,8 @@ class MyAdvertiserModel {
         message: json["message"] == null ? null : json["message"],
         data: json["data"] == null
             ? null
-            : List<MyAdvertiserData>.from(json["data"].map((x) => MyAdvertiserData.fromJson(x))),
+            : List<MyAdvertiserData>.from(
+                json["data"].map((x) => MyAdvertiserData.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -86,7 +87,8 @@ class MyAdvertiserData {
   bool? isActive;
   String? status;
 
-  factory MyAdvertiserData.fromJson(Map<String, dynamic> json) => MyAdvertiserData(
+  factory MyAdvertiserData.fromJson(Map<String, dynamic> json) =>
+      MyAdvertiserData(
         id: json["id"] == null ? null : json["id"],
         tagsList: json["tagsList"] == null
             ? null
@@ -96,8 +98,7 @@ class MyAdvertiserData {
             : List<String>.from(json["itemsList"].map((x) => x)),
         title: json["title"] == null ? null : json["title"],
         location: json["location"] == null ? null : json["location"],
-        street:
-            json["street"] == null ? null : json["street"],
+        street: json["street"] == null ? null : json["street"],
         province: json["province"] == null ? null : json["province"],
         postalCode: json["postal_code"] == null ? null : json["postal_code"],
         date: json["date"] == null ? null : DateTime.parse(json["date"]),
@@ -107,9 +108,7 @@ class MyAdvertiserData {
         endDate:
             json["end_date"] == null ? null : DateTime.parse(json["end_date"]),
         description: json["description"] == null ? null : json["description"],
-        callAction: json["call_action"] == null
-            ? null
-            :json["call_action"],
+        callAction: json["call_action"] == null ? null : json["call_action"],
         advViewCount:
             json["advViewCount"] == null ? null : json["advViewCount"],
         advClickCount:
@@ -117,12 +116,9 @@ class MyAdvertiserData {
         urlLink: json["url_link"] == null ? null : json["url_link"],
         amount: json["amount"],
         currency: json["currency"],
-        adminStatus: json["admin_status"] == null
-            ? null
-            : json["admin_status"],
+        adminStatus: json["admin_status"] == null ? null : json["admin_status"],
         isActive: json["isActive"] == null ? null : json["isActive"],
-        status:
-            json["status"] == null ? null : json["status"],
+        status: json["status"] == null ? null : json["status"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -142,15 +138,13 @@ class MyAdvertiserData {
         "start_date": startDate == null ? null : startDate!.toIso8601String(),
         "end_date": endDate == null ? null : endDate!.toIso8601String(),
         "description": description == null ? null : description,
-        "call_action":
-            callAction == null ? null : callAction,
+        "call_action": callAction == null ? null : callAction,
         "advViewCount": advViewCount == null ? null : advViewCount,
         "advClickCount": advClickCount == null ? null : advClickCount,
         "url_link": urlLink == null ? null : urlLink,
         "amount": amount,
         "currency": currency,
-        "admin_status":
-            adminStatus == null ? null : adminStatus,
+        "admin_status": adminStatus == null ? null : adminStatus,
         "isActive": isActive == null ? null : isActive,
         "status": status == null ? null : status,
       };

@@ -50,7 +50,9 @@ class ProfileController extends GetxController {
   void onShowMoreTap(bool value) {
     seeMoreAndLess = value;
   }
+
   SettingsController controller = Get.put(SettingsController());
+
   Future<void> viewProfileDetails() async {
     try {
       print("data Calling is here");
@@ -96,7 +98,7 @@ class ProfileController extends GetxController {
     List? testimonialsData = [];
     testimonialsData.add(viewProfile.data!.testimonialsList![(2 * count) - 2]);
 
-    if(viewProfile.data!.testimonialsList!.length >= (count*2)){
+    if (viewProfile.data!.testimonialsList!.length >= (count * 2)) {
       testimonialsData
           .add(viewProfile.data!.testimonialsList![(2 * count) - 1]);
     }

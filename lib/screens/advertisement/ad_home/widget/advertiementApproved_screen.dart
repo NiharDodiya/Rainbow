@@ -1,11 +1,9 @@
 import 'package:carousel_indicator/carousel_indicator.dart';
 import 'package:charts_flutter/flutter.dart' as chart;
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/edit_advertisement/edit_advertisement_controller.dart';
@@ -17,13 +15,15 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 import 'package:readmore/readmore.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AdvertisementDetailsApprovedScreen extends StatelessWidget {
   int i;
   int id;
-  AdvertisementDetailsApprovedScreen({Key? key, required this.i, required this.id}) : super(key: key);
+
+  AdvertisementDetailsApprovedScreen(
+      {Key? key, required this.i, required this.id})
+      : super(key: key);
 
   final List<DeveloperSeries> data = [
     // DeveloperSeries(
@@ -57,7 +57,6 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
   CreateAdvertisementController createAdvertisementController =
       Get.put(CreateAdvertisementController());
 
-
   void init() {
     series = [
       chart.Series(
@@ -70,174 +69,182 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
     ];
   }
 
-  EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertiesementController());
+  EditAdvertiesementController editAdvertiesementController =
+      Get.put(EditAdvertiesementController());
 
   @override
   Widget build(BuildContext context) {
     init();
     return Scaffold(
-      body: Obx(() {
-        return Stack(
-          children: [
-            GetBuilder<AdHomeController>(
-              id: "add",
-              builder: (controller) {
-                return SafeArea(
-                  child: SingleChildScrollView(
-                    child: Container(
-                      width: Get.width,
-                      height: 790,
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            ColorRes.color_50369C,
-                            ColorRes.color_50369C,
-                            ColorRes.color_D18EEE,
-                            ColorRes.color_D18EEE,
+      body: Obx(
+        () {
+          return Stack(
+            children: [
+              GetBuilder<AdHomeController>(
+                id: "add",
+                builder: (controller) {
+                  return SafeArea(
+                    child: SingleChildScrollView(
+                      child: Container(
+                        width: Get.width,
+                        height: 790,
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              ColorRes.color_50369C,
+                              ColorRes.color_50369C,
+                              ColorRes.color_D18EEE,
+                              ColorRes.color_D18EEE,
+                            ],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            top(i, context, id),
+                            Expanded(
+                                child: SingleChildScrollView(
+                                    physics: const BouncingScrollPhysics(),
+                                    child: bottom(context, i))),
                           ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
                         ),
                       ),
-                      child: Column(
-                        children: [
-                          top(i, context, id),
-                          Expanded(
-                              child: SingleChildScrollView(
-                                  physics: const BouncingScrollPhysics(),
-                                  child: bottom(context, i))),
-                        ],
-                      ),
                     ),
-                  ),
-                );
-              },
-            ),
-            editAdvertiesementController.loader.isTrue
-                ? const FullScreenLoader()
-                : const SizedBox(),
-          ],
-        );
-    },
-    ),
+                  );
+                },
+              ),
+              editAdvertiesementController.loader.isTrue
+                  ? const FullScreenLoader()
+                  : const SizedBox(),
+            ],
+          );
+        },
+      ),
     );
   }
 
   Widget top(int index, context, int id) {
     AdHomeController adHomeController = Get.put(AdHomeController());
-EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertiesementController());
+    EditAdvertiesementController editAdvertiesementController =
+        Get.put(EditAdvertiesementController());
     return Column(
       children: [
-      GetBuilder<CreateAdvertisementController>(
-        id: "img",
-          builder: (controller){
-        return   SizedBox(
-          width: Get.width,
-          height: 202,
-          child: Stack(
-            children: [
-              PageView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: adHomeController.myAdvertiserModel.data?[index].itemsList!.length,
-                onPageChanged: (index){
-                  createAdvertisementController.pageIndex = index;
-                  createAdvertisementController.update(["img"]);
-                },
-                itemBuilder: (context, index1) {
-                  return SizedBox(
-                    width: Get.width,
-                    child: FadeInImage(
-                      placeholder:
-                      const AssetImage(AssetRes.placeholderImage),
-                      image: NetworkImage(
-                        adHomeController.myAdvertiserModel.data![index]
-                            .itemsList![index1]
-                            .toString(),
-                      ),
-                      width: Get.width - 60,
-                      fit: BoxFit.cover,
+        GetBuilder<CreateAdvertisementController>(
+            id: "img",
+            builder: (controller) {
+              return SizedBox(
+                width: Get.width,
+                height: 202,
+                child: Stack(
+                  children: [
+                    PageView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: adHomeController
+                          .myAdvertiserModel.data?[index].itemsList!.length,
+                      onPageChanged: (index) {
+                        createAdvertisementController.pageIndex = index;
+                        createAdvertisementController.update(["img"]);
+                      },
+                      itemBuilder: (context, index1) {
+                        return SizedBox(
+                          width: Get.width,
+                          child: FadeInImage(
+                            placeholder:
+                                const AssetImage(AssetRes.placeholderImage),
+                            image: NetworkImage(
+                              adHomeController.myAdvertiserModel.data![index]
+                                  .itemsList![index1]
+                                  .toString(),
+                            ),
+                            width: Get.width - 60,
+                            fit: BoxFit.cover,
+                          ),
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
-              Column(
-                children: [
-                  const SizedBox(height: 46),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: Get.width * 0.0853, right: Get.width * 0.0373),
-                    child: Row(
+                    Column(
                       children: [
-                        InkWell(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: Container(
-                            height: 32,
-                            width: 34,
-                            decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(8),
+                        const SizedBox(height: 46),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              left: Get.width * 0.0853,
+                              right: Get.width * 0.0373),
+                          child: Row(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  Get.back();
+                                },
+                                child: Container(
+                                  height: 32,
+                                  width: 34,
+                                  decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(8),
+                                      ),
+                                      color: ColorRes.white),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 8.0, horizontal: 12),
+                                    child: Image.asset(
+                                      AssetRes.backIcon,
+                                      color: ColorRes.color_50369C,
+                                    ),
+                                  ),
                                 ),
-                                color: ColorRes.white),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 8.0, horizontal: 12),
-                              child: Image.asset(
-                                AssetRes.backIcon,
-                                color: ColorRes.color_50369C,
                               ),
-                            ),
+                              const Spacer(),
+                              InkWell(
+                                onTap: () async {
+                                  await editAdvertiesementController
+                                      .myEditAdvertiserListData(id: id);
+
+                                  Get.to(EditAdvertisementscreen());
+                                },
+                                child: Container(
+                                  height: 33.3,
+                                  width: 33.3,
+                                  decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: ColorRes.white),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(12),
+                                    child: Image.asset(
+                                      AssetRes.editicons,
+                                      color: ColorRes.black,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        const Spacer(),
-                        InkWell(
-                          onTap: () async{
-
-                            await editAdvertiesementController.myEditAdvertiserListData(id: id);
-
-                            Get.to(EditAdvertisementscreen());
-
-
-                          },
-                          child: Container(
-                            height: 33.3,
-                            width: 33.3,
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle, color: ColorRes.white),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12),
-                              child: Image.asset(
-                                AssetRes.editicons,
-                                color: ColorRes.black,
+                        (adHomeController.myAdvertiserModel.data?[index]
+                                    .itemsList!.length ==
+                                1)
+                            ? const SizedBox()
+                            : Padding(
+                                padding: const EdgeInsets.only(top: 100),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: CarouselIndicator(
+                                    cornerRadius: 30,
+                                    height: 6,
+                                    width: 6,
+                                    count: adHomeController.myAdvertiserModel
+                                        .data?[index].itemsList!.length,
+                                    index:
+                                        createAdvertisementController.pageIndex,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                        ),
                       ],
                     ),
-                  ),
-                  (adHomeController.myAdvertiserModel.data?[index].itemsList!.length == 1)
-                      ?const SizedBox()
-                      :Padding(
-                    padding: const EdgeInsets.only(top: 100),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: CarouselIndicator(
-                        cornerRadius: 30,
-                        height: 6,
-                        width: 6,
-                        count: adHomeController.myAdvertiserModel.data?[index].itemsList!.length,
-                        index: createAdvertisementController.pageIndex,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        );
-      }),
+                  ],
+                ),
+              );
+            }),
       ],
     );
   }
@@ -254,39 +261,45 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
           ),
           Row(
             children: [
-          Text(
-          adHomeController.myAdvertiserModel.data![index].title.toString(),
-      style: gilroySemiBoldTextStyle(
-        fontSize: 18,
-      ),
-    ),
-              const Spacer(),
-              ( adHomeController.myAdvertiserModel.data?[index].adminStatus.toString() == 'approve')?
-              InkWell(
-                onTap: () {
-                  Get.to(() => const AdvertisementApprovedScreen());
-                },
-                child: Text(
-                  Strings.approved,
-                  style: gilroySemiBoldTextStyle(
-                      fontSize: 18, color: ColorRes.color_49A510),
-                ),
-              ): ( adHomeController.myAdvertiserModel.data?[index].adminStatus.toString() == 'pending')
-                  ?Text(
-                'Pending',
+              Text(
+                adHomeController.myAdvertiserModel.data![index].title
+                    .toString(),
                 style: gilroySemiBoldTextStyle(
-                    fontSize: 18, color: ColorRes.color_EED82F),
-              )
-              :InkWell(
-                onTap: () {
-                  Get.to(() => const AdvertisermentRejectedScreen());
-                },
-                child: Text(
-                  Strings.rejected,
-                  style:
-                  gilroySemiBoldTextStyle(fontSize: 18, color: Colors.red),
+                  fontSize: 18,
                 ),
               ),
+              const Spacer(),
+              (adHomeController.myAdvertiserModel.data?[index].adminStatus
+                          .toString() ==
+                      'approve')
+                  ? InkWell(
+                      onTap: () {
+                        Get.to(() => const AdvertisementApprovedScreen());
+                      },
+                      child: Text(
+                        Strings.approved,
+                        style: gilroySemiBoldTextStyle(
+                            fontSize: 18, color: ColorRes.color_49A510),
+                      ),
+                    )
+                  : (adHomeController.myAdvertiserModel.data?[index].adminStatus
+                              .toString() ==
+                          'pending')
+                      ? Text(
+                          'Pending',
+                          style: gilroySemiBoldTextStyle(
+                              fontSize: 18, color: ColorRes.color_EED82F),
+                        )
+                      : InkWell(
+                          onTap: () {
+                            Get.to(() => const AdvertisermentRejectedScreen());
+                          },
+                          child: Text(
+                            Strings.rejected,
+                            style: gilroySemiBoldTextStyle(
+                                fontSize: 18, color: Colors.red),
+                          ),
+                        ),
             ],
           ),
 
@@ -294,15 +307,17 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
             height: 20,
           ),
           ReadMoreText(
-            adHomeController.myAdvertiserModel.data![index].description.toString(),
-            trimLines: 3,style: gilroyMediumTextStyle(fontSize: 14),
+            adHomeController.myAdvertiserModel.data![index].description
+                .toString(),
+            trimLines: 3,
+            style: gilroyMediumTextStyle(fontSize: 14),
             trimMode: TrimMode.Line,
             trimCollapsedText: 'see more',
-            lessStyle: gilroyMediumTextStyle(fontSize: 14,color: Colors.white.withOpacity(0.5)),
+            lessStyle: gilroyMediumTextStyle(
+                fontSize: 14, color: Colors.white.withOpacity(0.5)),
             trimExpandedText: '...see less',
             moreStyle: gilroyMediumTextStyle(
-                fontSize: 14,color: Colors.white.withOpacity(0.5)
-            ),
+                fontSize: 14, color: Colors.white.withOpacity(0.5)),
           ),
           const SizedBox(
             height: 20,
@@ -322,7 +337,8 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
-                  itemCount:  adHomeController.myAdvertiserModel.data![index].tagsList!.length,
+                  itemCount: adHomeController
+                      .myAdvertiserModel.data![index].tagsList!.length,
                   itemBuilder: (context, index1) => Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Container(
@@ -336,7 +352,9 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
                       ),
                       child: Center(
                         child: Text(
-                          adHomeController.myAdvertiserModel.data![index].tagsList![index1].toString(),
+                          adHomeController
+                              .myAdvertiserModel.data![index].tagsList![index1]
+                              .toString(),
                           style: gilroyMediumTextStyle(
                               fontSize: 12, color: ColorRes.color_696D6D),
                         ),
@@ -358,7 +376,8 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
             height: 10,
           ),
           Text(
-            adHomeController.myAdvertiserModel.data![index].callAction.toString(),
+            adHomeController.myAdvertiserModel.data![index].callAction
+                .toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
           const SizedBox(
@@ -372,9 +391,9 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
             height: 10,
           ),
           InkWell(
-
-            onTap: () async{
-              final Uri _url = Uri.parse('https://${adHomeController.myAdvertiserModel.data![index].urlLink.toString()}');
+            onTap: () async {
+              final Uri _url = Uri.parse(
+                  'https://${adHomeController.myAdvertiserModel.data![index].urlLink.toString()}');
 
               if (await launchUrl(_url)) {
                 await launchUrl(_url);
@@ -383,7 +402,8 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
               }
             },
             child: Text(
-              adHomeController.myAdvertiserModel.data![index].urlLink.toString(),
+              adHomeController.myAdvertiserModel.data![index].urlLink
+                  .toString(),
               style: gilroyRegularTextStyle(fontSize: 14),
             ),
           ),
@@ -392,9 +412,9 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
             height: 20,
           ),
 
-         // chart
+          // chart
 
-         /* InkWell(
+          /* InkWell(
             onTap: () {
               showModalBottomSheet(
                   backgroundColor: Colors.white,
@@ -492,7 +512,7 @@ EditAdvertiesementController editAdvertiesementController = Get.put(EditAdvertie
                                     itemPadding: const EdgeInsets.only(
                                         left: 20, right: 14),
                                     dropdownMaxHeight: Get.height * 0.3,
-                                    *//* height: Get.height*0.19,*//*
+                                    */ /* height: Get.height*0.19,*/ /*
                                     dropdownWidth: Get.width * 0.85,
                                     dropdownPadding: null,
                                     dropdownDecoration: BoxDecoration(

@@ -56,19 +56,26 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      getPages: [GetPage(name: "/RegisterOtpScreen", page: ()=> const RegisterOtpScreen(),binding: BindingsBuilder(()=>RegisterVerifyController()))],
+      getPages: [
+        GetPage(
+            name: "/RegisterOtpScreen",
+            page: () => const RegisterOtpScreen(),
+            binding: BindingsBuilder(() => RegisterVerifyController()))
+      ],
       // home: ScanYourFaceScreen(),
       home: /*const GoogleMapScreen()*/ /*SupportDetailsScreen(com: "")*/ !PrefService
               .getBool(PrefKeys.skipBoardingScreen)
           ? SplashScreen()
-          : (PrefService.getBool(PrefKeys.register)||PrefService.getBool(PrefKeys.isLogin))
+          : (PrefService.getBool(PrefKeys.register) ||
+                  PrefService.getBool(PrefKeys.isLogin))
               ? PrefService.getBool(PrefKeys.showTermsCondition)
                   ? TermsConditionsScreen(showBackBtn: false)
                   : PrefService.getString(PrefKeys.loginRole) == "end_user"
                       ? const Dashboard()
-                      : PrefService.getString(PrefKeys.loginRole) == "advertisers"
-                          ?AdvertisementDashBord()
-                          :AuthDashboard()
+                      : PrefService.getString(PrefKeys.loginRole) ==
+                              "advertisers"
+                          ? AdvertisementDashBord()
+                          : AuthDashboard()
               : AuthDashboard(),
     );
   }

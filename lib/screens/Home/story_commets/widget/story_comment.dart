@@ -7,10 +7,15 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
 Widget storyComment(
-    {String? comments, String? profileImage, String? name, String? id,ConnectionsProfileController? connectionsProfileController}) {
-  return InkWell(onTap: () {
-    connectionsProfileController!.callApi(id.toString());
-  },
+    {String? comments,
+    String? profileImage,
+    String? name,
+    String? id,
+    ConnectionsProfileController? connectionsProfileController}) {
+  return InkWell(
+    onTap: () {
+      connectionsProfileController!.callApi(id.toString());
+    },
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -33,7 +38,8 @@ Widget storyComment(
             width: 40,
             decoration: const BoxDecoration(
                 shape: BoxShape.circle,
-                image: DecorationImage(image: AssetImage(AssetRes.portrait_placeholder))),
+                image: DecorationImage(
+                    image: AssetImage(AssetRes.portrait_placeholder))),
           ),
           fit: BoxFit.fill,
         ),
@@ -59,7 +65,8 @@ Widget storyComment(
                     children: [
                       Text(
                         name!,
-                        style: beVietnamProMediumTextStyle(color: ColorRes.black),
+                        style:
+                            beVietnamProMediumTextStyle(color: ColorRes.black),
                       ),
                       const SizedBox(
                         height: 7,
@@ -71,7 +78,6 @@ Widget storyComment(
                       ),
                     ],
                   ),
-
                 ],
               ),
             ),

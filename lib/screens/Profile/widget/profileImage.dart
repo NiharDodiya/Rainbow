@@ -90,14 +90,13 @@ Widget profileImage(/*ProfileController controller*/ String? profileImage,
                       ),
                     ),
                     // placeholder: (context, url) => const Center(child:CircularProgressIndicator(),),
-                    errorWidget: (context, url, error) =>
-                        Container(
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                image: AssetImage(AssetRes.portrait_placeholder),
-                              ),
-                            )),
+                    errorWidget: (context, url, error) => Container(
+                        decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage(AssetRes.portrait_placeholder),
+                      ),
+                    )),
                   ),
           ),
         ),

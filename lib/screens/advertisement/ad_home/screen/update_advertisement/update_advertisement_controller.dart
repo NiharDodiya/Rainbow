@@ -1,5 +1,3 @@
-
-
 import 'dart:io';
 
 import 'package:country_picker/country_picker.dart';
@@ -13,15 +11,10 @@ import 'package:intl/intl.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
-import 'package:rainbow/helper.dart';
 import 'package:rainbow/model/listUserTag_model.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
-import 'package:rainbow/screens/advertisement/ad_home/ad_home_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/myAdvertiser_api/myAdvertiser_api.dart';
-import 'package:rainbow/screens/advertisement/ad_home/screen/advertisement_deatail/advertisement_deatail_screen.dart';
-import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/createadvertisement_api/createAdvertisement_api.dart';
-import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -49,7 +42,6 @@ class UpdateAdvertiseController extends GetxController {
   TextEditingController callToActionController = TextEditingController();
   List<String> dropDList = ["Learn More", "Contact Us"];
 
-
   DateTime startTime = DateTime.now();
   DateTime endTime = DateTime.now();
   String flag = AssetRes.flag01;
@@ -60,8 +52,9 @@ class UpdateAdvertiseController extends GetxController {
   List<String> currencyList = ["\$", "₹"];
   String select = 'Caneda';
 
+  TextEditingController amountController =
+      TextEditingController(text: "\$200.00");
 
-  TextEditingController amountController = TextEditingController(text: "\$200.00");
   // File? imagePath;
   List<File> imagePath = [];
   RxBool loader = false.obs;
@@ -106,7 +99,7 @@ class UpdateAdvertiseController extends GetxController {
   //Open Camera
   Future<String?> cameraPickImage() async {
     XFile? pickedFile =
-    await ImagePicker().pickImage(source: ImageSource.camera);
+        await ImagePicker().pickImage(source: ImageSource.camera);
     if (pickedFile != null) {
       imagePath.add(File(pickedFile.path));
     }
@@ -126,7 +119,7 @@ class UpdateAdvertiseController extends GetxController {
 //open Gallary
   Future<String?> gallaryPickImage() async {
     XFile? pickedFile =
-    await ImagePicker().pickImage(source: ImageSource.gallery);
+        await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       update(["advertiser"]);
 
@@ -157,42 +150,41 @@ class UpdateAdvertiseController extends GetxController {
   Future<void> updateApi({int? id}) async {
     loader.value = true;
 
-    await MyAdvertiserApi.updatePostAdvertiseAPI(
-        data: {
-          "id_advertisement" : id,
-          "tags" : tags,
-          "id_item" : imgIdList,
-          "title" : titleController.text,
-          "location" : address,
-          "city" :  cityController.text ,
-          "street" : streetController.text,
-          "id_country" : codeId,
-          "postal_code" : postalCodeController.text,
-          "province" : provinceController.text,
-          "date" : dateController.text,
-          "description" : descriptoionController.text,
-          "call_action": callToActionController.text,
-          "start_date" :DateFormat().add_yMd().format(startTime),
-          "end_date" : DateFormat().add_yMd().format(endTime),
-          "url_link" : urlLinkController.text
-        });
+    await MyAdvertiserApi.updatePostAdvertiseAPI(data: {
+      "id_advertisement": id,
+      "tags": tags,
+      "id_item": imgIdList,
+      "title": titleController.text,
+      "location": address,
+      "city": cityController.text,
+      "street": streetController.text,
+      "id_country": codeId,
+      "postal_code": postalCodeController.text,
+      "province": provinceController.text,
+      "date": dateController.text,
+      "description": descriptoionController.text,
+      "call_action": callToActionController.text,
+      "start_date": DateFormat().add_yMd().format(startTime),
+      "end_date": DateFormat().add_yMd().format(endTime),
+      "url_link": urlLinkController.text
+    });
 
     loader.value = false;
   }
 
   int? codeId;
 
-  editAdvertisement({int? id}) async{
+  editAdvertisement({int? id}) async {
     tagsListSet();
     if (validation()) {
       for (int i = 0; i < listNationalities.data!.length; i++) {
         if (listNationalities.data![i].name == countryController.text) {
           codeId = listNationalities.data![i].id;
         }
-      }/*uploadImageApi();*/
+      }
+      /*uploadImageApi();*/
 
       Get.to(() => AdvertisementDashBord());
-
     }
   }
 
@@ -249,14 +241,14 @@ class UpdateAdvertiseController extends GetxController {
         desiredAccuracy: LocationAccuracy.high,
       );
       List<Placemark> placemarks =
-      await placemarkFromCoordinates(position.latitude, position.longitude);
+          await placemarkFromCoordinates(position.latitude, position.longitude);
 
       Placemark place = placemarks[0];
       addCity = place.locality;
       addCountry = place.country;
       addStreet = place.street;
       address =
-      '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
+          '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
       print(
           "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<$address>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
       update(["advertiser"]);
@@ -324,8 +316,9 @@ class UpdateAdvertiseController extends GetxController {
 */
 
   List<int> imgIdList = [];
-  AdHomeController adHomeController =Get.put(AdHomeController());
- /* void addAdvertisement(List imageId) async {
+  AdHomeController adHomeController = Get.put(AdHomeController());
+
+  /* void addAdvertisement(List imageId) async {
     loader.value = true;
 
 
@@ -350,8 +343,6 @@ class UpdateAdvertiseController extends GetxController {
     loader.value = false;
     update(["advertiser"]);
   }*/
-
-
 
   rangSelect(start, end, range) {
     startTime = DateTime.now();
@@ -401,12 +392,12 @@ class UpdateAdvertiseController extends GetxController {
     }
     return true;
   }
+
 /*  UpdateAdvertiseController UpdateAdvertiseController =Get.put(UpdateAdvertiseController());*/
   Future<void> onTapNext(int id) async {
     if (validation()) {
 /*      print(DateFormat().add_yMd().format(startTime));*/
 /*    await  UpdateAdvertiseController.uploadImageApi();*/
-
 
       Get.bottomSheet(
         enableDrag: false,
@@ -437,5 +428,4 @@ class UpdateAdvertiseController extends GetxController {
 /*      boostAdvertisementApi();*/
     }
   }
-
 }

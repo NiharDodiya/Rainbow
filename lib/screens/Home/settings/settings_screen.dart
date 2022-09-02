@@ -76,10 +76,14 @@ class SettingsScreen extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(left: Get.width * 0.05),
                   child: Container(
-                    height: 15,width: 35,
-                    decoration: const BoxDecoration(image: DecorationImage(image: AssetImage(
-                      AssetRes.backIcon,
-                    ),)),
+                    height: 15,
+                    width: 35,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                      image: AssetImage(
+                        AssetRes.backIcon,
+                      ),
+                    )),
                   ),
                 ),
               ),
@@ -113,23 +117,33 @@ class SettingsScreen extends StatelessWidget {
             padding: EdgeInsets.only(left: Get.width * 0.08),
             child: Row(
               children: [
-                (profileController.viewProfile.data?.profileImage?.toString()?? "").isEmpty ? Container(
-                  height: 56,
-                  width: 56,
-                  decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                          image: AssetImage(AssetRes.portrait_placeholder))),
-                ) : ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
-                  child: FadeInImage(
-                      placeholder: const AssetImage(AssetRes.portrait_placeholder,),
-                      image: NetworkImage(
-                          profileController.viewProfile.data!
-                              .profileImage!.toString()),      height: 56,
-                    width: 56,fit: BoxFit.cover,),
-                )
-                , const SizedBox(
+                (profileController.viewProfile.data?.profileImage?.toString() ??
+                            "")
+                        .isEmpty
+                    ? Container(
+                        height: 56,
+                        width: 56,
+                        decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                                image:
+                                    AssetImage(AssetRes.portrait_placeholder))),
+                      )
+                    : ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: FadeInImage(
+                          placeholder: const AssetImage(
+                            AssetRes.portrait_placeholder,
+                          ),
+                          image: NetworkImage(profileController
+                              .viewProfile.data!.profileImage!
+                              .toString()),
+                          height: 56,
+                          width: 56,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                const SizedBox(
                   width: 20,
                 ),
                 Row(
@@ -139,19 +153,22 @@ class SettingsScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                         profileController.viewProfile.data
-                              ?.fullName ?? "",
+                          profileController.viewProfile.data?.fullName ?? "",
                           style: gilroyBoldTextStyle(
                               color: Colors.black, fontSize: 26),
                         ),
                         const SizedBox(
                           height: 8,
                         ),
-                        InkWell(onTap: () {
-                          Get.to(()=>ProfileScreen(i: 2,))!.then((value) async {
-                            await profileController.viewProfileDetails();
-                          });
-                        },
+                        InkWell(
+                          onTap: () {
+                            Get.to(() => ProfileScreen(
+                                      i: 2,
+                                    ))!
+                                .then((value) async {
+                              await profileController.viewProfileDetails();
+                            });
+                          },
                           child: Row(
                             children: [
                               SizedBox(
@@ -240,7 +257,7 @@ class SettingsScreen extends StatelessWidget {
           InkWell(
             onTap: () {
               ConnectionsController connectionController =
-              Get.put(ConnectionsController());
+                  Get.put(ConnectionsController());
               connectionController.init();
               Get.to(() => ConnectionsScreen());
             },
@@ -495,9 +512,9 @@ class SettingsScreen extends StatelessWidget {
                   color: ColorRes.color_6306B2),
               child: Center(
                   child: Text(
-                    Strings.inviteNow,
-                    style: gilroyBoldTextStyle(fontSize: 11.9619),
-                  )),
+                Strings.inviteNow,
+                style: gilroyBoldTextStyle(fontSize: 11.9619),
+              )),
             ),
           ),
           SizedBox(
@@ -515,21 +532,21 @@ class SettingsScreen extends StatelessWidget {
                   color: ColorRes.color_FFEC5C),
               child: Center(
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                          height: 15,
-                          width: 15,
-                          child: Image.asset(AssetRes.logout)),
-                      const SizedBox(
-                        width: 11,
-                      ),
-                      Text(Strings.logout,
-                          style: gilroyMediumTextStyle(
-                              color: Colors.black, fontSize: 16)),
-                    ],
-                  )),
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                      height: 15,
+                      width: 15,
+                      child: Image.asset(AssetRes.logout)),
+                  const SizedBox(
+                    width: 11,
+                  ),
+                  Text(Strings.logout,
+                      style: gilroyMediumTextStyle(
+                          color: Colors.black, fontSize: 16)),
+                ],
+              )),
             ),
           ),
           SizedBox(

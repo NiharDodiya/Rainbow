@@ -15,7 +15,9 @@ class NotificationScreen extends StatelessWidget {
   NotificationScreen({Key? key}) : super(key: key);
   final NotificationsController controller = Get.put(NotificationsController());
   ProfileController profileController = Get.put(ProfileController());
-ConnectionsProfileController connectionsProfileController = Get.put(ConnectionsProfileController());
+  ConnectionsProfileController connectionsProfileController =
+      Get.put(ConnectionsProfileController());
+
   @override
   Widget build(BuildContext context) {
     controller.notificationReadApi();
@@ -58,9 +60,13 @@ ConnectionsProfileController connectionsProfileController = Get.put(ConnectionsP
                               padding: EdgeInsets.only(
                                   left: Get.width * 0.05,
                                   right: Get.width * 0.16),
-                              child: InkWell(onTap: () {
-                                connectionsProfileController.callApi(controller.notificationList[index].idUserReceiver.toString());
-                              },
+                              child: InkWell(
+                                onTap: () {
+                                  connectionsProfileController.callApi(
+                                      controller.notificationList[index]
+                                          .idUserReceiver
+                                          .toString());
+                                },
                                 child: Row(
                                   children: [
                                     Container(
@@ -71,33 +77,43 @@ ConnectionsProfileController connectionsProfileController = Get.put(ConnectionsP
                                         border: Border.all(
                                             color: ColorRes.white, width: 1),
                                       ),
-                                      child: profileController.viewProfile.data!.profileImage!.isEmpty?ClipRRect(
-                                        borderRadius: BorderRadius.circular(50),
-                                        child: Container(
-                                          height: 53,
-                                          width: 53,
-                                          decoration:  const BoxDecoration(
-                                            image: DecorationImage(
-                                              image: AssetImage(
-                                              AssetRes.portrait_placeholder,
-                                              ),fit: BoxFit.cover
+                                      child: profileController.viewProfile.data!
+                                              .profileImage!.isEmpty
+                                          ? ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              child: Container(
+                                                height: 53,
+                                                width: 53,
+                                                decoration: const BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: AssetImage(
+                                                        AssetRes
+                                                            .portrait_placeholder,
+                                                      ),
+                                                      fit: BoxFit.cover),
+                                                ),
+                                              ),
+                                            )
+                                          : ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(50),
+                                              child: Container(
+                                                height: 53,
+                                                width: 53,
+                                                decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: NetworkImage(
+                                                        profileController
+                                                            .viewProfile
+                                                            .data!
+                                                            .profileImage
+                                                            .toString(),
+                                                      ),
+                                                      fit: BoxFit.cover),
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                      ):ClipRRect(
-                                        borderRadius: BorderRadius.circular(50),
-                                        child: Container(
-                                          height: 53,
-                                          width: 53,
-                                          decoration:  BoxDecoration(
-                                            image: DecorationImage(
-                                              image: NetworkImage(
-                                                profileController.viewProfile.data!.profileImage.toString(),
-                                              ),fit: BoxFit.cover
-                                            ),
-                                          ),
-                                        ),
-                                      ),
                                     ),
                                     const SizedBox(width: 12),
                                     Expanded(
@@ -117,7 +133,7 @@ ConnectionsProfileController connectionsProfileController = Get.put(ConnectionsP
                                                 fontSize: 12),
                                           ),
                                           Text(
-                                            model.description?.toString()??"",
+                                            model.description?.toString() ?? "",
                                             style: gilroyMediumTextStyle(
                                                 fontSize: 14,
                                                 letterSpacing: -0.03),

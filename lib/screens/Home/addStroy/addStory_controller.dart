@@ -162,7 +162,7 @@ class AddStoryController extends GetxController {
         TextSelection.collapsed(offset: msgController.text.length);
   }
 
-  void resetAllData(){
+  void resetAllData() {
     filterList = [];
     msgController.clear();
   }

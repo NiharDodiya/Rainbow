@@ -112,7 +112,6 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                   gestureItemBuilder: (context, pageIndex, storyIndex) {
                     return Stack(
                       children: [
-
                         Align(
                           alignment: Alignment.topLeft,
                           child: SizedBox(
@@ -124,15 +123,20 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(left: 5),
-                                    child: InkWell(onTap:() {
-                                      Navigator.pop(context);
-                                    },
-                                      child: SizedBox(height:
-                                          16,width: 30,
-                                          child: Image.asset(AssetRes.backIcon,color: Colors.white,)),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: SizedBox(
+                                          height: 16,
+                                          width: 30,
+                                          child: Image.asset(
+                                            AssetRes.backIcon,
+                                            color: Colors.white,
+                                          )),
                                     ),
                                   ),
-                              /*    IconButton(
+                                  /*    IconButton(
                                     padding: EdgeInsets.zero,
                                     color: Colors.white,
                                     icon: const Icon(Icons.arrow_back_ios,

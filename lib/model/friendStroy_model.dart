@@ -593,16 +593,16 @@ class Story {
         role: json["role"] == null ? null : json["role"],
         referrallCode: json["referrall_code"],
         idStatus: json["id_status"] == null ? null : json["id_status"],
-    latitude: json["latitude"].toString().isEmpty
-        ? null
-        : json["latitude"] is String
-        ? double.parse(json["latitude"])
-        : json["latitude"],
-    longitude: json["longitude"].toString().isEmpty
-        ? null
-        : json["longitude"] is String
-        ? double.parse(json["longitude"])
-        : json["latitude"],
+        latitude: json["latitude"].toString().isEmpty
+            ? null
+            : json["latitude"] is String
+                ? double.parse(json["latitude"])
+                : json["latitude"],
+        longitude: json["longitude"].toString().isEmpty
+            ? null
+            : json["longitude"] is String
+                ? double.parse(json["longitude"])
+                : json["latitude"],
         userType: json["user_type"],
         selfiStatus: json["selfi_status"] == null ? null : json["selfi_status"],
         userStatus: json["user_status"] == null ? null : json["user_status"],

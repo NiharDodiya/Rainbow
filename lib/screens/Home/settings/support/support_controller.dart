@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -78,23 +79,25 @@ class SupportController extends GetxController {
     Get.to(() => SupportCreateEndUserScreen(
           com: status,
           code: code,
-      id: id,
+          id: id,
         ));
     update(["Support"]);
   }
 
- bool valid() {
+  bool valid() {
     if (yourMsgSendController.text.isEmpty) {
       errorToast(Strings.supporterror01);
       return false;
     }
     return true;
   }
-onTapSendMessage(id){
-    if(valid()){
+
+  onTapSendMessage(id) {
+    if (valid()) {
       sendSupportApiData(id);
     }
-}
+  }
+
   ListSupportTicketModel listSupportTicketModel = ListSupportTicketModel();
 
   Future<void> getListOfUserTicket() async {
@@ -133,7 +136,7 @@ onTapSendMessage(id){
       sendSupportModel = await SupportApi.sendSupportApi(
           id: id, description: yourMsgSendController.text, item: imgIdList);
       update(["Support"]);
-        yourMsgSendController.clear();
+      yourMsgSendController.clear();
       await viewSupportTicketData(id.toString());
 
       loader.value = false;

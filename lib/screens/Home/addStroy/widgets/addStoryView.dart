@@ -137,7 +137,14 @@ class AddStoryViewScreen extends StatelessWidget {
                                 builder: (controller) {
                                   if (controller.filterList.isEmpty) {
                                     return const SizedBox();
-                                  }else if (controller.filterList.length == 1 && controller.tagUserList.where((element) => element.id == controller.filterList.first.id).toList().isNotEmpty) {
+                                  } else if (controller.filterList.length ==
+                                          1 &&
+                                      controller.tagUserList
+                                          .where((element) =>
+                                              element.id ==
+                                              controller.filterList.first.id)
+                                          .toList()
+                                          .isNotEmpty) {
                                     return const SizedBox();
                                   } else {
                                     return Container(
@@ -159,7 +166,13 @@ class AddStoryViewScreen extends StatelessWidget {
                                         itemCount: controller.filterList.length,
                                         shrinkWrap: true,
                                         itemBuilder: (con, index) {
-                                          if(controller.tagUserList.where((element) => element.id == controller.filterList[index].id).toList().isNotEmpty){
+                                          if (controller.tagUserList
+                                              .where((element) =>
+                                                  element.id ==
+                                                  controller
+                                                      .filterList[index].id)
+                                              .toList()
+                                              .isNotEmpty) {
                                             return const SizedBox();
                                           }
                                           return InkWell(

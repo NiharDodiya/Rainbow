@@ -4,7 +4,6 @@ import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/comments/comments_controller.dart';
 import 'package:rainbow/screens/Home/comments/widget/user_comment.dart';
-import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -23,23 +22,25 @@ class CommentScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          leading: GetBuilder<CommentsController>(id: "commentPost",builder: (controller) {
-            return GestureDetector(
-              onTap: () {
-                controller.clearNameCommentOnTap();
-                Get.back();
+          leading: GetBuilder<CommentsController>(
+            id: "commentPost",
+            builder: (controller) {
+              return GestureDetector(
+                onTap: () {
+                  controller.clearNameCommentOnTap();
+                  Get.back();
                 },
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Image.asset(
-                  AssetRes.backIcon,
-                  height: 16,
-                  width: 35,
-                  color: Colors.black,
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Image.asset(
+                    AssetRes.backIcon,
+                    height: 16,
+                    width: 35,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
           ),
           title: Text(
             "Comments",
@@ -94,7 +95,9 @@ class CommentScreen extends StatelessWidget {
                     fullName: controller.postCommentListModel.data![index]
                         .postCommentUser!.fullName
                         .toString(),
-                    profileImage: controller.postCommentListModel.data![index].postCommentUser!.profileImage.toString(),
+                    profileImage: controller.postCommentListModel.data![index]
+                        .postCommentUser!.profileImage
+                        .toString(),
                     reply: controller
                         .postCommentListModel.data![index].postCommentReply,
                     commentId: controller.postCommentListModel.data![index].id
@@ -163,7 +166,8 @@ class CommentScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  controller.nameComment == null || controller.nameComment!.isEmpty
+                  controller.nameComment == null ||
+                          controller.nameComment!.isEmpty
                       ? const SizedBox()
                       : InkWell(
                           onTap: () {
@@ -250,7 +254,7 @@ class CommentScreen extends StatelessWidget {
                               controller.onTapSendMsg(
                                   context, idPost.toString());
                               FocusScope.of(context).unfocus();
-                             controller.clearNameCommentOnTap();
+                              controller.clearNameCommentOnTap();
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(

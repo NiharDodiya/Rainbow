@@ -65,8 +65,7 @@ class Data {
         status: json["status"] ?? null,
         name: json["name"] ?? null,
         type: json["type"],
-        firebaseToken:
-            json["firebase_token"] ?? null,
+        firebaseToken: json["firebase_token"] ?? null,
         ext: json["ext"] ?? null,
         idUser: json["id_user"] ?? null,
         itemUrl: json["itemUrl"] ?? null,

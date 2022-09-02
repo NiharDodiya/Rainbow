@@ -82,31 +82,35 @@ class ChatScreen extends StatelessWidget {
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                profileImage.toString().isEmpty?Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(image: AssetImage(AssetRes.portrait_placeholder)),
-                                  ),
-                                ):Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: ClipRRect(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(50)),
-                                    child: FadeInImage(
-                                      placeholder: const AssetImage(
-                                          AssetRes.portrait_placeholder),
-                                      image:
-                                          NetworkImage(profileImage.toString()),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
+                                profileImage.toString().isEmpty
+                                    ? Container(
+                                        height: 50,
+                                        width: 50,
+                                        decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                              image: AssetImage(AssetRes
+                                                  .portrait_placeholder)),
+                                        ),
+                                      )
+                                    : Container(
+                                        height: 50,
+                                        width: 50,
+                                        decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(50)),
+                                          child: FadeInImage(
+                                            placeholder: const AssetImage(
+                                                AssetRes.portrait_placeholder),
+                                            image: NetworkImage(
+                                                profileImage.toString()),
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
                                 /*   Container(
                             height: 50,
                             width: 50,
@@ -222,9 +226,9 @@ class ChatScreen extends StatelessWidget {
                               }
 
                               if (data['read'] != true &&
-                                  data['senderUid'].toString() !=
-                                      userUid) {
-                                controller.setReadTrue(docementSnapshot[index].id);
+                                  data['senderUid'].toString() != userUid) {
+                                controller
+                                    .setReadTrue(docementSnapshot[index].id);
                               }
 
                               Widget box = data['type'] == "alert"
@@ -248,7 +252,8 @@ class ChatScreen extends StatelessWidget {
                                           ),
                                         ),
                                         Row(
-                                          crossAxisAlignment: CrossAxisAlignment.end,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
                                           mainAxisAlignment:
                                               data['senderUid'].toString() ==
                                                       userUid
@@ -262,26 +267,36 @@ class ChatScreen extends StatelessWidget {
                                             data['senderUid'].toString() ==
                                                     userUid
                                                 ? const SizedBox()
-                                                :  profileImage.toString()==""?ClipRRect(borderRadius: BorderRadius.circular(50),
-                                                child: Image.asset(AssetRes.portrait_placeholder,   height: 28,
-                                                  width: 28,)):ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            50),
-                                                    child: FadeInImage(
-                                                      placeholder:
-                                                          const AssetImage(
-                                                        AssetRes
-                                                            .portrait_placeholder,
+                                                : profileImage.toString() == ""
+                                                    ? ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(50),
+                                                        child: Image.asset(
+                                                          AssetRes
+                                                              .portrait_placeholder,
+                                                          height: 28,
+                                                          width: 28,
+                                                        ))
+                                                    : ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(50),
+                                                        child: FadeInImage(
+                                                          placeholder:
+                                                              const AssetImage(
+                                                            AssetRes
+                                                                .portrait_placeholder,
+                                                          ),
+                                                          image: NetworkImage(
+                                                            profileImage
+                                                                .toString(),
+                                                          ),
+                                                          height: 28,
+                                                          width: 28,
+                                                          fit: BoxFit.cover,
+                                                        ),
                                                       ),
-                                                      image: NetworkImage(
-                                                        profileImage.toString(),
-                                                      ),
-                                                      height: 28,
-                                                      width: 28,
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
                                             const SizedBox(
                                               width: 12,
                                             ),
@@ -315,54 +330,54 @@ class ChatScreen extends StatelessWidget {
                                                     ),
                                                   )
                                                 : Container(
-                                                  height: 200,
-                                                  width: 200,
-                                                  decoration: BoxDecoration(
-                                                      border: Border.all(
-                                                          color:
-                                                              Colors.white),
+                                                    height: 200,
+                                                    width: 200,
+                                                    decoration: BoxDecoration(
+                                                        border: Border.all(
+                                                            color:
+                                                                Colors.white),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10)),
+                                                    child: ClipRRect(
                                                       borderRadius:
-                                                          BorderRadius
-                                                              .circular(
+                                                          const BorderRadius
+                                                                  .all(
+                                                              Radius.circular(
                                                                   10)),
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        const BorderRadius
-                                                                .all(
-                                                            Radius.circular(
-                                                                10)),
-                                                    child: InkWell(
-                                                      onTap: () {
-                                                        Get.to(() =>
-                                                            ChatViewImageScreen(
-                                                              image: data[
-                                                                  'image'],
-                                                            ));
-                                                      },
-                                                      child: FadeInImage(
-                                                        placeholder:
-                                                            const AssetImage(
-                                                                AssetRes
-                                                                    .portrait_placeholder),
-                                                        image: NetworkImage(
-                                                          data['image'],
+                                                      child: InkWell(
+                                                        onTap: () {
+                                                          Get.to(() =>
+                                                              ChatViewImageScreen(
+                                                                image: data[
+                                                                    'image'],
+                                                              ));
+                                                        },
+                                                        child: FadeInImage(
+                                                          placeholder:
+                                                              const AssetImage(
+                                                                  AssetRes
+                                                                      .portrait_placeholder),
+                                                          image: NetworkImage(
+                                                            data['image'],
+                                                          ),
+                                                          fit: BoxFit.cover,
                                                         ),
-                                                        fit: BoxFit.cover,
                                                       ),
                                                     ),
                                                   ),
-                                                ),
                                             const SizedBox(
                                               width: 5,
                                             ),
                                             (data['senderUid'].toString() ==
-                                                    userUid) && (data['read'] == true)
+                                                        userUid) &&
+                                                    (data['read'] == true)
                                                 ? Image.asset(
-                                                  AssetRes.read,
-                                                  color: Colors.white,
-                                                  height: 16,
-                                                  width: 16,
-                                                )
+                                                    AssetRes.read,
+                                                    color: Colors.white,
+                                                    height: 16,
+                                                    width: 16,
+                                                  )
                                                 : const SizedBox(),
                                             const SizedBox(
                                               width: 5,
@@ -507,14 +522,13 @@ class ChatScreen extends StatelessWidget {
                                           ),
                                           InkWell(
                                               onTap: () {
-                                                if(controller.validation()){
+                                                if (controller.validation()) {
                                                   controller.sendMessage(
                                                       roomId.toString(),
                                                       otherUserUid);
                                                   FocusScope.of(context)
                                                       .unfocus();
                                                 }
-
                                               },
                                               child: Image.asset(
                                                 AssetRes.chatSend,

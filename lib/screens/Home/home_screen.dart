@@ -213,11 +213,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     height: 40,
                                                     width: 152,
                                                     child: Text(
-                                                      Strings.subscriptionPremium,
+                                                      Strings
+                                                          .subscriptionPremium,
                                                       style:
                                                           gilroySemiBoldTextStyle(
                                                               fontSize: 16,
-                                                              color: Colors.black),
+                                                              color:
+                                                                  Colors.black),
                                                     ))),
                                           ),
                                           const SizedBox(
@@ -227,7 +229,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                               child: Text(
                                             "£9.99 / month",
                                             style: gilroySemiBoldTextStyle(
-                                                fontSize: 26, color: Colors.black),
+                                                fontSize: 26,
+                                                color: Colors.black),
                                           )),
                                           const SizedBox(
                                             height: 16,
@@ -264,22 +267,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                       );
                                     })
                                 : await Get.to(() => StoryScreen(
-                                          image: controller.controller.viewProfile
-                                              .data!.profileImage
+                                          image: controller.controller
+                                              .viewProfile.data!.profileImage
                                               .toString(),
                                         ))!
                                     .then((value) {
                                     if (value == true) {
-                                      controller.friendPostDataWithOutPagination(
-                                        pageLength:
-                                            controller.friendPostListData.length +
-                                                1,
+                                      controller
+                                          .friendPostDataWithOutPagination(
+                                        pageLength: controller
+                                                .friendPostListData.length +
+                                            1,
                                       );
                                     }
                                   });
                           },
                         ),
-                      /*  subscribePopUp==true?Positioned(bottom: 0,
+                        /*  subscribePopUp==true?Positioned(bottom: 0,
                             child: Image.asset(AssetRes.lockSub,height: 18,width: 18,)):const SizedBox()*/
                       ],
                     );
@@ -495,7 +499,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                   ),
-                                ),/*subscribePopUp==true?Positioned(top: Get.height*0.058,
+                                ), /*subscribePopUp==true?Positioned(top: Get.height*0.058,
                                     child: Image.asset(AssetRes.lockSub,height: 18,width: 18,)):const SizedBox()*/
                               ],
                             ),

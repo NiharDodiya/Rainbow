@@ -12,8 +12,9 @@ import '../../../../../utils/color_res.dart';
 import '../../../ad_dashboard/ad_dashboard.dart';
 
 class PaymentSuccessfulScreen extends StatelessWidget {
-   PaymentSuccessfulScreen({Key? key}) : super(key: key);
-AdHomeController adHomeController = Get.put(AdHomeController());
+  PaymentSuccessfulScreen({Key? key}) : super(key: key);
+  AdHomeController adHomeController = Get.put(AdHomeController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +27,6 @@ AdHomeController adHomeController = Get.put(AdHomeController());
               colors: [
                 ColorRes.color_50369C,
                 ColorRes.color_D18EEE,
-
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -53,7 +53,9 @@ AdHomeController adHomeController = Get.put(AdHomeController());
                       border: Border.all(
                         color: ColorRes.color_514EC6,
                         width: 14,
-                      ),image: const DecorationImage(image: AssetImage(AssetRes.paymentSuccessfulMark)),
+                      ),
+                      image: const DecorationImage(
+                          image: AssetImage(AssetRes.paymentSuccessfulMark)),
                       shape: BoxShape.circle),
                 ),
                 SizedBox(

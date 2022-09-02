@@ -195,7 +195,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   image: DecorationImage(
-                                      image: AssetImage(AssetRes.portrait_placeholder),
+                                      image: AssetImage(
+                                          AssetRes.portrait_placeholder),
                                       fit: BoxFit.contain)),
                             ) /*:Container(
                       height: Get.height * 0.38666,

@@ -1,9 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/model/listUserTag_model.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -268,7 +266,6 @@ class StoryScreen extends StatelessWidget {
                                   controller.galleryImage();
                                   controller.update(["createStory"]);
                                 }
-
                               },
                               child: Padding(
                                 padding: const EdgeInsets.only(
@@ -337,7 +334,7 @@ class StoryScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-            /*    tagUserList(controller),*/
+                /*    tagUserList(controller),*/
 
                 GetBuilder<ViewStoryController>(
                   id: 'createStory',
@@ -362,10 +359,20 @@ class StoryScreen extends StatelessWidget {
                           itemCount: controller.filterList.length,
                           shrinkWrap: true,
                           itemBuilder: (con, index) {
-
-                            if(controller.tagUserList.where((element) => element.id == controller.filterList[index].id).toList().isNotEmpty){
+                            if (controller.tagUserList
+                                .where((element) =>
+                                    element.id ==
+                                    controller.filterList[index].id)
+                                .toList()
+                                .isNotEmpty) {
                               return const SizedBox();
-                            }else if (controller.filterList.length == 1 && controller.tagUserList.where((element) => element.id == controller.filterList.first.id).toList().isNotEmpty) {
+                            } else if (controller.filterList.length == 1 &&
+                                controller.tagUserList
+                                    .where((element) =>
+                                        element.id ==
+                                        controller.filterList.first.id)
+                                    .toList()
+                                    .isNotEmpty) {
                               return const SizedBox();
                             }
                             return InkWell(
