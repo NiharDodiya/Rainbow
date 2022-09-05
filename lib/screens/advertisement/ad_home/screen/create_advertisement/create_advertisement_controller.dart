@@ -45,7 +45,7 @@ class CreateAdvertisementController extends GetxController {
 
   DateTime? startTime = DateTime.now();
   DateTime selectableDate = DateTime.now();
-  DateTime endTime = DateTime.now();
+  DateTime? endTime = DateTime.now();
   String flag = AssetRes.flag01;
   bool showDropDown = false;
   List<String> flagList = [AssetRes.flag01, AssetRes.flag02];
@@ -314,7 +314,7 @@ class CreateAdvertisementController extends GetxController {
         urlLink: urlLinkController.text,
         countryCode: codeId.toString(),
         startDate: DateFormat().add_yMd().format(startTime!),
-        endDate: DateFormat().add_yMd().format(endTime));
+        endDate: DateFormat().add_yMd().format(endTime!));
     adHomeController.myAdvertiserListData();
     adHomeController.update(['more']);
     loader.value = false;

@@ -17,6 +17,8 @@ class AdvertisementDeatailScreen extends StatelessWidget {
   CreateAdvertisementController createAdvertisementController =
       Get.put(CreateAdvertisementController());
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -185,6 +187,8 @@ class AdvertisementDeatailScreen extends StatelessWidget {
           ),
           SubmitButton(
             onTap: () {
+              createAdvertisementController.startTime = DateTime.now();
+              createAdvertisementController.endTime = null;
               Get.to(() => SetupDateScreen());
             },
             child: Text(
