@@ -177,9 +177,9 @@ class UpdateAdvertiseController extends GetxController {
   editAdvertisement({int? id}) async {
     tagsListSet();
     if (validation()) {
-      for (int i = 0; i < listNationalities.data!.length; i++) {
-        if (listNationalities.data![i].name == countryController.text) {
-          codeId = listNationalities.data![i].id;
+      for (int i = 0; i < listCountryModel.data!.length; i++) {
+        if (listCountryModel.data![i].name == countryController.text) {
+          codeId = listCountryModel.data![i].id;
         }
       }
       /*uploadImageApi();*/

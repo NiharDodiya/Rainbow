@@ -719,7 +719,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                   hintText: "canada",
                   selectedValue: controller.selectedCity,
                   onTap: controller.onTapEthnicity,
-                  dropdownList: countryNationCity,
+                  dropdownList: countryCity,
                   height: Get.height * 0.3,
                 );
               },

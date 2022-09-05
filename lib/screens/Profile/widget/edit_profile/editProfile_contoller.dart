@@ -77,9 +77,9 @@ class EditProfileController extends GetxController {
 
   Future<void> onTapTextField(context) async {
     if (validation()) {
-      for (int i = 0; i < listNationalities.data!.length; i++) {
-        if (listNationalities.data![i].name == ethnicity.text) {
-          codeId = listNationalities.data![i].id!.toString();
+      for (int i = 0; i < listCountryModel.data!.length; i++) {
+        if (listCountryModel.data![i].name == ethnicity.text) {
+          codeId = listCountryModel.data![i].id!.toString();
           print(codeId);
         }
         print(codeId);

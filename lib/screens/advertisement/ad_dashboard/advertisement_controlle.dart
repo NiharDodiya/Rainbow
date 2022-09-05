@@ -51,10 +51,10 @@ class AdvertisementController extends GetxController {
 
   Future<void> countryNationalites() async {
     try {
-      await ListOfNationalitiesApi.postRegister()
-          .then((value) => listNationalities = value!);
-      print(listNationalities);
-      getCountryNation();
+      await ListOfCountryApi.postRegister()
+          .then((value) => listCountryModel = value!);
+      print(listCountryModel);
+      getCountry();
     } catch (e) {
       debugPrint(e.toString());
     }
