@@ -152,16 +152,22 @@ class AccountInformationController extends GetxController {
   }
 
   void getCountry() {
-    for (int i = 0; i < countryCity.length; i++) {
+ /*   for (int i = 0; i < countryCity.length; i++) {
       if (countryCity[i] == selectCountry) {
         idCountry = countryId[i];
       }
+    }*/
+    for (int i = 0; i < listCountryModel.data!.length; i++) {
+      if (listCountryModel.data![i].name == countryController.text) {
+        idCountry = listCountryModel.data![i].id.toString();
+        idCompanyCountry = listCountryModel.data![i].id.toString();
+      }
     }
-    for (int i = 0; i < countryCity.length; i++) {
+  /*  for (int i = 0; i < countryCity.length; i++) {
       if (countryCity[i] == selectCompanyCountry) {
         idCompanyCountry = countryId[i];
       }
-    }
+    }*/
   }
 
 //account validation
