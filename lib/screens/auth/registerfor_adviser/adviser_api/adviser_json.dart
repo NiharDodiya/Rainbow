@@ -65,7 +65,7 @@ class Data {
   String? city;
   String? country;
   int? idCountry;
-  int? postalCode;
+  String? postalCode;
   String? role;
   String? status;
   String? companyCountry;

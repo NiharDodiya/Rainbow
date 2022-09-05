@@ -293,19 +293,19 @@ class EditAdvertisementscreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${Strings.country} : ${editAdvertiesementController.editAdvertisementModel.data?.userDetail?.country.toString() ?? ""}",
+                        "${Strings.country} : ${editAdvertiesementController.editAdvertisementModel.data?.country.toString() ?? ""}",
                         style: poppinsRegularBold(
                           fontSize: 14,
                         ),
                       ),
                       Text(
-                        "${Strings.street} : ${editAdvertiesementController.editAdvertisementModel.data?.userDetail?.streetName.toString() ?? ""}",
+                        "${Strings.street} : ${editAdvertiesementController.editAdvertisementModel.data?.street.toString() ?? ""}",
                         style: poppinsRegularBold(
                           fontSize: 14,
                         ),
                       ),
                       Text(
-                        "${Strings.city} : ${editAdvertiesementController.editAdvertisementModel.data?.userDetail?.city.toString() ?? ""}",
+                        "${Strings.city} : ${editAdvertiesementController.editAdvertisementModel.data?.location.toString() ?? ""}",
                         style: poppinsRegularBold(
                           fontSize: 14,
                         ),
@@ -415,7 +415,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                     children: [
                       Text(
                         editAdvertiesementController
-                                .editAdvertisementModel.data?.startDate
+                                .editAdvertisementModel.data?.date
                                 .toString()
                                 .split(" ")[0] ??
                             "",

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/advertisement/ad_support/ad_support_controller.dart';
+import 'package:readmore/readmore.dart';
 
 import '../../../../../common/Widget/buttons.dart';
 import '../../../../../common/Widget/text_styles.dart';
@@ -869,10 +870,18 @@ class SupportDetailsScreen extends StatelessWidget {
                     SizedBox(
                       height: Get.height * 0.0233,
                     ),
-                    Text(
+                    ReadMoreText(
                       controller.viewSupportTicketModel.data![index].description
                           .toString(),
-                      style: gilroySemiBoldTextStyle(fontSize: 14),
+                      trimLines: 3,
+                      style: gilroyMediumTextStyle(fontSize: 14),
+                      trimMode: TrimMode.Line,
+                      trimCollapsedText: 'see more',
+                      lessStyle: gilroyMediumTextStyle(
+                          fontSize: 14, color: Colors.white.withOpacity(0.5)),
+                      trimExpandedText: '...see less',
+                      moreStyle: gilroyMediumTextStyle(
+                          fontSize: 14, color: Colors.white.withOpacity(0.5)),
                     ),
                     SizedBox(
                       height: Get.height * 0.0184,
@@ -882,10 +891,9 @@ class SupportDetailsScreen extends StatelessWidget {
                             .isEmpty
                         ? const SizedBox()
                         : (controller.viewSupportTicketModel.data![index]
-                                    .itmeList!.length ==
-                                3)
+                                    .itmeList!.length == 3)
                             ? Container(
-                                height: Get.height * 0.09,
+                                height: Get.height * 0.07,
                                 width: Get.width * 0.49,
                                 padding:
                                     const EdgeInsets.only(right: 5, left: 5),
@@ -948,7 +956,7 @@ class SupportDetailsScreen extends StatelessWidget {
                                 ),
                               )
                             : Container(
-                                height: Get.height * 0.09,
+                                height: Get.height * 0.07,
                                 width: Get.width * 0.354666,
                                 padding:
                                     const EdgeInsets.only(right: 5, left: 5),
