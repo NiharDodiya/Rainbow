@@ -363,7 +363,9 @@ class HomeController extends GetxController {
     loader.value = false;
   }
 
-  Future<void> myStoryOnTap() async {
+   myStoryOnTap() async {
+
+
     Get.to(() => AddStoryScreen());
     /*MyStoryController myStoryController = Get.put(MyStoryController());
     loader.value = true;

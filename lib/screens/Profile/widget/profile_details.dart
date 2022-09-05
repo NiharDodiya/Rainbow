@@ -28,14 +28,14 @@ Widget profileDetails() {
       const SizedBox(
         height: 3,
       ),
-      controller.viewProfile.data!.age!.toString() == "0"
+      controller.viewProfile.data == null||controller.viewProfile.data!.age!.toString() == "0"
           ? const SizedBox()
           : Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 (controller.viewProfile.data?.age?.toString() ?? "") == "0"
-                    ? SizedBox()
+                    ? const SizedBox()
                     : Text(
                         controller.viewProfile.data?.age?.toString() == "0"
                             ? ""
@@ -62,7 +62,7 @@ Widget profileDetails() {
                         ? ""
                         : (controller.viewProfile.data!.age?.toString()) ?? ""),*/
                 (controller.viewProfile.data?.city?.toString() ?? "").isEmpty
-                    ? SizedBox()
+                    ? const SizedBox()
                     : Text(
                         (controller.viewProfile.data?.city?.toString() ?? "")
                                 .isEmpty
@@ -90,7 +90,7 @@ Widget profileDetails() {
                         ? ""
                         : controller.viewProfile.data!.city.toString()),*/
                 (controller.viewProfile.data?.height?.toString() ?? "").isEmpty
-                    ? SizedBox()
+                    ? const SizedBox()
                     : Text(
                         controller.viewProfile.data == null
                             ? ""

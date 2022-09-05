@@ -7,6 +7,7 @@ import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/model/request_user_model.dart';
 import 'package:rainbow/screens/Home/Story/story_screen.dart';
+import 'package:rainbow/screens/Home/addStroy/addStory_screen.dart';
 import 'package:rainbow/screens/Home/comments/comments_controller.dart';
 import 'package:rainbow/screens/Home/comments/comments_screen.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
@@ -350,7 +351,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: InkWell(
                           onTap: () {
                             // if user have not subcription show pop up
-                            subscribePopUp == true
+                           /* subscribePopUp == true
                                 ? showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
@@ -424,7 +425,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ],
                                       );
                                     })
-                                : controller.myStoryOnTap;
+                                :*/     Get.to(() => AddStoryScreen());
                           },
                           child: SizedBox(
                             width: 80,

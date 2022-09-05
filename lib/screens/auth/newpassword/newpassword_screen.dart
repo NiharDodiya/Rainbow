@@ -108,6 +108,7 @@ class NewPasswordScreen extends StatelessWidget {
                                             controller.newPasswordController,
                                         title: Strings.newPassword,
                                         hintText: Strings.passwordExample,
+                                        suffix: Icon(Icons.remove_red_eye,color: Colors.grey,),
                                         obscure: true,
                                       ),
                                     ),
@@ -122,6 +123,7 @@ class NewPasswordScreen extends StatelessWidget {
                                         controller: controller
                                             .confirmPasswordController,
                                         title: Strings.confirmPassword,
+                                        suffix: Icon(Icons.remove_red_eye,color: Colors.grey,),
                                         hintText: Strings.passwordExample,
                                         obscure: true,
                                       ),

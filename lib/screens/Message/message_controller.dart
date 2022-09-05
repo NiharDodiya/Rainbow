@@ -69,15 +69,16 @@ class MessageController extends GetxController {
   }
 
   doNothing(BuildContext context) {}
-
+  String? token;
   Future<void> init() async {
+  token = await NotificationService.getFcmToken();
     loader.value = true;
     getFriendListData();
     listScrollController.addListener(manageScrollDownBtn);
   }
 
   Future<void> getChatRoomId() async {
-    loader.value = true;
+/*    loader.value = true;
     receiver = await ChatServices.getUserModel(receiverId) ?? UserModel();
     chatId = getChatId(receiver.uid!, GlobalData.user.uid!);
     GlobalData.chatId = chatId;
@@ -86,7 +87,7 @@ class MessageController extends GetxController {
       await ChatServices.setChatRoomValue(
           chatId, GlobalData.user.uid!, receiver.uid!);
     }
-    loader.value = false;
+    loader.value = false*/;
   }
 
   getUid() async {
@@ -183,13 +184,13 @@ class MessageController extends GetxController {
   File? image;
   String imageName = "";
   var dowanloadurl;
-  Future<void> sendNotification(String body) async {
+  Future<void> sendNotification({String? body, String? roomId, String? otherUid}) async {
     await NotificationService.sendNotification(SendNotificationModel(
       id: userUid,
-      chatId: chatId,
+      chatId: roomId,
       body: body,
-      title: receiver.userName,
-      fcmTokens: [receiver.fcmToken.toString()],
+      /*title: receiver.userName,*/
+      fcmTokens: [token.toString()],
     ));
   }
 
@@ -241,7 +242,7 @@ class MessageController extends GetxController {
                       width: 101,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(46.2),
-                        gradient: LinearGradient(
+                        gradient: const LinearGradient(
                           colors: [
                             ColorRes.color_4F359B,
                             ColorRes.color_B279DB,
@@ -273,7 +274,7 @@ class MessageController extends GetxController {
             ));
   }
 
-  void imageSend() async {
+  void imageSend(String otherUid) async {
     loader.value = true;
     if (isToday(lastMsg) == false) {
       await sendAlertMsg();
@@ -307,7 +308,7 @@ class MessageController extends GetxController {
     update(['message']);
     image = null;
     update(['chats']);
-    sendNotification("📷 Image");
+    sendNotification(body: "📷 Image",otherUid: otherUid,roomId: roomId);
     loader.value = false;
   }
 
@@ -323,7 +324,7 @@ class MessageController extends GetxController {
     setLastMsgInDoc(msg);
 
     //setMsgCount(roomId, loginController.userUid, msg, userUid);
-    sendNotification(msg);
+    sendNotification(roomId: roomId,otherUid: otherUid,body: msg);
     update(['message']);
   }
 

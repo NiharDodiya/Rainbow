@@ -40,7 +40,21 @@ class RegisterForm extends StatelessWidget {
                   controller: controller.pwdController,
                   title: Strings.password,
                   hintText: Strings.passwordExample,
-                  obscure: true,
+                  suffix: InkWell(
+                      onTap: () {
+                        controller.onTapShowPassword();
+                        controller.update(["register_form"]);
+                      },
+                      child: controller.showPassword == true
+                          ? const Icon(
+                              Icons.remove_red_eye_outlined,
+                              color: Colors.grey,
+                            )
+                          : const Icon(
+                              Icons.remove_red_eye_rounded,
+                              color: Colors.grey,
+                            )),
+                  obscure: controller.showPassword == true?false:true,
                   fontsize: 16,
                 ),
           controller.isSocial
@@ -49,7 +63,21 @@ class RegisterForm extends StatelessWidget {
                   controller: controller.confirmPwdController,
                   title: Strings.reTypePassword,
                   hintText: Strings.passwordExample,
-                  obscure: true,
+                  suffix: InkWell(
+                      onTap: () {
+                        controller.onTapShowRetypePassword();
+                        controller.update(["register_form"]);
+                      },
+                      child: controller.showRetype == true
+                          ? const Icon(
+                              Icons.remove_red_eye_outlined,
+                              color: Colors.grey,
+                            )
+                          : const Icon(
+                              Icons.remove_red_eye_rounded,
+                              color: Colors.grey,
+                            )),
+                  obscure: controller.showRetype == true ?false:true,
                   fontsize: 16,
                 ),
           GetBuilder<RegisterController>(

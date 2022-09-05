@@ -12,6 +12,7 @@ import 'package:rainbow/screens/auth/login/login_screen.dart';
 import 'package:rainbow/screens/auth/register/api/register_api.dart';
 import 'package:rainbow/screens/auth/register/register_json.dart';
 import 'package:rainbow/service/auth_services.dart';
+import 'package:rainbow/service/notification_service.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -32,6 +33,8 @@ class RegisterController extends GetxController {
   String? selectedLocation;
 
   String? selectedEthicity;
+  bool? showPassword = false;
+  bool? showRetype = false;
 
   String? selectedNoKids;
 
@@ -70,6 +73,28 @@ class RegisterController extends GetxController {
   void onInit() {
     update(['register_screen']);
     super.onInit();
+  }
+
+  void onTapShowPassword() {
+    if (showPassword == false) {
+      showPassword = true;
+      print(showPassword);
+    } else {
+      showPassword = false;
+      print(showPassword);
+    }
+    update(["register_form"]);
+  }
+
+  void onTapShowRetypePassword() {
+    if (showRetype == false) {
+      showRetype = true;
+      print(showRetype);
+    } else {
+      showRetype = false;
+      print(showRetype);
+    }
+    update(["register_form"]);
   }
 
   void onCountryTap(BuildContext context) {
@@ -250,9 +275,11 @@ class RegisterController extends GetxController {
 
   RegisterUserModel registerUser = RegisterUserModel();
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  String? token;
 
   Future<void> registerDetails() async {
     try {
+      token = await NotificationService.getFcmToken();
       loader.value = true;
       await PrefService.setValue(PrefKeys.phoneNumber,
           "+${countryModel.phoneCode + phoneController.text}");
@@ -303,6 +330,7 @@ class RegisterController extends GetxController {
               "uid": uid,
               "name": registerUser.data!.fullName.toString(),
               "image": registerUser.data!.profileImage.toString(),
+              "UserToken": token.toString(),
               "online": true,
             });
           }

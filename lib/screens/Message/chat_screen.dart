@@ -52,7 +52,7 @@ class ChatScreen extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      Container(height: 30),
+                      const SizedBox(height: 30),
                       Container(
                         height: 86,
                         padding: const EdgeInsets.only(bottom: 10),
@@ -65,17 +65,13 @@ class ChatScreen extends StatelessWidget {
                               onTap: () {
                                 Get.back();
                               },
-                              child: const Padding(
-                                padding: EdgeInsets.only(
+                              child:  Padding(
+                                padding: const EdgeInsets.only(
                                   left: 20,
                                   bottom: 20,
                                   right: 20,
                                 ),
-                                child: Icon(
-                                  Icons.arrow_back_ios,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
+                                child: Image.asset(AssetRes.backIcon,height: 15,width: 35,),
                               ),
                             ),
                             const SizedBox(width: 9),
@@ -587,7 +583,7 @@ class ChatScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 20),
                   child: FloatingActionButton(
                     onPressed: () {
-                      controller.imageSend();
+                      controller.imageSend(otherUserUid.toString());
                     },
                     backgroundColor: ColorRes.color_4F359B,
                     child: const Icon(

@@ -10,9 +10,12 @@ import 'package:rainbow/utils/pref_keys.dart';
 
 class ViewProfileApi {
   static Future postRegister() async {
+
     String accesToken = PrefService.getString(PrefKeys.registerToken);
+
     int userId = PrefService.getInt(PrefKeys.userId);
     try {
+
       String url = EndPoints.viewProfile;
 
       Map<String, String> param = {"userId": userId.toString()};

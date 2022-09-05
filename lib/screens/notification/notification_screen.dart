@@ -77,7 +77,7 @@ class NotificationScreen extends StatelessWidget {
                                         border: Border.all(
                                             color: ColorRes.white, width: 1),
                                       ),
-                                      child: profileController.viewProfile.data!
+                                      child: profileController.viewProfile.data==null ||profileController.viewProfile.data!
                                               .profileImage!.isEmpty
                                           ? ClipRRect(
                                               borderRadius:

@@ -57,7 +57,8 @@ class ProfileController extends GetxController {
     try {
       print("data Calling is here");
       loader.value = true;
-      viewProfile = await ViewProfileApi.postRegister();
+      viewProfile =
+      await ViewProfileApi.postRegister();
       controller.update(["settings"]);
       loader.value = false;
     } catch (e) {

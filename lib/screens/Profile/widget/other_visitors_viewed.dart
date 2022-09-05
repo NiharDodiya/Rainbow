@@ -32,7 +32,7 @@ Widget otherVisitorsViewed() {
       const SizedBox(
         height: 10,
       ),
-      controller.viewProfile.data!.userView!.isEmpty
+      controller.viewProfile.data==null||controller.viewProfile.data!.userView!.isEmpty
           ? Center(
               child: Text("-", style: gilroyBoldTextStyle(fontSize: 18)),
             )
