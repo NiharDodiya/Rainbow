@@ -59,7 +59,7 @@ class EditAdvertiesementController extends GetxController {
       updateAdvertiseController.countryController.text =
           editAdvertisementModel.data!.userDetail!.idCountry.toString();
       updateAdvertiseController.selectedCity =
-          editAdvertisementModel.data!.userDetail!.idCountry;
+          editAdvertisementModel.data!.userDetail!.idCountry.toString();
 
       update(['more']);
       loader.value = false;
