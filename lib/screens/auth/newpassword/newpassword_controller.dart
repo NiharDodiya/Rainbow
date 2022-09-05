@@ -9,24 +9,27 @@ class NewPasswordController extends GetxController {
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   RxBool loader = false.obs;
-bool? showNewPwd = false;
-bool? showConfirmPwd=false;
-void onTapShowNewPwd(){
-  if(showNewPwd==false){
-    showNewPwd=true;
-  }else
-    {
-      showNewPwd=false;
+  bool? showNewPwd = false;
+  bool? showConfirmPwd = false;
+
+  void onTapShowNewPwd() {
+    if (showNewPwd == false) {
+      showNewPwd = true;
+    } else {
+      showNewPwd = false;
     }
-}
-void onTapShowConfirmPwd(){
-  if(showConfirmPwd==false){
-showConfirmPwd=true;
-  }else
-  {
-showConfirmPwd=false;
+    update(["newPassword"]);
   }
-}
+
+  void onTapShowConfirmPwd() {
+    if (showConfirmPwd == false) {
+      showConfirmPwd = true;
+    } else {
+      showConfirmPwd = false;
+    }
+    update(["newPassword"]);
+  }
+
   void onSignUpTap() {
     // Get.to(() => RegisterScreen());
   }
