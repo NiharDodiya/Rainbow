@@ -231,7 +231,7 @@ class RegisterForm extends StatelessWidget {
                 hintText: "0",
                 selectedValue: controller.selectedEthicity,
                 onTap: controller.onTapEthnicity,
-                dropdownList: countryNationCity,
+                dropdownList: countryCity,
                 height: Get.height * 0.3,
               );
             },
