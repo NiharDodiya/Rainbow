@@ -138,7 +138,13 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                 height: 202,
                 child: Stack(
                   children: [
-                    PageView.builder(
+                    (adHomeController.myAdvertiserModel.data?[index].itemsList!.length == 0)
+                        ? Image.asset(
+                      AssetRes.placeholderImage,
+                      width: Get.width ,
+                      fit: BoxFit.cover,
+                    )
+                        : PageView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: adHomeController
                           .myAdvertiserModel.data?[index].itemsList!.length,
@@ -220,9 +226,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        (adHomeController.myAdvertiserModel.data?[index]
-                                    .itemsList!.length ==
-                                1)
+                        (adHomeController.myAdvertiserModel.data?[index].itemsList!.length == 1 || adHomeController.myAdvertiserModel.data?[index].itemsList!.length == 0)
                             ? const SizedBox()
                             : Padding(
                                 padding: const EdgeInsets.only(top: 100),
