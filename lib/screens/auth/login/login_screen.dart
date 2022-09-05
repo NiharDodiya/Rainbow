@@ -113,12 +113,15 @@ class LoginScreen extends StatelessWidget {
   }
 
   Widget textFields(LoginController loginController) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07467),
-      child: Column(
-        children: [
-          SizedBox(height: Get.height * 0.044),
-          /*      Align(
+    return GetBuilder<LoginController>(
+      id: "login_form",
+        builder: (controller){
+      return Padding(
+        padding: EdgeInsets.symmetric(horizontal: Get.width * 0.07467),
+        child: Column(
+          children: [
+            SizedBox(height: Get.height * 0.044),
+            /*      Align(
             alignment: Alignment.topLeft,
             child: Padding(
               padding: const EdgeInsets.only(left: 20),
@@ -128,17 +131,17 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
           ),*/
-          /*SizedBox(height: height * 0.02),*/
-          AppTextFiled(
-            controller: loginController.emailController,
-            title: Strings.userName,
-            hintText: Strings.emailExample,
-            textInputType: TextInputType.emailAddress,
-            titleBottomPadding: 16,
-            bottomPadding: 6,
-          ),
+            /*SizedBox(height: height * 0.02),*/
+            AppTextFiled(
+              controller: loginController.emailController,
+              title: Strings.userName,
+              hintText: Strings.emailExample,
+              textInputType: TextInputType.emailAddress,
+              titleBottomPadding: 16,
+              bottomPadding: 6,
+            ),
 
-          /*    Align(
+            /*    Align(
             alignment: Alignment.topLeft,
             child: Padding(
               padding: const EdgeInsets.only(left: 20),
@@ -149,32 +152,47 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: height * 0.02),*/
-          AppTextFiled(
-            controller: loginController.passwordController,
-            title: Strings.password,
-            hintText: Strings.passwordExample,
-            obscure: true,
-            titleBottomPadding: 16,
-            bottomPadding: 7,
-          ),
-          Align(
-            alignment: Alignment.topRight,
-            child: GestureDetector(
-              onTap: loginController.onForgotPassword,
-              child: SizedBox(
-                width: 116,
-                height: 16,
-                child: Text(
-                  Strings.forgotPassword,
-                  style: gilroyMediumTextStyle(
-                      fontSize: 14, color: ColorRes.white.withOpacity(0.5)),
+            AppTextFiled(
+              controller: loginController.passwordController,
+              title: Strings.password,
+              hintText: Strings.passwordExample,
+              suffix: InkWell(
+                  onTap: () {
+                    controller.onTapShowPassword();
+                    controller.update(["login_form"]);
+                  },
+                  child: controller.showPassword == true
+                      ? const Icon(
+                    Icons.remove_red_eye_outlined,
+                    color: Colors.grey,
+                  )
+                      : const Icon(
+                    Icons.remove_red_eye_rounded,
+                    color: Colors.grey,
+                  )),
+              obscure: controller.showPassword == true?false:true,
+              titleBottomPadding: 16,
+              bottomPadding: 7,
+            ),
+            Align(
+              alignment: Alignment.topRight,
+              child: GestureDetector(
+                onTap: loginController.onForgotPassword,
+                child: SizedBox(
+                  width: 116,
+                  height: 16,
+                  child: Text(
+                    Strings.forgotPassword,
+                    style: gilroyMediumTextStyle(
+                        fontSize: 14, color: ColorRes.white.withOpacity(0.5)),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
+    });
   }
 
   Widget loginButton(LoginController loginController) {

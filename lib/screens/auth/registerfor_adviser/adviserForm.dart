@@ -34,13 +34,41 @@ class AdviserRegisterForm extends StatelessWidget {
               controller: controller.pwdController,
               title: Strings.password,
               hintText: "************",
-              obscure: true,
+              suffix: InkWell(
+                  onTap: () {
+                    controller.onTapShowPassword();
+                    controller.update(["register_form"]);
+                  },
+                  child: controller.showPassword == true
+                      ? const Icon(
+                    Icons.remove_red_eye_outlined,
+                    color: Colors.grey,
+                  )
+                      : const Icon(
+                    Icons.remove_red_eye_rounded,
+                    color: Colors.grey,
+                  )),
+              obscure: controller.showPassword == true?false:true,
             ),
             AppTextFiled(
               controller: controller.confirmPwdController,
               title: Strings.reTypePassword,
               hintText: "************",
-              obscure: true,
+              suffix: InkWell(
+                  onTap: () {
+                    controller.onTapShowRetypePassword();
+                    controller.update(["register_form"]);
+                  },
+                  child: controller.showRetype == true
+                      ? const Icon(
+                    Icons.remove_red_eye_outlined,
+                    color: Colors.grey,
+                  )
+                      : const Icon(
+                    Icons.remove_red_eye_rounded,
+                    color: Colors.grey,
+                  )),
+              obscure: controller.showRetype == true ?false:true,
             ),
             GetBuilder<AdviserRegisterController>(
               id: 'address1',

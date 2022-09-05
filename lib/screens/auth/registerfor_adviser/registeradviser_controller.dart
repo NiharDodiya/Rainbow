@@ -22,6 +22,9 @@ class AdviserRegisterController extends GetxController {
   String selectedLocation = Strings.single;
   String? selectedValue;
 
+  bool? showPassword = false;
+  bool? showRetype = false;
+
   //ListCountryModel listCountryModel = ListCountryModel();
   List<String> martialStatusList = [
     Strings.single,
@@ -64,6 +67,28 @@ class AdviserRegisterController extends GetxController {
       countryCityDropdown = false;
     }
     update(['register_screen']);
+  }
+
+  void onTapShowPassword() {
+    if (showPassword == false) {
+      showPassword = true;
+      print(showPassword);
+    } else {
+      showPassword = false;
+      print(showPassword);
+    }
+    update(["register_form"]);
+  }
+
+  void onTapShowRetypePassword() {
+    if (showRetype == false) {
+      showRetype = true;
+      print(showRetype);
+    } else {
+      showRetype = false;
+      print(showRetype);
+    }
+    update(["register_form"]);
   }
 
 /*  void onCountryCityChange(String value) {

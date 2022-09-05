@@ -108,47 +108,101 @@ class AdvertiserChangePasswordScreen extends StatelessWidget {
                                   SizedBox(
                                     height: Get.height * 0.05,
                                   ),
-                                  Center(
-                                    child: SizedBox(
-                                      width: Get.width * 0.85,
-                                      child: AppTextFiled(
-                                        controller: controller.currentPassword,
-                                        title: Strings.currentPassword,
-                                        hintText: Strings.passwordExample,
-                                        obscure: true,
-                                      ),
-                                    ),
-                                  ),
+                                 GetBuilder<ChangeAdvertiserController>(
+                                   id: "new",
+                                     builder: (controller){
+                                   return  Center(
+                                     child: SizedBox(
+                                       width: Get.width * 0.85,
+                                       child: AppTextFiled(
+                                         controller: controller.currentPassword,
+                                         title: Strings.currentPassword,
+                                         hintText: Strings.passwordExample,
+                                         suffix: InkWell(
+                                             onTap: () {
+                                               controller.onTapShowPassword();
+                                               controller.update(["new"]);
+                                             },
+                                             child: controller.showPassword == true
+                                                 ? const Icon(
+                                               Icons.remove_red_eye_outlined,
+                                               color: Colors.grey,
+                                             )
+                                                 : const Icon(
+                                               Icons.remove_red_eye_rounded,
+                                               color: Colors.grey,
+                                             )),
+                                         obscure: controller.showPassword == true?false:true,
+                                       ),
+                                     ),
+                                   );
+                                 }),
                                   SizedBox(
                                     height: Get.height * 0.01,
                                   ),
-                                  Center(
+                                GetBuilder<ChangeAdvertiserController>(
+                                    id: "new",
+                                    builder: (controller){
+                                  return   Center(
                                     child: SizedBox(
                                       width: Get.width * 0.85,
                                       child: AppTextFiled(
                                         controller:
-                                            controller.newPasswordController,
+                                        controller.newPasswordController,
                                         title: Strings.newPassword,
                                         hintText: Strings.passwordExample,
-                                        obscure: true,
+                                        suffix: InkWell(
+                                            onTap: () {
+                                              controller.onTapShowNewPassword();
+                                              controller.update(["new"]);
+                                            },
+                                            child: controller.showNewPassword == true
+                                                ? const Icon(
+                                              Icons.remove_red_eye_outlined,
+                                              color: Colors.grey,
+                                            )
+                                                : const Icon(
+                                              Icons.remove_red_eye_rounded,
+                                              color: Colors.grey,
+                                            )),
+                                        obscure: controller.showNewPassword == true?false:true,
                                       ),
                                     ),
-                                  ),
+                                  );
+                                }),
                                   SizedBox(
                                     height: Get.height * 0.01,
                                   ),
-                                  Center(
-                                    child: SizedBox(
-                                      width: Get.width * 0.85,
-                                      child: AppTextFiled(
-                                        controller: controller
-                                            .confirmPasswordController,
-                                        title: Strings.confirmPassword,
-                                        hintText: Strings.passwordExample,
-                                        obscure: true,
+                                  GetBuilder<ChangeAdvertiserController>(
+                                    id: "new",
+                                      builder: (controller){
+                                    return Center(
+                                      child: SizedBox(
+                                        width: Get.width * 0.85,
+                                        child: AppTextFiled(
+                                          controller: controller
+                                              .confirmPasswordController,
+                                          title: Strings.confirmPassword,
+                                          hintText: Strings.passwordExample,
+                                        suffix: InkWell(
+                                        onTap: () {
+                                      controller.onTapShowConfirmPassword();
+                                      controller.update(["new"]);
+                                    },
+                                        child: controller.showConfirmPassword == true
+                                        ? const Icon(
+                                        Icons.remove_red_eye_outlined,
+                                        color: Colors.grey,
+                                        )
+                                            : const Icon(
+                                        Icons.remove_red_eye_rounded,
+                                        color: Colors.grey,
+                                        )),
+                                        obscure: controller.showConfirmPassword == true?false:true,
                                       ),
                                     ),
-                                  ),
+                                    );
+                                  }),
                                   SizedBox(
                                     height: Get.height * 0.018,
                                   ),

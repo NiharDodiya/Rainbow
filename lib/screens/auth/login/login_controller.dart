@@ -22,6 +22,8 @@ class LoginController extends GetxController {
   bool advertiser = false;
   String? userUid;
 
+  bool? showPassword = false;
+
   void onSignUpTap() {
     // Get.off(() => RegisterScreen(), transition: Transition.cupertino);
     Get.off(
@@ -49,6 +51,17 @@ class LoginController extends GetxController {
 
   void onForgotPassword() {
     Get.to(() => PhoneNumberScreen());
+  }
+
+  void onTapShowPassword() {
+    if (showPassword == false) {
+      showPassword = true;
+      print(showPassword);
+    } else {
+      showPassword = false;
+      print(showPassword);
+    }
+    update(["login_form"]);
   }
 
   bool validation() {
