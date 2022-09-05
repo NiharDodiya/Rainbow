@@ -14,7 +14,7 @@ class NewPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     NewPasswordController controller = Get.put(NewPasswordController());
-    return GetBuilder<NewPasswordController>(
+    return GetBuilder<NewPasswordController>(id: "newPassword",
       builder: (controller) {
         return Scaffold(
             backgroundColor: Colors.white,
@@ -108,8 +108,12 @@ class NewPasswordScreen extends StatelessWidget {
                                             controller.newPasswordController,
                                         title: Strings.newPassword,
                                         hintText: Strings.passwordExample,
-                                        suffix: Icon(Icons.remove_red_eye,color: Colors.grey,),
-                                        obscure: true,
+                                        suffix: InkWell(onTap: () {
+                                          controller.onTapShowNewPwd();
+                                          controller.update(["newPassword"]);
+                                        },
+                                            child: controller.showNewPwd==true?const Icon(Icons.remove_red_eye_outlined,color: Colors.grey,):const Icon(Icons.remove_red_eye,color: Colors.grey,)),
+                                        obscure: controller.showNewPwd==true?false:true,
                                       ),
                                     ),
                                   ),
@@ -123,9 +127,13 @@ class NewPasswordScreen extends StatelessWidget {
                                         controller: controller
                                             .confirmPasswordController,
                                         title: Strings.confirmPassword,
-                                        suffix: Icon(Icons.remove_red_eye,color: Colors.grey,),
+                                        suffix: InkWell(onTap: () {
+                                          controller.onTapShowConfirmPwd();
+                                          controller.update(["newPassword"]);
+                                        },
+                                            child: controller.showConfirmPwd==true?const Icon(Icons.remove_red_eye_outlined,color: Colors.grey,):const Icon(Icons.remove_red_eye,color: Colors.grey,)),
                                         hintText: Strings.passwordExample,
-                                        obscure: true,
+                                        obscure: controller.showConfirmPwd==true?false:true,
                                       ),
                                     ),
                                   ),

@@ -172,12 +172,12 @@ class CreateAdvertisementScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         (controller.imagePath.isEmpty)
-                            ? SizedBox()
+                            ? const SizedBox()
                             : (controller.imagePath.length == 3)
                                 ? Row(
                                     children: [
                                       Stack(
-                                        alignment: Alignment(1.2, -1.3),
+                                        alignment: const Alignment(1.2, -1.3),
                                         children: [
                                           Container(
                                             height: Get.height / 12,
@@ -212,9 +212,9 @@ class CreateAdvertisementScreen extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-                                      SizedBox(width: 20),
+                                      const SizedBox(width: 20),
                                       Stack(
-                                        alignment: Alignment(1.2, -1.3),
+                                        alignment: const Alignment(1.2, -1.3),
                                         children: [
                                           Container(
                                             height: Get.height / 12,
@@ -249,9 +249,9 @@ class CreateAdvertisementScreen extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-                                      SizedBox(width: 20),
+                                      const SizedBox(width: 20),
                                       Stack(
-                                        alignment: Alignment(1.2, -1.3),
+                                        alignment: const Alignment(1.2, -1.3),
                                         children: [
                                           Container(
                                             height: Get.height / 12,
@@ -292,7 +292,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                                     ? Row(
                                         children: [
                                           Stack(
-                                            alignment: Alignment(1.2, -1.3),
+                                            alignment: const Alignment(1.2, -1.3),
                                             children: [
                                               Container(
                                                 height: Get.height / 12,
@@ -333,9 +333,9 @@ class CreateAdvertisementScreen extends StatelessWidget {
                                               ),
                                             ],
                                           ),
-                                          SizedBox(width: 20),
+                                          const SizedBox(width: 20),
                                           Stack(
-                                            alignment: Alignment(1.2, -1.3),
+                                            alignment: const Alignment(1.2, -1.3),
                                             children: [
                                               Container(
                                                 height: Get.height / 12,
@@ -382,7 +382,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                                         ? Row(
                                             children: [
                                               Stack(
-                                                alignment: Alignment(1.2, -1.3),
+                                                alignment: const Alignment(1.2, -1.3),
                                                 children: [
                                                   Container(
                                                     height: Get.height / 12,
@@ -431,7 +431,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                                         : Row(
                                             children: [
                                               Stack(
-                                                alignment: Alignment(1.2, -1.3),
+                                                alignment: const Alignment(1.2, -1.3),
                                                 children: [
                                                   Container(
                                                     height: Get.height / 12,
@@ -475,9 +475,9 @@ class CreateAdvertisementScreen extends StatelessWidget {
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(width: 20),
+                                              const SizedBox(width: 20),
                                               Stack(
-                                                alignment: Alignment(1.2, -1.3),
+                                                alignment: const Alignment(1.2, -1.3),
                                                 children: [
                                                   Container(
                                                     height: Get.height / 12,
@@ -521,9 +521,9 @@ class CreateAdvertisementScreen extends StatelessWidget {
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(width: 20),
+                                              const SizedBox(width: 20),
                                               Stack(
-                                                alignment: Alignment(1.2, -1.3),
+                                                alignment: const Alignment(1.2, -1.3),
                                                 children: [
                                                   Container(
                                                     height: Get.height / 12,
@@ -572,7 +572,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 30,
                             ),
                             InkWell(
@@ -714,7 +714,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                   hintText: "canada",
                   selectedValue: controller.selectedCity,
                   onTap: controller.onTapEthnicity,
-                  dropdownList: countryNationCity,
+                  dropdownList: countryCity,
                   height: Get.height * 0.3,
                 );
               },
