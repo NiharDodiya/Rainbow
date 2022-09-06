@@ -170,12 +170,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
             onTap: () async {
               final Uri _url = Uri.parse(
                   'https://${createAdvertisementController.urlLinkController.text}');
-
-              if (await launchUrl(_url)) {
-                await launchUrl(_url);
-              } else {
-                throw 'Could not launch $_url';
-              }
+              await launchUrl(_url);
             },
             child: Text(
               createAdvertisementController.urlLinkController.text.toString(),

@@ -137,7 +137,7 @@ class PaymentSuccessfulScreen extends StatelessWidget {
                 SizedBox(height: Get.height * 0.0714),
                 SubmitButton(
                   onTap: () {
-                    Get.off(() => AdvertisementDashBord());
+                    Get.to(() => AdvertisementDashBord());
                   },
                   text: Strings.backToHome,
                 ),

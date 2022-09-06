@@ -398,12 +398,12 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
             onTap: () async {
               final Uri _url = Uri.parse(
                   'https://${adHomeController.myAdvertiserModel.data![index].urlLink.toString()}');
-
-              if (await launchUrl(_url)) {
+              await launchUrl(_url);
+             /* if (await launchUrl(_url)) {
                 await launchUrl(_url);
               } else {
                 throw 'Could not launch $_url';
-              }
+              }*/
             },
             child: Text(
               adHomeController.myAdvertiserModel.data![index].urlLink

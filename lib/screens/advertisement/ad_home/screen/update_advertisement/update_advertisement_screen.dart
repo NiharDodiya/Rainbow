@@ -710,6 +710,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: Get.height * 0.0197),
+
             GetBuilder<UpdateAdvertiseController>(
               id: 'advertiser',
               builder: (controller) {

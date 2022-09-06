@@ -32,7 +32,7 @@ class AdvertisementDashBord extends StatelessWidget {
         id: "bottom_bar",
         builder: (controller) {
           return WillPopScope(
-            onWillPop: () async {
+            onWillPop: () async{
               if (controller.currentTab == 0) {
                 showDialog(
                     context: context,
@@ -41,8 +41,8 @@ class AdvertisementDashBord extends StatelessWidget {
                         backgroundColor: Colors.white,
                         title: Text(
                           "Are you sure you want exit app",
-                          style: gilroyBoldTextStyle(
-                              fontSize: 20, color: Colors.black),
+                          style:
+                          gilroyBoldTextStyle(fontSize: 20, color: Colors.black),
                         ),
                         actions: <Widget>[
                           FlatButton(
@@ -81,42 +81,42 @@ class AdvertisementDashBord extends StatelessWidget {
                               adHomeController.viewAdvertiserModel.data == null
                                   ? const SizedBox()
                                   : ClipRRect(
-                                      borderRadius: BorderRadius.circular(50),
-                                      child: adHomeController
-                                              .viewAdvertiserModel
-                                              .data!
-                                              .profileImage
-                                              .toString()
-                                              .isEmpty
-                                          ? Image.asset(
-                                              AssetRes.portrait_placeholder,
-                                              height: Get.width * 0.1730,
-                                              width: Get.width * 0.1730,
-                                            )
-                                          : FadeInImage(
-                                              placeholder: const AssetImage(
-                                                  AssetRes
-                                                      .portrait_placeholder),
-                                              image: NetworkImage(
-                                                  adHomeController
-                                                      .viewAdvertiserModel
-                                                      .data!
-                                                      .profileImage
-                                                      .toString()),
-                                              fit: BoxFit.cover,
-                                              height: Get.width * 0.1730,
-                                              width: Get.width * 0.1730,
-                                            )),
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: adHomeController
+                                      .viewAdvertiserModel
+                                      .data!
+                                      .profileImage
+                                      .toString()
+                                      .isEmpty
+                                      ? Image.asset(
+                                    AssetRes.portrait_placeholder,
+                                    height: Get.width * 0.1730,
+                                    width: Get.width * 0.1730,
+                                  )
+                                      : FadeInImage(
+                                    placeholder: const AssetImage(
+                                        AssetRes
+                                            .portrait_placeholder),
+                                    image: NetworkImage(
+                                        adHomeController
+                                            .viewAdvertiserModel
+                                            .data!
+                                            .profileImage
+                                            .toString()),
+                                    fit: BoxFit.cover,
+                                    height: Get.width * 0.1730,
+                                    width: Get.width * 0.1730,
+                                  )),
                               /*       Container(
-                      height: Get.width * 0.1730,
-                      width: Get.width * 0.1730,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: AssetImage(AssetRes.account),
+                        height: Get.width * 0.1730,
+                        width: Get.width * 0.1730,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            image: AssetImage(AssetRes.account),
+                          ),
                         ),
-                      ),
-                    ),*/
+                      ),*/
                               SizedBox(
                                 width: Get.width * 0.0255,
                               ),
@@ -125,7 +125,7 @@ class AdvertisementDashBord extends StatelessWidget {
                                   children: [
                                     Text(
                                       adHomeController.viewAdvertiserModel.data
-                                              ?.fullName ??
+                                          ?.fullName ??
                                           "",
                                       style: gilroyRegularTextStyle(
                                           fontSize: 24,
@@ -136,7 +136,7 @@ class AdvertisementDashBord extends StatelessWidget {
                                     ),
                                     Text(
                                       adHomeController.viewAdvertiserModel.data
-                                              ?.email ??
+                                          ?.email ??
                                           "",
                                       style: gilroyBoldTextStyle(
                                           fontSize: 14,
@@ -146,7 +146,7 @@ class AdvertisementDashBord extends StatelessWidget {
                               const Spacer(),
                               Column(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                MainAxisAlignment.spaceAround,
                                 children: [
                                   GestureDetector(
                                     onTap: () {
@@ -180,7 +180,7 @@ class AdvertisementDashBord extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           AdvertiserVerifyController adController =
-                              Get.put(AdvertiserVerifyController());
+                          Get.put(AdvertiserVerifyController());
                           adController.backScreen = 'AdvertisementDashBord';
                           Get.to(() => AdvertiserVerifyOtpScreen());
                         },
@@ -420,3 +420,4 @@ class AdvertisementDashBord extends StatelessWidget {
         });
   }
 }
+
