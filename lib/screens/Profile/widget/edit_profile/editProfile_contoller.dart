@@ -77,9 +77,9 @@ class EditProfileController extends GetxController {
 
   Future<void> onTapTextField(context) async {
     if (validation()) {
-      for (int i = 0; i < listCountryModel.data!.length; i++) {
-        if (listCountryModel.data![i].name == ethnicity.text) {
-          codeId = listCountryModel.data![i].id!.toString();
+      for (int i = 0; i < listNationalities.data!.length; i++) {
+        if (listNationalities.data![i].name == ethnicity.text) {
+          codeId = listNationalities.data![i].id!.toString();
           print(codeId);
         }
         print(codeId);
@@ -104,12 +104,15 @@ class EditProfileController extends GetxController {
     city.text = profileController.viewProfile.data!.city!;
     height.text = profileController.viewProfile.data!.height!;
     weight.text = profileController.viewProfile.data!.weight!;
-    ethnicity.text = profileController.viewProfile.data!.idEthnicity!;
-    selectedEthicity = profileController.viewProfile.data!.idEthnicity!;
+
+
+    ethnicity.text = profileController.viewProfile.data!.idEthnicity!.toString();
+    selectedEthicity = selectedEthicity;
+
     haveKids.text = profileController.viewProfile.data!.noKids!.toString();
     noKidsSelected = profileController.viewProfile.data!.noKids!.toString();
-    hobbies.text =
-        profileController.viewProfile.data!.hobbiesAndInterest!.toString();
+
+    hobbies.text = profileController.viewProfile.data!.hobbiesAndInterest!.toString();
     instagram.text = profileController.viewProfile.data!.instagram!.toString();
     youTube.text = profileController.viewProfile.data!.youtube!.toString();
     twitter.text = profileController.viewProfile.data!.twitter!.toString();

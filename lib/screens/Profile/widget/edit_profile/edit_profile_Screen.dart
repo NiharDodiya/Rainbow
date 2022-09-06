@@ -567,7 +567,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     ),
                                   ],
                                 ),
-                                items: countryCity
+                                items: countryNationCity
                                     .map((item) => DropdownMenuItem<String>(
                                           value: item,
                                           child: Text(

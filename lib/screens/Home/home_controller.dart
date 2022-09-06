@@ -153,10 +153,10 @@ class HomeController extends GetxController {
 
   Future<void> countryNationalites() async {
     try {
-      await ListOfCountryApi.postRegister()
-          .then((value) => listCountryModel = value!);
-      print(listCountryModel);
-      getCountry();
+      await ListOfNationalitiesApi.postRegister()
+          .then((value) => listNationalities = value!);
+      print(listNationalities);
+      getCountryNation();
     } catch (e) {
       debugPrint(e.toString());
     }

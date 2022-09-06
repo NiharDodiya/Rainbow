@@ -40,7 +40,8 @@ class AuthDashBordController extends GetxController {
       await ListOfCountryApi.postRegister()
           .then((value) => listCountryModel = value!);
       print(listCountryModel);
-      getCountry();
+      //getCountry();
+      getCountryNation();
     } catch (e) {
       errorToast(e.toString());
       debugPrint(e.toString());

@@ -184,6 +184,7 @@ class MessageController extends GetxController {
   File? image;
   String imageName = "";
   var dowanloadurl;
+
   Future<void> sendNotification({String? body, String? roomId, String? otherUid}) async {
     await NotificationService.sendNotification(SendNotificationModel(
       id: userUid,

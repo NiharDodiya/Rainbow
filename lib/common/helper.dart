@@ -3,11 +3,11 @@ import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalite
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountry_json.dart';
 
 ListCountryModel listCountryModel = ListCountryModel();
-/*ListNationalities listNationalities = ListNationalities();*/
+ListNationalities listNationalities = ListNationalities();
 List<String> countryCity = [];
 List<String> countryId = [];
-/*List<String> countryNationCity = [];
-List<String> countryNationId = [];*/
+List<String> countryNationCity = [];
+List<String> countryNationId = [];
 
 void getCountry() {
   countryCity = [];
@@ -23,7 +23,7 @@ void getCountry() {
   print(countryId);
 }
 
-/*void getCountryNation() {
+void getCountryNation() {
   countryNationCity = [];
   countryNationId = [];
   for (int i = 0; i < listNationalities.data!.length; i++) {
@@ -35,7 +35,7 @@ void getCountry() {
   }
   print("countryNationCity => $countryNationCity");
   print("countryNationCity => $countryNationId");
-}*/
+}
 
 String getChatId(String uid1, String uid2) {
   if (uid1.hashCode > uid2.hashCode) {

@@ -1,11 +1,8 @@
-/*
 import 'package:http/http.dart' as http;
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalitesJson.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/utils/end_points.dart';
-*/
 
-/*
 class ListOfNationalitiesApi {
   static Future postRegister() async {
     ListNationalities countryList = ListNationalities();
@@ -23,4 +20,3 @@ class ListOfNationalitiesApi {
     }
   }
 }
-*/
