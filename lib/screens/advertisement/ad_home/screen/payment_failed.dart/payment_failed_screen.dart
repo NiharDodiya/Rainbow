@@ -37,7 +37,22 @@ class PaymentFailedScreen extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                  height: Get.height * 0.165024,
+                  height: 20,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 15),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: IconButton(
+                      onPressed: (){
+                        Get.to(AdvertisementDashBord());
+                      },
+                      icon: Icon(Icons.arrow_back_ios),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: Get.height * 0.135024,
                 ),
                 Text(
                   Strings.paymentFailed,

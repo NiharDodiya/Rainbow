@@ -314,7 +314,9 @@ class CreateAdvertisementController extends GetxController {
         urlLink: urlLinkController.text,
         countryCode: codeId.toString(),
         startDate: DateFormat().add_yMd().format(startTime!),
-        endDate: DateFormat().add_yMd().format(endTime!));
+        endDate: DateFormat().add_yMd().format(endTime!),
+        amount: 200,
+    );
     adHomeController.myAdvertiserListData();
     adHomeController.update(['more']);
     loader.value = false;

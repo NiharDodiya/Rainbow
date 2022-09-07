@@ -105,9 +105,8 @@ class EditProfileController extends GetxController {
     height.text = profileController.viewProfile.data!.height!;
     weight.text = profileController.viewProfile.data!.weight!;
 
-
     ethnicity.text = profileController.viewProfile.data!.idEthnicity!.toString();
-    selectedEthicity = selectedEthicity;
+    selectedEthicity = profileController.viewProfile.data!.idEthnicity!.toString();
 
     haveKids.text = profileController.viewProfile.data!.noKids!.toString();
     noKidsSelected = profileController.viewProfile.data!.noKids!.toString();

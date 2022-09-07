@@ -185,18 +185,22 @@ class MessageController extends GetxController {
   String imageName = "";
   var dowanloadurl;
 
-  Future<void> sendNotification({String? body, String? roomId, String? otherUid}) async {
+
+  Future<void> sendNotification({String? body, String? roomId, String? otherUid, String? userToken }) async {
+
     await NotificationService.sendNotification(SendNotificationModel(
       id: userUid,
       chatId: roomId,
       body: body,
       /*title: receiver.userName,*/
-      fcmTokens: [token.toString()],
+      //fcmTokens: [token.toString()],
+      fcmTokens: [userToken.toString()],
     ));
+    print('======== user token : $userToken ============');
   }
 
   void gotoChatScreen(
-      BuildContext context, String otherUid, name, image) async {
+      BuildContext context, String otherUid, name, image, userToken) async {
     loader.value = true;
     await getRoomId(otherUid);
     loader.value = false;
@@ -272,10 +276,11 @@ class MessageController extends GetxController {
               otherUserUid: otherUid,
               userUid: userUid,
               profileImage: image,
+              userToken: userToken,
             ));
   }
 
-  void imageSend(String otherUid) async {
+  void imageSend(String otherUid, String userToken) async {
     loader.value = true;
     if (isToday(lastMsg) == false) {
       await sendAlertMsg();
@@ -309,11 +314,11 @@ class MessageController extends GetxController {
     update(['message']);
     image = null;
     update(['chats']);
-    sendNotification(body: "📷 Image",otherUid: otherUid,roomId: roomId);
+    sendNotification(body: "📷 Image",otherUid: otherUid,roomId: roomId, userToken: userToken);
     loader.value = false;
   }
 
-  void sendMessage(String roomId, otherUid) async {
+  void sendMessage(String roomId, otherUid, userToken) async {
     String msg = msController.text;
     final userUid1 = userUid;
 
@@ -325,7 +330,7 @@ class MessageController extends GetxController {
     setLastMsgInDoc(msg);
 
     //setMsgCount(roomId, loginController.userUid, msg, userUid);
-    sendNotification(roomId: roomId,otherUid: otherUid,body: msg);
+    sendNotification(roomId: roomId,otherUid: otherUid,body: msg, userToken: userToken);
     update(['message']);
   }
 

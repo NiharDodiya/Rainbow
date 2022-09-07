@@ -124,6 +124,7 @@ class MessageScreen extends StatelessWidget {
                                             if (data == null) {
                                               return const SizedBox();
                                             }
+                                            print(data["UserToken"]);
 
                                             return data['online'] == true
                                                 ? Column(
@@ -284,6 +285,7 @@ class MessageScreen extends StatelessWidget {
                                                           data['uid'],
                                                           data['name'],
                                                           data['image'],
+                                                          data['UserToken'],
                                                         );
                                                       },
                                                       child: Padding(
@@ -509,7 +511,7 @@ class MessageScreen extends StatelessWidget {
                                                                 snapshot.data!
                                                                         .docs[index]
                                                                         .data()[
-                                                                    'image']);
+                                                                    'image'], snapshot.data!.docs[index].data()['UserToken']);
                                                           },
                                                           child: Padding(
                                                             padding:

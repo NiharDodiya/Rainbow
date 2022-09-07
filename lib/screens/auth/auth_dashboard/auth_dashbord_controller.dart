@@ -40,8 +40,8 @@ class AuthDashBordController extends GetxController {
       await ListOfCountryApi.postRegister()
           .then((value) => listCountryModel = value!);
       print(listCountryModel);
-      //getCountry();
-      getCountryNation();
+      getCountry();
+
     } catch (e) {
       errorToast(e.toString());
       debugPrint(e.toString());
@@ -50,10 +50,10 @@ class AuthDashBordController extends GetxController {
 
   Future<void> countryNationalites() async {
     try {
-      await ListOfCountryApi.postRegister()
-          .then((value) => listCountryModel = value!);
-      print(listCountryModel);
-      getCountry();
+      await ListOfNationalitiesApi.postRegister()
+          .then((value) => listNationalities = value!);
+      print(listNationalities);
+      getCountryNation();
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -107,7 +107,7 @@ String? token;
               "uid": user.uid,
               "name": user.displayName,
               "image": user.photoURL,
-              "UserToken":token,
+              "UserToken": token.toString(),
               "online": true,
             });
           }

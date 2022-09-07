@@ -24,6 +24,7 @@ class AddCartController extends GetxController {
 
   addCart() {
     validation();
+    addCartDetails();
   }
 
   bool validation() {
@@ -64,15 +65,33 @@ class AddCartController extends GetxController {
     return true;
   }
 
+  RxBool loader = false.obs;
+
   void onCountryCoCityChange(String value) {
     selectCountry = value;
     countryController.text = value;
     update(['addCard']);
   }
 
+
+
+
   void addCartDetails() {
     try {
-      AddCartApi.addCartDetailsApi();
-    } catch (e) {}
+      loader.value = true;
+      AddCartApi.addCartDetailsApi(
+        cardNumber: cardNmberController.text,
+        exMonth:,
+        cardHolder: ,
+        cvv: cvvController.text,
+        exYear: ,
+        addressData: {
+          fullNameController.text
+        }
+      );
+      loader.value = false;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 }

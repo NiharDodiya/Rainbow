@@ -126,6 +126,7 @@ class LoginController extends GetxController {
     update(['login']);
   }
 String? token;
+
   Future<void> addUser(String uid) async {
     token = await NotificationService.getFcmToken();
     print("usert token$token");
@@ -141,7 +142,7 @@ String? token;
           "id": PrefService.getInt(PrefKeys.userId),
           "name": loginModel.data!.fullName,
           "image": loginModel.data!.profileImage,
-          "UserToken":token.toString(),
+          "UserToken": token.toString(),
           "online": true
         });
       } else {

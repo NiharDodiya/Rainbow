@@ -45,8 +45,9 @@ Widget noAdvertisement() {
                   style: gilroySemiBoldTextStyle(fontSize: 24),
                   textAlign: TextAlign.center,
                 ),
+
                 SizedBox(
-                  height: Get.height * 0.25,
+                  height: Get.height * 0.20,
                 ),
                 SubmitButton(
                   onTap: () {
@@ -68,6 +69,9 @@ Widget noAdvertisement() {
                     Get.to(() => CreateAdvertisementScreen());
                   },
                   text: Strings.createAdvertisement,
+                ),
+                SizedBox(
+                  height: Get.height * 0.20,
                 ),
               ],
             ),

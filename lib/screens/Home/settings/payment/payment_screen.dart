@@ -487,14 +487,10 @@ Widget appBar() {
             SizedBox(
               width: Get.width * 0.23,
             ),
-            GestureDetector(
-                onTap: () {
-                  Get.back();
-                },
-                child: Text(
-                  Strings.manageCards,
-                  style: gilroyBoldTextStyle(),
-                )),
+            Text(
+              Strings.manageCards,
+              style: gilroyBoldTextStyle(),
+            ),
             SizedBox(
               width: Get.width * 0.077,
             ),

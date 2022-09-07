@@ -834,9 +834,10 @@ class SupportDetailsScreen extends StatelessWidget {
                               },
                             ),
                           ),
-                          SizedBox(
-                            width: Get.width * 0.04,
-                          ),
+                          Spacer(),
+                          /*SizedBox(
+                            width: Get.width * 0.03,
+                          ),*/
                           Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -893,7 +894,7 @@ class SupportDetailsScreen extends StatelessWidget {
                         : (controller.viewSupportTicketModel.data![index]
                                     .itmeList!.length == 3)
                             ? Container(
-                                height: Get.height * 0.07,
+                                height: Get.height * 0.09,
                                 width: Get.width * 0.49,
                                 padding:
                                     const EdgeInsets.only(right: 5, left: 5),
@@ -907,7 +908,7 @@ class SupportDetailsScreen extends StatelessWidget {
                                   ),
                                 ),
                                 child: Stack(
-                                  alignment: Alignment.topRight,
+                                  alignment: Alignment.centerRight,
                                   children: [
                                     ListView.builder(
                                       scrollDirection: Axis.horizontal,
@@ -956,7 +957,7 @@ class SupportDetailsScreen extends StatelessWidget {
                                 ),
                               )
                             : Container(
-                                height: Get.height * 0.07,
+                                height: Get.height * 0.09,
                                 width: Get.width * 0.354666,
                                 padding:
                                     const EdgeInsets.only(right: 5, left: 5),
@@ -1164,7 +1165,7 @@ Widget downloadButton2(int i) {
           controller.save(controller
               .viewSupportTicketModel.data![i].itmeList![1].image
               .toString());
-          flutterToast("Image Save successFull");
+          flutterToast("Image saved successfully");
           // (controller.loader.value == false)? flutterToast("Image Save successFull"):SizedBox();
         },
         child: Image.asset(
@@ -1183,7 +1184,7 @@ Widget downloadButton1(int i) {
           controller.save(controller
               .viewSupportTicketModel.data![i].itmeList![0].image
               .toString());
-          flutterToast("Image Save successFull");
+          flutterToast("Image saved successfully");
           //controller.loader.value == false? flutterToast("Image Save successFull"):SizedBox();
         },
         child: Image.asset(
@@ -1208,7 +1209,7 @@ Widget downloadButton3(int i) {
           controller.save(controller
               .viewSupportTicketModel.data![i].itmeList![2].image
               .toString());
-          flutterToast("Image Save successFull");
+          flutterToast("Image saved successfully");
           //controller.loader.value == false? flutterToast("Image Save successFull"):SizedBox();
         },
         child: Image.asset(AssetRes.downlode, height: 20)),
