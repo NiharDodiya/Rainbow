@@ -50,7 +50,7 @@ class PaymentScreen extends StatelessWidget {
                           height: Get.width * 0.508,
                           child: PageView.builder(
                             physics: const BouncingScrollPhysics(),
-                            itemCount: controller.listCardModel.data?.length ?? 0,
+                            itemCount: controller.listCardModel.data?.length ?? 1,
                             onPageChanged: (index) {
                               controller.selectedIndex = index;
                               controller.update(["img"]);
