@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/listCardModel.dart';
-import 'package:rainbow/screens/Home/settings/payment/add_cart/addCart_api/addCart_api.dart';
-import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
+import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
+import 'package:rainbow/screens/advertisement/ad_payment/ad_payment_api/ad_payment_api.dart';
+import 'package:rainbow/utils/strings.dart';
 
-import '../../../../../common/popup.dart';
-import '../../../../../utils/strings.dart';
+import 'edit_card_api/edit_card_api.dart';
 
-class AddCartController extends GetxController {
+class EditCardController extends GetxController{
+
   TextEditingController fullNameController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController cityController = TextEditingController();
@@ -20,17 +22,16 @@ class AddCartController extends GetxController {
   TextEditingController cvvController = TextEditingController();
   String? selectCountry;
 
-  RxBool loader = false.obs;
+
 
   void onInit() {
     update();
     super.onInit();
   }
 
-  addCart(context) {
+  editCart({int? index}) {
     validation();
-    Navigator.of(context).pop();
-    addCartDetails(context);
+    editCardApi(id: index);
   }
 
   bool validation() {
@@ -74,7 +75,7 @@ class AddCartController extends GetxController {
     return true;
   }
 
-
+  RxBool loader = false.obs;
 
   void onCountryCoCityChange(String value) {
     selectCountry = value;
@@ -82,29 +83,24 @@ class AddCartController extends GetxController {
     update(['addCard']);
   }
 
+  ListCardModel listCardModel = ListCardModel();
 
-   PaymentController controller = Get.find();
-
-  void addCartDetails(context) {
+   editCardApi({int? id}) {
     try {
-      controller.loader.value = true;
-      AddCartApi.addCartDetailsApi(
-        context,
-        cardNumber: cardNmberController.text,
+      loader.value = true;
+      EditCardApi.editCardApi(
+        idCard: id,
+        country: countryController.text,
+        postalCode: postalCodeController.text,
+        city: cityController.text,
+        address: cityController.text,
+        fullName: fullNameController.text,
+        exYear: expiryYearController.text,
         exMonth: expiryMonthController.text,
         cardHolder: nameOnCardController.text,
-        cvv: cvvController.text,
-        exYear: expiryYearController.text,
-        fullName: fullNameController.text,
-        address:  cityController.text,
-        city:  cityController.text,
-        postalCode: postalCodeController.text,
-        country: countryController.text,
-      ).then((value){
-        final PaymentController controller = Get.find();
-        controller.listCardApi(showToast: false);
-      });
-      controller.loader.value = false;
+      );
+      loader.value = false;
+
     } catch (e) {
       debugPrint(e.toString());
     }

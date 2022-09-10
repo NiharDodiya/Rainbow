@@ -19,7 +19,6 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 import 'package:visibility_detector/visibility_detector.dart';
-
 import 'settings/connections/connections_controller.dart';
 
 class HomeScreen extends StatefulWidget {

@@ -65,7 +65,7 @@ class EndPoints {
   static const viewSupportTicket = "$baseUrl/user/support/message/view";
   static const sendSupport = "$baseUrl/user/support/send";
   static const userSupport = "$baseUrl/user/support/tickit";
-  static const addCartDetails = "$baseUrl/advirtisers/register";
+
   static const notificationOn = "$baseUrl/user/notification/on";
   static const notificationOff = "$baseUrl/user/notification/off";
   static const notificationRead = "$baseUrl/user/notification/read";
@@ -87,6 +87,11 @@ class EndPoints {
   static const viewUserAdvertiser = "$baseUrl/user/profile/view";
   static const editAdvertiser = '$baseUrl/advirtisers/advertisement/view';
   static const updateAdvertiser = '$baseUrl/advirtisers/advertisement/update';
+  static const addCartDetails = "$baseUrl/user/card/add";
+  static const listCartDetails = "$baseUrl/user/card/list";
+  static const editCard = "$baseUrl/user/card/edit";
+  static const viewCard = "$baseUrl/user/card/view";
+  static const removeCard = "$baseUrl/user/card/remove";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

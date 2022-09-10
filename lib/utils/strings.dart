@@ -274,6 +274,7 @@ class Strings {
   static const connectionRequest = "Connection Request";
   static const suggestedConnection = "Suggested Connection";
   static const addCard = "Add Card";
+  static const editCard = "Edit Card";
 
   ///----------------------------------Payment ---------------------------------
   static const platinum = "Platinum";
@@ -312,8 +313,9 @@ class Strings {
   static const aycanDoganlar = "Aycan Doganlar";
   static const cardNumber = "Card number";
   static const cardNumberHint = "1234 4567 7890 1234";
-  static const expiryDate = "Expiry Date";
-  static const expiryDateHint = "02/24";
+  static const expiryYear = "Expiry Year";
+  static const expiryMonth = "Expiry Month";
+  static const expiryDateHint = "..";
   static const cVV = "CVV";
   static const cVVHint = ". . .";
   static const addresserror = 'Address is required';
@@ -323,7 +325,8 @@ class Strings {
   static const nameonCardError = 'Name on card is required';
   static const cardnumberError = 'card number is required';
   static const cardnumberErrorValidation = "Please currect card Number";
-  static const expirydateError = 'Expiry date is required';
+  static const expiryYearError = 'Expiry year is required';
+  static const expiryMonthError = 'Expiry month is required';
   static const cVVError = 'Cvv is required';
   static const cVVErrorValidation = 'Please currect cvv';
   static const removeCard = "Remove Card";
