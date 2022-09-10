@@ -40,7 +40,7 @@ class PaymentController extends GetxController {
 
 
 
- void listCardApi({required bool showToast}) async{
+  listCardApi({required bool showToast}) async{
    try {
      loader.value = true;
      listCardModel = await ListCartApi.listCardsApi(showToast: showToast);

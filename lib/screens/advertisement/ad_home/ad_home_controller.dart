@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/model/listCardModel.dart';
 import 'package:rainbow/model/myAdvertiser_model.dart';
 import 'package:rainbow/model/viewAdvertiserModel.dart';
 import 'package:rainbow/screens/advertisement/ad_home/myAdvertiser_api/myAdvertiser_api.dart';
@@ -152,4 +154,10 @@ class AdHomeController extends GetxController {
       print(e.toString());
     }
   }
+  
+  onTap(){
+    errorToast("Please enter card");
+    update(['more']);
+  }
+  
 }

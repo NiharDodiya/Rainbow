@@ -50,7 +50,7 @@ class PaymentScreen extends StatelessWidget {
                           height: Get.width * 0.508,
                           child: PageView.builder(
                             physics: const BouncingScrollPhysics(),
-                            itemCount: controller.listCardModel.data?.length ?? 1,
+                            itemCount: controller.listCardModel.data?.length ?? 0,
                             onPageChanged: (index) {
                               controller.selectedIndex = index;
                               controller.update(["img"]);
@@ -225,13 +225,15 @@ class PaymentScreen extends StatelessWidget {
                            GetBuilder<PaymentController>(
                              id: "img",
                                builder: (controller){
-                             return  Align(
+                             return  controller.listCardModel.data?.length == null
+                                 ? SizedBox()
+                                 : Align(
                                alignment: Alignment.center,
                                child: CarouselIndicator(
                                  cornerRadius: 30,
                                  height: 6,
                                  width: 6,
-                                 count: controller.listCardModel.data?.length ?? 1,
+                                 count: controller.listCardModel.data?.length ?? 0,
                                  index: controller.selectedIndex,
                                ),
                              );
