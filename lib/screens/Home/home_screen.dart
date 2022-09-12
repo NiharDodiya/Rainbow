@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_decorated_text/flutter_decorated_text.dart';
 import 'package:get/get.dart';
 import 'package:image_stack/image_stack.dart';
-import 'package:rainbow/common/Widget/PremiumPopUpBox.dart';
+import 'package:rainbow/common/Widget/premiumPopUpBox/PremiumPopUpBox.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/model/request_user_model.dart';
@@ -14,6 +14,7 @@ import 'package:rainbow/screens/Home/comments/comments_screen.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
+import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -91,7 +92,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             width: Get.width * 0.04,
                           ),
                           InkWell(
-                            onTap: controller.onNotyIconBtnTap,
+                            onTap: (){
+                              controller.onNotyIconBtnTap(context: context);
+                            },
                             child: Stack(
                               children: [
                                 const SizedBox(
@@ -195,79 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             viewStoryController.resetAllData();
                             // if user have not subcription show pop up
                             subscribePopUp == true
-                                ? showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20)),
-                                        backgroundColor: Colors.white,
-                                        actions: <Widget>[
-                                          const SizedBox(
-                                            height: 34,
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 30),
-                                            child: Center(
-                                                child: SizedBox(
-                                                    height: 40,
-                                                    width: 152,
-                                                    child: Text(
-                                                      Strings
-                                                          .subscriptionPremium,
-                                                      style:
-                                                          gilroySemiBoldTextStyle(
-                                                              fontSize: 16,
-                                                              color:
-                                                                  Colors.black),
-                                                    ))),
-                                          ),
-                                          const SizedBox(
-                                            height: 12,
-                                          ),
-                                          Center(
-                                              child: Text(
-                                            "£9.99 / month",
-                                            style: gilroySemiBoldTextStyle(
-                                                fontSize: 26,
-                                                color: Colors.black),
-                                          )),
-                                          const SizedBox(
-                                            height: 16,
-                                          ),
-                                          Center(
-                                            child: Container(
-                                              height: 30,
-                                              width: 101,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(46.2),
-                                                gradient: const LinearGradient(
-                                                  colors: [
-                                                    ColorRes.color_4F359B,
-                                                    ColorRes.color_B279DB,
-                                                  ],
-                                                  begin: Alignment.topLeft,
-                                                  end: Alignment.topRight,
-                                                ),
-                                              ),
-                                              child: Center(
-                                                child: Text(
-                                                  "Subscribe",
-                                                  style: gilroyBoldTextStyle(
-                                                      fontSize: 9.6),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 21,
-                                          ),
-                                        ],
-                                      );
-                                    })
+                                ? premiumPopUpBox(context: context)
                                 : await Get.to(() => StoryScreen(
                                           image: controller.controller
                                               .viewProfile.data!.profileImage
@@ -353,83 +284,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: InkWell(
                           onTap: () {
                             // if user have not subcription show pop up
-                           /* subscribePopUp == true
-                                ? showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20)),
-                                        backgroundColor: Colors.white,
-                                        actions: <Widget>[
-                                          const SizedBox(
-                                            height: 34,
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 30),
-                                            child: Center(
-                                                child: SizedBox(
-                                                    height: 40,
-                                                    width: 152,
-                                                    child: Text(
-                                                      Strings
-                                                          .subscriptionPremium,
-                                                      style:
-                                                          gilroySemiBoldTextStyle(
-                                                              fontSize: 16,
-                                                              color:
-                                                                  Colors.black),
-                                                    ))),
-                                          ),
-                                          const SizedBox(
-                                            height: 12,
-                                          ),
-                                          Center(
-                                              child: Text(
-                                            "£9.99 / month",
-                                            style: gilroySemiBoldTextStyle(
-                                                fontSize: 26,
-                                                color: Colors.black),
-                                          )),
-                                          const SizedBox(
-                                            height: 16,
-                                          ),
-                                          Center(
-                                            child: Container(
-                                              height: 30,
-                                              width: 101,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(46.2),
-                                                gradient: const LinearGradient(
-                                                  colors: [
-                                                    ColorRes.color_4F359B,
-                                                    ColorRes.color_B279DB,
-                                                  ],
-                                                  begin: Alignment.topLeft,
-                                                  end: Alignment.topRight,
-                                                ),
-                                              ),
-                                              child: Center(
-                                                child: Text(
-                                                  "Subscribe",
-                                                  style: gilroyBoldTextStyle(
-                                                      fontSize: 9.6),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 21,
-                                          ),
-                                        ],
-                                      );
-                                    })
-                                :*/
-                            //premiumPopUpBox(context: context);
-                            Get.to(() => AddStoryScreen());
+
+                            subscribePopUp == true
+                                ? premiumPopUpBox(context: context)
+                                : Get.to(() => AddStoryScreen());
                           },
                           child: SizedBox(
                             width: 80,

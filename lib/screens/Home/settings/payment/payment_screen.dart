@@ -520,17 +520,17 @@ Widget appBar() {
             SizedBox(
               width: Get.width * 0.05,
             ),
-            /*   GestureDetector(
+               GestureDetector(
               onTap: () {
                 Get.back();
               },
               child: Image.asset(
                 AssetRes.backIcon,
                 height: 16,
-                width: 16,
+                width: 35,
                 color: Colors.white,
               ),
-            ),*/
+            ),
             SizedBox(
               width: Get.width * 0.23,
             ),

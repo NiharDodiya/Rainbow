@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/premiumPopUpBox/PremiumPopUpBox.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
@@ -39,7 +41,7 @@ class SettingsScreen extends StatelessWidget {
                           child: Column(
                             children: [
                               profile(),
-                              settingsProperties(),
+                              settingsProperties(context: context),
                             ],
                           ),
                         ),
@@ -202,7 +204,7 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Widget settingsProperties() {
+  Widget settingsProperties({context}) {
     return Container(
       width: Get.width,
       decoration: const BoxDecoration(
@@ -259,7 +261,10 @@ class SettingsScreen extends StatelessWidget {
               ConnectionsController connectionController =
                   Get.put(ConnectionsController());
               connectionController.init();
-              Get.to(() => ConnectionsScreen());
+              subscribePopUp == true
+                  ? premiumPopUpBox(context: context)
+                  : Get.to(() => ConnectionsScreen());
+
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 5, bottom: 5),
@@ -295,7 +300,9 @@ class SettingsScreen extends StatelessWidget {
           //Support
           InkWell(
             onTap: () {
-              controller.onTapSupport();
+              subscribePopUp == true
+                  ? premiumPopUpBox(context: context)
+                  : controller.onTapSupport();
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 5, bottom: 5),

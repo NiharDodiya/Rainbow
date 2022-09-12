@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/premiumPopUpBox/PremiumPopUpBox.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/editProfile_contoller.dart';
@@ -53,7 +55,10 @@ Widget profileAppbar(
                       EditProfileController editController =
                           Get.put(EditProfileController());
                       editController.init();
-                      Get.to(() => const EditProfileScreen());
+                      subscribePopUp == true
+                          ? premiumPopUpBox(context: context)
+                          : EditProfileScreen();
+                      //Get.to(() => const EditProfileScreen());
                     },
                     child: SizedBox(
                       height: 31,
@@ -70,8 +75,10 @@ Widget profileAppbar(
                 ConnectionsController connectionController =
                     Get.put(ConnectionsController());
                 connectionController.init();
-                Get.to(() => ConnectionsScreen());
-              },
+                subscribePopUp == true
+                    ? premiumPopUpBox(context: context)
+                    : ConnectionsScreen();
+                },
               child: Stack(
                 children: [
                   const SizedBox(

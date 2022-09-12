@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/premiumPopUpBox/PremiumPopUpBox.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/home_screen.dart';
 import 'package:rainbow/screens/Message/message_screen.dart';
 import 'package:rainbow/screens/Profile/profile_screen.dart';

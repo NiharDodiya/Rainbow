@@ -5,6 +5,7 @@ import 'package:flutter_share/flutter_share.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/premiumPopUpBox/PremiumPopUpBox.dart';
 import 'package:rainbow/common/blocList_api/blockList_api.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/model/blockList_model.dart';
@@ -37,7 +38,7 @@ import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/screens/notification/notification_screen.dart';
 import 'package:uni_links/uni_links.dart';
 
-bool subscribePopUp = false;
+bool subscribePopUp = true;
 
 class HomeController extends GetxController {
   RxBool loader = false.obs;
@@ -397,11 +398,14 @@ class HomeController extends GetxController {
     loader.value = status;*/
   }
 
-  void onNotyIconBtnTap() {
+  void onNotyIconBtnTap({context}) {
     NotificationsController notificationsController =
         Get.put(NotificationsController());
     notificationsController.init();
-    Get.to(() => NotificationScreen());
+    subscribePopUp == true
+        ? premiumPopUpBox(context: context)
+        : Get.to(() => NotificationScreen());
+   // Get.to(() => NotificationScreen());
   }
 
   double calculateDistance(lat1, lon1, lat2, lon2) {
