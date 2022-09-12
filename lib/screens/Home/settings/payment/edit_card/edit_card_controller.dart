@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/listCardModel.dart';
+import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_payment/ad_payment_api/ad_payment_api.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -22,16 +23,17 @@ class EditCardController extends GetxController{
   TextEditingController cvvController = TextEditingController();
   String? selectCountry;
 
-
+  PaymentController paymentController = Get.put(PaymentController());
 
   void onInit() {
     update();
     super.onInit();
   }
 
-  editCart({int? index}) {
+  editCart({int? index, context}) async {
     validation();
-    editCardApi(id: index);
+    Navigator.of(context).pop();
+    await editCardApi(id: index);
   }
 
   bool validation() {
@@ -85,9 +87,11 @@ class EditCardController extends GetxController{
 
   ListCardModel listCardModel = ListCardModel();
 
+
+
    editCardApi({int? id}) {
     try {
-      loader.value = true;
+      paymentController.loader.value = true;
       EditCardApi.editCardApi(
         idCard: id,
         country: countryController.text,
@@ -98,8 +102,12 @@ class EditCardController extends GetxController{
         exYear: expiryYearController.text,
         exMonth: expiryMonthController.text,
         cardHolder: nameOnCardController.text,
-      );
-      loader.value = false;
+      ).then((value){
+        final PaymentController controller = Get.find();
+        controller.listCardApi(showToast: false);
+      });
+      update(['more']);
+      paymentController.loader.value = false;
 
     } catch (e) {
       debugPrint(e.toString());

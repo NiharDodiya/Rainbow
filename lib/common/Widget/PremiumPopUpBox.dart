@@ -1,10 +1,102 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/font_res.dart';
 
-Widget premiumPopUpBox() {
-  return Container(
+ premiumPopUpBox({context}) {
+  return showDialog(context: context, builder: (BuildContext context){
+    return Padding(
+      padding: EdgeInsets.only(top: 240, left: 40, right: 40, bottom: 240),
+      child: Container(
+        //height: Get.height / 4,
+        width: Get.width / 1.3,
+        decoration: BoxDecoration(
+          color: ColorRes.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Spacer(),
+            const SizedBox(
+              width: 130,
+              child: Text(
+                "Subscribe to our Premium Version",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontFamily: FontRes.gilroySemiBold,
+                    color: ColorRes.appBlack,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  "£9.99",
+                  style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.w100,
+                    color: ColorRes.appBlack,
+                    fontFamily: FontRes.gilroySemiBold,
+                  ),
+                ),
+                Text(
+                  "/",
+                  style: TextStyle(color: ColorRes.appBlack, fontSize: 35),
+                ),
+                Text(
+                  "month",
+                  style: TextStyle(
+                    fontSize: 35,
+                    color: ColorRes.appBlack,
+                    fontFamily: FontRes.gilroySemiBold,
+                  ),
+                ),
+              ],
+            ),
+            Spacer(),
+            GestureDetector(
+              onTap: (){
+                Get.to(PaymentScreen());
+              },
+              child: Container(
+                height: Get.height / 18,
+                width: Get.width / 2.5,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    gradient: const LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        ColorRes.color_B279DB,
+                        ColorRes.color_4F359B,
+                      ],
+                    )),
+                child: const Text(
+                  "Subscribe",
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      fontFamily: FontRes.gilroySemiBold,
+                      color: ColorRes.white),
+                ),
+              ),
+            ),
+            Spacer(),
+          ],
+        ),
+      ),
+    );
+  });
+}
+
+/*
+Container(
     height: Get.height / 4,
     width: Get.width / 1.3,
     decoration: BoxDecoration(
@@ -82,4 +174,4 @@ Widget premiumPopUpBox() {
       ],
     ),
   );
-}
+ */

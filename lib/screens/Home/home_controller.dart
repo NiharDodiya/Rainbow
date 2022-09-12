@@ -74,6 +74,8 @@ class HomeController extends GetxController {
   int page = 1;
   int limit = 10;
 
+  RxBool premiumBox = false.obs;
+
   // final storyController = EditStoryController();
   ConnectionsController connectionsController =
       Get.put(ConnectionsController());

@@ -21,7 +21,7 @@ class EditCardScreen extends StatelessWidget {
   String? city;
   String? country;
   String? postalCode;
-  String? cardNmber;
+ // String? cardNmber;
 
   EditCardScreen({
     required this.index,
@@ -33,7 +33,7 @@ class EditCardScreen extends StatelessWidget {
     required this.city,
     required this.country,
     required this.postalCode,
-    required this.cardNmber,
+    //required this.cardNmber,
     Key? key
   }) : super(key: key);
 
@@ -49,7 +49,7 @@ class EditCardScreen extends StatelessWidget {
     editCardController.cityController.text = city!;
     editCardController.countryController.text = country!;
     editCardController.postalCodeController.text = postalCode!;
-    editCardController.cardNmberController.text = cardNmber!;
+    //editCardController.cardNmberController.text = cardNmber!;
     editCardController.selectCountry = country!;
 
     return Scaffold(
@@ -210,7 +210,7 @@ class EditCardScreen extends StatelessWidget {
                                 SubmitButton(
                                   text: Strings.editCard,
                                   onTap: () =>
-                                      controller.editCart(index: index),
+                                      controller.editCart(index: index, context: context),
                                 ),
                                 SizedBox(
                                   height: Get.width * 0.05866,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_decorated_text/flutter_decorated_text.dart';
 import 'package:get/get.dart';
 import 'package:image_stack/image_stack.dart';
+import 'package:rainbow/common/Widget/PremiumPopUpBox.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/model/request_user_model.dart';
@@ -190,6 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             width: 24,
                           ),
                           onPressed: () async {
+                            //premiumPopUpBox(context: context);
                             viewStoryController.resetAllData();
                             // if user have not subcription show pop up
                             subscribePopUp == true
@@ -292,7 +294,8 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-          controller.loader.isTrue ? const FullScreenLoader() : const SizedBox()
+          controller.loader.isTrue ? const FullScreenLoader() : const SizedBox(),
+        //  controller.premiumBox.isTrue ? Center(child: premiumPopUpBox(context: context)):const SizedBox(),
         ],
       );
     });
@@ -424,7 +427,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ],
                                       );
                                     })
-                                :*/     Get.to(() => AddStoryScreen());
+                                :*/
+                            //premiumPopUpBox(context: context);
+                            Get.to(() => AddStoryScreen());
                           },
                           child: SizedBox(
                             width: 80,

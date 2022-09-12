@@ -5,6 +5,7 @@ import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/model/listCardModel.dart';
 import 'package:rainbow/screens/Home/settings/payment/add_cart/add_cart_screen.dart';
+import 'package:rainbow/screens/Home/settings/payment/edit_card/edit_card_controller.dart';
 import 'package:rainbow/screens/Home/settings/payment/edit_card/edit_card_screen.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 
@@ -15,10 +16,10 @@ import '../../../../utils/strings.dart';
 class PaymentScreen extends StatelessWidget {
   PaymentScreen({Key? key}) : super(key: key);
   PaymentController controller = Get.put(PaymentController());
+  EditCardController editCardController = Get.put(EditCardController());
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Obx((){
         return Stack(
@@ -184,11 +185,10 @@ class PaymentScreen extends StatelessWidget {
                                             fullName: controller.viewCardModel.data?.cardAddress?[0].fullName ?? "",
                                             city: controller.viewCardModel.data?.cardAddress?[0].city ?? "",
                                             country: controller.viewCardModel.data?.cardAddress?[0].country ?? "",
-                                           cardNmber: controller.viewCardModel.data?.cardNumber ??  "",
+                                           //cardNmber: controller.viewCardModel.data?.cardNumber ??  "",
                                            postalCode: controller.viewCardModel.data?.cardAddress?[0].postalCode ?? "",
                                             address: controller.viewCardModel.data?.cardAddress?[0].address ?? "",
 
-                                           // cvvController: controller.viewCardModel.data?.cardAddress?[controller.selectedIndex]. ?? "",
                                           )
 
                                       );

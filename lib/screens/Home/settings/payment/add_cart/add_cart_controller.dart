@@ -83,11 +83,11 @@ class AddCartController extends GetxController {
   }
 
 
-   PaymentController controller = Get.find();
+   PaymentController paymentController = Get.find();
 
   void addCartDetails(context) {
     try {
-      controller.loader.value = true;
+      paymentController.loader.value = true;
       AddCartApi.addCartDetailsApi(
         context,
         cardNumber: cardNmberController.text,
@@ -104,7 +104,7 @@ class AddCartController extends GetxController {
         final PaymentController controller = Get.find();
         controller.listCardApi(showToast: false);
       });
-      controller.loader.value = false;
+      paymentController.loader.value = false;
     } catch (e) {
       debugPrint(e.toString());
     }

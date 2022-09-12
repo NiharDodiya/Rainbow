@@ -8,7 +8,7 @@ import 'package:rainbow/screens/advertisement/ad_payment/ad_payment_api/ad_payme
 
 class PaymentController extends GetxController {
   PageController pageController =
-      PageController(initialPage: 1, viewportFraction: 0.86, keepPage: true);
+      PageController(initialPage: 0, viewportFraction: 0.86, keepPage: true);
   int selectedIndex = 0;
   RxBool loader = false.obs;
 

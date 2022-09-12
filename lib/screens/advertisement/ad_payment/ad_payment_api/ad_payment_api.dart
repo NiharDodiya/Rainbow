@@ -34,7 +34,7 @@ class ListCartApi {
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           print("======= list card : ${response.statusCode} =====");
-          showToast ? flutterToast(jsonDecode(response.body)["message"]) : SizedBox();
+          //showToast ? flutterToast(jsonDecode(response.body)["message"]) : SizedBox();
         }
         return listCardModelFromJson(response.body);
       }

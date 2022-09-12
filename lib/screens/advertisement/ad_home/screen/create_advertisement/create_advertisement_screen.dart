@@ -1,3 +1,4 @@
+import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/country_name.dart';
@@ -706,12 +707,74 @@ class CreateAdvertisementScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const Spacer()
+                        const Spacer(),
                       ],
                     )),
               ),
             ),
             SizedBox(height: Get.height * 0.0197),
+
+          /*Container(
+            child: Row(
+              children: <Widget>[
+                new Expanded(
+                    child: new TextField(controller: controller.countryController)
+                ),
+                new PopupMenuButton<String>(
+                  icon: const Icon(Icons.arrow_drop_down),
+                  onSelected: (String value) {
+                    controller.countryController.text = value;
+                  },
+                  itemBuilder: (BuildContext context) {
+                    return items.map<PopupMenuItem<String>>((String value) {
+                      return new PopupMenuItem(child: new Text(value), value: value);
+                    }).toList();
+                  },
+                ),
+              ],
+            ),
+          ),*/
+
+         /*  Form(
+             key: controller.formKey,
+             child: Padding(
+               padding: EdgeInsets.only(left: 20, right: 20),
+               child: Column(
+                 crossAxisAlignment:  CrossAxisAlignment.start,
+                 children: [
+                   DropDownTextField(
+                     clearOption: false,
+                     textFieldFocusNode: controller.textFieldFocusNode,
+                     searchFocusNode: controller.searchFocusNode,
+                     searchAutofocus: true,
+                     dropDownItemCount: 8,
+                     searchShowCursor: false,
+                     enableSearch: true,
+                     searchKeyboardType: TextInputType.emailAddress,
+                     dropDownList: const [
+                       DropDownValueModel(name: 'name1', value: "value1"),
+                       DropDownValueModel(
+                           name: 'name2',
+                           value: "value2",
+                           toolTipMsg:
+                           "DropDownButton is a widget that we can use to select one unique value from a set of values"),
+                       DropDownValueModel(name: 'name3', value: "value3"),
+                       DropDownValueModel(
+                           name: 'name4',
+                           value: "value4",
+                           toolTipMsg:
+                           "DropDownButton is a widget that we can use to select one unique value from a set of values"),
+                       DropDownValueModel(name: 'name5', value: "value5"),
+                       DropDownValueModel(name: 'name6', value: "value6"),
+                       DropDownValueModel(name: 'name7', value: "value7"),
+                       DropDownValueModel(name: 'name8', value: "value8"),
+                     ],
+                     onChanged: (val) {},
+                   ),
+                 ],
+               ),
+             ),
+           ),*/
             GetBuilder<CreateAdvertisementController>(
               id: 'advertiser',
               builder: (controller) {

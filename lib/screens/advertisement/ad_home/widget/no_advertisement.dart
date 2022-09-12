@@ -15,7 +15,7 @@ import '../screen/create_advertisement/create_advertisement_screen.dart';
 Widget noAdvertisement() {
   CreateAdvertisementController advertisementControllers =
       Get.put(CreateAdvertisementController());
-  PaymentController paymentController = Get.put(PaymentController());
+
   return GetBuilder<AdHomeController>(
     builder: (controller) {
       return Expanded(
@@ -56,7 +56,7 @@ Widget noAdvertisement() {
                  id: "more",
                    builder: (controller){
                  return  SubmitButton(
-                   onTap: () async {
+                   onTap: ()  async{
                      advertisementControllers.tagsController.clear();
                      advertisementControllers.titleController.clear();
                      advertisementControllers.countryController.clear();
@@ -73,10 +73,11 @@ Widget noAdvertisement() {
                      advertisementControllers.callToAction = null;
                      advertisementControllers.imagePath = [];
 
+                     PaymentController paymentController = Get.put(PaymentController());
 
                      await paymentController.listCardApi(showToast: false);
 
-                     paymentController.listCardModel.data?.length == null
+                    paymentController.listCardModel.data?.length == null
                          ? controller.onTap()
                          : Get.to(() => CreateAdvertisementScreen());
                         controller.update(["more"]);

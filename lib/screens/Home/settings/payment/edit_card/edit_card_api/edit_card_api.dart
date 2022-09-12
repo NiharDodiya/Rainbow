@@ -26,7 +26,7 @@ class EditCardApi {
       String url = EndPoints.editCard;
 
       Map<String, dynamic> param = {
-        "id_card": 8,
+        "id_card": idCard,
         "cardData": {
           "exp_month": exMonth,
           "exp_year": exYear,
@@ -56,7 +56,6 @@ class EditCardApi {
         } else if (status == true) {
           print("======= edit card : ${response.statusCode} =====");
           flutterToast(jsonDecode(response.body)["message"]);
-          Get.to(PaymentScreen());
         }
         return editCardModelFromJson(response.body);
       }
