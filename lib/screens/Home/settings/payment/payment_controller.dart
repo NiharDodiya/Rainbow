@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/model/listCardModel.dart';
 import 'package:rainbow/model/remove_card_model.dart';
+import 'package:rainbow/model/transactionModel.dart';
 import 'package:rainbow/model/viewCardModel.dart';
+import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/payment/widget/remove_dialog.dart';
 import 'package:rainbow/screens/advertisement/ad_payment/ad_payment_api/ad_payment_api.dart';
+
+import 'add_cart/add_cart_controller.dart';
 
 class PaymentController extends GetxController {
   PageController pageController =
@@ -12,14 +16,14 @@ class PaymentController extends GetxController {
   int selectedIndex = 0;
   RxBool loader = false.obs;
 
+  AddCartController addCartController = Get.put(AddCartController());
 
+  HomeController homeController = Get.put(HomeController());
 
   void onInit() {
     listCardApi(showToast: true);
-    /*viewCardApi();*/
-    /*Future.delayed(Duration(seconds: 2),(){
-      viewCardApi();
-    });*/
+    transactionApi();
+    print(homeController.viewProfile.data!.userType);
     update();
     super.onInit();
   }
@@ -32,6 +36,7 @@ class PaymentController extends GetxController {
   ListCardModel listCardModel = ListCardModel();
   ViewCardModel viewCardModel = ViewCardModel();
   RemoveCardModel removeCardModel = RemoveCardModel();
+  TransactionModel transactionModel = TransactionModel();
 
   navigateToRemove(BuildContext context) async {
     await showDialog(
@@ -46,6 +51,8 @@ class PaymentController extends GetxController {
      listCardModel = await ListCartApi.listCardsApi(showToast: showToast);
      update(['more']);
      loader.value = false;
+     HomeController homeController = Get.put(HomeController());
+     listCardModel.data?.length == null? homeController.viewProfile.data!.userType = "free" : homeController.viewProfile.data!.userType = "premium";
      viewCardApi();
    } catch (e) {
      debugPrint(e.toString());
@@ -69,12 +76,33 @@ class PaymentController extends GetxController {
      removeCardModel = await ListCartApi.removeCardApi(id: listCardModel.data?[selectedIndex].id ?? 0);
      update(['more']);
      loader.value = false;
-     listCardApi(showToast: false);
+     await listCardApi(showToast: false);
     } catch (e) {
       debugPrint(e.toString());
     }
   }
 
+  transactionApi ()async{
+    loader.value = true;
+    try {
+      transactionModel = await ListCartApi.transactionApi();
+      update(['more']);
+      loader.value = false;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 
+  defaultCardApi () async{
+    loader.value = true;
+    try {
+      transactionModel = await ListCartApi.defaultCardApi(id: listCardModel.data?[selectedIndex].id ?? 0);
+      update(['more']);
+      loader.value = false;
+    } catch (e) {
+      debugPrint(e.toString());
+      loader.value = false;
+    }
+  }
 
 }

@@ -13,7 +13,7 @@ import 'api/subscribe_popup_api.dart';
 
 
 
- premiumPopUpBox({context}) {
+ premiumPopUpBox({required BuildContext context}) {
 
    return showDialog(
        context: context,

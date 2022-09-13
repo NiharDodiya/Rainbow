@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/premiumPopUpBox/PremiumPopUpBox.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/advertisement_controlle.dart';
@@ -11,8 +12,8 @@ import 'package:rainbow/utils/strings.dart';
 
 import '../screen/create_advertisement/create_advertisement_controller.dart';
 
-Widget appbar() {
-  AdHomeController controller = Get.find<AdHomeController>();
+Widget appbar({context}) {
+
   AdvertisementController advertisementController =
       Get.put(AdvertisementController());
   CreateAdvertisementController advertisementControllers =
@@ -129,6 +130,7 @@ Widget appbar() {
                 PaymentController paymentController = Get.put(PaymentController());
 
                 await paymentController.listCardApi(showToast: false);
+
 
                 paymentController.listCardModel.data?.length == null
                     ? controller.onTap()

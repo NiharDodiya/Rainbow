@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:rainbow/model/listCardModel.dart';
+import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/payment/add_cart/addCart_api/addCart_api.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 
@@ -27,10 +27,14 @@ class AddCartController extends GetxController {
     super.onInit();
   }
 
-  addCart(context) {
-    validation();
-    Navigator.of(context).pop();
-    addCartDetails(context);
+  addCart(context) async {
+    if (validation()) {
+      Navigator.of(context).pop();
+      Get.find<PaymentController>().loader.value = true;
+      Future.delayed(Duration(seconds: 1), () {
+        addCartDetails(context);
+      });
+    }
   }
 
   bool validation() {
@@ -74,19 +78,16 @@ class AddCartController extends GetxController {
     return true;
   }
 
-
-
   void onCountryCoCityChange(String value) {
     selectCountry = value;
     countryController.text = value;
     update(['addCard']);
   }
 
-
-   PaymentController paymentController = Get.find();
-
   void addCartDetails(context) {
     try {
+      PaymentController paymentController = Get.put(PaymentController());
+
       paymentController.loader.value = true;
       AddCartApi.addCartDetailsApi(
         context,
@@ -96,15 +97,20 @@ class AddCartController extends GetxController {
         cvv: cvvController.text,
         exYear: expiryYearController.text,
         fullName: fullNameController.text,
-        address:  cityController.text,
-        city:  cityController.text,
+        address: cityController.text,
+        city: cityController.text,
         postalCode: postalCodeController.text,
         country: countryController.text,
-      ).then((value){
+      ).then((value) async {
         final PaymentController controller = Get.find();
-        controller.listCardApi(showToast: false);
+        await controller.listCardApi(showToast: false);
+        final HomeController homeController = Get.find();
+        controller.listCardModel.data?.length == null
+            ? homeController.viewProfile.data!.userType = "free"
+            : homeController.viewProfile.data!.userType = "premium";
+        paymentController.loader.value = false;
       });
-      paymentController.loader.value = false;
+
     } catch (e) {
       debugPrint(e.toString());
     }

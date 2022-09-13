@@ -775,6 +775,8 @@ class CreateAdvertisementScreen extends StatelessWidget {
                ),
              ),
            ),*/
+
+
             GetBuilder<CreateAdvertisementController>(
               id: 'advertiser',
               builder: (controller) {

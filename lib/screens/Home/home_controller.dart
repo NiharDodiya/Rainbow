@@ -27,6 +27,7 @@ import 'package:rainbow/screens/Home/my_story/my_story_controller.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_screen.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
+import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/Home/settings/settings_screen.dart';
 
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
@@ -84,6 +85,8 @@ class HomeController extends GetxController {
   // final storyController = EditStoryController();
   ConnectionsController connectionsController =
       Get.put(ConnectionsController());
+
+
 
   @override
   void onInit() async {
@@ -347,9 +350,14 @@ class HomeController extends GetxController {
     await connectionsController.callRequestApi();
   }
 
+
+
   Future<void> init() async {
     changeLoader(true);
     await viewProfileApi();
+    PaymentController paymentController = Get.put(PaymentController());
+    await paymentController.listCardApi(showToast: false);
+    paymentController.listCardModel.data?.length == null? viewProfile.data!.userType = "free" : viewProfile.data!.userType = "premium";
     await getCurrentLocation();
     loader.value = true;
     await controller.viewProfileDetails();

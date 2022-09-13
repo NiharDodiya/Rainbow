@@ -49,7 +49,7 @@ class _AdHomeScreenState extends State<AdHomeScreen> {
             children: [
               Column(
                 children: [
-                  appbar(),
+                  appbar(context: context),
                   GetBuilder<AdHomeController>(
                       id: 'list',
                       builder: (controller) {

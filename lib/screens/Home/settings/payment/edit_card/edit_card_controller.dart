@@ -31,10 +31,15 @@ class EditCardController extends GetxController{
   }
 
   editCart({int? index, context}) async {
-    validation();
-    Navigator.of(context).pop();
-    await editCardApi(id: index);
+    if(validation()){
+      Navigator.of(context).pop();
+      Get.find<PaymentController>().loader.value = true;
+      Future.delayed(Duration(seconds: 1), () {
+         editCardApi(id: index);
+      });
+    }
   }
+
 
   bool validation() {
     if (fullNameController.text.isEmpty) {
@@ -105,9 +110,11 @@ class EditCardController extends GetxController{
       ).then((value){
         final PaymentController controller = Get.find();
         controller.listCardApi(showToast: false);
+        update(['more']);
+        paymentController.loader.value = false;
       });
-      update(['more']);
-      paymentController.loader.value = false;
+
+
 
     } catch (e) {
       debugPrint(e.toString());

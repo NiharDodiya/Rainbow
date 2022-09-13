@@ -14,7 +14,7 @@ import 'package:rainbow/utils/end_points.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
 class AddCartApi {
-  static Future addCartDetailsApi(context, {
+  static Future addCartDetailsApi( context, {
 
     String? cardNumber,
     String? exMonth,

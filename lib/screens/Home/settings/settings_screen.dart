@@ -362,7 +362,7 @@ class SettingsScreen extends StatelessWidget {
                     width: Get.width * 0.57,
                   ),
                   SizedBox(
-                      height: 10, width: 6, child: Image.asset(AssetRes.next))
+                      height: 10, width: 6, child: Image.asset(AssetRes.next),),
                 ],
               ),
             ),
