@@ -17,6 +17,8 @@ import 'package:rainbow/model/postLike_model.dart';
 import 'package:rainbow/model/postView_model.dart';
 import 'package:rainbow/model/sharePost_model.dart';
 import 'package:rainbow/model/unLikePost_model.dart';
+
+
 import 'package:rainbow/screens/Home/Story/friendStory_api/friendStory_api.dart';
 import 'package:rainbow/screens/Home/addStroy/addStory_screen.dart';
 import 'package:rainbow/screens/Home/home_screen.dart';
@@ -26,10 +28,13 @@ import 'package:rainbow/screens/Home/my_story/my_story_screen.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
 import 'package:rainbow/screens/Home/settings/settings_screen.dart';
+
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_screen.dart';
 import 'package:rainbow/screens/Home/view_story/widgets/postLike_listScreen.dart';
 import 'package:rainbow/screens/Home/view_story/widgets/postView_bottomshit.dart';
+import 'package:rainbow/screens/Profile/profile_api/profile_api.dart';
+import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/widget/listOfFriendRequest_api/listOfFriendRequest_api.dart';
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
@@ -38,7 +43,6 @@ import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/screens/notification/notification_screen.dart';
 import 'package:uni_links/uni_links.dart';
 
-bool subscribePopUp = true;
 
 class HomeController extends GetxController {
   RxBool loader = false.obs;
@@ -345,6 +349,7 @@ class HomeController extends GetxController {
 
   Future<void> init() async {
     changeLoader(true);
+    await viewProfileApi();
     await getCurrentLocation();
     loader.value = true;
     await controller.viewProfileDetails();
@@ -402,7 +407,7 @@ class HomeController extends GetxController {
     NotificationsController notificationsController =
         Get.put(NotificationsController());
     notificationsController.init();
-    subscribePopUp == true
+    viewProfile.data!.userType == "free"
         ? premiumPopUpBox(context: context)
         : Get.to(() => NotificationScreen());
    // Get.to(() => NotificationScreen());
@@ -471,5 +476,20 @@ class HomeController extends GetxController {
     ConnectionsProfileController connectionsProfileController =
         Get.put(ConnectionsProfileController());
     connectionsProfileController.callApi(userId);
+  }
+
+  ViewProfile viewProfile = ViewProfile();
+
+  Future<void> viewProfileApi() async {
+    try {
+      loader.value = true;
+      viewProfile = await ViewProfileApi.postRegister();
+      controller.update(["settings"]);
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+
+      print(e.toString());
+    }
   }
 }

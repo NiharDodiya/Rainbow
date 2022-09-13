@@ -11,6 +11,7 @@ import 'package:rainbow/utils/strings.dart';
 
 class SearchScreen extends StatelessWidget {
   SearchController controller = Get.put(SearchController());
+  HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +126,7 @@ class SearchScreen extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    subscribePopUp == true
+                    homeController.viewProfile.data!.userType == "free"
                         ? premiumPopUpBox(context: context)
                         : controller.advanceSearchOnTap();
 
@@ -160,7 +161,7 @@ class SearchScreen extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          subscribePopUp == true
+          homeController.viewProfile.data!.userType == "free"
               ? premiumPopUpBox(context: context)
               : SizedBox();
         },
@@ -215,7 +216,7 @@ class SearchScreen extends StatelessWidget {
             itemCount: controller.listUserData.length,
             // itemCount: controller.search.length,
             itemBuilder: (context, index) {
-              return subscribePopUp == true
+              return homeController.viewProfile.data!.userType == "free"
                   ? InkWell(
                 onTap: () {
                   premiumPopUpBox(context: context);

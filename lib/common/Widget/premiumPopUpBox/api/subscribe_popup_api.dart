@@ -30,17 +30,6 @@ class UserSubscriptionAddApi {
           });
       if (response != null && response.statusCode == 200) {
         flutterToast(jsonDecode(response.body)["message"]);
-        /*bool? status = jsonDecode(response.body)["status"];
-        if (status == false) {
-          print("======= UserSubscriptionAdd : ${response.statusCode} ======");
-          errorToast(jsonDecode(response.body)["message"]);
-        } else if (status == true) {
-          print("======= UserSubscriptionAdd : ${response.statusCode} =====");
-
-
-          flutterToast(jsonDecode(response.body)["message"]);
-
-        }*/
         return userSubscriptionAddModelFromJson(response.body);
       }
     } catch (e) {

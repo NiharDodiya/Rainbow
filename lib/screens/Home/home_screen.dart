@@ -197,7 +197,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             //premiumPopUpBox(context: context);
                             viewStoryController.resetAllData();
                             // if user have not subcription show pop up
-                            subscribePopUp == true
+                            controller.viewProfile.data!.userType == "free"
                                 ? premiumPopUpBox(context: context)
                                 : await Get.to(() => StoryScreen(
                                           image: controller.controller
@@ -284,8 +284,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: InkWell(
                           onTap: () {
                             // if user have not subcription show pop up
-
-                            subscribePopUp == true
+                            controller.viewProfile.data!.userType == "free" //premium
                                 ? premiumPopUpBox(context: context)
                                 : Get.to(() => AddStoryScreen());
                           },

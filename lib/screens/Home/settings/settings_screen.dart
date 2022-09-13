@@ -20,6 +20,7 @@ class SettingsScreen extends StatelessWidget {
   SettingsScreen({Key? key}) : super(key: key);
   SettingsController controller = Get.put(SettingsController());
   ProfileController profileController = Get.put(ProfileController());
+  HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -261,7 +262,7 @@ class SettingsScreen extends StatelessWidget {
               ConnectionsController connectionController =
                   Get.put(ConnectionsController());
               connectionController.init();
-              subscribePopUp == true
+              homeController.viewProfile.data!.userType == "free"
                   ? premiumPopUpBox(context: context)
                   : Get.to(() => ConnectionsScreen());
 
@@ -300,7 +301,7 @@ class SettingsScreen extends StatelessWidget {
           //Support
           InkWell(
             onTap: () {
-              subscribePopUp == true
+              homeController.viewProfile.data!.userType == "free"
                   ? premiumPopUpBox(context: context)
                   : controller.onTapSupport();
             },

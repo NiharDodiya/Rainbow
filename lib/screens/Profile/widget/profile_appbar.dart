@@ -12,6 +12,7 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
 ConnectionsController controller = Get.put(ConnectionsController());
+HomeController homeController = Get.put(HomeController());
 
 Widget profileAppbar(
     String text, bool show, context, int i, VoidCallback? onTap) {
@@ -55,9 +56,9 @@ Widget profileAppbar(
                       EditProfileController editController =
                           Get.put(EditProfileController());
                       editController.init();
-                      subscribePopUp == true
+                      homeController.viewProfile.data!.userType == "free"
                           ? premiumPopUpBox(context: context)
-                          : EditProfileScreen();
+                          : Get.to(() => const EditProfileScreen());
                       //Get.to(() => const EditProfileScreen());
                     },
                     child: SizedBox(
@@ -75,9 +76,9 @@ Widget profileAppbar(
                 ConnectionsController connectionController =
                     Get.put(ConnectionsController());
                 connectionController.init();
-                subscribePopUp == true
+                homeController.viewProfile.data!.userType == "free"
                     ? premiumPopUpBox(context: context)
-                    : ConnectionsScreen();
+                    : Get.to(() => ConnectionsScreen());
                 },
               child: Stack(
                 children: [

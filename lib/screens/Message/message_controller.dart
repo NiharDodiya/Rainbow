@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:rainbow/common/Widget/premiumPopUpBox/PremiumPopUpBox.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
@@ -28,6 +29,7 @@ class MessageController extends GetxController {
   TextEditingController msgController = TextEditingController();
   TextEditingController msController = TextEditingController();
   final ScrollController listScrollController = ScrollController();
+  HomeController homeController = Get.put(HomeController());
   RxBool loader = false.obs;
   UserModel receiver = UserModel();
   String chatId = '';
@@ -205,79 +207,16 @@ class MessageController extends GetxController {
     await getRoomId(otherUid);
     loader.value = false;
     // if user have not subcription show pop up
-    subscribePopUp == true
-        ? showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                backgroundColor: Colors.white,
-                actions: <Widget>[
-                  const SizedBox(
-                    height: 34,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30),
-                    child: Center(
-                        child: SizedBox(
-                            height: 40,
-                            width: 152,
-                            child: Text(
-                              Strings.subscriptionPremium,
-                              style: gilroySemiBoldTextStyle(
-                                  fontSize: 16, color: Colors.black),
-                            ))),
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Center(
-                      child: Text(
-                    "£9.99 / month",
-                    style: gilroySemiBoldTextStyle(
-                        fontSize: 26, color: Colors.black),
-                  )),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Center(
-                    child: Container(
-                      height: 30,
-                      width: 101,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(46.2),
-                        gradient: const LinearGradient(
-                          colors: [
-                            ColorRes.color_4F359B,
-                            ColorRes.color_B279DB,
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.topRight,
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Subscribe",
-                          style: gilroyBoldTextStyle(fontSize: 9.6),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 21,
-                  ),
-                ],
-              );
-            })
+    homeController.viewProfile.data!.userType == "free"
+        ? premiumPopUpBox(context: context)
         : Get.to(() => ChatScreen(
-              roomId: roomId,
-              name: name,
-              otherUserUid: otherUid,
-              userUid: userUid,
-              profileImage: image,
-              userToken: userToken,
-            ));
+      roomId: roomId,
+      name: name,
+      otherUserUid: otherUid,
+      userUid: userUid,
+      profileImage: image,
+      userToken: userToken,
+    ));
   }
 
   void imageSend(String otherUid, String userToken) async {
