@@ -166,6 +166,7 @@ class AddCartScreen extends StatelessWidget {
                               title: Strings.cVV,
                               hintText: Strings.cVVHint,
                               textInputType: TextInputType.number,
+                              obscure: true,
                             ),
                             const SizedBox(
                               height: 10,
@@ -200,7 +201,7 @@ class AddCartScreen extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: Get.height * 0.03,
+            height: Get.height * 0.06,
           ),
           Row(
             children: [
@@ -214,12 +215,12 @@ class AddCartScreen extends StatelessWidget {
                 child: Image.asset(
                   AssetRes.backIcon,
                   height: 16,
-                  width: 16,
+                  width: 35,
                   color: Colors.white,
                 ),
               ),
               SizedBox(
-                width: Get.width * 0.3,
+                width: Get.width * 0.28,
               ),
               GestureDetector(
                   onTap: () {

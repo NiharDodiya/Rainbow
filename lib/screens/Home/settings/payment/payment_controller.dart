@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/listCardModel.dart';
 import 'package:rainbow/model/remove_card_model.dart';
 import 'package:rainbow/model/transactionModel.dart';
@@ -28,13 +29,14 @@ class PaymentController extends GetxController {
     super.onInit();
   }
 
-  changeIndex(int id) {
-    selectedIndex = id;
-    update(['index']);
-  }
+  /*changeIndex(int index) {
+    selectedIndex = index;
+    viewCardApi();
+    update(["more"]);
+  }*/
 
   ListCardModel listCardModel = ListCardModel();
-  ViewCardModel viewCardModel = ViewCardModel();
+  ViewCardModel? viewCardModel = ViewCardModel();
   RemoveCardModel removeCardModel = RemoveCardModel();
   TransactionModel transactionModel = TransactionModel();
 
@@ -49,11 +51,12 @@ class PaymentController extends GetxController {
    try {
      loader.value = true;
      listCardModel = await ListCartApi.listCardsApi(showToast: showToast);
-     update(['more']);
      loader.value = false;
+     update(['more']);
      HomeController homeController = Get.put(HomeController());
      listCardModel.data?.length == null? homeController.viewProfile.data!.userType = "free" : homeController.viewProfile.data!.userType = "premium";
      viewCardApi();
+     update(['more']);
    } catch (e) {
      debugPrint(e.toString());
    }
@@ -63,7 +66,9 @@ class PaymentController extends GetxController {
 
  void viewCardApi()async{
    try {
+     loader.value = true;
      viewCardModel = await ListCartApi.viewCardsApi(id: listCardModel.data?[selectedIndex].id ?? 0);
+     loader.value = false;
      update(['more']);
    } catch (e) {
      debugPrint(e.toString());
@@ -96,9 +101,15 @@ class PaymentController extends GetxController {
   defaultCardApi () async{
     loader.value = true;
     try {
-      transactionModel = await ListCartApi.defaultCardApi(id: listCardModel.data?[selectedIndex].id ?? 0);
-      update(['more']);
-      loader.value = false;
+      if(listCardModel.data?[selectedIndex].id == null){
+        errorToast("Card not available");
+        loader.value = false;
+      }else{
+        transactionModel = await ListCartApi.defaultCardApi(id: listCardModel.data?[selectedIndex].id ?? 0);
+        update(['more']);
+        loader.value = false;
+      }
+
     } catch (e) {
       debugPrint(e.toString());
       loader.value = false;

@@ -29,7 +29,7 @@ class UserSubscriptionAddApi {
             "x-access-token": accesToken
           });
       if (response != null && response.statusCode == 200) {
-        flutterToast(jsonDecode(response.body)["message"]);
+
         return userSubscriptionAddModelFromJson(response.body);
       }
     } catch (e) {

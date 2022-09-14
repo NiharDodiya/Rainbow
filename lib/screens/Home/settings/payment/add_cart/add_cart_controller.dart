@@ -29,10 +29,14 @@ class AddCartController extends GetxController {
 
   addCart(context) async {
     if (validation()) {
+
       Navigator.of(context).pop();
+
       Get.find<PaymentController>().loader.value = true;
       Future.delayed(Duration(seconds: 1), () {
         addCartDetails(context);
+      /*  Get.find<PaymentController>().viewCardModel;
+        update(["abc"]);*/
       });
     }
   }

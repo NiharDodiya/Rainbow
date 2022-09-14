@@ -66,7 +66,7 @@ class ListCartApi {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
           print("======= view card : ${response.statusCode} ======");
-          errorToast(jsonDecode(response.body)["message"]);
+          //errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           print("======= view card : ${response.statusCode} =====");
         }
@@ -74,7 +74,7 @@ class ListCartApi {
       }
     } catch (e) {
       print(e.toString());
-      return [];
+      return null;
     }
   }
 
@@ -130,7 +130,7 @@ class ListCartApi {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
           print("======= transaction : ${response.statusCode} ======");
-          errorToast(jsonDecode(response.body)["message"]);
+         // errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           print("======= transaction : ${response.statusCode} =====");
 

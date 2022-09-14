@@ -69,6 +69,8 @@ class AddCartApi {
           advertisementController.currentTab = 1;*/
         }
         return addCardModelFromJson(response.body);
+      }else{
+        errorToast(jsonDecode(response!.body)["message"]);
       }
     } catch (e) {
       print(e.toString());

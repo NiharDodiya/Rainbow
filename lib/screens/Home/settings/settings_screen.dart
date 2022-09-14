@@ -37,6 +37,7 @@ class SettingsScreen extends StatelessWidget {
                   Column(
                     children: [
                       appBar(context),
+
                       Expanded(
                         child: SingleChildScrollView(
                           child: Column(
@@ -452,12 +453,9 @@ class SettingsScreen extends StatelessWidget {
               ),
             ],
           ),
-          Divider(
-            thickness: 1,
-            color: ColorRes.color_4F359B.withOpacity(0.4),
-          ),
+
           //Subscription
-          InkWell(
+         /* InkWell(
             onTap: () {
               Get.to(() => SubscriptionScreen());
             },
@@ -493,8 +491,8 @@ class SettingsScreen extends StatelessWidget {
           ),
           SizedBox(
             height: Get.height * 0.03,
-          ),
-          Text(
+          ),*/
+          /*Text(
             Strings.yourReferralCode,
             style: textStyleFont15White,
           ),
@@ -524,9 +522,9 @@ class SettingsScreen extends StatelessWidget {
                 style: gilroyBoldTextStyle(fontSize: 11.9619),
               )),
             ),
-          ),
+          ),*/
           SizedBox(
-            height: Get.height * 0.035,
+            height: Get.height * 0.045,
           ),
           GestureDetector(
             onTap: () async {
@@ -558,7 +556,7 @@ class SettingsScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: Get.height * 0.07,
+            height: Get.height * 0.22,
           ),
         ],
       ),

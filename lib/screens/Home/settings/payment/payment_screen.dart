@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/payment/add_cart/add_cart_screen.dart';
 import 'package:rainbow/screens/Home/settings/payment/edit_card/edit_card_controller.dart';
 import 'package:rainbow/screens/Home/settings/payment/edit_card/edit_card_screen.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
+import 'package:readmore/readmore.dart';
 
 import '../../../../utils/asset_res.dart';
 import '../../../../utils/color_res.dart';
@@ -17,9 +20,12 @@ class PaymentScreen extends StatelessWidget {
   PaymentScreen({Key? key}) : super(key: key);
   PaymentController controller = Get.put(PaymentController());
   EditCardController editCardController = Get.put(EditCardController());
+  HomeController homeController = Get.find();
+  AddCartController addCartController = Get.find();
 
   @override
   Widget build(BuildContext context) {
+    //controller.viewCardApi();
     return Scaffold(
       body: Obx(() {
         return Stack(
@@ -53,9 +59,10 @@ class PaymentScreen extends StatelessWidget {
                                 physics: const BouncingScrollPhysics(),
                                 itemCount:
                                     controller.listCardModel.data?.length ?? 0,
-                                onPageChanged: (index) {
+                                onPageChanged: (index){
                                   controller.selectedIndex = index;
-                                  controller.update(["img"]);
+                                  controller.viewCardApi();
+                                  controller.update(['more']);
                                 },
                                 scrollDirection: Axis.horizontal,
                                 controller: controller.pageController,
@@ -71,7 +78,12 @@ class PaymentScreen extends StatelessWidget {
                             ),
 
                             /// Card Address
-                            Center(
+                          GetBuilder<PaymentController>(
+                            id: "more",
+                              builder: (controller){
+                            return   controller.listCardModel.data == null &&  controller.viewCardModel == null
+                                ? SizedBox()
+                                : Center(
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: Get.width * 0.0426),
@@ -79,13 +91,15 @@ class PaymentScreen extends StatelessWidget {
                                   children: [
                                     Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.center,
                                       children: [
-                                        Text(Strings.natalieNara,
+                                        Text(controller.viewCardModel?.data?.cardAddress?[0].fullName ?? "",
                                             style: textStyleFont14White),
+                                        SizedBox(
+                                            width: 15
+                                        ),
                                         Container(
-                                          margin:
-                                              const EdgeInsets.only(top: 5.5),
+                                          //margin: const EdgeInsets.only(top: 5.5),
                                           height: 4,
                                           width: 4,
                                           decoration: const BoxDecoration(
@@ -93,11 +107,16 @@ class PaymentScreen extends StatelessWidget {
                                                   Radius.circular(2)),
                                               color: ColorRes.color_FFEC5C),
                                         ),
-                                        Text(Strings.endingIn0212,
+                                        SizedBox(
+                                            width: 15
+                                        ),
+                                        Text("Ending in ${controller.viewCardModel?.data?.expYear ?? ""}",
                                             style: textStyleFont14White),
+                                        SizedBox(
+                                            width: 15
+                                        ),
                                         Container(
-                                          margin:
-                                              const EdgeInsets.only(top: 5.5),
+                                          //margin: const EdgeInsets.only(top: 5.5),
                                           height: 4,
                                           width: 4,
                                           decoration: const BoxDecoration(
@@ -105,22 +124,34 @@ class PaymentScreen extends StatelessWidget {
                                                   Radius.circular(2)),
                                               color: ColorRes.color_FFEC5C),
                                         ),
-                                        Text(Strings.date,
+                                        SizedBox(
+                                            width: 15
+                                        ),
+                                        Text("${controller.viewCardModel?.data?.cardAddress?[0].createdAt?.month.toString() ?? ""}/${controller.viewCardModel?.data?.cardAddress?[0].createdAt?.day.toString() ?? ""}",
                                             style: textStyleFont14White),
                                       ],
                                     ),
                                     SizedBox(
                                       height: Get.height * 0.01598,
                                     ),
-                                    Text(
-                                      Strings.cardAddress,
+                                    ReadMoreText(
+                                      "${controller.viewCardModel?.data?.cardAddress?[0].address ?? ""}, ${controller.viewCardModel?.data?.cardAddress?[0].country ?? ""}, ${controller.viewCardModel?.data?.cardAddress?[0].postalCode ?? ""}",
+                                      trimLines: 1,
                                       style: textStyleFont14White,
                                       textAlign: TextAlign.center,
+                                      trimMode: TrimMode.Line,
+                                      trimCollapsedText: 'see more',
+                                      lessStyle: gilroyMediumTextStyle(
+                                          fontSize: 14, color: Colors.white.withOpacity(0.5)),
+                                      trimExpandedText: '...see less',
+                                      moreStyle: gilroyMediumTextStyle(
+                                          fontSize: 14, color: Colors.white.withOpacity(0.5)),
                                     ),
                                   ],
                                 ),
                               ),
-                            ),
+                            );
+                          }),
                             SizedBox(
                               height: Get.height * 0.0184482,
                             ),
@@ -161,7 +192,13 @@ class PaymentScreen extends StatelessWidget {
                                   //Remove
                                   InkWell(
                                     onTap: () {
-                                      controller.navigateToRemove(context);
+                                      if (controller.listCardModel.data?.length ==
+                                          null) {
+                                        errorToast("Card not available");
+                                      } else {
+                                        controller.navigateToRemove(context);
+                                      }
+
                                     },
                                     child: Container(
                                       height: 32,
@@ -190,46 +227,49 @@ class PaymentScreen extends StatelessWidget {
                                   InkWell(
                                     onTap: () {
 
-                                      editCardController.cvvController.clear();
-                                      editCardController.cardNmberController.clear();
+                                      if(controller.listCardModel.data?.length == null){
+                                        errorToast("Card not available");
+                                      }
+                                      else{
+                                        editCardController.cvvController.clear();
+                                        editCardController.cardNmberController.clear();
 
-                                      Get.to(EditCardScreen(
-                                        index: controller
-                                                .listCardModel
-                                                .data?[controller.selectedIndex]
-                                                .id ??
-                                            0,
-                                        cardHolder: controller.viewCardModel
-                                                .data?.cardHolder ??
-                                            "",
-                                        month: controller
-                                                .viewCardModel.data?.expMonth
-                                                .toString() ??
-                                            "",
-                                        year: controller
-                                                .viewCardModel.data?.expYear
-                                                .toString() ??
-                                            "",
-                                        fullName: controller.viewCardModel.data
-                                                ?.cardAddress?[0].fullName ??
-                                            "",
-                                        city: controller.viewCardModel.data
-                                                ?.cardAddress?[0].city ??
-                                            "",
-                                        country: controller.viewCardModel.data
-                                                ?.cardAddress?[0].country ??
-                                            "",
-                                        //cardNmber: controller.viewCardModel.data?.cardNumber ??  "",
-                                        postalCode: controller
-                                                .viewCardModel
-                                                .data
-                                                ?.cardAddress?[0]
-                                                .postalCode ??
-                                            "",
-                                        address: controller.viewCardModel.data
-                                                ?.cardAddress?[0].address ??
-                                            "",
-                                      ));
+                                        Get.to(EditCardScreen(
+                                          index: controller
+                                              .listCardModel
+                                              .data?[controller.selectedIndex]
+                                              .id ??
+                                              0,
+                                          cardHolder: controller.viewCardModel?.data?.cardHolder ??
+                                              "",
+                                          month: controller
+                                              .viewCardModel?.data?.expMonth
+                                              .toString() ??
+                                              "",
+                                          year: controller
+                                              .viewCardModel?.data?.expYear
+                                              .toString() ??
+                                              "",
+                                          fullName: controller.viewCardModel?.data
+                                              ?.cardAddress?[0].fullName ??
+                                              "",
+                                          city: controller.viewCardModel?.data
+                                              ?.cardAddress?[0].city ??
+                                              "",
+                                          country: controller.viewCardModel?.data
+                                              ?.cardAddress?[0].country ??
+                                              "",
+                                          //cardNmber: controller.viewCardModel.data?.cardNumber ??  "",
+                                          postalCode: controller
+                                              .viewCardModel?.data
+                                              ?.cardAddress?[0]
+                                              .postalCode ??
+                                              "",
+                                          address: controller.viewCardModel?.data
+                                              ?.cardAddress?[0].address ??
+                                              "",
+                                        ));
+                                      }
                                     },
                                     child: Container(
                                       height: 32,
@@ -354,8 +394,15 @@ class PaymentScreen extends StatelessWidget {
                             ),
 
                             // ---------- Transaction
-                            (controller.transactionModel.data!.length == 0)
-                                ? SizedBox()
+                            (controller.transactionModel.data?.length == null)
+                                ? Column(
+                              children: [
+                                SizedBox(height: 80),
+                                Center(
+                                  child: Text("No Transaction yet"),
+                                )
+                              ],
+                            )
                                 : ListView.builder(
                                     shrinkWrap: true,
                                     itemCount: controller

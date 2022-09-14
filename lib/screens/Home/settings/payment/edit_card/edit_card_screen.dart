@@ -238,7 +238,7 @@ class EditCardScreen extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: Get.height * 0.03,
+            height: Get.height * 0.06,
           ),
           Row(
             children: [
@@ -257,7 +257,7 @@ class EditCardScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: Get.width * 0.3,
+                width: Get.width * 0.28,
               ),
               Text(
                 Strings.editCard,

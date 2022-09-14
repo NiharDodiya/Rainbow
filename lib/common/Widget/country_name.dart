@@ -5,6 +5,8 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
+final TextEditingController countryController = new TextEditingController();
+
 Widget dropdownButton({
   double? height,
   double? width,
@@ -30,7 +32,43 @@ Widget dropdownButton({
             )
           : SizedBox(),
 
-        DropdownButtonHideUnderline(
+
+     /* Container(
+        height: 60,
+        width: 350,
+        color: Colors.white,
+        child: TextField(
+          controller: countryController,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+              suffixIcon : IconButton(icon: Icon(Icons.arrow_drop_down),
+                onPressed: () {
+                  DropdownButton(
+
+                    // Initial Value
+                    value: selectedValue,
+                      isExpanded: true,
+                    // Down Arrow Icon
+                    icon: const Icon(Icons.keyboard_arrow_down),
+
+                    // Array list of items
+                    items: dropdownList!.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    // After selecting the desired option,it will
+                    // change button value to selected value
+                    onChanged: (String? newValue)=>onTap!(newValue!)
+                  );
+                },)
+          ),
+        ),
+      ),*/
+
+
+      DropdownButtonHideUnderline(
         child: DropdownButton2<String>(
           isExpanded: true,
           hint: Row(
@@ -52,15 +90,15 @@ Widget dropdownButton({
           items: dropdownList!
               .map(
                 (item) => DropdownMenuItem<String>(
-                  value: item,
-                  child: Text(
-                    item,
-                    style: gilroyMediumTextStyle(
-                        fontSize: 16, color: ColorRes.black),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              )
+              value: item,
+              child: Text(
+                item,
+                style: gilroyMediumTextStyle(
+                    fontSize: 16, color: ColorRes.black),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          )
               .toList(),
           value: selectedValue,
           onChanged: (value) => onTap!(value!),
@@ -79,12 +117,7 @@ Widget dropdownButton({
           itemPadding: const EdgeInsets.only(left: 20, right: 14),
           dropdownMaxHeight: height ?? 100,
 
-
-
-
-
-
-        /* height: Get.height*0.19,*/
+          // height: Get.height*0.19,
           dropdownWidth: width ?? Get.width * 0.8,
           dropdownPadding: null,
           dropdownDecoration: BoxDecoration(
@@ -97,6 +130,9 @@ Widget dropdownButton({
           scrollbarAlwaysShow: true,
         ),
       ),
+
+
+
       const SizedBox(
         height: 10,
       ),
