@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/premiumPopUpBox/api/subscribe_popup_api.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/payment/add_cart/addCart_api/addCart_api.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
@@ -112,6 +113,7 @@ class AddCartController extends GetxController {
         controller.listCardModel.data?.length == null
             ? homeController.viewProfile.data!.userType = "free"
             : homeController.viewProfile.data!.userType = "premium";
+        await UserSubscriptionAddApi.userSubscriptionAddApi();
         paymentController.loader.value = false;
       });
 

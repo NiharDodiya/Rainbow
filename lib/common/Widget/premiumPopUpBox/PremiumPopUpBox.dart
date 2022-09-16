@@ -61,10 +61,10 @@ import 'api/subscribe_popup_api.dart';
                onTap: () async {
                  Get.to(PaymentScreen());
 
-                 PaymentController paymentController = Get.put(PaymentController());
+                /* PaymentController paymentController = Get.put(PaymentController());
                  paymentController.loader.value = true;
                  await UserSubscriptionAddApi.userSubscriptionAddApi();
-                 paymentController.loader.value = false;
+                 paymentController.loader.value = false;*/
                  //subscribePopUp = false;
                },
                child: Center(

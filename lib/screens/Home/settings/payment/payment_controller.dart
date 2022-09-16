@@ -51,11 +51,12 @@ class PaymentController extends GetxController {
    try {
      loader.value = true;
      listCardModel = await ListCartApi.listCardsApi(showToast: showToast);
+     viewCardApi();
      loader.value = false;
      update(['more']);
      HomeController homeController = Get.put(HomeController());
      listCardModel.data?.length == null? homeController.viewProfile.data!.userType = "free" : homeController.viewProfile.data!.userType = "premium";
-     viewCardApi();
+     // viewCardApi();
      update(['more']);
    } catch (e) {
      debugPrint(e.toString());

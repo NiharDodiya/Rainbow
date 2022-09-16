@@ -5,7 +5,7 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
-final TextEditingController countryController = new TextEditingController();
+//final TextEditingController countryController = new TextEditingController();
 
 Widget dropdownButton({
   double? height,
