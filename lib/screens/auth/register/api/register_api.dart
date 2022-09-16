@@ -61,7 +61,7 @@ class RegisterApi {
         }
         return registerUserModelFromJson(response.body);
       } else if (response!.statusCode == 500) {
-        errorToast(jsonDecode(response.body)["message"]);
+        errorToast("Please enter valid country name");
       } else {
         errorToast(jsonDecode(response.body)["message"]);
       }

@@ -23,13 +23,35 @@ class AddCartController extends GetxController {
 
   RxBool loader = false.obs;
 
+  bool countryBox = false;
+
+  dropDownBox(){
+    if(countryBox == false){
+      countryBox = true;
+      update(["drop"]);
+    }
+    else{
+      countryBox = false;
+      update(["drop"]);
+    }
+    update();
+  }
+
   void onInit() {
     update();
     super.onInit();
   }
 
   addCart(context) async {
+
+    FocusScopeNode currentfocus = FocusScope.of(context);
+    if (!currentfocus.hasPrimaryFocus) {
+      currentfocus.unfocus();
+    }
+
     if (validation()) {
+
+
 
       Navigator.of(context).pop();
 
@@ -109,6 +131,7 @@ class AddCartController extends GetxController {
       ).then((value) async {
         final PaymentController controller = Get.find();
         await controller.listCardApi(showToast: false);
+       // await UserSubscriptionAddApi.userSubscriptionAddApi();
         final HomeController homeController = Get.find();
         controller.listCardModel.data?.length == null
             ? homeController.viewProfile.data!.userType = "free"

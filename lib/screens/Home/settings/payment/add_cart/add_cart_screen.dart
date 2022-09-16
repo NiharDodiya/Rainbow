@@ -106,6 +106,83 @@ class AddCartScreen extends StatelessWidget {
                                     height: Get.height * 0.3);
                               },
                             ),
+                          /* GetBuilder<AddCartController>(
+                             id: "drop",
+                               builder: (controller){
+                             return  Container(
+                               width: Get.width/1.24,
+                               height: 60,
+                               decoration: BoxDecoration(
+                                 color: ColorRes.white,
+                                 borderRadius: BorderRadius.circular(20),
+                               ),
+                               padding: const EdgeInsets.only(left: 20, top: 5),
+                               child: Column(
+                                 children: [
+                                   Row(
+                                     children: [
+                                       Expanded(
+                                         flex: 14,
+                                         child: InkWell(
+                                           child: TextField(
+                                             controller: controller.countryController,
+                                             style: textFieldText,
+                                             obscuringCharacter: "•",
+                                             decoration: InputDecoration(
+                                               border: InputBorder.none,
+                                               hintStyle: gilroyMediumTextStyle(
+                                                   fontSize: 18,
+                                                   color: ColorRes.black.withOpacity(0.3)),
+                                               hintText: "Canada",
+                                             ),
+                                           ),
+                                         ),
+                                       ),
+                                       IconButton(
+                                         onPressed: controller.dropDownBox,
+                                         icon: Image.asset(AssetRes.arrowDown, height: 20),)
+                                     ],
+                                   ),
+
+                                 ],
+                               ),
+                             );
+                           }),
+                           GetBuilder<AddCartController>(
+                             id: "drop",
+                               builder: (controller){
+                             return  (controller.countryBox == true)
+                                 ?Container(
+                                 height: 150,
+                                 width: 390,
+                                 decoration: BoxDecoration(
+                                   borderRadius: BorderRadius.circular(20),
+                                   color: Colors.white,
+                                 ),
+                                 child: SingleChildScrollView(
+
+                                   child: Column(
+                                     children: countryCity.map((e) {
+                                       return Padding(
+                                           padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
+                                         child: Align(
+                                           alignment: Alignment.topLeft,
+                                           child: InkWell(
+                                              onTap: (){
+                                                controller.countryController.text = e;
+                                                controller.update(["drop"]);
+                                              },
+                                             child: Text(e, style: TextStyle(color: Colors.black),
+                                           ),
+                                         ),
+                                         ),
+                                       );
+                                     }).toList(),
+                                   ),
+                                 ),
+                             )
+                                 :SizedBox();
+                           }),*/
                             /*  AppTextFiled(
                           controller: controller.countryController,
                           title: Strings.country,

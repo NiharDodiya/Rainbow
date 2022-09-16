@@ -25,7 +25,7 @@ class PaymentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   // controller.viewCardApi();
+    //controller.viewCardApi();
     return Scaffold(
       body: Obx(() {
         return Stack(

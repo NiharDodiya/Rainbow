@@ -61,6 +61,20 @@ class UpdateAdvertiseController extends GetxController {
 
   String? selectedCity;
 
+  bool countryBox = false;
+
+  dropDownBox(){
+    if(countryBox == false){
+      countryBox = true;
+      update(["drop"]);
+    }
+    else{
+      countryBox = false;
+      update(["drop"]);
+    }
+    update();
+  }
+
   void onTapEthnicity(value) {
     selectedCity = value as String;
     countryController.text = value;

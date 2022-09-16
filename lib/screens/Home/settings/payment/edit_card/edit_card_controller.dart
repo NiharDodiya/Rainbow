@@ -84,6 +84,20 @@ class EditCardController extends GetxController{
 
   RxBool loader = false.obs;
 
+  bool countryBox = false;
+
+  dropDownBox(){
+    if(countryBox == false){
+      countryBox = true;
+      update(["drop"]);
+    }
+    else{
+      countryBox = false;
+      update(["drop"]);
+    }
+    update();
+  }
+
   void onCountryCoCityChange(String value) {
     selectCountry = value;
     countryController.text = value;

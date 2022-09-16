@@ -714,70 +714,87 @@ class CreateAdvertisementScreen extends StatelessWidget {
             ),
             SizedBox(height: Get.height * 0.0197),
 
-          /*Container(
-            child: Row(
-              children: <Widget>[
-                new Expanded(
-                    child: new TextField(controller: controller.countryController)
-                ),
-                new PopupMenuButton<String>(
-                  icon: const Icon(Icons.arrow_drop_down),
-                  onSelected: (String value) {
-                    controller.countryController.text = value;
-                  },
-                  itemBuilder: (BuildContext context) {
-                    return items.map<PopupMenuItem<String>>((String value) {
-                      return new PopupMenuItem(child: new Text(value), value: value);
-                    }).toList();
-                  },
-                ),
-              ],
-            ),
-          ),*/
-
-         /*  Form(
-             key: controller.formKey,
-             child: Padding(
-               padding: EdgeInsets.only(left: 20, right: 20),
-               child: Column(
-                 crossAxisAlignment:  CrossAxisAlignment.start,
-                 children: [
-                   DropDownTextField(
-                     clearOption: false,
-                     textFieldFocusNode: controller.textFieldFocusNode,
-                     searchFocusNode: controller.searchFocusNode,
-                     searchAutofocus: true,
-                     dropDownItemCount: 8,
-                     searchShowCursor: false,
-                     enableSearch: true,
-                     searchKeyboardType: TextInputType.emailAddress,
-                     dropDownList: const [
-                       DropDownValueModel(name: 'name1', value: "value1"),
-                       DropDownValueModel(
-                           name: 'name2',
-                           value: "value2",
-                           toolTipMsg:
-                           "DropDownButton is a widget that we can use to select one unique value from a set of values"),
-                       DropDownValueModel(name: 'name3', value: "value3"),
-                       DropDownValueModel(
-                           name: 'name4',
-                           value: "value4",
-                           toolTipMsg:
-                           "DropDownButton is a widget that we can use to select one unique value from a set of values"),
-                       DropDownValueModel(name: 'name5', value: "value5"),
-                       DropDownValueModel(name: 'name6', value: "value6"),
-                       DropDownValueModel(name: 'name7', value: "value7"),
-                       DropDownValueModel(name: 'name8', value: "value8"),
-                     ],
-                     onChanged: (val) {},
-                   ),
-                 ],
-               ),
-             ),
-           ),*/
 
 
             GetBuilder<CreateAdvertisementController>(
+                id: "drop",
+                builder: (controller){
+                  return  Container(
+                    width: Get.width/1.24,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: ColorRes.white,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    padding: const EdgeInsets.only(left: 20, top: 5),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              flex: 14,
+                              child: InkWell(
+                                child: TextField(
+                                  controller: controller.countryController,
+                                  style: textFieldText,
+                                  obscuringCharacter: "•",
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintStyle: gilroyMediumTextStyle(
+                                        fontSize: 18,
+                                        color: ColorRes.black.withOpacity(0.3)),
+                                    hintText: "Canada",
+                                  ),
+                                ),
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: controller.dropDownBox,
+                              icon: Image.asset(AssetRes.arrowDown, height: 20),)
+                          ],
+                        ),
+
+                      ],
+                    ),
+                  );
+                }),
+            GetBuilder<CreateAdvertisementController>(
+                id: "drop",
+                builder: (controller){
+                  return  (controller.countryBox == true)
+                      ?Container(
+                    height: 150,
+                    width: 390,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.white,
+                    ),
+                    child: SingleChildScrollView(
+
+                      child: Column(
+                        children: countryCity.map((e) {
+                          return Padding(
+                            padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: InkWell(
+                                onTap: (){
+                                  controller.countryController.text = e;
+                                  controller.update(["drop"]);
+                                },
+                                child: Text(e, style: TextStyle(color: Colors.black),
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  )
+                      :SizedBox();
+                }),
+
+           /* GetBuilder<CreateAdvertisementController>(
               id: 'advertiser',
               builder: (controller) {
                 return dropdownButton(
@@ -790,7 +807,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                   height: Get.height * 0.3,
                 );
               },
-            ),
+            ),*/
             AppTextFiled(
               controller: advertisementController.streetController,
               title: "",

@@ -57,6 +57,20 @@ class DoctorRegisterController extends GetxController {
     update(['doctor']);
   }
 
+  bool countryBox = false;
+
+  dropDownBox(){
+    if(countryBox == false){
+      countryBox = true;
+      update(["drop"]);
+    }
+    else{
+      countryBox = false;
+      update(["drop"]);
+    }
+    update();
+  }
+
   // void onCountryCoCitySelect() {
   //   if (countryCityDropdown == false) {
   //     countryCityDropdown = true;

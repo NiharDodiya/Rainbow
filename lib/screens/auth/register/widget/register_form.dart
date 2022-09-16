@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/country_name.dart';
+import 'package:rainbow/common/Widget/country_name_controller/my_country_name.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/common/helper.dart';
@@ -224,18 +225,100 @@ class RegisterForm extends StatelessWidget {
           ),
 
           GetBuilder<RegisterController>(
+              id: "drop",
+              builder: (controller){
+                return  Container(
+                  width: Get.width/1.24,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: ColorRes.white,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  padding: const EdgeInsets.only(left: 20, top: 5),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 8,
+                            child: InkWell(
+                              child: TextField(
+                                controller: controller.ethnicityController,
+                                style: textFieldText,
+                                obscuringCharacter: "•",
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintStyle: gilroyMediumTextStyle(
+                                      fontSize: 18,
+                                      color: ColorRes.black.withOpacity(0.3)),
+                                  hintText: "Canada",
+                                ),
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: controller.dropDownBox,
+                            icon: Image.asset(AssetRes.arrowDown, height: 16),)
+                        ],
+                      ),
+
+                    ],
+                  ),
+                );
+              }),
+          GetBuilder<RegisterController>(
+              id: "drop",
+              builder: (controller){
+                return  (controller.countryBox == true)
+                    ?Container(
+                  height: 150,
+                  width: 390,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                  ),
+                  child: SingleChildScrollView(
+
+                    child: Column(
+                      children: listNationalities.data!.map((e) {
+                        return Padding(
+                          padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: InkWell(
+                              onTap: (){
+                                controller.ethnicityController.text = e.name!;
+                                controller.countryBox = false;
+                                controller.update(["drop"]);
+                                },
+                              child: Text(e.name!, style: TextStyle(color: Colors.black),
+                              ),
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                )
+                    :SizedBox();
+              }),
+          const SizedBox(
+            height: 10,
+          ),
+         /* GetBuilder<RegisterController>(
             id: 'register_screen',
             builder: (controller) {
               return dropdownButton(
                 title: Strings.ethnicity,
                 hintText: "0",
                 selectedValue: controller.selectedEthicity,
+
                 onTap: controller.onTapEthnicity,
                 dropdownList: countryNationCity,
                 height: Get.height * 0.3,
               );
             },
-          ),
+          ),*/
 
           // Column(
           //   crossAxisAlignment: CrossAxisAlignment.start,

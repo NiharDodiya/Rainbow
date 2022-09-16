@@ -41,6 +41,20 @@ class RegisterController extends GetxController {
   String? codeId;
   bool isSocial = false;
 
+  bool countryBox = false;
+
+  dropDownBox(){
+    if(countryBox == false){
+      countryBox = true;
+      update(["drop"]);
+    }
+    else{
+      countryBox = false;
+      update(["drop"]);
+    }
+    update();
+  }
+
   String socialId = "";
   List<String> martialStatusList = [
     Strings.single,
@@ -198,7 +212,10 @@ class RegisterController extends GetxController {
     } else if (pwdController.text != confirmPwdController.text && !isSocial) {
       errorToast(Strings.reTypePasswordValidError);
       return false;
-    } else if (address1Controller.text.isEmpty) {
+    } else if (ethnicityController.text != ethnicityController.text && !isSocial) {
+      errorToast("Please enter country");
+      return false;
+    }else if (address1Controller.text.isEmpty) {
       errorToast(Strings.addressLine1Error);
       return false;
     } else if (phoneController.text.isEmpty) {

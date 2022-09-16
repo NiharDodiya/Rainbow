@@ -101,6 +101,20 @@ class AccountInformationController extends GetxController {
     });
   }
 
+  bool countryBox = false;
+
+  dropDownBox(){
+    if(countryBox == false){
+      countryBox = true;
+      update(["drop"]);
+    }
+    else{
+      countryBox = false;
+      update(["drop"]);
+    }
+    update();
+  }
+
   void onCountryChange(String value) {
     selectCountry = value;
     countryController.text = value;

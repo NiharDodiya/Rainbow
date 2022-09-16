@@ -84,6 +84,19 @@ class CreateAdvertisementController extends GetxController {
     super.onInit();
   }*/
 
+  bool countryBox = false;
+
+  dropDownBox(){
+    if(countryBox == false){
+      countryBox = true;
+      update(["drop"]);
+    }
+    else{
+      countryBox = false;
+      update(["drop"]);
+    }
+    update();
+  }
 
 
   void onTapEthnicity(value) {
