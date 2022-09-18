@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
 import '../../../../../utils/color_res.dart';
 
 class RemoveDialog extends StatelessWidget {
-  const RemoveDialog({Key? key}) : super(key: key);
+  RemoveDialog({Key? key}) : super(key: key);
+
+  PaymentController paymentController = Get.put(PaymentController());
 
   @override
   Widget build(BuildContext context) {
@@ -114,6 +118,7 @@ class RemoveDialog extends StatelessWidget {
                     InkWell(
                       onTap: () {
                         Get.back();
+                          paymentController.removeCardApi();
                       },
                       child: Container(
                         height: Get.height * 0.04,

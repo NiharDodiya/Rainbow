@@ -65,12 +65,13 @@ class EndPoints {
   static const viewSupportTicket = "$baseUrl/user/support/message/view";
   static const sendSupport = "$baseUrl/user/support/send";
   static const userSupport = "$baseUrl/user/support/tickit";
-  static const addCartDetails = "$baseUrl/advirtisers/register";
+
   static const notificationOn = "$baseUrl/user/notification/on";
   static const notificationOff = "$baseUrl/user/notification/off";
   static const notificationRead = "$baseUrl/user/notification/read";
   static const userFriendList = "$baseUrl/user/friend/list";
   static const notificationGetData = "$baseUrl/user/notification/setting";
+  static const userSubscriptionAdd = "$baseUrl/user/subscription/add";
 
   ///____________________________________________ advertisement_________________
   static const createAdvertisement =
@@ -87,6 +88,13 @@ class EndPoints {
   static const viewUserAdvertiser = "$baseUrl/user/profile/view";
   static const editAdvertiser = '$baseUrl/advirtisers/advertisement/view';
   static const updateAdvertiser = '$baseUrl/advirtisers/advertisement/update';
+  static const addCartDetails = "$baseUrl/user/card/add";
+  static const listCartDetails = "$baseUrl/user/card/list";
+  static const editCard = "$baseUrl/user/card/edit";
+  static const viewCard = "$baseUrl/user/card/view";
+  static const removeCard = "$baseUrl/user/card/remove";
+  static const transaction = "$baseUrl/user/payment/list";
+  static const defaultCard = "$baseUrl/user/card/set";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

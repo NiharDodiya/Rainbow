@@ -5,6 +5,7 @@ import 'package:flutter_share/flutter_share.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/premiumPopUpBox/PremiumPopUpBox.dart';
 import 'package:rainbow/common/blocList_api/blockList_api.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/model/blockList_model.dart';
@@ -16,6 +17,8 @@ import 'package:rainbow/model/postLike_model.dart';
 import 'package:rainbow/model/postView_model.dart';
 import 'package:rainbow/model/sharePost_model.dart';
 import 'package:rainbow/model/unLikePost_model.dart';
+
+
 import 'package:rainbow/screens/Home/Story/friendStory_api/friendStory_api.dart';
 import 'package:rainbow/screens/Home/addStroy/addStory_screen.dart';
 import 'package:rainbow/screens/Home/home_screen.dart';
@@ -24,11 +27,15 @@ import 'package:rainbow/screens/Home/my_story/my_story_controller.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_screen.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
+import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/Home/settings/settings_screen.dart';
+
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_screen.dart';
 import 'package:rainbow/screens/Home/view_story/widgets/postLike_listScreen.dart';
 import 'package:rainbow/screens/Home/view_story/widgets/postView_bottomshit.dart';
+import 'package:rainbow/screens/Profile/profile_api/profile_api.dart';
+import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/widget/listOfFriendRequest_api/listOfFriendRequest_api.dart';
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
@@ -37,7 +44,6 @@ import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/screens/notification/notification_screen.dart';
 import 'package:uni_links/uni_links.dart';
 
-bool subscribePopUp = false;
 
 class HomeController extends GetxController {
   RxBool loader = false.obs;
@@ -74,9 +80,13 @@ class HomeController extends GetxController {
   int page = 1;
   int limit = 10;
 
+  RxBool premiumBox = false.obs;
+
   // final storyController = EditStoryController();
   ConnectionsController connectionsController =
       Get.put(ConnectionsController());
+
+
 
   @override
   void onInit() async {
@@ -340,8 +350,14 @@ class HomeController extends GetxController {
     await connectionsController.callRequestApi();
   }
 
+
+
   Future<void> init() async {
     changeLoader(true);
+    await viewProfileApi();
+    PaymentController paymentController = Get.put(PaymentController());
+    await paymentController.listCardApi(showToast: false);
+    paymentController.listCardModel.data?.length == null? viewProfile.data!.userType = "free" : viewProfile.data!.userType = "premium";
     await getCurrentLocation();
     loader.value = true;
     await controller.viewProfileDetails();
@@ -395,11 +411,14 @@ class HomeController extends GetxController {
     loader.value = status;*/
   }
 
-  void onNotyIconBtnTap() {
+  void onNotyIconBtnTap({context}) {
     NotificationsController notificationsController =
         Get.put(NotificationsController());
     notificationsController.init();
-    Get.to(() => NotificationScreen());
+    viewProfile.data!.userType == "free"
+        ? premiumPopUpBox(context: context)
+        : Get.to(() => NotificationScreen());
+   // Get.to(() => NotificationScreen());
   }
 
   double calculateDistance(lat1, lon1, lat2, lon2) {
@@ -465,5 +484,20 @@ class HomeController extends GetxController {
     ConnectionsProfileController connectionsProfileController =
         Get.put(ConnectionsProfileController());
     connectionsProfileController.callApi(userId);
+  }
+
+  ViewProfile viewProfile = ViewProfile();
+
+  Future<void> viewProfileApi() async {
+    try {
+      loader.value = true;
+      viewProfile = await ViewProfileApi.postRegister();
+      controller.update(["settings"]);
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+
+      print(e.toString());
+    }
   }
 }

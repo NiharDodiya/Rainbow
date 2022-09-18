@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/premiumPopUpBox/PremiumPopUpBox.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
@@ -18,6 +20,7 @@ class SettingsScreen extends StatelessWidget {
   SettingsScreen({Key? key}) : super(key: key);
   SettingsController controller = Get.put(SettingsController());
   ProfileController profileController = Get.put(ProfileController());
+  HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +37,13 @@ class SettingsScreen extends StatelessWidget {
                   Column(
                     children: [
                       appBar(context),
+
                       Expanded(
                         child: SingleChildScrollView(
                           child: Column(
                             children: [
                               profile(),
-                              settingsProperties(),
+                              settingsProperties(context: context),
                             ],
                           ),
                         ),
@@ -202,7 +206,7 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Widget settingsProperties() {
+  Widget settingsProperties({context}) {
     return Container(
       width: Get.width,
       decoration: const BoxDecoration(
@@ -259,7 +263,10 @@ class SettingsScreen extends StatelessWidget {
               ConnectionsController connectionController =
                   Get.put(ConnectionsController());
               connectionController.init();
-              Get.to(() => ConnectionsScreen());
+              homeController.viewProfile.data!.userType == "free"
+                  ? premiumPopUpBox(context: context)
+                  : Get.to(() => ConnectionsScreen());
+
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 5, bottom: 5),
@@ -295,7 +302,9 @@ class SettingsScreen extends StatelessWidget {
           //Support
           InkWell(
             onTap: () {
-              controller.onTapSupport();
+              homeController.viewProfile.data!.userType == "free"
+                  ? premiumPopUpBox(context: context)
+                  : controller.onTapSupport();
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 5, bottom: 5),
@@ -354,7 +363,7 @@ class SettingsScreen extends StatelessWidget {
                     width: Get.width * 0.57,
                   ),
                   SizedBox(
-                      height: 10, width: 6, child: Image.asset(AssetRes.next))
+                      height: 10, width: 6, child: Image.asset(AssetRes.next),),
                 ],
               ),
             ),
@@ -444,12 +453,9 @@ class SettingsScreen extends StatelessWidget {
               ),
             ],
           ),
-          Divider(
-            thickness: 1,
-            color: ColorRes.color_4F359B.withOpacity(0.4),
-          ),
+
           //Subscription
-          InkWell(
+         /* InkWell(
             onTap: () {
               Get.to(() => SubscriptionScreen());
             },
@@ -485,8 +491,8 @@ class SettingsScreen extends StatelessWidget {
           ),
           SizedBox(
             height: Get.height * 0.03,
-          ),
-          Text(
+          ),*/
+          /*Text(
             Strings.yourReferralCode,
             style: textStyleFont15White,
           ),
@@ -516,9 +522,9 @@ class SettingsScreen extends StatelessWidget {
                 style: gilroyBoldTextStyle(fontSize: 11.9619),
               )),
             ),
-          ),
+          ),*/
           SizedBox(
-            height: Get.height * 0.035,
+            height: Get.height * 0.045,
           ),
           GestureDetector(
             onTap: () async {
@@ -550,7 +556,7 @@ class SettingsScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: Get.height * 0.07,
+            height: Get.height * 0.22,
           ),
         ],
       ),

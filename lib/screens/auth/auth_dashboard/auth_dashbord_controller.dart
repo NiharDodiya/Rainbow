@@ -107,7 +107,7 @@ String? token;
               "uid": user.uid,
               "name": user.displayName,
               "image": user.photoURL,
-              "UserToken":token,
+              "UserToken": token.toString(),
               "online": true,
             });
           }

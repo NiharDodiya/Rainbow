@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:country_picker/country_picker.dart';
+import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
@@ -13,6 +14,7 @@ import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/helper.dart';
 import 'package:rainbow/model/listUserTag_model.dart';
+import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/advertisement_deatail/advertisement_deatail_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/createadvertisement_api/createAdvertisement_api.dart';
@@ -22,6 +24,7 @@ import 'package:rainbow/utils/color_res.dart';
 
 import '../../../../../common/popup.dart';
 import '../../../../../utils/strings.dart';
+import 'create_advertisement_screen.dart';
 
 class CreateAdvertisementController extends GetxController {
   List tags = [];
@@ -41,6 +44,7 @@ class CreateAdvertisementController extends GetxController {
   TextEditingController descriptoionController = TextEditingController();
   TextEditingController urlLinkController = TextEditingController();
   TextEditingController callToActionController = TextEditingController();
+  TextEditingController myCountryController = TextEditingController();
   List<String> dropDList = ["Learn More", "Contact Us"];
 
   DateTime? startTime = DateTime.now();
@@ -56,6 +60,8 @@ class CreateAdvertisementController extends GetxController {
 
   int pageIndex = 0;
 
+
+
   TextEditingController amountController =
       TextEditingController(text: "\$200.00");
 
@@ -64,6 +70,21 @@ class CreateAdvertisementController extends GetxController {
   RxBool loader = false.obs;
 
   String? selectedCity;
+
+ /* final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  FocusNode searchFocusNode = FocusNode();
+  FocusNode textFieldFocusNode = FocusNode();
+   SingleValueDropDownController? cnt;
+   MultiValueDropDownController? cntMulti;
+
+  void onInit() {
+    cnt = SingleValueDropDownController();
+    cntMulti = MultiValueDropDownController();
+    update();
+    super.onInit();
+  }*/
+
+
 
   void onTapEthnicity(value) {
     selectedCity = value as String;
@@ -314,7 +335,9 @@ class CreateAdvertisementController extends GetxController {
         urlLink: urlLinkController.text,
         countryCode: codeId.toString(),
         startDate: DateFormat().add_yMd().format(startTime!),
-        endDate: DateFormat().add_yMd().format(endTime!));
+        endDate: DateFormat().add_yMd().format(endTime!),
+        amount: 200,
+    );
     adHomeController.myAdvertiserListData();
     adHomeController.update(['more']);
     loader.value = false;

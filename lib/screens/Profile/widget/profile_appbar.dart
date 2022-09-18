@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/premiumPopUpBox/PremiumPopUpBox.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/editProfile_contoller.dart';
@@ -10,6 +12,7 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
 ConnectionsController controller = Get.put(ConnectionsController());
+HomeController homeController = Get.put(HomeController());
 
 Widget profileAppbar(
     String text, bool show, context, int i, VoidCallback? onTap) {
@@ -53,7 +56,10 @@ Widget profileAppbar(
                       EditProfileController editController =
                           Get.put(EditProfileController());
                       editController.init();
-                      Get.to(() => const EditProfileScreen());
+                      homeController.viewProfile.data!.userType == "free"
+                          ? premiumPopUpBox(context: context)
+                          : Get.to(() => const EditProfileScreen());
+                      //Get.to(() => const EditProfileScreen());
                     },
                     child: SizedBox(
                       height: 31,
@@ -70,8 +76,10 @@ Widget profileAppbar(
                 ConnectionsController connectionController =
                     Get.put(ConnectionsController());
                 connectionController.init();
-                Get.to(() => ConnectionsScreen());
-              },
+                homeController.viewProfile.data!.userType == "free"
+                    ? premiumPopUpBox(context: context)
+                    : Get.to(() => ConnectionsScreen());
+                },
               child: Stack(
                 children: [
                   const SizedBox(

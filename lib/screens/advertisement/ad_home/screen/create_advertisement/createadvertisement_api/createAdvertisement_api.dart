@@ -24,7 +24,9 @@ class AddAdvertisement {
       String? city,
       String? street,
       String? countryCode,
-      String? callAction}) async {
+      String? callAction,
+        int? amount,
+      }) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
     // int userId = PrefService.getInt(PrefKeys.userId);
     try {
@@ -44,7 +46,8 @@ class AddAdvertisement {
         "call_action": callAction.toString(),
         "start_date": startDate.toString(),
         "end_date": endDate.toString(),
-        "url_link": urlLink.toString()
+        "url_link": urlLink.toString(),
+        "amount": amount,
       };
 
       http.Response? response = await HttpService.postApi(

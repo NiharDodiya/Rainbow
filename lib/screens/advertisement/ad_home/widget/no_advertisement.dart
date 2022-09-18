@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/model/listCardModel.dart';
+import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -13,6 +15,7 @@ import '../screen/create_advertisement/create_advertisement_screen.dart';
 Widget noAdvertisement() {
   CreateAdvertisementController advertisementControllers =
       Get.put(CreateAdvertisementController());
+
   return GetBuilder<AdHomeController>(
     builder: (controller) {
       return Expanded(
@@ -45,29 +48,46 @@ Widget noAdvertisement() {
                   style: gilroySemiBoldTextStyle(fontSize: 24),
                   textAlign: TextAlign.center,
                 ),
+
                 SizedBox(
-                  height: Get.height * 0.25,
+                  height: Get.height * 0.20,
                 ),
-                SubmitButton(
-                  onTap: () {
-                    advertisementControllers.tagsController.clear();
-                    advertisementControllers.titleController.clear();
-                    advertisementControllers.countryController.clear();
-                    advertisementControllers.streetController.clear();
-                    advertisementControllers.cityController.clear();
-                    advertisementControllers.provinceController.clear();
-                    advertisementControllers.postalCodeController.clear();
-                    advertisementControllers.dateController.clear();
-                    advertisementControllers.descriptoionController.clear();
-                    advertisementControllers.urlLinkController.clear();
-                    advertisementControllers.callToActionController.clear();
-                    advertisementControllers.address =
-                        Strings.useCurrentLocation;
-                    advertisementControllers.callToAction = null;
-                    advertisementControllers.imagePath = [];
-                    Get.to(() => CreateAdvertisementScreen());
-                  },
-                  text: Strings.createAdvertisement,
+               GetBuilder<AdHomeController>(
+                 id: "more",
+                   builder: (controller){
+                 return  SubmitButton(
+                   onTap: ()  async{
+                     advertisementControllers.tagsController.clear();
+                     advertisementControllers.titleController.clear();
+                     advertisementControllers.countryController.clear();
+                     advertisementControllers.streetController.clear();
+                     advertisementControllers.cityController.clear();
+                     advertisementControllers.provinceController.clear();
+                     advertisementControllers.postalCodeController.clear();
+                     advertisementControllers.dateController.clear();
+                     advertisementControllers.descriptoionController.clear();
+                     advertisementControllers.urlLinkController.clear();
+                     advertisementControllers.callToActionController.clear();
+                     advertisementControllers.address =
+                         Strings.useCurrentLocation;
+                     advertisementControllers.callToAction = null;
+                     advertisementControllers.imagePath = [];
+
+                     PaymentController paymentController = Get.put(PaymentController());
+
+                     await paymentController.listCardApi(showToast: false);
+
+                    paymentController.listCardModel.data?.length == null
+                         ? controller.onTap()
+                         : Get.to(() => CreateAdvertisementScreen());
+                        controller.update(["more"]);
+
+                   },
+                   text: Strings.createAdvertisement,
+                 );
+               }),
+                SizedBox(
+                  height: Get.height * 0.20,
                 ),
               ],
             ),

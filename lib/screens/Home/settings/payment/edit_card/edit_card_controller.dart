@@ -1,14 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:rainbow/common/Widget/premiumPopUpBox/api/subscribe_popup_api.dart';
-import 'package:rainbow/screens/Home/home_controller.dart';
-import 'package:rainbow/screens/Home/settings/payment/add_cart/addCart_api/addCart_api.dart';
+import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/model/listCardModel.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
+import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
+import 'package:rainbow/screens/advertisement/ad_payment/ad_payment_api/ad_payment_api.dart';
+import 'package:rainbow/utils/strings.dart';
 
-import '../../../../../common/popup.dart';
-import '../../../../../utils/strings.dart';
+import 'edit_card_api/edit_card_api.dart';
 
-class AddCartController extends GetxController {
+class EditCardController extends GetxController{
+
   TextEditingController fullNameController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController cityController = TextEditingController();
@@ -21,26 +23,23 @@ class AddCartController extends GetxController {
   TextEditingController cvvController = TextEditingController();
   String? selectCountry;
 
-  RxBool loader = false.obs;
+  PaymentController paymentController = Get.put(PaymentController());
 
   void onInit() {
     update();
     super.onInit();
   }
 
-  addCart(context) async {
-    if (validation()) {
-
+  editCart({int? index, context}) async {
+    if(validation()){
       Navigator.of(context).pop();
-
       Get.find<PaymentController>().loader.value = true;
       Future.delayed(Duration(seconds: 1), () {
-        addCartDetails(context);
-      /*  Get.find<PaymentController>().viewCardModel;
-        update(["abc"]);*/
+         editCardApi(id: index);
       });
     }
   }
+
 
   bool validation() {
     if (fullNameController.text.isEmpty) {
@@ -83,39 +82,39 @@ class AddCartController extends GetxController {
     return true;
   }
 
+  RxBool loader = false.obs;
+
   void onCountryCoCityChange(String value) {
     selectCountry = value;
     countryController.text = value;
     update(['addCard']);
   }
 
-  void addCartDetails(context) {
-    try {
-      PaymentController paymentController = Get.put(PaymentController());
+  ListCardModel listCardModel = ListCardModel();
 
+
+
+   editCardApi({int? id}) {
+    try {
       paymentController.loader.value = true;
-      AddCartApi.addCartDetailsApi(
-        context,
-        cardNumber: cardNmberController.text,
+      EditCardApi.editCardApi(
+        idCard: id,
+        country: countryController.text,
+        postalCode: postalCodeController.text,
+        city: cityController.text,
+        address: cityController.text,
+        fullName: fullNameController.text,
+        exYear: expiryYearController.text,
         exMonth: expiryMonthController.text,
         cardHolder: nameOnCardController.text,
-        cvv: cvvController.text,
-        exYear: expiryYearController.text,
-        fullName: fullNameController.text,
-        address: cityController.text,
-        city: cityController.text,
-        postalCode: postalCodeController.text,
-        country: countryController.text,
-      ).then((value) async {
+      ).then((value){
         final PaymentController controller = Get.find();
-        await controller.listCardApi(showToast: false);
-        final HomeController homeController = Get.find();
-        controller.listCardModel.data?.length == null
-            ? homeController.viewProfile.data!.userType = "free"
-            : homeController.viewProfile.data!.userType = "premium";
-        await UserSubscriptionAddApi.userSubscriptionAddApi();
+        controller.listCardApi(showToast: false);
+        update(['more']);
         paymentController.loader.value = false;
       });
+
+
 
     } catch (e) {
       debugPrint(e.toString());

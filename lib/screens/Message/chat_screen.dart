@@ -21,6 +21,7 @@ class ChatScreen extends StatelessWidget {
   final String? otherUserUid;
   final String? userUid;
   final String? profileImage;
+  final String? userToken;
 
   ChatScreen(
       {Key? key,
@@ -28,7 +29,9 @@ class ChatScreen extends StatelessWidget {
       this.userUid,
       this.otherUserUid,
       this.roomId,
-      this.profileImage})
+      this.profileImage,
+      this.userToken
+      })
       : super(key: key);
   MessageController messageController = Get.put(MessageController());
 
@@ -521,7 +524,9 @@ class ChatScreen extends StatelessWidget {
                                                 if (controller.validation()) {
                                                   controller.sendMessage(
                                                       roomId.toString(),
-                                                      otherUserUid);
+                                                      otherUserUid,
+                                                    userToken
+                                                  );
                                                   FocusScope.of(context)
                                                       .unfocus();
                                                 }
@@ -583,7 +588,7 @@ class ChatScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 20),
                   child: FloatingActionButton(
                     onPressed: () {
-                      controller.imageSend(otherUserUid.toString());
+                      controller.imageSend(otherUserUid.toString(), userToken.toString());
                     },
                     backgroundColor: ColorRes.color_4F359B,
                     child: const Icon(

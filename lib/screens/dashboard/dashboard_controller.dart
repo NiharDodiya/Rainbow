@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/model/viewAdvertiserModel.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Message/message_controller.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Search/search_controller.dart';
+import 'package:rainbow/screens/advertisement/ad_home/viewAdvertiserProfile_api/viewAdvertiser_api.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
@@ -14,12 +16,16 @@ class DashboardController extends GetxController {
   final MessageController messageController = Get.put(MessageController());
   final ProfileController profileController = Get.put(ProfileController());
 
+  RxBool loader = false.obs;
+
   @override
   void onInit() async {
     homeController.getCurrentLocation();
     update(['bottom_bar']);
     super.onInit();
   }
+
+
 
   void onBottomBarChange(int index) {
     currentTab = index;
@@ -48,4 +54,6 @@ class DashboardController extends GetxController {
       print(e.toString());
     }
   }
+
+
 }
