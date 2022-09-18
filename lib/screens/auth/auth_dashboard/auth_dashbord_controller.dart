@@ -40,8 +40,8 @@ class AuthDashBordController extends GetxController {
       await ListOfCountryApi.postRegister()
           .then((value) => listCountryModel = value!);
       print(listCountryModel);
-      //getCountry();
-      getCountryNation();
+      getCountry();
+
     } catch (e) {
       errorToast(e.toString());
       debugPrint(e.toString());
@@ -50,10 +50,10 @@ class AuthDashBordController extends GetxController {
 
   Future<void> countryNationalites() async {
     try {
-      await ListOfCountryApi.postRegister()
-          .then((value) => listCountryModel = value!);
-      print(listCountryModel);
-      getCountry();
+      await ListOfNationalitiesApi.postRegister()
+          .then((value) => listNationalities = value!);
+      print(listNationalities);
+      getCountryNation();
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -186,6 +186,7 @@ String? token;
   void onContinueWithEmailTap() {
     final RegisterController controller = Get.put(RegisterController());
     controller.isSocial = false;
+    countryNationalites();
     Get.to(() => RegisterScreen());
   }
 
