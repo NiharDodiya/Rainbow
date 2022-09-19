@@ -186,6 +186,7 @@ String? token;
   void onContinueWithEmailTap() {
     final RegisterController controller = Get.put(RegisterController());
     controller.isSocial = false;
+    countryNationalites();
     Get.to(() => RegisterScreen());
   }
 
