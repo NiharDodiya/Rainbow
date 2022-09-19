@@ -161,9 +161,9 @@ class RegisterForm extends StatelessWidget {
                           ),
                           Expanded(
                             child: Text(
-                              "single",
+                              "Single",
                               style: gilroyMediumTextStyle(
-                                  fontSize: 16,
+                                  fontSize: 18,
                                   color: ColorRes.black.withOpacity(0.3)),
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -223,7 +223,16 @@ class RegisterForm extends StatelessWidget {
               ),
             ],
           ),
-
+          Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              Strings.country,
+              style: gilroySemiBoldTextStyle(fontSize: 14),
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
           GetBuilder<RegisterController>(
               id: "drop",
               builder: (controller){
@@ -251,14 +260,15 @@ class RegisterForm extends StatelessWidget {
                                   hintStyle: gilroyMediumTextStyle(
                                       fontSize: 18,
                                       color: ColorRes.black.withOpacity(0.3)),
-                                  hintText: "Canada",
+                                  hintText: "0",
                                 ),
                               ),
                             ),
                           ),
                           IconButton(
                             onPressed: controller.dropDownBox,
-                            icon: Image.asset(AssetRes.arrowDown, height: 16),)
+                            icon: Image.asset(AssetRes.arrowDown, height: 16),),
+                          SizedBox(width: 8,),
                         ],
                       ),
 
@@ -291,7 +301,7 @@ class RegisterForm extends StatelessWidget {
                                 controller.countryBox = false;
                                 controller.update(["drop"]);
                                 },
-                              child: Text(e.name!, style: TextStyle(color: Colors.black),
+                              child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
                               ),
                             ),
                           ),

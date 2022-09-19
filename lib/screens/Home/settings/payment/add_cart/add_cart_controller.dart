@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/premiumPopUpBox/api/subscribe_popup_api.dart';
+import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/payment/add_cart/addCart_api/addCart_api.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
@@ -20,6 +21,8 @@ class AddCartController extends GetxController {
   TextEditingController expiryYearController = TextEditingController();
   TextEditingController cvvController = TextEditingController();
   String? selectCountry;
+  String? countryId;
+
 
   RxBool loader = false.obs;
 
@@ -37,6 +40,8 @@ class AddCartController extends GetxController {
     update();
   }
 
+
+
   void onInit() {
     update();
     super.onInit();
@@ -44,15 +49,14 @@ class AddCartController extends GetxController {
 
   addCart(context) async {
 
+
+
     FocusScopeNode currentfocus = FocusScope.of(context);
     if (!currentfocus.hasPrimaryFocus) {
       currentfocus.unfocus();
     }
 
     if (validation()) {
-
-
-
       Navigator.of(context).pop();
 
       Get.find<PaymentController>().loader.value = true;
@@ -65,6 +69,11 @@ class AddCartController extends GetxController {
   }
 
   bool validation() {
+    for (int i = 0; i < listNationalities.data!.length; i++) {
+      if (listNationalities.data![i].name == countryController.text) {
+        countryId = countryController.text;
+      }
+    }
     if (fullNameController.text.isEmpty) {
       errorToast(Strings.fullNameError);
       return false;
@@ -101,6 +110,9 @@ class AddCartController extends GetxController {
     } else if (cvvController.text.length != 3) {
       errorToast(Strings.cVVErrorValidation);
       return false;
+    } else if(countryId == null || countryId == ""){
+      errorToast("Please enter valid country name");
+      return false;
     }
     return true;
   }
@@ -136,6 +148,7 @@ class AddCartController extends GetxController {
         controller.listCardModel.data?.length == null
             ? homeController.viewProfile.data!.userType = "free"
             : homeController.viewProfile.data!.userType = "premium";
+        paymentController.loader.value = true;
         await UserSubscriptionAddApi.userSubscriptionAddApi();
         paymentController.loader.value = false;
       });

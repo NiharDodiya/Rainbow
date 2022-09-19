@@ -61,6 +61,20 @@ class EditProfileController extends GetxController {
     super.onInit();
   }
 
+  bool countryBox = false;
+
+  dropDownBox(){
+    if(countryBox == false){
+      countryBox = true;
+      update(["drop"]);
+    }
+    else{
+      countryBox = false;
+      update(["drop"]);
+    }
+    update();
+  }
+
   Future<void> init() async {
     await determinePosition();
     position = await getCurrentPosition();
@@ -333,8 +347,8 @@ class EditProfileController extends GetxController {
   Future<void> editProfileApi(BuildContext context) async {
     loader.value = true;
     try {
-      lat = position!.latitude.toString();
-      lan = position!.longitude.toString();
+      lat = position?.latitude.toString();
+      lan = position?.longitude.toString();
       print(lat);
       print(lan);
       await uploadImageApi();

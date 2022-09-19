@@ -53,7 +53,7 @@ class _AdHomeScreenState extends State<AdHomeScreen> {
                   GetBuilder<AdHomeController>(
                       id: 'list',
                       builder: (controller) {
-                        return (controller.myAdvertiserModel.data == null)
+                        return (controller.myAdvertiserModel.data == null || controller.myAdvertiserModel.data!.length == 0)
                             ? noAdvertisement()
                             : advertisementList();
                       }),

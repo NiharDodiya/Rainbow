@@ -186,13 +186,14 @@ class CreateAdvertisementController extends GetxController {
   }
 
   int? codeId;
+  String? myId;
 
   createAdvertisement() {
     tagsListSet();
     if (validation()) {
-      for (int i = 0; i < listCountryModel.data!.length; i++) {
-        if (listCountryModel.data![i].name == countryController.text) {
-          codeId = listCountryModel.data![i].id;
+      for (int i = 0; i < listNationalities.data!.length; i++) {
+        if (listNationalities.data![i].name == countryController.text) {
+          codeId = listNationalities.data![i].id;
         }
       }
       /*uploadImageApi();*/
@@ -201,6 +202,14 @@ class CreateAdvertisementController extends GetxController {
   }
 
   bool validation() {
+
+    for (int i = 0; i < listNationalities.data!.length; i++) {
+      if (listNationalities.data![i].name == countryController.text) {
+        myId = countryController.text;
+      }
+    }
+
+
     if (tagsController.text.isEmpty) {
       errorToast(Strings.tagsError);
       return false;
@@ -236,6 +245,9 @@ class CreateAdvertisementController extends GetxController {
       return false;
     } else if (hasValidUrl(urlLinkController.text) == false) {
       errorToast(Strings.websiteError);
+      return false;
+    }else if(myId == null || myId == ""){
+      errorToast("Please enter valid country name");
       return false;
     }
     return true;

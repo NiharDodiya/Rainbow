@@ -94,7 +94,7 @@ class AddCartScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            GetBuilder<AddCartController>(
+                          /*  GetBuilder<AddCartController>(
                               id: 'addCard',
                               builder: (controller) {
                                 return dropdownButton(
@@ -105,8 +105,10 @@ class AddCartScreen extends StatelessWidget {
                                     dropdownList: countryCity,
                                     height: Get.height * 0.3);
                               },
-                            ),
-                          /* GetBuilder<AddCartController>(
+                            ),*/
+                            Text(Strings.country, style: gilroySemiBoldTextStyle(fontSize: 14),),
+                           SizedBox(height: 8),
+                           GetBuilder<AddCartController>(
                              id: "drop",
                                builder: (controller){
                              return  Container(
@@ -140,7 +142,8 @@ class AddCartScreen extends StatelessWidget {
                                        ),
                                        IconButton(
                                          onPressed: controller.dropDownBox,
-                                         icon: Image.asset(AssetRes.arrowDown, height: 20),)
+                                         icon: Image.asset(AssetRes.arrowDown, height: 20),),
+                                       SizedBox(width: 5,),
                                      ],
                                    ),
 
@@ -153,7 +156,7 @@ class AddCartScreen extends StatelessWidget {
                                builder: (controller){
                              return  (controller.countryBox == true)
                                  ?Container(
-                                 height: 150,
+                                 height: 160,
                                  width: 390,
                                  decoration: BoxDecoration(
                                    borderRadius: BorderRadius.circular(20),
@@ -162,17 +165,18 @@ class AddCartScreen extends StatelessWidget {
                                  child: SingleChildScrollView(
 
                                    child: Column(
-                                     children: countryCity.map((e) {
+                                     children: listNationalities.data!.map((e) {
                                        return Padding(
                                            padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
                                          child: Align(
                                            alignment: Alignment.topLeft,
                                            child: InkWell(
                                               onTap: (){
-                                                controller.countryController.text = e;
+                                                controller.countryController.text = e.name!;
+                                                controller.countryBox = false;
                                                 controller.update(["drop"]);
                                               },
-                                             child: Text(e, style: TextStyle(color: Colors.black),
+                                             child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
                                            ),
                                          ),
                                          ),
@@ -182,7 +186,7 @@ class AddCartScreen extends StatelessWidget {
                                  ),
                              )
                                  :SizedBox();
-                           }),*/
+                           }),
                             /*  AppTextFiled(
                           controller: controller.countryController,
                           title: Strings.country,

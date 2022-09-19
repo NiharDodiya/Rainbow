@@ -25,12 +25,12 @@ class AccountInformationScreen extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
+            height: Get.height,
             width: Get.width,
             decoration: const BoxDecoration(color: ColorRes.color_4F359B),
             child: Column(children: [
               appBar(),
               SizedBox(
-                height: Get.height * 0.191785714,
                 width: Get.width * 0.35181,
                 child: Stack(
                   children: [
@@ -249,11 +249,17 @@ class AccountInformationScreen extends StatelessWidget {
                 title: Strings.city,
                 hintText: Strings.ontrario,
               ),
+
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text(Strings.country, style: gilroySemiBoldTextStyle(fontSize: 14),),
+              ),
+              SizedBox(height:10),
               GetBuilder<AccountInformationController>(
                   id: "drop",
                   builder: (controller){
                     return  Container(
-                      width: Get.width/1.24,
+                      width: Get.width/1.18,
                       height: 60,
                       decoration: BoxDecoration(
                         color: ColorRes.white,
@@ -265,7 +271,7 @@ class AccountInformationScreen extends StatelessWidget {
                           Row(
                             children: [
                               Expanded(
-                                flex: 14,
+                                flex: 8,
                                 child: InkWell(
                                   child: TextField(
                                     controller: controller.countryController,
@@ -283,7 +289,8 @@ class AccountInformationScreen extends StatelessWidget {
                               ),
                               IconButton(
                                 onPressed: controller.dropDownBox,
-                                icon: Image.asset(AssetRes.arrowDown, height: 20),)
+                                icon: Image.asset(AssetRes.arrowDown, height: 18),),
+                              SizedBox(width: 8,),
                             ],
                           ),
 
@@ -305,17 +312,18 @@ class AccountInformationScreen extends StatelessWidget {
                       child: SingleChildScrollView(
 
                         child: Column(
-                          children: countryCity.map((e) {
+                          children: listNationalities.data!.map((e) {
                             return Padding(
                               padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
                               child: Align(
                                 alignment: Alignment.topLeft,
                                 child: InkWell(
                                   onTap: (){
-                                    controller.countryController.text = e;
+                                    controller.countryController.text = e.name!;
+                                    controller.countryBox = false;
                                     controller.update(["drop"]);
                                   },
-                                  child: Text(e, style: TextStyle(color: Colors.black),
+                                  child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
                                   ),
                                 ),
                               ),
@@ -326,6 +334,7 @@ class AccountInformationScreen extends StatelessWidget {
                     )
                         :SizedBox();
                   }),
+              SizedBox(height:10),
               /*GetBuilder<AccountInformationController>(
                 id: 'doctor',
                 builder: (controller) {
@@ -400,11 +409,16 @@ class AccountInformationScreen extends StatelessWidget {
                   hintText: Strings.city,
                   multiLine: true,
                 ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(Strings.country, style: gilroySemiBoldTextStyle(fontSize: 14),),
+                ),
+                SizedBox(height:10),
                 GetBuilder<AccountInformationController>(
                     id: "drop",
                     builder: (controller){
                       return  Container(
-                        width: Get.width/1.24,
+                        width: Get.width/1.18,
                         height: 60,
                         decoration: BoxDecoration(
                           color: ColorRes.white,
@@ -416,7 +430,7 @@ class AccountInformationScreen extends StatelessWidget {
                             Row(
                               children: [
                                 Expanded(
-                                  flex: 14,
+                                  flex: 8,
                                   child: InkWell(
                                     child: TextField(
                                       controller: controller.countryController,
@@ -434,7 +448,8 @@ class AccountInformationScreen extends StatelessWidget {
                                 ),
                                 IconButton(
                                   onPressed: controller.dropDownBox,
-                                  icon: Image.asset(AssetRes.arrowDown, height: 20),)
+                                  icon: Image.asset(AssetRes.arrowDown, height: 18),),
+                                SizedBox(width: 8,),
                               ],
                             ),
 
@@ -456,17 +471,18 @@ class AccountInformationScreen extends StatelessWidget {
                         child: SingleChildScrollView(
 
                           child: Column(
-                            children: countryCity.map((e) {
+                            children: listNationalities.data!.map((e) {
                               return Padding(
                                 padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
                                 child: Align(
                                   alignment: Alignment.topLeft,
                                   child: InkWell(
                                     onTap: (){
-                                      controller.countryController.text = e;
+                                      controller.countryController.text = e.name!;
+                                      controller.countryBox = false;
                                       controller.update(["drop"]);
                                     },
-                                    child: Text(e, style: TextStyle(color: Colors.black),
+                                    child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
                                     ),
                                   ),
                                 ),
@@ -477,6 +493,7 @@ class AccountInformationScreen extends StatelessWidget {
                       )
                           :SizedBox();
                     }),
+                SizedBox(height:10),
                 /*GetBuilder<AccountInformationController>(
                   id: 'doctor',
                   builder: (controller) {

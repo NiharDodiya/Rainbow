@@ -129,6 +129,9 @@ class EditCardScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
+
+                                Text(Strings.country, style: gilroySemiBoldTextStyle(fontSize: 14),),
+                                SizedBox(height: 8),
                                 GetBuilder<EditCardController>(
                                     id: "drop",
                                     builder: (controller){
@@ -163,7 +166,8 @@ class EditCardScreen extends StatelessWidget {
                                                 ),
                                                 IconButton(
                                                   onPressed: controller.dropDownBox,
-                                                  icon: Image.asset(AssetRes.arrowDown, height: 20),)
+                                                  icon: Image.asset(AssetRes.arrowDown, height: 20),),
+                                                SizedBox(width: 5,),
                                               ],
                                             ),
 
@@ -176,7 +180,7 @@ class EditCardScreen extends StatelessWidget {
                                     builder: (controller){
                                       return  (controller.countryBox == true)
                                           ?Container(
-                                        height: 150,
+                                        height: 160,
                                         width: 390,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(20),
@@ -185,17 +189,18 @@ class EditCardScreen extends StatelessWidget {
                                         child: SingleChildScrollView(
 
                                           child: Column(
-                                            children: countryCity.map((e) {
+                                            children: listNationalities.data!.map((e) {
                                               return Padding(
                                                 padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
                                                 child: Align(
                                                   alignment: Alignment.topLeft,
                                                   child: InkWell(
                                                     onTap: (){
-                                                      controller.countryController.text = e;
+                                                      controller.countryController.text = e.name!;
+                                                      controller.countryBox = false;
                                                       controller.update(["drop"]);
                                                     },
-                                                    child: Text(e, style: TextStyle(color: Colors.black),
+                                                    child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
                                                     ),
                                                   ),
                                                 ),
@@ -206,6 +211,7 @@ class EditCardScreen extends StatelessWidget {
                                       )
                                           :SizedBox();
                                     }),
+
                                /* GetBuilder<EditCardController>(
                                   id: 'addCard',
                                   builder: (controller) {
@@ -279,6 +285,7 @@ class EditCardScreen extends StatelessWidget {
                                   controller: controller.cvvController,
                                   title: Strings.cVV,
                                   hintText: Strings.cVVHint,
+                                  obscure: true,
                                   textInputType: TextInputType.number,
                                 ),
                                 const SizedBox(

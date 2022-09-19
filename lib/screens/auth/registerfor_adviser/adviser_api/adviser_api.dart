@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/AdvertiserVerifyController.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/AdvertiserVerifyOtpScreen.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/adviser_api/adviser_json.dart';
@@ -80,10 +81,12 @@ class AdvirtisersApi {
           // flutterToast(jsonDecode(response.body)["message"]);
         }
         return advertiserRegisterFromJson(response.body);
-      } else if (response!.statusCode == 400) {
+      } else if (response!.statusCode == 500) {
+        errorToast("Please enter valid country name");
+
         // errorToast(jsonDecode(response.body)["message"]);
       } else {
-        // errorToast(jsonDecode(response.body)["message"]);
+        errorToast(jsonDecode(response.body)["message"]);
       }
       /*  message == "Failed! Email is already in use!"
           ? errorToast(message)

@@ -545,6 +545,88 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           height: 10,
                         ),
                         GetBuilder<EditProfileController>(
+                            id: "drop",
+                            builder: (controller){
+                              return  Container(
+                                width: Get.width/1.18,
+                                height: 60,
+                                decoration: BoxDecoration(
+                                  color: ColorRes.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                padding: const EdgeInsets.only(left: 20, top: 5),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          flex: 8,
+                                          child: InkWell(
+                                            child: TextField(
+                                              controller: controller.ethnicity,
+                                              style: textFieldText,
+                                              obscuringCharacter: "•",
+                                              decoration: InputDecoration(
+                                                border: InputBorder.none,
+                                                hintStyle: gilroyMediumTextStyle(
+                                                    fontSize: 18,
+                                                    color: ColorRes.black.withOpacity(0.3)),
+                                                hintText: "0",
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        IconButton(
+                                          onPressed: controller.dropDownBox,
+                                          icon: Image.asset(AssetRes.arrowDown, height: 18),),
+                                        SizedBox(width: 8,),
+                                      ],
+                                    ),
+
+                                  ],
+                                ),
+                              );
+                            }),
+                        GetBuilder<EditProfileController>(
+                            id: "drop",
+                            builder: (controller){
+                              return  (controller.countryBox == true)
+                                  ?Container(
+                                height: 150,
+                                width: 390,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.white,
+                                ),
+                                child: SingleChildScrollView(
+
+                                  child: Column(
+                                    children: listNationalities.data!.map((e) {
+                                      return Padding(
+                                        padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
+                                        child: Align(
+                                          alignment: Alignment.topLeft,
+                                          child: InkWell(
+                                            onTap: (){
+                                              controller.ethnicity.text = e.name!;
+                                              controller.countryBox = false;
+                                              controller.update(["drop"]);
+                                            },
+                                            child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }).toList(),
+                                  ),
+                                ),
+                              )
+                                  :SizedBox();
+                            }),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                     /*   GetBuilder<EditProfileController>(
                           id: "Edit_profile",
                           builder: (controller) {
                             return DropdownButtonHideUnderline(
@@ -603,7 +685,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 itemPadding:
                                     const EdgeInsets.only(left: 20, right: 14),
                                 dropdownMaxHeight: Get.height * 0.3,
-                                /* height: Get.height*0.19,*/
+                                *//* height: Get.height*0.19,*//*
                                 dropdownWidth: Get.width * 0.85,
                                 dropdownPadding: null,
                                 dropdownDecoration: BoxDecoration(
@@ -617,7 +699,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                             );
                           },
-                        ),
+                        ),*/
                       ],
                     ),
                   ),

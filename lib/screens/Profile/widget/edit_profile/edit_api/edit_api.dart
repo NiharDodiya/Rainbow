@@ -68,11 +68,16 @@ class EditProfileApi {
             "Content-Type": "application/json",
             "x-access-token": accessToken
           });
+      if(response?.statusCode == 500){
+        errorToast("Please enter valid country name");
+        return null;
+      }
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
           errorToast(jsonDecode(response.body)["message"]);
-        } else if (status == true) {
+        }
+        else if (status == true) {
           flutterToast(jsonDecode(response.body)["message"]);
         }
         return editProfileFromJson(response.body);

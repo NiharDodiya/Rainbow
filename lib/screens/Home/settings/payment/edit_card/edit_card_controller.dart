@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/listCardModel.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
@@ -22,6 +23,7 @@ class EditCardController extends GetxController{
   TextEditingController expiryYearController = TextEditingController();
   TextEditingController cvvController = TextEditingController();
   String? selectCountry;
+  String? countryId;
 
   PaymentController paymentController = Get.put(PaymentController());
 
@@ -31,17 +33,45 @@ class EditCardController extends GetxController{
   }
 
   editCart({int? index, context}) async {
+
+
+
+  if(validation()){
+    Navigator.of(context).pop();
+    Get.find<PaymentController>().loader.value = true;
+    Future.delayed(Duration(seconds: 1), () {
+      editCardApi(id: index);
+    });
+  }
+
+  /*if(countryId == null || countryId == ""){
+    print("NOT NAVIGATE");
+    errorToast("Please enter valid country name");
+
+  }else{
+    print("NAVIGATE");
     if(validation()){
       Navigator.of(context).pop();
       Get.find<PaymentController>().loader.value = true;
       Future.delayed(Duration(seconds: 1), () {
-         editCardApi(id: index);
+        editCardApi(id: index);
       });
     }
+  }*/
+
+
+
   }
 
 
   bool validation() {
+
+    for (int i = 0; i < listNationalities.data!.length; i++) {
+      if (listNationalities.data![i].name == countryController.text) {
+        countryId = countryController.text;
+      }
+    }
+
     if (fullNameController.text.isEmpty) {
       errorToast(Strings.fullNameError);
       return false;
@@ -77,6 +107,9 @@ class EditCardController extends GetxController{
       return false;
     } else if (cvvController.text.length != 3) {
       errorToast(Strings.cVVErrorValidation);
+      return false;
+    } else if(countryId == null || countryId == ""){
+      errorToast("Please enter valid country name");
       return false;
     }
     return true;

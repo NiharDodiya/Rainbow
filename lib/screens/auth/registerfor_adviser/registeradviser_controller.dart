@@ -139,9 +139,9 @@ class AdviserRegisterController extends GetxController {
 
   void onRegisterTap() {
     if (validation()) {
-      for (int i = 0; i < listCountryModel.data!.length; i++) {
-        if (listCountryModel.data![i].name == country.text) {
-          passId = listCountryModel.data![i].id!.toString();
+      for (int i = 0; i < listNationalities.data!.length; i++) {
+        if (listNationalities.data![i].name == country.text) {
+          passId = listNationalities.data![i].id!.toString();
           print(passId);
         }
       }
@@ -177,7 +177,16 @@ class AdviserRegisterController extends GetxController {
 
   void onSignInTap() {}
 
+  String? myId;
+
   bool validation() {
+
+    for (int i = 0; i < listNationalities.data!.length; i++) {
+      if (listNationalities.data![i].name == country.text) {
+        myId = country.text;
+      }
+    }
+
     if (fullNameController.text.isEmpty) {
       errorToast(Strings.fullNameError);
       return false;
@@ -216,6 +225,10 @@ class AdviserRegisterController extends GetxController {
       return false;
     } else if (phoneNumber.text.isEmpty) {
       errorToast(Strings.phoneNumberError);
+      return false;
+    }
+    else if(myId == null || myId == ""){
+      errorToast("Please enter valid country name");
       return false;
     }
     /* else if (!GetUtils.isPhoneNumber(phoneNumber.text)) {
