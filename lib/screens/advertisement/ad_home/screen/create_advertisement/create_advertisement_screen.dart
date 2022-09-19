@@ -715,6 +715,106 @@ class CreateAdvertisementScreen extends StatelessWidget {
             SizedBox(height: Get.height * 0.0197),
 
 
+            /*GetBuilder<CreateAdvertisementController>(
+                id: "drop",
+                builder: (controller){
+                  return  Container(
+                    width: Get.width/1.20,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: ColorRes.white,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    padding: const EdgeInsets.only(left: 20, top: 5),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              flex: 14,
+                              child: InkWell(
+                                child: TextField(
+                                  controller: controller.countryController,
+                                  style: textFieldText,
+                                  obscuringCharacter: "•",
+                                  onChanged: (value) {
+                                    controller.serching(value);
+                                  },
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintStyle: gilroyMediumTextStyle(
+                                        fontSize: 18,
+                                        color: ColorRes.black.withOpacity(0.3)),
+                                    hintText: "Canada",
+                                  ),
+                                ),
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: controller.dropDownBox,
+                              icon: Image.asset(AssetRes.arrowDown, height: 20),),
+                            SizedBox(width: 5,),
+                          ],
+                        ),
+
+                      ],
+                    ),
+                  );
+                }),
+            GetBuilder<CreateAdvertisementController>(
+                id: "drop",
+                builder: (controller){
+                  return  (controller.countryBox == true)
+                      ?Container(
+                    height: 160,
+                    width: 390,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.white,
+                    ),
+                    child: SingleChildScrollView(
+
+                      child: Column(
+                        children: (controller.countryController.text.isEmpty)
+                            ?countryCity.map((e) {
+                          return Padding(
+                            padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: InkWell(
+                                onTap: (){
+                                  controller.countryController.text = e;
+                                  controller.countryBox = false;
+                                  controller.update(["drop"]);
+                                },
+                                child: Text(e, style: TextStyle(color: Colors.black, fontSize: 16),
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList()
+                            :controller.filterList.map((e) {
+                          return Padding(
+                            padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: InkWell(
+                                onTap: (){
+                                  controller.countryController.text = e;
+                                  controller.countryBox = false;
+                                  controller.update(["drop"]);
+                                },
+                                child: Text(e, style: TextStyle(color: Colors.black, fontSize: 16),
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  )
+                      :SizedBox();
+                }),*/
 
             GetBuilder<CreateAdvertisementController>(
                 id: "drop",
@@ -795,9 +895,10 @@ class CreateAdvertisementScreen extends StatelessWidget {
                   )
                       :SizedBox();
                 }),
+
             SizedBox(height: Get.height * 0.0197),
 
-           /* GetBuilder<CreateAdvertisementController>(
+            /*GetBuilder<CreateAdvertisementController>(
               id: 'advertiser',
               builder: (controller) {
                 return dropdownButton(

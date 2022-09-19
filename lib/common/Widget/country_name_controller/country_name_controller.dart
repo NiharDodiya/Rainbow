@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/helper.dart';
 
 class CountryNameController extends GetxController{
   bool countryBox = false;
@@ -16,5 +17,16 @@ class CountryNameController extends GetxController{
       update(["drop"]);
     }
     update();
+  }
+
+  List filterList = [];
+
+  void serching(value) {
+    filterList = (listNationalities.data?.where(
+            (element) {
+          return element.name.toString().toLowerCase().contains(value);
+        })
+        .toList()) ?? [];
+    update(["drop"]);
   }
 }

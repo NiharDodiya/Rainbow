@@ -71,7 +71,19 @@ class CreateAdvertisementController extends GetxController {
 
   String? selectedCity;
 
- /* final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  List filterList = [];
+
+  void serching(value) {
+    filterList = (listNationalities.data?.where(
+            (element) {
+          return element.name.toString().toLowerCase().contains(value);
+        })
+        .toList()) ?? [];
+    update(["drop"]);
+  }
+
+
+  /* final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   FocusNode searchFocusNode = FocusNode();
   FocusNode textFieldFocusNode = FocusNode();
    SingleValueDropDownController? cnt;
@@ -97,6 +109,8 @@ class CreateAdvertisementController extends GetxController {
     }
     update();
   }
+
+
 
 
   void onTapEthnicity(value) {
@@ -200,6 +214,7 @@ class CreateAdvertisementController extends GetxController {
       Get.to(() => AdvertisementDeatailScreen());
     }
   }
+
 
   bool validation() {
 
@@ -319,7 +334,7 @@ class CreateAdvertisementController extends GetxController {
   }
 
   List<UserData> tagUserList = [];
-  List<UserData> filterList = [];
+
 
 /*
   void onTagTap(UserData userData) {
@@ -344,7 +359,6 @@ class CreateAdvertisementController extends GetxController {
 
   void addAdvertisement(List imageId) async {
     loader.value = true;
-
     await AddAdvertisement.addAdvertisementApi(
         tagUser: tags,
         idItem: imageId,

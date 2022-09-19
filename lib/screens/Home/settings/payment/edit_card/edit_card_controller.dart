@@ -23,13 +23,24 @@ class EditCardController extends GetxController{
   TextEditingController expiryYearController = TextEditingController();
   TextEditingController cvvController = TextEditingController();
   String? selectCountry;
-  String? countryId;
+  String? myId;
 
   PaymentController paymentController = Get.put(PaymentController());
 
   void onInit() {
     update();
     super.onInit();
+  }
+
+  List filterList = [];
+
+  void serching(value) {
+    filterList = (countryCity.where(
+            (element) {
+          return element.toString().toLowerCase().contains(value);
+        })
+        .toList()) ?? [];
+    update(["drop"]);
   }
 
   editCart({int? index, context}) async {
@@ -66,9 +77,9 @@ class EditCardController extends GetxController{
 
   bool validation() {
 
-    for (int i = 0; i < listNationalities.data!.length; i++) {
-      if (listNationalities.data![i].name == countryController.text) {
-        countryId = countryController.text;
+    for (int i = 0; i < countryCity.length; i++) {
+      if (countryCity[i] == countryController.text) {
+        myId = countryController.text;
       }
     }
 
@@ -108,7 +119,7 @@ class EditCardController extends GetxController{
     } else if (cvvController.text.length != 3) {
       errorToast(Strings.cVVErrorValidation);
       return false;
-    } else if(countryId == null || countryId == ""){
+    } else if(myId == null || myId == ""){
       errorToast("Please enter valid country name");
       return false;
     }

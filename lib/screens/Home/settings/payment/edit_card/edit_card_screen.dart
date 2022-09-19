@@ -154,6 +154,9 @@ class EditCardScreen extends StatelessWidget {
                                                       controller: controller.countryController,
                                                       style: textFieldText,
                                                       obscuringCharacter: "•",
+                                                      onChanged: (value) {
+                                                        controller.serching(value);
+                                                      },
                                                       decoration: InputDecoration(
                                                         border: InputBorder.none,
                                                         hintStyle: gilroyMediumTextStyle(
@@ -189,18 +192,36 @@ class EditCardScreen extends StatelessWidget {
                                         child: SingleChildScrollView(
 
                                           child: Column(
-                                            children: listNationalities.data!.map((e) {
+                                            children: (controller.countryController.text.isEmpty)
+                                                ?countryCity.map((e) {
                                               return Padding(
                                                 padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
                                                 child: Align(
                                                   alignment: Alignment.topLeft,
                                                   child: InkWell(
                                                     onTap: (){
-                                                      controller.countryController.text = e.name!;
+                                                      controller.countryController.text = e;
                                                       controller.countryBox = false;
                                                       controller.update(["drop"]);
                                                     },
-                                                    child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+                                                    child: Text(e, style: TextStyle(color: Colors.black, fontSize: 16),
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            }).toList()
+                                                :controller.filterList.map((e) {
+                                              return Padding(
+                                                padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
+                                                child: Align(
+                                                  alignment: Alignment.topLeft,
+                                                  child: InkWell(
+                                                    onTap: (){
+                                                      controller.countryController.text = e;
+                                                      controller.countryBox = false;
+                                                      controller.update(["drop"]);
+                                                    },
+                                                    child: Text(e, style: TextStyle(color: Colors.black, fontSize: 16),
                                                     ),
                                                   ),
                                                 ),

@@ -233,7 +233,109 @@ class RegisterForm extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
+
           GetBuilder<RegisterController>(
+              id: "drop",
+              builder: (controller){
+                return  Container(
+                  width: Get.width/1.20,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: ColorRes.white,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  padding: const EdgeInsets.only(left: 20, top: 5),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 14,
+                            child: InkWell(
+                              child: TextField(
+                                controller: controller.ethnicityController,
+                                style: textFieldText,
+                                obscuringCharacter: "•",
+                                onChanged: (value) {
+                                  controller.serching(value);
+                                },
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintStyle: gilroyMediumTextStyle(
+                                      fontSize: 18,
+                                      color: ColorRes.black.withOpacity(0.3)),
+                                  hintText: "Canada",
+                                ),
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: controller.dropDownBox,
+                            icon: Image.asset(AssetRes.arrowDown, height: 20),),
+                          SizedBox(width: 5,),
+                        ],
+                      ),
+
+                    ],
+                  ),
+                );
+              }),
+          GetBuilder<RegisterController>(
+              id: "drop",
+              builder: (controller){
+                return  (controller.countryBox == true)
+                    ?Container(
+                  height: 160,
+                  width: 390,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                  ),
+                  child: SingleChildScrollView(
+
+                    child: Column(
+                      children: (controller.ethnicityController.text.isEmpty)
+                          ?listNationalities.data!.map((e) {
+                        return Padding(
+                          padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: InkWell(
+                              onTap: (){
+                                controller.ethnicityController.text = e.name!;
+                                controller.countryBox = false;
+                                controller.update(["drop"]);
+                              },
+                              child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+                              ),
+                            ),
+                          ),
+                        );
+                      }).toList()
+                          :controller.filterList.map((e) {
+                        return Padding(
+                          padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: InkWell(
+                              onTap: (){
+                                controller.ethnicityController.text = e.name!;
+                                controller.countryBox = false;
+                                controller.update(["drop"]);
+                              },
+                              child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+                              ),
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                )
+                    :SizedBox();
+              }),
+
+          /*GetBuilder<RegisterController>(
               id: "drop",
               builder: (controller){
                 return  Container(
@@ -311,7 +413,7 @@ class RegisterForm extends StatelessWidget {
                   ),
                 )
                     :SizedBox();
-              }),
+              }),*/
           const SizedBox(
             height: 10,
           ),

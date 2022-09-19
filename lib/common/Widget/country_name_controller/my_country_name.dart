@@ -8,9 +8,8 @@ import 'package:rainbow/utils/color_res.dart';
 
 CountryNameController countryNameController = Get.put(CountryNameController());
 
-Widget dropdownButtonCountry({
-  required final TextEditingController countryController,
-}){
+Widget dropdownButtonCountry(){
+  TextEditingController countryController =TextEditingController();
   return Column(
     children: [
       GetBuilder<CountryNameController>(
@@ -35,6 +34,9 @@ Widget dropdownButtonCountry({
                             controller: countryController,
                             style: textFieldText,
                             obscuringCharacter: "•",
+                            onChanged: (value) {
+                              controller.serching(value);
+                            },
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintStyle: gilroyMediumTextStyle(
@@ -47,7 +49,8 @@ Widget dropdownButtonCountry({
                       ),
                       IconButton(
                         onPressed: controller.dropDownBox,
-                        icon: Image.asset(AssetRes.arrowDown, height: 20),)
+                        icon: Image.asset(AssetRes.arrowDown, height: 20),),
+                      SizedBox(width: 5,),
                     ],
                   ),
 
@@ -59,27 +62,45 @@ Widget dropdownButtonCountry({
           id: "drop",
           builder: (controller){
             return  (controller.countryBox == true)
-                ?Container(
-              height: 150,
+                ? Container(
+              height: 160,
               width: 390,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.white,
               ),
               child: SingleChildScrollView(
-
                 child: Column(
-                  children: countryCity.map((e) {
+                  children: (countryController.text.isEmpty)
+                      ?listNationalities.data!.map((e) {
                     return Padding(
                       padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
                       child: Align(
                         alignment: Alignment.topLeft,
                         child: InkWell(
                           onTap: (){
-                            countryController!.text = e;
+                            countryController.text = e.name!;
+                            controller.countryBox = false;
                             controller.update(["drop"]);
                           },
-                          child: Text(e, style: TextStyle(color: Colors.black),
+                          child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList()
+                      :controller.filterList.map((e) {
+                    return Padding(
+                      padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: InkWell(
+                          onTap: (){
+                            countryController.text = e.name!;
+                            controller.countryBox = false;
+                            controller.update(["drop"]);
+                          },
+                          child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
                           ),
                         ),
                       ),

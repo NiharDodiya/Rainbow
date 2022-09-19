@@ -57,6 +57,17 @@ class DoctorRegisterController extends GetxController {
     update(['doctor']);
   }
 
+  List filterList = [];
+
+  void serching(value) {
+    filterList = (listNationalities.data?.where(
+            (element) {
+          return element.name.toString().toLowerCase().contains(value);
+        })
+        .toList()) ?? [];
+    update(["drop"]);
+  }
+
   bool countryBox = false;
 
   dropDownBox(){

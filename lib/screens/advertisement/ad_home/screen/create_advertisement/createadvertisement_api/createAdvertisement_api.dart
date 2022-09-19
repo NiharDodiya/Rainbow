@@ -60,12 +60,13 @@ class AddAdvertisement {
 
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
-        if (status == false) {
-          errorToast("Please enter valid country name");
-        } else if (status == true) {
+        if (status == true) {
           flutterToast(jsonDecode(response.body)["message"]);
         }
         return advertisersCreateModelFromJson(response.body);
+      }
+      else if(response!.statusCode == 500){
+        errorToast("Please enter valid country name");
       }
     } catch (e) {
       print(e.toString());

@@ -115,6 +115,17 @@ class AccountInformationController extends GetxController {
     update();
   }
 
+  List filterList = [];
+
+  void serching(value) {
+    filterList = (listNationalities.data?.where(
+            (element) {
+          return element.name.toString().toLowerCase().contains(value);
+        })
+        .toList()) ?? [];
+    update(["drop"]);
+  }
+
   void onCountryChange(String value) {
     selectCountry = value;
     countryController.text = value;

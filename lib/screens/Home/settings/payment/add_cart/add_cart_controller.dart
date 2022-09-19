@@ -21,7 +21,7 @@ class AddCartController extends GetxController {
   TextEditingController expiryYearController = TextEditingController();
   TextEditingController cvvController = TextEditingController();
   String? selectCountry;
-  String? countryId;
+  String? myId;
 
 
   RxBool loader = false.obs;
@@ -40,6 +40,16 @@ class AddCartController extends GetxController {
     update();
   }
 
+  List filterList = [];
+
+  void serching(value) {
+    filterList = (countryCity.where(
+            (element) {
+              return element.toString().toLowerCase().contains(value);
+        })
+        .toList()) ?? [];
+    update(["drop"]);
+  }
 
 
   void onInit() {
@@ -69,9 +79,9 @@ class AddCartController extends GetxController {
   }
 
   bool validation() {
-    for (int i = 0; i < listNationalities.data!.length; i++) {
-      if (listNationalities.data![i].name == countryController.text) {
-        countryId = countryController.text;
+    for (int i = 0; i < countryCity.length; i++) {
+      if (countryCity[i] == countryController.text) {
+        myId = countryController.text;
       }
     }
     if (fullNameController.text.isEmpty) {
@@ -110,7 +120,7 @@ class AddCartController extends GetxController {
     } else if (cvvController.text.length != 3) {
       errorToast(Strings.cVVErrorValidation);
       return false;
-    } else if(countryId == null || countryId == ""){
+    } else if(myId == null || myId == ""){
       errorToast("Please enter valid country name");
       return false;
     }

@@ -135,6 +135,17 @@ class EditProfileController extends GetxController {
     update(["Edit_profile"]);
   }
 
+  List filterList = [];
+
+  void serching(value) {
+    filterList = (listNationalities.data?.where(
+            (element) {
+          return element.name.toString().toLowerCase().contains(value);
+        })
+        .toList()) ?? [];
+    update(["drop"]);
+  }
+
   bool validation() {
     /*   if (backImage == null) {
       errorToast(Strings.captureImageBack);

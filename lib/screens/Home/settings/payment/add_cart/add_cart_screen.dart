@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/country_name.dart';
+import 'package:rainbow/common/Widget/country_name_controller/my_country_name.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
 import 'package:rainbow/common/helper.dart';
@@ -103,11 +104,13 @@ class AddCartScreen extends StatelessWidget {
                                     selectedValue: controller.selectCountry,
                                     onTap: controller.onCountryCoCityChange,
                                     dropdownList: countryCity,
+
                                     height: Get.height * 0.3);
                               },
                             ),*/
                             Text(Strings.country, style: gilroySemiBoldTextStyle(fontSize: 14),),
                            SizedBox(height: 8),
+                            //dropdownButtonCountry(),
                            GetBuilder<AddCartController>(
                              id: "drop",
                                builder: (controller){
@@ -130,6 +133,9 @@ class AddCartScreen extends StatelessWidget {
                                              controller: controller.countryController,
                                              style: textFieldText,
                                              obscuringCharacter: "•",
+                                             onChanged: (value) {
+                                               controller.serching(value);
+                                             },
                                              decoration: InputDecoration(
                                                border: InputBorder.none,
                                                hintStyle: gilroyMediumTextStyle(
@@ -165,20 +171,38 @@ class AddCartScreen extends StatelessWidget {
                                  child: SingleChildScrollView(
 
                                    child: Column(
-                                     children: listNationalities.data!.map((e) {
+                                     children: (controller.countryController.text.isEmpty)
+                                         ?countryCity.map((e) {
                                        return Padding(
                                            padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
                                          child: Align(
                                            alignment: Alignment.topLeft,
                                            child: InkWell(
                                               onTap: (){
-                                                controller.countryController.text = e.name!;
+                                                controller.countryController.text = e;
                                                 controller.countryBox = false;
                                                 controller.update(["drop"]);
                                               },
-                                             child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+                                             child: Text(e, style: TextStyle(color: Colors.black, fontSize: 16),
                                            ),
                                          ),
+                                         ),
+                                       );
+                                     }).toList()
+                                         :controller.filterList.map((e) {
+                                       return Padding(
+                                         padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
+                                         child: Align(
+                                           alignment: Alignment.topLeft,
+                                           child: InkWell(
+                                             onTap: (){
+                                               controller.countryController.text = e;
+                                               controller.countryBox = false;
+                                               controller.update(["drop"]);
+                                             },
+                                             child: Text(e, style: TextStyle(color: Colors.black, fontSize: 16),
+                                             ),
+                                           ),
                                          ),
                                        );
                                      }).toList(),

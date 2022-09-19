@@ -75,6 +75,17 @@ class UpdateAdvertiseController extends GetxController {
     update();
   }
 
+  List filterList = [];
+
+  void serching(value) {
+    filterList = (listNationalities.data?.where(
+            (element) {
+          return element.name.toString().toLowerCase().contains(value);
+        })
+        .toList()) ?? [];
+    update(["drop"]);
+  }
+
   void onTapEthnicity(value) {
     selectedCity = value as String;
     countryController.text = value;
@@ -321,7 +332,6 @@ class UpdateAdvertiseController extends GetxController {
   }
 
   List<UserData> tagUserList = [];
-  List<UserData> filterList = [];
 
 /*
   void onTagTap(UserData userData) {

@@ -121,7 +121,7 @@ class AdviserRegisterForm extends StatelessWidget {
                 id: "drop",
                 builder: (controller){
                   return  Container(
-                    width: Get.width/1.24,
+                    width: Get.width/1.20,
                     height: 60,
                     decoration: BoxDecoration(
                       color: ColorRes.white,
@@ -133,12 +133,15 @@ class AdviserRegisterForm extends StatelessWidget {
                         Row(
                           children: [
                             Expanded(
-                              flex: 8,
+                              flex: 14,
                               child: InkWell(
                                 child: TextField(
                                   controller: controller.country,
                                   style: textFieldText,
                                   obscuringCharacter: "•",
+                                  onChanged: (value) {
+                                    controller.serching(value);
+                                  },
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintStyle: gilroyMediumTextStyle(
@@ -151,8 +154,8 @@ class AdviserRegisterForm extends StatelessWidget {
                             ),
                             IconButton(
                               onPressed: controller.dropDownBox,
-                              icon: Image.asset(AssetRes.arrowDown, height: 16),),
-                            SizedBox(width: 8,),
+                              icon: Image.asset(AssetRes.arrowDown, height: 20),),
+                            SizedBox(width: 5,),
                           ],
                         ),
 
@@ -165,7 +168,7 @@ class AdviserRegisterForm extends StatelessWidget {
                 builder: (controller){
                   return  (controller.countryBox == true)
                       ?Container(
-                    height: 150,
+                    height: 160,
                     width: 390,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -174,7 +177,25 @@ class AdviserRegisterForm extends StatelessWidget {
                     child: SingleChildScrollView(
 
                       child: Column(
-                        children: listNationalities.data!.map((e) {
+                        children: (controller.country.text.isEmpty)
+                            ?listNationalities.data!.map((e) {
+                          return Padding(
+                            padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: InkWell(
+                                onTap: (){
+                                  controller.country.text = e.name!;
+                                  controller.countryBox = false;
+                                  controller.update(["drop"]);
+                                },
+                                child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList()
+                            :controller.filterList.map((e) {
                           return Padding(
                             padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
                             child: Align(
