@@ -14,6 +14,8 @@ class AdHomeController extends GetxController {
   //AdvertisementController advController = Get.put(AdvertisementController());
   TextEditingController monthSet = TextEditingController();
 
+
+
   RxBool loader = false.obs;
   String? selectedItem;
   bool listShow = false;
@@ -69,7 +71,9 @@ class AdHomeController extends GetxController {
 
   Future<void> refreshCode() async {
     await viewAdvertiserData();
+    loader.value = false;
     await myAdvertiserListData();
+    loader.value = false;
   }
 
   Future<void> init() async {
