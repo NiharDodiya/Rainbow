@@ -55,6 +55,9 @@ class AdHomeController extends GetxController {
   @override
   void onInit() {
     init();
+    update(["dashBoard"]);
+    update(["update"]);
+    update();
     super.onInit();
   }
 
@@ -159,5 +162,7 @@ class AdHomeController extends GetxController {
     errorToast("Please enter card");
     update(['more']);
   }
+
+
   
 }

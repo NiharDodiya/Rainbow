@@ -59,8 +59,6 @@ class AddCartController extends GetxController {
 
   addCart(context) async {
 
-
-
     FocusScopeNode currentfocus = FocusScope.of(context);
     if (!currentfocus.hasPrimaryFocus) {
       currentfocus.unfocus();

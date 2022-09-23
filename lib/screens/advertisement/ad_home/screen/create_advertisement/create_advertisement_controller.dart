@@ -358,6 +358,7 @@ class CreateAdvertisementController extends GetxController {
   AdHomeController adHomeController = Get.put(AdHomeController());
 
   void addAdvertisement(List imageId) async {
+    DateTime now = DateTime.now();
     loader.value = true;
     await AddAdvertisement.addAdvertisementApi(
         tagUser: tags,
@@ -373,8 +374,8 @@ class CreateAdvertisementController extends GetxController {
         street: streetController.text,
         urlLink: urlLinkController.text,
         countryCode: codeId.toString(),
-        startDate: DateFormat().add_yMd().format(startTime!),
-        endDate: DateFormat().add_yMd().format(endTime!),
+        startDate: DateFormat().add_yMd().format(startTime!),  //startTime!.add(Duration(days: 1))!
+        endDate: (endTime == null)?DateFormat().add_yMd().format(DateTime(now.year,now.month,now.day,24,00,00)):DateFormat().add_yMd().format(endTime!),
         amount: 200,
     );
     adHomeController.myAdvertiserListData();

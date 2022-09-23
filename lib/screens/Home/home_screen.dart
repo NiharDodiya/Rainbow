@@ -8,6 +8,7 @@ import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/model/request_user_model.dart';
 import 'package:rainbow/screens/Home/Story/story_screen.dart';
+import 'package:rainbow/screens/Home/ad_in_latest_feed/ad_in_latest_feed.dart';
 import 'package:rainbow/screens/Home/addStroy/addStory_screen.dart';
 import 'package:rainbow/screens/Home/comments/comments_controller.dart';
 import 'package:rainbow/screens/Home/comments/comments_screen.dart';
@@ -40,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    controller.advertisementListUser();
     return Obx(() {
       return Stack(
         children: [
@@ -476,7 +478,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     : controller
                                         .controller.viewProfile.data!.fullName
                                         .toString(),
-                                style: textStyleFont14WhiteBold,
+                                style: gilroyMediumTextStyle(fontSize: 14),
+                                //style: textStyleFont14WhiteBold,
                               ),
                             ],
                           ),
@@ -509,17 +512,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                       controller.onFriedStoryTap(index),
                                   child: ClipRRect(
                                       borderRadius: BorderRadius.circular(50),
-                                      child: FadeInImage(
+                                      child: CachedNetworkImage(
                                         height: 56,
                                         width: 56,
-                                        placeholder: const AssetImage(
-                                            AssetRes.portrait_placeholder),
-                                        image: NetworkImage(viewStoryController
+                                        placeholder: (context,url)=> Image.asset(AssetRes.portrait_placeholder,fit: BoxFit.fitWidth),
+                                        errorWidget: ((context, url, error) => Image.asset(AssetRes.portrait_placeholder,fit: BoxFit.fitWidth)),
+                                        imageUrl:viewStoryController
                                             .storyModel
                                             .friendsStory![index]
                                             .userDetail!
                                             .profileImage
-                                            .toString()),
+                                            .toString(),
                                         fit: BoxFit.cover,
                                       )),
                                 ),
@@ -755,7 +758,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
               },
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 22.0),
+                padding: const EdgeInsets.only(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -1302,7 +1305,25 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                       ),
-                    )
+                    ),
+                    SizedBox(height: 20,),
+
+                    controller.advertisementListUserModel.data?.length == 0
+                        ? SizedBox()
+                        : index == 0? Padding(
+                      padding: EdgeInsets.only(left: 15, right: 10),
+                      child: SizedBox(
+                        height: 415,
+                        width: Get.width * 0.92560,
+                        child: PageView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: controller.advertisementListUserModel.data?.length,
+                            itemBuilder: (context, index){
+                          return  adInLatestFeed(index: index);
+                        }),
+                      ),
+                    ):SizedBox(),
+                    SizedBox(height: 20,),
                   ],
                 ),
               ),

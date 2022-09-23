@@ -805,7 +805,7 @@ class SupportDetailsScreen extends StatelessWidget {
           return ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: controller.viewSupportTicketModel.data!.length,
+            itemCount: controller.viewSupportTicketModel.data?.length ?? 0,
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.symmetric(horizontal: Get.width * 0.08),

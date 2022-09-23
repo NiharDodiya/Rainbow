@@ -105,7 +105,6 @@ class SplashScreen extends StatelessWidget {
         indicators.add(_indicator(false));
       }
     }
-
     return indicators;
   }
 

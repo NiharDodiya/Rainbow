@@ -182,10 +182,10 @@ class AccountInformationController extends GetxController {
         idCountry = countryId[i];
       }
     }*/
-    for (int i = 0; i < listNationalities.data!.length; i++) {
-      if (listNationalities.data![i].name == countryController.text) {
-        idCountry = listNationalities.data![i].id.toString();
-        idCompanyCountry = listNationalities.data![i].id.toString();
+    for (int i = 0; i < listCountryModel.data!.length; i++) {
+      if (listCountryModel.data![i].name == countryController.text) {
+        idCountry = listCountryModel.data![i].id.toString();
+        idCompanyCountry = listCountryModel.data![i].id.toString();
       }
     }
   /*  for (int i = 0; i < countryCity.length; i++) {
@@ -201,8 +201,8 @@ class AccountInformationController extends GetxController {
 //account validation
   bool accountValidation() {
 
-    for (int i = 0; i < listNationalities.data!.length; i++) {
-      if (listNationalities.data![i].name == countryController.text) {
+    for (int i = 0; i < listCountryModel.data!.length; i++) {
+      if (listCountryModel.data![i].name == countryController.text) {
         myId = countryController.text;
       }
     }

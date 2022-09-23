@@ -715,7 +715,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
             SizedBox(height: Get.height * 0.0197),
 
 
-            /*GetBuilder<CreateAdvertisementController>(
+            GetBuilder<CreateAdvertisementController>(
                 id: "drop",
                 builder: (controller){
                   return  Container(
@@ -776,18 +776,18 @@ class CreateAdvertisementScreen extends StatelessWidget {
 
                       child: Column(
                         children: (controller.countryController.text.isEmpty)
-                            ?countryCity.map((e) {
+                            ?listNationalities.data!.map((e) {
                           return Padding(
                             padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
                             child: Align(
                               alignment: Alignment.topLeft,
                               child: InkWell(
                                 onTap: (){
-                                  controller.countryController.text = e;
+                                  controller.countryController.text = e.name!;
                                   controller.countryBox = false;
                                   controller.update(["drop"]);
                                 },
-                                child: Text(e, style: TextStyle(color: Colors.black, fontSize: 16),
+                                child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
                                 ),
                               ),
                             ),
@@ -800,11 +800,11 @@ class CreateAdvertisementScreen extends StatelessWidget {
                               alignment: Alignment.topLeft,
                               child: InkWell(
                                 onTap: (){
-                                  controller.countryController.text = e;
+                                  controller.countryController.text = e.name!;
                                   controller.countryBox = false;
                                   controller.update(["drop"]);
                                 },
-                                child: Text(e, style: TextStyle(color: Colors.black, fontSize: 16),
+                                child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
                                 ),
                               ),
                             ),
@@ -814,9 +814,9 @@ class CreateAdvertisementScreen extends StatelessWidget {
                     ),
                   )
                       :SizedBox();
-                }),*/
+                }),
 
-            GetBuilder<CreateAdvertisementController>(
+           /* GetBuilder<CreateAdvertisementController>(
                 id: "drop",
                 builder: (controller){
                   return  Container(
@@ -894,7 +894,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                     ),
                   )
                       :SizedBox();
-                }),
+                }),*/
 
             SizedBox(height: Get.height * 0.0197),
 

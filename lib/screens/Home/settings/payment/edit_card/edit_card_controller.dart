@@ -101,25 +101,25 @@ class EditCardController extends GetxController{
     } else if (nameOnCardController.text.isEmpty) {
       errorToast(Strings.nameonCardError);
       return false;
-    } else if (cardNmberController.text.isEmpty) {
+    } /*else if (cardNmberController.text.isEmpty) {
       errorToast(Strings.cardnumberError);
       return false;
     } else if (cardNmberController.text.length != 16) {
       errorToast(Strings.cardnumberErrorValidation);
       return false;
-    } else if (expiryYearController.text.isEmpty) {
+    }*/ else if (expiryYearController.text.isEmpty) {
       errorToast(Strings.expiryYearError);
       return false;
     } else if (expiryMonthController.text.isEmpty) {
       errorToast(Strings.expiryYearError);
       return false;
-    } else if (cvvController.text.isEmpty) {
+    } /*else if (cvvController.text.isEmpty) {
       errorToast(Strings.cVVError);
       return false;
     } else if (cvvController.text.length != 3) {
       errorToast(Strings.cVVErrorValidation);
       return false;
-    } else if(myId == null || myId == ""){
+    }*/ else if(myId == null || myId == ""){
       errorToast("Please enter valid country name");
       return false;
     }

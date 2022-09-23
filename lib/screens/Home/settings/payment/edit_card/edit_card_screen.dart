@@ -267,11 +267,11 @@ class EditCardScreen extends StatelessWidget {
                                   title: Strings.nameonCard,
                                   hintText: Strings.aycanDoganlar,
                                 ),
-                                AppTextFiled(
+                                /*AppTextFiled(
                                   controller: controller.cardNmberController,
                                   title: Strings.cardNumber,
                                   hintText: Strings.cardNumberHint,
-                                ),
+                                ),*/
                                 // SizedBox(
                                 //   height: Get.height * 0.0184,
                                 // ),
@@ -299,7 +299,7 @@ class EditCardScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                const SizedBox(
+                                /*const SizedBox(
                                   height: 10,
                                 ),
                                 AppTextFiled(
@@ -308,7 +308,7 @@ class EditCardScreen extends StatelessWidget {
                                   hintText: Strings.cVVHint,
                                   obscure: true,
                                   textInputType: TextInputType.number,
-                                ),
+                                ),*/
                                 const SizedBox(
                                   height: 10,
                                 ),

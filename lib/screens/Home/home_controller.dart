@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/premiumPopUpBox/PremiumPopUpBox.dart';
 import 'package:rainbow/common/blocList_api/blockList_api.dart';
 import 'package:rainbow/common/helper.dart';
+import 'package:rainbow/model/advertisement_list%5Buser%5D.dart';
 import 'package:rainbow/model/blockList_model.dart';
 import 'package:rainbow/model/friendPostView_Model.dart';
 import 'package:rainbow/model/listOfFriendRequest_model.dart';
@@ -44,6 +45,8 @@ import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/screens/notification/notification_screen.dart';
 import 'package:uni_links/uni_links.dart';
 
+import 'advertise_api/advertiseApi.dart';
+
 
 class HomeController extends GetxController {
   RxBool loader = false.obs;
@@ -76,9 +79,13 @@ class HomeController extends GetxController {
   String? addCity;
   String? addStreet;
 
+  //List<AdvertiseAndPostModel> adAndPost = []
+
   ScrollController scrollController = ScrollController();
   int page = 1;
   int limit = 10;
+
+  int pageIndex = 0;
 
   RxBool premiumBox = false.obs;
 
@@ -355,6 +362,7 @@ class HomeController extends GetxController {
   Future<void> init() async {
     changeLoader(true);
     await viewProfileApi();
+    await advertisementListUser();
     PaymentController paymentController = Get.put(PaymentController());
     await paymentController.listCardApi(showToast: false);
     paymentController.listCardModel.data?.length == null? viewProfile.data!.userType = "free" : viewProfile.data!.userType = "premium";
@@ -500,4 +508,20 @@ class HomeController extends GetxController {
       print(e.toString());
     }
   }
+
+  AdvertisementListUserModel advertisementListUserModel = AdvertisementListUserModel();
+
+  Future<void> advertisementListUser()async{
+    try {
+      loader.value = true;
+      advertisementListUserModel = await AdvertiseListUser.advertiseListUserApi();
+      update(["settings"]);
+      loader.value = false;
+    } catch (e) {
+      loader.value = false;
+
+      print(e.toString());
+    }
+  }
+
 }

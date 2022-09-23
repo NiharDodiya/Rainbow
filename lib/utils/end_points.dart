@@ -95,6 +95,7 @@ class EndPoints {
   static const removeCard = "$baseUrl/user/card/remove";
   static const transaction = "$baseUrl/user/payment/list";
   static const defaultCard = "$baseUrl/user/card/set";
+  static const advertiseListUser = "$baseUrl/advertisement/list";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";

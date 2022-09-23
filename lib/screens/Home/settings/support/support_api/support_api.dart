@@ -62,7 +62,7 @@ class SupportApi {
         if (status == false) {
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          /*    flutterToast(jsonDecode(response.body)["message"]);*/
+              flutterToast(jsonDecode(response.body)["message"]);
         }
         return viewSupportTicketModelFromJson(response.body);
       }

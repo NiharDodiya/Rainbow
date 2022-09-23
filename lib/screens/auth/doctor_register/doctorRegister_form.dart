@@ -136,7 +136,7 @@ class DoctorRegisterForm extends StatelessWidget {
 
                       child: Column(
                         children: (controller.country.text.isEmpty)
-                            ?listNationalities.data!.map((e) {
+                            ?listCountryModel.data!.map((e) {
                           return Padding(
                             padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
                             child: Align(

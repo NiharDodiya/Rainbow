@@ -191,7 +191,7 @@ class UserDetail {
   String? facebook;
   String? twitter;
   String? about;
-  String? idCardPrimary;
+  int? idCardPrimary;
   String? hobbiesAndInterest;
   String? backgroundImage;
   String? profileImage;

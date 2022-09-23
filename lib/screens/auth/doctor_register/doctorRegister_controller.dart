@@ -159,9 +159,9 @@ class DoctorRegisterController extends GetxController {
   Future<void> companyRegister() async {
     loader.value = true;
     try {
-      for (int i = 0; i < listNationalities.data!.length; i++) {
-        if (listNationalities.data![i].name == country.text) {
-          codeId = listNationalities.data![i].id!.toString();
+      for (int i = 0; i < listCountryModel.data!.length; i++) {
+        if (listCountryModel.data![i].name == country.text) {
+          codeId = listCountryModel.data![i].id!.toString();
           print(codeId);
         }
         /*       countryCity.add(listCountryModel.data![i].name!);

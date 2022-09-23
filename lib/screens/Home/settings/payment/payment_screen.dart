@@ -17,7 +17,9 @@ import '../../../../utils/strings.dart';
 import 'add_cart/add_cart_controller.dart';
 
 class PaymentScreen extends StatelessWidget {
-  PaymentScreen({Key? key}) : super(key: key);
+  final bool? showBackArrow;
+
+  PaymentScreen({Key? key, this.showBackArrow = true}) : super(key: key);
   PaymentController controller = Get.put(PaymentController());
   EditCardController editCardController = Get.put(EditCardController());
   HomeController homeController = Get.find();
@@ -45,7 +47,7 @@ class PaymentScreen extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    appBar(),
+                    appBar(showBack: showBackArrow!),
                     Expanded(
                       child: SingleChildScrollView(
                         child: Column(
@@ -59,7 +61,7 @@ class PaymentScreen extends StatelessWidget {
                                 physics: const BouncingScrollPhysics(),
                                 itemCount:
                                     controller.listCardModel.data?.length ?? 0,
-                                onPageChanged: (index){
+                                onPageChanged: (index) {
                                   controller.selectedIndex = index;
                                   controller.viewCardApi();
                                   controller.update(['more']);
@@ -78,80 +80,104 @@ class PaymentScreen extends StatelessWidget {
                             ),
 
                             /// Card Address
-                          GetBuilder<PaymentController>(
-                            id: "more",
-                              builder: (controller){
-                            return   controller.listCardModel.data == null &&  controller.viewCardModel == null
-                                ? SizedBox()
-                                : Center(
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: Get.width * 0.0426),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      children: [
-                                        Text(controller.viewCardModel?.data?.cardAddress?[0].fullName ?? "",
-                                            style: textStyleFont14White),
-                                        SizedBox(
-                                            width: 15
-                                        ),
-                                        Container(
-                                          //margin: const EdgeInsets.only(top: 5.5),
-                                          height: 4,
-                                          width: 4,
-                                          decoration: const BoxDecoration(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(2)),
-                                              color: ColorRes.color_FFEC5C),
-                                        ),
-                                        SizedBox(
-                                            width: 15
-                                        ),
-                                        Text("Ending in ${controller.viewCardModel?.data?.expYear ?? ""}",
-                                            style: textStyleFont14White),
-                                        SizedBox(
-                                            width: 15
-                                        ),
-                                        Container(
-                                          //margin: const EdgeInsets.only(top: 5.5),
-                                          height: 4,
-                                          width: 4,
-                                          decoration: const BoxDecoration(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(2)),
-                                              color: ColorRes.color_FFEC5C),
-                                        ),
-                                        SizedBox(
-                                            width: 15
-                                        ),
-                                        Text("${controller.viewCardModel?.data?.cardAddress?[0].createdAt?.month.toString() ?? ""}/${controller.viewCardModel?.data?.cardAddress?[0].createdAt?.day.toString() ?? ""}",
-                                            style: textStyleFont14White),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: Get.height * 0.01598,
-                                    ),
-                                    ReadMoreText(
-                                      "${controller.viewCardModel?.data?.cardAddress?[0].address ?? ""}, ${controller.viewCardModel?.data?.cardAddress?[0].country ?? ""}, ${controller.viewCardModel?.data?.cardAddress?[0].postalCode ?? ""}",
-                                      trimLines: 1,
-                                      style: textStyleFont14White,
-                                      textAlign: TextAlign.center,
-                                      trimMode: TrimMode.Line,
-                                      trimCollapsedText: 'see more',
-                                      lessStyle: gilroyMediumTextStyle(
-                                          fontSize: 14, color: Colors.white.withOpacity(0.5)),
-                                      trimExpandedText: '...see less',
-                                      moreStyle: gilroyMediumTextStyle(
-                                          fontSize: 14, color: Colors.white.withOpacity(0.5)),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          }),
+                            GetBuilder<PaymentController>(
+                                id: "more",
+                                builder: (controller) {
+                                  return controller.listCardModel.data ==
+                                              null &&
+                                          controller.viewCardModel == null
+                                      ? SizedBox()
+                                      : Center(
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: Get.width * 0.0426),
+                                            child: Column(
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                        controller
+                                                                .viewCardModel
+                                                                ?.data
+                                                                ?.cardAddress?[
+                                                                    0]
+                                                                .fullName ??
+                                                            "",
+                                                        style:
+                                                            textStyleFont14White),
+                                                    SizedBox(width: 15),
+                                                    Container(
+                                                      //margin: const EdgeInsets.only(top: 5.5),
+                                                      height: 4,
+                                                      width: 4,
+                                                      decoration: const BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          2)),
+                                                          color: ColorRes
+                                                              .color_FFEC5C),
+                                                    ),
+                                                    SizedBox(width: 15),
+                                                    Text(
+                                                        "Ending in ${controller.viewCardModel?.data?.expYear ?? ""}",
+                                                        style:
+                                                            textStyleFont14White),
+                                                    SizedBox(width: 15),
+                                                    Container(
+                                                      //margin: const EdgeInsets.only(top: 5.5),
+                                                      height: 4,
+                                                      width: 4,
+                                                      decoration: const BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          2)),
+                                                          color: ColorRes
+                                                              .color_FFEC5C),
+                                                    ),
+                                                    SizedBox(width: 15),
+                                                    Text(
+                                                        "${controller.viewCardModel?.data?.cardAddress?[0].createdAt?.month.toString() ?? ""}/${controller.viewCardModel?.data?.cardAddress?[0].createdAt?.day.toString() ?? ""}",
+                                                        style:
+                                                            textStyleFont14White),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: Get.height * 0.01598,
+                                                ),
+                                                ReadMoreText(
+                                                  "${controller.viewCardModel?.data?.cardAddress?[0].address ?? ""}, ${controller.viewCardModel?.data?.cardAddress?[0].country ?? ""}, ${controller.viewCardModel?.data?.cardAddress?[0].postalCode ?? ""}",
+                                                  trimLines: 1,
+                                                  style: textStyleFont14White,
+                                                  textAlign: TextAlign.center,
+                                                  trimMode: TrimMode.Line,
+                                                  trimCollapsedText: 'see more',
+                                                  lessStyle:
+                                                      gilroyMediumTextStyle(
+                                                          fontSize: 14,
+                                                          color: Colors.white
+                                                              .withOpacity(
+                                                                  0.5)),
+                                                  trimExpandedText:
+                                                      '...see less',
+                                                  moreStyle:
+                                                      gilroyMediumTextStyle(
+                                                          fontSize: 14,
+                                                          color: Colors.white
+                                                              .withOpacity(
+                                                                  0.5)),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                }),
+
                             SizedBox(
                               height: Get.height * 0.0184482,
                             ),
@@ -164,8 +190,8 @@ class PaymentScreen extends StatelessWidget {
                                 children: [
                                   //set As a Default Value
                                   InkWell(
-                                    onTap: () async{
-                                     await controller.defaultCardApi();
+                                    onTap: () async {
+                                      await controller.defaultCardApi();
                                     },
                                     child: Container(
                                       height: 32,
@@ -192,13 +218,13 @@ class PaymentScreen extends StatelessWidget {
                                   //Remove
                                   InkWell(
                                     onTap: () {
-                                      if (controller.listCardModel.data?.length ==
+                                      if (controller
+                                              .listCardModel.data?.length ==
                                           null) {
                                         errorToast("Card not available");
                                       } else {
                                         controller.navigateToRemove(context);
                                       }
-
                                     },
                                     child: Container(
                                       height: 32,
@@ -226,47 +252,61 @@ class PaymentScreen extends StatelessWidget {
                                   //Edit
                                   InkWell(
                                     onTap: () {
-
-                                      if(controller.listCardModel.data?.length == null){
+                                      if (controller
+                                              .listCardModel.data?.length ==
+                                          null) {
                                         errorToast("Card not available");
-                                      }
-                                      else{
-                                        editCardController.cvvController.clear();
-                                        editCardController.cardNmberController.clear();
+                                      } else {
+                                        editCardController.cvvController
+                                            .clear();
+                                        editCardController.cardNmberController
+                                            .clear();
 
                                         Get.to(EditCardScreen(
                                           index: controller
-                                              .listCardModel
-                                              .data?[controller.selectedIndex]
-                                              .id ??
+                                                  .listCardModel
+                                                  .data?[
+                                                      controller.selectedIndex]
+                                                  .id ??
                                               0,
-                                          cardHolder: controller.viewCardModel?.data?.cardHolder ??
+                                          cardHolder: controller.viewCardModel
+                                                  ?.data?.cardHolder ??
                                               "",
                                           month: controller
-                                              .viewCardModel?.data?.expMonth
-                                              .toString() ??
+                                                  .viewCardModel?.data?.expMonth
+                                                  .toString() ??
                                               "",
                                           year: controller
-                                              .viewCardModel?.data?.expYear
-                                              .toString() ??
+                                                  .viewCardModel?.data?.expYear
+                                                  .toString() ??
                                               "",
-                                          fullName: controller.viewCardModel?.data
-                                              ?.cardAddress?[0].fullName ??
+                                          fullName: controller
+                                                  .viewCardModel
+                                                  ?.data
+                                                  ?.cardAddress?[0]
+                                                  .fullName ??
                                               "",
                                           city: controller.viewCardModel?.data
-                                              ?.cardAddress?[0].city ??
+                                                  ?.cardAddress?[0].city ??
                                               "",
-                                          country: controller.viewCardModel?.data
-                                              ?.cardAddress?[0].country ??
+                                          country: controller
+                                                  .viewCardModel
+                                                  ?.data
+                                                  ?.cardAddress?[0]
+                                                  .country ??
                                               "",
                                           //cardNmber: controller.viewCardModel.data?.cardNumber ??  "",
                                           postalCode: controller
-                                              .viewCardModel?.data
-                                              ?.cardAddress?[0]
-                                              .postalCode ??
+                                                  .viewCardModel
+                                                  ?.data
+                                                  ?.cardAddress?[0]
+                                                  .postalCode ??
                                               "",
-                                          address: controller.viewCardModel?.data
-                                              ?.cardAddress?[0].address ??
+                                          address: controller
+                                                  .viewCardModel
+                                                  ?.data
+                                                  ?.cardAddress?[0]
+                                                  .address ??
                                               "",
                                         ));
                                       }
@@ -396,15 +436,16 @@ class PaymentScreen extends StatelessWidget {
                             // ---------- Transaction
                             (controller.transactionModel.data?.length == null)
                                 ? Column(
-                              children: [
-                                SizedBox(height: 80),
-                                Center(
-                                  child: Text("No Transaction yet"),
-                                )
-                              ],
-                            )
+                                    children: [
+                                      SizedBox(height: 80),
+                                      Center(
+                                        child: Text("No Transaction yet"),
+                                      )
+                                    ],
+                                  )
                                 : ListView.builder(
                                     shrinkWrap: true,
+                                    physics: NeverScrollableScrollPhysics(),
                                     itemCount: controller
                                             .transactionModel.data?.length ??
                                         0,
@@ -605,7 +646,7 @@ class PaymentCards extends StatelessWidget {
   }
 }
 
-Widget appBar() {
+Widget appBar({required final bool showBack}) {
   return SizedBox(
     width: Get.width,
     child: Column(
@@ -618,20 +659,20 @@ Widget appBar() {
             SizedBox(
               width: Get.width * 0.05,
             ),
-            GestureDetector(
-              onTap: () {
-                Get.back();
-              },
-              child: Image.asset(
-                AssetRes.backIcon,
-                height: 16,
-                width: 35,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(
-              width: Get.width * 0.15,
-            ),
+            (showBack == true)
+                ? GestureDetector(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Image.asset(
+                      AssetRes.backIcon,
+                      height: 16,
+                      width: 35,
+                      color: Colors.white,
+                    ),
+                  )
+                : SizedBox(),
+            (showBack == true)? SizedBox(width: Get.width * 0.15):SizedBox(width: Get.width * 0.25),
             Text(
               Strings.manageCards,
               style: gilroyBoldTextStyle(),

@@ -330,7 +330,7 @@ class AdvertisementDashBord extends StatelessWidget {
                     if (controller.currentTab == 0) {
                       return AdHomeScreen();
                     } else if (controller.currentTab == 1) {
-                      return PaymentScreen();
+                      return PaymentScreen(showBackArrow: false,);
                       // const AdPaymentScreen();
                     } else if (controller.currentTab == 2) {
                       return AdNotificationsScreen();

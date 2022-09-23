@@ -307,7 +307,7 @@ class AccountInformationScreen extends StatelessWidget {
                     return  (controller.countryBox == true)
                         ?Container(
                       height: 160,
-                      width: 390,
+                      width: 360,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.white,
@@ -316,7 +316,7 @@ class AccountInformationScreen extends StatelessWidget {
 
                         child: Column(
                           children: (controller.countryController.text.isEmpty)
-                              ?listNationalities.data!.map((e) {
+                              ?listCountryModel.data!.map((e) {
                             return Padding(
                               padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
                               child: Align(

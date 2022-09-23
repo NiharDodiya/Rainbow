@@ -150,9 +150,9 @@ class AdviserRegisterController extends GetxController {
 
   void onRegisterTap() {
     if (validation()) {
-      for (int i = 0; i < listNationalities.data!.length; i++) {
-        if (listNationalities.data![i].name == country.text) {
-          passId = listNationalities.data![i].id!.toString();
+      for (int i = 0; i < listCountryModel.data!.length; i++) {
+        if (listCountryModel.data![i].name == country.text) {
+          passId = listCountryModel.data![i].id!.toString();
           print(passId);
         }
       }
@@ -192,8 +192,8 @@ class AdviserRegisterController extends GetxController {
 
   bool validation() {
 
-    for (int i = 0; i < listNationalities.data!.length; i++) {
-      if (listNationalities.data![i].name == country.text) {
+    for (int i = 0; i < listCountryModel.data!.length; i++) {
+      if (listCountryModel.data![i].name == country.text) {
         myId = country.text;
       }
     }

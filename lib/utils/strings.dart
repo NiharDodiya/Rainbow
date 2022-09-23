@@ -108,35 +108,35 @@ class Strings {
   static const maritalStatus = 'Marital Status';
   static const ethnicity = 'Ethnicity';
   static const ethnicityHint = 'British';
-  static const idNoT = '123456';
+  static const idNoT = 'CADL-1231231233';
   static const birthDate = 'Birth Date';
   static const birthDateHint = 'MM/DD/YYYY';
   static const ontrario = "Ontrario";
   static const houseNumberHint = "123";
   static const noOfKids = 'No of Kids';
   static const noOfKidsHint = '0';
-  static const fullNameError = 'please enter Full name';
-  static const emailError = 'please enter Email';
-  static const enterYourOtp = 'please enter your otp';
+  static const fullNameError = 'Please enter full name';
+  static const emailError = 'Please enter email';
+  static const enterYourOtp = 'Please enter your otp';
   static const emailValidError = 'Email is invalid';
   static const emailValidError1 = 'Email is invalid';
   static const passwordError = 'Password is required';
   static const newPasswordError = 'New password is required';
   static const confirmPasswordError = 'Confirm password is required';
   static const passwordValidError = 'Password is invalid';
-  static const reTypePasswordError = 'Re-Type Password is required';
-  static const reTypePasswordValidError = 'Re-Type Password is Mismatch';
+  static const reTypePasswordError = 'Re-Type password is required';
+  static const reTypePasswordValidError = 'Re-Type password is mismatch';
   static const addressLine1Error = 'please enter Address';
   static const addressLine2Error = 'please enter Address';
   static const phoneNumberError = 'please enter Phone Number';
-  static const phoneNumberValidError = 'Phone Number is invalid';
+  static const phoneNumberValidError = 'Phone number is invalid';
 
-  static const maritalStatusError = 'please enter Marital Status';
+  static const maritalStatusError = 'Please enter marital status';
 
-  static const ethnicityError = 'please enter Ethnicity';
-  static const birthDateError = 'please enter Birth date';
-  static const postalCodeError = 'please enter PostalCode';
-  static const noOfKidsError = 'please enter No of kids';
+  static const ethnicityError = 'Please enter ethnicity';
+  static const birthDateError = 'Please enter birth date';
+  static const postalCodeError = 'Please enter postal code';
+  static const noOfKidsError = 'Please enter no of kids';
   static const alreadyHaveAnAccount = 'Already have an account? ';
   static const privacyPolicyText =
       'By continuing you agree Rainbow’s Terms of Services & Privacy Policy.';
@@ -208,8 +208,8 @@ class Strings {
   static const youtubeError = 'Enter youtube';
   static const faceBookError = 'Enter faceBook';
   static const twitterError = 'Enter twitter';
-  static const aboutMeError = 'please enter about me';
-  static const hobbiesError = 'please enter your hobbies';
+  static const aboutMeError = 'Please enter about me';
+  static const hobbiesError = 'Please enter your hobbies';
 
   ///___________________________dashboard--Home_______________________________________
   static const aA = "Aa";
@@ -244,8 +244,8 @@ class Strings {
   ///___________________________dashboard--Profile_______________________________________
   static const profile = "Profile";
   static const city = "City";
-  static const cityError = "please enter city name";
-  static const streetError = "please enter street name";
+  static const cityError = "Please enter city name";
+  static const streetError = "Please enter street name";
   static const london = "London";
   static const haveKids = "Have kids?";
   static const editProfile = "Edit Profile";
@@ -321,14 +321,14 @@ class Strings {
   static const addresserror = 'Address is required';
   static const cityeError = 'City is required';
 
-  static const countryError = 'Country is Required';
+  static const countryError = 'Country is required';
   static const nameonCardError = 'Name on card is required';
-  static const cardnumberError = 'card number is required';
-  static const cardnumberErrorValidation = "Please currect card Number";
+  static const cardnumberError = 'Card number is required';
+  static const cardnumberErrorValidation = "Please correct card number";
   static const expiryYearError = 'Expiry year is required';
   static const expiryMonthError = 'Expiry month is required';
   static const cVVError = 'Cvv is required';
-  static const cVVErrorValidation = 'Please currect cvv';
+  static const cVVErrorValidation = 'Please correct cvv';
   static const removeCard = "Remove Card";
   static const removeDialogDes = "Are you sure you want to remove card?";
   static const removeDialogCancel = "Cancel";
@@ -424,7 +424,7 @@ class Strings {
   static const thankYouForSending =
       "Thank you for sending your concern, we will get back to you as soon as an agent comes in. ";
   static const subject = "Subject";
-  static const supportError02 = "please enter subject";
+  static const supportError02 = "Please enter subject";
 
   ///____________________________________Support123__________________________________________
   static const delete = "Delete";
@@ -445,14 +445,14 @@ class Strings {
   ///------------------------------Ad _home --->Create Advertisement--------
   static const callToAction = "Call to Action";
   static const urlLink = "URL Link";
-  static const tagsError = "please enter Tags";
+  static const tagsError = "Please enter tags";
   static const imageError = "please add image ";
-  static const titleError = "please enter Title";
-  static const canedaError = "please enter city";
-  static const provinceError = "please enter Province ";
-  static const dateError = "please enter Date ";
-  static const descriptionError = "please enter Description ";
-  static const callActionError = "please enter Action ";
+  static const titleError = "Please enter title";
+  static const canedaError = "Please enter city";
+  static const provinceError = "Please enter province ";
+  static const dateError = "Please enter date ";
+  static const descriptionError = "Please enter description ";
+  static const callActionError = "Please enter action ";
   static const addAdvertisement = "Add advertisement";
   static const tagsSeparated = "Tags(Separated by space)";
   static const uploadImage = "Upload Images";
@@ -498,10 +498,10 @@ class Strings {
       "Pixsellz Ad Make design process easier View More";
 
   ///________________ error text_____________
-  static const name = "please enter name";
-  static const statusErrorEdit = "please enter status";
-  static const ageError = "please enter age";
-  static const cityErrorEdit = "please enter city";
-  static const heightError = "please enter height";
-  static const weightError = "please enter weight";
+  static const name = "Please enter name";
+  static const statusErrorEdit = "Please enter status";
+  static const ageError = "Please enter age";
+  static const cityErrorEdit = "Please enter city";
+  static const heightError = "Please enter height";
+  static const weightError = "Please enter weight";
 }

@@ -201,12 +201,13 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                 ),
                               ),
                               const Spacer(),
-                              InkWell(
+                              (adHomeController.myAdvertiserModel.data?[index].adminStatus.toString() == 'approve')?SizedBox(): InkWell(
                                 onTap: () async {
-                                  await editAdvertiesementController
-                                      .myEditAdvertiserListData(id: id);
 
-                                  Get.to(EditAdvertisementscreen());
+                                  await editAdvertiesementController.myEditAdvertiserListData(id: id);
+
+
+                                 Get.to(EditAdvertisementscreen());
                                 },
                                 child: Container(
                                   height: 33.3,
