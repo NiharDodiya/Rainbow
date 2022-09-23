@@ -739,6 +739,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   //     ),
                   //   ),
                   // ),
+                  SizedBox(
+                    width: Get.width * 0.85,
+                    child: AppTextFiled(
+                      controller: controller.status1,
+                      title: Strings.status,
+                      hintText: Strings.single,
+                      enable: true,
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: Get.height * 0.02,
+                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -766,7 +779,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                       style: gilroyMediumTextStyle(
                                           fontSize: 16,
                                           color:
-                                              ColorRes.black.withOpacity(0.3)),
+                                          ColorRes.black.withOpacity(0.3)),
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
@@ -774,15 +787,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                               items: controller.noOfKids
                                   .map((item) => DropdownMenuItem<String>(
-                                        value: item,
-                                        child: Text(
-                                          item,
-                                          style: gilroyMediumTextStyle(
-                                              fontSize: 16,
-                                              color: ColorRes.black),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ))
+                                value: item,
+                                child: Text(
+                                  item,
+                                  style: gilroyMediumTextStyle(
+                                      fontSize: 16,
+                                      color: ColorRes.black),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ))
                                   .toList(),
                               value: controller.noKidsSelected,
                               onChanged: (value) {
@@ -797,7 +810,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               buttonHeight: 60,
                               buttonWidth: Get.width * 0.85,
                               buttonPadding:
-                                  const EdgeInsets.only(left: 14, right: 23),
+                              const EdgeInsets.only(left: 14, right: 23),
                               buttonDecoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
                                 color: Colors.white,
@@ -805,7 +818,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               buttonElevation: 2,
                               itemHeight: 40,
                               itemPadding:
-                                  const EdgeInsets.only(left: 20, right: 14),
+                              const EdgeInsets.only(left: 20, right: 14),
                               dropdownMaxHeight: Get.height * 0.3,
                               /* height: Get.height*0.19,*/
                               dropdownWidth: Get.width * 0.85,
@@ -826,18 +839,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         height: 10,
                       ),
                     ],
-                  ),
-                  SizedBox(
-                    height: Get.height * 0.02,
-                  ),
-                  SizedBox(
-                    width: Get.width * 0.85,
-                    child: AppTextFiled(
-                      controller: controller.status1,
-                      title: Strings.status,
-                      hintText: Strings.single,
-                      enable: true,
-                    ),
                   ),
                   SizedBox(
                     height: Get.height * 0.02,
@@ -982,7 +983,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           borderRadius: BorderRadius.circular(15)),
                       child: Center(
                           child: Text(
-                        Strings.save,
+                        Strings.saveChang,
                         style: gilroyBoldTextStyle(
                             color: Colors.black, fontSize: 16),
                       )),

@@ -46,17 +46,17 @@ class AdvertiserTermsAndConditionsScreen extends StatelessWidget {
                   SizedBox(
                     height: Get.height * 0.05,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Text(Strings.termsConditions,
-                        style: gilroyBoldTextStyle(fontSize: 30),
-                        textAlign: TextAlign.center),
-                  ),
+                 Align(
+                   alignment: Alignment.center,
+                   child:  Text(Strings.termsConditions,
+                       style: gilroyBoldTextStyle(fontSize: 30),
+                       textAlign: TextAlign.center),
+                 ),
                   SizedBox(
                     height: Get.height * 0.042,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 6),
+                  Align(
+                    alignment: Alignment.center,
                     child: SizedBox(
                       width: Get.width * 1,
                       height: Get.height * 0.058,
@@ -68,8 +68,8 @@ class AdvertiserTermsAndConditionsScreen extends StatelessWidget {
                   SizedBox(
                     height: Get.height * 0.035,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
+                  Align(
+                    alignment: Alignment.center,
                     child: SizedBox(
                       height: Get.height * 0.60,
                       width: Get.width * 0.85,
@@ -82,9 +82,9 @@ class AdvertiserTermsAndConditionsScreen extends StatelessWidget {
                   const SizedBox(
                     height: 9,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: GestureDetector(
+                  Align(
+                    alignment: Alignment.center,
+                    child:  GestureDetector(
                       onTap: () async {
                         await PrefService.setValue(
                             PrefKeys.showTermsCondition, false);
@@ -98,9 +98,9 @@ class AdvertiserTermsAndConditionsScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15)),
                         child: Center(
                             child: Text(
-                          Strings.accCon,
-                          style: gilroyBoldTextStyle(color: Colors.black),
-                        )),
+                              Strings.accCon,
+                              style: gilroyBoldTextStyle(color: Colors.black),
+                            )),
                       ),
                     ),
                   ),

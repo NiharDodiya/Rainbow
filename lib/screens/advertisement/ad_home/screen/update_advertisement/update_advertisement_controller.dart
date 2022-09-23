@@ -78,7 +78,7 @@ class UpdateAdvertiseController extends GetxController {
   List filterList = [];
 
   void serching(value) {
-    filterList = (listNationalities.data?.where(
+    filterList = (listCountryModel.data?.where(
             (element) {
           return element.name.toString().toLowerCase().contains(value);
         })
@@ -204,9 +204,9 @@ class UpdateAdvertiseController extends GetxController {
     tagsListSet();
     if (validation()) {
       uploadImageApi(id: id);
-      for (int i = 0; i < listNationalities.data!.length; i++) {
-        if (listNationalities.data![i].name == countryController.text) {
-          codeId = listNationalities.data![i].id;
+      for (int i = 0; i < listCountryModel.data!.length; i++) {
+        if (listCountryModel.data![i].name == countryController.text) {
+          codeId = listCountryModel.data![i].id;
         }
       }
       /*uploadImageApi();*/
@@ -217,8 +217,8 @@ class UpdateAdvertiseController extends GetxController {
 
   bool validation() {
 
-    for (int i = 0; i < listNationalities.data!.length; i++) {
-      if (listNationalities.data![i].name == countryController.text) {
+    for (int i = 0; i < listCountryModel.data!.length; i++) {
+      if (listCountryModel.data![i].name == countryController.text) {
         myId = countryController.text;
       }
     }

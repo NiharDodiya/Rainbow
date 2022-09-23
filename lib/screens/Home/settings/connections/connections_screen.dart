@@ -133,7 +133,7 @@ class ConnectionsScreen extends StatelessWidget {
                     return infoRow(
                       name: user.fullName,
                       image: user.profileImage,
-                      label: user.email,
+                      label: user.userStatus,
                       onPlusTap: () =>
                           control.onAddBtnTap(user.id.toString(), false),
                       onDeleteTap: () =>
@@ -245,7 +245,7 @@ class ConnectionsScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      label.toString(),
+                      label.toString().toUpperCase(),
                       style: montserratRegularTextStyle(fontSize: 12),
                     ),
                   ],

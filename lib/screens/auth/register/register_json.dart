@@ -108,7 +108,7 @@ class Data {
   String? facebook;
   String? twitter;
   String? about;
-  int? idCardPrimary;
+  String? idCardPrimary;
   String? hobbiesAndInterest;
   String? backgroundImage;
   String? profileImage;

@@ -838,10 +838,20 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                           SizedBox(
                             height: Get.height * 0.0086,
                           ),
-                          Text(
-                            "${DateFormat().add_yMMMMd().format(controller.viewSupportTicketModel.data![index].createdAt!.toLocal())} | ${DateFormat().add_jm().format(controller.viewSupportTicketModel.data![index].createdAt!.toLocal())}",
-                            style: gilroySemiBoldTextStyle(
-                              fontSize: 18,
+                          Container(
+                            width: MediaQuery.of(context).size.width / 1.54,
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "${DateFormat().add_yMMMMd().format(controller.viewSupportTicketModel.data![index].createdAt!.toLocal())} | ${DateFormat().add_jm().format(controller.viewSupportTicketModel.data![index].createdAt!.toLocal())}",
+                                    style: gilroySemiBoldTextStyle(
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           // SizedBox(

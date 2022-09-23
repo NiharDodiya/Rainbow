@@ -114,14 +114,7 @@ class ScanYourFaceScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: Get.height * 0.03),
-                          Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                                "Please Blink",
-                              style: gilroyMediumTextStyle(fontSize: 14),
-                            ),
-                          ),
-                          SizedBox(height: Get.height * 0.03),
+
                           // buildCameraFunction(context, controller),
                           Stack(
                             alignment: Alignment.center,

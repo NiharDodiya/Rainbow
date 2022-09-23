@@ -638,7 +638,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       SizedBox(
                                         width: Get.width * 0.4,
                                         child: Text(
-                                          user.userStatus.toString(),
+                                          user.userStatus.toString().toUpperCase(),
                                           style: montserratRegularTextStyle(
                                               color: Colors.black,
                                               fontSize: 12),

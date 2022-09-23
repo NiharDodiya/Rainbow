@@ -186,6 +186,7 @@ class Strings {
   static const w = '160 lbs';
   static const feet = 'Feet';
   static const save = 'Save';
+  static const saveChang = "Save Changes";
   static const lbs = 'Lbs';
   static const inches = 'Inches';
   static const status = 'Status';
@@ -217,7 +218,7 @@ class Strings {
   static const post = "Post";
   static const camera = "Camera";
   static const addToStory = "Add to story";
-  static const writeSomethings = "Write something...";
+  static const writeSomethings = "Write something here...";
   static const discover = "Discover";
   static const myStory = "My Story";
   static const scott = "Scott";
@@ -412,7 +413,8 @@ class Strings {
   ///____________________________________Support_______________________________________
   static const attachImagesOrproof = "Attach images or proof";
   static const sendMessage = "Send Message";
-  static const writesomethinghere = "Write something here...";
+  static const writesomethinghere = "Write subject here...";
+  static const writeMessage = "What would you like to tell us?";
   static const yourMessage = "Your Message";
   static const supportdeatailDEs =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium sem sit amet venenatis commodo. Nullam aliquam lacus nisl, varius luctus mauris hendrerit ut. Etiam eros lectus, commodo nec nisl in, aliquet congue quam. Morbi condimentum lectus id urna gravida, at facilisis lectus consectetur. Nam viverra augue est, ut cursus mi bibendum sit amet. Duis hendrerit hendrerit molestie. Ut iaculis tellus risus, id facilisis purus finibus vel. In hac habitasse platea dictumst. Ut efficitur lacus eu risus aliquam mollis. Nullam gravida sit amet lorem vitae maximus. Nunc quis odio nec sapien ullamcorper eleifend a eget justo. In hac habitasse platea dictumst. Donec quis magna id libero consequat egestas eget ac felis.";

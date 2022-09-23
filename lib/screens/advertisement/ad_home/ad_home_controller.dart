@@ -61,6 +61,17 @@ class AdHomeController extends GetxController {
     super.onInit();
   }
 
+  Future<void> onRefresh() async {
+    /*await init()*/
+    await refreshCode();
+    // refreshController!.refreshCompleted();
+  }
+
+  Future<void> refreshCode() async {
+    await viewAdvertiserData();
+    await myAdvertiserListData();
+  }
+
   Future<void> init() async {
     await viewAdvertiserData();
     await myAdvertiserListData();
