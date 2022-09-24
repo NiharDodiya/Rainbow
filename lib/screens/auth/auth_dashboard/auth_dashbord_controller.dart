@@ -58,33 +58,34 @@ class AuthDashBordController extends GetxController {
       debugPrint(e.toString());
     }
   }
+
 String? token;
   Future signWithGoogle() async {
-    loading.value = true;
-    token = await NotificationService.getFcmToken();
-    if (await googleSignIn.isSignedIn()) {
-      await googleSignIn.signOut();
-      flutterToast(Strings.googleLogOutSuccess);
-    }
-    final GoogleSignInAccount? account = await googleSignIn.signIn();
-    final GoogleSignInAuthentication authentication =
-        await account!.authentication;
-
-    final OAuthCredential credential = GoogleAuthProvider.credential(
-      idToken: authentication.idToken,
-      accessToken: authentication.accessToken,
-    );
-
-    final UserCredential authResult =
-        await auth.signInWithCredential(credential);
-    final User? user = authResult.user;
-    print(user!.email);
-    print(user.uid);
-    print(user.tenantId);
-    print(user.displayName);
-
     // GoogleIdVerification.postRegister(user.uid).then((value) {print(value);});
     try {
+      loading.value = true;
+      token = await NotificationService.getFcmToken();
+      if (await googleSignIn.isSignedIn()) {
+        await googleSignIn.signOut();
+        flutterToast(Strings.googleLogOutSuccess);
+      }
+      final GoogleSignInAccount? account = await googleSignIn.signIn();
+      final GoogleSignInAuthentication authentication =
+      await account!.authentication;
+
+      final OAuthCredential credential = GoogleAuthProvider.credential(
+        idToken: authentication.idToken,
+        accessToken: authentication.accessToken,
+      );
+
+      final UserCredential authResult =
+      await auth.signInWithCredential(credential);
+      final User? user = authResult.user;
+      print(user!.email);
+      print(user.uid);
+      print(user.tenantId);
+      print(user.displayName);
+
       await GoogleIdVerification.postRegister(user.uid, user: user)
           .then((LoginModel? model) async {
         print(model);

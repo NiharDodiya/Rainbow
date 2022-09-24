@@ -39,7 +39,7 @@ class EditCardController extends GetxController{
             (element) {
           return element.toString().toLowerCase().contains(value);
         })
-        .toList()) ?? [];
+        .toList());
     update(["drop"]);
   }
 

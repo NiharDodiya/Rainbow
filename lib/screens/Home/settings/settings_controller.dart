@@ -55,7 +55,9 @@ class SettingsController extends GetxController {
     loader.value = true;
     try {
       DashboardController dashboardController = Get.find();
-      await dashboardController.setUserOnlineStatus(false);
+      await dashboardController.setUserOnlineStatus(false).then((value) {
+         LogOutApi.postRegister();
+      });
       await LogOutApi.postRegister();
 
       loader.value = false;

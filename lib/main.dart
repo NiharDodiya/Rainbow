@@ -76,8 +76,8 @@ class MyApp extends StatelessWidget {
                           ? AdvertisementDashBord()
                           :  PrefService.getBool(PrefKeys.isLogin)
                              ? const Dashboard()
-                             : SplashScreen()   //AuthDashboard()
-              : SplashScreen()  //AuthDashboard(),
+                             : AuthDashboard()
+          : AuthDashboard(),
     );
   }
 }
