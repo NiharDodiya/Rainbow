@@ -85,7 +85,6 @@ String? token;
       print(user.uid);
       print(user.tenantId);
       print(user.displayName);
-
       await GoogleIdVerification.postRegister(user.uid, user: user)
           .then((LoginModel? model) async {
         print(model);
@@ -132,8 +131,7 @@ String? token;
     try {
       loading.value = true;
 
-      final LoginResult loginResult = await FacebookAuth.instance
-          .login(permissions: ["public_profile", "email"]);
+      final LoginResult loginResult = await FacebookAuth.instance.login(permissions: ["public_profile", "email"]);
       await FacebookAuth.instance.getUserData().then((userData) {
         print(userData);
       });
