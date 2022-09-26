@@ -10,6 +10,7 @@ import 'package:rainbow/screens/Home/settings/connections/connections_screen.dar
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
 import 'package:rainbow/screens/Home/settings/subscription/subscription_screen.dart';
+import 'package:rainbow/screens/Message/message_screen.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/profile_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -228,29 +229,36 @@ class SettingsScreen extends StatelessWidget {
           height: Get.height * 0.025,
         ),
         //Messages
-        Padding(
-          padding: const EdgeInsets.only(bottom: 5),
-          child: Row(
-            children: [
-              SizedBox(
-                width: Get.width * 0.08,
-              ),
-              SizedBox(
-                  height: 18.98,
-                  width: 20.83,
-                  child: Image.asset(AssetRes.messages)),
-              SizedBox(
-                width: Get.width * 0.06,
-              ),
-              Text(
-                Strings.messages,
-                style: textStyleFont15White,
-              ),
-              SizedBox(
-                width: Get.width * 0.555,
-              ),
-              SizedBox(height: 10, width: 6, child: Image.asset(AssetRes.next))
-            ],
+        InkWell(
+          onTap: (){
+            /*homeController.viewProfile.data!.userType == "free"
+                ? premiumPopUpBox(context: context)
+                : Get.to(() => MessageScreen());*/
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 5),
+            child: Row(
+              children: [
+                SizedBox(
+                  width: Get.width * 0.08,
+                ),
+                SizedBox(
+                    height: 18.98,
+                    width: 20.83,
+                    child: Image.asset(AssetRes.messages)),
+                SizedBox(
+                  width: Get.width * 0.06,
+                ),
+                Text(
+                  Strings.messages,
+                  style: textStyleFont15White,
+                ),
+                SizedBox(
+                  width: Get.width * 0.555,
+                ),
+                SizedBox(height: 10, width: 6, child: Image.asset(AssetRes.next))
+              ],
+            ),
           ),
         ),
         Divider(

@@ -110,7 +110,7 @@ class ProfileScreen extends StatelessWidget {
                     height: Get.height * 0.2857,
                     width: Get.width,
                     fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
+                    /*errorBuilder: (context, error, stackTrace) {
                       return Container(
                         height: Get.height * 0.2857,
                         width: Get.width,
@@ -120,7 +120,7 @@ class ProfileScreen extends StatelessWidget {
                                 image: AssetImage(AssetRes.placeholderImage),
                                 fit: BoxFit.cover)),
                       );
-                    },
+                    },*/
                   ),
                 ),
 
@@ -160,7 +160,8 @@ class ProfileScreen extends StatelessWidget {
                 imageUrl: controller.viewProfile.data == null
                     ? ""
                     : controller.viewProfile.data!.profileImage.toString(),
-                imageBuilder: (context, imageProvider) => Container(
+                /*imageBuilder: (context, imageProvider) =>
+                    Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
@@ -169,7 +170,8 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                // placeholder: (context, url) => const Center(child:  CircularProgressIndicator(),),
+                // placeholder: (context, url) => const Center(child:  CircularProgressIndicator(),),*/
+                placeholder: ((context, url) =>  Image.asset(AssetRes.portrait_placeholder)),
                 errorWidget: (context, url, error) => Container(
                     decoration: const BoxDecoration(
                   shape: BoxShape.circle,
