@@ -9,6 +9,7 @@ import 'package:rainbow/screens/Home/settings/payment/add_cart/add_cart_screen.d
 import 'package:rainbow/screens/Home/settings/payment/edit_card/edit_card_controller.dart';
 import 'package:rainbow/screens/Home/settings/payment/edit_card/edit_card_screen.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
+import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
 import 'package:readmore/readmore.dart';
 
 import '../../../../utils/asset_res.dart';
@@ -579,70 +580,66 @@ class PaymentCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: Get.width * 0.508,
-      width: Get.width * 0.8133,
-      child: Stack(children: [
-        Image.asset(AssetRes.card),
-        Column(
-          children: [
-            SizedBox(
-              height: Get.width * 0.0620,
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  width: Get.width * 0.060986,
-                ),
-                SizedBox(
-                  width: Get.width * 0.1829,
-                  child: Image.asset(AssetRes.visa),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: Get.width * 0.01866,
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  width: Get.width * 0.060986,
-                ),
-                Text(
-                  Strings.platinum,
-                  style: montserratRegularTextStyle(fontSize: 15.25),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: Get.width * 0.1779,
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  width: Get.width * 0.060986,
-                ),
-                Text(
-                  "• • • •",
-                  style: gilroyBoldTextStyle(
-                    fontSize: 15.25,
+    return GetBuilder<PaymentController>(
+      id: "more",
+        builder: (controller){
+      return SizedBox(
+        height: Get.width * 0.508,
+        width: Get.width * 0.8133,
+        child: Stack(children: [
+          Image.asset(AssetRes.card),
+          Column(
+            children: [
+              SizedBox(
+                height: Get.width * 0.0620,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: Get.width * 0.060986,
                   ),
-                ),
-                SizedBox(
-                  width: Get.width * 0.0203,
-                ),
-                Text(
-                  Strings.carddigits,
-                  style: montserratMediumTextStyle(
-                    fontSize: 15.25,
+                  SizedBox(
+                    width: Get.width * 0.1829,
+                    child: Image.asset(AssetRes.visa),
                   ),
-                ),
-              ],
-            ),
-          ],
-        )
-      ]),
-    );
+                ],
+              ),
+              SizedBox(
+                height: Get.width * 0.01866,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: Get.width * 0.060986,
+                  ),
+                  Text(
+                    Strings.platinum,
+                    style: montserratRegularTextStyle(fontSize: 15.25),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: Get.width * 0.1779,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: Get.width * 0.060986,
+                  ),
+                  Text(
+                      ". . . . ${controller.viewCardModel?.data?.cardNumber ?? ""}",
+                      style:
+                      montserratMediumTextStyle(
+                        fontSize: 15.25,
+                      ),
+                  ),
+                ],
+              ),
+            ],
+          )
+        ]),
+      );
+    });
   }
 }
 

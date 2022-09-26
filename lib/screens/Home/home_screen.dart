@@ -1009,71 +1009,66 @@ class _HomeScreenState extends State<HomeScreen> {
                                       width: 140,
                                       child: Stack(
                                         children: [
-                                          ListView.builder(
-                                            itemCount: 3,
-                                            itemBuilder: (context, index2) {
-                                              return Row(
-                                                children: [
-                                                  controller
-                                                          .friendPostListData[
-                                                              index]
-                                                          .postLikeUser!
-                                                          .isEmpty
-                                                      ? const SizedBox()
-                                                      : ImageStack(
-                                                          imageList: controller.friendPostListData[index].postLikeUser!.map((e) => e.profileImage.toString()).toList(),
-                                                          totalCount: controller.friendPostListData[index].postLikeUser!.map((e) => e.profileImage.toString()).toList().length,
-                                                          // If larger than images.length, will show extra empty circle
-                                                          imageRadius: 32,
-                                                          // Radius of each images
-                                                          imageCount: 1,
-                                                          // Maximum number of images to be shown in stack
-                                                          imageBorderWidth: 2,
-                                                          imageBorderColor:
-                                                              Colors.white,
-                                                          showTotalCount: false,
-                                                          // Border width around the images
-                                                        ),
-                                                  const SizedBox(
-                                                    width: 8,
-                                                  ),
-                                                  controller
-                                                              .friendPostListData[
-                                                                  index]
-                                                              .postLikeCount
-                                                              .toString() ==
-                                                          "0"
-                                                      ? const Text("")
-                                                      : InkWell(
-                                                          onTap: () {
-                                                            controller.onLikeBtnTap(
-                                                                postId: controller
-                                                                    .friendPostListData[
-                                                                        index]
-                                                                    .id
-                                                                    .toString(),
-                                                                friendPost:
-                                                                    controller
-                                                                            .friendPostListData[
-                                                                        index]);
-                                                          },
-                                                          child: Text(
-                                                            controller
-                                                                        .friendPostListData[
-                                                                            index]
-                                                                        .postLikeCount
-                                                                        .toString() ==
-                                                                    "1"
-                                                                ? "${controller.friendPostListData[index].postLikeCount.toString()} likes"
-                                                                : "+${controller.friendPostListData[index].postLikeCount.toString()} likes",
-                                                            style:
-                                                                textStyleFont14White,
-                                                          ),
-                                                        )
-                                                ],
-                                              );
-                                            },
-                                          ),
+                                      Row(
+                                      children: [
+                                      controller
+                                          .friendPostListData[
+                                          index]
+                                              .postLikeUser!
+                                              .isEmpty
+                                          ? const SizedBox()
+                                            : ImageStack(
+                                    imageList: controller.friendPostListData[index].postLikeUser!.map((e) => e.profileImage.toString()).toList(),
+            totalCount: 3,
+            // If larger than images.length, will show extra empty circle
+            imageRadius: 32,
+            // Radius of each images
+            imageCount: 3,
+            // Maximum number of images to be shown in stack
+            imageBorderWidth: 2,
+            imageBorderColor:
+            Colors.white,
+            showTotalCount: false,
+            // Border width around the images
+            ),
+            const SizedBox(
+            width: 8,
+            ),
+            controller
+                .friendPostListData[
+            index]
+                .postLikeCount
+                .toString() ==
+            "0"
+            ? const Text("")
+                : InkWell(
+            onTap: () {
+            controller.onLikeBtnTap(
+            postId: controller
+                .friendPostListData[
+            index]
+                .id
+                .toString(),
+            friendPost:
+            controller
+                .friendPostListData[
+            index]);
+            },
+            child: Text(
+            controller
+                .friendPostListData[
+            index]
+                .postLikeCount
+                .toString() ==
+            "1"
+            ? "${controller.friendPostListData[index].postLikeCount.toString()} likes"
+                : "+${controller.friendPostListData[index].postLikeCount.toString()} likes",
+            style:
+            textStyleFont14White,
+            ),
+            )
+            ],
+            ),
 
                                           /*Positioned(
                                               left: 24,

@@ -65,7 +65,8 @@ class ListCartApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          print("======= view card : ${response.statusCode} ======");
+          print("======= view 5 4yfh4hjycard : ${response.statusCode} ======");
+
           //errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           print("======= view card : ${response.statusCode} =====");

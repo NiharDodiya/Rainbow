@@ -65,11 +65,14 @@ class AddCartController extends GetxController {
     }
 
     if (validation()) {
+
       Navigator.of(context).pop();
 
       Get.find<PaymentController>().loader.value = true;
       Future.delayed(Duration(seconds: 1), () {
         addCartDetails(context);
+
+
       /*  Get.find<PaymentController>().viewCardModel;
         update(["abc"]);*/
       });
@@ -156,8 +159,7 @@ class AddCartController extends GetxController {
         controller.listCardModel.data?.length == null
             ? homeController.viewProfile.data!.userType = "free"
             : homeController.viewProfile.data!.userType = "premium";
-        paymentController.loader.value = true;
-        await UserSubscriptionAddApi.userSubscriptionAddApi();
+       // await UserSubscriptionAddApi.userSubscriptionAddApi();
         paymentController.loader.value = false;
       });
 

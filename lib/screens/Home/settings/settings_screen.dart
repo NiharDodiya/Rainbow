@@ -231,9 +231,9 @@ class SettingsScreen extends StatelessWidget {
         //Messages
         InkWell(
           onTap: (){
-            /*homeController.viewProfile.data!.userType == "free"
+            homeController.viewProfile.data!.userType == "free"
                 ? premiumPopUpBox(context: context)
-                : Get.to(() => MessageScreen());*/
+                : Get.to(() => MessageScreen());
           },
           child: Padding(
             padding: const EdgeInsets.only(bottom: 5),

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:rainbow/common/Widget/premiumPopUpBox/api/subscribe_popup_api.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/ad_addCartModel.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
@@ -65,6 +66,9 @@ class AddCartApi {
           //final AdvertisementController advertisementController =Get.find();
 
           flutterToast(jsonDecode(response.body)["message"]);
+
+          await UserSubscriptionAddApi.userSubscriptionAddApi();
+
          /* Get.offAll(AdvertisementDashBord());
           advertisementController.currentTab = 1;*/
         }
