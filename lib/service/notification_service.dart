@@ -56,6 +56,7 @@ class NotificationService {
               icon: android.smallIcon,
               // other properties...
             ),
+
           ),
           payload: jsonEncode(payload),
         );

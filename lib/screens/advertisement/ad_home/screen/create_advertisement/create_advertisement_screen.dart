@@ -734,6 +734,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                               flex: 14,
                               child: InkWell(
                                 child: TextField(
+                                  onTap: controller.dropDownBox,
                                   controller: controller.countryController,
                                   style: textFieldText,
                                   obscuringCharacter: "•",

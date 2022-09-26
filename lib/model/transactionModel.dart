@@ -188,8 +188,16 @@ class UserDetail {
     role: json["role"] == null ? null : json["role"],
     referrallCode: json["referrall_code"] == null ? null : json["referrall_code"],
     idStatus: json["id_status"] == null ? null : json["id_status"],
-    latitude: json["latitude"] == null ? null : json["latitude"],
-    longitude: json["longitude"] == null ? null : json["longitude"],
+    latitude: json["latitude"].toString().isEmpty
+        ? null
+        : json["latitude"] is String
+        ? double.parse(json["latitude"]).toString()
+        : json["latitude"].toString(),
+    longitude: json["longitude"].toString().isEmpty
+        ? null
+        : json["longitude"] is String
+        ? double.parse(json["longitude"]).toString()
+        : json["longitude"].toString(),
     userType: json["user_type"] == null ? null : json["user_type"],
     selfiStatus: json["selfi_status"] == null ? null : json["selfi_status"],
     userStatus: json["user_status"] == null ? null : json["user_status"],

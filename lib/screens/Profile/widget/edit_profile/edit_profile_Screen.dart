@@ -564,6 +564,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                           child: InkWell(
                                             child: TextField(
                                               controller: controller.ethnicity,
+                                              onTap: controller.dropDownBox,
                                               style: textFieldText,
                                               obscuringCharacter: "•",
                                               onChanged: (value) {

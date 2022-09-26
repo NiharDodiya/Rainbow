@@ -306,9 +306,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                             shape: BoxShape.circle,
                                             image: DecorationImage(
                                                 image: AssetImage(AssetRes
-                                                    .portrait_placeholder))),
+                                                    .portrait_placeholder),fit: BoxFit.cover)),
                                       )
-                                    : ClipRRect(
+                                    :
+                                ClipRRect(
                                         borderRadius: BorderRadius.circular(50),
                                         child: Image.network(
                                           controller.controller.viewProfile
@@ -320,9 +321,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                           errorBuilder:
                                               (context, error, stackTrace) {
                                             return Image.asset(
-                                                AssetRes.portrait_placeholder);
+                                                AssetRes.portrait_placeholder,fit: BoxFit.cover,height: 56, width: 56,);
                                           },
-                                        )),
+                                        ),
+                                ),
                                 Positioned(
                                     top: Get.height * 0.04,
                                     left: Get.width * 0.1,
@@ -420,20 +422,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                         : ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(50),
-                                            child: FadeInImage(
+                                            child:CachedNetworkImage(
                                               height: 56,
                                               width: 56,
-                                              placeholder: const AssetImage(
-                                                  AssetRes
-                                                      .portrait_placeholder),
-                                              image: NetworkImage(controller
+                                              placeholder: (context,url)=> Image.asset(AssetRes.portrait_placeholder,fit: BoxFit.fitWidth),
+                                              errorWidget: ((context, url, error) => Image.asset(AssetRes.portrait_placeholder,fit: BoxFit.fitWidth)),
+                                              imageUrl:controller
                                                   .controller
                                                   .viewProfile
                                                   .data!
                                                   .profileImage
-                                                  .toString()),
+                                                  .toString(),
                                               fit: BoxFit.cover,
-                                            )),
+                                            )
+
+                                    ),
                                     // Positioned(
                                     //   top: Get.height * 0.04,
                                     //   child: Container(
@@ -1018,19 +1021,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                                           .isEmpty
                                                       ? const SizedBox()
                                                       : ImageStack(
-                                                          imageList: controller
-                                                              .friendPostListData[
-                                                                  index]
-                                                              .postLikeUser!
-                                                              .map((e) => e
-                                                                  .profileImage
-                                                                  .toString())
-                                                              .toList(),
-                                                          totalCount: 3,
+                                                          imageList: controller.friendPostListData[index].postLikeUser!.map((e) => e.profileImage.toString()).toList(),
+                                                          totalCount: controller.friendPostListData[index].postLikeUser!.map((e) => e.profileImage.toString()).toList().length,
                                                           // If larger than images.length, will show extra empty circle
                                                           imageRadius: 32,
                                                           // Radius of each images
-                                                          imageCount: 3,
+                                                          imageCount: 1,
                                                           // Maximum number of images to be shown in stack
                                                           imageBorderWidth: 2,
                                                           imageBorderColor:

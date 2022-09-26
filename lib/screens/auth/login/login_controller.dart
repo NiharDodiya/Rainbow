@@ -90,6 +90,7 @@ class LoginController extends GetxController {
       // await PrefService.setValue(PrefKeys.uid, loginM );
       await firebaseSignIn();
       loader.value = false;
+      //flutterToast("Successfully login");
       // await PrefService.setValue(PrefKeys.accessToken, loginModel.token);
     } catch (e) {
       loader.value = false;

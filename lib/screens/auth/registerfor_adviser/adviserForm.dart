@@ -136,6 +136,7 @@ class AdviserRegisterForm extends StatelessWidget {
                               flex: 14,
                               child: InkWell(
                                 child: TextField(
+                                  onTap: controller.dropDownBox,
                                   controller: controller.country,
                                   style: textFieldText,
                                   obscuringCharacter: "•",

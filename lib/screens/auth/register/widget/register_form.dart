@@ -254,6 +254,7 @@ class RegisterForm extends StatelessWidget {
                             child: InkWell(
                               child: TextField(
                                 controller: controller.ethnicityController,
+                                onTap: controller.dropDownBox,
                                 style: textFieldText,
                                 obscuringCharacter: "•",
                                 onChanged: (value) {

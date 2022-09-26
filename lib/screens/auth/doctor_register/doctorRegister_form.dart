@@ -95,6 +95,7 @@ class DoctorRegisterForm extends StatelessWidget {
                               child: InkWell(
                                 child: TextField(
                                   controller: controller.country,
+                                  onTap: controller.dropDownBox,
                                   style: textFieldText,
                                   obscuringCharacter: "•",
                                   onChanged: (value) {

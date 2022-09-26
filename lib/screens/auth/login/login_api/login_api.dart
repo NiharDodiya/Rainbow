@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:permission_handler/permission_handler.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
@@ -48,12 +49,13 @@ class LoginApi {
               PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
           await PrefService.setValue(PrefKeys.isLogin, true);
 
-          flutterToast(jsonDecode(response.body)["message"]);
 
           await PrefService.setValue(PrefKeys.registerToken,
               jsonDecode(response.body)["token"].toString());
 
           await updateDeviceToken();
+
+          flutterToast(jsonDecode(response.body)["message"]);
 
           if (jsonDecode(response.body)["data"]["role"] != "advertisers") {
             if (jsonDecode(response.body)["data"]["mobile_status"] ==
@@ -78,10 +80,15 @@ class LoginApi {
               await PrefService.setValue(PrefKeys.loginRole,
                   jsonDecode(response.body)["data"]["role"]);
 
+// flutterToast(jsonDecode(response.body)["message"]);
+
               HomeController homeController = Get.put(HomeController());
-              await homeController.init();
-              Get.offAll(() =>
-                  jsonDecode(response.body)["data"]["role"] == "end_user"
+
+              homeController.init();
+
+             //flutterToast(jsonDecode(response.body)["message"]);
+
+              Get.offAll(() => jsonDecode(response.body)["data"]["role"] == "end_user"
                       ? const Dashboard()
                       : AdvertisementDashBord());
             }
@@ -111,7 +118,6 @@ class LoginApi {
                       : AdvertisementDashBord());
             }
           }
-
           //Get.offAll(() => const Dashboard());
 
           if (jsonDecode(response.body)["data"]["role"] == "end_user") {
@@ -121,9 +127,16 @@ class LoginApi {
                 jsonDecode(response.body)["data"]["profile_image"]);
             return advertisersLoginModelFromJson(response.body);
           }
+
+
         } else if (response.statusCode == 500) {
           errorToast(jsonDecode(response.body)["message"]);
-        }
+        }/*else if(response.statusCode==200){
+          if(status == true){
+            flutterToast(jsonDecode(response.body)["message"]);
+
+          }
+        }*/
       } else if (response!.statusCode == 500) {
         errorToast(jsonDecode(response.body)["message"]);
       }
