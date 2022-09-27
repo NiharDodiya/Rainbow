@@ -93,6 +93,9 @@ class TermsConditionsScreen extends StatelessWidget {
                         homeController.init();
                         await PrefService.setValue(
                             PrefKeys.showTermsCondition, false);
+
+                        homeController.friendPostListData = [];
+
                         Get.offAll(() => const Dashboard());
                       },
                       child: Container(

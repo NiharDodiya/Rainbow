@@ -178,10 +178,10 @@ class MessageScreen extends StatelessWidget {
                                             builder: (context, snapshot2) {
                                               Map<String, dynamic>? data =
                                               snapshot2.data?.data();
-                                              if (data == null) {
+                                              if (snapshot.hasData == false) {
                                                 return const SizedBox();
                                               }
-                                              print(data["UserToken"]);
+                                              print(data!["UserToken"]);
 
                                               return data['online'] == true
                                                   ? Column(

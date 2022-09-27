@@ -234,11 +234,32 @@ class AddCartScreen extends StatelessWidget {
                               title: Strings.nameonCard,
                               hintText: Strings.aycanDoganlar,
                             ),
-                            AppTextFiled(
-                              controller: controller.cardNmberController,
-                              title: Strings.cardNumber,
-                              hintText: Strings.cardNumberHint,
-                            ),
+                           Text(
+                             Strings.cardNumber,
+                             style:  gilroySemiBoldTextStyle(fontSize: 14),
+                           ),
+                           SizedBox(height: 10,),
+                           Container(
+                             height: 60,
+                             width: Get.width,
+                             decoration: BoxDecoration(
+                               color: Colors.white,
+                               borderRadius: BorderRadius.circular(15),
+                             ),
+                             child:  TextField(
+                               controller: controller.cardNmberController,
+                               style: textFieldText,
+                               maxLength: 20,
+                               decoration: InputDecoration(
+                                 border: InputBorder.none,
+                                 hintStyle: gilroyMediumTextStyle(
+                                     fontSize:  18,
+                                     color: ColorRes.black.withOpacity(0.3)),
+                                 hintText: Strings.cardNumberHint,
+                               ),
+                             ),
+                           ),
+                            SizedBox(height: 10,),
                             // SizedBox(
                             //   height: Get.height * 0.0184,
                             // ),

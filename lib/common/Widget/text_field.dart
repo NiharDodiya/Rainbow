@@ -20,6 +20,7 @@ class AppTextFiled extends StatelessWidget {
   final EdgeInsetsGeometry? inputPadding;
   final double? titleBottomPadding;
   final bool? showTitle;
+  final int? maxLength;
 
   const AppTextFiled({
     Key? key,
@@ -37,6 +38,7 @@ class AppTextFiled extends StatelessWidget {
     this.multiLine,
     this.onChange,
     this.inputPadding,
+    this.maxLength,
     this.titleBottomPadding,
     this.showTitle = true,
   }) : super(key: key);
