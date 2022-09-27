@@ -22,13 +22,57 @@ class RegisterForm extends StatelessWidget {
       id: 'register_form',
       builder: (controller) {
         return Column(children: [
-          AppTextFiled(
+          controller.isSocial
+              ? Column(
+            children: [
+             Align(
+               alignment: Alignment.topLeft,
+               child: Text(Strings.fullName, style: gilroySemiBoldTextStyle(fontSize: 14),),
+             ),
+              SizedBox(height: 10,),
+              Container(
+                height: 60,
+                width: Get.width,
+                padding: EdgeInsets.only(left: 20, top: 20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+
+                child: Text(controller.fullNameController.text, style: textFieldText,),
+              ),
+              SizedBox(height: 10,),
+            ],
+          )
+              : AppTextFiled(
             controller: controller.fullNameController,
             title: Strings.fullName,
             hintText: Strings.natalieNara,
             fontsize: 16,
           ),
-          AppTextFiled(
+         controller.isSocial
+             ? Column(
+           children: [
+             Align(
+               alignment: Alignment.topLeft,
+               child: Text(Strings.email, style: gilroySemiBoldTextStyle(fontSize: 14),),
+             ),
+             SizedBox(height: 10,),
+             Container(
+               height: 60,
+               width: Get.width,
+               padding: EdgeInsets.only(left: 20, top: 20),
+               decoration: BoxDecoration(
+                 color: Colors.white,
+                 borderRadius: BorderRadius.circular(20),
+               ),
+
+               child: Text(controller.emailController.text, style: textFieldText,),
+             ),
+             SizedBox(height: 10,),
+           ],
+         )
+             : AppTextFiled(
             controller: controller.emailController,
             title: Strings.email,
             hintText: Strings.naranataliEmail,

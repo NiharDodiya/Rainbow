@@ -182,7 +182,7 @@ class ConnectionsScreen extends StatelessWidget {
                     return infoRow(
                       name: user.fullName,
                       image: user.profileImage,
-                      label: user.email,
+                      label: user.userStatus,
                       onPlusTap: () => control.onAddBtnTapConnection(
                           user.id.toString(), true),
                       onDeleteTap: () =>

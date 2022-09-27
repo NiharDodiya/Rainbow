@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -196,17 +197,35 @@ class SupportScreen extends StatelessWidget {
                                         child: Container(
                                           height: 46,
                                           width: 46,
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: NetworkImage(
-                                                  profileController.viewProfile
-                                                      .data!.profileImage
-                                                      .toString(),
-                                                ),
-                                                fit: BoxFit.cover),
+                                          child: CachedNetworkImage(
+                                            imageUrl: profileController.viewProfile
+                                                .data!.profileImage
+                                                .toString(),
+                                            placeholder: ((context, url) => Image.asset( AssetRes.portrait_placeholder,)),
+                                            errorWidget: ((context, url, error) => Image.asset( AssetRes.portrait_placeholder,)),
+                                            fit: BoxFit.cover,
                                           ),
                                         ),
                                       ),
+                /* ClipRRect(
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: Image.network(
+                                    profileController.viewProfile
+                                        .data!.profileImage
+                                        .toString(),
+                                    height: Get.width * 0.144,
+                                    width: Get.width * 0.144,
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return Image.asset(
+                                        AssetRes.portrait_placeholder,
+                                        height: Get.width * 0.144,
+                                        width: Get.width * 0.144,
+                                      );
+                                    },
+                                  ),
+                                ),*/
+
                               ),
                               Padding(
                                 padding:

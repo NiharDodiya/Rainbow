@@ -41,17 +41,19 @@ Widget adInLatestFeed({int? index}) {
                     image: DecorationImage(
                         image: AssetImage(AssetRes.portrait_placeholder))),
               )
-                  :Container(
+                  :ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                    child: Container(
                 height: 40,
                 width: 40,
-                decoration:  BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: NetworkImage(homeController.advertisementListUserModel.data?[index!].userDetails?.profileImage ?? ""),
+                child: CachedNetworkImage(
+                    imageUrl: homeController.advertisementListUserModel.data?[index!].userDetails?.profileImage ?? "",
+                    placeholder: ((context, url) => Image.asset(AssetRes.portrait_placeholder)),
+                    errorWidget: ((context, url, error) => Image.asset(AssetRes.portrait_placeholder)),
                       fit: BoxFit.cover
-                    ),
                 ),
               ),
+                  ),
               Padding(
                 padding: const EdgeInsets.only(top: 9, left: 12),
                 child: Column(

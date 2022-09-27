@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_indicator/carousel_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -66,13 +67,18 @@ class LearnMoreDetails extends StatelessWidget {
                          image: DecorationImage(
                              image: AssetImage(AssetRes.portrait_placeholder))),
                    )
-                       :Container(
-                     height: 40,
-                     width: 40,
-                     decoration:  BoxDecoration(
-                         shape: BoxShape.circle,
-                         image: DecorationImage(
-                             image: NetworkImage(homeController.advertisementListUserModel.data?[index!].userDetails?.profileImage ?? ""))),
+                       :ClipRRect(
+                     borderRadius: BorderRadius.circular(20),
+                     child: Container(
+                       height: 40,
+                       width: 40,
+                       child: CachedNetworkImage(
+                           imageUrl: homeController.advertisementListUserModel.data?[index!].userDetails?.profileImage ?? "",
+                           placeholder: ((context, url) => Image.asset(AssetRes.portrait_placeholder)),
+                           errorWidget: ((context, url, error) => Image.asset(AssetRes.portrait_placeholder)),
+                           fit: BoxFit.cover
+                       ),
+                     ),
                    ),
                    SizedBox(width: 10),
                    Padding(

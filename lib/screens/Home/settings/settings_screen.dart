@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -149,17 +150,14 @@ class SettingsScreen extends StatelessWidget {
                       )
                     : ClipRRect(
                         borderRadius: BorderRadius.circular(50),
-                        child: FadeInImage(
-                          placeholder: const AssetImage(
-                            AssetRes.portrait_placeholder,
-                          ),
-                          image: NetworkImage(profileController
+                        child: CachedNetworkImage(
+                          imageUrl: profileController
                               .viewProfile.data!.profileImage!
-                              .toString()),
-                          height: 56,
-                          width: 56,
-                          fit: BoxFit.cover,
+                              .toString(),
+                          errorWidget: ((context, url, error) => Image.asset(AssetRes.portrait_placeholder)),
+                          placeholder: (context, url) => Image.asset(AssetRes.portrait_placeholder),
                         ),
+
                       ),
                 const SizedBox(
                   width: 20,
@@ -204,7 +202,7 @@ class SettingsScreen extends StatelessWidget {
                                 Strings.viewProfile,
                                 style: gilroyBoldTextStyle(
                                     fontSize: 15, color: ColorRes.color_4F359B),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -233,7 +231,7 @@ class SettingsScreen extends StatelessWidget {
           onTap: (){
             homeController.viewProfile.data!.userType == "free"
                 ? premiumPopUpBox(context: context)
-                : Get.to(() => MessageScreen());
+                : Get.to(() => MessageScreen(backArrow: true,));
           },
           child: Padding(
             padding: const EdgeInsets.only(bottom: 5),

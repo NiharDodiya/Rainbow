@@ -308,7 +308,7 @@ class AccountInformationScreen extends StatelessWidget {
                     return  (controller.countryBox == true)
                         ?Container(
                       height: 160,
-                      width: 360,
+                      width: Get.width/1.20,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.white,
@@ -488,7 +488,7 @@ class AccountInformationScreen extends StatelessWidget {
                       return  (controller.countryBox == true)
                           ?Container(
                         height: 160,
-                        width: 380,
+                        width: Get.width/1.20,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white,

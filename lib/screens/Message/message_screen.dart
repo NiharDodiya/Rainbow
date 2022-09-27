@@ -11,7 +11,8 @@ import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
 class MessageScreen extends StatelessWidget {
-  MessageScreen({Key? key}) : super(key: key);
+  bool? backArrow;
+  MessageScreen({this.backArrow, Key? key}) : super(key: key);
   final MessageController messageController = Get.put(MessageController());
 
   @override
@@ -20,9 +21,21 @@ class MessageScreen extends StatelessWidget {
     messageController.getUid();
     return Scaffold(
 
-      body: SizedBox(
+      body: Container(
         height: Get.height,
         width: Get.width,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              ColorRes.color_50369C,
+              ColorRes.color_50369C,
+              ColorRes.color_D18EEE,
+              ColorRes.color_D18EEE,
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
         child: GetBuilder<MessageController>(
           id: "message",
           builder: (controller) {
@@ -34,13 +47,55 @@ class MessageScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       const SizedBox(height: 20),
-                      SizedBox(
+                      (backArrow == true)
+                          ? Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          /*IconButton(onPressed: (){
+                            Get.back();
+                          }, icon: Icon(Icons.arrow_back_ios_new_outlined, size: 20,),),*/
+                          InkWell(
+                            onTap: (){
+                              Get.back();
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Container(
+                                padding: const EdgeInsets.all(7),
+                                height: 30,
+                                width: 30,
+                                child: Image.asset(
+                                  AssetRes.backIcon,
+                                  height: 15,
+                                ),
+                              ),
+                            )
+                          ),
+                          Expanded(
+                            child: SizedBox(
+                            height: 50,
+                            child: Center(
+                              child:Padding(
+                                padding: EdgeInsets.only(right: 30),
+                                child:  Text(
+                                  "Chats",
+                                  style: gilroyMediumTextStyle(fontSize: 18),
+                                ),
+                              )
+                            ),
+                          ),),
+                        ],
+                      )
+                          : SizedBox(
                         height: 50,
                         child: Center(
-                          child: Text(
-                            "Chats",
-                            style: gilroyMediumTextStyle(fontSize: 18),
-                          ),
+                            child:Padding(
+                              padding: EdgeInsets.only(right: 30),
+                              child:  Text(
+                                "Chats",
+                                style: gilroyMediumTextStyle(fontSize: 18),
+                              ),
+                            )
                         ),
                       ),
                       Container(
@@ -643,3 +698,4 @@ class MessageScreen extends StatelessWidget {
     );
   }
 }
+

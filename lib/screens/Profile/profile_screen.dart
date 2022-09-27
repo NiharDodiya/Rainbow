@@ -111,8 +111,15 @@ class ProfileScreen extends StatelessWidget {
                     width: Get.width,
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
-                      return Image.asset(AssetRes.placeholderImage,
-                      fit: BoxFit.cover);
+                      return Container(
+                        height: Get.height * 0.2857,
+                        width: Get.width,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: const DecorationImage(
+                                image: AssetImage(AssetRes.placeholderImage),
+                                fit: BoxFit.cover)),
+                      );
                     },
                   ),
                 ),

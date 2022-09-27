@@ -235,6 +235,8 @@ class SearchScreen extends StatelessWidget {
                             width: Get.width * 0.90133,
                             child: Image.asset(
                               AssetRes.placeholderImage,
+                              height: 232,
+                              width: Get.width * 0.90133,
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -249,7 +251,12 @@ class SearchScreen extends StatelessWidget {
                             fit: BoxFit.cover,
                             errorBuilder: (context, error, stackTrace) {
                               return Image.asset(
-                                  AssetRes.placeholderImage);
+
+                                  AssetRes.placeholderImage,
+                                height: 232,
+                                fit: BoxFit.cover,
+                                width: Get.width * 0.90133,
+                              );
                             },
                           ),
                         ),
@@ -270,8 +277,14 @@ class SearchScreen extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 errorBuilder:
                                     (context, error, stackTrace) {
-                                  return Image.asset(
-                                      AssetRes.portrait_placeholder);
+                                  return SizedBox(
+                                    height: 40,
+                                    width: 40,
+                                    child: Image.asset(
+                                      AssetRes.portrait_placeholder,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  );
                                 },
                               ),
                             )
@@ -280,8 +293,14 @@ class SearchScreen extends StatelessWidget {
                               child: SizedBox(
                                 height: 40,
                                 width: 40,
-                                child: Image.asset(
-                                    AssetRes.portrait_placeholder),
+                                child: SizedBox(
+                                  height: 40,
+                                  width: 40,
+                                  child: Image.asset(
+                                    AssetRes.portrait_placeholder,
+                                    fit: BoxFit.cover,
+                                  ),
+                                )
                               ),
                             )),
                         Container(
@@ -669,7 +688,11 @@ class SearchScreen extends StatelessWidget {
                                   fit: BoxFit.cover,
                                   errorBuilder: (context, error, stackTrace) {
                                     return Image.asset(
-                                        AssetRes.placeholderImage);
+                                        AssetRes.placeholderImage,
+                                      height: 232,
+                                      width: Get.width * 0.90133,
+                                      fit: BoxFit.cover,
+                                    );
                                   },
                                 ),
                               ),
@@ -701,7 +724,11 @@ class SearchScreen extends StatelessWidget {
                                       height: 40,
                                       width: 40,
                                       child: Image.asset(
-                                          AssetRes.portrait_placeholder),
+                                        height: 40,
+                                        width: 40,
+                                          AssetRes.portrait_placeholder,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   )),
                         Container(

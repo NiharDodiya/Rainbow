@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/premiumPopUpBox/PremiumPopUpBox.dart';
@@ -55,7 +56,19 @@ Widget appbar({context}) {
                       height: 34,
                       width: 34,
                     )
-                        : FadeInImage(
+                        : CachedNetworkImage(
+                      imageUrl: controller
+                          .viewAdvertiserModel
+                          .data!
+                          .profileImage
+                          .toString(),
+                      placeholder: ((context, url) => Image.asset(AssetRes.portrait_placeholder)),
+                      errorWidget: ((context, url, error) => Image.asset(AssetRes.portrait_placeholder)),
+                      fit: BoxFit.cover,
+                      height: 34,
+                      width: 34,
+                    ),
+                  /*FadeInImage(
                       placeholder: const AssetImage(
                           AssetRes.portrait_placeholder),
                       image: NetworkImage(controller
@@ -64,7 +77,7 @@ Widget appbar({context}) {
                       fit: BoxFit.cover,
                       height: 34,
                       width: 34,
-                    )),
+                    )*/),
               ),
               /*   Container(
               height: 34,
