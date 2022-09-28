@@ -129,7 +129,6 @@ class SearchScreen extends StatelessWidget {
                     homeController.viewProfile.data!.userType == "free"
                         ? premiumPopUpBox(context: context)
                         : controller.advanceSearchOnTap();
-
                   },
                   child: Text(
                     Strings.advancedSearch,
@@ -218,870 +217,939 @@ class SearchScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               return homeController.viewProfile.data!.userType == "free"
                   ? InkWell(
-                onTap: () {
-                  premiumPopUpBox(context: context);
-                },
-                child: Column(
-                  children: [
-                    Stack(
-                      children: [
-                        controller.listUserData[index].backgroundImage
-                            .toString() ==
-                            ""
-                            ? ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: SizedBox(
-                            height: 232,
-                            width: Get.width * 0.90133,
-                            child: Image.asset(
-                              AssetRes.placeholderImage,
-                              height: 232,
-                              width: Get.width * 0.90133,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        )
-                            : ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image.network(
-                            controller.listUserData[index].backgroundImage
-                                .toString(),
-                            height: 232,
-                            width: Get.width * 0.90133,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Image.asset(
-
-                                  AssetRes.placeholderImage,
-                                height: 232,
-                                fit: BoxFit.cover,
-                                width: Get.width * 0.90133,
-                              );
-                            },
-                          ),
-                        ),
-                        Positioned(
-                            top: Get.height * 0.03,
-                            left: Get.width * 0.05,
-                            child: controller.listUserData[index].profileImage
-                                .toString() !=
-                                ""
-                                ? ClipRRect(
-                              borderRadius: BorderRadius.circular(50),
-                              child: Image.network(
-                                controller
-                                    .listUserData[index].profileImage
-                                    .toString(),
-                                height: 40,
-                                width: 40,
-                                fit: BoxFit.cover,
-                                errorBuilder:
-                                    (context, error, stackTrace) {
-                                  return SizedBox(
-                                    height: 40,
-                                    width: 40,
-                                    child: Image.asset(
-                                      AssetRes.portrait_placeholder,
-                                      fit: BoxFit.cover,
+                      onTap: () {
+                        premiumPopUpBox(context: context);
+                      },
+                      child: Column(
+                        children: [
+                          Stack(
+                            children: [
+                              controller.listUserData[index].backgroundImage
+                                          .toString() ==
+                                      ""
+                                  ? ClipRRect(
+                                      borderRadius: BorderRadius.circular(15),
+                                      child: SizedBox(
+                                        height: 232,
+                                        width: Get.width * 0.90133,
+                                        child: Image.asset(
+                                          AssetRes.placeholderImage,
+                                          height: 232,
+                                          width: Get.width * 0.90133,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    )
+                                  : ClipRRect(
+                                      borderRadius: BorderRadius.circular(15),
+                                      child: Image.network(
+                                        controller
+                                            .listUserData[index].backgroundImage
+                                            .toString(),
+                                        height: 232,
+                                        width: Get.width * 0.90133,
+                                        fit: BoxFit.cover,
+                                        errorBuilder:
+                                            (context, error, stackTrace) {
+                                          return Image.asset(
+                                            AssetRes.placeholderImage,
+                                            height: 232,
+                                            fit: BoxFit.cover,
+                                            width: Get.width * 0.90133,
+                                          );
+                                        },
+                                      ),
                                     ),
-                                  );
-                                },
-                              ),
-                            )
-                                : ClipRRect(
-                              borderRadius: BorderRadius.circular(50),
-                              child: SizedBox(
-                                height: 40,
-                                width: 40,
-                                child: SizedBox(
-                                  height: 40,
-                                  width: 40,
-                                  child: Image.asset(
-                                    AssetRes.portrait_placeholder,
-                                    fit: BoxFit.cover,
-                                  ),
-                                )
-                              ),
-                            )),
-                        Container(
-                            height: 232,
-                            width: Get.width * 0.90133,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              gradient: LinearGradient(
-                                colors: [
-                                  ColorRes.color_141414.withOpacity(0.1),
-                                  ColorRes.color_141414.withOpacity(0.1),
-                                  ColorRes.color_141414.withOpacity(0.5),
-                                  ColorRes.color_141414.withOpacity(0.8),
-                                  ColorRes.color_141414
-                                ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                              ),
-                            )),
-                        Positioned(
-                            top: Get.height * 0.255,
-                            left: 15,
-                            child: Text(
-                              controller.listUserData[index].fullName
-                                  .toString(),
-                              style: textStyleFont14WhiteBold,
-                            )),
-                        Positioned(
-                            top: Get.height * 0.28,
-                            left: 15,
-                            child: Text(
-                              controller.listUserData[index].userStatus
-                                  .toString(),
-                              style: textStyleFont12White400,
-                            )),
-                        Positioned(
-                            top: Get.height * 0.04,
-                            left: Get.width * 0.8,
-                            child: GestureDetector(
-                                onTap: () {
-                                  premiumPopUpBox(context: context);
-                                },
-                                child: const Icon(Icons.more_horiz))),
-                        controller.listConnectBlock[index] == true
-                            ? Positioned(
-                          top: Get.height * 0.07,
-                          left: Get.width * 0.58,
-                          child: Container(
-                            height: 69,
-                            width: 105,
-                            color:
-                            ColorRes.color_50369C.withOpacity(0.45),
-                            child: Column(
-                              children: [
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                controller.listUserData[index].isFriends
-                                    .toString() ==
-                                    "no"
-                                    ? GestureDetector(
-                                  onTap: () {
-                                    controller.sendFriendRequest(
-                                        controller
-                                            .listUserData[index].id
-                                            .toString());
-                                    controller.listConnectBlock[
-                                    index] = false;
-                                    controller.update(["Search"]);
-                                  },
-                                  child: Row(
-                                    children: [
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Image.asset(
-                                        AssetRes.profilep,
-                                        height: 22,
-                                        width: 22,
-                                        color:
-                                        ColorRes.color_FFB2B2,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        Strings.connect,
-                                        style: gilroyBoldTextStyle(
-                                            fontSize: 12),
-                                      )
-                                    ],
-                                  ),
-                                )
-                                    : controller.listUserData[index]
-                                    .isFriends
-                                    .toString() ==
-                                    "sent"
-                                    ? GestureDetector(
-                                  onTap: () {
-                                    controller
-                                        .cancelFriendRequest(
-                                        controller
-                                            .listUserData[
-                                        index]
-                                            .id
-                                            .toString());
-                                    controller.listConnectBlock[
-                                    index] = false;
-                                    controller
-                                        .update(["Search"]);
-                                  },
-                                  child: Row(
-                                    children: [
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Image.asset(
-                                        AssetRes.profilep,
-                                        height: 22,
-                                        width: 22,
-                                        color: ColorRes
-                                            .color_FFB2B2,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      SizedBox(
-                                        height: 26,
-                                        width: 54,
-                                        child: Text(
-                                          Strings.cancelRequest,
-                                          style:
-                                          gilroyBoldTextStyle(
-                                              fontSize: 12),
+                              Positioned(
+                                top: Get.height * 0.03,
+                                left: Get.width * 0.05,
+                                child: controller
+                                            .listUserData[index].profileImage
+                                            .toString() !=
+                                        ""
+                                    ? ClipRRect(
+                                        borderRadius: BorderRadius.circular(50),
+                                        child: Image.network(
+                                          controller
+                                              .listUserData[index].profileImage
+                                              .toString(),
+                                          height: 40,
+                                          width: 40,
+                                          fit: BoxFit.cover,
+                                          errorBuilder:
+                                              (context, error, stackTrace) {
+                                            return SizedBox(
+                                              height: 40,
+                                              width: 40,
+                                              child: Image.asset(
+                                                AssetRes.portrait_placeholder,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            );
+                                          },
                                         ),
                                       )
-                                    ],
-                                  ),
-                                )
-                                    : controller.listUserData[index]
-                                    .isFriends
-                                    .toString() ==
-                                    "yes"
-                                    ? GestureDetector(
-                                  onTap: () {
-                                    controller.unFriendRequest(
-                                        controller
-                                            .listUserData[
-                                        index]
-                                            .id
-                                            .toString());
-                                    controller
-                                        .listConnectBlock[
-                                    index] = false;
-                                    controller
-                                        .update(["Search"]);
-                                  },
-                                  child: Row(
-                                    children: [
-                                      const SizedBox(
-                                        width: 10,
+                                    : ClipRRect(
+                                        borderRadius: BorderRadius.circular(50),
+                                        child: SizedBox(
+                                            height: 40,
+                                            width: 40,
+                                            child: SizedBox(
+                                              height: 40,
+                                              width: 40,
+                                              child: Image.asset(
+                                                AssetRes.portrait_placeholder,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            )),
                                       ),
-                                      Image.asset(
-                                        AssetRes.profilep,
-                                        height: 22,
-                                        width: 22,
-                                        color: ColorRes
-                                            .color_FFB2B2,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        Strings.unFriend,
-                                        style:
-                                        gilroyBoldTextStyle(
-                                            fontSize:
-                                            12),
-                                      )
-                                    ],
-                                  ),
-                                )
-                                    : controller
-                                    .listUserData[
-                                index]
-                                    .isFriends
-                                    .toString() ==
-                                    "accept"
-                                    ? GestureDetector(
-                                  onTap: () {
-                                    controller.acceptFriendRequest(
-                                        controller
-                                            .listUserData[
-                                        index]
-                                            .id
-                                            .toString());
-                                    controller
-                                        .listConnectBlock[
-                                    index] = false;
-                                    controller.update(
-                                        ["Search"]);
-                                  },
-                                  child: Row(
-                                    children: [
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Image.asset(
-                                        AssetRes
-                                            .profilep,
-                                        height: 22,
-                                        width: 22,
-                                        color: ColorRes
-                                            .color_FFB2B2,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        Strings.accept,
-                                        style:
-                                        gilroyBoldTextStyle(
-                                            fontSize:
-                                            12),
-                                      )
-                                    ],
-                                  ),
-                                )
-                                    : GestureDetector(
-                                  onTap: () {
-                                    controller.cancelFriendRequest(
-                                        controller
-                                            .listUserData[
-                                        index]
-                                            .id
-                                            .toString());
-                                    controller
-                                        .listConnectBlock[
-                                    index] = false;
-                                    controller.update(
-                                        ["Search"]);
-                                  },
-                                  child: Row(
-                                    children: [
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Image.asset(
-                                        AssetRes
-                                            .profilep,
-                                        height: 22,
-                                        width: 22,
-                                        color: ColorRes
-                                            .color_FFB2B2,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        Strings.cancel,
-                                        style:
-                                        gilroyBoldTextStyle(
-                                            fontSize:
-                                            12),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                const Divider(
-                                  thickness: 1.5,
-                                  color: Colors.white,
-                                ),
-                                controller.listUserData[index].isBlock
-                                    .toString() ==
-                                    "no"
-                                    ? GestureDetector(
-                                  onTap: () {
-                                    controller.blockOnTap(controller
-                                        .listUserData[index].id
-                                        .toString());
-                                    controller.listConnectBlock[
-                                    index] = false;
-                                    controller.update(["Search"]);
-                                  },
-                                  child: Row(
-                                    children: [
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Image.asset(
-                                        AssetRes.block,
-                                        height: 22,
-                                        width: 22,
-                                        color:
-                                        ColorRes.color_FFB2B2,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        Strings.block,
-                                        style: gilroyBoldTextStyle(
-                                            fontSize: 12),
-                                      )
-                                    ],
-                                  ),
-                                )
-                                    : GestureDetector(
-                                  onTap: () {
-                                    controller.unblockOnTap(
-                                        controller
-                                            .listUserData[index].id
-                                            .toString());
-                                    controller.listConnectBlock[
-                                    index] = false;
-                                    controller.update(["Search"]);
-                                  },
-                                  child: Row(
-                                    children: [
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Image.asset(
-                                        AssetRes.block,
-                                        height: 22,
-                                        width: 22,
-                                        color:
-                                        ColorRes.color_FFB2B2,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        Strings.unBlock,
-                                        style: gilroyBoldTextStyle(
-                                            fontSize: 12),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                            : const SizedBox()
-                      ],
-                    ),
-                    SizedBox(
-                      height: Get.height * 0.026,
-                    ),
-                  ],
-                ),
-              )
-                  : InkWell(
-                onTap: () {
-                  controller.listConnectBlock[index] = false;
-                  controller.onTapViewProfile(
-                      controller.listUserData[index].id.toString());
-                },
-                child: Column(
-                  children: [
-                    Stack(
-                      children: [
-                        controller.listUserData[index].backgroundImage
-                                    .toString() ==
-                                ""
-                            ? ClipRRect(
-                                borderRadius: BorderRadius.circular(15),
-                                child: SizedBox(
-                                  height: 232,
-                                  width: Get.width * 0.90133,
-                                  child: Image.asset(
-                                    AssetRes.placeholderImage,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              )
-                            : ClipRRect(
-                                borderRadius: BorderRadius.circular(15),
-                                child: Image.network(
-                                  controller.listUserData[index].backgroundImage
-                                      .toString(),
-                                  height: 232,
-                                  width: Get.width * 0.90133,
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) {
-                                    return Image.asset(
-                                        AssetRes.placeholderImage,
-                                      height: 232,
-                                      width: Get.width * 0.90133,
-                                      fit: BoxFit.cover,
-                                    );
-                                  },
-                                ),
                               ),
-                        Positioned(
-                            top: Get.height * 0.03,
-                            left: Get.width * 0.05,
-                            child: controller.listUserData[index].profileImage
-                                        .toString() !=
-                                    ""
-                                ? ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
-                                    child: Image.network(
-                                      controller
-                                          .listUserData[index].profileImage
-                                          .toString(),
-                                      height: 40,
-                                      width: 40,
-                                      fit: BoxFit.cover,
-                                      errorBuilder:
-                                          (context, error, stackTrace) {
-                                        return Image.asset(
-                                            AssetRes.portrait_placeholder);
-                                      },
-                                    ),
-                                  )
-                                : ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
-                                    child: SizedBox(
-                                      height: 40,
-                                      width: 40,
-                                      child: Image.asset(
-                                        height: 40,
-                                        width: 40,
-                                          AssetRes.portrait_placeholder,
-                                        fit: BoxFit.cover,
-                                      ),
+                              Container(
+                                  height: 232,
+                                  width: Get.width * 0.90133,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        ColorRes.color_141414.withOpacity(0.1),
+                                        ColorRes.color_141414.withOpacity(0.1),
+                                        ColorRes.color_141414.withOpacity(0.5),
+                                        ColorRes.color_141414.withOpacity(0.8),
+                                        ColorRes.color_141414
+                                      ],
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
                                     ),
                                   )),
-                        Container(
-                            height: 232,
-                            width: Get.width * 0.90133,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              gradient: LinearGradient(
-                                colors: [
-                                  ColorRes.color_141414.withOpacity(0.1),
-                                  ColorRes.color_141414.withOpacity(0.1),
-                                  ColorRes.color_141414.withOpacity(0.5),
-                                  ColorRes.color_141414.withOpacity(0.8),
-                                  ColorRes.color_141414
-                                ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
+                              Positioned(
+                                  // top: Get.height * 0.255,
+                                 bottom: 35,
+                                  left: 15,
+                                  child: Text(
+                                    controller.listUserData[index].fullName
+                                        .toString(),
+                                    style: textStyleFont14WhiteBold,
+                                  )),
+                              Positioned(
+                                  // top: Get.height * 0.28,
+                                bottom: 20,
+                                  left: 15,
+                                  child: Text(
+                                    controller.listUserData[index].userStatus
+                                        .toString(),
+                                    style: textStyleFont12White400,
+                                  )),
+                              Positioned(
+                                top: Get.height * 0.04,
+                                left: Get.width * 0.8,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    premiumPopUpBox(context: context);
+                                  },
+                                  child: const Icon(Icons.more_horiz),
+                                ),
                               ),
-                            )),
-                        Positioned(
-                            top: Get.height * 0.255,
-                            left: 15,
-                            child: Text(
-                              controller.listUserData[index].fullName
-                                  .toString(),
-                              style: textStyleFont14WhiteBold,
-                            )),
-                        Positioned(
-                            top: Get.height * 0.28,
-                            left: 15,
-                            child: Text(
-                              controller.listUserData[index].userStatus
-                                  .toString(),
-                              style: textStyleFont12White400,
-                            )),
-                        Positioned(
-                            top: Get.height * 0.04,
-                            left: Get.width * 0.8,
-                            child: GestureDetector(
-                                onTap: () {
-                                  controller.onMoreButtonTap(index);
-                                },
-                                child: const Icon(Icons.more_horiz))),
-                        controller.listConnectBlock[index] == true
-                            ? Positioned(
-                                top: Get.height * 0.07,
-                                left: Get.width * 0.58,
-                                child: Container(
-                                  height: 69,
-                                  width: 105,
-                                  color:
-                                      ColorRes.color_50369C.withOpacity(0.45),
-                                  child: Column(
-                                    children: [
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      controller.listUserData[index].isFriends
-                                                  .toString() ==
-                                              "no"
-                                          ? GestureDetector(
-                                              onTap: () {
-                                                controller.sendFriendRequest(
-                                                    controller
-                                                        .listUserData[index].id
-                                                        .toString());
-                                                controller.listConnectBlock[
-                                                    index] = false;
-                                                controller.update(["Search"]);
-                                              },
-                                              child: Row(
-                                                children: [
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Image.asset(
-                                                    AssetRes.profilep,
-                                                    height: 22,
-                                                    width: 22,
-                                                    color:
-                                                        ColorRes.color_FFB2B2,
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Text(
-                                                    Strings.connect,
-                                                    style: gilroyBoldTextStyle(
-                                                        fontSize: 12),
-                                                  )
-                                                ],
-                                              ),
-                                            )
-                                          : controller.listUserData[index]
-                                                      .isFriends
-                                                      .toString() ==
-                                                  "sent"
-                                              ? GestureDetector(
-                                                  onTap: () {
-                                                    controller
-                                                        .cancelFriendRequest(
-                                                            controller
-                                                                .listUserData[
-                                                                    index]
-                                                                .id
-                                                                .toString());
-                                                    controller.listConnectBlock[
-                                                        index] = false;
-                                                    controller
-                                                        .update(["Search"]);
-                                                  },
-                                                  child: Row(
-                                                    children: [
-                                                      const SizedBox(
-                                                        width: 10,
-                                                      ),
-                                                      Image.asset(
-                                                        AssetRes.profilep,
-                                                        height: 22,
-                                                        width: 22,
-                                                        color: ColorRes
-                                                            .color_FFB2B2,
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 10,
-                                                      ),
-                                                      SizedBox(
-                                                        height: 26,
-                                                        width: 54,
-                                                        child: Text(
-                                                          Strings.cancelRequest,
+                              controller.listConnectBlock[index] == true
+                                  ? Positioned(
+                                      top: Get.height * 0.07,
+                                      left: Get.width * 0.58,
+                                      child: Container(
+                                        height: 69,
+                                        width: 105,
+                                        color: ColorRes.color_50369C
+                                            .withOpacity(0.45),
+                                        child: Column(
+                                          children: [
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                            controller.listUserData[index]
+                                                        .isFriends
+                                                        .toString() ==
+                                                    "no"
+                                                ? GestureDetector(
+                                                    onTap: () {
+                                                      controller
+                                                          .sendFriendRequest(
+                                                              controller
+                                                                  .listUserData[
+                                                                      index]
+                                                                  .id
+                                                                  .toString());
+                                                      controller
+                                                              .listConnectBlock[
+                                                          index] = false;
+                                                      controller
+                                                          .update(["Search"]);
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Image.asset(
+                                                          AssetRes.profilep,
+                                                          height: 22,
+                                                          width: 22,
+                                                          color: ColorRes
+                                                              .color_FFB2B2,
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Text(
+                                                          Strings.connect,
                                                           style:
                                                               gilroyBoldTextStyle(
                                                                   fontSize: 12),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  )
+                                                : controller.listUserData[index]
+                                                            .isFriends
+                                                            .toString() ==
+                                                        "sent"
+                                                    ? GestureDetector(
+                                                        onTap: () {
+                                                          controller.cancelFriendRequest(
+                                                              controller
+                                                                  .listUserData[
+                                                                      index]
+                                                                  .id
+                                                                  .toString());
+                                                          controller
+                                                                  .listConnectBlock[
+                                                              index] = false;
+                                                          controller.update(
+                                                              ["Search"]);
+                                                        },
+                                                        child: Row(
+                                                          children: [
+                                                            const SizedBox(
+                                                              width: 10,
+                                                            ),
+                                                            Image.asset(
+                                                              AssetRes.profilep,
+                                                              height: 22,
+                                                              width: 22,
+                                                              color: ColorRes
+                                                                  .color_FFB2B2,
+                                                            ),
+                                                            const SizedBox(
+                                                              width: 10,
+                                                            ),
+                                                            SizedBox(
+                                                              height: 26,
+                                                              width: 54,
+                                                              child: Text(
+                                                                Strings
+                                                                    .cancelRequest,
+                                                                style:
+                                                                    gilroyBoldTextStyle(
+                                                                        fontSize:
+                                                                            12),
+                                                              ),
+                                                            )
+                                                          ],
                                                         ),
                                                       )
-                                                    ],
-                                                  ),
-                                                )
-                                              : controller.listUserData[index]
-                                                          .isFriends
-                                                          .toString() ==
-                                                      "yes"
-                                                  ? GestureDetector(
-                                                      onTap: () {
-                                                        controller.unFriendRequest(
-                                                            controller
+                                                    : controller
                                                                 .listUserData[
                                                                     index]
-                                                                .id
-                                                                .toString());
-                                                        controller
-                                                                .listConnectBlock[
-                                                            index] = false;
-                                                        controller
-                                                            .update(["Search"]);
-                                                      },
-                                                      child: Row(
-                                                        children: [
-                                                          const SizedBox(
-                                                            width: 10,
-                                                          ),
-                                                          Image.asset(
-                                                            AssetRes.profilep,
-                                                            height: 22,
-                                                            width: 22,
-                                                            color: ColorRes
-                                                                .color_FFB2B2,
-                                                          ),
-                                                          const SizedBox(
-                                                            width: 10,
-                                                          ),
-                                                          Text(
-                                                            Strings.unFriend,
-                                                            style:
-                                                                gilroyBoldTextStyle(
-                                                                    fontSize:
-                                                                        12),
+                                                                .isFriends
+                                                                .toString() ==
+                                                            "yes"
+                                                        ? GestureDetector(
+                                                            onTap: () {
+                                                              controller.unFriendRequest(
+                                                                  controller
+                                                                      .listUserData[
+                                                                          index]
+                                                                      .id
+                                                                      .toString());
+                                                              controller
+                                                                      .listConnectBlock[
+                                                                  index] = false;
+                                                              controller.update(
+                                                                  ["Search"]);
+                                                            },
+                                                            child: Row(
+                                                              children: [
+                                                                const SizedBox(
+                                                                  width: 10,
+                                                                ),
+                                                                Image.asset(
+                                                                  AssetRes
+                                                                      .profilep,
+                                                                  height: 22,
+                                                                  width: 22,
+                                                                  color: ColorRes
+                                                                      .color_FFB2B2,
+                                                                ),
+                                                                const SizedBox(
+                                                                  width: 10,
+                                                                ),
+                                                                Text(
+                                                                  Strings
+                                                                      .unFriend,
+                                                                  style: gilroyBoldTextStyle(
+                                                                      fontSize:
+                                                                          12),
+                                                                )
+                                                              ],
+                                                            ),
                                                           )
-                                                        ],
-                                                      ),
-                                                    )
-                                                  : controller
+                                                        : controller
+                                                                    .listUserData[
+                                                                        index]
+                                                                    .isFriends
+                                                                    .toString() ==
+                                                                "accept"
+                                                            ? GestureDetector(
+                                                                onTap: () {
+                                                                  controller.acceptFriendRequest(controller
+                                                                      .listUserData[
+                                                                          index]
+                                                                      .id
+                                                                      .toString());
+                                                                  controller.listConnectBlock[
+                                                                          index] =
+                                                                      false;
+                                                                  controller
+                                                                      .update([
+                                                                    "Search"
+                                                                  ]);
+                                                                },
+                                                                child: Row(
+                                                                  children: [
+                                                                    const SizedBox(
+                                                                      width: 10,
+                                                                    ),
+                                                                    Image.asset(
+                                                                      AssetRes
+                                                                          .profilep,
+                                                                      height:
+                                                                          22,
+                                                                      width: 22,
+                                                                      color: ColorRes
+                                                                          .color_FFB2B2,
+                                                                    ),
+                                                                    const SizedBox(
+                                                                      width: 10,
+                                                                    ),
+                                                                    Text(
+                                                                      Strings
+                                                                          .accept,
+                                                                      style: gilroyBoldTextStyle(
+                                                                          fontSize:
+                                                                              12),
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                              )
+                                                            : GestureDetector(
+                                                                onTap: () {
+                                                                  controller.cancelFriendRequest(controller
+                                                                      .listUserData[
+                                                                          index]
+                                                                      .id
+                                                                      .toString());
+                                                                  controller.listConnectBlock[
+                                                                          index] =
+                                                                      false;
+                                                                  controller
+                                                                      .update([
+                                                                    "Search"
+                                                                  ]);
+                                                                },
+                                                                child: Row(
+                                                                  children: [
+                                                                    const SizedBox(
+                                                                      width: 10,
+                                                                    ),
+                                                                    Image.asset(
+                                                                      AssetRes
+                                                                          .profilep,
+                                                                      height:
+                                                                          22,
+                                                                      width: 22,
+                                                                      color: ColorRes
+                                                                          .color_FFB2B2,
+                                                                    ),
+                                                                    const SizedBox(
+                                                                      width: 10,
+                                                                    ),
+                                                                    Text(
+                                                                      Strings
+                                                                          .cancel,
+                                                                      style: gilroyBoldTextStyle(
+                                                                          fontSize:
+                                                                              12),
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                              ),
+                                            const Divider(
+                                              thickness: 1.5,
+                                              color: Colors.white,
+                                            ),
+                                            controller.listUserData[index]
+                                                        .isBlock
+                                                        .toString() ==
+                                                    "no"
+                                                ? GestureDetector(
+                                                    onTap: () {
+                                                      controller.blockOnTap(
+                                                          controller
                                                               .listUserData[
                                                                   index]
-                                                              .isFriends
-                                                              .toString() ==
-                                                          "accept"
-                                                      ? GestureDetector(
-                                                          onTap: () {
-                                                            controller.acceptFriendRequest(
-                                                                controller
-                                                                    .listUserData[
-                                                                        index]
-                                                                    .id
-                                                                    .toString());
-                                                            controller
-                                                                    .listConnectBlock[
-                                                                index] = false;
-                                                            controller.update(
-                                                                ["Search"]);
-                                                          },
-                                                          child: Row(
-                                                            children: [
-                                                              const SizedBox(
-                                                                width: 10,
-                                                              ),
-                                                              Image.asset(
-                                                                AssetRes
-                                                                    .profilep,
-                                                                height: 22,
-                                                                width: 22,
-                                                                color: ColorRes
-                                                                    .color_FFB2B2,
-                                                              ),
-                                                              const SizedBox(
-                                                                width: 10,
-                                                              ),
-                                                              Text(
-                                                                Strings.accept,
-                                                                style:
-                                                                    gilroyBoldTextStyle(
-                                                                        fontSize:
-                                                                            12),
-                                                              )
-                                                            ],
-                                                          ),
-                                                        )
-                                                      : GestureDetector(
-                                                          onTap: () {
-                                                            controller.cancelFriendRequest(
-                                                                controller
-                                                                    .listUserData[
-                                                                        index]
-                                                                    .id
-                                                                    .toString());
-                                                            controller
-                                                                    .listConnectBlock[
-                                                                index] = false;
-                                                            controller.update(
-                                                                ["Search"]);
-                                                          },
-                                                          child: Row(
-                                                            children: [
-                                                              const SizedBox(
-                                                                width: 10,
-                                                              ),
-                                                              Image.asset(
-                                                                AssetRes
-                                                                    .profilep,
-                                                                height: 22,
-                                                                width: 22,
-                                                                color: ColorRes
-                                                                    .color_FFB2B2,
-                                                              ),
-                                                              const SizedBox(
-                                                                width: 10,
-                                                              ),
-                                                              Text(
-                                                                Strings.cancel,
-                                                                style:
-                                                                    gilroyBoldTextStyle(
-                                                                        fontSize:
-                                                                            12),
-                                                              )
-                                                            ],
-                                                          ),
+                                                              .id
+                                                              .toString());
+                                                      controller
+                                                              .listConnectBlock[
+                                                          index] = false;
+                                                      controller
+                                                          .update(["Search"]);
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        const SizedBox(
+                                                          width: 10,
                                                         ),
-                                      const Divider(
-                                        thickness: 1.5,
-                                        color: Colors.white,
+                                                        Image.asset(
+                                                          AssetRes.block,
+                                                          height: 22,
+                                                          width: 22,
+                                                          color: ColorRes
+                                                              .color_FFB2B2,
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Text(
+                                                          Strings.block,
+                                                          style:
+                                                              gilroyBoldTextStyle(
+                                                                  fontSize: 12),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  )
+                                                : GestureDetector(
+                                                    onTap: () {
+                                                      controller.unblockOnTap(
+                                                          controller
+                                                              .listUserData[
+                                                                  index]
+                                                              .id
+                                                              .toString());
+                                                      controller
+                                                              .listConnectBlock[
+                                                          index] = false;
+                                                      controller
+                                                          .update(["Search"]);
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Image.asset(
+                                                          AssetRes.block,
+                                                          height: 22,
+                                                          width: 22,
+                                                          color: ColorRes
+                                                              .color_FFB2B2,
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Text(
+                                                          Strings.unBlock,
+                                                          style:
+                                                              gilroyBoldTextStyle(
+                                                                  fontSize: 12),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                          ],
+                                        ),
                                       ),
-                                      controller.listUserData[index].isBlock
-                                                  .toString() ==
-                                              "no"
-                                          ? GestureDetector(
-                                              onTap: () {
-                                                controller.blockOnTap(controller
-                                                    .listUserData[index].id
-                                                    .toString());
-                                                controller.listConnectBlock[
-                                                    index] = false;
-                                                controller.update(["Search"]);
-                                              },
-                                              child: Row(
-                                                children: [
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Image.asset(
-                                                    AssetRes.block,
-                                                    height: 22,
-                                                    width: 22,
-                                                    color:
-                                                        ColorRes.color_FFB2B2,
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Text(
-                                                    Strings.block,
-                                                    style: gilroyBoldTextStyle(
-                                                        fontSize: 12),
-                                                  )
-                                                ],
-                                              ),
-                                            )
-                                          : GestureDetector(
-                                              onTap: () {
-                                                controller.unblockOnTap(
-                                                    controller
-                                                        .listUserData[index].id
-                                                        .toString());
-                                                controller.listConnectBlock[
-                                                    index] = false;
-                                                controller.update(["Search"]);
-                                              },
-                                              child: Row(
-                                                children: [
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Image.asset(
-                                                    AssetRes.block,
-                                                    height: 22,
-                                                    width: 22,
-                                                    color:
-                                                        ColorRes.color_FFB2B2,
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Text(
-                                                    Strings.unBlock,
-                                                    style: gilroyBoldTextStyle(
-                                                        fontSize: 12),
-                                                  )
-                                                ],
-                                              ),
+                                    )
+                                  : const SizedBox()
+                            ],
+                          ),
+                          SizedBox(
+                            height: Get.height * 0.026,
+                          ),
+                        ],
+                      ),
+                    )
+                  : InkWell(
+                      onTap: () {
+                        controller.listConnectBlock[index] = false;
+                        controller.onTapViewProfile(
+                            controller.listUserData[index].id.toString());
+                      },
+                      child: Column(
+                        children: [
+                          Stack(
+                            children: [
+                              controller.listUserData[index].backgroundImage
+                                          .toString() ==
+                                      ""
+                                  ? ClipRRect(
+                                      borderRadius: BorderRadius.circular(15),
+                                      child: SizedBox(
+                                        height: 232,
+                                        width: Get.width * 0.90133,
+                                        child: Image.asset(
+                                          AssetRes.placeholderImage,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    )
+                                  : ClipRRect(
+                                      borderRadius: BorderRadius.circular(15),
+                                      child: Image.network(
+                                        controller
+                                            .listUserData[index].backgroundImage
+                                            .toString(),
+                                        height: 232,
+                                        width: Get.width * 0.90133,
+                                        fit: BoxFit.cover,
+                                        errorBuilder:
+                                            (context, error, stackTrace) {
+                                          return Image.asset(
+                                            AssetRes.placeholderImage,
+                                            height: 232,
+                                            width: Get.width * 0.90133,
+                                            fit: BoxFit.cover,
+                                          );
+                                        },
+                                      ),
+                                    ),
+                              Positioned(
+                                  top: Get.height * 0.03,
+                                  left: Get.width * 0.05,
+                                  child: controller
+                                              .listUserData[index].profileImage
+                                              .toString() !=
+                                          ""
+                                      ? ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          child: Image.network(
+                                            controller.listUserData[index]
+                                                .profileImage
+                                                .toString(),
+                                            height: 40,
+                                            width: 40,
+                                            fit: BoxFit.cover,
+                                            errorBuilder:
+                                                (context, error, stackTrace) {
+                                              return Image.asset(AssetRes
+                                                  .portrait_placeholder);
+                                            },
+                                          ),
+                                        )
+                                      : ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          child: SizedBox(
+                                            height: 40,
+                                            width: 40,
+                                            child: Image.asset(
+                                              height: 40,
+                                              width: 40,
+                                              AssetRes.portrait_placeholder,
+                                              fit: BoxFit.cover,
                                             ),
-                                    ],
-                                  ),
-                                ),
-                              )
-                            : const SizedBox()
-                      ],
-                    ),
-                    SizedBox(
-                      height: Get.height * 0.026,
-                    ),
-                  ],
-                ),
-              );
+                                          ),
+                                        )),
+                              Container(
+                                  height: 232,
+                                  width: Get.width * 0.90133,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        ColorRes.color_141414.withOpacity(0.1),
+                                        ColorRes.color_141414.withOpacity(0.1),
+                                        ColorRes.color_141414.withOpacity(0.5),
+                                        ColorRes.color_141414.withOpacity(0.8),
+                                        ColorRes.color_141414
+                                      ],
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                    ),
+                                  )),
+                              Positioned(
+                                  // top: Get.height * 0.255,
+                                  left: 15,
+                                  bottom: 35,
+                                  child: Text(
+                                    controller.listUserData[index].fullName
+                                        .toString(),
+                                    style: textStyleFont14WhiteBold,
+                                  )),
+                              Positioned(
+                                  // top: Get.height * 0.28,
+                                  left: 15,
+                                  bottom: 20,
+                                  child: Text(
+                                    controller.listUserData[index].userStatus
+                                        .toString(),
+                                    style: textStyleFont12White400,
+                                  )),
+                              Positioned(
+                                  top: Get.height * 0.04,
+                                  left: Get.width * 0.8,
+                                  child: GestureDetector(
+                                      onTap: () {
+                                        controller.onMoreButtonTap(index);
+                                      },
+                                      child: const Icon(Icons.more_horiz))),
+                              controller.listConnectBlock[index] == true
+                                  ? Positioned(
+                                      top: Get.height * 0.07,
+                                      left: Get.width * 0.58,
+                                      child: Container(
+                                        height: 69,
+                                        width: 105,
+                                        color: ColorRes.color_50369C
+                                            .withOpacity(0.45),
+                                        child: Column(
+                                          children: [
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                            controller.listUserData[index]
+                                                        .isFriends
+                                                        .toString() ==
+                                                    "no"
+                                                ? GestureDetector(
+                                                    onTap: () {
+                                                      controller
+                                                          .sendFriendRequest(
+                                                              controller
+                                                                  .listUserData[
+                                                                      index]
+                                                                  .id
+                                                                  .toString());
+                                                      controller
+                                                              .listConnectBlock[
+                                                          index] = false;
+                                                      controller
+                                                          .update(["Search"]);
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Image.asset(
+                                                          AssetRes.profilep,
+                                                          height: 22,
+                                                          width: 22,
+                                                          color: ColorRes
+                                                              .color_FFB2B2,
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Text(
+                                                          Strings.connect,
+                                                          style:
+                                                              gilroyBoldTextStyle(
+                                                                  fontSize: 12),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  )
+                                                : controller.listUserData[index]
+                                                            .isFriends
+                                                            .toString() ==
+                                                        "sent"
+                                                    ? GestureDetector(
+                                                        onTap: () {
+                                                          controller.cancelFriendRequest(
+                                                              controller
+                                                                  .listUserData[
+                                                                      index]
+                                                                  .id
+                                                                  .toString());
+                                                          controller
+                                                                  .listConnectBlock[
+                                                              index] = false;
+                                                          controller.update(
+                                                              ["Search"]);
+                                                        },
+                                                        child: Row(
+                                                          children: [
+                                                            const SizedBox(
+                                                              width: 10,
+                                                            ),
+                                                            Image.asset(
+                                                              AssetRes.profilep,
+                                                              height: 22,
+                                                              width: 22,
+                                                              color: ColorRes
+                                                                  .color_FFB2B2,
+                                                            ),
+                                                            const SizedBox(
+                                                              width: 10,
+                                                            ),
+                                                            SizedBox(
+                                                              height: 26,
+                                                              width: 54,
+                                                              child: Text(
+                                                                Strings
+                                                                    .cancelRequest,
+                                                                style:
+                                                                    gilroyBoldTextStyle(
+                                                                        fontSize:
+                                                                            12),
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      )
+                                                    : controller
+                                                                .listUserData[
+                                                                    index]
+                                                                .isFriends
+                                                                .toString() ==
+                                                            "yes"
+                                                        ? GestureDetector(
+                                                            onTap: () {
+                                                              controller.unFriendRequest(
+                                                                  controller
+                                                                      .listUserData[
+                                                                          index]
+                                                                      .id
+                                                                      .toString());
+                                                              controller
+                                                                      .listConnectBlock[
+                                                                  index] = false;
+                                                              controller.update(
+                                                                  ["Search"]);
+                                                            },
+                                                            child: Row(
+                                                              children: [
+                                                                const SizedBox(
+                                                                  width: 10,
+                                                                ),
+                                                                Image.asset(
+                                                                  AssetRes
+                                                                      .profilep,
+                                                                  height: 22,
+                                                                  width: 22,
+                                                                  color: ColorRes
+                                                                      .color_FFB2B2,
+                                                                ),
+                                                                const SizedBox(
+                                                                  width: 10,
+                                                                ),
+                                                                Text(
+                                                                  Strings
+                                                                      .unFriend,
+                                                                  style: gilroyBoldTextStyle(
+                                                                      fontSize:
+                                                                          12),
+                                                                )
+                                                              ],
+                                                            ),
+                                                          )
+                                                        : controller
+                                                                    .listUserData[
+                                                                        index]
+                                                                    .isFriends
+                                                                    .toString() ==
+                                                                "accept"
+                                                            ? GestureDetector(
+                                                                onTap: () {
+                                                                  controller.acceptFriendRequest(controller
+                                                                      .listUserData[
+                                                                          index]
+                                                                      .id
+                                                                      .toString());
+                                                                  controller.listConnectBlock[
+                                                                          index] =
+                                                                      false;
+                                                                  controller
+                                                                      .update([
+                                                                    "Search"
+                                                                  ]);
+                                                                },
+                                                                child: Row(
+                                                                  children: [
+                                                                    const SizedBox(
+                                                                      width: 10,
+                                                                    ),
+                                                                    Image.asset(
+                                                                      AssetRes
+                                                                          .profilep,
+                                                                      height:
+                                                                          22,
+                                                                      width: 22,
+                                                                      color: ColorRes
+                                                                          .color_FFB2B2,
+                                                                    ),
+                                                                    const SizedBox(
+                                                                      width: 10,
+                                                                    ),
+                                                                    Text(
+                                                                      Strings
+                                                                          .accept,
+                                                                      style: gilroyBoldTextStyle(
+                                                                          fontSize:
+                                                                              12),
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                              )
+                                                            : GestureDetector(
+                                                                onTap: () {
+                                                                  controller.cancelFriendRequest(controller
+                                                                      .listUserData[
+                                                                          index]
+                                                                      .id
+                                                                      .toString());
+                                                                  controller.listConnectBlock[
+                                                                          index] =
+                                                                      false;
+                                                                  controller
+                                                                      .update([
+                                                                    "Search"
+                                                                  ]);
+                                                                },
+                                                                child: Row(
+                                                                  children: [
+                                                                    const SizedBox(
+                                                                      width: 10,
+                                                                    ),
+                                                                    Image.asset(
+                                                                      AssetRes
+                                                                          .profilep,
+                                                                      height:
+                                                                          22,
+                                                                      width: 22,
+                                                                      color: ColorRes
+                                                                          .color_FFB2B2,
+                                                                    ),
+                                                                    const SizedBox(
+                                                                      width: 10,
+                                                                    ),
+                                                                    Text(
+                                                                      Strings
+                                                                          .cancel,
+                                                                      style: gilroyBoldTextStyle(
+                                                                          fontSize:
+                                                                              12),
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                              ),
+                                            const Divider(
+                                              thickness: 1.5,
+                                              color: Colors.white,
+                                            ),
+                                            controller.listUserData[index]
+                                                        .isBlock
+                                                        .toString() ==
+                                                    "no"
+                                                ? GestureDetector(
+                                                    onTap: () {
+                                                      controller.blockOnTap(
+                                                          controller
+                                                              .listUserData[
+                                                                  index]
+                                                              .id
+                                                              .toString());
+                                                      controller
+                                                              .listConnectBlock[
+                                                          index] = false;
+                                                      controller
+                                                          .update(["Search"]);
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Image.asset(
+                                                          AssetRes.block,
+                                                          height: 22,
+                                                          width: 22,
+                                                          color: ColorRes
+                                                              .color_FFB2B2,
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Text(
+                                                          Strings.block,
+                                                          style:
+                                                              gilroyBoldTextStyle(
+                                                                  fontSize: 12),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  )
+                                                : GestureDetector(
+                                                    onTap: () {
+                                                      controller.unblockOnTap(
+                                                          controller
+                                                              .listUserData[
+                                                                  index]
+                                                              .id
+                                                              .toString());
+                                                      controller
+                                                              .listConnectBlock[
+                                                          index] = false;
+                                                      controller
+                                                          .update(["Search"]);
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Image.asset(
+                                                          AssetRes.block,
+                                                          height: 22,
+                                                          width: 22,
+                                                          color: ColorRes
+                                                              .color_FFB2B2,
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Text(
+                                                          Strings.unBlock,
+                                                          style:
+                                                              gilroyBoldTextStyle(
+                                                                  fontSize: 12),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  : const SizedBox()
+                            ],
+                          ),
+                          SizedBox(
+                            height: Get.height * 0.026,
+                          ),
+                        ],
+                      ),
+                    );
             },
           );
         },

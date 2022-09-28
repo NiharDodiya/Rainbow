@@ -149,8 +149,8 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
       width: Get.width,
       child: Column(
         children: [
-          SizedBox(
-            height: Get.height * 0.03,
+          const SizedBox(
+            height: 20//Get.height * 0.03,
           ),
           Row(
             children: [
@@ -240,93 +240,98 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
     );
   }
 
-  Widget searchUser() {
-    return Positioned(
-      top: Get.height * 0.1,
-      child: Container(
-        height: 45,
-        width: Get.width,
-        padding: const EdgeInsets.only(
-          left: 36,
-          right: 36,
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Container(
-                height: 45,
-                decoration: const BoxDecoration(
-                  color: ColorRes.white,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(15),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: Get.width * 0.04,
-                    ),
-                    const Image(
-                      image: AssetImage(AssetRes.search),
-                      color: Colors.black,
-                      height: 16,
-                      width: 16,
-                    ),
-                    SizedBox(
-                      width: Get.width * 0.03,
-                    ),
-                    Expanded(
-                      child: SizedBox(
-                        height: 56,
-                        child: TextField(
-                          obscureText: false,
-                          style: textFieldText,
-                          minLines: 1,
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.only(),
-                            border: InputBorder.none,
-                            hintStyle: textStyleFont16Grey,
-                            hintText: Strings.enterLocation,
-                            /*   filled: true,
-                                  fillColor: ColorRes.color_9597A1.withOpacity(0.1)*/
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              height: 45,
-              width: 45,
-              margin: const EdgeInsets.only(left: 9),
-              padding: const EdgeInsets.all(15),
-              decoration: const BoxDecoration(
-                color: ColorRes.black,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(15),
-                ),
-              ),
-              child: Image.asset(
-                AssetRes.filterIcon,
-                height: 15,
-                width: 15,
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
+  // Widget searchUser() {
+  //   return Positioned(
+  //     top: Get.height * 0.1,
+  //     child: Container(
+  //       height: 45,
+  //       width: Get.width,
+  //       padding: const EdgeInsets.only(
+  //         left: 36,
+  //         right: 36,
+  //       ),
+  //       child: Row(
+  //         children: [
+  //           Expanded(
+  //             child: Container(
+  //               height: 45,
+  //               decoration: const BoxDecoration(
+  //                 color: ColorRes.white,
+  //                 borderRadius: BorderRadius.all(
+  //                   Radius.circular(15),
+  //                 ),
+  //               ),
+  //               child: Row(
+  //                 children: [
+  //                   SizedBox(
+  //                     width: Get.width * 0.04,
+  //                   ),
+  //                   const Image(
+  //                     image: AssetImage(AssetRes.search),
+  //                     color: Colors.black,
+  //                     height: 16,
+  //                     width: 16,
+  //                   ),
+  //                   SizedBox(
+  //                     width: Get.width * 0.03,
+  //                   ),
+  //                   Expanded(
+  //                     child: SizedBox(
+  //                       height: 56,
+  //                       child: TextField(
+  //                         obscureText: false,
+  //                         style: textFieldText,
+  //                         minLines: 1,
+  //                         decoration: InputDecoration(
+  //                           contentPadding: const EdgeInsets.only(),
+  //                           border: InputBorder.none,
+  //                           hintStyle: textStyleFont16Grey,
+  //                           hintText: Strings.enterLocation,
+  //                           /*   filled: true,
+  //                                 fillColor: ColorRes.color_9597A1.withOpacity(0.1)*/
+  //                         ),
+  //                       ),
+  //                     ),
+  //                   ),
+  //                 ],
+  //               ),
+  //             ),
+  //           ),
+  //           Container(
+  //             height: 45,
+  //             width: 45,
+  //             margin: const EdgeInsets.only(left: 9),
+  //             padding: const EdgeInsets.all(15),
+  //             decoration: const BoxDecoration(
+  //               color: ColorRes.black,
+  //               borderRadius: BorderRadius.all(
+  //                 Radius.circular(15),
+  //               ),
+  //             ),
+  //             child: Image.asset(
+  //               AssetRes.filterIcon,
+  //               height: 15,
+  //               width: 15,
+  //             ),
+  //           )
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget listOfUser(SearchController controller) {
     return Positioned(
       top: Get.height * 0.6155,
       child: Container(
         width: Get.width,
-        height: 250,
+        height: Get.height < 715
+            ? 250
+            : Get.height > 900
+                ? 350
+                : 300,
         decoration: const BoxDecoration(
+            // border: Border.all(),
             color: Colors.white,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(12), topRight: Radius.circular(12))),
@@ -406,7 +411,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
             return Stack(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: Get.height * 0.16),
+                  padding: EdgeInsets.only(top: 113/*Get.height * 0.16*/),
                   child: SizedBox(
                     height: 400,
                     width: 400,
@@ -419,7 +424,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                                 topLeft: Radius.circular(20),
                                 topRight: Radius.circular(20)),
                             child: SizedBox(
-                              height: 400,
+                              height: Get.height > 900 ? 480 : 400,
                               width: Get.width,
                               child: GoogleMap(
                                 mapType: MapType.normal,
@@ -446,7 +451,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                   ),
                 ),
                 Positioned(
-                  top: Get.height * 0.08,
+                  top: 55,//Get.height * 0.08,
                   child: Row(
                     children: [
                       SizedBox(
@@ -487,30 +492,48 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                           ),
                         ),
                       ),
+                      Container(
+                        height: 52,
+                        width: 50,
+                        margin: const EdgeInsets.only(left: 9),
+                        padding: const EdgeInsets.all(15),
+                        decoration: const BoxDecoration(
+                          color: ColorRes.black,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(15),
+                          ),
+                        ),
+                        child: Image.asset(
+                          AssetRes.filterIcon,
+                          height: 15,
+                          width: 15,
+                        ),
+                      )
                     ],
                   ),
                 ),
-                Positioned(
-                  top: 55,
-                  left: 285,
-                  child: Container(
-                    height: 52,
-                    width: 50,
-                    margin: const EdgeInsets.only(left: 9),
-                    padding: const EdgeInsets.all(15),
-                    decoration: const BoxDecoration(
-                      color: ColorRes.black,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(15),
-                      ),
-                    ),
-                    child: Image.asset(
-                      AssetRes.filterIcon,
-                      height: 15,
-                      width: 15,
-                    ),
-                  ),
-                )
+                // Positioned(
+                //   top: 55,
+                //   // left: 285,
+                //   right: 30,
+                //   child: Container(
+                //     height: 52,
+                //     width: 50,
+                //     margin: const EdgeInsets.only(left: 9),
+                //     padding: const EdgeInsets.all(15),
+                //     decoration: const BoxDecoration(
+                //       color: ColorRes.black,
+                //       borderRadius: BorderRadius.all(
+                //         Radius.circular(15),
+                //       ),
+                //     ),
+                //     child: Image.asset(
+                //       AssetRes.filterIcon,
+                //       height: 15,
+                //       width: 15,
+                //     ),
+                //   ),
+                // )
               ],
             );
           },
