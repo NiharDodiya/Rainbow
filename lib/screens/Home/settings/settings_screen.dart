@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/logOutPopUp.dart';
 import 'package:rainbow/common/Widget/premiumPopUpBox/PremiumPopUpBox.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
@@ -538,7 +539,8 @@ class SettingsScreen extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () async {
-            controller.logOutDetails();
+            //controller.logOutDetails();
+            logoutPopup(context: context);
           },
           child: Container(
             height: 60,

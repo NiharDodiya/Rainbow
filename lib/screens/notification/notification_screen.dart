@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/model/notification_model.dart';
+import 'package:rainbow/screens/Home/home_screen.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
@@ -62,10 +63,15 @@ class NotificationScreen extends StatelessWidget {
                                   right: Get.width * 0.16),
                               child: InkWell(
                                 onTap: () {
-                                  connectionsProfileController.callApi(
+                                 /* connectionsProfileController.callApi(
                                       controller.notificationList[index]
-                                          .idUserReceiver
-                                          .toString());
+                                          .idUserSender
+                                          .toString());*/
+
+                                  /*(controller.notificationList[index].type.toString() == "Post")
+                                      ? Get.to(HomeScreen())
+                                      :
+                                  );*/
                                 },
                                 child: Row(
                                   children: [

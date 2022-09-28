@@ -578,6 +578,8 @@ class PaymentCards extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PaymentController>(
@@ -644,6 +646,7 @@ class PaymentCards extends StatelessWidget {
 }
 
 Widget appBar({required final bool showBack}) {
+ PaymentController paymentController = Get.put(PaymentController());
   return SizedBox(
     width: Get.width,
     child: Column(
@@ -659,6 +662,9 @@ Widget appBar({required final bool showBack}) {
             (showBack == true)
                 ? GestureDetector(
                     onTap: () {
+                      paymentController.listCardModel.data?.length == null
+                          ? homeController.viewProfile.data!.userType = "free"
+                          : homeController.viewProfile.data!.userType = "premium";
                       Get.back();
                     },
                     child: Image.asset(
