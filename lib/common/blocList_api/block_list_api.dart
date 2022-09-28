@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/model/blockList_model.dart';
 import 'package:rainbow/service/http_services.dart';
@@ -10,12 +11,12 @@ class BlockListApi {
     try {
       String url = EndPoints.blockList;
 
-      String accesToken = await PrefService.getString(PrefKeys.registerToken);
+      String accessToken = await PrefService.getString(PrefKeys.registerToken);
       // String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksImlhdCI6MTY1NzIxMjg3NiwiZXhwIjoxNjU3ODE3Njc2fQ.2cGzkRwlQKDDXlMrX4r5pIMprd7uq9Ii-0Z2VwTsvcE";
       http.Response? response =
           await HttpService.postApi(url: url, body: {}, header: {
         /*"Content-Type": "application/json",*/
-        "x-access-token": accesToken
+        "x-access-token": accessToken
       });
 
       if (response != null && response.statusCode == 200) {
@@ -31,7 +32,9 @@ class BlockListApi {
       }
       return blockListModelFromJson(response!.body);
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
       return [];
     }
   }

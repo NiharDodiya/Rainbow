@@ -25,12 +25,12 @@ Widget dropdownButton({
               title!,
               style: gilroySemiBoldTextStyle(fontSize: 14),
             )
-          : SizedBox(),
+          : const SizedBox(),
       showtitle
           ? const SizedBox(
-              height: 10,
+              height: 10
             )
-          : SizedBox(),
+          : const SizedBox(),
 
 
      /* Container(

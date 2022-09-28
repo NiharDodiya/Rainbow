@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rainbow/common/Widget/premiumPopUpBox/PremiumPopUpBox.dart';
+import 'package:rainbow/common/Widget/premiumPopUpBox/premium_pop_up_box.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/advertisement_controlle.dart';

@@ -140,12 +140,12 @@ class NotificationModel {
 
   factory NotificationModel.fromJson(Map<String, dynamic> json) =>
       NotificationModel(
-        status: json["status"] == null ? null : json["status"],
-        cuurentPage: json["cuurentPage"] == null ? null : json["cuurentPage"],
-        totalPage: json["totalPage"] == null ? null : json["totalPage"],
-        count: json["count"] == null ? null : json["count"],
+        status: json["status"],
+        cuurentPage: json["cuurentPage"],
+        totalPage: json["totalPage"],
+        count: json["count"],
         pendingCount:
-            json["pendingCount"] == null ? null : json["pendingCount"],
+            json["pendingCount"],
         data: json["data"] == null
             ? null
             : List<NotificationData>.from(
@@ -153,11 +153,11 @@ class NotificationModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "status": status == null ? null : status,
-        "cuurentPage": cuurentPage == null ? null : cuurentPage,
-        "totalPage": totalPage == null ? null : totalPage,
-        "count": count == null ? null : count,
-        "pendingCount": pendingCount == null ? null : pendingCount,
+        "status": status,
+        "cuurentPage": cuurentPage,
+        "totalPage": totalPage,
+        "count": count,
+        "pendingCount": pendingCount,
         "data": data == null
             ? null
             : List<dynamic>.from(data!.map((x) => x.toJson())),
@@ -191,16 +191,16 @@ class NotificationData {
 
   factory NotificationData.fromJson(Map<String, dynamic> json) =>
       NotificationData(
-        id: json["id"] == null ? null : json["id"],
+        id: json["id"],
         idUserReceiver:
-            json["id_user_receiver"] == null ? null : json["id_user_receiver"],
+            json["id_user_receiver"],
         idUserSender:
-            json["id_user_sender"] == null ? null : json["id_user_sender"],
-        type: json["type"] == null ? null : json["type"],
-        metaData: json["meta_data"] == null ? null : json["meta_data"],
-        title: json["title"] == null ? null : json["title"],
-        description: json["description"] == null ? null : json["description"],
-        status: json["status"] == null ? null : json["status"],
+            json["id_user_sender"],
+        type: json["type"],
+        metaData: json["meta_data"],
+        title: json["title"],
+        description: json["description"],
+        status: json["status"],
         createdAt: json["createdAt"] == null
             ? null
             : DateTime.parse(json["createdAt"]),
@@ -210,14 +210,14 @@ class NotificationData {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id == null ? null : id,
-        "id_user_receiver": idUserReceiver == null ? null : idUserReceiver,
-        "id_user_sender": idUserSender == null ? null : idUserSender,
-        "type": type == null ? null : type,
-        "meta_data": metaData == null ? null : metaData,
-        "title": title == null ? null : title,
-        "description": description == null ? null : description,
-        "status": status == null ? null : status,
+        "id": id,
+        "id_user_receiver": idUserReceiver,
+        "id_user_sender": idUserSender,
+        "type": type,
+        "meta_data": metaData,
+        "title": title,
+        "description": description,
+        "status": status,
         "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
         "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
       };

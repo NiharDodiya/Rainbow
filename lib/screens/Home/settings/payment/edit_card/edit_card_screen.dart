@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
-import 'package:rainbow/common/Widget/country_name.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
@@ -11,6 +10,7 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
+// ignore: must_be_immutable
 class EditCardScreen extends StatelessWidget {
   int? index;
   String? cardHolder;
@@ -131,7 +131,7 @@ class EditCardScreen extends StatelessWidget {
                                 ),
 
                                 Text(Strings.country, style: gilroySemiBoldTextStyle(fontSize: 14),),
-                                SizedBox(height: 8),
+                                const SizedBox(height: 8),
                                 GetBuilder<EditCardController>(
                                     id: "drop",
                                     builder: (controller){
@@ -171,7 +171,7 @@ class EditCardScreen extends StatelessWidget {
                                                 IconButton(
                                                   onPressed: controller.dropDownBox,
                                                   icon: Image.asset(AssetRes.arrowDown, height: 20),),
-                                                SizedBox(width: 5,),
+                                                const SizedBox(width: 5,),
                                               ],
                                             ),
 
@@ -196,7 +196,7 @@ class EditCardScreen extends StatelessWidget {
                                             children: (controller.countryController.text.isEmpty)
                                                 ?countryCity.map((e) {
                                               return Padding(
-                                                padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
+                                                padding: const EdgeInsets.only(left: 20, top: 7, bottom: 7),
                                                 child: Align(
                                                   alignment: Alignment.topLeft,
                                                   child: InkWell(
@@ -205,7 +205,7 @@ class EditCardScreen extends StatelessWidget {
                                                       controller.countryBox = false;
                                                       controller.update(["drop"]);
                                                     },
-                                                    child: Text(e, style: TextStyle(color: Colors.black, fontSize: 16),
+                                                    child: Text(e, style: const TextStyle(color: Colors.black, fontSize: 16),
                                                     ),
                                                   ),
                                                 ),
@@ -213,7 +213,7 @@ class EditCardScreen extends StatelessWidget {
                                             }).toList()
                                                 :controller.filterList.map((e) {
                                               return Padding(
-                                                padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
+                                                padding: const EdgeInsets.only(left: 20, top: 7, bottom: 7),
                                                 child: Align(
                                                   alignment: Alignment.topLeft,
                                                   child: InkWell(
@@ -222,7 +222,7 @@ class EditCardScreen extends StatelessWidget {
                                                       controller.countryBox = false;
                                                       controller.update(["drop"]);
                                                     },
-                                                    child: Text(e, style: TextStyle(color: Colors.black, fontSize: 16),
+                                                    child: Text(e, style: const TextStyle(color: Colors.black, fontSize: 16),
                                                     ),
                                                   ),
                                                 ),
@@ -231,7 +231,7 @@ class EditCardScreen extends StatelessWidget {
                                           ),
                                         ),
                                       )
-                                          :SizedBox();
+                                          :const SizedBox();
                                     }),
 
                                /* GetBuilder<EditCardController>(

@@ -29,11 +29,11 @@ class ListSupportTicketModel {
 
   factory ListSupportTicketModel.fromJson(Map<String, dynamic> json) =>
       ListSupportTicketModel(
-        status: json["status"] == null ? null : json["status"],
-        message: json["message"] == null ? null : json["message"],
-        cuurentPage: json["cuurentPage"] == null ? null : json["cuurentPage"],
-        totalPage: json["totalPage"] == null ? null : json["totalPage"],
-        count: json["count"] == null ? null : json["count"],
+        status: json["status"],
+        message: json["message"],
+        cuurentPage: json["cuurentPage"],
+        totalPage: json["totalPage"],
+        count: json["count"],
         data: json["data"] == null
             ? null
             : List<ListTicketData>.from(
@@ -41,11 +41,11 @@ class ListSupportTicketModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "status": status == null ? null : status,
-        "message": message == null ? null : message,
-        "cuurentPage": cuurentPage == null ? null : cuurentPage,
-        "totalPage": totalPage == null ? null : totalPage,
-        "count": count == null ? null : count,
+        "status": status,
+        "message": message,
+        "cuurentPage": cuurentPage,
+        "totalPage": totalPage,
+        "count": count,
         "data": data == null
             ? null
             : List<dynamic>.from(data!.map((x) => x.toJson())),
@@ -72,11 +72,11 @@ class ListTicketData {
   DateTime? updatedAt;
 
   factory ListTicketData.fromJson(Map<String, dynamic> json) => ListTicketData(
-        id: json["id"] == null ? null : json["id"],
-        tickit: json["tickit"] == null ? null : json["tickit"],
-        idUser: json["id_user"] == null ? null : json["id_user"],
-        title: json["title"] == null ? null : json["title"],
-        status: json["status"] == null ? null : json["status"],
+        id: json["id"],
+        tickit: json["tickit"],
+        idUser: json["id_user"],
+        title: json["title"],
+        status: json["status"],
         createdAt: json["createdAt"] == null
             ? null
             : DateTime.parse(json["createdAt"]),
@@ -86,11 +86,11 @@ class ListTicketData {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id == null ? null : id,
-        "tickit": tickit == null ? null : tickit,
-        "id_user": idUser == null ? null : idUser,
-        "title": title == null ? null : title,
-        "status": status == null ? null : status,
+        "id": id,
+        "tickit": tickit,
+        "id_user": idUser,
+        "title": title,
+        "status": status,
         "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
         "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
       };

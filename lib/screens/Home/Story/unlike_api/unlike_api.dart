@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/unlike_model.dart';
@@ -10,18 +11,20 @@ import 'package:rainbow/utils/pref_keys.dart';
 
 class UnLikeStoryApi {
   static Future postRegister(String id) async {
-    String accesToken = PrefService.getString(PrefKeys.registerToken);
+    String accessToken = PrefService.getString(PrefKeys.registerToken);
     try {
       String url = EndPoints.unLikeStory;
 
       Map<String, String> param = {"id_story": id.toString()};
-      print(param);
+      if (kDebugMode) {
+        print(param);
+      }
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
           header: {
             "Content-Type": "application/json",
-            "x-access-token": accesToken
+            "x-access-token": accessToken
           });
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
@@ -33,7 +36,9 @@ class UnLikeStoryApi {
         return unLikeStoryModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
       return [];
     }
   }

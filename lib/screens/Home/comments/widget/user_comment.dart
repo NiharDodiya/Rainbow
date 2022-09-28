@@ -148,14 +148,14 @@ Widget userComment(
                   itemBuilder: (context, index) {
                     return reply.isNotEmpty
                         ? Padding(
-                            padding: EdgeInsets.only(bottom: 8),
+                            padding: const EdgeInsets.only(bottom: 8),
                             child: Column(
                               children: [
-                                Divider(
+                                const Divider(
                                   thickness: 0.5,
                                   color: Colors.grey,
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 Container(
                                   width: Get.width - 110,
                                   decoration: BoxDecoration(
@@ -251,9 +251,9 @@ Widget userComment(
                                     ],
                                   ),
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 Padding(
-                                  padding: EdgeInsets.only(right: 130),
+                                  padding: const EdgeInsets.only(right: 130),
                                   child: Text(
                                     controller.timeAgo(reply[index].createdAt!),
                                     style: beVietnamProRegularTextStyle(
@@ -262,7 +262,7 @@ Widget userComment(
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 20),
+                                const SizedBox(height: 20),
 
                               ],
                             ),

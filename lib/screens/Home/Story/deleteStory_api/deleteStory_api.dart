@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/deleteStory_model.dart';
@@ -15,7 +16,9 @@ class DeleteStoryApi {
       String url = EndPoints.unLikeStory;
 
       Map<String, String> param = {"id_story": id.toString()};
-      print(param);
+      if (kDebugMode) {
+        print(param);
+      }
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -33,7 +36,9 @@ class DeleteStoryApi {
         return deleteStoryModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
       return [];
     }
   }

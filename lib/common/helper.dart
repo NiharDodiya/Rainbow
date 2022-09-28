@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalitesJson.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountry_json.dart';
@@ -19,8 +20,11 @@ void getCountry() {
     });
     countryId.add(listCountryModel.data![i].id!.toString());
   }
-  print(countryCity);
-  print(countryId);
+  if (kDebugMode) {
+    print(countryCity);
+    print(countryId);
+  }
+
 }
 
 void getCountryNation() {
@@ -33,15 +37,18 @@ void getCountryNation() {
     });
     countryNationId.add(listNationalities.data![i].id!.toString());
   }
-  print("countryNationCity => $countryNationCity");
-  print("countryNationCity => $countryNationId");
+  if (kDebugMode) {
+    print("countryNationCity => $countryNationCity");
+    print("countryNationCity => $countryNationId");
+  }
+
 }
 
 String getChatId(String uid1, String uid2) {
   if (uid1.hashCode > uid2.hashCode) {
-    return uid1 + '_' + uid2;
+    return '${uid1}_$uid2';
   } else {
-    return uid2 + '_' + uid1;
+    return '${uid2}_$uid1';
   }
 }
 

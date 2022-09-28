@@ -29,10 +29,10 @@ class MarkerIcon {
         rect: Rect.fromLTWH(0, 0, width.toDouble(), height.toDouble()),
         image: imageFI.image);
 
-    final _image = await pictureRecorder
+    final image = await pictureRecorder
         .endRecording()
         .toImage(width.toInt(), (height).toInt());
-    final data = await _image.toByteData(format: ui.ImageByteFormat.png);
+    final data = await image.toByteData(format: ui.ImageByteFormat.png);
     return BitmapDescriptor.fromBytes(data!.buffer.asUint8List());
   }
 
@@ -82,10 +82,10 @@ class MarkerIcon {
         Offset((size.width * 0.5) - painter.width * 0.5,
             (size.height * .5) - painter.height * 0.5));
 
-    final _image = await pictureRecorder
+    final image = await pictureRecorder
         .endRecording()
         .toImage(size.width.toInt(), (size.height).toInt());
-    final data = await _image.toByteData(format: ui.ImageByteFormat.png);
+    final data = await image.toByteData(format: ui.ImageByteFormat.png);
     return BitmapDescriptor.fromBytes(data!.buffer.asUint8List());
   }
 
@@ -146,10 +146,10 @@ class MarkerIcon {
         canvas: canvas,
         rect: Rect.fromLTWH(0, 0, imageSize.toDouble(), imageSize.toDouble()),
         image: imageFI.image);
-    final _image = await pictureRecorder
+    final image = await pictureRecorder
         .endRecording()
         .toImage(imageSize, (imageSize * 1.1).toInt());
-    final data = await _image.toByteData(format: ui.ImageByteFormat.png);
+    final data = await image.toByteData(format: ui.ImageByteFormat.png);
     return BitmapDescriptor.fromBytes(data!.buffer.asUint8List());
   }
 
@@ -172,7 +172,7 @@ class MarkerIcon {
     final Path clipPath = Path();
     clipPath.addRRect(RRect.fromRectAndRadius(
         Rect.fromLTWH(0, 0, size.toDouble(), size.toDouble()),
-        Radius.circular(100)));
+        const Radius.circular(100)));
     /* clipPath.addRRect(RRect.fromRectAndRadius(
         Rect.fromLTWH(0, size * 8 / 10, size.toDouble(), size * 3 / 10),
         Radius.circular(100))); */
@@ -191,17 +191,17 @@ class MarkerIcon {
 
     if (addBorder) {
       //draw Border
-      paint..color = borderColor;
-      paint..style = PaintingStyle.stroke;
-      paint..strokeWidth = borderSize;
+      paint.color = borderColor;
+      paint.style = PaintingStyle.stroke;
+      paint.strokeWidth = borderSize;
       canvas.drawCircle(Offset(radius, radius), radius, paint);
     }
 
     //convert canvas as PNG bytes
-    final _image = await pictureRecorder
+    final image = await pictureRecorder
         .endRecording()
         .toImage(size, (size * 1.1).toInt());
-    final data = await _image.toByteData(format: ui.ImageByteFormat.png);
+    final data = await image.toByteData(format: ui.ImageByteFormat.png);
 
     //convert PNG bytes as BitmapDescriptor
     return BitmapDescriptor.fromBytes(data!.buffer.asUint8List());

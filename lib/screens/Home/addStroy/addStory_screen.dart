@@ -11,7 +11,7 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
 class AddStoryScreen extends StatefulWidget {
-  AddStoryScreen({Key? key}) : super(key: key);
+  const AddStoryScreen({Key? key}) : super(key: key);
 
   @override
   State<AddStoryScreen> createState() => _AddStoryScreenState();
@@ -21,7 +21,7 @@ class _AddStoryScreenState extends State<AddStoryScreen> {
   AddStoryController controller = Get.put(AddStoryController());
 
   ScrollController scrollController = ScrollController();
-  List<Widget> _mediaList = [];
+  final List<Widget> _mediaList = [];
   int currentPage = 0;
   int? lastPage;
   int totalVideos = 0;

@@ -100,7 +100,7 @@ class _DraggableTileState extends State<DraggableTile> {
                 SizedBox(
                   width: 270,
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: 10),
+                    padding: const EdgeInsets.only(bottom: 10),
                     child: Column(
                       children: [
                         SizedBox(
@@ -213,7 +213,7 @@ class _DraggableTileState extends State<DraggableTile> {
                 SizedBox(
                   width: 270,
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: 10),
+                    padding: const EdgeInsets.only(bottom: 10),
                     child: Column(
                       children: [
                         SizedBox(

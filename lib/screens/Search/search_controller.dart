@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/src/places.dart';
 import 'package:http/http.dart' as http;
-import 'package:rainbow/model/ListUserProfileModel.dart';
+import 'package:rainbow/model/list_user_profile_model.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/api/OtherProfileApi.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_screen.dart';

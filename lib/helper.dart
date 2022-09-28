@@ -12,8 +12,8 @@ bool validatePassword(String value) {
 bool hasValidUrl(String value) {
   String pattern =
       r'[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:/~+#-]*[\w@?^=%&amp;/~+#-])?';
-  RegExp regExp = new RegExp(pattern);
-  if (value.length == 0) {
+  RegExp regExp = RegExp(pattern);
+  if (value.isEmpty) {
     return false;
   } else if (regExp.hasMatch(value)) {
     return true;

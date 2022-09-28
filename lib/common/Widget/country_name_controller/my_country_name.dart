@@ -50,7 +50,7 @@ Widget dropdownButtonCountry(){
                       IconButton(
                         onPressed: controller.dropDownBox,
                         icon: Image.asset(AssetRes.arrowDown, height: 20),),
-                      SizedBox(width: 5,),
+                      const SizedBox(width: 5),
                     ],
                   ),
 
@@ -74,7 +74,7 @@ Widget dropdownButtonCountry(){
                   children: (countryController.text.isEmpty)
                       ?listNationalities.data!.map((e) {
                     return Padding(
-                      padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
+                      padding: const EdgeInsets.only(left: 20, top: 7, bottom: 7),
                       child: Align(
                         alignment: Alignment.topLeft,
                         child: InkWell(
@@ -83,7 +83,7 @@ Widget dropdownButtonCountry(){
                             controller.countryBox = false;
                             controller.update(["drop"]);
                           },
-                          child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+                          child: Text(e.name!, style: const TextStyle(color: Colors.black, fontSize: 16),
                           ),
                         ),
                       ),
@@ -91,7 +91,7 @@ Widget dropdownButtonCountry(){
                   }).toList()
                       :controller.filterList.map((e) {
                     return Padding(
-                      padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
+                      padding: const EdgeInsets.only(left: 20, top: 7, bottom: 7),
                       child: Align(
                         alignment: Alignment.topLeft,
                         child: InkWell(
@@ -100,7 +100,7 @@ Widget dropdownButtonCountry(){
                             controller.countryBox = false;
                             controller.update(["drop"]);
                           },
-                          child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+                          child: Text(e.name!, style: const TextStyle(color: Colors.black, fontSize: 16),
                           ),
                         ),
                       ),
@@ -109,7 +109,7 @@ Widget dropdownButtonCountry(){
                 ),
               ),
             )
-                :SizedBox();
+                :const SizedBox();
           }),
       const SizedBox(
         height: 10,

@@ -49,7 +49,7 @@ class MyHomePage extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return StoryPage();
+                  return const StoryPage();
                 },
               ),
             );
@@ -64,6 +64,7 @@ class StoryPage extends StatefulWidget {
   const StoryPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _StoryPageState createState() => _StoryPageState();
 }
 

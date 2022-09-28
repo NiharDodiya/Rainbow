@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rainbow/common/Widget/premiumPopUpBox/PremiumPopUpBox.dart';
+import 'package:rainbow/common/Widget/premiumPopUpBox/premium_pop_up_box.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
