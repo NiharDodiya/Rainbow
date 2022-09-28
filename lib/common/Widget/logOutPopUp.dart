@@ -5,101 +5,51 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
+import 'package:rainbow/screens/Home/settings/settings_controller.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/font_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
-import 'api/subscribe_popup_api.dart';
 
 
 
- premiumPopUpBox({required BuildContext context}) {
 
-   return showDialog(
-       context: context,
-       builder: (BuildContext context) {
-         return AlertDialog(
-           shape: RoundedRectangleBorder(
-               borderRadius:
-               BorderRadius.circular(20)),
-           backgroundColor: Colors.white,
-           actions: <Widget>[
-             const SizedBox(
-               height: 34,
-             ),
-             Padding(
-               padding:
-               const EdgeInsets.only(left: 30),
-               child: Center(
-                   child: SizedBox(
-                       height: 40,
-                       width: 152,
-                       child: Text(
-                         Strings
-                             .subscriptionPremium,
-                         style:
-                         gilroySemiBoldTextStyle(
-                             fontSize: 16,
-                             color:
-                             Colors.black),
-                       ))),
-             ),
-             const SizedBox(
-               height: 12,
-             ),
-             Center(
-                 child: Text(
-                   "£9.99 / month",
-                   style: gilroySemiBoldTextStyle(
-                       fontSize: 26,
-                       color: Colors.black),
-                 )),
-             const SizedBox(
-               height: 16,
-             ),
-             InkWell(
-               onTap: () async {
-                 Navigator.pop(context);
-                 Get.to(PaymentScreen())?.then((value) => Navigator.pop(context));
+logoutPopup({required BuildContext context}) {
 
-                /* PaymentController paymentController = Get.put(PaymentController());
-                 paymentController.loader.value = true;
-                 await UserSubscriptionAddApi.userSubscriptionAddApi();
-                 paymentController.loader.value = false;*/
-                 //subscribePopUp = false;
-               },
-               child: Center(
-                 child: Container(
-                   height: 40,
-                   width: 110,
-                   decoration: BoxDecoration(
-                     borderRadius:
-                     BorderRadius.circular(46.2),
-                     gradient: const LinearGradient(
-                       colors: [
-                         ColorRes.color_4F359B,
-                         ColorRes.color_B279DB,
-                       ],
-                       begin: Alignment.topLeft,
-                       end: Alignment.topRight,
-                     ),
-                   ),
-                   child: Center(
-                     child: Text(
-                       "Subscribe",
-                       style: gilroyBoldTextStyle(
-                           fontSize: 12),
-                     ),
-                   ),
-                 ),
-               ),
-             ),
-             const SizedBox(
-               height: 21,
-             ),
-           ],
-         );
-       });
+  return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+              borderRadius:
+              BorderRadius.circular(20)),
+          backgroundColor: Colors.white,
+          title: Text("Logout", style: gilroySemiBoldTextStyle(fontSize: 18, color: Colors.black),),
+          content: Text("Are you sure to logout ?", style: gilroyMediumTextStyle(fontSize: 14, color: Colors.black),),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('No'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            Container(
+              height: 20,
+              width: 0.5,
+              color: Colors.grey,
+
+            ),
+            TextButton(
+              child: const Text('yes'),
+              onPressed: () async{
+                Navigator.of(context).pop();
+                SettingsController controller = Get.put(SettingsController());
+                await controller.logOutDetails();
+              },
+            ),
+          ],
+        );
+      });
   /*return showDialog(context: context, builder: (BuildContext context){
     return Padding(
       padding: EdgeInsets.only(top: 240, left: 40, right: 40, bottom: 240),

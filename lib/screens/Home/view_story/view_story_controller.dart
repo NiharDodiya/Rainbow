@@ -326,6 +326,10 @@ class ViewStoryController extends GetxController {
   }
 
   void onTapPostStory(BuildContext context) {
+    FocusScopeNode currentfocus = FocusScope.of(context);
+    if (!currentfocus.hasPrimaryFocus) {
+      currentfocus.unfocus();
+    }
     if (validation()) {
       createPostData(context);
     }

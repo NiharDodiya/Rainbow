@@ -65,7 +65,9 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                     return Stack(
                       children: [
                         Positioned.fill(
-                          child: Container(color: Colors.black),
+                          child: Container(
+                              color: Colors.black
+                          ),
                         ),
                         /*CachedNetworkImage(
                           height: Get.height * 0.9,
@@ -91,7 +93,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                         ),*/
                         Image.network(
                           story.storyItem.toString(),
-                          height: Get.height * 0.89,
+                          height: Get.height * 0.84,
                           width: Get.width,
                           fit: BoxFit.cover,
                           errorBuilder: (context, url, error) => Container(
@@ -382,7 +384,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                           ),
                         ),
                         Positioned(
-                          bottom: 0,
+                          bottom: 20,
                           left: 15,
                           child: Row(
                             children: [

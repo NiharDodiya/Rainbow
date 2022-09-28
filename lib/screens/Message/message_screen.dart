@@ -47,25 +47,56 @@ class MessageScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       const SizedBox(height: 20),
-                      Row(
+                      (backArrow == true)
+                      ? Row(
                         children: [
-                          IconButton(onPressed: (){
-                            Get.back();
-                          }, icon: Icon(Icons.arrow_back_ios_new_outlined, size: 20,),),
-                          Align(
-                            alignment: Alignment.center,
-                            child: SizedBox(
-                              height: 50,
-                              child: Center(
-                                child: Text(
-                                  "Chats",
-                                  style: gilroyMediumTextStyle(fontSize: 18),
-                                ),
+                          InkWell(
+                            onTap: (){
+                              Get.back();
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(left: Get.width * 0.05),
+                              child: Container(
+                                height: 15,
+                                width: 35,
+                                decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                        AssetRes.backIcon,
+                                      ),
+                                    )),
                               ),
                             ),
                           ),
+                          Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 30),
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: SizedBox(
+                                    height: 50,
+                                    child: Center(
+                                      child: Text(
+                                        "Chats",
+                                        style: gilroyMediumTextStyle(fontSize: 18),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                          ),
                         ],
+                      )
+                      : SizedBox(
+                        height: 50,
+                        child: Center(
+                          child: Text(
+                            "Chats",
+                            style: gilroyMediumTextStyle(fontSize: 18),
+                          ),
+                        ),
                       ),
+
                       Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 20,

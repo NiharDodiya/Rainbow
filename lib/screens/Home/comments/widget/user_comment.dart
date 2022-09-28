@@ -149,63 +149,71 @@ Widget userComment(
                     return reply.isNotEmpty
                         ? Padding(
                             padding: EdgeInsets.only(bottom: 8),
-                            child: Container(
-                              width: Get.width - 110,
-                              decoration: BoxDecoration(
-                                color: ColorRes.color_959595.withOpacity(0.1),
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(15),
+                            child: Column(
+                              children: [
+                                Divider(
+                                  thickness: 0.5,
+                                  color: Colors.grey,
                                 ),
-                              ),
-                              margin: const EdgeInsets.only(
-                                left: 25,
-                              ),
-                              padding: const EdgeInsets.all(7),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    reply[index]
-                                        .postCommentUser!
-                                        .fullName
-                                        .toString(),
-                                    style: beVietnamProMediumTextStyle(
-                                        color: ColorRes.black),
+                                SizedBox(height: 10),
+                                Container(
+                                  width: Get.width - 110,
+                                  decoration: BoxDecoration(
+                                    color: ColorRes.color_959595.withOpacity(0.1),
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(15),
+                                    ),
                                   ),
-                                  Text(
+                                  margin: const EdgeInsets.only(
+                                    left: 25,
+                                  ),
+                                  padding: const EdgeInsets.all(7),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        reply[index]
+                                            .postCommentUser!
+                                            .fullName
+                                            .toString(),
+                                        style: beVietnamProMediumTextStyle(
+                                            color: ColorRes.black),
+                                      ),
+                                      /* Text(
                                     controller.timeAgo(reply[index].createdAt!),
                                     style: beVietnamProRegularTextStyle(
                                       fontSize: 10,
                                       color: ColorRes.color_959595,
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 7,
-                                  ),
-                                  RichText(
-                                    text: TextSpan(
-                                      text: "",
-                                      style: beVietnamProRegularTextStyle(
-                                        color: ColorRes.themeColor,
-                                        fontSize: 12,
+                                  ),*/
+                                      const SizedBox(
+                                        height: 7,
                                       ),
-                                      children: [
-                                        TextSpan(
-                                          text: reply[index]
-                                              .description
-                                              .toString(),
+                                      RichText(
+                                        text: TextSpan(
+                                          text: "",
                                           style: beVietnamProRegularTextStyle(
+                                            color: ColorRes.themeColor,
                                             fontSize: 12,
-                                            color: ColorRes.black,
                                           ),
+                                          children: [
+                                            TextSpan(
+                                              text: reply[index]
+                                                  .description
+                                                  .toString(),
+                                              style: beVietnamProRegularTextStyle(
+                                                fontSize: 12,
+                                                color: ColorRes.black,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  /*reply[index].postCommentItem.toString() == ""
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+
+                                      /*reply[index].postCommentItem.toString() == ""
                                       ? const SizedBox()
                                       : CachedNetworkImage(
                                           imageUrl: reply[index]
@@ -225,22 +233,38 @@ Widget userComment(
                                           errorWidget: (context, url, error) =>
                                               const Icon(Icons.error),
                                         ),*/
-                                  reply[index].postCommentItem.toString() == ""
-                                      ? const SizedBox()
-                                      : /*image == ""
+                                      reply[index].postCommentItem.toString() == ""
+                                          ? const SizedBox()
+                                          : /*image == ""
                                           ? const SizedBox()*/
                                       FadeInImage(
-                                          height: 100,
-                                          width: 100,
-                                          placeholder: const AssetImage(
-                                              AssetRes.placeholderImage),
-                                          image: NetworkImage(reply[index]
-                                              .postCommentItem
-                                              .toString()),
-                                          fit: BoxFit.cover,
-                                        ),
-                                ],
-                              ),
+                                        height: 100,
+                                        width: 100,
+                                        placeholder: const AssetImage(
+                                            AssetRes.placeholderImage),
+                                        image: NetworkImage(reply[index]
+                                            .postCommentItem
+                                            .toString()),
+                                        fit: BoxFit.cover,
+                                      ),
+
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                Padding(
+                                  padding: EdgeInsets.only(right: 130),
+                                  child: Text(
+                                    controller.timeAgo(reply[index].createdAt!),
+                                    style: beVietnamProRegularTextStyle(
+                                      fontSize: 10,
+                                      color: ColorRes.color_959595,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 20),
+
+                              ],
                             ),
                           )
                         : const SizedBox();
