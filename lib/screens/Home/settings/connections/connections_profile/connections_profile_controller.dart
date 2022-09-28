@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/model/acceptFriendRequest_model.dart';
 import 'package:rainbow/model/block_model.dart';
@@ -48,7 +50,12 @@ class ConnectionsProfileController extends GetxController {
   Future<void> callApi(String? userId) async {
     loader.value = true;
     // int userId= PrefService.getInt(PrefKeys.userId);
-    Get.to(() => ConnectionsProfileScreen());
+    Get.to(() => ConnectionsProfileScreen())?.then((value) {
+      if (kDebugMode) {
+        print("PROFILE SCREEN BACK 2");
+      }
+      profileModel = ProfileModel();
+    });
     profileModel = await OtherProfileApi.getOtherUerData(userId.toString())
         .then((value) => profileModel = value!);
     loader.value = false;
@@ -136,7 +143,14 @@ class ConnectionsProfileController extends GetxController {
   }
 
   void onTapGetBack() {
+    profileModel = ProfileModel();
     print("etgg");
     Get.back();
   }
+
+  void onTapGetBack2(context) {
+    profileModel = ProfileModel();
+    Navigator.of(context).pop();
+  }
+
 }
