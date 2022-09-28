@@ -797,34 +797,28 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     seeAll(),
                     emptyWidget,
-                    (controller.advertisementListUserModel.data?.length == 0)
-                        ? Column(
-                     children: [
-                       SizedBox(
-                         height: 20,
-                       ),
-                       Padding(
-                         padding: EdgeInsets.only(left: 15, right: 10),
-                         child: SizedBox(
-                           height: 415,
-                           width: Get.width * 0.92560,
-                           child: PageView.builder(
-                               scrollDirection: Axis.horizontal,
-                               itemCount: controller
-                                   .advertisementListUserModel
-                                   .data
-                                   ?.length,
-                               itemBuilder: (context, index) {
-                                 return adInLatestFeed(index: index);
-                               }),
-                         ),
-                       ),
-                       SizedBox(
-                         height: 20,
-                       ),
-                     ],
-                   )
-                        : SizedBox(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15, right: 10),
+                      child: SizedBox(
+                        height: 415,
+                        width: Get.width * 0.92560,
+                        child: PageView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: controller
+                                .advertisementListUserModel
+                                .data
+                                ?.length,
+                            itemBuilder: (context, index) {
+                              return adInLatestFeed(index: index);
+                            }),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
                   ],
                 );
               }
