@@ -122,9 +122,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                     child: Stack(
                       children: [
                         appBar(title: widget.title),
-                        const SizedBox(
-                          height: 20,
-                        ),
+                        const SizedBox(height: 20),
                         /*    searchUser(),*/
                         userProfile(),
                         listOfUser(controller),
@@ -149,9 +147,8 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
       width: Get.width,
       child: Column(
         children: [
-          const SizedBox(
-            height: 20//Get.height * 0.03,
-          ),
+          const SizedBox(height: 20 //Get.height * 0.03,
+              ),
           Row(
             children: [
               Expanded(
@@ -411,7 +408,8 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
             return Stack(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: 113/*Get.height * 0.16*/),
+                  padding:
+                      const EdgeInsets.only(top: 113 /*Get.height * 0.16*/),
                   child: SizedBox(
                     height: 400,
                     width: 400,
@@ -440,6 +438,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                                   setState(() {
                                     googleMapController = controller;
                                   });
+
                                   searchController.gMapController.complete();
                                 },
                               ),
@@ -451,7 +450,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                   ),
                 ),
                 Positioned(
-                  top: 55,//Get.height * 0.08,
+                  top: 55, //Get.height * 0.08,
                   child: Row(
                     children: [
                       SizedBox(
@@ -478,7 +477,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                             textColor: ColorRes.color_09110E,
                             iconColor: Colors.white,
                             placeType: PlaceType.address,
-                            apiKey: "sqdcfhhjdsgvfuydsgbv",
+                            apiKey: "AIzaSyDlNJdlotYUUVPg8iAVMmBa16xIsOjhzUY",
                             onSelected: (Place place) async {
                               Geolocation? geolocation =
                                   await place.geolocation;

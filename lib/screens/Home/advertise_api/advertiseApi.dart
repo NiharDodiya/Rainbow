@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/advertisement_list%5Buser%5D.dart';
@@ -25,10 +26,14 @@ class AdvertiseListUser {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          print("======= advertiseList user : ${response.statusCode} ======");
+          if (kDebugMode) {
+            print("======= advertiseList user : ${response.statusCode} ======");
+          }
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          print("======= advertiseList user : ${response.statusCode} =====");
+          if (kDebugMode) {
+            print("======= advertiseList user : ${response.statusCode} =====");
+          }
 
 
 
@@ -40,7 +45,9 @@ class AdvertiseListUser {
         errorToast(jsonDecode(response!.body)["message"]);
       }
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
       return [];
     }
   }

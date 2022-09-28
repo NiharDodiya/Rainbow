@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -101,7 +102,9 @@ class MyPostApi {
         return postUnlikeModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
       return [];
     }
   }
@@ -137,7 +140,7 @@ class MyPostApi {
   static Future friendPostApi(int page, int limit) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
     try {
-      String url = "${EndPoints.friendPostList}?page=${page}&limit=${limit}";
+      String url = "${EndPoints.friendPostList}?page=$page&limit=$limit";
       // String url = EndPoints.friendPostList;
       Map<String, dynamic> param = {"page": page, "limit": limit};
 
