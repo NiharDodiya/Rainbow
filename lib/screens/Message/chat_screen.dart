@@ -239,9 +239,7 @@ class ChatScreen extends StatelessWidget {
                                           height: 35,
                                           child: Center(
                                             child: Text(
-                                              DateFormat("hh:mm").format(
-                                                data['time'].toDate(),
-                                              ),
+                                              controller.timeAgo(data['time'].toDate()),
                                               style: textStyleFont14WhiteW500
                                                   .copyWith(
                                                 color: ColorRes.color_F0F0F0

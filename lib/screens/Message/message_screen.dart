@@ -47,56 +47,24 @@ class MessageScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       const SizedBox(height: 20),
-                      (backArrow == true)
-                          ? Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      Row(
                         children: [
-                          /*IconButton(onPressed: (){
+                          IconButton(onPressed: (){
                             Get.back();
-                          }, icon: Icon(Icons.arrow_back_ios_new_outlined, size: 20,),),*/
-                          InkWell(
-                            onTap: (){
-                              Get.back();
-                            },
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Container(
-                                padding: const EdgeInsets.all(7),
-                                height: 30,
-                                width: 30,
-                                child: Image.asset(
-                                  AssetRes.backIcon,
-                                  height: 15,
-                                ),
-                              ),
-                            )
-                          ),
-                          Expanded(
+                          }, icon: Icon(Icons.arrow_back_ios_new_outlined, size: 20,),),
+                          Align(
+                            alignment: Alignment.center,
                             child: SizedBox(
-                            height: 50,
-                            child: Center(
-                              child:Padding(
-                                padding: EdgeInsets.only(right: 30),
-                                child:  Text(
+                              height: 50,
+                              child: Center(
+                                child: Text(
                                   "Chats",
                                   style: gilroyMediumTextStyle(fontSize: 18),
                                 ),
-                              )
-                            ),
-                          ),),
-                        ],
-                      )
-                          : SizedBox(
-                        height: 50,
-                        child: Center(
-                            child:Padding(
-                              padding: EdgeInsets.only(right: 30),
-                              child:  Text(
-                                "Chats",
-                                style: gilroyMediumTextStyle(fontSize: 18),
                               ),
-                            )
-                        ),
+                            ),
+                          ),
+                        ],
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(
@@ -178,10 +146,10 @@ class MessageScreen extends StatelessWidget {
                                             builder: (context, snapshot2) {
                                               Map<String, dynamic>? data =
                                               snapshot2.data?.data();
-                                              if (snapshot.hasData == false) {
+                                              if (data == null) {
                                                 return const SizedBox();
                                               }
-                                              print(data!["UserToken"]);
+                                              print(data["UserToken"]);
 
                                               return data['online'] == true
                                                   ? Column(
@@ -279,8 +247,6 @@ class MessageScreen extends StatelessWidget {
                                         .where("uidList",
                                         arrayContains:
                                         controller.userUid)
-                                        .orderBy("lastMessageTime",
-                                        descending: true)
                                         .snapshots(),
                                     builder: (context, snapshot) {
                                       if (snapshot.hasData == false) {
