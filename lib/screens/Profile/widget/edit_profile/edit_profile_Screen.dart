@@ -962,7 +962,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             hintStyle: gilroyMediumTextStyle(
                                 fontSize: 18,
                                 color: ColorRes.black.withOpacity(0.3)),
-                            hintText: Strings.aboutMeDes,
+                            hintText: Strings.hobbiesAndInterest,
                           ),
                         ),
                       );

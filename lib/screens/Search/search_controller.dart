@@ -4,6 +4,7 @@ import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geocoding/geocoding.dart';
@@ -363,7 +364,12 @@ class SearchController extends GetxController {
     connectionsProfileController.profileModel =
         (await OtherProfileApi.getOtherUerData(userId.toString()))!;
     loader.value = false;
-    Get.to(() => ConnectionsProfileScreen());
+    Get.to(() => ConnectionsProfileScreen())?.then((value) {
+      if (kDebugMode) {
+        print("PROFILE SCREEN BACK ");
+      }
+
+    });
   }
 
   void sendFriendRequest(String id) async {

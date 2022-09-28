@@ -41,7 +41,7 @@ class CommentsController extends GetxController {
   }
 
   bool validation() {
-    if (msgController.text.isEmpty) {
+    if (msgController.text.isEmpty && imageCamera == null ) {
       errorToast("please enter reply");
       return false;
     }

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/model/request_user_model.dart';
 import 'package:rainbow/model/suggestion_model.dart';
@@ -25,7 +26,11 @@ class ConnectionsController extends GetxController {
         Get.put(ConnectionsProfileController());
     controller.callApi(userId);
 
-    Get.to(() => ConnectionsProfileScreen());
+    Get.to(() => ConnectionsProfileScreen())?.then((value) {
+      if (kDebugMode) {
+        print("PROFILE SCREEN BACK 3");
+      }
+    });
   }
 
   Future<void> onAddBtnTap(String userId, bool suggestionUser) async {
