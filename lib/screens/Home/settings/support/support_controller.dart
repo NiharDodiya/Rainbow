@@ -92,7 +92,11 @@ class SupportController extends GetxController {
     return true;
   }
 
-  onTapSendMessage(id) {
+  onTapSendMessage(id, context) {
+    FocusScopeNode currentfocus = FocusScope.of(context);
+    if (!currentfocus.hasPrimaryFocus) {
+      currentfocus.unfocus();
+    }
     if (valid()) {
       sendSupportApiData(id);
     }

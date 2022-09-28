@@ -166,16 +166,21 @@ class SearchController extends GetxController {
 
   Future<void> onTapAdvanceSearchMenu(int index) async {
     advance = false;
+
+
+
+    Get.to(AdvanceSearchScreen(
+      title: advanceSearch[index],
+    ))!.then((value) async {
+      await listUserProfile();
+
+    });
+
     await listUserProfileAdvanceSearch(advanceSearch[index]);
 
     await findUserDistance(index: index);
 
-    Get.to(AdvanceSearchScreen(
-      title: advanceSearch[index],
-    ))!
-        .then((value) async {
-      await listUserProfile();
-    });
+
 /*    await loadData();*/
   }
 
@@ -185,7 +190,7 @@ class SearchController extends GetxController {
       longitude = position!.longitude;
       print(latitude);
       print(latitude);
-      loader.value = true;
+      //loader.value = true;
       listUseProfileModel =
           await ListUserProfileApi.listUserProfileAdvanceSearchApi(
               keyWords: keyWords,
@@ -195,7 +200,7 @@ class SearchController extends GetxController {
 
       print("pagggggggggggggggggggggggg===${page}");
       update(['Search']);
-      loader.value = false;
+      //loader.value = false;
     } catch (e) {
       debugPrint(e.toString());
       loader.value = false;

@@ -90,7 +90,11 @@ class SupportCreateController extends GetxController {
 
   SupportController supportController = Get.put(SupportController());
 
-  void onSendMsgTap() async {
+  void onSendMsgTap({context}) async {
+    FocusScopeNode currentfocus = FocusScope.of(context);
+    if (!currentfocus.hasPrimaryFocus) {
+      currentfocus.unfocus();
+    }
     if (valid()) {
       await supportApi();
       supportController.getListOfUserTicket();

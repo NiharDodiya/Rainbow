@@ -577,7 +577,7 @@ class SupportcreateScreen extends StatelessWidget {
             height: Get.height * 0.05,
           ),
           SubmitButton(
-            onTap: controller.onSendMsgTap,
+            onTap: () => controller.onSendMsgTap(context: context),
             child: Text(
               Strings.sendMessage,
               style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),

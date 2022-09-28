@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -125,7 +126,19 @@ class PostTestimonialScreen extends StatelessWidget {
             SubmitButton(
               text: Strings.post,
               onTap: () {
-                controller.postTestimonialsApi(id.toString(), context);
+                FocusScopeNode currentfocus = FocusScope.of(context);
+                if (!currentfocus.hasPrimaryFocus) {
+                  currentfocus.unfocus();
+                }
+
+                if(controller.postTestimonials.text == ""){
+                  errorToast("Testimonials field is empty");
+                }
+                else{
+                  controller.postTestimonialsApi(id.toString(), context);
+                  Get.back();
+                }
+
               },
             )
           ],

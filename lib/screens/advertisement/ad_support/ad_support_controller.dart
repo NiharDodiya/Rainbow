@@ -96,7 +96,11 @@ class AdSupportController extends GetxController {
     return true;
   }
 
-  onTapSendMessage(String id) {
+  onTapSendMessage(String id, context) {
+    FocusScopeNode currentfocus = FocusScope.of(context);
+    if (!currentfocus.hasPrimaryFocus) {
+      currentfocus.unfocus();
+    }
     if (valid()) {
       sendSupportApiData(id);
       update(["Support"]);
