@@ -14,7 +14,7 @@ logoutPopup({required BuildContext context}) {
               BorderRadius.circular(20)),
           backgroundColor: Colors.white,
           title: Text("Logout", style: gilroySemiBoldTextStyle(fontSize: 18, color: Colors.black),),
-          content: Text("Are you sure to logout ?", style: gilroyMediumTextStyle(fontSize: 14, color: Colors.black),),
+          content: Text("Do you want to logout ?", style: gilroyMediumTextStyle(fontSize: 14, color: Colors.black),),
           actions: <Widget>[
             TextButton(
               child: const Text('No'),

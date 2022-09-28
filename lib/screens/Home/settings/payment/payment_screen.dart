@@ -464,6 +464,7 @@ class PaymentScreen extends StatelessWidget {
                 ),
               ),
             ),
+            controller.loader.value == true ? Container(height: Get.height, width: Get.width, color: Colors.black.withOpacity(0.5),) : SizedBox(),
             controller.loader.value == true
                 ? const FullScreenLoader()
                 : const SizedBox(),
