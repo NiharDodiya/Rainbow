@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:rainbow/common/Widget/premiumPopUpBox/PremiumPopUpBox.dart';
+import 'package:rainbow/common/Widget/premiumPopUpBox/premium_pop_up_box.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';

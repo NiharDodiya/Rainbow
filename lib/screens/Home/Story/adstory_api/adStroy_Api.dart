@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
@@ -13,7 +14,7 @@ class AdStoryApi {
   static Future postRegister(String idItem, String description,
       List<Map<String, dynamic>> list) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
-    int userId = PrefService.getInt(PrefKeys.userId);
+    // int userId = PrefService.getInt(PrefKeys.userId);
     try {
       String url = EndPoints.storyAdd;
 
@@ -22,7 +23,9 @@ class AdStoryApi {
         "description": description,
         "tag": list
       };
-      print(param);
+      if (kDebugMode) {
+        print(param);
+      }
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -42,7 +45,9 @@ class AdStoryApi {
         return null;
       }
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
       return [];
     }
   }

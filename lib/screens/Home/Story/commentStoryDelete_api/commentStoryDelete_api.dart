@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/commentStoryDelete_model.dart';
@@ -10,12 +11,14 @@ import 'package:rainbow/utils/pref_keys.dart';
 
 class CommentStoryDeleteApi {
   static Future postRegister(String id) async {
-    String accesToken = PrefService.getString(PrefKeys.registerToken);
+    String accessToken = PrefService.getString(PrefKeys.registerToken);
     try {
       String url = EndPoints.commentStoryDelete;
 
       Map<String, String> param = {"id_comment_story": id.toString()};
-      print(param);
+      if (kDebugMode) {
+        print(param);
+      }
       http.Response? response = await HttpService.postApi(
         url: url,
         body: jsonEncode(param),
@@ -30,7 +33,9 @@ class CommentStoryDeleteApi {
         return commentStoryDeleteModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
       return [];
     }
   }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/service/pref_services.dart';
@@ -10,10 +11,10 @@ class UploadImageApi {
   static Future postRegister(
     String image,
   ) async {
-    String accesToken = await PrefService.getString(PrefKeys.registerToken);
+    String accessToken = await PrefService.getString(PrefKeys.registerToken);
     try {
       String url = EndPoints.uploadImage;
-      Map<String, String> headers = {"x-access-token": accesToken};
+      Map<String, String> headers = {"x-access-token": accessToken};
       final multipartRequest = http.MultipartRequest('POST', Uri.parse(url));
       multipartRequest.headers.addAll(headers);
       http.MultipartFile multipartFileIdFront =
@@ -22,13 +23,19 @@ class UploadImageApi {
       multipartRequest.files.add(multipartFileIdFront);
 
       var response = await multipartRequest.send();
-      print(response);
-      var responsed = await http.Response.fromStream(response);
-      final responseData = json.decode(responsed.body);
-      print(responseData);
-      return uploadImageFromJson(responsed.body);
+      if (kDebugMode) {
+        print(response);
+      }
+      var responded = await http.Response.fromStream(response);
+      final responseData = json.decode(responded.body);
+      if (kDebugMode) {
+        print(responseData);
+      }
+      return uploadImageFromJson(responded.body);
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
       return [];
     }
   }

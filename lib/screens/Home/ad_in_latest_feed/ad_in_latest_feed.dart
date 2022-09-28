@@ -5,10 +5,8 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/ad_in_latest_feed/learn_more_details.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
-import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
-import 'package:rainbow/utils/strings.dart';
 import 'package:readmore/readmore.dart';
 
 
@@ -36,14 +34,14 @@ Widget adInLatestFeed({int? index}) {
                   ?Container(
                 height: 40,
                 width: 40,
-                decoration:  BoxDecoration(
+                decoration:  const BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
                         image: AssetImage(AssetRes.portrait_placeholder))),
               )
                   :ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                    child: Container(
+                    child: SizedBox(
                 height: 40,
                 width: 40,
                 child: CachedNetworkImage(
@@ -134,7 +132,7 @@ Widget adInLatestFeed({int? index}) {
                                 imageUrl: homeController.advertisementListUserModel.data![index!]
                                     .itemsList![index1]
                                     .toString(),
-                                errorWidget: (context, url, error) => CircularProgressIndicator(color: ColorRes.red,),
+                                errorWidget: (context, url, error) => const CircularProgressIndicator(color: ColorRes.red,),
                           placeholder: (context,url)=>Image.asset(AssetRes.placeholderImage,fit: BoxFit.fitWidth),
                               ),
                             );
@@ -142,7 +140,7 @@ Widget adInLatestFeed({int? index}) {
                         ),
                         Column(
                           children: [
-                            SizedBox(height: 35,),
+                            const SizedBox(height: 35,),
                             (homeController.advertisementListUserModel.data?[index!].itemsList!.length == 1 || homeController.advertisementListUserModel.data?[index!].itemsList!.length == 0)
                                 ? const SizedBox()
                                 : Padding(
@@ -218,7 +216,7 @@ Widget adInLatestFeed({int? index}) {
               ),
             ),
           ),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           Align(
             alignment: Alignment.bottomRight,
             child: InkWell(

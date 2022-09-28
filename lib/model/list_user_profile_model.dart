@@ -1,19 +1,22 @@
+// To parse this JSON data, do
+//
+//     final listUseProfileModel = listUseProfileModelFromJson(jsonString);
+
 import 'dart:convert';
 
-ViewSupportTicketModel viewSupportTicketModelFromJson(String? str) =>
-    ViewSupportTicketModel.fromJson(json.decode(str!));
+ListUseProfileModel listUseProfileModelFromJson(String? str) =>
+    ListUseProfileModel.fromJson(json.decode(str!));
 
-String? viewSupportTicketModelToJson(ViewSupportTicketModel data) =>
+String? listUseProfileModelToJson(ListUseProfileModel data) =>
     json.encode(data.toJson());
 
-class ViewSupportTicketModel {
-  ViewSupportTicketModel({
+class ListUseProfileModel {
+  ListUseProfileModel({
     this.status,
     this.message,
     this.cuurentPage,
     this.totalPage,
     this.count,
-    this.idUser,
     this.data,
   });
 
@@ -22,20 +25,19 @@ class ViewSupportTicketModel {
   int? cuurentPage;
   int? totalPage;
   int? count;
-  int? idUser;
-  List<Data>? data;
+  List<ListUserData>? data;
 
-  factory ViewSupportTicketModel.fromJson(Map<String, dynamic> json) =>
-      ViewSupportTicketModel(
+  factory ListUseProfileModel.fromJson(Map<String, dynamic> json) =>
+      ListUseProfileModel(
         status: json["status"],
         message: json["message"],
         cuurentPage: json["cuurentPage"],
         totalPage: json["totalPage"],
         count: json["count"],
-        idUser: json["id_user"],
         data: json["data"] == null
             ? null
-            : List<Data>.from(json["data"].map((x) => Data.fromJson(x))),
+            : List<ListUserData>.from(
+                json["data"].map((x) => ListUserData.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -44,86 +46,14 @@ class ViewSupportTicketModel {
         "cuurentPage": cuurentPage,
         "totalPage": totalPage,
         "count": count,
-        "id_user": idUser,
         "data": data == null
             ? null
             : List<dynamic>.from(data!.map((x) => x.toJson())),
       };
 }
 
-class Data {
-  Data({
-    this.id,
-    this.idSender,
-    this.description,
-    this.itmeList,
-    this.createdAt,
-    this.updatedAt,
-    this.userDetail,
-  });
-
-  int? id;
-  int? idSender;
-  String? description;
-  List<ItmeList>? itmeList;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-  UserDetail? userDetail;
-
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-        id: json["id"],
-        idSender: json["id_sender"],
-        description: json["description"],
-        itmeList: json["itmeList"] == null
-            ? null
-            : List<ItmeList>.from(
-                json["itmeList"].map((x) => ItmeList.fromJson(x))),
-        createdAt: json["createdAt"] == null
-            ? null
-            : DateTime.parse(json["createdAt"]),
-        updatedAt: json["updatedAt"] == null
-            ? null
-            : DateTime.parse(json["updatedAt"]),
-        userDetail: json["userDetail"] == null
-            ? null
-            : UserDetail.fromJson(json["userDetail"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "id_sender": idSender,
-        "description": description,
-        "itmeList": itmeList == null
-            ? null
-            : List<dynamic>.from(itmeList!.map((x) => x.toJson())),
-        "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
-        "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
-        "userDetail": userDetail == null ? null : userDetail!.toJson(),
-      };
-}
-
-class ItmeList {
-  ItmeList({
-    this.image,
-    this.type,
-  });
-
-  String? image;
-  dynamic type;
-
-  factory ItmeList.fromJson(Map<String, dynamic> json) => ItmeList(
-        image: json["image"],
-        type: json["type"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "image": image,
-        "type": type,
-      };
-}
-
-class UserDetail {
-  UserDetail({
+class ListUserData {
+  ListUserData({
     this.id,
     this.idSocial,
     this.fullName,
@@ -154,11 +84,12 @@ class UserDetail {
     this.facebook,
     this.twitter,
     this.about,
-    this.idCardPrimary,
     this.hobbiesAndInterest,
     this.backgroundImage,
     this.profileImage,
     this.status,
+    this.isFriends,
+    this.isBlock,
   });
 
   int? id;
@@ -191,13 +122,14 @@ class UserDetail {
   String? facebook;
   String? twitter;
   String? about;
-  int? idCardPrimary;
   String? hobbiesAndInterest;
   String? backgroundImage;
   String? profileImage;
   String? status;
+  String? isFriends;
+  String? isBlock;
 
-  factory UserDetail.fromJson(Map<String, dynamic> json) => UserDetail(
+  factory ListUserData.fromJson(Map<String, dynamic> json) => ListUserData(
         id: json["id"],
         idSocial: json["id_social"],
         fullName: json["full_name"],
@@ -242,14 +174,14 @@ class UserDetail {
         facebook: json["facebook"],
         twitter: json["twitter"],
         about: json["about"],
-        idCardPrimary:
-            json["id_card_primary"],
         hobbiesAndInterest: json["hobbies_and_Interest"],
         backgroundImage:
             json["background_image"],
         profileImage:
             json["profile_image"],
         status: json["status"],
+        isFriends: json["isFriends"],
+        isBlock: json["isBlock"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -285,11 +217,12 @@ class UserDetail {
         "facebook": facebook,
         "twitter": twitter,
         "about": about,
-        "id_card_primary": idCardPrimary,
         "hobbies_and_Interest":
             hobbiesAndInterest,
         "background_image": backgroundImage,
         "profile_image": profileImage,
         "status": status,
+        "isFriends": isFriends,
+        "isBlock": isBlock,
       };
 }

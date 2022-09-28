@@ -6,8 +6,8 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
-import 'package:rainbow/utils/strings.dart';
 
+// ignore: must_be_immutable
 class LearnMoreDetails extends StatelessWidget {
   int? index;
    LearnMoreDetails({required this.index,Key? key}) : super(key: key);
@@ -55,21 +55,21 @@ class LearnMoreDetails extends StatelessWidget {
                 height: 20,
               ),
              Padding(
-               padding: EdgeInsets.only(left: 15, right: 15),
+               padding: const EdgeInsets.only(left: 15, right: 15),
                child:  Row(
                  children: [
                    (homeController.advertisementListUserModel.data?[index!].userDetails?.profileImage == null || homeController.advertisementListUserModel.data?[index!].userDetails?.profileImage == "")
                        ?Container(
                      height: 40,
                      width: 40,
-                     decoration:  BoxDecoration(
+                     decoration:  const BoxDecoration(
                          shape: BoxShape.circle,
                          image: DecorationImage(
                              image: AssetImage(AssetRes.portrait_placeholder))),
                    )
                        :ClipRRect(
                      borderRadius: BorderRadius.circular(20),
-                     child: Container(
+                     child: SizedBox(
                        height: 40,
                        width: 40,
                        child: CachedNetworkImage(
@@ -80,7 +80,7 @@ class LearnMoreDetails extends StatelessWidget {
                        ),
                      ),
                    ),
-                   SizedBox(width: 10),
+                   const SizedBox(width: 10),
                    Padding(
                      padding: const EdgeInsets.only(top: 9),
                      child: Column(
@@ -163,7 +163,7 @@ class LearnMoreDetails extends StatelessWidget {
                             ),
                             Column(
                               children: [
-                                SizedBox(height: 40,),
+                                const SizedBox(height: 40,),
                                 (homeController.advertisementListUserModel.data?[index!].itemsList!.length == 1 || homeController.advertisementListUserModel.data?[index!].itemsList!.length == 0)
                                     ? const SizedBox()
                                     : Padding(
@@ -192,7 +192,7 @@ class LearnMoreDetails extends StatelessWidget {
                 height: 19,
               ),
              Padding(
-               padding: EdgeInsets.only(left: 15, right: 15),
+               padding: const EdgeInsets.only(left: 15, right: 15),
                child:  SizedBox(
                  width: double.infinity,
                  child: Column(

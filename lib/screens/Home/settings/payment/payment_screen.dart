@@ -17,6 +17,7 @@ import '../../../../utils/color_res.dart';
 import '../../../../utils/strings.dart';
 import 'add_cart/add_cart_controller.dart';
 
+// ignore: must_be_immutable
 class PaymentScreen extends StatelessWidget {
   final bool? showBackArrow;
 
@@ -87,7 +88,7 @@ class PaymentScreen extends StatelessWidget {
                                   return controller.listCardModel.data ==
                                               null &&
                                           controller.viewCardModel == null
-                                      ? SizedBox()
+                                      ? const SizedBox()
                                       : Center(
                                           child: Padding(
                                             padding: EdgeInsets.symmetric(
@@ -108,7 +109,7 @@ class PaymentScreen extends StatelessWidget {
                                                             "",
                                                         style:
                                                             textStyleFont14White),
-                                                    SizedBox(width: 15),
+                                                    const SizedBox(width: 15),
                                                     Container(
                                                       //margin: const EdgeInsets.only(top: 5.5),
                                                       height: 4,
@@ -122,12 +123,12 @@ class PaymentScreen extends StatelessWidget {
                                                           color: ColorRes
                                                               .color_FFEC5C),
                                                     ),
-                                                    SizedBox(width: 15),
+                                                    const SizedBox(width: 15),
                                                     Text(
                                                         "Ending in ${controller.viewCardModel?.data?.expYear ?? ""}",
                                                         style:
                                                             textStyleFont14White),
-                                                    SizedBox(width: 15),
+                                                    const SizedBox(width: 15),
                                                     Container(
                                                       //margin: const EdgeInsets.only(top: 5.5),
                                                       height: 4,
@@ -141,7 +142,7 @@ class PaymentScreen extends StatelessWidget {
                                                           color: ColorRes
                                                               .color_FFEC5C),
                                                     ),
-                                                    SizedBox(width: 15),
+                                                    const SizedBox(width: 15),
                                                     Text(
                                                         "${controller.viewCardModel?.data?.cardAddress?[0].createdAt?.month.toString() ?? ""}/${controller.viewCardModel?.data?.cardAddress?[0].createdAt?.day.toString() ?? ""}",
                                                         style:
@@ -349,7 +350,7 @@ class PaymentScreen extends StatelessWidget {
                                   return controller
                                               .listCardModel.data?.length ==
                                           null
-                                      ? SizedBox()
+                                      ? const SizedBox()
                                       : Align(
                                           alignment: Alignment.center,
                                           child: CarouselIndicator(
@@ -437,7 +438,7 @@ class PaymentScreen extends StatelessWidget {
                             // ---------- Transaction
                             (controller.transactionModel.data?.length == null)
                                 ? Column(
-                                    children: [
+                                    children: const [
                                       SizedBox(height: 80),
                                       Center(
                                         child: Text("No Transaction yet"),
@@ -446,7 +447,7 @@ class PaymentScreen extends StatelessWidget {
                                   )
                                 : ListView.builder(
                                     shrinkWrap: true,
-                                    physics: NeverScrollableScrollPhysics(),
+                                    physics: const NeverScrollableScrollPhysics(),
                                     itemCount: controller
                                             .transactionModel.data?.length ??
                                         0,
@@ -674,7 +675,7 @@ Widget appBar({required final bool showBack}) {
                       color: Colors.white,
                     ),
                   )
-                : SizedBox(),
+                : const SizedBox(),
             (showBack == true)? SizedBox(width: Get.width * 0.15):SizedBox(width: Get.width * 0.25),
             Text(
               Strings.manageCards,

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/model/listUserTag_model.dart';
 import 'package:rainbow/service/http_services.dart';
@@ -15,7 +16,9 @@ class ListTagStoryApi {
       String url = EndPoints.listTageStory;
 
       Map<String, dynamic> param = {"full_name": name};
-      print(param);
+      if (kDebugMode) {
+        print(param);
+      }
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -34,7 +37,9 @@ class ListTagStoryApi {
         return listUserTagModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
       return [];
     }
   }

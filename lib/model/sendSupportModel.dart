@@ -21,12 +21,12 @@ class SendSupportModel {
 
   factory SendSupportModel.fromJson(Map<String, dynamic> json) =>
       SendSupportModel(
-        status: json["status"] == null ? null : json["status"],
-        message: json["message"] == null ? null : json["message"],
+        status: json["status"],
+        message: json["message"],
       );
 
   Map<String, dynamic> toJson() => {
-        "status": status == null ? null : status,
-        "message": message == null ? null : message,
+        "status": status,
+        "message": message,
       };
 }

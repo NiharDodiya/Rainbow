@@ -1,18 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rainbow/common/Widget/premiumPopUpBox/premiumPopUp_controller.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/Home/home_controller.dart';
-import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
-import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
-import 'package:rainbow/utils/color_res.dart';
-import 'package:rainbow/utils/font_res.dart';
-import 'package:rainbow/utils/strings.dart';
-
-
-
-
 
 logoutPopup({required BuildContext context}) {
 

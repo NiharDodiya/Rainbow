@@ -9,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
-import 'package:rainbow/model/ListSupportTicketModel.dart';
+import 'package:rainbow/model/list_support_ticket_model.dart';
 import 'package:rainbow/model/ViewSupportTicketModel.dart';
 import 'package:rainbow/model/sendSupportModel.dart';
 import 'package:rainbow/screens/Home/settings/support/support_api/support_api.dart';

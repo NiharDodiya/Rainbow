@@ -9,6 +9,7 @@ import 'package:rainbow/utils/strings.dart';
 
 import '../../../common/popup.dart';
 
+// ignore: must_be_immutable
 class StoryScreen extends StatelessWidget {
   String? id;
   String? image;

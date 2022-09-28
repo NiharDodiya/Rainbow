@@ -1,10 +1,7 @@
 import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:cropperx/cropperx.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -22,11 +19,11 @@ class CircleImageCropper extends StatefulWidget {
 }
 
 class _CircleImageCropperState extends State<CircleImageCropper> {
-  final ImagePicker _picker = ImagePicker();
+  // final ImagePicker _picker = ImagePicker();
 
   final GlobalKey _cropperKey = GlobalKey(debugLabel: 'cropperKey');
 
-  Uint8List? _croppedImage;
+  // Uint8List? _croppedImage;
 
   final OverlayType _overlayType = OverlayType.circle;
 
@@ -78,7 +75,7 @@ class _CircleImageCropperState extends State<CircleImageCropper> {
             return widget.onCropped(file);
           }
         },
-        child: Icon(
+        child: const Icon(
           Icons.arrow_forward_rounded,
           color: ColorRes.white,
         ),

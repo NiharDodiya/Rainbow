@@ -19,12 +19,12 @@ class UploadImage {
   Data? data;
 
   factory UploadImage.fromJson(Map<String, dynamic> json) => UploadImage(
-        status: json["status"] ?? null,
+        status: json["status"],
         data: json["data"] == null ? null : Data.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "status": status ?? null,
+        "status": status,
         "data": data == null ? null : data!.toJson(),
       };
 }
@@ -55,32 +55,32 @@ class Data {
   String? itemUrl;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        id: json["id"] ?? null,
+        id: json["id"],
         createdAt: json["createdAt"] == null
             ? null
             : DateTime.parse(json["createdAt"]),
         updatedAt: json["updatedAt"] == null
             ? null
             : DateTime.parse(json["updatedAt"]),
-        status: json["status"] ?? null,
-        name: json["name"] ?? null,
+        status: json["status"],
+        name: json["name"],
         type: json["type"],
-        firebaseToken: json["firebase_token"] ?? null,
-        ext: json["ext"] ?? null,
-        idUser: json["id_user"] ?? null,
-        itemUrl: json["itemUrl"] ?? null,
+        firebaseToken: json["firebase_token"],
+        ext: json["ext"],
+        idUser: json["id_user"],
+        itemUrl: json["itemUrl"],
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id ?? null,
+        "id": id,
         "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
         "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
-        "status": status ?? null,
-        "name": name ?? null,
+        "status": status,
+        "name": name,
         "type": type,
-        "firebase_token": firebaseToken ?? null,
-        "ext": ext ?? null,
-        "id_user": idUser ?? null,
-        "itemUrl": itemUrl ?? null,
+        "firebase_token": firebaseToken,
+        "ext": ext,
+        "id_user": idUser,
+        "itemUrl": itemUrl,
       };
 }

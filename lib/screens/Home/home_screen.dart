@@ -4,7 +4,7 @@ import 'package:flutter_decorated_text/flutter_decorated_text.dart';
 import 'package:get/get.dart';
 import 'package:image_stack/image_stack.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
-import 'package:rainbow/common/Widget/premiumPopUpBox/PremiumPopUpBox.dart';
+import 'package:rainbow/common/Widget/premiumPopUpBox/premium_pop_up_box.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/model/request_user_model.dart';
 import 'package:rainbow/screens/Home/Story/story_screen.dart';
@@ -291,7 +291,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             controller.viewProfile.data!.userType ==
                                     "free" //premium
                                 ? premiumPopUpBox(context: context)
-                                : Get.to(() => AddStoryScreen());
+                                : Get.to(() => const AddStoryScreen());
                           },
                           child: SizedBox(
                             width: 80,
@@ -797,11 +797,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     seeAll(),
                     emptyWidget,
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 15, right: 10),
+                      padding: const EdgeInsets.only(left: 15, right: 10),
                       child: SizedBox(
                         height: 415,
                         width: Get.width * 0.92560,
@@ -816,7 +816,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             }),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                   ],
@@ -1384,14 +1384,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     controller.advertisementListUserModel.data?.length == 0
-                        ? SizedBox()
+                        ? const SizedBox()
                         : index == 0
                             ? Padding(
-                                padding: EdgeInsets.only(left: 15, right: 10),
+                                padding: const EdgeInsets.only(left: 15, right: 10),
                                 child: SizedBox(
                                   height: 415,
                                   width: Get.width * 0.92560,
@@ -1406,8 +1406,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       }),
                                 ),
                               )
-                            : SizedBox(),
-                    SizedBox(
+                            : const SizedBox(),
+                    const SizedBox(
                       height: 20,
                     ),
                   ],
