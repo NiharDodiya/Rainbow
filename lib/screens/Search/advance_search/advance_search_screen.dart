@@ -491,48 +491,48 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                           ),
                         ),
                       ),
-                      Container(
-                        height: 52,
-                        width: 50,
-                        margin: const EdgeInsets.only(left: 9),
-                        padding: const EdgeInsets.all(15),
-                        decoration: const BoxDecoration(
-                          color: ColorRes.black,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(15),
-                          ),
-                        ),
-                        child: Image.asset(
-                          AssetRes.filterIcon,
-                          height: 15,
-                          width: 15,
-                        ),
-                      )
+                      // Container(
+                      //   height: 52,
+                      //   width: 50,
+                      //   margin: const EdgeInsets.only(left: 9),
+                      //   padding: const EdgeInsets.all(15),
+                      //   decoration: const BoxDecoration(
+                      //     color: ColorRes.black,
+                      //     borderRadius: BorderRadius.all(
+                      //       Radius.circular(15),
+                      //     ),
+                      //   ),
+                      //   child: Image.asset(
+                      //     AssetRes.filterIcon,
+                      //     height: 15,
+                      //     width: 15,
+                      //   ),
+                      // )
                     ],
                   ),
                 ),
-                // Positioned(
-                //   top: 55,
-                //   // left: 285,
-                //   right: 30,
-                //   child: Container(
-                //     height: 52,
-                //     width: 50,
-                //     margin: const EdgeInsets.only(left: 9),
-                //     padding: const EdgeInsets.all(15),
-                //     decoration: const BoxDecoration(
-                //       color: ColorRes.black,
-                //       borderRadius: BorderRadius.all(
-                //         Radius.circular(15),
-                //       ),
-                //     ),
-                //     child: Image.asset(
-                //       AssetRes.filterIcon,
-                //       height: 15,
-                //       width: 15,
-                //     ),
-                //   ),
-                // )
+                Positioned(
+                  top: 56,
+                  // left: 285,
+                  right: 20,
+                  child: Container(
+                    height: 52,
+                    width: 50,
+                    margin: const EdgeInsets.only(left: 9),
+                    padding: const EdgeInsets.all(15),
+                    decoration: const BoxDecoration(
+                      color: ColorRes.black,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(15),
+                      ),
+                    ),
+                    child: Image.asset(
+                      AssetRes.filterIcon,
+                      height: 15,
+                      width: 15,
+                    ),
+                  ),
+                )
               ],
             );
           },
