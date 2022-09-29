@@ -334,8 +334,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ),
                                       ),
                                 Positioned(
-                                    top: Get.height * 0.04,
                                     left: Get.width * 0.1,
+                                    bottom: 0,
                                     child: const Image(
                                       image: AssetImage(AssetRes.plusIcons),
                                       height: 24,

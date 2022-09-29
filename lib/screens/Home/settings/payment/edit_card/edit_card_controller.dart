@@ -37,7 +37,7 @@ class EditCardController extends GetxController{
   void serching(value) {
     filterList = (countryCity.where(
             (element) {
-          return element.toString().toLowerCase().contains(value);
+          return element.toString().toLowerCase().contains(value.toString().toLowerCase());
         })
         .toList());
     update(["drop"]);

@@ -140,7 +140,7 @@ class EditProfileController extends GetxController {
   void serching(value) {
     filterList = (listNationalities.data?.where(
             (element) {
-          return element.name.toString().toLowerCase().contains(value);
+          return element.name.toString().toLowerCase().contains(value.toString().toLowerCase());
         })
         .toList()) ?? [];
     update(["drop"]);

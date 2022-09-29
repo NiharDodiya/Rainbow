@@ -372,7 +372,7 @@ class AddCartScreen extends StatelessWidget {
                                   height: 10,
                                 ),
                                 SubmitButton(
-                                  text: Strings.addCard,
+                                  text: "Strings.addCard",
                                   onTap: () {
                                     controller.addCart(context);
                                   },

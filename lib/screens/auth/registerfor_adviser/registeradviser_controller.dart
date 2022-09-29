@@ -56,7 +56,7 @@ class AdviserRegisterController extends GetxController {
   void serching(value) {
     filterList = (listCountryModel.data?.where(
             (element) {
-          return element.name.toString().toLowerCase().contains(value);
+          return element.name.toString().toLowerCase().contains(value.toString().toLowerCase());
         })
         .toList()) ?? [];
     update(["drop"]);

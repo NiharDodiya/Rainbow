@@ -45,11 +45,20 @@ class AddCartController extends GetxController {
   void serching(value) {
     filterList = (countryCity.where(
             (element) {
-              return element.toString().toLowerCase().contains(value);
+          return element.toString().toLowerCase().contains(value.toString().toLowerCase());
         })
         .toList());
     update(["drop"]);
   }
+
+  /*void serching(value) {
+    filterList = (countryCity.where(
+            (element) {
+              return element.toString().toLowerCase().contains(value);
+        })
+        .toList());
+    update(["drop"]);
+  }*/
 
 
   void onInit() {
@@ -66,9 +75,8 @@ class AddCartController extends GetxController {
 
     if (validation()) {
 
-      Navigator.of(context).pop();
 
-      Get.find<PaymentController>().loader.value = true;
+      loader.value = true;
       Future.delayed(Duration(seconds: 1), () {
         addCartDetails(context);
 
@@ -76,6 +84,8 @@ class AddCartController extends GetxController {
       /*  Get.find<PaymentController>().viewCardModel;
         update(["abc"]);*/
       });
+      Navigator.of(context).pop();
+
     }
   }
 
@@ -138,7 +148,7 @@ class AddCartController extends GetxController {
     try {
       PaymentController paymentController = Get.put(PaymentController());
 
-      paymentController.loader.value = true;
+      loader.value = true;
       AddCartApi.addCartDetailsApi(
         context,
         cardNumber: cardNmberController.text,
@@ -160,7 +170,7 @@ class AddCartController extends GetxController {
             ? homeController.viewProfile.data!.userType = "free"
             : homeController.viewProfile.data!.userType = "premium";
        // await UserSubscriptionAddApi.userSubscriptionAddApi();
-        paymentController.loader.value = false;
+        loader.value = false;
       });
 
     } catch (e) {
