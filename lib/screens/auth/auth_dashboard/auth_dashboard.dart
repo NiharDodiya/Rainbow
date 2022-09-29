@@ -42,7 +42,7 @@ class AuthDashboard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  controller.loading.isTrue
+                  controller.loading.value == true
                       ? const FullScreenLoader()
                       : const SizedBox()
                 ],

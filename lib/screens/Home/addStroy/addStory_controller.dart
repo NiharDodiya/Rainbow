@@ -25,10 +25,13 @@ class AddStoryController extends GetxController {
   void onTextTap() {
     if (textShow == false) {
       textShow = true;
+      update(["adStory"]);
     } else {
       textShow = false;
+      update(["adStory"]);
     }
     update(["adStory"]);
+    update();
   }
 
   List<UserData> tagUserList = [];

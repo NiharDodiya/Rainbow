@@ -92,6 +92,7 @@ class AdvertisementController extends GetxController {
   void notification() {
     isSwitched = PrefService.getBool(PrefKeys.notification);
     print(isSwitched);
+    update(["settings"]);
   }
 
   Future<void> notificationOnOffApi() async {

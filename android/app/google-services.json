@@ -117,6 +117,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "115304537008-7udakp002af508ju3oav2k42ge0aopb9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rainbow.app",
+            "certificate_hash": "3d3c067f1f6e9e7b3e12628aad092eaf932dd30b"
+          }
+        },
+        {
           "client_id": "115304537008-hi5q5fner5ln4ls4kqin64d6nj2bp7ca.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

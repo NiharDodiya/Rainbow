@@ -70,6 +70,7 @@ class AdvertisementApprovedScreen extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 43, right: 41),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,9 +85,6 @@ class AdvertisementApprovedScreen extends StatelessWidget {
                     style: gilroyMediumTextStyle(fontSize: 14),
                   ),
                 ],
-              ),
-              SizedBox(
-                width: Get.width * 0.256,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

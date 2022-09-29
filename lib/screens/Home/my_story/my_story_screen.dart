@@ -97,7 +97,8 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                   indicatorDuration: const Duration(seconds: 20),
                   indicatorPadding: EdgeInsets.only(
                       top: Get.height * 0.02, right: 50, left: 50),
-                  gestureItemBuilder: (context, pageIndex, storyIndex) {
+                  gestureItemBuilder: (context, pageInde, storyIndex) {
+                    print("<<<<<<<<<<<<-----------------$storyIndex---------------->>>>>>>>>>>>>");
                     return Stack(
                       children: [
                         Align(
@@ -155,7 +156,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                         controller.getStoryViewList(controller
                                             .viewStoryController
                                             .storyModel
-                                            .myStory![pageIndex]
+                                            .myStory![storyIndex]
                                             .id
                                             .toString());
                                       },
@@ -212,7 +213,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                             text: controller
                                                 .viewStoryController
                                                 .storyModel
-                                                .myStory![pageIndex]
+                                                .myStory![storyIndex]
                                                 .description
                                                 .toString(),
                                             style: sfProTextReguler().copyWith(

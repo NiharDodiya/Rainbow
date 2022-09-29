@@ -60,7 +60,7 @@ class DoctorRegisterController extends GetxController {
   List filterList = [];
 
   void serching(value) {
-    filterList = (listNationalities.data?.where(
+    filterList = (listCountryModel.data?.where(
             (element) {
           return element.name.toString().toLowerCase().contains(value.toString().toLowerCase());
         })

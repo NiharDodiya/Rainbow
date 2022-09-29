@@ -60,6 +60,8 @@ class CreateAdvertisementController extends GetxController {
 
   int pageIndex = 0;
 
+  RxBool loader = false.obs;
+
 
 
   TextEditingController amountController =
@@ -67,7 +69,7 @@ class CreateAdvertisementController extends GetxController {
 
   // File? imagePath;
   List<File> imagePath = [];
-  RxBool loader = false.obs;
+
 
   String? selectedCity;
 
@@ -185,7 +187,9 @@ class CreateAdvertisementController extends GetxController {
   UploadImage uploadImage = UploadImage();
 
   Future<void> uploadImageApi() async {
+    loader.value = true;
     try {
+      loader.value = true;
       imgIdList = [];
       for (var e in imagePath) {
         loader.value = true;
@@ -193,7 +197,7 @@ class CreateAdvertisementController extends GetxController {
         imgIdList.add(uploadImage.data!.id!);
       }
       addAdvertisement(imgIdList);
-      loader.value = false;
+      loader.value = true;
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -466,7 +470,7 @@ class CreateAdvertisementController extends GetxController {
         ),
         ignoreSafeArea: true,
       );
-      await uploadImageApi();
+
 /*      boostAdvertisementApi();*/
     }
   }

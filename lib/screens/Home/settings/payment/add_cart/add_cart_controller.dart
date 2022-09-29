@@ -84,7 +84,7 @@ class AddCartController extends GetxController {
       /*  Get.find<PaymentController>().viewCardModel;
         update(["abc"]);*/
       });
-      Navigator.of(context).pop();
+
 
     }
   }

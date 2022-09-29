@@ -110,7 +110,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: Get.width * 0.25,
+                width: Get.width * 0.22,
               ),
               GestureDetector(
                 onTap: () {

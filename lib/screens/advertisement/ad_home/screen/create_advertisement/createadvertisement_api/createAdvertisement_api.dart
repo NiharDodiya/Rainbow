@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/createAdvertiserModel.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/payment_successful/payment_successful_screen.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
@@ -61,13 +63,16 @@ class AddAdvertisement {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == true) {
+
+          Get.to(() => PaymentSuccessfulScreen());
+
           flutterToast(jsonDecode(response.body)["message"]);
         }
         return advertisersCreateModelFromJson(response.body);
       }
-      else if(response!.statusCode == 500){
+     /* else if(response!.statusCode == 500){
         errorToast("Please enter valid country name");
-      }
+      }*/
     } catch (e) {
       print(e.toString());
       return [];
