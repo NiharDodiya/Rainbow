@@ -800,7 +800,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Padding(
+                    controller.advertisementListUserModel.data == null
+                        ?SizedBox()
+                        :Padding(
                       padding: const EdgeInsets.only(left: 15, right: 10),
                       child: SizedBox(
                         height: 415,

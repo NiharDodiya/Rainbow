@@ -116,12 +116,12 @@ String? token;
       });
       loading.value = false;
     } catch (e) {
-      loading.value == false;
+      loading.value = false;
       errorToast(e.toString());
       debugPrint(e.toString());
-      loading.value == false;
+      loading.value = false;
     }
-    loading.value == false;
+    loading.value = false;
 
     //flutterToast(Strings.googleSignInSuccess);
   }

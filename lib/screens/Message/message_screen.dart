@@ -242,8 +242,7 @@ class MessageScreen extends StatelessWidget {
                                                         ),
                                                       ),
                                                       Positioned(
-                                                        top: Get.height *
-                                                            0.05,
+                                                        bottom: 0,
                                                         right: 12,
                                                         child: Image.asset(
                                                           AssetRes.oval,
