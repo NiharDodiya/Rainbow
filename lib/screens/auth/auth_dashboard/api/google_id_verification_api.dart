@@ -34,7 +34,7 @@ class GoogleIdVerification {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          flutterToast(jsonDecode(response.body)["message"]);
+          //flutterToast(jsonDecode(response.body)["message"]);
           final RegisterController controller = Get.put(RegisterController());
           controller.isSocial = true;
           controller.socialId = id;
@@ -66,7 +66,7 @@ class GoogleIdVerification {
         }
         return loginModelFromJson(response.body);
       } else if (response!.statusCode == 500) {
-        flutterToast(jsonDecode(response.body)["message"]);
+       // flutterToast(jsonDecode(response.body)["message"]);
       }
       return null;
     } catch (e) {

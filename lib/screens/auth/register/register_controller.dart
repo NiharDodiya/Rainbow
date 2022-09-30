@@ -193,7 +193,9 @@ class RegisterController extends GetxController {
   void serching(value) {
     filterList = (listNationalities.data?.where(
             (element) {
-          return element.toString().toLowerCase().contains(value.toString().toLowerCase());
+              print(value.toString().toLowerCase());
+              print(element.name);
+          return element.name.toString().toLowerCase().contains(value.toString().toLowerCase());
         })
         .toList()) ?? [];
     update(["drop"]);

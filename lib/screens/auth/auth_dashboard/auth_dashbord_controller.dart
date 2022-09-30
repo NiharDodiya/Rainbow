@@ -79,7 +79,7 @@ String? token;
         idToken: authentication.idToken,
         accessToken: authentication.accessToken,
       );
-    loading.value = false;
+    //loading.value = false;
       final UserCredential authResult =
       await auth.signInWithCredential(credential);
       final User? user = authResult.user;
