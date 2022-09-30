@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/renewAdSetupDate/renewSetUp_Screen.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/widget/advertiementApproved_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/widget/cancel_approve.dart';
 import 'package:rainbow/screens/advertisement/ad_home/widget/delet_approve.dart';
@@ -230,7 +232,15 @@ Widget advertisementList() {
                                                   .id
                                                   .toString(),
                                             ));
-                                          } else if (index == 2) {
+                                          } else if(index == 1){
+                                            Get.to(RenewSetupScreen(
+                                                idAdvertiser: controller
+                                                    .myAdvertiserModel
+                                                    .data![index]
+                                                    .id,
+                                            ));
+
+                                                }else if (index == 2) {
                                             Get.to(CancelApprove(
                                               idAdvertiser: controller
                                                   .myAdvertiserModel
@@ -238,9 +248,6 @@ Widget advertisementList() {
                                                   .id
                                                   .toString(),
                                             ));
-                                          }
-                                          else{
-
                                           }
                                           print(index);
                                         },

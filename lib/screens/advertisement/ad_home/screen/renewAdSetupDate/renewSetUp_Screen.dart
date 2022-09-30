@@ -9,6 +9,7 @@ import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_failed.dart/payment_failed_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_successful/payment_successful_screen.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/renewAdSetupDate/renewSetup_controller.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../../common/Widget/loaders.dart';
@@ -16,11 +17,11 @@ import '../../../../../common/Widget/text_styles.dart';
 import '../../../../../utils/asset_res.dart';
 import '../../../../../utils/color_res.dart';
 
-class SetupDateScreen extends StatelessWidget {
+class RenewSetupScreen extends StatelessWidget {
+  int? idAdvertiser;
+  RenewSetupScreen({Key? key, this.idAdvertiser}) : super(key: key);
 
-  SetupDateScreen({Key? key}) : super(key: key);
-  CreateAdvertisementController createAdvertisementController =
-      Get.put(CreateAdvertisementController());
+  RenewAdSetupDateController controller = Get.put(RenewAdSetupDateController());
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +49,7 @@ class SetupDateScreen extends StatelessWidget {
               Expanded(
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
-                  child: bottom(context),
+                  child: bottom(context, idAdvertiser),
                 ),
               ),
             ],
@@ -107,7 +108,7 @@ class SetupDateScreen extends StatelessWidget {
     );
   }
 
-  Widget bottom(context) {
+  Widget bottom(context, int? idAdvertiser) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: Get.width * 0.0853),
       child: Column(
@@ -136,7 +137,7 @@ class SetupDateScreen extends StatelessWidget {
                     Radius.circular(12),
                   ),
                 ),
-                child: GetBuilder<CreateAdvertisementController>(
+                child: GetBuilder<RenewAdSetupDateController>(
                   id: 'range',
                   builder: (controller) => TableCalendar(
                     calendarBuilders: const CalendarBuilders(),
@@ -166,7 +167,7 @@ class SetupDateScreen extends StatelessWidget {
                       defaultTextStyle: gilroyMediumTextStyle(
                           fontSize: 11.43, color: ColorRes.color_27354C),
                       rangeEndTextStyle:
-                          const TextStyle(fontSize: 15, color: Colors.white),
+                      const TextStyle(fontSize: 15, color: Colors.white),
                       disabledTextStyle: gilroyMediumTextStyle(
                         fontSize: 11.43,
                         color: ColorRes.color_27354C.withOpacity(0.4),
@@ -223,7 +224,7 @@ class SetupDateScreen extends StatelessWidget {
                         color: ColorRes.black.withOpacity(0.5),
                       ),
                       rightChevronMargin:
-                          EdgeInsets.only(right: Get.width * 0.30),
+                      EdgeInsets.only(right: Get.width * 0.30),
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(
@@ -263,7 +264,7 @@ class SetupDateScreen extends StatelessWidget {
                       height: 191,
                       width: Get.width,
                       child: Center(
-                        child: GetBuilder<CreateAdvertisementController>(
+                        child: GetBuilder<RenewAdSetupDateController>(
                             id: 'selectC',
                             builder: (controller) {
                               return TextField(
@@ -272,17 +273,17 @@ class SetupDateScreen extends StatelessWidget {
                                   MoneyInputFormatter(
                                       leadingSymbol: controller.currency),
                                 ],
-                                controller: createAdvertisementController
+                                controller: controller
                                     .amountController,
                                 style: gilroySemiBoldTextStyle(fontSize: 24),
                                 textAlign: TextAlign.center,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
                                   counterStyle:
-                                      gilroySemiBoldTextStyle(fontSize: 24),
+                                  gilroySemiBoldTextStyle(fontSize: 24),
                                   hintText: "${controller.currency}00.00",
                                   hintStyle:
-                                      gilroySemiBoldTextStyle(fontSize: 24),
+                                  gilroySemiBoldTextStyle(fontSize: 24),
                                 ),
                               );
                             }),
@@ -413,7 +414,7 @@ class SetupDateScreen extends StatelessWidget {
               const SizedBox(height: 12),
               SubmitButton(
                 onTap: () {
-                  createAdvertisementController.onTapNext();
+                  controller.onTapNext(id: idAdvertiser);
                   /*            Get.bottomSheet(
                     enableDrag: false,
                     BottomSheet(
@@ -458,16 +459,16 @@ class SetupDateScreen extends StatelessWidget {
 
 class ShowBottomNext extends StatelessWidget {
   String? amount;
+  int? id;
 
-  ShowBottomNext({Key? key, this.amount}) : super(key: key);
+  ShowBottomNext({Key? key, this.amount, this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    CreateAdvertisementController createAdvertisementController =
-        Get.put(CreateAdvertisementController());
+  RenewAdSetupDateController renewAdSetupDateController = Get.put(RenewAdSetupDateController());
     AdHomeController adHomeController = Get.find<AdHomeController>();
     return Obx(
-      () => Stack(
+          () => Stack(
         children: [
           DraggableScrollableSheet(
             initialChildSize: 0.99,
@@ -528,7 +529,7 @@ class ShowBottomNext extends StatelessWidget {
                               //   height: Get.height * 0.0320,
                               // ),
                               Text(
-                                createAdvertisementController
+                                renewAdSetupDateController
                                     .amountController.text,
                                 style: poppinsSemiBold(fontSize: 24),
                               ),
@@ -601,13 +602,13 @@ class ShowBottomNext extends StatelessWidget {
                         height: Get.height * 0.0665,
                       ),
                       SubmitButton(
-                        onTap: () async{
+                        onTap: () {
 
 
+                          renewAdSetupDateController.renewAdAPI(id: id);
 
-                          await createAdvertisementController.uploadImageApi();
 
-                         // createAdvertisementController.loader.value = false;
+                          // createAdvertisementController.loader.value = false;
 
                           //Get.to(() => PaymentSuccessfulScreen());
                           /* setupDateController.boostAdvertisementApi();*/
@@ -646,7 +647,7 @@ class ShowBottomNext extends StatelessWidget {
               ),
             ),
           ),
-          createAdvertisementController.loader.value == true
+          renewAdSetupDateController.loader.value == true
               ? const FullScreenLoader()
               : const SizedBox(),
         ],

@@ -59,7 +59,9 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
           searchController.listLatLongData[i].profileImage.toString(),
           size: 120,
         ),
+
       ));
+      markerLoader = false;
       /*Uint8List? image1 = await loadNetWorkImage(
           searchController.listLatLongData[i].profileImage.toString());
 
@@ -439,7 +441,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                                     googleMapController = controller;
                                   });
 
-                                  searchController.gMapController.complete();
+                                  searchController.gMapController.complete;
                                 },
                               ),
                             ),
@@ -477,7 +479,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                             textColor: ColorRes.color_09110E,
                             iconColor: Colors.white,
                             placeType: PlaceType.address,
-                            apiKey: "AIzaSyDlNJdlotYUUVPg8iAVMmBa16xIsOjhzUY",
+                            apiKey: "AIzaSyAh74-e_IDYN53QL3EpLDk6BvcOCxIiyE0",
                             onSelected: (Place place) async {
                               Geolocation? geolocation =
                                   await place.geolocation;
