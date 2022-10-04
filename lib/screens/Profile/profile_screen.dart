@@ -153,34 +153,45 @@ class ProfileScreen extends StatelessWidget {
           Positioned(
             top: Get.height * 0.11,
             left: Get.width * 0.30,
-            child: SizedBox(
+            child: Container(
               height: Get.height * 0.38666,
               width: Get.width * 0.38666,
-              child: CachedNetworkImage(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: NetworkImage(
+                      controller.viewProfile.data!.profileImage.toString(),
+                    
+                  ),
+                  fit: BoxFit.cover,
+                  onError: ((exception, stackTrace) => Image.asset(AssetRes.portrait_placeholder)),
+                ),
+              ),
+             /* child: Image.network(controller.viewProfile.data == null
+                  ? ""
+                  : controller.viewProfile.data!.profileImage.toString(),
+                fit: BoxFit.cover,
+                errorBuilder: ((context, error, stackTrace) => Image.asset(AssetRes.portrait_placeholder)),
+              ),*/
+            ),
+              /*child: CachedNetworkImage(
+                // height: Get.height * 0.38666,
+                // width: Get.width * 0.38666,
+                fit: BoxFit.cover,
                 imageUrl: controller.viewProfile.data == null
                     ? ""
                     : controller.viewProfile.data!.profileImage.toString(),
-                /*imageBuilder: (context, imageProvider) =>
-                    Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                // placeholder: (context, url) => const Center(child:  CircularProgressIndicator(),),*/
                 placeholder: ((context, url) =>  Image.asset(AssetRes.portrait_placeholder)),
                 errorWidget: (context, url, error) => Container(
                     decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    image: AssetImage(AssetRes.portrait_placeholder),
-                  ),
-                )),
-              ),
-            ),
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage(AssetRes.portrait_placeholder),
+                      ),
+                    )
+                ),
+              ),*/
+
           ),
           Positioned(
             top: Get.height * 0.35,

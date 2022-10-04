@@ -331,7 +331,7 @@ class RegisterForm extends StatelessWidget {
                 return  (controller.countryBox == true)
                     ?Container(
                   height: 160,
-                  width: 390,
+                  width: Get.width/1.20,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: Colors.white,
@@ -343,15 +343,19 @@ class RegisterForm extends StatelessWidget {
                           ?listNationalities.data!.map((e) {
                         return Padding(
                           padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: InkWell(
-                              onTap: (){
-                                controller.ethnicityController.text = e.name!;
-                                controller.countryBox = false;
-                                controller.update(["drop"]);
-                              },
-                              child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+                          child: InkWell(
+                            onTap: (){
+                              controller.ethnicityController.text = e.name!;
+                              controller.countryBox = false;
+                              controller.update(["drop"]);
+                            },
+                            child: SizedBox(
+                              height: 25,
+                              width: Get.width,
+                              child: Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+                                ),
                               ),
                             ),
                           ),
@@ -360,15 +364,20 @@ class RegisterForm extends StatelessWidget {
                           :controller.filterList.map((e) {
                         return Padding(
                           padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: InkWell(
-                              onTap: (){
-                                controller.ethnicityController.text = e.name!;
-                                controller.countryBox = false;
-                                controller.update(["drop"]);
-                              },
-                              child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+                          child: InkWell(
+                            onTap: (){
+                              controller.ethnicityController.text = e.name!;
+                              controller.countryBox = false;
+                              controller.update(["drop"]);
+                            },
+                            child: SizedBox(
+                              height: 25,
+                              width: Get.width,
+                              child: Align(
+                                alignment: Alignment.topLeft,
+                                 child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+
+                                ),
                               ),
                             ),
                           ),

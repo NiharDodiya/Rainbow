@@ -128,14 +128,32 @@ class AdvertisementDashBord extends StatelessWidget {
                                     Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text(
+                                          Container(
+                                            width: MediaQuery.of(context).size.width / 1.9,
+                                            child: SingleChildScrollView(
+                                              scrollDirection: Axis.horizontal,
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    adHomeController.viewAdvertiserModel.data
+                                                        ?.fullName ??
+                                                        "",
+                                                    style: gilroyRegularTextStyle(
+                                                        fontSize: 24,
+                                                        color: ColorRes.color_09110E),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          /*Text(
                                             adHomeController.viewAdvertiserModel.data
                                                 ?.fullName ??
                                                 "",
                                             style: gilroyRegularTextStyle(
                                                 fontSize: 24,
                                                 color: ColorRes.color_09110E),
-                                          ),
+                                          ),*/
                                           SizedBox(
                                             height: Get.height * 0.0086,
                                           ),

@@ -49,6 +49,7 @@ class SearchController extends GetxController {
   bool isClockwise = true;
   Completer<GoogleMapController> gMapController = Completer();
 
+
   Placemark placeMark = Placemark();
 
   Placemark get pickPlaceMark => placeMark;
@@ -191,7 +192,7 @@ class SearchController extends GetxController {
       longitude = position!.longitude;
       print(latitude);
       print(latitude);
-      //loader.value = true;
+      loader.value = true;
       listUseProfileModel =
           await ListUserProfileApi.listUserProfileAdvanceSearchApi(
               keyWords: keyWords,
@@ -201,7 +202,7 @@ class SearchController extends GetxController {
 
       print("pagggggggggggggggggggggggg===${page}");
       update(['Search']);
-      //loader.value = false;
+      loader.value = false;
     } catch (e) {
       debugPrint(e.toString());
       loader.value = false;
@@ -333,7 +334,7 @@ class SearchController extends GetxController {
       loader.value = false;
     } catch (e) {
       debugPrint(e.toString());
-      loader.value = false;
+      //loader.value = false;
     }
   }
 

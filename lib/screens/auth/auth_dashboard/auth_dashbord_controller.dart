@@ -186,8 +186,13 @@ String? token;
   }
 
   void onContinueWithEmailTap() {
+
     final RegisterController controller = Get.put(RegisterController());
     controller.isSocial = false;
+
+    controller.fullNameController.clear();
+    controller.emailController.clear();
+
     countryNationalites();
     Get.to(() => RegisterScreen());
   }

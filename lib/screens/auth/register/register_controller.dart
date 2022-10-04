@@ -175,6 +175,9 @@ class RegisterController extends GetxController {
   }
 
   void onRegisterTap() {
+
+     PrefService.setValue(PrefKeys.isLogin, false);
+
     if (validation()) {
       for (int i = 0; i < listNationalities.data!.length; i++) {
         if (listNationalities.data![i].name == ethnicityController.text) {

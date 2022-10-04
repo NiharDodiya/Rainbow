@@ -290,10 +290,7 @@ class EditProfileController extends GetxController {
   Future<void> uploadImageApi() async {
     // loader.value = true;
     try {
-      await UploadImageApi.postRegister(frontImage!.path.toString()).then(
-        (value) => uploadImage1 = value!,
-      );
-
+      await UploadImageApi.postRegister(frontImage!.path.toString()).then((value) => uploadImage1 = value!,);
       // loader.value = false;
     } catch (e) {
       // loader.value = false;

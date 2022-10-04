@@ -199,16 +199,7 @@ class LearnMoreDetails extends StatelessWidget {
                    mainAxisAlignment: MainAxisAlignment.start,
                    crossAxisAlignment: CrossAxisAlignment.start,
                    children: [
-                     Text(
-                       "Surrogate Mom",
-                       style: beVietnamProBoldTextStyle(
-                         color: ColorRes.black,
-                         fontSize: 16,
-                       ),
-                     ),
-                     const SizedBox(
-                       height: 19,
-                     ),
+
                      Text(
                        homeController.advertisementListUserModel.data?[index!].description ?? "",
                        style: beVietnamSemiBoldTextStyle(

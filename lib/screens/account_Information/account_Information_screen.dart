@@ -320,15 +320,19 @@ class AccountInformationScreen extends StatelessWidget {
                               ?listCountryModel.data!.map((e) {
                             return Padding(
                               padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: InkWell(
-                                  onTap: (){
-                                    controller.countryController.text = e.name!;
-                                    controller.countryBox = false;
-                                    controller.update(["drop"]);
-                                  },
-                                  child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+                              child: InkWell(
+                                onTap: (){
+                                  controller.countryController.text = e.name!;
+                                  controller.countryBox = false;
+                                  controller.update(["drop"]);
+                                },
+                                child: SizedBox(
+                                  height: 25,
+                                  width: Get.width,
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -337,15 +341,19 @@ class AccountInformationScreen extends StatelessWidget {
                               :controller.filterList.map((e) {
                             return Padding(
                               padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: InkWell(
-                                  onTap: (){
-                                    controller.countryController.text = e.name!;
-                                    controller.countryBox = false;
-                                    controller.update(["drop"]);
-                                  },
-                                  child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+                              child: InkWell(
+                                onTap: (){
+                                  controller.countryController.text = e.name!;
+                                  controller.countryBox = false;
+                                  controller.update(["drop"]);
+                                },
+                                child: SizedBox(
+                                  height: 25,
+                                  width: Get.width,
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -500,15 +508,19 @@ class AccountInformationScreen extends StatelessWidget {
                                 ?listNationalities.data!.map((e) {
                               return Padding(
                                 padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
-                                child: Align(
-                                  alignment: Alignment.topLeft,
-                                  child: InkWell(
-                                    onTap: (){
-                                      controller.countryController.text = e.name!;
-                                      controller.countryBox = false;
-                                      controller.update(["drop"]);
-                                    },
-                                    child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+                                child: InkWell(
+                                  onTap: (){
+                                    controller.countryController.text = e.name!;
+                                    controller.countryBox = false;
+                                    controller.update(["drop"]);
+                                  },
+                                  child: SizedBox(
+                                    height: 25,
+                                    width: Get.width,
+                                    child: Align(
+                                      alignment: Alignment.topLeft,
+                                      child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -517,15 +529,19 @@ class AccountInformationScreen extends StatelessWidget {
                                 :controller.filterList.map((e) {
                               return Padding(
                                 padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
-                                child: Align(
-                                  alignment: Alignment.topLeft,
-                                  child: InkWell(
-                                    onTap: (){
-                                      controller.countryController.text = e.name!;
-                                      controller.countryBox = false;
-                                      controller.update(["drop"]);
-                                    },
-                                    child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+                                child: InkWell(
+                                  onTap: (){
+                                    controller.countryController.text = e.name!;
+                                    controller.countryBox = false;
+                                    controller.update(["drop"]);
+                                  },
+                                  child: SizedBox(
+                                    height: 25,
+                                    width: Get.width,
+                                    child: Align(
+                                      alignment: Alignment.topLeft,
+                                      child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
+                                      ),
                                     ),
                                   ),
                                 ),

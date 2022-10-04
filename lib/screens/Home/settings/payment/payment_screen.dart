@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_indicator/carousel_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -510,7 +511,8 @@ Widget Tranzaction({controller}) {
                         child: Image.asset(
                           AssetRes.portrait_placeholder,
                           fit: BoxFit.fill,
-                        )),
+                        ),
+                    ),
                   )
                 : Container(
                     height: Get.width * 0.0906,
@@ -525,12 +527,26 @@ Widget Tranzaction({controller}) {
                     child: ClipRRect(
                         borderRadius:
                             const BorderRadius.all(Radius.circular(50)),
-                        child: Image.network(
+                        child: CachedNetworkImage(
+                          imageUrl:  controller
+                              .transactionModel.userDetail?.profileImage ??
+                              "",
+                          errorWidget: ((context, url, error) => Image.asset(
+                            AssetRes.portrait_placeholder,
+                            fit: BoxFit.fill,
+                          )),
+                          placeholder: ((context, url) => Image.asset(
+                            AssetRes.portrait_placeholder,
+                            fit: BoxFit.fill,
+                          )),
+                        ),
+                      /*Image.network(
                           controller
                                   .transactionModel.userDetail?.profileImage ??
                               "",
                           fit: BoxFit.fill,
-                        )),
+                        ),*/
+                    ),
                   ),
             SizedBox(
               width: Get.width * 0.042,

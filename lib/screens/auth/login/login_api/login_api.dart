@@ -55,7 +55,7 @@ class LoginApi {
 
           await updateDeviceToken();
 
-          flutterToast(jsonDecode(response.body)["message"]);
+          //flutterToast(jsonDecode(response.body)["message"]);
 
           if (jsonDecode(response.body)["data"]["role"] != "advertisers") {
             if (jsonDecode(response.body)["data"]["mobile_status"] ==
@@ -80,13 +80,13 @@ class LoginApi {
               await PrefService.setValue(PrefKeys.loginRole,
                   jsonDecode(response.body)["data"]["role"]);
 
-// flutterToast(jsonDecode(response.body)["message"]);
+ flutterToast(jsonDecode(response.body)["message"]);
 
               HomeController homeController = Get.put(HomeController());
 
               homeController.init();
 
-             //flutterToast(jsonDecode(response.body)["message"]);
+             flutterToast(jsonDecode(response.body)["message"]);
 
               Get.offAll(() => jsonDecode(response.body)["data"]["role"] == "end_user"
                       ? const Dashboard()
@@ -105,13 +105,19 @@ class LoginApi {
             await PrefService.setValue(
                 PrefKeys.loginRole, jsonDecode(response.body)["data"]["role"]);
 
+           // flutterToast(jsonDecode(response.body)["message"]);
+
             if (jsonDecode(response.body)["data"]["mobile_status"] ==
                 "pending") {
               advertiserVerifyController.phoneNumberRegister();
               Get.to(() => AdvertiserVerifyOtpScreen());
             } else {
+             // flutterToast(jsonDecode(response.body)["message"]);
               HomeController homeController = Get.put(HomeController());
               await homeController.init();
+
+              flutterToast(jsonDecode(response.body)["message"]);
+
               Get.offAll(() =>
                   jsonDecode(response.body)["data"]["role"] == "end_user"
                       ? const Dashboard()

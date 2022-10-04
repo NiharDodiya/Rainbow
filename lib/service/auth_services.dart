@@ -15,7 +15,7 @@ class AuthService {
           email: email, password: pwd);
 
       if (userCredential.user != null) {
-        await PrefService.setValue(PrefKeys.isLogin, true);
+        //await PrefService.setValue(PrefKeys.isLogin, true);
         await PrefService.setValue(PrefKeys.uid, userCredential.user!.uid);
         return userCredential.user!.uid;
       }

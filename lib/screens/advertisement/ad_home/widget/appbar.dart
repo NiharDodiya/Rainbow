@@ -113,9 +113,25 @@ Widget appbar({context}) {
                 const SizedBox(
                   height: 3,
                 ),
-                Text(
+               /* Text(
                   "Hello ${controller.viewAdvertiserModel.data?.fullName ?? ""}",
                   style: gilroyBoldTextStyle(fontSize: 20),
+                ),*/
+                Container(
+                  width: MediaQuery.of(context).size.width / 2.5,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        Text(
+                          "Hello ${controller.viewAdvertiserModel.data?.fullName ?? ""}",
+                          style: gilroySemiBoldTextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),

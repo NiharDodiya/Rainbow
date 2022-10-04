@@ -438,7 +438,7 @@ class MessageScreen extends StatelessWidget {
                                                                   ),
                                                                 ),
                                                                 Text(
-                                                                  " · ${getFormattedTime(docData['lastMessageTime'].toDate())}",
+                                                                  " · ${getFormattedTime(docData['lastMessageTime'].toDate() ?? "") }" ,
                                                                   style:
                                                                   sfProTextReguler(
                                                                     fontSize:

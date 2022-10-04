@@ -76,6 +76,9 @@ class SupportController extends GetxController {
 
   onTap({String? status, String? id, String? code}) async {
     await viewSupportTicketData(id.toString());
+
+    image = [];
+
     Get.to(() => SupportCreateEndUserScreen(
           com: status,
           code: code,

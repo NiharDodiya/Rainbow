@@ -149,16 +149,22 @@ class SettingsScreen extends StatelessWidget {
                                 image:
                                     AssetImage(AssetRes.portrait_placeholder))),
                       )
-                    : ClipRRect(
-                        borderRadius: BorderRadius.circular(50),
-                        child: CachedNetworkImage(
-                          imageUrl: profileController
-                              .viewProfile.data!.profileImage!
-                              .toString(),
-                          errorWidget: ((context, url, error) => Image.asset(AssetRes.portrait_placeholder)),
-                          placeholder: (context, url) => Image.asset(AssetRes.portrait_placeholder),
+                    : Container(
+                        height: 56,
+                        width: 56,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: CachedNetworkImage(
+                            imageUrl: profileController
+                                .viewProfile.data!.profileImage!
+                                .toString(),
+                            fit: BoxFit.cover,
+                            errorWidget: ((context, url, error) =>
+                                Image.asset(AssetRes.portrait_placeholder)),
+                            placeholder: (context, url) =>
+                                Image.asset(AssetRes.portrait_placeholder),
+                          ),
                         ),
-
                       ),
                 const SizedBox(
                   width: 20,
@@ -229,10 +235,12 @@ class SettingsScreen extends StatelessWidget {
         ),
         //Messages
         InkWell(
-          onTap: (){
+          onTap: () {
             homeController.viewProfile.data!.userType == "free"
                 ? premiumPopUpBox(context: context)
-                : Get.to(() => MessageScreen(backArrow: true,));
+                : Get.to(() => MessageScreen(
+                      backArrow: true,
+                    ));
           },
           child: Padding(
             padding: const EdgeInsets.only(bottom: 5),
@@ -255,7 +263,8 @@ class SettingsScreen extends StatelessWidget {
                 SizedBox(
                   width: Get.width * 0.555,
                 ),
-                SizedBox(height: 10, width: 6, child: Image.asset(AssetRes.next))
+                SizedBox(
+                    height: 10, width: 6, child: Image.asset(AssetRes.next))
               ],
             ),
           ),

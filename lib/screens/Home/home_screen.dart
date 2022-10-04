@@ -796,7 +796,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 return Column(
                   children: [
                     seeAll(),
-                    emptyWidget,
+                    (controller.advertisementListUserModel.data == null) ? emptyWidget : SizedBox(),
                     const SizedBox(
                       height: 20,
                     ),
@@ -1389,7 +1389,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    controller.advertisementListUserModel.data?.length == 0
+                    (controller.advertisementListUserModel.data == null || controller.advertisementListUserModel.data!.isEmpty)
                         ? const SizedBox()
                         : index == 0
                             ? Padding(

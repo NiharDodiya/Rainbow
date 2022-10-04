@@ -9,6 +9,7 @@ import 'package:rainbow/screens/Profile/widget/edit_profile/editProfile_contolle
 import 'package:rainbow/screens/Profile/widget/edit_profile/edit_profile_Screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
+import 'package:rainbow/screens/notification/notification_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
@@ -80,12 +81,12 @@ Widget profileAppbar(
             ),
             InkWell(
               onTap: () {
-                ConnectionsController connectionController =
-                    Get.put(ConnectionsController());
-                connectionController.init();
+                NotificationsController notificationController =
+                    Get.put(NotificationsController());
+                notificationController.init();
                 homeController.viewProfile.data!.userType == "free"
                     ? premiumPopUpBox(context: context)
-                    : Get.to(() => ConnectionsScreen());
+                    : Get.to(() => NotificationScreen());
                 },
               child: Stack(
                 children: [

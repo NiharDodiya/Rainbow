@@ -96,6 +96,8 @@ class TermsConditionsScreen extends StatelessWidget {
 
                         homeController.friendPostListData = [];
 
+                       await PrefService.setValue(PrefKeys.isLogin, true);
+
                         Get.offAll(() => const Dashboard());
                       },
                       child: Container(

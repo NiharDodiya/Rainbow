@@ -27,6 +27,7 @@ class CommentsController extends GetxController {
   File? imageCamera;
   File? imageForCamera;
   RxBool refreshLoader = false.obs;
+  bool reply = false;
 
   @override
   void onInit() {
@@ -57,7 +58,7 @@ class CommentsController extends GetxController {
 
   void clearNameCommentOnTap() {
     nameComment = null;
-    replyId = null;
+    //replyId = null;
     update(["commentPost"]);
   }
 
@@ -212,6 +213,7 @@ class CommentsController extends GetxController {
   void onReplyTap(String? commentId, String? name) {
     replyId = commentId;
     nameComment = name;
+    replay = true;
     update(['commentPost']);
   }
 }

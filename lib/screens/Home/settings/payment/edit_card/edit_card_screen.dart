@@ -185,7 +185,7 @@ class EditCardScreen extends StatelessWidget {
                                       return  (controller.countryBox == true)
                                           ?Container(
                                         height: 160,
-                                        width: 390,
+                                        width: Get.width / 1.24,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(20),
                                           color: Colors.white,
@@ -197,15 +197,19 @@ class EditCardScreen extends StatelessWidget {
                                                 ?countryCity.map((e) {
                                               return Padding(
                                                 padding: const EdgeInsets.only(left: 20, top: 7, bottom: 7),
-                                                child: Align(
-                                                  alignment: Alignment.topLeft,
-                                                  child: InkWell(
-                                                    onTap: (){
-                                                      controller.countryController.text = e;
-                                                      controller.countryBox = false;
-                                                      controller.update(["drop"]);
-                                                    },
-                                                    child: Text(e, style: const TextStyle(color: Colors.black, fontSize: 16),
+                                                child: InkWell(
+                                                  onTap: (){
+                                                    controller.countryController.text = e;
+                                                    controller.countryBox = false;
+                                                    controller.update(["drop"]);
+                                                  },
+                                                  child: SizedBox(
+                                                    height: 25,
+                                                    width: Get.width,
+                                                    child: Align(
+                                                      alignment: Alignment.topLeft,
+                                                      child: Text(e, style: const TextStyle(color: Colors.black, fontSize: 16),
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
@@ -214,15 +218,19 @@ class EditCardScreen extends StatelessWidget {
                                                 :controller.filterList.map((e) {
                                               return Padding(
                                                 padding: const EdgeInsets.only(left: 20, top: 7, bottom: 7),
-                                                child: Align(
-                                                  alignment: Alignment.topLeft,
-                                                  child: InkWell(
-                                                    onTap: (){
-                                                      controller.countryController.text = e;
-                                                      controller.countryBox = false;
-                                                      controller.update(["drop"]);
-                                                    },
-                                                    child: Text(e, style: const TextStyle(color: Colors.black, fontSize: 16),
+                                                child: InkWell(
+                                                  onTap: (){
+                                                    controller.countryController.text = e;
+                                                    controller.countryBox = false;
+                                                    controller.update(["drop"]);
+                                                  },
+                                                  child: SizedBox(
+                                                    height: 25,
+                                                    width: Get.width,
+                                                    child: Align(
+                                                      alignment: Alignment.topLeft,
+                                                      child: Text(e, style: const TextStyle(color: Colors.black, fontSize: 16),
+                                                      ),
                                                     ),
                                                   ),
                                                 ),

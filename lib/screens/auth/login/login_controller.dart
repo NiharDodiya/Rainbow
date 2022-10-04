@@ -44,6 +44,8 @@ class LoginController extends GetxController {
   }
 
   void onLoginTap() {
+
+
     if (validation()) {
       registerDetails();
     }
