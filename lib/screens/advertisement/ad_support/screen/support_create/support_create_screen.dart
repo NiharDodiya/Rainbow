@@ -87,7 +87,7 @@ class SupportcreateScreen extends StatelessWidget {
               controller: controller.subjectController,
               style: textFieldText,
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.only(top: 0),
+                contentPadding: const EdgeInsets.only(top: 0, left: 15),
                 border: InputBorder.none,
                 hintStyle: gilroyMediumTextStyle(
                     fontSize: 16, color: ColorRes.black.withOpacity(0.3)),

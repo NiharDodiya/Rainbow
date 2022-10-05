@@ -12,6 +12,7 @@ import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Search/search_controller.dart';
+import 'package:rainbow/screens/notification/notification_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -157,8 +158,8 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                     ),
                     child: Stack(
                       children: [
-                        appBar(title: widget.title),
-                        const SizedBox(height: 20),
+                        appBar(title: "Find ${widget.title}"),
+                        //const SizedBox(height: 60),
                         /*    searchUser(),*/
                         userProfile(),
                         listOfUser(controller),
@@ -193,11 +194,13 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                   onTap: () {
                     Get.back();
                   },
-                  child: Image.asset(
-                    AssetRes.backIcon,
-                    height: 16,
-                    width: 16,
-                    color: Colors.white,
+                  child: Center(
+                    child: Image.asset(
+                      AssetRes.backIcon,
+                      height: 16,
+                      width: 16,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
@@ -218,10 +221,12 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
               ),
               InkWell(
                 onTap: () {
-                  ConnectionsController connectionController =
+                  /*ConnectionsController connectionController =
                       Get.put(ConnectionsController());
                   connectionController.init();
-                  Get.to(() => ConnectionsScreen());
+                  Get.to(() => ConnectionsScreen());*/
+
+                  Get.to(()=>NotificationScreen());
                 },
                 child: Stack(
                   children: [
@@ -268,6 +273,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
               )
             ],
           ),
+
         ],
       ),
     );
@@ -452,7 +458,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                     child: Stack(
                       children: [
                         Positioned(
-                          top: 20,
+                          top: 50,
                           child: ClipRRect(
                             borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(20),
@@ -487,14 +493,14 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                   ),
                 ),
                 Positioned(
-                  top: 55, //Get.height * 0.08,
+                  top: 80, //Get.height * 0.08,
                   child: Row(
                     children: [
                       SizedBox(
                         width: Get.width * 0.1,
                       ),
                       SizedBox(
-                        width: 248.77,
+                        width: 272.97,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(15),
                           child: SearchMapPlaceWidget(
@@ -549,7 +555,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                   ),
                 ),
                 Positioned(
-                  top: 56,
+                  top: 80,
                   // left: 285,
                   right: 20,
                   child: Container(

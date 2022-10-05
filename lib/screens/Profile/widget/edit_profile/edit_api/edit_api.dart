@@ -56,7 +56,8 @@ class EditProfileApi {
 
       if (idItemBackGround != "") {
         param["id_item_background"] = idItemBackGround;
-      } else if (idItemProfile != "") {
+      }
+      if (idItemProfile != "") {
         param["id_item_profile"] = idItemProfile;
       }
 

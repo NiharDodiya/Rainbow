@@ -768,6 +768,9 @@ class SupportDetailsScreen extends StatelessWidget {
                               ),
                               SubmitButton(
                                 onTap: () {
+
+                                  controller.image = [];
+
                                   controller.onTapSendMessage(id.toString(), context);
                                 },
                                 child: Text(

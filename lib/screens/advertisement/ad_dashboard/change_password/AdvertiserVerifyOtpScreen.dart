@@ -99,7 +99,7 @@ class _AdvertiserVerifyOtpScreenState extends State<AdvertiserVerifyOtpScreen> {
                                       child: Row(
                                         children: [
                                           Text(
-                                            "${Strings.codeSent}${PrefService.getString(PrefKeys.phonSaveNumberAdvertiser).toString()}",
+                                            "${Strings.codeSent} ${PrefService.getString(PrefKeys.phonSaveNumberAdvertiser).toString()}",
                                             style: TextStyle(
                                                 color: ColorRes.white
                                                     .withOpacity(0.5),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -17,6 +18,7 @@ class AdNotificationsScreen extends StatelessWidget {
   final NotificationsController controller = Get.put(NotificationsController());
   ConnectionsProfileController connectionsProfileController =
       Get.put(ConnectionsProfileController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -122,20 +124,25 @@ class AdNotificationsScreen extends StatelessWidget {
                                                       child: Container(
                                                         height: 53,
                                                         width: 53,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          image:
-                                                              DecorationImage(
-                                                                  image:
-                                                                      NetworkImage(
-                                                                    adHomeController
-                                                                        .viewAdvertiserModel
-                                                                        .data!
-                                                                        .profileImage
-                                                                        .toString(),
-                                                                  ),
-                                                                  fit: BoxFit
-                                                                      .cover),
+                                                        child: CachedNetworkImage(
+                                                          imageUrl: adHomeController
+                                                              .viewAdvertiserModel
+                                                              .data!
+                                                              .profileImage
+                                                              .toString(),
+                                                          fit: BoxFit.cover,
+                                                          placeholder: ((context, url) => Image.asset( AssetRes
+                                                              .portrait_placeholder,
+                                                            height: 53,
+                                                            width: 53,
+                                                            fit: BoxFit.cover,
+                                                          )),
+                                                          errorWidget: ((context, url, error) => Image.asset( AssetRes
+                                                              .portrait_placeholder,
+                                                            height: 53,
+                                                            width: 53,
+                                                            fit: BoxFit.cover,
+                                                          )),
                                                         ),
                                                       ),
                                                     ),

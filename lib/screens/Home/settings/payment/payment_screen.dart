@@ -455,7 +455,9 @@ class PaymentScreen extends StatelessWidget {
                                     scrollDirection: Axis.vertical,
                                     itemBuilder: (context, index) {
                                       return Tranzaction(
-                                          controller: controller);
+                                          controller: controller,
+                                        index: index
+                                      );
                                     }),
                           ],
                         ),
@@ -476,7 +478,7 @@ class PaymentScreen extends StatelessWidget {
   }
 }
 
-Widget Tranzaction({controller}) {
+Widget Tranzaction({controller, int? index}) {
   return Padding(
     padding: EdgeInsets.only(
         left: Get.width * 0.10666,
@@ -568,7 +570,7 @@ Widget Tranzaction({controller}) {
                   height: Get.height * 0.005,
                 ),
                 Text(
-                  "${controller.transactionModel.data![0].createdAt?.hour.toString() ?? ""} hr ago",
+                  "${controller.transactionModel.data![index].createdAt?.hour.toString() ?? ""} hr ago",
                   style: gilroyMediumTextStyle(
                     color: ColorRes.color_959595,
                     fontSize: 11,
@@ -578,7 +580,7 @@ Widget Tranzaction({controller}) {
             ),
             const Spacer(),
             Text(
-              "+\$${controller.transactionModel.data?[0].amount.toString() ?? ""}",
+              "\$${controller.transactionModel.data?[index].amount.toString() ?? ""}",
               style: gilroyMediumTextStyle(color: ColorRes.color_29A435),
             ),
             SizedBox(

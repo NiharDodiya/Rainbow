@@ -55,7 +55,7 @@ class MessageScreen extends StatelessWidget {
                               Get.back();
                             },
                             child: Padding(
-                              padding: EdgeInsets.only(left: Get.width * 0.05),
+                              padding: EdgeInsets.only(left: Get.width * 0.05, top: 20),
                               child: Container(
                                 height: 15,
                                 width: 35,
@@ -70,7 +70,7 @@ class MessageScreen extends StatelessWidget {
                           ),
                           Expanded(
                               child: Padding(
-                                padding: EdgeInsets.only(right: 30),
+                                padding: EdgeInsets.only(right: 40, top: 20),
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: SizedBox(
@@ -87,12 +87,15 @@ class MessageScreen extends StatelessWidget {
                           ),
                         ],
                       )
-                      : SizedBox(
-                        height: 50,
-                        child: Center(
-                          child: Text(
-                            "Chats",
-                            style: gilroyMediumTextStyle(fontSize: 18),
+                      : Padding(
+                        padding: EdgeInsets.only(top: 20),
+                        child: SizedBox(
+                          height: 50,
+                          child: Center(
+                            child: Text(
+                              "Chats",
+                              style: gilroyMediumTextStyle(fontSize: 18),
+                            ),
                           ),
                         ),
                       ),

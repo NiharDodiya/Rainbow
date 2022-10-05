@@ -102,7 +102,26 @@ class ProfileScreen extends StatelessWidget {
                 width: Get.width,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Image.network(
+                  child: CachedNetworkImage(
+                    imageUrl: controller.viewProfile.data == null
+                        ? ""
+                        : controller.viewProfile.data!.backgroundImage
+                        .toString(),
+                    fit: BoxFit.cover,
+                    placeholder: ((context, url) =>  Image.asset(
+                      height: 160,
+                      width: 160,
+                      AssetRes.placeholderImage,
+                      fit: BoxFit.cover,
+                    )),
+                    errorWidget: ((context, url, error) => Image.asset(
+                      height: 160,
+                      width: 160,
+                      AssetRes.placeholderImage,
+                      fit: BoxFit.cover,
+                    )),
+                  ),
+                  /*Image.network(
                     controller.viewProfile.data == null
                         ? ""
                         : controller.viewProfile.data!.backgroundImage
@@ -110,8 +129,12 @@ class ProfileScreen extends StatelessWidget {
                     height: Get.height * 0.2857,
                     width: Get.width,
                     fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
+                    errorBuilder: ((context, error, stackTrace) => Image.asset(
+                      height: Get.height * 0.2857,
+                      width: Get.width,
+                      AssetRes.placeholderImage,
+                      fit: BoxFit.cover,
+                    )),*//*Container(
                         height: Get.height * 0.2857,
                         width: Get.width,
                         decoration: BoxDecoration(
@@ -119,9 +142,9 @@ class ProfileScreen extends StatelessWidget {
                             image: const DecorationImage(
                                 image: AssetImage(AssetRes.placeholderImage),
                                 fit: BoxFit.cover)),
-                      );
-                    },
-                  ),
+                      );*//*
+
+                  ),*/
                 ),
 
                 /*  CachedNetworkImage(
@@ -151,22 +174,36 @@ class ProfileScreen extends StatelessWidget {
                 ),*/
               )),
           Positioned(
-            top: Get.height * 0.11,
+            top: Get.height * 0.20,
             left: Get.width * 0.30,
-            child: Container(
-              height: Get.height * 0.38666,
-              width: Get.width * 0.38666,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: NetworkImage(
-                      controller.viewProfile.data!.profileImage.toString(),
-                    
-                  ),
-                  fit: BoxFit.cover,
-                  onError: ((exception, stackTrace) => Image.asset(AssetRes.portrait_placeholder)),
-                ),
+
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(99),
+                child: Container(
+                  // height: Get.height * 0.38666,
+                  // width: Get.width * 0.38666,
+                 height: 160,
+                  width: 160,
+                  child: CachedNetworkImage(
+                    imageUrl: controller.viewProfile.data == null
+                        ? ""
+                        : controller.viewProfile.data!.profileImage.toString(),
+                    fit: BoxFit.cover,
+                    placeholder: ((context, url) => Image.asset(
+                      height: 160,
+                      width: 160,
+                        AssetRes.portrait_placeholder,
+                      fit: BoxFit.cover,
+                    )),
+                    errorWidget: ((context, url, error) => Image.asset(
+                      height: 160,
+                      width: 160,
+                      AssetRes.portrait_placeholder,
+                      fit: BoxFit.cover,
+                    )),
+                  )
               ),
+
              /* child: Image.network(controller.viewProfile.data == null
                   ? ""
                   : controller.viewProfile.data!.profileImage.toString(),

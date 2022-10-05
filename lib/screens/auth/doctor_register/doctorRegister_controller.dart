@@ -191,7 +191,7 @@ class DoctorRegisterController extends GetxController {
       );
 
       loader.value = false;
-
+     // await PrefService.setValue(PrefKeys.phonSaveNumberAdvertiser, "+${'${controller.countryModel.phoneCode} ${controller.phoneNumber.text}'}")
       await PrefService.setValue(
           PrefKeys.registerToken, advertiserRegister.token.toString());
       await PrefService.setValue(PrefKeys.userId, advertiserRegister.data!.id);

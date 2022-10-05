@@ -11,6 +11,7 @@ import 'package:rainbow/screens/account_Information/ad_information_api/ad_inform
 import 'package:rainbow/screens/account_Information/ad_information_api/ad_information_model.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/service/pref_services.dart';
+import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
 import '../../common/popup.dart';
@@ -231,10 +232,10 @@ class AccountInformationController extends GetxController {
     } else if (phoneNumberController.text.isEmpty) {
       errorToast(Strings.phoneNumber);
       return false;
-    } else if (uploadImage.data == null) {
+    }else if (uploadImage.data == null) {
       errorToast(Strings.uploadImageError);
       return false;
-    }else if(myId == null || myId == ""){
+    } else if(myId == null || myId == ""){
       errorToast("Please enter valid country name");
       return false;
     }

@@ -86,8 +86,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               image: AssetImage(
                                 AssetRes.settings,
                               ),
-                              height: 19.25,
-                              width: 19.25,
+                              height: 19.29,
+                              width: 19.30,
                             ),
                           ),
                           SizedBox(
@@ -315,7 +315,29 @@ class _HomeScreenState extends State<HomeScreen> {
                                       )
                                     : ClipRRect(
                                         borderRadius: BorderRadius.circular(50),
-                                        child: Image.network(
+                                        child: Container(
+                                          height: 56,
+                                          width: 56,
+                                          child: CachedNetworkImage(
+                                            imageUrl: controller.controller.viewProfile
+                                                .data!.profileImage
+                                                .toString(),
+                                            fit: BoxFit.cover,
+                                            placeholder: ((context, url) => Image.asset(
+                                              AssetRes.portrait_placeholder,
+                                              fit: BoxFit.cover,
+                                              height: 56,
+                                              width: 56,
+                                            )),
+                                            errorWidget: ((context, url, error) => Image.asset(
+                                              AssetRes.portrait_placeholder,
+                                              fit: BoxFit.cover,
+                                              height: 56,
+                                              width: 56,
+                                            )),
+                                          ),
+                                        ),
+                                  /*Image.network(
                                           controller.controller.viewProfile
                                               .data!.profileImage
                                               .toString(),
@@ -331,7 +353,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               width: 56,
                                             );
                                           },
-                                        ),
+                                        ),*/
                                       ),
                                 Positioned(
                                     left: Get.width * 0.1,

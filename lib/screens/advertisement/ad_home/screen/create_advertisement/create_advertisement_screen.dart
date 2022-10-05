@@ -151,12 +151,11 @@ class CreateAdvertisementScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: TextField(
-                onChanged: (value) {},
-                maxLines: 7,
+                maxLines: 1,
                 controller: advertisementController.tagsController,
                 style: textFieldText,
                 decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.only(top: 0),
+                  contentPadding: EdgeInsets.only(bottom: 22),
                   border: InputBorder.none,
                   hintStyle: gilroyMediumTextStyle(
                       fontSize: 18, color: ColorRes.black.withOpacity(0.3)),
