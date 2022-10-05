@@ -152,7 +152,7 @@ class MessageScreen extends StatelessWidget {
                                     arrayContains: controller.userUid)
                                     .snapshots(),
                                 builder: (context, snapshot) {
-                                  if (snapshot.hasData == false) {
+                                  if (snapshot.data == null || snapshot.hasData == false) {
                                     return const SizedBox();
                                   }
                                   return SizedBox(
@@ -278,11 +278,13 @@ class MessageScreen extends StatelessWidget {
                                     stream: FirebaseFirestore.instance
                                         .collection('chats')
                                         .where("uidList",
-                                        arrayContains:
-                                        controller.userUid)
-                                        .snapshots(),
+                                                  arrayContains:
+                                                      controller.userUid)
+                                              .orderBy("lastMessageTime",
+                                                  descending: true)
+                                              .snapshots(),
                                     builder: (context, snapshot) {
-                                      if (snapshot.hasData == false) {
+                                      if (snapshot.data == null || snapshot.hasData == false) {
                                         return const SizedBox();
                                       }
                                       return SizedBox(
@@ -318,13 +320,16 @@ class MessageScreen extends StatelessWidget {
                                               return const SizedBox();
                                             }
                                             print("@@@@@ => $userId");
+                                            if(userId.isEmpty){
+                                              return const SizedBox();
+                                            }
                                             return StreamBuilder<
                                                 DocumentSnapshot<
                                                     Map<String, dynamic>>>(
                                               stream: FirebaseFirestore
                                                   .instance
                                                   .collection('users')
-                                                  .doc(userId)
+                                                  .doc("userId")
                                                   .snapshots(),
                                               builder:
                                                   (context, snapshot2) {
@@ -441,8 +446,11 @@ class MessageScreen extends StatelessWidget {
                                                                   ),
                                                                 ),
                                                                 Text(
-                                                                  " · ${getFormattedTime(docData['lastMessageTime'].toDate() ?? "") }" ,
-                                                                  style:
+                                                                  docData['lastMessageTime'] ==
+                                                                                null
+                                                                            ? ""
+                                                                            : " · ${getFormattedTime(docData['lastMessageTime'].toDate() ?? "")}",
+                                                                        style:
                                                                   sfProTextReguler(
                                                                     fontSize:
                                                                     14,
