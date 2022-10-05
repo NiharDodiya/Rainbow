@@ -329,7 +329,7 @@ class MessageScreen extends StatelessWidget {
                                               stream: FirebaseFirestore
                                                   .instance
                                                   .collection('users')
-                                                  .doc("userId")
+                                                  .doc(userId)
                                                   .snapshots(),
                                               builder:
                                                   (context, snapshot2) {
