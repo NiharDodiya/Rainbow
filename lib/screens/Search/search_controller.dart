@@ -169,7 +169,9 @@ class SearchController extends GetxController {
   Future<void> onTapAdvanceSearchMenu(int index) async {
     advance = false;
 
+    await listUserProfileAdvanceSearch(advanceSearch[index]);
 
+    await findUserDistance(index: index);
 
     Get.to(AdvanceSearchScreen(
       title: advanceSearch[index],
@@ -178,9 +180,7 @@ class SearchController extends GetxController {
 
     });
 
-    await listUserProfileAdvanceSearch(advanceSearch[index]);
 
-    await findUserDistance(index: index);
 
 
 /*    await loadData();*/

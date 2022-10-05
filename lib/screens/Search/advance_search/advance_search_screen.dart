@@ -53,6 +53,9 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
 
   Future<void> loadData() async {
     for (int i = 0; i < searchController.listLatLongData.length; i++) {
+      print("<<<<<<<<<<<<<===============>>>>>>>>>>>");
+      print(searchController.listLatLongData);
+      print(searchController.listLatLongData.length);
       markers.add(Marker(
         visible: true,
         markerId: MarkerId(
@@ -61,6 +64,9 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
         position: LatLng(searchController.listLatLongData[i].latitude!,
             searchController.listLatLongData[i].longitude!),
         icon: BitmapDescriptor.defaultMarker,
+        infoWindow: InfoWindow(
+          title: searchController.listLatLongData[i].fullName,
+        )
         /*await MarkerIcon.downloadResizePictureCircle(
           searchController.listLatLongData[i].profileImage.toString(),
           size: 200,
@@ -101,12 +107,12 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
   }
 
   getCameraPosition({double? lat, double? long}) {
-    googleMapController!.animateCamera(CameraUpdate.newCameraPosition(
+    googleMapController?.animateCamera(CameraUpdate.newCameraPosition(
       CameraPosition(
         //innital position in map
         target: LatLng(lat!, long!),
         //initial position
-        zoom: 16.0, //initial zoom level
+        zoom: 50.0, //initial zoom level
       ),
     ));
     setState(() {
@@ -160,7 +166,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                     ),
                   ),
                 ),
-                controller.loader.isTrue
+                controller.loader.value == true
                     ? const FullScreenLoader()
                     : const SizedBox()
               ],
@@ -463,7 +469,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                                             .data!.latitude!,
                                         homeController.controller.viewProfile
                                             .data!.longitude!),
-                                    zoom: 15,
+                                    zoom: 30,
                                 ),
                                 onMapCreated: (GoogleMapController controller) {
                                   setState(() {

@@ -796,7 +796,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 return Column(
                   children: [
                     seeAll(),
-                    (controller.advertisementListUserModel.data == null) ? emptyWidget : SizedBox(),
+                    (controller.advertisementListUserModel.data == null || controller.advertisementListUserModel.data!.isEmpty) ? emptyWidget : SizedBox(),
                     const SizedBox(
                       height: 20,
                     ),

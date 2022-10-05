@@ -751,7 +751,11 @@ class SearchScreen extends StatelessWidget {
                                             errorBuilder:
                                                 (context, error, stackTrace) {
                                               return Image.asset(AssetRes
-                                                  .portrait_placeholder);
+                                                  .portrait_placeholder,
+                                                height: 40,
+                                                width: 40,
+                                                fit: BoxFit.cover,
+                                              );
                                             },
                                           ),
                                         )
