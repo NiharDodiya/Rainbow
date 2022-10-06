@@ -130,11 +130,30 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                         ),
                       ),
                       child: Center(
-                        child: Text(
+                        child:
+                        Container(
+                          width: 75,
+                          alignment: Alignment.center,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                Text(
+                                  createAdvertisementController.tags[index],
+                                  maxLines: 1,
+                                  style: gilroyMediumTextStyle(
+                                      fontSize: 12, color: ColorRes.color_696D6D),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                       /* Text(
                           createAdvertisementController.tags[index],
+                          maxLines: 1,
                           style: gilroyMediumTextStyle(
                               fontSize: 12, color: ColorRes.color_696D6D),
-                        ),
+                        ),*/
                       ),
                     ),
                   ),

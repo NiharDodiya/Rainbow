@@ -70,7 +70,7 @@ class MessageScreen extends StatelessWidget {
                           ),
                           Expanded(
                               child: Padding(
-                                padding: EdgeInsets.only(right: 40, top: 20),
+                                padding: EdgeInsets.only(right: 50, top: 20),
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: SizedBox(

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -63,7 +64,7 @@ class NotificationScreen extends StatelessWidget {
                                   right: Get.width * 0.16),
                               child: InkWell(
                                 onTap: () {
-                                 /* connectionsProfileController.callApi(
+                                  /* connectionsProfileController.callApi(
                                       controller.notificationList[index]
                                           .idUserSender
                                           .toString());*/
@@ -83,8 +84,11 @@ class NotificationScreen extends StatelessWidget {
                                         border: Border.all(
                                             color: ColorRes.white, width: 1),
                                       ),
-                                      child: profileController.viewProfile.data==null ||profileController.viewProfile.data!
-                                              .profileImage!.isEmpty
+                                      child: profileController
+                                                      .viewProfile.data ==
+                                                  null ||
+                                              profileController.viewProfile
+                                                  .data!.profileImage!.isEmpty
                                           ? ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(50),
@@ -107,16 +111,29 @@ class NotificationScreen extends StatelessWidget {
                                               child: Container(
                                                 height: 53,
                                                 width: 53,
-                                                decoration: BoxDecoration(
-                                                  image: DecorationImage(
-                                                      image: NetworkImage(
-                                                        profileController
-                                                            .viewProfile
-                                                            .data!
-                                                            .profileImage
-                                                            .toString(),
-                                                      ),
-                                                      fit: BoxFit.cover),
+                                                child: CachedNetworkImage(
+                                                  imageUrl: profileController
+                                                      .viewProfile
+                                                      .data!
+                                                      .profileImage
+                                                      .toString(),
+                                                  fit: BoxFit.cover,
+                                                  placeholder:
+                                                      ((context, url) =>
+                                                          Image.asset(
+                                                            AssetRes
+                                                                .portrait_placeholder,
+                                                            height: 53,
+                                                            width: 53,
+                                                            fit: BoxFit.cover,
+                                                          )),
+                                                  errorWidget: ((context, url, error) => Image.asset(
+                                                    AssetRes
+                                                        .portrait_placeholder,
+                                                    height: 53,
+                                                    width: 53,
+                                                    fit: BoxFit.cover,
+                                                  )),
                                                 ),
                                               ),
                                             ),

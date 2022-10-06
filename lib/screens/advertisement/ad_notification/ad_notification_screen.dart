@@ -90,8 +90,7 @@ class AdNotificationsScreen extends StatelessWidget {
                                                     color: ColorRes.white,
                                                     width: 1),
                                               ),
-                                              child: adHomeController
-                                                      .viewAdvertiserModel
+                                              child: adHomeController.viewAdvertiserModel
                                                       .data!
                                                       .profileImage
                                                       .toString()

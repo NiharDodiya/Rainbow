@@ -45,6 +45,7 @@ class AdvertiserVerifyController extends GetxController {
       await PhoneNumberApi.advertiserSendOtp(phoneNumber.isEmpty
           ? PrefService.getString(PrefKeys.phonSaveNumberAdvertiser).toString()
           : phoneNumber);
+
       loader.value = false;
     } catch (e) {
       loader.value = false;

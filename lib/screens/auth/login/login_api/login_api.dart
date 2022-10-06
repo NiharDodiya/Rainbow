@@ -80,7 +80,7 @@ class LoginApi {
               await PrefService.setValue(PrefKeys.loginRole,
                   jsonDecode(response.body)["data"]["role"]);
 
- flutterToast(jsonDecode(response.body)["message"]);
+
 
               HomeController homeController = Get.put(HomeController());
 

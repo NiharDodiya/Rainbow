@@ -42,15 +42,11 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
   final kInitialPosition = const LatLng(-33.8567844, 151.213108);
   bool markerLoader = true;
 
-
   @override
   void initState() {
     loadData();
     super.initState();
   }
-
-
-
 
   Future<void> loadData() async {
     for (int i = 0; i < searchController.listLatLongData.length; i++) {
@@ -58,29 +54,31 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
       print(searchController.listLatLongData);
       print(searchController.listLatLongData.length);
       markers.add(Marker(
-        visible: true,
-        markerId: MarkerId(
-          searchController.listLatLongData[i].fullName.toString(),
-        ),
-        position: LatLng(searchController.listLatLongData[i].latitude!,
-            searchController.listLatLongData[i].longitude!),
-        icon: BitmapDescriptor.defaultMarker,
-        infoWindow: InfoWindow(
-          title: searchController.listLatLongData[i].fullName,
-        )
-        /*await MarkerIcon.downloadResizePictureCircle(
+          visible: true,
+          markerId: MarkerId(
+            searchController.listLatLongData[i].fullName.toString(),
+          ),
+          position: LatLng(searchController.listLatLongData[i].latitude!,
+              searchController.listLatLongData[i].longitude!),
+          icon: BitmapDescriptor.defaultMarker,
+          infoWindow: InfoWindow(
+            title: searchController.listLatLongData[i].fullName,
+          )
+          /*await MarkerIcon.downloadResizePictureCircle(
           searchController.listLatLongData[i].profileImage.toString(),
           size: 200,
         ),*/
 
-      ));
+          ));
 
-      getCameraPosition(lat:  searchController.listLatLongData[i].latitude!, long:searchController.listLatLongData[i].longitude! );
+      getCameraPosition(
+          lat: searchController.listLatLongData[i].latitude!,
+          long: searchController.listLatLongData[i].longitude!);
 
       markerLoader = false;
 
       latitude = searchController.listLatLongData[i].latitude!;
-       longitude = searchController.listLatLongData[i].longitude!;
+      longitude = searchController.listLatLongData[i].longitude!;
 
       /*Uint8List? image1 = await loadNetWorkImage(
           searchController.listLatLongData[i].profileImage.toString());
@@ -116,9 +114,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
         zoom: 50.0, //initial zoom level
       ),
     ));
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   Future<Uint8List> loadNetWorkImage(String path) async {
@@ -187,37 +183,41 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
           const SizedBox(height: 20 //Get.height * 0.03,
               ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                flex: 1,
-                child: GestureDetector(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: Center(
-                    child: Image.asset(
-                      AssetRes.backIcon,
-                      height: 16,
-                      width: 16,
-                      color: Colors.white,
-                    ),
+              SizedBox(
+                width: Get.width * 0.0001,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.back();
+                },
+                child: Center(
+                  child: Image.asset(
+                    AssetRes.backIcon,
+                    height: 16,
+                    width: 16,
+                    color: Colors.white,
                   ),
                 ),
               ),
-              Expanded(
-                flex: 4,
-                child: GestureDetector(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      title ?? "Advance Search",
-                      style: gilroyBoldTextStyle(fontSize: 18),
-                    ),
+              SizedBox(
+                width: Get.width * 0.04,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.back();
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    title ?? "Advance Search",
+                    style: gilroyBoldTextStyle(fontSize: 18),
                   ),
                 ),
+              ),
+              SizedBox(
+                width: Get.width * 0.0001,
               ),
               InkWell(
                 onTap: () {
@@ -226,7 +226,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                   connectionController.init();
                   Get.to(() => ConnectionsScreen());*/
 
-                  Get.to(()=>NotificationScreen());
+                  Get.to(() => NotificationScreen());
                 },
                 child: Stack(
                   children: [
@@ -273,7 +273,6 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
               )
             ],
           ),
-
         ],
       ),
     );
@@ -470,12 +469,12 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                                 mapType: MapType.normal,
                                 markers: Set<Marker>.of(markers),
                                 initialCameraPosition: CameraPosition(
-                                    target: LatLng(
-                                        homeController.controller.viewProfile
-                                            .data!.latitude!,
-                                        homeController.controller.viewProfile
-                                            .data!.longitude!),
-                                    zoom: 30,
+                                  target: LatLng(
+                                      homeController.controller.viewProfile
+                                          .data!.latitude!,
+                                      homeController.controller.viewProfile
+                                          .data!.longitude!),
+                                  zoom: 30,
                                 ),
                                 onMapCreated: (GoogleMapController controller) {
                                   setState(() {
@@ -493,14 +492,13 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                   ),
                 ),
                 Positioned(
-                  top: 80, //Get.height * 0.08,
+                  top: 80,
+                  //Get.height * 0.08,
                   child: Row(
                     children: [
+                      SizedBox(width: Get.width * 0.06),
                       SizedBox(
-                        width: Get.width * 0.1,
-                      ),
-                      SizedBox(
-                        width: 272.97,
+                        width: Get.width * 0.72,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(15),
                           child: SearchMapPlaceWidget(
@@ -520,7 +518,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                             textColor: ColorRes.color_09110E,
                             iconColor: Colors.white,
                             placeType: PlaceType.address,
-                           apiKey: "AIzaSyAh74-e_IDYN53QL3EpLDk6BvcOCxIiyE0",
+                            apiKey: "AIzaSyAh74-e_IDYN53QL3EpLDk6BvcOCxIiyE0",
                             onSelected: (Place place) async {
                               Geolocation? geolocation =
                                   await place.geolocation;

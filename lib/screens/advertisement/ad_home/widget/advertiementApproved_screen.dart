@@ -356,13 +356,30 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                         ),
                       ),
                       child: Center(
-                        child: Text(
+                        child:  Container(
+                          width: 75,
+                          alignment: Alignment.center,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                Text(
+                                  adHomeController
+                                      .myAdvertiserModel.data![index].tagsList![index1]
+                                      .toString(),
+                                  style: gilroyMediumTextStyle(
+                                      fontSize: 12, color: ColorRes.color_696D6D),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),/*Text(
                           adHomeController
                               .myAdvertiserModel.data![index].tagsList![index1]
                               .toString(),
                           style: gilroyMediumTextStyle(
                               fontSize: 12, color: ColorRes.color_696D6D),
-                        ),
+                        ),*/
                       ),
                     ),
                   ),

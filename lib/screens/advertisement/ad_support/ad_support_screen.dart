@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -171,25 +172,43 @@ class AdSupportScreen extends StatelessWidget {
                                         decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                           image: DecorationImage(
-                                            image: AssetImage(
-                                              AssetRes.portrait_placeholder,
-                                            ),
-                                          ),
+                                              image: AssetImage(
+                                                AssetRes.portrait_placeholder,
+                                              ),
+                                              fit: BoxFit.cover),
                                         ))
-                                    : Container(
-                                        height: 50,
-                                        width: 50,
-                                        decoration: BoxDecoration(
+                                    : ClipRRect(
+                                        borderRadius: BorderRadius.circular(50),
+                                        child: Container(
+                                          height: 50,
+                                          width: 50,
+                                          decoration: BoxDecoration(
                                             shape: BoxShape.circle,
-                                            image: DecorationImage(
-                                              image: NetworkImage(
-                                                  adHomeController
-                                                      .viewAdvertiserModel
-                                                      .data!
-                                                      .profileImage
-                                                      .toString()),
-                                              fit: BoxFit.cover,
-                                            )),
+                                          ),
+                                          child: CachedNetworkImage(
+                                            imageUrl: adHomeController
+                                                .viewAdvertiserModel
+                                                .data!
+                                                .profileImage
+                                                .toString(),
+                                            fit: BoxFit.cover,
+                                            placeholder: ((context, url) =>
+                                                Image.asset(
+                                                  AssetRes.portrait_placeholder,
+                                                  height: 50,
+                                                  width: 50,
+                                                  fit: BoxFit.cover,
+                                                )),
+                                            errorWidget: ((context, url,
+                                                    error) =>
+                                                Image.asset(
+                                                  AssetRes.portrait_placeholder,
+                                                  height: 50,
+                                                  width: 50,
+                                                  fit: BoxFit.cover,
+                                                )),
+                                          ),
+                                        ),
                                       ),
                                 Padding(
                                   padding:

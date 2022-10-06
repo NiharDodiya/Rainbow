@@ -116,7 +116,7 @@ class SupportScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: Get.width * 0.32,
+                width: Get.width * 0.28,
               ),
               Text(
                 Strings.support,

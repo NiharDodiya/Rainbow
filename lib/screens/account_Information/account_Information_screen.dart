@@ -36,17 +36,25 @@ class AccountInformationScreen extends StatelessWidget {
                   children: [
                     GetBuilder<AccountInformationController>(
                       id: "Getpic",
-                      builder: (controller) => Container(
+                      builder: (controller) => (controller.imagePath == null)?Container(
                         height: Get.width * 0.336,
                         width: Get.width * 0.336,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(color: ColorRes.white, width: 7),
-                          image: controller.imagePath == null
-                              ? const DecorationImage(
+                          image:
+                               const DecorationImage(
                                   image: AssetImage(AssetRes.account),
-                                )
-                              : DecorationImage(
+                               ),
+                        ),
+                      ):Container(
+                        height: Get.width * 0.336,
+                        width: Get.width * 0.336,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: ColorRes.white, width: 7),
+                            image:
+                          DecorationImage(
                                   image: FileImage(
                                     File(controller.imagePath!.path),
                                   ),

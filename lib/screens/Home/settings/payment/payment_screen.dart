@@ -11,11 +11,10 @@ import 'package:rainbow/screens/Home/settings/payment/edit_card/edit_card_contro
 import 'package:rainbow/screens/Home/settings/payment/edit_card/edit_card_screen.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
+import 'package:rainbow/utils/asset_res.dart';
+import 'package:rainbow/utils/color_res.dart';
+import 'package:rainbow/utils/strings.dart';
 import 'package:readmore/readmore.dart';
-
-import '../../../../utils/asset_res.dart';
-import '../../../../utils/color_res.dart';
-import '../../../../utils/strings.dart';
 import 'add_cart/add_cart_controller.dart';
 
 // ignore: must_be_immutable
@@ -467,7 +466,7 @@ class PaymentScreen extends StatelessWidget {
                 ),
               ),
             ),
-            controller.loader.value == true ? Container(height: Get.height, width: Get.width, color: Colors.black.withOpacity(0.8),) : SizedBox(),
+            controller.loader.value == true ? Container(height: Get.height, width: Get.width, color: Colors.black.withOpacity(0.4),) : SizedBox(),
             controller.loader.value == true
                 ? const FullScreenLoader()
                 : const SizedBox(),
@@ -478,7 +477,7 @@ class PaymentScreen extends StatelessWidget {
   }
 }
 
-Widget Tranzaction({controller, int? index}) {
+Widget Tranzaction({required PaymentController controller, int? index}) {
   return Padding(
     padding: EdgeInsets.only(
         left: Get.width * 0.10666,
@@ -512,7 +511,7 @@ Widget Tranzaction({controller, int? index}) {
                             const BorderRadius.all(Radius.circular(50)),
                         child: Image.asset(
                           AssetRes.portrait_placeholder,
-                          fit: BoxFit.fill,
+                          fit: BoxFit.cover,
                         ),
                     ),
                   )
@@ -533,13 +532,14 @@ Widget Tranzaction({controller, int? index}) {
                           imageUrl:  controller
                               .transactionModel.userDetail?.profileImage ??
                               "",
+                          fit: BoxFit.cover,
                           errorWidget: ((context, url, error) => Image.asset(
                             AssetRes.portrait_placeholder,
-                            fit: BoxFit.fill,
+                            fit: BoxFit.cover,
                           )),
                           placeholder: ((context, url) => Image.asset(
                             AssetRes.portrait_placeholder,
-                            fit: BoxFit.fill,
+                            fit: BoxFit.cover,
                           )),
                         ),
                       /*Image.network(
@@ -560,6 +560,7 @@ Widget Tranzaction({controller, int? index}) {
                   height: Get.height * 0.01997,
                 ),
                 Text(
+
                   controller.transactionModel.userDetail?.fullName ?? "",
                   style: gilroySemiBoldTextStyle(
                       color: ColorRes.color_434343,
@@ -570,17 +571,18 @@ Widget Tranzaction({controller, int? index}) {
                   height: Get.height * 0.005,
                 ),
                 Text(
-                  "${controller.transactionModel.data![index].createdAt?.hour.toString() ?? ""} hr ago",
+                  controller.timeAgo(controller.transactionModel.data![index!].createdAt!.toLocal())!. toString(),
                   style: gilroyMediumTextStyle(
                     color: ColorRes.color_959595,
                     fontSize: 11,
+
                   ),
                 ),
               ],
             ),
             const Spacer(),
             Text(
-              "\$${controller.transactionModel.data?[index].amount.toString() ?? ""}",
+              "\$${controller.transactionModel.data?[index!].amount.toString() ?? ""}",
               style: gilroyMediumTextStyle(color: ColorRes.color_29A435),
             ),
             SizedBox(

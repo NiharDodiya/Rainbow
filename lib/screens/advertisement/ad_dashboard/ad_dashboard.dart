@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
+import 'package:rainbow/common/Widget/log_out_pop_up.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/advertisement_controlle.dart';
@@ -306,7 +307,7 @@ class AdvertisementDashBord extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.only(right: Get.width * 0.0498),
                               child: SubmitButton(
-                                onTap: advertisementController.onTapLogOut,
+                                onTap: () => logoutPopupAdvertise(context: context),
                                 child: Row(
                                   children: [
                                     const Spacer(),

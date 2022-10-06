@@ -364,6 +364,7 @@ class HomeController extends GetxController {
     await viewProfileApi();
     await advertisementListUser();
     PaymentController paymentController = Get.put(PaymentController());
+    paymentController.transactionApi();
     await paymentController.listCardApi(showToast: false);
     paymentController.listCardModel.data?.length == null? viewProfile.data!.userType = "free" : viewProfile.data!.userType = "premium";
     await getCurrentLocation();

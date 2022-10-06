@@ -86,8 +86,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               image: AssetImage(
                                 AssetRes.settings,
                               ),
-                              height: 19.29,
-                              width: 19.30,
+                              height: 19.35,
+                              width: 19.35,
                             ),
                           ),
                           SizedBox(

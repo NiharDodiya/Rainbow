@@ -12,6 +12,7 @@ import 'package:rainbow/screens/Home/settings/connections/connections_screen.dar
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
 import 'package:rainbow/screens/Home/settings/subscription/subscription_screen.dart';
+import 'package:rainbow/screens/Message/message_controller.dart';
 import 'package:rainbow/screens/Message/message_screen.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/profile_screen.dart';
@@ -24,6 +25,7 @@ class SettingsScreen extends StatelessWidget {
   SettingsController controller = Get.put(SettingsController());
   ProfileController profileController = Get.put(ProfileController());
   HomeController homeController = Get.put(HomeController());
+   MessageController messageController = Get.put(MessageController());
 
   @override
   Widget build(BuildContext context) {
@@ -236,9 +238,12 @@ class SettingsScreen extends StatelessWidget {
         //Messages
         InkWell(
           onTap: () {
+
+            messageController.init();
+
             homeController.viewProfile.data!.userType == "free"
                 ? premiumPopUpBox(context: context)
-                : Get.to(() => MessageScreen(
+                : Get.off(() => MessageScreen(
                       backArrow: true,
                     ));
           },
