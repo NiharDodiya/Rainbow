@@ -55,7 +55,7 @@ class LoginScreen extends StatelessWidget {
                                   children: [
                                     logoRainbow(),
                                     textFields(controller),
-                                    loginButton(controller)
+                                    loginButton(controller, context)
                                   ],
                                 ),
                               ],
@@ -195,13 +195,13 @@ class LoginScreen extends StatelessWidget {
     });
   }
 
-  Widget loginButton(LoginController loginController) {
+  Widget loginButton(LoginController loginController, context) {
     return Column(
       children: [
         SizedBox(height: Get.height * 0.02463),
         SubmitButton(
           text: Strings.login,
-          onTap: loginController.onLoginTap,
+          onTap: ()=>loginController.onLoginTap(context),
         ),
         SizedBox(height: Get.height * 0.03202),
         GetBuilder<LoginController>(

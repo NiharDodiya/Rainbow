@@ -19,7 +19,6 @@ import 'package:rainbow/model/postView_model.dart';
 import 'package:rainbow/model/sharePost_model.dart';
 import 'package:rainbow/model/unLikePost_model.dart';
 
-
 import 'package:rainbow/screens/Home/Story/friendStory_api/friendStory_api.dart';
 import 'package:rainbow/screens/Home/addStroy/addStory_screen.dart';
 import 'package:rainbow/screens/Home/home_screen.dart';
@@ -46,7 +45,6 @@ import 'package:rainbow/screens/notification/notification_screen.dart';
 import 'package:uni_links/uni_links.dart';
 
 import 'advertise_api/advertiseApi.dart';
-
 
 class HomeController extends GetxController {
   RxBool loader = false.obs;
@@ -92,8 +90,6 @@ class HomeController extends GetxController {
   // final storyController = EditStoryController();
   ConnectionsController connectionsController =
       Get.put(ConnectionsController());
-
-
 
   @override
   void onInit() async {
@@ -357,16 +353,17 @@ class HomeController extends GetxController {
     await connectionsController.callRequestApi();
   }
 
-
-
   Future<void> init() async {
     changeLoader(true);
+
     await viewProfileApi();
     await advertisementListUser();
     PaymentController paymentController = Get.put(PaymentController());
     paymentController.transactionApi();
     await paymentController.listCardApi(showToast: false);
-    paymentController.listCardModel.data?.length == null? viewProfile.data!.userType = "free" : viewProfile.data!.userType = "premium";
+    paymentController.listCardModel.data?.length == null
+        ? viewProfile.data!.userType = "free"
+        : viewProfile.data!.userType = "premium";
     await getCurrentLocation();
     loader.value = true;
     await controller.viewProfileDetails();
@@ -388,9 +385,7 @@ class HomeController extends GetxController {
     loader.value = false;
   }
 
-   myStoryOnTap() async {
-
-
+  myStoryOnTap() async {
     Get.to(() => AddStoryScreen());
     /*MyStoryController myStoryController = Get.put(MyStoryController());
     loader.value = true;
@@ -427,7 +422,7 @@ class HomeController extends GetxController {
     viewProfile.data!.userType == "free"
         ? premiumPopUpBox(context: context)
         : Get.to(() => NotificationScreen());
-   // Get.to(() => NotificationScreen());
+    // Get.to(() => NotificationScreen());
   }
 
   double calculateDistance(lat1, lon1, lat2, lon2) {
@@ -510,12 +505,14 @@ class HomeController extends GetxController {
     }
   }
 
-  AdvertisementListUserModel advertisementListUserModel = AdvertisementListUserModel();
+  AdvertisementListUserModel advertisementListUserModel =
+      AdvertisementListUserModel();
 
-  Future<void> advertisementListUser()async{
+  Future<void> advertisementListUser() async {
     try {
       loader.value = true;
-      advertisementListUserModel = await AdvertiseListUser.advertiseListUserApi();
+      advertisementListUserModel =
+          await AdvertiseListUser.advertiseListUserApi();
       update(["settings"]);
       loader.value = false;
     } catch (e) {
@@ -524,5 +521,4 @@ class HomeController extends GetxController {
       print(e.toString());
     }
   }
-
 }

@@ -29,7 +29,7 @@ class AdvertisementController extends GetxController {
   final GlobalKey<ScaffoldState> key = GlobalKey();
 
   RxBool loader = false.obs;
-  bool? isSwitched = false;
+  bool? isSwitched = true;
 
   @override
   void onInit() {

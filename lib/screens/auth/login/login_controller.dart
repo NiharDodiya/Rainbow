@@ -43,8 +43,12 @@ class LoginController extends GetxController {
     // Get.off(() => AdviserRegisterScreen(), );
   }
 
-  void onLoginTap() {
+  void onLoginTap(context) {
 
+    FocusScopeNode currentfocus = FocusScope.of(context);
+    if (!currentfocus.hasPrimaryFocus) {
+      currentfocus.unfocus();
+    }
 
     if (validation()) {
       registerDetails();

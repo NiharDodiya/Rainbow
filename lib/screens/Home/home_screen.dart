@@ -333,19 +333,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                               width: 56,
                                             )),
                                           ),*/
-                                          FadeInImage(
-                                            image: NetworkImage( controller.controller.viewProfile
+                                          CachedNetworkImage(
+                                            imageUrl: controller.controller.viewProfile
                                                 .data!.profileImage
-                                                .toString(),),
+                                                .toString(),
                                             fit: BoxFit.cover,
-                                            placeholder: AssetImage( AssetRes.portrait_placeholder,),
-                                            imageErrorBuilder: ((context, error, stackTrace) => Image.asset(
-                                              AssetRes.portrait_placeholder,
-                                              fit: BoxFit.cover,
+                                            placeholder: ((context, url) => Image.asset(AssetRes.portrait_placeholder,fit: BoxFit.cover,
                                               height: 56,
-                                              width: 56,
-                                            )),
-
+                                              width: 56,)),
+                                            errorWidget: ((context, url, error) => Image.asset(AssetRes.portrait_placeholder,fit: BoxFit.cover,
+                                              height: 56,
+                                              width: 56,)),
                                           ),
                                         ),
                                   /*Image.network(

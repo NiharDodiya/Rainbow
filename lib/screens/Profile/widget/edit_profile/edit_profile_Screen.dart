@@ -101,7 +101,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         image: const DecorationImage(
-                          image: AssetImage(AssetRes.portrait_placeholder),
+                          image: AssetImage(AssetRes.placeholderImage),
                           fit: BoxFit.cover,
                         )),
                   )
@@ -175,7 +175,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             shape: BoxShape.circle,
                             image: const DecorationImage(
                               image: AssetImage(AssetRes.portrait_placeholder),
-                              fit: BoxFit.cover,
+                              fit: BoxFit.contain,
                             )),
                       ):
                       Container(

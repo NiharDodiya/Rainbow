@@ -36,9 +36,11 @@ logoutPopup({required BuildContext context}) {
             TextButton(
               child: const Text('yes'),
               onPressed: () async{
+
                 Navigator.of(context).pop();
                 SettingsController controller = Get.put(SettingsController());
                 await controller.logOutDetails();
+                PrefService.clear();
               },
             ),
           ],
@@ -80,7 +82,7 @@ logoutPopupAdvertise({required BuildContext context}) {
                 await PrefService.clear();
                 Get.offAll(() => AuthDashboard());
                 PrefService.setValue(PrefKeys.skipBoardingScreen, true);
-
+                PrefService.clear();
               },
             ),
           ],
