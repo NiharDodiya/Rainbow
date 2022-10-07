@@ -785,7 +785,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
     return ListView.builder(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: controller.viewSupportTicketModel.data!.length,
+      itemCount: controller.viewSupportTicketModel.data?.length ?? 0,
       itemBuilder: (context, index) {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: Get.width * 0.08),
@@ -796,6 +796,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                 height: Get.width * 0.144,
                 child: Row(
                   children: [
+
                     ClipRRect(
                       borderRadius: BorderRadius.circular(50),
                       child:Container(
@@ -814,7 +815,6 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                           )),
                           errorWidget: ((context, url, error) => Image.asset(
                             AssetRes.portrait_placeholder,
-
                             fit: BoxFit.cover,
                             height: 53,
                             width: 53,
@@ -1106,7 +1106,7 @@ Widget appBar() {
               child: Image.asset(
                 AssetRes.backIcon,
                 height: 16,
-                width: 16,
+                width: 35,
                 color: Colors.white,
               ),
             ),

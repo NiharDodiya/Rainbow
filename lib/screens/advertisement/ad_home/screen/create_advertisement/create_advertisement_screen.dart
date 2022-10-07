@@ -151,7 +151,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: TextField(
-                maxLines: 1,
+                maxLines: 7,
                 controller: advertisementController.tagsController,
                 style: textFieldText,
                 decoration: InputDecoration(

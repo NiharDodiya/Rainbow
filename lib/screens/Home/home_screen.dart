@@ -318,23 +318,34 @@ class _HomeScreenState extends State<HomeScreen> {
                                         child: Container(
                                           height: 56,
                                           width: 56,
-                                          child: CachedNetworkImage(
-                                            imageUrl: controller.controller.viewProfile
+                                          child:
+                                          /*Image.network(
+                                            controller.controller.viewProfile
                                                 .data!.profileImage
                                                 .toString(),
                                             fit: BoxFit.cover,
-                                            placeholder: ((context, url) => Image.asset(
+                                            height: 56,
+                                            width: 56,
+                                            errorBuilder: ((context, error, stackTrace) => Image.asset(
                                               AssetRes.portrait_placeholder,
                                               fit: BoxFit.cover,
                                               height: 56,
                                               width: 56,
                                             )),
-                                            errorWidget: ((context, url, error) => Image.asset(
+                                          ),*/
+                                          FadeInImage(
+                                            image: NetworkImage( controller.controller.viewProfile
+                                                .data!.profileImage
+                                                .toString(),),
+                                            fit: BoxFit.cover,
+                                            placeholder: AssetImage( AssetRes.portrait_placeholder,),
+                                            imageErrorBuilder: ((context, error, stackTrace) => Image.asset(
                                               AssetRes.portrait_placeholder,
                                               fit: BoxFit.cover,
                                               height: 56,
                                               width: 56,
                                             )),
+
                                           ),
                                         ),
                                   /*Image.network(
@@ -551,7 +562,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                        padding: const EdgeInsets.only(right: 10.0),
                         child: Row(
                           children: [
                             const SizedBox(
@@ -690,7 +701,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                         left: 10, right: 10, bottom: 14),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(50),
-                                      child: Image.network(
+                                      child: FadeInImage(
+                                        image: NetworkImage(user.profileImage.toString()),
+                                        placeholder: AssetImage(AssetRes.portrait_placeholder,),
+                                        imageErrorBuilder: ((context, error, stackTrace) => Image.asset(
+                                          AssetRes.portrait_placeholder,
+                                          height: 50,
+                                          width: 50,
+                                          fit: BoxFit.cover,
+                                        )),
+                                      ),
+                                      /*Image.network(
                                         user.profileImage.toString(),
                                         fit: BoxFit.cover,
                                         height: 50,
@@ -706,7 +727,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             fit: BoxFit.cover,
                                           ),
                                         ),
-                                      ),
+                                      ),*/
                                     ),
                                   ),
                                   Column(
@@ -913,13 +934,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                         fit: BoxFit.cover,
                                         placeholder: (context, url) =>
                                             Image.asset(
-                                          AssetRes.placeholderImage,
+                                          AssetRes.portrait_placeholder,
                                           height: 40,
                                           width: 40,
                                         ),
                                         errorWidget: (context, url, error) =>
                                             Image.asset(
-                                          AssetRes.placeholderImage,
+                                          AssetRes.portrait_placeholder,
                                           height: 40,
                                           width: 40,
                                         ),

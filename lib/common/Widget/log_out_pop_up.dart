@@ -77,18 +77,6 @@ logoutPopupAdvertise({required BuildContext context}) {
               child: const Text('yes'),
               onPressed: () async{
 
-              /* ViewProfile viewProfileModel = ViewProfile();
-
-               viewProfileModel.data = null;
-               viewProfileModel.status = false;
-               viewProfileModel.message = "";
-
-                ViewAdvertiserModel viewModel = ViewAdvertiserModel();
-
-                viewModel.status = false;
-                viewModel.data = null;
-                viewModel.message = "";*/
-
                 await PrefService.clear();
                 Get.offAll(() => AuthDashboard());
                 PrefService.setValue(PrefKeys.skipBoardingScreen, true);

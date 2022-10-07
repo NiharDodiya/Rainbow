@@ -232,10 +232,13 @@ class AccountInformationController extends GetxController {
     } else if (phoneNumberController.text.isEmpty) {
       errorToast(Strings.phoneNumber);
       return false;
-    }else if (uploadImage.data == null) {
+    } else if (imagePath == null && adHomeController.viewAdvertiserModel.data!.profileImage!.isEmpty) {
       errorToast(Strings.uploadImageError);
       return false;
-    } else if(myId == null || myId == ""){
+    }/*else if (uploadImage.data == null) {
+      errorToast(Strings.uploadImageError);
+      return false;
+    }*/ else if(myId == null || myId == ""){
       errorToast("Please enter valid country name");
       return false;
     }
@@ -274,6 +277,8 @@ class AccountInformationController extends GetxController {
 
   //call Camera
   navigateToCamera() async {
+    adHomeController.viewAdvertiserModel.data!.profileImage = null;
+    adHomeController.viewAdvertiserModel.data!.profileImage = "";
     String? path = await cameraPickImage();
 
     if (path != null) {
@@ -298,12 +303,16 @@ class AccountInformationController extends GetxController {
   }
 
   navigateToGallary() async {
+    adHomeController.viewAdvertiserModel.data!.profileImage = null;
+    adHomeController.viewAdvertiserModel.data!.profileImage = "";
     String? path = await gallaryPickImage();
-
+    update(["Getpic"]);
     if (path != null) {
       imagePath = File(path);
       imageID = null;
+      update(["Getpic"]);
     }
+    update(["Getpic"]);
   }
 
 //open Gallary
@@ -322,7 +331,9 @@ class AccountInformationController extends GetxController {
 
   Future<void> uploadImageApi() async {
     loader.value = true;
+    update(["Getpic"]);
     try {
+      update(["Getpic"]);
       await UploadImageApi.postRegister(imagePath!.path.toString())
           .then((value) async {
         uploadImage = value!;
@@ -330,7 +341,7 @@ class AccountInformationController extends GetxController {
         await PrefService.setValue(
             PrefKeys.advertiserProfileID, uploadImage.data!.id);
       });
-
+      update(["Getpic"]);
       loader.value = false;
     } catch (e) {
       loader.value = false;
@@ -352,10 +363,11 @@ class AccountInformationController extends GetxController {
   // website.text = adViewProfile.data!.compnayWebsite!;
 
   Future<void> onTapSave() async {
+    update(["Getpic"]);
     loader.value = true;
     Map<String, Map<String, dynamic>> param1 = {
       "advirtisersData": {
-        "id_item_profile": imageID.toString(),
+      // "id_item_profile": imageID.toString(),
         "full_name": fullNameController.text,
         "email": emailController.text,
         "house_number": houseNumberController.text,
@@ -376,7 +388,11 @@ class AccountInformationController extends GetxController {
         "website": website.text,
       }
     };
-
+    update(["Getpic"]);
+    if (imageID != 0) {
+      param1["advirtisersData"]!["id_item_profile"] = imageID ;
+    }
+    update(["Getpic"]);
     await AdInformationAPI.adProfileEdit(param1).then(
       (value) {
         adViewProfile = value;

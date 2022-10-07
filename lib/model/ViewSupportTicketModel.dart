@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:rainbow/utils/asset_res.dart';
+
 ViewSupportTicketModel viewSupportTicketModelFromJson(String? str) =>
     ViewSupportTicketModel.fromJson(json.decode(str!));
 
@@ -217,8 +219,7 @@ class UserDetail {
         mobileStatus:
             json["mobile_status"],
         role: json["role"],
-        referrallCode:
-            json["referrall_code"],
+        referrallCode: json["referrall_code"]==null?"":json["referrall_code"],
         idStatus: json["id_status"],
         latitude: json["latitude"].toString().isEmpty
             ? null
@@ -242,8 +243,7 @@ class UserDetail {
         facebook: json["facebook"],
         twitter: json["twitter"],
         about: json["about"],
-        idCardPrimary:
-            json["id_card_primary"],
+        idCardPrimary: json["id_card_primary"] == null ? null : json["id_card_primary"],
         hobbiesAndInterest: json["hobbies_and_Interest"],
         backgroundImage:
             json["background_image"],

@@ -90,8 +90,22 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               width: Get.width,
               child: Stack(
                 children: [
-                  controller.backImage != null
+                  (profileController
+                      .viewProfile.data!.backgroundImage!.isEmpty || profileController
+                      .viewProfile.data!.backgroundImage.toString() == "")
+                      ? (controller.backImage == null)
                       ? Container(
+                    margin: const EdgeInsets.only(right: 16),
+                    height: Get.height * 0.2857,
+                    width: Get.width,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: const DecorationImage(
+                          image: AssetImage(AssetRes.portrait_placeholder),
+                          fit: BoxFit.cover,
+                        )),
+                  )
+                      : Container(
                           margin: const EdgeInsets.only(right: 16),
                           height: Get.height * 0.2857,
                           width: Get.width,
@@ -102,18 +116,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 fit: BoxFit.cover,
                               )),
                         )
-                      : /*profileController
-                      .viewProfile.data!.backgroundImage!.isEmpty ? */
-                      Container(
+                      : Container(
                           margin: const EdgeInsets.only(right: 16),
                           height: Get.height * 0.2857,
                           width: Get.width,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              image: const DecorationImage(
-                                  image: AssetImage(AssetRes.placeholderImage),
+                              image:  DecorationImage(
+                                  image: NetworkImage(profileController
+                                      .viewProfile.data!.backgroundImage.toString()),
                                   fit: BoxFit.cover)),
-                        ) /*:Container(
+                        )
+                  /*:Container(
                     margin: const EdgeInsets.only(right: 16),
                     height: Get.height * 0.2857,
                     width: Get.width,
@@ -148,11 +162,51 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   Positioned(
                       top: Get.height * 0.072,
                       left: Get.width * 0.25,
-                      child: controller.frontImage != null
+                      child: (profileController
+                          .viewProfile.data!.profileImage!.isEmpty || profileController
+                          .viewProfile.data!.profileImage
+                          .toString() == "")
+                          ? (controller.frontImage == null)
+                          ? Container(
+                        margin: const EdgeInsets.only(right: 16),
+                        height: Get.height * 0.38666,
+                        width: Get.width * 0.38666,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: const DecorationImage(
+                              image: AssetImage(AssetRes.portrait_placeholder),
+                              fit: BoxFit.cover,
+                            )),
+                      ):
+                      Container(
+                        margin: const EdgeInsets.only(right: 16),
+                        height: Get.height * 0.38666,
+                        width: Get.width * 0.38666,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: FileImage(controller.frontImage!),
+                              fit: BoxFit.cover,
+                            )),
+                      )
+                          :
+                      Container(
+                        margin: const EdgeInsets.only(right: 16),
+                        height: Get.height * 0.38666,
+                        width: Get.width * 0.38666,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image:  DecorationImage(
+                                image: NetworkImage(profileController
+                                    .viewProfile.data!.profileImage
+                                    .toString(),),
+                                fit: BoxFit.cover)),
+                      )
+                      /* controller.frontImage != null
                           ? Container(
                               height: Get.height * 0.38666,
                               width: Get.width * 0.38666,
-                              /*  child: CachedNetworkImage(
+                              *//*  child: CachedNetworkImage(
                               imageUrl: profileController
                                   .viewProfile.data!.profileImage
                                   .toString(),
@@ -178,7 +232,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   ),
                                 ),
                               ),
-                            ),*/
+                            ),*//*
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 image: DecorationImage(
@@ -187,8 +241,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 ),
                               ),
                             )
-                          : /*profileController
-                        .viewProfile.data!.profileImage!.isEmpty ?*/
+                          : *//*profileController
+                        .viewProfile.data!.profileImage!.isEmpty ?*//*
                           Container(
                               height: Get.height * 0.38666,
                               width: Get.width * 0.38666,
@@ -198,7 +252,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                       image: AssetImage(
                                           AssetRes.portrait_placeholder),
                                       fit: BoxFit.contain)),
-                            ) /*:Container(
+                            ) *//*:Container(
                       height: Get.height * 0.38666,
                       width: Get.width * 0.38666,
                         child: CachedNetworkImage(
@@ -229,8 +283,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                             ),
 
-                    ),*/
-                      ),
+                    ),*//*
+                      */
+                  ),
                   Positioned(
                     top: Get.height * 0.24,
                     left: Get.width * 0.4,

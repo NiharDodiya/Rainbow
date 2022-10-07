@@ -68,7 +68,7 @@ class SupportApi {
       }
     } catch (e) {
       print(e.toString());
-      return [];
+      return ViewSupportTicketModel();
     }
   }
 

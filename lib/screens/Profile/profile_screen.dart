@@ -182,52 +182,31 @@ class ProfileScreen extends StatelessWidget {
                 child: Container(
                   // height: Get.height * 0.38666,
                   // width: Get.width * 0.38666,
-                 height: 160,
-                  width: 160,
+                 height: Get.height * 0.19,
+                  width: Get.width * 0.4,
                   child: CachedNetworkImage(
                     imageUrl: controller.viewProfile.data == null
                         ? ""
                         : controller.viewProfile.data!.profileImage.toString(),
                     fit: BoxFit.cover,
                     placeholder: ((context, url) => Image.asset(
-                      height: 160,
-                      width: 160,
+                      height: Get.height * 0.19,
+                      width: Get.width * 0.4,
                         AssetRes.portrait_placeholder,
                       fit: BoxFit.cover,
                     )),
                     errorWidget: ((context, url, error) => Image.asset(
-                      height: 160,
-                      width: 160,
+                      height: Get.height * 0.19,
+                      width: Get.width * 0.4,
                       AssetRes.portrait_placeholder,
                       fit: BoxFit.cover,
                     )),
                   )
               ),
 
-             /* child: Image.network(controller.viewProfile.data == null
-                  ? ""
-                  : controller.viewProfile.data!.profileImage.toString(),
-                fit: BoxFit.cover,
-                errorBuilder: ((context, error, stackTrace) => Image.asset(AssetRes.portrait_placeholder)),
-              ),*/
+
             ),
-              /*child: CachedNetworkImage(
-                // height: Get.height * 0.38666,
-                // width: Get.width * 0.38666,
-                fit: BoxFit.cover,
-                imageUrl: controller.viewProfile.data == null
-                    ? ""
-                    : controller.viewProfile.data!.profileImage.toString(),
-                placeholder: ((context, url) =>  Image.asset(AssetRes.portrait_placeholder)),
-                errorWidget: (context, url, error) => Container(
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: AssetImage(AssetRes.portrait_placeholder),
-                      ),
-                    )
-                ),
-              ),*/
+
 
           ),
           Positioned(

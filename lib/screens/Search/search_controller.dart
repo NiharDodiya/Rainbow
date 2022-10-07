@@ -198,7 +198,7 @@ class SearchController extends GetxController {
               keyWords: keyWords,
               latitude: latitude,
               longitude: longitude,
-              fullName: "");
+              fullName: "".toString().toLowerCase());
 
       print("pagggggggggggggggggggggggg===${page}");
       update(['Search']);
@@ -270,7 +270,7 @@ class SearchController extends GetxController {
           keyWords: "",
           latitude: latitude,
           longitude: longitude,
-          fullName: "");
+          fullName: "".toString().toLowerCase());
       page++;
       listUserData.addAll(listUseProfileModel.data!);
       listConnectBlock = List.filled(listUserData.length, false);
@@ -328,7 +328,7 @@ class SearchController extends GetxController {
           keyWords: "",
           latitude: latitude,
           longitude: longitude,
-          fullName: "");
+          fullName: "".toString().toLowerCase());
       listUserData = listUseProfileModel.data!;
       update(['Search']);
       loader.value = false;
@@ -348,7 +348,8 @@ class SearchController extends GetxController {
         keyWords: "",
         longitude: longitude,
         latitude: latitude,
-        fullName: enteredKeyword);
+        fullName: enteredKeyword.toString().toLowerCase()
+    );
     loader.value = false;
     dataStore = listUseProfileModel.data ?? [];
     listUserData = dataStore;

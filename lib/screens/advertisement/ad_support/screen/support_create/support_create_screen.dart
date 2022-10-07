@@ -622,7 +622,7 @@ Widget appBar() {
               ),
             ),
             SizedBox(
-              width: Get.width * 0.32,
+              width: Get.width * 0.28,
             ),
             GestureDetector(
               onTap: () {

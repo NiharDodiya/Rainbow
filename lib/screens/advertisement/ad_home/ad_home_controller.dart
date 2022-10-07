@@ -82,8 +82,6 @@ class AdHomeController extends GetxController {
 
   Future<void> init() async {
 
-    paymentController.transactionApi();
-    paymentController.listCardApi;
 
     notificationsController.getNotifications;
     await viewAdvertiserData();

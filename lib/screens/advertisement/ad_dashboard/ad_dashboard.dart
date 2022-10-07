@@ -50,7 +50,17 @@ class AdvertisementDashBord extends StatelessWidget {
                         actions: <Widget>[
                           FlatButton(
                             child: Text(
-                              "ok",
+                              "No",
+                              style: gilroyBoldTextStyle(
+                                  fontSize: 18, color: Colors.black),
+                            ),
+                            onPressed: () {
+                             Navigator.pop(context);
+                            },
+                          ),
+                          FlatButton(
+                            child: Text(
+                              "Yes",
                               style: gilroyBoldTextStyle(
                                   fontSize: 18, color: Colors.black),
                             ),
