@@ -60,11 +60,11 @@ class AdHomeController extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
     init();
     update(["dashBoard"]);
     update(["update"]);
     update();
+    super.onInit();
   }
 
   Future<void> onRefresh() async {
@@ -82,13 +82,12 @@ class AdHomeController extends GetxController {
 
   Future<void> init() async {
 
-     PaymentController paymentController = Get.put(PaymentController());
+
 
      paymentController.transactionApi();
      paymentController.listCardModel;
 
     notificationsController.getNotifications;
-
     await viewAdvertiserData();
     await myAdvertiserListData();
   }
