@@ -82,7 +82,7 @@ class AdHomeController extends GetxController {
 
   Future<void> init() async {
 
-     PaymentController paymentController = Get.find();
+     PaymentController paymentController = Get.put(PaymentController());
 
      paymentController.transactionApi();
      paymentController.listCardModel;
