@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/screens/Home/home_controller.dart';
+import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_api.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
 import 'package:rainbow/screens/auth/phonenumber/phonenumber_Screen.dart';
@@ -86,9 +88,14 @@ class LoginController extends GetxController {
 
   LoginModel loginModel = LoginModel();
 
+  ViewStoryController viewStoryController = Get.put(ViewStoryController());
+  HomeController homeController = Get.put(HomeController());
   Future<void> registerDetails() async {
     loader.value = true;
     try {
+      viewStoryController.storyModel.friendsStory=null;
+      homeController.myStoryController.viewStoryController.storyModel
+          .myStory=null;
       loginModel = await LoginApi.postRegister(
         emailController.text,
         passwordController.text,
