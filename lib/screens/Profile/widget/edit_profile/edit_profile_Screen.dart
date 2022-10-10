@@ -160,7 +160,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),*/
                   ,
                   Positioned(
-                      top: Get.height * 0.072,
+                      top: Get.height * 0.078,
                       left: Get.width * 0.25,
                       child: (profileController
                           .viewProfile.data!.profileImage!.isEmpty || profileController
@@ -171,6 +171,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         margin: const EdgeInsets.only(right: 16),
                         height: Get.height * 0.38666,
                         width: Get.width * 0.38666,
+
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: const DecorationImage(
