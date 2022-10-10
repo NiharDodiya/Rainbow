@@ -82,7 +82,7 @@ logoutPopupAdvertise({required BuildContext context}) {
                 await PrefService.clear();
                 Get.offAll(() => AuthDashboard());
                 PrefService.setValue(PrefKeys.skipBoardingScreen, true);
-                PrefService.clear();
+
               },
             ),
           ],

@@ -111,7 +111,7 @@ class VerifyCodeApi {
             Get.put(AdvertiserVerifyController());
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          flutterToast(jsonDecode(response.body)["message"]);
+          errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           await PrefService.setValue(PrefKeys.register, true);
           await PrefService.setValue(
