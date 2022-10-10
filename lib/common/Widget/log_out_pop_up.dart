@@ -4,6 +4,7 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/model/viewAdvertiserModel.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
@@ -78,6 +79,11 @@ logoutPopupAdvertise({required BuildContext context}) {
             TextButton(
               child: const Text('yes'),
               onPressed: () async{
+
+                /*AdHomeController adHomeController = Get.put(AdHomeController());
+
+                await adHomeController.viewAdvertiserData();
+                await adHomeController.myAdvertiserListData();*/
 
                 await PrefService.clear();
                 Get.offAll(() => AuthDashboard());
