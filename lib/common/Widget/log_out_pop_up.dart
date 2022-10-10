@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/model/viewAdvertiserModel.dart';
+import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
@@ -37,9 +39,28 @@ logoutPopup({required BuildContext context}) {
               child: const Text('yes'),
               onPressed: () async{
 
-                Navigator.of(context).pop();
+               /* HomeController homeController = Get.put(HomeController());
+
+                await homeController.viewProfileApi();*/
+/*
+
+                ViewProfile viewProfile = ViewProfile();
+
+                TestimonialsList tes = TestimonialsList();
+
+                viewProfile.data = null;
+                tes.id = null;
+                tes.createdAt = null;
+                tes.testimonial = null;
+                tes.userSender = null;
+*/
+
+
+
                 SettingsController controller = Get.put(SettingsController());
+                Navigator.of(context).pop();
                 await controller.logOutDetails();
+
                 PrefService.clear();
               },
             ),
@@ -82,7 +103,7 @@ logoutPopupAdvertise({required BuildContext context}) {
                 await PrefService.clear();
                 Get.offAll(() => AuthDashboard());
                 PrefService.setValue(PrefKeys.skipBoardingScreen, true);
-                PrefService.clear();
+
               },
             ),
           ],

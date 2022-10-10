@@ -86,7 +86,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               height: 25,
             ),
             SizedBox(
-              height: 270,
+              height: Get.height > 865?Get.height/2.6:Get.height/2.35,
               width: Get.width,
               child: Stack(
                 children: [

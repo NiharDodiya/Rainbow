@@ -92,12 +92,13 @@ class AddStoryViewScreen extends StatelessWidget {
                       ),
                     ),
                    Padding(
-                     padding: EdgeInsets.only(bottom: 30),
+                     padding: const EdgeInsets.only(bottom: 30),
                      child: Align(
                        alignment: Alignment.bottomCenter,
                        child: InkWell(
                          onTap: () {
                            controller.onStoryPost();
+                           FocusScope.of(context).unfocus();
                          },
                          child: Container(
                            height: Get.height * 0.07389,

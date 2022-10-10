@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:rainbow/common/Widget/premiumPopUpBox/api/subscribe_popup_api.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/ad_addCartModel.dart';
+import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/advertisement_controlle.dart';
@@ -67,9 +68,12 @@ class AddCartApi {
 
           flutterToast(jsonDecode(response.body)["message"]);
 
-          Navigator.of(context).pop();
 
+          Navigator.of(context).pop();
           await UserSubscriptionAddApi.userSubscriptionAddApi();
+
+          final PaymentController controller = Get.find();
+          await controller.transactionApi();
 
 
 

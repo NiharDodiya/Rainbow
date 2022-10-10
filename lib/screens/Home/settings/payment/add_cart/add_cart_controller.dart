@@ -164,7 +164,8 @@ class AddCartController extends GetxController {
       ).then((value) async {
         final PaymentController controller = Get.find();
         await controller.listCardApi(showToast: false);
-       // await UserSubscriptionAddApi.userSubscriptionAddApi();
+        await controller.transactionApi();
+        //await UserSubscriptionAddApi.userSubscriptionAddApi();
         final HomeController homeController = Get.find();
         controller.listCardModel.data?.length == null
             ? homeController.viewProfile.data!.userType = "free"
