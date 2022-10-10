@@ -60,7 +60,7 @@ class ProfileScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             const SizedBox(height: 27,),
-                            profileImagesLoad(controller),
+                            profileImagesLoad(controller,context),
                             profileDetails(),
                             aboutProfiler(
                               Strings.aboutMe,
@@ -90,9 +90,9 @@ class ProfileScreen extends StatelessWidget {
     }));
   }
 
-  Widget profileImagesLoad(ProfileController controller) {
+  Widget profileImagesLoad(ProfileController controller, BuildContext context) {
     return SizedBox(
-      height:295,
+      height:Get.height==866.2857142857143?Get.height/2.6:Get.height/2.35,
       width: Get.width,
       child: Stack(
         children: [
@@ -203,7 +203,7 @@ class ProfileScreen extends StatelessWidget {
 
 
                 ),
-                Positioned(top: 100,left: Get.width * 0.3158,
+                Positioned(top: 100,left: Get.width * 0.29,
                   child: Container(
                     height: 30,
                     width: 30,
