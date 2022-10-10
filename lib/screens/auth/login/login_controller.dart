@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
+import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_api.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
 import 'package:rainbow/screens/auth/phonenumber/phonenumber_Screen.dart';
@@ -46,6 +47,17 @@ class LoginController extends GetxController {
   }
 
   void onLoginTap(context) {
+
+
+     HomeController homeController = Get.put(HomeController());
+
+
+     homeController.viewProfile.data = null;
+     homeController.controller.viewProfile.data?.profileImage = null;
+     homeController.controller.viewProfile.data?.profileImage  = "";
+     homeController.myStoryController.viewStoryController.storyModel.myStory = null;
+     homeController.friendPostListData = [];
+
 
     FocusScopeNode currentfocus = FocusScope.of(context);
     if (!currentfocus.hasPrimaryFocus) {

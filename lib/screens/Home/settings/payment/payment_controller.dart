@@ -25,7 +25,6 @@ class PaymentController extends GetxController {
     listCardApi(showToast: true);
     transactionApi();
     // UserSubscriptionAddApi.userSubscriptionAddApi();
-    print(homeController.viewProfile.data!.userType);
     update();
     super.onInit();
   }
