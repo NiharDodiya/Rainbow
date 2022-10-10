@@ -37,7 +37,7 @@ logoutPopup({required BuildContext context}) {
               child: const Text('yes'),
               onPressed: () async{
 
-                Navigator.of(context).pop();
+               /* Navigator.of(context).pop();*/
                 SettingsController controller = Get.put(SettingsController());
                 await controller.logOutDetails();
                 PrefService.clear();
