@@ -238,7 +238,7 @@ Widget advertisementList() {
                                               Get.to(RenewSetupScreen(
                                                 idAdvertiser: controller
                                                     .myAdvertiserModel
-                                                    .data![index]
+                                                    .data![0]
                                                     .id,
                                               ));
 
@@ -246,7 +246,7 @@ Widget advertisementList() {
                                               Get.to(CancelApprove(
                                                 idAdvertiser: controller
                                                     .myAdvertiserModel
-                                                    .data![1]
+                                                    .data![0]
                                                     .id
                                                     .toString(),
                                               ));

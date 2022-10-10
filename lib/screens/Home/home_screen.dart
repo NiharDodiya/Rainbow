@@ -697,35 +697,39 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         left: 10, right: 10, bottom: 14),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(50),
-                                      child: FadeInImage(
-                                        image: NetworkImage(user.profileImage.toString()),
-                                        placeholder: AssetImage(AssetRes.portrait_placeholder,),
-                                        imageErrorBuilder: ((context, error, stackTrace) => Image.asset(
-                                          AssetRes.portrait_placeholder,
-                                          height: 50,
-                                          width: 50,
-                                          fit: BoxFit.cover,
-                                        )),
-                                      ),
-                                      /*Image.network(
-                                        user.profileImage.toString(),
-                                        fit: BoxFit.cover,
-                                        height: 50,
-                                        width: 50,
-                                        errorBuilder: (context, url, error) =>
-                                            ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          child: Image.asset(
+                                    child: SizedBox(
+                                      height: 50,
+                                      width: 50,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(50),
+                                        child: FadeInImage(
+                                          image: NetworkImage(user.profileImage.toString(),),
+                                          placeholder: const AssetImage(AssetRes.portrait_placeholder,),
+                                          imageErrorBuilder: ((context, error, stackTrace) => Image.asset(
                                             AssetRes.portrait_placeholder,
                                             height: 50,
                                             width: 50,
                                             fit: BoxFit.cover,
-                                          ),
+                                          )),
                                         ),
-                                      ),*/
+                                        /*Image.network(
+                                          user.profileImage.toString(),
+                                          fit: BoxFit.cover,
+                                          height: 50,
+                                          width: 50,
+                                          errorBuilder: (context, url, error) =>
+                                              ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(50),
+                                            child: Image.asset(
+                                              AssetRes.portrait_placeholder,
+                                              height: 50,
+                                              width: 50,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),*/
+                                      ),
                                     ),
                                   ),
                                   Column(
@@ -837,12 +841,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 return Column(
                   children: [
                     seeAll(),
-                    (controller.advertisementListUserModel.data == null || controller.advertisementListUserModel.data!.isEmpty) ? emptyWidget : SizedBox(),
+                    (controller.advertisementListUserModel.data == null || controller.advertisementListUserModel.data!.isEmpty) ? emptyWidget : const SizedBox(),
                     const SizedBox(
                       height: 20,
                     ),
                     controller.advertisementListUserModel.data == null
-                        ?SizedBox()
+                        ?const SizedBox()
                         :Padding(
                       padding: const EdgeInsets.only(left: 15, right: 10),
                       child: SizedBox(

@@ -203,7 +203,7 @@ class ProfileScreen extends StatelessWidget {
 
 
                 ),
-                Positioned(top: 100,left: Get.width * 0.29,
+                Positioned(top: 100,left: Get.width >392?Get.width/3.44:Get.width /3.2,
                   child: Container(
                     height: 30,
                     width: 30,
