@@ -29,6 +29,7 @@ class Strings {
   static const postalCodeDigitHint = '123125';
   static const website = 'Website';
   static const websiteError = 'please enter Website';
+  static const websiteValidError = 'please enter valid Website';
   static const websiteHint = 'www.mymom.com';
   static const sign_Up = 'Signup';
   static const forAdvertise = " for advertiser's account";

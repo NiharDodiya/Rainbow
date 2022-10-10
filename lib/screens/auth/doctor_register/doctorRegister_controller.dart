@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/helper.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/adviser_api/adviser_api.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/adviser_api/adviser_json.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/registeradviser_controller.dart';
@@ -144,6 +145,9 @@ class DoctorRegisterController extends GetxController {
       return false;
     } else if (postalCode.text.isEmpty) {
       errorToast(Strings.postalCodeError);
+      return false;
+    } else if (hasValidUrl(website.text) == false) {
+      errorToast(Strings.websiteValidError);
       return false;
     } else if (website.text.isEmpty) {
       errorToast(Strings.websiteError);
