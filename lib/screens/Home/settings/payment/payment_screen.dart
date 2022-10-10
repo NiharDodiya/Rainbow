@@ -571,7 +571,7 @@ Widget Tranzaction({required PaymentController controller, int? index}) {
                   height: Get.height * 0.005,
                 ),
                 Text(
-                  controller.timeAgo(controller.transactionModel.data![index!].createdAt!.toLocal())!. toString(),
+                  controller.timeAgo(controller.transactionModel.data![index!].createdAt!.toLocal()). toString(),
                   style: gilroyMediumTextStyle(
                     color: ColorRes.color_959595,
                     fontSize: 11,
@@ -582,7 +582,7 @@ Widget Tranzaction({required PaymentController controller, int? index}) {
             ),
             const Spacer(),
             Text(
-              "\$${controller.transactionModel.data?[index!].amount.toString() ?? ""}",
+              "\$${controller.transactionModel.data?[index].amount.toString() ?? ""}",
               style: gilroyMediumTextStyle(color: ColorRes.color_29A435),
             ),
             SizedBox(

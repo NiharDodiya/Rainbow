@@ -59,6 +59,7 @@ class ProfileScreen extends StatelessWidget {
                         physics: const BouncingScrollPhysics(),
                         child: Column(
                           children: [
+                            const SizedBox(height: 27,),
                             profileImagesLoad(controller),
                             profileDetails(),
                             aboutProfiler(
@@ -91,12 +92,12 @@ class ProfileScreen extends StatelessWidget {
 
   Widget profileImagesLoad(ProfileController controller) {
     return SizedBox(
-      height: Get.height * 0.425,
+      height:295,
       width: Get.width,
       child: Stack(
         children: [
           Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15, top: 25),
+              padding: const EdgeInsets.only(left: 15, right: 15),
               child: SizedBox(
                 height: Get.height * 0.2857,
                 width: Get.width,
@@ -176,54 +177,51 @@ class ProfileScreen extends StatelessWidget {
           Positioned(
             top: Get.height * 0.20,
             left: Get.width * 0.30,
-
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(99),
-                child: Container(
-                  // height: Get.height * 0.38666,
-                  // width: Get.width * 0.38666,
-                 height: Get.height * 0.19,
-                  width: Get.width * 0.4,
-                  child: CachedNetworkImage(
-                    imageUrl: controller.viewProfile.data == null
-                        ? ""
-                        : controller.viewProfile.data!.profileImage.toString(),
-                    fit: BoxFit.cover,
-                    placeholder: ((context, url) => Image.asset(
-                      height: Get.height * 0.19,
-                      width: Get.width * 0.4,
+            child: Stack(
+              children: [
+                ClipRRect(
+                    borderRadius: BorderRadius.circular(99),
+                    child: CachedNetworkImage(
+                      imageUrl: controller.viewProfile.data == null
+                          ? ""
+                          : controller.viewProfile.data!.profileImage.toString(),
+                      fit: BoxFit.cover, height:151,
+                      width: 151,
+                      placeholder: ((context, url) => Image.asset(
+                        height: 151,
+                        width:151,
+                          AssetRes.portrait_placeholder,
+                        fit: BoxFit.cover,
+                      )),
+                      errorWidget: ((context, url, error) => Image.asset(
+                        height: 151,
+                        width: 151,
                         AssetRes.portrait_placeholder,
-                      fit: BoxFit.cover,
-                    )),
-                    errorWidget: ((context, url, error) => Image.asset(
-                      height: Get.height * 0.19,
-                      width: Get.width * 0.4,
-                      AssetRes.portrait_placeholder,
-                      fit: BoxFit.cover,
-                    )),
-                  )
-              ),
+                        fit: BoxFit.cover,
+                      )),
+                    ),
 
 
-            ),
-
-
-          ),
-          Positioned(
-            top: Get.height * 0.35,
-            left: Get.width * 0.599,
-            child: Container(
-              height: 30,
-              width: 30,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: AssetImage(AssetRes.checkMark),
-                  fit: BoxFit.cover,
                 ),
-              ),
+                Positioned(top: 100,left: Get.width * 0.3158,
+                  child: Container(
+                    height: 30,
+                    width: 30,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage(AssetRes.checkMark),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
+
+
           ),
+
         ],
       ),
     );
