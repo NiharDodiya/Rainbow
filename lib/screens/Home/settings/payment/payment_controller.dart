@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
@@ -25,7 +26,9 @@ class PaymentController extends GetxController {
     listCardApi(showToast: true);
     transactionApi();
     // UserSubscriptionAddApi.userSubscriptionAddApi();
-    print(homeController.viewProfile.data!.userType);
+    if (kDebugMode) {
+      print(homeController.viewProfile.data!.userType);
+    }
     update();
     super.onInit();
   }

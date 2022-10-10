@@ -148,6 +148,10 @@ class DoctorRegisterController extends GetxController {
     } else if (website.text.isEmpty) {
       errorToast(Strings.websiteError);
       return false;
+    }else if(!RegExp(r'^((?:.|\n)*?)((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)([-A-Z0-9.]+)(/[-A-Z0-9+&@#/%=~_|!:,.;]*)?(\?[A-Z0-9+&@#/%=~_|!:,.;]*)?)')
+    .hasMatch(website.text)){
+      errorToast("Enter valid website");
+      return false;
     }
     return true;
   }
