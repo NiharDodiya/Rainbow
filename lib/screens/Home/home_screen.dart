@@ -696,7 +696,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 10, right: 10, bottom: 14),
+                                        left: 10, right: 10, bottom: 20),
                                     child: SizedBox(
                                       height: 50,
                                       width: 50,

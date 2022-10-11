@@ -156,37 +156,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                           ),
                         ),
-                  /*:Container(
-                    margin: const EdgeInsets.only(right: 16),
-                    height: Get.height * 0.2857,
-                    width: Get.width,
-                    child:  CachedNetworkImage(
-                            imageUrl: profileController
-                                .viewProfile.data!.backgroundImage
-                                .toString(),
-                            imageBuilder: (context, imageProvider) => Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                image: DecorationImage(
-                                  image: imageProvider,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            // placeholder: (context, url) => const Center(child:CircularProgressIndicator(),),
-                            errorWidget: (context, url, error) => Container(
-                              height: Get.height * 0.2857,
-                              width: Get.width,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  image: const DecorationImage(
-                                    image:  AssetImage(AssetRes.overlay),
-                                    fit: BoxFit.cover,
-                                  )),
-                            ),
-                          ),
-
-                  ),*/
 
                   Positioned(
                     top: Get.height * 0.17,
