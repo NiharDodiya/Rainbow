@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
@@ -206,8 +207,14 @@ class AdvertiserChangePasswordScreen extends StatelessWidget {
                                   SizedBox(
                                     height: Get.height * 0.018,
                                   ),
-                                  GestureDetector(
-                                    onTap: controller.onRegisterTap,
+                                  Align(alignment: Alignment.center,
+                                    child: SubmitButton(
+                                      onTap: controller.onRegisterTap,
+                                      text: Strings.submit,
+                                    ),
+                                  ),
+                                /*  GestureDetector(
+                                    onTap: ,
                                     child: Center(
                                       child: Container(
                                         width: Get.width * 0.8450,
@@ -226,7 +233,7 @@ class AdvertiserChangePasswordScreen extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                  ),
+                                  ),*/
                                   SizedBox(height: Get.height * 0.18),
                                 ],
                               ),
