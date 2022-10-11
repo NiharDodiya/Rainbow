@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -101,13 +102,29 @@ class ChatScreen extends StatelessWidget {
                                         child: ClipRRect(
                                           borderRadius: const BorderRadius.all(
                                               Radius.circular(50)),
-                                          child: FadeInImage(
+                                          child: CachedNetworkImage(
+                                            imageUrl: profileImage.toString(),
+                                            fit: BoxFit.cover,
+                                            errorWidget: ((context, url, error) => Image.asset(
+                                              AssetRes.portrait_placeholder,
+                                              height: 50,
+                                              width: 50,
+                                              fit: BoxFit.cover,
+                                            )),
+                                            placeholder: ((context, url) => Image.asset(
+                                              AssetRes.portrait_placeholder,
+                                              height: 50,
+                                              width: 50,
+                                              fit: BoxFit.cover,
+                                            )),
+                                          ),
+                                          /*FadeInImage(
                                             placeholder: const AssetImage(
                                                 AssetRes.portrait_placeholder),
                                             image: NetworkImage(
                                                 profileImage.toString()),
                                             fit: BoxFit.cover,
-                                          ),
+                                          ),*/
                                         ),
                                       ),
                                 /*   Container(

@@ -133,7 +133,7 @@ class IdScannerController extends GetxController {
 
   Future<File> getCropImage() async {
     RenderRepaintBoundary boundary =
-        widgetKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+        widgetKey.currentContext?.findRenderObject() as RenderRepaintBoundary;
     ui.Image image = await boundary.toImage();
     ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     Uint8List pngBytes = byteData!.buffer.asUint8List();

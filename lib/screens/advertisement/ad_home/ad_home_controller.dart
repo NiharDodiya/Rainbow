@@ -59,8 +59,8 @@ class AdHomeController extends GetxController {
   List<bool> moreOption = [];
 
   @override
-  void onInit() {
-    init();
+  void onInit() async{
+   await init();
     update(["dashBoard"]);
     update(["update"]);
     update();
