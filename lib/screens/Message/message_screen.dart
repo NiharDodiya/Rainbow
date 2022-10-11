@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -232,15 +233,24 @@ class MessageScreen extends StatelessWidget {
                                                                 50),
                                                           ),
                                                           child:
-                                                          FadeInImage(
-                                                            placeholder:
-                                                            const AssetImage(
-                                                                AssetRes.portrait_placeholder),
-                                                            image: NetworkImage(
-                                                                data['image']
-                                                                    .toString()),
+                                                          CachedNetworkImage(
+
                                                             fit: BoxFit
                                                                 .cover,
+                                                            imageUrl: data['image']
+                                                                .toString(),
+                                                            errorWidget: ((context, url, error) => Image.asset(
+                                                              AssetRes.portrait_placeholder,
+                                                              height: 50,
+                                                              width: 50,
+                                                              fit: BoxFit.cover,
+                                                            )),
+                                                            placeholder: ((context, url) => Image.asset(
+                                                                AssetRes.portrait_placeholder,
+                                                              height: 50,
+                                                              width: 50,
+                                                              fit: BoxFit.cover,
+                                                            )),
                                                           ),
                                                         ),
                                                       ),
@@ -397,17 +407,26 @@ class MessageScreen extends StatelessWidget {
                                                                   50),
                                                             ),
                                                             child:
-                                                            FadeInImage(
-                                                              placeholder:
-                                                              const AssetImage(AssetRes.portrait_placeholder),
-                                                              image:
-                                                              NetworkImage(
-                                                                data['image']
-                                                                    .toString(),
-                                                              ),
+                                                            CachedNetworkImage(
+
                                                               fit: BoxFit
                                                                   .cover,
+                                                              imageUrl: data['image']
+                                                                  .toString(),
+                                                              errorWidget: ((context, url, error) => Image.asset(
+                                                                AssetRes.portrait_placeholder,
+                                                                height: 50,
+                                                                width: 50,
+                                                                fit: BoxFit.cover,
+                                                              )),
+                                                              placeholder: ((context, url) => Image.asset(
+                                                                AssetRes.portrait_placeholder,
+                                                                height: 50,
+                                                                width: 50,
+                                                                fit: BoxFit.cover,
+                                                              )),
                                                             ),
+
                                                           ),
                                                         ),
                                                         const SizedBox(
