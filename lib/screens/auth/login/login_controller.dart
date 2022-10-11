@@ -103,14 +103,14 @@ class LoginController extends GetxController {
 
   LoginModel loginModel = LoginModel();
 
-  ViewStoryController viewStoryController = Get.put(ViewStoryController());
-  HomeController homeController = Get.put(HomeController());
+ /* ViewStoryController viewStoryController = Get.put(ViewStoryController());
+  HomeController homeController = Get.put(HomeController());*/
   Future<void> registerDetails() async {
     loader.value = true;
     try {
-      viewStoryController.storyModel.friendsStory=null;
+     /* viewStoryController.storyModel.friendsStory=null;
       homeController.myStoryController.viewStoryController.storyModel
-          .myStory=null;
+          .myStory=null;*/
       loginModel = await LoginApi.postRegister(
         emailController.text,
         passwordController.text,
