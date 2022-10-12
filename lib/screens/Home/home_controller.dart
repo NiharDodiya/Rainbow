@@ -369,7 +369,7 @@ class HomeController extends GetxController {
     changeLoader(true);
 
 
-
+    await viewProfileApi();
     await advertisementListUser();
     PaymentController paymentController = Get.put(PaymentController());
     paymentController.transactionApi();
@@ -379,10 +379,9 @@ class HomeController extends GetxController {
         : viewProfile.data!.userType = "premium";
     await getCurrentLocation();
     loader.value = true;
-/*    await controller.viewProfileDetails();*/
+    await controller.viewProfileDetails();
     await friendPostData();
     await onStory();
-    await viewProfileApi();
     countryName();
     countryNationalites();
     notificationsController.getNotifications();
