@@ -39,6 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
   CommentsController commentsController = Get.put(CommentsController());
   ConnectionsProfileController connectionsProfileController =
       Get.put(ConnectionsProfileController());
+  NotificationsController notificationsController =  Get.put(NotificationsController());
 
   @override
   Widget build(BuildContext context) {
