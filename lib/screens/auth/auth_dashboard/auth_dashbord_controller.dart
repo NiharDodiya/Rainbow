@@ -117,7 +117,7 @@ String? token;
       loading.value = false;
     } catch (e) {
       loading.value = false;
-      errorToast(e.toString());
+    /*  errorToast(e.toString());*/
       debugPrint(e.toString());
       loading.value = false;
     }

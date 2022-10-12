@@ -20,11 +20,13 @@ class GoogleIdVerification {
   static Future<LoginModel?> postRegister(
     String id, {
     User? user,
+        String? email
   }) async {
     try {
       String url = EndPoints.verificationSocial;
       Map<String, String> param = {
         'id_social': id,
+        'email':email.toString()
       };
       print(param);
       http.Response? response = await HttpService.postApi(

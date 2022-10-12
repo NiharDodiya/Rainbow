@@ -243,7 +243,9 @@ class HomeController extends GetxController {
     try {
       loader.value = true;
       sharePostModel = await MyPostApi.sharPostApi(id);
-      await friendPostDataWithOutPagination();
+     Future.delayed(const Duration(seconds: 1)).then((value) async {
+       await friendPostDataWithOutPagination();
+     });
       update(['home']);
       loader.value = false;
     } catch (e) {
@@ -256,7 +258,9 @@ class HomeController extends GetxController {
     try {
       loader.value = true;
       postLikeModel = await MyPostApi.postLikeApi(id);
-      await friendPostDataWithOutPagination();
+      Future.delayed(const Duration(seconds: 1)).then((value) async {
+        await friendPostDataWithOutPagination();
+      });
       update(['home']);
       loader.value = false;
     } catch (e) {
@@ -269,7 +273,9 @@ class HomeController extends GetxController {
     try {
       loader.value = true;
       postUnlikeModel = await MyPostApi.postUnLikeApi(id);
-      await friendPostDataWithOutPagination();
+      Future.delayed(const Duration(seconds: 1)).then((value) async {
+        await friendPostDataWithOutPagination();
+      });
       update(['home']);
       loader.value = false;
     } catch (e) {
@@ -320,6 +326,8 @@ class HomeController extends GetxController {
       debugPrint(e.toString());
       loader.value = false;
     }
+
+
   }
 
 /*  Future<void> commentPostListData(String idPost) async {
@@ -349,8 +357,11 @@ class HomeController extends GetxController {
     await controller.viewProfileDetails();
     await onStory();
     notificationsController.getNotifications();
+    page=0;
     friendPostListData = [];
-    await friendPostDataWithOutPagination();
+    /*  await friendPostDataWithOutPagination();*/
+    await friendPostData();
+
     await connectionsController.callRequestApi();
   }
 
@@ -374,7 +385,7 @@ class HomeController extends GetxController {
     countryName();
     countryNationalites();
     notificationsController.getNotifications();
-    await friendPostDataWithOutPagination();
+    /*await friendPostDataWithOutPagination();*/
     await connectionsController.callRequestApi();
     changeLoader(false);
   }
@@ -388,7 +399,7 @@ class HomeController extends GetxController {
   }
 
   myStoryOnTap() async {
-    Get.to(() => AddStoryScreen());
+    Get.to(() => const AddStoryScreen());
     /*MyStoryController myStoryController = Get.put(MyStoryController());
     loader.value = true;
     await myStoryController.init();
