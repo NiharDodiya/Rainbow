@@ -208,12 +208,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ))!
                                     .then((value) {
                                     if (value == true) {
-                                      controller
-                                          .friendPostDataWithOutPagination(
-                                        pageLength: controller
-                                                .friendPostListData.length +
-                                            1,
-                                      );
+                                     Future.delayed(Duration(seconds: 1)).then((value) async {
+                                       await controller
+                                           .friendPostDataWithOutPagination(
+                                         pageLength: controller
+                                             .friendPostListData.length +
+                                             1,
+                                       );
+                                     });
                                     }
                                   });
                           },
@@ -1344,8 +1346,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     .toString(),
                                               ))!
                                           .then((value) async {
+                                      Future.delayed(Duration(seconds: 1)).then((value) async {
                                         await controller
                                             .friendPostDataWithOutPagination();
+                                      });
                                       });
                                     },
                                     child: const SizedBox(
