@@ -37,16 +37,33 @@ Widget userComment(
                                 AssetImage(AssetRes.portrait_placeholder),
                             image: AssetImage(AssetRes.portrait_placeholder),
                             fit: BoxFit.cover,
-                          ))
+                          ),
+                        )
                       : ClipRRect(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(50)),
-                          child: FadeInImage(
+                          child: CachedNetworkImage(
+                            imageUrl: profileImage.toString(),
+                            fit: BoxFit.cover,
+                            errorWidget: ((context, url, error) => Image.asset(
+                                  AssetRes.portrait_placeholder,
+                              height: 40,
+                              width: 40,
+                              fit: BoxFit.cover,
+                                )),
+                            placeholder: ((context, url) => Image.asset(
+                              AssetRes.portrait_placeholder,
+                              height: 40,
+                              width: 40,
+                              fit: BoxFit.cover,
+                            )),
+                          ),
+                          /*FadeInImage(
                             placeholder:
                                 const AssetImage(AssetRes.portrait_placeholder),
                             image: NetworkImage(profileImage.toString()),
                             fit: BoxFit.cover,
-                          ),
+                          ),*/
                         ),
                 ),
                 Column(
@@ -123,15 +140,33 @@ Widget userComment(
                               color: Colors.grey,
                             ),
                           )*/
-                    FadeInImage(
+                    CachedNetworkImage(
                       height: 100,
                       width: 100,
-                      placeholder:
-                      const AssetImage(AssetRes.placeholderImage),
-                      image: NetworkImage(image.toString()),
+                      imageUrl: image.toString(),
                       fit: BoxFit.cover,
+                      errorWidget: ((context, url, error) => Image.asset(
+                        AssetRes.placeholderImage,
+                        height: 100,
+                        width: 100,
+                        fit: BoxFit.cover,
+                      )),
+                      placeholder: ((context, url) => Image.asset(
+                        AssetRes.placeholderImage,
+                        height: 100,
+                        width: 100,
+                        fit: BoxFit.cover,
+                      )),
                     ),
-                       /* controller.replay == true
+                        /*FadeInImage(
+                            height: 100,
+                            width: 100,
+                            placeholder:
+                                const AssetImage(AssetRes.placeholderImage),
+                            image: NetworkImage(image.toString()),
+                            fit: BoxFit.cover,
+                          ),*/
+                    /* controller.replay == true
                             ? Align(
                                 alignment: Alignment.topRight,
                                 child: FadeInImage(
@@ -246,22 +281,24 @@ Widget userComment(
                                       const SizedBox(
                                         height: 5,
                                       ),
-
-
-                                      reply[index].postCommentItem.toString() == ""
-                                      ? const SizedBox()
-                                      : CachedNetworkImage(
-                                          imageUrl: reply[index]
-                                              .postCommentItem
-                                              .toString(),
-                                          height: 100,
-                                          width: 100,
-                                          fit: BoxFit.cover,
-                                          placeholder: ((context, url) => Image.asset(AssetRes.placeholderImage)),
-                                          errorWidget: (context, url, error) =>
-                                              const Icon(Icons.error),
-                                        ),
-                                     /* reply[index].postCommentItem.toString() == ""
+                                      reply[index].postCommentItem.toString() ==
+                                              ""
+                                          ? const SizedBox()
+                                          : CachedNetworkImage(
+                                              imageUrl: reply[index]
+                                                  .postCommentItem
+                                                  .toString(),
+                                              height: 100,
+                                              width: 100,
+                                              fit: BoxFit.cover,
+                                              placeholder: ((context, url) =>
+                                                  Image.asset(AssetRes
+                                                      .placeholderImage)),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      const Icon(Icons.error),
+                                            ),
+                                      /* reply[index].postCommentItem.toString() == ""
                                           ? const SizedBox()
                                           :  image == ""
                                           ? const SizedBox()
@@ -279,7 +316,7 @@ Widget userComment(
                                   ),
                                 ),
                                 const SizedBox(height: 10),
-                               /* Align(
+                                /* Align(
                                   alignment: Alignment.topLeft,
                                   child: Padding(
                                     padding: EdgeInsets.only(left: 30),

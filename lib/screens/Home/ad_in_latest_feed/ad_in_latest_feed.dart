@@ -149,9 +149,8 @@ Widget adInLatestFeed({int? index}) {
                                           .itemsList![index1]
                                           .toString(),
                                       errorWidget: (context, url, error) =>
-                                          const CircularProgressIndicator(
-                                        color: ColorRes.red,
-                                      ),
+                                          Image.asset(AssetRes.placeholderImage,
+                                              fit: BoxFit.fitWidth),
                                       placeholder: (context, url) =>
                                           Image.asset(AssetRes.placeholderImage,
                                               fit: BoxFit.fitWidth),
