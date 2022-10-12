@@ -337,7 +337,7 @@ class AccountInformationController extends GetxController {
       await UploadImageApi.postRegister(imagePath!.path.toString())
           .then((value) async {
         uploadImage = value!;
-        imageID = uploadImage.data!.id;
+        imageID = uploadImage.data?.id;
         await PrefService.setValue(
             PrefKeys.advertiserProfileID, uploadImage.data!.id);
       });
@@ -389,7 +389,7 @@ class AccountInformationController extends GetxController {
       }
     };
     update(["Getpic"]);
-    if (imageID != 0) {
+    if (imageID != 0 || imageID != null) {
       param1["advirtisersData"]!["id_item_profile"] = imageID ;
     }
     update(["Getpic"]);

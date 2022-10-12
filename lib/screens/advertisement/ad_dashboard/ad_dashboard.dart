@@ -216,7 +216,10 @@ class AdvertisementDashBord extends StatelessWidget {
                               onTap: () {
                                 AdvertiserVerifyController adController =
                                 Get.put(AdvertiserVerifyController());
+
                                 adController.backScreen = 'AdvertisementDashBord';
+                                adController.startTimer();
+                                adController.phoneNumberRegister();
                                 Get.to(() => AdvertiserVerifyOtpScreen());
                               },
                               child: SizedBox(

@@ -615,7 +615,7 @@ class ShowBottomNext extends StatelessWidget {
                         },
                         child: Text(
                           /*"Pay ${setupDateController.amountController.text}",*/
-                          "Pay 120.00USD",
+                          "Pay 3000.00USD",
                           style: gilroyBoldTextStyle(
                             fontSize: 16,
                             color: ColorRes.black,

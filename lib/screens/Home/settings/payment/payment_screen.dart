@@ -436,7 +436,7 @@ class PaymentScreen extends StatelessWidget {
                             ),
 
                             // ---------- Transaction
-                            (controller.transactionModel.data?.length == null)
+                            (controller.transactionModel.data?.length == null || controller.transactionModel.data?.length == 0)
                                 ? Column(
                                     children: const [
                                       SizedBox(height: 80),

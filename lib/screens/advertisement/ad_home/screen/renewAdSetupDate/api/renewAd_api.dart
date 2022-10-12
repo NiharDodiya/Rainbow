@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/createAdvertiserModel.dart';
 import 'package:rainbow/model/renewAdModel.dart';
+import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_successful/payment_successful_screen.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
@@ -42,6 +43,8 @@ class RenewAdApi {
         bool? status = jsonDecode(response.body)["status"];
         if (status == true) {
 
+          final PaymentController controller = Get.find();
+          await controller.transactionApi();
           Get.to(() => PaymentSuccessfulScreen());
 
           flutterToast(jsonDecode(response.body)["message"]);

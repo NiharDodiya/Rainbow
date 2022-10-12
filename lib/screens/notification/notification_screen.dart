@@ -47,7 +47,15 @@ class NotificationScreen extends StatelessWidget {
                   height: Get.height * 0.035,
                 ),
                 appBar(),
-                Expanded(
+                (controller.notificationList.length == 0)
+                    ? SizedBox(
+                  height: Get.height * 0.7,
+                  child: Center(
+                    child: Text("Notification not available",
+                        style: gilroyMediumTextStyle(
+                            fontSize: 16, color: Colors.white)),
+                  ),
+                ):Expanded(
                   child: ListView.builder(
                     itemCount: controller.notificationList.length,
                     itemBuilder: (BuildContext context, int index) {

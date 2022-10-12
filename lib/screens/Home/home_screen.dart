@@ -208,12 +208,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ))!
                                     .then((value) {
                                     if (value == true) {
-                                      controller
-                                          .friendPostDataWithOutPagination(
-                                        pageLength: controller
-                                                .friendPostListData.length +
-                                            1,
-                                      );
+                                     Future.delayed(Duration(seconds: 1)).then((value) async {
+                                       await controller
+                                           .friendPostDataWithOutPagination(
+                                         pageLength: controller
+                                             .friendPostListData.length +
+                                             1,
+                                       );
+                                     });
                                     }
                                   });
                           },
@@ -696,7 +698,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 10, right: 10, bottom: 14),
+                                        left: 10, right: 10, bottom: 20),
                                     child: SizedBox(
                                       height: 50,
                                       width: 50,
@@ -1344,8 +1346,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     .toString(),
                                               ))!
                                           .then((value) async {
+                                      Future.delayed(Duration(seconds: 1)).then((value) async {
                                         await controller
                                             .friendPostDataWithOutPagination();
+                                      });
                                       });
                                     },
                                     child: const SizedBox(

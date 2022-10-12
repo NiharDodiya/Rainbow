@@ -55,10 +55,16 @@ class LoginController extends GetxController {
 
 
      adHomeController.viewAdvertiserModel.data?.profilePhoto = null;
+     adHomeController.viewAdvertiserModel.data?.fullName = "";
+     adHomeController.viewAdvertiserModel.data?.profileImage = "";
+     adHomeController.viewAdvertiserModel.data?.email = "";
      homeController.viewProfile.data = null;
      homeController.controller.viewProfile.data?.profileImage = null;
      homeController.controller.viewProfile.data?.profileImage  = "";
-     homeController.myStoryController.viewStoryController.storyModel.myStory = null;
+
+
+     homeController.viewStoryController.storyModel.friendsStory = null;
+     homeController.viewStoryController.storyModel.friendsStory?.length = 0;
      homeController.friendPostListData = [];
 
 
@@ -103,14 +109,14 @@ class LoginController extends GetxController {
 
   LoginModel loginModel = LoginModel();
 
-  ViewStoryController viewStoryController = Get.put(ViewStoryController());
-  HomeController homeController = Get.put(HomeController());
+ /* ViewStoryController viewStoryController = Get.put(ViewStoryController());
+  HomeController homeController = Get.put(HomeController());*/
   Future<void> registerDetails() async {
     loader.value = true;
     try {
-      viewStoryController.storyModel.friendsStory=null;
+     /* viewStoryController.storyModel.friendsStory=null;
       homeController.myStoryController.viewStoryController.storyModel
-          .myStory=null;
+          .myStory=null;*/
       loginModel = await LoginApi.postRegister(
         emailController.text,
         passwordController.text,
