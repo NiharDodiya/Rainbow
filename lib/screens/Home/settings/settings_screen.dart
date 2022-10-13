@@ -237,9 +237,9 @@ class SettingsScreen extends StatelessWidget {
         ),
         //Messages
         InkWell(
-          onTap: () {
+          onTap: () async {
 
-            messageController.init();
+           await messageController.init();
 
             homeController.viewProfile.data!.userType == "free"
                 ? premiumPopUpBox(context: context)

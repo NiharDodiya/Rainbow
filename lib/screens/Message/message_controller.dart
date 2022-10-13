@@ -45,8 +45,8 @@ class MessageController extends GetxController {
   bool apiLoader = false;
 
   @override
-  void onInit() {
-    init();
+  Future<void> onInit() async {
+    await init();
     getUid();
     update(["message"]);
     super.onInit();
@@ -75,7 +75,7 @@ class MessageController extends GetxController {
   Future<void> init() async {
   token = await NotificationService.getFcmToken();
     loader.value = true;
-    getFriendListData();
+    await getFriendListData();
     listScrollController.addListener(manageScrollDownBtn);
   }
 

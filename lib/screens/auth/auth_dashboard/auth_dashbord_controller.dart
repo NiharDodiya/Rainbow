@@ -87,7 +87,7 @@ String? token;
       print(user.uid);
       print(user.tenantId);
       print(user.displayName);
-      await GoogleIdVerification.postRegister(user.uid, user: user)
+      await GoogleIdVerification.postRegister(user.uid, user: user,email: user.email.toString())
           .then((LoginModel? model) async {
         print(model);
         await firebaseFirestore
@@ -99,7 +99,7 @@ String? token;
             await firebaseFirestore
                 .collection("users")
                 .doc(user.uid)
-                .update({"online": true});
+                .update({"online": true,"id":model?.data?.id});
             await PrefService.setValue(PrefKeys.uid, user.uid);
           } else {
             await firebaseFirestore.collection("users").doc(user.uid).set({
@@ -147,7 +147,7 @@ String? token;
       final User? user = userCredential.user;
       try {
         await GoogleIdVerification.postRegister(userCredential.user!.uid,
-                user: userCredential.user)
+                user: userCredential.user,email: userCredential.user!.email.toString())
             .then((LoginModel? model) async {
           print(model);
 

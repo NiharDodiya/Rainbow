@@ -93,7 +93,7 @@ class ChatScreen extends StatelessWidget {
                                           shape: BoxShape.circle,
                                           image: DecorationImage(
                                               image: AssetImage(AssetRes
-                                                  .portrait_placeholder)),
+                                                  .portrait_placeholder),fit: BoxFit.cover),
                                         ),
                                       )
                                     : Container(
@@ -107,7 +107,7 @@ class ChatScreen extends StatelessWidget {
                                               Radius.circular(50)),
                                           child: CachedNetworkImage(
                                             imageUrl: profileImage.toString(),
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.cover,height: 50,width: 50,
                                             errorWidget: ((context, url,
                                                     error) =>
                                                 Image.asset(
@@ -297,7 +297,7 @@ class ChatScreen extends StatelessWidget {
                                                           AssetRes
                                                               .portrait_placeholder,
                                                           height: 28,
-                                                          width: 28,
+                                                          width: 28,fit: BoxFit.cover,
                                                         ))
                                                     : ClipRRect(
                                                         borderRadius:
@@ -306,7 +306,7 @@ class ChatScreen extends StatelessWidget {
                                                         child:
                                                             CachedNetworkImage(
                                                           imageUrl: profileImage
-                                                              .toString(),
+                                                              .toString(),height: 28,width: 28,
                                                           fit: BoxFit.cover,
                                                           errorWidget:
                                                               ((context, url,

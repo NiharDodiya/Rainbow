@@ -180,7 +180,7 @@ class PostViewBottomScreen extends StatelessWidget {
                                           shape: BoxShape.circle,
                                           image: DecorationImage(
                                               image: AssetImage(
-                                                  AssetRes.homePro))),
+                                                  AssetRes.portrait_placeholder))),
                                     ),
                                     fit: BoxFit.fill,
                                   ),

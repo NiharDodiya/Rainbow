@@ -71,7 +71,7 @@ class MessageScreen extends StatelessWidget {
                           ),
                           Expanded(
                               child: Padding(
-                                padding: EdgeInsets.only(right: 50, top: 20),
+                                padding: const EdgeInsets.only(right: 50, top: 20),
                                 child: Align(
                                   alignment: Alignment.center,
                                   child: SizedBox(
@@ -89,7 +89,7 @@ class MessageScreen extends StatelessWidget {
                         ],
                       )
                       : Padding(
-                        padding: EdgeInsets.only(top: 20),
+                        padding: const EdgeInsets.only(top: 20),
                         child: SizedBox(
                           height: 50,
                           child: Center(
@@ -267,7 +267,8 @@ class MessageScreen extends StatelessWidget {
                                                   ),
                                                   const SizedBox(
                                                       height: 10),
-                                                  Text(data['name'])
+                                                  Padding(padding: const EdgeInsets.only(left: 10,right: 10),
+                                                      child: Text(data['name']))
                                                 ],
                                               )
                                                   : const SizedBox();

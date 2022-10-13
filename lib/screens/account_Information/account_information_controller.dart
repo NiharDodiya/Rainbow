@@ -174,6 +174,8 @@ class AccountInformationController extends GetxController {
       loader.value = true;
       getCountry();
       await onTapSave();
+      loader.value = false;
+
     }
   }
 
