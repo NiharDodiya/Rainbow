@@ -60,6 +60,7 @@ class SettingsController extends GetxController {
       });
 
       loader.value = false;
+      update(["setting"]);
     } catch (e) {
       loader.value = false;
       debugPrint(e.toString());

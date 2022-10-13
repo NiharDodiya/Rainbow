@@ -366,10 +366,12 @@ class HomeController extends GetxController {
   }
 
   Future<void> init() async {
-    changeLoader(true);
+ /*   changeLoader(true);*/
 
 
     await viewProfileApi();
+    await friendPostData();
+    await onStory();
     await advertisementListUser();
     PaymentController paymentController = Get.put(PaymentController());
     paymentController.transactionApi();
@@ -378,16 +380,14 @@ class HomeController extends GetxController {
         ? viewProfile.data!.userType = "free"
         : viewProfile.data!.userType = "premium";
     await getCurrentLocation();
-    loader.value = true;
     await controller.viewProfileDetails();
-    await friendPostData();
-    await onStory();
+
     countryName();
     countryNationalites();
     notificationsController.getNotifications();
     /*await friendPostDataWithOutPagination();*/
     await connectionsController.callRequestApi();
-    changeLoader(false);
+  /*  changeLoader(false);*/
   }
 
   Future<void> onStory() async {

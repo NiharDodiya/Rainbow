@@ -40,17 +40,23 @@ class FullScreenLoader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
-        child: SizedBox(
-          height: Get.height,
-          width: Get.width,
-          child: Center(
-            child: Platform.isIOS
-                ? const CupertinoActivityIndicator()
-                : const CircularProgressIndicator(),
+    return Container(color: Colors.black54,
+      height: Get.height,
+      width: Get.width,
+      child: InkWell(
+        onTap: () {},
+        child: Center(
+          child: Container(
+            padding: const EdgeInsets.all(35),
+            height: 110,
+            width: 110,
+            decoration: BoxDecoration(
+                color: Colors.white70,
+                borderRadius: BorderRadius.circular(25)),
+            child: const CircularProgressIndicator(
+              backgroundColor: Colors.white,
+              color:Colors.black45,
+            ),
           ),
         ),
       ),

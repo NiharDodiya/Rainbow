@@ -6,6 +6,7 @@ import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
+import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/service/pref_services.dart';
@@ -36,37 +37,44 @@ logoutPopup({required BuildContext context}) {
               color: Colors.grey,
 
             ),
-            TextButton(
-              child: const Text('yes'),
-              onPressed: () async{
+            GetBuilder<SettingsController>(id: "setting", builder: (controller) {
+              return TextButton(
+                child: const Text('yes'),
+                onPressed: () async{
 
-               /* HomeController homeController = Get.put(HomeController());
+                  /* HomeController homeController = Get.put(HomeController());
 
-                await homeController.viewProfileApi();*/
+                  await homeController.viewProfileApi();*/
 /*
 
-                ViewProfile viewProfile = ViewProfile();
+                  ViewProfile viewProfile = ViewProfile();
 
-                TestimonialsList tes = TestimonialsList();
+                  TestimonialsList tes = TestimonialsList();
 
-                viewProfile.data = null;
-                tes.id = null;
-                tes.createdAt = null;
-                tes.testimonial = null;
-                tes.userSender = null;
+                  viewProfile.data = null;
+                  tes.id = null;
+                  tes.createdAt = null;
+                  tes.testimonial = null;
+                  tes.userSender = null;
 */
+                  SettingsController controller = Get.put(SettingsController());
 
-                PaymentController paymentController = Get.find();
+                  controller.loader.value = true;
 
-                paymentController.listCardModel.data = [];
-                paymentController.transactionModel.data = [];
+                  PaymentController paymentController = Get.find();
 
-                SettingsController controller = Get.put(SettingsController());
-                Navigator.of(context).pop();
-                await controller.logOutDetails();
+                  paymentController.listCardModel.data = [];
+                  paymentController.transactionModel.data = [];
 
-                PrefService.clear();
-              },
+                  Navigator.of(context).pop();
+                  await controller.logOutDetails();
+
+                  PrefService.clear();
+                  controller.loader.value = false;
+
+                },
+              );
+            },
             ),
           ],
         );
