@@ -373,68 +373,71 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
             color: Colors.white,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(12), topRight: Radius.circular(12))),
-        child: ListView.builder(
-          shrinkWrap: true,
-          padding: const EdgeInsets.only(top: 5, bottom: 20),
-          itemCount: controller.listLatLongData.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 5, left: 20, bottom: 25),
-              child: Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: Image.network(
-                      controller.listLatLongData[index].profileImage.toString(),
-                      height: 50,
-                      width: 50,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Image.asset(
-                          AssetRes.portrait_placeholder,
-                          height: 50,
-                          width: 50,
-                        );
-                      },
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        controller.listLatLongData[index].fullName.toString(),
-                        style: gilroyMediumTextStyle(
-                            fontSize: 16, color: ColorRes.color_303030),
+        child: Padding(
+          padding: EdgeInsets.only(bottom: 40),
+          child: ListView.builder(
+            shrinkWrap: true,
+            padding: const EdgeInsets.only(top: 5, bottom: 20),
+            itemCount: controller.listLatLongData.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(top: 15, left: 20, bottom: 5),
+                child: Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.network(
+                        controller.listLatLongData[index].profileImage.toString(),
+                        height: 50,
+                        width: 50,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Image.asset(
+                            AssetRes.portrait_placeholder,
+                            height: 50,
+                            width: 50,
+                          );
+                        },
                       ),
-                      Text(
-                          controller.listLatLongData[index].userStatus
-                              .toString(),
-                          style: gilroyMediumTextStyle(
-                              fontSize: 16, color: ColorRes.color_979797)),
-                    ],
-                  ),
-                  const Spacer(),
-                  InkWell(
-                    onTap: () {
-                      searchController.sendFriendRequestAdvance(
-                          controller.listLatLongData[index].id.toString());
-                    },
-                    child: Image.asset(
-                      AssetRes.addPeople,
-                      height: 40,
-                      width: 40,
                     ),
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  )
-                ],
-              ),
-            );
-          },
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          controller.listLatLongData[index].fullName.toString(),
+                          style: gilroyMediumTextStyle(
+                              fontSize: 16, color: ColorRes.color_303030),
+                        ),
+                        Text(
+                            controller.listLatLongData[index].userStatus
+                                .toString(),
+                            style: gilroyMediumTextStyle(
+                                fontSize: 16, color: ColorRes.color_979797)),
+                      ],
+                    ),
+                    const Spacer(),
+                    InkWell(
+                      onTap: () {
+                        searchController.sendFriendRequestAdvance(
+                            controller.listLatLongData[index].id.toString());
+                      },
+                      child: Image.asset(
+                        AssetRes.addPeople,
+                        height: 40,
+                        width: 40,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 16,
+                    )
+                  ],
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

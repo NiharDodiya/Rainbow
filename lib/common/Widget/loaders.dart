@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -41,13 +42,16 @@ class FullScreenLoader extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {},
-      child: SizedBox(
-        height: Get.height,
-        width: Get.width,
-        child: Center(
-          child: Platform.isIOS
-              ? const CupertinoActivityIndicator()
-              : const CircularProgressIndicator(),
+      child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
+        child: SizedBox(
+          height: Get.height,
+          width: Get.width,
+          child: Center(
+            child: Platform.isIOS
+                ? const CupertinoActivityIndicator()
+                : const CircularProgressIndicator(),
+          ),
         ),
       ),
     );
