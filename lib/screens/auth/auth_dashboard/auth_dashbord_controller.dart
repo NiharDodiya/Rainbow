@@ -43,7 +43,7 @@ class AuthDashBordController extends GetxController {
       getCountry();
 
     } catch (e) {
-      errorToast(e.toString());
+   /*   errorToast(e.toString());*/
       debugPrint(e.toString());
     }
   }

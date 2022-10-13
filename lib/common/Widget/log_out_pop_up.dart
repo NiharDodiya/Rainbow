@@ -61,7 +61,7 @@ logoutPopup({required BuildContext context}) {
 
                   controller.loader.value = true;
 
-                  PaymentController paymentController = Get.find();
+                  PaymentController paymentController = Get.put(PaymentController());
 
                   paymentController.listCardModel.data = [];
                   paymentController.transactionModel.data = [];
