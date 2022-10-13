@@ -29,7 +29,7 @@ class AdvertiseListUser {
           if (kDebugMode) {
             print("======= advertiseList user : ${response.statusCode} ======");
           }
-          errorToast(jsonDecode(response.body)["message"]);
+          /*errorToast(jsonDecode(response.body)["message"]);*/
         } else if (status == true) {
           if (kDebugMode) {
             print("======= advertiseList user : ${response.statusCode} =====");
@@ -42,7 +42,7 @@ class AdvertiseListUser {
         }
         return advertisementListUserModelFromJson(response.body);
       }else{
-        errorToast(jsonDecode(response!.body)["message"]);
+      /*  errorToast(jsonDecode(response!.body)["message"]);*/
       }
     } catch (e) {
       if (kDebugMode) {
