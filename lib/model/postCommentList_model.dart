@@ -300,8 +300,7 @@ class PostCommentReply {
         postCommentUser: json["postCommentUser"] == null
             ? null
             : PostCommentUser.fromJson(json["postCommentUser"]),
-        postCommentItem:
-            json["postCommentItem"],
+        postCommentItem: json["postCommentItem"],
         postCommentReply: json["postCommentReply"] == null
             ? null
             : List<PostCommentReply>.from(json["postCommentReply"]
@@ -409,20 +408,16 @@ class PostCommentUser {
         address1: json["address1"],
         address2: json["address2"],
         phoneNumber: json["phone_number"],
-        maritalStatus:
-            json["marital_status"],
-        onlineStatus:
-            json["online_status"],
+        maritalStatus: json["marital_status"],
+        onlineStatus: json["online_status"],
         idEthnicity: json["id_ethnicity"],
         birthDate: json["birth_date"] == null
             ? null
             : DateTime.parse(json["birth_date"]),
         noKids: json["no_kids"],
-        mobileStatus:
-            json["mobile_status"],
+        mobileStatus: json["mobile_status"],
         role: json["role"],
-        referrallCode:
-            json["referrall_code"],
+        referrallCode: json["referrall_code"],
         idStatus: json["id_status"],
         latitude: json["latitude"].toString().isEmpty
             ? null
@@ -447,10 +442,8 @@ class PostCommentUser {
         twitter: json["twitter"],
         about: json["about"],
         hobbiesAndInterest: json["hobbies_and_Interest"],
-        backgroundImage:
-            json["background_image"],
-        profileImage:
-            json["profile_image"],
+        backgroundImage: json["background_image"],
+        profileImage: json["profile_image"],
         status: json["status"],
       );
 
@@ -487,8 +480,7 @@ class PostCommentUser {
         "facebook": facebook,
         "twitter": twitter,
         "about": about,
-        "hobbies_and_Interest":
-            hobbiesAndInterest,
+        "hobbies_and_Interest": hobbiesAndInterest,
         "background_image": backgroundImage,
         "profile_image": profileImage,
         "status": status,

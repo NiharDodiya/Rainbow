@@ -99,25 +99,21 @@ class Datum {
             ? null
             : List<String>.from(json["postList"].map((x) => x)),
         isLike: json["isLike"],
-        postLikeCount:
-            json["postLikeCount"],
+        postLikeCount: json["postLikeCount"],
         postLikeUser: json["postLikeUser"] == null
             ? null
             : List<dynamic>.from(json["postLikeUser"].map((x) => x)),
-        postShareCount:
-            json["postShareCount"],
+        postShareCount: json["postShareCount"],
         postTag: json["postTag"] == null
             ? null
             : List<PostTag>.from(
                 json["postTag"].map((x) => PostTag.fromJson(x))),
         isView: json["isView"],
-        postViewcount:
-            json["postViewcount"],
+        postViewcount: json["postViewcount"],
         postViewUser: json["postViewUser"] == null
             ? null
             : List<dynamic>.from(json["postViewUser"].map((x) => x)),
-        postCommentCount:
-            json["postCommentCount"],
+        postCommentCount: json["postCommentCount"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -241,15 +237,13 @@ class PostViewUser {
         address1: json["address1"],
         address2: json["address2"],
         phoneNumber: json["phone_number"],
-        maritalStatus:
-            json["marital_status"],
+        maritalStatus: json["marital_status"],
         idEthnicity: json["id_ethnicity"],
         birthDate: json["birth_date"] == null
             ? null
             : DateTime.parse(json["birth_date"]),
         noKids: json["no_kids"],
-        mobileStatus:
-            json["mobile_status"],
+        mobileStatus: json["mobile_status"],
         role: json["role"],
         idStatus: json["id_status"],
         selfiStatus: json["selfi_status"],
@@ -264,10 +258,8 @@ class PostViewUser {
         twitter: json["twitter"],
         about: json["about"],
         hobbiesAndInterest: json["hobbies_and_Interest"],
-        backgroundImage:
-            json["background_image"],
-        profileImage:
-            json["profile_image"],
+        backgroundImage: json["background_image"],
+        profileImage: json["profile_image"],
         status: json["status"],
       );
 
@@ -299,8 +291,7 @@ class PostViewUser {
         "facebook": facebook,
         "twitter": twitter,
         "about": about,
-        "hobbies_and_Interest":
-            hobbiesAndInterest,
+        "hobbies_and_Interest": hobbiesAndInterest,
         "background_image": backgroundImage,
         "profile_image": profileImage,
         "status": status,

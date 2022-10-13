@@ -25,17 +25,16 @@ class SupportAPI {
     });
 
     if (response.statusCode == 200) {
-      print("========= ${response.statusCode} ==============");
-      print(PrefService.getString(PrefKeys.registerToken));
 
-      Map<String, dynamic> allData = jsonDecode(response.body);
+
+
 
       Get.back();
       flutterToast(jsonDecode(response.body)["message"]);
 
       return response.statusCode;
     } else {
-      print("============ ${response.statusCode} ==============");
+
       return response.statusCode;
     }
   }

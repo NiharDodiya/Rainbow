@@ -26,7 +26,7 @@ class NotificationApi {
       return null;
     } catch (e) {
       debugPrint(e.toString());
-     /* errorToast("Error", title: e.toString());*/
+      /* errorToast("Error", title: e.toString());*/
       return null;
     }
   }

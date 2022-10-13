@@ -38,7 +38,7 @@ Widget advertisementList() {
                   width: Get.width - 60,
                   padding: EdgeInsets.zero,
                   margin:
-                  const EdgeInsets.only(bottom: 14, left: 30, right: 30),
+                      const EdgeInsets.only(bottom: 14, left: 30, right: 30),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: ColorRes.white,
@@ -48,48 +48,52 @@ Widget advertisementList() {
                       (controller.moreOption[index] == true)
                           ? controller.onCloseMenu()
                           : Get.to(AdvertisementDetailsApprovedScreen(
-                        i: index,
-                        id: controller
-                            .myAdvertiserModel.data?[index].id ??
-                            0,
-                      ));
+                              i: index,
+                              id: controller
+                                      .myAdvertiserModel.data?[index].id ??
+                                  0,
+                            ));
                     },
                     child: Stack(
                       children: [
-                        (controller.myAdvertiserModel.data?[index].itemsList!.length == 0)
-                            ?Container(
-                          width: Get.width - 60,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: const DecorationImage(
-                                  image: AssetImage(
-                                      AssetRes.placeholderImage
-                                  ),
-                                  fit: BoxFit.cover)),
-                        )
-                            :PageView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: controller
-                              .myAdvertiserModel.data?[index].itemsList!.length,
-                          itemBuilder: (context, index1) {
-                            return Row(
-                              children: [
-                                Container(
-                                  width: Get.width - 60,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      image: DecorationImage(
-                                          image: NetworkImage(
-                                            controller.myAdvertiserModel
-                                                .data![index].itemsList![index1]
-                                                .toString(),
-                                          ),
-                                          fit: BoxFit.cover)),
-                                ),
-                              ],
-                            );
-                          },
-                        ),
+                        (controller.myAdvertiserModel.data?[index].itemsList!
+                                    .length ==
+                                0)
+                            ? Container(
+                                width: Get.width - 60,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    image: const DecorationImage(
+                                        image: AssetImage(
+                                            AssetRes.placeholderImage),
+                                        fit: BoxFit.cover)),
+                              )
+                            : PageView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: controller.myAdvertiserModel
+                                    .data?[index].itemsList!.length,
+                                itemBuilder: (context, index1) {
+                                  return Row(
+                                    children: [
+                                      Container(
+                                        width: Get.width - 60,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            image: DecorationImage(
+                                                image: NetworkImage(
+                                                  controller
+                                                      .myAdvertiserModel
+                                                      .data![index]
+                                                      .itemsList![index1]
+                                                      .toString(),
+                                                ),
+                                                fit: BoxFit.cover)),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ),
                         Column(
                           children: [
                             Row(
@@ -108,44 +112,46 @@ Widget advertisementList() {
                                     children: [
                                       Text(
                                         controller.myAdvertiserModel
-                                            .data?[index].adminStatus ??
+                                                .data?[index].adminStatus ??
                                             "",
                                         style: gilroySemiBoldTextStyle(
                                             fontSize: 18,
                                             color: controller
-                                                .myAdvertiserModel
-                                                .data?[index]
-                                                .adminStatus
-                                                .toString() == "pending"
+                                                        .myAdvertiserModel
+                                                        .data?[index]
+                                                        .adminStatus
+                                                        .toString() ==
+                                                    "pending"
                                                 ? ColorRes.color_FFA620
                                                 : controller
-                                                .myAdvertiserModel
-                                                .data?[index]
-                                                .adminStatus
-                                                .toString() == "rejected"
-                                                ?const Color(0xffFF3C3C)
-                                                :ColorRes.color_49A510
-                                        ),
+                                                            .myAdvertiserModel
+                                                            .data?[index]
+                                                            .adminStatus
+                                                            .toString() ==
+                                                        "rejected"
+                                                    ? const Color(0xffFF3C3C)
+                                                    : ColorRes.color_49A510),
                                       ),
                                       const SizedBox(
                                         height: 5,
                                       ),
                                       (controller.myAdvertiserModel.data?[index]
-                                          .adminStatus
-                                          .toString() ==
-                                          "pending" || controller.myAdvertiserModel.data?[index]
-                                          .adminStatus
-                                          .toString() ==
-                                          "rejected")
+                                                      .adminStatus
+                                                      .toString() ==
+                                                  "pending" ||
+                                              controller.myAdvertiserModel
+                                                      .data?[index].adminStatus
+                                                      .toString() ==
+                                                  "rejected")
                                           ? const SizedBox()
                                           : Text(
-                                        controller.myAdvertiserModel
-                                            .data?[index].status ??
-                                            "",
-                                        style: gilroyMediumTextStyle(
-                                            fontSize: 10,
-                                            color: ColorRes.color_F86666),
-                                      ),
+                                              controller.myAdvertiserModel
+                                                      .data?[index].status ??
+                                                  "",
+                                              style: gilroyMediumTextStyle(
+                                                  fontSize: 10,
+                                                  color: ColorRes.color_F86666),
+                                            ),
                                     ],
                                   ),
                                 ),
@@ -182,13 +188,13 @@ Widget advertisementList() {
                                 ),
                               ),
                               padding:
-                              const EdgeInsets.only(left: 18, right: 18),
+                                  const EdgeInsets.only(left: 18, right: 18),
                               alignment: Alignment.center,
                               child: Row(
                                 children: [
                                   Text(
                                     controller.myAdvertiserModel.data?[index]
-                                        .title ??
+                                            .title ??
                                         "",
                                     style: gilroySemiBoldTextStyle(
                                         fontSize: 14, color: ColorRes.black),
@@ -196,7 +202,7 @@ Widget advertisementList() {
                                   const Spacer(),
                                   Text(
                                     controller.myAdvertiserModel.data?[index]
-                                        .amount ??
+                                            .amount ??
                                         "\$",
                                     style: gilroySemiBoldTextStyle(
                                         fontSize: 14, color: ColorRes.black),
@@ -211,204 +217,203 @@ Widget advertisementList() {
                             builder: (controller) {
                               return controller.moreOption[index] == true
                                   ? (controller.myAdvertiserModel.data?[index]
-                                  .adminStatus ==
-                                  "approve")
-                                  ? Align(
-                                alignment: Alignment.topRight,
-                                child: Container(
-                                  height: 115,
-                                  width: Get.width * 0.40,
-                                  color: ColorRes.color_50369C,
-                                  child: ListView.separated(
-                                    itemBuilder: (context, index) {
-                                      return Container(
-                                        padding:
-                                        const EdgeInsets.all(9),
-                                        child: InkWell(
-                                          onTap: () {
-                                            if (index == 0) {
-                                              Get.to(DeletApprove(
-                                                idAdvertiser: controller
-                                                    .myAdvertiserModel
-                                                    .data![index]
-                                                    .id
-                                                    .toString(),
-                                              ));
-                                            } else if(index == 1){
-                                              Get.to(RenewSetupScreen(
-                                                idAdvertiser: controller
-                                                    .myAdvertiserModel
-                                                    .data![0]
-                                                    .id,
-                                              ));
-
-                                            }else if (index == 2) {
-                                              Get.to(CancelApprove(
-                                                idAdvertiser: controller
-                                                    .myAdvertiserModel
-                                                    .data![0]
-                                                    .id
-                                                    .toString(),
-                                              ));
-                                            }
-                                            print(index);
-                                          },
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                height: 20,
-                                                width: 35,
-                                                padding:
-                                                const EdgeInsets
-                                                    .all(2.5),
-                                                decoration:
-                                                BoxDecoration(
-                                                  color: index == 1
-                                                      ? ColorRes
-                                                      .color_D18EEE
-                                                      : ColorRes
-                                                      .color_F86666,
-                                                  borderRadius:
-                                                  const BorderRadius
-                                                      .all(
-                                                      Radius
-                                                          .circular(
-                                                          10)),
-                                                ),
-                                                child: Image.asset(
-                                                  index == 0
-                                                      ? AssetRes
-                                                      .deleteIcon
-                                                      : index == 1
-                                                      ? AssetRes
-                                                      .calendarIcon
-                                                      : AssetRes
-                                                      .blockIcon,
-                                                  height: 15,
-                                                  width: 15,
-                                                ),
-                                              ),
-                                              Text(
-                                                index == 0
-                                                    ? " Delete"
-                                                    : index == 1
-                                                    ? " Renew Ads"
-                                                    : " Cancel Ads",
-                                                style:
-                                                gilroyMediumTextStyle(
-                                                    fontSize: 14),
-                                              )
-                                            ],
+                                              .adminStatus ==
+                                          "approve")
+                                      ? Align(
+                                          alignment: Alignment.topRight,
+                                          child: Container(
+                                            height: 115,
+                                            width: Get.width * 0.40,
+                                            color: ColorRes.color_50369C,
+                                            child: ListView.separated(
+                                              itemBuilder: (context, index) {
+                                                return Container(
+                                                  padding:
+                                                      const EdgeInsets.all(9),
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      if (index == 0) {
+                                                        Get.to(DeletApprove(
+                                                          idAdvertiser: controller
+                                                              .myAdvertiserModel
+                                                              .data![index]
+                                                              .id
+                                                              .toString(),
+                                                        ));
+                                                      } else if (index == 1) {
+                                                        Get.to(RenewSetupScreen(
+                                                          idAdvertiser: controller
+                                                              .myAdvertiserModel
+                                                              .data![0]
+                                                              .id,
+                                                        ));
+                                                      } else if (index == 2) {
+                                                        Get.to(CancelApprove(
+                                                          idAdvertiser: controller
+                                                              .myAdvertiserModel
+                                                              .data![0]
+                                                              .id
+                                                              .toString(),
+                                                        ));
+                                                      }
+                                                      print(index);
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        Container(
+                                                          height: 20,
+                                                          width: 35,
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(2.5),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: index == 1
+                                                                ? ColorRes
+                                                                    .color_D18EEE
+                                                                : ColorRes
+                                                                    .color_F86666,
+                                                            borderRadius:
+                                                                const BorderRadius
+                                                                        .all(
+                                                                    Radius
+                                                                        .circular(
+                                                                            10)),
+                                                          ),
+                                                          child: Image.asset(
+                                                            index == 0
+                                                                ? AssetRes
+                                                                    .deleteIcon
+                                                                : index == 1
+                                                                    ? AssetRes
+                                                                        .calendarIcon
+                                                                    : AssetRes
+                                                                        .blockIcon,
+                                                            height: 15,
+                                                            width: 15,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          index == 0
+                                                              ? " Delete"
+                                                              : index == 1
+                                                                  ? " Renew Ads"
+                                                                  : " Cancel Ads",
+                                                          style:
+                                                              gilroyMediumTextStyle(
+                                                                  fontSize: 14),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                              separatorBuilder:
+                                                  (context, index) {
+                                                return Divider(
+                                                  height: 0,
+                                                  color: ColorRes.white
+                                                      .withOpacity(0.5),
+                                                );
+                                              },
+                                              itemCount: 3,
+                                            ),
                                           ),
-                                        ),
-                                      );
-                                    },
-                                    separatorBuilder:
-                                        (context, index) {
-                                      return Divider(
-                                        height: 0,
-                                        color: ColorRes.white
-                                            .withOpacity(0.5),
-                                      );
-                                    },
-                                    itemCount: 3,
-                                  ),
-                                ),
-                              )
-                                  : Align(
-                                alignment: Alignment.topRight,
-                                child: Container(
-                                  height: 80,
-                                  width: Get.width * 0.40,
-                                  color: ColorRes.color_50369C,
-                                  child: ListView.separated(
-                                    itemBuilder: (context, index1) {
-                                      return Container(
-                                        padding:
-                                        const EdgeInsets.all(9),
-                                        child: InkWell(
-                                          onTap: () {
-                                            if (index1 == 0) {
-                                              Get.to(DeletApprove(
-                                                idAdvertiser: controller
-                                                    .myAdvertiserModel
-                                                    .data![index]
-                                                    .id
-                                                    .toString(),
-                                              ));
-                                            } else if (index1 == 1) {
-                                              controller
-                                                  .followUpAdvertiser(
-                                                  controller
-                                                      .myAdvertiserModel
-                                                      .data![
-                                                  index]
-                                                      .id
-                                                      .toString(),
-                                                  context);
-                                            }
-                                            print(index1);
-                                          },
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                height: 20,
-                                                width: 35,
-                                                padding:
-                                                const EdgeInsets
-                                                    .all(2.5),
-                                                decoration:
-                                                BoxDecoration(
-                                                  color: index1 == 0
-                                                      ? ColorRes
-                                                      .color_D18EEE
-                                                      : ColorRes
-                                                      .color_49A510,
-                                                  borderRadius:
-                                                  const BorderRadius
-                                                      .all(
-                                                      Radius
-                                                          .circular(
-                                                          10)),
-                                                ),
-                                                child: Image.asset(
-                                                  index1 == 0
-                                                      ? AssetRes
-                                                      .deleteIcon
-                                                      : AssetRes
-                                                      .calendarIcon,
-                                                  height: 15,
-                                                  width: 15,
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 3,
-                                              ),
-                                              Text(
-                                                index1 == 0
-                                                    ? " Delete"
-                                                    : " Follow Up",
-                                                style:
-                                                gilroyMediumTextStyle(
-                                                    fontSize: 14),
-                                              )
-                                            ],
+                                        )
+                                      : Align(
+                                          alignment: Alignment.topRight,
+                                          child: Container(
+                                            height: 80,
+                                            width: Get.width * 0.40,
+                                            color: ColorRes.color_50369C,
+                                            child: ListView.separated(
+                                              itemBuilder: (context, index1) {
+                                                return Container(
+                                                  padding:
+                                                      const EdgeInsets.all(9),
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      if (index1 == 0) {
+                                                        Get.to(DeletApprove(
+                                                          idAdvertiser: controller
+                                                              .myAdvertiserModel
+                                                              .data![index]
+                                                              .id
+                                                              .toString(),
+                                                        ));
+                                                      } else if (index1 == 1) {
+                                                        controller
+                                                            .followUpAdvertiser(
+                                                                controller
+                                                                    .myAdvertiserModel
+                                                                    .data![
+                                                                        index]
+                                                                    .id
+                                                                    .toString(),
+                                                                context);
+                                                      }
+                                                      print(index1);
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        Container(
+                                                          height: 20,
+                                                          width: 35,
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(2.5),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: index1 == 0
+                                                                ? ColorRes
+                                                                    .color_D18EEE
+                                                                : ColorRes
+                                                                    .color_49A510,
+                                                            borderRadius:
+                                                                const BorderRadius
+                                                                        .all(
+                                                                    Radius
+                                                                        .circular(
+                                                                            10)),
+                                                          ),
+                                                          child: Image.asset(
+                                                            index1 == 0
+                                                                ? AssetRes
+                                                                    .deleteIcon
+                                                                : AssetRes
+                                                                    .calendarIcon,
+                                                            height: 15,
+                                                            width: 15,
+                                                          ),
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 3,
+                                                        ),
+                                                        Text(
+                                                          index1 == 0
+                                                              ? " Delete"
+                                                              : " Follow Up",
+                                                          style:
+                                                              gilroyMediumTextStyle(
+                                                                  fontSize: 14),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                              separatorBuilder:
+                                                  (context, index) {
+                                                return Divider(
+                                                  height: 0,
+                                                  color: ColorRes.white
+                                                      .withOpacity(0.5),
+                                                );
+                                              },
+                                              itemCount: 2,
+                                            ),
                                           ),
-                                        ),
-                                      );
-                                    },
-                                    separatorBuilder:
-                                        (context, index) {
-                                      return Divider(
-                                        height: 0,
-                                        color: ColorRes.white
-                                            .withOpacity(0.5),
-                                      );
-                                    },
-                                    itemCount: 2,
-                                  ),
-                                ),
-                              )
+                                        )
                                   : const SizedBox();
                             }),
                       ],
@@ -423,7 +428,6 @@ Widget advertisementList() {
     ),
   );
 }
-
 
 /*
 RefreshIndicator(

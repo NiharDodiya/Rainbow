@@ -1,10 +1,10 @@
-
-
 import 'dart:convert';
 
-EditAdvertisementModel editAdvertisementModelFromJson(String str) => EditAdvertisementModel.fromJson(json.decode(str));
+EditAdvertisementModel editAdvertisementModelFromJson(String str) =>
+    EditAdvertisementModel.fromJson(json.decode(str));
 
-String editAdvertisementModelToJson(EditAdvertisementModel data) => json.encode(data.toJson());
+String editAdvertisementModelToJson(EditAdvertisementModel data) =>
+    json.encode(data.toJson());
 
 class EditAdvertisementModel {
   EditAdvertisementModel({
@@ -17,17 +17,18 @@ class EditAdvertisementModel {
   String? message;
   Data? data;
 
-  factory EditAdvertisementModel.fromJson(Map<String, dynamic> json) => EditAdvertisementModel(
-    status: json["status"],
-    message: json["message"],
-    data: json["data"] == null ? null : Data.fromJson(json["data"]),
-  );
+  factory EditAdvertisementModel.fromJson(Map<String, dynamic> json) =>
+      EditAdvertisementModel(
+        status: json["status"],
+        message: json["message"],
+        data: json["data"] == null ? null : Data.fromJson(json["data"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-    "data": data == null ? null : data!.toJson(),
-  };
+        "status": status,
+        "message": message,
+        "data": data == null ? null : data!.toJson(),
+      };
 }
 
 class Data {
@@ -82,74 +83,72 @@ class Data {
   String? status;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    id: json["id"],
-    userDetail: json["userDetail"] == null
-        ? null
-        : UserDetail.fromJson(json["userDetail"]),
-    tagsList: json["tagsList"] == null
-        ? null
-        : List<String>.from(json["tagsList"].map((x) => x)),
-    itemsList: json["itemsList"] == null
-        ? null
-        : List<String>.from(json["itemsList"].map((x) => x)),
-    title: json["title"],
-    location: json["location"],
-    street: json["street"],
-    province: json["province"],
-    country: json["country"],
-    postalCode: json["postal_code"],
-    date: json["date"] == null ? null : DateTime.parse(json["date"]),
-    startDate: json["start_date"] == null
-        ? null
-        : DateTime.parse(json["start_date"]),
-    endDate:
-    json["end_date"] == null ? null : DateTime.parse(json["end_date"]),
-    description: json["description"],
-    callAction: json["call_action"],
-    urlLink: json["url_link"],
-    amount: json["amount"],
-    currency: json["currency"],
-    advViewCount:
-    json["advViewCount"],
-    advClickCount:
-    json["advClickCount"],
-    adminStatus: json["admin_status"],
-    isActive: json["isActive"],
-    status: json["status"],
-  );
+        id: json["id"],
+        userDetail: json["userDetail"] == null
+            ? null
+            : UserDetail.fromJson(json["userDetail"]),
+        tagsList: json["tagsList"] == null
+            ? null
+            : List<String>.from(json["tagsList"].map((x) => x)),
+        itemsList: json["itemsList"] == null
+            ? null
+            : List<String>.from(json["itemsList"].map((x) => x)),
+        title: json["title"],
+        location: json["location"],
+        street: json["street"],
+        province: json["province"],
+        country: json["country"],
+        postalCode: json["postal_code"],
+        date: json["date"] == null ? null : DateTime.parse(json["date"]),
+        startDate: json["start_date"] == null
+            ? null
+            : DateTime.parse(json["start_date"]),
+        endDate:
+            json["end_date"] == null ? null : DateTime.parse(json["end_date"]),
+        description: json["description"],
+        callAction: json["call_action"],
+        urlLink: json["url_link"],
+        amount: json["amount"],
+        currency: json["currency"],
+        advViewCount: json["advViewCount"],
+        advClickCount: json["advClickCount"],
+        adminStatus: json["admin_status"],
+        isActive: json["isActive"],
+        status: json["status"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "userDetail": userDetail == null ? null : userDetail!.toJson(),
-    "tagsList": tagsList == null
-        ? null
-        : List<dynamic>.from(tagsList!.map((x) => x)),
-    "itemsList": itemsList == null
-        ? null
-        : List<dynamic>.from(itemsList!.map((x) => x)),
-    "title": title,
-    "location": location,
-    "street": street,
-    "province": province,
-    "country": country,
-    "postal_code": postalCode,
-    // ignore: prefer_null_aware_operators
-    "date": date == null ? null : date?.toIso8601String(),
-    // ignore: prefer_null_aware_operators
-    "start_date": startDate == null ? null : startDate?.toIso8601String(),
-    // ignore: prefer_null_aware_operators
-    "end_date": endDate == null ? null : endDate?.toIso8601String(),
-    "description": description,
-    "call_action": callAction,
-    "url_link": urlLink,
-    "amount": amount,
-    "currency": currency,
-    "advViewCount": advViewCount,
-    "advClickCount": advClickCount,
-    "admin_status": adminStatus,
-    "isActive": isActive,
-    "status": status,
-  };
+        "id": id,
+        "userDetail": userDetail == null ? null : userDetail!.toJson(),
+        "tagsList": tagsList == null
+            ? null
+            : List<dynamic>.from(tagsList!.map((x) => x)),
+        "itemsList": itemsList == null
+            ? null
+            : List<dynamic>.from(itemsList!.map((x) => x)),
+        "title": title,
+        "location": location,
+        "street": street,
+        "province": province,
+        "country": country,
+        "postal_code": postalCode,
+        // ignore: prefer_null_aware_operators
+        "date": date == null ? null : date?.toIso8601String(),
+        // ignore: prefer_null_aware_operators
+        "start_date": startDate == null ? null : startDate?.toIso8601String(),
+        // ignore: prefer_null_aware_operators
+        "end_date": endDate == null ? null : endDate?.toIso8601String(),
+        "description": description,
+        "call_action": callAction,
+        "url_link": urlLink,
+        "amount": amount,
+        "currency": currency,
+        "advViewCount": advViewCount,
+        "advClickCount": advClickCount,
+        "admin_status": adminStatus,
+        "isActive": isActive,
+        "status": status,
+      };
 }
 
 class UserDetail {
@@ -214,82 +213,71 @@ class UserDetail {
   String? compnayWebsite;
 
   factory UserDetail.fromJson(Map<String, dynamic> json) => UserDetail(
-    id: json["id"],
-    idSocial: json["id_social"],
-    fullName: json["full_name"],
-    email: json["email"],
-    houseNumber: json["house_number"],
-    streetName: json["street_name"],
-    phoneNumber: json["phone_number"],
-    city: json["city"],
-    country: json["country"],
-    idCountry: json["id_country"],
-    postalCode: json["postal_code"],
-    mobileStatus:
-    json["mobile_status"],
-    profileImage:
-    json["profile_image"],
-    role: json["role"],
-    status: json["status"],
-    onlineStatus:
-    json["online_status"],
-    latitude: json["latitude"].toString().isEmpty
-        ? null
-        : json["latitude"] is String
-        ? double.parse(json["latitude"])
-        : json["latitude"],
-    longitude: json["longitude"].toString().isEmpty
-        ? null
-        : json["longitude"] is String
-        ? double.parse(json["longitude"])
-        : json["longitude"],
-    profession: json["profession"],
-    companyName: json["company_name"],
-    companyPhoneNumber: json["company_phone_number"],
-    compnayStreetName: json["compnay_street_name"],
-    compnayCity: json["compnay_city"],
-    companyCountry:
-    json["company_country"],
-    compnayIdCountry: json["compnay_id_country"],
-    compnayPostalCode: json["compnay_postal_code"],
-    compnayWebsite:
-    json["compnay_website"],
-  );
+        id: json["id"],
+        idSocial: json["id_social"],
+        fullName: json["full_name"],
+        email: json["email"],
+        houseNumber: json["house_number"],
+        streetName: json["street_name"],
+        phoneNumber: json["phone_number"],
+        city: json["city"],
+        country: json["country"],
+        idCountry: json["id_country"],
+        postalCode: json["postal_code"],
+        mobileStatus: json["mobile_status"],
+        profileImage: json["profile_image"],
+        role: json["role"],
+        status: json["status"],
+        onlineStatus: json["online_status"],
+        latitude: json["latitude"].toString().isEmpty
+            ? null
+            : json["latitude"] is String
+                ? double.parse(json["latitude"])
+                : json["latitude"],
+        longitude: json["longitude"].toString().isEmpty
+            ? null
+            : json["longitude"] is String
+                ? double.parse(json["longitude"])
+                : json["longitude"],
+        profession: json["profession"],
+        companyName: json["company_name"],
+        companyPhoneNumber: json["company_phone_number"],
+        compnayStreetName: json["compnay_street_name"],
+        compnayCity: json["compnay_city"],
+        companyCountry: json["company_country"],
+        compnayIdCountry: json["compnay_id_country"],
+        compnayPostalCode: json["compnay_postal_code"],
+        compnayWebsite: json["compnay_website"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "id_social": idSocial,
-    "full_name": fullName,
-    "email": email,
-    "house_number": houseNumber,
-    "street_name": streetName,
-    "phone_number": phoneNumber,
-    "city": city,
-    "country": country,
-    "id_country": idCountry,
-    "postal_code": postalCode,
-    "mobile_status": mobileStatus,
-    "profile_image": profileImage,
-    "role": role,
-    "status": status,
-    "online_status": onlineStatus,
-    "latitude": latitude,
-    "longitude": longitude,
-    "profession": profession,
-    "company_name": companyName,
-    "company_phone_number":
-    companyPhoneNumber,
-    "compnay_street_name":
-    compnayStreetName,
-    "compnay_phone_number":
-    compnayPhoneNumber,
-    "compnay_city": compnayCity,
-    "company_country": companyCountry,
-    "compnay_id_country":
-    compnayIdCountry,
-    "compnay_postal_code":
-    compnayPostalCode,
-    "compnay_website": compnayWebsite,
-  };
+        "id": id,
+        "id_social": idSocial,
+        "full_name": fullName,
+        "email": email,
+        "house_number": houseNumber,
+        "street_name": streetName,
+        "phone_number": phoneNumber,
+        "city": city,
+        "country": country,
+        "id_country": idCountry,
+        "postal_code": postalCode,
+        "mobile_status": mobileStatus,
+        "profile_image": profileImage,
+        "role": role,
+        "status": status,
+        "online_status": onlineStatus,
+        "latitude": latitude,
+        "longitude": longitude,
+        "profession": profession,
+        "company_name": companyName,
+        "company_phone_number": companyPhoneNumber,
+        "compnay_street_name": compnayStreetName,
+        "compnay_phone_number": compnayPhoneNumber,
+        "compnay_city": compnayCity,
+        "company_country": companyCountry,
+        "compnay_id_country": compnayIdCountry,
+        "compnay_postal_code": compnayPostalCode,
+        "compnay_website": compnayWebsite,
+      };
 }
-

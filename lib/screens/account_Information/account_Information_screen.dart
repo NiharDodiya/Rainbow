@@ -19,7 +19,7 @@ import 'package:rainbow/utils/strings.dart';
 class AccountInformationScreen extends StatelessWidget {
   AccountInformationScreen({Key? key}) : super(key: key);
   AccountInformationController controller =
-  Get.find<AccountInformationController>();
+      Get.find<AccountInformationController>();
 
   AdHomeController adHomeController = Get.put(AdHomeController());
 
@@ -40,83 +40,80 @@ class AccountInformationScreen extends StatelessWidget {
                   children: [
                     GetBuilder<AccountInformationController>(
                       id: "Getpic",
-                      builder: (controller) =>
-                      (adHomeController
-                          .viewAdvertiserModel
-                          .data!
-                          .profileImage!
-                          .isEmpty ||
-                          adHomeController
-                              .viewAdvertiserModel.data!.profileImage
-                              .toString() ==
-                              "")
+                      builder: (controller) => (adHomeController
+                                  .viewAdvertiserModel
+                                  .data!
+                                  .profileImage!
+                                  .isEmpty ||
+                              adHomeController
+                                      .viewAdvertiserModel.data!.profileImage
+                                      .toString() ==
+                                  "")
                           ? (controller.imagePath == null)
-                          ? Container(
-                        height: Get.width * 0.336,
-                        width: Get.width * 0.336,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                              color: ColorRes.white, width: 7),
-                          image: const DecorationImage(
-                            image: AssetImage(AssetRes.account),
-                          ),
-                        ),
-                      )
+                              ? Container(
+                                  height: Get.width * 0.336,
+                                  width: Get.width * 0.336,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                        color: ColorRes.white, width: 7),
+                                    image: const DecorationImage(
+                                      image: AssetImage(AssetRes.account),
+                                    ),
+                                  ),
+                                )
+                              : Container(
+                                  height: Get.width * 0.336,
+                                  width: Get.width * 0.336,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                        color: ColorRes.white, width: 7),
+                                    image: DecorationImage(
+                                        image: FileImage(
+                                          File(controller.imagePath!.path),
+                                        ),
+                                        fit: BoxFit.cover),
+                                  ),
+                                )
                           : Container(
-                        height: Get.width * 0.336,
-                        width: Get.width * 0.336,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                              color: ColorRes.white, width: 7),
-                          image: DecorationImage(
-                              image: FileImage(
-                                File(controller.imagePath!.path),
-                              ),
-                              fit: BoxFit.cover),
-                        ),
-                      )
-                          : Container(
-                          height: Get.width * 0.336,
-                          width: Get.width * 0.336,
-                          padding: EdgeInsets.all(7),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(99),
-                            child: Container(
                               height: Get.width * 0.336,
                               width: Get.width * 0.336,
+                              padding: EdgeInsets.all(7),
                               decoration: BoxDecoration(
+                                color: Colors.white,
                                 shape: BoxShape.circle,
-
                               ),
-                              child: CachedNetworkImage(
-                                imageUrl: adHomeController
-                                    .viewAdvertiserModel.data!.profileImage!
-                                    .toString(),
-                                fit: BoxFit.cover,
-                                placeholder: ((context, url) =>
-                                    Image.asset(
-                                      AssetRes.account,
-                                      height: Get.width * 0.336,
-                                      width: Get.width * 0.336,
-                                      fit: BoxFit.cover,
-                                    )),
-                                errorWidget: ((context, url, error) =>
-                                    Image.asset(
-                                      AssetRes.account,
-                                      height: Get.width * 0.336,
-                                      width: Get.width * 0.336,
-                                      fit: BoxFit.cover,
-                                    )),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(99),
+                                child: Container(
+                                  height: Get.width * 0.336,
+                                  width: Get.width * 0.336,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: CachedNetworkImage(
+                                    imageUrl: adHomeController
+                                        .viewAdvertiserModel.data!.profileImage!
+                                        .toString(),
+                                    fit: BoxFit.cover,
+                                    placeholder: ((context, url) => Image.asset(
+                                          AssetRes.account,
+                                          height: Get.width * 0.336,
+                                          width: Get.width * 0.336,
+                                          fit: BoxFit.cover,
+                                        )),
+                                    errorWidget: ((context, url, error) =>
+                                        Image.asset(
+                                          AssetRes.account,
+                                          height: Get.width * 0.336,
+                                          width: Get.width * 0.336,
+                                          fit: BoxFit.cover,
+                                        )),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                      ),
                     ),
                     Positioned(
                       bottom: Get.width * 0.01333,
@@ -133,7 +130,6 @@ class AccountInformationScreen extends StatelessWidget {
                         child: Center(
                           child: InkWell(
                             onTap: () {
-
                               showModalBottomSheet(
                                   elevation: 10,
                                   barrierColor: ColorRes.black.withOpacity(0.4),
@@ -186,77 +182,76 @@ class AccountInformationScreen extends StatelessWidget {
               ),
               GetBuilder<AccountInformationController>(
                 id: 'update',
-                builder: (controller) =>
-                    Column(
+                builder: (controller) => Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                controller.selectAccount();
-                              },
-                              child: SizedBox(
-                                width: Get.width * 0.5,
-                                height: Get.height * 0.05,
-                                child: Center(
-                                  child: Text(
-                                    Strings.account,
-                                    textAlign: TextAlign.start,
-                                    style: gilroyBoldTextStyle(fontSize: 12),
-                                  ),
-                                ),
+                        InkWell(
+                          onTap: () {
+                            controller.selectAccount();
+                          },
+                          child: SizedBox(
+                            width: Get.width * 0.5,
+                            height: Get.height * 0.05,
+                            child: Center(
+                              child: Text(
+                                Strings.account,
+                                textAlign: TextAlign.start,
+                                style: gilroyBoldTextStyle(fontSize: 12),
                               ),
                             ),
-                            InkWell(
-                              onTap: () {
-                                controller.selectCompny();
-                              },
-                              child: SizedBox(
-                                width: Get.width * 0.5,
-                                height: Get.height * 0.05,
-                                child: Center(
-                                  child: Text(
-                                    Strings.company,
-                                    style: gilroyBoldTextStyle(fontSize: 12),
-                                  ),
-                                ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            controller.selectCompny();
+                          },
+                          child: SizedBox(
+                            width: Get.width * 0.5,
+                            height: Get.height * 0.05,
+                            child: Center(
+                              child: Text(
+                                Strings.company,
+                                style: gilroyBoldTextStyle(fontSize: 12),
                               ),
                             ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              width: Get.width * .5,
-                              height: !controller.companySelected ? 3 : 1,
-                              color: !controller.companySelected
-                                  ? ColorRes.color_FFED62
-                                  : ColorRes.white,
-                            ),
-                            Container(
-                              width: Get.width * .5,
-                              height: controller.companySelected ? 3 : 1,
-                              color: controller.companySelected
-                                  ? ColorRes.color_FFED62
-                                  : ColorRes.white,
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: Get.height - (Get.height * 0.379),
-                          child: Padding(
-                            padding:
-                            EdgeInsets.symmetric(horizontal: Get.width * 0.072),
-                            child: SingleChildScrollView(
-                                physics: const BouncingScrollPhysics(),
-                                child: controller.companySelected
-                                    ? companyPart()
-                                    : accountPart(context)),
                           ),
                         ),
                       ],
                     ),
+                    Row(
+                      children: [
+                        Container(
+                          width: Get.width * .5,
+                          height: !controller.companySelected ? 3 : 1,
+                          color: !controller.companySelected
+                              ? ColorRes.color_FFED62
+                              : ColorRes.white,
+                        ),
+                        Container(
+                          width: Get.width * .5,
+                          height: controller.companySelected ? 3 : 1,
+                          color: controller.companySelected
+                              ? ColorRes.color_FFED62
+                              : ColorRes.white,
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: Get.height - (Get.height * 0.379),
+                      child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: Get.width * 0.072),
+                        child: SingleChildScrollView(
+                            physics: const BouncingScrollPhysics(),
+                            child: controller.companySelected
+                                ? companyPart()
+                                : accountPart(context)),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ]),
           ),
@@ -285,172 +280,171 @@ class AccountInformationScreen extends StatelessWidget {
   }
 
   Widget accountPart(context) {
-    return Obx(() =>
-    controller.loader.isTrue
+    return Obx(() => controller.loader.isTrue
         ? const FullScreenLoader()
         : Column(
-      children: [
-        SizedBox(height: Get.height * 0.0197),
-        AppTextFiled(
-          controller: controller.fullNameController,
-          title: Strings.fullName,
-          hintText: Strings.fullName,
-        ),
-        AppTextFiled(
-          controller: controller.emailController,
-          title: Strings.email,
-          hintText: Strings.email,
-        ),
-        AppTextFiled(
-          controller: controller.houseNumberController,
-          title: Strings.houseNumber,
-          hintText: Strings.houseNumberHint,
-        ),
-        AppTextFiled(
-          controller: controller.streetNumberController,
-          title: Strings.streetName,
-          hintText: Strings.street,
-        ),
-        AppTextFiled(
-          controller: controller.cityController,
-          title: Strings.city,
-          hintText: Strings.ontrario,
-        ),
-        Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            Strings.country,
-            style: gilroySemiBoldTextStyle(fontSize: 14),
-          ),
-        ),
-        SizedBox(height: 10),
-        GetBuilder<AccountInformationController>(
-            id: "drop",
-            builder: (controller) {
-              return Container(
-                width: Get.width / 1.20,
-                height: 60,
-                decoration: BoxDecoration(
-                  color: ColorRes.white,
-                  borderRadius: BorderRadius.circular(20),
+            children: [
+              SizedBox(height: Get.height * 0.0197),
+              AppTextFiled(
+                controller: controller.fullNameController,
+                title: Strings.fullName,
+                hintText: Strings.fullName,
+              ),
+              AppTextFiled(
+                controller: controller.emailController,
+                title: Strings.email,
+                hintText: Strings.email,
+              ),
+              AppTextFiled(
+                controller: controller.houseNumberController,
+                title: Strings.houseNumber,
+                hintText: Strings.houseNumberHint,
+              ),
+              AppTextFiled(
+                controller: controller.streetNumberController,
+                title: Strings.streetName,
+                hintText: Strings.street,
+              ),
+              AppTextFiled(
+                controller: controller.cityController,
+                title: Strings.city,
+                hintText: Strings.ontrario,
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  Strings.country,
+                  style: gilroySemiBoldTextStyle(fontSize: 14),
                 ),
-                padding: const EdgeInsets.only(left: 20, top: 5),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 14,
-                          child: InkWell(
-                            child: TextField(
-                              onTap: controller.dropDownBox,
-                              controller: controller.countryController,
-                              style: textFieldText,
-                              obscuringCharacter: "•",
-                              onChanged: (value) {
-                                controller.serching(value);
-                              },
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintStyle: gilroyMediumTextStyle(
-                                    fontSize: 18,
-                                    color:
-                                    ColorRes.black.withOpacity(0.3)),
-                                hintText: "Canada",
+              ),
+              SizedBox(height: 10),
+              GetBuilder<AccountInformationController>(
+                  id: "drop",
+                  builder: (controller) {
+                    return Container(
+                      width: Get.width / 1.20,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: ColorRes.white,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      padding: const EdgeInsets.only(left: 20, top: 5),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 14,
+                                child: InkWell(
+                                  child: TextField(
+                                    onTap: controller.dropDownBox,
+                                    controller: controller.countryController,
+                                    style: textFieldText,
+                                    obscuringCharacter: "•",
+                                    onChanged: (value) {
+                                      controller.serching(value);
+                                    },
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintStyle: gilroyMediumTextStyle(
+                                          fontSize: 18,
+                                          color:
+                                              ColorRes.black.withOpacity(0.3)),
+                                      hintText: "Canada",
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: controller.dropDownBox,
+                                icon:
+                                    Image.asset(AssetRes.arrowDown, height: 20),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+              GetBuilder<AccountInformationController>(
+                  id: "drop",
+                  builder: (controller) {
+                    return (controller.countryBox == true)
+                        ? Container(
+                            height: 160,
+                            width: Get.width / 1.20,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                            ),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: (controller
+                                        .countryController.text.isEmpty)
+                                    ? listCountryModel.data!.map((e) {
+                                        return Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 20, top: 7, bottom: 7),
+                                          child: InkWell(
+                                            onTap: () {
+                                              controller.countryController
+                                                  .text = e.name!;
+                                              controller.countryBox = false;
+                                              controller.update(["drop"]);
+                                            },
+                                            child: SizedBox(
+                                              height: 25,
+                                              width: Get.width,
+                                              child: Align(
+                                                alignment: Alignment.topLeft,
+                                                child: Text(
+                                                  e.name!,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 16),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }).toList()
+                                    : controller.filterList.map((e) {
+                                        return Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 20, top: 7, bottom: 7),
+                                          child: InkWell(
+                                            onTap: () {
+                                              controller.countryController
+                                                  .text = e.name!;
+                                              controller.countryBox = false;
+                                              controller.update(["drop"]);
+                                            },
+                                            child: SizedBox(
+                                              height: 25,
+                                              width: Get.width,
+                                              child: Align(
+                                                alignment: Alignment.topLeft,
+                                                child: Text(
+                                                  e.name!,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 16),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }).toList(),
                               ),
                             ),
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: controller.dropDownBox,
-                          icon:
-                          Image.asset(AssetRes.arrowDown, height: 20),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              );
-            }),
-        GetBuilder<AccountInformationController>(
-            id: "drop",
-            builder: (controller) {
-              return (controller.countryBox == true)
-                  ? Container(
-                height: 160,
-                width: Get.width / 1.20,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.white,
-                ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: (controller
-                        .countryController.text.isEmpty)
-                        ? listCountryModel.data!.map((e) {
-                      return Padding(
-                        padding: EdgeInsets.only(
-                            left: 20, top: 7, bottom: 7),
-                        child: InkWell(
-                          onTap: () {
-                            controller.countryController
-                                .text = e.name!;
-                            controller.countryBox = false;
-                            controller.update(["drop"]);
-                          },
-                          child: SizedBox(
-                            height: 25,
-                            width: Get.width,
-                            child: Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                e.name!,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16),
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    }).toList()
-                        : controller.filterList.map((e) {
-                      return Padding(
-                        padding: EdgeInsets.only(
-                            left: 20, top: 7, bottom: 7),
-                        child: InkWell(
-                          onTap: () {
-                            controller.countryController
-                                .text = e.name!;
-                            controller.countryBox = false;
-                            controller.update(["drop"]);
-                          },
-                          child: SizedBox(
-                            height: 25,
-                            width: Get.width,
-                            child: Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                e.name!,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16),
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                ),
-              )
-                  : SizedBox();
-            }),
-        SizedBox(height: 10),
-        /*GetBuilder<AccountInformationController>(
+                          )
+                        : SizedBox();
+                  }),
+              SizedBox(height: 10),
+              /*GetBuilder<AccountInformationController>(
                 id: 'doctor',
                 builder: (controller) {
                   return dropdownButton(
@@ -463,202 +457,200 @@ class AccountInformationScreen extends StatelessWidget {
                       height: Get.height * 0.3);
                 },
               ),*/
-        AppTextFiled(
-          controller: controller.postalCodeController,
-          title: Strings.postalCode,
-          hintText: Strings.postalCodeHint,
-        ),
-        AppTextFiled(
-          prefix: countryCodePicker(context),
-          controller: controller.phoneNumberController,
-          title: Strings.phoneNumber,
-          hintText: Strings.phoneNumberHint,
-        ),
-        SizedBox(height: Get.height * 0.0197),
-        SubmitButton(
-          text: Strings.save,
-          onTap: controller.accountSave,
-        ),
-        SizedBox(height: Get.height * 0.0197),
-      ],
-    ));
+              AppTextFiled(
+                controller: controller.postalCodeController,
+                title: Strings.postalCode,
+                hintText: Strings.postalCodeHint,
+              ),
+              AppTextFiled(
+                prefix: countryCodePicker(context),
+                controller: controller.phoneNumberController,
+                title: Strings.phoneNumber,
+                hintText: Strings.phoneNumberHint,
+              ),
+              SizedBox(height: Get.height * 0.0197),
+              SubmitButton(
+                text: Strings.save,
+                onTap: controller.accountSave,
+              ),
+              SizedBox(height: Get.height * 0.0197),
+            ],
+          ));
   }
 
   Widget companyPart() {
     return Obx(
-          () =>
-      controller.loader.isTrue
+      () => controller.loader.isTrue
           ? const FullScreenLoader()
           : Column(
-        children: [
-          SizedBox(height: Get.height * 0.0197),
-          GetBuilder<AccountInformationController>(
-              id: 'doctor',
-              builder: (controller) =>
-                  dropdownButton(
-                    dropdownList: controller.dropdownList,
-                    hintText: Strings.profession,
-                    title: Strings.profession,
-                    selectedValue: controller.userProfession,
-                    onTap: controller.onCountryProfession,
-                  )),
-          AppTextFiled(
-            controller: controller.companyName,
-            title: Strings.companyName,
-            hintText: Strings.myCompany,
-          ),
-          AppTextFiled(
-            controller: controller.companyNumber,
-            title: Strings.companyNumber,
-            hintText: Strings.companyNumberDigit,
-            obscure: false,
-          ),
-          AppTextFiled(
-            controller: controller.companyStreetNumberController,
-            title: Strings.streetName,
-            hintText: Strings.street,
-            obscure: false,
-          ),
-          AppTextFiled(
-            controller: controller.companyCityController,
-            title: Strings.city,
-            hintText: Strings.city,
-            multiLine: true,
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Text(
-              Strings.country,
-              style: gilroySemiBoldTextStyle(fontSize: 14),
-            ),
-          ),
-          SizedBox(height: 10),
-          GetBuilder<AccountInformationController>(
-              id: "drop",
-              builder: (controller) {
-                return Container(
-                  width: Get.width / 1.20,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    color: ColorRes.white,
-                    borderRadius: BorderRadius.circular(20),
+              children: [
+                SizedBox(height: Get.height * 0.0197),
+                GetBuilder<AccountInformationController>(
+                    id: 'doctor',
+                    builder: (controller) => dropdownButton(
+                          dropdownList: controller.dropdownList,
+                          hintText: Strings.profession,
+                          title: Strings.profession,
+                          selectedValue: controller.userProfession,
+                          onTap: controller.onCountryProfession,
+                        )),
+                AppTextFiled(
+                  controller: controller.companyName,
+                  title: Strings.companyName,
+                  hintText: Strings.myCompany,
+                ),
+                AppTextFiled(
+                  controller: controller.companyNumber,
+                  title: Strings.companyNumber,
+                  hintText: Strings.companyNumberDigit,
+                  obscure: false,
+                ),
+                AppTextFiled(
+                  controller: controller.companyStreetNumberController,
+                  title: Strings.streetName,
+                  hintText: Strings.street,
+                  obscure: false,
+                ),
+                AppTextFiled(
+                  controller: controller.companyCityController,
+                  title: Strings.city,
+                  hintText: Strings.city,
+                  multiLine: true,
+                ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    Strings.country,
+                    style: gilroySemiBoldTextStyle(fontSize: 14),
                   ),
-                  padding: const EdgeInsets.only(left: 20, top: 5),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 14,
-                            child: InkWell(
-                              child: TextField(
-                                controller: controller.countryController,
-                                style: textFieldText,
-                                obscuringCharacter: "•",
-                                onChanged: (value) {
-                                  controller.serching(value);
-                                },
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintStyle: gilroyMediumTextStyle(
-                                      fontSize: 18,
-                                      color: ColorRes.black
-                                          .withOpacity(0.3)),
-                                  hintText: "Canada",
+                ),
+                SizedBox(height: 10),
+                GetBuilder<AccountInformationController>(
+                    id: "drop",
+                    builder: (controller) {
+                      return Container(
+                        width: Get.width / 1.20,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          color: ColorRes.white,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding: const EdgeInsets.only(left: 20, top: 5),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  flex: 14,
+                                  child: InkWell(
+                                    child: TextField(
+                                      controller: controller.countryController,
+                                      style: textFieldText,
+                                      obscuringCharacter: "•",
+                                      onChanged: (value) {
+                                        controller.serching(value);
+                                      },
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintStyle: gilroyMediumTextStyle(
+                                            fontSize: 18,
+                                            color: ColorRes.black
+                                                .withOpacity(0.3)),
+                                        hintText: "Canada",
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: controller.dropDownBox,
+                                  icon: Image.asset(AssetRes.arrowDown,
+                                      height: 20),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      );
+                    }),
+                GetBuilder<AccountInformationController>(
+                    id: "drop",
+                    builder: (controller) {
+                      return (controller.countryBox == true)
+                          ? Container(
+                              height: 160,
+                              width: Get.width / 1.20,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                              ),
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: (controller
+                                          .countryController.text.isEmpty)
+                                      ? listNationalities.data!.map((e) {
+                                          return Padding(
+                                            padding: EdgeInsets.only(
+                                                left: 20, top: 7, bottom: 7),
+                                            child: InkWell(
+                                              onTap: () {
+                                                controller.countryController
+                                                    .text = e.name!;
+                                                controller.countryBox = false;
+                                                controller.update(["drop"]);
+                                              },
+                                              child: SizedBox(
+                                                height: 25,
+                                                width: Get.width,
+                                                child: Align(
+                                                  alignment: Alignment.topLeft,
+                                                  child: Text(
+                                                    e.name!,
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 16),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        }).toList()
+                                      : controller.filterList.map((e) {
+                                          return Padding(
+                                            padding: EdgeInsets.only(
+                                                left: 20, top: 7, bottom: 7),
+                                            child: InkWell(
+                                              onTap: () {
+                                                controller.countryController
+                                                    .text = e.name!;
+                                                controller.countryBox = false;
+                                                controller.update(["drop"]);
+                                              },
+                                              child: SizedBox(
+                                                height: 25,
+                                                width: Get.width,
+                                                child: Align(
+                                                  alignment: Alignment.topLeft,
+                                                  child: Text(
+                                                    e.name!,
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 16),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        }).toList(),
                                 ),
                               ),
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: controller.dropDownBox,
-                            icon: Image.asset(AssetRes.arrowDown,
-                                height: 20),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                );
-              }),
-          GetBuilder<AccountInformationController>(
-              id: "drop",
-              builder: (controller) {
-                return (controller.countryBox == true)
-                    ? Container(
-                  height: 160,
-                  width: Get.width / 1.20,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white,
-                  ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: (controller
-                          .countryController.text.isEmpty)
-                          ? listNationalities.data!.map((e) {
-                        return Padding(
-                          padding: EdgeInsets.only(
-                              left: 20, top: 7, bottom: 7),
-                          child: InkWell(
-                            onTap: () {
-                              controller.countryController
-                                  .text = e.name!;
-                              controller.countryBox = false;
-                              controller.update(["drop"]);
-                            },
-                            child: SizedBox(
-                              height: 25,
-                              width: Get.width,
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  e.name!,
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16),
-                                ),
-                              ),
-                            ),
-                          ),
-                        );
-                      }).toList()
-                          : controller.filterList.map((e) {
-                        return Padding(
-                          padding: EdgeInsets.only(
-                              left: 20, top: 7, bottom: 7),
-                          child: InkWell(
-                            onTap: () {
-                              controller.countryController
-                                  .text = e.name!;
-                              controller.countryBox = false;
-                              controller.update(["drop"]);
-                            },
-                            child: SizedBox(
-                              height: 25,
-                              width: Get.width,
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                  e.name!,
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16),
-                                ),
-                              ),
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                )
-                    : SizedBox();
-              }),
-          SizedBox(height: 10),
-          /*GetBuilder<AccountInformationController>(
+                            )
+                          : SizedBox();
+                    }),
+                SizedBox(height: 10),
+                /*GetBuilder<AccountInformationController>(
                   id: 'doctor',
                   builder: (controller) {
                     return dropdownButton(
@@ -670,32 +662,32 @@ class AccountInformationScreen extends StatelessWidget {
                         height: Get.height * 0.3);
                   },
                 ),*/
-          GestureDetector(
-            onTap: () {},
-            child: AppTextFiled(
-              controller: controller.companyPostalCodeController,
-              title: Strings.postalCode,
-              hintText: Strings.postalCodeDigitHint,
-              enable: true,
+                GestureDetector(
+                  onTap: () {},
+                  child: AppTextFiled(
+                    controller: controller.companyPostalCodeController,
+                    title: Strings.postalCode,
+                    hintText: Strings.postalCodeDigitHint,
+                    enable: true,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: AppTextFiled(
+                    controller: controller.website,
+                    title: Strings.website,
+                    hintText: Strings.websiteHint,
+                    enable: true,
+                  ),
+                ),
+                SizedBox(height: Get.height * 0.0197),
+                SubmitButton(
+                  text: Strings.save,
+                  onTap: () => controller.accountSave(),
+                ),
+                SizedBox(height: Get.height * 0.0197),
+              ],
             ),
-          ),
-          GestureDetector(
-            onTap: () {},
-            child: AppTextFiled(
-              controller: controller.website,
-              title: Strings.website,
-              hintText: Strings.websiteHint,
-              enable: true,
-            ),
-          ),
-          SizedBox(height: Get.height * 0.0197),
-          SubmitButton(
-            text: Strings.save,
-            onTap: () => controller.accountSave(),
-          ),
-          SizedBox(height: Get.height * 0.0197),
-        ],
-      ),
     );
   }
 }

@@ -111,7 +111,7 @@ class AddCartScreen extends StatelessWidget {
                                   Strings.country,
                                   style: gilroySemiBoldTextStyle(fontSize: 14),
                                 ),
-                                SizedBox(height: 8),
+                                const SizedBox(height: 8),
                                 //dropdownButtonCountry(),
                                 GetBuilder<AddCartController>(
                                     id: "drop",
@@ -167,7 +167,7 @@ class AddCartScreen extends StatelessWidget {
                                                       AssetRes.arrowDown,
                                                       height: 20),
                                                 ),
-                                                SizedBox(
+                                                const SizedBox(
                                                   width: 5,
                                                 ),
                                               ],
@@ -197,39 +197,39 @@ class AddCartScreen extends StatelessWidget {
                                                       ? countryCity.map((e) {
                                                           return Padding(
                                                             padding:
-                                                            EdgeInsets.only(
-                                                                left: 20,
-                                                                top: 7,
-                                                                bottom: 7),
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 20,
+                                                                    top: 7,
+                                                                    bottom: 7),
                                                             child: InkWell(
                                                               onTap: () {
                                                                 controller
                                                                     .countryController
                                                                     .text = e;
                                                                 controller
-                                                                    .countryBox =
-                                                                false;
+                                                                        .countryBox =
+                                                                    false;
                                                                 controller
                                                                     .update([
                                                                   "drop"
                                                                 ]);
                                                               },
                                                               child: SizedBox(
-                                                                width: Get.width,
+                                                                width:
+                                                                    Get.width,
                                                                 height: 25,
                                                                 child: Align(
                                                                   alignment:
                                                                       Alignment
                                                                           .topLeft,
-
-                                                                    child: Text(
-                                                                      e,
-                                                                      style: TextStyle(
-                                                                          color: Colors
-                                                                              .black,
-                                                                          fontSize:
-                                                                              16),
-
+                                                                  child: Text(
+                                                                    e,
+                                                                    style: const TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            16),
                                                                   ),
                                                                 ),
                                                               ),
@@ -240,33 +240,39 @@ class AddCartScreen extends StatelessWidget {
                                                           .map((e) {
                                                           return Padding(
                                                             padding:
-                                                            EdgeInsets.only(
-                                                                left: 20,
-                                                                top: 7,
-                                                                bottom: 7),
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 20,
+                                                                    top: 7,
+                                                                    bottom: 7),
                                                             child: InkWell(
                                                               onTap: () {
                                                                 controller
-                                                                    .countryController.text = e;
-                                                                controller.countryBox = false;
-                                                                controller.update(["drop"]);
+                                                                    .countryController
+                                                                    .text = e;
+                                                                controller
+                                                                        .countryBox =
+                                                                    false;
+                                                                controller
+                                                                    .update([
+                                                                  "drop"
+                                                                ]);
                                                               },
                                                               child: SizedBox(
-                                                                width: Get.width,
-                                                               height: 25,
+                                                                width:
+                                                                    Get.width,
+                                                                height: 25,
                                                                 child: Align(
                                                                   alignment:
                                                                       Alignment
                                                                           .topLeft,
-
-                                                                    child:Text(
-                                                                      e,
-                                                                      style: TextStyle(
-                                                                          color: Colors
-                                                                              .black,
-                                                                          fontSize:
-                                                                          16),
-
+                                                                  child: Text(
+                                                                    e,
+                                                                    style: const TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            16),
                                                                   ),
                                                                 ),
                                                               ),
@@ -276,7 +282,7 @@ class AddCartScreen extends StatelessWidget {
                                                 ),
                                               ),
                                             )
-                                          : SizedBox();
+                                          : const SizedBox();
                                     }),
                                 /*  AppTextFiled(
                           controller: controller.countryController,
@@ -304,7 +310,7 @@ class AddCartScreen extends StatelessWidget {
                                   Strings.cardNumber,
                                   style: gilroySemiBoldTextStyle(fontSize: 14),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 Stack(
@@ -318,8 +324,8 @@ class AddCartScreen extends StatelessWidget {
                                       ),
                                     ),
                                     Padding(
-                                      padding:
-                                          EdgeInsets.only(left: 20, top: 5),
+                                      padding: const EdgeInsets.only(
+                                          left: 20, top: 5),
                                       child: TextField(
                                         controller:
                                             controller.cardNmberController,
@@ -337,7 +343,7 @@ class AddCartScreen extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 // SizedBox(

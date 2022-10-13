@@ -822,30 +822,29 @@ class SupportDetailsScreen extends StatelessWidget {
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(50),
-                            child:Container(
+                            child: Container(
                               height: 53,
                               width: 53,
-                              child:  CachedNetworkImage(
+                              child: CachedNetworkImage(
                                 imageUrl: controller.viewSupportTicketModel
                                     .data![index].userDetail!.profileImage
                                     .toString(),
                                 fit: BoxFit.cover,
                                 placeholder: ((context, url) => Image.asset(
-                                  AssetRes.portrait_placeholder,
-                                  fit: BoxFit.cover,
-                                  height: 53,
-                                  width: 53,
-                                )),
-                                errorWidget: ((context, url, error) => Image.asset(
-                                  AssetRes.portrait_placeholder,
-
-                                  fit: BoxFit.cover,
-                                  height: 53,
-                                  width: 53,
-                                )),
+                                      AssetRes.portrait_placeholder,
+                                      fit: BoxFit.cover,
+                                      height: 53,
+                                      width: 53,
+                                    )),
+                                errorWidget: ((context, url, error) =>
+                                    Image.asset(
+                                      AssetRes.portrait_placeholder,
+                                      fit: BoxFit.cover,
+                                      height: 53,
+                                      width: 53,
+                                    )),
                               ),
                             ),
-
                           ),
                           Spacer(),
                           /*SizedBox(

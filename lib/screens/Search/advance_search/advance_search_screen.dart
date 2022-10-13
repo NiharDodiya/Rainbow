@@ -387,7 +387,8 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(50),
                       child: Image.network(
-                        controller.listLatLongData[index].profileImage.toString(),
+                        controller.listLatLongData[index].profileImage
+                            .toString(),
                         height: 50,
                         width: 50,
                         fit: BoxFit.cover,

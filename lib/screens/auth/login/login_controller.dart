@@ -48,28 +48,22 @@ class LoginController extends GetxController {
   }
 
   void onLoginTap(context) {
+    HomeController homeController = Get.put(HomeController());
+    AdHomeController adHomeController = Get.put(AdHomeController());
 
+    adHomeController.viewAdvertiserModel.data?.profilePhoto = null;
+    adHomeController.viewAdvertiserModel.data?.fullName = "";
+    adHomeController.viewAdvertiserModel.data?.profileImage = "";
+    adHomeController.viewAdvertiserModel.data?.email = "";
+    homeController.viewProfile.data = null;
+    homeController.controller.viewProfile.data?.profileImage = null;
+    homeController.controller.viewProfile.data?.profileImage = null;
 
-     HomeController homeController = Get.put(HomeController());
-     AdHomeController adHomeController = Get.put(AdHomeController());
+    homeController.controller.viewProfile.data?.profileImage = "";
 
-
-     adHomeController.viewAdvertiserModel.data?.profilePhoto = null;
-     adHomeController.viewAdvertiserModel.data?.fullName = "";
-     adHomeController.viewAdvertiserModel.data?.profileImage = "";
-     adHomeController.viewAdvertiserModel.data?.email = "";
-     homeController.viewProfile.data = null;
-     homeController.controller.viewProfile.data?.profileImage = null;
-     homeController.controller.viewProfile.data?.profileImage = null;
-
-     homeController.controller.viewProfile.data?.profileImage  = "";
-
-
-     homeController.viewStoryController.storyModel.friendsStory = null;
-     homeController.viewStoryController.storyModel.friendsStory?.length = 0;
-     homeController.friendPostListData = [];
-
-
+    homeController.viewStoryController.storyModel.friendsStory = null;
+    homeController.viewStoryController.storyModel.friendsStory?.length = 0;
+    homeController.friendPostListData = [];
 
     FocusScopeNode currentfocus = FocusScope.of(context);
     if (!currentfocus.hasPrimaryFocus) {
@@ -112,12 +106,12 @@ class LoginController extends GetxController {
 
   LoginModel loginModel = LoginModel();
 
- /* ViewStoryController viewStoryController = Get.put(ViewStoryController());
+  /* ViewStoryController viewStoryController = Get.put(ViewStoryController());
   HomeController homeController = Get.put(HomeController());*/
   Future<void> registerDetails() async {
     loader.value = true;
     try {
-     /* viewStoryController.storyModel.friendsStory=null;
+      /* viewStoryController.storyModel.friendsStory=null;
       homeController.myStoryController.viewStoryController.storyModel
           .myStory=null;*/
       loginModel = await LoginApi.postRegister(
@@ -163,7 +157,8 @@ class LoginController extends GetxController {
     }
     update(['login']);
   }
-String? token;
+
+  String? token;
 
   Future<void> addUser(String uid) async {
     token = await NotificationService.getFcmToken();

@@ -564,7 +564,8 @@ class EditAdvertisementscreen extends StatelessWidget {
     return InkWell(
       onTap: () {
         Get.to(UpdateAdvertiseScreen(
-            id: editAdvertiesementController.editAdvertisementModel.data?.id ?? 0));
+            id: editAdvertiesementController.editAdvertisementModel.data?.id ??
+                0));
       },
       child: Text(
         "Edit",

@@ -61,22 +61,23 @@ class DoctorRegisterController extends GetxController {
   List filterList = [];
 
   void serching(value) {
-    filterList = (listCountryModel.data?.where(
-            (element) {
-          return element.name.toString().toLowerCase().contains(value.toString().toLowerCase());
-        })
-        .toList()) ?? [];
+    filterList = (listCountryModel.data?.where((element) {
+          return element.name
+              .toString()
+              .toLowerCase()
+              .contains(value.toString().toLowerCase());
+        }).toList()) ??
+        [];
     update(["drop"]);
   }
 
   bool countryBox = false;
 
-  dropDownBox(){
-    if(countryBox == false){
+  dropDownBox() {
+    if (countryBox == false) {
       countryBox = true;
       update(["drop"]);
-    }
-    else{
+    } else {
       countryBox = false;
       update(["drop"]);
     }
@@ -152,10 +153,6 @@ class DoctorRegisterController extends GetxController {
     } else if (website.text.isEmpty) {
       errorToast(Strings.websiteError);
       return false;
-    }else if(!RegExp(r'^((?:.|\n)*?)((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)([-A-Z0-9.]+)(/[-A-Z0-9+&@#/%=~_|!:,.;]*)?(\?[A-Z0-9+&@#/%=~_|!:,.;]*)?)')
-    .hasMatch(website.text)){
-      errorToast("Enter valid website");
-      return false;
     }
     return true;
   }
@@ -199,7 +196,7 @@ class DoctorRegisterController extends GetxController {
       );
 
       loader.value = false;
-     // await PrefService.setValue(PrefKeys.phonSaveNumberAdvertiser, "+${'${controller.countryModel.phoneCode} ${controller.phoneNumber.text}'}")
+      // await PrefService.setValue(PrefKeys.phonSaveNumberAdvertiser, "+${'${controller.countryModel.phoneCode} ${controller.phoneNumber.text}'}")
       await PrefService.setValue(
           PrefKeys.registerToken, advertiserRegister.token.toString());
       await PrefService.setValue(PrefKeys.userId, advertiserRegister.data!.id);

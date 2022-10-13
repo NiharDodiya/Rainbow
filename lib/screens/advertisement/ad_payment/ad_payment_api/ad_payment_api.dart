@@ -19,7 +19,6 @@ import 'package:rainbow/utils/end_points.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
 class ListCartApi {
-
   static Future listCardsApi({required bool showToast}) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
     try {
@@ -51,17 +50,15 @@ class ListCartApi {
     try {
       String url = EndPoints.viewCard;
 
-      Map<String, dynamic> data = {
-        "id_card": id
-      };
+      Map<String, dynamic> data = {"id_card": id};
 
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(data),
           header: {
-        "Content-Type": "application/json",
-        "x-access-token": accesToken
-      });
+            "Content-Type": "application/json",
+            "x-access-token": accesToken
+          });
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
@@ -79,7 +76,7 @@ class ListCartApi {
     }
   }
 
-  static Future removeCardApi({int? id}) async{
+  static Future removeCardApi({int? id}) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
     try {
       String url = EndPoints.removeCard;
@@ -92,9 +89,9 @@ class ListCartApi {
           url: url,
           body: jsonEncode(param),
           header: {
-        "Content-Type": "application/json",
-        "x-access-token": accesToken
-      });
+            "Content-Type": "application/json",
+            "x-access-token": accesToken
+          });
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
@@ -104,8 +101,6 @@ class ListCartApi {
           print("======= remove card : ${response.statusCode} =====");
 
           flutterToast(jsonDecode(response.body)["message"]);
-
-
         }
         return removeCardModelFromJson(response.body);
       }
@@ -115,28 +110,24 @@ class ListCartApi {
     }
   }
 
-  static Future transactionApi ()async{
+  static Future transactionApi() async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
     try {
       String url = EndPoints.transaction;
 
-
-      http.Response? response = await HttpService.postApi(
-          url: url,
-          header: {
-            "Content-Type": "application/json",
-            "x-access-token": accesToken
-          });
+      http.Response? response = await HttpService.postApi(url: url, header: {
+        "Content-Type": "application/json",
+        "x-access-token": accesToken
+      });
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
           print("======= transaction : ${response.statusCode} ======");
-         // errorToast(jsonDecode(response.body)["message"]);
+          // errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           print("======= transaction : ${response.statusCode} =====");
 
           //flutterToast(jsonDecode(response.body)["message"]);
-
 
         }
         return transactionModelFromJson(response.body);
@@ -147,7 +138,7 @@ class ListCartApi {
     }
   }
 
-  static Future defaultCardApi({int? id}) async{
+  static Future defaultCardApi({int? id}) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
     try {
       String url = EndPoints.defaultCard;
@@ -172,8 +163,6 @@ class ListCartApi {
           print("======= default card : ${response.statusCode} =====");
 
           flutterToast(jsonDecode(response.body)["message"]);
-
-
         }
         return defaultCradModelFromJson(response.body);
       }
@@ -182,5 +171,4 @@ class ListCartApi {
       return [];
     }
   }
-
 }

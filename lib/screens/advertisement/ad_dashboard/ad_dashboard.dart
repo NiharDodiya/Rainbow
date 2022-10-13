@@ -35,7 +35,7 @@ class AdvertisementDashBord extends StatelessWidget {
         id: "bottom_bar",
         builder: (controller) {
           return WillPopScope(
-            onWillPop: () async{
+            onWillPop: () async {
               if (controller.currentTab == 0) {
                 showDialog(
                     context: context,
@@ -44,8 +44,8 @@ class AdvertisementDashBord extends StatelessWidget {
                         backgroundColor: Colors.white,
                         title: Text(
                           "Are you sure you want exit app",
-                          style:
-                          gilroyBoldTextStyle(fontSize: 20, color: Colors.black),
+                          style: gilroyBoldTextStyle(
+                              fontSize: 20, color: Colors.black),
                         ),
                         actions: <Widget>[
                           FlatButton(
@@ -55,7 +55,7 @@ class AdvertisementDashBord extends StatelessWidget {
                                   fontSize: 18, color: Colors.black),
                             ),
                             onPressed: () {
-                             Navigator.pop(context);
+                              Navigator.pop(context);
                             },
                           ),
                           FlatButton(
@@ -79,51 +79,66 @@ class AdvertisementDashBord extends StatelessWidget {
             child: Scaffold(
               key: advertisementController.key,
               drawer: GetBuilder<AdvertisementController>(
-                id: "settings",
-                  builder: (controller){
-                return Stack(
-                  children: [
-                    Drawer(
-                      backgroundColor: ColorRes.white,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            top: Get.height * 0.0775, left: Get.width * 0.05210),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            GetBuilder<AdHomeController>(
-                              id: "dashBoard",
-                              builder: (controller) {
-                                return Row(
-                                  children: [
-                                    adHomeController.viewAdvertiserModel.data == null
-                                        ? const SizedBox()
-                                        : ClipRRect(
-                                        borderRadius: BorderRadius.circular(50),
-                                        child: adHomeController
-                                            .viewAdvertiserModel
-                                            .data!
-                                            .profileImage
-                                            .toString()
-                                            .isEmpty
-                                            ? Image.asset(
-                                          AssetRes.portrait_placeholder,
-                                          height: Get.width * 0.1730,
-                                          width: Get.width * 0.1730,
-                                        )
-                                            : CachedNetworkImage(
-                                          imageUrl: adHomeController
-                                              .viewAdvertiserModel
-                                              .data!
-                                              .profileImage
-                                              .toString(),
-                                          placeholder: ((context, url) => Image.asset(AssetRes.portrait_placeholder)),
-                                          errorWidget: ((context, url, error) => Image.asset(AssetRes.portrait_placeholder)),
-                                          fit: BoxFit.cover,
-                                          height: Get.width * 0.1730,
-                                          width: Get.width * 0.1730,
-                                        )),
-                                    /*       Container(
+                  id: "settings",
+                  builder: (controller) {
+                    return Stack(
+                      children: [
+                        Drawer(
+                          backgroundColor: ColorRes.white,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                top: Get.height * 0.0775,
+                                left: Get.width * 0.05210),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                GetBuilder<AdHomeController>(
+                                  id: "dashBoard",
+                                  builder: (controller) {
+                                    return Row(
+                                      children: [
+                                        adHomeController
+                                                    .viewAdvertiserModel.data ==
+                                                null
+                                            ? const SizedBox()
+                                            : ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                child: adHomeController
+                                                        .viewAdvertiserModel
+                                                        .data!
+                                                        .profileImage
+                                                        .toString()
+                                                        .isEmpty
+                                                    ? Image.asset(
+                                                        AssetRes
+                                                            .portrait_placeholder,
+                                                        height:
+                                                            Get.width * 0.1730,
+                                                        width:
+                                                            Get.width * 0.1730,
+                                                      )
+                                                    : CachedNetworkImage(
+                                                        imageUrl: adHomeController
+                                                            .viewAdvertiserModel
+                                                            .data!
+                                                            .profileImage
+                                                            .toString(),
+                                                        placeholder: ((context,
+                                                                url) =>
+                                                            Image.asset(AssetRes
+                                                                .portrait_placeholder)),
+                                                        errorWidget: ((context,
+                                                                url, error) =>
+                                                            Image.asset(AssetRes
+                                                                .portrait_placeholder)),
+                                                        fit: BoxFit.cover,
+                                                        height:
+                                                            Get.width * 0.1730,
+                                                        width:
+                                                            Get.width * 0.1730,
+                                                      )),
+                                        /*       Container(
                         height: Get.width * 0.1730,
                         width: Get.width * 0.1730,
                         decoration: const BoxDecoration(
@@ -133,31 +148,39 @@ class AdvertisementDashBord extends StatelessWidget {
                           ),
                         ),
                       ),*/
-                                    SizedBox(
-                                      width: Get.width * 0.0255,
-                                    ),
-                                    Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                            width: MediaQuery.of(context).size.width / 1.9,
-                                            child: SingleChildScrollView(
-                                              scrollDirection: Axis.horizontal,
-                                              child: Row(
-                                                children: [
-                                                  Text(
-                                                    adHomeController.viewAdvertiserModel.data
-                                                        ?.fullName ??
-                                                        "",
-                                                    style: gilroyRegularTextStyle(
-                                                        fontSize: 24,
-                                                        color: ColorRes.color_09110E),
+                                        SizedBox(
+                                          width: Get.width * 0.0255,
+                                        ),
+                                        Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    1.9,
+                                                child: SingleChildScrollView(
+                                                  scrollDirection:
+                                                      Axis.horizontal,
+                                                  child: Row(
+                                                    children: [
+                                                      Text(
+                                                        adHomeController
+                                                                .viewAdvertiserModel
+                                                                .data
+                                                                ?.fullName ??
+                                                            "",
+                                                        style: gilroyRegularTextStyle(
+                                                            fontSize: 24,
+                                                            color: ColorRes
+                                                                .color_09110E),
+                                                      ),
+                                                    ],
                                                   ),
-                                                ],
+                                                ),
                                               ),
-                                            ),
-                                          ),
-                                          /*Text(
+                                              /*Text(
                                             adHomeController.viewAdvertiserModel.data
                                                 ?.fullName ??
                                                 "",
@@ -165,195 +188,210 @@ class AdvertisementDashBord extends StatelessWidget {
                                                 fontSize: 24,
                                                 color: ColorRes.color_09110E),
                                           ),*/
-                                          SizedBox(
-                                            height: Get.height * 0.0086,
-                                          ),
-                                          Text(
-                                            adHomeController.viewAdvertiserModel.data
-                                                ?.email ??
-                                                "",
-                                            style: gilroyBoldTextStyle(
-                                                fontSize: 14,
-                                                color: ColorRes.color_09110E),
-                                          )
-                                        ]),
-                                    const Spacer(),
-                                    Column(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                              SizedBox(
+                                                height: Get.height * 0.0086,
+                                              ),
+                                              Text(
+                                                adHomeController
+                                                        .viewAdvertiserModel
+                                                        .data
+                                                        ?.email ??
+                                                    "",
+                                                style: gilroyBoldTextStyle(
+                                                    fontSize: 14,
+                                                    color:
+                                                        ColorRes.color_09110E),
+                                              )
+                                            ]),
+                                        const Spacer(),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            GestureDetector(
+                                              onTap: () {
+                                                advertisementController
+                                                    .key.currentState!
+                                                    .closeDrawer();
+                                              },
+                                              child: Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                  horizontal:
+                                                      Get.width * 0.0293,
+                                                ),
+                                                child: const Icon(
+                                                  Icons.close,
+                                                  color: ColorRes.black,
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              height: Get.height * 0.0555,
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ),
+                                SizedBox(
+                                  height: Get.height * 0.0467,
+                                ),
+
+                                ///Change Password
+                                InkWell(
+                                  onTap: () {
+                                    AdvertiserVerifyController adController =
+                                        Get.put(AdvertiserVerifyController());
+
+                                    adController.backScreen =
+                                        'AdvertisementDashBord';
+                                    adController.startTimer();
+                                    adController.phoneNumberRegister();
+                                    Get.to(() => AdvertiserVerifyOtpScreen());
+                                  },
+                                  child: SizedBox(
+                                    height: Get.height * 0.06,
+                                    child: Row(
                                       children: [
-                                        GestureDetector(
-                                          onTap: () {
-                                            advertisementController.key.currentState!
-                                                .closeDrawer();
-                                          },
-                                          child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                              horizontal: Get.width * 0.0293,
-                                            ),
-                                            child: const Icon(
-                                              Icons.close,
-                                              color: ColorRes.black,
-                                            ),
+                                        Image.asset(
+                                          AssetRes.lockicon,
+                                          width: Get.width * 0.04706,
+                                        ),
+                                        SizedBox(
+                                          width: Get.width * 0.0853,
+                                        ),
+                                        Text(
+                                          Strings.changePassword,
+                                          style: gilroyMediumTextStyle(
+                                            fontSize: 16,
+                                            color: ColorRes.color_09110E,
                                           ),
                                         ),
-                                        Container(
-                                          height: Get.height * 0.0555,
-                                        )
                                       ],
                                     ),
-                                  ],
-                                );
-                              },
-                            ),
-                            SizedBox(
-                              height: Get.height * 0.0467,
-                            ),
-
-
-                            ///Change Password
-                            InkWell(
-                              onTap: () {
-                                AdvertiserVerifyController adController =
-                                Get.put(AdvertiserVerifyController());
-
-                                adController.backScreen = 'AdvertisementDashBord';
-                                adController.startTimer();
-                                adController.phoneNumberRegister();
-                                Get.to(() => AdvertiserVerifyOtpScreen());
-                              },
-                              child: SizedBox(
-                                height: Get.height * 0.06,
-                                child: Row(
-                                  children: [
-                                    Image.asset(
-                                      AssetRes.lockicon,
-                                      width: Get.width * 0.04706,
-                                    ),
-                                    SizedBox(
-                                      width: Get.width * 0.0853,
-                                    ),
-                                    Text(
-                                      Strings.changePassword,
-                                      style: gilroyMediumTextStyle(
-                                        fontSize: 16,
-                                        color: ColorRes.color_09110E,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            //Account Information
-                            InkWell(
-                              onTap: () => advertisementController.inTapAccountInfo(),
-                              child: SizedBox(
-                                height: Get.height * 0.06,
-                                child: Row(
-                                  children: [
-                                    Image.asset(
-                                      AssetRes.profileicon,
-                                      width: Get.width * 0.04706,
-                                    ),
-                                    SizedBox(
-                                      width: Get.width * 0.0853,
-                                    ),
-                                    Text(
-                                      Strings.accountInformation,
-                                      style: gilroyMediumTextStyle(
-                                        fontSize: 16,
-                                        color: ColorRes.color_09110E,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            // Notification
-                            GetBuilder<AdvertisementController>(
-                              id: 'settings',
-                              builder: (controller) => InkWell(
-                                onTap: controller.notification,
-                                child: SizedBox(
-                                  height: Get.height * 0.06,
-                                  child: Row(
-                                    children: [
-                                      Image.asset(
-                                        AssetRes.notificationicon,
-                                        color: ColorRes.color_EDB933,
-                                        width: Get.width * 0.04706,
-                                      ),
-                                      SizedBox(
-                                        width: Get.width * 0.0853,
-                                      ),
-                                      Text(
-                                        Strings.notification,
-                                        style: gilroyMediumTextStyle(
-                                          fontSize: 16,
-                                          color: ColorRes.color_09110E,
-                                        ),
-                                      ),
-                                      const Spacer(),
-                                      SizedBox(
-                                        width: Get.width * 0.09066,
-                                        height: Get.height * 0.02545,
-                                        child: Transform.scale(
-                                          scale: .7,
-                                          child: CupertinoSwitch(
-                                            value: controller.isSwitched!,
-                                            onChanged: (value) {
-                                              controller.isSwitched = value;
-                                              controller.notificationOnOffApi();
-                                              controller.update(["settings"]);
-                                            },
-                                            activeColor: ColorRes.color_CE8CEC,
-                                            trackColor: Colors.grey.shade300,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: Get.width * 0.0483)
-                                    ],
                                   ),
                                 ),
-                              ),
-                            ),
-                            const Spacer(),
-                            Padding(
-                              padding: EdgeInsets.only(right: Get.width * 0.0498),
-                              child: SubmitButton(
-                                onTap: () => logoutPopupAdvertise(context: context),
-                                child: Row(
-                                  children: [
-                                    const Spacer(),
-                                    Image.asset(
-                                      AssetRes.logouticon,
-                                      height: 22,
+                                //Account Information
+                                InkWell(
+                                  onTap: () => advertisementController
+                                      .inTapAccountInfo(),
+                                  child: SizedBox(
+                                    height: Get.height * 0.06,
+                                    child: Row(
+                                      children: [
+                                        Image.asset(
+                                          AssetRes.profileicon,
+                                          width: Get.width * 0.04706,
+                                        ),
+                                        SizedBox(
+                                          width: Get.width * 0.0853,
+                                        ),
+                                        Text(
+                                          Strings.accountInformation,
+                                          style: gilroyMediumTextStyle(
+                                            fontSize: 16,
+                                            color: ColorRes.color_09110E,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    const SizedBox(
-                                      width: 26,
-                                    ),
-                                    Text(
-                                      Strings.logout02,
-                                      style: gilroyBoldTextStyle(
-                                          fontSize: 16, color: ColorRes.black),
-                                    ),
-                                    const Spacer(),
-                                  ],
+                                  ),
                                 ),
-                              ),
+                                // Notification
+                                GetBuilder<AdvertisementController>(
+                                  id: 'settings',
+                                  builder: (controller) => InkWell(
+                                    onTap: controller.notification,
+                                    child: SizedBox(
+                                      height: Get.height * 0.06,
+                                      child: Row(
+                                        children: [
+                                          Image.asset(
+                                            AssetRes.notificationicon,
+                                            color: ColorRes.color_EDB933,
+                                            width: Get.width * 0.04706,
+                                          ),
+                                          SizedBox(
+                                            width: Get.width * 0.0853,
+                                          ),
+                                          Text(
+                                            Strings.notification,
+                                            style: gilroyMediumTextStyle(
+                                              fontSize: 16,
+                                              color: ColorRes.color_09110E,
+                                            ),
+                                          ),
+                                          const Spacer(),
+                                          SizedBox(
+                                            width: Get.width * 0.09066,
+                                            height: Get.height * 0.02545,
+                                            child: Transform.scale(
+                                              scale: .7,
+                                              child: CupertinoSwitch(
+                                                value: controller.isSwitched!,
+                                                onChanged: (value) {
+                                                  controller.isSwitched = value;
+                                                  controller
+                                                      .notificationOnOffApi();
+                                                  controller
+                                                      .update(["settings"]);
+                                                },
+                                                activeColor:
+                                                    ColorRes.color_CE8CEC,
+                                                trackColor:
+                                                    Colors.grey.shade300,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: Get.width * 0.0483)
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const Spacer(),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      right: Get.width * 0.0498),
+                                  child: SubmitButton(
+                                    onTap: () =>
+                                        logoutPopupAdvertise(context: context),
+                                    child: Row(
+                                      children: [
+                                        const Spacer(),
+                                        Image.asset(
+                                          AssetRes.logouticon,
+                                          height: 22,
+                                        ),
+                                        const SizedBox(
+                                          width: 26,
+                                        ),
+                                        Text(
+                                          Strings.logout02,
+                                          style: gilroyBoldTextStyle(
+                                              fontSize: 16,
+                                              color: ColorRes.black),
+                                        ),
+                                        const Spacer(),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: Get.height * 0.0665,
+                                )
+                              ],
                             ),
-                            SizedBox(
-                              height: Get.height * 0.0665,
-                            )
-                          ],
+                          ),
+                          width: Get.width - (Get.width * 0.0853),
                         ),
-                      ),
-                      width: Get.width - (Get.width * 0.0853),
-                    ),
-                    controller.loader.value == true ? FullScreenLoader() : SizedBox(),
-                  ],
-                );
-              }),
+                        controller.loader.value == true
+                            ? FullScreenLoader()
+                            : SizedBox(),
+                      ],
+                    );
+                  }),
               backgroundColor: ColorRes.white,
               body: Container(
                 decoration: const BoxDecoration(
@@ -372,7 +410,9 @@ class AdvertisementDashBord extends StatelessWidget {
                     if (controller.currentTab == 0) {
                       return AdHomeScreen();
                     } else if (controller.currentTab == 1) {
-                      return PaymentScreen(showBackArrow: false,);
+                      return PaymentScreen(
+                        showBackArrow: false,
+                      );
                       // const AdPaymentScreen();
                     } else if (controller.currentTab == 2) {
                       return AdNotificationsScreen();
@@ -462,4 +502,3 @@ class AdvertisementDashBord extends StatelessWidget {
         });
   }
 }
-

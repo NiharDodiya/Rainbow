@@ -38,7 +38,6 @@ import 'package:rainbow/screens/Profile/profile_api/profile_api.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/widget/listOfFriendRequest_api/listOfFriendRequest_api.dart';
-import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
@@ -108,7 +107,6 @@ class HomeController extends GetxController {
   }
 
   void pagination() async {
-    print("Hello");
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
       await friendPostData();
@@ -138,8 +136,7 @@ class HomeController extends GetxController {
       addStreet = place.street;
       address =
           '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
-      print(
-          "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<$address>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
       update(["advertiser"]);
     }
     // loader.value = false;
@@ -169,7 +166,7 @@ class HomeController extends GetxController {
     try {
       await ListOfNationalitiesApi.postRegister()
           .then((value) => listNationalities = value!);
-      print(listNationalities);
+
       getCountryNation();
     } catch (e) {
       debugPrint(e.toString());
@@ -180,7 +177,6 @@ class HomeController extends GetxController {
     try {
       await BlockListApi.postRegister()
           .then((value) => blockListModel = value!);
-      print(blockListModel);
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -201,7 +197,7 @@ class HomeController extends GetxController {
   /// post like list
   void onLikeBtnTap({required FriendPost friendPost, String? postId}) {
     postLikeUser = friendPost.postLikeUser ?? [];
-    print(postLikeUser);
+
     Get.bottomSheet(
       const PostLikeListScreen(),
       isScrollControlled: true,
@@ -210,7 +206,7 @@ class HomeController extends GetxController {
 
   void onPostViewUser({required FriendPost friendPost, String? postId}) {
     postViewUser = friendPost.postViewUser ?? [];
-    print(postViewUser);
+
     Get.bottomSheet(
       PostViewBottomScreen(),
       isScrollControlled: true,
@@ -226,7 +222,7 @@ class HomeController extends GetxController {
     }
     uriLinkStream.listen((event) {
       if (event != null) {
-        Get.to(() => HomeScreen());
+        Get.to(() => const HomeScreen());
       }
     });
   }
@@ -243,9 +239,9 @@ class HomeController extends GetxController {
     try {
       loader.value = true;
       sharePostModel = await MyPostApi.sharPostApi(id);
-     Future.delayed(const Duration(seconds: 1)).then((value) async {
-       await friendPostDataWithOutPagination();
-     });
+      Future.delayed(const Duration(seconds: 1)).then((value) async {
+        await friendPostDataWithOutPagination();
+      });
       update(['home']);
       loader.value = false;
     } catch (e) {
@@ -326,8 +322,6 @@ class HomeController extends GetxController {
       debugPrint(e.toString());
       loader.value = false;
     }
-
-
   }
 
 /*  Future<void> commentPostListData(String idPost) async {
@@ -357,7 +351,7 @@ class HomeController extends GetxController {
     await controller.viewProfileDetails();
     await onStory();
     notificationsController.getNotifications();
-    page=0;
+    page = 0;
     friendPostListData = [];
     /*  await friendPostDataWithOutPagination();*/
     await friendPostData();
@@ -366,8 +360,7 @@ class HomeController extends GetxController {
   }
 
   Future<void> init() async {
- /*   changeLoader(true);*/
-
+    /*   changeLoader(true);*/
 
     await viewProfileApi();
     await friendPostData();
@@ -387,7 +380,7 @@ class HomeController extends GetxController {
     notificationsController.getNotifications();
     /*await friendPostDataWithOutPagination();*/
     await connectionsController.callRequestApi();
-  /*  changeLoader(false);*/
+    /*  changeLoader(false);*/
   }
 
   Future<void> onStory() async {
@@ -513,8 +506,6 @@ class HomeController extends GetxController {
       loader.value = false;
     } catch (e) {
       loader.value = false;
-
-      print(e.toString());
     }
   }
 
@@ -530,8 +521,6 @@ class HomeController extends GetxController {
       loader.value = false;
     } catch (e) {
       loader.value = false;
-
-      print(e.toString());
     }
   }
 }

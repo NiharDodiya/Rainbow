@@ -18,7 +18,7 @@ class SupportApi {
       String url = EndPoints.supportListTicket;
 
       Map<String, String> param = {};
-      print(param);
+
 
       http.Response? response = await HttpService.postApi(
           url: url,
@@ -37,7 +37,7 @@ class SupportApi {
         return listSupportTicketModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }
@@ -49,7 +49,7 @@ class SupportApi {
       String url = EndPoints.viewSupportTicket;
 
       Map<String, String> param = {"id_support": id.toString()};
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -62,12 +62,12 @@ class SupportApi {
         if (status == false) {
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-              //flutterToast(jsonDecode(response.body)["message"]);
+          //flutterToast(jsonDecode(response.body)["message"]);
         }
         return viewSupportTicketModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+
       return ViewSupportTicketModel();
     }
   }
@@ -85,7 +85,7 @@ class SupportApi {
         "description": description,
         "id_item": item,
       };
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -103,7 +103,7 @@ class SupportApi {
         return sendSupportModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }

@@ -65,9 +65,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                     return Stack(
                       children: [
                         Positioned.fill(
-                          child: Container(
-                              color: Colors.black
-                          ),
+                          child: Container(color: Colors.black),
                         ),
                         /*CachedNetworkImage(
                           height: Get.height * 0.9,
@@ -302,7 +300,7 @@ class _ViewStoryScreenState extends State<ViewStoryScreen> {
                                           children: [
                                             Column(
                                               mainAxisSize: MainAxisSize.min,
-                                              children: [
+                                              children: const [
                                                 /*       InkWell(
                                                   onTap: () {
                                                     controller.onLikeViewTap(

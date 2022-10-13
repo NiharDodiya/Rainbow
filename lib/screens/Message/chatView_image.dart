@@ -11,7 +11,7 @@ class ChatViewImageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: ColorRes.color_6753A3,
+        backgroundColor: ColorRes.color_6753A3,
         elevation: 0,
       ),
       body: Container(

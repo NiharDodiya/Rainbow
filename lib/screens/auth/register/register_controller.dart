@@ -43,12 +43,11 @@ class RegisterController extends GetxController {
 
   bool countryBox = false;
 
-  dropDownBox(){
-    if(countryBox == false){
+  dropDownBox() {
+    if (countryBox == false) {
       countryBox = true;
       update(["drop"]);
-    }
-    else{
+    } else {
       countryBox = false;
       update(["drop"]);
     }
@@ -65,7 +64,7 @@ class RegisterController extends GetxController {
     "1",
     "2",
   ];
-  List<String> noOfKids = ["0","1", "2", "3", "4", "5", "6"];
+  List<String> noOfKids = ["0", "1", "2", "3", "4", "5", "6"];
   bool martialStatusDropdown = false;
   bool ethnicityDropdown = false;
   bool kidsDropdown = false;
@@ -175,8 +174,7 @@ class RegisterController extends GetxController {
   }
 
   void onRegisterTap() {
-
-     PrefService.setValue(PrefKeys.isLogin, false);
+    PrefService.setValue(PrefKeys.isLogin, false);
 
     if (validation()) {
       for (int i = 0; i < listNationalities.data!.length; i++) {
@@ -194,13 +192,15 @@ class RegisterController extends GetxController {
   List filterList = [];
 
   void serching(value) {
-    filterList = (listNationalities.data?.where(
-            (element) {
-              print(value.toString().toLowerCase());
-              print(element.name);
-          return element.name.toString().toLowerCase().contains(value.toString().toLowerCase());
-        })
-        .toList()) ?? [];
+    filterList = (listNationalities.data?.where((element) {
+          print(value.toString().toLowerCase());
+          print(element.name);
+          return element.name
+              .toString()
+              .toLowerCase()
+              .contains(value.toString().toLowerCase());
+        }).toList()) ??
+        [];
     update(["drop"]);
   }
 
@@ -228,10 +228,11 @@ class RegisterController extends GetxController {
     } else if (pwdController.text != confirmPwdController.text && !isSocial) {
       errorToast(Strings.reTypePasswordValidError);
       return false;
-    } else if (ethnicityController.text != ethnicityController.text && !isSocial) {
+    } else if (ethnicityController.text != ethnicityController.text &&
+        !isSocial) {
       errorToast("Please enter country");
       return false;
-    }else if (address1Controller.text.isEmpty) {
+    } else if (address1Controller.text.isEmpty) {
       errorToast(Strings.addressLine1Error);
       return false;
     } else if (phoneController.text.isEmpty) {

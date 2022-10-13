@@ -21,7 +21,7 @@ class PrivacyApi {
   ) async {
     try {
       String url = EndPoints.privacy;
-      String accesToken = await PrefService.getString(PrefKeys.registerToken);
+      String accesToken =  PrefService.getString(PrefKeys.registerToken);
       Map<String, bool> param = {
         "profile_photo": profilePhoto,
         "basic_info": basicInfo,
@@ -32,7 +32,7 @@ class PrivacyApi {
         "visitors": visitors
       };
 
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -51,7 +51,7 @@ class PrivacyApi {
         return privacyModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }

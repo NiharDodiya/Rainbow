@@ -28,7 +28,8 @@ Widget profileDetails() {
       const SizedBox(
         height: 3,
       ),
-      controller.viewProfile.data == null||controller.viewProfile.data!.age!.toString() == "0"
+      controller.viewProfile.data == null ||
+              controller.viewProfile.data!.age!.toString() == "0"
           ? const SizedBox()
           : Row(
               mainAxisAlignment: MainAxisAlignment.center,

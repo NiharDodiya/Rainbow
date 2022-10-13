@@ -123,7 +123,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       : ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Container(
-
                             height: Get.height * 0.2857,
                             width: Get.width * 0.93,
                             decoration: BoxDecoration(
@@ -156,7 +155,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                           ),
                         ),
-
                   Positioned(
                     top: Get.height * 0.17,
                     left: Get.width * 0.24,
@@ -170,9 +168,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 margin: const EdgeInsets.only(right: 16),
                                 height: Get.height * 0.38666,
                                 width: Get.width * 0.38666,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
-                                    image: const DecorationImage(
+                                    image: DecorationImage(
                                       image: AssetImage(
                                           AssetRes.portrait_placeholder),
                                       fit: BoxFit.contain,
@@ -654,7 +652,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                           icon: Image.asset(AssetRes.arrowDown,
                                               height: 20),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 5,
                                         ),
                                       ],
@@ -681,7 +679,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                               ? listNationalities.data!
                                                   .map((e) {
                                                   return Padding(
-                                                    padding: EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                         left: 20,
                                                         top: 7,
                                                         bottom: 7),
@@ -702,7 +700,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                                               Alignment.topLeft,
                                                           child: Text(
                                                             e.name!,
-                                                            style: TextStyle(
+                                                            style: const TextStyle(
                                                                 color: Colors
                                                                     .black,
                                                                 fontSize: 16),
@@ -714,7 +712,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                                 }).toList()
                                               : controller.filterList.map((e) {
                                                   return Padding(
-                                                    padding: EdgeInsets.only(
+                                                    padding: const EdgeInsets.only(
                                                         left: 20,
                                                         top: 7,
                                                         bottom: 7),
@@ -735,7 +733,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                                               Alignment.topLeft,
                                                           child: Text(
                                                             e.name!,
-                                                            style: TextStyle(
+                                                            style: const TextStyle(
                                                                 color: Colors
                                                                     .black,
                                                                 fontSize: 16),
@@ -748,7 +746,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         ),
                                       ),
                                     )
-                                  : SizedBox();
+                                  : const SizedBox();
                             }),
                         const SizedBox(
                           height: 10,

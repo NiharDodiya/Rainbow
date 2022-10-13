@@ -74,7 +74,9 @@ class ConnectionsProfileScreen extends StatelessWidget {
                           : Column(
                               children: [
                                 profileAppbar(data.fullName.toString(), false,
-                                    context, 2, controller.onTapGetBack,onTap2: ()=>controller.onTapGetBack2(context)),
+                                    context, 2, controller.onTapGetBack,
+                                    onTap2: () =>
+                                        controller.onTapGetBack2(context)),
                                 const SizedBox(height: 10),
                                 Expanded(
                                   child: SingleChildScrollView(

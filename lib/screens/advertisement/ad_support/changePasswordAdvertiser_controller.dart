@@ -15,7 +15,6 @@ class ChangeAdvertiserController extends GetxController {
   bool? showNewPassword = false;
   bool? showConfirmPassword = false;
 
-
   void onTapShowPassword() {
     if (showPassword == false) {
       showPassword = true;
@@ -37,6 +36,7 @@ class ChangeAdvertiserController extends GetxController {
     }
     update(["new"]);
   }
+
   void onTapShowConfirmPassword() {
     if (showConfirmPassword == false) {
       showConfirmPassword = true;

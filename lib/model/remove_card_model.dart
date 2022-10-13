@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-RemoveCardModel removeCardModelFromJson(String str) => RemoveCardModel.fromJson(json.decode(str));
+RemoveCardModel removeCardModelFromJson(String str) =>
+    RemoveCardModel.fromJson(json.decode(str));
 
-String removeCardModelToJson(RemoveCardModel data) => json.encode(data.toJson());
+String removeCardModelToJson(RemoveCardModel data) =>
+    json.encode(data.toJson());
 
 class RemoveCardModel {
   RemoveCardModel({
@@ -17,13 +19,14 @@ class RemoveCardModel {
   bool? status;
   String? message;
 
-  factory RemoveCardModel.fromJson(Map<String, dynamic> json) => RemoveCardModel(
-    status: json["status"],
-    message: json["message"],
-  );
+  factory RemoveCardModel.fromJson(Map<String, dynamic> json) =>
+      RemoveCardModel(
+        status: json["status"],
+        message: json["message"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-  };
+        "status": status,
+        "message": message,
+      };
 }

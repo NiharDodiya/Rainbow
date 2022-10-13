@@ -26,7 +26,7 @@ class _AdvertiserVerifyOtpScreenState extends State<AdvertiserVerifyOtpScreen> {
   void initState() {
     controller.startTimer();
     controller.verifyController = TextEditingController();
-  /*  controller.phoneNumberRegister();*/
+    /*  controller.phoneNumberRegister();*/
     super.initState();
   }
 

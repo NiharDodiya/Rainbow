@@ -17,17 +17,11 @@ import 'package:rainbow/utils/end_points.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
 class GoogleIdVerification {
-  static Future<LoginModel?> postRegister(
-    String id, {
-    User? user,
-        String? email
-  }) async {
+  static Future<LoginModel?> postRegister(String id,
+      {User? user, String? email}) async {
     try {
       String url = EndPoints.verificationSocial;
-      Map<String, String> param = {
-        'id_social': id,
-        'email':email.toString()
-      };
+      Map<String, String> param = {'id_social': id, 'email': email.toString()};
       print(param);
       http.Response? response = await HttpService.postApi(
           url: url,
@@ -45,8 +39,8 @@ class GoogleIdVerification {
           controller.phoneController.text = user.phoneNumber ?? "";
           Get.to(() => RegisterScreen());
         } else {
-          await PrefService.setValue(PrefKeys.userId,
-              jsonDecode(response.body)["data"]["id"]);
+          await PrefService.setValue(
+              PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
           await PrefService.setValue(PrefKeys.registerToken,
               jsonDecode(response.body)["token"].toString());
           if (jsonDecode(response.body)["data"]["status"] == "pending") {
@@ -68,7 +62,7 @@ class GoogleIdVerification {
         }
         return loginModelFromJson(response.body);
       } else if (response!.statusCode == 500) {
-       // flutterToast(jsonDecode(response.body)["message"]);
+        // flutterToast(jsonDecode(response.body)["message"]);
       }
       return null;
     } catch (e) {

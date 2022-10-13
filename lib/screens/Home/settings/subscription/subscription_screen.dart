@@ -149,7 +149,7 @@ class SubscriptionScreen extends StatelessWidget {
       width: Get.width,
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
           Row(

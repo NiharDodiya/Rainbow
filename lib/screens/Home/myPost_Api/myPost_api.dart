@@ -44,7 +44,6 @@ class MyPostApi {
         return sharePostModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
       return [];
     }
   }
@@ -73,7 +72,6 @@ class MyPostApi {
         return postLikeModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
       return [];
     }
   }
@@ -132,7 +130,6 @@ class MyPostApi {
         return postViewModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
       return [];
     }
   }
@@ -162,7 +159,6 @@ class MyPostApi {
         return friendPostViewModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
       return [];
     }
   }
@@ -197,13 +193,12 @@ class MyPostApi {
           commentsController.nameComment = "";
           commentsController.imageForCamera = null;
           commentsController.uploadImage.data = null;
-          print(commentsController.uploadImage.data);
+
           flutterToast(jsonDecode(response.body)["message"]);
         }
         return postCommentModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
       return [];
     }
   }
@@ -244,13 +239,12 @@ class MyPostApi {
           commentsController.nameComment = "";
           commentsController.imageForCamera = null;
           commentsController.uploadImage.data = null;
-          print(commentsController.uploadImage.data);
+
           flutterToast(jsonDecode(response.body)["message"]);
         }
         return postCommentModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
       return [];
     }
   }
@@ -270,7 +264,7 @@ class MyPostApi {
 
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
-        print(response.body);
+
         if (status == false) {
           // errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
@@ -279,7 +273,6 @@ class MyPostApi {
         return postCommentListModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
       return [];
     }
   }

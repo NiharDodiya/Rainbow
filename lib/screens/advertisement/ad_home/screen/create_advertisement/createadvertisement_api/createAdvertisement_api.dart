@@ -12,24 +12,24 @@ import 'package:rainbow/utils/end_points.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
 class AddAdvertisement {
-  static Future addAdvertisementApi(
-      {List? tagUser,
-      String? title,
-      List? idItem,
-      String? location,
-      String? description,
-      String? date,
-      String? urlLink,
-      String? postalCode,
-      String? province,
-      String? startDate,
-      String? endDate,
-      String? city,
-      String? street,
-      String? countryCode,
-      String? callAction,
-        int? amount,
-      }) async {
+  static Future addAdvertisementApi({
+    List? tagUser,
+    String? title,
+    List? idItem,
+    String? location,
+    String? description,
+    String? date,
+    String? urlLink,
+    String? postalCode,
+    String? province,
+    String? startDate,
+    String? endDate,
+    String? city,
+    String? street,
+    String? countryCode,
+    String? callAction,
+    int? amount,
+  }) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
     // int userId = PrefService.getInt(PrefKeys.userId);
     try {
@@ -64,7 +64,6 @@ class AddAdvertisement {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == true) {
-
           final PaymentController controller = Get.find();
           await controller.transactionApi();
 
@@ -74,7 +73,7 @@ class AddAdvertisement {
         }
         return advertisersCreateModelFromJson(response.body);
       }
-     /* else if(response!.statusCode == 500){
+      /* else if(response!.statusCode == 500){
         errorToast("Please enter valid country name");
       }*/
     } catch (e) {

@@ -138,37 +138,39 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                 height: 202,
                 child: Stack(
                   children: [
-                    (adHomeController.myAdvertiserModel.data?[index].itemsList!.length == 0)
+                    (adHomeController.myAdvertiserModel.data?[index].itemsList!
+                                .length ==
+                            0)
                         ? Image.asset(
-                      AssetRes.placeholderImage,
-                      width: Get.width ,
-                      fit: BoxFit.cover,
-                    )
-                        : PageView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: adHomeController
-                          .myAdvertiserModel.data?[index].itemsList!.length,
-                      onPageChanged: (index) {
-                        createAdvertisementController.pageIndex = index;
-                        createAdvertisementController.update(["img"]);
-                      },
-                      itemBuilder: (context, index1) {
-                        return SizedBox(
-                          width: Get.width,
-                          child: FadeInImage(
-                            placeholder:
-                                const AssetImage(AssetRes.placeholderImage),
-                            image: NetworkImage(
-                              adHomeController.myAdvertiserModel.data![index]
-                                  .itemsList![index1]
-                                  .toString(),
-                            ),
-                            width: Get.width - 60,
+                            AssetRes.placeholderImage,
+                            width: Get.width,
                             fit: BoxFit.cover,
+                          )
+                        : PageView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: adHomeController.myAdvertiserModel
+                                .data?[index].itemsList!.length,
+                            onPageChanged: (index) {
+                              createAdvertisementController.pageIndex = index;
+                              createAdvertisementController.update(["img"]);
+                            },
+                            itemBuilder: (context, index1) {
+                              return SizedBox(
+                                width: Get.width,
+                                child: FadeInImage(
+                                  placeholder: const AssetImage(
+                                      AssetRes.placeholderImage),
+                                  image: NetworkImage(
+                                    adHomeController.myAdvertiserModel
+                                        .data![index].itemsList![index1]
+                                        .toString(),
+                                  ),
+                                  width: Get.width - 60,
+                                  fit: BoxFit.cover,
+                                ),
+                              );
+                            },
                           ),
-                        );
-                      },
-                    ),
                     Column(
                       children: [
                         const SizedBox(height: 46),
@@ -201,33 +203,42 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                 ),
                               ),
                               const Spacer(),
-                              (adHomeController.myAdvertiserModel.data?[index].adminStatus.toString() == 'approve')?SizedBox(): InkWell(
-                                onTap: () async {
+                              (adHomeController.myAdvertiserModel.data?[index]
+                                          .adminStatus
+                                          .toString() ==
+                                      'approve')
+                                  ? SizedBox()
+                                  : InkWell(
+                                      onTap: () async {
+                                        await editAdvertiesementController
+                                            .myEditAdvertiserListData(id: id);
 
-                                  await editAdvertiesementController.myEditAdvertiserListData(id: id);
-
-
-                                 Get.to(EditAdvertisementscreen());
-                                },
-                                child: Container(
-                                  height: 33.3,
-                                  width: 33.3,
-                                  decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: ColorRes.white),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(12),
-                                    child: Image.asset(
-                                      AssetRes.editicons,
-                                      color: ColorRes.black,
+                                        Get.to(EditAdvertisementscreen());
+                                      },
+                                      child: Container(
+                                        height: 33.3,
+                                        width: 33.3,
+                                        decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: ColorRes.white),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(12),
+                                          child: Image.asset(
+                                            AssetRes.editicons,
+                                            color: ColorRes.black,
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ),
-                              ),
                             ],
                           ),
                         ),
-                        (adHomeController.myAdvertiserModel.data?[index].itemsList!.length == 1 || adHomeController.myAdvertiserModel.data?[index].itemsList!.length == 0)
+                        (adHomeController.myAdvertiserModel.data?[index]
+                                        .itemsList!.length ==
+                                    1 ||
+                                adHomeController.myAdvertiserModel.data?[index]
+                                        .itemsList!.length ==
+                                    0)
                             ? const SizedBox()
                             : Padding(
                                 padding: const EdgeInsets.only(top: 100),
@@ -356,7 +367,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                         ),
                       ),
                       child: Center(
-                        child:  Container(
+                        child: Container(
                           width: 75,
                           alignment: Alignment.center,
                           child: SingleChildScrollView(
@@ -364,16 +375,17 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                             child: Row(
                               children: [
                                 Text(
-                                  adHomeController
-                                      .myAdvertiserModel.data![index].tagsList![index1]
+                                  adHomeController.myAdvertiserModel
+                                      .data![index].tagsList![index1]
                                       .toString(),
                                   style: gilroyMediumTextStyle(
-                                      fontSize: 12, color: ColorRes.color_696D6D),
+                                      fontSize: 12,
+                                      color: ColorRes.color_696D6D),
                                 ),
                               ],
                             ),
                           ),
-                        ),/*Text(
+                        ), /*Text(
                           adHomeController
                               .myAdvertiserModel.data![index].tagsList![index1]
                               .toString(),
@@ -417,7 +429,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
               final Uri _url = Uri.parse(
                   'https://${adHomeController.myAdvertiserModel.data![index].urlLink.toString()}');
               await launchUrl(_url);
-             /* if (await launchUrl(_url)) {
+              /* if (await launchUrl(_url)) {
                 await launchUrl(_url);
               } else {
                 throw 'Could not launch $_url';

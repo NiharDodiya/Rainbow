@@ -16,7 +16,7 @@ class UnBlockApi {
       String url = EndPoints.unBlock;
 
       Map<String, String> param = {"id_block": id.toString()};
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -35,7 +35,7 @@ class UnBlockApi {
         return unblockModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }

@@ -84,8 +84,6 @@ class AdvertisementController extends GetxController {
     Get.to(() => AccountInformationScreen());
   }
 
-
-
   void notification() {
     isSwitched = PrefService.getBool(PrefKeys.notification);
     print(isSwitched);

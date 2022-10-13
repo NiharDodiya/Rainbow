@@ -41,6 +41,5 @@ class SplashController extends GetxController {
     await PrefService.setValue(PrefKeys.skipBoardingScreen, true);
     Get.offAll(() => AuthDashboard());
     update(['splash']);
-
   }
 }

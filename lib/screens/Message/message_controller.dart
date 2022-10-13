@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rainbow/common/Widget/premiumPopUpBox/premium_pop_up_box.dart';
-import 'package:rainbow/common/Widget/text_styles.dart';
+
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/friend_model.dart';
@@ -17,13 +17,13 @@ import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Message/api/message_api.dart';
 import 'package:rainbow/screens/Message/chat_screen.dart';
 import 'package:rainbow/service/Users_services.dart';
-import 'package:rainbow/service/chat_service.dart';
+
 import 'package:rainbow/service/notification_service.dart';
 import 'package:rainbow/service/pref_services.dart';
-import 'package:rainbow/utils/color_res.dart';
+
 import 'package:rainbow/utils/gloabal_data.dart';
 import 'package:rainbow/utils/pref_keys.dart';
-import 'package:rainbow/utils/strings.dart';
+
 
 class MessageController extends GetxController {
   TextEditingController msgController = TextEditingController();
@@ -72,8 +72,9 @@ class MessageController extends GetxController {
 
   doNothing(BuildContext context) {}
   String? token;
+
   Future<void> init() async {
-  token = await NotificationService.getFcmToken();
+    token = await NotificationService.getFcmToken();
     loader.value = true;
     getFriendListData();
     listScrollController.addListener(manageScrollDownBtn);
@@ -89,12 +90,13 @@ class MessageController extends GetxController {
       await ChatServices.setChatRoomValue(
           chatId, GlobalData.user.uid!, receiver.uid!);
     }
-    loader.value = false*/;
+    loader.value = false*/
+
   }
 
   getUid() async {
     userUid = PrefService.getString(PrefKeys.uid).toString();
-    print(userUid);
+
     update(["message"]);
   }
 
@@ -187,9 +189,11 @@ class MessageController extends GetxController {
   String imageName = "";
   var dowanloadurl;
 
-
-  Future<void> sendNotification({String? body, String? roomId, String? otherUid, String? userToken }) async {
-
+  Future<void> sendNotification(
+      {String? body,
+      String? roomId,
+      String? otherUid,
+      String? userToken}) async {
     await NotificationService.sendNotification(SendNotificationModel(
       id: userUid,
       chatId: roomId,
@@ -198,7 +202,7 @@ class MessageController extends GetxController {
       //fcmTokens: [token.toString()],
       fcmTokens: [userToken.toString()],
     ));
-    print('======== user token : $userToken ============');
+
   }
 
   void gotoChatScreen(
@@ -210,13 +214,13 @@ class MessageController extends GetxController {
     homeController.viewProfile.data!.userType == "free"
         ? premiumPopUpBox(context: context)
         : Get.to(() => ChatScreen(
-      roomId: roomId,
-      name: name,
-      otherUserUid: otherUid,
-      userUid: userUid,
-      profileImage: image,
-      userToken: userToken,
-    ));
+              roomId: roomId,
+              name: name,
+              otherUserUid: otherUid,
+              userUid: userUid,
+              profileImage: image,
+              userToken: userToken,
+            ));
   }
 
   void imageSend(String otherUid, String userToken) async {
@@ -231,9 +235,9 @@ class MessageController extends GetxController {
           .child(DateTime.now().millisecondsSinceEpoch.toString())
           .putFile(image!);
       dowanloadurl = await snapshote.ref.getDownloadURL();
-      print(dowanloadurl);
+
     } else {
-      print("no path recievd");
+
     }
 
     await FirebaseFirestore.instance
@@ -253,13 +257,17 @@ class MessageController extends GetxController {
     update(['message']);
     image = null;
     update(['chats']);
-    sendNotification(body: "📷 Image",otherUid: otherUid,roomId: roomId, userToken: userToken);
+    sendNotification(
+        body: "📷 Image",
+        otherUid: otherUid,
+        roomId: roomId,
+        userToken: userToken);
     loader.value = false;
   }
 
   void sendMessage(String roomId, otherUid, userToken) async {
     String msg = msController.text;
-    final userUid1 = userUid;
+
 
     if (isToday(lastMsg) == false) {
       await sendAlertMsg();
@@ -269,7 +277,8 @@ class MessageController extends GetxController {
     setLastMsgInDoc(msg);
 
     //setMsgCount(roomId, loginController.userUid, msg, userUid);
-    sendNotification(roomId: roomId,otherUid: otherUid,body: msg, userToken: userToken);
+    sendNotification(
+        roomId: roomId, otherUid: otherUid, body: msg, userToken: userToken);
     update(['message']);
   }
 
@@ -386,6 +395,7 @@ class MessageController extends GetxController {
         .doc(roomId)
         .update({"lastMessageRead": status});
   }
+
   String timeAgo(DateTime d) {
     Duration diff = DateTime.now().difference(d);
     if (diff.inDays > 365) {

@@ -17,8 +17,6 @@ class AdvertisementDeatailScreen extends StatelessWidget {
   CreateAdvertisementController createAdvertisementController =
       Get.put(CreateAdvertisementController());
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,8 +128,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                         ),
                       ),
                       child: Center(
-                        child:
-                        Container(
+                        child: Container(
                           width: 75,
                           alignment: Alignment.center,
                           child: SingleChildScrollView(
@@ -142,13 +139,14 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                                   createAdvertisementController.tags[index],
                                   maxLines: 1,
                                   style: gilroyMediumTextStyle(
-                                      fontSize: 12, color: ColorRes.color_696D6D),
+                                      fontSize: 12,
+                                      color: ColorRes.color_696D6D),
                                 ),
                               ],
                             ),
                           ),
                         ),
-                       /* Text(
+                        /* Text(
                           createAdvertisementController.tags[index],
                           maxLines: 1,
                           style: gilroyMediumTextStyle(
@@ -283,7 +281,8 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  (controller.imagePath.length == 1 || controller.imagePath.length == 0)
+                  (controller.imagePath.length == 1 ||
+                          controller.imagePath.length == 0)
                       ? const SizedBox()
                       : Padding(
                           padding: const EdgeInsets.only(top: 100),

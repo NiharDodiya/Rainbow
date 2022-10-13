@@ -43,7 +43,7 @@ class PaymentSuccessfulScreen extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: IconButton(
-                      onPressed: (){
+                      onPressed: () {
                         Get.to(AdvertisementDashBord());
                       },
                       icon: Icon(Icons.arrow_back_ios),

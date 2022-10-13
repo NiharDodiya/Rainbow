@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +39,8 @@ class FullScreenLoader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.black54,
+    return Container(
+      color: Colors.black54,
       height: Get.height,
       width: Get.width,
       child: InkWell(
@@ -51,11 +51,10 @@ class FullScreenLoader extends StatelessWidget {
             height: 110,
             width: 110,
             decoration: BoxDecoration(
-                color: Colors.white70,
-                borderRadius: BorderRadius.circular(25)),
+                color: Colors.white70, borderRadius: BorderRadius.circular(25)),
             child: const CircularProgressIndicator(
               backgroundColor: Colors.white,
-              color:Colors.black45,
+              color: Colors.black45,
             ),
           ),
         ),

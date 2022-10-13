@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
@@ -22,13 +21,11 @@ class PaymentController extends GetxController {
 
   HomeController homeController = Get.put(HomeController());
 
+  @override
   void onInit() {
     listCardApi(showToast: true);
     transactionApi();
     // UserSubscriptionAddApi.userSubscriptionAddApi();
-    if (kDebugMode) {
-      print(homeController.viewProfile.data!.userType);
-    }
     update();
     super.onInit();
   }
@@ -45,54 +42,53 @@ class PaymentController extends GetxController {
   TransactionModel transactionModel = TransactionModel();
 
   navigateToRemove(BuildContext context) async {
-    await showDialog(
-        context: context, builder: (context) =>  RemoveDialog());
+    await showDialog(context: context, builder: (context) => RemoveDialog());
   }
 
-
-
-  listCardApi({required bool showToast}) async{
-   try {
-     loader.value = true;
-     listCardModel = await ListCartApi.listCardsApi(showToast: showToast);
-     viewCardApi();
-     loader.value = false;
-     update(['more']);
-     HomeController homeController = Get.put(HomeController());
-     listCardModel.data?.length == null? homeController.viewProfile.data!.userType = "free" : homeController.viewProfile.data!.userType = "premium";
-     // viewCardApi();
-     update(['more']);
-   } catch (e) {
-     debugPrint(e.toString());
-   }
-}
-
-
-
- void viewCardApi()async{
-   try {
-     loader.value = true;
-     viewCardModel = await ListCartApi.viewCardsApi(id: listCardModel.data?[selectedIndex].id ?? 0);
-     loader.value = false;
-     update(['more']);
-   } catch (e) {
-     debugPrint(e.toString());
-   }
- }
-
-  void removeCardApi()async{
-     loader.value = true;
+  listCardApi({required bool showToast}) async {
     try {
-     removeCardModel = await ListCartApi.removeCardApi(id: listCardModel.data?[selectedIndex].id ?? 0);
-     update(['more']);
-     loader.value = false;
-     await listCardApi(showToast: false);
+      loader.value = true;
+      listCardModel = await ListCartApi.listCardsApi(showToast: showToast);
+      viewCardApi();
+      loader.value = false;
+      update(['more']);
+      HomeController homeController = Get.put(HomeController());
+      listCardModel.data?.length == null
+          ? homeController.viewProfile.data!.userType = "free"
+          : homeController.viewProfile.data!.userType = "premium";
+      // viewCardApi();
+      update(['more']);
     } catch (e) {
       debugPrint(e.toString());
     }
   }
 
-  transactionApi ()async{
+  void viewCardApi() async {
+    try {
+      loader.value = true;
+      viewCardModel = await ListCartApi.viewCardsApi(
+          id: listCardModel.data?[selectedIndex].id ?? 0);
+      loader.value = false;
+      update(['more']);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  void removeCardApi() async {
+    loader.value = true;
+    try {
+      removeCardModel = await ListCartApi.removeCardApi(
+          id: listCardModel.data?[selectedIndex].id ?? 0);
+      update(['more']);
+      loader.value = false;
+      await listCardApi(showToast: false);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  transactionApi() async {
     loader.value = true;
     try {
       transactionModel = await ListCartApi.transactionApi();
@@ -103,24 +99,23 @@ class PaymentController extends GetxController {
     }
   }
 
-  defaultCardApi () async{
+  defaultCardApi() async {
     loader.value = true;
     try {
-      if(listCardModel.data?[selectedIndex].id == null){
+      if (listCardModel.data?[selectedIndex].id == null) {
         errorToast("Card not available");
         loader.value = false;
-      }else{
-        transactionModel = await ListCartApi.defaultCardApi(id: listCardModel.data?[selectedIndex].id ?? 0);
+      } else {
+        transactionModel = await ListCartApi.defaultCardApi(
+            id: listCardModel.data?[selectedIndex].id ?? 0);
         update(['more']);
         loader.value = false;
       }
-
     } catch (e) {
       debugPrint(e.toString());
       loader.value = false;
     }
   }
-
 
   String timeAgo(DateTime d) {
     Duration diff = DateTime.now().difference(d);
@@ -144,5 +139,4 @@ class PaymentController extends GetxController {
     }
     return "just now";
   }
-
 }

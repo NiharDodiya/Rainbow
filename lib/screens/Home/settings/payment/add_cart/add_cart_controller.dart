@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:rainbow/common/Widget/premiumPopUpBox/api/subscribe_popup_api.dart';
+
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/payment/add_cart/addCart_api/addCart_api.dart';
@@ -23,17 +23,15 @@ class AddCartController extends GetxController {
   String? selectCountry;
   String? myId;
 
-
   RxBool loader = false.obs;
 
   bool countryBox = false;
 
-  dropDownBox(){
-    if(countryBox == false){
+  dropDownBox() {
+    if (countryBox == false) {
       countryBox = true;
       update(["drop"]);
-    }
-    else{
+    } else {
       countryBox = false;
       update(["drop"]);
     }
@@ -43,11 +41,12 @@ class AddCartController extends GetxController {
   List filterList = [];
 
   void serching(value) {
-    filterList = (countryCity.where(
-            (element) {
-          return element.toString().toLowerCase().contains(value.toString().toLowerCase());
-        })
-        .toList());
+    filterList = (countryCity.where((element) {
+      return element
+          .toString()
+          .toLowerCase()
+          .contains(value.toString().toLowerCase());
+    }).toList());
     update(["drop"]);
   }
 
@@ -60,32 +59,26 @@ class AddCartController extends GetxController {
     update(["drop"]);
   }*/
 
-
+  @override
   void onInit() {
     update();
     super.onInit();
   }
 
   addCart(context) async {
-
     FocusScopeNode currentfocus = FocusScope.of(context);
     if (!currentfocus.hasPrimaryFocus) {
       currentfocus.unfocus();
     }
 
     if (validation()) {
-
-
       loader.value = true;
-      Future.delayed(Duration(seconds: 1), () {
+      Future.delayed(const Duration(seconds: 1), () {
         addCartDetails(context);
 
-
-      /*  Get.find<PaymentController>().viewCardModel;
+        /*  Get.find<PaymentController>().viewCardModel;
         update(["abc"]);*/
       });
-
-
     }
   }
 
@@ -131,7 +124,7 @@ class AddCartController extends GetxController {
     } else if (cvvController.text.length != 3) {
       errorToast(Strings.cVVErrorValidation);
       return false;
-    } else if(myId == null || myId == ""){
+    } else if (myId == null || myId == "") {
       errorToast("Please enter valid country name");
       return false;
     }
@@ -146,8 +139,6 @@ class AddCartController extends GetxController {
 
   void addCartDetails(context) {
     try {
-      PaymentController paymentController = Get.put(PaymentController());
-
       loader.value = true;
       AddCartApi.addCartDetailsApi(
         context,
@@ -170,10 +161,9 @@ class AddCartController extends GetxController {
         controller.listCardModel.data?.length == null
             ? homeController.viewProfile.data!.userType = "free"
             : homeController.viewProfile.data!.userType = "premium";
-       // await UserSubscriptionAddApi.userSubscriptionAddApi();
+        // await UserSubscriptionAddApi.userSubscriptionAddApi();
         loader.value = false;
       });
-
     } catch (e) {
       debugPrint(e.toString());
     }

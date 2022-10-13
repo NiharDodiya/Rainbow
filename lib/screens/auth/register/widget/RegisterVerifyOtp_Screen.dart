@@ -20,7 +20,8 @@ class _RegisterOtpScreenState extends State<RegisterOtpScreen> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final controller = Get.put(RegisterVerifyController());
 
-  PhoneNumberController phoneNumberController = Get.put(PhoneNumberController());
+  PhoneNumberController phoneNumberController =
+      Get.put(PhoneNumberController());
 
   @override
   void initState() {

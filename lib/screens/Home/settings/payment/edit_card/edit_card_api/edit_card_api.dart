@@ -1,10 +1,9 @@
 import 'dart:convert';
 
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/editCardModel.dart';
-import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
+
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
@@ -51,16 +50,13 @@ class EditCardApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          print("======= edit card : ${response.statusCode} ======");
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          print("======= edit card : ${response.statusCode} =====");
           flutterToast(jsonDecode(response.body)["message"]);
         }
         return editCardModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
       return [];
     }
   }

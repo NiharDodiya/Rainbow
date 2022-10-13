@@ -749,7 +749,6 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                         ),
                         SubmitButton(
                           onTap: () {
-
                             controller.image = [];
 
                             controller.onTapSendMessage(id.toString(), context);
@@ -783,7 +782,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
   Widget body(String comp) {
     SupportController controller = Get.put(SupportController());
     return ListView.builder(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: controller.viewSupportTicketModel.data?.length ?? 0,
       itemBuilder: (context, index) {
@@ -796,32 +795,30 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                 height: Get.width * 0.144,
                 child: Row(
                   children: [
-
                     ClipRRect(
                       borderRadius: BorderRadius.circular(50),
-                      child:Container(
+                      child: SizedBox(
                         height: 53,
                         width: 53,
-                        child:  CachedNetworkImage(
+                        child: CachedNetworkImage(
                           imageUrl: controller.viewSupportTicketModel
                               .data![index].userDetail!.profileImage
                               .toString(),
                           fit: BoxFit.cover,
                           placeholder: ((context, url) => Image.asset(
-                            AssetRes.portrait_placeholder,
-                            fit: BoxFit.cover,
-                            height: 53,
-                            width: 53,
-                          )),
+                                AssetRes.portrait_placeholder,
+                                fit: BoxFit.cover,
+                                height: 53,
+                                width: 53,
+                              )),
                           errorWidget: ((context, url, error) => Image.asset(
-                            AssetRes.portrait_placeholder,
-                            fit: BoxFit.cover,
-                            height: 53,
-                            width: 53,
-                          )),
+                                AssetRes.portrait_placeholder,
+                                fit: BoxFit.cover,
+                                height: 53,
+                                width: 53,
+                              )),
                         ),
                       ),
-
                     ),
                     /* Container(
                         height: Get.width * 0.144,
@@ -851,7 +848,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                           SizedBox(
                             height: Get.height * 0.0086,
                           ),
-                          Container(
+                          SizedBox(
                             width: MediaQuery.of(context).size.width / 1.54,
                             child: SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
@@ -889,7 +886,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
               ),
               //image
               controller.viewSupportTicketModel.data![index].itmeList!.isEmpty
-                  ? SizedBox()
+                  ? const SizedBox()
                   : (controller.viewSupportTicketModel.data![index].itmeList!
                               .length ==
                           3)
@@ -1067,7 +1064,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                         downloadButton2(index)
                                       ],
                                     )
-                                  : SizedBox(),
+                                  : const SizedBox(),
                         ),
 
               SizedBox(

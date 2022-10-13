@@ -58,7 +58,8 @@ class DeletApprove extends StatelessWidget {
                         color: ColorRes.color_F28D8D,
                         shape: BoxShape.circle,
                         border: Border.all(
-                            color: ColorRes.color_FFC9C9, width: Get.width * 0.0426),
+                            color: ColorRes.color_FFC9C9,
+                            width: Get.width * 0.0426),
                         // image:
                         //     DecorationImage(image: AssetImage(AssetRes.deleticon,))
                       ),
@@ -91,7 +92,8 @@ class DeletApprove extends StatelessWidget {
                       builder: (controller) {
                         return SubmitButton(
                             onTap: () {
-                              controller.deleteAdvertiser(idAdvertiser, context);
+                              controller.deleteAdvertiser(
+                                  idAdvertiser, context);
                             },
                             child: Text(
                               Strings.confirm,
@@ -105,7 +107,9 @@ class DeletApprove extends StatelessWidget {
                 ),
               ),
             ),
-            adHomeController.loader.value == true?const FullScreenLoader():SizedBox(),
+            adHomeController.loader.value == true
+                ? const FullScreenLoader()
+                : SizedBox(),
           ],
         );
       }),

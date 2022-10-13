@@ -25,7 +25,7 @@ import 'package:visibility_detector/visibility_detector.dart';
 import 'settings/connections/connections_controller.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -39,7 +39,8 @@ class _HomeScreenState extends State<HomeScreen> {
   CommentsController commentsController = Get.put(CommentsController());
   ConnectionsProfileController connectionsProfileController =
       Get.put(ConnectionsProfileController());
-  NotificationsController notificationsController =  Get.put(NotificationsController());
+  NotificationsController notificationsController =
+      Get.put(NotificationsController());
 
   @override
   Widget build(BuildContext context) {
@@ -209,14 +210,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ))!
                                     .then((value) {
                                     if (value == true) {
-                                     Future.delayed(Duration(seconds: 1)).then((value) async {
-                                       await controller
-                                           .friendPostDataWithOutPagination(
-                                         pageLength: controller
-                                             .friendPostListData.length +
-                                             1,
-                                       );
-                                     });
+                                      Future.delayed(const Duration(seconds: 1))
+                                          .then((value) async {
+                                        await controller
+                                            .friendPostDataWithOutPagination(
+                                          pageLength: controller
+                                                  .friendPostListData.length +
+                                              1,
+                                        );
+                                      });
                                     }
                                   });
                           },
@@ -318,11 +320,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                       )
                                     : ClipRRect(
                                         borderRadius: BorderRadius.circular(50),
-                                        child: Container(
+                                        child: SizedBox(
                                           height: 56,
                                           width: 56,
                                           child:
-                                          /*Image.network(
+                                              /*Image.network(
                                             controller.controller.viewProfile
                                                 .data!.profileImage
                                                 .toString(),
@@ -336,20 +338,29 @@ class _HomeScreenState extends State<HomeScreen> {
                                               width: 56,
                                             )),
                                           ),*/
-                                          CachedNetworkImage(
-                                            imageUrl: controller.controller.viewProfile
-                                                .data!.profileImage
+                                              CachedNetworkImage(
+                                            imageUrl: controller.controller
+                                                .viewProfile.data!.profileImage
                                                 .toString(),
                                             fit: BoxFit.cover,
-                                            placeholder: ((context, url) => Image.asset(AssetRes.portrait_placeholder,fit: BoxFit.cover,
-                                              height: 56,
-                                              width: 56,)),
-                                            errorWidget: ((context, url, error) => Image.asset(AssetRes.portrait_placeholder,fit: BoxFit.cover,
-                                              height: 56,
-                                              width: 56,)),
+                                            placeholder: ((context, url) =>
+                                                Image.asset(
+                                                  AssetRes.portrait_placeholder,
+                                                  fit: BoxFit.cover,
+                                                  height: 56,
+                                                  width: 56,
+                                                )),
+                                            errorWidget: ((context, url,
+                                                    error) =>
+                                                Image.asset(
+                                                  AssetRes.portrait_placeholder,
+                                                  fit: BoxFit.cover,
+                                                  height: 56,
+                                                  width: 56,
+                                                )),
                                           ),
                                         ),
-                                  /*Image.network(
+                                        /*Image.network(
                                           controller.controller.viewProfile
                                               .data!.profileImage
                                               .toString(),
@@ -706,14 +717,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(50),
                                         child: FadeInImage(
-                                          image: NetworkImage(user.profileImage.toString(),),
-                                          placeholder: const AssetImage(AssetRes.portrait_placeholder,),
-                                          imageErrorBuilder: ((context, error, stackTrace) => Image.asset(
+                                          image: NetworkImage(
+                                            user.profileImage.toString(),
+                                          ),
+                                          placeholder: const AssetImage(
                                             AssetRes.portrait_placeholder,
-                                            height: 50,
-                                            width: 50,
-                                            fit: BoxFit.cover,
-                                          )),
+                                          ),
+                                          imageErrorBuilder: ((context, error,
+                                                  stackTrace) =>
+                                              Image.asset(
+                                                AssetRes.portrait_placeholder,
+                                                height: 50,
+                                                width: 50,
+                                                fit: BoxFit.cover,
+                                              )),
                                         ),
                                         /*Image.network(
                                           user.profileImage.toString(),
@@ -844,28 +861,29 @@ class _HomeScreenState extends State<HomeScreen> {
                 return Column(
                   children: [
                     seeAll(),
-                    (controller.advertisementListUserModel.data == null || controller.advertisementListUserModel.data!.isEmpty) ? emptyWidget : const SizedBox(),
+                    (controller.advertisementListUserModel.data == null ||
+                            controller.advertisementListUserModel.data!.isEmpty)
+                        ? emptyWidget
+                        : const SizedBox(),
                     const SizedBox(
                       height: 20,
                     ),
                     controller.advertisementListUserModel.data == null
-                        ?const SizedBox()
-                        :Padding(
-                      padding: const EdgeInsets.only(left: 15, right: 10),
-                      child: SizedBox(
-                        height: 415,
-                        width: Get.width * 0.92560,
-                        child: PageView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: controller
-                                .advertisementListUserModel
-                                .data
-                                ?.length,
-                            itemBuilder: (context, index) {
-                              return adInLatestFeed(index: index);
-                            }),
-                      ),
-                    ),
+                        ? const SizedBox()
+                        : Padding(
+                            padding: const EdgeInsets.only(left: 15, right: 10),
+                            child: SizedBox(
+                              height: 415,
+                              width: Get.width * 0.92560,
+                              child: PageView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: controller
+                                      .advertisementListUserModel.data?.length,
+                                  itemBuilder: (context, index) {
+                                    return adInLatestFeed(index: index);
+                                  }),
+                            ),
+                          ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -889,7 +907,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 if (info.visibleFraction == 1) {
                   controller.postViewData(
                       controller.friendPostListData[index].id.toString());
-                  print("++++++++++++++++++$index");
                 }
               },
               child: Padding(
@@ -1347,10 +1364,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     .toString(),
                                               ))!
                                           .then((value) async {
-                                      Future.delayed(Duration(seconds: 1)).then((value) async {
-                                        await controller
-                                            .friendPostDataWithOutPagination();
-                                      });
+                                        Future.delayed(
+                                                const Duration(seconds: 1))
+                                            .then((value) async {
+                                          await controller
+                                              .friendPostDataWithOutPagination();
+                                        });
                                       });
                                     },
                                     child: const SizedBox(
@@ -1439,11 +1458,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    (controller.advertisementListUserModel.data == null || controller.advertisementListUserModel.data!.isEmpty)
+                    (controller.advertisementListUserModel.data == null ||
+                            controller.advertisementListUserModel.data!.isEmpty)
                         ? const SizedBox()
                         : index == 0
                             ? Padding(
-                                padding: const EdgeInsets.only(left: 15, right: 10),
+                                padding:
+                                    const EdgeInsets.only(left: 15, right: 10),
                                 child: SizedBox(
                                   height: 415,
                                   width: Get.width * 0.92560,

@@ -13,22 +13,21 @@ import 'package:rainbow/utils/pref_keys.dart';
 import 'package:http/http.dart' as http;
 
 class RenewAdApi {
-  static Future renewAdApi(
-      {
-        int? idAd,
-        String? startDate,
-        String? endDate,
-        int? amount,
-      }) async {
+  static Future renewAdApi({
+    int? idAd,
+    String? startDate,
+    String? endDate,
+    int? amount,
+  }) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
     // int userId = PrefService.getInt(PrefKeys.userId);
     try {
       String url = EndPoints.renewAdvertisement;
       Map<String, dynamic> param = {
-        "id_advertisement" : idAd,
-        "start_date" : startDate.toString(),
-        "end_date" : endDate.toString() ,
-        "amount" : amount
+        "id_advertisement": idAd,
+        "start_date": startDate.toString(),
+        "end_date": endDate.toString(),
+        "amount": amount
       };
 
       http.Response? response = await HttpService.postApi(
@@ -42,7 +41,6 @@ class RenewAdApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == true) {
-
           final PaymentController controller = Get.find();
           await controller.transactionApi();
           Get.to(() => PaymentSuccessfulScreen());

@@ -62,28 +62,26 @@ class CreateAdvertisementController extends GetxController {
 
   RxBool loader = false.obs;
 
-
-
   TextEditingController amountController =
       TextEditingController(text: "\$200.00");
 
   // File? imagePath;
   List<File> imagePath = [];
 
-
   String? selectedCity;
 
   List filterList = [];
 
   void serching(value) {
-    filterList = (listNationalities.data?.where(
-            (element) {
-          return element.name.toString().toLowerCase().contains(value.toString().toLowerCase());
-        })
-        .toList()) ?? [];
+    filterList = (listNationalities.data?.where((element) {
+          return element.name
+              .toString()
+              .toLowerCase()
+              .contains(value.toString().toLowerCase());
+        }).toList()) ??
+        [];
     update(["drop"]);
   }
-
 
   /* final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   FocusNode searchFocusNode = FocusNode();
@@ -100,20 +98,16 @@ class CreateAdvertisementController extends GetxController {
 
   bool countryBox = false;
 
-  dropDownBox(){
-    if(countryBox == false){
+  dropDownBox() {
+    if (countryBox == false) {
       countryBox = true;
       update(["drop"]);
-    }
-    else{
+    } else {
       countryBox = false;
       update(["drop"]);
     }
     update();
   }
-
-
-
 
   void onTapEthnicity(value) {
     selectedCity = value as String;
@@ -219,15 +213,12 @@ class CreateAdvertisementController extends GetxController {
     }
   }
 
-
   bool validation() {
-
     for (int i = 0; i < listNationalities.data!.length; i++) {
       if (listNationalities.data![i].name == countryController.text) {
         myId = countryController.text;
       }
     }
-
 
     if (tagsController.text.isEmpty) {
       errorToast(Strings.tagsError);
@@ -265,7 +256,7 @@ class CreateAdvertisementController extends GetxController {
     } else if (hasValidUrl(urlLinkController.text) == false) {
       errorToast(Strings.websiteError);
       return false;
-    }else if(myId == null || myId == ""){
+    } else if (myId == null || myId == "") {
       errorToast("Please enter valid country name");
       return false;
     }
@@ -339,7 +330,6 @@ class CreateAdvertisementController extends GetxController {
 
   List<UserData> tagUserList = [];
 
-
 /*
   void onTagTap(UserData userData) {
     tagUserList.add(userData);
@@ -365,22 +355,27 @@ class CreateAdvertisementController extends GetxController {
     DateTime now = DateTime.now();
     loader.value = true;
     await AddAdvertisement.addAdvertisementApi(
-        tagUser: tags,
-        idItem: imageId,
-        title: titleController.text,
-        callAction: callToActionController.text,
-        city: cityController.text,
-        date: dateController.text,
-        description: descriptoionController.text,
-        postalCode: postalCodeController.text,
-        location: address.toString(),
-        province: provinceController.text,
-        street: streetController.text,
-        urlLink: urlLinkController.text,
-        countryCode: codeId.toString(),
-        startDate: DateFormat().add_yMd().format(startTime!),  //startTime!.add(Duration(days: 1))!
-        endDate: (endTime == null)?DateFormat().add_yMd().format(DateTime(now.year,now.month,now.day,24,00,00)):DateFormat().add_yMd().format(endTime!),
-        amount: 200,
+      tagUser: tags,
+      idItem: imageId,
+      title: titleController.text,
+      callAction: callToActionController.text,
+      city: cityController.text,
+      date: dateController.text,
+      description: descriptoionController.text,
+      postalCode: postalCodeController.text,
+      location: address.toString(),
+      province: provinceController.text,
+      street: streetController.text,
+      urlLink: urlLinkController.text,
+      countryCode: codeId.toString(),
+      startDate: DateFormat().add_yMd().format(startTime!),
+      //startTime!.add(Duration(days: 1))!
+      endDate: (endTime == null)
+          ? DateFormat()
+              .add_yMd()
+              .format(DateTime(now.year, now.month, now.day, 24, 00, 00))
+          : DateFormat().add_yMd().format(endTime!),
+      amount: 200,
     );
     adHomeController.myAdvertiserListData();
     adHomeController.update(['more']);

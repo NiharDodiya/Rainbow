@@ -11,7 +11,7 @@ class UploadImageApi {
   static Future postRegister(
     String image,
   ) async {
-    String accessToken = await PrefService.getString(PrefKeys.registerToken);
+    String accessToken = PrefService.getString(PrefKeys.registerToken);
     try {
       String url = EndPoints.uploadImage;
       Map<String, String> headers = {"x-access-token": accessToken};

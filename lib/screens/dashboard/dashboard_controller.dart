@@ -25,8 +25,6 @@ class DashboardController extends GetxController {
     super.onInit();
   }
 
-
-
   void onBottomBarChange(int index) {
     currentTab = index;
     if (index == 0) {
@@ -54,6 +52,4 @@ class DashboardController extends GetxController {
       print(e.toString());
     }
   }
-
-
 }

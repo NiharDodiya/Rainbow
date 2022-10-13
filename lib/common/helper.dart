@@ -24,7 +24,6 @@ void getCountry() {
     print(countryCity);
     print(countryId);
   }
-
 }
 
 void getCountryNation() {
@@ -41,7 +40,6 @@ void getCountryNation() {
     print("countryNationCity => $countryNationCity");
     print("countryNationCity => $countryNationId");
   }
-
 }
 
 String getChatId(String uid1, String uid2) {

@@ -13,7 +13,7 @@ import 'package:rainbow/utils/pref_keys.dart';
 class OtherProfileApi {
   static Future<ProfileModel?> getOtherUerData(String userId) async {
     try {
-      String accesToken = await PrefService.getString(PrefKeys.registerToken);
+      String accesToken = PrefService.getString(PrefKeys.registerToken);
       Map<String, dynamic> body = {"userId": userId};
       http.Response? response = await HttpService.postApi(
           url: EndPoints.viewProfile,
@@ -37,7 +37,7 @@ class OtherProfileApi {
       String url = EndPoints.cancelSenderRequest;
 
       Map<String, String> param = {"id_receiver": id.toString()};
-      print(param);
+
       http.Response? response = await HttpService.postApi(
         url: url,
         body: jsonEncode(param),
@@ -57,7 +57,7 @@ class OtherProfileApi {
       return null;
     } catch (e) {
       errorToast("Error", title: e.toString());
-      print(e.toString());
+
       return null;
     }
   }

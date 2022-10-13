@@ -61,7 +61,7 @@ class EditProfileApi {
         param["id_item_profile"] = idItemProfile;
       }
 
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -69,7 +69,7 @@ class EditProfileApi {
             "Content-Type": "application/json",
             "x-access-token": accessToken
           });
-      if(response?.statusCode == 500){
+      if (response?.statusCode == 500) {
         errorToast("Please enter valid country name");
         return null;
       }
@@ -77,15 +77,14 @@ class EditProfileApi {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
           errorToast(jsonDecode(response.body)["message"]);
-        }
-        else if (status == true) {
+        } else if (status == true) {
           flutterToast(jsonDecode(response.body)["message"]);
         }
         return editProfileFromJson(response.body);
       }
       return null;
     } catch (e) {
-      print(e.toString());
+
       return null;
     }
   }

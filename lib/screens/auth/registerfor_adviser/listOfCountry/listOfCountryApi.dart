@@ -25,7 +25,7 @@ class ListOfCountryApi {
       /*  message == "Failed! Email is already in use!"
           ? errorToast(message)
           : */
-    /*  flutterToast(message);*/
+      /*  flutterToast(message);*/
     } catch (e) {
       print(e.toString());
       return listCountryModelFromJson("");

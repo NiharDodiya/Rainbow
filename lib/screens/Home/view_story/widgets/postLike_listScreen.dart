@@ -12,7 +12,7 @@ class PostLikeListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    HomeController homeController = Get.put(HomeController());
+
     ConnectionsProfileController connectionsProfileController =
         Get.put(ConnectionsProfileController());
     return GetBuilder<HomeController>(
@@ -50,7 +50,7 @@ class PostLikeListScreen extends StatelessWidget {
                     const SizedBox(width: 16),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [],
+
                     ),
                   ],
                 ),

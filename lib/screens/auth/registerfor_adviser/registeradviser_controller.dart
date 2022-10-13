@@ -39,12 +39,11 @@ class AdviserRegisterController extends GetxController {
 
   bool countryBox = false;
 
-  dropDownBox(){
-    if(countryBox == false){
+  dropDownBox() {
+    if (countryBox == false) {
       countryBox = true;
       update(["drop"]);
-    }
-    else{
+    } else {
       countryBox = false;
       update(["drop"]);
     }
@@ -54,11 +53,13 @@ class AdviserRegisterController extends GetxController {
   List filterList = [];
 
   void serching(value) {
-    filterList = (listCountryModel.data?.where(
-            (element) {
-          return element.name.toString().toLowerCase().contains(value.toString().toLowerCase());
-        })
-        .toList()) ?? [];
+    filterList = (listCountryModel.data?.where((element) {
+          return element.name
+              .toString()
+              .toLowerCase()
+              .contains(value.toString().toLowerCase());
+        }).toList()) ??
+        [];
     update(["drop"]);
   }
 
@@ -191,7 +192,6 @@ class AdviserRegisterController extends GetxController {
   String? myId;
 
   bool validation() {
-
     for (int i = 0; i < listCountryModel.data!.length; i++) {
       if (listCountryModel.data![i].name == country.text) {
         myId = country.text;
@@ -237,8 +237,7 @@ class AdviserRegisterController extends GetxController {
     } else if (phoneNumber.text.isEmpty) {
       errorToast(Strings.phoneNumberError);
       return false;
-    }
-    else if(myId == null || myId == ""){
+    } else if (myId == null || myId == "") {
       errorToast("Please enter valid country name");
       return false;
     }

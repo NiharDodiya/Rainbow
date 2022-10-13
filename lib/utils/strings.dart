@@ -203,7 +203,8 @@ class Strings {
   static const hobbies = 'Hobbies and Interest';
   static const finish = 'Finish';
   static const aboutMeDes = 'Describe your self ';
-  static const hobbiesAndInterest = '\u2022 Playing guitar \n\u2022 Reading books \n\u2022 Exploring uncertainties';
+  static const hobbiesAndInterest =
+      '\u2022 Playing guitar \n\u2022 Reading books \n\u2022 Exploring uncertainties';
   static const bioError = 'Enter bio';
   static const statusError = 'Enter status';
   static const instaError = 'Enter instagram';

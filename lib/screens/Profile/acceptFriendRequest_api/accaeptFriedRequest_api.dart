@@ -16,7 +16,7 @@ class AcceptFriendRequestApi {
       String url = EndPoints.acceptFriendRequest;
 
       Map<String, String> param = {"id_sender": id.toString()};
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -34,7 +34,7 @@ class AcceptFriendRequestApi {
         return acceptFriendRequestFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }

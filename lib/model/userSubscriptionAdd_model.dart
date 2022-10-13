@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-UserSubscriptionAddModel userSubscriptionAddModelFromJson(String str) => UserSubscriptionAddModel.fromJson(json.decode(str));
+UserSubscriptionAddModel userSubscriptionAddModelFromJson(String str) =>
+    UserSubscriptionAddModel.fromJson(json.decode(str));
 
-String userSubscriptionAddModelToJson(UserSubscriptionAddModel data) => json.encode(data.toJson());
+String userSubscriptionAddModelToJson(UserSubscriptionAddModel data) =>
+    json.encode(data.toJson());
 
 class UserSubscriptionAddModel {
   UserSubscriptionAddModel({
@@ -17,13 +19,14 @@ class UserSubscriptionAddModel {
   bool? status;
   String? message;
 
-  factory UserSubscriptionAddModel.fromJson(Map<String, dynamic> json) => UserSubscriptionAddModel(
-    status: json["status"],
-    message: json["message"],
-  );
+  factory UserSubscriptionAddModel.fromJson(Map<String, dynamic> json) =>
+      UserSubscriptionAddModel(
+        status: json["status"],
+        message: json["message"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-  };
+        "status": status,
+        "message": message,
+      };
 }

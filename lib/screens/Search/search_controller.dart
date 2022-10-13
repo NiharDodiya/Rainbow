@@ -49,7 +49,6 @@ class SearchController extends GetxController {
   bool isClockwise = true;
   Completer<GoogleMapController> gMapController = Completer();
 
-
   Placemark placeMark = Placemark();
 
   Placemark get pickPlaceMark => placeMark;
@@ -175,13 +174,10 @@ class SearchController extends GetxController {
 
     Get.to(AdvanceSearchScreen(
       title: advanceSearch[index],
-    ))!.then((value) async {
+    ))!
+        .then((value) async {
       await listUserProfile();
-
     });
-
-
-
 
 /*    await loadData();*/
   }
@@ -348,8 +344,7 @@ class SearchController extends GetxController {
         keyWords: "",
         longitude: longitude,
         latitude: latitude,
-        fullName: enteredKeyword.toString().toLowerCase()
-    );
+        fullName: enteredKeyword.toString().toLowerCase());
     loader.value = false;
     dataStore = listUseProfileModel.data ?? [];
     listUserData = dataStore;
@@ -370,7 +365,6 @@ class SearchController extends GetxController {
       if (kDebugMode) {
         print("PROFILE SCREEN BACK ");
       }
-
     });
   }
 

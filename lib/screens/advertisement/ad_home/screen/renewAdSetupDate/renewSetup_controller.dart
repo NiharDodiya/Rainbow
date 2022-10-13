@@ -10,9 +10,7 @@ import 'package:rainbow/screens/advertisement/ad_home/screen/renewAdSetupDate/re
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
-
-
-class RenewAdSetupDateController extends GetxController{
+class RenewAdSetupDateController extends GetxController {
   DateTime? startTime = DateTime.now();
   DateTime selectableDate = DateTime.now();
   DateTime? endTime = DateTime.now();
@@ -31,7 +29,7 @@ class RenewAdSetupDateController extends GetxController{
   RxBool loader = false.obs;
 
   TextEditingController amountController =
-  TextEditingController(text: "\$3000.00");
+      TextEditingController(text: "\$3000.00");
 
   rangSelect(start, end, range) {
     startTime = start;
@@ -44,8 +42,13 @@ class RenewAdSetupDateController extends GetxController{
     loader.value = true;
     await RenewAdApi.renewAdApi(
       idAd: id,
-      startDate: DateFormat().add_yMd().format(startTime!),  //startTime!.add(Duration(days: 1))!
-      endDate: (endTime == null)?DateFormat().add_yMd().format(DateTime(now.year,now.month,now.day,24,00,00)):DateFormat().add_yMd().format(endTime!),
+      startDate: DateFormat().add_yMd().format(startTime!),
+      //startTime!.add(Duration(days: 1))!
+      endDate: (endTime == null)
+          ? DateFormat()
+              .add_yMd()
+              .format(DateTime(now.year, now.month, now.day, 24, 00, 00))
+          : DateFormat().add_yMd().format(endTime!),
       amount: 3000,
     );
 

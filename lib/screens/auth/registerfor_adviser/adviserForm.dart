@@ -42,14 +42,14 @@ class AdviserRegisterForm extends StatelessWidget {
                   },
                   child: controller.showPassword == true
                       ? const Icon(
-                    Icons.remove_red_eye_outlined,
-                    color: Colors.grey,
-                  )
+                          Icons.remove_red_eye_outlined,
+                          color: Colors.grey,
+                        )
                       : const Icon(
-                    Icons.remove_red_eye_rounded,
-                    color: Colors.grey,
-                  )),
-              obscure: controller.showPassword == true?false:true,
+                          Icons.remove_red_eye_rounded,
+                          color: Colors.grey,
+                        )),
+              obscure: controller.showPassword == true ? false : true,
             ),
             AppTextFiled(
               controller: controller.confirmPwdController,
@@ -62,14 +62,14 @@ class AdviserRegisterForm extends StatelessWidget {
                   },
                   child: controller.showRetype == true
                       ? const Icon(
-                    Icons.remove_red_eye_outlined,
-                    color: Colors.grey,
-                  )
+                          Icons.remove_red_eye_outlined,
+                          color: Colors.grey,
+                        )
                       : const Icon(
-                    Icons.remove_red_eye_rounded,
-                    color: Colors.grey,
-                  )),
-              obscure: controller.showRetype == true ?false:true,
+                          Icons.remove_red_eye_rounded,
+                          color: Colors.grey,
+                        )),
+              obscure: controller.showRetype == true ? false : true,
             ),
             GetBuilder<AdviserRegisterController>(
               id: 'address1',
@@ -106,7 +106,6 @@ class AdviserRegisterForm extends StatelessWidget {
                 );
               },
             ),
-
             Align(
               alignment: Alignment.topLeft,
               child: Text(
@@ -119,9 +118,9 @@ class AdviserRegisterForm extends StatelessWidget {
             ),
             GetBuilder<AdviserRegisterController>(
                 id: "drop",
-                builder: (controller){
-                  return  Container(
-                    width: Get.width/1.20,
+                builder: (controller) {
+                  return Container(
+                    width: Get.width / 1.20,
                     height: 60,
                     decoration: BoxDecoration(
                       color: ColorRes.white,
@@ -155,76 +154,87 @@ class AdviserRegisterForm extends StatelessWidget {
                             ),
                             IconButton(
                               onPressed: controller.dropDownBox,
-                              icon: Image.asset(AssetRes.arrowDown, height: 20),),
-                            SizedBox(width: 5,),
+                              icon: Image.asset(AssetRes.arrowDown, height: 20),
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
                           ],
                         ),
-
                       ],
                     ),
                   );
                 }),
             GetBuilder<AdviserRegisterController>(
                 id: "drop",
-                builder: (controller){
-                  return  (controller.countryBox == true)
-                      ?Container(
-                    height: 160,
-                    width:  Get.width/1.20,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white,
-                    ),
-                    child: SingleChildScrollView(
-
-                      child: Column(
-                        children: (controller.country.text.isEmpty)
-                            ?listCountryModel.data!.map((e) {
-                          return Padding(
-                            padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
-                            child: InkWell(
-                              onTap: (){
-                                controller.country.text = e.name!;
-                                controller.countryBox = false;
-                                controller.update(["drop"]);
-                              },
-                              child: SizedBox(
-                                height: 25,
-                                width: Get.width,
-                                child: Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
-                                  ),
-                                ),
-                              ),
+                builder: (controller) {
+                  return (controller.countryBox == true)
+                      ? Container(
+                          height: 160,
+                          width: Get.width / 1.20,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white,
+                          ),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: (controller.country.text.isEmpty)
+                                  ? listCountryModel.data!.map((e) {
+                                      return Padding(
+                                        padding: EdgeInsets.only(
+                                            left: 20, top: 7, bottom: 7),
+                                        child: InkWell(
+                                          onTap: () {
+                                            controller.country.text = e.name!;
+                                            controller.countryBox = false;
+                                            controller.update(["drop"]);
+                                          },
+                                          child: SizedBox(
+                                            height: 25,
+                                            width: Get.width,
+                                            child: Align(
+                                              alignment: Alignment.topLeft,
+                                              child: Text(
+                                                e.name!,
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 16),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }).toList()
+                                  : controller.filterList.map((e) {
+                                      return Padding(
+                                        padding: EdgeInsets.only(
+                                            left: 20, top: 7, bottom: 7),
+                                        child: InkWell(
+                                          onTap: () {
+                                            controller.country.text = e.name!;
+                                            controller.countryBox = false;
+                                            controller.update(["drop"]);
+                                          },
+                                          child: SizedBox(
+                                            height: 25,
+                                            width: Get.width,
+                                            child: Align(
+                                              alignment: Alignment.topLeft,
+                                              child: Text(
+                                                e.name!,
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 16),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }).toList(),
                             ),
-                          );
-                        }).toList()
-                            :controller.filterList.map((e) {
-                          return Padding(
-                            padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
-                            child: InkWell(
-                              onTap: (){
-                                controller.country.text = e.name!;
-                                controller.countryBox = false;
-                                controller.update(["drop"]);
-                              },
-                              child: SizedBox(
-                                height: 25,
-                                width: Get.width,
-                                child: Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                    ),
-                  )
-                      :SizedBox();
+                          ),
+                        )
+                      : SizedBox();
                 }),
             const SizedBox(
               height: 10,
