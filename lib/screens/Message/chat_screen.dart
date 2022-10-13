@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_stack/image_stack.dart';
-import 'package:intl/intl.dart';
+
 import 'package:paginate_firestore/paginate_firestore.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
@@ -595,13 +595,13 @@ class ChatScreen extends StatelessWidget {
                     ],
                   ),
                 )
-              : SendImage(controller);
+              : sendImage(controller);
         },
       ),
     );
   }
 
-  Widget SendImage(MessageController controller) {
+  Widget sendImage(MessageController controller) {
     return Obx(() {
       return Stack(
         children: [
