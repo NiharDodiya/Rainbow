@@ -108,7 +108,7 @@ Widget appbar({context}) {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Good Morning,",
+                      "Good ${controller.timeOfDay.toString()},",
                       overflow: TextOverflow.clip,
                       maxLines: 2,
                       style: gilroySemiBoldTextStyle(fontSize: 12),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/model/listCardModel.dart';
 import 'package:rainbow/model/myAdvertiser_model.dart';
 import 'package:rainbow/model/viewAdvertiserModel.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
@@ -18,12 +17,11 @@ class AdHomeController extends GetxController {
   PaymentController paymentController = PaymentController();
   NotificationsController notificationsController = NotificationsController();
 
-
-
   RxBool loader = false.obs;
   String? selectedItem;
   bool listShow = false;
   MyAdvertiserModel myAdvertiserModel = MyAdvertiserModel();
+  String? timeOfDay = "";
   List<String> months = [
     'January',
     'February',
@@ -59,8 +57,8 @@ class AdHomeController extends GetxController {
   List<bool> moreOption = [];
 
   @override
-  void onInit() async{
-   await init();
+  void onInit() async {
+    await init();
     update(["dashBoard"]);
     update(["update"]);
     update();
@@ -81,19 +79,31 @@ class AdHomeController extends GetxController {
   }
 
   Future<void> init() async {
-
-
-
-     paymentController.transactionApi();
-     paymentController.listCardModel;
+    paymentController.transactionApi();
+    paymentController.listCardModel;
 
     notificationsController.getNotifications;
     await viewAdvertiserData();
     await myAdvertiserListData();
+    await greeting();
   }
 
   void onTapAddList() {
     Get.to(() => CreateAdvertisementScreen());
+  }
+
+  greeting() {
+    var hour = DateTime.now().hour;
+
+    if (hour <= 12) {
+      timeOfDay = 'Morning';
+    } else if ((hour > 12) && (hour <= 16)) {
+      timeOfDay = 'Afternoon';
+    } else if ((hour > 16) && (hour < 20)) {
+      timeOfDay = 'Evening';
+    } else {
+      timeOfDay = 'Night';
+    }
   }
 
   void onTapMore(int index) {
@@ -183,12 +193,9 @@ class AdHomeController extends GetxController {
       print(e.toString());
     }
   }
-  
-  onTap(){
+
+  onTap() {
     errorToast("Please enter card");
     update(['more']);
   }
-
-
-  
 }

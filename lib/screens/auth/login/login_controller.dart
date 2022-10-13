@@ -60,12 +60,15 @@ class LoginController extends GetxController {
      adHomeController.viewAdvertiserModel.data?.email = "";
      homeController.viewProfile.data = null;
      homeController.controller.viewProfile.data?.profileImage = null;
+     homeController.controller.viewProfile.data?.profileImage = null;
+
      homeController.controller.viewProfile.data?.profileImage  = "";
 
 
      homeController.viewStoryController.storyModel.friendsStory = null;
      homeController.viewStoryController.storyModel.friendsStory?.length = 0;
      homeController.friendPostListData = [];
+
 
 
     FocusScopeNode currentfocus = FocusScope.of(context);
