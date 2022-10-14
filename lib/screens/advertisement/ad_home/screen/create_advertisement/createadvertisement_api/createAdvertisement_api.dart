@@ -77,7 +77,7 @@ class AddAdvertisement {
         errorToast("Please enter valid country name");
       }*/
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }

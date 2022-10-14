@@ -793,7 +793,7 @@ class SupportDetailsScreen extends StatelessWidget {
               }),
           controller.loader.value
               ? const Center(
-                  child: const CircularProgressIndicator(),
+                  child: CircularProgressIndicator(),
                 )
               : const SizedBox(),
         ],
@@ -802,7 +802,7 @@ class SupportDetailsScreen extends StatelessWidget {
   }
 
   Widget body(String comp) {
-    AdSupportController controller = Get.put(AdSupportController());
+
     return GetBuilder<AdSupportController>(
         id: "Support",
         builder: (controller) {
@@ -822,7 +822,7 @@ class SupportDetailsScreen extends StatelessWidget {
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(50),
-                            child: Container(
+                            child: SizedBox(
                               height: 53,
                               width: 53,
                               child: CachedNetworkImage(
@@ -846,7 +846,7 @@ class SupportDetailsScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           /*SizedBox(
                             width: Get.width * 0.03,
                           ),*/
@@ -865,7 +865,7 @@ class SupportDetailsScreen extends StatelessWidget {
                                 SizedBox(
                                   height: Get.height * 0.0086,
                                 ),
-                                Container(
+                                SizedBox(
                                   width:
                                       MediaQuery.of(context).size.width / 1.54,
                                   child: SingleChildScrollView(

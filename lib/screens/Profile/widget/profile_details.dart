@@ -178,7 +178,7 @@ Widget profileDetails() {
                   onTap: () async {
                     await launchUrl(Uri.parse(
                         controller.viewProfile.data!.instagram.toString()));
-                    print("insta");
+
                   },
                   child: controller.viewProfile.data!.instagram == ""
                       ? const SizedBox()
@@ -200,7 +200,7 @@ Widget profileDetails() {
                     onTap: () async {
                       await launchUrl(Uri.parse(
                           controller.viewProfile.data!.youtube.toString()));
-                      print("youtube");
+
                     },
                     child: controller.viewProfile.data!.youtube == ""
                         ? const SizedBox()
@@ -227,7 +227,7 @@ Widget profileDetails() {
                       await launchUrl(Uri.parse(
                           controller.viewProfile.data!.facebook.toString()));
 
-                      print("facebook");
+
                     },
                     child: controller.viewProfile.data!.facebook == ""
                         ? const SizedBox()
@@ -249,7 +249,7 @@ Widget profileDetails() {
                       await launchUrl(Uri.parse(
                           controller.viewProfile.data!.twitter.toString()));
 
-                      print("twitter");
+
                     },
                     child: controller.viewProfile.data!.twitter == ''
                         ? const SizedBox()

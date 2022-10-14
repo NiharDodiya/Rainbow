@@ -82,10 +82,10 @@ class LoginController extends GetxController {
   void onTapShowPassword() {
     if (showPassword == false) {
       showPassword = true;
-      print(showPassword);
+
     } else {
       showPassword = false;
-      print(showPassword);
+
     }
     update(["login_form"]);
   }
@@ -136,7 +136,7 @@ class LoginController extends GetxController {
           email: emailController.text.trim(),
           password: passwordController.text.trim());
       if (userCredential.user != null) {
-        print(userCredential.user!.uid);
+
         userUid = userCredential.user!.uid;
         await PrefService.setValue(PrefKeys.uid, userCredential.user!.uid);
         await addUser(userCredential.user!.uid);
@@ -148,7 +148,7 @@ class LoginController extends GetxController {
         //Get.to(() => const UserListScreen());
       }
     } on FirebaseAuthException catch (e) {
-      print(e.toString());
+
       if (e.code == "user-not-found") {
         // Get.snackbar("Error", "User Not Found");
       } else if (e.code == "wrong-password") {
@@ -162,7 +162,7 @@ class LoginController extends GetxController {
 
   Future<void> addUser(String uid) async {
     token = await NotificationService.getFcmToken();
-    print("usert token$token");
+
     await firebaseFirestore
         .collection("users")
         .doc(uid)

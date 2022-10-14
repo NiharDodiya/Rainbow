@@ -63,9 +63,6 @@ class AdviserRegisterController extends GetxController {
     update(["drop"]);
   }
 
-  void onInit() {
-    super.onInit();
-  }
 
   void onStatusSelect() {
     if (martialStatusDropdown == false) {
@@ -78,12 +75,11 @@ class AdviserRegisterController extends GetxController {
   }
 
   void onStatusChange(String value) {
-    print(value);
+
     selectedValue = value.toString();
     country.text = value.toString();
     update(['country']);
-    print(selectedValue);
-    print(countryCity);
+
   }
 
   void onCountryCitySelect() {
@@ -98,10 +94,10 @@ class AdviserRegisterController extends GetxController {
   void onTapShowPassword() {
     if (showPassword == false) {
       showPassword = true;
-      print(showPassword);
+
     } else {
       showPassword = false;
-      print(showPassword);
+
     }
     update(["register_form"]);
   }
@@ -109,10 +105,10 @@ class AdviserRegisterController extends GetxController {
   void onTapShowRetypePassword() {
     if (showRetype == false) {
       showRetype = true;
-      print(showRetype);
+
     } else {
       showRetype = false;
-      print(showRetype);
+
     }
     update(["register_form"]);
   }
@@ -154,7 +150,7 @@ class AdviserRegisterController extends GetxController {
       for (int i = 0; i < listCountryModel.data!.length; i++) {
         if (listCountryModel.data![i].name == country.text) {
           passId = listCountryModel.data![i].id!.toString();
-          print(passId);
+
         }
       }
 

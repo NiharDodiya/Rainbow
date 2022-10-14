@@ -11,7 +11,6 @@ import 'package:rainbow/screens/account_Information/ad_information_api/ad_inform
 import 'package:rainbow/screens/account_Information/ad_information_api/ad_information_model.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/service/pref_services.dart';
-import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
 import '../../common/popup.dart';
@@ -67,7 +66,7 @@ class AccountInformationController extends GetxController {
     imageID = PrefService.getInt(PrefKeys.advertiserProfileID);
     await AdInformationAPI.adProfileView().then((value) {
       adViewProfile = value;
-      print(value);
+
       imageProfile = adViewProfile.data!.profileImage!;
       fullNameController.text = adViewProfile.data!.fullName!;
       emailController.text = adViewProfile.data!.email!;
@@ -398,7 +397,7 @@ class AccountInformationController extends GetxController {
     await AdInformationAPI.adProfileEdit(param1).then(
       (value) {
         adViewProfile = value;
-        print(value);
+
         fullNameController.text = adViewProfile.data!.fullName!;
         emailController.text = adViewProfile.data!.email!;
         houseNumberController.text = adViewProfile.data!.houseNumber!;

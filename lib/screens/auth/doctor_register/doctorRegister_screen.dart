@@ -58,7 +58,7 @@ class DoctorRegisterScreen extends StatelessWidget {
                                   SizedBox(height: Get.height * 0.02094),
 
                                   /// form
-                                  DoctorRegisterForm(),
+                                  const DoctorRegisterForm(),
 
                                   /// register button
                                   registerButtons(controller),

@@ -220,7 +220,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
   Widget top(CreateAdvertisementController controller) {
     return Column(
       children: [
-        Container(
+        SizedBox(
           width: Get.width,
           height: 202,
           child: Stack(
@@ -239,7 +239,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                         controller.update(["img"]);
                       },
                       itemBuilder: (context, index1) {
-                        return Container(
+                        return SizedBox(
                           width: Get.width,
                           child: FadeInImage(
                             placeholder:

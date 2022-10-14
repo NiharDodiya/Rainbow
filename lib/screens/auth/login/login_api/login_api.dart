@@ -108,7 +108,7 @@ class LoginApi {
             if (jsonDecode(response.body)["data"]["mobile_status"] ==
                 "pending") {
               advertiserVerifyController.phoneNumberRegister();
-              Get.to(() => AdvertiserVerifyOtpScreen());
+              Get.to(() => const AdvertiserVerifyOtpScreen());
             } else {
               // flutterToast(jsonDecode(response.body)["message"]);
               HomeController homeController = Get.put(HomeController());
@@ -143,7 +143,7 @@ class LoginApi {
         errorToast(jsonDecode(response.body)["message"]);
       }
     } catch (e) {
-      print(e.toString());
+
 
       return loginModelFromJson('');
     }

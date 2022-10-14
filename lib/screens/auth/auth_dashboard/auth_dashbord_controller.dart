@@ -39,7 +39,7 @@ class AuthDashBordController extends GetxController {
     try {
       await ListOfCountryApi.postRegister()
           .then((value) => listCountryModel = value!);
-      print(listCountryModel);
+
       getCountry();
     } catch (e) {
       errorToast(e.toString());
@@ -51,7 +51,7 @@ class AuthDashBordController extends GetxController {
     try {
       await ListOfNationalitiesApi.postRegister()
           .then((value) => listNationalities = value!);
-      print(listNationalities);
+
       getCountryNation();
     } catch (e) {
       debugPrint(e.toString());
@@ -88,7 +88,7 @@ class AuthDashBordController extends GetxController {
       print(user.displayName);
       await GoogleIdVerification.postRegister(user.uid, user: user)
           .then((LoginModel? model) async {
-        print(model);
+
         await firebaseFirestore
             .collection("users")
             .doc(user.uid)
@@ -136,7 +136,7 @@ class AuthDashBordController extends GetxController {
       final LoginResult loginResult = await FacebookAuth.instance
           .login(permissions: ["public_profile", "email"]);
       await FacebookAuth.instance.getUserData().then((userData) {
-        print(userData);
+
       });
       final OAuthCredential facebookAuthCredential =
           FacebookAuthProvider.credential(
@@ -149,7 +149,7 @@ class AuthDashBordController extends GetxController {
         await GoogleIdVerification.postRegister(userCredential.user!.uid,
                 user: userCredential.user)
             .then((LoginModel? model) async {
-          print(model);
+
 
           await firebaseFirestore
               .collection("users")

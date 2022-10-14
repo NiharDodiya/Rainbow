@@ -15,7 +15,7 @@ class AdInformationAPI {
     try {
       String url = EndPoints.viewProfile;
       Map<String, String> param = {"userId": userId.toString()};
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -35,7 +35,7 @@ class AdInformationAPI {
         return adInformationModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+
       return adInformationModelFromJson("");
     }
   }
@@ -45,7 +45,7 @@ class AdInformationAPI {
     try {
       String url = EndPoints.adEditProfile;
       Map<String, Map<String, dynamic>> param = param1;
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -65,7 +65,7 @@ class AdInformationAPI {
       }
       return null;
     } catch (e) {
-      print(e.toString());
+
       return adInformationModelFromJson("");
     }
   }

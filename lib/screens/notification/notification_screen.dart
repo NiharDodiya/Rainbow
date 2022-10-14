@@ -124,7 +124,7 @@ class NotificationScreen extends StatelessWidget {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             50),
-                                                    child: Container(
+                                                    child: SizedBox(
                                                       height: 53,
                                                       width: 53,
                                                       child: CachedNetworkImage(

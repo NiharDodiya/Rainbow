@@ -32,7 +32,7 @@ class _RegisterOtpScreenState extends State<RegisterOtpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    RegisterController registerController = Get.put(RegisterController());
+
     controller.getPhoneNumber();
     return Scaffold(
       backgroundColor: Colors.white,

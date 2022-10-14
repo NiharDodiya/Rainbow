@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/country_name.dart';
@@ -79,8 +79,8 @@ class AccountInformationScreen extends StatelessWidget {
                           : Container(
                               height: Get.width * 0.336,
                               width: Get.width * 0.336,
-                              padding: EdgeInsets.all(7),
-                              decoration: BoxDecoration(
+                              padding: const EdgeInsets.all(7),
+                              decoration: const BoxDecoration(
                                 color: Colors.white,
                                 shape: BoxShape.circle,
                               ),
@@ -89,7 +89,7 @@ class AccountInformationScreen extends StatelessWidget {
                                 child: Container(
                                   height: Get.width * 0.336,
                                   width: Get.width * 0.336,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
                                   child: CachedNetworkImage(
@@ -317,7 +317,7 @@ class AccountInformationScreen extends StatelessWidget {
                   style: gilroySemiBoldTextStyle(fontSize: 14),
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               GetBuilder<AccountInformationController>(
                   id: "drop",
                   builder: (controller) {
@@ -360,7 +360,7 @@ class AccountInformationScreen extends StatelessWidget {
                                 icon:
                                     Image.asset(AssetRes.arrowDown, height: 20),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
                             ],
@@ -386,7 +386,7 @@ class AccountInformationScreen extends StatelessWidget {
                                         .countryController.text.isEmpty)
                                     ? listCountryModel.data!.map((e) {
                                         return Padding(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 20, top: 7, bottom: 7),
                                           child: InkWell(
                                             onTap: () {
@@ -402,7 +402,7 @@ class AccountInformationScreen extends StatelessWidget {
                                                 alignment: Alignment.topLeft,
                                                 child: Text(
                                                   e.name!,
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                       color: Colors.black,
                                                       fontSize: 16),
                                                 ),
@@ -413,7 +413,7 @@ class AccountInformationScreen extends StatelessWidget {
                                       }).toList()
                                     : controller.filterList.map((e) {
                                         return Padding(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 20, top: 7, bottom: 7),
                                           child: InkWell(
                                             onTap: () {
@@ -429,7 +429,7 @@ class AccountInformationScreen extends StatelessWidget {
                                                 alignment: Alignment.topLeft,
                                                 child: Text(
                                                   e.name!,
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                       color: Colors.black,
                                                       fontSize: 16),
                                                 ),
@@ -441,9 +441,9 @@ class AccountInformationScreen extends StatelessWidget {
                               ),
                             ),
                           )
-                        : SizedBox();
+                        : const SizedBox();
                   }),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               /*GetBuilder<AccountInformationController>(
                 id: 'doctor',
                 builder: (controller) {
@@ -524,7 +524,7 @@ class AccountInformationScreen extends StatelessWidget {
                     style: gilroySemiBoldTextStyle(fontSize: 14),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 GetBuilder<AccountInformationController>(
                     id: "drop",
                     builder: (controller) {
@@ -566,7 +566,7 @@ class AccountInformationScreen extends StatelessWidget {
                                   icon: Image.asset(AssetRes.arrowDown,
                                       height: 20),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 5,
                                 ),
                               ],
@@ -592,7 +592,7 @@ class AccountInformationScreen extends StatelessWidget {
                                           .countryController.text.isEmpty)
                                       ? listNationalities.data!.map((e) {
                                           return Padding(
-                                            padding: EdgeInsets.only(
+                                            padding: const EdgeInsets.only(
                                                 left: 20, top: 7, bottom: 7),
                                             child: InkWell(
                                               onTap: () {
@@ -608,7 +608,7 @@ class AccountInformationScreen extends StatelessWidget {
                                                   alignment: Alignment.topLeft,
                                                   child: Text(
                                                     e.name!,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         color: Colors.black,
                                                         fontSize: 16),
                                                   ),
@@ -619,7 +619,7 @@ class AccountInformationScreen extends StatelessWidget {
                                         }).toList()
                                       : controller.filterList.map((e) {
                                           return Padding(
-                                            padding: EdgeInsets.only(
+                                            padding: const EdgeInsets.only(
                                                 left: 20, top: 7, bottom: 7),
                                             child: InkWell(
                                               onTap: () {
@@ -635,7 +635,7 @@ class AccountInformationScreen extends StatelessWidget {
                                                   alignment: Alignment.topLeft,
                                                   child: Text(
                                                     e.name!,
-                                                    style: TextStyle(
+                                                    style: const TextStyle(
                                                         color: Colors.black,
                                                         fontSize: 16),
                                                   ),
@@ -647,9 +647,9 @@ class AccountInformationScreen extends StatelessWidget {
                                 ),
                               ),
                             )
-                          : SizedBox();
+                          : const SizedBox();
                     }),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 /*GetBuilder<AccountInformationController>(
                   id: 'doctor',
                   builder: (controller) {

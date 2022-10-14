@@ -48,7 +48,7 @@ class NotificationApi {
         /*    return notificationModelFromJson(response.body);*/
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }

@@ -19,7 +19,7 @@ class MyAdvertiserApi {
       String url = EndPoints.deleteAdvertiser;
 
       Map<String, String> param = {"id_advertisement": id.toString()};
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -37,7 +37,7 @@ class MyAdvertiserApi {
         }
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }
@@ -48,7 +48,7 @@ class MyAdvertiserApi {
       String url = EndPoints.cancelAdvertiser;
 
       Map<String, String> param = {"id_advertisement": id.toString()};
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -66,7 +66,7 @@ class MyAdvertiserApi {
         }
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }
@@ -77,7 +77,7 @@ class MyAdvertiserApi {
       String url = EndPoints.followUpAdvertiser;
 
       Map<String, String> param = {"id_advertisement": id.toString()};
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -90,12 +90,12 @@ class MyAdvertiserApi {
         if (status == false) {
           /*  errorToast(jsonDecode(response.body)["message"]);*/
         } else if (status == true) {
-          print('======== ${response.statusCode}');
+
           flutterToast(jsonDecode(response.body)["message"]);
         }
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }
@@ -106,7 +106,7 @@ class MyAdvertiserApi {
       String url = EndPoints.myAdvertiserList;
 
       Map<String, String> param = {};
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -119,7 +119,7 @@ class MyAdvertiserApi {
         if (status == false) {
           /*  errorToast(jsonDecode(response.body)["message"]);*/
         } else if (status == true) {
-          print('========== $accesToken');
+
           /*     flutterToast(jsonDecode(response.body)["message"]);*/
         }
         return myAdvertiserModelFromJson(response.body);
@@ -127,7 +127,7 @@ class MyAdvertiserApi {
         /*  errorToast(jsonDecode(response.body)["message"]);*/
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }
@@ -147,10 +147,10 @@ class MyAdvertiserApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          print("<<<----------- ${response.statusCode} ----------->>>");
+
           /*  errorToast(jsonDecode(response.body)["message"]);*/
         } else if (status == true) {
-          print("<<<----------- ${response.statusCode} ----------->>>");
+
           flutterToast(jsonDecode(response.body)["message"]);
         }
         return editAdvertisementModelFromJson(response.body);
@@ -158,7 +158,7 @@ class MyAdvertiserApi {
         /*  errorToast(jsonDecode(response.body)["message"]);*/
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }
@@ -176,8 +176,7 @@ class MyAdvertiserApi {
     });
 
     if (response.statusCode == 200) {
-      print("========= updated...${response.statusCode} ==============");
-      print(PrefService.getString(PrefKeys.registerToken));
+
 
       //Map<String, dynamic> allData = jsonDecode(response.body);
 
@@ -189,7 +188,7 @@ class MyAdvertiserApi {
 
       return response.statusCode;
     } else {
-      print("============ ${response.statusCode} ==============");
+
       errorToast("Please enter valid country name");
       return response.statusCode;
     }

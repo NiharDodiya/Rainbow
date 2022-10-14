@@ -72,8 +72,8 @@ class ChatServices {
           .firstWhere((element) => element != appState.currentUser!.uid);
       return users.doc(id).snapshots();
     } catch (e) {
-      print(e.toString());
-      throw e;
+
+      rethrow;
     }
   }
 
@@ -98,7 +98,7 @@ class ChatServices {
       await database.ref(chatId).push().set(msgModel.textJson());
       return true;
     } catch (e) {
-      print(e.toString());
+
       return false;
     }
   }

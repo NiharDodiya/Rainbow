@@ -13,6 +13,8 @@ class SearchScreen extends StatelessWidget {
   SearchController controller = Get.put(SearchController());
   HomeController homeController = Get.put(HomeController());
 
+  SearchScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SearchController>(
@@ -162,7 +164,7 @@ class SearchScreen extends StatelessWidget {
         onTap: () {
           homeController.viewProfile.data!.userType == "free"
               ? premiumPopUpBox(context: context)
-              : SizedBox();
+              : const SizedBox();
         },
         child: Row(
           children: [

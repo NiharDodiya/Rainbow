@@ -23,6 +23,7 @@ class CompleteYourProfileController extends GetxController {
   File? frontImage;
   File? backImage;
 
+  @override
   void onInit() {
     update(['Complete_screen']);
     super.onInit();

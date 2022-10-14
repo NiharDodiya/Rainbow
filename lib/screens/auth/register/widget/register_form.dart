@@ -32,13 +32,13 @@ class RegisterForm extends StatelessWidget {
                         style: gilroySemiBoldTextStyle(fontSize: 14),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Container(
                       height: 60,
                       width: Get.width,
-                      padding: EdgeInsets.only(left: 20, top: 20),
+                      padding: const EdgeInsets.only(left: 20, top: 20),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
@@ -48,7 +48,7 @@ class RegisterForm extends StatelessWidget {
                         style: textFieldText,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                   ],
@@ -69,13 +69,13 @@ class RegisterForm extends StatelessWidget {
                         style: gilroySemiBoldTextStyle(fontSize: 14),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Container(
                       height: 60,
                       width: Get.width,
-                      padding: EdgeInsets.only(left: 20, top: 20),
+                      padding: const EdgeInsets.only(left: 20, top: 20),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
@@ -85,7 +85,7 @@ class RegisterForm extends StatelessWidget {
                         style: textFieldText,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                   ],
@@ -336,7 +336,7 @@ class RegisterForm extends StatelessWidget {
                             onPressed: controller.dropDownBox,
                             icon: Image.asset(AssetRes.arrowDown, height: 20),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                         ],
@@ -362,7 +362,7 @@ class RegisterForm extends StatelessWidget {
                                     .ethnicityController.text.isEmpty)
                                 ? listNationalities.data!.map((e) {
                                     return Padding(
-                                      padding: EdgeInsets.only(
+                                      padding: const EdgeInsets.only(
                                           left: 20, top: 7, bottom: 7),
                                       child: InkWell(
                                         onTap: () {
@@ -378,7 +378,7 @@ class RegisterForm extends StatelessWidget {
                                             alignment: Alignment.topLeft,
                                             child: Text(
                                               e.name!,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 16),
                                             ),
@@ -389,7 +389,7 @@ class RegisterForm extends StatelessWidget {
                                   }).toList()
                                 : controller.filterList.map((e) {
                                     return Padding(
-                                      padding: EdgeInsets.only(
+                                      padding: const EdgeInsets.only(
                                           left: 20, top: 7, bottom: 7),
                                       child: InkWell(
                                         onTap: () {
@@ -405,7 +405,7 @@ class RegisterForm extends StatelessWidget {
                                             alignment: Alignment.topLeft,
                                             child: Text(
                                               e.name!,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 16),
                                             ),
@@ -417,7 +417,7 @@ class RegisterForm extends StatelessWidget {
                           ),
                         ),
                       )
-                    : SizedBox();
+                    : const SizedBox();
               }),
 
           /*GetBuilder<RegisterController>(

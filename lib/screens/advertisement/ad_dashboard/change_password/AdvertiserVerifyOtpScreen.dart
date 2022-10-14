@@ -11,7 +11,7 @@ import '../../../../utils/color_res.dart';
 import '../../../../utils/strings.dart';
 
 class AdvertiserVerifyOtpScreen extends StatefulWidget {
-  AdvertiserVerifyOtpScreen({Key? key}) : super(key: key);
+  const AdvertiserVerifyOtpScreen({Key? key}) : super(key: key);
 
   @override
   State<AdvertiserVerifyOtpScreen> createState() =>

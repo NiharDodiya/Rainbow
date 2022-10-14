@@ -22,7 +22,7 @@ class GoogleIdVerification {
     try {
       String url = EndPoints.verificationSocial;
       Map<String, String> param = {'id_social': id, 'email': email.toString()};
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -66,7 +66,7 @@ class GoogleIdVerification {
       }
       return null;
     } catch (e) {
-      print(e.toString());
+
 
       return null;
     }

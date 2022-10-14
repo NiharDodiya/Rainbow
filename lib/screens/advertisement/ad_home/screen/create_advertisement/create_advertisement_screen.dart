@@ -134,8 +134,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
   }
 
   Widget body(context) {
-    CreateAdvertisementController controller =
-        Get.put(CreateAdvertisementController());
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: Get.width * 0.0853),
       child: SingleChildScrollView(
@@ -154,7 +153,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                 controller: advertisementController.tagsController,
                 style: textFieldText,
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(bottom: 22),
+                  contentPadding: const EdgeInsets.only(bottom: 22),
                   border: InputBorder.none,
                   hintStyle: gilroyMediumTextStyle(
                       fontSize: 18, color: ColorRes.black.withOpacity(0.3)),
@@ -691,7 +690,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                                 style: gilroyBoldTextStyle(
                                     fontSize: 16, color: ColorRes.black),
                               )
-                            : Container(
+                            : SizedBox(
                                 width: MediaQuery.of(context).size.width / 1.8,
                                 child: SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
@@ -753,7 +752,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                               onPressed: controller.dropDownBox,
                               icon: Image.asset(AssetRes.arrowDown, height: 20),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
                           ],
@@ -779,7 +778,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                                       .countryController.text.isEmpty)
                                   ? listNationalities.data!.map((e) {
                                       return Padding(
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                             left: 20, top: 7, bottom: 7),
                                         child: InkWell(
                                           onTap: () {
@@ -795,7 +794,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                                               alignment: Alignment.topLeft,
                                               child: Text(
                                                 e.name!,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 16),
                                               ),
@@ -806,7 +805,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                                     }).toList()
                                   : controller.filterList.map((e) {
                                       return Padding(
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                             left: 20, top: 7, bottom: 7),
                                         child: InkWell(
                                           onTap: () {
@@ -822,7 +821,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                                               alignment: Alignment.topLeft,
                                               child: Text(
                                                 e.name!,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 16),
                                               ),
@@ -834,7 +833,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                             ),
                           ),
                         )
-                      : SizedBox();
+                      : const SizedBox();
                 }),
 
             /* GetBuilder<CreateAdvertisementController>(

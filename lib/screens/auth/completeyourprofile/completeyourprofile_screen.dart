@@ -20,8 +20,7 @@ class CompleteYourProfile extends StatefulWidget {
 class _CompleteYourProfileState extends State<CompleteYourProfile> {
   @override
   Widget build(BuildContext context) {
-    CompleteYourProfileController controller =
-        Get.put(CompleteYourProfileController());
+
     return Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
@@ -64,7 +63,7 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                                 child: Stack(
                                   children: [
                                     DottedBorder(
-                                      dashPattern: [8, 6],
+                                      dashPattern: const [8, 6],
                                       color: ColorRes.color_B4B4B4,
                                       borderType: BorderType.RRect,
                                       radius: const Radius.circular(12),
@@ -99,7 +98,7 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                                       top: Get.height * 0.045,
                                       left: Get.width * 0.2,
                                       child: DottedBorder(
-                                        dashPattern: [8, 6],
+                                        dashPattern: const [8, 6],
                                         color: ColorRes.color_B4B4B4,
                                         borderType: BorderType.RRect,
                                         radius: const Radius.circular(120),

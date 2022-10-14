@@ -42,7 +42,7 @@ class AdvertisementController extends GetxController {
     try {
       await ListOfCountryApi.postRegister()
           .then((value) => listCountryModel = value!);
-      print(listCountryModel);
+
       getCountry();
     } catch (e) {
       errorToast(e.toString());
@@ -54,7 +54,7 @@ class AdvertisementController extends GetxController {
     try {
       await ListOfCountryApi.postRegister()
           .then((value) => listCountryModel = value!);
-      print(listCountryModel);
+
       getCountry();
     } catch (e) {
       debugPrint(e.toString());
@@ -86,7 +86,7 @@ class AdvertisementController extends GetxController {
 
   void notification() {
     isSwitched = PrefService.getBool(PrefKeys.notification);
-    print(isSwitched);
+
     update(["settings"]);
   }
 
@@ -104,7 +104,7 @@ class AdvertisementController extends GetxController {
 
       loader.value = false;
     } catch (e) {
-      print(e.toString());
+
       loader.value = false;
     }
   }

@@ -207,7 +207,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                           .adminStatus
                                           .toString() ==
                                       'approve')
-                                  ? SizedBox()
+                                  ? const SizedBox()
                                   : InkWell(
                                       onTap: () async {
                                         await editAdvertiesementController

@@ -14,7 +14,7 @@ class ViewAdvertiserApi {
       String url = EndPoints.viewUserAdvertiser;
       int userId = PrefService.getInt(PrefKeys.userId);
       Map<String, String> param = {"userId": userId.toString()};
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -34,7 +34,7 @@ class ViewAdvertiserApi {
         /*  errorToast(jsonDecode(response.body)["message"]);*/
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }

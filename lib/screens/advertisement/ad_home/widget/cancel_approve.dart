@@ -99,8 +99,8 @@ class CancelApprove extends StatelessWidget {
               ),
             ),
             adHomeController.loader.value == true
-                ? FullScreenLoader()
-                : SizedBox(),
+                ? const FullScreenLoader()
+                : const SizedBox(),
           ],
         );
       }),

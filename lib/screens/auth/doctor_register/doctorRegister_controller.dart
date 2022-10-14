@@ -40,6 +40,7 @@ class DoctorRegisterController extends GetxController {
 
   // bool countryCityDropdown = false;
 
+  @override
   void onInit() {
     // countryName();
 
@@ -167,11 +168,11 @@ class DoctorRegisterController extends GetxController {
       for (int i = 0; i < listCountryModel.data!.length; i++) {
         if (listCountryModel.data![i].name == country.text) {
           codeId = listCountryModel.data![i].id!.toString();
-          print(codeId);
+
         }
         /*       countryCity.add(listCountryModel.data![i].name!);
         countryId.add(listCountryModel.data![i].id!.toString());*/
-        print(codeId);
+
       }
       await AdvirtisersApi.postRegister(
               controller.fullNameController.text,
@@ -202,8 +203,7 @@ class DoctorRegisterController extends GetxController {
       await PrefService.setValue(PrefKeys.userId, advertiserRegister.data!.id);
       status = advertiserRegister.data!.status.toString();
       role = advertiserRegister.data!.role.toString();
-      print(status);
-      print(role);
+
     } catch (e) {
       loader.value = false;
       debugPrint(e.toString());

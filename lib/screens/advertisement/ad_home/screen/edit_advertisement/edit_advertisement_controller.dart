@@ -73,7 +73,7 @@ class EditAdvertiesementController extends GetxController {
     } catch (e) {
       loader.value = false;
 
-      print(e.toString());
+
     }
   }
 }

@@ -13,7 +13,7 @@ class NewPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    NewPasswordController controller = Get.put(NewPasswordController());
+
     return GetBuilder<NewPasswordController>(
       id: "newPassword",
       builder: (controller) {

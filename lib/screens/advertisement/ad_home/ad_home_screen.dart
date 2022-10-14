@@ -11,7 +11,7 @@ import 'package:rainbow/utils/color_res.dart';
 import '../../dashboard/dashboard_controller.dart';
 
 class AdHomeScreen extends StatefulWidget {
-  AdHomeScreen({Key? key}) : super(key: key);
+  const AdHomeScreen({Key? key}) : super(key: key);
 
   @override
   State<AdHomeScreen> createState() => _AdHomeScreenState();

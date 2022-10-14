@@ -256,7 +256,7 @@ Widget advertisementList() {
                                                               .toString(),
                                                         ));
                                                       }
-                                                      print(index);
+
                                                     },
                                                     child: Row(
                                                       children: [
@@ -352,7 +352,7 @@ Widget advertisementList() {
                                                                     .toString(),
                                                                 context);
                                                       }
-                                                      print(index1);
+
                                                     },
                                                     child: Row(
                                                       children: [

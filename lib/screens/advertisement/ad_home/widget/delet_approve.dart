@@ -109,7 +109,7 @@ class DeletApprove extends StatelessWidget {
             ),
             adHomeController.loader.value == true
                 ? const FullScreenLoader()
-                : SizedBox(),
+                : const SizedBox(),
           ],
         );
       }),

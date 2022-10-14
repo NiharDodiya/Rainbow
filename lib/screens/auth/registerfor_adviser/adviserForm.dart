@@ -156,7 +156,7 @@ class AdviserRegisterForm extends StatelessWidget {
                               onPressed: controller.dropDownBox,
                               icon: Image.asset(AssetRes.arrowDown, height: 20),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
                           ],
@@ -181,7 +181,7 @@ class AdviserRegisterForm extends StatelessWidget {
                               children: (controller.country.text.isEmpty)
                                   ? listCountryModel.data!.map((e) {
                                       return Padding(
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                             left: 20, top: 7, bottom: 7),
                                         child: InkWell(
                                           onTap: () {
@@ -196,7 +196,7 @@ class AdviserRegisterForm extends StatelessWidget {
                                               alignment: Alignment.topLeft,
                                               child: Text(
                                                 e.name!,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 16),
                                               ),
@@ -207,7 +207,7 @@ class AdviserRegisterForm extends StatelessWidget {
                                     }).toList()
                                   : controller.filterList.map((e) {
                                       return Padding(
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                             left: 20, top: 7, bottom: 7),
                                         child: InkWell(
                                           onTap: () {
@@ -222,7 +222,7 @@ class AdviserRegisterForm extends StatelessWidget {
                                               alignment: Alignment.topLeft,
                                               child: Text(
                                                 e.name!,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 16),
                                               ),
@@ -234,7 +234,7 @@ class AdviserRegisterForm extends StatelessWidget {
                             ),
                           ),
                         )
-                      : SizedBox();
+                      : const SizedBox();
                 }),
             const SizedBox(
               height: 10,

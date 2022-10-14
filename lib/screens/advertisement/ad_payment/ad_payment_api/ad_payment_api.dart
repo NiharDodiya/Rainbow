@@ -31,16 +31,16 @@ class ListCartApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          print("======= list card : ${response.statusCode} ======");
+
           //errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          print("======= list card : ${response.statusCode} =====");
+
           //showToast ? flutterToast(jsonDecode(response.body)["message"]) : SizedBox();
         }
         return listCardModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }
@@ -62,16 +62,16 @@ class ListCartApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          print("======= view 5 4yfh4hjycard : ${response.statusCode} ======");
+
 
           //errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          print("======= view card : ${response.statusCode} =====");
+
         }
         return viewCardModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+
       return null;
     }
   }
@@ -84,7 +84,7 @@ class ListCartApi {
       Map<String, dynamic> param = {
         "id_card": id,
       };
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -95,17 +95,17 @@ class ListCartApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          print("======= remove card : ${response.statusCode} ======");
+
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          print("======= remove card : ${response.statusCode} =====");
+
 
           flutterToast(jsonDecode(response.body)["message"]);
         }
         return removeCardModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }
@@ -122,10 +122,10 @@ class ListCartApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          print("======= transaction : ${response.statusCode} ======");
+
           // errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          print("======= transaction : ${response.statusCode} =====");
+
 
           //flutterToast(jsonDecode(response.body)["message"]);
 
@@ -133,7 +133,7 @@ class ListCartApi {
         return transactionModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }
@@ -146,7 +146,7 @@ class ListCartApi {
       Map<String, dynamic> param = {
         "id_card": id,
       };
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -157,17 +157,17 @@ class ListCartApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-          print("======= default card : ${response.statusCode} ======");
+
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
-          print("======= default card : ${response.statusCode} =====");
+
 
           flutterToast(jsonDecode(response.body)["message"]);
         }
         return defaultCradModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }

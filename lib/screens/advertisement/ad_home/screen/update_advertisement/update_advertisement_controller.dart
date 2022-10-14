@@ -286,8 +286,7 @@ class UpdateAdvertiseController extends GetxController {
       addStreet = place.street;
       address =
           '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
-      print(
-          "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<$address>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
       update(["advertiser"]);
     }
     loader.value = false;

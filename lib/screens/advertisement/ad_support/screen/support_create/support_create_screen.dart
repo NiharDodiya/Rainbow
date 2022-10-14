@@ -140,12 +140,12 @@ class SupportcreateScreen extends StatelessWidget {
                 return Column(
                   children: [
                     (controller.image.isEmpty)
-                        ? SizedBox()
+                        ? const SizedBox()
                         : (controller.image.length == 3)
                             ? Row(
                                 children: [
                                   Stack(
-                                    alignment: Alignment(1.2, -1.3),
+                                    alignment: const Alignment(1.2, -1.3),
                                     children: [
                                       Container(
                                         height: Get.height / 12,
@@ -179,9 +179,9 @@ class SupportcreateScreen extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(width: 20),
+                                  const SizedBox(width: 20),
                                   Stack(
-                                    alignment: Alignment(1.2, -1.3),
+                                    alignment: const Alignment(1.2, -1.3),
                                     children: [
                                       Container(
                                         height: Get.height / 12,
@@ -215,9 +215,9 @@ class SupportcreateScreen extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(width: 20),
+                                  const SizedBox(width: 20),
                                   Stack(
-                                    alignment: Alignment(1.2, -1.3),
+                                    alignment: const Alignment(1.2, -1.3),
                                     children: [
                                       Container(
                                         height: Get.height / 12,
@@ -257,7 +257,7 @@ class SupportcreateScreen extends StatelessWidget {
                                 ? Row(
                                     children: [
                                       Stack(
-                                        alignment: Alignment(1.2, -1.3),
+                                        alignment: const Alignment(1.2, -1.3),
                                         children: [
                                           Container(
                                             height: Get.height / 12,
@@ -292,9 +292,9 @@ class SupportcreateScreen extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-                                      SizedBox(width: 20),
+                                      const SizedBox(width: 20),
                                       Stack(
-                                        alignment: Alignment(1.2, -1.3),
+                                        alignment: const Alignment(1.2, -1.3),
                                         children: [
                                           Container(
                                             height: Get.height / 12,
@@ -333,7 +333,7 @@ class SupportcreateScreen extends StatelessWidget {
                                   )
                                 : (controller.image.length == 1)
                                     ? Stack(
-                                        alignment: Alignment(1.2, -1.3),
+                                        alignment: const Alignment(1.2, -1.3),
                                         children: [
                                           Container(
                                             height: Get.height / 12,
@@ -371,7 +371,7 @@ class SupportcreateScreen extends StatelessWidget {
                                     : Row(
                                         children: [
                                           Stack(
-                                            alignment: Alignment(1.2, -1.3),
+                                            alignment: const Alignment(1.2, -1.3),
                                             children: [
                                               Container(
                                                 height: Get.height / 12,
@@ -411,9 +411,9 @@ class SupportcreateScreen extends StatelessWidget {
                                               ),
                                             ],
                                           ),
-                                          SizedBox(width: 20),
+                                          const SizedBox(width: 20),
                                           Stack(
-                                            alignment: Alignment(1.2, -1.3),
+                                            alignment: const Alignment(1.2, -1.3),
                                             children: [
                                               Container(
                                                 height: Get.height / 12,
@@ -453,9 +453,9 @@ class SupportcreateScreen extends StatelessWidget {
                                               ),
                                             ],
                                           ),
-                                          SizedBox(width: 20),
+                                          const SizedBox(width: 20),
                                           Stack(
-                                            alignment: Alignment(1.2, -1.3),
+                                            alignment: const Alignment(1.2, -1.3),
                                             children: [
                                               Container(
                                                 height: Get.height / 12,
@@ -500,7 +500,7 @@ class SupportcreateScreen extends StatelessWidget {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         InkWell(

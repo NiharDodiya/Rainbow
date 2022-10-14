@@ -14,8 +14,7 @@ class AdvertiserChangePasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ChangeAdvertiserController controller =
-        Get.put(ChangeAdvertiserController());
+
     return GetBuilder<ChangeAdvertiserController>(
       builder: (controller) {
         return Scaffold(
@@ -34,8 +33,8 @@ class AdvertiserChangePasswordScreen extends StatelessWidget {
                               /*  height: Get.height * 0.96,
                           width: Get.width * 0.946666,*/
                               margin: EdgeInsets.all(Get.width * 0.02669),
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
+                              decoration: BoxDecoration (
+                                  gradient: const LinearGradient(
                                     colors: [
                                       ColorRes.color_50369C,
                                       ColorRes.color_D18EEE,

@@ -26,7 +26,7 @@ class VerifyCodeApi {
         'id': id.toString(),
         'code': verifyOtp.toString(),
       };
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -45,7 +45,7 @@ class VerifyCodeApi {
       /*message =="please enter a correct username and password"?errorToast(message):*/
 
     } catch (e) {
-      print(e.toString());
+
       return verifyCodeFromJson("");
     }
   }
@@ -60,7 +60,7 @@ class VerifyCodeApi {
         'id': userId.toString(),
         'code': verifyOtp.toString(),
       };
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -85,7 +85,7 @@ class VerifyCodeApi {
       /*message =="please enter a correct username and password"?errorToast(message):*/
 
     } catch (e) {
-      print(e.toString());
+
       return verifyCodeFromJson("");
     }
   }
@@ -116,7 +116,7 @@ class VerifyCodeApi {
           await PrefService.setValue(PrefKeys.register, true);
           await PrefService.setValue(
               PrefKeys.loginRole, jsonDecode(response.body)["data"]["role"]);
-          print(_controller.backScreen.toString());
+
 
           if (_controller.backScreen == "AdvertisementDashBord") {
             Get.to(() => const AdvertiserChangePasswordScreen());
@@ -129,7 +129,7 @@ class VerifyCodeApi {
       /*message =="please enter a correct username and password"?errorToast(message):*/
 
     } catch (e) {
-      print(e.toString());
+
       return verifyCodeFromJson("");
     }
   }
@@ -144,7 +144,7 @@ class VerifyCodeApi {
         'id': id.toString(),
         'code': verifyOtp.toString(),
       };
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -164,7 +164,7 @@ class VerifyCodeApi {
       /*message =="please enter a correct username and password"?errorToast(message):*/
 
     } catch (e) {
-      print(e.toString());
+
       return verifyCodeFromJson("");
     }
   }

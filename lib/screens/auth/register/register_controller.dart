@@ -83,6 +83,7 @@ class RegisterController extends GetxController {
     "e164_key": "1-CA-0"
   });
 
+  @override
   void onInit() {
     update(['register_screen']);
     super.onInit();
@@ -91,10 +92,10 @@ class RegisterController extends GetxController {
   void onTapShowPassword() {
     if (showPassword == false) {
       showPassword = true;
-      print(showPassword);
+
     } else {
       showPassword = false;
-      print(showPassword);
+
     }
     update(["register_form"]);
   }
@@ -102,10 +103,10 @@ class RegisterController extends GetxController {
   void onTapShowRetypePassword() {
     if (showRetype == false) {
       showRetype = true;
-      print(showRetype);
+
     } else {
       showRetype = false;
-      print(showRetype);
+
     }
     update(["register_form"]);
   }
@@ -122,11 +123,11 @@ class RegisterController extends GetxController {
   }
 
   void onStatusChangeCountry(String value) {
-    print(value);
+
     selectedEthicity = value.toString();
     ethnicityController.text = value.toString();
     update(['register_screen']);
-    print(selectedEthicity);
+
   }
 
   void onStatusSelect() {
@@ -180,9 +181,9 @@ class RegisterController extends GetxController {
       for (int i = 0; i < listNationalities.data!.length; i++) {
         if (listNationalities.data![i].name == ethnicityController.text) {
           codeId = listNationalities.data![i].id!.toString();
-          print(codeId);
+
         }
-        print(codeId);
+
       }
 
       registerDetails();
@@ -193,8 +194,7 @@ class RegisterController extends GetxController {
 
   void serching(value) {
     filterList = (listNationalities.data?.where((element) {
-          print(value.toString().toLowerCase());
-          print(element.name);
+
           return element.name
               .toString()
               .toLowerCase()

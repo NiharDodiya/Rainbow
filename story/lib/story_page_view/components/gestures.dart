@@ -16,7 +16,7 @@ class Gestures extends StatelessWidget {
   final Future<void> Function()? loadImage;
 
   Future<void> downloadImage() async {
-    await Future.delayed(Duration(milliseconds: 800));
+    await Future.delayed(const Duration(milliseconds: 800));
 
     animationController!.stop();
     if(loadImage != null){

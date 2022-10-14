@@ -283,8 +283,7 @@ class CreateAdvertisementController extends GetxController {
       addStreet = place.street;
       address =
           '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
-      print(
-          "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<$address>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
       update(["advertiser"]);
     }
     loader.value = false;
@@ -438,7 +437,7 @@ class CreateAdvertisementController extends GetxController {
 /*      print(DateFormat().add_yMd().format(startTime));*/
 /*    await  createAdvertisementController.uploadImageApi();*/
 
-      print(tagsController.text);
+
       Get.bottomSheet(
         enableDrag: false,
         BottomSheet(

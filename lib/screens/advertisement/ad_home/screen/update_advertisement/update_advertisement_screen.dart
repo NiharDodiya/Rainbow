@@ -172,7 +172,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         (controller.imagePath.isEmpty)
-                            ? SizedBox()
+                            ? const SizedBox()
                             : (controller.imagePath.length == 3)
                                 ? Row(
                                     children: [
@@ -687,7 +687,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                 style: gilroyBoldTextStyle(
                                     fontSize: 16, color: ColorRes.black),
                               )
-                            : Container(
+                            : SizedBox(
                                 width: MediaQuery.of(context).size.width / 1.8,
                                 child: SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
@@ -749,7 +749,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                               onPressed: controller.dropDownBox,
                               icon: Image.asset(AssetRes.arrowDown, height: 20),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 5,
                             ),
                           ],
@@ -775,7 +775,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                       .countryController.text.isEmpty)
                                   ? listCountryModel.data!.map((e) {
                                       return Padding(
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                             left: 20, top: 7, bottom: 7),
                                         child: InkWell(
                                           onTap: () {
@@ -791,7 +791,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                               alignment: Alignment.topLeft,
                                               child: Text(
                                                 e.name!,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 16),
                                               ),
@@ -802,7 +802,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                     }).toList()
                                   : controller.filterList.map((e) {
                                       return Padding(
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                             left: 20, top: 7, bottom: 7),
                                         child: InkWell(
                                           onTap: () {
@@ -818,7 +818,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                               alignment: Alignment.topLeft,
                                               child: Text(
                                                 e.name!,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 16),
                                               ),
@@ -830,7 +830,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                             ),
                           ),
                         )
-                      : SizedBox();
+                      : const SizedBox();
                 }),
             SizedBox(height: Get.height * 0.0197),
 

@@ -103,7 +103,7 @@ Widget profileAppbar(
                     ),
                   ),
                   (controller.requestUsers.length.toString() == '0')
-                      ? SizedBox()
+                      ? const SizedBox()
                       : Positioned(
                           top: 0,
                           right: 0,

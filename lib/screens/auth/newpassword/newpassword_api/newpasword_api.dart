@@ -21,7 +21,7 @@ class CreateNewPasswordApi {
         'id': id.toString(),
         'password': newPassword,
       };
-      print(param);
+
 
       http.Response? response = await HttpService.postApi(
           url: url,
@@ -45,7 +45,7 @@ class CreateNewPasswordApi {
           : */
 
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }
@@ -61,7 +61,7 @@ class CreateNewPasswordApi {
         "current_password": currentPassword,
         "new_password": newPassword
       };
-      print(paramPassword);
+
 
       http.Response? response = await HttpService.postApi(
           url: url,
@@ -88,7 +88,7 @@ class CreateNewPasswordApi {
           : */
 
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }

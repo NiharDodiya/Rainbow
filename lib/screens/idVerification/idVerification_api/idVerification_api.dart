@@ -17,7 +17,7 @@ class IdVerificationApi {
     String idItemFront,
     String idItemBack,
   ) async {
-    String accesToken = await PrefService.getString(PrefKeys.registerToken);
+    String accesToken =  PrefService.getString(PrefKeys.registerToken);
     try {
       String url = EndPoints.idVerification;
       Map<String, String> param = {
@@ -27,7 +27,7 @@ class IdVerificationApi {
         'id_item_back': idItemBack /*idItemBack*/,
       };
 
-      print(param);
+
       /*  var request =  await http.MultipartRequest("POST",Uri.parse(url));
 request.fields['id_type']=idType;
 request.fields['id_no']=idNo;
@@ -60,7 +60,7 @@ print(response);
         return idVerificationFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }
