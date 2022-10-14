@@ -65,14 +65,16 @@ class SupportCreateController extends GetxController {
     }
   }
 
-  Future<void> supportApi() async {
+  Future<void> supportApi(context) async {
     loader.value = true;
     await uploadImageData();
     await SupportAPI.supportAPI.postSupportAPI(data: {
       'title': subjectController.text,
       'description': yourMsgController.text,
       'id_item': imgIdList,
-    });
+    },
+      context: context,
+    );
 
     loader.value = false;
   }
@@ -96,7 +98,7 @@ class SupportCreateController extends GetxController {
       currentfocus.unfocus();
     }
     if (valid()) {
-      await supportApi();
+      await supportApi(context);
       supportController.getListOfUserTicket();
       update(["Support"]);
     }

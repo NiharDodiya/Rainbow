@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
+import 'package:rainbow/screens/auth/login/login_api/login_api.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/adviser_api/adviser_api.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/adviser_api/adviser_json.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/registeradviser_controller.dart';
@@ -200,6 +201,7 @@ class DoctorRegisterController extends GetxController {
       // await PrefService.setValue(PrefKeys.phonSaveNumberAdvertiser, "+${'${controller.countryModel.phoneCode} ${controller.phoneNumber.text}'}")
       await PrefService.setValue(
           PrefKeys.registerToken, advertiserRegister.token.toString());
+      await LoginApi.updateDeviceToken();
       await PrefService.setValue(PrefKeys.userId, advertiserRegister.data!.id);
       status = advertiserRegister.data!.status.toString();
       role = advertiserRegister.data!.role.toString();

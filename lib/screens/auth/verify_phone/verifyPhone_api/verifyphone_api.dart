@@ -129,7 +129,7 @@ class VerifyCodeApi {
       /*message =="please enter a correct username and password"?errorToast(message):*/
 
     } catch (e) {
-
+      //errorToast("No internet connection");
       return verifyCodeFromJson("");
     }
   }

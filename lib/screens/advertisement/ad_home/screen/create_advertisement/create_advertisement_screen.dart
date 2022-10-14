@@ -366,6 +366,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                                                   }
                                                   controller.imagePath
                                                       .removeAt(1);
+
                                                   controller.update(["img"]);
                                                 },
                                                 child: Container(

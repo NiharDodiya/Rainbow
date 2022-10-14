@@ -10,8 +10,7 @@ import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_notification/ad_notification_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_payment/ad_payment_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_support/ad_support_controller.dart';
-import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
-import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
+
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
@@ -45,7 +44,8 @@ class AdvertisementController extends GetxController {
 
       getCountry();
     } catch (e) {
-      errorToast(e.toString());
+      //errorToast(e.toString());
+      //errorToast("No internet connection");
       debugPrint(e.toString());
     }
   }
@@ -57,6 +57,7 @@ class AdvertisementController extends GetxController {
 
       getCountry();
     } catch (e) {
+      //errorToast("No internet connection");
       debugPrint(e.toString());
     }
   }
@@ -85,6 +86,8 @@ class AdvertisementController extends GetxController {
   }
 
   void notification() {
+    AdHomeController adHomeController = Get.find();
+    adHomeController.CheckUserConnection();
     isSwitched = PrefService.getBool(PrefKeys.notification);
 
     update(["settings"]);

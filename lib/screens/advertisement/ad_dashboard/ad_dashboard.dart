@@ -9,6 +9,7 @@ import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/log_out_pop_up.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/advertisement_controlle.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/AdvertiserVerifyController.dart';
@@ -35,7 +36,7 @@ class AdvertisementDashBord extends StatelessWidget {
         id: "bottom_bar",
         builder: (controller) {
           return WillPopScope(
-            onWillPop: () async{
+            onWillPop: () async {
               if (controller.currentTab == 0) {
                 showDialog(
                     context: context,
@@ -155,7 +156,7 @@ class AdvertisementDashBord extends StatelessWidget {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Container(
+                                              SizedBox(
                                                 width: MediaQuery.of(context)
                                                         .size
                                                         .width /
@@ -239,65 +240,85 @@ class AdvertisementDashBord extends StatelessWidget {
                                 ),
 
                                 ///Change Password
-                                InkWell(
-                                  onTap: () {
-                                    AdvertiserVerifyController adController =
-                                        Get.put(AdvertiserVerifyController());
+                               GetBuilder<AdHomeController>(
+                                 id: "network",
+                                   builder: (controller){
+                                     adHomeController.CheckUserConnection();
+                                 return  InkWell(
+                                   onTap: adHomeController.ActiveConnection ==
+                                       false
+                                       ? () {
 
-                                    adController.backScreen =
-                                        'AdvertisementDashBord';
-                                    adController.startTimer();
-                                    adController.phoneNumberRegister();
-                                    Get.to(() => const AdvertiserVerifyOtpScreen());
-                                  },
-                                  child: SizedBox(
-                                    height: Get.height * 0.06,
-                                    child: Row(
-                                      children: [
-                                        Image.asset(
-                                          AssetRes.lockicon,
-                                          width: Get.width * 0.04706,
-                                        ),
-                                        SizedBox(
-                                          width: Get.width * 0.0853,
-                                        ),
-                                        Text(
-                                          Strings.changePassword,
-                                          style: gilroyMediumTextStyle(
-                                            fontSize: 16,
-                                            color: ColorRes.color_09110E,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                                     errorToast("No internet connection");
+                                     adHomeController.update(["network"]);
+
+                                   }
+                                       : () {
+                                     AdvertiserVerifyController
+                                     adController = Get.put(
+                                         AdvertiserVerifyController());
+
+                                     adController.backScreen =
+                                     'AdvertisementDashBord';
+                                     adController.startTimer();
+                                     adController.phoneNumberRegister();
+                                     Get.to(() =>
+                                     const AdvertiserVerifyOtpScreen())!.then((value) =>  adHomeController.CheckUserConnection());
+                                   },
+                                   child: SizedBox(
+                                     height: Get.height * 0.06,
+                                     child: Row(
+                                       children: [
+                                         Image.asset(
+                                           AssetRes.lockicon,
+                                           width: Get.width * 0.04706,
+                                         ),
+                                         SizedBox(
+                                           width: Get.width * 0.0853,
+                                         ),
+                                         Text(
+                                           Strings.changePassword,
+                                           style: gilroyMediumTextStyle(
+                                             fontSize: 16,
+                                             color: ColorRes.color_09110E,
+                                           ),
+                                         ),
+                                       ],
+                                     ),
+                                   ),
+                                 );
+                               }),
                                 //Account Information
-                                InkWell(
-                                  onTap: () => advertisementController
-                                      .inTapAccountInfo(),
-                                  child: SizedBox(
-                                    height: Get.height * 0.06,
-                                    child: Row(
-                                      children: [
-                                        Image.asset(
-                                          AssetRes.profileicon,
-                                          width: Get.width * 0.04706,
-                                        ),
-                                        SizedBox(
-                                          width: Get.width * 0.0853,
-                                        ),
-                                        Text(
-                                          Strings.accountInformation,
-                                          style: gilroyMediumTextStyle(
-                                            fontSize: 16,
-                                            color: ColorRes.color_09110E,
+                                GetBuilder<AdHomeController>(
+                                  id: "network",
+                                    builder: (controller){
+                                      adHomeController.CheckUserConnection();
+                                  return InkWell(
+                                    onTap: adHomeController.ActiveConnection ==
+                                        false?() =>  errorToast("No internet connection"):() => advertisementController.inTapAccountInfo(),
+                                    child: SizedBox(
+                                      height: Get.height * 0.06,
+                                      child: Row(
+                                        children: [
+                                          Image.asset(
+                                            AssetRes.profileicon,
+                                            width: Get.width * 0.04706,
                                           ),
-                                        ),
-                                      ],
+                                          SizedBox(
+                                            width: Get.width * 0.0853,
+                                          ),
+                                          Text(
+                                            Strings.accountInformation,
+                                            style: gilroyMediumTextStyle(
+                                              fontSize: 16,
+                                              color: ColorRes.color_09110E,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ),
+                                  );
+                                }),
                                 // Notification
                                 GetBuilder<AdvertisementController>(
                                   id: 'settings',
@@ -330,7 +351,11 @@ class AdvertisementDashBord extends StatelessWidget {
                                               scale: .7,
                                               child: CupertinoSwitch(
                                                 value: controller.isSwitched!,
-                                                onChanged: (value) {
+                                                onChanged: adHomeController.ActiveConnection ==
+                                                    false? (value){
+                                                  errorToast("No internet connection");
+                                                }
+                                                    :(value) {
                                                   controller.isSwitched = value;
                                                   controller
                                                       .notificationOnOffApi();

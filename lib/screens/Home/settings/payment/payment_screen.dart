@@ -85,9 +85,9 @@ class PaymentScreen extends StatelessWidget {
                             GetBuilder<PaymentController>(
                                 id: "more",
                                 builder: (controller) {
-                                  return controller.listCardModel.data ==
+                                  return (controller.listCardModel.data ==
                                               null &&
-                                          controller.viewCardModel == null
+                                          controller.viewCardModel == null || controller.listCardModel.data?.length == 0)
                                       ? const SizedBox()
                                       : Center(
                                           child: Padding(
@@ -347,9 +347,10 @@ class PaymentScreen extends StatelessWidget {
                             GetBuilder<PaymentController>(
                                 id: "img",
                                 builder: (controller) {
-                                  return controller
+                                  return (controller
                                               .listCardModel.data?.length ==
-                                          null
+                                          null || controller
+                                      .listCardModel.data?.length == 0)
                                       ? const SizedBox()
                                       : Align(
                                           alignment: Alignment.center,
@@ -357,9 +358,7 @@ class PaymentScreen extends StatelessWidget {
                                             cornerRadius: 30,
                                             height: 6,
                                             width: 6,
-                                            count: controller.listCardModel.data
-                                                    ?.length ??
-                                                0,
+                                            count: controller.listCardModel.data?.length ?? 0,
                                             index: controller.selectedIndex,
                                           ),
                                         );

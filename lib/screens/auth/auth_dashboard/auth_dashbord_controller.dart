@@ -42,7 +42,7 @@ class AuthDashBordController extends GetxController {
 
       getCountry();
     } catch (e) {
-   /*   errorToast(e.toString());*/
+      /*   errorToast(e.toString());*/
       debugPrint(e.toString());
     }
   }
@@ -60,7 +60,7 @@ class AuthDashBordController extends GetxController {
 
   String? token;
 
-  Future signWithGoogle() async {
+  Future  signWithGoogle() async {
     // GoogleIdVerification.postRegister(user.uid).then((value) {print(value);});
 
     try {
@@ -72,7 +72,7 @@ class AuthDashBordController extends GetxController {
       loading.value = true;
       final GoogleSignInAccount? account = await googleSignIn.signIn();
       final GoogleSignInAuthentication authentication =
-          await account!.authentication;
+      await account!.authentication;
 
       final OAuthCredential credential = GoogleAuthProvider.credential(
         idToken: authentication.idToken,
@@ -80,7 +80,7 @@ class AuthDashBordController extends GetxController {
       );
       //loading.value = false;
       final UserCredential authResult =
-          await auth.signInWithCredential(credential);
+      await auth.signInWithCredential(credential);
       final User? user = authResult.user;
       print(user!.email);
       print(user.uid);
@@ -139,7 +139,7 @@ class AuthDashBordController extends GetxController {
 
       });
       final OAuthCredential facebookAuthCredential =
-          FacebookAuthProvider.credential(
+      FacebookAuthProvider.credential(
         loginResult.accessToken!.token,
       );
       UserCredential userCredential = await FirebaseAuth.instance
@@ -147,7 +147,7 @@ class AuthDashBordController extends GetxController {
       final User? user = userCredential.user;
       try {
         await GoogleIdVerification.postRegister(userCredential.user!.uid,
-                user: userCredential.user,email: userCredential.user!.email.toString())
+            user: userCredential.user,email: userCredential.user!.email.toString())
             .then((LoginModel? model) async {
 
 
@@ -160,7 +160,7 @@ class AuthDashBordController extends GetxController {
               await firebaseFirestore
                   .collection("users")
                   .doc(user.uid)
-                  .update({"online": true});
+                  .update({"online": true,   "id": model?.data?.id});
               await PrefService.setValue(PrefKeys.uid, user.uid);
             } else {
               await firebaseFirestore.collection("users").doc(user.uid).set({

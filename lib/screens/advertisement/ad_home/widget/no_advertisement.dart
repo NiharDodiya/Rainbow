@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/listCardModel.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
@@ -52,10 +53,15 @@ Widget noAdvertisement() {
                   height: Get.height * 0.20,
                 ),
                 GetBuilder<AdHomeController>(
-                    id: "more",
+                    id: "network",
                     builder: (controller) {
+                      controller.CheckUserConnection();
                       return SubmitButton(
-                        onTap: () async {
+                        onTap:   controller.ActiveConnection == false
+                            ? (){
+                          errorToast("No internet connection");
+                        }
+                            :() async {
                           advertisementControllers.tagsController.clear();
                           advertisementControllers.titleController.clear();
                           advertisementControllers.countryController.clear();

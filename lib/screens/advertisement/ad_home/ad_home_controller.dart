@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
@@ -56,6 +58,27 @@ class AdHomeController extends GetxController {
 
   List<bool> moreOption = [];
 
+  bool ActiveConnection = false;
+
+  String T = "";
+  Future CheckUserConnection() async {
+    try {
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+
+          ActiveConnection = true;
+          T = "Turn off the data and repress again";
+       update(["network"]);
+
+      }
+    } on SocketException catch (_) {
+
+        ActiveConnection = false;
+        T = "Turn On the data and repress again";
+        update(["network"]);
+    }
+  }
+
   @override
   void onInit() async {
     await init();
@@ -79,6 +102,7 @@ class AdHomeController extends GetxController {
   }
 
   Future<void> init() async {
+    await CheckUserConnection();
     paymentController.transactionApi();
     paymentController.listCardModel;
 
@@ -196,6 +220,6 @@ class AdHomeController extends GetxController {
 
   onTap() {
     errorToast("Please enter card");
-    update(['more']);
+    update(['network']);
   }
 }

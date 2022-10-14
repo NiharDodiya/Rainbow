@@ -59,6 +59,8 @@ class PaymentController extends GetxController {
       // viewCardApi();
       update(['more']);
     } catch (e) {
+      loader.value = false;
+
       debugPrint(e.toString());
     }
   }
