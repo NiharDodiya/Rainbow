@@ -272,7 +272,7 @@ class GetStartedScreens extends StatelessWidget {
                     SizedBox(
                       height: Get.height * 0.012,
                     ),
-                    Spacer(),
+                    const Spacer(),
                     const Divider(
                       thickness: 1,
                       height: 1,

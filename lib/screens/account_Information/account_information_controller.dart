@@ -11,7 +11,6 @@ import 'package:rainbow/screens/account_Information/ad_information_api/ad_inform
 import 'package:rainbow/screens/account_Information/ad_information_api/ad_information_model.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/service/pref_services.dart';
-import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
 import '../../common/popup.dart';
@@ -67,7 +66,7 @@ class AccountInformationController extends GetxController {
     imageID = PrefService.getInt(PrefKeys.advertiserProfileID);
     await AdInformationAPI.adProfileView().then((value) {
       adViewProfile = value;
-      print(value);
+
       imageProfile = adViewProfile.data!.profileImage!;
       fullNameController.text = adViewProfile.data!.fullName!;
       emailController.text = adViewProfile.data!.email!;
@@ -104,12 +103,11 @@ class AccountInformationController extends GetxController {
 
   bool countryBox = false;
 
-  dropDownBox(){
-    if(countryBox == false){
+  dropDownBox() {
+    if (countryBox == false) {
       countryBox = true;
       update(["drop"]);
-    }
-    else{
+    } else {
       countryBox = false;
       update(["drop"]);
     }
@@ -119,11 +117,13 @@ class AccountInformationController extends GetxController {
   List filterList = [];
 
   void serching(value) {
-    filterList = (listCountryModel.data?.where(
-            (element) {
-          return element.name.toString().toLowerCase().contains(value.toString().toLowerCase());
-        })
-        .toList()) ?? [];
+    filterList = (listCountryModel.data?.where((element) {
+          return element.name
+              .toString()
+              .toLowerCase()
+              .contains(value.toString().toLowerCase());
+        }).toList()) ??
+        [];
     update(["drop"]);
   }
 
@@ -180,7 +180,7 @@ class AccountInformationController extends GetxController {
   }
 
   void getCountry() {
- /*   for (int i = 0; i < countryCity.length; i++) {
+    /*   for (int i = 0; i < countryCity.length; i++) {
       if (countryCity[i] == selectCountry) {
         idCountry = countryId[i];
       }
@@ -191,19 +191,17 @@ class AccountInformationController extends GetxController {
         idCompanyCountry = listCountryModel.data![i].id.toString();
       }
     }
-  /*  for (int i = 0; i < countryCity.length; i++) {
+    /*  for (int i = 0; i < countryCity.length; i++) {
       if (countryCity[i] == selectCompanyCountry) {
         idCompanyCountry = countryId[i];
       }
     }*/
   }
 
-
   String? myId;
 
 //account validation
   bool accountValidation() {
-
     for (int i = 0; i < listCountryModel.data!.length; i++) {
       if (listCountryModel.data![i].name == countryController.text) {
         myId = countryController.text;
@@ -234,13 +232,16 @@ class AccountInformationController extends GetxController {
     } else if (phoneNumberController.text.isEmpty) {
       errorToast(Strings.phoneNumber);
       return false;
-    } else if (imagePath == null && adHomeController.viewAdvertiserModel.data!.profileImage!.isEmpty) {
+    } else if (imagePath == null &&
+        adHomeController.viewAdvertiserModel.data!.profileImage!.isEmpty) {
       errorToast(Strings.uploadImageError);
       return false;
-    }/*else if (uploadImage.data == null) {
+    }
+    /*else if (uploadImage.data == null) {
       errorToast(Strings.uploadImageError);
       return false;
-    }*/ else if(myId == null || myId == ""){
+    }*/
+    else if (myId == null || myId == "") {
       errorToast("Please enter valid country name");
       return false;
     }
@@ -369,7 +370,7 @@ class AccountInformationController extends GetxController {
     loader.value = true;
     Map<String, Map<String, dynamic>> param1 = {
       "advirtisersData": {
-      // "id_item_profile": imageID.toString(),
+        // "id_item_profile": imageID.toString(),
         "full_name": fullNameController.text,
         "email": emailController.text,
         "house_number": houseNumberController.text,
@@ -392,13 +393,13 @@ class AccountInformationController extends GetxController {
     };
     update(["Getpic"]);
     if (imageID != 0 || imageID != null) {
-      param1["advirtisersData"]!["id_item_profile"] = imageID ;
+      param1["advirtisersData"]!["id_item_profile"] = imageID;
     }
     update(["Getpic"]);
     await AdInformationAPI.adProfileEdit(param1).then(
       (value) {
         adViewProfile = value;
-        print(value);
+
         fullNameController.text = adViewProfile.data!.fullName!;
         emailController.text = adViewProfile.data!.email!;
         houseNumberController.text = adViewProfile.data!.houseNumber!;

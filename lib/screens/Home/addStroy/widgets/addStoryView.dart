@@ -91,39 +91,39 @@ class AddStoryViewScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                   Padding(
-                     padding: const EdgeInsets.only(bottom: 30),
-                     child: Align(
-                       alignment: Alignment.bottomCenter,
-                       child: InkWell(
-                         onTap: () {
-                           controller.onStoryPost();
-                           FocusScope.of(context).unfocus();
-                         },
-                         child: Container(
-                           height: Get.height * 0.07389,
-                           width: Get.width * 0.8,
-                           decoration: BoxDecoration(
-                               gradient: const LinearGradient(
-                                 colors: [
-                                   ColorRes.color_FFEC5C,
-                                   ColorRes.color_DFC60B
-                                 ],
-                                 begin: Alignment.topCenter,
-                                 end: Alignment.bottomCenter,
-                               ),
-                               borderRadius: BorderRadius.circular(15)),
-                           child: Center(
-                             child: Text(
-                               Strings.postToStories,
-                               style: gilroyMediumTextStyle(
-                                   fontSize: 15, color: ColorRes.black),
-                             ),
-                           ),
-                         ),
-                       ),
-                     ),
-                   ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 30),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: InkWell(
+                          onTap: () {
+                            controller.onStoryPost();
+                            FocusScope.of(context).unfocus();
+                          },
+                          child: Container(
+                            height: Get.height * 0.07389,
+                            width: Get.width * 0.8,
+                            decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    ColorRes.color_FFEC5C,
+                                    ColorRes.color_DFC60B
+                                  ],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                ),
+                                borderRadius: BorderRadius.circular(15)),
+                            child: Center(
+                              child: Text(
+                                Strings.postToStories,
+                                style: gilroyMediumTextStyle(
+                                    fontSize: 15, color: ColorRes.black),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                     Positioned(
                       top: Get.height / 6,
                       left: 0,

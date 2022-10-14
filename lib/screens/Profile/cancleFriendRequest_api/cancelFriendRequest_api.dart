@@ -11,13 +11,13 @@ import 'package:rainbow/utils/pref_keys.dart';
 class CancelFriendRequestApi {
   static Future postRegister(String id) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
-    int userId = PrefService.getInt(PrefKeys.userId);
+
 
     try {
       String url = EndPoints.cancelFriendRequest;
 
       Map<String, String> param = {"id_sender": id.toString()};
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -35,7 +35,7 @@ class CancelFriendRequestApi {
         return cancelFriendRequestModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }

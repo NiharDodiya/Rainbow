@@ -11,7 +11,7 @@ class AdPaymentScreen extends StatelessWidget {
       height: Get.height,
       width: Get.width,
       color: ColorRes.darkBlue,
-      child: Center(
+      child: const Center(
         child: Text("AdPaymentScreen"),
       ),
     );

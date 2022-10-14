@@ -5,7 +5,7 @@ import 'package:rainbow/utils/end_points.dart';
 
 class ListOfNationalitiesApi {
   static Future postRegister() async {
-    ListNationalities countryList = ListNationalities();
+
     try {
       String url = EndPoints.nationalitiesList;
       http.Response? response = await HttpService.getApi(
@@ -15,7 +15,7 @@ class ListOfNationalitiesApi {
         return listNationalitiesFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+
       return listNationalitiesFromJson("");
     }
   }

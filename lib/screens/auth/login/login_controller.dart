@@ -48,28 +48,22 @@ class LoginController extends GetxController {
   }
 
   void onLoginTap(context) {
+    HomeController homeController = Get.put(HomeController());
+    AdHomeController adHomeController = Get.put(AdHomeController());
 
+    adHomeController.viewAdvertiserModel.data?.profilePhoto = null;
+    adHomeController.viewAdvertiserModel.data?.fullName = "";
+    adHomeController.viewAdvertiserModel.data?.profileImage = "";
+    adHomeController.viewAdvertiserModel.data?.email = "";
+    homeController.viewProfile.data = null;
+    homeController.controller.viewProfile.data?.profileImage = null;
+    homeController.controller.viewProfile.data?.profileImage = null;
 
-     HomeController homeController = Get.put(HomeController());
-     AdHomeController adHomeController = Get.put(AdHomeController());
+    homeController.controller.viewProfile.data?.profileImage = "";
 
-
-     adHomeController.viewAdvertiserModel.data?.profilePhoto = null;
-     adHomeController.viewAdvertiserModel.data?.fullName = "";
-     adHomeController.viewAdvertiserModel.data?.profileImage = "";
-     adHomeController.viewAdvertiserModel.data?.email = "";
-     homeController.viewProfile.data = null;
-     homeController.controller.viewProfile.data?.profileImage = null;
-     homeController.controller.viewProfile.data?.profileImage = null;
-
-     homeController.controller.viewProfile.data?.profileImage  = "";
-
-
-     homeController.viewStoryController.storyModel.friendsStory = null;
-     homeController.viewStoryController.storyModel.friendsStory?.length = 0;
-     homeController.friendPostListData = [];
-
-
+    homeController.viewStoryController.storyModel.friendsStory = null;
+    homeController.viewStoryController.storyModel.friendsStory?.length = 0;
+    homeController.friendPostListData = [];
 
     FocusScopeNode currentfocus = FocusScope.of(context);
     if (!currentfocus.hasPrimaryFocus) {
@@ -88,10 +82,10 @@ class LoginController extends GetxController {
   void onTapShowPassword() {
     if (showPassword == false) {
       showPassword = true;
-      print(showPassword);
+
     } else {
       showPassword = false;
-      print(showPassword);
+
     }
     update(["login_form"]);
   }
@@ -112,12 +106,12 @@ class LoginController extends GetxController {
 
   LoginModel loginModel = LoginModel();
 
- /* ViewStoryController viewStoryController = Get.put(ViewStoryController());
+  /* ViewStoryController viewStoryController = Get.put(ViewStoryController());
   HomeController homeController = Get.put(HomeController());*/
   Future<void> registerDetails() async {
     loader.value = true;
     try {
-     /* viewStoryController.storyModel.friendsStory=null;
+      /* viewStoryController.storyModel.friendsStory=null;
       homeController.myStoryController.viewStoryController.storyModel
           .myStory=null;*/
       loginModel = await LoginApi.postRegister(
@@ -142,7 +136,7 @@ class LoginController extends GetxController {
           email: emailController.text.trim(),
           password: passwordController.text.trim());
       if (userCredential.user != null) {
-        print(userCredential.user!.uid);
+
         userUid = userCredential.user!.uid;
         await PrefService.setValue(PrefKeys.uid, userCredential.user!.uid);
         await addUser(userCredential.user!.uid);
@@ -154,7 +148,7 @@ class LoginController extends GetxController {
         //Get.to(() => const UserListScreen());
       }
     } on FirebaseAuthException catch (e) {
-      print(e.toString());
+
       if (e.code == "user-not-found") {
         // Get.snackbar("Error", "User Not Found");
       } else if (e.code == "wrong-password") {
@@ -163,11 +157,12 @@ class LoginController extends GetxController {
     }
     update(['login']);
   }
-String? token;
+
+  String? token;
 
   Future<void> addUser(String uid) async {
     token = await NotificationService.getFcmToken();
-    print("usert token$token");
+
     await firebaseFirestore
         .collection("users")
         .doc(uid)

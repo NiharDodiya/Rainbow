@@ -125,21 +125,21 @@ class AdvertisermentRejectedScreen extends StatelessWidget {
                 Strings.postRejectedByViolation,
                 style: gilroyMediumTextStyle(fontSize: 12),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Text(
                 Strings.violationOf,
                 style: gilroyMediumTextStyle(fontSize: 12),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Text(
                 Strings.violationOfTermsConditions,
                 style: gilroyMediumTextStyle(fontSize: 12),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Text(
@@ -161,7 +161,7 @@ class AdvertisermentRejectedScreen extends StatelessWidget {
           height: Get.height * 0.377,
           width: 245,
         ),
-        SizedBox(
+        const SizedBox(
           height: 25,
         ),
         Text(
@@ -178,7 +178,7 @@ class AdvertisermentRejectedScreen extends StatelessWidget {
       onTap: () {
         Get.back();
       },
-      child: SubmitButton(
+      child: const SubmitButton(
         text: Strings.backToHome,
       ),
     );

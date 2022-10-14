@@ -24,61 +24,79 @@ class RegisterForm extends StatelessWidget {
         return Column(children: [
           controller.isSocial
               ? Column(
-            children: [
-             Align(
-               alignment: Alignment.topLeft,
-               child: Text(Strings.fullName, style: gilroySemiBoldTextStyle(fontSize: 14),),
-             ),
-              SizedBox(height: 10,),
-              Container(
-                height: 60,
-                width: Get.width,
-                padding: EdgeInsets.only(left: 20, top: 20),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-
-                child: Text(controller.fullNameController.text, style: textFieldText,),
-              ),
-              SizedBox(height: 10,),
-            ],
-          )
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        Strings.fullName,
+                        style: gilroySemiBoldTextStyle(fontSize: 14),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      height: 60,
+                      width: Get.width,
+                      padding: const EdgeInsets.only(left: 20, top: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Text(
+                        controller.fullNameController.text,
+                        style: textFieldText,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                )
               : AppTextFiled(
-            controller: controller.fullNameController,
-            title: Strings.fullName,
-            hintText: Strings.natalieNara,
-            fontsize: 16,
-          ),
-         controller.isSocial
-             ? Column(
-           children: [
-             Align(
-               alignment: Alignment.topLeft,
-               child: Text(Strings.email, style: gilroySemiBoldTextStyle(fontSize: 14),),
-             ),
-             SizedBox(height: 10,),
-             Container(
-               height: 60,
-               width: Get.width,
-               padding: EdgeInsets.only(left: 20, top: 20),
-               decoration: BoxDecoration(
-                 color: Colors.white,
-                 borderRadius: BorderRadius.circular(20),
-               ),
-
-               child: Text(controller.emailController.text, style: textFieldText,),
-             ),
-             SizedBox(height: 10,),
-           ],
-         )
-             : AppTextFiled(
-            controller: controller.emailController,
-            title: Strings.email,
-            hintText: Strings.naranataliEmail,
-            textInputType: TextInputType.emailAddress,
-            fontsize: 16,
-          ),
+                  controller: controller.fullNameController,
+                  title: Strings.fullName,
+                  hintText: Strings.natalieNara,
+                  fontsize: 16,
+                ),
+          controller.isSocial
+              ? Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        Strings.email,
+                        style: gilroySemiBoldTextStyle(fontSize: 14),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      height: 60,
+                      width: Get.width,
+                      padding: const EdgeInsets.only(left: 20, top: 20),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Text(
+                        controller.emailController.text,
+                        style: textFieldText,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                )
+              : AppTextFiled(
+                  controller: controller.emailController,
+                  title: Strings.email,
+                  hintText: Strings.naranataliEmail,
+                  textInputType: TextInputType.emailAddress,
+                  fontsize: 16,
+                ),
           controller.isSocial
               ? const SizedBox()
               : AppTextFiled(
@@ -99,7 +117,7 @@ class RegisterForm extends StatelessWidget {
                               Icons.remove_red_eye_rounded,
                               color: Colors.grey,
                             )),
-                  obscure: controller.showPassword == true?false:true,
+                  obscure: controller.showPassword == true ? false : true,
                   fontsize: 16,
                 ),
           controller.isSocial
@@ -122,7 +140,7 @@ class RegisterForm extends StatelessWidget {
                               Icons.remove_red_eye_rounded,
                               color: Colors.grey,
                             )),
-                  obscure: controller.showRetype == true ?false:true,
+                  obscure: controller.showRetype == true ? false : true,
                   fontsize: 16,
                 ),
           GetBuilder<RegisterController>(
@@ -280,9 +298,9 @@ class RegisterForm extends StatelessWidget {
 
           GetBuilder<RegisterController>(
               id: "drop",
-              builder: (controller){
-                return  Container(
-                  width: Get.width/1.20,
+              builder: (controller) {
+                return Container(
+                  width: Get.width / 1.20,
                   height: 60,
                   decoration: BoxDecoration(
                     color: ColorRes.white,
@@ -316,77 +334,90 @@ class RegisterForm extends StatelessWidget {
                           ),
                           IconButton(
                             onPressed: controller.dropDownBox,
-                            icon: Image.asset(AssetRes.arrowDown, height: 20),),
-                          SizedBox(width: 5,),
+                            icon: Image.asset(AssetRes.arrowDown, height: 20),
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
                         ],
                       ),
-
                     ],
                   ),
                 );
               }),
           GetBuilder<RegisterController>(
               id: "drop",
-              builder: (controller){
-                return  (controller.countryBox == true)
-                    ?Container(
-                  height: 160,
-                  width: Get.width/1.20,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white,
-                  ),
-                  child: SingleChildScrollView(
-
-                    child: Column(
-                      children: (controller.ethnicityController.text.isEmpty)
-                          ?listNationalities.data!.map((e) {
-                        return Padding(
-                          padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
-                          child: InkWell(
-                            onTap: (){
-                              controller.ethnicityController.text = e.name!;
-                              controller.countryBox = false;
-                              controller.update(["drop"]);
-                            },
-                            child: SizedBox(
-                              height: 25,
-                              width: Get.width,
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
-                                ),
-                              ),
-                            ),
+              builder: (controller) {
+                return (controller.countryBox == true)
+                    ? Container(
+                        height: 160,
+                        width: Get.width / 1.20,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white,
+                        ),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: (controller
+                                    .ethnicityController.text.isEmpty)
+                                ? listNationalities.data!.map((e) {
+                                    return Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 20, top: 7, bottom: 7),
+                                      child: InkWell(
+                                        onTap: () {
+                                          controller.ethnicityController.text =
+                                              e.name!;
+                                          controller.countryBox = false;
+                                          controller.update(["drop"]);
+                                        },
+                                        child: SizedBox(
+                                          height: 25,
+                                          width: Get.width,
+                                          child: Align(
+                                            alignment: Alignment.topLeft,
+                                            child: Text(
+                                              e.name!,
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 16),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }).toList()
+                                : controller.filterList.map((e) {
+                                    return Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 20, top: 7, bottom: 7),
+                                      child: InkWell(
+                                        onTap: () {
+                                          controller.ethnicityController.text =
+                                              e.name!;
+                                          controller.countryBox = false;
+                                          controller.update(["drop"]);
+                                        },
+                                        child: SizedBox(
+                                          height: 25,
+                                          width: Get.width,
+                                          child: Align(
+                                            alignment: Alignment.topLeft,
+                                            child: Text(
+                                              e.name!,
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 16),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }).toList(),
                           ),
-                        );
-                      }).toList()
-                          :controller.filterList.map((e) {
-                        return Padding(
-                          padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
-                          child: InkWell(
-                            onTap: (){
-                              controller.ethnicityController.text = e.name!;
-                              controller.countryBox = false;
-                              controller.update(["drop"]);
-                            },
-                            child: SizedBox(
-                              height: 25,
-                              width: Get.width,
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                 child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
-
-                                ),
-                              ),
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                )
-                    :SizedBox();
+                        ),
+                      )
+                    : const SizedBox();
               }),
 
           /*GetBuilder<RegisterController>(
@@ -471,7 +502,7 @@ class RegisterForm extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-         /* GetBuilder<RegisterController>(
+          /* GetBuilder<RegisterController>(
             id: 'register_screen',
             builder: (controller) {
               return dropdownButton(

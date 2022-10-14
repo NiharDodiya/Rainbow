@@ -6,6 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_api_headers/google_api_headers.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
+import 'package:rainbow/common/popup.dart';
 
 class GoogleMapScreen extends StatefulWidget {
   const GoogleMapScreen({Key? key}) : super(key: key);
@@ -243,7 +244,7 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
             hintText: 'Search',
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(20),
-                borderSide: BorderSide(color: Colors.white))),
+                borderSide: const BorderSide(color: Colors.white))),
         components: [
           Component(Component.country, "pk"),
           Component(Component.country, "usa")
@@ -253,8 +254,9 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
   }
 
   void onError(PlacesAutocompleteResponse response) {
-    homeScaffoldKey.currentState!
-        .showSnackBar(SnackBar(content: Text(response.errorMessage!)));
+   /* homeScaffoldKey.currentState!
+        .showSnackBar(SnackBar(content: Text(response.errorMessage!)));*/
+    errorToast(response.errorMessage!);
   }
 
   Future<void> displayPrediction(

@@ -18,21 +18,17 @@ class UserSubscriptionAddApi {
     try {
       String url = EndPoints.userSubscriptionAdd;
 
-      http.Response? response = await HttpService.postApi(
-          url: url,
-         // body: jsonEncode(param),
+      http.Response? response = await HttpService.postApi(url: url,
+          // body: jsonEncode(param),
           header: {
             "Content-Type": "application/json",
             "x-access-token": accesToken
           });
       if (response != null && response.statusCode == 200) {
-
         flutterToast(jsonDecode(response.body)["message"]);
 
         return userSubscriptionAddModelFromJson(response.body);
-      }
-      else{
-
+      } else {
         AddCartController addCartController = Get.find();
 
         addCartController.fullNameController.clear();

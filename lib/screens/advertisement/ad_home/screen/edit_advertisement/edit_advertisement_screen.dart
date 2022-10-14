@@ -98,8 +98,7 @@ class EditAdvertisementscreen extends StatelessWidget {
   }
 
   Widget body() {
-    CreateAdvertisementController createAdvertisementController =
-        Get.put(CreateAdvertisementController());
+
     EditAdvertiesementController editAdvertiesementController =
         Get.put(EditAdvertiesementController());
     return SizedBox(
@@ -220,7 +219,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                           ],
@@ -564,7 +563,8 @@ class EditAdvertisementscreen extends StatelessWidget {
     return InkWell(
       onTap: () {
         Get.to(UpdateAdvertiseScreen(
-            id: editAdvertiesementController.editAdvertisementModel.data?.id ?? 0));
+            id: editAdvertiesementController.editAdvertisementModel.data?.id ??
+                0));
       },
       child: Text(
         "Edit",

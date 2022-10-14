@@ -21,13 +21,13 @@ class ListOfCountryApi {
       if (response != null && response.statusCode == 200) {
         return listCountryModelFromJson(response.body);
       }
-      String message = jsonDecode(response!.body)["message"];
+       jsonDecode(response!.body)["message"];
       /*  message == "Failed! Email is already in use!"
           ? errorToast(message)
           : */
-    /*  flutterToast(message);*/
+      /*  flutterToast(message);*/
     } catch (e) {
-      print(e.toString());
+
       return listCountryModelFromJson("");
     }
   }

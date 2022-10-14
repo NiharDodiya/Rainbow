@@ -15,13 +15,13 @@ class PhoneNumberApi {
   static Future postRegister(
     String phoneNumber,
   ) async {
-    List<PhoneNumber> phoneList = [];
+   // List<PhoneNumber> phoneList = [];
     try {
       String url = EndPoints.mobileCheck;
       Map<String, String> param = {
         'phoneNumber': phoneNumber,
       };
-      print(param);
+
 
       http.Response? response = await HttpService.postApi(
           url: url,
@@ -45,7 +45,7 @@ class PhoneNumberApi {
           ? errorToast(message)
           : */
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }
@@ -58,7 +58,7 @@ class PhoneNumberApi {
       Map<String, String> param = {
         'phoneNumber': phoneNumber,
       };
-      print(param);
+
 
       http.Response? response = await HttpService.postApi(
           url: url,
@@ -83,7 +83,7 @@ class PhoneNumberApi {
           ? errorToast(message)
           : */
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }
@@ -96,7 +96,7 @@ class PhoneNumberApi {
       Map<String, String> param = {
         'phoneNumber': phoneNumber,
       };
-      print(param);
+
 
       http.Response? response = await HttpService.postApi(
           url: url,
@@ -119,7 +119,7 @@ class PhoneNumberApi {
           ? errorToast(message)
           : */
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }
@@ -132,7 +132,7 @@ class PhoneNumberApi {
       Map<String, String> param = {
         'phoneNumber': phoneNumber,
       };
-      print(param);
+
 
       http.Response? response = await HttpService.postApi(
           url: url,
@@ -156,7 +156,7 @@ class PhoneNumberApi {
           ? errorToast(message)
           : */
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }

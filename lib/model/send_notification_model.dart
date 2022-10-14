@@ -14,17 +14,17 @@ class SendNotificationModel {
   });
 
   Map<String, dynamic> toMap() => {
-    "registration_ids": fcmTokens,
-    "data": {
-      "id": id,
-      "chatId": chatId,
-      "click_action": "FLUTTER_NOTIFICATION_CLICK",
-      "sound": "default",
-    },
-    "priority": "high",
-    "notification": {
-      "title": title,
-      "body": body,
-    }
-  };
+        "registration_ids": fcmTokens,
+        "data": {
+          "id": id,
+          "chatId": chatId,
+          "click_action": "FLUTTER_NOTIFICATION_CLICK",
+          "sound": "default",
+        },
+        "priority": "high",
+        "notification": {
+          "title": title,
+          "body": body,
+        }
+      };
 }

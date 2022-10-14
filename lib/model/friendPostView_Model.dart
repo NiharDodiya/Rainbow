@@ -404,27 +404,23 @@ class FriendPost {
             ? null
             : List<String>.from(json["postList"].map((x) => x)),
         isLike: json["isLike"],
-        postLikeCount:
-            json["postLikeCount"],
+        postLikeCount: json["postLikeCount"],
         postLikeUser: json["postLikeUser"] == null
             ? null
             : List<PostLikeUser>.from(
                 json["postLikeUser"].map((x) => PostLikeUser.fromJson(x))),
-        postShareCount:
-            json["postShareCount"],
+        postShareCount: json["postShareCount"],
         postTag: json["postTag"] == null
             ? null
             : List<PostTag>.from(
                 json["postTag"].map((x) => PostTag.fromJson(x))),
         isView: json["isView"],
-        postViewcount:
-            json["postViewcount"],
+        postViewcount: json["postViewcount"],
         postViewUser: json["postViewUser"] == null
             ? null
             : List<PostUser>.from(
                 json["postViewUser"].map((x) => PostUser.fromJson(x))),
-        postCommentCount:
-            json["postCommentCount"],
+        postCommentCount: json["postCommentCount"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -538,20 +534,16 @@ class PostLikeUser {
         address1: json["address1"],
         address2: json["address2"],
         phoneNumber: json["phone_number"],
-        maritalStatus:
-            json["marital_status"],
-        onlineStatus:
-            json["online_status"],
+        maritalStatus: json["marital_status"],
+        onlineStatus: json["online_status"],
         idEthnicity: json["id_ethnicity"],
         birthDate: json["birth_date"] == null
             ? null
             : DateTime.parse(json["birth_date"]),
         noKids: json["no_kids"],
-        mobileStatus:
-            json["mobile_status"],
+        mobileStatus: json["mobile_status"],
         role: json["role"],
-        referrallCode:
-            json["referrall_code"],
+        referrallCode: json["referrall_code"],
         idStatus: json["id_status"],
         latitude: json["latitude"].toString().isEmpty
             ? null
@@ -576,10 +568,8 @@ class PostLikeUser {
         twitter: json["twitter"],
         about: json["about"],
         hobbiesAndInterest: json["hobbies_and_Interest"],
-        backgroundImage:
-            json["background_image"],
-        profileImage:
-            json["profile_image"],
+        backgroundImage: json["background_image"],
+        profileImage: json["profile_image"],
         status: json["status"],
       );
 
@@ -616,8 +606,7 @@ class PostLikeUser {
         "facebook": facebook,
         "twitter": twitter,
         "about": about,
-        "hobbies_and_Interest":
-            hobbiesAndInterest,
+        "hobbies_and_Interest": hobbiesAndInterest,
         "background_image": backgroundImage,
         "profile_image": profileImage,
         "status": status,
@@ -725,20 +714,16 @@ class PostUser {
         address1: json["address1"],
         address2: json["address2"],
         phoneNumber: json["phone_number"],
-        maritalStatus:
-            json["marital_status"],
-        onlineStatus:
-            json["online_status"],
+        maritalStatus: json["marital_status"],
+        onlineStatus: json["online_status"],
         idEthnicity: json["id_ethnicity"],
         birthDate: json["birth_date"] == null
             ? null
             : DateTime.parse(json["birth_date"]),
         noKids: json["no_kids"],
-        mobileStatus:
-            json["mobile_status"],
+        mobileStatus: json["mobile_status"],
         role: json["role"],
-        referrallCode:
-            json["referrall_code"],
+        referrallCode: json["referrall_code"],
         idStatus: json["id_status"],
         latitude: json["latitude"].toString().isEmpty
             ? null
@@ -763,10 +748,8 @@ class PostUser {
         twitter: json["twitter"],
         about: json["about"],
         hobbiesAndInterest: json["hobbies_and_Interest"],
-        backgroundImage:
-            json["background_image"],
-        profileImage:
-            json["profile_image"],
+        backgroundImage: json["background_image"],
+        profileImage: json["profile_image"],
         status: json["status"],
       );
 
@@ -803,8 +786,7 @@ class PostUser {
         "facebook": facebook,
         "twitter": twitter,
         "about": about,
-        "hobbies_and_Interest":
-            hobbiesAndInterest,
+        "hobbies_and_Interest": hobbiesAndInterest,
         "background_image": backgroundImage,
         "profile_image": profileImage,
         "status": status,

@@ -63,12 +63,11 @@ class UpdateAdvertiseController extends GetxController {
 
   bool countryBox = false;
 
-  dropDownBox(){
-    if(countryBox == false){
+  dropDownBox() {
+    if (countryBox == false) {
       countryBox = true;
       update(["drop"]);
-    }
-    else{
+    } else {
       countryBox = false;
       update(["drop"]);
     }
@@ -78,11 +77,13 @@ class UpdateAdvertiseController extends GetxController {
   List filterList = [];
 
   void serching(value) {
-    filterList = (listCountryModel.data?.where(
-            (element) {
-          return element.name.toString().toLowerCase().contains(value.toString().toLowerCase());
-        })
-        .toList()) ?? [];
+    filterList = (listCountryModel.data?.where((element) {
+          return element.name
+              .toString()
+              .toLowerCase()
+              .contains(value.toString().toLowerCase());
+        }).toList()) ??
+        [];
     update(["drop"]);
   }
 
@@ -216,7 +217,6 @@ class UpdateAdvertiseController extends GetxController {
   }
 
   bool validation() {
-
     for (int i = 0; i < listCountryModel.data!.length; i++) {
       if (listCountryModel.data![i].name == countryController.text) {
         myId = countryController.text;
@@ -259,7 +259,7 @@ class UpdateAdvertiseController extends GetxController {
     } else if (urlLinkController.text.isEmpty) {
       errorToast(Strings.websiteError);
       return false;
-    } else if(myId == null || myId == ""){
+    } else if (myId == null || myId == "") {
       errorToast("Please enter valid country name");
       return false;
     }
@@ -286,8 +286,7 @@ class UpdateAdvertiseController extends GetxController {
       addStreet = place.street;
       address =
           '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
-      print(
-          "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<$address>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
       update(["advertiser"]);
     }
     loader.value = false;

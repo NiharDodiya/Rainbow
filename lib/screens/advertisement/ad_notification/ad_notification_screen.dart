@@ -19,7 +19,6 @@ class AdNotificationsScreen extends StatelessWidget {
   ConnectionsProfileController connectionsProfileController =
       Get.put(ConnectionsProfileController());
 
-
   @override
   Widget build(BuildContext context) {
     controller.notificationReadApi();
@@ -74,7 +73,7 @@ class AdNotificationsScreen extends StatelessWidget {
                                           right: Get.width * 0.16),
                                       child: InkWell(
                                         onTap: () {
-                                        /*  connectionsProfileController.callApi(
+                                          /*  connectionsProfileController.callApi(
                                               controller.notificationList[index]
                                                   .idUserReceiver
                                                   .toString());*/
@@ -90,7 +89,8 @@ class AdNotificationsScreen extends StatelessWidget {
                                                     color: ColorRes.white,
                                                     width: 1),
                                               ),
-                                              child: adHomeController.viewAdvertiserModel
+                                              child: adHomeController
+                                                      .viewAdvertiserModel
                                                       .data!
                                                       .profileImage
                                                       .toString()
@@ -120,28 +120,38 @@ class AdNotificationsScreen extends StatelessWidget {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               50),
-                                                      child: Container(
+                                                      child: SizedBox(
                                                         height: 53,
                                                         width: 53,
-                                                        child: CachedNetworkImage(
+                                                        child:
+                                                            CachedNetworkImage(
                                                           imageUrl: adHomeController
                                                               .viewAdvertiserModel
                                                               .data!
                                                               .profileImage
                                                               .toString(),
                                                           fit: BoxFit.cover,
-                                                          placeholder: ((context, url) => Image.asset( AssetRes
-                                                              .portrait_placeholder,
-                                                            height: 53,
-                                                            width: 53,
-                                                            fit: BoxFit.cover,
-                                                          )),
-                                                          errorWidget: ((context, url, error) => Image.asset( AssetRes
-                                                              .portrait_placeholder,
-                                                            height: 53,
-                                                            width: 53,
-                                                            fit: BoxFit.cover,
-                                                          )),
+                                                          placeholder:
+                                                              ((context, url) =>
+                                                                  Image.asset(
+                                                                    AssetRes
+                                                                        .portrait_placeholder,
+                                                                    height: 53,
+                                                                    width: 53,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  )),
+                                                          errorWidget:
+                                                              ((context, url,
+                                                                      error) =>
+                                                                  Image.asset(
+                                                                    AssetRes
+                                                                        .portrait_placeholder,
+                                                                    height: 53,
+                                                                    width: 53,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  )),
                                                         ),
                                                       ),
                                                     ),

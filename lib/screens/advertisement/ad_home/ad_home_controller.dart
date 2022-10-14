@@ -134,7 +134,7 @@ class AdHomeController extends GetxController {
     } catch (e) {
       loader.value = false;
 
-      print(e.toString());
+
     }
   }
 
@@ -147,7 +147,7 @@ class AdHomeController extends GetxController {
       update(['delete']);
     } catch (e) {
       loader.value = false;
-      print(e.toString());
+
     }
   }
 
@@ -161,7 +161,7 @@ class AdHomeController extends GetxController {
     } catch (e) {
       loader.value = false;
 
-      print(e.toString());
+
     }
   }
 
@@ -174,7 +174,7 @@ class AdHomeController extends GetxController {
       update(['followUp']);
     } catch (e) {
       loader.value = false;
-      print(e.toString());
+
     }
   }
 
@@ -190,7 +190,7 @@ class AdHomeController extends GetxController {
     } catch (e) {
       loader.value = false;
 
-      print(e.toString());
+
     }
   }
 

@@ -11,7 +11,7 @@ import 'package:rainbow/screens/Home/settings/connections/connections_controller
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
-import 'package:rainbow/screens/Home/settings/subscription/subscription_screen.dart';
+
 import 'package:rainbow/screens/Message/message_controller.dart';
 import 'package:rainbow/screens/Message/message_screen.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
@@ -25,7 +25,7 @@ class SettingsScreen extends StatelessWidget {
   SettingsController controller = Get.put(SettingsController());
   ProfileController profileController = Get.put(ProfileController());
   HomeController homeController = Get.put(HomeController());
-   MessageController messageController = Get.put(MessageController());
+  MessageController messageController = Get.put(MessageController());
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class SettingsScreen extends StatelessWidget {
             return SafeArea(
               child: Container(
                 width: Get.width,
-                padding: EdgeInsets.only(bottom: 50),
+                padding: const EdgeInsets.only(bottom: 50),
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
@@ -151,7 +151,7 @@ class SettingsScreen extends StatelessWidget {
                                 image:
                                     AssetImage(AssetRes.portrait_placeholder))),
                       )
-                    : Container(
+                    : SizedBox(
                         height: 56,
                         width: 56,
                         child: ClipRRect(

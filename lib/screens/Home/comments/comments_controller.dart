@@ -43,7 +43,7 @@ class CommentsController extends GetxController {
   }
 
   bool validation() {
-    if (msgController.text.isEmpty && imageCamera == null ) {
+    if (msgController.text.isEmpty && imageCamera == null) {
       errorToast("please enter reply");
       return false;
     }
@@ -98,7 +98,9 @@ class CommentsController extends GetxController {
       }
       update(["commentPost"]);
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
   }
 
@@ -108,7 +110,9 @@ class CommentsController extends GetxController {
     try {
       loader.value = true;
       postCommentListModel = await MyPostApi.commentPostListApi(idPost!);
-      print(postCommentListModel);
+      if (kDebugMode) {
+        print(postCommentListModel);
+      }
       update(['home']);
       loader.value = false;
     } catch (e) {

@@ -41,14 +41,13 @@ class LoginApi {
       if (response != null && response.statusCode == 200) {
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
-        /*  errorToast(jsonDecode(response.body)["message"]);*/
+          /*  errorToast(jsonDecode(response.body)["message"]);*/
         } else if (status == true) {
           await PrefService.setValue(PrefKeys.referrallCode,
               jsonDecode(response.body)["data"]["referrall_code"]);
           await PrefService.setValue(
               PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
           await PrefService.setValue(PrefKeys.isLogin, true);
-
 
           await PrefService.setValue(PrefKeys.registerToken,
               jsonDecode(response.body)["token"].toString());
@@ -80,15 +79,14 @@ class LoginApi {
               await PrefService.setValue(PrefKeys.loginRole,
                   jsonDecode(response.body)["data"]["role"]);
 
-
-
               HomeController homeController = Get.put(HomeController());
 
               homeController.init();
 
-             flutterToast(jsonDecode(response.body)["message"]);
+              flutterToast(jsonDecode(response.body)["message"]);
 
-              Get.offAll(() => jsonDecode(response.body)["data"]["role"] == "end_user"
+              Get.offAll(() =>
+                  jsonDecode(response.body)["data"]["role"] == "end_user"
                       ? const Dashboard()
                       : AdvertisementDashBord());
             }
@@ -105,14 +103,14 @@ class LoginApi {
             await PrefService.setValue(
                 PrefKeys.loginRole, jsonDecode(response.body)["data"]["role"]);
 
-           // flutterToast(jsonDecode(response.body)["message"]);
+            // flutterToast(jsonDecode(response.body)["message"]);
 
             if (jsonDecode(response.body)["data"]["mobile_status"] ==
                 "pending") {
               advertiserVerifyController.phoneNumberRegister();
-              Get.to(() => AdvertiserVerifyOtpScreen());
+              Get.to(() => const AdvertiserVerifyOtpScreen());
             } else {
-             // flutterToast(jsonDecode(response.body)["message"]);
+              // flutterToast(jsonDecode(response.body)["message"]);
               HomeController homeController = Get.put(HomeController());
               await homeController.init();
 
@@ -133,11 +131,9 @@ class LoginApi {
                 jsonDecode(response.body)["data"]["profile_image"]);
             return advertisersLoginModelFromJson(response.body);
           }
-
-
         } else if (response.statusCode == 500) {
           errorToast(jsonDecode(response.body)["message"]);
-        }/*else if(response.statusCode==200){
+        } /*else if(response.statusCode==200){
           if(status == true){
             flutterToast(jsonDecode(response.body)["message"]);
 
@@ -147,7 +143,7 @@ class LoginApi {
         errorToast(jsonDecode(response.body)["message"]);
       }
     } catch (e) {
-      print(e.toString());
+
 
       return loginModelFromJson('');
     }

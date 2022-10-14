@@ -117,8 +117,7 @@ class StoryList {
             ? null
             : List<StoryTag>.from(
                 json["storyTag"].map((x) => StoryTag.fromJson(x))),
-        storyLikeCount:
-            json["storyLikeCount"],
+        storyLikeCount: json["storyLikeCount"],
         storyLikeList: json["storyLikeList"] == null
             ? null
             : List<UserDetail>.from(
@@ -129,8 +128,7 @@ class StoryList {
             ? null
             : List<StoryCommentList>.from(json["storyCommentList"]
                 .map((x) => StoryCommentList.fromJson(x))),
-        storyViewCount:
-            json["storyViewCount"],
+        storyViewCount: json["storyViewCount"],
         storyView: json["storyView"] == null
             ? null
             : List<StoryView>.from(
@@ -152,8 +150,7 @@ class StoryList {
             ? null
             : List<dynamic>.from(storyLikeList!.map((x) => x.toJson())),
         "isLike": isLike,
-        "storyCommentCount":
-            storyCommentCount,
+        "storyCommentCount": storyCommentCount,
         "storyCommentList": storyCommentList == null
             ? null
             : List<dynamic>.from(storyCommentList!.map((x) => x.toJson())),
@@ -274,20 +271,16 @@ class UserDetail {
         address1: json["address1"],
         address2: json["address2"],
         phoneNumber: json["phone_number"],
-        maritalStatus:
-            json["marital_status"],
-        onlineStatus:
-            json["online_status"],
+        maritalStatus: json["marital_status"],
+        onlineStatus: json["online_status"],
         idEthnicity: json["id_ethnicity"],
         birthDate: json["birth_date"] == null
             ? null
             : DateTime.parse(json["birth_date"]),
         noKids: json["no_kids"],
-        mobileStatus:
-            json["mobile_status"],
+        mobileStatus: json["mobile_status"],
         role: json["role"],
-        referrallCode:
-            json["referrall_code"],
+        referrallCode: json["referrall_code"],
         idStatus: json["id_status"],
         // ignore: prefer_null_aware_operators
         latitude: json["latitude"] == null ? null : json["latitude"].toDouble(),
@@ -307,10 +300,8 @@ class UserDetail {
         twitter: json["twitter"],
         about: json["about"],
         hobbiesAndInterest: json["hobbies_and_Interest"],
-        backgroundImage:
-            json["background_image"],
-        profileImage:
-            json["profile_image"],
+        backgroundImage: json["background_image"],
+        profileImage: json["profile_image"],
         status: json["status"],
       );
 
@@ -347,8 +338,7 @@ class UserDetail {
         "facebook": facebook,
         "twitter": twitter,
         "about": about,
-        "hobbies_and_Interest":
-            hobbiesAndInterest,
+        "hobbies_and_Interest": hobbiesAndInterest,
         "background_image": backgroundImage,
         "profile_image": profileImage,
         "status": status,
@@ -448,8 +438,7 @@ class MyStory {
             : List<StoryTag>.from(
                 json["storyTag"].map((x) => StoryTag.fromJson(x))),
         isLike: json["isLike"],
-        storyLikeCount:
-            json["storyLikeCount"],
+        storyLikeCount: json["storyLikeCount"],
         storyLikeList: json["storyLikeList"] == null
             ? null
             : List<Story>.from(
@@ -459,8 +448,7 @@ class MyStory {
             ? null
             : List<StorycommentList>.from(json["storycommentList"]
                 .map((x) => StorycommentList.fromJson(x))),
-        storyViewCount:
-            json["storyViewCount"],
+        storyViewCount: json["storyViewCount"],
         storyView: json["storyView"] == null
             ? null
             : List<StoryView>.from(
@@ -482,8 +470,7 @@ class MyStory {
         "storyLikeList": storyLikeList == null
             ? null
             : List<dynamic>.from(storyLikeList!.map((x) => x.toJson())),
-        "storyCommentCount":
-            storyCommentCount,
+        "storyCommentCount": storyCommentCount,
         "storycommentList": storycommentList == null
             ? null
             : List<dynamic>.from(storycommentList!.map((x) => x.toJson())),
@@ -575,17 +562,14 @@ class Story {
         address1: json["address1"],
         address2: json["address2"],
         phoneNumber: json["phone_number"],
-        maritalStatus:
-            json["marital_status"],
-        onlineStatus:
-            json["online_status"],
+        maritalStatus: json["marital_status"],
+        onlineStatus: json["online_status"],
         idEthnicity: json["id_ethnicity"],
         birthDate: json["birth_date"] == null
             ? null
             : DateTime.parse(json["birth_date"]),
         noKids: json["no_kids"],
-        mobileStatus:
-            json["mobile_status"],
+        mobileStatus: json["mobile_status"],
         role: json["role"],
         referrallCode: json["referrall_code"],
         idStatus: json["id_status"],
@@ -612,10 +596,8 @@ class Story {
         twitter: json["twitter"],
         about: json["about"],
         hobbiesAndInterest: json["hobbies_and_Interest"],
-        backgroundImage:
-            json["background_image"],
-        profileImage:
-            json["profile_image"],
+        backgroundImage: json["background_image"],
+        profileImage: json["profile_image"],
         status: json["status"],
       );
 
@@ -652,8 +634,7 @@ class Story {
         "facebook": facebook,
         "twitter": twitter,
         "about": about,
-        "hobbies_and_Interest":
-            hobbiesAndInterest,
+        "hobbies_and_Interest": hobbiesAndInterest,
         "background_image": backgroundImage,
         "profile_image": profileImage,
         "status": status,

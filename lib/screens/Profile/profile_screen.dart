@@ -59,8 +59,10 @@ class ProfileScreen extends StatelessWidget {
                         physics: const BouncingScrollPhysics(),
                         child: Column(
                           children: [
-                            const SizedBox(height: 27,),
-                            profileImagesLoad(controller,context),
+                            const SizedBox(
+                              height: 27,
+                            ),
+                            profileImagesLoad(controller, context),
                             profileDetails(),
                             aboutProfiler(
                               Strings.aboutMe,
@@ -92,7 +94,7 @@ class ProfileScreen extends StatelessWidget {
 
   Widget profileImagesLoad(ProfileController controller, BuildContext context) {
     return SizedBox(
-      height:Get.height > 865?Get.height/2.6:Get.height/2.35,
+      height: Get.height > 865 ? Get.height / 2.6 : Get.height / 2.35,
       width: Get.width,
       child: Stack(
         children: [
@@ -107,20 +109,20 @@ class ProfileScreen extends StatelessWidget {
                     imageUrl: controller.viewProfile.data == null
                         ? ""
                         : controller.viewProfile.data!.backgroundImage
-                        .toString(),
+                            .toString(),
                     fit: BoxFit.cover,
-                    placeholder: ((context, url) =>  Image.asset(
-                      height: 160,
-                      width: 160,
-                      AssetRes.placeholderImage,
-                      fit: BoxFit.cover,
-                    )),
+                    placeholder: ((context, url) => Image.asset(
+                          height: 160,
+                          width: 160,
+                          AssetRes.placeholderImage,
+                          fit: BoxFit.cover,
+                        )),
                     errorWidget: ((context, url, error) => Image.asset(
-                      height: 160,
-                      width: 160,
-                      AssetRes.placeholderImage,
-                      fit: BoxFit.cover,
-                    )),
+                          height: 160,
+                          width: 160,
+                          AssetRes.placeholderImage,
+                          fit: BoxFit.cover,
+                        )),
                   ),
                   /*Image.network(
                     controller.viewProfile.data == null
@@ -135,7 +137,7 @@ class ProfileScreen extends StatelessWidget {
                       width: Get.width,
                       AssetRes.placeholderImage,
                       fit: BoxFit.cover,
-                    )),*//*Container(
+                    )),*/ /*Container(
                         height: Get.height * 0.2857,
                         width: Get.width,
                         decoration: BoxDecoration(
@@ -143,7 +145,7 @@ class ProfileScreen extends StatelessWidget {
                             image: const DecorationImage(
                                 image: AssetImage(AssetRes.placeholderImage),
                                 fit: BoxFit.cover)),
-                      );*//*
+                      );*/ /*
 
                   ),*/
                 ),
@@ -180,30 +182,31 @@ class ProfileScreen extends StatelessWidget {
             child: Stack(
               children: [
                 ClipRRect(
-                    borderRadius: BorderRadius.circular(99),
-                    child: CachedNetworkImage(
-                      imageUrl: controller.viewProfile.data == null
-                          ? ""
-                          : controller.viewProfile.data!.profileImage.toString(),
-                      fit: BoxFit.cover, height:151,
-                      width: 151,
-                      placeholder: ((context, url) => Image.asset(
-                        height: 151,
-                        width:151,
+                  borderRadius: BorderRadius.circular(99),
+                  child: CachedNetworkImage(
+                    imageUrl: controller.viewProfile.data == null
+                        ? ""
+                        : controller.viewProfile.data!.profileImage.toString(),
+                    fit: BoxFit.cover,
+                    height: 151,
+                    width: 151,
+                    placeholder: ((context, url) => Image.asset(
+                          height: 151,
+                          width: 151,
                           AssetRes.portrait_placeholder,
-                        fit: BoxFit.cover,
-                      )),
-                      errorWidget: ((context, url, error) => Image.asset(
-                        height: 151,
-                        width: 151,
-                        AssetRes.portrait_placeholder,
-                        fit: BoxFit.cover,
-                      )),
-                    ),
-
-
+                          fit: BoxFit.cover,
+                        )),
+                    errorWidget: ((context, url, error) => Image.asset(
+                          height: 151,
+                          width: 151,
+                          AssetRes.portrait_placeholder,
+                          fit: BoxFit.cover,
+                        )),
+                  ),
                 ),
-                Positioned(top: 100,left: Get.width >392?Get.width/3.44:Get.width /3.2,
+                Positioned(
+                  top: 100,
+                  left: Get.width > 392 ? Get.width / 3.44 : Get.width / 3.2,
                   child: Container(
                     height: 30,
                     width: 30,
@@ -218,10 +221,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ],
             ),
-
-
           ),
-
         ],
       ),
     );

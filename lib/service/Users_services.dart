@@ -24,7 +24,7 @@ class UserService {
           .doc(user.uid)
           .update(user.updateJson());
     } catch (e) {
-      print(e);
+
     }
   }
 

@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/model/viewAdvertiserModel.dart';
-import 'package:rainbow/screens/Home/home_controller.dart';
+
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
-import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
-import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
-import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
+
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
 logoutPopup({required BuildContext context}) {
-
   return showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          shape: RoundedRectangleBorder(
-              borderRadius:
-              BorderRadius.circular(20)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           backgroundColor: Colors.white,
-          title: Text("Logout", style: gilroySemiBoldTextStyle(fontSize: 18, color: Colors.black),),
-          content: Text("Do you want to logout ?", style: gilroyMediumTextStyle(fontSize: 14, color: Colors.black),),
+          title: Text(
+            "Logout",
+            style: gilroySemiBoldTextStyle(fontSize: 18, color: Colors.black),
+          ),
+          content: Text(
+            "Do you want to logout ?",
+            style: gilroyMediumTextStyle(fontSize: 14, color: Colors.black),
+          ),
           actions: <Widget>[
             TextButton(
               child: const Text('No'),
@@ -35,14 +36,14 @@ logoutPopup({required BuildContext context}) {
               height: 20,
               width: 0.5,
               color: Colors.grey,
-
             ),
-            GetBuilder<SettingsController>(id: "setting", builder: (controller) {
-              return TextButton(
-                child: const Text('yes'),
-                onPressed: () async{
-
-                  /* HomeController homeController = Get.put(HomeController());
+            GetBuilder<SettingsController>(
+              id: "setting",
+              builder: (controller) {
+                return TextButton(
+                  child: const Text('yes'),
+                  onPressed: () async {
+                    /* HomeController homeController = Get.put(HomeController());
 
                   await homeController.viewProfileApi();*/
 /*
@@ -57,44 +58,46 @@ logoutPopup({required BuildContext context}) {
                   tes.testimonial = null;
                   tes.userSender = null;
 */
-                  SettingsController controller = Get.put(SettingsController());
+                    SettingsController controller =
+                        Get.put(SettingsController());
 
-                  controller.loader.value = true;
+                    controller.loader.value = true;
 
                   PaymentController paymentController = Get.put(PaymentController());
 
-                  paymentController.listCardModel.data = [];
-                  paymentController.transactionModel.data = [];
+                    paymentController.listCardModel.data = [];
+                    paymentController.transactionModel.data = [];
 
-                  Navigator.of(context).pop();
-                  await controller.logOutDetails();
+                    Navigator.of(context).pop();
+                    await controller.logOutDetails();
 
-                  PrefService.clear();
-                  controller.loader.value = false;
-
-                },
-              );
-            },
+                    PrefService.clear();
+                    controller.loader.value = false;
+                  },
+                );
+              },
             ),
           ],
         );
       });
-
 }
 
-
 logoutPopupAdvertise({required BuildContext context}) {
-
   return showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          shape: RoundedRectangleBorder(
-              borderRadius:
-              BorderRadius.circular(20)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           backgroundColor: Colors.white,
-          title: Text("Logout", style: gilroySemiBoldTextStyle(fontSize: 18, color: Colors.black),),
-          content: Text("Do you want to logout ?", style: gilroyMediumTextStyle(fontSize: 14, color: Colors.black),),
+          title: Text(
+            "Logout",
+            style: gilroySemiBoldTextStyle(fontSize: 18, color: Colors.black),
+          ),
+          content: Text(
+            "Do you want to logout ?",
+            style: gilroyMediumTextStyle(fontSize: 14, color: Colors.black),
+          ),
           actions: <Widget>[
             TextButton(
               child: const Text('No'),
@@ -106,12 +109,10 @@ logoutPopupAdvertise({required BuildContext context}) {
               height: 20,
               width: 0.5,
               color: Colors.grey,
-
             ),
             TextButton(
               child: const Text('yes'),
-              onPressed: () async{
-
+              onPressed: () async {
                 await PrefService.clear();
                 Get.offAll(() => AuthDashboard());
                 PrefService.setValue(PrefKeys.skipBoardingScreen, true);
@@ -120,7 +121,6 @@ logoutPopupAdvertise({required BuildContext context}) {
 
                 paymentController.listCardModel.data = [];
                 paymentController.transactionModel.data = [];
-
               },
             ),
           ],

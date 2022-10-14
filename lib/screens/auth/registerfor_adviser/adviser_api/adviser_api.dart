@@ -54,7 +54,7 @@ class AdvirtisersApi {
           "website": website
         }
       };
-      print(param);
+
 
       http.Response? response = await HttpService.postApi(
           url: url,
@@ -76,7 +76,7 @@ class AdvirtisersApi {
               Get.put(AdvertiserVerifyController());
           adController.backScreen = 'DoctorRegisterScreen';
           advertiserVerifyController.phoneNumberRegister();
-          Get.to(() => AdvertiserVerifyOtpScreen());
+          Get.to(() => const AdvertiserVerifyOtpScreen());
           await PrefService.setValue(PrefKeys.companyRegister, true);
           // flutterToast(jsonDecode(response.body)["message"]);
         }
@@ -93,7 +93,7 @@ class AdvirtisersApi {
           : */
       // return
     } catch (e) {
-      print(e.toString());
+
       return advertiserRegisterFromJson("");
     }
   }

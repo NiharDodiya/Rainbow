@@ -58,7 +58,8 @@ class CancelApprove extends StatelessWidget {
                         color: ColorRes.color_F28D8D,
                         shape: BoxShape.circle,
                         border: Border.all(
-                            color: ColorRes.color_FFC9C9, width: Get.width * 0.0426),
+                            color: ColorRes.color_FFC9C9,
+                            width: Get.width * 0.0426),
                       ),
                       child: Image.asset(
                         AssetRes.block,
@@ -82,7 +83,8 @@ class CancelApprove extends StatelessWidget {
                       builder: (controller) {
                         return SubmitButton(
                             onTap: () {
-                              controller.cancelAdvertiser(idAdvertiser, context);
+                              controller.cancelAdvertiser(
+                                  idAdvertiser, context);
                             },
                             child: Text(
                               Strings.confirm,
@@ -96,7 +98,9 @@ class CancelApprove extends StatelessWidget {
                 ),
               ),
             ),
-            adHomeController.loader.value == true ? FullScreenLoader():SizedBox(),
+            adHomeController.loader.value == true
+                ? const FullScreenLoader()
+                : const SizedBox(),
           ],
         );
       }),

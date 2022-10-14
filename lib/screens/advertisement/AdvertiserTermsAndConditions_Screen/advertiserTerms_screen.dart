@@ -46,12 +46,12 @@ class AdvertiserTermsAndConditionsScreen extends StatelessWidget {
                   SizedBox(
                     height: Get.height * 0.05,
                   ),
-                 Align(
-                   alignment: Alignment.center,
-                   child:  Text(Strings.termsConditions,
-                       style: gilroyBoldTextStyle(fontSize: 30),
-                       textAlign: TextAlign.center),
-                 ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(Strings.termsConditions,
+                        style: gilroyBoldTextStyle(fontSize: 30),
+                        textAlign: TextAlign.center),
+                  ),
                   SizedBox(
                     height: Get.height * 0.042,
                   ),
@@ -84,7 +84,7 @@ class AdvertiserTermsAndConditionsScreen extends StatelessWidget {
                   ),
                   Align(
                     alignment: Alignment.center,
-                    child:  GestureDetector(
+                    child: GestureDetector(
                       onTap: () async {
                         await PrefService.setValue(
                             PrefKeys.showTermsCondition, false);
@@ -98,9 +98,9 @@ class AdvertiserTermsAndConditionsScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15)),
                         child: Center(
                             child: Text(
-                              Strings.accCon,
-                              style: gilroyBoldTextStyle(color: Colors.black),
-                            )),
+                          Strings.accCon,
+                          style: gilroyBoldTextStyle(color: Colors.black),
+                        )),
                       ),
                     ),
                   ),

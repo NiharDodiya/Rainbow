@@ -48,7 +48,7 @@ class ListUserProfileApi {
         return listUseProfileModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }
@@ -93,7 +93,7 @@ class ListUserProfileApi {
         return listUseProfileModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }

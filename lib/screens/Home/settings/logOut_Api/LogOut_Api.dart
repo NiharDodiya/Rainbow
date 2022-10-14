@@ -14,7 +14,7 @@ class LogOutApi {
   static Future postRegister() async {
     try {
       String url = EndPoints.logOut;
-      String accesToken = await PrefService.getString(PrefKeys.registerToken);
+      String accesToken = PrefService.getString(PrefKeys.registerToken);
 
       http.Response? response = await HttpService.postApi(
           url: url, body: {}, header: {"x-access-token": accesToken});
@@ -36,7 +36,6 @@ class LogOutApi {
         return logOutModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
       return [];
     }
   }

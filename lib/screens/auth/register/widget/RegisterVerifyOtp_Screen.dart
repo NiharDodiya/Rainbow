@@ -20,7 +20,8 @@ class _RegisterOtpScreenState extends State<RegisterOtpScreen> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final controller = Get.put(RegisterVerifyController());
 
-  PhoneNumberController phoneNumberController = Get.put(PhoneNumberController());
+  PhoneNumberController phoneNumberController =
+      Get.put(PhoneNumberController());
 
   @override
   void initState() {
@@ -31,7 +32,7 @@ class _RegisterOtpScreenState extends State<RegisterOtpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    RegisterController registerController = Get.put(RegisterController());
+
     controller.getPhoneNumber();
     return Scaffold(
       backgroundColor: Colors.white,

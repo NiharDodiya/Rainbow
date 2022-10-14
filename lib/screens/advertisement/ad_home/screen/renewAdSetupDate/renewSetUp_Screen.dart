@@ -19,6 +19,7 @@ import '../../../../../utils/color_res.dart';
 
 class RenewSetupScreen extends StatelessWidget {
   int? idAdvertiser;
+
   RenewSetupScreen({Key? key, this.idAdvertiser}) : super(key: key);
 
   RenewAdSetupDateController controller = Get.put(RenewAdSetupDateController());
@@ -167,7 +168,7 @@ class RenewSetupScreen extends StatelessWidget {
                       defaultTextStyle: gilroyMediumTextStyle(
                           fontSize: 11.43, color: ColorRes.color_27354C),
                       rangeEndTextStyle:
-                      const TextStyle(fontSize: 15, color: Colors.white),
+                          const TextStyle(fontSize: 15, color: Colors.white),
                       disabledTextStyle: gilroyMediumTextStyle(
                         fontSize: 11.43,
                         color: ColorRes.color_27354C.withOpacity(0.4),
@@ -224,7 +225,7 @@ class RenewSetupScreen extends StatelessWidget {
                         color: ColorRes.black.withOpacity(0.5),
                       ),
                       rightChevronMargin:
-                      EdgeInsets.only(right: Get.width * 0.30),
+                          EdgeInsets.only(right: Get.width * 0.30),
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(
@@ -273,17 +274,16 @@ class RenewSetupScreen extends StatelessWidget {
                                   MoneyInputFormatter(
                                       leadingSymbol: controller.currency),
                                 ],
-                                controller: controller
-                                    .amountController,
+                                controller: controller.amountController,
                                 style: gilroySemiBoldTextStyle(fontSize: 24),
                                 textAlign: TextAlign.center,
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
                                   counterStyle:
-                                  gilroySemiBoldTextStyle(fontSize: 24),
+                                      gilroySemiBoldTextStyle(fontSize: 24),
                                   hintText: "${controller.currency}00.00",
                                   hintStyle:
-                                  gilroySemiBoldTextStyle(fontSize: 24),
+                                      gilroySemiBoldTextStyle(fontSize: 24),
                                 ),
                               );
                             }),
@@ -465,10 +465,11 @@ class ShowBottomNext extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  RenewAdSetupDateController renewAdSetupDateController = Get.put(RenewAdSetupDateController());
+    RenewAdSetupDateController renewAdSetupDateController =
+        Get.put(RenewAdSetupDateController());
     AdHomeController adHomeController = Get.find<AdHomeController>();
     return Obx(
-          () => Stack(
+      () => Stack(
         children: [
           DraggableScrollableSheet(
             initialChildSize: 0.99,
@@ -603,10 +604,7 @@ class ShowBottomNext extends StatelessWidget {
                       ),
                       SubmitButton(
                         onTap: () {
-
-
                           renewAdSetupDateController.renewAdAPI(id: id);
-
 
                           // createAdvertisementController.loader.value = false;
 

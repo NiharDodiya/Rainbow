@@ -26,14 +26,9 @@ Widget dropdownButton({
               style: gilroySemiBoldTextStyle(fontSize: 14),
             )
           : const SizedBox(),
-      showtitle
-          ? const SizedBox(
-              height: 10
-            )
-          : const SizedBox(),
+      showtitle ? const SizedBox(height: 10) : const SizedBox(),
 
-
-     /* Container(
+      /* Container(
         height: 60,
         width: 350,
         color: Colors.white,
@@ -67,7 +62,6 @@ Widget dropdownButton({
         ),
       ),*/
 
-
       DropdownButtonHideUnderline(
         child: DropdownButton2<String>(
           isExpanded: true,
@@ -90,15 +84,15 @@ Widget dropdownButton({
           items: dropdownList!
               .map(
                 (item) => DropdownMenuItem<String>(
-              value: item,
-              child: Text(
-                item,
-                style: gilroyMediumTextStyle(
-                    fontSize: 16, color: ColorRes.black),
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-          )
+                  value: item,
+                  child: Text(
+                    item,
+                    style: gilroyMediumTextStyle(
+                        fontSize: 16, color: ColorRes.black),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              )
               .toList(),
           value: selectedValue,
           onChanged: (value) => onTap!(value!),
@@ -130,9 +124,6 @@ Widget dropdownButton({
           scrollbarAlwaysShow: true,
         ),
       ),
-
-
-
       const SizedBox(
         height: 10,
       ),

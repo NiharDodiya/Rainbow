@@ -241,7 +241,6 @@ class AppDroDownIdType extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    IdVerificationController controller = Get.put(IdVerificationController());
     return GetBuilder<IdVerificationController>(
       id: 'IdVerification_screen',
       builder: (controller) {

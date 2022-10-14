@@ -21,21 +21,22 @@ class EditCardScreen extends StatelessWidget {
   String? city;
   String? country;
   String? postalCode;
- // String? cardNmber;
 
-  EditCardScreen({
-    required this.index,
-    required this.cardHolder,
-    required this.month,
-    required this.year,
-    required this.fullName,
-    required this.address,
-    required this.city,
-    required this.country,
-    required this.postalCode,
-    //required this.cardNmber,
-    Key? key
-  }) : super(key: key);
+  // String? cardNmber;
+
+  EditCardScreen(
+      {required this.index,
+      required this.cardHolder,
+      required this.month,
+      required this.year,
+      required this.fullName,
+      required this.address,
+      required this.city,
+      required this.country,
+      required this.postalCode,
+      //required this.cardNmber,
+      Key? key})
+      : super(key: key);
 
   final EditCardController editCardController = Get.put(EditCardController());
 
@@ -44,7 +45,7 @@ class EditCardScreen extends StatelessWidget {
     editCardController.nameOnCardController.text = cardHolder!;
     editCardController.expiryMonthController.text = month!;
     editCardController.expiryYearController.text = year!;
-    editCardController.fullNameController.text  = fullName!;
+    editCardController.fullNameController.text = fullName!;
     editCardController.addressController.text = address!;
     editCardController.cityController.text = city!;
     editCardController.countryController.text = country!;
@@ -130,19 +131,24 @@ class EditCardScreen extends StatelessWidget {
                                   ],
                                 ),
 
-                                Text(Strings.country, style: gilroySemiBoldTextStyle(fontSize: 14),),
+                                Text(
+                                  Strings.country,
+                                  style: gilroySemiBoldTextStyle(fontSize: 14),
+                                ),
                                 const SizedBox(height: 8),
                                 GetBuilder<EditCardController>(
                                     id: "drop",
-                                    builder: (controller){
-                                      return  Container(
-                                        width: Get.width/1.24,
+                                    builder: (controller) {
+                                      return Container(
+                                        width: Get.width / 1.24,
                                         height: 60,
                                         decoration: BoxDecoration(
                                           color: ColorRes.white,
-                                          borderRadius: BorderRadius.circular(20),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
                                         ),
-                                        padding: const EdgeInsets.only(left: 20, top: 5),
+                                        padding: const EdgeInsets.only(
+                                            left: 20, top: 5),
                                         child: Column(
                                           children: [
                                             Row(
@@ -151,98 +157,158 @@ class EditCardScreen extends StatelessWidget {
                                                   flex: 14,
                                                   child: InkWell(
                                                     child: TextField(
-                                                      onTap: controller.dropDownBox,
-                                                      controller: controller.countryController,
+                                                      onTap: controller
+                                                          .dropDownBox,
+                                                      controller: controller
+                                                          .countryController,
                                                       style: textFieldText,
                                                       obscuringCharacter: "•",
                                                       onChanged: (value) {
-                                                        controller.serching(value);
+                                                        controller
+                                                            .serching(value);
                                                       },
-                                                      decoration: InputDecoration(
-                                                        border: InputBorder.none,
-                                                        hintStyle: gilroyMediumTextStyle(
-                                                            fontSize: 18,
-                                                            color: ColorRes.black.withOpacity(0.3)),
+                                                      decoration:
+                                                          InputDecoration(
+                                                        border:
+                                                            InputBorder.none,
+                                                        hintStyle:
+                                                            gilroyMediumTextStyle(
+                                                                fontSize: 18,
+                                                                color: ColorRes
+                                                                    .black
+                                                                    .withOpacity(
+                                                                        0.3)),
                                                         hintText: "Canada",
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                                 IconButton(
-                                                  onPressed: controller.dropDownBox,
-                                                  icon: Image.asset(AssetRes.arrowDown, height: 20),),
-                                                const SizedBox(width: 5,),
+                                                  onPressed:
+                                                      controller.dropDownBox,
+                                                  icon: Image.asset(
+                                                      AssetRes.arrowDown,
+                                                      height: 20),
+                                                ),
+                                                const SizedBox(
+                                                  width: 5,
+                                                ),
                                               ],
                                             ),
-
                                           ],
                                         ),
                                       );
                                     }),
                                 GetBuilder<EditCardController>(
                                     id: "drop",
-                                    builder: (controller){
-                                      return  (controller.countryBox == true)
-                                          ?Container(
-                                        height: 160,
-                                        width: Get.width / 1.24,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(20),
-                                          color: Colors.white,
-                                        ),
-                                        child: SingleChildScrollView(
-
-                                          child: Column(
-                                            children: (controller.countryController.text.isEmpty)
-                                                ?countryCity.map((e) {
-                                              return Padding(
-                                                padding: const EdgeInsets.only(left: 20, top: 7, bottom: 7),
-                                                child: InkWell(
-                                                  onTap: (){
-                                                    controller.countryController.text = e;
-                                                    controller.countryBox = false;
-                                                    controller.update(["drop"]);
-                                                  },
-                                                  child: SizedBox(
-                                                    height: 25,
-                                                    width: Get.width,
-                                                    child: Align(
-                                                      alignment: Alignment.topLeft,
-                                                      child: Text(e, style: const TextStyle(color: Colors.black, fontSize: 16),
-                                                      ),
-                                                    ),
-                                                  ),
+                                    builder: (controller) {
+                                      return (controller.countryBox == true)
+                                          ? Container(
+                                              height: 160,
+                                              width: Get.width / 1.24,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                color: Colors.white,
+                                              ),
+                                              child: SingleChildScrollView(
+                                                child: Column(
+                                                  children: (controller
+                                                          .countryController
+                                                          .text
+                                                          .isEmpty)
+                                                      ? countryCity.map((e) {
+                                                          return Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 20,
+                                                                    top: 7,
+                                                                    bottom: 7),
+                                                            child: InkWell(
+                                                              onTap: () {
+                                                                controller
+                                                                    .countryController
+                                                                    .text = e;
+                                                                controller
+                                                                        .countryBox =
+                                                                    false;
+                                                                controller
+                                                                    .update([
+                                                                  "drop"
+                                                                ]);
+                                                              },
+                                                              child: SizedBox(
+                                                                height: 25,
+                                                                width:
+                                                                    Get.width,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .topLeft,
+                                                                  child: Text(
+                                                                    e,
+                                                                    style: const TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            16),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }).toList()
+                                                      : controller.filterList
+                                                          .map((e) {
+                                                          return Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 20,
+                                                                    top: 7,
+                                                                    bottom: 7),
+                                                            child: InkWell(
+                                                              onTap: () {
+                                                                controller
+                                                                    .countryController
+                                                                    .text = e;
+                                                                controller
+                                                                        .countryBox =
+                                                                    false;
+                                                                controller
+                                                                    .update([
+                                                                  "drop"
+                                                                ]);
+                                                              },
+                                                              child: SizedBox(
+                                                                height: 25,
+                                                                width:
+                                                                    Get.width,
+                                                                child: Align(
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .topLeft,
+                                                                  child: Text(
+                                                                    e,
+                                                                    style: const TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            16),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }).toList(),
                                                 ),
-                                              );
-                                            }).toList()
-                                                :controller.filterList.map((e) {
-                                              return Padding(
-                                                padding: const EdgeInsets.only(left: 20, top: 7, bottom: 7),
-                                                child: InkWell(
-                                                  onTap: (){
-                                                    controller.countryController.text = e;
-                                                    controller.countryBox = false;
-                                                    controller.update(["drop"]);
-                                                  },
-                                                  child: SizedBox(
-                                                    height: 25,
-                                                    width: Get.width,
-                                                    child: Align(
-                                                      alignment: Alignment.topLeft,
-                                                      child: Text(e, style: const TextStyle(color: Colors.black, fontSize: 16),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            }).toList(),
-                                          ),
-                                        ),
-                                      )
-                                          :const SizedBox();
+                                              ),
+                                            )
+                                          : const SizedBox();
                                     }),
 
-                               /* GetBuilder<EditCardController>(
+                                /* GetBuilder<EditCardController>(
                                   id: 'addCard',
                                   builder: (controller) {
                                     return dropdownButton(
@@ -323,8 +389,8 @@ class EditCardScreen extends StatelessWidget {
                                 ),
                                 SubmitButton(
                                   text: Strings.editCard,
-                                  onTap: () =>
-                                      controller.editCart(index: index, context: context),
+                                  onTap: () => controller.editCart(
+                                      index: index, context: context),
                                 ),
                                 SizedBox(
                                   height: Get.width * 0.05866,

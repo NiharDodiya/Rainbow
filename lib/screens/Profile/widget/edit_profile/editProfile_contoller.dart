@@ -56,6 +56,7 @@ class EditProfileController extends GetxController {
   String? lan;
   Position? position;
 
+  @override
   void onInit() {
     update(["Edit_profile"]);
     super.onInit();
@@ -63,12 +64,11 @@ class EditProfileController extends GetxController {
 
   bool countryBox = false;
 
-  dropDownBox(){
-    if(countryBox == false){
+  dropDownBox() {
+    if (countryBox == false) {
       countryBox = true;
       update(["drop"]);
-    }
-    else{
+    } else {
       countryBox = false;
       update(["drop"]);
     }
@@ -94,9 +94,9 @@ class EditProfileController extends GetxController {
       for (int i = 0; i < listNationalities.data!.length; i++) {
         if (listNationalities.data![i].name == ethnicity.text) {
           codeId = listNationalities.data![i].id!.toString();
-          print(codeId);
+
         }
-        print(codeId);
+
       }
       await editProfileApi(context);
       profileController.update(["profile"]);
@@ -119,13 +119,16 @@ class EditProfileController extends GetxController {
     height.text = profileController.viewProfile.data!.height!;
     weight.text = profileController.viewProfile.data!.weight!;
 
-    ethnicity.text = profileController.viewProfile.data!.idEthnicity!.toString();
-    selectedEthicity = profileController.viewProfile.data!.idEthnicity!.toString();
+    ethnicity.text =
+        profileController.viewProfile.data!.idEthnicity!.toString();
+    selectedEthicity =
+        profileController.viewProfile.data!.idEthnicity!.toString();
 
     haveKids.text = profileController.viewProfile.data!.noKids!.toString();
     noKidsSelected = profileController.viewProfile.data!.noKids!.toString();
 
-    hobbies.text = profileController.viewProfile.data!.hobbiesAndInterest!.toString();
+    hobbies.text =
+        profileController.viewProfile.data!.hobbiesAndInterest!.toString();
     instagram.text = profileController.viewProfile.data!.instagram!.toString();
     youTube.text = profileController.viewProfile.data!.youtube!.toString();
     twitter.text = profileController.viewProfile.data!.twitter!.toString();
@@ -138,11 +141,13 @@ class EditProfileController extends GetxController {
   List filterList = [];
 
   void serching(value) {
-    filterList = (listNationalities.data?.where(
-            (element) {
-          return element.name.toString().toLowerCase().contains(value.toString().toLowerCase());
-        })
-        .toList()) ?? [];
+    filterList = (listNationalities.data?.where((element) {
+          return element.name
+              .toString()
+              .toLowerCase()
+              .contains(value.toString().toLowerCase());
+        }).toList()) ??
+        [];
     update(["drop"]);
   }
 
@@ -290,7 +295,9 @@ class EditProfileController extends GetxController {
   Future<void> uploadImageApi() async {
     // loader.value = true;
     try {
-      await UploadImageApi.postRegister(frontImage!.path.toString()).then((value) => uploadImage1 = value!,);
+      await UploadImageApi.postRegister(frontImage!.path.toString()).then(
+        (value) => uploadImage1 = value!,
+      );
       // loader.value = false;
     } catch (e) {
       // loader.value = false;
@@ -357,8 +364,7 @@ class EditProfileController extends GetxController {
     try {
       lat = position?.latitude.toString();
       lan = position?.longitude.toString();
-      print(lat);
-      print(lan);
+
       await uploadImageApi();
       await uploadImageBackApi();
       EditProfile? data = await EditProfileApi.postRegister(

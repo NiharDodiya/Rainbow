@@ -194,20 +194,27 @@ class SupportScreen extends StatelessWidget {
                                       )
                                     : ClipRRect(
                                         borderRadius: BorderRadius.circular(50),
-                                        child: Container(
+                                        child: SizedBox(
                                           height: 46,
                                           width: 46,
                                           child: CachedNetworkImage(
-                                            imageUrl: profileController.viewProfile
-                                                .data!.profileImage
+                                            imageUrl: profileController
+                                                .viewProfile.data!.profileImage
                                                 .toString(),
-                                            placeholder: ((context, url) => Image.asset( AssetRes.portrait_placeholder,)),
-                                            errorWidget: ((context, url, error) => Image.asset( AssetRes.portrait_placeholder,)),
+                                            placeholder: ((context, url) =>
+                                                Image.asset(
+                                                  AssetRes.portrait_placeholder,
+                                                )),
+                                            errorWidget: ((context, url,
+                                                    error) =>
+                                                Image.asset(
+                                                  AssetRes.portrait_placeholder,
+                                                )),
                                             fit: BoxFit.cover,
                                           ),
                                         ),
                                       ),
-                /* ClipRRect(
+                                /* ClipRRect(
                                   borderRadius: BorderRadius.circular(50),
                                   child: Image.network(
                                     profileController.viewProfile
@@ -225,7 +232,6 @@ class SupportScreen extends StatelessWidget {
                                     },
                                   ),
                                 ),*/
-
                               ),
                               Padding(
                                 padding:

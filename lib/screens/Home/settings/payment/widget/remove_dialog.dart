@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/common/popup.dart';
+
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -118,7 +118,7 @@ class RemoveDialog extends StatelessWidget {
                     InkWell(
                       onTap: () {
                         Get.back();
-                          paymentController.removeCardApi();
+                        paymentController.removeCardApi();
                       },
                       child: Container(
                         height: Get.height * 0.04,

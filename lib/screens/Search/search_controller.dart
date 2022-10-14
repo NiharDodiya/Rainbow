@@ -49,7 +49,6 @@ class SearchController extends GetxController {
   bool isClockwise = true;
   Completer<GoogleMapController> gMapController = Completer();
 
-
   Placemark placeMark = Placemark();
 
   Placemark get pickPlaceMark => placeMark;
@@ -92,7 +91,7 @@ class SearchController extends GetxController {
     if (text != null && text.isNotEmpty) {
       http.Response response = await getLocationData(text);
       var data = jsonDecode(response.body.toString());
-      print("my status is " + data["status"]);
+
       if (data['status'] == 'OK') {
         _predictionList = [];
         data['predictions'].forEach((prediction) =>
@@ -113,7 +112,7 @@ class SearchController extends GetxController {
       headers: {"Content-Type": "application/json"},
     );
 
-    print(jsonDecode(response.body));
+
     return response;
   }
 
@@ -175,13 +174,10 @@ class SearchController extends GetxController {
 
     Get.to(AdvanceSearchScreen(
       title: advanceSearch[index],
-    ))!.then((value) async {
+    ))!
+        .then((value) async {
       await listUserProfile();
-
     });
-
-
-
 
 /*    await loadData();*/
   }
@@ -190,8 +186,7 @@ class SearchController extends GetxController {
     try {
       latitude = position!.latitude;
       longitude = position!.longitude;
-      print(latitude);
-      print(latitude);
+
       loader.value = true;
       listUseProfileModel =
           await ListUserProfileApi.listUserProfileAdvanceSearchApi(
@@ -200,7 +195,7 @@ class SearchController extends GetxController {
               longitude: longitude,
               fullName: "".toString().toLowerCase());
 
-      print("pagggggggggggggggggggggggg===${page}");
+
       update(['Search']);
       loader.value = false;
     } catch (e) {
@@ -261,8 +256,7 @@ class SearchController extends GetxController {
     try {
       latitude = position!.latitude;
       longitude = position!.longitude;
-      print(latitude);
-      print(latitude);
+
       loader.value = true;
       listUseProfileModel = await ListUserProfileApi.listUserProfileApi(
           page: page,
@@ -275,7 +269,7 @@ class SearchController extends GetxController {
       listUserData.addAll(listUseProfileModel.data!);
       listConnectBlock = List.filled(listUserData.length, false);
 
-      print("pagggggggggggggggggggggggg===${page}");
+
       update(['Search']);
       loader.value = false;
     } catch (e) {
@@ -293,18 +287,17 @@ class SearchController extends GetxController {
     position = await getCurrentPosition();
     newLat = position!.latitude;
     newLong = position!.longitude;
-    print(newLat);
-    print(newLong);
+
 
     for (var e in listUseProfileModel.data!) {
       final double distance = Geolocator.distanceBetween(
           e.latitude!, e.longitude!, newLat!, newLong!);
-      print(distance);
+
       if (distance <= 100) {
         listLatLongData.add(e);
       }
     }
-    print(listLatLongData);
+
     update(['Search']);
   }
 
@@ -348,8 +341,7 @@ class SearchController extends GetxController {
         keyWords: "",
         longitude: longitude,
         latitude: latitude,
-        fullName: enteredKeyword.toString().toLowerCase()
-    );
+        fullName: enteredKeyword.toString().toLowerCase());
     loader.value = false;
     dataStore = listUseProfileModel.data ?? [];
     listUserData = dataStore;
@@ -370,7 +362,6 @@ class SearchController extends GetxController {
       if (kDebugMode) {
         print("PROFILE SCREEN BACK ");
       }
-
     });
   }
 

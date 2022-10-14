@@ -16,7 +16,6 @@ import 'package:rainbow/utils/color_res.dart';
 ConnectionsController controller = Get.put(ConnectionsController());
 HomeController homeController = Get.put(HomeController());
 
-
 Widget profileAppbar(
     String text, bool show, context, int i, VoidCallback? onTap,
     {VoidCallback? onTap2}) {
@@ -38,9 +37,9 @@ Widget profileAppbar(
             InkWell(
               onTap: () {
                 if (i == 2) {
-                  if(onTap2 == null){
+                  if (onTap2 == null) {
                     Navigator.of(context).pop();
-                  }else{
+                  } else {
                     onTap2();
                   }
                 } else if (i == 1) {
@@ -87,7 +86,7 @@ Widget profileAppbar(
                 homeController.viewProfile.data!.userType == "free"
                     ? premiumPopUpBox(context: context)
                     : Get.to(() => NotificationScreen());
-                },
+              },
               child: Stack(
                 children: [
                   const SizedBox(
@@ -104,7 +103,7 @@ Widget profileAppbar(
                     ),
                   ),
                   (controller.requestUsers.length.toString() == '0')
-                      ? SizedBox()
+                      ? const SizedBox()
                       : Positioned(
                           top: 0,
                           right: 0,

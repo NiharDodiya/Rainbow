@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/country_name.dart';
@@ -19,7 +19,7 @@ import 'package:rainbow/utils/strings.dart';
 class AccountInformationScreen extends StatelessWidget {
   AccountInformationScreen({Key? key}) : super(key: key);
   AccountInformationController controller =
-  Get.find<AccountInformationController>();
+      Get.find<AccountInformationController>();
 
   AdHomeController adHomeController = Get.put(AdHomeController());
 
@@ -292,7 +292,7 @@ class AccountInformationScreen extends StatelessWidget {
   }
 
   Widget accountPart(context) {
-    return 
+    return
      Column(
       children: [
         SizedBox(height: Get.height * 0.0197),

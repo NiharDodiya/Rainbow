@@ -16,7 +16,7 @@ class BlockApi {
       String url = EndPoints.block;
 
       Map<String, String> param = {"id_block": id.toString()};
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -35,7 +35,7 @@ class BlockApi {
         return blockModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }

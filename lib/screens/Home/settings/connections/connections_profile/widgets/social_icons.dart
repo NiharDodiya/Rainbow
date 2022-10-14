@@ -22,7 +22,6 @@ class SocialIcons extends StatelessWidget {
           InkWell(
             onTap: () async {
               await launchUrl(Uri.parse(data!.instagram.toString()));
-              print("insta");
             },
             child: data!.instagram.toString().isEmpty
                 ? const SizedBox()
@@ -43,7 +42,6 @@ class SocialIcons extends StatelessWidget {
           InkWell(
               onTap: () async {
                 await launchUrl(Uri.parse(data.youtube.toString()));
-                print("youtube");
               },
               child: data.youtube.toString().isEmpty
                   ? const SizedBox()
@@ -68,8 +66,6 @@ class SocialIcons extends StatelessWidget {
           InkWell(
               onTap: () async {
                 await launchUrl(Uri.parse(data.facebook.toString()));
-
-                print("facebook");
               },
               child: data.facebook.toString().isEmpty
                   ? const SizedBox()
@@ -89,8 +85,6 @@ class SocialIcons extends StatelessWidget {
           InkWell(
               onTap: () async {
                 await launchUrl(Uri.parse(data.twitter.toString()));
-
-                print("twitter");
               },
               child: data.twitter.toString().isEmpty
                   ? const SizedBox()

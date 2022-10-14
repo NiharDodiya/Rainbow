@@ -60,7 +60,9 @@ class CommentScreen extends StatelessWidget {
               return Obx(() {
                 return Stack(
                   children: [
-                    (controller.loader.value == true)? SizedBox():commentList(context),
+                    (controller.loader.value == true)
+                        ? const SizedBox()
+                        : commentList(context),
                     controller.refreshLoader.isFalse && controller.loader.isTrue
                         ? const FullScreenLoader()
                         : const SizedBox()

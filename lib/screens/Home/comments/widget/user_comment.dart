@@ -47,16 +47,16 @@ Widget userComment(
                             fit: BoxFit.cover,
                             errorWidget: ((context, url, error) => Image.asset(
                                   AssetRes.portrait_placeholder,
-                              height: 40,
-                              width: 40,
-                              fit: BoxFit.cover,
+                                  height: 40,
+                                  width: 40,
+                                  fit: BoxFit.cover,
                                 )),
                             placeholder: ((context, url) => Image.asset(
-                              AssetRes.portrait_placeholder,
-                              height: 40,
-                              width: 40,
-                              fit: BoxFit.cover,
-                            )),
+                                  AssetRes.portrait_placeholder,
+                                  height: 40,
+                                  width: 40,
+                                  fit: BoxFit.cover,
+                                )),
                           ),
                           /*FadeInImage(
                             placeholder:
@@ -140,25 +140,25 @@ Widget userComment(
                               color: Colors.grey,
                             ),
                           )*/
-                    CachedNetworkImage(
-                      height: 100,
-                      width: 100,
-                      imageUrl: image.toString(),
-                      fit: BoxFit.cover,
-                      errorWidget: ((context, url, error) => Image.asset(
-                        AssetRes.placeholderImage,
-                        height: 100,
-                        width: 100,
-                        fit: BoxFit.cover,
-                      )),
-                      placeholder: ((context, url) => Image.asset(
-                        AssetRes.placeholderImage,
-                        height: 100,
-                        width: 100,
-                        fit: BoxFit.cover,
-                      )),
-                    ),
-                        /*FadeInImage(
+                        CachedNetworkImage(
+                            height: 100,
+                            width: 100,
+                            imageUrl: image.toString(),
+                            fit: BoxFit.cover,
+                            errorWidget: ((context, url, error) => Image.asset(
+                                  AssetRes.placeholderImage,
+                                  height: 100,
+                                  width: 100,
+                                  fit: BoxFit.cover,
+                                )),
+                            placeholder: ((context, url) => Image.asset(
+                                  AssetRes.placeholderImage,
+                                  height: 100,
+                                  width: 100,
+                                  fit: BoxFit.cover,
+                                )),
+                          ),
+                    /*FadeInImage(
                             height: 100,
                             width: 100,
                             placeholder:

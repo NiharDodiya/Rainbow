@@ -11,7 +11,7 @@ import 'package:rainbow/utils/pref_keys.dart';
 class ListTagStoryApi {
   static Future listTagStory(String name) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
-    int userId = PrefService.getInt(PrefKeys.userId);
+
     try {
       String url = EndPoints.listTageStory;
 

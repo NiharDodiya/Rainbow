@@ -253,117 +253,115 @@ class PremiumPackage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: EdgeInsets.only(left: Get.width * 0.05866),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(Get.width * 0.0255466),
-                  height: Get.width * 0.12,
-                  width: Get.width * 0.12,
-                  decoration: const BoxDecoration(
-                      color: ColorRes.color_FFEC5C, shape: BoxShape.circle
-                      // image: DecorationImage(image: AssetImage(AssetRes.poket),)
-                      ),
-                  child: Image.asset(
-                    AssetRes.poket,
-                    width: 20,
-                    height: 20,
-                    fit: BoxFit.fitHeight,
-                  ),
-                ),
-                SizedBox(
-                  width: Get.width * 0.02666,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      Strings.premium,
-                      style: interTextMedium(fontSize: 29),
+    return Padding(
+      padding: EdgeInsets.only(left: Get.width * 0.05866),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                padding: EdgeInsets.all(Get.width * 0.0255466),
+                height: Get.width * 0.12,
+                width: Get.width * 0.12,
+                decoration: const BoxDecoration(
+                    color: ColorRes.color_FFEC5C, shape: BoxShape.circle
+                    // image: DecorationImage(image: AssetImage(AssetRes.poket),)
                     ),
-                    Text(Strings.premium01,
-                        style: interTextReguler(fontSize: 14)),
-                  ],
-                )
-              ],
-            ),
-            SizedBox(
-              height: Get.height * 0.029556,
-            ),
-            Text(
-              Strings.whatYoullGet,
-              style:
-                  interTextReguler(fontSize: 22, color: ColorRes.color_E9E9E9),
-            ),
-            SizedBox(
-              height: Get.height * 0.029556,
-            ),
-            Row(
-              children: [
-                const Icon(
-                  Icons.check_circle,
-                  color: ColorRes.color_E4E4EC,
-                  size: 20,
+                child: Image.asset(
+                  AssetRes.poket,
+                  width: 20,
+                  height: 20,
+                  fit: BoxFit.fitHeight,
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Text(Strings.unlimitedAccess,
-                    style: interTextReguler(
-                        fontSize: 18, color: ColorRes.color_E4E4EC)),
-              ],
-            ),
-            SizedBox(
-              height: Get.height * 0.029556,
-            ),
-            Row(
-              children: [
-                const Icon(
-                  Icons.check_circle,
-                  color: ColorRes.color_E4E4EC,
-                  size: 20,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Text(Strings.dateSupport,
-                    style: interTextReguler(
-                        fontSize: 18, color: ColorRes.color_E4E4EC)),
-              ],
-            ),
-            SizedBox(
-              height: Get.height * 0.0344,
-            ),
-            Padding(
-              padding: EdgeInsets.only(right: Get.width * 0.085333),
-              child: const DottedLine(dashColor: ColorRes.color_A9A9AA),
-            ),
-            SizedBox(
-              height: Get.height * 0.0123,
-            ),
-            RichText(
-              text: TextSpan(children: [
-                TextSpan(
-                  text: Strings.textSpan01,
-                  style: interTextMedium(fontSize: 32, color: ColorRes.white),
-                ),
-                TextSpan(
-                  text: Strings.textspan02,
-                  style: interTextReguler(fontSize: 18, color: ColorRes.white),
-                ),
-              ]),
-            ),
-            SizedBox(
-              height: Get.height * 0.0492,
-            )
-          ],
-        ),
+              ),
+              SizedBox(
+                width: Get.width * 0.02666,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    Strings.premium,
+                    style: interTextMedium(fontSize: 29),
+                  ),
+                  Text(Strings.premium01,
+                      style: interTextReguler(fontSize: 14)),
+                ],
+              )
+            ],
+          ),
+          SizedBox(
+            height: Get.height * 0.029556,
+          ),
+          Text(
+            Strings.whatYoullGet,
+            style:
+                interTextReguler(fontSize: 22, color: ColorRes.color_E9E9E9),
+          ),
+          SizedBox(
+            height: Get.height * 0.029556,
+          ),
+          Row(
+            children: [
+              const Icon(
+                Icons.check_circle,
+                color: ColorRes.color_E4E4EC,
+                size: 20,
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Text(Strings.unlimitedAccess,
+                  style: interTextReguler(
+                      fontSize: 18, color: ColorRes.color_E4E4EC)),
+            ],
+          ),
+          SizedBox(
+            height: Get.height * 0.029556,
+          ),
+          Row(
+            children: [
+              const Icon(
+                Icons.check_circle,
+                color: ColorRes.color_E4E4EC,
+                size: 20,
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Text(Strings.dateSupport,
+                  style: interTextReguler(
+                      fontSize: 18, color: ColorRes.color_E4E4EC)),
+            ],
+          ),
+          SizedBox(
+            height: Get.height * 0.0344,
+          ),
+          Padding(
+            padding: EdgeInsets.only(right: Get.width * 0.085333),
+            child: const DottedLine(dashColor: ColorRes.color_A9A9AA),
+          ),
+          SizedBox(
+            height: Get.height * 0.0123,
+          ),
+          RichText(
+            text: TextSpan(children: [
+              TextSpan(
+                text: Strings.textSpan01,
+                style: interTextMedium(fontSize: 32, color: ColorRes.white),
+              ),
+              TextSpan(
+                text: Strings.textspan02,
+                style: interTextReguler(fontSize: 18, color: ColorRes.white),
+              ),
+            ]),
+          ),
+          SizedBox(
+            height: Get.height * 0.0492,
+          )
+        ],
       ),
     );
   }

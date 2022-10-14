@@ -14,14 +14,14 @@ class ScanYourFaceApi {
   static Future postRegister(
     String idItemSelfie,
   ) async {
-    String accesToken = await PrefService.getString(PrefKeys.registerToken);
+    String accesToken =  PrefService.getString(PrefKeys.registerToken);
     try {
       String url = EndPoints.selfieVerification;
       Map<String, String> param = {
         'id_item_selfi': idItemSelfie /*id_item_selfi*/,
       };
 
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -46,7 +46,7 @@ class ScanYourFaceApi {
 
       /*  message =="please enter a correct username and password"?errorToast(message):*/
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }

@@ -13,6 +13,8 @@ class SearchScreen extends StatelessWidget {
   SearchController controller = Get.put(SearchController());
   HomeController homeController = Get.put(HomeController());
 
+  SearchScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SearchController>(
@@ -162,7 +164,7 @@ class SearchScreen extends StatelessWidget {
         onTap: () {
           homeController.viewProfile.data!.userType == "free"
               ? premiumPopUpBox(context: context)
-              : SizedBox();
+              : const SizedBox();
         },
         child: Row(
           children: [
@@ -323,7 +325,7 @@ class SearchScreen extends StatelessWidget {
                                   )),
                               Positioned(
                                   // top: Get.height * 0.255,
-                                 bottom: 35,
+                                  bottom: 35,
                                   left: 15,
                                   child: Text(
                                     controller.listUserData[index].fullName
@@ -332,7 +334,7 @@ class SearchScreen extends StatelessWidget {
                                   )),
                               Positioned(
                                   // top: Get.height * 0.28,
-                                bottom: 20,
+                                  bottom: 20,
                                   left: 15,
                                   child: Text(
                                     controller.listUserData[index].userStatus
@@ -750,8 +752,8 @@ class SearchScreen extends StatelessWidget {
                                             fit: BoxFit.cover,
                                             errorBuilder:
                                                 (context, error, stackTrace) {
-                                              return Image.asset(AssetRes
-                                                  .portrait_placeholder,
+                                              return Image.asset(
+                                                AssetRes.portrait_placeholder,
                                                 height: 40,
                                                 width: 40,
                                                 fit: BoxFit.cover,

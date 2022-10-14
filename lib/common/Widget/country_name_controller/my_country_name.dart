@@ -8,15 +8,15 @@ import 'package:rainbow/utils/color_res.dart';
 
 CountryNameController countryNameController = Get.put(CountryNameController());
 
-Widget dropdownButtonCountry(){
-  TextEditingController countryController =TextEditingController();
+Widget dropdownButtonCountry() {
+  TextEditingController countryController = TextEditingController();
   return Column(
     children: [
       GetBuilder<CountryNameController>(
           id: "drop",
-          builder: (controller){
-            return  Container(
-              width: Get.width/1.24,
+          builder: (controller) {
+            return Container(
+              width: Get.width / 1.24,
               height: 60,
               decoration: BoxDecoration(
                 color: ColorRes.white,
@@ -49,67 +49,75 @@ Widget dropdownButtonCountry(){
                       ),
                       IconButton(
                         onPressed: controller.dropDownBox,
-                        icon: Image.asset(AssetRes.arrowDown, height: 20),),
+                        icon: Image.asset(AssetRes.arrowDown, height: 20),
+                      ),
                       const SizedBox(width: 5),
                     ],
                   ),
-
                 ],
               ),
             );
           }),
       GetBuilder<CountryNameController>(
           id: "drop",
-          builder: (controller){
-            return  (controller.countryBox == true)
+          builder: (controller) {
+            return (controller.countryBox == true)
                 ? Container(
-              height: 160,
-              width: 390,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.white,
-              ),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: (countryController.text.isEmpty)
-                      ?listNationalities.data!.map((e) {
-                    return Padding(
-                      padding: const EdgeInsets.only(left: 20, top: 7, bottom: 7),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: InkWell(
-                          onTap: (){
-                            countryController.text = e.name!;
-                            controller.countryBox = false;
-                            controller.update(["drop"]);
-                          },
-                          child: Text(e.name!, style: const TextStyle(color: Colors.black, fontSize: 16),
-                          ),
-                        ),
+                    height: 160,
+                    width: 390,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.white,
+                    ),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: (countryController.text.isEmpty)
+                            ? listNationalities.data!.map((e) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 20, top: 7, bottom: 7),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: InkWell(
+                                      onTap: () {
+                                        countryController.text = e.name!;
+                                        controller.countryBox = false;
+                                        controller.update(["drop"]);
+                                      },
+                                      child: Text(
+                                        e.name!,
+                                        style: const TextStyle(
+                                            color: Colors.black, fontSize: 16),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }).toList()
+                            : controller.filterList.map((e) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 20, top: 7, bottom: 7),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: InkWell(
+                                      onTap: () {
+                                        countryController.text = e.name!;
+                                        controller.countryBox = false;
+                                        controller.update(["drop"]);
+                                      },
+                                      child: Text(
+                                        e.name!,
+                                        style: const TextStyle(
+                                            color: Colors.black, fontSize: 16),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
                       ),
-                    );
-                  }).toList()
-                      :controller.filterList.map((e) {
-                    return Padding(
-                      padding: const EdgeInsets.only(left: 20, top: 7, bottom: 7),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: InkWell(
-                          onTap: (){
-                            countryController.text = e.name!;
-                            controller.countryBox = false;
-                            controller.update(["drop"]);
-                          },
-                          child: Text(e.name!, style: const TextStyle(color: Colors.black, fontSize: 16),
-                          ),
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                ),
-              ),
-            )
-                :const SizedBox();
+                    ),
+                  )
+                : const SizedBox();
           }),
       const SizedBox(
         height: 10,
@@ -117,7 +125,6 @@ Widget dropdownButtonCountry(){
     ],
   );
 }
-
 
 /*class dropdownButtonCountry extends StatelessWidget {
 

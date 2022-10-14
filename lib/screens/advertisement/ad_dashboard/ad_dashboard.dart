@@ -35,7 +35,7 @@ class AdvertisementDashBord extends StatelessWidget {
         id: "bottom_bar",
         builder: (controller) {
           return WillPopScope(
-            onWillPop: () async {
+            onWillPop: () async{
               if (controller.currentTab == 0) {
                 showDialog(
                     context: context,
@@ -48,7 +48,7 @@ class AdvertisementDashBord extends StatelessWidget {
                               fontSize: 20, color: Colors.black),
                         ),
                         actions: <Widget>[
-                          FlatButton(
+                          TextButton(
                             child: Text(
                               "No",
                               style: gilroyBoldTextStyle(
@@ -58,7 +58,7 @@ class AdvertisementDashBord extends StatelessWidget {
                               Navigator.pop(context);
                             },
                           ),
-                          FlatButton(
+                          TextButton(
                             child: Text(
                               "Yes",
                               style: gilroyBoldTextStyle(
@@ -248,7 +248,7 @@ class AdvertisementDashBord extends StatelessWidget {
                                         'AdvertisementDashBord';
                                     adController.startTimer();
                                     adController.phoneNumberRegister();
-                                    Get.to(() => AdvertiserVerifyOtpScreen());
+                                    Get.to(() => const AdvertiserVerifyOtpScreen());
                                   },
                                   child: SizedBox(
                                     height: Get.height * 0.06,
@@ -387,8 +387,8 @@ class AdvertisementDashBord extends StatelessWidget {
                           width: Get.width - (Get.width * 0.0853),
                         ),
                         controller.loader.value == true
-                            ? FullScreenLoader()
-                            : SizedBox(),
+                            ? const FullScreenLoader()
+                            : const SizedBox(),
                       ],
                     );
                   }),
@@ -408,7 +408,7 @@ class AdvertisementDashBord extends StatelessWidget {
                   id: 'bottom_bar',
                   builder: (controller) {
                     if (controller.currentTab == 0) {
-                      return AdHomeScreen();
+                      return const AdHomeScreen();
                     } else if (controller.currentTab == 1) {
                       return PaymentScreen(
                         showBackArrow: false,

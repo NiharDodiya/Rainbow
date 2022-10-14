@@ -17,7 +17,6 @@ import '../../../../../utils/asset_res.dart';
 import '../../../../../utils/color_res.dart';
 
 class SetupDateScreen extends StatelessWidget {
-
   SetupDateScreen({Key? key}) : super(key: key);
   CreateAdvertisementController createAdvertisementController =
       Get.put(CreateAdvertisementController());
@@ -601,13 +600,10 @@ class ShowBottomNext extends StatelessWidget {
                         height: Get.height * 0.0665,
                       ),
                       SubmitButton(
-                        onTap: () async{
-
-
-
+                        onTap: () async {
                           await createAdvertisementController.uploadImageApi();
 
-                         // createAdvertisementController.loader.value = false;
+                          // createAdvertisementController.loader.value = false;
 
                           //Get.to(() => PaymentSuccessfulScreen());
                           /* setupDateController.boostAdvertisementApi();*/

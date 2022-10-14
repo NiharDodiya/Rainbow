@@ -120,7 +120,7 @@ Widget appbar({context}) {
                   "Hello ${controller.viewAdvertiserModel.data?.fullName ?? ""}",
                   style: gilroyBoldTextStyle(fontSize: 20),
                 ),*/
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width / 2.5,
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,

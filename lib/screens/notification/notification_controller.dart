@@ -34,7 +34,7 @@ class NotificationsController extends GetxController {
       await NotificationApi.notificationRead();
       await getNotifications();
     } catch (e) {
-      print(e.toString());
+
     }
   }
 }

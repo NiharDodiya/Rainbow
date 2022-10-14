@@ -21,7 +21,7 @@ import 'package:search_map_place_updated/search_map_place_updated.dart';
 class AdvanceSearchScreen extends StatefulWidget {
   final String title;
 
-  AdvanceSearchScreen({Key? key, required this.title}) : super(key: key);
+  const AdvanceSearchScreen({Key? key, required this.title}) : super(key: key);
 
   @override
   State<AdvanceSearchScreen> createState() => _AdvanceSearchScreenState();
@@ -50,9 +50,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
 
   Future<void> loadData() async {
     for (int i = 0; i < searchController.listLatLongData.length; i++) {
-      print("<<<<<<<<<<<<<===============>>>>>>>>>>>");
-      print(searchController.listLatLongData);
-      print(searchController.listLatLongData.length);
+
       markers.add(Marker(
           visible: true,
           markerId: MarkerId(
@@ -374,7 +372,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(12), topRight: Radius.circular(12))),
         child: Padding(
-          padding: EdgeInsets.only(bottom: 40),
+          padding: const EdgeInsets.only(bottom: 40),
           child: ListView.builder(
             shrinkWrap: true,
             padding: const EdgeInsets.only(top: 5, bottom: 20),
@@ -387,7 +385,8 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(50),
                       child: Image.network(
-                        controller.listLatLongData[index].profileImage.toString(),
+                        controller.listLatLongData[index].profileImage
+                            .toString(),
                         height: 50,
                         width: 50,
                         fit: BoxFit.cover,

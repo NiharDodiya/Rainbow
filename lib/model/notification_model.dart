@@ -144,8 +144,7 @@ class NotificationModel {
         cuurentPage: json["cuurentPage"],
         totalPage: json["totalPage"],
         count: json["count"],
-        pendingCount:
-            json["pendingCount"],
+        pendingCount: json["pendingCount"],
         data: json["data"] == null
             ? null
             : List<NotificationData>.from(
@@ -192,10 +191,8 @@ class NotificationData {
   factory NotificationData.fromJson(Map<String, dynamic> json) =>
       NotificationData(
         id: json["id"],
-        idUserReceiver:
-            json["id_user_receiver"],
-        idUserSender:
-            json["id_user_sender"],
+        idUserReceiver: json["id_user_receiver"],
+        idUserSender: json["id_user_sender"],
         type: json["type"],
         metaData: json["meta_data"],
         title: json["title"],

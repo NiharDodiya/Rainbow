@@ -436,7 +436,9 @@ class PaymentScreen extends StatelessWidget {
                             ),
 
                             // ---------- Transaction
-                            (controller.transactionModel.data?.length == null || controller.transactionModel.data?.length == 0)
+                            (controller.transactionModel.data?.length == null ||
+                                    controller.transactionModel.data?.length ==
+                                        0)
                                 ? Column(
                                     children: const [
                                       SizedBox(height: 80),
@@ -447,16 +449,15 @@ class PaymentScreen extends StatelessWidget {
                                   )
                                 : ListView.builder(
                                     shrinkWrap: true,
-                                    physics: const NeverScrollableScrollPhysics(),
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
                                     itemCount: controller
                                             .transactionModel.data?.length ??
                                         0,
                                     scrollDirection: Axis.vertical,
                                     itemBuilder: (context, index) {
                                       return Tranzaction(
-                                          controller: controller,
-                                        index: index
-                                      );
+                                          controller: controller, index: index);
                                     }),
                           ],
                         ),
@@ -466,7 +467,13 @@ class PaymentScreen extends StatelessWidget {
                 ),
               ),
             ),
-            controller.loader.value == true ? Container(height: Get.height, width: Get.width, color: Colors.black.withOpacity(0.4),) : SizedBox(),
+            controller.loader.value == true
+                ? Container(
+                    height: Get.height,
+                    width: Get.width,
+                    color: Colors.black.withOpacity(0.4),
+                  )
+                : const SizedBox(),
             controller.loader.value == true
                 ? const FullScreenLoader()
                 : const SizedBox(),
@@ -507,12 +514,11 @@ Widget Tranzaction({required PaymentController controller, int? index}) {
                       //     color: Theme.of(context).iconTheme.color!),
                     ),
                     child: ClipRRect(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(50)),
-                        child: Image.asset(
-                          AssetRes.portrait_placeholder,
-                          fit: BoxFit.cover,
-                        ),
+                      borderRadius: const BorderRadius.all(Radius.circular(50)),
+                      child: Image.asset(
+                        AssetRes.portrait_placeholder,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   )
                 : Container(
@@ -526,22 +532,21 @@ Widget Tranzaction({required PaymentController controller, int? index}) {
                       //     color: Theme.of(context).iconTheme.color!),
                     ),
                     child: ClipRRect(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(50)),
-                        child: CachedNetworkImage(
-                          imageUrl:  controller
-                              .transactionModel.userDetail?.profileImage ??
-                              "",
-                          fit: BoxFit.cover,
-                          errorWidget: ((context, url, error) => Image.asset(
-                            AssetRes.portrait_placeholder,
-                            fit: BoxFit.cover,
-                          )),
-                          placeholder: ((context, url) => Image.asset(
-                            AssetRes.portrait_placeholder,
-                            fit: BoxFit.cover,
-                          )),
-                        ),
+                      borderRadius: const BorderRadius.all(Radius.circular(50)),
+                      child: CachedNetworkImage(
+                        imageUrl: controller
+                                .transactionModel.userDetail?.profileImage ??
+                            "",
+                        fit: BoxFit.cover,
+                        errorWidget: ((context, url, error) => Image.asset(
+                              AssetRes.portrait_placeholder,
+                              fit: BoxFit.cover,
+                            )),
+                        placeholder: ((context, url) => Image.asset(
+                              AssetRes.portrait_placeholder,
+                              fit: BoxFit.cover,
+                            )),
+                      ),
                       /*Image.network(
                           controller
                                   .transactionModel.userDetail?.profileImage ??
@@ -560,7 +565,6 @@ Widget Tranzaction({required PaymentController controller, int? index}) {
                   height: Get.height * 0.01997,
                 ),
                 Text(
-
                   controller.transactionModel.userDetail?.fullName ?? "",
                   style: gilroySemiBoldTextStyle(
                       color: ColorRes.color_434343,
@@ -571,11 +575,14 @@ Widget Tranzaction({required PaymentController controller, int? index}) {
                   height: Get.height * 0.005,
                 ),
                 Text(
-                  controller.timeAgo(controller.transactionModel.data![index!].createdAt!.toLocal()). toString(),
+                  controller
+                      .timeAgo(controller
+                          .transactionModel.data![index!].createdAt!
+                          .toLocal())
+                      .toString(),
                   style: gilroyMediumTextStyle(
                     color: ColorRes.color_959595,
                     fontSize: 11,
-
                   ),
                 ),
               ],
@@ -600,75 +607,72 @@ class PaymentCards extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PaymentController>(
-      id: "more",
-        builder: (controller){
-      return SizedBox(
-        height: Get.width * 0.508,
-        width: Get.width * 0.8133,
-        child: Stack(children: [
-          Image.asset(AssetRes.card),
-          Column(
-            children: [
-              SizedBox(
-                height: Get.width * 0.0620,
-              ),
-              Row(
+        id: "more",
+        builder: (controller) {
+          return SizedBox(
+            height: Get.width * 0.508,
+            width: Get.width * 0.8133,
+            child: Stack(children: [
+              Image.asset(AssetRes.card),
+              Column(
                 children: [
                   SizedBox(
-                    width: Get.width * 0.060986,
+                    height: Get.width * 0.0620,
                   ),
-                  SizedBox(
-                    width: Get.width * 0.1829,
-                    child: Image.asset(AssetRes.visa),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: Get.width * 0.01866,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: Get.width * 0.060986,
-                  ),
-                  Text(
-                    Strings.platinum,
-                    style: montserratRegularTextStyle(fontSize: 15.25),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: Get.width * 0.1779,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: Get.width * 0.060986,
-                  ),
-                  Text(
-                      ". . . . ${controller.viewCardModel?.data?.cardNumber ?? ""}",
-                      style:
-                      montserratMediumTextStyle(
-                        fontSize: 15.25,
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: Get.width * 0.060986,
                       ),
+                      SizedBox(
+                        width: Get.width * 0.1829,
+                        child: Image.asset(AssetRes.visa),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: Get.width * 0.01866,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: Get.width * 0.060986,
+                      ),
+                      Text(
+                        Strings.platinum,
+                        style: montserratRegularTextStyle(fontSize: 15.25),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: Get.width * 0.1779,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: Get.width * 0.060986,
+                      ),
+                      Text(
+                        ". . . . ${controller.viewCardModel?.data?.cardNumber ?? ""}",
+                        style: montserratMediumTextStyle(
+                          fontSize: 15.25,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
-              ),
-            ],
-          )
-        ]),
-      );
-    });
+              )
+            ]),
+          );
+        });
   }
 }
 
 Widget appBar({required final bool showBack}) {
- PaymentController paymentController = Get.put(PaymentController());
+  PaymentController paymentController = Get.put(PaymentController());
   return SizedBox(
     width: Get.width,
     child: Column(
@@ -686,7 +690,8 @@ Widget appBar({required final bool showBack}) {
                     onTap: () {
                       paymentController.listCardModel.data?.length == null
                           ? homeController.viewProfile.data!.userType = "free"
-                          : homeController.viewProfile.data!.userType = "premium";
+                          : homeController.viewProfile.data!.userType =
+                              "premium";
                       Get.back();
                     },
                     child: Image.asset(
@@ -697,7 +702,9 @@ Widget appBar({required final bool showBack}) {
                     ),
                   )
                 : const SizedBox(),
-            (showBack == true)? SizedBox(width: Get.width * 0.15):SizedBox(width: Get.width * 0.25),
+            (showBack == true)
+                ? SizedBox(width: Get.width * 0.15)
+                : SizedBox(width: Get.width * 0.25),
             Text(
               Strings.manageCards,
               style: gilroyBoldTextStyle(),

@@ -12,7 +12,7 @@ class HeightScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    EditProfileController controller = Get.put(EditProfileController());
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: GetBuilder<EditProfileController>(

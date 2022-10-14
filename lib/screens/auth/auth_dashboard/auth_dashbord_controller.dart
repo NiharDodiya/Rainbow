@@ -39,9 +39,8 @@ class AuthDashBordController extends GetxController {
     try {
       await ListOfCountryApi.postRegister()
           .then((value) => listCountryModel = value!);
-      print(listCountryModel);
-      getCountry();
 
+      getCountry();
     } catch (e) {
    /*   errorToast(e.toString());*/
       debugPrint(e.toString());
@@ -52,14 +51,15 @@ class AuthDashBordController extends GetxController {
     try {
       await ListOfNationalitiesApi.postRegister()
           .then((value) => listNationalities = value!);
-      print(listNationalities);
+
       getCountryNation();
     } catch (e) {
       debugPrint(e.toString());
     }
   }
 
-String? token;
+  String? token;
+
   Future signWithGoogle() async {
     // GoogleIdVerification.postRegister(user.uid).then((value) {print(value);});
 
@@ -72,16 +72,15 @@ String? token;
       loading.value = true;
       final GoogleSignInAccount? account = await googleSignIn.signIn();
       final GoogleSignInAuthentication authentication =
-      await account!.authentication;
-
+          await account!.authentication;
 
       final OAuthCredential credential = GoogleAuthProvider.credential(
         idToken: authentication.idToken,
         accessToken: authentication.accessToken,
       );
-    //loading.value = false;
+      //loading.value = false;
       final UserCredential authResult =
-      await auth.signInWithCredential(credential);
+          await auth.signInWithCredential(credential);
       final User? user = authResult.user;
       print(user!.email);
       print(user.uid);
@@ -89,7 +88,7 @@ String? token;
       print(user.displayName);
       await GoogleIdVerification.postRegister(user.uid, user: user,email: user.email.toString())
           .then((LoginModel? model) async {
-        print(model);
+
         await firebaseFirestore
             .collection("users")
             .doc(user.uid)
@@ -117,7 +116,7 @@ String? token;
       loading.value = false;
     } catch (e) {
       loading.value = false;
-    /*  errorToast(e.toString());*/
+      /*  errorToast(e.toString());*/
       debugPrint(e.toString());
       loading.value = false;
     }
@@ -134,9 +133,10 @@ String? token;
     try {
       loading.value = true;
 
-      final LoginResult loginResult = await FacebookAuth.instance.login(permissions: ["public_profile", "email"]);
+      final LoginResult loginResult = await FacebookAuth.instance
+          .login(permissions: ["public_profile", "email"]);
       await FacebookAuth.instance.getUserData().then((userData) {
-        print(userData);
+
       });
       final OAuthCredential facebookAuthCredential =
           FacebookAuthProvider.credential(
@@ -149,7 +149,7 @@ String? token;
         await GoogleIdVerification.postRegister(userCredential.user!.uid,
                 user: userCredential.user,email: userCredential.user!.email.toString())
             .then((LoginModel? model) async {
-          print(model);
+
 
           await firebaseFirestore
               .collection("users")
@@ -186,7 +186,6 @@ String? token;
   }
 
   void onContinueWithEmailTap() {
-
     final RegisterController controller = Get.put(RegisterController());
     controller.isSocial = false;
 

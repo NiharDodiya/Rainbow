@@ -155,7 +155,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                           ),
                         ),
-
                   Positioned(
                     top: Get.height /11,
                     left: Get.width * 0.24,

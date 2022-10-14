@@ -109,10 +109,8 @@ class MyAdvertiserData {
             json["end_date"] == null ? null : DateTime.parse(json["end_date"]),
         description: json["description"],
         callAction: json["call_action"],
-        advViewCount:
-            json["advViewCount"],
-        advClickCount:
-            json["advClickCount"],
+        advViewCount: json["advViewCount"],
+        advClickCount: json["advClickCount"],
         urlLink: json["url_link"],
         amount: json["amount"],
         currency: json["currency"],
