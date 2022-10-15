@@ -13,13 +13,15 @@ import 'package:rainbow/screens/auth/register/register_controller.dart';
 import 'package:rainbow/screens/auth/register/register_screen.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/register_adviser.dart';
+import 'package:rainbow/service/auth_services.dart';
 import 'package:rainbow/service/notification_service.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 import 'package:rainbow/utils/strings.dart';
 
 import '../login/login_screen.dart';
-
+import 'package:flutter/services.dart';
+import 'package:the_apple_sign_in/the_apple_sign_in.dart';
 class AuthDashBordController extends GetxController {
   RxBool loading = false.obs;
 
@@ -198,5 +200,59 @@ class AuthDashBordController extends GetxController {
 
   void onSignUpTap() {
     Get.to(() => AdviserRegisterScreen());
+  }
+
+
+  final _firebaseAuth = FirebaseAuth.instance;
+   signInWithAppleC(BuildContext context) async {
+    try {
+      final user = await signInWithApple(scopes: [Scope.email, Scope.fullName]);
+      print('uid: ${user.uid}');
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<User> signInWithApple({List<Scope> scopes = const []}) async {
+    // 1. perform the sign-in request
+    final result = await TheAppleSignIn.performRequests(
+        [AppleIdRequest(requestedScopes: scopes)]);
+    // 2. check the result
+    switch (result.status) {
+      case AuthorizationStatus.authorized:
+        final appleIdCredential = result.credential;
+        final oAuthProvider = OAuthProvider('apple.com');
+        final credential = oAuthProvider.credential(
+          idToken: String.fromCharCodes(appleIdCredential!.identityToken ?? []),
+          accessToken:
+          String.fromCharCodes(appleIdCredential.authorizationCode ?? []),
+        );
+        final userCredential =
+        await _firebaseAuth.signInWithCredential(credential);
+        final firebaseUser = userCredential.user;
+        if (scopes.contains(Scope.fullName)) {
+          final fullName = appleIdCredential.fullName;
+          if (fullName != null &&
+              fullName.givenName != null &&
+              fullName.familyName != null) {
+            final displayName = '${fullName.givenName} ${fullName.familyName}';
+            await firebaseUser!.updateDisplayName(displayName);
+          }
+        }
+        return firebaseUser!;
+      case AuthorizationStatus.error:
+        throw PlatformException(
+          code: 'ERROR_AUTHORIZATION_DENIED',
+          message: result.error.toString(),
+        );
+
+      case AuthorizationStatus.cancelled:
+        throw PlatformException(
+          code: 'ERROR_ABORTED_BY_USER',
+          message: 'Sign in aborted by user',
+        );
+      default:
+        throw UnimplementedError();
+    }
   }
 }
