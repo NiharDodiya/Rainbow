@@ -449,81 +449,88 @@ class AdvertisementDashBord extends StatelessWidget {
                   },
                 ),
               ),
-              bottomNavigationBar: GetBuilder<AdvertisementController>(
-                id: 'bottom_bar',
-                builder: (_) => SalomonBottomBar(
-                  margin: const EdgeInsets.all(12),
-                  selectedItemColor: ColorRes.color_2F80ED,
-                  unselectedItemColor: ColorRes.color_9597A1,
-                  currentIndex: advertisementController.currentTab,
-                  onTap: (i) => advertisementController.onBottomBarChange(i),
-                  items: [
-                    /// Home
-                    SalomonBottomBarItem(
-                      icon: Image.asset(
-                        AssetRes.home,
-                        height: 16,
-                        color: advertisementController.currentTab == 0
-                            ? ColorRes.color_2F80ED
-                            : ColorRes.color_9597A1,
+              bottomNavigationBar: GetBuilder<AdHomeController>(
+                id: "network",
+                  builder: (adHomeController){
+                  adHomeController.CheckUserConnection();
+                return GetBuilder<AdvertisementController>(
+                  id: 'bottom_bar',
+                  builder: (_) => SalomonBottomBar(
+                    margin: const EdgeInsets.all(12),
+                    selectedItemColor: ColorRes.color_2F80ED,
+                    unselectedItemColor: ColorRes.color_9597A1,
+                    currentIndex: advertisementController.currentTab,
+                    onTap: adHomeController.ActiveConnection == false ? (i){
+                      errorToast("No internet connection");
+                    } :(i) => advertisementController.onBottomBarChange(i),
+                    items: [
+                      /// Home
+                      SalomonBottomBarItem(
+                        icon: Image.asset(
+                          AssetRes.home,
+                          height: 16,
+                          color: advertisementController.currentTab == 0
+                              ? ColorRes.color_2F80ED
+                              : ColorRes.color_9597A1,
+                        ),
+                        title: Text(
+                          "Home",
+                          style: gilroyBoldTextStyle(
+                              color: ColorRes.color_2F80ED, fontSize: 14),
+                        ),
                       ),
-                      title: Text(
-                        "Home",
-                        style: gilroyBoldTextStyle(
-                            color: ColorRes.color_2F80ED, fontSize: 14),
-                      ),
-                    ),
 
-                    /// search
-                    SalomonBottomBarItem(
-                      icon: Image.asset(
-                        AssetRes.paymentIcon,
-                        height: 16,
-                        color: advertisementController.currentTab == 1
-                            ? ColorRes.color_2F80ED
-                            : ColorRes.color_9597A1,
+                      /// search
+                      SalomonBottomBarItem(
+                        icon: Image.asset(
+                          AssetRes.paymentIcon,
+                          height: 16,
+                          color: advertisementController.currentTab == 1
+                              ? ColorRes.color_2F80ED
+                              : ColorRes.color_9597A1,
+                        ),
+                        title: Text(
+                          "Payment",
+                          style: gilroyBoldTextStyle(
+                              color: ColorRes.color_2F80ED, fontSize: 14),
+                        ),
                       ),
-                      title: Text(
-                        "Payment",
-                        style: gilroyBoldTextStyle(
-                            color: ColorRes.color_2F80ED, fontSize: 14),
-                      ),
-                    ),
 
-                    /// message
-                    SalomonBottomBarItem(
-                      icon: Image.asset(
-                        AssetRes.adeNotificationIcon,
-                        height: 20,
-                        color: advertisementController.currentTab == 2
-                            ? ColorRes.color_2F80ED
-                            : ColorRes.color_9597A1,
+                      /// message
+                      SalomonBottomBarItem(
+                        icon: Image.asset(
+                          AssetRes.adeNotificationIcon,
+                          height: 20,
+                          color: advertisementController.currentTab == 2
+                              ? ColorRes.color_2F80ED
+                              : ColorRes.color_9597A1,
+                        ),
+                        title: Text(
+                          "Notification",
+                          style: gilroyBoldTextStyle(
+                              color: ColorRes.color_2F80ED, fontSize: 14),
+                        ),
                       ),
-                      title: Text(
-                        "Notification",
-                        style: gilroyBoldTextStyle(
-                            color: ColorRes.color_2F80ED, fontSize: 14),
-                      ),
-                    ),
 
-                    /// support
-                    SalomonBottomBarItem(
-                      icon: Image.asset(
-                        AssetRes.supportIcon,
-                        height: 16,
-                        color: advertisementController.currentTab == 3
-                            ? ColorRes.color_2F80ED
-                            : ColorRes.color_9597A1,
+                      /// support
+                      SalomonBottomBarItem(
+                        icon: Image.asset(
+                          AssetRes.supportIcon,
+                          height: 16,
+                          color: advertisementController.currentTab == 3
+                              ? ColorRes.color_2F80ED
+                              : ColorRes.color_9597A1,
+                        ),
+                        title: Text(
+                          "Support",
+                          style: gilroyBoldTextStyle(
+                              color: ColorRes.color_2F80ED, fontSize: 14),
+                        ),
                       ),
-                      title: Text(
-                        "Support",
-                        style: gilroyBoldTextStyle(
-                            color: ColorRes.color_2F80ED, fontSize: 14),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+                    ],
+                  ),
+                );
+              }),
             ),
           );
         });

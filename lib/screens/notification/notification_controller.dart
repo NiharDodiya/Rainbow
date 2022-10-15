@@ -9,6 +9,8 @@ class NotificationsController extends GetxController {
   RxBool loader = false.obs;
   List<NotificationData> notificationList = [];
 
+
+
   @override
   void onInit() {
     init();
@@ -16,8 +18,8 @@ class NotificationsController extends GetxController {
   }
 
   Future<void> init() async {
-    AdHomeController adHomeController = Get.find();
-    adHomeController.CheckUserConnection();
+
+
     getNotifications();
   }
 

@@ -135,15 +135,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Positioned(
                                     top: 0,
                                     right: 0,
-                                    child: GetBuilder<NotificationsController>(
+                                    child: GetBuilder<HomeController>(
                                       id: 'notification_badge',
-                                      builder: (notificationController) {
-                                        return notificationController
+                                      builder: (controller) {
+                                        return homeController
                                             .notificationModel!
                                             .pendingCount
                                             .toString() ==
                                             "null" ||
-                                            notificationController
+                                            homeController
                                                 .notificationModel!
                                                 .pendingCount
                                                 .toString() ==
@@ -157,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               shape: BoxShape.circle,
                                               color: ColorRes.color_FF6B97),
                                           child: Text(
-                                            notificationController
+                                            controller
                                                 .notificationModel!
                                                 .pendingCount
                                                 .toString(),
@@ -207,14 +207,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Stack(
                       children: [
                         GetBuilder<HomeController>(
+                          id: "network",
                             builder: (homeController){
+                            homeController.CheckUserConnection();
                           return FloatingActionButton(
                             child: Image.asset(
                               AssetRes.add,
                               height: 24,
                               width: 24,
                             ),
-                            onPressed: () async {
+                            onPressed: homeController.ActiveConnection == false? (){
+                              errorToast("No internet connection");
+                            } : () async {
                               //premiumPopUpBox(context: context);
                               viewStoryController.resetAllData();
                               // if user have not subcription show pop up
@@ -1359,31 +1363,39 @@ class _HomeScreenState extends State<HomeScreen> {
                                   SizedBox(
                                     width: Get.width * 0.05,
                                   ),
-                                  InkWell(
-                                    onTap: () async {
+                                  GetBuilder<HomeController>(
+                                    id: "network",
+                                      builder: (homeController){
+                                        homeController.CheckUserConnection();
+                                        return InkWell(
+                                    onTap: homeController.ActiveConnection == false
+                                        ? (){
+                                      errorToast("No internet connection");
+                                    }
+                                        :() async {
                                       commentsController.commentPostListData(
                                           idPost: controller
                                               .friendPostListData[index].id
                                               .toString());
                                       Get.to(() => CommentScreen(
-                                                idPost: controller
-                                                    .friendPostListData[index]
-                                                    .id
-                                                    .toString(),
-                                                fullName: controller
-                                                    .friendPostListData[index]
-                                                    .postUser!
-                                                    .fullName
-                                                    .toString(),
-                                                profileImage: controller
-                                                    .friendPostListData[index]
-                                                    .postUser!
-                                                    .profileImage
-                                                    .toString(),
-                                              ))!
+                                        idPost: controller
+                                            .friendPostListData[index]
+                                            .id
+                                            .toString(),
+                                        fullName: controller
+                                            .friendPostListData[index]
+                                            .postUser!
+                                            .fullName
+                                            .toString(),
+                                        profileImage: controller
+                                            .friendPostListData[index]
+                                            .postUser!
+                                            .profileImage
+                                            .toString(),
+                                      ))!
                                           .then((value) async {
                                         Future.delayed(
-                                                const Duration(seconds: 1))
+                                            const Duration(seconds: 1))
                                             .then((value) async {
                                           await controller
                                               .friendPostDataWithOutPagination();
@@ -1400,7 +1412,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                         color: Colors.white,
                                       ),
                                     ),
-                                  ),
+                                  );
+                                      }),
                                   const SizedBox(
                                     width: 2,
                                   ),

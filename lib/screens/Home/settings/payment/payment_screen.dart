@@ -25,8 +25,7 @@ class PaymentScreen extends StatelessWidget {
   PaymentScreen({Key? key, this.showBackArrow = true}) : super(key: key);
   PaymentController controller = Get.put(PaymentController());
   EditCardController editCardController = Get.put(EditCardController());
-  HomeController homeController = Get.find();
-  AdHomeController adHomeController = Get.find();
+
   AddCartController addCartController = Get.find();
 
   @override

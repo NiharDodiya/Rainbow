@@ -15,6 +15,7 @@ import 'package:rainbow/model/friendPostView_Model.dart';
 import 'package:rainbow/model/listOfFriendRequest_model.dart';
 import 'package:rainbow/model/listUserTag_model.dart';
 import 'package:rainbow/model/myPostList_model.dart';
+import 'package:rainbow/model/notification_model.dart';
 import 'package:rainbow/model/postLike_model.dart';
 import 'package:rainbow/model/postView_model.dart';
 import 'package:rainbow/model/sharePost_model.dart';
@@ -41,6 +42,7 @@ import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/widget/listOfFriendRequest_api/listOfFriendRequest_api.dart';
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
+import 'package:rainbow/screens/notification/api/notification_api.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/screens/notification/notification_screen.dart';
 import 'package:uni_links/uni_links.dart';
@@ -57,8 +59,7 @@ class HomeController extends GetxController {
   MyStoryController myStoryController = Get.put(MyStoryController());
 
   // RefreshController? refreshController;
-  NotificationsController notificationsController =
-      Get.put(NotificationsController());
+
   MyPostListModel myPostListModel = MyPostListModel();
   TextEditingController comment = TextEditingController();
   List<UserData> tagUserList = [];
@@ -128,6 +129,8 @@ class HomeController extends GetxController {
       await controller.viewProfileDetails();
     });
   }
+
+  NotificationModel? notificationModel = NotificationModel();
 
   void pagination() async {
     if (scrollController.position.pixels ==
@@ -373,7 +376,7 @@ class HomeController extends GetxController {
   Future<void> refreshCode() async {
     await controller.viewProfileDetails();
     await onStory();
-    notificationsController.getNotifications();
+    await getNotifications();
     page = 0;
     friendPostListData = [];
     /*  await friendPostDataWithOutPagination();*/
@@ -400,7 +403,7 @@ class HomeController extends GetxController {
 
     countryName();
     countryNationalites();
-    await notificationsController.getNotifications();
+   await getNotifications();
     /*await friendPostDataWithOutPagination();*/
     await connectionsController.callRequestApi();
     /*  changeLoader(false);*/
@@ -425,6 +428,13 @@ class HomeController extends GetxController {
     } else {
       Get.to(() => AddStoryScreen());
     }*/
+  }
+  Future<void> getNotifications() async {
+    loader.value = true;
+    notificationModel = await NotificationApi.getNotificationList();
+
+    update(['notification_badge']);
+    loader.value = false;
   }
 
   Future<void> onRefresh() async {
