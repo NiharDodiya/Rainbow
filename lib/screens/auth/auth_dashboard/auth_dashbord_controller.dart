@@ -175,6 +175,7 @@ String? token;
                 "name": user.displayName,
                 "image": user.photoURL,
                 "online": true,
+                "UserToken": token.toString()
               });
             }
           });
