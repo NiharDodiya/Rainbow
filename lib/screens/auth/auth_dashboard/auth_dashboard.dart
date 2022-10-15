@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
@@ -36,7 +38,7 @@ class AuthDashboard extends StatelessWidget {
                         children: [
                           logoRainbow(),
                           continueWithEmail(),
-                          googleFacebook(controller),
+                          googleFacebook(controller,context),
                           alreadyHaveAccount(controller),
                         ],
                       ),
@@ -116,7 +118,7 @@ class AuthDashboard extends StatelessWidget {
     );
   }
 
-  Widget googleFacebook(AuthDashBordController controller) {
+  Widget googleFacebook(AuthDashBordController controller, BuildContext context) {
     return Column(
       children: [
         const SizedBox(height: 10),
@@ -191,6 +193,43 @@ class AuthDashboard extends StatelessWidget {
             ),
           ],
         ),
+        Platform.isIOS? const SizedBox(height: 10):const SizedBox(
+        ),
+        Platform.isIOS? GestureDetector(
+          onTap: () {
+            controller.signInWithAppleC(context);
+          },
+          child: Container(
+            height: Get.height * 0.076,
+            width: Get.width * 0.40,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.white, width: 1.5),
+              color: ColorRes.color_4F359B,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 14,
+                  child: Image.asset(
+                  AssetRes.appleLogo
+                  ),
+                ),
+                const SizedBox(width: 10),
+                SizedBox(
+                  height: 14,
+                  child: Text(
+                    "Apple Sign In",
+                    style: gilroyMediumTextStyle(fontSize: 12),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ):const SizedBox(),
+
       ],
     );
   }

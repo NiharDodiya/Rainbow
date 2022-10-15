@@ -125,6 +125,9 @@ dependencies:
   carousel_indicator: ^1.0.6
   dropdown_textfield: ^1.0.3
   dropdown_search: ^5.0.2
+  #______________________________ apple sign in _________________________
+  sign_in_with_apple: ^4.1.0
+  the_apple_sign_in: ^1.1.1
 
 
 

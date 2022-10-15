@@ -115,6 +115,7 @@ class AssetRes {
   static const flag01 = "${images}flag01.png";
   static const flag02 = "${images}flag02.png";
   static const likeThubesUp = "${images}likeThubesup.png";
+  static const appleLogo = "${images}apple-black-logo.png";
 
   ///_______________________________settings________________________________
   static const profileSettinges = '${settingsImage}profileSettinges.png';
