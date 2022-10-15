@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/notification/api/notification_api.dart';
 
 import '../../model/notification_model.dart';
@@ -14,6 +16,8 @@ class NotificationsController extends GetxController {
   }
 
   Future<void> init() async {
+    AdHomeController adHomeController = Get.find();
+    adHomeController.CheckUserConnection();
     getNotifications();
   }
 
@@ -34,7 +38,9 @@ class NotificationsController extends GetxController {
       await NotificationApi.notificationRead();
       await getNotifications();
     } catch (e) {
-
+      loader.value = false;
     }
   }
+
+
 }

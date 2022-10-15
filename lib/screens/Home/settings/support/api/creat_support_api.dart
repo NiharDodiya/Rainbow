@@ -32,7 +32,6 @@ class SupportAPI {
 
       return response.statusCode;
     } else {
-
       return response.statusCode;
     }
   }

@@ -7,6 +7,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/api/google_id_verification_api.dart';
+import 'package:rainbow/screens/auth/login/login_api/login_api.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
 import 'package:rainbow/screens/auth/register/register_controller.dart';
@@ -90,7 +91,7 @@ String? token;
       print(user.displayName);
       await GoogleIdVerification.postRegister(user.uid, user: user,email: user.email.toString())
           .then((LoginModel? model) async {
-
+        LoginApi.updateDeviceToken();
         await firebaseFirestore
             .collection("users")
             .doc(user.uid)
@@ -152,7 +153,7 @@ String? token;
             user: userCredential.user,email: userCredential.user!.email.toString())
             .then((LoginModel? model) async {
 
-
+          LoginApi.updateDeviceToken();
           await firebaseFirestore
               .collection("users")
               .doc(user!.uid)

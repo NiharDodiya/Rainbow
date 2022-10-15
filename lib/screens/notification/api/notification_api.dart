@@ -49,6 +49,7 @@ class NotificationApi {
       }
     } catch (e) {
 
+      errorToast("No internet connection");
       return [];
     }
   }

@@ -40,7 +40,7 @@ class ListCartApi {
         return listCardModelFromJson(response.body);
       }
     } catch (e) {
-
+      
       return [];
     }
   }

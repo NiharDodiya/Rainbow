@@ -220,6 +220,11 @@ class AdHomeController extends GetxController {
 
   onTap() {
     errorToast("Please enter card");
-    update(['network']);
+    update(['more']);
   }
+
+  onTapNetwork(){
+    errorToast("No internet connection");
+  }
+
 }

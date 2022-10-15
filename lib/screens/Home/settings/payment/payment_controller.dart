@@ -61,7 +61,7 @@ class PaymentController extends GetxController {
     } catch (e) {
       loader.value = false;
 
-      debugPrint(e.toString());
+      //debugPrint(e.toString());
     }
   }
 

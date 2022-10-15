@@ -37,7 +37,7 @@ class SupportApi {
         return listSupportTicketModelFromJson(response.body);
       }
     } catch (e) {
-
+      //errorToast("No internet connection");
       return [];
     }
   }

@@ -111,4 +111,8 @@ class AdvertisementController extends GetxController {
       loader.value = false;
     }
   }
+
+  onTapNetwork(){
+    errorToast("No internet connection");
+  }
 }

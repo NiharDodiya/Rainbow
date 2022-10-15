@@ -11,6 +11,7 @@ import 'package:rainbow/screens/Home/settings/payment/edit_card/edit_card_contro
 import 'package:rainbow/screens/Home/settings/payment/edit_card/edit_card_screen.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -25,11 +26,13 @@ class PaymentScreen extends StatelessWidget {
   PaymentController controller = Get.put(PaymentController());
   EditCardController editCardController = Get.put(EditCardController());
   HomeController homeController = Get.find();
+  AdHomeController adHomeController = Get.find();
   AddCartController addCartController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     //controller.viewCardApi();
+
     return Scaffold(
       body: Obx(() {
         return Stack(

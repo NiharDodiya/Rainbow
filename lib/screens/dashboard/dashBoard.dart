@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/premiumPopUpBox/premium_pop_up_box.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/home_screen.dart';
 import 'package:rainbow/screens/Message/message_screen.dart';
@@ -120,77 +121,84 @@ class DashboardState extends State<Dashboard> with WidgetsBindingObserver {
             },
           ),
         ),
-        bottomNavigationBar: GetBuilder<DashboardController>(
-          id: "bottom_bar",
-          builder: (controller) {
-            return SalomonBottomBar(
-              margin: const EdgeInsets.all(12),
-              selectedItemColor: ColorRes.color_2F80ED,
-              unselectedItemColor: ColorRes.color_9597A1,
-              currentIndex: controller.currentTab,
-              onTap: (int index) {
-                controller.onBottomBarChange(index);
-                setState(() {});
-              },
-              items: [
-                /// Home
-                SalomonBottomBarItem(
-                  icon: Image.asset(
-                    AssetRes.home,
-                    height: 16,
-                    width: 16,
-                    color: controller.currentTab == 0
-                        ? ColorRes.color_2F80ED
-                        : ColorRes.color_9597A1,
+        bottomNavigationBar: GetBuilder<HomeController>(
+          id: "network",
+            builder: (homeController){
+            homeController.CheckUserConnection();
+          return GetBuilder<DashboardController>(
+            id: "bottom_bar",
+            builder: (controller) {
+              return SalomonBottomBar(
+                margin: const EdgeInsets.all(12),
+                selectedItemColor: ColorRes.color_2F80ED,
+                unselectedItemColor: ColorRes.color_9597A1,
+                currentIndex: controller.currentTab,
+                onTap: homeController.ActiveConnection == false?(int index){
+                  errorToast("No internet connection");
+                }:(int index) {
+                  controller.onBottomBarChange(index);
+                  setState(() {});
+                },
+                items: [
+                  /// Home
+                  SalomonBottomBarItem(
+                    icon: Image.asset(
+                      AssetRes.home,
+                      height: 16,
+                      width: 16,
+                      color: controller.currentTab == 0
+                          ? ColorRes.color_2F80ED
+                          : ColorRes.color_9597A1,
+                    ),
+                    title: Text("Home", style: textStyleFont14BlueW500),
                   ),
-                  title: Text("Home", style: textStyleFont14BlueW500),
-                ),
 
-                /// search
-                SalomonBottomBarItem(
-                  icon: Image.asset(
-                    AssetRes.search,
-                    height: 16,
-                    width: 16,
-                    color: controller.currentTab == 1
-                        ? ColorRes.color_2F80ED
-                        : ColorRes.color_9597A1,
+                  /// search
+                  SalomonBottomBarItem(
+                    icon: Image.asset(
+                      AssetRes.search,
+                      height: 16,
+                      width: 16,
+                      color: controller.currentTab == 1
+                          ? ColorRes.color_2F80ED
+                          : ColorRes.color_9597A1,
+                    ),
+                    title: Text("Search", style: textStyleFont14BlueW500),
                   ),
-                  title: Text("Search", style: textStyleFont14BlueW500),
-                ),
 
-                /// message
-                SalomonBottomBarItem(
-                  icon: Image.asset(
-                    AssetRes.message,
-                    height: 16,
-                    width: 16,
-                    color: controller.currentTab == 2
-                        ? ColorRes.color_2F80ED
-                        : ColorRes.color_9597A1,
+                  /// message
+                  SalomonBottomBarItem(
+                    icon: Image.asset(
+                      AssetRes.message,
+                      height: 16,
+                      width: 16,
+                      color: controller.currentTab == 2
+                          ? ColorRes.color_2F80ED
+                          : ColorRes.color_9597A1,
+                    ),
+                    title: Text(
+                      "Message",
+                      style: textStyleFont14BlueW500,
+                    ),
                   ),
-                  title: Text(
-                    "Message",
-                    style: textStyleFont14BlueW500,
-                  ),
-                ),
 
-                /// Profile
-                SalomonBottomBarItem(
-                  icon: Image.asset(
-                    AssetRes.profile,
-                    height: 16,
-                    width: 16,
-                    color: controller.currentTab == 3
-                        ? ColorRes.color_2F80ED
-                        : ColorRes.color_9597A1,
+                  /// Profile
+                  SalomonBottomBarItem(
+                    icon: Image.asset(
+                      AssetRes.profile,
+                      height: 16,
+                      width: 16,
+                      color: controller.currentTab == 3
+                          ? ColorRes.color_2F80ED
+                          : ColorRes.color_9597A1,
+                    ),
+                    title: Text("Profile", style: textStyleFont14BlueW500),
                   ),
-                  title: Text("Profile", style: textStyleFont14BlueW500),
-                ),
-              ],
-            );
-          },
-        ),
+                ],
+              );
+            },
+          );
+        })
       ),
     );
   }

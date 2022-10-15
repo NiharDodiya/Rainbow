@@ -6,6 +6,7 @@ import 'package:image_stack/image_stack.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/premiumPopUpBox/premium_pop_up_box.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/request_user_model.dart';
 import 'package:rainbow/screens/Home/Story/story_screen.dart';
 import 'package:rainbow/screens/Home/ad_in_latest_feed/ad_in_latest_feed.dart';
@@ -80,86 +81,100 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                           const Spacer(),
                           const SizedBox(width: 10),
-                          GestureDetector(
-                            onTap: () {
-                              controller.onTapSetting();
-                            },
-                            child: const Image(
-                              image: AssetImage(
-                                AssetRes.settings,
-                              ),
-                              height: 19.35,
-                              width: 19.35,
-                            ),
-                          ),
+                         GetBuilder<HomeController>(
+                           id: "network",
+                             builder: (homeController){
+                               homeController.CheckUserConnection();
+                           return  GestureDetector(
+                             onTap: homeController.ActiveConnection == false?(){
+                               errorToast("No internet connection");
+                             }:() {
+                               controller.onTapSetting();
+                             },
+                             child: const Image(
+                               image: AssetImage(
+                                 AssetRes.settings,
+                               ),
+                               height: 19.35,
+                               width: 19.35,
+                             ),
+                           );
+                         }),
                           SizedBox(
                             width: Get.width * 0.04,
                           ),
-                          InkWell(
-                            onTap: () {
-                              controller.onNotyIconBtnTap(context: context);
-                            },
-                            child: Stack(
-                              children: [
-                                const SizedBox(
-                                  height: 25,
-                                  width: 25,
-                                ),
-                                const Positioned(
-                                  bottom: 0,
-                                  left: 0,
-                                  child: SizedBox(
-                                    height: 20,
-                                    width: 20,
-                                    child: Image(
-                                      image: AssetImage(AssetRes.notify),
+                          GetBuilder<HomeController>(
+                            id: "network",
+                              builder: (homeController){
+                                homeController.CheckUserConnection();
+                            return InkWell(
+                              onTap: homeController.ActiveConnection == false?(){
+                                errorToast("No internet connection");
+                              }:() {
+                                controller.onNotyIconBtnTap(context: context);
+                              },
+                              child: Stack(
+                                children: [
+                                  const SizedBox(
+                                    height: 25,
+                                    width: 25,
+                                  ),
+                                  const Positioned(
+                                    bottom: 0,
+                                    left: 0,
+                                    child: SizedBox(
                                       height: 20,
                                       width: 20,
+                                      child: Image(
+                                        image: AssetImage(AssetRes.notify),
+                                        height: 20,
+                                        width: 20,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Positioned(
-                                  top: 0,
-                                  right: 0,
-                                  child: GetBuilder<NotificationsController>(
-                                    id: 'notification_badge',
-                                    builder: (notificationController) {
-                                      return notificationController
-                                                      .notificationModel!
-                                                      .pendingCount
-                                                      .toString() ==
-                                                  "null" ||
-                                              notificationController
-                                                      .notificationModel!
-                                                      .pendingCount
-                                                      .toString() ==
-                                                  "0"
-                                          ? const SizedBox()
-                                          : Container(
-                                              height: 16,
-                                              width: 16,
-                                              alignment: Alignment.center,
-                                              decoration: const BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: ColorRes.color_FF6B97),
-                                              child: Text(
-                                                notificationController
-                                                    .notificationModel!
-                                                    .pendingCount
-                                                    .toString(),
-                                                style: const TextStyle(
-                                                  color: ColorRes.white,
-                                                  fontSize: 8,
-                                                  fontWeight: FontWeight.w800,
-                                                ),
-                                              ),
-                                            );
-                                    },
+                                  Positioned(
+                                    top: 0,
+                                    right: 0,
+                                    child: GetBuilder<NotificationsController>(
+                                      id: 'notification_badge',
+                                      builder: (notificationController) {
+                                        return notificationController
+                                            .notificationModel!
+                                            .pendingCount
+                                            .toString() ==
+                                            "null" ||
+                                            notificationController
+                                                .notificationModel!
+                                                .pendingCount
+                                                .toString() ==
+                                                "0"
+                                            ? const SizedBox()
+                                            : Container(
+                                          height: 16,
+                                          width: 16,
+                                          alignment: Alignment.center,
+                                          decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: ColorRes.color_FF6B97),
+                                          child: Text(
+                                            notificationController
+                                                .notificationModel!
+                                                .pendingCount
+                                                .toString(),
+                                            style: const TextStyle(
+                                              color: ColorRes.white,
+                                              fontSize: 8,
+                                              fontWeight: FontWeight.w800,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
+                                ],
+                              ),
+                            );
+                          }),
                           SizedBox(
                             width: Get.width * 0.05,
                           ),
@@ -191,38 +206,41 @@ class _HomeScreenState extends State<HomeScreen> {
                   builder: (controller) {
                     return Stack(
                       children: [
-                        FloatingActionButton(
-                          child: Image.asset(
-                            AssetRes.add,
-                            height: 24,
-                            width: 24,
-                          ),
-                          onPressed: () async {
-                            //premiumPopUpBox(context: context);
-                            viewStoryController.resetAllData();
-                            // if user have not subcription show pop up
-                            controller.viewProfile.data!.userType == "free"
-                                ? premiumPopUpBox(context: context)
-                                : await Get.to(() => StoryScreen(
-                                          image: controller.controller
-                                              .viewProfile.data!.profileImage
-                                              .toString(),
-                                        ))!
-                                    .then((value) {
-                                    if (value == true) {
-                                      Future.delayed(const Duration(seconds: 1))
-                                          .then((value) async {
-                                        await controller
-                                            .friendPostDataWithOutPagination(
-                                          pageLength: controller
-                                                  .friendPostListData.length +
-                                              1,
-                                        );
-                                      });
-                                    }
+                        GetBuilder<HomeController>(
+                            builder: (homeController){
+                          return FloatingActionButton(
+                            child: Image.asset(
+                              AssetRes.add,
+                              height: 24,
+                              width: 24,
+                            ),
+                            onPressed: () async {
+                              //premiumPopUpBox(context: context);
+                              viewStoryController.resetAllData();
+                              // if user have not subcription show pop up
+                              controller.viewProfile.data!.userType == "free"
+                                  ? premiumPopUpBox(context: context)
+                                  : await Get.to(() => StoryScreen(
+                                image: controller.controller
+                                    .viewProfile.data!.profileImage
+                                    .toString(),
+                              ))!
+                                  .then((value) {
+                                if (value == true) {
+                                  Future.delayed(const Duration(seconds: 1))
+                                      .then((value) async {
+                                    await controller
+                                        .friendPostDataWithOutPagination(
+                                      pageLength: controller
+                                          .friendPostListData.length +
+                                          1,
+                                    );
                                   });
-                          },
-                        ),
+                                }
+                              });
+                            },
+                          );
+                        }),
                         /*  subscribePopUp==true?Positioned(bottom: 0,
                             child: Image.asset(AssetRes.lockSub,height: 18,width: 18,)):const SizedBox()*/
                       ],
@@ -290,41 +308,47 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10),
-                        child: InkWell(
-                          onTap: () {
-                            // if user have not subcription show pop up
-                            controller.viewProfile.data!.userType ==
-                                    "free" //premium
-                                ? premiumPopUpBox(context: context)
-                                : Get.to(() => const AddStoryScreen());
-                          },
-                          child: SizedBox(
-                            width: 80,
-                            child: Stack(
-                              children: [
-                                controller.controller.viewProfile.data ==
-                                            null ||
-                                        controller.controller.viewProfile.data!
-                                                .profileImage
-                                                .toString() ==
-                                            ""
-                                    ? Container(
-                                        height: 56,
-                                        width: 56,
-                                        decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            image: DecorationImage(
-                                                image: AssetImage(AssetRes
-                                                    .portrait_placeholder),
-                                                fit: BoxFit.cover)),
-                                      )
-                                    : ClipRRect(
-                                        borderRadius: BorderRadius.circular(50),
-                                        child: SizedBox(
-                                          height: 56,
-                                          width: 56,
-                                          child:
-                                              /*Image.network(
+                        child: GetBuilder<HomeController>(
+                          id: "network",
+                            builder: (homeController){
+                            homeController.CheckUserConnection();
+                          return InkWell(
+                            onTap: homeController.ActiveConnection == false? (){
+                              errorToast("No internet connection");
+                            } :() {
+                              // if user have not subcription show pop up
+                              controller.viewProfile.data!.userType ==
+                                  "free" //premium
+                                  ? premiumPopUpBox(context: context)
+                                  : Get.to(() => const AddStoryScreen());
+                            },
+                            child: SizedBox(
+                              width: 80,
+                              child: Stack(
+                                children: [
+                                  controller.controller.viewProfile.data ==
+                                      null ||
+                                      controller.controller.viewProfile.data!
+                                          .profileImage
+                                          .toString() ==
+                                          ""
+                                      ? Container(
+                                    height: 56,
+                                    width: 56,
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        image: DecorationImage(
+                                            image: AssetImage(AssetRes
+                                                .portrait_placeholder),
+                                            fit: BoxFit.cover)),
+                                  )
+                                      : ClipRRect(
+                                    borderRadius: BorderRadius.circular(50),
+                                    child: SizedBox(
+                                      height: 56,
+                                      width: 56,
+                                      child:
+                                      /*Image.network(
                                             controller.controller.viewProfile
                                                 .data!.profileImage
                                                 .toString(),
@@ -338,29 +362,29 @@ class _HomeScreenState extends State<HomeScreen> {
                                               width: 56,
                                             )),
                                           ),*/
-                                              CachedNetworkImage(
-                                            imageUrl: controller.controller
-                                                .viewProfile.data!.profileImage
-                                                .toString(),
-                                            fit: BoxFit.cover,
-                                            placeholder: ((context, url) =>
-                                                Image.asset(
-                                                  AssetRes.portrait_placeholder,
-                                                  fit: BoxFit.cover,
-                                                  height: 56,
-                                                  width: 56,
-                                                )),
-                                            errorWidget: ((context, url,
-                                                    error) =>
-                                                Image.asset(
-                                                  AssetRes.portrait_placeholder,
-                                                  fit: BoxFit.cover,
-                                                  height: 56,
-                                                  width: 56,
-                                                )),
-                                          ),
-                                        ),
-                                        /*Image.network(
+                                      CachedNetworkImage(
+                                        imageUrl: controller.controller
+                                            .viewProfile.data!.profileImage
+                                            .toString(),
+                                        fit: BoxFit.cover,
+                                        placeholder: ((context, url) =>
+                                            Image.asset(
+                                              AssetRes.portrait_placeholder,
+                                              fit: BoxFit.cover,
+                                              height: 56,
+                                              width: 56,
+                                            )),
+                                        errorWidget: ((context, url,
+                                            error) =>
+                                            Image.asset(
+                                              AssetRes.portrait_placeholder,
+                                              fit: BoxFit.cover,
+                                              height: 56,
+                                              width: 56,
+                                            )),
+                                      ),
+                                    ),
+                                    /*Image.network(
                                           controller.controller.viewProfile
                                               .data!.profileImage
                                               .toString(),
@@ -377,52 +401,53 @@ class _HomeScreenState extends State<HomeScreen> {
                                             );
                                           },
                                         ),*/
-                                      ),
-                                Positioned(
-                                    left: Get.width * 0.1,
-                                    bottom: 0,
-                                    child: const Image(
-                                      image: AssetImage(AssetRes.plusIcons),
-                                      height: 24,
-                                      width: 24,
-                                    )),
-                                Positioned(
-                                  top: Get.height * 0.04,
-                                  child: Container(
-                                    height: 50,
-                                    width: 50,
-                                    decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: ColorRes.color_B9A2FD
-                                              .withOpacity(0.3),
-                                          spreadRadius: 1,
-                                          blurRadius: 10,
-                                          offset: const Offset(4, 5),
-                                        ),
-                                      ],
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          ColorRes.color_B9A2FD
-                                              .withOpacity(0.1),
-                                          ColorRes.color_B9A2FD
-                                              .withOpacity(0.1),
-                                          ColorRes.color_B9A2FD
-                                              .withOpacity(0.1),
-                                          ColorRes.color_B9A2FD
-                                              .withOpacity(0.1),
+                                  ),
+                                  Positioned(
+                                      left: Get.width * 0.1,
+                                      bottom: 0,
+                                      child: const Image(
+                                        image: AssetImage(AssetRes.plusIcons),
+                                        height: 24,
+                                        width: 24,
+                                      )),
+                                  Positioned(
+                                    top: Get.height * 0.04,
+                                    child: Container(
+                                      height: 50,
+                                      width: 50,
+                                      decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: ColorRes.color_B9A2FD
+                                                .withOpacity(0.3),
+                                            spreadRadius: 1,
+                                            blurRadius: 10,
+                                            offset: const Offset(4, 5),
+                                          ),
                                         ],
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            ColorRes.color_B9A2FD
+                                                .withOpacity(0.1),
+                                            ColorRes.color_B9A2FD
+                                                .withOpacity(0.1),
+                                            ColorRes.color_B9A2FD
+                                                .withOpacity(0.1),
+                                            ColorRes.color_B9A2FD
+                                                .withOpacity(0.1),
+                                          ],
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ), /*subscribePopUp==true?Positioned(top: Get.height*0.058,
+                                  ), /*subscribePopUp==true?Positioned(top: Get.height*0.058,
                                     child: Image.asset(AssetRes.lockSub,height: 18,width: 18,)):const SizedBox()*/
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ),
+                          );
+                        })
                       ),
                       const SizedBox(
                         height: 12,
@@ -585,31 +610,37 @@ class _HomeScreenState extends State<HomeScreen> {
                                 SizedBox(
                                   height: Get.height * 0.02,
                                 ),
-                                GestureDetector(
-                                  onTap: () =>
-                                      controller.onFriedStoryTap(index),
-                                  child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(50),
-                                      child: CachedNetworkImage(
-                                        height: 56,
-                                        width: 56,
-                                        placeholder: (context, url) =>
-                                            Image.asset(
-                                                AssetRes.portrait_placeholder,
-                                                fit: BoxFit.fitWidth),
-                                        errorWidget: ((context, url, error) =>
-                                            Image.asset(
-                                                AssetRes.portrait_placeholder,
-                                                fit: BoxFit.fitWidth)),
-                                        imageUrl: viewStoryController
-                                            .storyModel
-                                            .friendsStory![index]
-                                            .userDetail!
-                                            .profileImage
-                                            .toString(),
-                                        fit: BoxFit.cover,
-                                      )),
-                                ),
+                                GetBuilder<HomeController>(
+                                  id: "network",
+                                    builder: (homeController){
+                                    homeController.CheckUserConnection();
+                                  return GestureDetector(
+                                    onTap: homeController.ActiveConnection == false ? ()=>errorToast("No internet connection") :
+                                        () =>
+                                        controller.onFriedStoryTap(index),
+                                    child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(50),
+                                        child: CachedNetworkImage(
+                                          height: 56,
+                                          width: 56,
+                                          placeholder: (context, url) =>
+                                              Image.asset(
+                                                  AssetRes.portrait_placeholder,
+                                                  fit: BoxFit.fitWidth),
+                                          errorWidget: ((context, url, error) =>
+                                              Image.asset(
+                                                  AssetRes.portrait_placeholder,
+                                                  fit: BoxFit.fitWidth)),
+                                          imageUrl: viewStoryController
+                                              .storyModel
+                                              .friendsStory![index]
+                                              .userDetail!
+                                              .profileImage
+                                              .toString(),
+                                          fit: BoxFit.cover,
+                                        )),
+                                  );
+                                }),
                                 const SizedBox(
                                   height: 12,
                                 ),

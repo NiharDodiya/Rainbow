@@ -148,9 +148,9 @@ class Strings {
   static const married = 'married';
   static const british = 'British';
   static const indian = 'Indian';
-  static const imageFrontError = 'please upload front picture of id';
-  static const imageBackError = 'please upload back picture of id';
-  static const selfieError = 'please upload selfie';
+  static const imageFrontError = 'Please upload front picture of id';
+  static const imageBackError = 'Please upload back picture of id';
+  static const selfieError = 'Please upload selfie';
   static const selfie = 'Selfie Verification';
   static const permanentResidentCard = 'Permanent Resident Card (Front)';
   static const permanentResidentBackCard = 'Permanent Resident Card (Back)';
@@ -424,7 +424,7 @@ class Strings {
   static const supportdeatailDEs02 =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium sem sit amet venenatis commodo. Nullam aliquam lacus nisl, varius luctus mauris hendrerit ut. Etiam eros lectus, commodo nec nisl in, aliquet congue quam. Morbi condimentum lectus id urna gravida, at facilisis lectus consectetur. Nam viverra augue est, ut cursus mi bibendum sit amet. Duis hendrerit hendrerit molestie. Ut iaculis tellus risus, id facilisis purus finibus vel. In hac habitasse platea dictumst. Ut efficitur lacus eu risus aliquam mollis. Nullam gravida sit amet lorem vitae maximus.";
   static const supportCode = "1235CA2B2";
-  static const supporterror01 = "please Enter Your Message";
+  static const supporterror01 = "Please enter your message";
   static const thankYouForSending =
       "Thank you for sending your concern, we will get back to you as soon as an agent comes in. ";
   static const subject = "Subject";

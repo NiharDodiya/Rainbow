@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -90,6 +91,28 @@ class HomeController extends GetxController {
   // final storyController = EditStoryController();
   ConnectionsController connectionsController =
       Get.put(ConnectionsController());
+
+  bool ActiveConnection = false;
+
+  String T = "";
+
+  Future CheckUserConnection() async {
+    try {
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+
+        ActiveConnection = true;
+        T = "Turn off the data and repress again";
+        update(["network"]);
+
+      }
+    } on SocketException catch (_) {
+
+      ActiveConnection = false;
+      T = "Turn On the data and repress again";
+      update(["network"]);
+    }
+  }
 
   @override
   void onInit() async {
@@ -361,7 +384,7 @@ class HomeController extends GetxController {
 
   Future<void> init() async {
     /*   changeLoader(true);*/
-
+    await CheckUserConnection();
     await viewProfileApi();
     await friendPostData();
     await onStory();

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_support/screen/support_create/support_create_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -140,8 +141,14 @@ class AdSupportScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 5, bottom: 10),
                     child: Column(
                       children: [
-                        InkWell(
-                          onTap: () {
+                        GetBuilder<AdHomeController>(
+                          id: "network",
+                            builder: (adHomeController){
+                            adHomeController.CheckUserConnection();
+                              return InkWell(
+                          onTap: adHomeController.ActiveConnection == false?(){
+                            errorToast("No internet connection");
+                          }:() {
                             controller.onTap(
                                 id: controller
                                     .listSupportTicketModel.data![index].id
@@ -163,59 +170,59 @@ class AdSupportScreen extends StatelessWidget {
                               children: [
                                 const SizedBox(width: 10),
                                 (adHomeController
-                                        .viewAdvertiserModel.data!.profileImage
-                                        .toString()
-                                        .isEmpty)
+                                    .viewAdvertiserModel.data!.profileImage
+                                    .toString()
+                                    .isEmpty)
                                     ? Container(
-                                        height: 50,
-                                        width: 50,
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: DecorationImage(
-                                              image: AssetImage(
-                                                AssetRes.portrait_placeholder,
-                                              ),
-                                              fit: BoxFit.cover),
-                                        ))
+                                    height: 50,
+                                    width: 50,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                            AssetRes.portrait_placeholder,
+                                          ),
+                                          fit: BoxFit.cover),
+                                    ))
                                     : ClipRRect(
-                                        borderRadius: BorderRadius.circular(50),
-                                        child: Container(
-                                          height: 50,
-                                          width: 50,
-                                          decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: CachedNetworkImage(
-                                            imageUrl: adHomeController
-                                                .viewAdvertiserModel
-                                                .data!
-                                                .profileImage
-                                                .toString(),
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: CachedNetworkImage(
+                                      imageUrl: adHomeController
+                                          .viewAdvertiserModel
+                                          .data!
+                                          .profileImage
+                                          .toString(),
+                                      fit: BoxFit.cover,
+                                      placeholder: ((context, url) =>
+                                          Image.asset(
+                                            AssetRes.portrait_placeholder,
+                                            height: 50,
+                                            width: 50,
                                             fit: BoxFit.cover,
-                                            placeholder: ((context, url) =>
-                                                Image.asset(
-                                                  AssetRes.portrait_placeholder,
-                                                  height: 50,
-                                                  width: 50,
-                                                  fit: BoxFit.cover,
-                                                )),
-                                            errorWidget: ((context, url,
-                                                    error) =>
-                                                Image.asset(
-                                                  AssetRes.portrait_placeholder,
-                                                  height: 50,
-                                                  width: 50,
-                                                  fit: BoxFit.cover,
-                                                )),
-                                          ),
-                                        ),
-                                      ),
+                                          )),
+                                      errorWidget: ((context, url,
+                                          error) =>
+                                          Image.asset(
+                                            AssetRes.portrait_placeholder,
+                                            height: 50,
+                                            width: 50,
+                                            fit: BoxFit.cover,
+                                          )),
+                                    ),
+                                  ),
+                                ),
                                 Padding(
                                   padding:
-                                      const EdgeInsets.only(left: 15, top: 25),
+                                  const EdgeInsets.only(left: 15, top: 25),
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         DateFormat("dd/MM/yyyy").format(
@@ -252,15 +259,15 @@ class AdSupportScreen extends StatelessWidget {
                                         .data![index].status
                                         .toString(),
                                     style: controller.listSupportTicketModel
-                                                .data![index].status
-                                                .toString() ==
-                                            "pending"
+                                        .data![index].status
+                                        .toString() ==
+                                        "pending"
                                         ? gilroyMediumTextStyle(
-                                            color: ColorRes.color_FFA800,
-                                            fontSize: 16)
+                                        color: ColorRes.color_FFA800,
+                                        fontSize: 16)
                                         : gilroyMediumTextStyle(
-                                            color: ColorRes.color_49A510,
-                                            fontSize: 16),
+                                        color: ColorRes.color_49A510,
+                                        fontSize: 16),
                                   ),
                                 ),
                                 const SizedBox(
@@ -269,7 +276,8 @@ class AdSupportScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                        ),
+                        );
+                            }),
                       ],
                     ),
                   );
@@ -283,40 +291,47 @@ class AdSupportScreen extends StatelessWidget {
   }
 
   Widget sendNewMessage() {
-    return InkWell(
-      onTap: () {
-        Get.to(() => SupportcreateScreen())!.then((value) async {
-          await controller.getListOfUserTicket();
-        });
-      },
-      child: Container(
-        height: 60,
-        width: 300,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: ColorRes.color_E7D01F,
-          gradient: const LinearGradient(
-            colors: [ColorRes.color_FFEC5C, ColorRes.color_DFC60B],
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-          ),
-        ),
-        child: Center(
-            child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 18,
-              width: 152,
-              child: Text(
-                Strings.sendNewMessage,
-                style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
-              ),
+    return GetBuilder<AdHomeController>(
+      id: "network",
+        builder: (adHomeController){
+        adHomeController.CheckUserConnection();
+      return InkWell(
+        onTap: adHomeController.ActiveConnection == false?(){
+          errorToast("No internet connection");
+        }:() {
+          Get.to(() => SupportcreateScreen())!.then((value) async {
+            await controller.getListOfUserTicket();
+          });
+        },
+        child: Container(
+          height: 60,
+          width: 300,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: ColorRes.color_E7D01F,
+            gradient: const LinearGradient(
+              colors: [ColorRes.color_FFEC5C, ColorRes.color_DFC60B],
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
             ),
-          ],
-        )),
-      ),
-    );
+          ),
+          child: Center(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 18,
+                    width: 152,
+                    child: Text(
+                      Strings.sendNewMessage,
+                      style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
+                    ),
+                  ),
+                ],
+              )),
+        ),
+      );
+    });
   }
 }

@@ -29,8 +29,9 @@ Widget appbar({context}) {
             padding:
                 const EdgeInsets.only(left: 30, right: 30, top: 30, bottom: 10),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+                children :[
                 InkWell(
                   onTap: () {
                     advertisementController.key.currentState!.openDrawer();
@@ -140,62 +141,117 @@ Widget appbar({context}) {
                   ],
                 ),
                 const Spacer(),
+                GetBuilder<AdHomeController>(
+                    id: "network",
+                    builder: (controller){
+                      controller.CheckUserConnection();
+                      return  InkWell(
+                        onTap: controller.ActiveConnection == false
+                            ? (){
+                          errorToast("No internet connection");
+                        }
+                            :() async {
+                          advertisementControllers.tagsController.clear();
+                          advertisementControllers.titleController.clear();
+                          advertisementControllers.countryController.clear();
+                          advertisementControllers.streetController.clear();
+                          advertisementControllers.cityController.clear();
+                          advertisementControllers.provinceController.clear();
+                          advertisementControllers.postalCodeController.clear();
+                          advertisementControllers.dateController.clear();
+                          advertisementControllers.descriptoionController.clear();
+                          advertisementControllers.urlLinkController.clear();
+                          advertisementControllers.callToActionController.clear();
+                          advertisementControllers.callToAction = null;
+                          advertisementControllers.address =
+                              Strings.useCurrentLocation;
+                          advertisementControllers.countryController.clear();
+                          advertisementControllers.selectedCity = null;
+                          advertisementControllers.imagePath = [];
+
+                          PaymentController paymentController =
+                          Get.put(PaymentController());
 
 
-               GetBuilder<AdHomeController>(
-                 id: "network",
-                   builder: (controller){
-                     controller.CheckUserConnection();
-                 return  InkWell(
-                   onTap: controller.ActiveConnection == false
-                       ? (){
-                     errorToast("No internet connection");
-                   }
-                       :() async {
-                     advertisementControllers.tagsController.clear();
-                     advertisementControllers.titleController.clear();
-                     advertisementControllers.countryController.clear();
-                     advertisementControllers.streetController.clear();
-                     advertisementControllers.cityController.clear();
-                     advertisementControllers.provinceController.clear();
-                     advertisementControllers.postalCodeController.clear();
-                     advertisementControllers.dateController.clear();
-                     advertisementControllers.descriptoionController.clear();
-                     advertisementControllers.urlLinkController.clear();
-                     advertisementControllers.callToActionController.clear();
-                     advertisementControllers.callToAction = null;
-                     advertisementControllers.address =
-                         Strings.useCurrentLocation;
-                     advertisementControllers.countryController.clear();
-                     advertisementControllers.selectedCity = null;
-                     advertisementControllers.imagePath = [];
-
-                     PaymentController paymentController =
-                     Get.put(PaymentController());
-
-
-                     await paymentController.listCardApi(showToast: false);
+                          await paymentController.listCardApi(showToast: false);
 
 
 
-                     paymentController.listCardModel.data?.length == null
-                         ? controller.onTap()
-                         : Get.to(() => CreateAdvertisementScreen());
-                     controller.update(["update"]);
-                   },
-                   child: Container(
-                     height: 31,
-                     width: 31,
-                     margin: const EdgeInsets.only(bottom: 12),
-                     decoration: const BoxDecoration(
-                       color: ColorRes.color_9297FF,
-                       shape: BoxShape.circle,
-                     ),
-                     child:
-                     const Icon(Icons.add, size: 15, color: ColorRes.white),
-                   ),
-                 );
-               })
+                          paymentController.listCardModel.data?.length == null
+                              ? controller.onTap()
+                              : Get.to(() => CreateAdvertisementScreen());
+                          controller.update(["update"]);
+                        },
+                        child: Container(
+                          height: 34,
+                          width: 34,
+                          margin: const EdgeInsets.only(bottom: 12),
+                          decoration: const BoxDecoration(
+                            color: ColorRes.color_9297FF,
+                            shape: BoxShape.circle,
+                          ),
+                          child:
+                          const Icon(Icons.add, size: 15, color: ColorRes.white),
+                        ),
+                      );
+                    }),
+               /*Padding(
+                 padding: EdgeInsets.only(top: 50),
+                 child:  GetBuilder<AdHomeController>(
+                     id: "network",
+                     builder: (controller){
+                       controller.CheckUserConnection();
+                       return  InkWell(
+                         onTap: controller.ActiveConnection == false
+                             ? (){
+                           errorToast("No internet connection");
+                         }
+                             :() async {
+                           advertisementControllers.tagsController.clear();
+                           advertisementControllers.titleController.clear();
+                           advertisementControllers.countryController.clear();
+                           advertisementControllers.streetController.clear();
+                           advertisementControllers.cityController.clear();
+                           advertisementControllers.provinceController.clear();
+                           advertisementControllers.postalCodeController.clear();
+                           advertisementControllers.dateController.clear();
+                           advertisementControllers.descriptoionController.clear();
+                           advertisementControllers.urlLinkController.clear();
+                           advertisementControllers.callToActionController.clear();
+                           advertisementControllers.callToAction = null;
+                           advertisementControllers.address =
+                               Strings.useCurrentLocation;
+                           advertisementControllers.countryController.clear();
+                           advertisementControllers.selectedCity = null;
+                           advertisementControllers.imagePath = [];
+
+                           PaymentController paymentController =
+                           Get.put(PaymentController());
+
+
+                           await paymentController.listCardApi(showToast: false);
+
+
+
+                           paymentController.listCardModel.data?.length == null
+                               ? controller.onTap()
+                               : Get.to(() => CreateAdvertisementScreen());
+                           controller.update(["update"]);
+                         },
+                         child: Container(
+                           height: 34,
+                           width: 34,
+                           margin: const EdgeInsets.only(bottom: 12),
+                           decoration: const BoxDecoration(
+                             color: ColorRes.color_9297FF,
+                             shape: BoxShape.circle,
+                           ),
+                           child:
+                           const Icon(Icons.add, size: 15, color: ColorRes.white),
+                         ),
+                       );
+                     }),
+               ),*/
               ],
             ),
           ),
