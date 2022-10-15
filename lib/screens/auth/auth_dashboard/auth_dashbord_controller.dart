@@ -64,12 +64,13 @@ String? token;
     // GoogleIdVerification.postRegister(user.uid).then((value) {print(value);});
 
     try {
+      loading.value = true;
       token = await NotificationService.getFcmToken();
       if (await googleSignIn.isSignedIn()) {
         await googleSignIn.signOut();
         //flutterToast(Strings.googleLogOutSuccess);
       }
-      loading.value = true;
+
       final GoogleSignInAccount? account = await googleSignIn.signIn();
       final GoogleSignInAuthentication authentication =
       await account!.authentication;
@@ -79,7 +80,7 @@ String? token;
         idToken: authentication.idToken,
         accessToken: authentication.accessToken,
       );
-    loading.value = false;
+
       final UserCredential authResult =
       await auth.signInWithCredential(credential);
       final User? user = authResult.user;
@@ -116,12 +117,12 @@ String? token;
       });
       loading.value = false;
     } catch (e) {
-      loading.value == false;
+      loading.value = false;
       errorToast(e.toString());
       debugPrint(e.toString());
-      loading.value == false;
+      loading.value = false;
     }
-    loading.value == false;
+    loading.value = false;
 
     //flutterToast(Strings.googleSignInSuccess);
   }
