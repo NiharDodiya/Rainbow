@@ -15,14 +15,13 @@ class ChangeAdvertiserController extends GetxController {
   bool? showNewPassword = false;
   bool? showConfirmPassword = false;
 
-
   void onTapShowPassword() {
     if (showPassword == false) {
       showPassword = true;
-      print(showPassword);
+
     } else {
       showPassword = false;
-      print(showPassword);
+
     }
     update(["new"]);
   }
@@ -30,20 +29,21 @@ class ChangeAdvertiserController extends GetxController {
   void onTapShowNewPassword() {
     if (showNewPassword == false) {
       showNewPassword = true;
-      print(showNewPassword);
+
     } else {
       showNewPassword = false;
-      print(showNewPassword);
+
     }
     update(["new"]);
   }
+
   void onTapShowConfirmPassword() {
     if (showConfirmPassword == false) {
       showConfirmPassword = true;
-      print(showConfirmPassword);
+
     } else {
       showConfirmPassword = false;
-      print(showConfirmPassword);
+
     }
     update(["new"]);
   }

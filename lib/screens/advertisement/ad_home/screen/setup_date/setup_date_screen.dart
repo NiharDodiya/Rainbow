@@ -600,20 +600,17 @@ class ShowBottomNext extends StatelessWidget {
                         height: Get.height * 0.0665,
                       ),
                       SubmitButton(
-                        onTap: () async{
-
-
-
+                        onTap: () async {
                           await createAdvertisementController.uploadImageApi();
 
-                         // createAdvertisementController.loader.value = false;
+                          // createAdvertisementController.loader.value = false;
 
                           //Get.to(() => PaymentSuccessfulScreen());
                           /* setupDateController.boostAdvertisementApi();*/
                         },
                         child: Text(
                           /*"Pay ${setupDateController.amountController.text}",*/
-                          "Pay 120.00USD",
+                          "Pay \$200.00",
                           style: gilroyBoldTextStyle(
                             fontSize: 16,
                             color: ColorRes.black,

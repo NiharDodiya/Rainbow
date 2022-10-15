@@ -66,7 +66,7 @@ class AccountInformationController extends GetxController {
     imageID = PrefService.getInt(PrefKeys.advertiserProfileID);
     await AdInformationAPI.adProfileView().then((value) {
       adViewProfile = value;
-      print(value);
+
       imageProfile = adViewProfile.data!.profileImage!;
       fullNameController.text = adViewProfile.data!.fullName!;
       emailController.text = adViewProfile.data!.email!;
@@ -103,12 +103,11 @@ class AccountInformationController extends GetxController {
 
   bool countryBox = false;
 
-  dropDownBox(){
-    if(countryBox == false){
+  dropDownBox() {
+    if (countryBox == false) {
       countryBox = true;
       update(["drop"]);
-    }
-    else{
+    } else {
       countryBox = false;
       update(["drop"]);
     }
@@ -118,11 +117,13 @@ class AccountInformationController extends GetxController {
   List filterList = [];
 
   void serching(value) {
-    filterList = (listCountryModel.data?.where(
-            (element) {
-          return element.name.toString().toLowerCase().contains(value.toString().toLowerCase());
-        })
-        .toList()) ?? [];
+    filterList = (listCountryModel.data?.where((element) {
+          return element.name
+              .toString()
+              .toLowerCase()
+              .contains(value.toString().toLowerCase());
+        }).toList()) ??
+        [];
     update(["drop"]);
   }
 
@@ -173,11 +174,13 @@ class AccountInformationController extends GetxController {
       loader.value = true;
       getCountry();
       await onTapSave();
+      loader.value = false;
+
     }
   }
 
   void getCountry() {
- /*   for (int i = 0; i < countryCity.length; i++) {
+    /*   for (int i = 0; i < countryCity.length; i++) {
       if (countryCity[i] == selectCountry) {
         idCountry = countryId[i];
       }
@@ -188,19 +191,17 @@ class AccountInformationController extends GetxController {
         idCompanyCountry = listCountryModel.data![i].id.toString();
       }
     }
-  /*  for (int i = 0; i < countryCity.length; i++) {
+    /*  for (int i = 0; i < countryCity.length; i++) {
       if (countryCity[i] == selectCompanyCountry) {
         idCompanyCountry = countryId[i];
       }
     }*/
   }
 
-
   String? myId;
 
 //account validation
   bool accountValidation() {
-
     for (int i = 0; i < listCountryModel.data!.length; i++) {
       if (listCountryModel.data![i].name == countryController.text) {
         myId = countryController.text;
@@ -231,10 +232,16 @@ class AccountInformationController extends GetxController {
     } else if (phoneNumberController.text.isEmpty) {
       errorToast(Strings.phoneNumber);
       return false;
-    } else if (uploadImage.data == null) {
+    } else if (imagePath == null &&
+        adHomeController.viewAdvertiserModel.data!.profileImage!.isEmpty) {
       errorToast(Strings.uploadImageError);
       return false;
-    }else if(myId == null || myId == ""){
+    }
+    /*else if (uploadImage.data == null) {
+      errorToast(Strings.uploadImageError);
+      return false;
+    }*/
+    else if (myId == null || myId == "") {
       errorToast("Please enter valid country name");
       return false;
     }
@@ -273,6 +280,8 @@ class AccountInformationController extends GetxController {
 
   //call Camera
   navigateToCamera() async {
+    adHomeController.viewAdvertiserModel.data!.profileImage = null;
+    adHomeController.viewAdvertiserModel.data!.profileImage = "";
     String? path = await cameraPickImage();
 
     if (path != null) {
@@ -297,12 +306,16 @@ class AccountInformationController extends GetxController {
   }
 
   navigateToGallary() async {
+    adHomeController.viewAdvertiserModel.data!.profileImage = null;
+    adHomeController.viewAdvertiserModel.data!.profileImage = "";
     String? path = await gallaryPickImage();
-
+    update(["Getpic"]);
     if (path != null) {
       imagePath = File(path);
       imageID = null;
+      update(["Getpic"]);
     }
+    update(["Getpic"]);
   }
 
 //open Gallary
@@ -321,15 +334,17 @@ class AccountInformationController extends GetxController {
 
   Future<void> uploadImageApi() async {
     loader.value = true;
+    update(["Getpic"]);
     try {
+      update(["Getpic"]);
       await UploadImageApi.postRegister(imagePath!.path.toString())
           .then((value) async {
         uploadImage = value!;
-        imageID = uploadImage.data!.id;
+        imageID = uploadImage.data?.id;
         await PrefService.setValue(
             PrefKeys.advertiserProfileID, uploadImage.data!.id);
       });
-
+      update(["Getpic"]);
       loader.value = false;
     } catch (e) {
       loader.value = false;
@@ -351,10 +366,11 @@ class AccountInformationController extends GetxController {
   // website.text = adViewProfile.data!.compnayWebsite!;
 
   Future<void> onTapSave() async {
+    update(["Getpic"]);
     loader.value = true;
     Map<String, Map<String, dynamic>> param1 = {
       "advirtisersData": {
-        "id_item_profile": imageID.toString(),
+        // "id_item_profile": imageID.toString(),
         "full_name": fullNameController.text,
         "email": emailController.text,
         "house_number": houseNumberController.text,
@@ -375,11 +391,15 @@ class AccountInformationController extends GetxController {
         "website": website.text,
       }
     };
-
+    update(["Getpic"]);
+    if (imageID != 0 || imageID != null) {
+      param1["advirtisersData"]!["id_item_profile"] = imageID;
+    }
+    update(["Getpic"]);
     await AdInformationAPI.adProfileEdit(param1).then(
       (value) {
         adViewProfile = value;
-        print(value);
+
         fullNameController.text = adViewProfile.data!.fullName!;
         emailController.text = adViewProfile.data!.email!;
         houseNumberController.text = adViewProfile.data!.houseNumber!;

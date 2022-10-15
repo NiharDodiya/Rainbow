@@ -1,7 +1,7 @@
 part of search_map_place_updated;
 
 class SearchMapPlaceWidget extends StatefulWidget {
-  SearchMapPlaceWidget({
+  const SearchMapPlaceWidget({
     required this.apiKey,
     this.placeholder = 'Search',
     this.icon = Icons.search,
@@ -22,6 +22,7 @@ class SearchMapPlaceWidget extends StatefulWidget {
             (location != null && radius != null)),
         super(key: key);
 
+  @override
   final Key? key;
 
   /// API Key of the Google Maps API.
@@ -142,7 +143,7 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
   }
 
   @override
-  Widget build(BuildContext context) => Container(
+  Widget build(BuildContext context) => SizedBox(
         width: MediaQuery.of(context).size.width * 0.9,
         child: _searchContainer(
           child: _searchInput(context),
@@ -262,9 +263,9 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
   BoxDecoration _containerDecoration() {
     return BoxDecoration(
       color: widget.bgColor,
-      borderRadius: const BorderRadius.all(const Radius.circular(6.0)),
-      boxShadow: [
-        const BoxShadow(color: Colors.black12, blurRadius: 20, spreadRadius: 10)
+      borderRadius: const BorderRadius.all(Radius.circular(6.0)),
+      boxShadow: const [
+         BoxShadow(color: Colors.black12, blurRadius: 20, spreadRadius: 10)
       ],
     );
   }

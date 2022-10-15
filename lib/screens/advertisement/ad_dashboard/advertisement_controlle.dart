@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rainbow/common/Widget/log_out_pop_up.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/Home/settings/notificationOnOff_api/notificationOnOff_api.dart';
@@ -9,8 +10,7 @@ import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_notification/ad_notification_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_payment/ad_payment_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_support/ad_support_controller.dart';
-import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
-import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
+
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
@@ -28,7 +28,7 @@ class AdvertisementController extends GetxController {
   final GlobalKey<ScaffoldState> key = GlobalKey();
 
   RxBool loader = false.obs;
-  bool? isSwitched = false;
+  bool? isSwitched = true;
 
   @override
   void onInit() {
@@ -41,10 +41,11 @@ class AdvertisementController extends GetxController {
     try {
       await ListOfCountryApi.postRegister()
           .then((value) => listCountryModel = value!);
-      print(listCountryModel);
+
       getCountry();
     } catch (e) {
-      errorToast(e.toString());
+      //errorToast(e.toString());
+      //errorToast("No internet connection");
       debugPrint(e.toString());
     }
   }
@@ -53,9 +54,10 @@ class AdvertisementController extends GetxController {
     try {
       await ListOfCountryApi.postRegister()
           .then((value) => listCountryModel = value!);
-      print(listCountryModel);
+
       getCountry();
     } catch (e) {
+      //errorToast("No internet connection");
       debugPrint(e.toString());
     }
   }
@@ -83,15 +85,11 @@ class AdvertisementController extends GetxController {
     Get.to(() => AccountInformationScreen());
   }
 
-  Future<void> onTapLogOut() async {
-    await PrefService.clear();
-    Get.offAll(() => AuthDashboard());
-    PrefService.setValue(PrefKeys.skipBoardingScreen, true);
-  }
-
   void notification() {
+    AdHomeController adHomeController = Get.find();
+    adHomeController.CheckUserConnection();
     isSwitched = PrefService.getBool(PrefKeys.notification);
-    print(isSwitched);
+
     update(["settings"]);
   }
 
@@ -109,7 +107,7 @@ class AdvertisementController extends GetxController {
 
       loader.value = false;
     } catch (e) {
-      print(e.toString());
+
       loader.value = false;
     }
   }

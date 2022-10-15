@@ -11,7 +11,7 @@ import '../../../../utils/color_res.dart';
 import '../../../../utils/strings.dart';
 
 class AdvertiserVerifyOtpScreen extends StatefulWidget {
-  AdvertiserVerifyOtpScreen({Key? key}) : super(key: key);
+  const AdvertiserVerifyOtpScreen({Key? key}) : super(key: key);
 
   @override
   State<AdvertiserVerifyOtpScreen> createState() =>
@@ -26,7 +26,7 @@ class _AdvertiserVerifyOtpScreenState extends State<AdvertiserVerifyOtpScreen> {
   void initState() {
     controller.startTimer();
     controller.verifyController = TextEditingController();
-    controller.phoneNumberRegister();
+    /*  controller.phoneNumberRegister();*/
     super.initState();
   }
 
@@ -99,7 +99,7 @@ class _AdvertiserVerifyOtpScreenState extends State<AdvertiserVerifyOtpScreen> {
                                       child: Row(
                                         children: [
                                           Text(
-                                            "${Strings.codeSent}${PrefService.getString(PrefKeys.phonSaveNumberAdvertiser).toString()}",
+                                            "${Strings.codeSent} ${PrefService.getString(PrefKeys.phonSaveNumberAdvertiser).toString()}",
                                             style: TextStyle(
                                                 color: ColorRes.white
                                                     .withOpacity(0.5),

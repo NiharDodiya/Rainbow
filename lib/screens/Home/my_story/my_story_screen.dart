@@ -98,7 +98,6 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                   indicatorPadding: EdgeInsets.only(
                       top: Get.height * 0.02, right: 50, left: 50),
                   gestureItemBuilder: (context, pageInde, storyIndex) {
-                    print("<<<<<<<<<<<<-----------------$storyIndex---------------->>>>>>>>>>>>>");
                     return Stack(
                       children: [
                         Align(

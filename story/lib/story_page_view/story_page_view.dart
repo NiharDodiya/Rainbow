@@ -24,7 +24,7 @@ enum IndicatorAnimationCommand { pause, resume }
 ///
 /// [itemBuilder], [storyLength], [pageLength] are required.
 class StoryPageView extends StatefulWidget {
-  StoryPageView({
+  const StoryPageView({
     Key? key,
     required this.itemBuilder,
     required this.storyLength,
@@ -125,7 +125,7 @@ class _StoryPageViewState extends State<StoryPageView> {
           final isLeaving = (index - currentPageValue) <= 0;
           final t = (index - currentPageValue);
           final rotationY = lerpDouble(0, 30, t as double)!;
-          final maxOpacity = 0.8;
+          const maxOpacity = 0.8;
           final num opacity =
               lerpDouble(0, maxOpacity, t.abs())!.clamp(0.0, maxOpacity);
           final isPaging = opacity != maxOpacity;
@@ -144,7 +144,7 @@ class _StoryPageViewState extends State<StoryPageView> {
                   pageIndex: index,
                   animateToPage: (index) {
                     pageController!.animateToPage(index,
-                        duration: Duration(milliseconds: 500),
+                        duration: const Duration(milliseconds: 500),
                         curve: Curves.ease);
                   },
                   isCurrentPage: currentPageValue == index,
@@ -165,7 +165,7 @@ class _StoryPageViewState extends State<StoryPageView> {
                   Positioned.fill(
                     child: Opacity(
                       opacity: opacity as double,
-                      child: ColoredBox(
+                      child: const ColoredBox(
                         color: Colors.black87,
                       ),
                     ),
@@ -235,10 +235,10 @@ class _StoryPageFrame extends StatefulWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_context) => StoryLimitController(),
+          create: (context) => StoryLimitController(),
         ),
         ChangeNotifierProvider(
-          create: (_context) => StoryStackController(
+          create: (context) => StoryStackController(
             storyLength: storyLength,
             onPageBack: () {
               if (pageIndex != 0) {
@@ -247,7 +247,7 @@ class _StoryPageFrame extends StatefulWidget {
             },
             onPageForward: () {
               if (pageIndex == pageLength - 1) {
-                _context
+                context
                     .read<StoryLimitController>()
                     .onPageLimitReached(onPageLimitReached);
               } else {
@@ -335,7 +335,7 @@ class _StoryPageFrameState extends State<_StoryPageFrame>
   }
 
   Future<void> downloadImage() async {
-    await Future.delayed(Duration(milliseconds: 800));
+    await Future.delayed(const Duration(milliseconds: 800));
     isImageLoading = true;
     animationController.stop();
     if(widget.loadImage != null){

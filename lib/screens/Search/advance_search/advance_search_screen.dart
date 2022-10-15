@@ -12,6 +12,7 @@ import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Search/search_controller.dart';
+import 'package:rainbow/screens/notification/notification_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -20,7 +21,7 @@ import 'package:search_map_place_updated/search_map_place_updated.dart';
 class AdvanceSearchScreen extends StatefulWidget {
   final String title;
 
-  AdvanceSearchScreen({Key? key, required this.title}) : super(key: key);
+  const AdvanceSearchScreen({Key? key, required this.title}) : super(key: key);
 
   @override
   State<AdvanceSearchScreen> createState() => _AdvanceSearchScreenState();
@@ -49,17 +50,34 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
 
   Future<void> loadData() async {
     for (int i = 0; i < searchController.listLatLongData.length; i++) {
+
       markers.add(Marker(
-        markerId: MarkerId(
-          searchController.listLatLongData[i].fullName.toString(),
-        ),
-        position: LatLng(searchController.listLatLongData[i].latitude!,
-            searchController.listLatLongData[i].longitude!),
-        icon: await MarkerIcon.downloadResizePictureCircle(
+          visible: true,
+          markerId: MarkerId(
+            searchController.listLatLongData[i].fullName.toString(),
+          ),
+          position: LatLng(searchController.listLatLongData[i].latitude!,
+              searchController.listLatLongData[i].longitude!),
+          icon: BitmapDescriptor.defaultMarker,
+          infoWindow: InfoWindow(
+            title: searchController.listLatLongData[i].fullName,
+          )
+          /*await MarkerIcon.downloadResizePictureCircle(
           searchController.listLatLongData[i].profileImage.toString(),
-          size: 120,
-        ),
-      ));
+          size: 200,
+        ),*/
+
+          ));
+
+      getCameraPosition(
+          lat: searchController.listLatLongData[i].latitude!,
+          long: searchController.listLatLongData[i].longitude!);
+
+      markerLoader = false;
+
+      latitude = searchController.listLatLongData[i].latitude!;
+      longitude = searchController.listLatLongData[i].longitude!;
+
       /*Uint8List? image1 = await loadNetWorkImage(
           searchController.listLatLongData[i].profileImage.toString());
 
@@ -81,6 +99,19 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
       ));*/
     }
     markerLoader = false;
+
+    setState(() {});
+  }
+
+  getCameraPosition({double? lat, double? long}) {
+    googleMapController?.animateCamera(CameraUpdate.newCameraPosition(
+      CameraPosition(
+        //innital position in map
+        target: LatLng(lat!, long!),
+        //initial position
+        zoom: 50.0, //initial zoom level
+      ),
+    ));
     setState(() {});
   }
 
@@ -121,8 +152,8 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                     ),
                     child: Stack(
                       children: [
-                        appBar(title: widget.title),
-                        const SizedBox(height: 20),
+                        appBar(title: "Find ${widget.title}"),
+                        //const SizedBox(height: 60),
                         /*    searchUser(),*/
                         userProfile(),
                         listOfUser(controller),
@@ -130,7 +161,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                     ),
                   ),
                 ),
-                controller.loader.isTrue
+                controller.loader.value == true
                     ? const FullScreenLoader()
                     : const SizedBox()
               ],
@@ -150,13 +181,16 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
           const SizedBox(height: 20 //Get.height * 0.03,
               ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                flex: 1,
-                child: GestureDetector(
-                  onTap: () {
-                    Get.back();
-                  },
+              SizedBox(
+                width: Get.width * 0.0001,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.back();
+                },
+                child: Center(
                   child: Image.asset(
                     AssetRes.backIcon,
                     height: 16,
@@ -165,27 +199,32 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                   ),
                 ),
               ),
-              Expanded(
-                flex: 4,
-                child: GestureDetector(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      title ?? "Advance Search",
-                      style: gilroyBoldTextStyle(fontSize: 18),
-                    ),
+              SizedBox(
+                width: Get.width * 0.04,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.back();
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    title ?? "Advance Search",
+                    style: gilroyBoldTextStyle(fontSize: 18),
                   ),
                 ),
               ),
+              SizedBox(
+                width: Get.width * 0.0001,
+              ),
               InkWell(
                 onTap: () {
-                  ConnectionsController connectionController =
+                  /*ConnectionsController connectionController =
                       Get.put(ConnectionsController());
                   connectionController.init();
-                  Get.to(() => ConnectionsScreen());
+                  Get.to(() => ConnectionsScreen());*/
+
+                  Get.to(() => NotificationScreen());
                 },
                 child: Stack(
                   children: [
@@ -332,68 +371,72 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
             color: Colors.white,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(12), topRight: Radius.circular(12))),
-        child: ListView.builder(
-          shrinkWrap: true,
-          padding: const EdgeInsets.only(top: 5, bottom: 20),
-          itemCount: controller.listLatLongData.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 25, left: 20),
-              child: Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: Image.network(
-                      controller.listLatLongData[index].profileImage.toString(),
-                      height: 50,
-                      width: 50,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Image.asset(
-                          AssetRes.portrait_placeholder,
-                          height: 50,
-                          width: 50,
-                        );
-                      },
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        controller.listLatLongData[index].fullName.toString(),
-                        style: gilroyMediumTextStyle(
-                            fontSize: 16, color: ColorRes.color_303030),
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 40),
+          child: ListView.builder(
+            shrinkWrap: true,
+            padding: const EdgeInsets.only(top: 5, bottom: 20),
+            itemCount: controller.listLatLongData.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.only(top: 15, left: 20, bottom: 5),
+                child: Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.network(
+                        controller.listLatLongData[index].profileImage
+                            .toString(),
+                        height: 50,
+                        width: 50,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Image.asset(
+                            AssetRes.portrait_placeholder,
+                            height: 50,
+                            width: 50,
+                          );
+                        },
                       ),
-                      Text(
-                          controller.listLatLongData[index].userStatus
-                              .toString(),
-                          style: gilroyMediumTextStyle(
-                              fontSize: 16, color: ColorRes.color_979797)),
-                    ],
-                  ),
-                  const Spacer(),
-                  InkWell(
-                    onTap: () {
-                      searchController.sendFriendRequestAdvance(
-                          controller.listLatLongData[index].id.toString());
-                    },
-                    child: Image.asset(
-                      AssetRes.addPeople,
-                      height: 40,
-                      width: 40,
                     ),
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  )
-                ],
-              ),
-            );
-          },
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          controller.listLatLongData[index].fullName.toString(),
+                          style: gilroyMediumTextStyle(
+                              fontSize: 16, color: ColorRes.color_303030),
+                        ),
+                        Text(
+                            controller.listLatLongData[index].userStatus
+                                .toString(),
+                            style: gilroyMediumTextStyle(
+                                fontSize: 16, color: ColorRes.color_979797)),
+                      ],
+                    ),
+                    const Spacer(),
+                    InkWell(
+                      onTap: () {
+                        searchController.sendFriendRequestAdvance(
+                            controller.listLatLongData[index].id.toString());
+                      },
+                      child: Image.asset(
+                        AssetRes.addPeople,
+                        height: 40,
+                        width: 40,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 16,
+                    )
+                  ],
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
@@ -416,7 +459,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                     child: Stack(
                       children: [
                         Positioned(
-                          top: 20,
+                          top: 50,
                           child: ClipRRect(
                             borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(20),
@@ -428,18 +471,19 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                                 mapType: MapType.normal,
                                 markers: Set<Marker>.of(markers),
                                 initialCameraPosition: CameraPosition(
-                                    target: LatLng(
-                                        homeController.controller.viewProfile
-                                            .data!.latitude!,
-                                        homeController.controller.viewProfile
-                                            .data!.longitude!),
-                                    zoom: 15),
+                                  target: LatLng(
+                                      homeController.controller.viewProfile
+                                          .data!.latitude!,
+                                      homeController.controller.viewProfile
+                                          .data!.longitude!),
+                                  zoom: 30,
+                                ),
                                 onMapCreated: (GoogleMapController controller) {
                                   setState(() {
                                     googleMapController = controller;
                                   });
 
-                                  searchController.gMapController.complete();
+                                  searchController.gMapController.complete;
                                 },
                               ),
                             ),
@@ -450,14 +494,13 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                   ),
                 ),
                 Positioned(
-                  top: 55, //Get.height * 0.08,
+                  top: 80,
+                  //Get.height * 0.08,
                   child: Row(
                     children: [
+                      SizedBox(width: Get.width * 0.06),
                       SizedBox(
-                        width: Get.width * 0.1,
-                      ),
-                      SizedBox(
-                        width: 248.77,
+                        width: Get.width * 0.72,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(15),
                           child: SearchMapPlaceWidget(
@@ -477,7 +520,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                             textColor: ColorRes.color_09110E,
                             iconColor: Colors.white,
                             placeType: PlaceType.address,
-                            apiKey: "AIzaSyDlNJdlotYUUVPg8iAVMmBa16xIsOjhzUY",
+                            apiKey: "AIzaSyAh74-e_IDYN53QL3EpLDk6BvcOCxIiyE0",
                             onSelected: (Place place) async {
                               Geolocation? geolocation =
                                   await place.geolocation;
@@ -491,48 +534,48 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                           ),
                         ),
                       ),
-                      Container(
-                        height: 52,
-                        width: 50,
-                        margin: const EdgeInsets.only(left: 9),
-                        padding: const EdgeInsets.all(15),
-                        decoration: const BoxDecoration(
-                          color: ColorRes.black,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(15),
-                          ),
-                        ),
-                        child: Image.asset(
-                          AssetRes.filterIcon,
-                          height: 15,
-                          width: 15,
-                        ),
-                      )
+                      // Container(
+                      //   height: 52,
+                      //   width: 50,
+                      //   margin: const EdgeInsets.only(left: 9),
+                      //   padding: const EdgeInsets.all(15),
+                      //   decoration: const BoxDecoration(
+                      //     color: ColorRes.black,
+                      //     borderRadius: BorderRadius.all(
+                      //       Radius.circular(15),
+                      //     ),
+                      //   ),
+                      //   child: Image.asset(
+                      //     AssetRes.filterIcon,
+                      //     height: 15,
+                      //     width: 15,
+                      //   ),
+                      // )
                     ],
                   ),
                 ),
-                // Positioned(
-                //   top: 55,
-                //   // left: 285,
-                //   right: 30,
-                //   child: Container(
-                //     height: 52,
-                //     width: 50,
-                //     margin: const EdgeInsets.only(left: 9),
-                //     padding: const EdgeInsets.all(15),
-                //     decoration: const BoxDecoration(
-                //       color: ColorRes.black,
-                //       borderRadius: BorderRadius.all(
-                //         Radius.circular(15),
-                //       ),
-                //     ),
-                //     child: Image.asset(
-                //       AssetRes.filterIcon,
-                //       height: 15,
-                //       width: 15,
-                //     ),
-                //   ),
-                // )
+                Positioned(
+                  top: 80,
+                  // left: 285,
+                  right: 20,
+                  child: Container(
+                    height: 52,
+                    width: 50,
+                    margin: const EdgeInsets.only(left: 9),
+                    padding: const EdgeInsets.all(15),
+                    decoration: const BoxDecoration(
+                      color: ColorRes.black,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(15),
+                      ),
+                    ),
+                    child: Image.asset(
+                      AssetRes.filterIcon,
+                      height: 15,
+                      width: 15,
+                    ),
+                  ),
+                )
               ],
             );
           },

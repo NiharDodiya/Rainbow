@@ -3,6 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/screens/Home/home_controller.dart';
+import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
+import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_api.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
 import 'package:rainbow/screens/auth/phonenumber/phonenumber_Screen.dart';
@@ -43,7 +47,29 @@ class LoginController extends GetxController {
     // Get.off(() => AdviserRegisterScreen(), );
   }
 
-  void onLoginTap() {
+  void onLoginTap(context) {
+    HomeController homeController = Get.put(HomeController());
+    AdHomeController adHomeController = Get.put(AdHomeController());
+
+    adHomeController.viewAdvertiserModel.data?.profilePhoto = null;
+    adHomeController.viewAdvertiserModel.data?.fullName = "";
+    adHomeController.viewAdvertiserModel.data?.profileImage = "";
+    adHomeController.viewAdvertiserModel.data?.email = "";
+    homeController.viewProfile.data = null;
+    homeController.controller.viewProfile.data?.profileImage = null;
+    homeController.controller.viewProfile.data?.profileImage = null;
+
+    homeController.controller.viewProfile.data?.profileImage = "";
+
+    homeController.viewStoryController.storyModel.friendsStory = null;
+    homeController.viewStoryController.storyModel.friendsStory?.length = 0;
+    homeController.friendPostListData = [];
+
+    FocusScopeNode currentfocus = FocusScope.of(context);
+    if (!currentfocus.hasPrimaryFocus) {
+      currentfocus.unfocus();
+    }
+
     if (validation()) {
       registerDetails();
     }
@@ -56,10 +82,10 @@ class LoginController extends GetxController {
   void onTapShowPassword() {
     if (showPassword == false) {
       showPassword = true;
-      print(showPassword);
+
     } else {
       showPassword = false;
-      print(showPassword);
+
     }
     update(["login_form"]);
   }
@@ -80,9 +106,14 @@ class LoginController extends GetxController {
 
   LoginModel loginModel = LoginModel();
 
+  /* ViewStoryController viewStoryController = Get.put(ViewStoryController());
+  HomeController homeController = Get.put(HomeController());*/
   Future<void> registerDetails() async {
     loader.value = true;
     try {
+      /* viewStoryController.storyModel.friendsStory=null;
+      homeController.myStoryController.viewStoryController.storyModel
+          .myStory=null;*/
       loginModel = await LoginApi.postRegister(
         emailController.text,
         passwordController.text,
@@ -105,7 +136,7 @@ class LoginController extends GetxController {
           email: emailController.text.trim(),
           password: passwordController.text.trim());
       if (userCredential.user != null) {
-        print(userCredential.user!.uid);
+
         userUid = userCredential.user!.uid;
         await PrefService.setValue(PrefKeys.uid, userCredential.user!.uid);
         await addUser(userCredential.user!.uid);
@@ -117,7 +148,7 @@ class LoginController extends GetxController {
         //Get.to(() => const UserListScreen());
       }
     } on FirebaseAuthException catch (e) {
-      print(e.toString());
+
       if (e.code == "user-not-found") {
         // Get.snackbar("Error", "User Not Found");
       } else if (e.code == "wrong-password") {
@@ -126,11 +157,12 @@ class LoginController extends GetxController {
     }
     update(['login']);
   }
-String? token;
+
+  String? token;
 
   Future<void> addUser(String uid) async {
     token = await NotificationService.getFcmToken();
-    print("usert token$token");
+
     await firebaseFirestore
         .collection("users")
         .doc(uid)

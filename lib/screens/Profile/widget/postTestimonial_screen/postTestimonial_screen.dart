@@ -131,14 +131,12 @@ class PostTestimonialScreen extends StatelessWidget {
                   currentfocus.unfocus();
                 }
 
-                if(controller.postTestimonials.text == ""){
+                if (controller.postTestimonials.text == "") {
                   errorToast("Testimonials field is empty");
-                }
-                else{
+                } else {
                   controller.postTestimonialsApi(id.toString(), context);
                   Get.back();
                 }
-
               },
             )
           ],

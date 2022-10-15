@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-EditCardModel editCardModelFromJson(String str) => EditCardModel.fromJson(json.decode(str));
+EditCardModel editCardModelFromJson(String str) =>
+    EditCardModel.fromJson(json.decode(str));
 
 String editCardModelToJson(EditCardModel data) => json.encode(data.toJson());
 
@@ -18,12 +19,12 @@ class EditCardModel {
   String? message;
 
   factory EditCardModel.fromJson(Map<String, dynamic> json) => EditCardModel(
-    status: json["status"],
-    message: json["message"],
-  );
+        status: json["status"],
+        message: json["message"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-  };
+        "status": status,
+        "message": message,
+      };
 }

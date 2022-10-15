@@ -205,20 +205,17 @@ class UserDetail {
         address1: json["address1"],
         address2: json["address2"],
         phoneNumber: json["phone_number"],
-        maritalStatus:
-            json["marital_status"],
-        onlineStatus:
-            json["online_status"],
+        maritalStatus: json["marital_status"],
+        onlineStatus: json["online_status"],
         idEthnicity: json["id_ethnicity"],
         birthDate: json["birth_date"] == null
             ? null
             : DateTime.parse(json["birth_date"]),
         noKids: json["no_kids"],
-        mobileStatus:
-            json["mobile_status"],
+        mobileStatus: json["mobile_status"],
         role: json["role"],
         referrallCode:
-            json["referrall_code"],
+            json["referrall_code"] == null ? "" : json["referrall_code"],
         idStatus: json["id_status"],
         latitude: json["latitude"].toString().isEmpty
             ? null
@@ -243,12 +240,10 @@ class UserDetail {
         twitter: json["twitter"],
         about: json["about"],
         idCardPrimary:
-            json["id_card_primary"],
+            json["id_card_primary"] == null ? null : json["id_card_primary"],
         hobbiesAndInterest: json["hobbies_and_Interest"],
-        backgroundImage:
-            json["background_image"],
-        profileImage:
-            json["profile_image"],
+        backgroundImage: json["background_image"],
+        profileImage: json["profile_image"],
         status: json["status"],
       );
 
@@ -286,8 +281,7 @@ class UserDetail {
         "twitter": twitter,
         "about": about,
         "id_card_primary": idCardPrimary,
-        "hobbies_and_Interest":
-            hobbiesAndInterest,
+        "hobbies_and_Interest": hobbiesAndInterest,
         "background_image": backgroundImage,
         "profile_image": profileImage,
         "status": status,

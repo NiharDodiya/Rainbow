@@ -19,7 +19,6 @@ import 'package:rainbow/model/postView_model.dart';
 import 'package:rainbow/model/sharePost_model.dart';
 import 'package:rainbow/model/unLikePost_model.dart';
 
-
 import 'package:rainbow/screens/Home/Story/friendStory_api/friendStory_api.dart';
 import 'package:rainbow/screens/Home/addStroy/addStory_screen.dart';
 import 'package:rainbow/screens/Home/home_screen.dart';
@@ -46,7 +45,6 @@ import 'package:rainbow/screens/notification/notification_screen.dart';
 import 'package:uni_links/uni_links.dart';
 
 import 'advertise_api/advertiseApi.dart';
-
 
 class HomeController extends GetxController {
   RxBool loader = false.obs;
@@ -93,8 +91,6 @@ class HomeController extends GetxController {
   ConnectionsController connectionsController =
       Get.put(ConnectionsController());
 
-
-
   @override
   void onInit() async {
     await init();
@@ -111,7 +107,6 @@ class HomeController extends GetxController {
   }
 
   void pagination() async {
-    print("Hello");
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
       await friendPostData();
@@ -141,8 +136,7 @@ class HomeController extends GetxController {
       addStreet = place.street;
       address =
           '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
-      print(
-          "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<$address>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
       update(["advertiser"]);
     }
     // loader.value = false;
@@ -172,7 +166,7 @@ class HomeController extends GetxController {
     try {
       await ListOfNationalitiesApi.postRegister()
           .then((value) => listNationalities = value!);
-      print(listNationalities);
+
       getCountryNation();
     } catch (e) {
       debugPrint(e.toString());
@@ -183,7 +177,6 @@ class HomeController extends GetxController {
     try {
       await BlockListApi.postRegister()
           .then((value) => blockListModel = value!);
-      print(blockListModel);
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -204,7 +197,7 @@ class HomeController extends GetxController {
   /// post like list
   void onLikeBtnTap({required FriendPost friendPost, String? postId}) {
     postLikeUser = friendPost.postLikeUser ?? [];
-    print(postLikeUser);
+
     Get.bottomSheet(
       const PostLikeListScreen(),
       isScrollControlled: true,
@@ -213,7 +206,7 @@ class HomeController extends GetxController {
 
   void onPostViewUser({required FriendPost friendPost, String? postId}) {
     postViewUser = friendPost.postViewUser ?? [];
-    print(postViewUser);
+
     Get.bottomSheet(
       PostViewBottomScreen(),
       isScrollControlled: true,
@@ -229,7 +222,7 @@ class HomeController extends GetxController {
     }
     uriLinkStream.listen((event) {
       if (event != null) {
-        Get.to(() => HomeScreen());
+        Get.to(() => const HomeScreen());
       }
     });
   }
@@ -246,7 +239,9 @@ class HomeController extends GetxController {
     try {
       loader.value = true;
       sharePostModel = await MyPostApi.sharPostApi(id);
-      await friendPostDataWithOutPagination();
+      Future.delayed(const Duration(seconds: 1)).then((value) async {
+        await friendPostDataWithOutPagination();
+      });
       update(['home']);
       loader.value = false;
     } catch (e) {
@@ -259,7 +254,9 @@ class HomeController extends GetxController {
     try {
       loader.value = true;
       postLikeModel = await MyPostApi.postLikeApi(id);
-      await friendPostDataWithOutPagination();
+      Future.delayed(const Duration(seconds: 1)).then((value) async {
+        await friendPostDataWithOutPagination();
+      });
       update(['home']);
       loader.value = false;
     } catch (e) {
@@ -272,7 +269,9 @@ class HomeController extends GetxController {
     try {
       loader.value = true;
       postUnlikeModel = await MyPostApi.postUnLikeApi(id);
-      await friendPostDataWithOutPagination();
+      Future.delayed(const Duration(seconds: 1)).then((value) async {
+        await friendPostDataWithOutPagination();
+      });
       update(['home']);
       loader.value = false;
     } catch (e) {
@@ -352,31 +351,36 @@ class HomeController extends GetxController {
     await controller.viewProfileDetails();
     await onStory();
     notificationsController.getNotifications();
+    page = 0;
     friendPostListData = [];
-    await friendPostDataWithOutPagination();
+    /*  await friendPostDataWithOutPagination();*/
+    await friendPostData();
+
     await connectionsController.callRequestApi();
   }
 
-
-
   Future<void> init() async {
-    changeLoader(true);
+    /*   changeLoader(true);*/
+
     await viewProfileApi();
-    await advertisementListUser();
-    PaymentController paymentController = Get.put(PaymentController());
-    await paymentController.listCardApi(showToast: false);
-    paymentController.listCardModel.data?.length == null? viewProfile.data!.userType = "free" : viewProfile.data!.userType = "premium";
-    await getCurrentLocation();
-    loader.value = true;
-    await controller.viewProfileDetails();
     await friendPostData();
     await onStory();
+    await advertisementListUser();
+    PaymentController paymentController = Get.put(PaymentController());
+    paymentController.transactionApi();
+    await paymentController.listCardApi(showToast: false);
+    paymentController.listCardModel.data?.length == null
+        ? viewProfile.data!.userType = "free"
+        : viewProfile.data!.userType = "premium";
+    await getCurrentLocation();
+    await controller.viewProfileDetails();
+
     countryName();
     countryNationalites();
-    notificationsController.getNotifications();
-    await friendPostDataWithOutPagination();
+    await notificationsController.getNotifications();
+    /*await friendPostDataWithOutPagination();*/
     await connectionsController.callRequestApi();
-    changeLoader(false);
+    /*  changeLoader(false);*/
   }
 
   Future<void> onStory() async {
@@ -387,10 +391,8 @@ class HomeController extends GetxController {
     loader.value = false;
   }
 
-   myStoryOnTap() async {
-
-
-    Get.to(() => AddStoryScreen());
+  myStoryOnTap() async {
+    Get.to(() => const AddStoryScreen());
     /*MyStoryController myStoryController = Get.put(MyStoryController());
     loader.value = true;
     await myStoryController.init();
@@ -426,7 +428,7 @@ class HomeController extends GetxController {
     viewProfile.data!.userType == "free"
         ? premiumPopUpBox(context: context)
         : Get.to(() => NotificationScreen());
-   // Get.to(() => NotificationScreen());
+    // Get.to(() => NotificationScreen());
   }
 
   double calculateDistance(lat1, lon1, lat2, lon2) {
@@ -504,24 +506,21 @@ class HomeController extends GetxController {
       loader.value = false;
     } catch (e) {
       loader.value = false;
-
-      print(e.toString());
     }
   }
 
-  AdvertisementListUserModel advertisementListUserModel = AdvertisementListUserModel();
+  AdvertisementListUserModel advertisementListUserModel =
+      AdvertisementListUserModel();
 
-  Future<void> advertisementListUser()async{
+  Future<void> advertisementListUser() async {
     try {
       loader.value = true;
-      advertisementListUserModel = await AdvertiseListUser.advertiseListUserApi();
+      advertisementListUserModel =
+          await AdvertiseListUser.advertiseListUserApi();
       update(["settings"]);
       loader.value = false;
     } catch (e) {
       loader.value = false;
-
-      print(e.toString());
     }
   }
-
 }

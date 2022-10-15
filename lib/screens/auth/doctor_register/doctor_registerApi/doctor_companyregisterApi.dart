@@ -22,7 +22,7 @@ class DoctorCompanyRegisterApi {
     try {
       // String access_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjU3MTI2MzM5LCJleHAiOjE2NTc3MzExMzl9.9y7AoBYQsB3iTZgV0ArOl8syQQPPrj3fBh54B7YMvdk";
       String accessToken =
-          await PrefService.getBool(PrefKeys.advirtisersToken).toString();
+           PrefService.getBool(PrefKeys.advirtisersToken).toString();
       String url = EndPoints.companyRegister;
       Map<String, String> param = {
         'profession': profession,
@@ -34,7 +34,7 @@ class DoctorCompanyRegisterApi {
         'postalCode': postalCode,
         'website': website,
       };
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -52,7 +52,7 @@ class DoctorCompanyRegisterApi {
 
       return companyList;
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }

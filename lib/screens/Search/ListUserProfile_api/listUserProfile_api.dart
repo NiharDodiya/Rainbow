@@ -27,7 +27,7 @@ class ListUserProfileApi {
         "longitude": longitude,
         "distance": 50,
         "user_status": keyWords,
-        "full_name": fullName
+        "full_name": fullName.toString().toLowerCase()
       };
 
       http.Response? response = await HttpService.postApi(
@@ -48,7 +48,7 @@ class ListUserProfileApi {
         return listUseProfileModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }
@@ -72,7 +72,7 @@ class ListUserProfileApi {
         "longitude": longitude,
         "distance": 50,
         "user_status": keyWords,
-        "full_name": fullName
+        "full_name": fullName.toString().toLowerCase()
       };
 
       http.Response? response = await HttpService.postApi(
@@ -93,7 +93,7 @@ class ListUserProfileApi {
         return listUseProfileModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }

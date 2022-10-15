@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/helper.dart';
+import 'package:rainbow/screens/auth/login/login_api/login_api.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/adviser_api/adviser_api.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/adviser_api/adviser_json.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/registeradviser_controller.dart';
@@ -39,6 +41,7 @@ class DoctorRegisterController extends GetxController {
 
   // bool countryCityDropdown = false;
 
+  @override
   void onInit() {
     // countryName();
 
@@ -60,22 +63,23 @@ class DoctorRegisterController extends GetxController {
   List filterList = [];
 
   void serching(value) {
-    filterList = (listCountryModel.data?.where(
-            (element) {
-          return element.name.toString().toLowerCase().contains(value.toString().toLowerCase());
-        })
-        .toList()) ?? [];
+    filterList = (listCountryModel.data?.where((element) {
+          return element.name
+              .toString()
+              .toLowerCase()
+              .contains(value.toString().toLowerCase());
+        }).toList()) ??
+        [];
     update(["drop"]);
   }
 
   bool countryBox = false;
 
-  dropDownBox(){
-    if(countryBox == false){
+  dropDownBox() {
+    if (countryBox == false) {
       countryBox = true;
       update(["drop"]);
-    }
-    else{
+    } else {
       countryBox = false;
       update(["drop"]);
     }
@@ -145,6 +149,9 @@ class DoctorRegisterController extends GetxController {
     } else if (postalCode.text.isEmpty) {
       errorToast(Strings.postalCodeError);
       return false;
+    } else if (hasValidUrl(website.text) == false) {
+      errorToast(Strings.websiteValidError);
+      return false;
     } else if (website.text.isEmpty) {
       errorToast(Strings.websiteError);
       return false;
@@ -162,11 +169,11 @@ class DoctorRegisterController extends GetxController {
       for (int i = 0; i < listCountryModel.data!.length; i++) {
         if (listCountryModel.data![i].name == country.text) {
           codeId = listCountryModel.data![i].id!.toString();
-          print(codeId);
+
         }
         /*       countryCity.add(listCountryModel.data![i].name!);
         countryId.add(listCountryModel.data![i].id!.toString());*/
-        print(codeId);
+
       }
       await AdvirtisersApi.postRegister(
               controller.fullNameController.text,
@@ -191,14 +198,14 @@ class DoctorRegisterController extends GetxController {
       );
 
       loader.value = false;
-
+      // await PrefService.setValue(PrefKeys.phonSaveNumberAdvertiser, "+${'${controller.countryModel.phoneCode} ${controller.phoneNumber.text}'}")
       await PrefService.setValue(
           PrefKeys.registerToken, advertiserRegister.token.toString());
+      await LoginApi.updateDeviceToken();
       await PrefService.setValue(PrefKeys.userId, advertiserRegister.data!.id);
       status = advertiserRegister.data!.status.toString();
       role = advertiserRegister.data!.role.toString();
-      print(status);
-      print(role);
+
     } catch (e) {
       loader.value = false;
       debugPrint(e.toString());

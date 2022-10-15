@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
@@ -36,16 +37,33 @@ Widget userComment(
                                 AssetImage(AssetRes.portrait_placeholder),
                             image: AssetImage(AssetRes.portrait_placeholder),
                             fit: BoxFit.cover,
-                          ))
+                          ),
+                        )
                       : ClipRRect(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(50)),
-                          child: FadeInImage(
+                          child: CachedNetworkImage(
+                            imageUrl: profileImage.toString(),
+                            fit: BoxFit.cover,
+                            errorWidget: ((context, url, error) => Image.asset(
+                                  AssetRes.portrait_placeholder,
+                                  height: 40,
+                                  width: 40,
+                                  fit: BoxFit.cover,
+                                )),
+                            placeholder: ((context, url) => Image.asset(
+                                  AssetRes.portrait_placeholder,
+                                  height: 40,
+                                  width: 40,
+                                  fit: BoxFit.cover,
+                                )),
+                          ),
+                          /*FadeInImage(
                             placeholder:
                                 const AssetImage(AssetRes.portrait_placeholder),
                             image: NetworkImage(profileImage.toString()),
                             fit: BoxFit.cover,
-                          ),
+                          ),*/
                         ),
                 ),
                 Column(
@@ -122,14 +140,51 @@ Widget userComment(
                               color: Colors.grey,
                             ),
                           )*/
-                        FadeInImage(
+                        CachedNetworkImage(
+                            height: 100,
+                            width: 100,
+                            imageUrl: image.toString(),
+                            fit: BoxFit.cover,
+                            errorWidget: ((context, url, error) => Image.asset(
+                                  AssetRes.placeholderImage,
+                                  height: 100,
+                                  width: 100,
+                                  fit: BoxFit.cover,
+                                )),
+                            placeholder: ((context, url) => Image.asset(
+                                  AssetRes.placeholderImage,
+                                  height: 100,
+                                  width: 100,
+                                  fit: BoxFit.cover,
+                                )),
+                          ),
+                    /*FadeInImage(
                             height: 100,
                             width: 100,
                             placeholder:
                                 const AssetImage(AssetRes.placeholderImage),
                             image: NetworkImage(image.toString()),
                             fit: BoxFit.cover,
-                          )
+                          ),*/
+                    /* controller.replay == true
+                            ? Align(
+                                alignment: Alignment.topRight,
+                                child: FadeInImage(
+                                  height: 100,
+                                  width: 100,
+                                  placeholder: const AssetImage(
+                                      AssetRes.placeholderImage),
+                                  image: NetworkImage(image.toString()),
+                                  fit: BoxFit.cover,
+                                ))
+                            : FadeInImage(
+                                height: 100,
+                                width: 100,
+                                placeholder:
+                                    const AssetImage(AssetRes.placeholderImage),
+                                image: NetworkImage(image.toString()),
+                                fit: BoxFit.cover,
+                              ),*/
                   ],
                 )
               ],
@@ -159,7 +214,8 @@ Widget userComment(
                                 Container(
                                   width: Get.width - 110,
                                   decoration: BoxDecoration(
-                                    color: ColorRes.color_959595.withOpacity(0.1),
+                                    color:
+                                        ColorRes.color_959595.withOpacity(0.1),
                                     borderRadius: const BorderRadius.all(
                                       Radius.circular(15),
                                     ),
@@ -169,7 +225,8 @@ Widget userComment(
                                   ),
                                   padding: const EdgeInsets.all(7),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         reply[index]
@@ -187,6 +244,17 @@ Widget userComment(
                                     ),
                                   ),*/
                                       const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(
+                                        controller
+                                            .timeAgo(reply[index].createdAt!),
+                                        style: beVietnamProRegularTextStyle(
+                                          fontSize: 10,
+                                          color: ColorRes.color_959595,
+                                        ),
+                                      ),
+                                      const SizedBox(
                                         height: 7,
                                       ),
                                       RichText(
@@ -201,7 +269,8 @@ Widget userComment(
                                               text: reply[index]
                                                   .description
                                                   .toString(),
-                                              style: beVietnamProRegularTextStyle(
+                                              style:
+                                                  beVietnamProRegularTextStyle(
                                                 fontSize: 12,
                                                 color: ColorRes.black,
                                               ),
@@ -212,32 +281,28 @@ Widget userComment(
                                       const SizedBox(
                                         height: 5,
                                       ),
-
-                                      /*reply[index].postCommentItem.toString() == ""
-                                      ? const SizedBox()
-                                      : CachedNetworkImage(
-                                          imageUrl: reply[index]
-                                              .postCommentItem
-                                              .toString(),
-                                          height: 100,
-                                          width: 100,
-                                          fit: BoxFit.cover,
-                                          progressIndicatorBuilder:
-                                              (context, url, downloadProgress) {
-                                            return Center(
-                                              child: CircularProgressIndicator(
-                                                  value:
-                                                      downloadProgress.progress),
-                                            );
-                                          },
-                                          errorWidget: (context, url, error) =>
-                                              const Icon(Icons.error),
-                                        ),*/
-                                      reply[index].postCommentItem.toString() == ""
+                                      reply[index].postCommentItem.toString() ==
+                                              ""
                                           ? const SizedBox()
-                                          : /*image == ""
-                                          ? const SizedBox()*/
-                                      FadeInImage(
+                                          : CachedNetworkImage(
+                                              imageUrl: reply[index]
+                                                  .postCommentItem
+                                                  .toString(),
+                                              height: 100,
+                                              width: 100,
+                                              fit: BoxFit.cover,
+                                              placeholder: ((context, url) =>
+                                                  Image.asset(AssetRes
+                                                      .placeholderImage)),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      const Icon(Icons.error),
+                                            ),
+                                      /* reply[index].postCommentItem.toString() == ""
+                                          ? const SizedBox()
+                                          :  image == ""
+                                          ? const SizedBox()
+                                      : FadeInImage(
                                         height: 100,
                                         width: 100,
                                         placeholder: const AssetImage(
@@ -246,24 +311,44 @@ Widget userComment(
                                             .postCommentItem
                                             .toString()),
                                         fit: BoxFit.cover,
-                                      ),
-
+                                      ),*/
                                     ],
                                   ),
                                 ),
                                 const SizedBox(height: 10),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 130),
-                                  child: Text(
-                                    controller.timeAgo(reply[index].createdAt!),
-                                    style: beVietnamProRegularTextStyle(
-                                      fontSize: 10,
-                                      color: ColorRes.color_959595,
+                                /* Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(left: 30),
+                                    child: Text(
+                                      controller
+                                          .timeAgo(reply[index].createdAt!),
+                                      style: beVietnamProRegularTextStyle(
+                                        fontSize: 10,
+                                        color: ColorRes.color_959595,
+                                      ),
                                     ),
                                   ),
-                                ),
+                                ),*/
+                                const SizedBox(height: 10),
+                                /*reply[index].postCommentItem.toString() == ""
+                                    ? const SizedBox()
+                                    : */ /*image == ""
+                                          ? const SizedBox()*/ /*
+                                Align(
+                                  alignment: Alignment.topRight,
+                                  child: FadeInImage(
+                                    height: 100,
+                                    width: 100,
+                                    placeholder: const AssetImage(
+                                        AssetRes.placeholderImage),
+                                    image: NetworkImage(reply[index]
+                                        .postCommentItem
+                                        .toString()),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),*/
                                 const SizedBox(height: 20),
-
                               ],
                             ),
                           )

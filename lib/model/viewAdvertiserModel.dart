@@ -124,12 +124,9 @@ class Data {
         country: json["country"],
         idCountry: json["id_country"],
         postalCode: json["postal_code"],
-        mobileStatus:
-            json["mobile_status"],
-        onlineStatus:
-            json["online_status"],
-        profileImage:
-            json["profile_image"],
+        mobileStatus: json["mobile_status"],
+        onlineStatus: json["online_status"],
+        profileImage: json["profile_image"],
         role: json["role"],
         status: json["status"],
         profession: json["profession"],
@@ -137,21 +134,16 @@ class Data {
         companyPhoneNumber: json["company_phone_number"],
         compnayStreetName: json["compnay_street_name"],
         compnayCity: json["compnay_city"],
-        companyCountry:
-            json["company_country"],
+        companyCountry: json["company_country"],
         compnayIdCountry: json["compnay_id_country"],
         compnayPostalCode: json["compnay_postal_code"],
-        compnayWebsite:
-            json["compnay_website"],
-        profilePhoto:
-            json["profile_photo"],
+        compnayWebsite: json["compnay_website"],
+        profilePhoto: json["profile_photo"],
         basicInfo: json["basic_info"],
         socialMedia: json["social_media"],
         aboutMe: json["about_me"],
-        hobbiesInterest:
-            json["hobbies_interest"],
-        testimonials:
-            json["testimonials"],
+        hobbiesInterest: json["hobbies_interest"],
+        testimonials: json["testimonials"],
         visitors: json["visitors"],
         isFriends: json["isFriends"],
         isBlock: json["isBlock"],
@@ -182,16 +174,12 @@ class Data {
         "status": status,
         "profession": profession,
         "company_name": companyName,
-        "company_phone_number":
-            companyPhoneNumber,
-        "compnay_street_name":
-            compnayStreetName,
+        "company_phone_number": companyPhoneNumber,
+        "compnay_street_name": compnayStreetName,
         "compnay_city": compnayCity,
         "company_country": companyCountry,
-        "compnay_id_country":
-            compnayIdCountry,
-        "compnay_postal_code":
-            compnayPostalCode,
+        "compnay_id_country": compnayIdCountry,
+        "compnay_postal_code": compnayPostalCode,
         "compnay_website": compnayWebsite,
         "profile_photo": profilePhoto,
         "basic_info": basicInfo,

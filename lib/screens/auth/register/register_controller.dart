@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_picker/country_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
@@ -43,12 +45,11 @@ class RegisterController extends GetxController {
 
   bool countryBox = false;
 
-  dropDownBox(){
-    if(countryBox == false){
+  dropDownBox() {
+    if (countryBox == false) {
       countryBox = true;
       update(["drop"]);
-    }
-    else{
+    } else {
       countryBox = false;
       update(["drop"]);
     }
@@ -65,7 +66,7 @@ class RegisterController extends GetxController {
     "1",
     "2",
   ];
-  List<String> noOfKids = ["0","1", "2", "3", "4", "5", "6"];
+  List<String> noOfKids = ["0", "1", "2", "3", "4", "5", "6"];
   bool martialStatusDropdown = false;
   bool ethnicityDropdown = false;
   bool kidsDropdown = false;
@@ -84,6 +85,7 @@ class RegisterController extends GetxController {
     "e164_key": "1-CA-0"
   });
 
+  @override
   void onInit() {
     update(['register_screen']);
     super.onInit();
@@ -92,10 +94,10 @@ class RegisterController extends GetxController {
   void onTapShowPassword() {
     if (showPassword == false) {
       showPassword = true;
-      print(showPassword);
+
     } else {
       showPassword = false;
-      print(showPassword);
+
     }
     update(["register_form"]);
   }
@@ -103,10 +105,10 @@ class RegisterController extends GetxController {
   void onTapShowRetypePassword() {
     if (showRetype == false) {
       showRetype = true;
-      print(showRetype);
+
     } else {
       showRetype = false;
-      print(showRetype);
+
     }
     update(["register_form"]);
   }
@@ -123,11 +125,11 @@ class RegisterController extends GetxController {
   }
 
   void onStatusChangeCountry(String value) {
-    print(value);
+
     selectedEthicity = value.toString();
     ethnicityController.text = value.toString();
     update(['register_screen']);
-    print(selectedEthicity);
+
   }
 
   void onStatusSelect() {
@@ -175,13 +177,15 @@ class RegisterController extends GetxController {
   }
 
   void onRegisterTap() {
+    PrefService.setValue(PrefKeys.isLogin, false);
+
     if (validation()) {
       for (int i = 0; i < listNationalities.data!.length; i++) {
         if (listNationalities.data![i].name == ethnicityController.text) {
           codeId = listNationalities.data![i].id!.toString();
-          print(codeId);
+
         }
-        print(codeId);
+
       }
 
       registerDetails();
@@ -191,11 +195,14 @@ class RegisterController extends GetxController {
   List filterList = [];
 
   void serching(value) {
-    filterList = (listNationalities.data?.where(
-            (element) {
-          return element.toString().toLowerCase().contains(value.toString().toLowerCase());
-        })
-        .toList()) ?? [];
+    filterList = (listNationalities.data?.where((element) {
+
+      return element.name
+          .toString()
+          .toLowerCase()
+          .contains(value.toString().toLowerCase());
+    }).toList()) ??
+        [];
     update(["drop"]);
   }
 
@@ -223,10 +230,11 @@ class RegisterController extends GetxController {
     } else if (pwdController.text != confirmPwdController.text && !isSocial) {
       errorToast(Strings.reTypePasswordValidError);
       return false;
-    } else if (ethnicityController.text != ethnicityController.text && !isSocial) {
+    } else if (ethnicityController.text != ethnicityController.text &&
+        !isSocial) {
       errorToast("Please enter country");
       return false;
-    }else if (address1Controller.text.isEmpty) {
+    } else if (address1Controller.text.isEmpty) {
       errorToast(Strings.addressLine1Error);
       return false;
     } else if (phoneController.text.isEmpty) {
@@ -300,8 +308,11 @@ class RegisterController extends GetxController {
   void onLoginTap() {
     Get.off(() => LoginScreen(), transition: Transition.cupertino);
   }
+  final GoogleSignIn googleSignIn = GoogleSignIn();
 
   RegisterUserModel registerUser = RegisterUserModel();
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   String? token;
 
@@ -311,20 +322,20 @@ class RegisterController extends GetxController {
       loader.value = true;
       await PrefService.setValue(PrefKeys.phoneNumber,
           "+${countryModel.phoneCode + phoneController.text}");
-      await RegisterApi.postRegister(
-              fullNameController.text,
-              emailController.text,
-              socialId,
-              pwdController.text,
-              confirmPwdController.text,
-              address1Controller.text,
-              address2Controller.text,
-              "+${countryModel.phoneCode + phoneController.text}",
-              statusController.text,
-              codeId.toString(),
-              dobController.text,
-              kidsController.text)
-          .then((value) => registerUser = value);
+      registerUser = await RegisterApi.postRegister(
+          fullNameController.text,
+          emailController.text,
+          socialId,
+          pwdController.text,
+          confirmPwdController.text,
+          address1Controller.text,
+          address2Controller.text,
+          "+${countryModel.phoneCode + phoneController.text}",
+          statusController.text,
+          codeId.toString(),
+          dobController.text,
+          kidsController.text);
+      print(registerUser);
       await PrefService.setValue(
           PrefKeys.registerToken, registerUser.token.toString());
 
@@ -333,11 +344,34 @@ class RegisterController extends GetxController {
         name: fullNameController.text,
         email: emailController.text,
       );
-      String? uid = (await AuthService.loginUser(
-          userModel: userModel,
-          email: emailController.text,
-          pwd: pwdController.text)) as String?;
-      userModel.uid = uid;
+      String? uid;
+      User? user;
+      if(pwdController.text!=""){
+        uid = (await AuthService.loginUser(
+            userModel: userModel,
+            email: emailController.text,
+            pwd: pwdController.text)) as String?;
+        userModel.uid = uid;
+      }else
+      {
+        final GoogleSignInAccount? account = await googleSignIn.signIn();
+        final GoogleSignInAuthentication authentication =
+        await account!.authentication;
+
+        final OAuthCredential credential = GoogleAuthProvider.credential(
+          idToken: authentication.idToken,
+          accessToken: authentication.accessToken,
+        );
+        //loading.value = false;
+        final UserCredential authResult =
+        await auth.signInWithCredential(credential);
+        user = authResult.user;
+        print(user!.email);
+        print(user.uid);
+        print(user.tenantId);
+        print(user.displayName);
+      }
+
       // await UserService.createUser(userModel);
       if (uid != null) {
         await firebaseFirestore
@@ -351,7 +385,8 @@ class RegisterController extends GetxController {
                 .doc(uid)
                 .update({"online": true});
             await PrefService.setValue(PrefKeys.uid, uid);
-          } else {
+          } else
+          {
             await firebaseFirestore.collection("users").doc(uid).set({
               "id": registerUser.data!.id.toString(),
               "email": registerUser.data!.email.toString(),
@@ -363,6 +398,31 @@ class RegisterController extends GetxController {
             });
           }
         });
+      }if(user!.uid !=""){
+        await firebaseFirestore
+            .collection("users")
+            .doc(user.uid)
+            .get()
+            .then((value) async {
+          if (value.exists) {
+            await firebaseFirestore
+                .collection("users")
+                .doc(user!.uid)
+                .update({"online": true,"id":registerUser.data!.id.toString()});
+            await PrefService.setValue(PrefKeys.uid, user.uid);
+          } else {
+            await firebaseFirestore.collection("users").doc(user!.uid).set({
+              "id":registerUser.data!.id.toString(),
+              "email": user.email,
+              "uid": user.uid,
+              "name": user.displayName,
+              "image": user.photoURL,
+              "UserToken": token.toString(),
+              "online": true,
+            });
+          }
+        });
+
       }
       loader.value = false;
       fullNameController.clear();

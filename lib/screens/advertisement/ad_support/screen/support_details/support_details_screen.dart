@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -768,7 +769,10 @@ class SupportDetailsScreen extends StatelessWidget {
                               ),
                               SubmitButton(
                                 onTap: () {
-                                  controller.onTapSendMessage(id.toString(), context);
+                                  controller.image = [];
+
+                                  controller.onTapSendMessage(
+                                      id.toString(), context);
                                 },
                                 child: Text(
                                   Strings.sendMessage,
@@ -789,7 +793,7 @@ class SupportDetailsScreen extends StatelessWidget {
               }),
           controller.loader.value
               ? const Center(
-                  child: const CircularProgressIndicator(),
+                  child: CircularProgressIndicator(),
                 )
               : const SizedBox(),
         ],
@@ -798,7 +802,7 @@ class SupportDetailsScreen extends StatelessWidget {
   }
 
   Widget body(String comp) {
-    AdSupportController controller = Get.put(AdSupportController());
+
     return GetBuilder<AdSupportController>(
         id: "Support",
         builder: (controller) {
@@ -818,23 +822,31 @@ class SupportDetailsScreen extends StatelessWidget {
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(50),
-                            child: Image.network(
-                              controller.viewSupportTicketModel.data![index]
-                                  .userDetail!.profileImage
-                                  .toString(),
-                              height: Get.width * 0.144,
-                              width: Get.width * 0.144,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) {
-                                return Image.asset(
-                                  AssetRes.portrait_placeholder,
-                                  height: Get.width * 0.144,
-                                  width: Get.width * 0.144,
-                                );
-                              },
+                            child: SizedBox(
+                              height: 53,
+                              width: 53,
+                              child: CachedNetworkImage(
+                                imageUrl: controller.viewSupportTicketModel
+                                    .data![index].userDetail!.profileImage
+                                    .toString(),
+                                fit: BoxFit.cover,
+                                placeholder: ((context, url) => Image.asset(
+                                      AssetRes.portrait_placeholder,
+                                      fit: BoxFit.cover,
+                                      height: 53,
+                                      width: 53,
+                                    )),
+                                errorWidget: ((context, url, error) =>
+                                    Image.asset(
+                                      AssetRes.portrait_placeholder,
+                                      fit: BoxFit.cover,
+                                      height: 53,
+                                      width: 53,
+                                    )),
+                              ),
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           /*SizedBox(
                             width: Get.width * 0.03,
                           ),*/
@@ -853,8 +865,9 @@ class SupportDetailsScreen extends StatelessWidget {
                                 SizedBox(
                                   height: Get.height * 0.0086,
                                 ),
-                                Container(
-                                  width: MediaQuery.of(context).size.width / 1.54,
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width / 1.54,
                                   child: SingleChildScrollView(
                                     scrollDirection: Axis.horizontal,
                                     child: Row(
@@ -902,7 +915,8 @@ class SupportDetailsScreen extends StatelessWidget {
                             .isEmpty
                         ? const SizedBox()
                         : (controller.viewSupportTicketModel.data![index]
-                                    .itmeList!.length == 3)
+                                    .itmeList!.length ==
+                                3)
                             ? Container(
                                 height: Get.height * 0.09,
                                 width: Get.width * 0.49,

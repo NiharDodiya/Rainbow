@@ -27,7 +27,6 @@ class NotificationOnOffApi {
         return notificationDataModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
       return [];
     }
   }
@@ -49,7 +48,6 @@ class NotificationOnOffApi {
         return notificationModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
       return [];
     }
   }
@@ -71,7 +69,6 @@ class NotificationOnOffApi {
         return notificationModelFromJson(response.body);
       }
     } catch (e) {
-      print(e.toString());
       return [];
     }
   }

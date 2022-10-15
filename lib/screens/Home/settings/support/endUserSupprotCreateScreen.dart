@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -748,6 +749,8 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                         ),
                         SubmitButton(
                           onTap: () {
+                            controller.image = [];
+
                             controller.onTapSendMessage(id.toString(), context);
                           },
                           child: Text(
@@ -779,9 +782,9 @@ class SupportCreateEndUserScreen extends StatelessWidget {
   Widget body(String comp) {
     SupportController controller = Get.put(SupportController());
     return ListView.builder(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: controller.viewSupportTicketModel.data!.length,
+      itemCount: controller.viewSupportTicketModel.data?.length ?? 0,
       itemBuilder: (context, index) {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: Get.width * 0.08),
@@ -794,20 +797,27 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(50),
-                      child: Image.network(
-                        controller.viewSupportTicketModel.data![index]
-                            .userDetail!.profileImage
-                            .toString(),
-                        height: Get.width * 0.144,
-                        width: Get.width * 0.144,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Image.asset(
-                            AssetRes.portrait_placeholder,
-                            height: Get.width * 0.144,
-                            width: Get.width * 0.144,
-                          );
-                        },
+                      child: SizedBox(
+                        height: 53,
+                        width: 53,
+                        child: CachedNetworkImage(
+                          imageUrl: controller.viewSupportTicketModel
+                              .data![index].userDetail!.profileImage
+                              .toString(),
+                          fit: BoxFit.cover,
+                          placeholder: ((context, url) => Image.asset(
+                                AssetRes.portrait_placeholder,
+                                fit: BoxFit.cover,
+                                height: 53,
+                                width: 53,
+                              )),
+                          errorWidget: ((context, url, error) => Image.asset(
+                                AssetRes.portrait_placeholder,
+                                fit: BoxFit.cover,
+                                height: 53,
+                                width: 53,
+                              )),
+                        ),
                       ),
                     ),
                     /* Container(
@@ -838,7 +848,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                           SizedBox(
                             height: Get.height * 0.0086,
                           ),
-                          Container(
+                          SizedBox(
                             width: MediaQuery.of(context).size.width / 1.54,
                             child: SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
@@ -876,7 +886,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
               ),
               //image
               controller.viewSupportTicketModel.data![index].itmeList!.isEmpty
-                  ? SizedBox()
+                  ? const SizedBox()
                   : (controller.viewSupportTicketModel.data![index].itmeList!
                               .length ==
                           3)
@@ -1054,7 +1064,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                         downloadButton2(index)
                                       ],
                                     )
-                                  : SizedBox(),
+                                  : const SizedBox(),
                         ),
 
               SizedBox(
@@ -1093,7 +1103,7 @@ Widget appBar() {
               child: Image.asset(
                 AssetRes.backIcon,
                 height: 16,
-                width: 16,
+                width: 35,
                 color: Colors.white,
               ),
             ),

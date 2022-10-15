@@ -91,7 +91,7 @@ class SearchController extends GetxController {
     if (text != null && text.isNotEmpty) {
       http.Response response = await getLocationData(text);
       var data = jsonDecode(response.body.toString());
-      print("my status is " + data["status"]);
+
       if (data['status'] == 'OK') {
         _predictionList = [];
         data['predictions'].forEach((prediction) =>
@@ -112,7 +112,7 @@ class SearchController extends GetxController {
       headers: {"Content-Type": "application/json"},
     );
 
-    print(jsonDecode(response.body));
+
     return response;
   }
 
@@ -168,19 +168,16 @@ class SearchController extends GetxController {
   Future<void> onTapAdvanceSearchMenu(int index) async {
     advance = false;
 
-
-
-    Get.to(AdvanceSearchScreen(
-      title: advanceSearch[index],
-    ))!.then((value) async {
-      await listUserProfile();
-
-    });
-
     await listUserProfileAdvanceSearch(advanceSearch[index]);
 
     await findUserDistance(index: index);
 
+    Get.to(AdvanceSearchScreen(
+      title: advanceSearch[index],
+    ))!
+        .then((value) async {
+      await listUserProfile();
+    });
 
 /*    await loadData();*/
   }
@@ -189,19 +186,18 @@ class SearchController extends GetxController {
     try {
       latitude = position!.latitude;
       longitude = position!.longitude;
-      print(latitude);
-      print(latitude);
-      //loader.value = true;
+
+      loader.value = true;
       listUseProfileModel =
           await ListUserProfileApi.listUserProfileAdvanceSearchApi(
               keyWords: keyWords,
               latitude: latitude,
               longitude: longitude,
-              fullName: "");
+              fullName: "".toString().toLowerCase());
 
-      print("pagggggggggggggggggggggggg===${page}");
+
       update(['Search']);
-      //loader.value = false;
+      loader.value = false;
     } catch (e) {
       debugPrint(e.toString());
       loader.value = false;
@@ -260,8 +256,7 @@ class SearchController extends GetxController {
     try {
       latitude = position!.latitude;
       longitude = position!.longitude;
-      print(latitude);
-      print(latitude);
+
       loader.value = true;
       listUseProfileModel = await ListUserProfileApi.listUserProfileApi(
           page: page,
@@ -269,12 +264,12 @@ class SearchController extends GetxController {
           keyWords: "",
           latitude: latitude,
           longitude: longitude,
-          fullName: "");
+          fullName: "".toString().toLowerCase());
       page++;
       listUserData.addAll(listUseProfileModel.data!);
       listConnectBlock = List.filled(listUserData.length, false);
 
-      print("pagggggggggggggggggggggggg===${page}");
+
       update(['Search']);
       loader.value = false;
     } catch (e) {
@@ -292,18 +287,17 @@ class SearchController extends GetxController {
     position = await getCurrentPosition();
     newLat = position!.latitude;
     newLong = position!.longitude;
-    print(newLat);
-    print(newLong);
+
 
     for (var e in listUseProfileModel.data!) {
       final double distance = Geolocator.distanceBetween(
           e.latitude!, e.longitude!, newLat!, newLong!);
-      print(distance);
+
       if (distance <= 100) {
         listLatLongData.add(e);
       }
     }
-    print(listLatLongData);
+
     update(['Search']);
   }
 
@@ -327,13 +321,13 @@ class SearchController extends GetxController {
           keyWords: "",
           latitude: latitude,
           longitude: longitude,
-          fullName: "");
+          fullName: "".toString().toLowerCase());
       listUserData = listUseProfileModel.data!;
       update(['Search']);
       loader.value = false;
     } catch (e) {
       debugPrint(e.toString());
-      loader.value = false;
+      //loader.value = false;
     }
   }
 
@@ -347,7 +341,7 @@ class SearchController extends GetxController {
         keyWords: "",
         longitude: longitude,
         latitude: latitude,
-        fullName: enteredKeyword);
+        fullName: enteredKeyword.toString().toLowerCase());
     loader.value = false;
     dataStore = listUseProfileModel.data ?? [];
     listUserData = dataStore;
@@ -368,7 +362,6 @@ class SearchController extends GetxController {
       if (kDebugMode) {
         print("PROFILE SCREEN BACK ");
       }
-
     });
   }
 

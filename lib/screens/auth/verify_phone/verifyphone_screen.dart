@@ -82,7 +82,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                         child: Row(
                                           children: [
                                             Text(
-                                              "${Strings.codeSent}${controller.phoneNumber.text.toString()}",
+                                              "${Strings.codeSent} (${controller.countryModel.phoneCode}  ${controller.phoneNumber.text.toString()})",
                                               style: TextStyle(
                                                   color: ColorRes.white
                                                       .withOpacity(0.5),
@@ -227,7 +227,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                   ),
                 ),
               ),
-              controller.loader.isTrue ? FullScreenLoader() : SizedBox(),
+              controller.loader.isTrue ? const FullScreenLoader() : const SizedBox(),
             ],
           );
         },

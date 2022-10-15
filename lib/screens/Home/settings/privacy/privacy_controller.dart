@@ -19,6 +19,8 @@ class PrivacyController extends GetxController {
   List<bool> isChecked = [];
   ProfileController profileController = Get.put(ProfileController());
 
+
+  @override
   void onInit() {
     isChecked = List.filled(privacyList.length, false);
     update(["check"]);

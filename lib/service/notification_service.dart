@@ -56,7 +56,6 @@ class NotificationService {
               icon: android.smallIcon,
               // other properties...
             ),
-
           ),
           payload: jsonEncode(payload),
         );
@@ -133,6 +132,7 @@ class NotificationService {
       return null;
     }
   }
+
   static FirebaseMessaging message = FirebaseMessaging.instance;
 
   static const String serverToken =

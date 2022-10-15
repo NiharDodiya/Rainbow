@@ -150,7 +150,7 @@ class AdvertisementApprovedScreen extends StatelessWidget {
       onTap: () {
         Get.back();
       },
-      child: SubmitButton(
+      child: const SubmitButton(
         text: Strings.backToHome,
       ),
     );

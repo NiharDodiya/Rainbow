@@ -39,11 +39,11 @@ class AuthDashBordController extends GetxController {
     try {
       await ListOfCountryApi.postRegister()
           .then((value) => listCountryModel = value!);
-      print(listCountryModel);
+
       getCountry();
 
     } catch (e) {
-      errorToast(e.toString());
+      /*   errorToast(e.toString());*/
       debugPrint(e.toString());
     }
   }
@@ -52,7 +52,7 @@ class AuthDashBordController extends GetxController {
     try {
       await ListOfNationalitiesApi.postRegister()
           .then((value) => listNationalities = value!);
-      print(listNationalities);
+
       getCountryNation();
     } catch (e) {
       debugPrint(e.toString());
@@ -70,7 +70,7 @@ String? token;
         await googleSignIn.signOut();
         //flutterToast(Strings.googleLogOutSuccess);
       }
-
+      loading.value = true;
       final GoogleSignInAccount? account = await googleSignIn.signIn();
       final GoogleSignInAuthentication authentication =
       await account!.authentication;
@@ -88,9 +88,9 @@ String? token;
       print(user.uid);
       print(user.tenantId);
       print(user.displayName);
-      await GoogleIdVerification.postRegister(user.uid, user: user)
+      await GoogleIdVerification.postRegister(user.uid, user: user,email: user.email.toString())
           .then((LoginModel? model) async {
-        print(model);
+
         await firebaseFirestore
             .collection("users")
             .doc(user.uid)
@@ -100,7 +100,7 @@ String? token;
             await firebaseFirestore
                 .collection("users")
                 .doc(user.uid)
-                .update({"online": true});
+                .update({"online": true,"id":model?.data?.id});
             await PrefService.setValue(PrefKeys.uid, user.uid);
           } else {
             await firebaseFirestore.collection("users").doc(user.uid).set({
@@ -118,7 +118,7 @@ String? token;
       loading.value = false;
     } catch (e) {
       loading.value = false;
-      errorToast(e.toString());
+      /*  errorToast(e.toString());*/
       debugPrint(e.toString());
       loading.value = false;
     }
@@ -135,12 +135,13 @@ String? token;
     try {
       loading.value = true;
 
-      final LoginResult loginResult = await FacebookAuth.instance.login(permissions: ["public_profile", "email"]);
+      final LoginResult loginResult = await FacebookAuth.instance
+          .login(permissions: ["public_profile", "email"]);
       await FacebookAuth.instance.getUserData().then((userData) {
-        print(userData);
+
       });
       final OAuthCredential facebookAuthCredential =
-          FacebookAuthProvider.credential(
+      FacebookAuthProvider.credential(
         loginResult.accessToken!.token,
       );
       UserCredential userCredential = await FirebaseAuth.instance
@@ -148,9 +149,9 @@ String? token;
       final User? user = userCredential.user;
       try {
         await GoogleIdVerification.postRegister(userCredential.user!.uid,
-                user: userCredential.user)
+            user: userCredential.user,email: userCredential.user!.email.toString())
             .then((LoginModel? model) async {
-          print(model);
+
 
           await firebaseFirestore
               .collection("users")
@@ -161,7 +162,7 @@ String? token;
               await firebaseFirestore
                   .collection("users")
                   .doc(user.uid)
-                  .update({"online": true});
+                  .update({"online": true,   "id": model?.data?.id});
               await PrefService.setValue(PrefKeys.uid, user.uid);
             } else {
               await firebaseFirestore.collection("users").doc(user.uid).set({
@@ -189,6 +190,10 @@ String? token;
   void onContinueWithEmailTap() {
     final RegisterController controller = Get.put(RegisterController());
     controller.isSocial = false;
+
+    controller.fullNameController.clear();
+    controller.emailController.clear();
+
     countryNationalites();
     Get.to(() => RegisterScreen());
   }

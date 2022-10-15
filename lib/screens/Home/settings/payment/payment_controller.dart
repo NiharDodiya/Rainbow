@@ -4,6 +4,7 @@ import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/listCardModel.dart';
 import 'package:rainbow/model/remove_card_model.dart';
 import 'package:rainbow/model/transactionModel.dart';
+
 import 'package:rainbow/model/viewCardModel.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/payment/widget/remove_dialog.dart';
@@ -20,11 +21,11 @@ class PaymentController extends GetxController {
 
   HomeController homeController = Get.put(HomeController());
 
+  @override
   void onInit() {
     listCardApi(showToast: true);
     transactionApi();
     // UserSubscriptionAddApi.userSubscriptionAddApi();
-    print(homeController.viewProfile.data!.userType);
     update();
     super.onInit();
   }
@@ -41,54 +42,55 @@ class PaymentController extends GetxController {
   TransactionModel transactionModel = TransactionModel();
 
   navigateToRemove(BuildContext context) async {
-    await showDialog(
-        context: context, builder: (context) =>  RemoveDialog());
+    await showDialog(context: context, builder: (context) => RemoveDialog());
   }
 
-
-
-  listCardApi({required bool showToast}) async{
-   try {
-     loader.value = true;
-     listCardModel = await ListCartApi.listCardsApi(showToast: showToast);
-     viewCardApi();
-     loader.value = false;
-     update(['more']);
-     HomeController homeController = Get.put(HomeController());
-     listCardModel.data?.length == null? homeController.viewProfile.data!.userType = "free" : homeController.viewProfile.data!.userType = "premium";
-     // viewCardApi();
-     update(['more']);
-   } catch (e) {
-     debugPrint(e.toString());
-   }
-}
-
-
-
- void viewCardApi()async{
-   try {
-     loader.value = true;
-     viewCardModel = await ListCartApi.viewCardsApi(id: listCardModel.data?[selectedIndex].id ?? 0);
-     loader.value = false;
-     update(['more']);
-   } catch (e) {
-     debugPrint(e.toString());
-   }
- }
-
-  void removeCardApi()async{
-     loader.value = true;
+  listCardApi({required bool showToast}) async {
     try {
-     removeCardModel = await ListCartApi.removeCardApi(id: listCardModel.data?[selectedIndex].id ?? 0);
-     update(['more']);
-     loader.value = false;
-     await listCardApi(showToast: false);
+      loader.value = true;
+      listCardModel = await ListCartApi.listCardsApi(showToast: showToast);
+      viewCardApi();
+      loader.value = false;
+      update(['more']);
+      HomeController homeController = Get.put(HomeController());
+      listCardModel.data?.length == null
+          ? homeController.viewProfile.data!.userType = "free"
+          : homeController.viewProfile.data!.userType = "premium";
+      // viewCardApi();
+      update(['more']);
+    } catch (e) {
+      loader.value = false;
+
+      debugPrint(e.toString());
+    }
+  }
+
+  void viewCardApi() async {
+    try {
+      loader.value = true;
+      viewCardModel = await ListCartApi.viewCardsApi(
+          id: listCardModel.data?[selectedIndex].id ?? 0);
+      loader.value = false;
+      update(['more']);
     } catch (e) {
       debugPrint(e.toString());
     }
   }
 
-  transactionApi ()async{
+  void removeCardApi() async {
+    loader.value = true;
+    try {
+      removeCardModel = await ListCartApi.removeCardApi(
+          id: listCardModel.data?[selectedIndex].id ?? 0);
+      update(['more']);
+      loader.value = false;
+      await listCardApi(showToast: false);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  transactionApi() async {
     loader.value = true;
     try {
       transactionModel = await ListCartApi.transactionApi();
@@ -99,22 +101,44 @@ class PaymentController extends GetxController {
     }
   }
 
-  defaultCardApi () async{
+  defaultCardApi() async {
     loader.value = true;
     try {
-      if(listCardModel.data?[selectedIndex].id == null){
+      if (listCardModel.data?[selectedIndex].id == null) {
         errorToast("Card not available");
         loader.value = false;
-      }else{
-        transactionModel = await ListCartApi.defaultCardApi(id: listCardModel.data?[selectedIndex].id ?? 0);
+      } else {
+        transactionModel = await ListCartApi.defaultCardApi(
+            id: listCardModel.data?[selectedIndex].id ?? 0);
         update(['more']);
         loader.value = false;
       }
-
     } catch (e) {
       debugPrint(e.toString());
       loader.value = false;
     }
   }
 
+  String timeAgo(DateTime d) {
+    Duration diff = DateTime.now().difference(d);
+    if (diff.inDays > 365) {
+      return "${(diff.inDays / 365).floor()} ${(diff.inDays / 365).floor() == 1 ? "year" : "years"} ago";
+    }
+    if (diff.inDays > 30) {
+      return "${(diff.inDays / 30).floor()} ${(diff.inDays / 30).floor() == 1 ? "month" : "months"} ago";
+    }
+    if (diff.inDays > 7) {
+      return "${(diff.inDays / 7).floor()} ${(diff.inDays / 7).floor() == 1 ? "week" : "weeks"} ago";
+    }
+    if (diff.inDays > 0) {
+      return "${diff.inDays} ${diff.inDays == 1 ? "day" : "days"} ago";
+    }
+    if (diff.inHours > 0) {
+      return "${diff.inHours} ${diff.inHours == 1 ? "hour" : "hours"} ago";
+    }
+    if (diff.inMinutes > 0) {
+      return "${diff.inMinutes} ${diff.inMinutes == 1 ? "minute" : "minutes"} ago";
+    }
+    return "just now";
+  }
 }

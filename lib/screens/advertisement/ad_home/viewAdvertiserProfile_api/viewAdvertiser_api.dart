@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/viewAdvertiserModel.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
@@ -14,7 +15,7 @@ class ViewAdvertiserApi {
       String url = EndPoints.viewUserAdvertiser;
       int userId = PrefService.getInt(PrefKeys.userId);
       Map<String, String> param = {"userId": userId.toString()};
-      print(param);
+
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),
@@ -34,7 +35,7 @@ class ViewAdvertiserApi {
         /*  errorToast(jsonDecode(response.body)["message"]);*/
       }
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }

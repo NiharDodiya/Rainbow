@@ -1,17 +1,14 @@
 import 'package:get/get.dart';
 import 'package:rainbow/common/helper.dart';
 
-class CountryNameController extends GetxController{
+class CountryNameController extends GetxController {
   bool countryBox = false;
 
-
-
-  dropDownBox(){
-    if(countryBox == false){
+  dropDownBox() {
+    if (countryBox == false) {
       countryBox = true;
       update(["drop"]);
-    }
-    else{
+    } else {
       countryBox = false;
       update(["drop"]);
     }
@@ -21,11 +18,13 @@ class CountryNameController extends GetxController{
   List filterList = [];
 
   void serching(value) {
-    filterList = (listNationalities.data?.where(
-            (element) {
-          return element.name.toString().toLowerCase().contains(value);
-        })
-        .toList()) ?? [];
+    filterList = (listNationalities.data?.where((element) {
+          return element.name
+              .toString()
+              .toLowerCase()
+              .contains(value.toString().toLowerCase());
+        }).toList()) ??
+        [];
     update(["drop"]);
   }
 }

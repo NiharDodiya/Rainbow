@@ -9,12 +9,12 @@ import 'package:rainbow/screens/Profile/widget/edit_profile/editProfile_contolle
 import 'package:rainbow/screens/Profile/widget/edit_profile/edit_profile_Screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
+import 'package:rainbow/screens/notification/notification_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
 ConnectionsController controller = Get.put(ConnectionsController());
 HomeController homeController = Get.put(HomeController());
-
 
 Widget profileAppbar(
     String text, bool show, context, int i, VoidCallback? onTap,
@@ -37,9 +37,9 @@ Widget profileAppbar(
             InkWell(
               onTap: () {
                 if (i == 2) {
-                  if(onTap2 == null){
+                  if (onTap2 == null) {
                     Navigator.of(context).pop();
-                  }else{
+                  } else {
                     onTap2();
                   }
                 } else if (i == 1) {
@@ -80,13 +80,13 @@ Widget profileAppbar(
             ),
             InkWell(
               onTap: () {
-                ConnectionsController connectionController =
-                    Get.put(ConnectionsController());
-                connectionController.init();
+                NotificationsController notificationController =
+                    Get.put(NotificationsController());
+                notificationController.init();
                 homeController.viewProfile.data!.userType == "free"
                     ? premiumPopUpBox(context: context)
-                    : Get.to(() => ConnectionsScreen());
-                },
+                    : Get.to(() => NotificationScreen());
+              },
               child: Stack(
                 children: [
                   const SizedBox(
@@ -103,7 +103,7 @@ Widget profileAppbar(
                     ),
                   ),
                   (controller.requestUsers.length.toString() == '0')
-                      ? SizedBox()
+                      ? const SizedBox()
                       : Positioned(
                           top: 0,
                           right: 0,

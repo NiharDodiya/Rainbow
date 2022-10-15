@@ -17,8 +17,6 @@ class AdvertisementDeatailScreen extends StatelessWidget {
   CreateAdvertisementController createAdvertisementController =
       Get.put(CreateAdvertisementController());
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,11 +128,30 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                         ),
                       ),
                       child: Center(
-                        child: Text(
+                        child: Container(
+                          width: 75,
+                          alignment: Alignment.center,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                Text(
+                                  createAdvertisementController.tags[index],
+                                  maxLines: 1,
+                                  style: gilroyMediumTextStyle(
+                                      fontSize: 12,
+                                      color: ColorRes.color_696D6D),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        /* Text(
                           createAdvertisementController.tags[index],
+                          maxLines: 1,
                           style: gilroyMediumTextStyle(
                               fontSize: 12, color: ColorRes.color_696D6D),
-                        ),
+                        ),*/
                       ),
                     ),
                   ),
@@ -203,7 +220,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
   Widget top(CreateAdvertisementController controller) {
     return Column(
       children: [
-        Container(
+        SizedBox(
           width: Get.width,
           height: 202,
           child: Stack(
@@ -222,7 +239,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                         controller.update(["img"]);
                       },
                       itemBuilder: (context, index1) {
-                        return Container(
+                        return SizedBox(
                           width: Get.width,
                           child: FadeInImage(
                             placeholder:
@@ -264,7 +281,8 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  (controller.imagePath.length == 1 || controller.imagePath.length == 0)
+                  (controller.imagePath.length == 1 ||
+                          controller.imagePath.length == 0)
                       ? const SizedBox()
                       : Padding(
                           padding: const EdgeInsets.only(top: 100),

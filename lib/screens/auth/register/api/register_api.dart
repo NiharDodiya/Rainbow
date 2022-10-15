@@ -40,7 +40,7 @@ class RegisterApi {
         'noKids': noOfKids,
         'role': "end_user",
       };
-      print(param);
+
 
       http.Response? response = await HttpService.postApi(
           url: url,
@@ -66,7 +66,7 @@ class RegisterApi {
         errorToast(jsonDecode(response.body)["message"]);
       }
     } catch (e) {
-      print(e.toString());
+
       return registerUserModelFromJson("");
     }
   }

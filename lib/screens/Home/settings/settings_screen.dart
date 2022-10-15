@@ -11,7 +11,8 @@ import 'package:rainbow/screens/Home/settings/connections/connections_controller
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
-import 'package:rainbow/screens/Home/settings/subscription/subscription_screen.dart';
+
+import 'package:rainbow/screens/Message/message_controller.dart';
 import 'package:rainbow/screens/Message/message_screen.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/profile_screen.dart';
@@ -24,6 +25,7 @@ class SettingsScreen extends StatelessWidget {
   SettingsController controller = Get.put(SettingsController());
   ProfileController profileController = Get.put(ProfileController());
   HomeController homeController = Get.put(HomeController());
+  MessageController messageController = Get.put(MessageController());
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class SettingsScreen extends StatelessWidget {
             return SafeArea(
               child: Container(
                 width: Get.width,
-                padding: EdgeInsets.only(bottom: 50),
+                padding: const EdgeInsets.only(bottom: 50),
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
@@ -149,16 +151,22 @@ class SettingsScreen extends StatelessWidget {
                                 image:
                                     AssetImage(AssetRes.portrait_placeholder))),
                       )
-                    : ClipRRect(
-                        borderRadius: BorderRadius.circular(50),
-                        child: CachedNetworkImage(
-                          imageUrl: profileController
-                              .viewProfile.data!.profileImage!
-                              .toString(),
-                          errorWidget: ((context, url, error) => Image.asset(AssetRes.portrait_placeholder)),
-                          placeholder: (context, url) => Image.asset(AssetRes.portrait_placeholder),
+                    : SizedBox(
+                        height: 56,
+                        width: 56,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: CachedNetworkImage(
+                            imageUrl: profileController
+                                .viewProfile.data!.profileImage!
+                                .toString(),
+                            fit: BoxFit.cover,
+                            errorWidget: ((context, url, error) =>
+                                Image.asset(AssetRes.portrait_placeholder)),
+                            placeholder: (context, url) =>
+                                Image.asset(AssetRes.portrait_placeholder),
+                          ),
                         ),
-
                       ),
                 const SizedBox(
                   width: 20,
@@ -229,10 +237,15 @@ class SettingsScreen extends StatelessWidget {
         ),
         //Messages
         InkWell(
-          onTap: (){
+          onTap: () async {
+
+           await messageController.init();
+
             homeController.viewProfile.data!.userType == "free"
                 ? premiumPopUpBox(context: context)
-                : Get.to(() => MessageScreen(backArrow: true,));
+                : Get.off(() => MessageScreen(
+                      backArrow: true,
+                    ));
           },
           child: Padding(
             padding: const EdgeInsets.only(bottom: 5),
@@ -255,7 +268,8 @@ class SettingsScreen extends StatelessWidget {
                 SizedBox(
                   width: Get.width * 0.555,
                 ),
-                SizedBox(height: 10, width: 6, child: Image.asset(AssetRes.next))
+                SizedBox(
+                    height: 10, width: 6, child: Image.asset(AssetRes.next))
               ],
             ),
           ),

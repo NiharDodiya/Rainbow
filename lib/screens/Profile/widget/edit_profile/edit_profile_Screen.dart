@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -86,151 +87,131 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               height: 25,
             ),
             SizedBox(
-              height: 270,
+              height: Get.height > 865 ? Get.height / 2.6 : Get.height / 2.35,
               width: Get.width,
               child: Stack(
                 children: [
-                  controller.backImage != null
-                      ? Container(
-                          margin: const EdgeInsets.only(right: 16),
-                          height: Get.height * 0.2857,
-                          width: Get.width,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: DecorationImage(
-                                image: FileImage(controller.backImage!),
-                                fit: BoxFit.cover,
-                              )),
-                        )
-                      : /*profileController
-                      .viewProfile.data!.backgroundImage!.isEmpty ? */
-                      Container(
-                          margin: const EdgeInsets.only(right: 16),
-                          height: Get.height * 0.2857,
-                          width: Get.width,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: const DecorationImage(
-                                  image: AssetImage(AssetRes.placeholderImage),
-                                  fit: BoxFit.cover)),
-                        ) /*:Container(
-                    margin: const EdgeInsets.only(right: 16),
-                    height: Get.height * 0.2857,
-                    width: Get.width,
-                    child:  CachedNetworkImage(
-                            imageUrl: profileController
-                                .viewProfile.data!.backgroundImage
-                                .toString(),
-                            imageBuilder: (context, imageProvider) => Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                image: DecorationImage(
-                                  image: imageProvider,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            // placeholder: (context, url) => const Center(child:CircularProgressIndicator(),),
-                            errorWidget: (context, url, error) => Container(
+                  (profileController
+                              .viewProfile.data!.backgroundImage!.isEmpty ||
+                          profileController.viewProfile.data!.backgroundImage
+                                  .toString() ==
+                              "")
+                      ? (controller.backImage == null)
+                          ? Container(
+                              margin: const EdgeInsets.only(right: 16),
                               height: Get.height * 0.2857,
                               width: Get.width,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   image: const DecorationImage(
-                                    image:  AssetImage(AssetRes.overlay),
+                                    image:
+                                        AssetImage(AssetRes.placeholderImage),
+                                    fit: BoxFit.cover,
+                                  )),
+                            )
+                          : Container(
+                              margin: const EdgeInsets.only(right: 16),
+                              height: Get.height * 0.2857,
+                              width: Get.width,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: DecorationImage(
+                                    image: FileImage(controller.backImage!),
+                                    fit: BoxFit.cover,
+                                  )),
+                            )
+                      : ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Container(
+                            height: Get.height * 0.2857,
+                            width: Get.width * 0.93,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              /* image: DecorationImage(
+                          image: NetworkImage(profileController.viewProfile
+                              .data!.backgroundImage.toString()),
+                          fit: BoxFit.cover),*/
+                            ),
+                            child: CachedNetworkImage(
+                              height: Get.height * 0.2857,
+                              width: Get.width,
+                              imageUrl: profileController
+                                  .viewProfile.data!.backgroundImage
+                                  .toString(),
+                              fit: BoxFit.cover,
+                              errorWidget: ((context, url, error) =>
+                                  Image.asset(
+                                    AssetRes.placeholderImage,
+                                    height: Get.height * 0.2857,
+                                    width: Get.width,
+                                    fit: BoxFit.cover,
+                                  )),
+                              placeholder: ((context, url) => Image.asset(
+                                    AssetRes.placeholderImage,
+                                    height: Get.height * 0.2857,
+                                    width: Get.width,
                                     fit: BoxFit.cover,
                                   )),
                             ),
                           ),
-
-                  ),*/
-                  ,
+                        ),
                   Positioned(
-                      top: Get.height * 0.072,
-                      left: Get.width * 0.25,
-                      child: controller.frontImage != null
-                          ? Container(
-                              height: Get.height * 0.38666,
-                              width: Get.width * 0.38666,
-                              /*  child: CachedNetworkImage(
-                              imageUrl: profileController
-                                  .viewProfile.data!.profileImage
-                                  .toString(),
-                              imageBuilder: (context, imageProvider) =>
-                                  Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    image: imageProvider,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              // placeholder: (context, url) => const Center(child:CircularProgressIndicator(),),
-                              errorWidget: (context, url, error) => Container(
-                                height: Get.height * 0.2857,
-                                width: Get.width,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    image: FileImage(controller.frontImage!),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),*/
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: FileImage(controller.frontImage!),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            )
-                          : /*profileController
-                        .viewProfile.data!.profileImage!.isEmpty ?*/
-                          Container(
-                              height: Get.height * 0.38666,
-                              width: Get.width * 0.38666,
-                              decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
+                    top: Get.height /11,
+                    left: Get.width * 0.24,
+                    child: (profileController
+                                .viewProfile.data!.profileImage!.isEmpty ||
+                            profileController.viewProfile.data!.profileImage
+                                    .toString() ==
+                                "")
+                        ? (controller.frontImage == null)
+                            ? Container(
+                                margin: const EdgeInsets.only(right: 16),
+                                height: Get.height * 0.38666,
+                                width: Get.width * 0.38666,
+                                decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
                                       image: AssetImage(
                                           AssetRes.portrait_placeholder),
-                                      fit: BoxFit.contain)),
-                            ) /*:Container(
-                      height: Get.height * 0.38666,
-                      width: Get.width * 0.38666,
-                        child: CachedNetworkImage(
+                                      fit: BoxFit.contain,
+                                    )),
+                              )
+                            : Container(
+                                margin: const EdgeInsets.only(right: 16),
+                                height: Get.height * 0.38666,
+                                width: Get.width * 0.38666,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                      image: FileImage(controller.frontImage!),
+                                      fit: BoxFit.cover,
+                                    )),
+                              )
+                        : ClipRRect(
+                            borderRadius: BorderRadius.circular(99),
+                            child: CachedNetworkImage(
                               imageUrl: profileController
                                   .viewProfile.data!.profileImage
                                   .toString(),
-                              imageBuilder: (context, imageProvider) =>
-                                  Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    image: imageProvider,
+                              width: 151,
+                              height: 151,
+                              fit: BoxFit.cover,
+                              placeholder: ((context, url) => Image.asset(
+                                    AssetRes.portrait_placeholder,
+                                    height: 151,
+                                    width: 151,
                                     fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              // placeholder: (context, url) => const Center(child:CircularProgressIndicator(),),
-                              errorWidget: (context, url, error) => Container(
-                                height: Get.height * 0.2857,
-                                width: Get.width,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    image: FileImage(controller.frontImage!),
+                                  )),
+                              errorWidget: ((context, url, error) =>
+                                  Image.asset(
+                                    AssetRes.portrait_placeholder,
+                                    height: 151,
+                                    width: 151,
                                     fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
+                                  )),
                             ),
-
-                    ),*/
-                      ),
+                          ),
+                  ),
                   Positioned(
                     top: Get.height * 0.24,
                     left: Get.width * 0.4,
@@ -546,15 +527,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                         GetBuilder<EditProfileController>(
                             id: "drop",
-                            builder: (controller){
-                              return  Container(
-                                width: Get.width/1.20,
+                            builder: (controller) {
+                              return Container(
+                                width: Get.width / 1.20,
                                 height: 60,
                                 decoration: BoxDecoration(
                                   color: ColorRes.white,
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                padding: const EdgeInsets.only(left: 20, top: 5),
+                                padding:
+                                    const EdgeInsets.only(left: 20, top: 5),
                                 child: Column(
                                   children: [
                                     Row(
@@ -572,9 +554,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                               },
                                               decoration: InputDecoration(
                                                 border: InputBorder.none,
-                                                hintStyle: gilroyMediumTextStyle(
-                                                    fontSize: 18,
-                                                    color: ColorRes.black.withOpacity(0.3)),
+                                                hintStyle:
+                                                    gilroyMediumTextStyle(
+                                                        fontSize: 18,
+                                                        color: ColorRes.black
+                                                            .withOpacity(0.3)),
                                                 hintText: "Canada",
                                               ),
                                             ),
@@ -582,73 +566,109 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         ),
                                         IconButton(
                                           onPressed: controller.dropDownBox,
-                                          icon: Image.asset(AssetRes.arrowDown, height: 20),),
-                                        SizedBox(width: 5,),
+                                          icon: Image.asset(AssetRes.arrowDown,
+                                              height: 20),
+                                        ),
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
                                       ],
                                     ),
-
                                   ],
                                 ),
                               );
                             }),
                         GetBuilder<EditProfileController>(
                             id: "drop",
-                            builder: (controller){
-                              return  (controller.countryBox == true)
-                                  ?Container(
-                                height: 160,
-                                width: 390,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.white,
-                                ),
-                                child: SingleChildScrollView(
-
-                                  child: Column(
-                                    children: (controller.ethnicity.text.isEmpty)
-                                        ?listNationalities.data!.map((e) {
-                                      return Padding(
-                                        padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
-                                        child: Align(
-                                          alignment: Alignment.topLeft,
-                                          child: InkWell(
-                                            onTap: (){
-                                              controller.ethnicity.text = e.name!;
-                                              controller.countryBox = false;
-                                              controller.update(["drop"]);
-                                            },
-                                            child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
-                                            ),
-                                          ),
+                            builder: (controller) {
+                              return (controller.countryBox == true)
+                                  ? Container(
+                                      height: 160,
+                                      width: Get.width / 1.20,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: Colors.white,
+                                      ),
+                                      child: SingleChildScrollView(
+                                        child: Column(
+                                          children: (controller
+                                                  .ethnicity.text.isEmpty)
+                                              ? listNationalities.data!
+                                                  .map((e) {
+                                                  return Padding(
+                                                    padding: const EdgeInsets.only(
+                                                        left: 20,
+                                                        top: 7,
+                                                        bottom: 7),
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        controller.ethnicity
+                                                            .text = e.name!;
+                                                        controller.countryBox =
+                                                            false;
+                                                        controller
+                                                            .update(["drop"]);
+                                                      },
+                                                      child: SizedBox(
+                                                        height: 25,
+                                                        width: Get.width,
+                                                        child: Align(
+                                                          alignment:
+                                                              Alignment.topLeft,
+                                                          child: Text(
+                                                            e.name!,
+                                                            style: const TextStyle(
+                                                                color: Colors
+                                                                    .black,
+                                                                fontSize: 16),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                }).toList()
+                                              : controller.filterList.map((e) {
+                                                  return Padding(
+                                                    padding: const EdgeInsets.only(
+                                                        left: 20,
+                                                        top: 7,
+                                                        bottom: 7),
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        controller.ethnicity
+                                                            .text = e.name!;
+                                                        controller.countryBox =
+                                                            false;
+                                                        controller
+                                                            .update(["drop"]);
+                                                      },
+                                                      child: SizedBox(
+                                                        height: 25,
+                                                        width: Get.width,
+                                                        child: Align(
+                                                          alignment:
+                                                              Alignment.topLeft,
+                                                          child: Text(
+                                                            e.name!,
+                                                            style: const TextStyle(
+                                                                color: Colors
+                                                                    .black,
+                                                                fontSize: 16),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                }).toList(),
                                         ),
-                                      );
-                                    }).toList()
-                                        :controller.filterList.map((e) {
-                                      return Padding(
-                                        padding: EdgeInsets.only(left: 20, top: 7, bottom: 7),
-                                        child: Align(
-                                          alignment: Alignment.topLeft,
-                                          child: InkWell(
-                                            onTap: (){
-                                              controller.ethnicity.text = e.name!;
-                                              controller.countryBox = false;
-                                              controller.update(["drop"]);
-                                            },
-                                            child: Text(e.name!, style: TextStyle(color: Colors.black, fontSize: 16),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    }).toList(),
-                                  ),
-                                ),
-                              )
-                                  :SizedBox();
+                                      ),
+                                    )
+                                  : const SizedBox();
                             }),
                         const SizedBox(
                           height: 10,
                         ),
-                     /*   GetBuilder<EditProfileController>(
+                        /*   GetBuilder<EditProfileController>(
                           id: "Edit_profile",
                           builder: (controller) {
                             return DropdownButtonHideUnderline(
@@ -707,7 +727,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 itemPadding:
                                     const EdgeInsets.only(left: 20, right: 14),
                                 dropdownMaxHeight: Get.height * 0.3,
-                                *//* height: Get.height*0.19,*//*
+                                */ /* height: Get.height*0.19,*/ /*
                                 dropdownWidth: Get.width * 0.85,
                                 dropdownPadding: null,
                                 dropdownDecoration: BoxDecoration(
@@ -780,7 +800,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                       style: gilroyMediumTextStyle(
                                           fontSize: 16,
                                           color:
-                                          ColorRes.black.withOpacity(0.3)),
+                                              ColorRes.black.withOpacity(0.3)),
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
@@ -788,15 +808,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                               items: controller.noOfKids
                                   .map((item) => DropdownMenuItem<String>(
-                                value: item,
-                                child: Text(
-                                  item,
-                                  style: gilroyMediumTextStyle(
-                                      fontSize: 16,
-                                      color: ColorRes.black),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ))
+                                        value: item,
+                                        child: Text(
+                                          item,
+                                          style: gilroyMediumTextStyle(
+                                              fontSize: 16,
+                                              color: ColorRes.black),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ))
                                   .toList(),
                               value: controller.noKidsSelected,
                               onChanged: (value) {
@@ -811,7 +831,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               buttonHeight: 60,
                               buttonWidth: Get.width * 0.85,
                               buttonPadding:
-                              const EdgeInsets.only(left: 14, right: 23),
+                                  const EdgeInsets.only(left: 14, right: 23),
                               buttonDecoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
                                 color: Colors.white,
@@ -819,7 +839,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               buttonElevation: 2,
                               itemHeight: 40,
                               itemPadding:
-                              const EdgeInsets.only(left: 20, right: 14),
+                                  const EdgeInsets.only(left: 20, right: 14),
                               dropdownMaxHeight: Get.height * 0.3,
                               /* height: Get.height*0.19,*/
                               dropdownWidth: Get.width * 0.85,

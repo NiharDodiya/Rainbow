@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/utils/end_points.dart';
@@ -15,7 +16,7 @@ class SupportAPI {
   SupportController supportController = Get.put(SupportController());
   static final SupportAPI supportAPI = SupportAPI._();
 
-  postSupportAPI({required Map<String, dynamic> data}) async {
+  postSupportAPI({required Map<String, dynamic> data, context}) async {
     Uri url = Uri.parse(EndPoints.userSupport);
 
     http.Response response =
@@ -25,17 +26,13 @@ class SupportAPI {
     });
 
     if (response.statusCode == 200) {
-      print("========= ${response.statusCode} ==============");
-      print(PrefService.getString(PrefKeys.registerToken));
 
-      Map<String, dynamic> allData = jsonDecode(response.body);
-
-      Get.back();
+      Navigator.of(context).pop();
       flutterToast(jsonDecode(response.body)["message"]);
 
       return response.statusCode;
     } else {
-      print("============ ${response.statusCode} ==============");
+
       return response.statusCode;
     }
   }

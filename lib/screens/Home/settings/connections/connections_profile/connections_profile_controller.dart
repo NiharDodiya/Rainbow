@@ -144,7 +144,7 @@ class ConnectionsProfileController extends GetxController {
 
   void onTapGetBack() {
     profileModel = ProfileModel();
-    print("etgg");
+
     Get.back();
   }
 
@@ -152,5 +152,4 @@ class ConnectionsProfileController extends GetxController {
     profileModel = ProfileModel();
     Navigator.of(context).pop();
   }
-
 }

@@ -113,7 +113,7 @@ class AdSupportController extends GetxController {
     try {
       loader.value = true;
       listSupportTicketModel = await SupportApi.supportListApi();
-      print(listSupportTicketModel);
+
       update(["Support"]);
       loader.value = false;
     } catch (e) {
@@ -128,7 +128,7 @@ class AdSupportController extends GetxController {
     try {
       loader.value = true;
       viewSupportTicketModel = await SupportApi.viewSupportTicket(id: id);
-      print(viewSupportTicketModel);
+
       update(["Support"]);
       loader.value = false;
     } catch (e) {
@@ -163,7 +163,7 @@ class AdSupportController extends GetxController {
       quality: 60,
       name: "ra",
     );
-    print(result);
+
     loader.value = false;
   }
 }

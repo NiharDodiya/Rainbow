@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/auth/phonenumber/phonenumber_Controller.dart';
 import 'package:rainbow/screens/auth/register/register_controller.dart';
 import 'package:rainbow/screens/auth/register/widget/registerVerify_controller.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -19,6 +20,9 @@ class _RegisterOtpScreenState extends State<RegisterOtpScreen> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final controller = Get.put(RegisterVerifyController());
 
+  PhoneNumberController phoneNumberController =
+      Get.put(PhoneNumberController());
+
   @override
   void initState() {
     controller.startTimer();
@@ -28,7 +32,7 @@ class _RegisterOtpScreenState extends State<RegisterOtpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    RegisterController registerController = Get.put(RegisterController());
+
     controller.getPhoneNumber();
     return Scaffold(
       backgroundColor: Colors.white,
@@ -91,7 +95,7 @@ class _RegisterOtpScreenState extends State<RegisterOtpScreen> {
                                         child: Row(
                                           children: [
                                             Text(
-                                              "${Strings.codeSent}${controller.showPhoneNumber.toString().isEmpty ? controller.phoneNumber.toString() : controller.showPhoneNumber.toString()}",
+                                              "${Strings.codeSent} ${controller.showPhoneNumber.toString().isEmpty ? controller.phoneNumber.toString() : controller.showPhoneNumber.toString()}",
                                               style: TextStyle(
                                                   color: ColorRes.white
                                                       .withOpacity(0.5),

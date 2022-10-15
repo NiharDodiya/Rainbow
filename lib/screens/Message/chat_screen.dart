@@ -1,10 +1,11 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_stack/image_stack.dart';
-import 'package:intl/intl.dart';
+
 import 'package:paginate_firestore/paginate_firestore.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
@@ -30,8 +31,7 @@ class ChatScreen extends StatelessWidget {
       this.otherUserUid,
       this.roomId,
       this.profileImage,
-      this.userToken
-      })
+      this.userToken})
       : super(key: key);
   MessageController messageController = Get.put(MessageController());
 
@@ -68,13 +68,17 @@ class ChatScreen extends StatelessWidget {
                               onTap: () {
                                 Get.back();
                               },
-                              child:  Padding(
+                              child: Padding(
                                 padding: const EdgeInsets.only(
                                   left: 20,
                                   bottom: 20,
                                   right: 20,
                                 ),
-                                child: Image.asset(AssetRes.backIcon,height: 15,width: 35,),
+                                child: Image.asset(
+                                  AssetRes.backIcon,
+                                  height: 15,
+                                  width: 35,
+                                ),
                               ),
                             ),
                             const SizedBox(width: 9),
@@ -89,7 +93,7 @@ class ChatScreen extends StatelessWidget {
                                           shape: BoxShape.circle,
                                           image: DecorationImage(
                                               image: AssetImage(AssetRes
-                                                  .portrait_placeholder)),
+                                                  .portrait_placeholder),fit: BoxFit.cover),
                                         ),
                                       )
                                     : Container(
@@ -101,13 +105,32 @@ class ChatScreen extends StatelessWidget {
                                         child: ClipRRect(
                                           borderRadius: const BorderRadius.all(
                                               Radius.circular(50)),
-                                          child: FadeInImage(
+                                          child: CachedNetworkImage(
+                                            imageUrl: profileImage.toString(),
+                                            fit: BoxFit.cover,height: 50,width: 50,
+                                            errorWidget: ((context, url,
+                                                    error) =>
+                                                Image.asset(
+                                                  AssetRes.portrait_placeholder,
+                                                  height: 50,
+                                                  width: 50,
+                                                  fit: BoxFit.cover,
+                                                )),
+                                            placeholder: ((context, url) =>
+                                                Image.asset(
+                                                  AssetRes.portrait_placeholder,
+                                                  height: 50,
+                                                  width: 50,
+                                                  fit: BoxFit.cover,
+                                                )),
+                                          ),
+                                          /*FadeInImage(
                                             placeholder: const AssetImage(
                                                 AssetRes.portrait_placeholder),
                                             image: NetworkImage(
                                                 profileImage.toString()),
                                             fit: BoxFit.cover,
-                                          ),
+                                          ),*/
                                         ),
                                       ),
                                 /*   Container(
@@ -239,7 +262,8 @@ class ChatScreen extends StatelessWidget {
                                           height: 35,
                                           child: Center(
                                             child: Text(
-                                              controller.timeAgo(data['time'].toDate()),
+                                              controller.timeAgo(
+                                                  data['time'].toDate()),
                                               style: textStyleFont14WhiteW500
                                                   .copyWith(
                                                 color: ColorRes.color_F0F0F0
@@ -273,13 +297,40 @@ class ChatScreen extends StatelessWidget {
                                                           AssetRes
                                                               .portrait_placeholder,
                                                           height: 28,
-                                                          width: 28,
+                                                          width: 28,fit: BoxFit.cover,
                                                         ))
                                                     : ClipRRect(
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(50),
-                                                        child: FadeInImage(
+                                                        child:
+                                                            CachedNetworkImage(
+                                                          imageUrl: profileImage
+                                                              .toString(),height: 28,width: 28,
+                                                          fit: BoxFit.cover,
+                                                          errorWidget:
+                                                              ((context, url,
+                                                                      error) =>
+                                                                  Image.asset(
+                                                                    AssetRes
+                                                                        .portrait_placeholder,
+                                                                    height: 28,
+                                                                    width: 28,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  )),
+                                                          placeholder:
+                                                              ((context, url) =>
+                                                                  Image.asset(
+                                                                    AssetRes
+                                                                        .portrait_placeholder,
+                                                                    height: 28,
+                                                                    width: 28,
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                  )),
+                                                        ),
+                                                        /*FadeInImage(
                                                           placeholder:
                                                               const AssetImage(
                                                             AssetRes
@@ -292,7 +343,7 @@ class ChatScreen extends StatelessWidget {
                                                           height: 28,
                                                           width: 28,
                                                           fit: BoxFit.cover,
-                                                        ),
+                                                        ),*/
                                                       ),
                                             const SizedBox(
                                               width: 12,
@@ -523,8 +574,7 @@ class ChatScreen extends StatelessWidget {
                                                   controller.sendMessage(
                                                       roomId.toString(),
                                                       otherUserUid,
-                                                    userToken
-                                                  );
+                                                      userToken);
                                                   FocusScope.of(context)
                                                       .unfocus();
                                                 }
@@ -545,13 +595,13 @@ class ChatScreen extends StatelessWidget {
                     ],
                   ),
                 )
-              : SendImage(controller);
+              : sendImage(controller);
         },
       ),
     );
   }
 
-  Widget SendImage(MessageController controller) {
+  Widget sendImage(MessageController controller) {
     return Obx(() {
       return Stack(
         children: [
@@ -586,7 +636,8 @@ class ChatScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 20),
                   child: FloatingActionButton(
                     onPressed: () {
-                      controller.imageSend(otherUserUid.toString(), userToken.toString());
+                      controller.imageSend(
+                          otherUserUid.toString(), userToken.toString());
                     },
                     backgroundColor: ColorRes.color_4F359B,
                     child: const Icon(

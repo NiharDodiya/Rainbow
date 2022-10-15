@@ -20,7 +20,7 @@ class MessageApi {
       }
       return null;
     } catch (e) {
-      print(e.toString());
+
       errorToast(e.toString());
       return null;
     }

@@ -11,7 +11,7 @@ class BlockListApi {
     try {
       String url = EndPoints.blockList;
 
-      String accessToken = await PrefService.getString(PrefKeys.registerToken);
+      String accessToken = PrefService.getString(PrefKeys.registerToken);
       // String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksImlhdCI6MTY1NzIxMjg3NiwiZXhwIjoxNjU3ODE3Njc2fQ.2cGzkRwlQKDDXlMrX4r5pIMprd7uq9Ii-0Z2VwTsvcE";
       http.Response? response =
           await HttpService.postApi(url: url, body: {}, header: {

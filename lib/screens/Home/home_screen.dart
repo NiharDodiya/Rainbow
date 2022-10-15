@@ -25,7 +25,7 @@ import 'package:visibility_detector/visibility_detector.dart';
 import 'settings/connections/connections_controller.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -39,6 +39,8 @@ class _HomeScreenState extends State<HomeScreen> {
   CommentsController commentsController = Get.put(CommentsController());
   ConnectionsProfileController connectionsProfileController =
       Get.put(ConnectionsProfileController());
+  NotificationsController notificationsController =
+      Get.put(NotificationsController());
 
   @override
   Widget build(BuildContext context) {
@@ -86,8 +88,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               image: AssetImage(
                                 AssetRes.settings,
                               ),
-                              height: 19.25,
-                              width: 19.25,
+                              height: 19.35,
+                              width: 19.35,
                             ),
                           ),
                           SizedBox(
@@ -208,12 +210,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ))!
                                     .then((value) {
                                     if (value == true) {
-                                      controller
-                                          .friendPostDataWithOutPagination(
-                                        pageLength: controller
-                                                .friendPostListData.length +
-                                            1,
-                                      );
+                                      Future.delayed(const Duration(seconds: 1))
+                                          .then((value) async {
+                                        await controller
+                                            .friendPostDataWithOutPagination(
+                                          pageLength: controller
+                                                  .friendPostListData.length +
+                                              1,
+                                        );
+                                      });
                                     }
                                   });
                           },
@@ -315,7 +320,47 @@ class _HomeScreenState extends State<HomeScreen> {
                                       )
                                     : ClipRRect(
                                         borderRadius: BorderRadius.circular(50),
-                                        child: Image.network(
+                                        child: SizedBox(
+                                          height: 56,
+                                          width: 56,
+                                          child:
+                                              /*Image.network(
+                                            controller.controller.viewProfile
+                                                .data!.profileImage
+                                                .toString(),
+                                            fit: BoxFit.cover,
+                                            height: 56,
+                                            width: 56,
+                                            errorBuilder: ((context, error, stackTrace) => Image.asset(
+                                              AssetRes.portrait_placeholder,
+                                              fit: BoxFit.cover,
+                                              height: 56,
+                                              width: 56,
+                                            )),
+                                          ),*/
+                                              CachedNetworkImage(
+                                            imageUrl: controller.controller
+                                                .viewProfile.data!.profileImage
+                                                .toString(),
+                                            fit: BoxFit.cover,
+                                            placeholder: ((context, url) =>
+                                                Image.asset(
+                                                  AssetRes.portrait_placeholder,
+                                                  fit: BoxFit.cover,
+                                                  height: 56,
+                                                  width: 56,
+                                                )),
+                                            errorWidget: ((context, url,
+                                                    error) =>
+                                                Image.asset(
+                                                  AssetRes.portrait_placeholder,
+                                                  fit: BoxFit.cover,
+                                                  height: 56,
+                                                  width: 56,
+                                                )),
+                                          ),
+                                        ),
+                                        /*Image.network(
                                           controller.controller.viewProfile
                                               .data!.profileImage
                                               .toString(),
@@ -331,7 +376,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               width: 56,
                                             );
                                           },
-                                        ),
+                                        ),*/
                                       ),
                                 Positioned(
                                     left: Get.width * 0.1,
@@ -529,7 +574,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                        padding: const EdgeInsets.only(right: 10.0),
                         child: Row(
                           children: [
                             const SizedBox(
@@ -665,26 +710,33 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 10, right: 10, bottom: 14),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(50),
-                                      child: Image.network(
-                                        user.profileImage.toString(),
-                                        fit: BoxFit.cover,
-                                        height: 50,
-                                        width: 50,
-                                        errorBuilder: (context, url, error) =>
-                                            ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          child: Image.asset(
-                                            AssetRes.portrait_placeholder,
+                                        left: 10, right: 10, bottom: 20),
+                                    child:  CachedNetworkImage(
+                                      height: 50,
+                                      width: 50,
+                                      imageUrl: user.profileImage.toString(),
+                                      imageBuilder: (context, imageProvider) =>
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                image: imageProvider,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                      // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
+                                      errorWidget: (context, url, error) =>
+                                          Container(
                                             height: 50,
                                             width: 50,
-                                            fit: BoxFit.cover,
+                                            decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                image: DecorationImage(
+                                                    image: AssetImage(
+                                                        AssetRes.portrait_placeholder))),
                                           ),
-                                        ),
-                                      ),
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                   Column(
@@ -796,26 +848,29 @@ class _HomeScreenState extends State<HomeScreen> {
                 return Column(
                   children: [
                     seeAll(),
-                    emptyWidget,
+                    (controller.advertisementListUserModel.data == null ||
+                            controller.advertisementListUserModel.data!.isEmpty)
+                        ? emptyWidget
+                        : const SizedBox(),
                     const SizedBox(
                       height: 20,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15, right: 10),
-                      child: SizedBox(
-                        height: 415,
-                        width: Get.width * 0.92560,
-                        child: PageView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: controller
-                                .advertisementListUserModel
-                                .data
-                                ?.length,
-                            itemBuilder: (context, index) {
-                              return adInLatestFeed(index: index);
-                            }),
-                      ),
-                    ),
+                    controller.advertisementListUserModel.data == null
+                        ? const SizedBox()
+                        : Padding(
+                            padding: const EdgeInsets.only(left: 15, right: 10),
+                            child: SizedBox(
+                              height: 415,
+                              width: Get.width * 0.92560,
+                              child: PageView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: controller
+                                      .advertisementListUserModel.data?.length,
+                                  itemBuilder: (context, index) {
+                                    return adInLatestFeed(index: index);
+                                  }),
+                            ),
+                          ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -839,7 +894,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 if (info.visibleFraction == 1) {
                   controller.postViewData(
                       controller.friendPostListData[index].id.toString());
-                  print("++++++++++++++++++$index");
                 }
               },
               child: Padding(
@@ -889,13 +943,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                         fit: BoxFit.cover,
                                         placeholder: (context, url) =>
                                             Image.asset(
-                                          AssetRes.placeholderImage,
+                                          AssetRes.portrait_placeholder,
                                           height: 40,
                                           width: 40,
                                         ),
                                         errorWidget: (context, url, error) =>
                                             Image.asset(
-                                          AssetRes.placeholderImage,
+                                          AssetRes.portrait_placeholder,
                                           height: 40,
                                           width: 40,
                                         ),
@@ -1297,8 +1351,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     .toString(),
                                               ))!
                                           .then((value) async {
-                                        await controller
-                                            .friendPostDataWithOutPagination();
+                                        Future.delayed(
+                                                const Duration(seconds: 1))
+                                            .then((value) async {
+                                          await controller
+                                              .friendPostDataWithOutPagination();
+                                        });
                                       });
                                     },
                                     child: const SizedBox(
@@ -1387,11 +1445,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    controller.advertisementListUserModel.data?.length == 0
+                    (controller.advertisementListUserModel.data == null ||
+                            controller.advertisementListUserModel.data!.isEmpty)
                         ? const SizedBox()
                         : index == 0
                             ? Padding(
-                                padding: const EdgeInsets.only(left: 15, right: 10),
+                                padding:
+                                    const EdgeInsets.only(left: 15, right: 10),
                                 child: SizedBox(
                                   height: 415,
                                   width: Get.width * 0.92560,

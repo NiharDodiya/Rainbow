@@ -1,25 +1,29 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/model/listCardModel.dart';
 import 'package:rainbow/model/myAdvertiser_model.dart';
 import 'package:rainbow/model/viewAdvertiserModel.dart';
+import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/myAdvertiser_api/myAdvertiser_api.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/viewAdvertiserProfile_api/viewAdvertiser_api.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
+import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 
 class AdHomeController extends GetxController {
   //AdvertisementController advController = Get.put(AdvertisementController());
   TextEditingController monthSet = TextEditingController();
-
-
+  PaymentController paymentController = PaymentController();
+  NotificationsController notificationsController = NotificationsController();
 
   RxBool loader = false.obs;
   String? selectedItem;
   bool listShow = false;
   MyAdvertiserModel myAdvertiserModel = MyAdvertiserModel();
+  String? timeOfDay = "";
   List<String> months = [
     'January',
     'February',
@@ -54,9 +58,30 @@ class AdHomeController extends GetxController {
 
   List<bool> moreOption = [];
 
+  bool ActiveConnection = false;
+
+  String T = "";
+  Future CheckUserConnection() async {
+    try {
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+
+          ActiveConnection = true;
+          T = "Turn off the data and repress again";
+       update(["network"]);
+
+      }
+    } on SocketException catch (_) {
+
+        ActiveConnection = false;
+        T = "Turn On the data and repress again";
+        update(["network"]);
+    }
+  }
+
   @override
-  void onInit() {
-    init();
+  void onInit() async {
+    await init();
     update(["dashBoard"]);
     update(["update"]);
     update();
@@ -77,12 +102,32 @@ class AdHomeController extends GetxController {
   }
 
   Future<void> init() async {
+    await CheckUserConnection();
+    paymentController.transactionApi();
+    paymentController.listCardModel;
+
+    notificationsController.getNotifications;
     await viewAdvertiserData();
     await myAdvertiserListData();
+    await greeting();
   }
 
   void onTapAddList() {
     Get.to(() => CreateAdvertisementScreen());
+  }
+
+  greeting() {
+    var hour = DateTime.now().hour;
+
+    if (hour <= 12) {
+      timeOfDay = 'Morning';
+    } else if ((hour > 12) && (hour <= 16)) {
+      timeOfDay = 'Afternoon';
+    } else if ((hour > 16) && (hour < 20)) {
+      timeOfDay = 'Evening';
+    } else {
+      timeOfDay = 'Night';
+    }
   }
 
   void onTapMore(int index) {
@@ -113,7 +158,7 @@ class AdHomeController extends GetxController {
     } catch (e) {
       loader.value = false;
 
-      print(e.toString());
+
     }
   }
 
@@ -126,7 +171,7 @@ class AdHomeController extends GetxController {
       update(['delete']);
     } catch (e) {
       loader.value = false;
-      print(e.toString());
+
     }
   }
 
@@ -140,7 +185,7 @@ class AdHomeController extends GetxController {
     } catch (e) {
       loader.value = false;
 
-      print(e.toString());
+
     }
   }
 
@@ -153,7 +198,7 @@ class AdHomeController extends GetxController {
       update(['followUp']);
     } catch (e) {
       loader.value = false;
-      print(e.toString());
+
     }
   }
 
@@ -169,15 +214,12 @@ class AdHomeController extends GetxController {
     } catch (e) {
       loader.value = false;
 
-      print(e.toString());
+
     }
   }
-  
-  onTap(){
+
+  onTap() {
     errorToast("Please enter card");
-    update(['more']);
+    update(['network']);
   }
-
-
-  
 }

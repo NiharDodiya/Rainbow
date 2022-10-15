@@ -96,6 +96,8 @@ class TermsConditionsScreen extends StatelessWidget {
 
                         homeController.friendPostListData = [];
 
+                        await PrefService.setValue(PrefKeys.isLogin, true);
+
                         Get.offAll(() => const Dashboard());
                       },
                       child: Container(
@@ -106,9 +108,9 @@ class TermsConditionsScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15)),
                         child: Center(
                             child: Text(
-                              Strings.accCon,
-                              style: gilroyBoldTextStyle(color: Colors.black),
-                            )),
+                          Strings.accCon,
+                          style: gilroyBoldTextStyle(color: Colors.black),
+                        )),
                       ),
                     ),
                   ),

@@ -61,9 +61,19 @@ class DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                         gilroyBoldTextStyle(fontSize: 20, color: Colors.black),
                   ),
                   actions: <Widget>[
-                    FlatButton(
+                    TextButton(
                       child: Text(
-                        "ok",
+                        "No",
+                        style: gilroyBoldTextStyle(
+                            fontSize: 18, color: Colors.black),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    TextButton(
+                      child: Text(
+                        "Yes",
                         style: gilroyBoldTextStyle(
                             fontSize: 18, color: Colors.black),
                       ),
@@ -97,7 +107,7 @@ class DashboardState extends State<Dashboard> with WidgetsBindingObserver {
             id: 'bottom_bar',
             builder: (controller) {
               if (controller.currentTab == 0) {
-                return HomeScreen();
+                return const HomeScreen();
               } else if (controller.currentTab == 1) {
                 return SearchScreen();
               } else if (controller.currentTab == 2) {

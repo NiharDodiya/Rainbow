@@ -1,4 +1,4 @@
-import 'dart:ui';
+
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,18 +35,18 @@ class PaymentSuccessfulScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 15),
+                  padding: const EdgeInsets.only(left: 15),
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: IconButton(
-                      onPressed: (){
+                      onPressed: () {
                         Get.to(AdvertisementDashBord());
                       },
-                      icon: Icon(Icons.arrow_back_ios),
+                      icon: const Icon(Icons.arrow_back_ios),
                     ),
                   ),
                 ),
@@ -73,7 +73,7 @@ class PaymentSuccessfulScreen extends StatelessWidget {
                           image: AssetImage(AssetRes.paymentSuccessfulMark)),
                       shape: BoxShape.circle),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 23,
                 ),
                 Container(

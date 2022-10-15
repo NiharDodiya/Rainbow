@@ -75,7 +75,7 @@ class PostViewBottomScreen extends StatelessWidget {
                     const SizedBox(width: 16),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
+                      children: const [
                         /*Text(
                         myStoryController.friendStoryModel.data!.first.userDetail!.fullName.toString(),
                         style: sfProTextReguler().copyWith(
@@ -149,8 +149,7 @@ class PostViewBottomScreen extends StatelessWidget {
                                 connectionsProfileController.callApi(controller
                                     .postViewUser![index].id
                                     .toString());
-                                print(controller.postViewUser![index].id
-                                    .toString());
+
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
@@ -180,7 +179,7 @@ class PostViewBottomScreen extends StatelessWidget {
                                           shape: BoxShape.circle,
                                           image: DecorationImage(
                                               image: AssetImage(
-                                                  AssetRes.homePro))),
+                                                  AssetRes.portrait_placeholder))),
                                     ),
                                     fit: BoxFit.fill,
                                   ),

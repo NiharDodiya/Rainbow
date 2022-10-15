@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-ViewCardModel viewCardModelFromJson(String? str) => ViewCardModel.fromJson(json.decode(str!));
+ViewCardModel viewCardModelFromJson(String? str) =>
+    ViewCardModel.fromJson(json.decode(str!));
 
 String? viewCardModelToJson(ViewCardModel data) => json.encode(data.toJson());
 
@@ -20,16 +21,16 @@ class ViewCardModel {
   Data? data;
 
   factory ViewCardModel.fromJson(Map<String?, dynamic> json) => ViewCardModel(
-    status: json["status"],
-    message: json["message"],
-    data: json["data"] == null ? null : Data.fromJson(json["data"]),
-  );
+        status: json["status"],
+        message: json["message"],
+        data: json["data"] == null ? null : Data.fromJson(json["data"]),
+      );
 
   Map<String?, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-    "data": data == null ? null : data!.toJson(),
-  };
+        "status": status,
+        "message": message,
+        "data": data == null ? null : data!.toJson(),
+      };
 }
 
 class Data {
@@ -68,40 +69,49 @@ class Data {
   List<CardAddress>? cardAddress;
 
   factory Data.fromJson(Map<String?, dynamic> json) => Data(
-    id: json["id"],
-    idUser: json["id_user"],
-    cardId: json["card_id"],
-    tokenId: json["token_id"],
-    cardNumber: json["card_number"],
-    cardType: json["card_type"],
-    cardBrand: json["card_brand"],
-    expMonth: json["exp_month"],
-    expYear: json["exp_year"],
-    cardHolder: json["card_holder"],
-    cardCountry: json["card_country"],
-    status: json["status"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-    cardAddress: json["cardAddress"] == null ? null : List<CardAddress>.from(json["cardAddress"].map((x) => CardAddress.fromJson(x))),
-  );
+        id: json["id"],
+        idUser: json["id_user"],
+        cardId: json["card_id"],
+        tokenId: json["token_id"],
+        cardNumber: json["card_number"],
+        cardType: json["card_type"],
+        cardBrand: json["card_brand"],
+        expMonth: json["exp_month"],
+        expYear: json["exp_year"],
+        cardHolder: json["card_holder"],
+        cardCountry: json["card_country"],
+        status: json["status"],
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
+        cardAddress: json["cardAddress"] == null
+            ? null
+            : List<CardAddress>.from(
+                json["cardAddress"].map((x) => CardAddress.fromJson(x))),
+      );
 
   Map<String?, dynamic> toJson() => {
-    "id": id,
-    "id_user": idUser,
-    "card_id": cardId,
-    "token_id": tokenId,
-    "card_number": cardNumber,
-    "card_type": cardType,
-    "card_brand": cardBrand,
-    "exp_month": expMonth,
-    "exp_year": expYear,
-    "card_holder": cardHolder,
-    "card_country": cardCountry,
-    "status": status,
-    "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
-    "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
-    "cardAddress": cardAddress == null ? null : List<dynamic>.from(cardAddress!.map((x) => x.toJson())),
-  };
+        "id": id,
+        "id_user": idUser,
+        "card_id": cardId,
+        "token_id": tokenId,
+        "card_number": cardNumber,
+        "card_type": cardType,
+        "card_brand": cardBrand,
+        "exp_month": expMonth,
+        "exp_year": expYear,
+        "card_holder": cardHolder,
+        "card_country": cardCountry,
+        "status": status,
+        "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
+        "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
+        "cardAddress": cardAddress == null
+            ? null
+            : List<dynamic>.from(cardAddress!.map((x) => x.toJson())),
+      };
 }
 
 class CardAddress {
@@ -130,28 +140,32 @@ class CardAddress {
   DateTime? updatedAt;
 
   factory CardAddress.fromJson(Map<String?, dynamic> json) => CardAddress(
-    id: json["id"],
-    idCard: json["id_card"],
-    fullName: json["full_name"],
-    address: json["address"],
-    city: json["city"],
-    postalCode: json["postal_code"],
-    country: json["country"],
-    status: json["status"],
-    createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
-    updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
-  );
+        id: json["id"],
+        idCard: json["id_card"],
+        fullName: json["full_name"],
+        address: json["address"],
+        city: json["city"],
+        postalCode: json["postal_code"],
+        country: json["country"],
+        status: json["status"],
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
+      );
 
   Map<String?, dynamic> toJson() => {
-    "id": id,
-    "id_card": idCard,
-    "full_name": fullName,
-    "address": address,
-    "city": city,
-    "postal_code": postalCode,
-    "country": country,
-    "status": status,
-    "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
-    "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
-  };
+        "id": id,
+        "id_card": idCard,
+        "full_name": fullName,
+        "address": address,
+        "city": city,
+        "postal_code": postalCode,
+        "country": country,
+        "status": status,
+        "createdAt": createdAt == null ? null : createdAt!.toIso8601String(),
+        "updatedAt": updatedAt == null ? null : updatedAt!.toIso8601String(),
+      };
 }

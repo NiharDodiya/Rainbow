@@ -15,13 +15,13 @@ class PhoneNumberApi {
   static Future postRegister(
     String phoneNumber,
   ) async {
-    List<PhoneNumber> phoneList = [];
+   // List<PhoneNumber> phoneList = [];
     try {
       String url = EndPoints.mobileCheck;
       Map<String, String> param = {
         'phoneNumber': phoneNumber,
       };
-      print(param);
+
 
       http.Response? response = await HttpService.postApi(
           url: url,
@@ -45,7 +45,7 @@ class PhoneNumberApi {
           ? errorToast(message)
           : */
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }
@@ -58,7 +58,7 @@ class PhoneNumberApi {
       Map<String, String> param = {
         'phoneNumber': phoneNumber,
       };
-      print(param);
+
 
       http.Response? response = await HttpService.postApi(
           url: url,
@@ -83,7 +83,7 @@ class PhoneNumberApi {
           ? errorToast(message)
           : */
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }
@@ -96,7 +96,7 @@ class PhoneNumberApi {
       Map<String, String> param = {
         'phoneNumber': phoneNumber,
       };
-      print(param);
+
 
       http.Response? response = await HttpService.postApi(
           url: url,
@@ -119,7 +119,7 @@ class PhoneNumberApi {
           ? errorToast(message)
           : */
     } catch (e) {
-      print(e.toString());
+
       return [];
     }
   }
@@ -132,7 +132,7 @@ class PhoneNumberApi {
       Map<String, String> param = {
         'phoneNumber': phoneNumber,
       };
-      print(param);
+
 
       http.Response? response = await HttpService.postApi(
           url: url,
@@ -146,6 +146,7 @@ class PhoneNumberApi {
           // await PrefService.setValue(PrefKeys.register, true);
           await PrefService.setValue(
               PrefKeys.phoneId, jsonDecode(response.body)["data"]["id"]);
+          ///todo: number exclamation mark
           flutterToast(jsonDecode(response.body)["message"]);
         }
         return phoneNumberFromJson(response.body);
@@ -155,7 +156,10 @@ class PhoneNumberApi {
           ? errorToast(message)
           : */
     } catch (e) {
-      print(e.toString());
+      print(e);
+
+            //errorToast("No internet connection");
+
       return [];
     }
   }

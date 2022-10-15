@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:rainbow/model/user_model.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
@@ -15,13 +16,15 @@ class AuthService {
           email: email, password: pwd);
 
       if (userCredential.user != null) {
-        await PrefService.setValue(PrefKeys.isLogin, true);
+        //await PrefService.setValue(PrefKeys.isLogin, true);
         await PrefService.setValue(PrefKeys.uid, userCredential.user!.uid);
         return userCredential.user!.uid;
       }
       return false;
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
       return false;
     }
   }

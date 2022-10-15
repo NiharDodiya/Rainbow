@@ -48,7 +48,6 @@ class MyStoryListLike extends StatelessWidget {
                 const SizedBox(width: 16),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [],
                 ),
               ],
             ),

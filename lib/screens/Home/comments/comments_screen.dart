@@ -35,7 +35,7 @@ class CommentScreen extends StatelessWidget {
                   child: Image.asset(
                     AssetRes.backIcon,
                     height: 16,
-                    width: 35,
+                    width: 37,
                     color: Colors.black,
                   ),
                 ),
@@ -60,7 +60,9 @@ class CommentScreen extends StatelessWidget {
               return Obx(() {
                 return Stack(
                   children: [
-                    commentList(context),
+                    (controller.loader.value == true)
+                        ? const SizedBox()
+                        : commentList(context),
                     controller.refreshLoader.isFalse && controller.loader.isTrue
                         ? const FullScreenLoader()
                         : const SizedBox()

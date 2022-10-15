@@ -76,6 +76,7 @@ class EndPoints {
   ///____________________________________________ advertisement_________________
   static const createAdvertisement =
       "$baseUrl/advirtisers/advertisement/create";
+  static const renewAdvertisement = "$baseUrl/advirtisers/advertisement/renew";
   static const advirtisersRegister = "$baseUrl/advirtisers/register";
   static const createPasswordForAdvertiser =
       "$baseUrl/advirtisers/changepassword";
