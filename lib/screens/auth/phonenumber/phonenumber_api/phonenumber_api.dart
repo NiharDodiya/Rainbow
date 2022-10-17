@@ -156,7 +156,7 @@ class PhoneNumberApi {
           ? errorToast(message)
           : */
     } catch (e) {
-      print(e);
+
 
             //errorToast("No internet connection");
 

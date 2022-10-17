@@ -60,8 +60,10 @@ class PaymentController extends GetxController {
       update(['more']);
     } catch (e) {
       loader.value = false;
+      //errorToast("No internet connection");
 
-      //debugPrint(e.toString());
+
+      debugPrint(e.toString());
     }
   }
 
@@ -73,6 +75,8 @@ class PaymentController extends GetxController {
       loader.value = false;
       update(['more']);
     } catch (e) {
+      loader.value = false;
+     // errorToast("No internet connection");
       debugPrint(e.toString());
     }
   }
@@ -86,6 +90,8 @@ class PaymentController extends GetxController {
       loader.value = false;
       await listCardApi(showToast: false);
     } catch (e) {
+      loader.value = false;
+      errorToast("No internet connection");
       debugPrint(e.toString());
     }
   }
@@ -97,6 +103,8 @@ class PaymentController extends GetxController {
       update(['more']);
       loader.value = false;
     } catch (e) {
+      loader.value = false;
+     // errorToast("No internet connection");
       debugPrint(e.toString());
     }
   }
@@ -116,6 +124,7 @@ class PaymentController extends GetxController {
     } catch (e) {
       debugPrint(e.toString());
       loader.value = false;
+      errorToast("No internet connection");
     }
   }
 

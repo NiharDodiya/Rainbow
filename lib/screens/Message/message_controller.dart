@@ -115,7 +115,7 @@ class MessageController extends GetxController {
 
   bool validation() {
     if (msController.text.isEmpty) {
-      errorToast("please enter message");
+      errorToast("Please enter message");
       return false;
     }
     return true;

@@ -76,6 +76,7 @@ class AddCartApi {
         errorToast(jsonDecode(response!.body)["message"]);
       }
     } catch (e) {
+
       return [];
     }
   }
