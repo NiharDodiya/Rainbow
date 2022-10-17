@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/helper.dart';
-import 'package:rainbow/screens/auth/doctor_register/doctorRegister_screen.dart';
+import 'package:rainbow/screens/auth/doctor_register/doctor_register_screen.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class AdviserRegisterController extends GetxController {

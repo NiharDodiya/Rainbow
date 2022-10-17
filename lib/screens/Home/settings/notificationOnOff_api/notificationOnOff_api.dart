@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/model/NotificationOnOff_model.dart';
-import 'package:rainbow/model/notoficationData_model.dart';
+import 'package:rainbow/model/notification_on_off_model.dart';
+import 'package:rainbow/model/notofication_data_model.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';

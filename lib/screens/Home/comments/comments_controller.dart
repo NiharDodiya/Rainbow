@@ -9,9 +9,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
-import 'package:rainbow/model/listUserTag_model.dart';
-import 'package:rainbow/model/postCommentList_model.dart';
-import 'package:rainbow/model/postComment_model.dart';
+import 'package:rainbow/model/list_user_tag_model.dart';
+import 'package:rainbow/model/post_comment_list_model.dart';
+import 'package:rainbow/model/post_comment_model.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/myPost_Api/myPost_api.dart';
 

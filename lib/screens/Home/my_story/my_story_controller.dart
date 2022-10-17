@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/model/StoryComment_model.dart';
+import 'package:rainbow/model/story_comment_model.dart';
 import 'package:rainbow/model/friend_stroy_model.dart';
-import 'package:rainbow/model/storyViewList_model.dart';
+import 'package:rainbow/model/story_view_list_model.dart';
 import 'package:rainbow/model/unlike_model.dart';
 import 'package:rainbow/screens/Home/Story/likeStory_api/likeStory_api.dart';
 import 'package:rainbow/screens/Home/Story/unlike_api/unlike_api.dart';
@@ -16,7 +16,7 @@ import 'package:rainbow/screens/Home/story_commets/api/story_comment_api.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:story/story_page_view/story_page_view.dart';
 
-import '../../../model/likeStory_model.dart';
+import '../../../model/like_story_model.dart';
 import 'widgets/myStoryViewBottom_screen.dart';
 
 class MyStoryController extends GetxController {
