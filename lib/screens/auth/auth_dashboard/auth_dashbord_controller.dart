@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/screens/Home/home_controller.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/api/google_id_verification_api.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_api.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
@@ -64,7 +66,22 @@ class AuthDashBordController extends GetxController {
 String? token;
   Future signWithGoogle() async {
     // GoogleIdVerification.postRegister(user.uid).then((value) {print(value);});
+    HomeController homeController = Get.put(HomeController());
+    AdHomeController adHomeController = Get.put(AdHomeController());
 
+    adHomeController.viewAdvertiserModel.data?.profilePhoto = null;
+    adHomeController.viewAdvertiserModel.data?.fullName = "";
+    adHomeController.viewAdvertiserModel.data?.profileImage = "";
+    adHomeController.viewAdvertiserModel.data?.email = "";
+    homeController.viewProfile.data = null;
+    homeController.controller.viewProfile.data?.profileImage = null;
+    homeController.controller.viewProfile.data?.profileImage = null;
+
+    homeController.controller.viewProfile.data?.profileImage = "";
+
+    homeController.viewStoryController.storyModel.friendsStory = null;
+    homeController.viewStoryController.storyModel.friendsStory?.length = 0;
+    homeController.friendPostListData = [];
     try {
       loading.value = true;
       token = await NotificationService.getFcmToken();
@@ -134,6 +151,22 @@ String? token;
   }
 
   void faceBookSignIn() async {
+    HomeController homeController = Get.put(HomeController());
+    AdHomeController adHomeController = Get.put(AdHomeController());
+
+    adHomeController.viewAdvertiserModel.data?.profilePhoto = null;
+    adHomeController.viewAdvertiserModel.data?.fullName = "";
+    adHomeController.viewAdvertiserModel.data?.profileImage = "";
+    adHomeController.viewAdvertiserModel.data?.email = "";
+    homeController.viewProfile.data = null;
+    homeController.controller.viewProfile.data?.profileImage = null;
+    homeController.controller.viewProfile.data?.profileImage = null;
+
+    homeController.controller.viewProfile.data?.profileImage = "";
+
+    homeController.viewStoryController.storyModel.friendsStory = null;
+    homeController.viewStoryController.storyModel.friendsStory?.length = 0;
+    homeController.friendPostListData = [];
     try {
       loading.value = true;
       token = await NotificationService.getFcmToken();

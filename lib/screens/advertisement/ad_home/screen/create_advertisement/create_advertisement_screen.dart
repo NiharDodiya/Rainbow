@@ -778,7 +778,9 @@ class CreateAdvertisementScreen extends StatelessWidget {
                               children: (controller
                                       .countryController.text.isEmpty)
                                   ? listNationalities.data!.map((e) {
-                                      return Padding(
+                                      return (listNationalities.data == null)?
+                                      const SizedBox():
+                                      Padding(
                                         padding: const EdgeInsets.only(
                                             left: 20, top: 7, bottom: 7),
                                         child: InkWell(

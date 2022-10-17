@@ -60,7 +60,7 @@ class AssetRes {
   static const chatSend = '${icons}chatSend.png';
   static const chatImage = '${icons}chatImage.png';
   static const placeholderImage = '${icons}placeholderimage.jpeg';
-  static const portraitPlaceholder = '${icons}portraitPlaceholder.png';
+  static const portraitPlaceholder = '${icons}Portrait_Placeholder.png';
   static const addPeople = '${icons}addPeople.png';
 
   ///--------------------------------------------- iconsBottom---------------------------------------------
@@ -77,7 +77,7 @@ class AssetRes {
   static const instagram = '${images}instagram.png';
   static const facebook1 = '${images}facebook1.png';
   static const overlay = '${images}overlay.png';
-  static const seeProfile = '${images}seeProfile.png';
+  static const seeProfile = '${images}se_profile.png';
   static const woman = '${images}woman.png';
   static const se = '${images}se-2.png';
   static const rainBowLogo = '${images}rainbow_logo.png';

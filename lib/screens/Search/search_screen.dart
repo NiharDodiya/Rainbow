@@ -838,6 +838,10 @@ class SearchScreen extends StatelessWidget {
                                                     "no"
                                                 ? GestureDetector(
                                                     onTap: () {
+                                                      FocusScopeNode currentfocus = FocusScope.of(context);
+                                                      if (!currentfocus.hasPrimaryFocus) {
+                                                        currentfocus.unfocus();
+                                                      }
                                                       controller
                                                           .sendFriendRequest(
                                                               controller
@@ -881,6 +885,10 @@ class SearchScreen extends StatelessWidget {
                                                         "sent"
                                                     ? GestureDetector(
                                                         onTap: () {
+                                                          FocusScopeNode currentfocus = FocusScope.of(context);
+                                                          if (!currentfocus.hasPrimaryFocus) {
+                                                            currentfocus.unfocus();
+                                                          }
                                                           controller.cancelFriendRequest(
                                                               controller
                                                                   .listUserData[

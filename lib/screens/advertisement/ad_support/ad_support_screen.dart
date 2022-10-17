@@ -306,6 +306,7 @@ class AdSupportScreen extends StatelessWidget {
         child: Container(
           height: 60,
           width: 300,
+          alignment: Alignment.center,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: ColorRes.colorE7D01F,
@@ -315,21 +316,10 @@ class AdSupportScreen extends StatelessWidget {
               end: Alignment.centerRight,
             ),
           ),
-          child: Center(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 18,
-                    width: 152,
-                    child: Text(
-                      Strings.sendNewMessage,
-                      style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
-                    ),
-                  ),
-                ],
-              )),
+          child: Text(
+            Strings.sendNewMessage,
+            style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
+          ),
         ),
       );
     });
