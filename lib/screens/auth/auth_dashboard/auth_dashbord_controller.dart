@@ -165,7 +165,7 @@ String? token;
               await firebaseFirestore
                   .collection("users")
                   .doc(user.uid)
-                  .update({"online": true,   "id": model?.data?.id});
+                  .update({"online": true,   "id": model?.data?.id, "UserToken": token.toString()});
               await PrefService.setValue(PrefKeys.uid, user.uid);
             } else {
               await firebaseFirestore.collection("users").doc(user.uid).set({
