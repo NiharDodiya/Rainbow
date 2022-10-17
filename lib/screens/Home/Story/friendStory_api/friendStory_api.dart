@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/create_post_model.dart';
 import 'package:rainbow/model/friend_stroy_model.dart';
-import 'package:rainbow/model/myPostList_model.dart';
+import 'package:rainbow/model/my_post_list_model.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';

@@ -3,7 +3,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
 // import 'package:rainbow/common/Widget/text_styles.dart';
-// import 'package:rainbow/screens/auth/doctor_register/doctorRegister_controller.dart';
+// import 'package:rainbow/screens/auth/doctor_register/doctor_register_controller.dart';
 // import 'package:rainbow/utils/color_res.dart';
 //
 // class AppDropDownCompanyCountry extends StatelessWidget {

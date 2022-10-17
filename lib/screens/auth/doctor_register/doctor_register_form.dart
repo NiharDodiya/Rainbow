@@ -4,7 +4,7 @@ import 'package:rainbow/common/Widget/country_name.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/common/helper.dart';
-import 'package:rainbow/screens/auth/doctor_register/doctorRegister_controller.dart';
+import 'package:rainbow/screens/auth/doctor_register/doctor_register_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/model/listCardModel.dart';
+import 'package:rainbow/model/list_card_model.dart';
 import 'package:rainbow/model/remove_card_model.dart';
-import 'package:rainbow/model/transactionModel.dart';
+import 'package:rainbow/model/transaction_model.dart';
 
-import 'package:rainbow/model/viewCardModel.dart';
+import 'package:rainbow/model/view_cardM_model.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/payment/widget/remove_dialog.dart';
 import 'package:rainbow/screens/advertisement/ad_payment/ad_payment_api/ad_payment_api.dart';

@@ -6,11 +6,11 @@ import 'package:rainbow/common/popup.dart';
 
 import 'package:rainbow/model/default_crad_model.dart';
 
-import 'package:rainbow/model/listCardModel.dart';
+import 'package:rainbow/model/list_card_model.dart';
 import 'package:rainbow/model/remove_card_model.dart';
-import 'package:rainbow/model/transactionModel.dart';
+import 'package:rainbow/model/transaction_model.dart';
 
-import 'package:rainbow/model/viewCardModel.dart';
+import 'package:rainbow/model/view_cardM_model.dart';
 
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
