@@ -243,9 +243,9 @@ class AdvertisementDashBord extends StatelessWidget {
                                GetBuilder<AdHomeController>(
                                  id: "network",
                                    builder: (controller){
-                                     adHomeController.CheckUserConnection();
+                                     adHomeController.checkUserConnection();
                                  return  InkWell(
-                                   onTap: adHomeController.ActiveConnection ==
+                                   onTap: adHomeController.activeConnection ==
                                        false
                                        ? () {
 
@@ -263,7 +263,7 @@ class AdvertisementDashBord extends StatelessWidget {
                                      adController.startTimer();
                                      adController.phoneNumberRegister();
                                      Get.to(() =>
-                                     const AdvertiserVerifyOtpScreen())!.then((value) =>  adHomeController.CheckUserConnection());
+                                     const AdvertiserVerifyOtpScreen())!.then((value) =>  adHomeController.checkUserConnection());
                                    },
                                    child: SizedBox(
                                      height: Get.height * 0.06,
@@ -292,9 +292,9 @@ class AdvertisementDashBord extends StatelessWidget {
                                 GetBuilder<AdHomeController>(
                                   id: "network",
                                     builder: (controller){
-                                      adHomeController.CheckUserConnection();
+                                      adHomeController.checkUserConnection();
                                   return InkWell(
-                                    onTap: adHomeController.ActiveConnection ==
+                                    onTap: adHomeController.activeConnection ==
                                         false?() =>  errorToast("No internet connection"):() => advertisementController.inTapAccountInfo(),
                                     child: SizedBox(
                                       height: Get.height * 0.06,
@@ -351,7 +351,7 @@ class AdvertisementDashBord extends StatelessWidget {
                                               scale: .7,
                                               child: CupertinoSwitch(
                                                 value: controller.isSwitched!,
-                                                onChanged: adHomeController.ActiveConnection ==
+                                                onChanged: adHomeController.activeConnection ==
                                                     false? (value){
                                                   errorToast("No internet connection");
                                                 }
@@ -444,7 +444,7 @@ class AdvertisementDashBord extends StatelessWidget {
                     } else if (controller.currentTab == 3) {
                       return AdSupportScreen();
                     } else {
-                      return AdHomeScreen();
+                      return const AdHomeScreen();
                     }
                   },
                 ),
@@ -452,7 +452,7 @@ class AdvertisementDashBord extends StatelessWidget {
               bottomNavigationBar: GetBuilder<AdHomeController>(
                 id: "network",
                   builder: (adHomeController){
-                  adHomeController.CheckUserConnection();
+                  adHomeController.checkUserConnection();
                 return GetBuilder<AdvertisementController>(
                   id: 'bottom_bar',
                   builder: (_) => SalomonBottomBar(
@@ -460,7 +460,7 @@ class AdvertisementDashBord extends StatelessWidget {
                     selectedItemColor: ColorRes.color_2F80ED,
                     unselectedItemColor: ColorRes.color_9597A1,
                     currentIndex: advertisementController.currentTab,
-                    onTap: adHomeController.ActiveConnection == false ? (i){
+                    onTap: adHomeController.activeConnection == false ? (i){
                       errorToast("No internet connection");
                     } :(i) => advertisementController.onBottomBarChange(i),
                     items: [

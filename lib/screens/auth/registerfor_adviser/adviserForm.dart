@@ -101,7 +101,7 @@ class AdviserRegisterForm extends StatelessWidget {
                 return AppTextFiled(
                   controller: controller.city,
                   title: Strings.city,
-                  hintText: "Ontrario",
+                  hintText: "ontario",
                   inputPadding: EdgeInsets.only(left: Get.width * 0.04),
                 );
               },

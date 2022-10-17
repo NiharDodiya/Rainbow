@@ -339,7 +339,7 @@ class EditCardScreen extends StatelessWidget {
                                 ),
                                 AppTextFiled(
                                   controller: controller.nameOnCardController,
-                                  title: Strings.nameonCard,
+                                  title: Strings.nameOnCard,
                                   hintText: Strings.aycanDoganlar,
                                 ),
                                 /*AppTextFiled(

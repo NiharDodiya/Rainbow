@@ -856,7 +856,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
               showTitle: false,
             ),
             Text(
-              Strings.plase,
+              Strings.place,
               style: gilroyBoldTextStyle(
                   fontSize: 12, color: Colors.white.withOpacity(0.5)),
             ),
@@ -872,7 +872,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
               controller: updateAdvertiseController.provinceController,
               title: "",
               titleBottomPadding: 0,
-              hintText: Strings.proviceHint,
+              hintText: Strings.provinceHint,
               showTitle: false,
             ),
             AppTextFiled(

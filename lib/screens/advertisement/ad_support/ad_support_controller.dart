@@ -90,7 +90,7 @@ class AdSupportController extends GetxController {
 
   bool valid() {
     if (yourMsgSendController.text.isEmpty) {
-      errorToast(Strings.supporterror01);
+      errorToast(Strings.supportError01);
       return false;
     }
     return true;
@@ -158,7 +158,7 @@ class AdSupportController extends GetxController {
     loader.value = true;
     var response = await Dio()
         .get(url, options: Options(responseType: ResponseType.bytes));
-    final result = await ImageGallerySaver.saveImage(
+  await ImageGallerySaver.saveImage(
       Uint8List.fromList(response.data),
       quality: 60,
       name: "ra",

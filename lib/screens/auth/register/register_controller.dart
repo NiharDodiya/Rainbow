@@ -335,7 +335,7 @@ class RegisterController extends GetxController {
           codeId.toString(),
           dobController.text,
           kidsController.text);
-      print(registerUser);
+      //print(registerUser);
       await PrefService.setValue(
           PrefKeys.registerToken, registerUser.token.toString());
 

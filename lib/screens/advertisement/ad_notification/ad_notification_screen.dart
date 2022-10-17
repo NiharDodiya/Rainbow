@@ -14,9 +14,9 @@ import '../../../utils/asset_res.dart';
 
 class AdNotificationsScreen extends StatelessWidget {
   AdNotificationsScreen({Key? key}) : super(key: key);
-  AdHomeController adHomeController = Get.find<AdHomeController>();
+  final AdHomeController adHomeController = Get.find<AdHomeController>();
   final NotificationsController controller = Get.put(NotificationsController());
-  ConnectionsProfileController connectionsProfileController =
+  final ConnectionsProfileController connectionsProfileController =
       Get.put(ConnectionsProfileController());
 
   @override

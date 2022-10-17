@@ -13,8 +13,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../create_advertisement/create_advertisement_controller.dart';
 
 class AdvertisementDeatailScreen extends StatelessWidget {
-  AdvertisementDeatailScreen({Key? key}) : super(key: key);
-  CreateAdvertisementController createAdvertisementController =
+   AdvertisementDeatailScreen({Key? key}) : super(key: key);
+   final CreateAdvertisementController createAdvertisementController =
       Get.put(CreateAdvertisementController());
 
   @override

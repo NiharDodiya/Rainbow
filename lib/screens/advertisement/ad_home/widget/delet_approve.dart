@@ -9,10 +9,10 @@ import '../../../../common/Widget/text_styles.dart';
 import '../../../../utils/asset_res.dart';
 import '../../../../utils/color_res.dart';
 
-class DeletApprove extends StatelessWidget {
+class deleteApprove extends StatelessWidget {
   String? idAdvertiser;
 
-  DeletApprove({Key? key, this.idAdvertiser}) : super(key: key);
+  deleteApprove({Key? key, this.idAdvertiser}) : super(key: key);
 
   AdHomeController adHomeController = Get.put(AdHomeController());
 
@@ -45,7 +45,7 @@ class DeletApprove extends StatelessWidget {
                       height: Get.height * 0.07881,
                     ),
                     Text(
-                      Strings.deletApprove,
+                      Strings.deleteApprove,
                       style: gilroySemiBoldTextStyle(fontSize: 24),
                     ),
                     SizedBox(
@@ -81,7 +81,7 @@ class DeletApprove extends StatelessWidget {
                     SizedBox(
                       width: 210,
                       child: Text(
-                        Strings.deletApproveDes,
+                        Strings.deleteApproveDes,
                         style: gilroyMediumTextStyle(fontSize: 16),
                         textAlign: TextAlign.center,
                       ),

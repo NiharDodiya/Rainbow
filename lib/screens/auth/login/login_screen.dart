@@ -217,7 +217,7 @@ class LoginScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    Strings.log_in,
+                    Strings.logIn,
                     style: textStyleFont14WhiteBold,
                   ),
                   Text(
@@ -247,11 +247,11 @@ class LoginScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                Strings.dontHaveAccount,
+                Strings.donNotHaveAccount,
                 style: gilroyMediumTextStyle(color: Colors.black, fontSize: 14),
               ),
               Text(
-                Strings.sign_Up,
+                Strings.signUpc,
                 style: textStyleFont14,
               ),
             ],

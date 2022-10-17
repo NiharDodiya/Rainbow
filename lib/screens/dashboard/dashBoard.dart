@@ -124,7 +124,7 @@ class DashboardState extends State<Dashboard> with WidgetsBindingObserver {
         bottomNavigationBar: GetBuilder<HomeController>(
           id: "network",
             builder: (homeController){
-            homeController.CheckUserConnection();
+            homeController.checkUserConnection();
           return GetBuilder<DashboardController>(
             id: "bottom_bar",
             builder: (controller) {
@@ -133,7 +133,7 @@ class DashboardState extends State<Dashboard> with WidgetsBindingObserver {
                 selectedItemColor: ColorRes.color_2F80ED,
                 unselectedItemColor: ColorRes.color_9597A1,
                 currentIndex: controller.currentTab,
-                onTap: homeController.ActiveConnection == false?(int index){
+                onTap: homeController.activeConnection == false?(int index){
                   errorToast("No internet connection");
                 }:(int index) {
                   controller.onBottomBarChange(index);

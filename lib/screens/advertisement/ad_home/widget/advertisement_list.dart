@@ -47,9 +47,9 @@ Widget advertisementList() {
                   child: GetBuilder<AdHomeController>(
                     id: "network",
                       builder: (adHomeController){
-                      adHomeController.CheckUserConnection();
+                      adHomeController.checkUserConnection();
                     return InkWell(
-                      onTap: adHomeController.ActiveConnection == false?(){
+                      onTap: adHomeController.activeConnection == false?(){
                         errorToast("No internet connection");
                       }:() {
                         (controller.moreOption[index] == true)
@@ -238,11 +238,11 @@ Widget advertisementList() {
                                           padding:
                                           const EdgeInsets.all(9),
                                           child: InkWell(
-                                            onTap: adHomeController.ActiveConnection == false?(){
+                                            onTap: adHomeController.activeConnection == false?(){
                                               errorToast("No internet connection");
                                             }:() {
                                               if (index == 0) {
-                                                Get.to(DeletApprove(
+                                                Get.to(deleteApprove(
                                                   idAdvertiser: controller
                                                       .myAdvertiserModel
                                                       .data![index]
@@ -343,7 +343,7 @@ Widget advertisementList() {
                                           child: InkWell(
                                             onTap: () {
                                               if (index1 == 0) {
-                                                Get.to(DeletApprove(
+                                                Get.to(deleteApprove(
                                                   idAdvertiser: controller
                                                       .myAdvertiserModel
                                                       .data![index]
@@ -653,7 +653,7 @@ RefreshIndicator(
                                           child: InkWell(
                                             onTap: () {
                                               if (index == 0) {
-                                                Get.to(DeletApprove(
+                                                Get.to(deleteApprove(
                                                   idAdvertiser: controller
                                                       .myAdvertiserModel
                                                       .data![index]
@@ -750,7 +750,7 @@ RefreshIndicator(
                                           child: InkWell(
                                             onTap: () {
                                               if (index1 == 0) {
-                                                Get.to(DeletApprove(
+                                                Get.to(deleteApprove(
                                                   idAdvertiser: controller
                                                       .myAdvertiserModel
                                                       .data![index]

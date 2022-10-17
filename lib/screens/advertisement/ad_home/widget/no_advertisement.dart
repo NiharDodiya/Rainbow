@@ -55,9 +55,9 @@ Widget noAdvertisement() {
                 GetBuilder<AdHomeController>(
                     id: "network",
                     builder: (controller) {
-                      controller.CheckUserConnection();
+                      controller.checkUserConnection();
                       return SubmitButton(
-                        onTap:   controller.ActiveConnection == false
+                        onTap:   controller.activeConnection == false
                             ? (){
                           errorToast("No internet connection");
                         }

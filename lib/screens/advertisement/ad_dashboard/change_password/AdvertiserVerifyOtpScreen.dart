@@ -187,7 +187,7 @@ class _AdvertiserVerifyOtpScreenState extends State<AdvertiserVerifyOtpScreen> {
                               ),
                               Center(
                                 child: Text(
-                                  Strings.reciveCode,
+                                  Strings.receivedCode,
                                   style: gilroyMediumTextStyle(
                                       color: ColorRes.white.withOpacity(0.5),
                                       fontSize: 16),

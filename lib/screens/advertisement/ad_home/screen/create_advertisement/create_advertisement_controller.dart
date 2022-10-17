@@ -53,10 +53,10 @@ class CreateAdvertisementController extends GetxController {
   String flag = AssetRes.flag01;
   bool showDropDown = false;
   List<String> flagList = [AssetRes.flag01, AssetRes.flag02];
-  List<String> list = ["Caneda", "India"];
+  List<String> list = ["canada", "India"];
   String currency = "\$";
   List<String> currencyList = ["\$", "₹"];
-  String select = 'Caneda';
+  String select = 'canada';
 
   int pageIndex = 0;
 
@@ -230,7 +230,7 @@ class CreateAdvertisementController extends GetxController {
       errorToast(Strings.titleError);
       return false;
     } else if (countryController.text.isEmpty) {
-      errorToast(Strings.canedaError);
+      errorToast(Strings.canadaError);
       return false;
     } else if (streetController.text.isEmpty) {
       errorToast(Strings.streetError);

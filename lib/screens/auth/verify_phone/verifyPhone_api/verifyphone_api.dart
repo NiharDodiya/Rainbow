@@ -100,7 +100,7 @@ class VerifyCodeApi {
         'id': id.toString(),
         'code': verifyOtp.toString(),
       };
-      print(param);
+      //print(param);
       http.Response? response = await HttpService.postApi(
           url: url,
           body: jsonEncode(param),

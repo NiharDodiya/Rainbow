@@ -91,7 +91,7 @@ class SupportcreateScreen extends StatelessWidget {
                 border: InputBorder.none,
                 hintStyle: gilroyMediumTextStyle(
                     fontSize: 16, color: ColorRes.black.withOpacity(0.3)),
-                hintText: Strings.writesomethinghere,
+                hintText: Strings.writeSomeThingHere,
               ),
             ),
           ),

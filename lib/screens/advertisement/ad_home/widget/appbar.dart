@@ -144,9 +144,9 @@ Widget appbar({context}) {
                 GetBuilder<AdHomeController>(
                     id: "network",
                     builder: (controller){
-                      controller.CheckUserConnection();
+                      controller.checkUserConnection();
                       return  InkWell(
-                        onTap: controller.ActiveConnection == false
+                        onTap: controller.activeConnection == false
                             ? (){
                           errorToast("No internet connection");
                         }
@@ -200,9 +200,9 @@ Widget appbar({context}) {
                  child:  GetBuilder<AdHomeController>(
                      id: "network",
                      builder: (controller){
-                       controller.CheckUserConnection();
+                       controller.checkUserConnection();
                        return  InkWell(
-                         onTap: controller.ActiveConnection == false
+                         onTap: controller.activeConnection == false
                              ? (){
                            errorToast("No internet connection");
                          }

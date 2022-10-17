@@ -58,22 +58,22 @@ class AdHomeController extends GetxController {
 
   List<bool> moreOption = [];
 
-  bool ActiveConnection = false;
+  bool activeConnection = false;
 
   String T = "";
-  Future CheckUserConnection() async {
+  Future checkUserConnection() async {
     try {
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
 
-          ActiveConnection = true;
+          activeConnection = true;
           T = "Turn off the data and repress again";
        update(["network"]);
 
       }
     } on SocketException catch (_) {
 
-        ActiveConnection = false;
+        activeConnection = false;
         T = "Turn On the data and repress again";
         update(["network"]);
     }
@@ -102,7 +102,7 @@ class AdHomeController extends GetxController {
   }
 
   Future<void> init() async {
-    await CheckUserConnection();
+    await checkUserConnection();
     paymentController.transactionApi();
     paymentController.listCardModel;
 

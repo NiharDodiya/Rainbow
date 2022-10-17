@@ -54,7 +54,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
   ];
   List<chart.Series<DeveloperSeries, String>> series = [];
 
-  CreateAdvertisementController createAdvertisementController =
+  final CreateAdvertisementController createAdvertisementController =
       Get.put(CreateAdvertisementController());
 
   void init() {

@@ -87,7 +87,7 @@ class AdvertisementController extends GetxController {
 
   void notification() {
     AdHomeController adHomeController = Get.find();
-    adHomeController.CheckUserConnection();
+    adHomeController.checkUserConnection();
     isSwitched = PrefService.getBool(PrefKeys.notification);
 
     update(["settings"]);

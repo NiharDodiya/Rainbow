@@ -84,9 +84,9 @@ class _HomeScreenState extends State<HomeScreen> {
                          GetBuilder<HomeController>(
                            id: "network",
                              builder: (homeController){
-                               homeController.CheckUserConnection();
+                               homeController.checkUserConnection();
                            return  GestureDetector(
-                             onTap: homeController.ActiveConnection == false?(){
+                             onTap: homeController.activeConnection == false?(){
                                errorToast("No internet connection");
                              }:() {
                                controller.onTapSetting();
@@ -106,9 +106,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           GetBuilder<HomeController>(
                             id: "network",
                               builder: (homeController){
-                                homeController.CheckUserConnection();
+                                homeController.checkUserConnection();
                             return InkWell(
-                              onTap: homeController.ActiveConnection == false?(){
+                              onTap: homeController.activeConnection == false?(){
                                 errorToast("No internet connection");
                               }:() {
                                 controller.onNotyIconBtnTap(context: context);
@@ -209,14 +209,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         GetBuilder<HomeController>(
                           id: "network",
                             builder: (homeController){
-                            homeController.CheckUserConnection();
+                            homeController.checkUserConnection();
                           return FloatingActionButton(
                             child: Image.asset(
                               AssetRes.add,
                               height: 24,
                               width: 24,
                             ),
-                            onPressed: homeController.ActiveConnection == false? (){
+                            onPressed: homeController.activeConnection == false? (){
                               errorToast("No internet connection");
                             } : () async {
                               //premiumPopUpBox(context: context);
@@ -315,9 +315,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: GetBuilder<HomeController>(
                           id: "network",
                             builder: (homeController){
-                            homeController.CheckUserConnection();
+                            homeController.checkUserConnection();
                           return InkWell(
-                            onTap: homeController.ActiveConnection == false? (){
+                            onTap: homeController.activeConnection == false? (){
                               errorToast("No internet connection");
                             } :() {
                               // if user have not subcription show pop up
@@ -617,9 +617,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 GetBuilder<HomeController>(
                                   id: "network",
                                     builder: (homeController){
-                                    homeController.CheckUserConnection();
+                                    homeController.checkUserConnection();
                                   return GestureDetector(
-                                    onTap: homeController.ActiveConnection == false ? ()=>errorToast("No internet connection") :
+                                    onTap: homeController.activeConnection == false ? ()=>errorToast("No internet connection") :
                                         () =>
                                         controller.onFriedStoryTap(index),
                                     child: ClipRRect(
@@ -1366,9 +1366,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   GetBuilder<HomeController>(
                                     id: "network",
                                       builder: (homeController){
-                                        homeController.CheckUserConnection();
+                                        homeController.checkUserConnection();
                                         return InkWell(
-                                    onTap: homeController.ActiveConnection == false
+                                    onTap: homeController.activeConnection == false
                                         ? (){
                                       errorToast("No internet connection");
                                     }

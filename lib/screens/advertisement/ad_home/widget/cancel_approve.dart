@@ -45,7 +45,7 @@ class CancelApprove extends StatelessWidget {
                       height: Get.height * 0.07881,
                     ),
                     Text(
-                      Strings.cancelAprove,
+                      Strings.cancelApprove,
                       style: gilroySemiBoldTextStyle(fontSize: 24),
                     ),
                     SizedBox(
@@ -72,7 +72,7 @@ class CancelApprove extends StatelessWidget {
                     SizedBox(
                       width: 210,
                       child: Text(
-                        Strings.cancelAppoveDes,
+                        Strings.cancelApproveDes,
                         style: gilroyMediumTextStyle(fontSize: 16),
                         textAlign: TextAlign.center,
                       ),

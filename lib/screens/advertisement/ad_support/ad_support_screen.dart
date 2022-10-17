@@ -16,8 +16,8 @@ import 'ad_support_controller.dart';
 
 class AdSupportScreen extends StatelessWidget {
   AdSupportScreen({Key? key}) : super(key: key);
-  AdSupportController controller = Get.put(AdSupportController());
-  ProfileController profileController = Get.put(ProfileController());
+  final AdSupportController controller = Get.put(AdSupportController());
+  final ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -144,9 +144,9 @@ class AdSupportScreen extends StatelessWidget {
                         GetBuilder<AdHomeController>(
                           id: "network",
                             builder: (adHomeController){
-                            adHomeController.CheckUserConnection();
+                            adHomeController.checkUserConnection();
                               return InkWell(
-                          onTap: adHomeController.ActiveConnection == false?(){
+                          onTap: adHomeController.activeConnection == false?(){
                             errorToast("No internet connection");
                           }:() {
                             controller.onTap(
@@ -294,9 +294,9 @@ class AdSupportScreen extends StatelessWidget {
     return GetBuilder<AdHomeController>(
       id: "network",
         builder: (adHomeController){
-        adHomeController.CheckUserConnection();
+        adHomeController.checkUserConnection();
       return InkWell(
-        onTap: adHomeController.ActiveConnection == false?(){
+        onTap: adHomeController.activeConnection == false?(){
           errorToast("No internet connection");
         }:() {
           Get.to(() => SupportcreateScreen())!.then((value) async {

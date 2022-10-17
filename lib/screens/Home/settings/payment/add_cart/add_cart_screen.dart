@@ -13,7 +13,7 @@ import '../../../../../utils/strings.dart';
 
 class AddCartScreen extends StatelessWidget {
   AddCartScreen({Key? key}) : super(key: key);
-  AddCartController controller = Get.put(AddCartController());
+  final AddCartController controller = Get.put(AddCartController());
 
   @override
   Widget build(BuildContext context) {
@@ -303,7 +303,7 @@ class AddCartScreen extends StatelessWidget {
                                 ),
                                 AppTextFiled(
                                   controller: controller.nameOnCardController,
-                                  title: Strings.nameonCard,
+                                  title: Strings.nameOnCard,
                                   hintText: Strings.aycanDoganlar,
                                 ),
                                 Text(

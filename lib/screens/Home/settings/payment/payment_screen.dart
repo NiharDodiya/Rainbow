@@ -213,7 +213,7 @@ class PaymentScreen extends StatelessWidget {
                                           )),
                                       child: Center(
                                           child: Text(
-                                        Strings.setasDefaultPayment,
+                                        Strings.setAsDefaultPayment,
                                         style: gilroySemiBoldTextStyle(
                                             fontSize: 12),
                                       )),
@@ -457,7 +457,7 @@ class PaymentScreen extends StatelessWidget {
                                         0,
                                     scrollDirection: Axis.vertical,
                                     itemBuilder: (context, index) {
-                                      return Tranzaction(
+                                      return tranzaction(
                                           controller: controller, index: index);
                                     }),
                           ],
@@ -485,7 +485,7 @@ class PaymentScreen extends StatelessWidget {
   }
 }
 
-Widget Tranzaction({required PaymentController controller, int? index}) {
+Widget tranzaction({required PaymentController controller, int? index}) {
   return Padding(
     padding: EdgeInsets.only(
         left: Get.width * 0.10666,

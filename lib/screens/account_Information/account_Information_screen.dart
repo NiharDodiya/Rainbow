@@ -18,10 +18,10 @@ import 'package:rainbow/utils/strings.dart';
 
 class AccountInformationScreen extends StatelessWidget {
   AccountInformationScreen({Key? key}) : super(key: key);
-  AccountInformationController controller =
+  final AccountInformationController controller =
       Get.find<AccountInformationController>();
 
-  AdHomeController adHomeController = Get.put(AdHomeController());
+ final AdHomeController adHomeController = Get.put(AdHomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -319,7 +319,7 @@ class AccountInformationScreen extends StatelessWidget {
         AppTextFiled(
           controller: controller.cityController,
           title: Strings.city,
-          hintText: Strings.ontrario,
+          hintText: Strings.ontario,
         ),
         Align(
           alignment: Alignment.topLeft,

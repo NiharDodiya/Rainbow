@@ -93,23 +93,23 @@ class HomeController extends GetxController {
   ConnectionsController connectionsController =
       Get.put(ConnectionsController());
 
-  bool ActiveConnection = false;
+  bool activeConnection = false;
 
   String T = "";
 
-  Future CheckUserConnection() async {
+  Future checkUserConnection() async {
     try {
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
 
-        ActiveConnection = true;
+        activeConnection = true;
         T = "Turn off the data and repress again";
         update(["network"]);
 
       }
     } on SocketException catch (_) {
 
-      ActiveConnection = false;
+      activeConnection = false;
       T = "Turn On the data and repress again";
       update(["network"]);
     }
@@ -387,7 +387,7 @@ class HomeController extends GetxController {
 
   Future<void> init() async {
     /*   changeLoader(true);*/
-    await CheckUserConnection();
+    await checkUserConnection();
     await viewProfileApi();
     await friendPostData();
     await onStory();

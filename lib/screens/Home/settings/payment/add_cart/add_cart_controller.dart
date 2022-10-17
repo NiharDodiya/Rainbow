@@ -92,7 +92,7 @@ class AddCartController extends GetxController {
       errorToast(Strings.fullNameError);
       return false;
     } else if (addressController.text.isEmpty) {
-      errorToast(Strings.addresserror);
+      errorToast(Strings.addressError);
       return false;
     } else if (cityController.text.isEmpty) {
       errorToast(Strings.cityeError);
@@ -104,13 +104,13 @@ class AddCartController extends GetxController {
       errorToast(Strings.countryError);
       return false;
     } else if (nameOnCardController.text.isEmpty) {
-      errorToast(Strings.nameonCardError);
+      errorToast(Strings.nameOnCardError);
       return false;
     } else if (cardNmberController.text.isEmpty) {
-      errorToast(Strings.cardnumberError);
+      errorToast(Strings.cardNumberError);
       return false;
     } else if (cardNmberController.text.length != 16) {
-      errorToast(Strings.cardnumberErrorValidation);
+      errorToast(Strings.cardNumberErrorValidation);
       return false;
     } else if (expiryYearController.text.isEmpty) {
       errorToast(Strings.expiryYearError);

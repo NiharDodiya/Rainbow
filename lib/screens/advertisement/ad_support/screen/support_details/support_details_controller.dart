@@ -34,7 +34,7 @@
 //
 //   valid() {
 //     if (yourMsgController.text.isEmpty) {
-//       errorToast(Strings.supporterror01);
+//       errorToast(Strings.supportError01);
 //     }
 //   }
 // }
