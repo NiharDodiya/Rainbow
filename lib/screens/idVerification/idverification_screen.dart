@@ -7,7 +7,7 @@ import 'package:rainbow/common/Widget/app_dropdown.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/auth/idScanner/idScanner_controller.dart';
+import 'package:rainbow/screens/auth/idScanner/id_scanner_controller.dart';
 import 'package:rainbow/screens/auth/idScanner/idscaneer_screen.dart';
 import 'package:rainbow/screens/idVerification/idverification_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';

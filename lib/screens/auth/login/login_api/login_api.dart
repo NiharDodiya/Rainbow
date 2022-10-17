@@ -13,7 +13,7 @@ import 'package:rainbow/screens/auth/login/login_api/advertisers_login_json.dart
 import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
 import 'package:rainbow/screens/auth/register/widget/RegisterVerifyOtp_Screen.dart';
 import 'package:rainbow/screens/auth/register/widget/registerVerify_controller.dart';
-import 'package:rainbow/screens/dashboard/dashBoard.dart';
+import 'package:rainbow/screens/dashboard/dash_board.dart';
 import 'package:rainbow/screens/idVerification/idverification_screen.dart';
 import 'package:rainbow/screens/selfie_verification/selfie_verification_screen.dart';
 import 'package:rainbow/service/http_services.dart';

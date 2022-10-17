@@ -12,7 +12,7 @@ import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
 import 'package:rainbow/screens/auth/register/register_controller.dart';
 import 'package:rainbow/screens/auth/register/register_screen.dart';
-import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/list_of_country_api.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/register_adviser.dart';
 import 'package:rainbow/service/notification_service.dart';
 import 'package:rainbow/service/pref_services.dart';

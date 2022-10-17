@@ -8,7 +8,7 @@ import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_api.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
-import 'package:rainbow/screens/auth/phonenumber/phonenumber_Screen.dart';
+import 'package:rainbow/screens/auth/phonenumber/phonenumber_screen.dart';
 import 'package:rainbow/screens/auth/register/register_screen.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/register_adviser.dart';
 import 'package:rainbow/screens/dashboard/dashboard_controller.dart';

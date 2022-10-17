@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
-import 'package:rainbow/screens/dashboard/dashBoard.dart';
+import 'package:rainbow/screens/dashboard/dash_board.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/pref_keys.dart';

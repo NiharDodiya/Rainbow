@@ -4,8 +4,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:rainbow/model/message_model.dart';
 import 'package:rainbow/model/user_model.dart';
 import 'package:rainbow/utils/app_state.dart';
-import 'package:rainbow/utils/fireStore_collections.dart';
-import 'package:rainbow/utils/firebaseKey.dart';
+import 'package:rainbow/utils/fire_store_collections.dart';
+import 'package:rainbow/utils/firebase_key.dart';
 import 'package:rainbow/utils/gloabal_data.dart';
 
 String userUid = "";

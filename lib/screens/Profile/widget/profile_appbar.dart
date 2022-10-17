@@ -5,8 +5,8 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
 
-import 'package:rainbow/screens/Profile/widget/edit_profile/editProfile_contoller.dart';
-import 'package:rainbow/screens/Profile/widget/edit_profile/edit_profile_Screen.dart';
+import 'package:rainbow/screens/Profile/widget/edit_profile/edit_profile_contoller.dart';
+import 'package:rainbow/screens/Profile/widget/edit_profile/edit_profile_screen.dart';
 
 import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/screens/notification/notification_screen.dart';

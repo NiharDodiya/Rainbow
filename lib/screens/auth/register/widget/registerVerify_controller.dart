@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
 import 'package:rainbow/screens/auth/phonenumber/phonenumber_api/phonenumber_api.dart';
-import 'package:rainbow/screens/auth/verify_phone/verifyPhone_api/VerifyPhone_json.dart';
+import 'package:rainbow/screens/auth/verify_phone/verifyPhone_api/verify_phone_json.dart';
 import 'package:rainbow/screens/auth/verify_phone/verifyPhone_api/verifyphone_api.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';

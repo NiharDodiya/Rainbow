@@ -10,9 +10,9 @@ import 'package:rainbow/model/unfriend_model.dart';
 import 'package:rainbow/model/unblock_model.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/api/OtherProfileApi.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_screen.dart';
-import 'package:rainbow/screens/Profile/acceptFriendRequest_api/accaeptFriedRequest_api.dart';
-import 'package:rainbow/screens/Profile/sendFriendRequest_api/sendFriendRequest_api.dart';
-import 'package:rainbow/screens/Profile/unFriendRequest_api/unFriendRequest_api.dart';
+import 'package:rainbow/screens/Profile/acceptFriendRequest_api/accaept_fried_request_api.dart';
+import 'package:rainbow/screens/Profile/sendFriendRequest_api/send_friend_request_api.dart';
+import 'package:rainbow/screens/Profile/unFriendRequest_api/unfriend_request_api.dart';
 import 'package:rainbow/screens/Profile/widget/block_unblock%20_Api/block_api.dart';
 import 'package:rainbow/screens/Profile/widget/block_unblock%20_Api/unblock_api.dart';
 

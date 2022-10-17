@@ -10,7 +10,7 @@ import 'package:paginate_firestore/paginate_firestore.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/common/helper.dart';
-import 'package:rainbow/screens/Message/chatView_image.dart';
+import 'package:rainbow/screens/Message/chat_view_image.dart';
 import 'package:rainbow/screens/Message/message_controller.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:rainbow/model/user_model.dart';
-import 'package:rainbow/utils/firebaseKey.dart';
+import 'package:rainbow/utils/firebase_key.dart';
 
 class UserService {
   static FirebaseFirestore fireStore = FirebaseFirestore.instance;

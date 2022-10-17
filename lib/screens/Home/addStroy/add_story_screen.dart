@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
-import 'package:rainbow/screens/Home/addStroy/addStory_controller.dart';
+import 'package:rainbow/screens/Home/addStroy/add_story_controller.dart';
 import 'package:rainbow/screens/Home/addStroy/widgets/addStoryAppbar.dart';
 import 'package:rainbow/screens/Home/addStroy/widgets/addStoryCamera.dart';
 import 'package:rainbow/utils/asset_res.dart';

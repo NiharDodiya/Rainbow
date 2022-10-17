@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/auth/phonenumber/phonenumber_Controller.dart';
+import 'package:rainbow/screens/auth/phonenumber/phonenumber_controller.dart';
 import 'package:rainbow/screens/auth/verify_phone/verify_controller.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';

@@ -21,10 +21,10 @@ import 'package:rainbow/model/post_view_model.dart';
 import 'package:rainbow/model/share_post_model.dart';
 import 'package:rainbow/model/unlike_post_model.dart';
 
-import 'package:rainbow/screens/Home/Story/friendStory_api/friendStory_api.dart';
-import 'package:rainbow/screens/Home/addStroy/addStory_screen.dart';
+import 'package:rainbow/screens/Home/Story/friendStory_api/friend_story_api.dart';
+import 'package:rainbow/screens/Home/addStroy/add_story_screen.dart';
 import 'package:rainbow/screens/Home/home_screen.dart';
-import 'package:rainbow/screens/Home/myPost_Api/myPost_api.dart';
+import 'package:rainbow/screens/Home/myPost_Api/my_post_api.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_controller.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_screen.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
@@ -39,15 +39,15 @@ import 'package:rainbow/screens/Home/view_story/widgets/postView_bottomshit.dart
 import 'package:rainbow/screens/Profile/profile_api/profile_api.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
-import 'package:rainbow/screens/Profile/widget/listOfFriendRequest_api/listOfFriendRequest_api.dart';
+import 'package:rainbow/screens/Profile/widget/listOfFriendRequest_api/list_of_friend_request_api.dart';
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
-import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/list_of_country_api.dart';
 import 'package:rainbow/screens/notification/api/notification_api.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/screens/notification/notification_screen.dart';
 import 'package:uni_links/uni_links.dart';
 
-import 'advertise_api/advertiseApi.dart';
+import 'advertise_api/advertise_api.dart';
 
 class HomeController extends GetxController {
   RxBool loader = false.obs;

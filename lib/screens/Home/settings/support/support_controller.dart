@@ -12,7 +12,7 @@ import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/model/list_support_ticket_model.dart';
 import 'package:rainbow/model/View_support_ticket_model.dart';
 import 'package:rainbow/model/send_support_model.dart';
-import 'package:rainbow/screens/Home/settings/support/endUserSupprotCreateScreen.dart';
+import 'package:rainbow/screens/Home/settings/support/end_user_supprot_create_screen.dart';
 import 'package:rainbow/screens/Home/settings/support/support_api/support_api.dart';
 
 import '../../../../utils/strings.dart';

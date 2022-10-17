@@ -16,7 +16,7 @@ import 'package:rainbow/model/user_model.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Message/api/message_api.dart';
 import 'package:rainbow/screens/Message/chat_screen.dart';
-import 'package:rainbow/service/Users_services.dart';
+import 'package:rainbow/service/users_services.dart';
 
 import 'package:rainbow/service/notification_service.dart';
 import 'package:rainbow/service/pref_services.dart';

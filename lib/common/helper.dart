@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
-import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalitesJson.dart';
-import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountry_json.dart';
+import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_json.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/list_of_country_json.dart';
 
 ListCountryModel listCountryModel = ListCountryModel();
 ListNationalities listNationalities = ListNationalities();

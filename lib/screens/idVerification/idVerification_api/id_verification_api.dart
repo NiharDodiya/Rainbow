@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/screens/idVerification/idVerification_api/idVerification_json.dart';
+import 'package:rainbow/screens/idVerification/idVerification_api/id_verification_json.dart';
 import 'package:rainbow/screens/selfie_verification/selfie_verification_screen.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';

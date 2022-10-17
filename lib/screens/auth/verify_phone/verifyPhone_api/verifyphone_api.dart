@@ -7,7 +7,7 @@ import 'package:rainbow/screens/advertisement/AdvertiserTermsAndConditions_Scree
 import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/advertiser_verify_controller.dart';
 import 'package:rainbow/screens/advertisement/change_password_advertiser_screen.dart';
 import 'package:rainbow/screens/auth/newpassword/newpassword_screen.dart';
-import 'package:rainbow/screens/auth/verify_phone/verifyPhone_api/VerifyPhone_json.dart';
+import 'package:rainbow/screens/auth/verify_phone/verifyPhone_api/verify_phone_json.dart';
 import 'package:rainbow/screens/idVerification/idverification_screen.dart';
 import 'package:rainbow/screens/selfie_verification/selfie_verification_screen.dart';
 import 'package:rainbow/service/http_services.dart';

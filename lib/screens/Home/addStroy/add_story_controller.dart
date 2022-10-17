@@ -8,8 +8,8 @@ import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/model/ad_story_model.dart';
 import 'package:rainbow/model/list_user_tag_model.dart';
-import 'package:rainbow/screens/Home/Story/adstory_api/adStroy_Api.dart';
-import 'package:rainbow/screens/Home/addStroy/ListStoryTag_api/listStoryTag_api.dart';
+import 'package:rainbow/screens/Home/Story/adstory_api/ad_stroy_api.dart';
+import 'package:rainbow/screens/Home/addStroy/ListStoryTag_api/list_story_tag_api.dart';
 import 'package:rainbow/screens/Home/addStroy/widgets/addStoryView.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 

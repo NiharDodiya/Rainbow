@@ -6,18 +6,18 @@ import 'package:rainbow/model/story_comment_model.dart';
 import 'package:rainbow/model/friend_stroy_model.dart';
 import 'package:rainbow/model/story_view_list_model.dart';
 import 'package:rainbow/model/unlike_model.dart';
-import 'package:rainbow/screens/Home/Story/likeStory_api/likeStory_api.dart';
+import 'package:rainbow/screens/Home/Story/likeStory_api/like_story_api.dart';
 import 'package:rainbow/screens/Home/Story/unlike_api/unlike_api.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
-import 'package:rainbow/screens/Home/my_story/api/myStroy_api.dart';
-import 'package:rainbow/screens/Home/my_story/widgets/myStoryComments_screen.dart';
-import 'package:rainbow/screens/Home/my_story/widgets/myStoryListLike_screen.dart';
+import 'package:rainbow/screens/Home/my_story/api/my_stroy_api.dart';
+import 'package:rainbow/screens/Home/my_story/widgets/my_story_comments_screen.dart';
+import 'package:rainbow/screens/Home/my_story/widgets/my_story_list_like_screen.dart';
 import 'package:rainbow/screens/Home/story_commets/api/story_comment_api.dart';
 import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
 import 'package:story/story_page_view/story_page_view.dart';
 
 import '../../../model/like_story_model.dart';
-import 'widgets/myStoryViewBottom_screen.dart';
+import 'widgets/my_story_view_bottom_screen.dart';
 
 class MyStoryController extends GetxController {
   RxBool loader = false.obs;

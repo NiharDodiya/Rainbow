@@ -17,12 +17,12 @@ import 'package:rainbow/model/list_user_profile_model.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/api/OtherProfileApi.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_screen.dart';
-import 'package:rainbow/screens/Profile/acceptFriendRequest_api/accaeptFriedRequest_api.dart';
-import 'package:rainbow/screens/Profile/sendFriendRequest_api/sendFriendRequest_api.dart';
-import 'package:rainbow/screens/Profile/unFriendRequest_api/unFriendRequest_api.dart';
+import 'package:rainbow/screens/Profile/acceptFriendRequest_api/accaept_fried_request_api.dart';
+import 'package:rainbow/screens/Profile/sendFriendRequest_api/send_friend_request_api.dart';
+import 'package:rainbow/screens/Profile/unFriendRequest_api/unfriend_request_api.dart';
 import 'package:rainbow/screens/Profile/widget/block_unblock%20_Api/block_api.dart';
 import 'package:rainbow/screens/Profile/widget/block_unblock%20_Api/unblock_api.dart';
-import 'package:rainbow/screens/Search/ListUserProfile_api/listUserProfile_api.dart';
+import 'package:rainbow/screens/Search/ListUserProfile_api/list_user_profile_api.dart';
 import 'package:rainbow/screens/Search/advance_search/advance_search_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 

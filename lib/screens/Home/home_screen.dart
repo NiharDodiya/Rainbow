@@ -10,7 +10,7 @@ import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/request_user_model.dart';
 import 'package:rainbow/screens/Home/Story/story_screen.dart';
 import 'package:rainbow/screens/Home/ad_in_latest_feed/ad_in_latest_feed.dart';
-import 'package:rainbow/screens/Home/addStroy/addStory_screen.dart';
+import 'package:rainbow/screens/Home/addStroy/add_story_screen.dart';
 import 'package:rainbow/screens/Home/comments/comments_controller.dart';
 import 'package:rainbow/screens/Home/comments/comments_screen.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';

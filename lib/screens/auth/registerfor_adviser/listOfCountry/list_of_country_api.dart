@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountry_json.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/list_of_country_json.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';

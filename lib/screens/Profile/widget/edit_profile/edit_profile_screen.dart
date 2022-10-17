@@ -8,7 +8,7 @@ import 'package:rainbow/common/Widget/text_field.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
-import 'package:rainbow/screens/Profile/widget/edit_profile/editProfile_contoller.dart';
+import 'package:rainbow/screens/Profile/widget/edit_profile/edit_profile_contoller.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/widget/editprofile_picture.dart';
 import 'package:rainbow/screens/auth/heightweight/height_screen.dart';
 import 'package:rainbow/screens/auth/heightweight/weight_screen.dart';

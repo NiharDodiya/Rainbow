@@ -3,7 +3,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/selfie_verification/selfieVerification_controller.dart';
+import 'package:rainbow/screens/selfie_verification/selfie_verification_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -318,7 +318,7 @@ class RPSCustomPainter extends CustomPainter {
     paint_2_fill.shader = ui.Gradient.linear(
         Offset(size.width * 0.2634122, size.height * 0.8304244),
         Offset(size.width * 0.1523029, size.height * 0.6398285), [
-      const Color(0xff593EA3).withOpacity(1),
+      const Color(0xff593EA3).withOpacity(1), 
       const Color(0xff9566C9).withOpacity(1)
     ], [
       0,
