@@ -15,7 +15,7 @@ class PostTestimonialsApi {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
     // int userId = PrefService.getInt(PrefKeys.userId);
     try {
-      String url = "${EndPoints.testimonial}";
+      String url = EndPoints.testimonial;
       Map<String, dynamic> param = {
         "id_reciever": id,
         "testimonial": textTestimonials

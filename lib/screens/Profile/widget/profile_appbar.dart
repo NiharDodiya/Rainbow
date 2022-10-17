@@ -4,10 +4,10 @@ import 'package:rainbow/common/Widget/premiumPopUpBox/premium_pop_up_box.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
-import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
+
 import 'package:rainbow/screens/Profile/widget/edit_profile/editProfile_contoller.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/edit_profile_Screen.dart';
-import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
+
 import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/screens/notification/notification_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -116,7 +116,7 @@ Widget profileAppbar(
                                 alignment: Alignment.center,
                                 decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: ColorRes.color_FF6B97),
+                                    color: ColorRes.colorFF6B97),
                                 child: Text(
                                   controller.requestUsers.length.toString(),
                                   style: const TextStyle(

@@ -129,7 +129,7 @@ Widget listOfTestimonials(
       borderRadius: BorderRadius.circular(50),
       child: SizedBox(   height: 50,
         width: 50,
-        child:  Image.asset(AssetRes.portrait_placeholder),
+        child:  Image.asset(AssetRes.portraitPlaceholder),
 
       )):*/
           ClipRRect(
@@ -141,7 +141,7 @@ Widget listOfTestimonials(
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
                 return Image.asset(
-                  AssetRes.portrait_placeholder,
+                  AssetRes.portraitPlaceholder,
                   height: 50,
                   width: 50,
                 );

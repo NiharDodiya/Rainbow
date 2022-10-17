@@ -11,7 +11,7 @@ import '../../../../../utils/color_res.dart';
 class RemoveDialog extends StatelessWidget {
   RemoveDialog({Key? key}) : super(key: key);
 
-  PaymentController paymentController = Get.put(PaymentController());
+  final PaymentController paymentController = Get.put(PaymentController());
 
   @override
   Widget build(BuildContext context) {
@@ -103,8 +103,8 @@ class RemoveDialog extends StatelessWidget {
                                 const BorderRadius.all(Radius.circular(50)),
                             gradient: LinearGradient(
                               colors: [
-                                ColorRes.color_F86666.withOpacity(1),
-                                ColorRes.color_F82222.withOpacity(1),
+                                ColorRes.colorF86666.withOpacity(1),
+                                ColorRes.colorF82222.withOpacity(1),
                               ],
                             )),
                         child: Center(
@@ -128,8 +128,8 @@ class RemoveDialog extends StatelessWidget {
                                 const BorderRadius.all(Radius.circular(50)),
                             gradient: LinearGradient(
                               colors: [
-                                ColorRes.color_F6E24A.withOpacity(1),
-                                ColorRes.color_FEE000.withOpacity(1),
+                                ColorRes.colorF6E24A.withOpacity(1),
+                                ColorRes.colorFEE000.withOpacity(1),
                               ],
                             )),
                         child: Center(

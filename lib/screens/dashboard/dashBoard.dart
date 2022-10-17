@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:rainbow/common/Widget/premiumPopUpBox/premium_pop_up_box.dart';
+
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
@@ -98,7 +98,7 @@ class DashboardState extends State<Dashboard> with WidgetsBindingObserver {
             gradient: LinearGradient(
               colors: [
                 ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
+                ColorRes.colorD18EEE,
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,

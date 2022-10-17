@@ -41,10 +41,10 @@ class HobbiesArea extends StatelessWidget {
               style: beVietnamProRegularTextStyle(
                   color: ColorRes.white.withOpacity(0.70), fontSize: 18),
               moreStyle: beVietnamProRegularTextStyle(
-                color: ColorRes.color_FF6B97,
+                color: ColorRes.colorFF6B97,
               ),
               lessStyle: beVietnamProRegularTextStyle(
-                color: ColorRes.color_FF6B97,
+                color: ColorRes.colorFF6B97,
               ),
             ),
           ),

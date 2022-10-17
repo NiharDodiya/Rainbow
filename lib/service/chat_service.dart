@@ -38,16 +38,17 @@ class ChatServices {
   static Future<void> setChatRoomValue(
       String chatId, String uid1, String uid2) async {
     await fireStore.collection(FirebaseKeys.chatRoom).doc(chatId).set({
-      uid1 + '_typing': false,
-      uid2 + '_typing': false,
-      uid1 + '_newMsg': 0,
-      uid2 + '_newMsg': 0,
+      '${uid1}_typing': false,
+
+      '${uid2}_typing': false,
+      '${uid1}_newMsg': 0,
+      '${uid2}_newMsg': 0,
       'lastMessageTime': DateTime(2000, 1, 1),
       "uidList": [uid1, uid2],
       "lastMessage": '',
       "lastMessageSender": '',
-      uid2 + '_readMsg': false,
-      uid1 + '_readMsg': false,
+      '${uid2}_readMsg': false,
+      '${uid1}_readMsg': false,
     });
   }
 

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:country_picker/country_picker.dart';
-import 'package:dropdown_textfield/dropdown_textfield.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
@@ -14,7 +14,7 @@ import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/helper.dart';
 import 'package:rainbow/model/listUserTag_model.dart';
-import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
+
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/advertisement_deatail/advertisement_deatail_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/createadvertisement_api/createAdvertisement_api.dart';
@@ -24,7 +24,7 @@ import 'package:rainbow/utils/color_res.dart';
 
 import '../../../../../common/popup.dart';
 import '../../../../../utils/strings.dart';
-import 'create_advertisement_screen.dart';
+
 
 class CreateAdvertisementController extends GetxController {
   List tags = [];
@@ -223,7 +223,7 @@ class CreateAdvertisementController extends GetxController {
     if (tagsController.text.isEmpty) {
       errorToast(Strings.tagsError);
       return false;
-    } else if (imagePath == null) {
+    } else if (imagePath.isEmpty) {
       errorToast(Strings.imageError);
       return false;
     } else if (titleController.text.isEmpty) {

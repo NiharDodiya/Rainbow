@@ -26,7 +26,7 @@ class ConnectionsScreen extends StatelessWidget {
             gradient: LinearGradient(
               colors: [
                 ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
+                ColorRes.colorD18EEE,
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -231,7 +231,7 @@ class ConnectionsScreen extends StatelessWidget {
                   // placeholder: (context, url) => const Center(child:  CircularProgressIndicator(),),
                   errorWidget: (context, url, error) => ClipRRect(
                       borderRadius: BorderRadius.circular(50),
-                      child: Image.asset(AssetRes.portrait_placeholder)),
+                      child: Image.asset(AssetRes.portraitPlaceholder)),
                 ),
               ),
               SizedBox(width: Get.width * 0.04),

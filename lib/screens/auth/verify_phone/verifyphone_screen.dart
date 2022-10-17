@@ -203,7 +203,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                       width: Get.width * 0.84788,
                                       height: Get.height * 0.07575,
                                       decoration: BoxDecoration(
-                                          color: ColorRes.color_E7D01F,
+                                          color: ColorRes.colorE7D01F,
                                           borderRadius:
                                               BorderRadius.circular(15)),
                                       child: Center(

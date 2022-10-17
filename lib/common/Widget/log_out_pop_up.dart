@@ -195,7 +195,7 @@ logoutPopupAdvertise({required BuildContext context}) {
                       begin: Alignment.topRight,
                       end: Alignment.bottomLeft,
                       colors: [
-                        ColorRes.color_B279DB,
+                        ColorRes.colorB279DB,
                         ColorRes.color_4F359B,
                       ],
                     )),

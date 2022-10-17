@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rainbow/common/Widget/premiumPopUpBox/premium_pop_up_box.dart';
+
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
@@ -43,7 +43,7 @@ Widget appbar({context}) {
                         ? ClipRRect(
                             borderRadius: BorderRadius.circular(50),
                             child: Image.asset(
-                              AssetRes.portrait_placeholder,
+                              AssetRes.portraitPlaceholder,
                               height: 34,
                               width: 34,
                             ),
@@ -55,7 +55,7 @@ Widget appbar({context}) {
                                     .toString()
                                     .isEmpty
                                 ? Image.asset(
-                                    AssetRes.portrait_placeholder,
+                                    AssetRes.portraitPlaceholder,
                                     height: 34,
                                     width: 34,
                                   )
@@ -64,17 +64,17 @@ Widget appbar({context}) {
                                         .viewAdvertiserModel.data!.profileImage
                                         .toString(),
                                     placeholder: ((context, url) => Image.asset(
-                                        AssetRes.portrait_placeholder)),
+                                        AssetRes.portraitPlaceholder)),
                                     errorWidget: ((context, url, error) =>
                                         Image.asset(
-                                            AssetRes.portrait_placeholder)),
+                                            AssetRes.portraitPlaceholder)),
                                     fit: BoxFit.cover,
                                     height: 34,
                                     width: 34,
                                   ),
                             /*FadeInImage(
                       placeholder: const AssetImage(
-                          AssetRes.portrait_placeholder),
+                          AssetRes.portraitPlaceholder),
                       image: NetworkImage(controller
                           .viewAdvertiserModel.data!.profileImage
                           .toString()),

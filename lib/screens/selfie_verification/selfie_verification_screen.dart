@@ -67,32 +67,32 @@ class SelfieVerificationScreen extends StatelessWidget {
                                   width: 29,
                                   decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: ColorRes.color_B279DB),
+                                      color: ColorRes.colorB279DB),
                                 ),
                                 Container(
                                   height: 5,
                                   width: Get.width * 0.25,
-                                  color: ColorRes.color_B279DB,
+                                  color: ColorRes.colorB279DB,
                                 ),
                                 Container(
                                   height: 29,
                                   width: 29,
                                   decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: ColorRes.color_B279DB,
+                                    color: ColorRes.colorB279DB,
                                   ),
                                 ),
                                 Container(
                                   height: 5,
                                   width: Get.width * 0.25,
-                                  color: ColorRes.color_C4C4C4,
+                                  color: ColorRes.colorC4C4C4,
                                 ),
                                 Container(
                                   height: 29,
                                   width: 29,
                                   decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: ColorRes.color_C4C4C4),
+                                      color: ColorRes.colorC4C4C4),
                                 ),
                               ],
                             ),
@@ -168,12 +168,12 @@ class SelfieVerificationScreen extends StatelessWidget {
                                   width: Get.width * 0.84788,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: ColorRes.color_E7D01F,
+                                    color: ColorRes.colorE7D01F,
                                     borderRadius: BorderRadius.circular(15),
                                     gradient: const LinearGradient(
                                       colors: [
-                                        ColorRes.color_FFEC5C,
-                                        ColorRes.color_DFC60B
+                                        ColorRes.colorFFEC5C,
+                                        ColorRes.colorDFC60B
                                       ],
                                       begin: Alignment.topCenter,
                                       end: Alignment.bottomCenter,

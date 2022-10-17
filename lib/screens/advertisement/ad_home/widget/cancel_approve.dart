@@ -32,7 +32,7 @@ class CancelApprove extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [
                       ColorRes.color_50369C,
-                      ColorRes.color_D18EEE,
+                      ColorRes.colorD18EEE,
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -55,15 +55,15 @@ class CancelApprove extends StatelessWidget {
                       height: Get.width * 0.472,
                       width: Get.width * 0.472,
                       decoration: BoxDecoration(
-                        color: ColorRes.color_F28D8D,
+                        color: ColorRes.colorF28D8D,
                         shape: BoxShape.circle,
                         border: Border.all(
-                            color: ColorRes.color_FFC9C9,
+                            color: ColorRes.colorFFC9C9,
                             width: Get.width * 0.0426),
                       ),
                       child: Image.asset(
                         AssetRes.block,
-                        color: ColorRes.color_FFAA64,
+                        color: ColorRes.colorFFAA64,
                       ),
                     ),
                     SizedBox(

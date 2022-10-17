@@ -5,13 +5,13 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/screens/Home/home_controller.dart';
+
 import 'package:rainbow/screens/Home/settings/payment/add_cart/add_cart_screen.dart';
 import 'package:rainbow/screens/Home/settings/payment/edit_card/edit_card_controller.dart';
 import 'package:rainbow/screens/Home/settings/payment/edit_card/edit_card_screen.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
-import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
+
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -43,7 +43,7 @@ class PaymentScreen extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [
                       ColorRes.color_50369C,
-                      ColorRes.color_D18EEE,
+                      ColorRes.colorD18EEE,
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -123,7 +123,7 @@ class PaymentScreen extends StatelessWidget {
                                                                       .circular(
                                                                           2)),
                                                           color: ColorRes
-                                                              .color_FFEC5C),
+                                                              .colorFFEC5C),
                                                     ),
                                                     const SizedBox(width: 15),
                                                     Text(
@@ -142,7 +142,7 @@ class PaymentScreen extends StatelessWidget {
                                                                       .circular(
                                                                           2)),
                                                           color: ColorRes
-                                                              .color_FFEC5C),
+                                                              .colorFFEC5C),
                                                     ),
                                                     const SizedBox(width: 15),
                                                     Text(
@@ -238,9 +238,9 @@ class PaymentScreen extends StatelessWidget {
                                               Radius.circular(50)),
                                           gradient: LinearGradient(
                                             colors: [
-                                              ColorRes.color_F86666
+                                              ColorRes.colorF86666
                                                   .withOpacity(1),
-                                              ColorRes.color_F82222
+                                              ColorRes.colorF82222
                                                   .withOpacity(1),
                                             ],
                                           )),
@@ -323,9 +323,9 @@ class PaymentScreen extends StatelessWidget {
                                             Radius.circular(50)),
                                         gradient: LinearGradient(
                                           colors: [
-                                            ColorRes.color_FFED62
+                                            ColorRes.colorFFED62
                                                 .withOpacity(1),
-                                            ColorRes.color_F9DD08
+                                            ColorRes.colorF9DD08
                                                 .withOpacity(1),
                                           ],
                                         ),
@@ -377,7 +377,7 @@ class PaymentScreen extends StatelessWidget {
                                       decoration: BoxDecoration(
                                         color: controller.selectedIndex == 0
                                             ? ColorRes.color_989898
-                                            : ColorRes.color_D8D8D8,
+                                            : ColorRes.colorD8D8D8,
                                         borderRadius: const BorderRadius.all(
                                           Radius.circular(9),
                                         ),
@@ -392,7 +392,7 @@ class PaymentScreen extends StatelessWidget {
                                       decoration: BoxDecoration(
                                         color: controller.selectedIndex == 1
                                             ? ColorRes.color_989898
-                                            : ColorRes.color_D8D8D8,
+                                            : ColorRes.colorD8D8D8,
                                         borderRadius: const BorderRadius.all(
                                           Radius.circular(9),
                                         ),
@@ -407,7 +407,7 @@ class PaymentScreen extends StatelessWidget {
                                       decoration: BoxDecoration(
                                         color: controller.selectedIndex == 2
                                             ? ColorRes.color_989898
-                                            : ColorRes.color_D8D8D8,
+                                            : ColorRes.colorD8D8D8,
                                         borderRadius: const BorderRadius.all(
                                           Radius.circular(9),
                                         ),
@@ -517,7 +517,7 @@ Widget tranzaction({required PaymentController controller, int? index}) {
                     child: ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(50)),
                       child: Image.asset(
-                        AssetRes.portrait_placeholder,
+                        AssetRes.portraitPlaceholder,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -540,11 +540,11 @@ Widget tranzaction({required PaymentController controller, int? index}) {
                             "",
                         fit: BoxFit.cover,
                         errorWidget: ((context, url, error) => Image.asset(
-                              AssetRes.portrait_placeholder,
+                              AssetRes.portraitPlaceholder,
                               fit: BoxFit.cover,
                             )),
                         placeholder: ((context, url) => Image.asset(
-                              AssetRes.portrait_placeholder,
+                              AssetRes.portraitPlaceholder,
                               fit: BoxFit.cover,
                             )),
                       ),

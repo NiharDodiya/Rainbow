@@ -56,7 +56,7 @@ class AdvertiserVerifyController extends GetxController {
     seconds = 60;
     update(['count_timer']);
     const oneSec = Duration(seconds: 1);
-    _countDown = new Timer.periodic(
+    _countDown =  Timer.periodic(
       oneSec,
       (timer) {
         if (seconds == 0) {

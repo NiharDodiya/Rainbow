@@ -49,7 +49,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       gradient: LinearGradient(
                         colors: [
                           ColorRes.color_50369C,
-                          ColorRes.color_D18EEE,
+                          ColorRes.colorD18EEE,
                         ],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
@@ -173,7 +173,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     shape: BoxShape.circle,
                                     image: DecorationImage(
                                       image: AssetImage(
-                                          AssetRes.portrait_placeholder),
+                                          AssetRes.portraitPlaceholder),
                                       fit: BoxFit.contain,
                                     )),
                               )
@@ -198,14 +198,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               height: 151,
                               fit: BoxFit.cover,
                               placeholder: ((context, url) => Image.asset(
-                                    AssetRes.portrait_placeholder,
+                                    AssetRes.portraitPlaceholder,
                                     height: 151,
                                     width: 151,
                                     fit: BoxFit.cover,
                                   )),
                               errorWidget: ((context, url, error) =>
                                   Image.asset(
-                                    AssetRes.portrait_placeholder,
+                                    AssetRes.portraitPlaceholder,
                                     height: 151,
                                     width: 151,
                                     fit: BoxFit.cover,
@@ -1001,7 +1001,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       width: Get.width * 0.84,
                       height: Get.height * 0.073,
                       decoration: BoxDecoration(
-                          color: ColorRes.color_E7D01F,
+                          color: ColorRes.colorE7D01F,
                           borderRadius: BorderRadius.circular(15)),
                       child: Center(
                           child: Text(

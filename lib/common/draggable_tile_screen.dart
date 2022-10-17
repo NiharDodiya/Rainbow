@@ -93,7 +93,7 @@ class _DraggableTileState extends State<DraggableTile> {
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 0.1, sigmaY: 0.1),
             child: AlertDialog(
-              backgroundColor: ColorRes.color_F2F2F2,
+              backgroundColor: ColorRes.colorF2F2F2,
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(15))),
               actions: [
@@ -134,7 +134,7 @@ class _DraggableTileState extends State<DraggableTile> {
                         ),
                         const Divider(
                           thickness: 1,
-                          color: ColorRes.color_B1B1B3,
+                          color: ColorRes.colorB1B1B3,
                         ),
                         SizedBox(
                           height: Get.height * 0.005,
@@ -163,7 +163,7 @@ class _DraggableTileState extends State<DraggableTile> {
                         ),
                         const Divider(
                           thickness: 1,
-                          color: ColorRes.color_B1B1B3,
+                          color: ColorRes.colorB1B1B3,
                         ),
                         SizedBox(
                           height: Get.height * 0.005,
@@ -206,7 +206,7 @@ class _DraggableTileState extends State<DraggableTile> {
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 0.1, sigmaY: 0.1),
             child: AlertDialog(
-              backgroundColor: ColorRes.color_F2F2F2,
+              backgroundColor: ColorRes.colorF2F2F2,
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(15))),
               actions: [
@@ -247,7 +247,7 @@ class _DraggableTileState extends State<DraggableTile> {
                         ),
                         const Divider(
                           thickness: 1,
-                          color: ColorRes.color_B1B1B3,
+                          color: ColorRes.colorB1B1B3,
                         ),
                         SizedBox(
                           height: Get.height * 0.005,
@@ -271,7 +271,7 @@ class _DraggableTileState extends State<DraggableTile> {
                         ),
                         const Divider(
                           thickness: 1,
-                          color: ColorRes.color_B1B1B3,
+                          color: ColorRes.colorB1B1B3,
                         ),
                         SizedBox(
                           height: Get.height * 0.005,

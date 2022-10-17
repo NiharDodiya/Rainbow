@@ -37,7 +37,7 @@ class AdvertiserChangePasswordScreen extends StatelessWidget {
                                   gradient: const LinearGradient(
                                     colors: [
                                       ColorRes.color_50369C,
-                                      ColorRes.color_D18EEE,
+                                      ColorRes.colorD18EEE,
                                     ],
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
@@ -248,7 +248,7 @@ class AdvertiserChangePasswordScreen extends StatelessWidget {
                                         width: Get.width * 0.8450,
                                         height: Get.height * 0.07624,
                                         decoration: BoxDecoration(
-                                            color: ColorRes.color_E7D01F,
+                                            color: ColorRes.colorE7D01F,
                                             borderRadius:
                                                 BorderRadius.circular(15)),
                                         child: Center(

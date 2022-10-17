@@ -14,7 +14,6 @@ import 'package:rainbow/screens/auth/register/register_controller.dart';
 import 'package:rainbow/screens/auth/register/register_screen.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/register_adviser.dart';
-import 'package:rainbow/service/auth_services.dart';
 import 'package:rainbow/service/notification_service.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
@@ -137,7 +136,7 @@ String? token;
   void faceBookSignIn() async {
     try {
       loading.value = true;
-
+      token = await NotificationService.getFcmToken();
       final LoginResult loginResult = await FacebookAuth.instance
           .login(permissions: ["public_profile", "email"]);
       await FacebookAuth.instance.getUserData().then((userData) {
@@ -213,7 +212,7 @@ String? token;
       final user = await signInWithApple(scopes: [Scope.email, Scope.fullName]);
       print('uid: ${user.uid}');
     } catch (e) {
-      print(e);
+      //print(e);
     }
   }
 

@@ -26,7 +26,7 @@ import 'package:rainbow/screens/Home/story_commets/story_commets_controller.dart
 import 'package:rainbow/utils/color_res.dart';
 import 'package:story/story_page_view/story_page_view.dart';
 
-import '../../../model/friendStroy_model.dart';
+import '../../../model/friend_stroy_model.dart';
 
 class ViewStoryController extends GetxController {
   RxBool loader = false.obs;
@@ -63,7 +63,7 @@ class ViewStoryController extends GetxController {
         onMatch: onHashTagMatch,
         patternMatchMap: {
           RegExp(r"\B#[a-zA-Z0-9]+\b"):
-              const TextStyle(color: ColorRes.color_FED785),
+              const TextStyle(color: ColorRes.colorFED785),
         },
         deleteOnBack: true);
     super.onInit();

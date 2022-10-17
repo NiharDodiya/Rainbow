@@ -47,7 +47,7 @@ class ChatScreen extends StatelessWidget {
                     gradient: LinearGradient(
                       colors: [
                         ColorRes.color_50369C,
-                        ColorRes.color_D18EEE,
+                        ColorRes.colorD18EEE,
                       ],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
@@ -93,7 +93,7 @@ class ChatScreen extends StatelessWidget {
                                           shape: BoxShape.circle,
                                           image: DecorationImage(
                                               image: AssetImage(AssetRes
-                                                  .portrait_placeholder),fit: BoxFit.cover),
+                                                  .portraitPlaceholder),fit: BoxFit.cover),
                                         ),
                                       )
                                     : Container(
@@ -111,14 +111,14 @@ class ChatScreen extends StatelessWidget {
                                             errorWidget: ((context, url,
                                                     error) =>
                                                 Image.asset(
-                                                  AssetRes.portrait_placeholder,
+                                                  AssetRes.portraitPlaceholder,
                                                   height: 50,
                                                   width: 50,
                                                   fit: BoxFit.cover,
                                                 )),
                                             placeholder: ((context, url) =>
                                                 Image.asset(
-                                                  AssetRes.portrait_placeholder,
+                                                  AssetRes.portraitPlaceholder,
                                                   height: 50,
                                                   width: 50,
                                                   fit: BoxFit.cover,
@@ -126,7 +126,7 @@ class ChatScreen extends StatelessWidget {
                                           ),
                                           /*FadeInImage(
                                             placeholder: const AssetImage(
-                                                AssetRes.portrait_placeholder),
+                                                AssetRes.portraitPlaceholder),
                                             image: NetworkImage(
                                                 profileImage.toString()),
                                             fit: BoxFit.cover,
@@ -266,7 +266,7 @@ class ChatScreen extends StatelessWidget {
                                                   data['time'].toDate()),
                                               style: textStyleFont14WhiteW500
                                                   .copyWith(
-                                                color: ColorRes.color_F0F0F0
+                                                color: ColorRes.colorF0F0F0
                                                     .withOpacity(0.5),
                                               ),
                                             ),
@@ -281,7 +281,7 @@ class ChatScreen extends StatelessWidget {
                                                   ? MainAxisAlignment.end
                                                   : MainAxisAlignment.start,
                                           children: [
-                                            // Text(controller.data['time'].toString(),style: sfProTextReguler(fontSize: 12,color:ColorRes.color_F0F0F0 ),),
+                                            // Text(controller.data['time'].toString(),style: sfProTextReguler(fontSize: 12,color:ColorRes.colorF0F0F0 ),),
                                             const SizedBox(
                                               width: 9,
                                             ),
@@ -295,7 +295,7 @@ class ChatScreen extends StatelessWidget {
                                                                 .circular(50),
                                                         child: Image.asset(
                                                           AssetRes
-                                                              .portrait_placeholder,
+                                                              .portraitPlaceholder,
                                                           height: 28,
                                                           width: 28,fit: BoxFit.cover,
                                                         ))
@@ -313,7 +313,7 @@ class ChatScreen extends StatelessWidget {
                                                                       error) =>
                                                                   Image.asset(
                                                                     AssetRes
-                                                                        .portrait_placeholder,
+                                                                        .portraitPlaceholder,
                                                                     height: 28,
                                                                     width: 28,
                                                                     fit: BoxFit
@@ -323,7 +323,7 @@ class ChatScreen extends StatelessWidget {
                                                               ((context, url) =>
                                                                   Image.asset(
                                                                     AssetRes
-                                                                        .portrait_placeholder,
+                                                                        .portraitPlaceholder,
                                                                     height: 28,
                                                                     width: 28,
                                                                     fit: BoxFit
@@ -334,7 +334,7 @@ class ChatScreen extends StatelessWidget {
                                                           placeholder:
                                                               const AssetImage(
                                                             AssetRes
-                                                                .portrait_placeholder,
+                                                                .portraitPlaceholder,
                                                           ),
                                                           image: NetworkImage(
                                                             profileImage
@@ -365,7 +365,7 @@ class ChatScreen extends StatelessWidget {
                                                               userUid
                                                           ? Colors.white
                                                           : ColorRes
-                                                              .color_E9D224,
+                                                              .colorE9D224,
                                                     ),
                                                     child: Text(
                                                       data['content']
@@ -405,7 +405,7 @@ class ChatScreen extends StatelessWidget {
                                                           placeholder:
                                                               const AssetImage(
                                                                   AssetRes
-                                                                      .portrait_placeholder),
+                                                                      .portraitPlaceholder),
                                                           image: NetworkImage(
                                                             data['image'],
                                                           ),
@@ -686,7 +686,7 @@ GetBuilder<MessageController>(
               gradient: LinearGradient(
                 colors: [
                   ColorRes.color_50369C,
-                  ColorRes.color_D18EEE,
+                  ColorRes.colorD18EEE,
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -735,7 +735,7 @@ GetBuilder<MessageController>(
                               borderRadius: const BorderRadius.all(Radius.circular(50)),
                               child: FadeInImage(
                                 placeholder:
-                                const AssetImage(AssetRes.portrait_placeholder),
+                                const AssetImage(AssetRes.portraitPlaceholder),
                                 image: NetworkImage(profileImage.toString()),
                                 fit: BoxFit.cover,
                               )                     ,
@@ -843,7 +843,7 @@ GetBuilder<MessageController>(
                               ? MainAxisAlignment.end
                               : MainAxisAlignment.start,
                           children: [
-                            // Text(controller.data['time'].toString(),style: sfProTextReguler(fontSize: 12,color:ColorRes.color_F0F0F0 ),),
+                            // Text(controller.data['time'].toString(),style: sfProTextReguler(fontSize: 12,color:ColorRes.colorF0F0F0 ),),
                             const SizedBox(
                               width: 9,
                             ),
@@ -873,7 +873,7 @@ GetBuilder<MessageController>(
                                 controller.data['senderUid'].toString() ==
                                     userUid
                                     ? Colors.white
-                                    : ColorRes.color_E9D224,
+                                    : ColorRes.colorE9D224,
                               ),
                               child: Text(
                                 controller.data['content'],

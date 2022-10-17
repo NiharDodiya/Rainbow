@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/model/commentStoryDelete_model.dart';
+import 'package:rainbow/model/comment_story_delete_model.dart';
 import 'package:rainbow/service/http_services.dart';
 
 import 'package:rainbow/utils/end_points.dart';

@@ -155,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           alignment: Alignment.center,
                                           decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
-                                              color: ColorRes.color_FF6B97),
+                                              color: ColorRes.colorFF6B97),
                                           child: Text(
                                             controller
                                                 .notificationModel!
@@ -190,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     gradient: LinearGradient(
                       colors: [
                         ColorRes.color_50369C,
-                        ColorRes.color_D18EEE,
+                        ColorRes.colorD18EEE,
                       ],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
@@ -272,7 +272,7 @@ class _HomeScreenState extends State<HomeScreen> {
         gradient: LinearGradient(
           colors: [
             ColorRes.color_6753A3,
-            ColorRes.color_B9A2FD,
+            ColorRes.colorB9A2FD,
             ColorRes.color_6753A3,
           ],
           begin: Alignment.topCenter,
@@ -343,7 +343,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         shape: BoxShape.circle,
                                         image: DecorationImage(
                                             image: AssetImage(AssetRes
-                                                .portrait_placeholder),
+                                                .portraitPlaceholder),
                                             fit: BoxFit.cover)),
                                   )
                                       : ClipRRect(
@@ -360,7 +360,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             height: 56,
                                             width: 56,
                                             errorBuilder: ((context, error, stackTrace) => Image.asset(
-                                              AssetRes.portrait_placeholder,
+                                              AssetRes.portraitPlaceholder,
                                               fit: BoxFit.cover,
                                               height: 56,
                                               width: 56,
@@ -373,7 +373,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         fit: BoxFit.cover,
                                         placeholder: ((context, url) =>
                                             Image.asset(
-                                              AssetRes.portrait_placeholder,
+                                              AssetRes.portraitPlaceholder,
                                               fit: BoxFit.cover,
                                               height: 56,
                                               width: 56,
@@ -381,7 +381,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         errorWidget: ((context, url,
                                             error) =>
                                             Image.asset(
-                                              AssetRes.portrait_placeholder,
+                                              AssetRes.portraitPlaceholder,
                                               fit: BoxFit.cover,
                                               height: 56,
                                               width: 56,
@@ -398,7 +398,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           errorBuilder:
                                               (context, error, stackTrace) {
                                             return Image.asset(
-                                              AssetRes.portrait_placeholder,
+                                              AssetRes.portraitPlaceholder,
                                               fit: BoxFit.cover,
                                               height: 56,
                                               width: 56,
@@ -422,7 +422,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       decoration: BoxDecoration(
                                         boxShadow: [
                                           BoxShadow(
-                                            color: ColorRes.color_B9A2FD
+                                            color: ColorRes.colorB9A2FD
                                                 .withOpacity(0.3),
                                             spreadRadius: 1,
                                             blurRadius: 10,
@@ -431,13 +431,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ],
                                         gradient: LinearGradient(
                                           colors: [
-                                            ColorRes.color_B9A2FD
+                                            ColorRes.colorB9A2FD
                                                 .withOpacity(0.1),
-                                            ColorRes.color_B9A2FD
+                                            ColorRes.colorB9A2FD
                                                 .withOpacity(0.1),
-                                            ColorRes.color_B9A2FD
+                                            ColorRes.colorB9A2FD
                                                 .withOpacity(0.1),
-                                            ColorRes.color_B9A2FD
+                                            ColorRes.colorB9A2FD
                                                 .withOpacity(0.1),
                                           ],
                                           begin: Alignment.topCenter,
@@ -499,7 +499,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 shape: BoxShape.circle,
                                                 image: DecorationImage(
                                                     image: AssetImage(AssetRes
-                                                        .portrait_placeholder))),
+                                                        .portraitPlaceholder))),
                                           )
                                         : ClipRRect(
                                             borderRadius:
@@ -510,13 +510,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                               placeholder: (context, url) =>
                                                   Image.asset(
                                                       AssetRes
-                                                          .portrait_placeholder,
+                                                          .portraitPlaceholder,
                                                       fit: BoxFit.fitWidth),
                                               errorWidget: ((context, url,
                                                       error) =>
                                                   Image.asset(
                                                       AssetRes
-                                                          .portrait_placeholder,
+                                                          .portraitPlaceholder,
                                                       fit: BoxFit.fitWidth)),
                                               imageUrl: controller
                                                   .controller
@@ -534,7 +534,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     //     decoration: BoxDecoration(
                                     //       boxShadow: [
                                     //         BoxShadow(
-                                    //           color: ColorRes.color_B9A2FD
+                                    //           color: ColorRes.colorB9A2FD
                                     //               .withOpacity(0.3),
                                     //           spreadRadius: 2,
                                     //           blurRadius: 10,
@@ -543,13 +543,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     //       ],
                                     //       gradient: LinearGradient(
                                     //         colors: [
-                                    //           ColorRes.color_B9A2FD
+                                    //           ColorRes.colorB9A2FD
                                     //               .withOpacity(0.1),
-                                    //           ColorRes.color_B9A2FD
+                                    //           ColorRes.colorB9A2FD
                                     //               .withOpacity(0.1),
-                                    //           ColorRes.color_B9A2FD
+                                    //           ColorRes.colorB9A2FD
                                     //               .withOpacity(0.1),
-                                    //           ColorRes.color_B9A2FD
+                                    //           ColorRes.colorB9A2FD
                                     //               .withOpacity(0.1),
                                     //         ],
                                     //         begin: Alignment.topCenter,
@@ -629,11 +629,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                           width: 56,
                                           placeholder: (context, url) =>
                                               Image.asset(
-                                                  AssetRes.portrait_placeholder,
+                                                  AssetRes.portraitPlaceholder,
                                                   fit: BoxFit.fitWidth),
                                           errorWidget: ((context, url, error) =>
                                               Image.asset(
-                                                  AssetRes.portrait_placeholder,
+                                                  AssetRes.portraitPlaceholder,
                                                   fit: BoxFit.fitWidth)),
                                           imageUrl: viewStoryController
                                               .storyModel
@@ -769,7 +769,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 shape: BoxShape.circle,
                                                 image: DecorationImage(
                                                     image: AssetImage(
-                                                        AssetRes.portrait_placeholder))),
+                                                        AssetRes.portraitPlaceholder))),
                                           ),
                                       fit: BoxFit.cover,
                                     ),
@@ -958,7 +958,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               width: 40,
                                               placeholder: const AssetImage(
                                                   AssetRes
-                                                      .portrait_placeholder),
+                                                      .portraitPlaceholder),
                                               image: NetworkImage(controller
                                                   .friendPostListData[
                                                       index]
@@ -978,13 +978,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                         fit: BoxFit.cover,
                                         placeholder: (context, url) =>
                                             Image.asset(
-                                          AssetRes.portrait_placeholder,
+                                          AssetRes.portraitPlaceholder,
                                           height: 40,
                                           width: 40,
                                         ),
                                         errorWidget: (context, url, error) =>
                                             Image.asset(
-                                          AssetRes.portrait_placeholder,
+                                          AssetRes.portraitPlaceholder,
                                           height: 40,
                                           width: 40,
                                         ),
@@ -1031,7 +1031,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           text: " @${e.name.toString()}",
                                           style: sfProTextReguler(
                                               fontSize: 16,
-                                              color: ColorRes.color_FED785)))
+                                              color: ColorRes.colorFED785)))
                                       .toList()
                                     ..add(TextSpan(
                                         text:
@@ -1047,7 +1047,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     text: "@",
                                     style: sfProTextReguler(
                                       fontSize: 16,
-                                      color: ColorRes.color_FED785,
+                                      color: ColorRes.colorFED785,
                                     ),
                                     onTap: (val) => controller.onTagTap(
                                         controller
@@ -1062,7 +1062,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     text: "#",
                                     style: sfProTextReguler(
                                       fontSize: 16,
-                                      color: ColorRes.color_FED785,
+                                      color: ColorRes.colorFED785,
                                     ),
                                   ),
                                 ],
@@ -1086,7 +1086,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 style: sfProTextReguler(
                                                     fontSize: 16,
                                                     color:
-                                                        ColorRes.color_FED785),
+                                                        ColorRes.colorFED785),
                                               );
                                             },
                                           ),
@@ -1136,10 +1136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             padding: const EdgeInsets.only(
                                                 left: 5, right: 5),
                                             child: controller
-                                                        .friendPostListData[
-                                                            index]
-                                                        .postList![index2] ==
-                                                    null
+                                                        .friendPostListData[index].postList![index2].isEmpty
                                                 ? const SizedBox()
                                                 : CachedNetworkImage(
                                                     height: 80,

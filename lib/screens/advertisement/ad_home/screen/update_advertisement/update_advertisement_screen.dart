@@ -16,11 +16,11 @@ import '../../../../../utils/color_res.dart';
 import '../../../../../utils/strings.dart';
 
 class UpdateAdvertiseScreen extends StatelessWidget {
-  int id;
+  final int id;
 
   UpdateAdvertiseScreen({Key? key, required this.id}) : super(key: key);
 
-  UpdateAdvertiseController updateAdvertiseController =
+  final UpdateAdvertiseController updateAdvertiseController =
       Get.put(UpdateAdvertiseController());
 
   @override
@@ -37,8 +37,8 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                 colors: [
                   ColorRes.color_50369C,
                   ColorRes.color_50369C,
-                  ColorRes.color_D18EEE,
-                  ColorRes.color_D18EEE,
+                  ColorRes.colorD18EEE,
+                  ColorRes.colorD18EEE,
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -639,7 +639,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                             Text(
                               Strings.uploadImage,
                               style: gilroyMediumTextStyle(
-                                  fontSize: 16, color: ColorRes.color_ADB1B1),
+                                  fontSize: 16, color: ColorRes.colorADB1B1),
                             )
                           ],
                         ),

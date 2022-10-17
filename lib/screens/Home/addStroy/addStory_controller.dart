@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
-import 'package:rainbow/model/adStory_model.dart';
+import 'package:rainbow/model/ad_story_model.dart';
 import 'package:rainbow/model/listUserTag_model.dart';
 import 'package:rainbow/screens/Home/Story/adstory_api/adStroy_Api.dart';
 import 'package:rainbow/screens/Home/addStroy/ListStoryTag_api/listStoryTag_api.dart';

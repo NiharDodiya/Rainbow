@@ -66,7 +66,7 @@ class RegisterVerifyController extends GetxController {
     try {
       loader.value = true;
 
-      await PhoneNumberApi.resendOtp(ph == null
+      await PhoneNumberApi.resendOtp(ph == ""
           ? PrefService.getString(PrefKeys.phonSaveNumberEndUser)
           : ph);
       /*  await PrefService.setValue(
@@ -81,7 +81,7 @@ class RegisterVerifyController extends GetxController {
     seconds = 60;
     update(['count_timer']);
     const oneSec = Duration(seconds: 1);
-    _countDown = new Timer.periodic(
+    _countDown =  Timer.periodic(
       oneSec,
       (timer) {
         if (seconds == 0) {

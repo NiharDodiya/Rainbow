@@ -55,7 +55,7 @@ Widget connectAndBlock({
                             margin: const EdgeInsets.all(9),
                             child: Image.asset(
                               AssetRes.profilep,
-                              color: ColorRes.color_FFB2B2,
+                              color: ColorRes.colorFFB2B2,
                             ),
                           ),
                           Text(
@@ -79,7 +79,7 @@ Widget connectAndBlock({
                                 margin: const EdgeInsets.all(9),
                                 child: Image.asset(
                                   AssetRes.profilep,
-                                  color: ColorRes.color_FFB2B2,
+                                  color: ColorRes.colorFFB2B2,
                                 ),
                               ),
                               Text(
@@ -103,7 +103,7 @@ Widget connectAndBlock({
                                     margin: const EdgeInsets.all(9),
                                     child: Image.asset(
                                       AssetRes.profilep,
-                                      color: ColorRes.color_FFB2B2,
+                                      color: ColorRes.colorFFB2B2,
                                     ),
                                   ),
                                   Text(
@@ -129,7 +129,7 @@ Widget connectAndBlock({
                                         margin: const EdgeInsets.all(9),
                                         child: Image.asset(
                                           AssetRes.profilep,
-                                          color: ColorRes.color_FFB2B2,
+                                          color: ColorRes.colorFFB2B2,
                                         ),
                                       ),
                                       Text(
@@ -153,7 +153,7 @@ Widget connectAndBlock({
                                         margin: const EdgeInsets.all(9),
                                         child: Image.asset(
                                           AssetRes.profilep,
-                                          color: ColorRes.color_FFB2B2,
+                                          color: ColorRes.colorFFB2B2,
                                         ),
                                       ),
                                       Text(
@@ -176,7 +176,7 @@ Widget connectAndBlock({
                       margin: const EdgeInsets.all(9),
                       child: Image.asset(
                         AssetRes.profilep,
-                        color: ColorRes.color_FFB2B2,
+                        color: ColorRes.colorFFB2B2,
                       ),
                     ),
                     Text(
@@ -203,7 +203,7 @@ Widget connectAndBlock({
                             margin: const EdgeInsets.all(9),
                             child: Image.asset(
                               AssetRes.block,
-                              color: ColorRes.color_F82222.withOpacity(0.7),
+                              color: ColorRes.colorF82222.withOpacity(0.7),
                             ),
                           ),
                           Text(
@@ -225,7 +225,7 @@ Widget connectAndBlock({
                             margin: const EdgeInsets.all(9),
                             child: Image.asset(
                               AssetRes.block,
-                              color: ColorRes.color_F82222.withOpacity(0.7),
+                              color: ColorRes.colorF82222.withOpacity(0.7),
                             ),
                           ),
                           Text(

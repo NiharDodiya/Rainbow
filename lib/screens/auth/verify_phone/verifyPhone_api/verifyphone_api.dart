@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/advertisement/AdvertiserTermsAndConditions_Screen/advertiserTerms_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/AdvertiserVerifyController.dart';
-import 'package:rainbow/screens/advertisement/changePasswordAdvertiser_Screen.dart';
+import 'package:rainbow/screens/advertisement/change_password_advertiser_screen.dart';
 import 'package:rainbow/screens/auth/newpassword/newpassword_screen.dart';
 import 'package:rainbow/screens/auth/verify_phone/verifyPhone_api/VerifyPhone_json.dart';
 import 'package:rainbow/screens/idVerification/idverification_screen.dart';

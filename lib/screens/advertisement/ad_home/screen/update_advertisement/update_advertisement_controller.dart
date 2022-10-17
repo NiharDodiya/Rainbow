@@ -226,7 +226,7 @@ class UpdateAdvertiseController extends GetxController {
     if (tagsController.text.isEmpty) {
       errorToast(Strings.tagsError);
       return false;
-    } else if (imagePath == null) {
+    } else if (imagePath.isEmpty) {
       errorToast(Strings.imageError);
       return false;
     } else if (titleController.text.isEmpty) {

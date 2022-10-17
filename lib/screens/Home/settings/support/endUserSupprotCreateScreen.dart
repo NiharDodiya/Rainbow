@@ -11,12 +11,12 @@ import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class SupportCreateEndUserScreen extends StatelessWidget {
-  String? com;
-  String? code;
-  String? profileImage;
-  String? title;
-  String? time;
-  String? id;
+  final String? com;
+  final String? code;
+  final String? profileImage;
+  final String? title;
+  final String? time;
+  final String? id;
 
   SupportCreateEndUserScreen(
       {Key? key,
@@ -43,8 +43,8 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                 colors: [
                   ColorRes.color_50369C,
                   ColorRes.color_50369C,
-                  ColorRes.color_D18EEE,
-                  ColorRes.color_D18EEE,
+                  ColorRes.colorD18EEE,
+                  ColorRes.colorD18EEE,
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -73,7 +73,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                             Text(
                               com.toString(),
                               style: gilroySemiBoldTextStyle(
-                                  fontSize: 18, color: ColorRes.color_FFA620),
+                                  fontSize: 18, color: ColorRes.colorFFA620),
                             ),
                             SizedBox(
                               width: Get.width * 0.05,
@@ -806,13 +806,13 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                               .toString(),
                           fit: BoxFit.cover,
                           placeholder: ((context, url) => Image.asset(
-                                AssetRes.portrait_placeholder,
+                                AssetRes.portraitPlaceholder,
                                 fit: BoxFit.cover,
                                 height: 53,
                                 width: 53,
                               )),
                           errorWidget: ((context, url, error) => Image.asset(
-                                AssetRes.portrait_placeholder,
+                                AssetRes.portraitPlaceholder,
                                 fit: BoxFit.cover,
                                 height: 53,
                                 width: 53,
@@ -932,7 +932,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                             errorBuilder:
                                                 (context, error, stackTrace) {
                                               return Image.asset(
-                                                AssetRes.portrait_placeholder,
+                                                AssetRes.portraitPlaceholder,
                                                 fit: BoxFit.cover,
                                               );
                                             },
@@ -997,7 +997,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                                       stackTrace) {
                                                     return Image.asset(
                                                       AssetRes
-                                                          .portrait_placeholder,
+                                                          .portraitPlaceholder,
                                                       fit: BoxFit.cover,
                                                     );
                                                   },
@@ -1049,7 +1049,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                                           error, stackTrace) {
                                                         return Image.asset(
                                                           AssetRes
-                                                              .portrait_placeholder,
+                                                              .portraitPlaceholder,
                                                           fit: BoxFit.cover,
                                                         );
                                                       },

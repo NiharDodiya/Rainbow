@@ -9,7 +9,7 @@ import 'package:rainbow/utils/strings.dart';
 Widget addStoryCamera(AddStoryController controller) {
   return Container(
     width: Get.width * 0.328,
-    color: ColorRes.color_F4F4F4,
+    color: ColorRes.colorF4F4F4,
     child: InkWell(
       onTap: () {
         controller.camera();

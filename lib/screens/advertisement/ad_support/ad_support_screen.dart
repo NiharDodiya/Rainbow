@@ -34,8 +34,8 @@ class AdSupportScreen extends StatelessWidget {
                 colors: [
                   ColorRes.color_50369C,
                   ColorRes.color_50369C,
-                  ColorRes.color_D18EEE,
-                  ColorRes.color_D18EEE,
+                  ColorRes.colorD18EEE,
+                  ColorRes.colorD18EEE,
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -122,7 +122,7 @@ class AdSupportScreen extends StatelessWidget {
   }
 
   Widget supports() {
-    AdHomeController adHomeController = Get.find<AdHomeController>();
+
     return GetBuilder<AdSupportController>(
       id: "Support",
       builder: (controller) {
@@ -180,7 +180,7 @@ class AdSupportScreen extends StatelessWidget {
                                       shape: BoxShape.circle,
                                       image: DecorationImage(
                                           image: AssetImage(
-                                            AssetRes.portrait_placeholder,
+                                            AssetRes.portraitPlaceholder,
                                           ),
                                           fit: BoxFit.cover),
                                     ))
@@ -201,7 +201,7 @@ class AdSupportScreen extends StatelessWidget {
                                       fit: BoxFit.cover,
                                       placeholder: ((context, url) =>
                                           Image.asset(
-                                            AssetRes.portrait_placeholder,
+                                            AssetRes.portraitPlaceholder,
                                             height: 50,
                                             width: 50,
                                             fit: BoxFit.cover,
@@ -209,7 +209,7 @@ class AdSupportScreen extends StatelessWidget {
                                       errorWidget: ((context, url,
                                           error) =>
                                           Image.asset(
-                                            AssetRes.portrait_placeholder,
+                                            AssetRes.portraitPlaceholder,
                                             height: 50,
                                             width: 50,
                                             fit: BoxFit.cover,
@@ -263,7 +263,7 @@ class AdSupportScreen extends StatelessWidget {
                                         .toString() ==
                                         "pending"
                                         ? gilroyMediumTextStyle(
-                                        color: ColorRes.color_FFA800,
+                                        color: ColorRes.colorFFA800,
                                         fontSize: 16)
                                         : gilroyMediumTextStyle(
                                         color: ColorRes.color_49A510,
@@ -308,9 +308,9 @@ class AdSupportScreen extends StatelessWidget {
           width: 300,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: ColorRes.color_E7D01F,
+            color: ColorRes.colorE7D01F,
             gradient: const LinearGradient(
-              colors: [ColorRes.color_FFEC5C, ColorRes.color_DFC60B],
+              colors: [ColorRes.colorFFEC5C, ColorRes.colorDFC60B],
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
             ),

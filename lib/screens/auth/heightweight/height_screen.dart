@@ -129,7 +129,7 @@ class HeightScreen extends StatelessWidget {
                           width: Get.width * 0.84,
                           height: Get.height * 0.073,
                           decoration: BoxDecoration(
-                              color: ColorRes.color_E7D01F,
+                              color: ColorRes.colorE7D01F,
                               borderRadius: BorderRadius.circular(15)),
                           child: Center(
                               child: Text(

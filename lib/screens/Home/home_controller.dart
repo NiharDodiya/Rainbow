@@ -10,8 +10,8 @@ import 'package:rainbow/common/Widget/premiumPopUpBox/premium_pop_up_box.dart';
 import 'package:rainbow/common/blocList_api/block_list_api.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/model/advertisement_list%5Buser%5D.dart';
-import 'package:rainbow/model/blockList_model.dart';
-import 'package:rainbow/model/friendPostView_Model.dart';
+import 'package:rainbow/model/block_list_model.dart';
+import 'package:rainbow/model/friend_post_view_model.dart';
 import 'package:rainbow/model/listOfFriendRequest_model.dart';
 import 'package:rainbow/model/listUserTag_model.dart';
 import 'package:rainbow/model/myPostList_model.dart';
@@ -234,7 +234,7 @@ class HomeController extends GetxController {
     postViewUser = friendPost.postViewUser ?? [];
 
     Get.bottomSheet(
-      PostViewBottomScreen(),
+      const PostViewBottomScreen(),
       isScrollControlled: true,
     ).then((value) {});
   }

@@ -106,8 +106,8 @@ class AddStoryViewScreen extends StatelessWidget {
                             decoration: BoxDecoration(
                                 gradient: const LinearGradient(
                                   colors: [
-                                    ColorRes.color_FFEC5C,
-                                    ColorRes.color_DFC60B
+                                    ColorRes.colorFFEC5C,
+                                    ColorRes.colorDFC60B
                                   ],
                                   begin: Alignment.topCenter,
                                   end: Alignment.bottomCenter,

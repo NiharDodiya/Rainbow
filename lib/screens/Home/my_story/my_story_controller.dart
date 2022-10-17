@@ -3,7 +3,7 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/StoryComment_model.dart';
-import 'package:rainbow/model/friendStroy_model.dart';
+import 'package:rainbow/model/friend_stroy_model.dart';
 import 'package:rainbow/model/storyViewList_model.dart';
 import 'package:rainbow/model/unlike_model.dart';
 import 'package:rainbow/screens/Home/Story/likeStory_api/likeStory_api.dart';

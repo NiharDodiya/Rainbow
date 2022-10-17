@@ -26,7 +26,7 @@ class PaymentSuccessfulScreen extends StatelessWidget {
             gradient: LinearGradient(
               colors: [
                 ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
+                ColorRes.colorD18EEE,
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -106,7 +106,7 @@ class PaymentSuccessfulScreen extends StatelessWidget {
                               height: Get.height * 0.007389,
                             ),
                             Text(
-                              "${adHomeController.viewAdvertiserModel.data?.fullName ?? ""}",
+                              adHomeController.viewAdvertiserModel.data?.fullName ?? "",
                               style: poppinsMediumBold(fontSize: 14),
                             ),
                             SizedBox(

@@ -88,7 +88,7 @@ class SearchController extends GetxController {
 
   Future<List<Prediction>> searchLocation(
       BuildContext context, String text) async {
-    if (text != null && text.isNotEmpty) {
+    if (text.isNotEmpty) {
       http.Response response = await getLocationData(text);
       var data = jsonDecode(response.body.toString());
 

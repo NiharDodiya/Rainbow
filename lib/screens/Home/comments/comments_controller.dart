@@ -68,10 +68,8 @@ class CommentsController extends GetxController {
           await ImagePicker().pickImage(source: ImageSource.camera);
       final imageTemp = File(pickedFile!.path);
       imageCamera = imageTemp;
-      if (pickedFile != null) {
-        return pickedFile.path;
-      }
-      update(["commentPost"]);
+      return pickedFile.path;
+
     } catch (e) {
       if (kDebugMode) {
         print(e.toString());
@@ -93,10 +91,8 @@ class CommentsController extends GetxController {
           await ImagePicker().pickImage(source: ImageSource.gallery);
       final imageTemp = File(pickedFile!.path);
       imageCamera = imageTemp;
-      if (pickedFile != null) {
-        return pickedFile.path;
-      }
-      update(["commentPost"]);
+      return pickedFile.path;
+
     } catch (e) {
       if (kDebugMode) {
         print(e.toString());

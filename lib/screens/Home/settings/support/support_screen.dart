@@ -13,8 +13,8 @@ import 'package:rainbow/utils/strings.dart';
 
 class SupportScreen extends StatelessWidget {
   SupportScreen({Key? key}) : super(key: key);
-  SupportController controller = Get.put(SupportController());
-  ProfileController profileController = Get.put(ProfileController());
+  final SupportController controller = Get.put(SupportController());
+  final ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +31,8 @@ class SupportScreen extends StatelessWidget {
                 colors: [
                   ColorRes.color_50369C,
                   ColorRes.color_50369C,
-                  ColorRes.color_D18EEE,
-                  ColorRes.color_D18EEE,
+                  ColorRes.colorD18EEE,
+                  ColorRes.colorD18EEE,
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -186,7 +186,7 @@ class SupportScreen extends StatelessWidget {
                                           decoration: const BoxDecoration(
                                             image: DecorationImage(
                                                 image: AssetImage(
-                                                  AssetRes.portrait_placeholder,
+                                                  AssetRes.portraitPlaceholder,
                                                 ),
                                                 fit: BoxFit.cover),
                                           ),
@@ -203,12 +203,12 @@ class SupportScreen extends StatelessWidget {
                                                 .toString(),
                                             placeholder: ((context, url) =>
                                                 Image.asset(
-                                                  AssetRes.portrait_placeholder,
+                                                  AssetRes.portraitPlaceholder,
                                                 )),
                                             errorWidget: ((context, url,
                                                     error) =>
                                                 Image.asset(
-                                                  AssetRes.portrait_placeholder,
+                                                  AssetRes.portraitPlaceholder,
                                                 )),
                                             fit: BoxFit.cover,
                                           ),
@@ -225,7 +225,7 @@ class SupportScreen extends StatelessWidget {
                                     fit: BoxFit.cover,
                                     errorBuilder: (context, error, stackTrace) {
                                       return Image.asset(
-                                        AssetRes.portrait_placeholder,
+                                        AssetRes.portraitPlaceholder,
                                         height: Get.width * 0.144,
                                         width: Get.width * 0.144,
                                       );
@@ -288,7 +288,7 @@ class SupportScreen extends StatelessWidget {
                                               .toString() ==
                                           "pending"
                                       ? gilroyMediumTextStyle(
-                                          color: ColorRes.color_FFA800,
+                                          color: ColorRes.colorFFA800,
                                           fontSize: 16)
                                       : gilroyMediumTextStyle(
                                           color: ColorRes.color_49A510,
@@ -324,7 +324,7 @@ class SupportScreen extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(13.67),
-            color: ColorRes.color_FFED62),
+            color: ColorRes.colorFFED62),
         child: Text(
           Strings.sendNewMessage,
           style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),

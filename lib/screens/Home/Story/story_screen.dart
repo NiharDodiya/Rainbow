@@ -123,7 +123,7 @@ class StoryScreen extends StatelessWidget {
                     GetBuilder<ViewStoryController>(
                       id: "createStory",
                       builder: (controller) {
-                        return controller.image == null
+                        return controller.image.isEmpty
                             ? const SizedBox()
                             : SizedBox(
                                 height: Get.height * 0.35,
@@ -189,7 +189,7 @@ class StoryScreen extends StatelessWidget {
                           child: SizedBox(
                             height: 40,
                             width: 40,
-                            child: Image.asset(AssetRes.portrait_placeholder),
+                            child: Image.asset(AssetRes.portraitPlaceholder),
                           ),
                         )
                       : ClipRRect(
@@ -198,7 +198,7 @@ class StoryScreen extends StatelessWidget {
                             height: 40,
                             width: 40,
                             placeholder:
-                                const AssetImage(AssetRes.portrait_placeholder),
+                                const AssetImage(AssetRes.portraitPlaceholder),
                             image: NetworkImage(image.toString()),
                             fit: BoxFit.cover,
                           )),

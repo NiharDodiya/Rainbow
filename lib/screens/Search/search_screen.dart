@@ -10,8 +10,8 @@ import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class SearchScreen extends StatelessWidget {
-  SearchController controller = Get.put(SearchController());
-  HomeController homeController = Get.put(HomeController());
+  final SearchController controller = Get.put(SearchController());
+  final HomeController homeController = Get.put(HomeController());
 
   SearchScreen({Key? key}) : super(key: key);
 
@@ -284,7 +284,7 @@ class SearchScreen extends StatelessWidget {
                                               height: 40,
                                               width: 40,
                                               child: Image.asset(
-                                                AssetRes.portrait_placeholder,
+                                                AssetRes.portraitPlaceholder,
                                                 fit: BoxFit.cover,
                                               ),
                                             );
@@ -300,7 +300,7 @@ class SearchScreen extends StatelessWidget {
                                               height: 40,
                                               width: 40,
                                               child: Image.asset(
-                                                AssetRes.portrait_placeholder,
+                                                AssetRes.portraitPlaceholder,
                                                 fit: BoxFit.cover,
                                               ),
                                             )),
@@ -394,7 +394,7 @@ class SearchScreen extends StatelessWidget {
                                                           height: 22,
                                                           width: 22,
                                                           color: ColorRes
-                                                              .color_FFB2B2,
+                                                              .colorFFB2B2,
                                                         ),
                                                         const SizedBox(
                                                           width: 10,
@@ -436,7 +436,7 @@ class SearchScreen extends StatelessWidget {
                                                               height: 22,
                                                               width: 22,
                                                               color: ColorRes
-                                                                  .color_FFB2B2,
+                                                                  .colorFFB2B2,
                                                             ),
                                                             const SizedBox(
                                                               width: 10,
@@ -487,7 +487,7 @@ class SearchScreen extends StatelessWidget {
                                                                   height: 22,
                                                                   width: 22,
                                                                   color: ColorRes
-                                                                      .color_FFB2B2,
+                                                                      .colorFFB2B2,
                                                                 ),
                                                                 const SizedBox(
                                                                   width: 10,
@@ -535,7 +535,7 @@ class SearchScreen extends StatelessWidget {
                                                                           22,
                                                                       width: 22,
                                                                       color: ColorRes
-                                                                          .color_FFB2B2,
+                                                                          .colorFFB2B2,
                                                                     ),
                                                                     const SizedBox(
                                                                       width: 10,
@@ -577,7 +577,7 @@ class SearchScreen extends StatelessWidget {
                                                                           22,
                                                                       width: 22,
                                                                       color: ColorRes
-                                                                          .color_FFB2B2,
+                                                                          .colorFFB2B2,
                                                                     ),
                                                                     const SizedBox(
                                                                       width: 10,
@@ -624,7 +624,7 @@ class SearchScreen extends StatelessWidget {
                                                           height: 22,
                                                           width: 22,
                                                           color: ColorRes
-                                                              .color_FFB2B2,
+                                                              .colorFFB2B2,
                                                         ),
                                                         const SizedBox(
                                                           width: 10,
@@ -662,7 +662,7 @@ class SearchScreen extends StatelessWidget {
                                                           height: 22,
                                                           width: 22,
                                                           color: ColorRes
-                                                              .color_FFB2B2,
+                                                              .colorFFB2B2,
                                                         ),
                                                         const SizedBox(
                                                           width: 10,
@@ -753,7 +753,7 @@ class SearchScreen extends StatelessWidget {
                                             errorBuilder:
                                                 (context, error, stackTrace) {
                                               return Image.asset(
-                                                AssetRes.portrait_placeholder,
+                                                AssetRes.portraitPlaceholder,
                                                 height: 40,
                                                 width: 40,
                                                 fit: BoxFit.cover,
@@ -770,7 +770,7 @@ class SearchScreen extends StatelessWidget {
                                             child: Image.asset(
                                               height: 40,
                                               width: 40,
-                                              AssetRes.portrait_placeholder,
+                                              AssetRes.portraitPlaceholder,
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -861,7 +861,7 @@ class SearchScreen extends StatelessWidget {
                                                           height: 22,
                                                           width: 22,
                                                           color: ColorRes
-                                                              .color_FFB2B2,
+                                                              .colorFFB2B2,
                                                         ),
                                                         const SizedBox(
                                                           width: 10,
@@ -903,7 +903,7 @@ class SearchScreen extends StatelessWidget {
                                                               height: 22,
                                                               width: 22,
                                                               color: ColorRes
-                                                                  .color_FFB2B2,
+                                                                  .colorFFB2B2,
                                                             ),
                                                             const SizedBox(
                                                               width: 10,
@@ -954,7 +954,7 @@ class SearchScreen extends StatelessWidget {
                                                                   height: 22,
                                                                   width: 22,
                                                                   color: ColorRes
-                                                                      .color_FFB2B2,
+                                                                      .colorFFB2B2,
                                                                 ),
                                                                 const SizedBox(
                                                                   width: 10,
@@ -1002,7 +1002,7 @@ class SearchScreen extends StatelessWidget {
                                                                           22,
                                                                       width: 22,
                                                                       color: ColorRes
-                                                                          .color_FFB2B2,
+                                                                          .colorFFB2B2,
                                                                     ),
                                                                     const SizedBox(
                                                                       width: 10,
@@ -1044,7 +1044,7 @@ class SearchScreen extends StatelessWidget {
                                                                           22,
                                                                       width: 22,
                                                                       color: ColorRes
-                                                                          .color_FFB2B2,
+                                                                          .colorFFB2B2,
                                                                     ),
                                                                     const SizedBox(
                                                                       width: 10,
@@ -1091,7 +1091,7 @@ class SearchScreen extends StatelessWidget {
                                                           height: 22,
                                                           width: 22,
                                                           color: ColorRes
-                                                              .color_FFB2B2,
+                                                              .colorFFB2B2,
                                                         ),
                                                         const SizedBox(
                                                           width: 10,
@@ -1129,7 +1129,7 @@ class SearchScreen extends StatelessWidget {
                                                           height: 22,
                                                           width: 22,
                                                           color: ColorRes
-                                                              .color_FFB2B2,
+                                                              .colorFFB2B2,
                                                         ),
                                                         const SizedBox(
                                                           width: 10,

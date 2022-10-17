@@ -69,7 +69,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
     ];
   }
 
-  EditAdvertiesementController editAdvertiesementController =
+  final EditAdvertiesementController editAdvertiesementController =
       Get.put(EditAdvertiesementController());
 
   @override
@@ -93,8 +93,8 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                             colors: [
                               ColorRes.color_50369C,
                               ColorRes.color_50369C,
-                              ColorRes.color_D18EEE,
-                              ColorRes.color_D18EEE,
+                              ColorRes.colorD18EEE,
+                              ColorRes.colorD18EEE,
                             ],
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
@@ -304,7 +304,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                       ? Text(
                           'Pending',
                           style: gilroySemiBoldTextStyle(
-                              fontSize: 18, color: ColorRes.color_EED82F),
+                              fontSize: 18, color: ColorRes.colorEED82F),
                         )
                       : InkWell(
                           onTap: () {
@@ -361,7 +361,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                       height: 25,
                       width: 80,
                       decoration: const BoxDecoration(
-                        color: ColorRes.color_ECEFF0,
+                        color: ColorRes.colorECEFF0,
                         borderRadius: BorderRadius.all(
                           Radius.circular(4),
                         ),
@@ -537,7 +537,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                         left: 14, right: 23),
                                     buttonDecoration: BoxDecoration(
                                       border: Border.all(
-                                          color: ColorRes.color_E4E4EC),
+                                          color: ColorRes.colorE4E4EC),
                                       borderRadius: BorderRadius.circular(15),
                                       color: Colors.white,
                                     ),
@@ -551,7 +551,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                     dropdownPadding: null,
                                     dropdownDecoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(14),
-                                      color: ColorRes.color_E4E4EC,
+                                      color: ColorRes.colorE4E4EC,
                                     ),
                                     // scrollbarRadius: const Radius.circular(40),
                                     scrollbarThickness: 6,
@@ -574,28 +574,28 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                 height: 10,
                                 width: 10,
                                 decoration: const BoxDecoration(
-                                    color: ColorRes.color_B180EF,
+                                    color: ColorRes.colorB180EF,
                                     shape: BoxShape.circle),
                               ),
                               Spacer(),
                               Text(
                                 Strings.sun,
                                 style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
+                                    color: ColorRes.colorC4C4C4, fontSize: 10),
                               ),
                               Spacer(),
                               Container(
                                 height: 10,
                                 width: 10,
                                 decoration: const BoxDecoration(
-                                    color: ColorRes.color_FF737D,
+                                    color: ColorRes.colorFF737D,
                                     shape: BoxShape.circle),
                               ),
                               Spacer(),
                               Text(
                                 Strings.mon,
                                 style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
+                                    color: ColorRes.colorC4C4C4, fontSize: 10),
                               ),
                               Spacer(),
                               Container(
@@ -609,7 +609,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                               Text(
                                 Strings.tue,
                                 style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
+                                    color: ColorRes.colorC4C4C4, fontSize: 10),
                               ),
                               Spacer(),
                               Container(
@@ -623,7 +623,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                               Text(
                                 Strings.wed,
                                 style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
+                                    color: ColorRes.colorC4C4C4, fontSize: 10),
                               ),
                               Spacer(),
                               Container(
@@ -637,7 +637,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                               Text(
                                 Strings.th,
                                 style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
+                                    color: ColorRes.colorC4C4C4, fontSize: 10),
                               ),
                               Spacer(),
                               Container(
@@ -651,21 +651,21 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                               Text(
                                 Strings.fri,
                                 style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
+                                    color: ColorRes.colorC4C4C4, fontSize: 10),
                               ),
                               Spacer(),
                               Container(
                                 height: 10,
                                 width: 10,
                                 decoration: const BoxDecoration(
-                                    color: ColorRes.color_FF61D3,
+                                    color: ColorRes.colorFF61D3,
                                     shape: BoxShape.circle),
                               ),
                               Spacer(),
                               Text(
                                 Strings.sat,
                                 style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
+                                    color: ColorRes.colorC4C4C4, fontSize: 10),
                               ),
                               SizedBox(
                                 width: 25,
@@ -694,7 +694,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                           data.x,
                                           yValueMapper: (ChartData data, _) =>
                                           data.y,
-                                          color: ColorRes.color_B180EF,
+                                          color: ColorRes.colorB180EF,
                                         ),
                                         StackedBarSeries<ChartData, String>(
                                           dataSource: chartData,
@@ -703,7 +703,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                           data.x,
                                           yValueMapper: (ChartData data, _) =>
                                           data.y,
-                                          color: ColorRes.color_FF737D,
+                                          color: ColorRes.colorFF737D,
                                         ),
                                         StackedBarSeries<ChartData, String>(
                                           dataSource: chartData,
@@ -743,7 +743,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                           data.x,
                                           yValueMapper: (ChartData data, _) =>
                                           data.y,
-                                          color: ColorRes.color_FF61D3,
+                                          color: ColorRes.colorFF61D3,
                                         )
                                       ])),
 

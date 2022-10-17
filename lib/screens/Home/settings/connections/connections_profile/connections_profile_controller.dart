@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rainbow/model/acceptFriendRequest_model.dart';
+import 'package:rainbow/model/accept_friend_request_model.dart';
 import 'package:rainbow/model/block_model.dart';
-import 'package:rainbow/model/cancleFriedRequest_model.dart';
+import 'package:rainbow/model/cancle_fried_request_model.dart';
 import 'package:rainbow/model/profile_model.dart';
 import 'package:rainbow/model/sendFriendRequest_model.dart';
 import 'package:rainbow/model/unFriend_model.dart';

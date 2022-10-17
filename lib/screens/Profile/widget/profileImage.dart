@@ -68,7 +68,7 @@ Widget profileImage(/*ProfileController controller*/ String? profileImage,
                       gradient: LinearGradient(
                         colors: [
                           ColorRes.color_50369C,
-                          ColorRes.color_D18EEE,
+                          ColorRes.colorD18EEE,
                         ],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
@@ -94,7 +94,7 @@ Widget profileImage(/*ProfileController controller*/ String? profileImage,
                         decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                        image: AssetImage(AssetRes.portrait_placeholder),
+                        image: AssetImage(AssetRes.portraitPlaceholder),
                       ),
                     )),
                   ),

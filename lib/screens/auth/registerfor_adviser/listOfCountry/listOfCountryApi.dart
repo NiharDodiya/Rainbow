@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'dart:io';
+
 
 import 'package:http/http.dart' as http;
-import 'package:rainbow/common/popup.dart';
+
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountry_json.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';

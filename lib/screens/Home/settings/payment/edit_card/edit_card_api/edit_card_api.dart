@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/model/editCardModel.dart';
+import 'package:rainbow/model/edit_card_model.dart';
 
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';

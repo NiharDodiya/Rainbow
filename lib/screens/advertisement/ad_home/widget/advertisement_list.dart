@@ -4,7 +4,7 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/renewAdSetupDate/renewSetUp_Screen.dart';
-import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_screen.dart';
+
 import 'package:rainbow/screens/advertisement/ad_home/widget/advertiementApproved_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/widget/cancel_approve.dart';
 import 'package:rainbow/screens/advertisement/ad_home/widget/delet_approve.dart';
@@ -129,7 +129,7 @@ Widget advertisementList() {
                                                   .adminStatus
                                                   .toString() ==
                                                   "pending"
-                                                  ? ColorRes.color_FFA620
+                                                  ? ColorRes.colorFFA620
                                                   : controller
                                                   .myAdvertiserModel
                                                   .data?[index]
@@ -157,7 +157,7 @@ Widget advertisementList() {
                                               "",
                                           style: gilroyMediumTextStyle(
                                               fontSize: 10,
-                                              color: ColorRes.color_F86666),
+                                              color: ColorRes.colorF86666),
                                         ),
                                       ],
                                     ),
@@ -242,7 +242,7 @@ Widget advertisementList() {
                                               errorToast("No internet connection");
                                             }:() {
                                               if (index == 0) {
-                                                Get.to(deleteApprove(
+                                                Get.to(DeleteApprove(
                                                   idAdvertiser: controller
                                                       .myAdvertiserModel
                                                       .data![index]
@@ -279,9 +279,9 @@ Widget advertisementList() {
                                                   BoxDecoration(
                                                     color: index == 1
                                                         ? ColorRes
-                                                        .color_D18EEE
+                                                        .colorD18EEE
                                                         : ColorRes
-                                                        .color_F86666,
+                                                        .colorF86666,
                                                     borderRadius:
                                                     const BorderRadius
                                                         .all(
@@ -343,7 +343,7 @@ Widget advertisementList() {
                                           child: InkWell(
                                             onTap: () {
                                               if (index1 == 0) {
-                                                Get.to(deleteApprove(
+                                                Get.to(DeleteApprove(
                                                   idAdvertiser: controller
                                                       .myAdvertiserModel
                                                       .data![index]
@@ -375,7 +375,7 @@ Widget advertisementList() {
                                                   BoxDecoration(
                                                     color: index1 == 0
                                                         ? ColorRes
-                                                        .color_D18EEE
+                                                        .colorD18EEE
                                                         : ColorRes
                                                         .color_49A510,
                                                     borderRadius:
@@ -543,7 +543,7 @@ RefreshIndicator(
                                                   .data?[index]
                                                   .adminStatus
                                                   .toString() == "pending"
-                                                  ? ColorRes.color_FFA620
+                                                  ? ColorRes.colorFFA620
                                                   : controller
                                                   .myAdvertiserModel
                                                   .data?[index]
@@ -570,7 +570,7 @@ RefreshIndicator(
                                               "",
                                           style: gilroyMediumTextStyle(
                                               fontSize: 10,
-                                              color: ColorRes.color_F86666),
+                                              color: ColorRes.colorF86666),
                                         ),
                                       ],
                                     ),
@@ -653,7 +653,7 @@ RefreshIndicator(
                                           child: InkWell(
                                             onTap: () {
                                               if (index == 0) {
-                                                Get.to(deleteApprove(
+                                                Get.to(DeleteApprove(
                                                   idAdvertiser: controller
                                                       .myAdvertiserModel
                                                       .data![index]
@@ -686,9 +686,9 @@ RefreshIndicator(
                                                   BoxDecoration(
                                                     color: index == 1
                                                         ? ColorRes
-                                                        .color_D18EEE
+                                                        .colorD18EEE
                                                         : ColorRes
-                                                        .color_F86666,
+                                                        .colorF86666,
                                                     borderRadius:
                                                     const BorderRadius
                                                         .all(
@@ -750,7 +750,7 @@ RefreshIndicator(
                                           child: InkWell(
                                             onTap: () {
                                               if (index1 == 0) {
-                                                Get.to(deleteApprove(
+                                                Get.to(DeleteApprove(
                                                   idAdvertiser: controller
                                                       .myAdvertiserModel
                                                       .data![index]
@@ -782,7 +782,7 @@ RefreshIndicator(
                                                   BoxDecoration(
                                                     color: index1 == 0
                                                         ? ColorRes
-                                                        .color_D18EEE
+                                                        .colorD18EEE
                                                         : ColorRes
                                                         .color_49A510,
                                                     borderRadius:

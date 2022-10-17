@@ -114,7 +114,7 @@ class MyStoryListLike extends StatelessWidget {
                                       shape: BoxShape.circle,
                                       image: DecorationImage(
                                           image: AssetImage(
-                                              AssetRes.portrait_placeholder))),
+                                              AssetRes.portraitPlaceholder))),
                                 ),
                                 fit: BoxFit.fill,
                               ),

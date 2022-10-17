@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/model/friendPostView_Model.dart';
+import 'package:rainbow/model/friend_post_view_model.dart';
 import 'package:rainbow/model/postCommentList_model.dart';
 import 'package:rainbow/model/postComment_model.dart';
 import 'package:rainbow/model/postLike_model.dart';
