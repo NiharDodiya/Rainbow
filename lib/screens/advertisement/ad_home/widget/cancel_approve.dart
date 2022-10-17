@@ -10,11 +10,11 @@ import '../../../../utils/asset_res.dart';
 import '../../../../utils/color_res.dart';
 
 class CancelApprove extends StatelessWidget {
-  String? idAdvertiser;
+  final String? idAdvertiser;
 
   CancelApprove({Key? key, this.idAdvertiser}) : super(key: key);
 
-  AdHomeController adHomeController = Get.put(AdHomeController());
+  final AdHomeController adHomeController = Get.put(AdHomeController());
 
   @override
   Widget build(BuildContext context) {

@@ -19,9 +19,9 @@ import 'package:rainbow/utils/strings.dart';
 class ConnectionsProfileScreen extends StatelessWidget {
   ConnectionsProfileScreen({Key? key}) : super(key: key);
 
-  ConnectionsProfileController controller =
+  final ConnectionsProfileController controller =
       Get.put(ConnectionsProfileController());
-  ProfileController profileController = Get.put(ProfileController());
+  final ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {

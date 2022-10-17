@@ -9,13 +9,13 @@ import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class CommentScreen extends StatelessWidget {
-  String? idPost;
-  String? profileImage;
-  String? fullName;
+  final String? idPost;
+  final String? profileImage;
+  final String? fullName;
 
   CommentScreen({this.idPost, this.profileImage, this.fullName, Key? key})
       : super(key: key);
-  CommentsController controller = Get.put(CommentsController());
+  final CommentsController controller = Get.put(CommentsController());
 
   @override
   Widget build(BuildContext context) {

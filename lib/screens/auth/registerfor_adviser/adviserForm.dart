@@ -11,7 +11,7 @@ import 'package:rainbow/utils/strings.dart';
 
 class AdviserRegisterForm extends StatelessWidget {
   AdviserRegisterForm({Key? key}) : super(key: key);
-  AdviserRegisterController controller = Get.put(AdviserRegisterController());
+  final AdviserRegisterController controller = Get.put(AdviserRegisterController());
 
   @override
   Widget build(BuildContext context) {

@@ -10,9 +10,10 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
-class AdviserRegisterScreen extends StatelessWidget {
+class
+AdviserRegisterScreen extends StatelessWidget {
   AdviserRegisterScreen({Key? key}) : super(key: key);
-  AdviserRegisterController controller = Get.put(AdviserRegisterController());
+  final AdviserRegisterController controller = Get.put(AdviserRegisterController());
 
   @override
   Widget build(BuildContext context) {

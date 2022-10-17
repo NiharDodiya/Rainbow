@@ -13,7 +13,7 @@ import '../../../ad_dashboard/ad_dashboard.dart';
 
 class PaymentSuccessfulScreen extends StatelessWidget {
   PaymentSuccessfulScreen({Key? key}) : super(key: key);
-  AdHomeController adHomeController = Get.put(AdHomeController());
+  final AdHomeController adHomeController = Get.put(AdHomeController());
 
   @override
   Widget build(BuildContext context) {

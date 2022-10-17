@@ -12,7 +12,7 @@ import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
 class MessageScreen extends StatelessWidget {
-  bool? backArrow;
+  final bool? backArrow;
 
   MessageScreen({this.backArrow, Key? key}) : super(key: key);
   final MessageController messageController = Get.put(MessageController());

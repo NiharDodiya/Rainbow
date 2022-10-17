@@ -10,8 +10,8 @@ import 'package:rainbow/utils/color_res.dart';
 class MyStoryListLike extends StatelessWidget {
   MyStoryListLike({Key? key}) : super(key: key);
 
-  MyStoryController myStoryController = Get.put(MyStoryController());
-  ConnectionsProfileController connectionsProfileController =
+  final MyStoryController myStoryController = Get.put(MyStoryController());
+  final ConnectionsProfileController connectionsProfileController =
       Get.put(ConnectionsProfileController());
 
   @override

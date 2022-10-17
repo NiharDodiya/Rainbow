@@ -12,7 +12,7 @@ import 'package:rainbow/utils/strings.dart';
 
 class DoctorRegisterScreen extends StatelessWidget {
   DoctorRegisterScreen({Key? key}) : super(key: key);
-  DoctorRegisterController controller = Get.put(DoctorRegisterController());
+  final DoctorRegisterController controller = Get.put(DoctorRegisterController());
 
   @override
   Widget build(BuildContext context) {

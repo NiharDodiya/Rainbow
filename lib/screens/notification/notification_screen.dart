@@ -16,8 +16,8 @@ import '../../../utils/asset_res.dart';
 class NotificationScreen extends StatelessWidget {
   NotificationScreen({Key? key}) : super(key: key);
   final NotificationsController controller = Get.put(NotificationsController());
-  ProfileController profileController = Get.put(ProfileController());
-  ConnectionsProfileController connectionsProfileController =
+  final ProfileController profileController = Get.put(ProfileController());
+  final ConnectionsProfileController connectionsProfileController =
       Get.put(ConnectionsProfileController());
 
   @override

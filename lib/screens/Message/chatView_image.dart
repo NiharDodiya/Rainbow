@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:rainbow/utils/color_res.dart';
 
 class ChatViewImageScreen extends StatelessWidget {
-  String image;
+  final String image;
 
-  ChatViewImageScreen({Key? key, required this.image}) : super(key: key);
+  const ChatViewImageScreen({Key? key, required this.image}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

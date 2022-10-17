@@ -116,7 +116,7 @@ class SupportScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: Get.width * 0.28,
+                width: Get.width * 0.31,
               ),
               Text(
                 Strings.support,
@@ -321,24 +321,14 @@ class SupportScreen extends StatelessWidget {
       child: Container(
         height: 60,
         width: 300,
+        alignment: Alignment.center,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(13.67),
             color: ColorRes.color_FFED62),
-        child: Center(
-            child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 18,
-              width: 152,
-              child: Text(
-                Strings.sendNewMessage,
-                style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
-              ),
-            ),
-          ],
-        )),
+        child: Text(
+          Strings.sendNewMessage,
+          style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
+        ),
       ),
     );
   }

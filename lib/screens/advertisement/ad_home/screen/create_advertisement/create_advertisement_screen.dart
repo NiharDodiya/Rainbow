@@ -16,7 +16,7 @@ import '../../../../../utils/strings.dart';
 class CreateAdvertisementScreen extends StatelessWidget {
   CreateAdvertisementScreen({Key? key}) : super(key: key);
 
-  CreateAdvertisementController advertisementController =
+  final CreateAdvertisementController advertisementController =
       Get.put(CreateAdvertisementController());
 
   @override

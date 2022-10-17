@@ -10,9 +10,9 @@ import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class PostTestimonialScreen extends StatelessWidget {
-  String? id;
+  final String? id;
 
-  PostTestimonialScreen({Key? key, this.id}) : super(key: key);
+  const PostTestimonialScreen({Key? key, this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -11,7 +11,7 @@ import 'package:rainbow/utils/strings.dart';
 class PhoneNumberScreen extends StatelessWidget {
   PhoneNumberScreen({Key? key}) : super(key: key);
 
-  PhoneNumberController controller = Get.put(PhoneNumberController());
+  final PhoneNumberController controller = Get.put(PhoneNumberController());
 
   @override
   Widget build(BuildContext context) {

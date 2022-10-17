@@ -13,8 +13,8 @@ import 'package:rainbow/utils/strings.dart';
 
 class ConnectionsScreen extends StatelessWidget {
   ConnectionsScreen({Key? key}) : super(key: key);
-  ConnectionsController controller = Get.put(ConnectionsController());
-  ProfileController profileController = Get.put(ProfileController());
+  final ConnectionsController controller = Get.put(ConnectionsController());
+  final ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {

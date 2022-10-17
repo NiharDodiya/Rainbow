@@ -18,8 +18,8 @@ import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AdvertisementDetailsApprovedScreen extends StatelessWidget {
-  int i;
-  int id;
+  final int i;
+  final int id;
 
   AdvertisementDetailsApprovedScreen(
       {Key? key, required this.i, required this.id})
