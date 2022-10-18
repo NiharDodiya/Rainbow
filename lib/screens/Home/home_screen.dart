@@ -149,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             .notificationModel
                                                              ==
                                                         null || homeController
-                                                .notificationModel.toString()
+                                                .notificationModel?.pendingCount.toString()
                                                 ==
                                                 'null'||
                                                     homeController
@@ -631,6 +631,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
+
+                SizedBox(
+                  width: Get.width * 0.03,
+                ),
+                //friends story
                 SizedBox(
                   height: 129,
                   child: ListView.builder(

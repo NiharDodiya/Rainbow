@@ -42,7 +42,7 @@ class AdvertiserVerifyController extends GetxController {
   Future<void> phoneNumberRegister() async {
     try {
       loader.value = true;
-      await PhoneNumberApi.advertiserSendOtp(phoneNumber.isEmpty
+      await PhoneNumberApi.advertiserSendOtp(phoneNumber == ""
           ? PrefService.getString(PrefKeys.phonSaveNumberAdvertiser).toString()
           : phoneNumber);
 
