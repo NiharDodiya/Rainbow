@@ -25,7 +25,23 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(body: Obx(() {
       return Stack(
         children: [
-          GetBuilder<ProfileController>(
+          (controller.loader.isTrue)
+              ? Container(
+          width: Get.width,
+          padding: const EdgeInsets.only(top: 25),
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                ColorRes.color_50369C,
+                ColorRes.colorD18EEE,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+
+          )
+              :GetBuilder<ProfileController>(
             id: "profile",
             builder: (controller) {
               return Container(

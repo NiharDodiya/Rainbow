@@ -211,7 +211,7 @@ class MessageController extends GetxController {
     await getRoomId(otherUid);
     loader.value = false;
     // if user have not subcription show pop up
-    homeController.viewProfile.data!.userType == "free"
+    homeController.viewProfile.data?.userType == "free"
         ? premiumPopUpBox(context: context)
         : Get.to(() => ChatScreen(
               roomId: roomId,

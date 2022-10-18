@@ -128,7 +128,7 @@ class SearchScreen extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    homeController.viewProfile.data!.userType == "free"
+                    homeController.viewProfile.data?.userType == "free"
                         ? premiumPopUpBox(context: context)
                         : controller.advanceSearchOnTap();
                   },
@@ -162,7 +162,7 @@ class SearchScreen extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          homeController.viewProfile.data!.userType == "free"
+          homeController.viewProfile.data?.userType == "free"
               ? premiumPopUpBox(context: context)
               : const SizedBox();
         },
@@ -217,7 +217,7 @@ class SearchScreen extends StatelessWidget {
             itemCount: controller.listUserData.length,
             // itemCount: controller.search.length,
             itemBuilder: (context, index) {
-              return homeController.viewProfile.data!.userType == "free"
+              return homeController.viewProfile.data?.userType == "free"
                   ? InkWell(
                       onTap: () {
                         premiumPopUpBox(context: context);

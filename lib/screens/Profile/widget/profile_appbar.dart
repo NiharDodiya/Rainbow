@@ -63,7 +63,7 @@ Widget profileAppbar(
                       EditProfileController editController =
                           Get.put(EditProfileController());
                       editController.init();
-                      homeController.viewProfile.data!.userType == "free"
+                      homeController.viewProfile.data?.userType == "free"
                           ? premiumPopUpBox(context: context)
                           : Get.to(() => const EditProfileScreen());
                       //Get.to(() => const EditProfileScreen());
@@ -83,7 +83,7 @@ Widget profileAppbar(
                 NotificationsController notificationController =
                     Get.put(NotificationsController());
                 notificationController.init();
-                homeController.viewProfile.data!.userType == "free"
+                homeController.viewProfile.data?.userType == "free"
                     ? premiumPopUpBox(context: context)
                     : Get.to(() => NotificationScreen());
               },

@@ -157,8 +157,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           ),
                         ),
                   Positioned(
-                    top: Get.height /11,
-                    left: Get.width * 0.24,
+                    top: Get.height * 0.18,
+                    left: Get.width * 0.28,
+                    // top: Get.height /11,
+                    // left: Get.width * 0.24,
                     child: (profileController
                                 .viewProfile.data!.profileImage!.isEmpty ||
                             profileController.viewProfile.data!.profileImage
@@ -167,8 +169,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ? (controller.frontImage == null)
                             ? Container(
                                 margin: const EdgeInsets.only(right: 16),
-                                height: Get.height * 0.38666,
-                                width: Get.width * 0.38666,
+                                height: 151,
+                                width: 151,
                                 decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                     image: DecorationImage(
@@ -179,8 +181,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               )
                             : Container(
                                 margin: const EdgeInsets.only(right: 16),
-                                height: Get.height * 0.38666,
-                                width: Get.width * 0.38666,
+                                height: 151,
+                                width: 151,
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     image: DecorationImage(
@@ -214,8 +216,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           ),
                   ),
                   Positioned(
-                    top: Get.height * 0.24,
-                    left: Get.width * 0.4,
+                    top: Get.height * 0.26,
+                    left: Get.width * 0.44,
                     child: InkWell(
                         onTap: () {
                           showModalBottomSheet(

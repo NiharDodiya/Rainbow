@@ -241,7 +241,7 @@ class SettingsScreen extends StatelessWidget {
 
            await messageController.init();
 
-            homeController.viewProfile.data!.userType == "free"
+            homeController.viewProfile.data?.userType == "free"
                 ? premiumPopUpBox(context: context)
                 : Get.off(() => MessageScreen(
                       backArrow: true,
@@ -284,7 +284,7 @@ class SettingsScreen extends StatelessWidget {
             ConnectionsController connectionController =
                 Get.put(ConnectionsController());
             connectionController.init();
-            homeController.viewProfile.data!.userType == "free"
+            homeController.viewProfile.data?.userType == "free"
                 ? premiumPopUpBox(context: context)
                 : Get.to(() => ConnectionsScreen());
           },
@@ -322,7 +322,7 @@ class SettingsScreen extends StatelessWidget {
         //Support
         InkWell(
           onTap: () {
-            homeController.viewProfile.data!.userType == "free"
+            homeController.viewProfile.data?.userType == "free"
                 ? premiumPopUpBox(context: context)
                 : controller.onTapSupport();
           },
