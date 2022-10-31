@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
@@ -329,8 +331,11 @@ class AddCartScreen extends StatelessWidget {
                                       child: TextField(
                                         controller:
                                             controller.cardNmberController,
-                                        style: textFieldText,
-                                        maxLength: 20,
+                                        style: textFieldText,inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly,
+                                        CustomInputFormatter()
+                                      ],
+                                        maxLength: 19,
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintStyle: gilroyMediumTextStyle(
@@ -351,18 +356,55 @@ class AddCartScreen extends StatelessWidget {
                                 // ),
                                 Row(
                                   children: [
-                                    Expanded(
+                                    Text(
+                                      Strings.expiryDate,
+                                      style: gilroySemiBoldTextStyle(fontSize: 14),
+                                    ), SizedBox(width: Get.width * 0.25,),
+                                    Text(
+                                      Strings.cVV,
+                                      style: gilroySemiBoldTextStyle(fontSize: 14),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(child: Container(
+                                      height: 60,
+                                      width: Get.width,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: Padding(padding: const EdgeInsets.only(left: 20,top: 5),
+                                        child: TextField( controller: controller.expiryYearController,inputFormatters: [
+                                          LengthLimitingTextInputFormatter(5),
+                                          CardExpirationFormatter()
+                                        ],style: textFieldText,/*maxLength: 5,*/
+                                            decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          hintStyle: gilroyMediumTextStyle(
+                                              fontSize: 18,
+                                              color: ColorRes.black
+                                                  .withOpacity(0.3)),
+                                          hintText: Strings.cVVHint,
+                                        )),
+                                      ),
+                                    )),
+                                  /*  Expanded(
                                       child: AppTextFiled(
                                           controller:
                                               controller.expiryYearController,
-                                          title: Strings.expiryYear,
+                                          title: Strings.expiryDate,
                                           hintText: Strings.expiryDateHint,
                                           textInputType: TextInputType.number),
-                                    ),
+                                    ),*/
                                     SizedBox(
                                       width: Get.width * 0.05866,
                                     ),
-                                    Expanded(
+                                  /*  Expanded(
                                       child: AppTextFiled(
                                         controller:
                                             controller.expiryMonthController,
@@ -370,18 +412,34 @@ class AddCartScreen extends StatelessWidget {
                                         hintText: Strings.expiryDateHint,
                                         textInputType: TextInputType.number,
                                       ),
-                                    ),
+                                    ),*/
+                                    Expanded(child: Container(
+                                      height: 60,
+                                      width: Get.width,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: Padding(padding: const EdgeInsets.only(left: 20,top: 5),
+                                        child: TextField( controller: controller.cvvController,style: textFieldText,inputFormatters: [ LengthLimitingTextInputFormatter(3),],
+                                            decoration: InputDecoration(
+                                              border: InputBorder.none,
+                                              hintStyle: gilroyMediumTextStyle(
+                                                  fontSize: 18,
+                                                  color: ColorRes.black
+                                                      .withOpacity(0.3)),
+                                              hintText: Strings.cVVHint,
+                                            )),
+                                      ),
+                                    )),
+                                 /*   Expanded(child: AppTextFiled(
+                                      controller: controller.cvvController,
+                                      title: Strings.cVV,
+                                      hintText: Strings.cVVHint,
+                                      textInputType: TextInputType.number,
+                                      obscure: true,
+                                    ))*/
                                   ],
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                AppTextFiled(
-                                  controller: controller.cvvController,
-                                  title: Strings.cVV,
-                                  hintText: Strings.cVVHint,
-                                  textInputType: TextInputType.number,
-                                  obscure: true,
                                 ),
                                 const SizedBox(
                                   height: 10,
@@ -456,6 +514,61 @@ class AddCartScreen extends StatelessWidget {
             height: Get.height * 0.04,
           ),
         ],
+      ),
+    );
+  }
+}
+
+// enter 4 digit when enter space
+AddCartController addCartController = Get.put(AddCartController());
+class CustomInputFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    var text = newValue.text;
+
+    if (newValue.selection.baseOffset == 0) {
+      return newValue;
+    }
+    addCartController.cardNumber = newValue.text;
+
+    var buffer = StringBuffer();
+    for (int i = 0; i < text.length; i++) {
+      buffer.write(text[i]);
+      var nonZeroIndex = i + 1;
+      if (nonZeroIndex % 4 == 0 && nonZeroIndex != text.length) {
+        buffer.write(' '); // Replace this with anything you want to put after each 4 numbers
+      }
+    }
+
+    var string = buffer.toString();
+    return newValue.copyWith(
+        text: string,
+        selection: TextSelection.collapsed(offset: string.length)
+    );
+  }
+}
+// Expiry Date AddMethod Ui
+class CardExpirationFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    final newValueString = newValue.text;
+    String valueToReturn = '';
+
+    for (int i = 0; i < newValueString.length; i++) {
+      if (newValueString[i] != '/') valueToReturn += newValueString[i];
+      var nonZeroIndex = i + 1;
+      final contains = valueToReturn.contains(RegExp(r'\/'));
+      if (nonZeroIndex % 2 == 0 &&
+          nonZeroIndex != newValueString.length &&
+          !(contains)) {
+        valueToReturn += '/';
+      }
+    }
+    return newValue.copyWith(
+      text: valueToReturn,
+      selection: TextSelection.fromPosition(
+        TextPosition(offset: valueToReturn.length),
       ),
     );
   }

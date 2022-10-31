@@ -308,6 +308,7 @@ class Strings {
   static const cardNumber = "Card number";
   static const cardNumberHint = "1234 4567 7890 1234";
   static const expiryYear = "Expiry Year";
+  static const expiryDate = "Expiry date";
   static const expiryMonth = "Expiry Month";
   static const expiryDateHint = "..";
   static const cVV = "CVV";

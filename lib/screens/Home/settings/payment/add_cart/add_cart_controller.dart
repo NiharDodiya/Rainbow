@@ -17,12 +17,12 @@ class AddCartController extends GetxController {
   TextEditingController postalCodeController = TextEditingController();
   TextEditingController nameOnCardController = TextEditingController();
   TextEditingController cardNmberController = TextEditingController();
-  TextEditingController expiryMonthController = TextEditingController();
+  // TextEditingController expiryMonthController = TextEditingController();
   TextEditingController expiryYearController = TextEditingController();
   TextEditingController cvvController = TextEditingController();
   String? selectCountry;
   String? myId;
-
+String? cardNumber;
   RxBool loader = false.obs;
 
   bool countryBox = false;
@@ -109,16 +109,16 @@ class AddCartController extends GetxController {
     } else if (cardNmberController.text.isEmpty) {
       errorToast(Strings.cardNumberError);
       return false;
-    } else if (cardNmberController.text.length != 16) {
+    } else if (cardNmberController.text.length != 19) {
       errorToast(Strings.cardNumberErrorValidation);
       return false;
     } else if (expiryYearController.text.isEmpty) {
       errorToast(Strings.expiryYearError);
       return false;
-    } else if (expiryMonthController.text.isEmpty) {
+    }/* else if (expiryMonthController.text.isEmpty) {
       errorToast(Strings.expiryYearError);
       return false;
-    } else if (cvvController.text.isEmpty) {
+    }*/ else if (cvvController.text.isEmpty) {
       errorToast(Strings.cVVError);
       return false;
     } else if (cvvController.text.length != 3) {
@@ -140,13 +140,19 @@ class AddCartController extends GetxController {
   void addCartDetails(context) {
     try {
       loader.value = true;
+      String str = expiryYearController.text;
+      String first;
+      String second;
+      String str2 = expiryYearController.text;
+     first= str.split('/').first;
+     second= str2.split('/').last;
       AddCartApi.addCartDetailsApi(
         context,
-        cardNumber: cardNmberController.text,
-        exMonth: expiryMonthController.text,
+        cardNumber: cardNumber,
+        exMonth: first,
         cardHolder: nameOnCardController.text,
         cvv: cvvController.text,
-        exYear: expiryYearController.text,
+        exYear: second,
         fullName: fullNameController.text,
         address: cityController.text,
         city: cityController.text,

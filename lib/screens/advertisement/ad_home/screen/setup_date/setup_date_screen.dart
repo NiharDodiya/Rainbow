@@ -9,6 +9,7 @@ import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_failed.dart/payment_failed_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_successful/payment_successful_screen.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_controller.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../../common/Widget/loaders.dart';
@@ -20,6 +21,7 @@ class SetupDateScreen extends StatelessWidget {
   SetupDateScreen({Key? key}) : super(key: key);
   CreateAdvertisementController createAdvertisementController =
       Get.put(CreateAdvertisementController());
+  SetupDateController setupDateController = Get.put(SetupDateController());
 
   @override
   Widget build(BuildContext context) {
@@ -299,7 +301,7 @@ class SetupDateScreen extends StatelessWidget {
                               style: gilroyMediumTextStyle(fontSize: 18),
                             ),
                             const Spacer(),
-                            /* GetBuilder<SetupDateController>(
+                             GetBuilder<SetupDateController>(
                               id: 'selectC',
                               builder: (controller) => Column(
                                 children: [
@@ -362,7 +364,7 @@ class SetupDateScreen extends StatelessWidget {
                                           ),
                                           child: ListView.builder(
                                             itemCount:
-                                                setupDateController.list.length,
+                                                controller.list.length,
                                             itemBuilder: (context, index) =>
                                                 GestureDetector(
                                               onTap: () {
@@ -398,7 +400,7 @@ class SetupDateScreen extends StatelessWidget {
                                       : const SizedBox(),
                                 ],
                               ),
-                            ),*/
+                            ),
                             SizedBox(
                               width: Get.width * 0.0293,
                             )
@@ -523,13 +525,21 @@ class ShowBottomNext extends StatelessWidget {
                                 "You have to pay",
                                 style: gilroySemiBoldTextStyle(fontSize: 12),
                               ),
-                              // SizedBox(
-                              //   height: Get.height * 0.0320,
-                              // ),
-                              Text(
-                                createAdvertisementController
-                                    .amountController.text,
-                                style: poppinsSemiBold(fontSize: 24),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "200.",
+                                    style: poppinsSemiBold(fontSize: 24),
+                                  ),Padding(padding: EdgeInsets.only(top: 6),
+                                    child: Text(
+                                      "00USD",
+                                      style: poppinsSemiBold(fontSize: 12 ),
+                                    ),
+                                  ),
+                                ],
                               ),
                               // RichText(
                               //   text: TextSpan(children: [
@@ -610,7 +620,7 @@ class ShowBottomNext extends StatelessWidget {
                         },
                         child: Text(
                           /*"Pay ${setupDateController.amountController.text}",*/
-                          "Pay \$200.00",
+                          "Pay 200.00USD",
                           style: gilroyBoldTextStyle(
                             fontSize: 16,
                             color: ColorRes.black,

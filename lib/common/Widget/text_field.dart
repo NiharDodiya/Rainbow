@@ -22,6 +22,7 @@ class AppTextFiled extends StatelessWidget {
   final bool? showTitle;
   final int? maxLength;
 
+
   const AppTextFiled({
     Key? key,
     required this.controller,
@@ -76,7 +77,7 @@ class AppTextFiled extends StatelessWidget {
                   child: TextField(
                     controller: controller,
                     obscureText: obscure ?? false,
-                    style: textFieldText,
+                    style: textFieldText,inputFormatters: [],
                     keyboardType: textInputType,
                     enabled: enable,
                     obscuringCharacter: "•",
