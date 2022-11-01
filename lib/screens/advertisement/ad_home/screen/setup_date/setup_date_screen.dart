@@ -1,11 +1,11 @@
 // ignore_for_file: avoid_print, sort_child_properties_last
 
-
+import 'package:currency_picker/currency_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/formatters/money_input_formatter.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
-
+import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_failed.dart/payment_failed_screen.dart';
@@ -31,11 +31,12 @@ class SetupDateScreen extends StatelessWidget {
         child: Container(
           width: Get.width,
           height: Get.height,
-          decoration: const BoxDecoration(
+          decoration:  BoxDecoration(
             gradient: LinearGradient(
               colors: [
                 ColorRes.color_50369C,
                 ColorRes.color_50369C,
+                ColorRes.colorD18EEE,
                 ColorRes.colorD18EEE,
               ],
               begin: Alignment.topCenter,
@@ -267,7 +268,7 @@ class SetupDateScreen extends StatelessWidget {
                         child: GetBuilder<CreateAdvertisementController>(
                             id: 'selectC',
                             builder: (controller) {
-                              return TextField(
+                              return Text("£${controller.totalAmount??""}",style:  gilroySemiBoldTextStyle(fontSize: 24),)/*TextField(
                                 enabled: false,
                                 inputFormatters: [
                                   MoneyInputFormatter(
@@ -285,7 +286,7 @@ class SetupDateScreen extends StatelessWidget {
                                   hintStyle:
                                       gilroySemiBoldTextStyle(fontSize: 24),
                                 ),
-                              );
+                              )*/;
                             }),
                       ),
                     ),
@@ -472,9 +473,9 @@ class SetupDateScreen extends StatelessWidget {
 }
 
 class ShowBottomNext extends StatelessWidget {
-  final String? amount;
+  String? amount;
 
-  const ShowBottomNext({Key? key, this.amount}) : super(key: key);
+  ShowBottomNext({Key? key, this.amount}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -511,11 +512,12 @@ class ShowBottomNext extends StatelessWidget {
                       ),
                       Container(
                         width: Get.width * 0.8293,
-                        decoration: const BoxDecoration(
+                        decoration:  BoxDecoration(
                           gradient: LinearGradient(
                             colors: [
                               ColorRes.color_50369C,
                               ColorRes.color_50369C,
+                              ColorRes.colorD18EEE,
                               ColorRes.colorD18EEE,
                             ],
                             begin: Alignment.topCenter,
@@ -538,20 +540,24 @@ class ShowBottomNext extends StatelessWidget {
                                 "You have to pay",
                                 style: gilroySemiBoldTextStyle(fontSize: 12),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 children: [
-                                  Text(
-                                    "200.",
-                                    style: poppinsSemiBold(fontSize: 24),
-                                  ),Padding(padding: EdgeInsets.only(top: 6),
+                                  GetBuilder<CreateAdvertisementController>(id:"select",
+                                    builder: (controller) {
+                                      return  Text(
+                                        "£${controller.totalAmount}",
+                                        style: poppinsSemiBold(fontSize: 64),
+                                      );
+                                    },
+                                  ),/*Padding(padding: EdgeInsets.only(top: 6),
                                     child: Text(
                                       "00USD",
                                       style: poppinsSemiBold(fontSize: 12 ),
                                     ),
-                                  ),
+                                  ),*/
                                 ],
                               ),
                               // RichText(
@@ -633,7 +639,7 @@ class ShowBottomNext extends StatelessWidget {
                         },
                         child: Text(
                           /*"Pay ${setupDateController.amountController.text}",*/
-                          "Pay \$200.00",
+                          "Pay £$amount",
                           style: gilroyBoldTextStyle(
                             fontSize: 16,
                             color: ColorRes.black,

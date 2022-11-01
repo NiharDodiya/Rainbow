@@ -19,6 +19,7 @@ class SetupDateController extends GetxController {
   rangSelect(start, end, range) {
     startTime = start;
     endtime = end;
+
     update(['range']);
   }
 

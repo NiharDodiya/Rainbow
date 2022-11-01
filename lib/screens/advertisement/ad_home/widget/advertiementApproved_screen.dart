@@ -318,7 +318,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                         ),
             ],
           ),
-          Text("\$200",style:  gilroySemiBoldTextStyle(
+          Text("£${adHomeController.myAdvertiserModel.data![index].amount??""}",style:  gilroySemiBoldTextStyle(
             fontSize: 18,
           ),),
           const SizedBox(
