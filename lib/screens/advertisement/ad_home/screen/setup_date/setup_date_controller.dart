@@ -12,6 +12,9 @@ class SetupDateController extends GetxController {
   String currency = "\$";
   List<String> currencyList = ["\$", "₹"];
   String select = 'Caneda';
+  String? countryName;
+  String? countryCurrency;
+  String? countryFlag;
 
   rangSelect(start, end, range) {
     startTime = start;

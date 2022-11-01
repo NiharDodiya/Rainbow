@@ -88,11 +88,11 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                       child: Container(
                         width: Get.width,
                         height: 790,
-                        decoration: const BoxDecoration(
+                        decoration:  BoxDecoration(
                           gradient: LinearGradient(
                             colors: [
                               ColorRes.color_50369C,
-                              ColorRes.color_50369C,
+                              ColorRes.color_50369C.withOpacity(0.98),
                               ColorRes.color_D18EEE,
                               ColorRes.color_D18EEE,
                             ],
@@ -318,7 +318,9 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                         ),
             ],
           ),
-
+          Text("\$200",style:  gilroySemiBoldTextStyle(
+            fontSize: 18,
+          ),),
           const SizedBox(
             height: 20,
           ),
@@ -357,7 +359,8 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                       .myAdvertiserModel.data![index].tagsList!.length,
                   itemBuilder: (context, index1) => Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Container(
+                    child:adHomeController
+                        .myAdvertiserModel.data![index].tagsList![index1]== " "?const SizedBox() :Container(
                       height: 25,
                       width: 80,
                       decoration: const BoxDecoration(

@@ -6,6 +6,7 @@ import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/edit_advertisement/edit_advertisement_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/update_advertisement/update_advertisement_controller.dart';
 import 'package:rainbow/utils/color_res.dart';
 
@@ -22,7 +23,8 @@ class UpdateAdvertiseScreen extends StatelessWidget {
 
   UpdateAdvertiseController updateAdvertiseController =
       Get.put(UpdateAdvertiseController());
-
+  EditAdvertiesementController editAdvertiesementController =
+  Get.put(EditAdvertiesementController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -171,6 +173,183 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
+                        /*editAdvertiesementController
+                            .editAdvertisementModel
+                            .data
+                        !.itemsList!.isEmpty?const SizedBox():editAdvertiesementController
+                            .editAdvertisementModel
+                            .data
+                        !.itemsList!.length==3?Row(
+                          children: [Stack(
+                              alignment: const Alignment(1.2, -1.3),
+                              children: [
+                                Container(
+                                  height: Get.height / 12,
+                                  width: Get.width / 6,
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.circular(15),
+                                      image: DecorationImage(
+                                          image:NetworkImage(editAdvertiesementController
+                                              .editAdvertisementModel
+                                              .data
+                                          !.itemsList![0]),
+                                          fit: BoxFit.cover)),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                  },
+                                  child: Container(
+                                      decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.black),
+                                      child: const Icon(
+                                        Icons.clear,
+                                        color: Colors.white,
+                                      )),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(width: 20),
+                          Stack(
+                              alignment: const Alignment(1.2, -1.3),
+                              children: [
+                                Container(
+                                  height: Get.height / 12,
+                                  width: Get.width / 6,
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.circular(15),
+                                      image: DecorationImage(
+                                          image: NetworkImage(editAdvertiesementController
+                                              .editAdvertisementModel
+                                              .data
+                                          !.itemsList![1]),
+                                          fit: BoxFit.cover)),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                  },
+                                  child: Container(
+                                      decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.black),
+                                      child: const Icon(
+                                        Icons.clear,
+                                        color: Colors.white,
+                                      )),
+                                ),
+                              ],
+                            ),
+                             const SizedBox(width: 20),
+                           Stack(
+                              alignment: const Alignment(1.2, -1.3),
+                              children: [
+                                Container(
+                                  height: Get.height / 12,
+                                  width: Get.width / 6,
+                                  decoration: BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.circular(15),
+                                      image: DecorationImage(
+                                          image: NetworkImage(editAdvertiesementController
+                                              .editAdvertisementModel
+                                              .data
+                                          !.itemsList![2]),
+                                          fit: BoxFit.cover)),
+                                ),
+                                InkWell(
+                                  onTap: () {
+
+                                  },
+                                  child: Container(
+                                      decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Colors.black),
+                                      child: const Icon(
+                                        Icons.clear,
+                                        color: Colors.white,
+                                      )),
+                                ),
+                              ],
+                            )
+                          ],
+                        ):editAdvertiesementController
+                            .editAdvertisementModel
+                            .data
+                        !.itemsList!.length==2?Row(
+                          children: [Stack(
+                            alignment: const Alignment(1.2, -1.3),
+                            children: [
+                              Container(
+                                height: Get.height / 12,
+                                width: Get.width / 6,
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                    BorderRadius.circular(15),
+                                    image: DecorationImage(
+                                        image:NetworkImage( editAdvertiesementController
+                                            .editAdvertisementModel
+                                            .data
+                                        !.itemsList![1]),
+                                        fit: BoxFit.cover)),
+                              ),
+                              InkWell(
+                                onTap: () {
+
+                                },
+                                child: Container(
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.black),
+                                    child: const Icon(
+                                      Icons.clear,
+                                      color: Colors.white,
+                                    )),
+                              ),
+                            ],
+                          ),
+                            const SizedBox(width: 20),
+                          ],
+                        ):editAdvertiesementController
+                            .editAdvertisementModel
+                            .data
+                        !.itemsList!.length==1?Row(
+                          children: [Stack(
+                            alignment: const Alignment(1.2, -1.3),
+                            children: [
+                              Container(
+                                height: Get.height / 12,
+                                width: Get.width / 6,
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                    BorderRadius.circular(15),
+                                    image: DecorationImage(
+                                        image:NetworkImage( editAdvertiesementController
+                                            .editAdvertisementModel
+                                            .data
+                                        !.itemsList![0]),
+                                        fit: BoxFit.cover)),
+                              ),
+                              InkWell(
+                                onTap: () {
+
+                                },
+                                child: Container(
+                                    decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.black),
+                                    child: const Icon(
+                                      Icons.clear,
+                                      color: Colors.white,
+                                    )),
+                              ),
+                            ],
+                          ),
+                            const SizedBox(width: 20),
+                          ],
+                        ):const SizedBox(),*/
+
                         (controller.imagePath.isEmpty)
                             ? const SizedBox()
                             : (controller.imagePath.length == 3)
@@ -583,9 +762,18 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
+                                int count;
+                                count = editAdvertiesementController
+                                    .editAdvertisementModel
+                                    .data
+                                !.itemsList!.length + controller.imagePath.length;
+                                print(count);
                                 if (controller.imagePath.length == 3) {
                                   errorToast("you can take only 3 images");
-                                } else {
+                                } else if(count==3){
+                                  errorToast("you can take only 3 images");
+                                }
+                                else {
                                   showModalBottomSheet(
                                       elevation: 10,
                                       barrierColor:

@@ -144,7 +144,10 @@ class EditAdvertisementscreen extends StatelessWidget {
                           itemBuilder: (context, index) => Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Container(
+                            child: editAdvertiesementController
+                                .editAdvertisementModel
+                                .data
+                                ?.tagsList![index]==" "?const SizedBox():Container(
                               height: 25,
                               width: 80,
                               decoration: const BoxDecoration(

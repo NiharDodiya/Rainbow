@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print, sort_child_properties_last
 
+import 'package:currency_picker/currency_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/formatters/money_input_formatter.dart';
 import 'package:get/get.dart';
@@ -316,7 +317,20 @@ class SetupDateScreen extends StatelessWidget {
                                     width: 90,
                                     child: GestureDetector(
                                       onTap: () {
-                                        controller.showDrop();
+                                 /*       controller.showDrop();*/
+                                        showCurrencyPicker(
+                                          context: context,
+                                          showFlag: true,
+                                          showSearchField: true,
+                                          showCurrencyName: true,
+                                          showCurrencyCode: true,
+                                          onSelect: (Currency currency) {
+                                            controller.countryName = currency.code;
+                                            controller.countryFlag = currency.flag.toString();
+                                            print('Select currency: ${currency.name}');
+                                          },
+                                          favorite: ['SEK'],
+                                        );
                                       },
                                       child: Row(
                                         children: [
@@ -324,7 +338,7 @@ class SetupDateScreen extends StatelessWidget {
                                             width: 5,
                                           ),
                                           Image.asset(
-                                            controller.flag,
+                                            controller.countryFlag.toString(),
                                             height: 20,
                                             width: 15,
                                           ),
@@ -332,7 +346,7 @@ class SetupDateScreen extends StatelessWidget {
                                             width: 5,
                                           ),
                                           Text(
-                                            controller.select,
+                                            controller.countryName.toString()??"",
                                             style: gilroyMediumTextStyle(
                                                 fontSize: 12,
                                                 color: ColorRes.black),
@@ -353,7 +367,7 @@ class SetupDateScreen extends StatelessWidget {
                                   const SizedBox(
                                     height: 1,
                                   ),
-                                  controller.showDropDown
+                               /*   controller.showDropDown
                                       ? Container(
                                           height: 50,
                                           width: 80,
@@ -369,6 +383,7 @@ class SetupDateScreen extends StatelessWidget {
                                                 GestureDetector(
                                               onTap: () {
                                                 controller.selectContry(index);
+
                                               },
                                               child: Container(
                                                 height: 20,
@@ -397,7 +412,7 @@ class SetupDateScreen extends StatelessWidget {
                                             ),
                                           ),
                                         )
-                                      : const SizedBox(),
+                                      : const SizedBox(),*/
                                 ],
                               ),
                             ),
