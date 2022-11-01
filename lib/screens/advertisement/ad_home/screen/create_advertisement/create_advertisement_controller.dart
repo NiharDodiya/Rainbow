@@ -54,16 +54,17 @@ class CreateAdvertisementController extends GetxController {
   bool showDropDown = false;
   List<String> flagList = [AssetRes.flag01, AssetRes.flag02];
   List<String> list = ["canada", "India"];
-  String currency = "\$";
+  String currency = "£";
   List<String> currencyList = ["\$", "₹"];
   String select = 'canada';
-
+int? totalAmount;
+int? totalAmountApi;
   int pageIndex = 0;
 
   RxBool loader = false.obs;
 
   TextEditingController amountController =
-      TextEditingController(text: "\$200.00");
+      TextEditingController(text: "£200.00");
 
   // File? imagePath;
   List<File> imagePath = [];
@@ -374,8 +375,9 @@ class CreateAdvertisementController extends GetxController {
               .add_yMd()
               .format(DateTime(now.year, now.month, now.day, 24, 00, 00))
           : DateFormat().add_yMd().format(endTime!),
-      amount: 200,
+      amount: totalAmountApi,
     );
+    totalAmount=0;
     adHomeController.myAdvertiserListData();
     adHomeController.update(['more']);
     loader.value = false;
@@ -385,7 +387,14 @@ class CreateAdvertisementController extends GetxController {
   rangSelect(start, end, range) {
     startTime = start;
     endTime = end;
+    Duration diff = end.difference(start);
+    print(diff.inDays);
+    totalAmount = diff.inDays.toInt() * 10;
+    totalAmountApi = diff.inDays.toInt() * 1000;
+    print(totalAmountApi);
+    print(totalAmount);
     update(['range']);
+    update(['selectC']);
   }
 
   showDrop() {
@@ -455,7 +464,7 @@ class CreateAdvertisementController extends GetxController {
 
           // enableDrag: true,
           builder: (_) => ShowBottomNext(
-            amount: currency,
+            amount: totalAmount.toString(),
           ),
         ),
         isScrollControlled: true,

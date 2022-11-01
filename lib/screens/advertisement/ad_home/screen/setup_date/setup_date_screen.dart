@@ -268,7 +268,7 @@ class SetupDateScreen extends StatelessWidget {
                         child: GetBuilder<CreateAdvertisementController>(
                             id: 'selectC',
                             builder: (controller) {
-                              return TextField(
+                              return Text("£${controller.totalAmount??""}",style:  gilroySemiBoldTextStyle(fontSize: 24),)/*TextField(
                                 enabled: false,
                                 inputFormatters: [
                                   MoneyInputFormatter(
@@ -286,7 +286,7 @@ class SetupDateScreen extends StatelessWidget {
                                   hintStyle:
                                       gilroySemiBoldTextStyle(fontSize: 24),
                                 ),
-                              );
+                              )*/;
                             }),
                       ),
                     ),
@@ -540,20 +540,24 @@ class ShowBottomNext extends StatelessWidget {
                                 "You have to pay",
                                 style: gilroySemiBoldTextStyle(fontSize: 12),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 children: [
-                                  Text(
-                                    "200.",
-                                    style: poppinsSemiBold(fontSize: 24),
-                                  ),Padding(padding: EdgeInsets.only(top: 6),
+                                  GetBuilder<CreateAdvertisementController>(id:"select",
+                                    builder: (controller) {
+                                      return  Text(
+                                        "£${controller.totalAmount}",
+                                        style: poppinsSemiBold(fontSize: 64),
+                                      );
+                                    },
+                                  ),/*Padding(padding: EdgeInsets.only(top: 6),
                                     child: Text(
                                       "00USD",
                                       style: poppinsSemiBold(fontSize: 12 ),
                                     ),
-                                  ),
+                                  ),*/
                                 ],
                               ),
                               // RichText(
@@ -635,7 +639,7 @@ class ShowBottomNext extends StatelessWidget {
                         },
                         child: Text(
                           /*"Pay ${setupDateController.amountController.text}",*/
-                          "Pay 200.00USD",
+                          "Pay £$amount",
                           style: gilroyBoldTextStyle(
                             fontSize: 16,
                             color: ColorRes.black,

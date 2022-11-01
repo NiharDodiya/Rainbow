@@ -592,7 +592,7 @@ Widget tranzaction({required PaymentController controller, int? index}) {
             ),
             const Spacer(),
             Text(
-              "\$${controller.transactionModel.data?[index].amount.toString() ?? ""}",
+              "£${controller.transactionModel.data?[index].amount.toString() ?? ""}",
               style: gilroyMediumTextStyle(color: ColorRes.color_29A435),
             ),
             SizedBox(
