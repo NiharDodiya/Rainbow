@@ -31,13 +31,13 @@ class SetupDateScreen extends StatelessWidget {
         child: Container(
           width: Get.width,
           height: Get.height,
-          decoration: const BoxDecoration(
+          decoration:  BoxDecoration(
             gradient: LinearGradient(
               colors: [
                 ColorRes.color_50369C,
                 ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
-                ColorRes.color_D18EEE,
+                ColorRes.colorD18EEE,
+                ColorRes.colorD18EEE,
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -156,7 +156,7 @@ class SetupDateScreen extends StatelessWidget {
                     focusedDay: DateTime.now(),
                     calendarStyle: CalendarStyle(
                       isTodayHighlighted: false,
-                      rangeHighlightColor: ColorRes.color_F4F4F4,
+                      rangeHighlightColor: ColorRes.colorF4F4F4,
                       todayTextStyle: gilroyBoldTextStyle(fontSize: 11.43),
                       weekendTextStyle: gilroyMediumTextStyle(
                           fontSize: 11.43, color: ColorRes.color_27354C),
@@ -176,7 +176,7 @@ class SetupDateScreen extends StatelessWidget {
                       selectedDecoration: BoxDecoration(
                         color: ColorRes.black,
                         border: Border.all(
-                            color: ColorRes.color_FCE307, width: 1.46),
+                            color: ColorRes.colorFCE307, width: 1.46),
                       ),
                       // selectedTextStyle:
                       //     TextStyle(fontSize: 15, color: Colors.purple),
@@ -185,13 +185,13 @@ class SetupDateScreen extends StatelessWidget {
                         color: ColorRes.color_50369C,
                         shape: BoxShape.circle,
                         border: Border.all(
-                            color: ColorRes.color_FCE307, width: 1.5),
+                            color: ColorRes.colorFCE307, width: 1.5),
                       ),
                       rangeStartDecoration: BoxDecoration(
                         color: ColorRes.color_50369C,
                         shape: BoxShape.circle,
                         border: Border.all(
-                            color: ColorRes.color_FCE307, width: 1.5),
+                            color: ColorRes.colorFCE307, width: 1.5),
                       ),
                       withinRangeTextStyle: gilroyMediumTextStyle(
                           fontSize: 11.43, color: ColorRes.color_27354C),
@@ -253,7 +253,7 @@ class SetupDateScreen extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [
                       ColorRes.color_50369C.withOpacity(0.5),
-                      ColorRes.color_D18EEE.withOpacity(0.8),
+                      ColorRes.colorD18EEE.withOpacity(0.8),
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -512,13 +512,13 @@ class ShowBottomNext extends StatelessWidget {
                       ),
                       Container(
                         width: Get.width * 0.8293,
-                        decoration: const BoxDecoration(
+                        decoration:  BoxDecoration(
                           gradient: LinearGradient(
                             colors: [
                               ColorRes.color_50369C,
                               ColorRes.color_50369C,
-                              ColorRes.color_D18EEE,
-                              ColorRes.color_D18EEE,
+                              ColorRes.colorD18EEE,
+                              ColorRes.colorD18EEE,
                             ],
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
@@ -658,8 +658,8 @@ class ShowBottomNext extends StatelessWidget {
                           style: gilroySemiBoldTextStyle(fontSize: 16),
                         ),
                         colors: const [
-                          ColorRes.color_F86666,
-                          ColorRes.color_F82222,
+                          ColorRes.colorF86666,
+                          ColorRes.colorF82222,
                         ],
                       ),
                       SizedBox(
