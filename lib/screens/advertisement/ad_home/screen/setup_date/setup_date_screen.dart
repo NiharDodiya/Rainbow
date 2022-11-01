@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print, sort_child_properties_last
 
-import 'package:currency_picker/currency_picker.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/formatters/money_input_formatter.dart';
 import 'package:get/get.dart';

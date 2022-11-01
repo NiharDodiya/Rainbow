@@ -23,7 +23,7 @@ class EditAdvertisementscreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           width: Get.width,
-          decoration: const BoxDecoration(
+          decoration:  const BoxDecoration(
             gradient: LinearGradient(
               colors: [
                 ColorRes.color_50369C,
@@ -31,8 +31,8 @@ class EditAdvertisementscreen extends StatelessWidget {
                 ColorRes.colorD18EEE,
                 ColorRes.colorD18EEE,
                 ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
-                ColorRes.color_D18EEE,
+                ColorRes.colorD18EEE,
+
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,

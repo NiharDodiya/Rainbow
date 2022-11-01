@@ -42,6 +42,7 @@ class UpdateAdvertiseController extends GetxController {
   TextEditingController callToActionController = TextEditingController();
   List<String> dropDList = ["Learn More", "Contact Us"];
 
+
   DateTime startTime = DateTime.now();
   DateTime endTime = DateTime.now();
   String flag = AssetRes.flag01;
@@ -56,6 +57,7 @@ class UpdateAdvertiseController extends GetxController {
       TextEditingController(text: "\$200.00");
 
   // File? imagePath;
+  List<String> images = [];
   List<File> imagePath = [];
   RxBool loader = false.obs;
 

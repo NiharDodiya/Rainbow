@@ -93,8 +93,8 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                             colors: [
                               ColorRes.color_50369C,
                               ColorRes.color_50369C.withOpacity(0.98),
-                              ColorRes.color_D18EEE,
-                              ColorRes.color_D18EEE,
+                              ColorRes.colorD18EEE,
+
                             ],
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
