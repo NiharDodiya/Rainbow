@@ -61,7 +61,7 @@ premiumPopUpBox({required BuildContext context}) {
                     gradient: const LinearGradient(
                       colors: [
                         ColorRes.color_4F359B,
-                        ColorRes.color_B279DB,
+                        ColorRes.colorB279DB,
                       ],
                       begin: Alignment.topLeft,
                       end: Alignment.topRight,
@@ -151,7 +151,7 @@ premiumPopUpBox({required BuildContext context}) {
                       begin: Alignment.topRight,
                       end: Alignment.bottomLeft,
                       colors: [
-                        ColorRes.color_B279DB,
+                        ColorRes.colorB279DB,
                         ColorRes.color_4F359B,
                       ],
                     )),
@@ -235,7 +235,7 @@ Container(
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
                 colors: [
-                  ColorRes.color_B279DB,
+                  ColorRes.colorB279DB,
                   ColorRes.color_4F359B,
                 ],
               )),

@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
-import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalitesJson.dart';
-import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountry_json.dart';
+import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_json.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/list_of_country_json.dart';
 
 ListCountryModel listCountryModel = ListCountryModel();
 ListNationalities listNationalities = ListNationalities();
@@ -13,11 +13,13 @@ List<String> countryNationId = [];
 void getCountry() {
   countryCity = [];
   countryId = [];
+
   for (int i = 0; i < listCountryModel.data!.length; i++) {
     countryCity.add(listCountryModel.data![i].name!);
     countryCity.sort((a, b) {
       return a.toString().toLowerCase().compareTo(b.toString().toLowerCase());
     });
+
     countryId.add(listCountryModel.data![i].id!.toString());
   }
   if (kDebugMode) {

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/auth/phonenumber/phonenumber_Controller.dart';
+import 'package:rainbow/screens/auth/phonenumber/phonenumber_controller.dart';
 import 'package:rainbow/screens/auth/register/register_controller.dart';
 import 'package:rainbow/screens/auth/register/widget/registerVerify_controller.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -225,7 +225,7 @@ class _RegisterOtpScreenState extends State<RegisterOtpScreen> {
                                       width: Get.width * 0.84788,
                                       height: Get.height * 0.07575,
                                       decoration: BoxDecoration(
-                                          color: ColorRes.color_E7D01F,
+                                          color: ColorRes.colorE7D01F,
                                           borderRadius:
                                               BorderRadius.circular(15)),
                                       child: Center(

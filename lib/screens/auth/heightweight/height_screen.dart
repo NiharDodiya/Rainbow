@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/Profile/widget/edit_profile/editProfile_contoller.dart';
+import 'package:rainbow/screens/Profile/widget/edit_profile/edit_profile_contoller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -129,7 +129,7 @@ class HeightScreen extends StatelessWidget {
                           width: Get.width * 0.84,
                           height: Get.height * 0.073,
                           decoration: BoxDecoration(
-                              color: ColorRes.color_E7D01F,
+                              color: ColorRes.colorE7D01F,
                               borderRadius: BorderRadius.circular(15)),
                           child: Center(
                               child: Text(

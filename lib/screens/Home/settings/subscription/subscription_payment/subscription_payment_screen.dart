@@ -11,7 +11,7 @@ import '../../../../../utils/color_res.dart';
 
 class SubscriptionPaymentScreen extends StatelessWidget {
   SubscriptionPaymentScreen({Key? key}) : super(key: key);
-  SubscriptionPaymentController controller =
+  final SubscriptionPaymentController controller =
       Get.put(SubscriptionPaymentController());
 
   @override
@@ -24,7 +24,7 @@ class SubscriptionPaymentScreen extends StatelessWidget {
             gradient: LinearGradient(
               colors: [
                 ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
+                ColorRes.colorD18EEE,
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -265,7 +265,7 @@ class PremiumPackage extends StatelessWidget {
                 height: Get.width * 0.12,
                 width: Get.width * 0.12,
                 decoration: const BoxDecoration(
-                    color: ColorRes.color_FFEC5C, shape: BoxShape.circle
+                    color: ColorRes.colorFFEC5C, shape: BoxShape.circle
                     // image: DecorationImage(image: AssetImage(AssetRes.poket),)
                     ),
                 child: Image.asset(
@@ -298,7 +298,7 @@ class PremiumPackage extends StatelessWidget {
           Text(
             Strings.whatYoullGet,
             style:
-                interTextReguler(fontSize: 22, color: ColorRes.color_E9E9E9),
+                interTextReguler(fontSize: 22, color: ColorRes.colorE9E9E9),
           ),
           SizedBox(
             height: Get.height * 0.029556,
@@ -307,7 +307,7 @@ class PremiumPackage extends StatelessWidget {
             children: [
               const Icon(
                 Icons.check_circle,
-                color: ColorRes.color_E4E4EC,
+                color: ColorRes.colorE4E4EC,
                 size: 20,
               ),
               const SizedBox(
@@ -315,7 +315,7 @@ class PremiumPackage extends StatelessWidget {
               ),
               Text(Strings.unlimitedAccess,
                   style: interTextReguler(
-                      fontSize: 18, color: ColorRes.color_E4E4EC)),
+                      fontSize: 18, color: ColorRes.colorE4E4EC)),
             ],
           ),
           SizedBox(
@@ -325,7 +325,7 @@ class PremiumPackage extends StatelessWidget {
             children: [
               const Icon(
                 Icons.check_circle,
-                color: ColorRes.color_E4E4EC,
+                color: ColorRes.colorE4E4EC,
                 size: 20,
               ),
               const SizedBox(
@@ -333,7 +333,7 @@ class PremiumPackage extends StatelessWidget {
               ),
               Text(Strings.dateSupport,
                   style: interTextReguler(
-                      fontSize: 18, color: ColorRes.color_E4E4EC)),
+                      fontSize: 18, color: ColorRes.colorE4E4EC)),
             ],
           ),
           SizedBox(
@@ -341,7 +341,7 @@ class PremiumPackage extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(right: Get.width * 0.085333),
-            child: const DottedLine(dashColor: ColorRes.color_A9A9AA),
+            child: const DottedLine(dashColor: ColorRes.colorA9A9AA),
           ),
           SizedBox(
             height: Get.height * 0.0123,

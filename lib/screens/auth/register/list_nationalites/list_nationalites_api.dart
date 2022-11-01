@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalitesJson.dart';
+import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_json.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/utils/end_points.dart';
 

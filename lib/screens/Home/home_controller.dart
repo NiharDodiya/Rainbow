@@ -10,21 +10,21 @@ import 'package:rainbow/common/Widget/premiumPopUpBox/premium_pop_up_box.dart';
 import 'package:rainbow/common/blocList_api/block_list_api.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/model/advertisement_list%5Buser%5D.dart';
-import 'package:rainbow/model/blockList_model.dart';
-import 'package:rainbow/model/friendPostView_Model.dart';
-import 'package:rainbow/model/listOfFriendRequest_model.dart';
-import 'package:rainbow/model/listUserTag_model.dart';
-import 'package:rainbow/model/myPostList_model.dart';
+import 'package:rainbow/model/block_list_model.dart';
+import 'package:rainbow/model/friend_post_view_model.dart';
+import 'package:rainbow/model/list_of_friend_request_model.dart';
+import 'package:rainbow/model/list_user_tag_model.dart';
+import 'package:rainbow/model/my_post_list_model.dart';
 import 'package:rainbow/model/notification_model.dart';
-import 'package:rainbow/model/postLike_model.dart';
-import 'package:rainbow/model/postView_model.dart';
-import 'package:rainbow/model/sharePost_model.dart';
-import 'package:rainbow/model/unLikePost_model.dart';
+import 'package:rainbow/model/post_like_model.dart';
+import 'package:rainbow/model/post_view_model.dart';
+import 'package:rainbow/model/share_post_model.dart';
+import 'package:rainbow/model/unlike_post_model.dart';
 
-import 'package:rainbow/screens/Home/Story/friendStory_api/friendStory_api.dart';
-import 'package:rainbow/screens/Home/addStroy/addStory_screen.dart';
+import 'package:rainbow/screens/Home/Story/friendStory_api/friend_story_api.dart';
+import 'package:rainbow/screens/Home/addStroy/add_story_screen.dart';
 import 'package:rainbow/screens/Home/home_screen.dart';
-import 'package:rainbow/screens/Home/myPost_Api/myPost_api.dart';
+import 'package:rainbow/screens/Home/myPost_Api/my_post_api.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_controller.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_screen.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
@@ -39,15 +39,15 @@ import 'package:rainbow/screens/Home/view_story/widgets/postView_bottomshit.dart
 import 'package:rainbow/screens/Profile/profile_api/profile_api.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
-import 'package:rainbow/screens/Profile/widget/listOfFriendRequest_api/listOfFriendRequest_api.dart';
+import 'package:rainbow/screens/Profile/widget/listOfFriendRequest_api/list_of_friend_request_api.dart';
 import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
-import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/list_of_country_api.dart';
 import 'package:rainbow/screens/notification/api/notification_api.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/screens/notification/notification_screen.dart';
 import 'package:uni_links/uni_links.dart';
 
-import 'advertise_api/advertiseApi.dart';
+import 'advertise_api/advertise_api.dart';
 
 class HomeController extends GetxController {
   RxBool loader = false.obs;
@@ -234,7 +234,7 @@ class HomeController extends GetxController {
     postViewUser = friendPost.postViewUser ?? [];
 
     Get.bottomSheet(
-      PostViewBottomScreen(),
+      const PostViewBottomScreen(),
       isScrollControlled: true,
     ).then((value) {});
   }

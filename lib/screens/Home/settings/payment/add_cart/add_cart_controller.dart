@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
-import 'package:rainbow/screens/Home/settings/payment/add_cart/addCart_api/addCart_api.dart';
+import 'package:rainbow/screens/Home/settings/payment/add_cart/addCart_api/add_cart_api.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 
 import '../../../../../common/popup.dart';

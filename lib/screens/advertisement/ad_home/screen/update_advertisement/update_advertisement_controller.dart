@@ -11,7 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
-import 'package:rainbow/model/listUserTag_model.dart';
+import 'package:rainbow/model/list_user_tag_model.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/myAdvertiser_api/myAdvertiser_api.dart';
@@ -42,6 +42,7 @@ class UpdateAdvertiseController extends GetxController {
   TextEditingController callToActionController = TextEditingController();
   List<String> dropDList = ["Learn More", "Contact Us"];
 
+
   DateTime startTime = DateTime.now();
   DateTime endTime = DateTime.now();
   String flag = AssetRes.flag01;
@@ -56,6 +57,7 @@ class UpdateAdvertiseController extends GetxController {
       TextEditingController(text: "\$200.00");
 
   // File? imagePath;
+  List<String> images = [];
   List<File> imagePath = [];
   RxBool loader = false.obs;
 
@@ -226,7 +228,7 @@ class UpdateAdvertiseController extends GetxController {
     if (tagsController.text.isEmpty) {
       errorToast(Strings.tagsError);
       return false;
-    } else if (imagePath == null) {
+    } else if (imagePath.isEmpty) {
       errorToast(Strings.imageError);
       return false;
     } else if (titleController.text.isEmpty) {

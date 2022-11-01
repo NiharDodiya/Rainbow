@@ -14,10 +14,10 @@ import 'package:rainbow/utils/strings.dart';
 import 'package:readmore/readmore.dart';
 
 class ProfileScreen extends StatelessWidget {
-  int i;
+  final int i;
 
   ProfileScreen({Key? key, required this.i}) : super(key: key);
-  ProfileController controller = Get.put(ProfileController());
+  final ProfileController controller = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,23 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(body: Obx(() {
       return Stack(
         children: [
-          GetBuilder<ProfileController>(
+          (controller.loader.isTrue)
+              ? Container(
+          width: Get.width,
+          padding: const EdgeInsets.only(top: 25),
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                ColorRes.color_50369C,
+                ColorRes.colorD18EEE,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+
+          )
+              :GetBuilder<ProfileController>(
             id: "profile",
             builder: (controller) {
               return Container(
@@ -35,7 +51,7 @@ class ProfileScreen extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [
                       ColorRes.color_50369C,
-                      ColorRes.color_D18EEE,
+                      ColorRes.colorD18EEE,
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -193,13 +209,13 @@ class ProfileScreen extends StatelessWidget {
                     placeholder: ((context, url) => Image.asset(
                           height: 151,
                           width: 151,
-                          AssetRes.portrait_placeholder,
+                          AssetRes.portraitPlaceholder,
                           fit: BoxFit.cover,
                         )),
                     errorWidget: ((context, url, error) => Image.asset(
                           height: 151,
                           width: 151,
-                          AssetRes.portrait_placeholder,
+                          AssetRes.portraitPlaceholder,
                           fit: BoxFit.cover,
                         )),
                   ),
@@ -271,10 +287,10 @@ class ProfileScreen extends StatelessWidget {
                                 color: ColorRes.white.withOpacity(0.70),
                                 fontSize: 18),
                             moreStyle: beVietnamProRegularTextStyle(
-                              color: ColorRes.color_FF6B97,
+                              color: ColorRes.colorFF6B97,
                             ),
                             lessStyle: beVietnamProRegularTextStyle(
-                              color: ColorRes.color_FF6B97,
+                              color: ColorRes.colorFF6B97,
                             ),
                           ),
                         ),
@@ -295,10 +311,10 @@ class ProfileScreen extends StatelessWidget {
                 //       color: ColorRes.white.withOpacity(0.70),fontSize: 18
                 //   ),
                 //   moreStyle: beVietnamProRegularTextStyle(
-                //     color: ColorRes.color_FF6B97,
+                //     color: ColorRes.colorFF6B97,
                 //   ),
                 //   lessStyle: beVietnamProRegularTextStyle(
-                //     color: ColorRes.color_FF6B97,
+                //     color: ColorRes.colorFF6B97,
                 //   ),
                 // ),
               ),

@@ -3,14 +3,14 @@ import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:rainbow/common/popup.dart';
+
 import 'package:rainbow/screens/auth/login/login_api/login_api.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
 import 'package:rainbow/screens/auth/register/register_controller.dart';
 import 'package:rainbow/screens/auth/register/register_screen.dart';
-import 'package:rainbow/screens/dashboard/dashBoard.dart';
+import 'package:rainbow/screens/dashboard/dash_board.dart';
 import 'package:rainbow/screens/idVerification/idverification_screen.dart';
-import 'package:rainbow/screens/selfie_verification/selfieVerification_controller.dart';
+import 'package:rainbow/screens/selfie_verification/selfie_verification_controller.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/screens/auth/verify_phone/verifyPhone_api/VerifyPhone_json.dart';
+import 'package:rainbow/screens/auth/verify_phone/verifyPhone_api/verify_phone_json.dart';
 import 'package:rainbow/screens/auth/verify_phone/verifyPhone_api/verifyphone_api.dart';
 import 'package:rainbow/utils/strings.dart';
 

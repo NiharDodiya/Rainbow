@@ -12,8 +12,8 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/advertisement_controlle.dart';
-import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/AdvertiserVerifyController.dart';
-import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/AdvertiserVerifyOtpScreen.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/advertiser_verify_controller.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/advertiser_verify_otp_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_notification/ad_notification_screen.dart';
@@ -113,7 +113,7 @@ class AdvertisementDashBord extends StatelessWidget {
                                                         .isEmpty
                                                     ? Image.asset(
                                                         AssetRes
-                                                            .portrait_placeholder,
+                                                            .portraitPlaceholder,
                                                         height:
                                                             Get.width * 0.1730,
                                                         width:
@@ -128,11 +128,11 @@ class AdvertisementDashBord extends StatelessWidget {
                                                         placeholder: ((context,
                                                                 url) =>
                                                             Image.asset(AssetRes
-                                                                .portrait_placeholder)),
+                                                                .portraitPlaceholder)),
                                                         errorWidget: ((context,
                                                                 url, error) =>
                                                             Image.asset(AssetRes
-                                                                .portrait_placeholder)),
+                                                                .portraitPlaceholder)),
                                                         fit: BoxFit.cover,
                                                         height:
                                                             Get.width * 0.1730,
@@ -330,7 +330,7 @@ class AdvertisementDashBord extends StatelessWidget {
                                         children: [
                                           Image.asset(
                                             AssetRes.notificationicon,
-                                            color: ColorRes.color_EDB933,
+                                            color: ColorRes.colorEDB933,
                                             width: Get.width * 0.04706,
                                           ),
                                           SizedBox(
@@ -363,7 +363,7 @@ class AdvertisementDashBord extends StatelessWidget {
                                                       .update(["settings"]);
                                                 },
                                                 activeColor:
-                                                    ColorRes.color_CE8CEC,
+                                                    ColorRes.colorCE8CEC,
                                                 trackColor:
                                                     Colors.grey.shade300,
                                               ),
@@ -423,7 +423,7 @@ class AdvertisementDashBord extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [
                       ColorRes.color_50369C,
-                      ColorRes.color_D18EEE,
+                      ColorRes.colorD18EEE,
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,

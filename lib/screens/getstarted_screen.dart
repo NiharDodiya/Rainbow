@@ -161,10 +161,10 @@ class GetStartedScreens extends StatelessWidget {
             width: Get.width * 0.80,
             height: 60,
             decoration: BoxDecoration(
-              color: ColorRes.color_E7D01F,
+              color: ColorRes.colorE7D01F,
               borderRadius: BorderRadius.circular(15),
               gradient: const LinearGradient(
-                colors: [ColorRes.color_FFEC5C, ColorRes.color_DFC60B],
+                colors: [ColorRes.colorFFEC5C, ColorRes.colorDFC60B],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
@@ -276,7 +276,7 @@ class GetStartedScreens extends StatelessWidget {
                     const Divider(
                       thickness: 1,
                       height: 1,
-                      color: ColorRes.color_CACACA,
+                      color: ColorRes.colorCACACA,
                     ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -299,7 +299,7 @@ class GetStartedScreens extends StatelessWidget {
                         Container(
                           height: 30,
                           width: 1,
-                          color: ColorRes.color_CACACA,
+                          color: ColorRes.colorCACACA,
                         ),
                         const Spacer(),
                         Padding(

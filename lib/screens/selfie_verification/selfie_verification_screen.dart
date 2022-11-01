@@ -3,7 +3,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/selfie_verification/selfieVerification_controller.dart';
+import 'package:rainbow/screens/selfie_verification/selfie_verification_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -67,32 +67,32 @@ class SelfieVerificationScreen extends StatelessWidget {
                                   width: 29,
                                   decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: ColorRes.color_B279DB),
+                                      color: ColorRes.colorB279DB),
                                 ),
                                 Container(
                                   height: 5,
                                   width: Get.width * 0.25,
-                                  color: ColorRes.color_B279DB,
+                                  color: ColorRes.colorB279DB,
                                 ),
                                 Container(
                                   height: 29,
                                   width: 29,
                                   decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: ColorRes.color_B279DB,
+                                    color: ColorRes.colorB279DB,
                                   ),
                                 ),
                                 Container(
                                   height: 5,
                                   width: Get.width * 0.25,
-                                  color: ColorRes.color_C4C4C4,
+                                  color: ColorRes.colorC4C4C4,
                                 ),
                                 Container(
                                   height: 29,
                                   width: 29,
                                   decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: ColorRes.color_C4C4C4),
+                                      color: ColorRes.colorC4C4C4),
                                 ),
                               ],
                             ),
@@ -168,12 +168,12 @@ class SelfieVerificationScreen extends StatelessWidget {
                                   width: Get.width * 0.84788,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: ColorRes.color_E7D01F,
+                                    color: ColorRes.colorE7D01F,
                                     borderRadius: BorderRadius.circular(15),
                                     gradient: const LinearGradient(
                                       colors: [
-                                        ColorRes.color_FFEC5C,
-                                        ColorRes.color_DFC60B
+                                        ColorRes.colorFFEC5C,
+                                        ColorRes.colorDFC60B
                                       ],
                                       begin: Alignment.topCenter,
                                       end: Alignment.bottomCenter,
@@ -318,7 +318,7 @@ class RPSCustomPainter extends CustomPainter {
     paint_2_fill.shader = ui.Gradient.linear(
         Offset(size.width * 0.2634122, size.height * 0.8304244),
         Offset(size.width * 0.1523029, size.height * 0.6398285), [
-      const Color(0xff593EA3).withOpacity(1),
+      const Color(0xff593EA3).withOpacity(1), 
       const Color(0xff9566C9).withOpacity(1)
     ], [
       0,

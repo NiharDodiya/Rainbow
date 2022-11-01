@@ -64,7 +64,7 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                                   children: [
                                     DottedBorder(
                                       dashPattern: const [8, 6],
-                                      color: ColorRes.color_B4B4B4,
+                                      color: ColorRes.colorB4B4B4,
                                       borderType: BorderType.RRect,
                                       radius: const Radius.circular(12),
                                       child: ClipRRect(
@@ -99,7 +99,7 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                                       left: Get.width * 0.2,
                                       child: DottedBorder(
                                         dashPattern: const [8, 6],
-                                        color: ColorRes.color_B4B4B4,
+                                        color: ColorRes.colorB4B4B4,
                                         borderType: BorderType.RRect,
                                         radius: const Radius.circular(120),
                                         child: ClipRRect(
@@ -175,7 +175,7 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                               padding: EdgeInsets.only(right: 15),
                               child: Divider(
                                 thickness: 1,
-                                color: ColorRes.color_B4B4B4,
+                                color: ColorRes.colorB4B4B4,
                               ),
                             ),
                             SizedBox(
@@ -393,7 +393,7 @@ class _CompleteYourProfileState extends State<CompleteYourProfile> {
                                 width: Get.width * 0.84,
                                 height: Get.height * 0.073,
                                 decoration: BoxDecoration(
-                                    color: ColorRes.color_E7D01F,
+                                    color: ColorRes.colorE7D01F,
                                     borderRadius: BorderRadius.circular(15)),
                                 child: Center(
                                     child: Text(

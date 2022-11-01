@@ -9,11 +9,11 @@ import 'package:image_picker/image_picker.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
-import 'package:rainbow/model/listUserTag_model.dart';
-import 'package:rainbow/model/postCommentList_model.dart';
-import 'package:rainbow/model/postComment_model.dart';
+import 'package:rainbow/model/list_user_tag_model.dart';
+import 'package:rainbow/model/post_comment_list_model.dart';
+import 'package:rainbow/model/post_comment_model.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
-import 'package:rainbow/screens/Home/myPost_Api/myPost_api.dart';
+import 'package:rainbow/screens/Home/myPost_Api/my_post_api.dart';
 
 class CommentsController extends GetxController {
   RxBool loader = false.obs;
@@ -68,10 +68,8 @@ class CommentsController extends GetxController {
           await ImagePicker().pickImage(source: ImageSource.camera);
       final imageTemp = File(pickedFile!.path);
       imageCamera = imageTemp;
-      if (pickedFile != null) {
-        return pickedFile.path;
-      }
-      update(["commentPost"]);
+      return pickedFile.path;
+
     } catch (e) {
       if (kDebugMode) {
         print(e.toString());
@@ -93,10 +91,8 @@ class CommentsController extends GetxController {
           await ImagePicker().pickImage(source: ImageSource.gallery);
       final imageTemp = File(pickedFile!.path);
       imageCamera = imageTemp;
-      if (pickedFile != null) {
-        return pickedFile.path;
-      }
-      update(["commentPost"]);
+      return pickedFile.path;
+
     } catch (e) {
       if (kDebugMode) {
         print(e.toString());

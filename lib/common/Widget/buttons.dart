@@ -22,10 +22,10 @@ class SubmitButton extends StatelessWidget {
         height: 60,
         width: Get.width * 0.85,
         decoration: BoxDecoration(
-          color: ColorRes.color_E7D01F,
+          color: ColorRes.colorE7D01F,
           borderRadius: BorderRadius.circular(20),
           gradient: LinearGradient(
-            colors: colors ?? [ColorRes.color_FFEC5C, ColorRes.color_DFC60B],
+            colors: colors ?? [ColorRes.colorFFEC5C, ColorRes.colorDFC60B],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),

@@ -3,8 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
-import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
+
 import 'package:rainbow/screens/advertisement/ad_home/screen/renewAdSetupDate/api/renewAd_api.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/renewAdSetupDate/renewSetUp_Screen.dart';
 import 'package:rainbow/utils/asset_res.dart';

@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
-import 'package:rainbow/screens/idVerification/idVerification_api/idVerification_api.dart';
-import 'package:rainbow/screens/idVerification/idVerification_api/idVerification_json.dart';
+import 'package:rainbow/screens/idVerification/idVerification_api/id_verification_api.dart';
+import 'package:rainbow/screens/idVerification/idVerification_api/id_verification_json.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class IdVerificationController extends GetxController {

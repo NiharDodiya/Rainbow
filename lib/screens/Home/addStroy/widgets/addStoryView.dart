@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/Home/addStroy/addStory_controller.dart';
+import 'package:rainbow/screens/Home/addStroy/add_story_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -106,8 +106,8 @@ class AddStoryViewScreen extends StatelessWidget {
                             decoration: BoxDecoration(
                                 gradient: const LinearGradient(
                                   colors: [
-                                    ColorRes.color_FFEC5C,
-                                    ColorRes.color_DFC60B
+                                    ColorRes.colorFFEC5C,
+                                    ColorRes.colorDFC60B
                                   ],
                                   begin: Alignment.topCenter,
                                   end: Alignment.bottomCenter,

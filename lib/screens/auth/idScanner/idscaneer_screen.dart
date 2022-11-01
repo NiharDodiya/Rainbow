@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/auth/idScanner/idScanner_controller.dart';
+import 'package:rainbow/screens/auth/idScanner/id_scanner_controller.dart';
 import 'package:rainbow/screens/idVerification/idverification_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -112,7 +112,7 @@ class IdScannerBackScreen extends StatelessWidget {
                           children: [
                             Container(
                               width: Get.width,
-                              color: ColorRes.color_E2E2E2.withOpacity(0.5),
+                              color: ColorRes.colorE2E2E2.withOpacity(0.5),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -145,7 +145,7 @@ class IdScannerBackScreen extends StatelessWidget {
                                   width: Get.width * 0.224,
                                   decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: ColorRes.color_C4C4C4,
+                                    color: ColorRes.colorC4C4C4,
                                   ),
                                   child: Center(
                                     child: Container(
@@ -153,7 +153,7 @@ class IdScannerBackScreen extends StatelessWidget {
                                       width: Get.width * 0.1467,
                                       decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: ColorRes.color_FBF9F9,
+                                        color: ColorRes.colorFBF9F9,
                                       ),
                                     ),
                                   ),

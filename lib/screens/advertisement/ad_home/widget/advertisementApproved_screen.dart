@@ -19,8 +19,8 @@ class AdvertisementApprovedScreen extends StatelessWidget {
             colors: [
               ColorRes.color_50369C,
               ColorRes.color_50369C,
-              ColorRes.color_D18EEE,
-              ColorRes.color_D18EEE,
+              ColorRes.colorD18EEE,
+              ColorRes.colorD18EEE,
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -78,7 +78,7 @@ class AdvertisementApprovedScreen extends StatelessWidget {
                   Text(
                     Strings.transactionNumber,
                     style: gilroyMediumTextStyle(
-                        color: ColorRes.color_C4C4C4, fontSize: 12),
+                        color: ColorRes.colorC4C4C4, fontSize: 12),
                   ),
                   Text(
                     Strings.transactionHint,
@@ -92,7 +92,7 @@ class AdvertisementApprovedScreen extends StatelessWidget {
                   Text(
                     Strings.service,
                     style: gilroyMediumTextStyle(
-                        color: ColorRes.color_C4C4C4, fontSize: 12),
+                        color: ColorRes.colorC4C4C4, fontSize: 12),
                   ),
                   Text(
                     Strings.postAds,
@@ -114,14 +114,14 @@ class AdvertisementApprovedScreen extends StatelessWidget {
                   colors: [
                     // ColorRes.color_50369C,
                     ColorRes.color_50369C,
-                    ColorRes.color_B57BDD,
+                    ColorRes.colorB57BDD,
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),*/
             boxShadow: [
               BoxShadow(
-                color: ColorRes.color_B57BDD.withOpacity(0.3),
+                color: ColorRes.colorB57BDD.withOpacity(0.3),
                 spreadRadius: 12,
                 blurRadius: 12,
                 offset: const Offset(4, 5),

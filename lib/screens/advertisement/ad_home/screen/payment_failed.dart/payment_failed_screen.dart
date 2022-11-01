@@ -11,7 +11,7 @@ import '../../../ad_dashboard/ad_dashboard.dart';
 
 class PaymentFailedScreen extends StatelessWidget {
   PaymentFailedScreen({Key? key}) : super(key: key);
-  AdHomeController adHomeController = Get.put(AdHomeController());
+  final AdHomeController adHomeController = Get.put(AdHomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +25,8 @@ class PaymentFailedScreen extends StatelessWidget {
               colors: [
                 ColorRes.color_50369C,
                 ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
-                ColorRes.color_D18EEE,
+                ColorRes.colorD18EEE,
+                ColorRes.colorD18EEE,
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -66,9 +66,9 @@ class PaymentFailedScreen extends StatelessWidget {
                   height: 177,
                   width: 177,
                   decoration: BoxDecoration(
-                      color: ColorRes.color_F28D8D,
+                      color: ColorRes.colorF28D8D,
                       border: Border.all(
-                        color: ColorRes.color_FFC9C9,
+                        color: ColorRes.colorFFC9C9,
                         width: 14,
                       ),
                       shape: BoxShape.circle),
@@ -76,7 +76,7 @@ class PaymentFailedScreen extends StatelessWidget {
                     height: 10,
                     width: 10,
                     decoration: const BoxDecoration(
-                      color: ColorRes.color_A52C2C,
+                      color: ColorRes.colorA52C2C,
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
@@ -118,7 +118,7 @@ class PaymentFailedScreen extends StatelessWidget {
                               height: Get.height * 0.007389,
                             ),
                             Text(
-                              "${adHomeController.viewAdvertiserModel.data?.fullName ?? ""}",
+                              adHomeController.viewAdvertiserModel.data?.fullName ?? "",
                               style: poppinsMediumBold(fontSize: 14),
                             ),
                             SizedBox(

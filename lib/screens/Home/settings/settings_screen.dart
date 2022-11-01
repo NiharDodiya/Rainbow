@@ -22,10 +22,10 @@ import 'package:rainbow/utils/strings.dart';
 
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({Key? key}) : super(key: key);
-  SettingsController controller = Get.put(SettingsController());
-  ProfileController profileController = Get.put(ProfileController());
-  HomeController homeController = Get.put(HomeController());
-  MessageController messageController = Get.put(MessageController());
+  final SettingsController controller = Get.put(SettingsController());
+  final ProfileController profileController = Get.put(ProfileController());
+  final HomeController homeController = Get.put(HomeController());
+  final MessageController messageController = Get.put(MessageController());
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class SettingsScreen extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [
                       ColorRes.color_50369C,
-                      ColorRes.color_D18EEE,
+                      ColorRes.colorD18EEE,
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -149,7 +149,7 @@ class SettingsScreen extends StatelessWidget {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                                 image:
-                                    AssetImage(AssetRes.portrait_placeholder))),
+                                    AssetImage(AssetRes.portraitPlaceholder))),
                       )
                     : SizedBox(
                         height: 56,
@@ -162,9 +162,9 @@ class SettingsScreen extends StatelessWidget {
                                 .toString(),
                             fit: BoxFit.cover,
                             errorWidget: ((context, url, error) =>
-                                Image.asset(AssetRes.portrait_placeholder)),
+                                Image.asset(AssetRes.portraitPlaceholder)),
                             placeholder: (context, url) =>
-                                Image.asset(AssetRes.portrait_placeholder),
+                                Image.asset(AssetRes.portraitPlaceholder),
                           ),
                         ),
                       ),
@@ -241,7 +241,7 @@ class SettingsScreen extends StatelessWidget {
 
            await messageController.init();
 
-            homeController.viewProfile.data!.userType == "free"
+            homeController.viewProfile.data?.userType == "free"
                 ? premiumPopUpBox(context: context)
                 : Get.off(() => MessageScreen(
                       backArrow: true,
@@ -284,7 +284,7 @@ class SettingsScreen extends StatelessWidget {
             ConnectionsController connectionController =
                 Get.put(ConnectionsController());
             connectionController.init();
-            homeController.viewProfile.data!.userType == "free"
+            homeController.viewProfile.data?.userType == "free"
                 ? premiumPopUpBox(context: context)
                 : Get.to(() => ConnectionsScreen());
           },
@@ -322,7 +322,7 @@ class SettingsScreen extends StatelessWidget {
         //Support
         InkWell(
           onTap: () {
-            homeController.viewProfile.data!.userType == "free"
+            homeController.viewProfile.data?.userType == "free"
                 ? premiumPopUpBox(context: context)
                 : controller.onTapSupport();
           },
@@ -561,7 +561,7 @@ class SettingsScreen extends StatelessWidget {
             width: Get.width * 0.8,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(13.67),
-                color: ColorRes.color_FFEC5C),
+                color: ColorRes.colorFFEC5C),
             child: Center(
                 child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,

@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/formatters/money_input_formatter.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
-import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
+
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
-import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
+
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_failed.dart/payment_failed_screen.dart';
-import 'package:rainbow/screens/advertisement/ad_home/screen/payment_successful/payment_successful_screen.dart';
+
 import 'package:rainbow/screens/advertisement/ad_home/screen/renewAdSetupDate/renewSetup_controller.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -18,11 +18,11 @@ import '../../../../../utils/asset_res.dart';
 import '../../../../../utils/color_res.dart';
 
 class RenewSetupScreen extends StatelessWidget {
-  int? idAdvertiser;
+  final int? idAdvertiser;
 
   RenewSetupScreen({Key? key, this.idAdvertiser}) : super(key: key);
 
-  RenewAdSetupDateController controller = Get.put(RenewAdSetupDateController());
+  final RenewAdSetupDateController controller = Get.put(RenewAdSetupDateController());
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +36,8 @@ class RenewSetupScreen extends StatelessWidget {
               colors: [
                 ColorRes.color_50369C,
                 ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
-                ColorRes.color_D18EEE,
+                ColorRes.colorD18EEE,
+                ColorRes.colorD18EEE,
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -156,7 +156,7 @@ class RenewSetupScreen extends StatelessWidget {
                     focusedDay: DateTime.now(),
                     calendarStyle: CalendarStyle(
                       isTodayHighlighted: false,
-                      rangeHighlightColor: ColorRes.color_F4F4F4,
+                      rangeHighlightColor: ColorRes.colorF4F4F4,
                       todayTextStyle: gilroyBoldTextStyle(fontSize: 11.43),
                       weekendTextStyle: gilroyMediumTextStyle(
                           fontSize: 11.43, color: ColorRes.color_27354C),
@@ -176,7 +176,7 @@ class RenewSetupScreen extends StatelessWidget {
                       selectedDecoration: BoxDecoration(
                         color: ColorRes.black,
                         border: Border.all(
-                            color: ColorRes.color_FCE307, width: 1.46),
+                            color: ColorRes.colorFCE307, width: 1.46),
                       ),
                       // selectedTextStyle:
                       //     TextStyle(fontSize: 15, color: Colors.purple),
@@ -185,13 +185,13 @@ class RenewSetupScreen extends StatelessWidget {
                         color: ColorRes.color_50369C,
                         shape: BoxShape.circle,
                         border: Border.all(
-                            color: ColorRes.color_FCE307, width: 1.5),
+                            color: ColorRes.colorFCE307, width: 1.5),
                       ),
                       rangeStartDecoration: BoxDecoration(
                         color: ColorRes.color_50369C,
                         shape: BoxShape.circle,
                         border: Border.all(
-                            color: ColorRes.color_FCE307, width: 1.5),
+                            color: ColorRes.colorFCE307, width: 1.5),
                       ),
                       withinRangeTextStyle: gilroyMediumTextStyle(
                           fontSize: 11.43, color: ColorRes.color_27354C),
@@ -253,7 +253,7 @@ class RenewSetupScreen extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [
                       ColorRes.color_50369C.withOpacity(0.5),
-                      ColorRes.color_D18EEE.withOpacity(0.8),
+                      ColorRes.colorD18EEE.withOpacity(0.8),
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -458,10 +458,10 @@ class RenewSetupScreen extends StatelessWidget {
 }
 
 class ShowBottomNext extends StatelessWidget {
-  String? amount;
-  int? id;
+  final String? amount;
+  final int? id;
 
-  ShowBottomNext({Key? key, this.amount, this.id}) : super(key: key);
+  const ShowBottomNext({Key? key, this.amount, this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -503,8 +503,8 @@ class ShowBottomNext extends StatelessWidget {
                             colors: [
                               ColorRes.color_50369C,
                               ColorRes.color_50369C,
-                              ColorRes.color_D18EEE,
-                              ColorRes.color_D18EEE,
+                              ColorRes.colorD18EEE,
+                              ColorRes.colorD18EEE,
                             ],
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
@@ -561,7 +561,7 @@ class ShowBottomNext extends StatelessWidget {
                                 height: Get.height * 0.007389,
                               ),
                               Text(
-                                "${adHomeController.viewAdvertiserModel.data?.fullName ?? ""}",
+                                adHomeController.viewAdvertiserModel.data?.fullName ?? "",
                                 style: poppinsMediumBold(fontSize: 14),
                               ),
                               SizedBox(
@@ -632,8 +632,8 @@ class ShowBottomNext extends StatelessWidget {
                           style: gilroySemiBoldTextStyle(fontSize: 16),
                         ),
                         colors: const [
-                          ColorRes.color_F86666,
-                          ColorRes.color_F82222,
+                          ColorRes.colorF86666,
+                          ColorRes.colorF82222,
                         ],
                       ),
                       SizedBox(

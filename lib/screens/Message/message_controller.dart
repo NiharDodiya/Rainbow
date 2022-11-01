@@ -16,7 +16,7 @@ import 'package:rainbow/model/user_model.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Message/api/message_api.dart';
 import 'package:rainbow/screens/Message/chat_screen.dart';
-import 'package:rainbow/service/Users_services.dart';
+import 'package:rainbow/service/users_services.dart';
 
 import 'package:rainbow/service/notification_service.dart';
 import 'package:rainbow/service/pref_services.dart';
@@ -145,9 +145,9 @@ class MessageController extends GetxController {
 
   String getChatId(String uid1, String uid2) {
     if (uid1.hashCode > uid2.hashCode) {
-      return uid1 + '_' + uid2;
+      return '${uid1}_$uid2';
     } else {
-      return uid2 + '_' + uid1;
+      return '${uid2}_$uid1';
     }
   }
 
@@ -211,7 +211,7 @@ class MessageController extends GetxController {
     await getRoomId(otherUid);
     loader.value = false;
     // if user have not subcription show pop up
-    homeController.viewProfile.data!.userType == "free"
+    homeController.viewProfile.data?.userType == "free"
         ? premiumPopUpBox(context: context)
         : Get.to(() => ChatScreen(
               roomId: roomId,

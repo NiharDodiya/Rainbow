@@ -20,7 +20,7 @@ import '../../../../../utils/color_res.dart';
 
 class SetupDateScreen extends StatelessWidget {
   SetupDateScreen({Key? key}) : super(key: key);
-  CreateAdvertisementController createAdvertisementController =
+  final CreateAdvertisementController createAdvertisementController =
       Get.put(CreateAdvertisementController());
   SetupDateController setupDateController = Get.put(SetupDateController());
 
@@ -587,7 +587,7 @@ class ShowBottomNext extends StatelessWidget {
                                 height: Get.height * 0.007389,
                               ),
                               Text(
-                                "${adHomeController.viewAdvertiserModel.data?.fullName ?? ""}",
+                                adHomeController.viewAdvertiserModel.data?.fullName ?? "",
                                 style: poppinsMediumBold(fontSize: 14),
                               ),
                               SizedBox(

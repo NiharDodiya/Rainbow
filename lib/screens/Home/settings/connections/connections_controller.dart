@@ -5,10 +5,10 @@ import 'package:rainbow/model/suggestion_model.dart';
 import 'package:rainbow/screens/Home/settings/connections/api/connections_api.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_screen.dart';
-import 'package:rainbow/screens/Profile/acceptFriendRequest_api/accaeptFriedRequest_api.dart';
-import 'package:rainbow/screens/Profile/sendFriendRequest_api/sendFriendRequest_api.dart';
+import 'package:rainbow/screens/Profile/acceptFriendRequest_api/accaept_fried_request_api.dart';
+import 'package:rainbow/screens/Profile/sendFriendRequest_api/send_friend_request_api.dart';
 
-import '../../../Profile/cancleFriendRequest_api/cancelFriendRequest_api.dart';
+import '../../../Profile/cancleFriendRequest_api/cancel_friend_request_api.dart';
 
 class ConnectionsController extends GetxController {
   List<SuggestionUser> suggestionConnection = [];

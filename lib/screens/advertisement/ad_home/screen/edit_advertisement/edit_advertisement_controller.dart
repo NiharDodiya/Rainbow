@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:rainbow/model/edit_advertise_model.dart';
@@ -63,6 +65,7 @@ class EditAdvertiesementController extends GetxController {
           editAdvertisementModel.data!.callAction.toString();
       updateAdvertiseController.urlLinkController.text =
           editAdvertisementModel.data!.urlLink.toString();
+      updateAdvertiseController.images = editAdvertisementModel.data!.itemsList!;
       /*   updateAdvertiseController.countryController.text =
           editAdvertisementModel.data!.userDetail!.idCountry.toString();
       updateAdvertiseController.selectedCity =

@@ -10,8 +10,8 @@ import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/Profile/widget/about_me.dart';
 import 'package:rainbow/screens/Profile/widget/connect_block.dart';
 import 'package:rainbow/screens/Profile/widget/other_visitors_viewed.dart';
-import 'package:rainbow/screens/Profile/widget/postTestimonial_screen/postTestimonial_screen.dart';
-import 'package:rainbow/screens/Profile/widget/profileImage.dart';
+import 'package:rainbow/screens/Profile/widget/postTestimonial_screen/post_testimonial_screen.dart';
+import 'package:rainbow/screens/Profile/widget/profile_image.dart';
 import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -19,9 +19,9 @@ import 'package:rainbow/utils/strings.dart';
 class ConnectionsProfileScreen extends StatelessWidget {
   ConnectionsProfileScreen({Key? key}) : super(key: key);
 
-  ConnectionsProfileController controller =
+  final ConnectionsProfileController controller =
       Get.put(ConnectionsProfileController());
-  ProfileController profileController = Get.put(ProfileController());
+  final ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
                     gradient: LinearGradient(
                       colors: [
                         ColorRes.color_50369C,
-                        ColorRes.color_D18EEE,
+                        ColorRes.colorD18EEE,
                       ],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
@@ -58,7 +58,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
                                 gradient: LinearGradient(
                                   colors: [
                                     ColorRes.color_50369C,
-                                    ColorRes.color_D18EEE,
+                                    ColorRes.colorD18EEE,
                                   ],
                                   begin: Alignment.topCenter,
                                   end: Alignment.bottomCenter,

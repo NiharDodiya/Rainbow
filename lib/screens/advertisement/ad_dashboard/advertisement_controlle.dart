@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rainbow/common/Widget/log_out_pop_up.dart';
+
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/screens/Home/settings/notificationOnOff_api/notificationOnOff_api.dart';
+import 'package:rainbow/screens/Home/settings/notificationOnOff_api/notification_on_off_api.dart';
 import 'package:rainbow/screens/account_Information/account_Information_screen.dart';
 import 'package:rainbow/screens/account_Information/account_information_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
@@ -11,7 +11,7 @@ import 'package:rainbow/screens/advertisement/ad_notification/ad_notification_co
 import 'package:rainbow/screens/advertisement/ad_payment/ad_payment_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_support/ad_support_controller.dart';
 
-import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/listOfCountryApi.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/list_of_country_api.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 

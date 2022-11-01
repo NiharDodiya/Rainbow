@@ -4,8 +4,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:rainbow/model/message_model.dart';
 import 'package:rainbow/model/user_model.dart';
 import 'package:rainbow/utils/app_state.dart';
-import 'package:rainbow/utils/fireStore_collections.dart';
-import 'package:rainbow/utils/firebaseKey.dart';
+import 'package:rainbow/utils/fire_store_collections.dart';
+import 'package:rainbow/utils/firebase_key.dart';
 import 'package:rainbow/utils/gloabal_data.dart';
 
 String userUid = "";
@@ -38,16 +38,17 @@ class ChatServices {
   static Future<void> setChatRoomValue(
       String chatId, String uid1, String uid2) async {
     await fireStore.collection(FirebaseKeys.chatRoom).doc(chatId).set({
-      uid1 + '_typing': false,
-      uid2 + '_typing': false,
-      uid1 + '_newMsg': 0,
-      uid2 + '_newMsg': 0,
+      '${uid1}_typing': false,
+
+      '${uid2}_typing': false,
+      '${uid1}_newMsg': 0,
+      '${uid2}_newMsg': 0,
       'lastMessageTime': DateTime(2000, 1, 1),
       "uidList": [uid1, uid2],
       "lastMessage": '',
       "lastMessageSender": '',
-      uid2 + '_readMsg': false,
-      uid1 + '_readMsg': false,
+      '${uid2}_readMsg': false,
+      '${uid1}_readMsg': false,
     });
   }
 

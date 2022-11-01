@@ -12,7 +12,7 @@ import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
 class MessageScreen extends StatelessWidget {
-  bool? backArrow;
+  final bool? backArrow;
 
   MessageScreen({this.backArrow, Key? key}) : super(key: key);
   final MessageController messageController = Get.put(MessageController());
@@ -30,8 +30,8 @@ class MessageScreen extends StatelessWidget {
             colors: [
               ColorRes.color_50369C,
               ColorRes.color_50369C,
-              ColorRes.color_D18EEE,
-              ColorRes.color_D18EEE,
+              ColorRes.colorD18EEE,
+              ColorRes.colorD18EEE,
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -211,7 +211,7 @@ class MessageScreen extends StatelessWidget {
                                                                 .circle,
                                                             image: DecorationImage(
                                                                 image:
-                                                                AssetImage(AssetRes.portrait_placeholder))),
+                                                                AssetImage(AssetRes.portraitPlaceholder))),
                                                       )
                                                           : Container(
                                                         margin: const EdgeInsets
@@ -242,13 +242,13 @@ class MessageScreen extends StatelessWidget {
                                                             imageUrl: data['image']
                                                                 .toString(),
                                                             errorWidget: ((context, url, error) => Image.asset(
-                                                              AssetRes.portrait_placeholder,
+                                                              AssetRes.portraitPlaceholder,
                                                               height: 50,
                                                               width: 50,
                                                               fit: BoxFit.cover,
                                                             )),
                                                             placeholder: ((context, url) => Image.asset(
-                                                                AssetRes.portrait_placeholder,
+                                                                AssetRes.portraitPlaceholder,
                                                               height: 50,
                                                               width: 50,
                                                               fit: BoxFit.cover,
@@ -392,7 +392,7 @@ class MessageScreen extends StatelessWidget {
                                                                           shape: BoxShape
                                                                               .circle,
                                                                           image:
-                                                                              DecorationImage(image: AssetImage(AssetRes.portrait_placeholder))),
+                                                                              DecorationImage(image: AssetImage(AssetRes.portraitPlaceholder))),
                                                                     )
                                                                   : Container(
                                                                       margin: const EdgeInsets
@@ -421,14 +421,14 @@ class MessageScreen extends StatelessWidget {
                                                                               data['image'].toString(),
                                                                           errorWidget: ((context, url, error) =>
                                                                               Image.asset(
-                                                                                AssetRes.portrait_placeholder,
+                                                                                AssetRes.portraitPlaceholder,
                                                                                 height: 50,
                                                                                 width: 50,
                                                                                 fit: BoxFit.cover,
                                                                               )),
                                                                           placeholder: ((context, url) =>
                                                                               Image.asset(
-                                                                                AssetRes.portrait_placeholder,
+                                                                                AssetRes.portraitPlaceholder,
                                                                                 height: 50,
                                                                                 width: 50,
                                                                                 fit: BoxFit.cover,
@@ -468,7 +468,7 @@ class MessageScreen extends StatelessWidget {
                                                                           fontSize:
                                                                               14,
                                                                           color:
-                                                                              ColorRes.color_F0F0F0,
+                                                                              ColorRes.colorF0F0F0,
                                                                         ),
                                                                       ),
                                                                       Text(
@@ -481,7 +481,7 @@ class MessageScreen extends StatelessWidget {
                                                                           fontSize:
                                                                               14,
                                                                           color:
-                                                                              ColorRes.color_F0F0F0,
+                                                                              ColorRes.colorF0F0F0,
                                                                         ),
                                                                       ),
                                                                     ],
@@ -650,7 +650,7 @@ class MessageScreen extends StatelessWidget {
                                                                             borderRadius:
                                                                                 BorderRadius.circular(50),
                                                                             child:
-                                                                                Image.asset(AssetRes.portrait_placeholder),
+                                                                                Image.asset(AssetRes.portraitPlaceholder),
                                                                           )
                                                                         : ClipRRect(
                                                                             borderRadius:
@@ -662,7 +662,7 @@ class MessageScreen extends StatelessWidget {
                                                                             child:
                                                                                 FadeInImage(
                                                                               placeholder: const AssetImage(
-                                                                                AssetRes.portrait_placeholder,
+                                                                                AssetRes.portraitPlaceholder,
                                                                               ),
                                                                               image: NetworkImage(
                                                                                 snapshot.data!.docs[index].data()['image'].toString(),
@@ -698,7 +698,7 @@ class MessageScreen extends StatelessWidget {
                                                           style: sfProTextReguler(
                                                               fontSize: 14,
                                                               color: ColorRes
-                                                                  .color_F0F0F0),
+                                                                  .colorF0F0F0),
                                                         )*/
                                                                     ],
                                                                   ),

@@ -130,7 +130,7 @@ class AccountInformationScreen extends StatelessWidget {
                               shape: BoxShape.circle,
                               color: ColorRes.white,
                               border: Border.all(
-                                  color: ColorRes.color_CE8CEC, width: 4),
+                                  color: ColorRes.colorCE8CEC, width: 4),
                             ),
                             child: Center(
                               child: InkWell(
@@ -233,14 +233,14 @@ class AccountInformationScreen extends StatelessWidget {
                                   width: Get.width * .5,
                                   height: !controller.companySelected ? 3 : 1,
                                   color: !controller.companySelected
-                                      ? ColorRes.color_FFED62
+                                      ? ColorRes.colorFFED62
                                       : ColorRes.white,
                                 ),
                                 Container(
                                   width: Get.width * .5,
                                   height: controller.companySelected ? 3 : 1,
                                   color: controller.companySelected
-                                      ? ColorRes.color_FFED62
+                                      ? ColorRes.colorFFED62
                                       : ColorRes.white,
                                 )
                               ],
@@ -280,8 +280,9 @@ class AccountInformationScreen extends StatelessWidget {
           Text(controller.countryModel.flagEmoji),
           const SizedBox(width: 9),
           Text(
-            "+${controller.countryModel.phoneCode}",
+            controller.idCon,
             style: textStyleFont14Alert,
+
           ),
           SizedBox(width: Get.width * 0.04533),
           Image.asset(AssetRes.dropdown, height: 6),

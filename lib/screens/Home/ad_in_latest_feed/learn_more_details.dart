@@ -72,7 +72,7 @@ class LearnMoreDetails extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 image: DecorationImage(
                                     image: AssetImage(
-                                        AssetRes.portrait_placeholder))),
+                                        AssetRes.portraitPlaceholder))),
                           )
                         : ClipRRect(
                             borderRadius: BorderRadius.circular(20),
@@ -87,10 +87,10 @@ class LearnMoreDetails extends StatelessWidget {
                                           ?.profileImage ??
                                       "",
                                   placeholder: ((context, url) => Image.asset(
-                                      AssetRes.portrait_placeholder)),
+                                      AssetRes.portraitPlaceholder)),
                                   errorWidget: ((context, url, error) =>
                                       Image.asset(
-                                          AssetRes.portrait_placeholder)),
+                                          AssetRes.portraitPlaceholder)),
                                   fit: BoxFit.cover),
                             ),
                           ),

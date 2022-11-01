@@ -400,8 +400,8 @@ class Strings {
 
   ///_____________________________________Delet Approve_______________________________
 
-  static const deleteApprove = "Delete Advertisement";
-  static const deleteApproveDes =
+  static const DeleteApprove = "Delete Advertisement";
+  static const DeleteApproveDes =
       "Are you sure you want to delete this advertisement?";
 
   ///____________________________________Support_______________________________________

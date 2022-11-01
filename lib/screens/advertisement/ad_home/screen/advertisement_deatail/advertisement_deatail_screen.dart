@@ -32,8 +32,8 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                     colors: [
                       ColorRes.color_50369C,
                       ColorRes.color_50369C,
-                      ColorRes.color_D18EEE,
-                      ColorRes.color_D18EEE,
+                      ColorRes.colorD18EEE,
+                      ColorRes.colorD18EEE,
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -78,7 +78,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
               Text(
                 Strings.summary,
                 style: gilroySemiBoldTextStyle(
-                    fontSize: 18, color: ColorRes.color_EED82F),
+                    fontSize: 18, color: ColorRes.colorEED82F),
               ),
             ],
           ),
@@ -122,7 +122,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                       height: 25,
                       width: 80,
                       decoration: const BoxDecoration(
-                        color: ColorRes.color_ECEFF0,
+                        color: ColorRes.colorECEFF0,
                         borderRadius: BorderRadius.all(
                           Radius.circular(4),
                         ),

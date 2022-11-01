@@ -131,10 +131,11 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
 
     if (widget.hasClearButton) {
       _fn.addListener(() async {
-        if (_fn.hasFocus)
+        if (_fn.hasFocus) {
           setState(() => _crossFadeState = CrossFadeState.showSecond);
-        else
+        } else {
           setState(() => _crossFadeState = CrossFadeState.showFirst);
+        }
       });
       _crossFadeState = CrossFadeState.showFirst;
     }
@@ -206,8 +207,9 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
           if (widget.hasClearButton)
             GestureDetector(
               onTap: () {
-                if (_crossFadeState == CrossFadeState.showSecond)
+                if (_crossFadeState == CrossFadeState.showSecond) {
                   _textEditingController.clear();
+                }
               },
               // child: Icon(_inputIcon, color: this.widget.iconColor),
               child: AnimatedCrossFade(
@@ -232,7 +234,7 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
       child: ListTile(
         title: Text(
           place.length < 45
-              ? "$place"
+              ? place
               : "${place.replaceRange(45, place.length, "")} ...",
           style: TextStyle(
             fontSize: MediaQuery.of(context).size.width * 0.04,
@@ -253,7 +255,7 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
   */
   InputDecoration _inputStyle() {
     return InputDecoration(
-      hintText: this.widget.placeholder,
+      hintText: widget.placeholder,
       border: InputBorder.none,
       contentPadding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
       hintStyle: textStyleFont16Grey,
@@ -328,9 +330,10 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
 
     if (json["error_message"] != null) {
       var error = json["error_message"];
-      if (error == "This API project is not authorized to use this API.")
+      if (error == "This API project is not authorized to use this API.") {
         error +=
             " Make sure the Places API is activated on your Google Cloud Platform";
+      }
       throw Exception(error);
     } else {
       final predictions = json["predictions"];
@@ -360,8 +363,9 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
 
   /// Closes the expanded search box with predictions
   void _closeSearch() async {
-    if (!_animationController.isDismissed)
+    if (!_animationController.isDismissed) {
       await _animationController.animateTo(0.5);
+    }
     _fn.unfocus();
     setState(() {
       _placePredictions = [];

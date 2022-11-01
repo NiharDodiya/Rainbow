@@ -24,6 +24,7 @@ class PrivacyController extends GetxController {
   void onInit() {
     isChecked = List.filled(privacyList.length, false);
     update(["check"]);
+    super.onInit();
   }
 
   void init() {
