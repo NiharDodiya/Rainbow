@@ -208,9 +208,7 @@ Widget advertisementList() {
                                     ),
                                     const Spacer(),
                                     Text(
-                                      controller.myAdvertiserModel.data?[index]
-                                          .amount ??
-                                          "\$",
+                                      "\$200",
                                       style: gilroySemiBoldTextStyle(
                                           fontSize: 14, color: ColorRes.black),
                                     ),

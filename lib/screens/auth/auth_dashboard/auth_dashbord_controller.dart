@@ -219,6 +219,7 @@ String? token;
       } catch (e) {
         errorToast(e.toString());
         debugPrint(e.toString());
+        loading.value = false;
       }
       loading.value = false;
       flutterToast(Strings.faceBookSignInSuccess);

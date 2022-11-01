@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
-
+import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/edit_advertisement/edit_advertisement_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/update_advertisement/update_advertisement_screen.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -30,6 +30,9 @@ class EditAdvertisementscreen extends StatelessWidget {
                 ColorRes.color_50369C,
                 ColorRes.colorD18EEE,
                 ColorRes.colorD18EEE,
+                ColorRes.color_50369C,
+                ColorRes.color_D18EEE,
+                ColorRes.color_D18EEE,
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -143,7 +146,10 @@ class EditAdvertisementscreen extends StatelessWidget {
                           itemBuilder: (context, index) => Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Container(
+                            child: editAdvertiesementController
+                                .editAdvertisementModel
+                                .data
+                                ?.tagsList![index]==" "?const SizedBox():Container(
                               height: 25,
                               width: 80,
                               decoration: const BoxDecoration(

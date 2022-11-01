@@ -62,11 +62,11 @@ class AddCartApi {
 
           flutterToast(jsonDecode(response.body)["message"]);
 
-          Navigator.of(context).pop();
-          await UserSubscriptionAddApi.userSubscriptionAddApi();
 
-          final PaymentController controller = Get.find();
-          await controller.transactionApi();
+          await UserSubscriptionAddApi.userSubscriptionAddApi();
+          Navigator.of(context).pop();
+       /*   final PaymentController controller = Get.find();
+          await controller.transactionApi();*/
 
           /* Get.offAll(AdvertisementDashBord());
           advertisementController.currentTab = 1;*/

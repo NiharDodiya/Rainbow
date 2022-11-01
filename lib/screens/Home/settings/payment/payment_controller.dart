@@ -41,15 +41,16 @@ class PaymentController extends GetxController {
   RemoveCardModel removeCardModel = RemoveCardModel();
   TransactionModel transactionModel = TransactionModel();
 
-  navigateToRemove(BuildContext context) async {
-    await showDialog(context: context, builder: (context) => RemoveDialog());
+  navigateToRemove(
+      {required BuildContext context, String? expiryDate, String? expiryYear}) async {
+    await showDialog(context: context, builder: (context) => RemoveDialog(expiryDate: expiryDate,expiryYear: expiryYear,));
   }
 
   listCardApi({required bool showToast}) async {
     try {
       loader.value = true;
       listCardModel = await ListCartApi.listCardsApi(showToast: showToast);
-      viewCardApi();
+       viewCardApi();
       loader.value = false;
       update(['more']);
       HomeController homeController = Get.put(HomeController());

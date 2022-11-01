@@ -146,7 +146,7 @@ class PaymentScreen extends StatelessWidget {
                                                     ),
                                                     const SizedBox(width: 15),
                                                     Text(
-                                                        "${controller.viewCardModel?.data?.cardAddress?[0].createdAt?.month.toString() ?? ""}/${controller.viewCardModel?.data?.cardAddress?[0].createdAt?.day.toString() ?? ""}",
+                                                        "${controller.viewCardModel?.data?.expMonth??""}/${controller.viewCardModel?.data?.expYear.toString().substring(2,4).toString()??""}",
                                                         style:
                                                             textStyleFont14White),
                                                   ],
@@ -227,7 +227,9 @@ class PaymentScreen extends StatelessWidget {
                                           null) {
                                         errorToast("Card not available");
                                       } else {
-                                        controller.navigateToRemove(context);
+                                        controller.navigateToRemove(context: context,
+                                         expiryDate:    "${controller.viewCardModel?.data?.expMonth}/${controller.viewCardModel?.data?.expYear.toString().substring(2,4).toString()}",
+                                        expiryYear:controller.viewCardModel?.data?.expYear.toString()??"" );
                                       }
                                     },
                                     child: Container(
@@ -726,7 +728,7 @@ Widget appBar({required final bool showBack}) {
                 addCartController.nameOnCardController.clear();
                 addCartController.cardNmberController.clear();
                 addCartController.expiryYearController.clear();
-                addCartController.expiryMonthController.clear();
+               /* addCartController.expiryMonthController.clear();*/
                 addCartController.cvvController.clear();
                 addCartController.selectCountry = null;
 

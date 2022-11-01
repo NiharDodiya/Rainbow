@@ -14,7 +14,7 @@ class AdvertiserChangePasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    ChangeAdvertiserController controller = Get.put(ChangeAdvertiserController());
     return GetBuilder<ChangeAdvertiserController>(
       builder: (controller) {
         return Scaffold(

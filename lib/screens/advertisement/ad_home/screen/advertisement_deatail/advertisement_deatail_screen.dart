@@ -118,7 +118,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                   itemCount: createAdvertisementController.tags.length,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Container(
+                    child:  createAdvertisementController.tags[index]== " "?const SizedBox():Container(
                       height: 25,
                       width: 80,
                       decoration: const BoxDecoration(

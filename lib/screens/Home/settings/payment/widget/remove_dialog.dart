@@ -9,7 +9,9 @@ import 'package:rainbow/utils/strings.dart';
 import '../../../../../utils/color_res.dart';
 
 class RemoveDialog extends StatelessWidget {
-  RemoveDialog({Key? key}) : super(key: key);
+  String? expiryDate;
+  String? expiryYear;
+  RemoveDialog( {Key? key,this.expiryDate,this.expiryYear}) : super(key: key);
 
   final PaymentController paymentController = Get.put(PaymentController());
 
@@ -72,14 +74,14 @@ class RemoveDialog extends StatelessWidget {
                     //   width: Get.width * 0.0571733,
                     // ),
                     Text(
-                      Strings.endingIn0212,
+                     "Ending in ${expiryYear.toString()}",
                       style: montserratRegularTextStyle(
                         color: ColorRes.color_303030,
                         fontSize: 14,
                       ),
                     ),
                     Text(
-                      Strings.date,
+                      expiryDate.toString(),
                       style: montserratRegularTextStyle(
                         color: ColorRes.color_303030,
                         fontSize: 14,

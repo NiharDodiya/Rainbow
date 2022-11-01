@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print, sort_child_properties_last
 
+import 'package:currency_picker/currency_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/formatters/money_input_formatter.dart';
 import 'package:get/get.dart';
@@ -8,7 +9,8 @@ import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_failed.dart/payment_failed_screen.dart';
-
+import 'package:rainbow/screens/advertisement/ad_home/screen/payment_successful/payment_successful_screen.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_controller.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../../common/Widget/loaders.dart';
@@ -20,6 +22,7 @@ class SetupDateScreen extends StatelessWidget {
   SetupDateScreen({Key? key}) : super(key: key);
   final CreateAdvertisementController createAdvertisementController =
       Get.put(CreateAdvertisementController());
+  SetupDateController setupDateController = Get.put(SetupDateController());
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,6 @@ class SetupDateScreen extends StatelessWidget {
               colors: [
                 ColorRes.color_50369C,
                 ColorRes.color_50369C,
-                ColorRes.colorD18EEE,
                 ColorRes.colorD18EEE,
               ],
               begin: Alignment.topCenter,
@@ -298,8 +300,8 @@ class SetupDateScreen extends StatelessWidget {
                               "Amount",
                               style: gilroyMediumTextStyle(fontSize: 18),
                             ),
-                            const Spacer(),
-                            /* GetBuilder<SetupDateController>(
+                         /*   const Spacer(),
+                             GetBuilder<SetupDateController>(
                               id: 'selectC',
                               builder: (controller) => Column(
                                 children: [
@@ -315,14 +317,27 @@ class SetupDateScreen extends StatelessWidget {
                                     child: GestureDetector(
                                       onTap: () {
                                         controller.showDrop();
+                                        showCurrencyPicker(
+                                          context: context,
+                                          showFlag: true,
+                                          showSearchField: true,
+                                          showCurrencyName: true,
+                                          showCurrencyCode: true,
+                                          onSelect: (Currency currency) {
+                                            controller.countryName = currency.code;
+                                            controller.countryFlag = currency.flag.toString();
+                                            print('Select currency: ${currency.name}');
+                                          },
+                                          favorite: ['SEK'],
+                                        );
                                       },
                                       child: Row(
                                         children: [
                                           const SizedBox(
                                             width: 5,
                                           ),
-                                          Image.asset(
-                                            controller.flag,
+                                          Image.network(
+                                            controller.countryFlag.toString(),
                                             height: 20,
                                             width: 15,
                                           ),
@@ -330,7 +345,7 @@ class SetupDateScreen extends StatelessWidget {
                                             width: 5,
                                           ),
                                           Text(
-                                            controller.select,
+                                            controller.countryName.toString()??"",
                                             style: gilroyMediumTextStyle(
                                                 fontSize: 12,
                                                 color: ColorRes.black),
@@ -362,11 +377,12 @@ class SetupDateScreen extends StatelessWidget {
                                           ),
                                           child: ListView.builder(
                                             itemCount:
-                                                setupDateController.list.length,
+                                                controller.list.length,
                                             itemBuilder: (context, index) =>
                                                 GestureDetector(
                                               onTap: () {
                                                 controller.selectContry(index);
+
                                               },
                                               child: Container(
                                                 height: 20,
@@ -398,10 +414,10 @@ class SetupDateScreen extends StatelessWidget {
                                       : const SizedBox(),
                                 ],
                               ),
-                            ),*/
+                            ),
                             SizedBox(
                               width: Get.width * 0.0293,
-                            )
+                            )*/
                           ],
                         )
                       ],
@@ -501,7 +517,6 @@ class ShowBottomNext extends StatelessWidget {
                               ColorRes.color_50369C,
                               ColorRes.color_50369C,
                               ColorRes.colorD18EEE,
-                              ColorRes.colorD18EEE,
                             ],
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
@@ -523,13 +538,21 @@ class ShowBottomNext extends StatelessWidget {
                                 "You have to pay",
                                 style: gilroySemiBoldTextStyle(fontSize: 12),
                               ),
-                              // SizedBox(
-                              //   height: Get.height * 0.0320,
-                              // ),
-                              Text(
-                                createAdvertisementController
-                                    .amountController.text,
-                                style: poppinsSemiBold(fontSize: 24),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "200.",
+                                    style: poppinsSemiBold(fontSize: 24),
+                                  ),Padding(padding: EdgeInsets.only(top: 6),
+                                    child: Text(
+                                      "00USD",
+                                      style: poppinsSemiBold(fontSize: 12 ),
+                                    ),
+                                  ),
+                                ],
                               ),
                               // RichText(
                               //   text: TextSpan(children: [
