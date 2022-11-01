@@ -301,7 +301,7 @@ class SetupDateScreen extends StatelessWidget {
                               "Amount",
                               style: gilroyMediumTextStyle(fontSize: 18),
                             ),
-                            const Spacer(),
+                         /*   const Spacer(),
                              GetBuilder<SetupDateController>(
                               id: 'selectC',
                               builder: (controller) => Column(
@@ -317,7 +317,7 @@ class SetupDateScreen extends StatelessWidget {
                                     width: 90,
                                     child: GestureDetector(
                                       onTap: () {
-                                 /*       controller.showDrop();*/
+                                        controller.showDrop();
                                         showCurrencyPicker(
                                           context: context,
                                           showFlag: true,
@@ -337,7 +337,7 @@ class SetupDateScreen extends StatelessWidget {
                                           const SizedBox(
                                             width: 5,
                                           ),
-                                          Image.asset(
+                                          Image.network(
                                             controller.countryFlag.toString(),
                                             height: 20,
                                             width: 15,
@@ -367,7 +367,7 @@ class SetupDateScreen extends StatelessWidget {
                                   const SizedBox(
                                     height: 1,
                                   ),
-                               /*   controller.showDropDown
+                                  controller.showDropDown
                                       ? Container(
                                           height: 50,
                                           width: 80,
@@ -412,13 +412,13 @@ class SetupDateScreen extends StatelessWidget {
                                             ),
                                           ),
                                         )
-                                      : const SizedBox(),*/
+                                      : const SizedBox(),
                                 ],
                               ),
                             ),
                             SizedBox(
                               width: Get.width * 0.0293,
-                            )
+                            )*/
                           ],
                         )
                       ],
