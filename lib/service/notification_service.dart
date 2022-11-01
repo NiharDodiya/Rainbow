@@ -9,6 +9,7 @@ import 'package:rainbow/screens/Home/settings/connections/connections_controller
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:http/http.dart' as http;
+import 'package:rainbow/screens/notification/notification_screen.dart';
 
 class NotificationService {
   static final NotificationsController _notyController =
@@ -69,7 +70,7 @@ class NotificationService {
           ConnectionsController connectionController =
               Get.put(ConnectionsController());
           connectionController.init();
-          Get.to(() => ConnectionsScreen());
+          Get.to(() => NotificationScreen());
         });
       }
     });
@@ -82,7 +83,7 @@ class NotificationService {
           ConnectionsController connectionController =
               Get.put(ConnectionsController());
           connectionController.init();
-          Get.to(() => ConnectionsScreen());
+          Get.to(() => NotificationScreen());
         });
       }
     });
@@ -106,7 +107,7 @@ class NotificationService {
           ConnectionsController connectionController =
               Get.put(ConnectionsController());
           connectionController.init();
-          Get.to(() => ConnectionsScreen());
+          Get.to(() => NotificationScreen());
         }
       }
     });
