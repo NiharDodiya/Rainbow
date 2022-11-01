@@ -13,11 +13,13 @@ List<String> countryNationId = [];
 void getCountry() {
   countryCity = [];
   countryId = [];
+
   for (int i = 0; i < listCountryModel.data!.length; i++) {
     countryCity.add(listCountryModel.data![i].name!);
     countryCity.sort((a, b) {
       return a.toString().toLowerCase().compareTo(b.toString().toLowerCase());
     });
+
     countryId.add(listCountryModel.data![i].id!.toString());
   }
   if (kDebugMode) {

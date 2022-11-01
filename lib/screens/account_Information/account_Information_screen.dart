@@ -280,8 +280,9 @@ class AccountInformationScreen extends StatelessWidget {
           Text(controller.countryModel.flagEmoji),
           const SizedBox(width: 9),
           Text(
-            "+${controller.countryModel.phoneCode}",
+            controller.idCon,
             style: textStyleFont14Alert,
+
           ),
           SizedBox(width: Get.width * 0.04533),
           Image.asset(AssetRes.dropdown, height: 6),
