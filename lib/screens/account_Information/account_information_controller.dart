@@ -95,6 +95,7 @@ class AccountInformationController extends GetxController {
       //idCompany = adViewProfile.data!.idCountry!;
 
 
+
       update(['doctor']);
       update(['phone']);
       update(['update']);
@@ -394,6 +395,7 @@ class AccountInformationController extends GetxController {
         "website": website.text,
       }
     };
+    await PrefService.setValue(PrefKeys.phonSaveNumberAdvertiser,"+${idCon} ${phoneNumberController.text}");
     update(["Getpic"]);
     if (imageID != 0 || imageID != null) {
       param1["advirtisersData"]!["id_item_profile"] = imageID;
