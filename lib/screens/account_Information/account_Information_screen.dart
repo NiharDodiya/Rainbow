@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
@@ -486,45 +485,7 @@ class AccountInformationScreen extends StatelessWidget {
           title: Strings.phoneNumber,
           hintText: Strings.phoneNumberHint,
         ),
-        Container(
-          height: 60,
-          width: 350,
-          decoration: BoxDecoration(
-              color: Colors.black, borderRadius: BorderRadius.circular(20)),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 18, left: 15),
-            child: IntlPhoneField(
-              controller: controller.phoneNumberController,
-              initialValue: controller.idCon,
-              initialCountryCode: controller.idCon,
-              showDropdownIcon: true,
-              dropdownIconPosition:IconPosition.trailing,
-              autovalidateMode: AutovalidateMode.disabled,
-              decoration: const InputDecoration(
-                  counter: Offstage(),
-                 /* hoverColor: Colors.black,
-                  iconColor: Colors.black,
-                  fillColor: Colors.black,
-                  focusColor: Colors.black,
-                  prefixIconColor: Colors.black,
-                  suffixIconColor: Colors.black,*/
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                  ),
-                  helperMaxLines: 0,
-                  helperStyle: TextStyle(color: Colors.transparent)),
-              style: TextStyle(color: Colors.white),
-              onChanged: (phone) {
-                print(phone.completeNumber);
-              },
-              onCountryChanged: (country) {
-                print('Country changed to: ' + country.name);
-                controller.idCon = country.code;
-              },
-            ),
-          ),
-        ),
-        /* Container(height: 60,width: 350,
+        Container(height: 60,width: 350,
           decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(20)),
           child: Padding(padding: EdgeInsets.only(top: 18,left: 15),
             child: IntlPhoneField(
@@ -533,12 +494,12 @@ class AccountInformationScreen extends StatelessWidget {
               initialCountryCode: controller.idCon,
               autovalidateMode: AutovalidateMode.disabled,
               decoration: const InputDecoration(
-              */ /*hoverColor: Colors.black,
+              /*hoverColor: Colors.black,
                   iconColor: Colors.black,
                   fillColor: Colors.black,
                   focusColor: Colors.black,
                   prefixIconColor: Colors.black,
-                  suffixIconColor: Colors.black,*/ /*
+                  suffixIconColor: Colors.black,*/
                   border: OutlineInputBorder(
                     borderSide: BorderSide.none,
                   ),
@@ -558,8 +519,24 @@ class AccountInformationScreen extends StatelessWidget {
               },
             ),
           ),
+        ),
+      /*  Container(height: 60,
+          decoration: BoxDecoration(color: Colors.white),
+          child: IntlPhoneField(dropdownTextStyle: TextStyle(color: Colors.black),
+            autovalidateMode: AutovalidateMode.disabled,
+            inputFormatters: [],
+            initialValue: controller.idCon,style: TextStyle(color: Colors.black),
+            decoration: const InputDecoration(border: InputBorder.none,),
+            onChanged: (phone) {
+              print(phone.completeNumber);
+            },
+            controller: controller.phoneNumberController,
+            onCountryChanged: (country) {
+              print('Country changed to: ' + country.name);
+              controller.idCon = country.code;
+            },
+          ),
         ),*/
-
         SizedBox(height: Get.height * 0.0197),
         SubmitButton(
           text: Strings.save,
