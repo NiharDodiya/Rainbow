@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
@@ -480,48 +479,65 @@ class AccountInformationScreen extends StatelessWidget {
           title: Strings.postalCode,
           hintText: Strings.postalCodeHint,
         ),
-        AppTextFiled(
+        /* AppTextFiled(
           prefix: countryCodePicker(context),
           controller: controller.phoneNumberController,
           title: Strings.phoneNumber,
           hintText: Strings.phoneNumberHint,
+        ),*/
+        Align(
+          alignment: Alignment.topLeft,
+          child: Text(
+            Strings.phoneNumber,
+            style: gilroySemiBoldTextStyle(fontSize: 14),
+          ),
         ),
-        Container(height: 60,width: 350,
-          decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(20)),
-          child: Padding(padding: EdgeInsets.only(top: 18,left: 15),
-            child: IntlPhoneField(
-              controller:controller.phoneNumberController ,
-              initialValue: controller.idCon,
-              initialCountryCode: controller.idCon,
-              autovalidateMode: AutovalidateMode.disabled,
-              decoration: const InputDecoration(
-              /*hoverColor: Colors.black,
+        const SizedBox(height: 10),
+
+        GetBuilder<AccountInformationController>(id: "phone",
+          builder: (controller) {
+          return  Container(
+            height: 60,
+            width: 350,
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(20)),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 18, left: 15),
+              child: IntlPhoneField(
+                controller: controller.phoneNumberController,
+                initialValue: controller.idCon,
+                autovalidateMode: AutovalidateMode.disabled,
+                decoration: const InputDecoration(
                   iconColor: Colors.black,
-                  fillColor: Colors.black,
-                  focusColor: Colors.black,
+                  hintMaxLines: 0,
                   prefixIconColor: Colors.black,
-                  suffixIconColor: Colors.black,*/
+                  suffixIconColor: Colors.black,
+                  counterText: "0",
                   border: OutlineInputBorder(
                     borderSide: BorderSide.none,
                   ),
-
-                  helperMaxLines: 0,
-                  helperStyle:TextStyle(color: Colors.white)
+                ),
+                style: gilroySemiBoldTextStyle(fontSize: 14, color: Colors.black),
+                dropdownTextStyle:
+                gilroySemiBoldTextStyle(fontSize: 14, color: Colors.black),
+                dropdownIconPosition: IconPosition.trailing,
+                dropdownIcon: Icon(
+                  Icons.arrow_drop_down,
+                  color: Colors.black,
+                ),
+                onChanged: (phone) {
+                  print(phone.completeNumber);
+                },
+                onCountryChanged: (country) {
+                  print('Country changed to: ' + country.name);
+                  controller.idCon = country.dialCode;
+                },
               ),
-
-              style: TextStyle(color: Colors.black),
-
-              onChanged: (phone) {
-                print(phone.completeNumber);
-              },
-              onCountryChanged: (country) {
-                print('Country changed to: ' + country.name);
-                controller.idCon = country.code;
-              },
             ),
-          ),
+          );
+        },
         ),
-      /*  Container(height: 60,
+        /*  Container(height: 60,
           decoration: BoxDecoration(color: Colors.white),
           child: IntlPhoneField(dropdownTextStyle: TextStyle(color: Colors.black),
             autovalidateMode: AutovalidateMode.disabled,
