@@ -375,9 +375,11 @@ int? totalAmountApi;
               .add_yMd()
               .format(DateTime(now.year, now.month, now.day, 24, 00, 00))
           : DateFormat().add_yMd().format(endTime!),
-      amount: totalAmountApi,
+      amount: (totalAmountApi == null || totalAmountApi == 0)?1000:totalAmountApi,
     );
     totalAmount=0;
+    totalAmountApi=0;
+    print(totalAmountApi);
     adHomeController.myAdvertiserListData();
     adHomeController.update(['more']);
     loader.value = false;
@@ -389,8 +391,8 @@ int? totalAmountApi;
     endTime = end;
     Duration diff = end.difference(start);
     print(diff.inDays);
-    totalAmount = diff.inDays.toInt() * 10;
-    totalAmountApi = diff.inDays.toInt() * 1000;
+    totalAmount = diff.inDays.toInt() * 10 + 10;
+    totalAmountApi = diff.inDays.toInt() * 1000 + 1000;
     print(totalAmountApi);
     print(totalAmount);
     update(['range']);
@@ -464,7 +466,7 @@ int? totalAmountApi;
 
           // enableDrag: true,
           builder: (_) => ShowBottomNext(
-            amount: totalAmount.toString(),
+            amount: (totalAmount.toString() == "" || totalAmount == null || totalAmount == 0)?"10":totalAmount.toString(),
           ),
         ),
         isScrollControlled: true,

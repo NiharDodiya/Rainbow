@@ -268,7 +268,7 @@ class SetupDateScreen extends StatelessWidget {
                         child: GetBuilder<CreateAdvertisementController>(
                             id: 'selectC',
                             builder: (controller) {
-                              return Text("£${controller.totalAmount??""}",style:  gilroySemiBoldTextStyle(fontSize: 24),)/*TextField(
+                              return (controller.totalAmount == 0)? Text("£10",style: gilroySemiBoldTextStyle(fontSize: 24),):Text("£${controller.totalAmount??"10"}",style:  gilroySemiBoldTextStyle(fontSize: 24),)/*TextField(
                                 enabled: false,
                                 inputFormatters: [
                                   MoneyInputFormatter(
@@ -547,7 +547,11 @@ class ShowBottomNext extends StatelessWidget {
                                 children: [
                                   GetBuilder<CreateAdvertisementController>(id:"select",
                                     builder: (controller) {
-                                      return  Text(
+                                      return  (controller.totalAmount == null || controller.totalAmount == 0)
+                                          ?Text(
+                                        "£10",
+                                        style: poppinsSemiBold(fontSize: 64),
+                                      ):Text(
                                         "£${controller.totalAmount}",
                                         style: poppinsSemiBold(fontSize: 64),
                                       );

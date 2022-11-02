@@ -22,6 +22,8 @@ class RenewAdSetupDateController extends GetxController {
   String select = 'canada';
   List<int> imgIdList = [];
   List<File> imagePath = [];
+  int? totalAmount;
+  int? totalAmountApi;
 
   int pageIndex = 0;
 
@@ -33,6 +35,13 @@ class RenewAdSetupDateController extends GetxController {
   rangSelect(start, end, range) {
     startTime = start;
     endTime = end;
+    Duration diff = end.difference(start);
+    print(diff.inDays);
+    totalAmount = diff.inDays.toInt() * 10 + 10;
+    totalAmountApi = diff.inDays.toInt() * 1000 + 1000;
+    print(totalAmountApi);
+    print(totalAmount);
+    update(['selectC']);
     update(['range']);
   }
 
@@ -48,9 +57,10 @@ class RenewAdSetupDateController extends GetxController {
               .add_yMd()
               .format(DateTime(now.year, now.month, now.day, 24, 00, 00))
           : DateFormat().add_yMd().format(endTime!),
-      amount: 3000,
+      amount: (totalAmountApi == null || totalAmountApi == 0)?1000:totalAmountApi,
     );
-
+    totalAmount=0;
+    totalAmountApi=0;
     loader.value = false;
     update(["advertiser"]);
   }
@@ -92,7 +102,7 @@ class RenewAdSetupDateController extends GetxController {
 
         // enableDrag: true,
         builder: (_) => ShowBottomNext(
-          amount: currency,
+          amount:  (totalAmount.toString() == "" || totalAmount == null || totalAmount == 0)?"10":totalAmount.toString(),
           id: id,
         ),
       ),

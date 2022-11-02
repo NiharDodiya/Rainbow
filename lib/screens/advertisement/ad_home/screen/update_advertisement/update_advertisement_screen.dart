@@ -60,7 +60,17 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                         body(context, controller),
                         SubmitButton(
                           onTap: () {
-                            updateAdvertiseController.editAdvertisement(id: id);
+
+                            updateAdvertiseController.editAdvertisement(
+
+                                id: id,
+
+                                imgId: (controller.idImg.length == 3)
+                                ?[controller.idImg[0], controller.idImg[1], controller.idImg[2]]
+                                :(controller.idImg.length == 2)
+                                ?[controller.idImg[0], controller.idImg[1]]
+                                :(controller.idImg.length == 1)
+                                ?[controller.idImg[0]]:[]);
                           },
                           child: Text(
                             "Edit Advertisement",
@@ -175,8 +185,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                     child: Column(
                       children: [
 
-
-                       SingleChildScrollView(
+                        SingleChildScrollView(
                          scrollDirection: Axis.horizontal,
                          child: Row(
                            mainAxisAlignment: MainAxisAlignment.start,
@@ -219,6 +228,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                            currentfocus.unfocus();
                                          }
                                          controller.images.removeAt(0);
+                                         controller.idImg.removeAt(0);
                                          controller.update(["img"]);
                                        },
                                        child: Container(
@@ -266,6 +276,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                            currentfocus.unfocus();
                                          }
                                          controller.images.removeAt(1);
+                                         controller.idImg.removeAt(1);
                                          controller.update(["img"]);
                                        },
                                        child: Container(
@@ -313,6 +324,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                            currentfocus.unfocus();
                                          }
                                          controller.images.removeAt(2);
+                                         controller.idImg.removeAt(2);
                                          controller.update(["img"]);
                                        },
                                        child: Container(
@@ -364,8 +376,8 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                              .hasPrimaryFocus) {
                                            currentfocus.unfocus();
                                          }
-                                         controller.imagePath
-                                             .removeAt(0);
+                                         controller.images.removeAt(0);
+                                         controller.idImg.removeAt(0);
                                          controller.update(["img"]);
                                        },
                                        child: Container(
@@ -416,8 +428,9 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                              .hasPrimaryFocus) {
                                            currentfocus.unfocus();
                                          }
-                                         controller.imagePath
+                                         controller.images
                                              .removeAt(1);
+                                         controller.idImg.removeAt(1);
                                          controller.update(["img"]);
                                        },
                                        child: Container(
@@ -476,6 +489,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                          }
                                          controller.images
                                              .removeAt(0);
+                                         controller.idImg.removeAt(0);
                                          controller
                                              .update(["img"]);
                                        },
@@ -534,6 +548,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                          }
                                          controller.images
                                              .removeAt(0);
+                                         controller.idImg.removeAt(0);
                                          controller
                                              .update(["img"]);
                                        },
@@ -974,12 +989,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                 int count;
                                 count = controller.images.length + controller.imagePath.length;
 
-                                if (controller.imagePath.length == 3) {
-                                  errorToast("You can take only 3 images");
-                                } else if(controller.images.length == 3){
-                                  errorToast("You can take only 3 images");
-                                }
-                                else if(count==3){
+                               if(count==3){
                                   errorToast("You can take only 3 images");
                                 }
                                 else {

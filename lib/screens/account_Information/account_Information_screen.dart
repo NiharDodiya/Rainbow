@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
@@ -485,7 +486,42 @@ class AccountInformationScreen extends StatelessWidget {
           title: Strings.phoneNumber,
           hintText: Strings.phoneNumberHint,
         ),
-        Container(height: 60,
+        Container(height: 60,width: 350,
+          decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(20)),
+          child: Padding(padding: EdgeInsets.only(top: 18,left: 15),
+            child: IntlPhoneField(
+              controller:controller.phoneNumberController ,
+              initialValue: controller.idCon,
+              initialCountryCode: controller.idCon,
+              autovalidateMode: AutovalidateMode.disabled,
+              decoration: const InputDecoration(
+              /*hoverColor: Colors.black,
+                  iconColor: Colors.black,
+                  fillColor: Colors.black,
+                  focusColor: Colors.black,
+                  prefixIconColor: Colors.black,
+                  suffixIconColor: Colors.black,*/
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                  ),
+
+                  helperMaxLines: 0,
+                  helperStyle:TextStyle(color: Colors.white)
+              ),
+
+              style: TextStyle(color: Colors.black),
+
+              onChanged: (phone) {
+                print(phone.completeNumber);
+              },
+              onCountryChanged: (country) {
+                print('Country changed to: ' + country.name);
+                controller.idCon = country.code;
+              },
+            ),
+          ),
+        ),
+      /*  Container(height: 60,
           decoration: BoxDecoration(color: Colors.white),
           child: IntlPhoneField(dropdownTextStyle: TextStyle(color: Colors.black),
             autovalidateMode: AutovalidateMode.disabled,
@@ -501,7 +537,7 @@ class AccountInformationScreen extends StatelessWidget {
               controller.idCon = country.code;
             },
           ),
-        ),
+        ),*/
         SizedBox(height: Get.height * 0.0197),
         SubmitButton(
           text: Strings.save,

@@ -216,7 +216,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                                 editAdvertiesementController
                                         .editAdvertisementModel
                                         .data
-                                        ?.itemsList![index]
+                                        ?.itemsList![index].itemUrl
                                         .toString() ??
                                     "",
                                 style: poppinsRegularBold(

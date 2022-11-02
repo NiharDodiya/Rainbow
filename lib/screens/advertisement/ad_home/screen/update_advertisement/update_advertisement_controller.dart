@@ -57,7 +57,8 @@ class UpdateAdvertiseController extends GetxController {
       TextEditingController(text: "\$200.00");
 
   // File? imagePath;
-  List<String> images = [];
+  List images = [];
+  List idImg = [];
   List<File> imagePath = [];
   RxBool loader = false.obs;
 
@@ -160,14 +161,21 @@ class UpdateAdvertiseController extends GetxController {
 
   UploadImage uploadImage = UploadImage();
 
-  Future<void> uploadImageApi({int? id}) async {
+  Future<void> uploadImageApi({int? id, List? imgId}) async {
     try {
       imgIdList = [];
+
       for (var e in imagePath) {
         loader.value = true;
         uploadImage = await UploadImageApi.postRegister(e.path);
         imgIdList.add(uploadImage.data!.id!);
+       // imgIdList.add(imgId);
       }
+
+      for(var e in imgId!){
+        imgIdList.add(e);
+      }
+
       await updateApi(id: id);
       loader.value = false;
     } catch (e) {
@@ -203,10 +211,10 @@ class UpdateAdvertiseController extends GetxController {
   int? codeId;
   String? myId;
 
-  editAdvertisement({int? id}) async {
+  editAdvertisement({int? id, List? imgId}) async {
     tagsListSet();
     if (validation()) {
-      uploadImageApi(id: id);
+      uploadImageApi(id: id, imgId: imgId);
       for (int i = 0; i < listCountryModel.data!.length; i++) {
         if (listCountryModel.data![i].name == countryController.text) {
           codeId = listCountryModel.data![i].id;
@@ -218,17 +226,21 @@ class UpdateAdvertiseController extends GetxController {
     }
   }
 
+  int? count;
+
+
+
   bool validation() {
     for (int i = 0; i < listCountryModel.data!.length; i++) {
       if (listCountryModel.data![i].name == countryController.text) {
         myId = countryController.text;
       }
     }
-
+    count = imagePath.length+images.length;
     if (tagsController.text.isEmpty) {
       errorToast(Strings.tagsError);
       return false;
-    } else if (imagePath.isEmpty) {
+    } else if (count == 0) {
       errorToast(Strings.imageError);
       return false;
     } else if (titleController.text.isEmpty) {
