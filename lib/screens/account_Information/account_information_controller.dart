@@ -46,7 +46,7 @@ class AccountInformationController extends GetxController {
   List<String> dropdownList = ["Doctor", "User", "Admin"];
   AdInformationModel adViewProfile = AdInformationModel();
   UploadImage uploadImage = UploadImage();
-  String? idCon ="";
+  String? idCon="";
   Country countryModel = Country.from(json: {
     "e164_cc": "1",
     "iso2_cc": "CA",
@@ -77,6 +77,8 @@ class AccountInformationController extends GetxController {
       countryController.text = adViewProfile.data!.country!;
       selectCountry = adViewProfile.data!.country!;
       postalCodeController.text = adViewProfile.data!.postalCode!.toString();
+      idCon = adViewProfile.data!.phoneNumber!.split(' ').first;
+
       phoneNumberController.text =
           adViewProfile.data!.phoneNumber!.split(' ').last;
       userProfession = adViewProfile.data!.profession!;
@@ -92,7 +94,6 @@ class AccountInformationController extends GetxController {
       website.text = adViewProfile.data!.compnayWebsite!;
       //idCompany = adViewProfile.data!.idCountry!;
 
-      idCon = adViewProfile.data!.phoneNumber!.split(' ').first;
 
       update(['doctor']);
       update(['phone']);

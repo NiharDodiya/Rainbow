@@ -82,6 +82,7 @@ class AdvertisementController extends GetxController {
     final AccountInformationController accountInformationController =
         Get.put(AccountInformationController());
     accountInformationController.onGetData();
+    accountInformationController.update(['phone']);
     Get.to(() => AccountInformationScreen());
   }
 
