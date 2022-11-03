@@ -432,7 +432,7 @@ class Strings {
   static const callToAction = "Call to Action";
   static const urlLink = "URL Link";
   static const tagsError = "Please enter tags";
-  static const imageError = "please add image ";
+  static const imageError = "Please add image ";
   static const titleError = "Please enter title";
   static const canadaError = "Please enter city";
   static const provinceError = "Please enter province ";
