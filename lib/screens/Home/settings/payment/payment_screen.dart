@@ -439,29 +439,32 @@ class PaymentScreen extends StatelessWidget {
                             ),
 
                             // ---------- Transaction
-                            (controller.transactionModel.data?.length == null ||
-                                    controller.transactionModel.data?.length ==
-                                        0)
-                                ? Column(
-                                    children: const [
-                                      SizedBox(height: 80),
-                                      Center(
-                                        child: Text("No Transaction yet"),
-                                      )
-                                    ],
-                                  )
-                                : ListView.builder(
-                                    shrinkWrap: true,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    itemCount: controller
-                                            .transactionModel.data?.length ??
-                                        0,
-                                    scrollDirection: Axis.vertical,
-                                    itemBuilder: (context, index) {
-                                      return tranzaction(
-                                          controller: controller, index: index);
-                                    }),
+                           GetBuilder<PaymentController>(id: "payment",
+                             builder: (controller) {
+                             return  (controller.transactionModel.data?.length == null ||
+                                 controller.transactionModel.data?.length ==
+                                     0)
+                                 ? Column(
+                               children: const [
+                                 SizedBox(height: 80),
+                                 Center(
+                                   child: Text("No Transaction yet"),
+                                 )
+                               ],
+                             )
+                                 : ListView.builder(
+                                 shrinkWrap: true,
+                                 physics:
+                                 const NeverScrollableScrollPhysics(),
+                                 itemCount: controller
+                                     .transactionModel.data?.length ??
+                                     0,
+                                 scrollDirection: Axis.vertical,
+                                 itemBuilder: (context, index) {
+                                   return tranzaction(
+                                       controller: controller, index: index);
+                                 });
+                           },)
                           ],
                         ),
                       ),
@@ -567,12 +570,14 @@ Widget tranzaction({required PaymentController controller, int? index}) {
                 SizedBox(
                   height: Get.height * 0.01997,
                 ),
-                Text(
-                  controller.transactionModel.userDetail?.fullName ?? "",
-                  style: gilroySemiBoldTextStyle(
-                      color: ColorRes.color_434343,
-                      fontSize: 14,
-                      letterSpacing: 0.2),
+                SizedBox(width: 150,
+                  child: Text(
+                    controller.transactionModel.data![index!].transactionId.toString() ?? "",
+                    style: gilroySemiBoldTextStyle(
+                        color: ColorRes.color_434343,
+                        fontSize: 14,
+                        letterSpacing: 0.2),
+                  ),
                 ),
                 SizedBox(
                   height: Get.height * 0.005,
@@ -580,7 +585,7 @@ Widget tranzaction({required PaymentController controller, int? index}) {
                 Text(
                   controller
                       .timeAgo(controller
-                          .transactionModel.data![index!].createdAt!
+                          .transactionModel.data![index].createdAt!
                           .toLocal())
                       .toString(),
                   style: gilroyMediumTextStyle(

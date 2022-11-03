@@ -102,6 +102,7 @@ class PaymentController extends GetxController {
     try {
       transactionModel = await ListCartApi.transactionApi();
       update(['more']);
+      update(['payment']);
       loader.value = false;
     } catch (e) {
       loader.value = false;

@@ -495,7 +495,7 @@ class AccountInformationScreen extends StatelessWidget {
 
         GetBuilder<AccountInformationController>(id: "phone",
           builder: (controller) {
-          return  Container(
+          return controller.idCon==""?const SizedBox(): Container(
             height: 60,
             width: 350,
             decoration: BoxDecoration(
@@ -504,7 +504,7 @@ class AccountInformationScreen extends StatelessWidget {
               padding: const EdgeInsets.only(top: 18, left: 15),
               child: IntlPhoneField(
                 controller: controller.phoneNumberController,
-                initialValue: controller.idCon==""?controller.adViewProfile.data?.phoneNumber?.split(' ').first:controller.idCon,
+                initialValue: controller.idCon/*==""?controller.adViewProfile.data?.phoneNumber?.split(' ').first:controller.idCon*/,
                 autovalidateMode: AutovalidateMode.disabled,
                 decoration: const InputDecoration(
                   iconColor: Colors.black,
@@ -520,7 +520,7 @@ class AccountInformationScreen extends StatelessWidget {
                 dropdownTextStyle:
                 gilroySemiBoldTextStyle(fontSize: 14, color: Colors.black),
                 dropdownIconPosition: IconPosition.trailing,
-                dropdownIcon: Icon(
+                dropdownIcon: const Icon(
                   Icons.arrow_drop_down,
                   color: Colors.black,
                 ),
