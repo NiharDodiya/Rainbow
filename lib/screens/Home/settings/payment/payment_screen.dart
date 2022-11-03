@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_indicator/carousel_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/common/popup.dart';
@@ -571,13 +572,27 @@ Widget tranzaction({required PaymentController controller, int? index}) {
                   height: Get.height * 0.01997,
                 ),
                 SizedBox(width: 150,
-                  child: Text(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        Text(
+                          controller.transactionModel.data![index!].transactionId.toString() ?? "",
+                          style: gilroySemiBoldTextStyle(
+                              color: ColorRes.color_434343,
+                              fontSize: 14,
+                              letterSpacing: 0.2),
+                        ),
+                      ],
+                    ),
+                  ),
+                  /*Text(
                     controller.transactionModel.data![index!].transactionId.toString() ?? "",
                     style: gilroySemiBoldTextStyle(
                         color: ColorRes.color_434343,
                         fontSize: 14,
                         letterSpacing: 0.2),
-                  ),
+                  ),*/
                 ),
                 SizedBox(
                   height: Get.height * 0.005,
