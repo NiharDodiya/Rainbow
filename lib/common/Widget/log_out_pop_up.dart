@@ -4,6 +4,8 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
+import 'package:rainbow/screens/account_Information/account_information_controller.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/service/pref_services.dart';
@@ -116,9 +118,12 @@ logoutPopupAdvertise({required BuildContext context}) {
                 await PrefService.clear();
                 Get.offAll(() => AuthDashboard());
                 PrefService.setValue(PrefKeys.skipBoardingScreen, true);
-
+                AdHomeController adHomeController = AdHomeController();
                 PaymentController paymentController = Get.find();
-
+                adHomeController.viewAdvertiserModel.data!.profileImage = '';
+                AccountInformationController accountController = AccountInformationController();
+                accountController.imagePath = null;
+                accountController.update(["Getpic"]);
                 paymentController.listCardModel.data = [];
                 paymentController.transactionModel.data = [];
               },

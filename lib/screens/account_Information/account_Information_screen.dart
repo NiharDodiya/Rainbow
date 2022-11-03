@@ -48,8 +48,7 @@ class AccountInformationScreen extends StatelessWidget {
                                           .profileImage!
                                           .isEmpty ||
                                       adHomeController.viewAdvertiserModel.data!
-                                              .profileImage
-                                              .toString() ==
+                                              .profileImage ==
                                           "")
                                   ? (controller.imagePath == null)
                                       ? Container(
@@ -505,7 +504,7 @@ class AccountInformationScreen extends StatelessWidget {
               padding: const EdgeInsets.only(top: 18, left: 15),
               child: IntlPhoneField(
                 controller: controller.phoneNumberController,
-                initialValue: controller.idCon==""?controller.adViewProfile.data!.phoneNumber!.split(' ').first:controller.idCon,
+                initialValue: controller.idCon==""?controller.adViewProfile.data?.phoneNumber?.split(' ').first:controller.idCon,
                 autovalidateMode: AutovalidateMode.disabled,
                 decoration: const InputDecoration(
                   iconColor: Colors.black,
