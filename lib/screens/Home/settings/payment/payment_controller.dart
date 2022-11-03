@@ -126,7 +126,7 @@ class PaymentController extends GetxController {
     } catch (e) {
       debugPrint(e.toString());
       loader.value = false;
-      errorToast("No internet connection");
+      //errorToast("No internet connection");
     }
   }
 
