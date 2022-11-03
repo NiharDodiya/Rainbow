@@ -98,8 +98,8 @@ class LoginApi {
                 PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
             await PrefService.setValue(PrefKeys.phonSaveNumberAdvertiser,
                 jsonDecode(response.body)["data"]["phone_number"]);
-            advertiserVerifyController.phoneNumber =
-                jsonDecode(response.body)["data"]["phone_number"];
+            /*advertiserVerifyController.phoneNumber =
+                jsonDecode(response.body)["data"]["phone_number"];*/
             await PrefService.setValue(
                 PrefKeys.loginRole, jsonDecode(response.body)["data"]["role"]);
 

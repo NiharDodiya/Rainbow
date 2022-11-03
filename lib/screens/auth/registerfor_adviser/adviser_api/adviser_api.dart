@@ -70,8 +70,8 @@ class AdvirtisersApi {
           PrefService.setValue(PrefKeys.register, true);
           await PrefService.setValue(PrefKeys.phonSaveNumberAdvertiser,
               jsonDecode(response.body)["data"]["phone_number"]);
-          advertiserVerifyController.phoneNumber =
-              jsonDecode(response.body)["data"]["phone_number"];
+         /* advertiserVerifyController.phoneNumber =
+              jsonDecode(response.body)["data"]["phone_number"];*/
           AdvertiserVerifyController adController =
               Get.put(AdvertiserVerifyController());
           adController.backScreen = 'DoctorRegisterScreen';
