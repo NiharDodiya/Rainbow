@@ -526,10 +526,11 @@ class AccountInformationScreen extends StatelessWidget {
                 ),
                 onChanged: (phone) {
                   print(phone.completeNumber);
+                  controller.idCon = phone.countryCode;
                 },
                 onCountryChanged: (country) {
-                  print('Country changed to: ' + country.name);
-                  controller.idCon = country.dialCode;
+                  /*print('Country changed to: ' + country.name);
+                  controller.idCon ="${country.dialCode}" ;*/
                 },
               ),
             ),

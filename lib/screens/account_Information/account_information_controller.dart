@@ -379,7 +379,7 @@ class AccountInformationController extends GetxController {
         "email": emailController.text,
         "house_number": houseNumberController.text,
         "street_name": streetNumberController.text,
-        "phone_number": "+${idCon} ${phoneNumberController.text}",
+        "phone_number": "${idCon} ${phoneNumberController.text}",
         "city": cityController.text,
         "id_country": idCountry,
         "postal_code": postalCodeController.text,
@@ -395,7 +395,7 @@ class AccountInformationController extends GetxController {
         "website": website.text,
       }
     };
-    String phoneNumber = "+${idCon} ${phoneNumberController.text}";
+    String phoneNumber = "${idCon} ${phoneNumberController.text}";
     await PrefService.setValue(PrefKeys.phonSaveNumberAdvertiser,phoneNumber);
     update(["Getpic"]);
     if (imageID != 0 || imageID != null) {
@@ -405,7 +405,6 @@ class AccountInformationController extends GetxController {
     await AdInformationAPI.adProfileEdit(param1).then(
       (value) {
         adViewProfile = value;
-
         fullNameController.text = adViewProfile.data!.fullName!;
         emailController.text = adViewProfile.data!.email!;
         houseNumberController.text = adViewProfile.data!.houseNumber!;
