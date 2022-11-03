@@ -389,7 +389,7 @@ class AddCartScreen extends StatelessWidget {
                                               fontSize: 18,
                                               color: ColorRes.black
                                                   .withOpacity(0.3)),
-                                          hintText: Strings.cVVHint,
+                                          hintText: "02/24",
                                         )),
                                       ),
                                     )),

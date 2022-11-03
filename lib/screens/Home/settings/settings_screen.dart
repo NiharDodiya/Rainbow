@@ -265,11 +265,10 @@ class SettingsScreen extends StatelessWidget {
                   Strings.messages,
                   style: textStyleFont15White,
                 ),
+               const Spacer(),
                 SizedBox(
-                  width: Get.width * 0.555,
-                ),
-                SizedBox(
-                    height: 10, width: 6, child: Image.asset(AssetRes.next))
+                    height: 10, width: 6, child: Image.asset(AssetRes.next)),
+                const SizedBox(width: 25,)
               ],
             ),
           ),
@@ -306,11 +305,10 @@ class SettingsScreen extends StatelessWidget {
                   Strings.connections,
                   style: textStyleFont15White,
                 ),
+                const Spacer(),
                 SizedBox(
-                  width: Get.width * 0.5,
-                ),
-                SizedBox(
-                    height: 10, width: 6, child: Image.asset(AssetRes.next))
+                    height: 10, width: 6, child: Image.asset(AssetRes.next)),
+                const SizedBox(width: 25,)
               ],
             ),
           ),
@@ -344,11 +342,10 @@ class SettingsScreen extends StatelessWidget {
                   Strings.support,
                   style: textStyleFont15White,
                 ),
+                const Spacer(),
                 SizedBox(
-                  width: Get.width * 0.59,
-                ),
-                SizedBox(
-                    height: 10, width: 6, child: Image.asset(AssetRes.next))
+                    height: 10, width: 6, child: Image.asset(AssetRes.next)),
+                const SizedBox(width: 25,)
               ],
             ),
           ),
@@ -380,14 +377,10 @@ class SettingsScreen extends StatelessWidget {
                   Strings.payment,
                   style: textStyleFont15White,
                 ),
+                const Spacer(),
                 SizedBox(
-                  width: Get.width * 0.57,
-                ),
-                SizedBox(
-                  height: 10,
-                  width: 6,
-                  child: Image.asset(AssetRes.next),
-                ),
+                    height: 10, width: 6, child: Image.asset(AssetRes.next)),
+                const SizedBox(width: 25,)
               ],
             ),
           ),
@@ -420,11 +413,10 @@ class SettingsScreen extends StatelessWidget {
                   Strings.privacy,
                   style: textStyleFont15White,
                 ),
+                const Spacer(),
                 SizedBox(
-                  width: Get.width * 0.6,
-                ),
-                SizedBox(
-                    height: 10, width: 6, child: Image.asset(AssetRes.next))
+                    height: 10, width: 6, child: Image.asset(AssetRes.next)),
+                const SizedBox(width: 25,)
               ],
             ),
           ),
