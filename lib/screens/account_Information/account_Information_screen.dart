@@ -42,7 +42,8 @@ class AccountInformationScreen extends StatelessWidget {
                           children: [
                             GetBuilder<AccountInformationController>(
                               id: "Getpic",
-                              builder: (controller) => (adHomeController
+                              builder: (controller) => (
+                                  adHomeController
                                           .viewAdvertiserModel
                                           .data!
                                           .profileImage!
