@@ -62,7 +62,7 @@ class AddCartApi {
 
           flutterToast(jsonDecode(response.body)["message"]);
 
-          //await UserSubscriptionAddApi.userSubscriptionAddApi();
+          await UserSubscriptionAddApi.userSubscriptionAddApi();
 
           Navigator.of(context).pop();
 
