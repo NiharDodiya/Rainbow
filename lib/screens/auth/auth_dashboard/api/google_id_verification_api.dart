@@ -28,6 +28,8 @@ class GoogleIdVerification {
           body: jsonEncode(param),
           header: {"Content-Type": "application/json"});
       if (response != null && response.statusCode == 200) {
+        await PrefService.setValue(PrefKeys.referrallCode,
+            jsonDecode(response.body)["data"]["referrall_code"]);
         bool? status = jsonDecode(response.body)["status"];
         if (status == false) {
           //flutterToast(jsonDecode(response.body)["message"]);
