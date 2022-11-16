@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/advertisement/ad_support/ad_support_controller.dart';
 import 'package:readmore/readmore.dart';
@@ -792,9 +793,7 @@ class SupportDetailsScreen extends StatelessWidget {
                 );
               }),
           controller.loader.value
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
+              ? const FullScreenLoader()
               : const SizedBox(),
         ],
       );

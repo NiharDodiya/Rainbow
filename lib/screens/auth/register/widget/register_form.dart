@@ -287,7 +287,7 @@ class RegisterForm extends StatelessWidget {
           Align(
             alignment: Alignment.topLeft,
             child: Text(
-              Strings.country,
+              Strings.ethnicity,
               style: gilroySemiBoldTextStyle(fontSize: 14),
             ),
           ),

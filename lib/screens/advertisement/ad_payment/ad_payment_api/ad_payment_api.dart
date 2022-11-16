@@ -18,7 +18,7 @@ import 'package:rainbow/utils/end_points.dart';
 import 'package:rainbow/utils/pref_keys.dart';
 
 class ListCartApi {
-  static Future listCardsApi({required bool showToast}) async {
+  static Future listCardsApi({bool? showToast}) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
     try {
       String url = EndPoints.listCartDetails;
