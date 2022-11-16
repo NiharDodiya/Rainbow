@@ -770,10 +770,12 @@ class SupportDetailsScreen extends StatelessWidget {
                               ),
                               SubmitButton(
                                 onTap: () {
-                                  controller.image = [];
+
 
                                   controller.onTapSendMessage(
                                       id.toString(), context);
+
+                                  controller.image = [];
                                 },
                                 child: Text(
                                   Strings.sendMessage,
@@ -1022,7 +1024,7 @@ class SupportDetailsScreen extends StatelessWidget {
                                                       child: Image.network(
                                                         controller
                                                             .viewSupportTicketModel
-                                                            .data![0]
+                                                            .data![index]
                                                             .itmeList![index1]
                                                             .image
                                                             .toString(),
