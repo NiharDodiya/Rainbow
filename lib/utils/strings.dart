@@ -73,7 +73,7 @@ class Strings {
   static const permanentResident = "Permanent Resident Card";
   static const verifyPhone = "Verify Phone";
   static const verifyAccount = "Verify Account";
-  static const receivedCode = "Did’t received code?";
+  static const receivedCode = "Didn’t received code?";
   static const resendOtp = "Resend OTP";
   static const newPassword = "New Password";
   static const newPasswordChange =
@@ -369,7 +369,7 @@ class Strings {
   static const cardName03 = "Master Card Ending in 4151 ";
   static const cardDate01 = "06/25";
   static const subscriptionPaymenDes =
-      "By Clicking continue below, you accept to be charged at \$24.99/month for a minimum of 3months. You also accept the Terms and condition of Rainbow Love";
+      "By Clicking continue below, you accept to be charged at \$9.99/month for a minimum of 3months. You also accept the Terms and condition of Rainbow Love";
   static const continue01 = "Continue";
 
   ///---------------------------------Account Information ------------------------------

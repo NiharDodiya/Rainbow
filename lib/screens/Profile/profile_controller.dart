@@ -16,6 +16,8 @@ class ProfileController extends GetxController {
   bool seeMoreAndLess = false;
   TextEditingController postTestimonials = TextEditingController();
   String? url;
+  bool change = false;
+
   List<String> image = [
     AssetRes.lt1,
     AssetRes.lt2,

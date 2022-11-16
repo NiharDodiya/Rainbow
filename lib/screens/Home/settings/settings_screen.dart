@@ -11,6 +11,7 @@ import 'package:rainbow/screens/Home/settings/connections/connections_controller
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
+import 'package:rainbow/screens/Home/settings/subscription/subscription_screen.dart';
 
 import 'package:rainbow/screens/Message/message_controller.dart';
 import 'package:rainbow/screens/Message/message_screen.dart';
@@ -470,9 +471,12 @@ class SettingsScreen extends StatelessWidget {
             ),
           ],
         ),
-
+        Divider(
+          thickness: 1,
+          color: ColorRes.color_4F359B.withOpacity(0.4),
+        ),
         //Subscription
-        /* InkWell(
+         InkWell(
             onTap: () {
               Get.to(() => SubscriptionScreen());
             },
@@ -508,8 +512,8 @@ class SettingsScreen extends StatelessWidget {
           ),
           SizedBox(
             height: Get.height * 0.03,
-          ),*/
-        /*Text(
+          ),
+        Text(
             Strings.yourReferralCode,
             style: textStyleFont15White,
           ),
@@ -539,7 +543,7 @@ class SettingsScreen extends StatelessWidget {
                 style: gilroyBoldTextStyle(fontSize: 11.9619),
               )),
             ),
-          ),*/
+          ),
         SizedBox(
           height: Get.height * 0.045,
         ),
@@ -552,7 +556,7 @@ class SettingsScreen extends StatelessWidget {
             height: 60,
             width: Get.width * 0.8,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(13.67),
+                borderRadius: BorderRadius.circular(15.67),
                 color: ColorRes.colorFFEC5C),
             child: Center(
                 child: Row(
