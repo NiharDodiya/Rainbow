@@ -128,7 +128,7 @@ class PaymentScreen extends StatelessWidget {
                                                     ),
                                                     const SizedBox(width: 15),
                                                     Text(
-                                                        "Ending in ${controller.viewCardModel?.data?.expYear ?? ""}",
+                                                        "Ending in ${controller.viewCardModel?.data?.cardNumber ?? ""}",
                                                         style:
                                                             textStyleFont14White),
                                                     const SizedBox(width: 15),
@@ -230,7 +230,9 @@ class PaymentScreen extends StatelessWidget {
                                       } else {
                                         controller.navigateToRemove(context: context,
                                          expiryDate:    "${controller.viewCardModel?.data?.expMonth}/${controller.viewCardModel?.data?.expYear.toString().substring(2,4).toString()}",
-                                        expiryYear:controller.viewCardModel?.data?.expYear.toString()??"" );
+                                        expiryYear: controller.viewCardModel?.data?.expYear.toString()??"",
+                                          endingNumber: controller.viewCardModel?.data?.cardNumber ?? ""
+                                        );
                                       }
                                     },
                                     child: Container(

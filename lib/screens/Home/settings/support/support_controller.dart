@@ -140,6 +140,7 @@ class SupportController extends GetxController {
   Future<void> sendSupportApiData(String id) async {
     try {
       loader.value = true;
+      await uploadImageData();
       sendSupportModel = await SupportApi.sendSupportApi(
           id: id, description: yourMsgSendController.text, item: imgIdList);
       update(["Support"]);

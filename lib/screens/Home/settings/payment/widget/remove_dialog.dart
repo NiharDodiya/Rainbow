@@ -11,7 +11,8 @@ import '../../../../../utils/color_res.dart';
 class RemoveDialog extends StatelessWidget {
   String? expiryDate;
   String? expiryYear;
-  RemoveDialog( {Key? key,this.expiryDate,this.expiryYear}) : super(key: key);
+  String? endingNumber;
+  RemoveDialog( {Key? key,this.expiryDate,this.expiryYear, this.endingNumber}) : super(key: key);
 
   final PaymentController paymentController = Get.put(PaymentController());
 
@@ -74,7 +75,7 @@ class RemoveDialog extends StatelessWidget {
                     //   width: Get.width * 0.0571733,
                     // ),
                     Text(
-                     "Ending in ${expiryYear.toString()}",
+                     "Ending in ${endingNumber.toString()}",
                       style: montserratRegularTextStyle(
                         color: ColorRes.color_303030,
                         fontSize: 14,

@@ -502,37 +502,68 @@ class AccountInformationScreen extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(20)),
             child: Padding(
-              padding: const EdgeInsets.only(top: 18, left: 15),
-              child: IntlPhoneField(
-                controller: controller.phoneNumberController,
-                initialValue: controller.idCon/*==""?controller.adViewProfile.data?.phoneNumber?.split(' ').first:controller.idCon*/,
-                autovalidateMode: AutovalidateMode.disabled,
-                decoration: const InputDecoration(
-                  iconColor: Colors.black,
-                  hintMaxLines: 0,
-                  prefixIconColor: Colors.black,
-                  suffixIconColor: Colors.black,
-                  counterText: "0",
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
+              padding: const EdgeInsets.only( left: 15),
+              child: Stack(
+                alignment: Alignment.topRight,
+                children: [
+                  IntlPhoneField(
+                    //controller: controller.phoneNumberController,
+                    enabled: false,
+                    initialValue: controller.idCon==""?controller.adViewProfile.data?.phoneNumber?.split(' ').first:controller.idCon,
+                    autovalidateMode: AutovalidateMode.disabled,
+                    decoration: const InputDecoration(
+                      iconColor: Colors.black,
+                      hintMaxLines: 0,
+                      prefixIconColor: Colors.black,
+                      suffixIconColor: Colors.black,
+                      counterText: "0",
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                    style: gilroySemiBoldTextStyle(fontSize: 14, color: Colors.black),
+                    dropdownTextStyle:
+                    textFieldText,
+                    dropdownIconPosition: IconPosition.trailing,
+
+                    dropdownIcon: const Icon(
+                      Icons.arrow_drop_down,
+                      color: Colors.black,
+                    ),
+                    onChanged: (phone) {
+                      print(phone.completeNumber);
+                      controller.idCon = phone.countryCode;
+                    },
+                    onCountryChanged: (country) {
+                      print('Country changed to: ' + country.name);
+                      controller.idCon ="${country.dialCode}" ;
+                    },
                   ),
-                ),
-                style: gilroySemiBoldTextStyle(fontSize: 14, color: Colors.black),
-                dropdownTextStyle:
-                gilroySemiBoldTextStyle(fontSize: 14, color: Colors.black),
-                dropdownIconPosition: IconPosition.trailing,
-                dropdownIcon: const Icon(
-                  Icons.arrow_drop_down,
-                  color: Colors.black,
-                ),
-                onChanged: (phone) {
-                  print(phone.completeNumber);
-                  controller.idCon = phone.countryCode;
-                },
-                onCountryChanged: (country) {
-                  /*print('Country changed to: ' + country.name);
-                  controller.idCon ="${country.dialCode}" ;*/
-                },
+                  Container(
+                    height: 60,
+                    width: Get.width / 1.6,
+                    padding: EdgeInsets.only(left: 5, top: 4),
+                    decoration: BoxDecoration(
+                      color: ColorRes.white,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: TextField(
+                    controller: controller.phoneNumberController,
+
+                    style: textFieldText,
+                    keyboardType: TextInputType.phone,
+
+                      decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintStyle: gilroyMediumTextStyle(
+                          fontSize: 18,
+                          color: ColorRes.black.withOpacity(0.3)),
+                      hintText: Strings.phoneNumberHint,
+                    ),
+                  ),
+
+                  ),
+                ],
               ),
             ),
           );

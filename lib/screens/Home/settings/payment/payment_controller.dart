@@ -42,8 +42,8 @@ class PaymentController extends GetxController {
   TransactionModel transactionModel = TransactionModel();
 
   navigateToRemove(
-      {required BuildContext context, String? expiryDate, String? expiryYear}) async {
-    await showDialog(context: context, builder: (context) => RemoveDialog(expiryDate: expiryDate,expiryYear: expiryYear,));
+      {required BuildContext context, String? expiryDate, String? expiryYear, String? endingNumber}) async {
+    await showDialog(context: context, builder: (context) => RemoveDialog(expiryDate: expiryDate,expiryYear: expiryYear, endingNumber: endingNumber,));
   }
 
   listCardApi({required bool showToast}) async {

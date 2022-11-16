@@ -9,6 +9,7 @@ import 'package:rainbow/screens/Home/settings/support/support_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
+import 'package:readmore/readmore.dart';
 
 class SupportCreateEndUserScreen extends StatelessWidget {
   final String? com;
@@ -748,10 +749,11 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                           height: Get.height * 0.05,
                         ),
                         SubmitButton(
-                          onTap: () {
-                            controller.image = [];
+                          onTap: () async {
 
-                            controller.onTapSendMessage(id.toString(), context);
+                            await controller.onTapSendMessage(id.toString(), context);
+
+                            controller.image = [];
                           },
                           child: Text(
                             Strings.sendMessage,
@@ -876,11 +878,20 @@ class SupportCreateEndUserScreen extends StatelessWidget {
               SizedBox(
                 height: Get.height * 0.0233,
               ),
-              Text(
+              ReadMoreText(
                 controller.viewSupportTicketModel.data![index].description
                     .toString(),
-                style: gilroySemiBoldTextStyle(fontSize: 14),
+                trimLines: 3,
+                style: gilroyMediumTextStyle(fontSize: 14),
+                trimMode: TrimMode.Line,
+                trimCollapsedText: 'see more',
+                lessStyle: gilroyMediumTextStyle(
+                    fontSize: 14, color: Colors.white.withOpacity(0.5)),
+                trimExpandedText: '...see less',
+                moreStyle: gilroyMediumTextStyle(
+                    fontSize: 14, color: Colors.white.withOpacity(0.5)),
               ),
+
               SizedBox(
                 height: Get.height * 0.0184,
               ),
@@ -888,8 +899,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
               controller.viewSupportTicketModel.data![index].itmeList!.isEmpty
                   ? const SizedBox()
                   : (controller.viewSupportTicketModel.data![index].itmeList!
-                              .length ==
-                          3)
+                              .length == 3)
                       ? Container(
                           height: Get.height * 0.09,
                           width: Get.width * 0.49,
@@ -988,7 +998,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                                                 child: Image.network(
                                                   controller
                                                       .viewSupportTicketModel
-                                                      .data![0]
+                                                      .data![index]
                                                       .itmeList![index1]
                                                       .image
                                                       .toString(),
