@@ -52,9 +52,16 @@ Widget otherVisitorsViewed() {
                     children: [
                       InkWell(
                         onTap: () {
+
                           connectionsProfileController.callApi(controller
                               .viewProfile.data!.userView![index].id
-                              .toString());
+                              .toString()).then((value) {
+
+                                  controller.screen.value = true;
+
+                              });
+
+
                         },
                         child: Container(
                           height: 60,

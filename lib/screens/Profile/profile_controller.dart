@@ -34,6 +34,8 @@ class ProfileController extends GetxController {
   ];
   ViewProfile viewProfile = ViewProfile();
 
+  RxBool screen = false.obs;
+
   @override
   void onInit() async {
     init();

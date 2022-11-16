@@ -62,14 +62,10 @@ class AddCartApi {
 
           flutterToast(jsonDecode(response.body)["message"]);
 
+          //await UserSubscriptionAddApi.userSubscriptionAddApi();
 
-          await UserSubscriptionAddApi.userSubscriptionAddApi();
           Navigator.of(context).pop();
-       /*   final PaymentController controller = Get.find();
-          await controller.transactionApi();*/
 
-          /* Get.offAll(AdvertisementDashBord());
-          advertisementController.currentTab = 1;*/
         }
         return addCardModelFromJson(response.body);
       } else {

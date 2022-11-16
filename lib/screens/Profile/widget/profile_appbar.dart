@@ -4,6 +4,7 @@ import 'package:rainbow/common/Widget/premiumPopUpBox/premium_pop_up_box.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
+import 'package:rainbow/screens/Profile/profile_controller.dart';
 
 import 'package:rainbow/screens/Profile/widget/edit_profile/edit_profile_contoller.dart';
 import 'package:rainbow/screens/Profile/widget/edit_profile/edit_profile_screen.dart';
@@ -15,6 +16,7 @@ import 'package:rainbow/utils/color_res.dart';
 
 ConnectionsController controller = Get.put(ConnectionsController());
 HomeController homeController = Get.put(HomeController());
+ProfileController profileController = Get.put(ProfileController());
 
 Widget profileAppbar(
     String text, bool show, context, int i, VoidCallback? onTap,
@@ -36,11 +38,13 @@ Widget profileAppbar(
           children: [
             InkWell(
               onTap: () {
+
                 if (i == 2) {
                   if (onTap2 == null) {
                     Navigator.of(context).pop();
                   } else {
-                    onTap2();
+                    profileController.screen.value = false;
+
                   }
                 } else if (i == 1) {
                   onTap!();
