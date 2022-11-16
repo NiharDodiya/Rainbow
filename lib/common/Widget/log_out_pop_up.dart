@@ -118,9 +118,9 @@ logoutPopupAdvertise({required BuildContext context}) {
                 await PrefService.clear();
                 Get.offAll(() => AuthDashboard());
                 PrefService.setValue(PrefKeys.skipBoardingScreen, true);
-                AdHomeController adHomeController = AdHomeController();
+               // AdHomeController adHomeController = AdHomeController();
                 PaymentController paymentController = Get.find();
-                adHomeController.viewAdvertiserModel.data!.profileImage = '';
+                //adHomeController.viewAdvertiserModel.data!.profileImage = '';
                 AccountInformationController accountController = AccountInformationController();
                 accountController.imagePath = null;
                 accountController.update(["Getpic"]);
