@@ -581,7 +581,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
           },
         ),
         markerLoader
-            ? const Center(child: CircularProgressIndicator())
+            ? const FullScreenLoader()
             : const SizedBox(),
       ],
     );

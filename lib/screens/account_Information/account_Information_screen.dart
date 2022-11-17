@@ -659,7 +659,7 @@ class AccountInformationScreen extends StatelessWidget {
                           flex: 14,
                           child: InkWell(
                             child: TextField(
-                              controller: controller.countryController,
+                              controller: controller.companyCountryController,
                               style: textFieldText,
                               obscuringCharacter: "•",
                               onChanged: (value) {
@@ -701,14 +701,14 @@ class AccountInformationScreen extends StatelessWidget {
                       ),
                       child: SingleChildScrollView(
                         child: Column(
-                          children: (controller.countryController.text.isEmpty)
+                          children: (controller.companyCountryController.text.isEmpty)
                               ? listNationalities.data!.map((e) {
                                   return Padding(
                                     padding: const EdgeInsets.only(
                                         left: 20, top: 7, bottom: 7),
                                     child: InkWell(
                                       onTap: () {
-                                        controller.countryController.text =
+                                        controller.companyCountryController.text =
                                             e.name!;
                                         controller.countryBox = false;
                                         controller.update(["drop"]);
@@ -735,7 +735,7 @@ class AccountInformationScreen extends StatelessWidget {
                                         left: 20, top: 7, bottom: 7),
                                     child: InkWell(
                                       onTap: () {
-                                        controller.countryController.text =
+                                        controller.companyCountryController.text =
                                             e.name!;
                                         controller.countryBox = false;
                                         controller.update(["drop"]);

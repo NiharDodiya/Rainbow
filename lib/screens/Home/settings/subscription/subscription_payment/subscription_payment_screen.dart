@@ -20,7 +20,7 @@ class SubscriptionPaymentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.listCardApi();
+    controller.viewCardApi();
     return Scaffold(
       body: Stack(
         children: [
@@ -63,16 +63,16 @@ class SubscriptionPaymentScreen extends StatelessWidget {
                                 horizontal: Get.width * 0.1),
                             child: Column(
                               children: [
-                                GetBuilder<SubscriptionPaymentController>(
+                              /*  GetBuilder<SubscriptionPaymentController>(
                                   id: "sub",
                                   builder: (controller) {
                                     return ListView.builder(
                                       shrinkWrap: true,
                                       itemCount:
-                                          controller.listCardModel.data == null
+                                          controller.viewCardModel.data == null
                                               ? 0
                                               : controller
-                                                  .listCardModel.data!.length,
+                                                  .viewCardModel.data!.length,
                                       itemBuilder: (context, index) {
                                         return InkWell(
                                           onTap: () {
@@ -112,7 +112,7 @@ class SubscriptionPaymentScreen extends StatelessWidget {
                                                     width: Get.width * 0.03466,
                                                   ),
                                                   Text(
-                                                    "Visa Ending in ${controller.listCardModel.data![index].cardNumber.toString()}",
+                                                    "Visa Ending in ${controller.viewCardModel.data![index].cardNumber.toString()}",
                                                     style:
                                                         gilroySemiBoldTextStyle(
                                                             fontSize: 12,
@@ -122,7 +122,7 @@ class SubscriptionPaymentScreen extends StatelessWidget {
                                                   ),
                                                   const Spacer(),
                                                   Text(
-                                                    "${controller.listCardModel.data![index].expMonth.toString()}/${controller.listCardModel.data![index].expYear.toString().substring(2, 4)}",
+                                                    "${controller.viewCardModel.data![index].expMonth.toString()}/${controller.viewCardModel.data![index].expYear.toString().substring(2, 4)}",
                                                     style:
                                                         gilroySemiBoldTextStyle(
                                                             fontSize: 12,
@@ -141,7 +141,71 @@ class SubscriptionPaymentScreen extends StatelessWidget {
                                       },
                                     );
                                   },
-                                ),
+                                ),*/
+                                GetBuilder<SubscriptionPaymentController>(id:"sub",
+                                  builder: (controller) {
+                                  return controller.viewCardModel.data == null ?const SizedBox():InkWell(
+                                    onTap: () {
+                                      controller.changeIndex(0);
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          bottom: 15),
+                                      child: Container(
+                                        width: Get.width,
+                                        height: Get.height * 0.0800,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                            const BorderRadius.all(
+                                              Radius.circular(12),
+                                            ),
+                                            border:  Border.all(
+                                                color: ColorRes
+                                                    .color_50369C,
+                                                width: 3,
+                                                style:
+                                                BorderStyle.solid),
+                                            color: ColorRes.white),
+                                        child: Row(
+                                          children: [
+                                            SizedBox(
+                                              width: Get.width * 0.02133,
+                                            ),
+                                            Image.asset(
+                                              AssetRes.visalogo,
+                                              width: Get.width * 0.13,
+                                            ),
+                                            SizedBox(
+                                              width: Get.width * 0.03466,
+                                            ),
+                                            Text(
+                                              "Visa Ending in ${controller.viewCardModel.data!.cardNumber.toString()}",
+                                              style:
+                                              gilroySemiBoldTextStyle(
+                                                  fontSize: 12,
+                                                  letterSpacing: 0.02,
+                                                  color: ColorRes
+                                                      .color_434343),
+                                            ),
+                                            const Spacer(),
+                                            Text(
+                                              "${controller.viewCardModel.data!.expMonth.toString()}/${controller.viewCardModel.data!.expYear.toString().substring(2, 4)}",
+                                              style:
+                                              gilroySemiBoldTextStyle(
+                                                  fontSize: 12,
+                                                  letterSpacing: 0.02,
+                                                  color: ColorRes
+                                                      .color_434343),
+                                            ),
+                                            SizedBox(
+                                              width: Get.width * 0.03466,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },),
 
                                 /*  SizedBox(
                                   height: Get.height * 0.0184,

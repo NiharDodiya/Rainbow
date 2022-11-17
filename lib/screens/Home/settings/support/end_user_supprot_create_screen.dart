@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
+import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/Home/settings/support/support_controller.dart';
@@ -772,9 +773,7 @@ class SupportCreateEndUserScreen extends StatelessWidget {
             ),
           ),
           controller.loader.value
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
+              ? const FullScreenLoader()
               : const SizedBox(),
         ],
       );
