@@ -140,6 +140,7 @@ class AccountInformationScreen extends StatelessWidget {
                                 child: Center(
                                   child: InkWell(
                                     onTap: () {
+                                      controller.img = true;
                                       showModalBottomSheet(
                                           elevation: 10,
                                           barrierColor:

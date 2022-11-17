@@ -43,6 +43,7 @@ class AccountInformationController extends GetxController {
   TextEditingController companyNumber = TextEditingController();
   TextEditingController website = TextEditingController();
   bool professions = false;
+  bool img = false;
   List<String> dropdownList = ["Doctor", "User", "Admin"];
   AdInformationModel adViewProfile = AdInformationModel();
   UploadImage uploadImage = UploadImage();
@@ -405,10 +406,17 @@ class AccountInformationController extends GetxController {
     await PrefService.setValue(PrefKeys.phonSaveNumberAdvertiser,phoneNumber);
 
     update(["Getpic"]);
-    if (imageID != 0 || imageID != null) {
-      param1["advirtisersData"]!["id_item_profile"] = imageID;
-    }
-    update(["Getpic"]);
+
+ if(img == true){
+   update(["Getpic"]);
+   if (imageID != 0 || imageID != null) {
+     param1["advirtisersData"]!["id_item_profile"] = imageID;
+   }
+   update(["Getpic"]);
+ }
+
+
+
 
     await AdInformationAPI.adProfileEdit(param1).then(
       (value) {
