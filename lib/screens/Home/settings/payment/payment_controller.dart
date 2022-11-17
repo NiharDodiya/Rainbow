@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/model/default_crad_model.dart';
 import 'package:rainbow/model/list_card_model.dart';
 import 'package:rainbow/model/remove_card_model.dart';
 import 'package:rainbow/model/transaction_model.dart';
