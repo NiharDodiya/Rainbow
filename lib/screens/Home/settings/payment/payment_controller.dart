@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/model/default_crad_model.dart';
 import 'package:rainbow/model/list_card_model.dart';
 import 'package:rainbow/model/remove_card_model.dart';
 import 'package:rainbow/model/transaction_model.dart';
@@ -40,6 +41,7 @@ class PaymentController extends GetxController {
   ViewCardModel? viewCardModel = ViewCardModel();
   RemoveCardModel removeCardModel = RemoveCardModel();
   TransactionModel transactionModel = TransactionModel();
+  DefaultCradModel defaultCradModel = DefaultCradModel();
 
   navigateToRemove(
       {required BuildContext context, String? expiryDate, String? expiryYear, String? endingNumber}) async {
@@ -118,7 +120,7 @@ class PaymentController extends GetxController {
         errorToast("Card not available");
         loader.value = false;
       } else {
-        transactionModel = await ListCartApi.defaultCardApi(
+        defaultCradModel = await ListCartApi.defaultCardApi(
             id: listCardModel.data?[selectedIndex].id ?? 0);
         update(['more']);
         loader.value = false;
