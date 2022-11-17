@@ -62,7 +62,7 @@ class PhoneNumberController extends GetxController {
               "+${countryModel.phoneCode} ${phoneNumber.text}")
           .then((value) => phoneNumberModel = value);
       /*  await PrefService.setValue(
-          PrefKeys.id, phoneNumberModel.data!.id.toString());*/
+          PrefKeys.id, phoneNumberModel.data!.id.toString();*/
       loader.value = false;
     } catch (e) {
       loader.value = false;

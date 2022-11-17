@@ -172,7 +172,10 @@ class AccountInformationController extends GetxController {
 //account save
   accountSave() async {
     if (imageID == null) {
-      await uploadImageApi();
+     
+        await uploadImageApi();
+      
+     
     }
     if (accountValidation() && companyValidation()) {
       loader.value = true;
@@ -347,7 +350,7 @@ class AccountInformationController extends GetxController {
       await UploadImageApi.postRegister(imagePath!.path.toString())
           .then((value) async {
         uploadImage = value!;
-        imageID = uploadImage.data?.id;
+        imageID = uploadImage.data?.id ;
         await PrefService.setValue(
             PrefKeys.advertiserProfileID, uploadImage.data!.id);
       });
@@ -400,11 +403,13 @@ class AccountInformationController extends GetxController {
     };
     String phoneNumber = "${idCon} ${phoneNumberController.text}";
     await PrefService.setValue(PrefKeys.phonSaveNumberAdvertiser,phoneNumber);
+
     update(["Getpic"]);
     if (imageID != 0 || imageID != null) {
       param1["advirtisersData"]!["id_item_profile"] = imageID;
     }
     update(["Getpic"]);
+
     await AdInformationAPI.adProfileEdit(param1).then(
       (value) {
         adViewProfile = value;
@@ -440,7 +445,7 @@ class AccountInformationController extends GetxController {
         loader.value = false;
       },
     );
-    imagePath = File("");
+
     loader.value = false;
     await adHomeController.viewAdvertiserData();
     adHomeController.update(["dashBoard"]);

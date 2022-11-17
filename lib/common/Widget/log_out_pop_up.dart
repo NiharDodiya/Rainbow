@@ -115,7 +115,7 @@ logoutPopupAdvertise({required BuildContext context}) {
             TextButton(
               child: const Text('yes'),
               onPressed: () async {
-                await PrefService.clear();
+                //await PrefService.clear();
                 Get.offAll(() => AuthDashboard());
                 PrefService.setValue(PrefKeys.skipBoardingScreen, true);
                // AdHomeController adHomeController = AdHomeController();
@@ -123,7 +123,7 @@ logoutPopupAdvertise({required BuildContext context}) {
                 //adHomeController.viewAdvertiserModel.data!.profileImage = '';
                 AccountInformationController accountController = AccountInformationController();
                 accountController.imagePath = null;
-                accountController.update(["Getpic"]);
+                //accountController.update(["Getpic"]);
                 paymentController.listCardModel.data = [];
                 paymentController.transactionModel.data = [];
               },
