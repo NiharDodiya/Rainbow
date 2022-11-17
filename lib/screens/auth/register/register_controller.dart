@@ -330,7 +330,7 @@ class RegisterController extends GetxController {
           confirmPwdController.text,
           address1Controller.text,
           address2Controller.text,
-          "+${countryModel.phoneCode + phoneController.text}",
+          "+${countryModel.phoneCode} ${phoneController.text}",
           statusController.text,
           codeId.toString(),
           dobController.text,

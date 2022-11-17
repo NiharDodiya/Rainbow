@@ -162,7 +162,7 @@ class PhoneNumberScreen extends StatelessWidget {
           width: Get.width * 0.8450,
           height: 60,
           decoration: BoxDecoration(
-            color: ColorRes.colorE7D01F,
+            color: ColorRes.colorE7D01F, 
             borderRadius: BorderRadius.circular(20),
             gradient: const LinearGradient(
               colors: [ColorRes.colorFFEC5C, ColorRes.colorDFC60B],

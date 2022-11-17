@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/model/default_crad_model.dart';
 import 'package:rainbow/model/list_card_model.dart';
 import 'package:rainbow/model/remove_card_model.dart';
 import 'package:rainbow/model/transaction_model.dart';
@@ -10,6 +9,8 @@ import 'package:rainbow/model/view_cardM_model.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/payment/widget/remove_dialog.dart';
 import 'package:rainbow/screens/advertisement/ad_payment/ad_payment_api/ad_payment_api.dart';
+import 'package:rainbow/service/pref_services.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 import 'add_cart/add_cart_controller.dart';
 
 class PaymentController extends GetxController {
@@ -41,7 +42,7 @@ class PaymentController extends GetxController {
   ViewCardModel? viewCardModel = ViewCardModel();
   RemoveCardModel removeCardModel = RemoveCardModel();
   TransactionModel transactionModel = TransactionModel();
-  DefaultCradModel defaultCradModel = DefaultCradModel();
+  DefaultCradModel defaultCradModel =DefaultCradModel();
 
   navigateToRemove(
       {required BuildContext context, String? expiryDate, String? expiryYear, String? endingNumber}) async {
@@ -120,8 +121,9 @@ class PaymentController extends GetxController {
         errorToast("Card not available");
         loader.value = false;
       } else {
-        defaultCradModel = await ListCartApi.defaultCardApi(
+        transactionModel = await ListCartApi.defaultCardApi(
             id: listCardModel.data?[selectedIndex].id ?? 0);
+        await PrefService.setValue(PrefKeys.defaultCard, listCardModel.data?[selectedIndex].id);
         update(['more']);
         loader.value = false;
       }

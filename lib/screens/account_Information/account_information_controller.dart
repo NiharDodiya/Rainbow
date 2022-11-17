@@ -192,6 +192,9 @@ class AccountInformationController extends GetxController {
     for (int i = 0; i < listCountryModel.data!.length; i++) {
       if (listCountryModel.data![i].name == countryController.text) {
         idCountry = listCountryModel.data![i].id.toString();
+      }
+    }  for (int i = 0; i < listCountryModel.data!.length; i++) {
+      if (listCountryModel.data![i].name == companyCountryController.text) {
         idCompanyCountry = listCountryModel.data![i].id.toString();
       }
     }
@@ -437,6 +440,7 @@ class AccountInformationController extends GetxController {
         loader.value = false;
       },
     );
+    imagePath = File("");
     loader.value = false;
     await adHomeController.viewAdvertiserData();
     adHomeController.update(["dashBoard"]);
