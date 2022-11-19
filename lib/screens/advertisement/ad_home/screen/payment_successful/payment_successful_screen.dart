@@ -10,10 +10,13 @@ import 'package:rainbow/utils/strings.dart';
 
 import '../../../../../utils/color_res.dart';
 import '../../../ad_dashboard/ad_dashboard.dart';
+import '../create_advertisement/create_advertisement_controller.dart';
 
 class PaymentSuccessfulScreen extends StatelessWidget {
   PaymentSuccessfulScreen({Key? key}) : super(key: key);
   final AdHomeController adHomeController = Get.put(AdHomeController());
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +128,8 @@ class PaymentSuccessfulScreen extends StatelessWidget {
                                 height: Get.height * 0.007389,
                               ),
                               Text(
-                                Strings.traNo,
+                                "122900083HN",
+                                //"${adHomeController.advertisersCreateModel.data?.transactionId ?? ""}",
                                 style: poppinsMediumBold(fontSize: 14),
                               ),
                               SizedBox(

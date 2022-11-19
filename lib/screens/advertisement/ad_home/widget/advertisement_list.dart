@@ -19,7 +19,8 @@ Widget advertisementList() {
     child: RefreshIndicator(
       onRefresh: controller.onRefresh,
       child: ListView.builder(
-        itemCount: controller.myAdvertiserModel.data?.length ?? 0,
+        controller: controller.scrollController,
+        itemCount: controller.myAdList.length, //controller.myAdvertiserModel.data?.length ?? 0,
         shrinkWrap: true,
         physics: const AlwaysScrollableScrollPhysics(),
         itemBuilder: (context, index) {
@@ -32,7 +33,7 @@ Widget advertisementList() {
                 onTap: () {
                   Get.to(AdvertisementDetailsApprovedScreen(
                     i: index,
-                    id: controller.myAdvertiserModel.data?[index].id ?? 0,
+                    id: controller.myAdList[index].id ?? 0, //controller.myAdvertiserModel.data?[index].id ?? 0,
                   ));
                 },
                 child: Container(
@@ -60,14 +61,12 @@ Widget advertisementList() {
                                       : Get.to(
                                           AdvertisementDetailsApprovedScreen(
                                           i: index,
-                                          id: controller.myAdvertiserModel
-                                                  .data?[index].id ??
-                                              0,
+                                          id: controller.myAdList[index].id??0,//controller.myAdvertiserModel.data?[index].id ?? 0,
                                         ));
                                 },
                           child: Stack(
                             children: [
-                              (controller.myAdvertiserModel.data?[index]
+                              (controller.myAdList[index]
                                           .itemsList!.length ==
                                       0)
                                   ? Container(
@@ -82,8 +81,7 @@ Widget advertisementList() {
                                     )
                                   : PageView.builder(
                                       scrollDirection: Axis.horizontal,
-                                      itemCount: controller.myAdvertiserModel
-                                          .data?[index].itemsList!.length,
+                                      itemCount: controller.myAdList[index].itemsList!.length,
                                       itemBuilder: (context, index1) {
                                         return Row(
                                           children: [
@@ -93,9 +91,7 @@ Widget advertisementList() {
                                               child: Container(
                                                 width: Get.width - 60,
                                                 child: CachedNetworkImage(
-                                                  imageUrl: controller
-                                                      .myAdvertiserModel
-                                                      .data![index]
+                                                  imageUrl: controller.myAdList[index]
                                                       .itemsList![index1]
                                                       .toString(),
                                                   fit: BoxFit.cover,
@@ -140,23 +136,17 @@ Widget advertisementList() {
                                         child: Column(
                                           children: [
                                             Text(
-                                              controller
-                                                      .myAdvertiserModel
-                                                      .data?[index]
+                                              controller.myAdList[index]
                                                       .adminStatus ??
                                                   "",
                                               style: gilroySemiBoldTextStyle(
                                                   fontSize: 18,
-                                                  color: controller
-                                                              .myAdvertiserModel
-                                                              .data?[index]
+                                                  color: controller.myAdList[index]
                                                               .adminStatus
                                                               .toString() ==
                                                           "pending"
                                                       ? ColorRes.colorFFA620
-                                                      : controller
-                                                                  .myAdvertiserModel
-                                                                  .data?[index]
+                                                      : controller.myAdList[index]
                                                                   .adminStatus
                                                                   .toString() ==
                                                               "rejected"
@@ -168,23 +158,17 @@ Widget advertisementList() {
                                             const SizedBox(
                                               height: 5,
                                             ),
-                                            (controller
-                                                            .myAdvertiserModel
-                                                            .data?[index]
+                                            (controller.myAdList[index]
                                                             .adminStatus
                                                             .toString() ==
                                                         "pending" ||
-                                                    controller
-                                                            .myAdvertiserModel
-                                                            .data?[index]
+                                                controller.myAdList[index]
                                                             .adminStatus
                                                             .toString() ==
                                                         "rejected")
                                                 ? const SizedBox()
                                                 : Text(
-                                                    controller
-                                                            .myAdvertiserModel
-                                                            .data?[index]
+                                              controller.myAdList[index]
                                                             .status ??
                                                         "",
                                                     style:
@@ -235,8 +219,7 @@ Widget advertisementList() {
                                     child: Row(
                                       children: [
                                         Text(
-                                          controller.myAdvertiserModel
-                                                  .data?[index].title ??
+                                          controller.myAdList[index].title ??
                                               "",
                                           style: gilroySemiBoldTextStyle(
                                               fontSize: 14,
@@ -244,7 +227,7 @@ Widget advertisementList() {
                                         ),
                                         const Spacer(),
                                         Text(
-                                          "£${controller.myAdvertiserModel.data?[index].amount ?? ""}",
+                                          "£${controller.myAdList[index].amount ?? ""}",
                                           style: gilroySemiBoldTextStyle(
                                               fontSize: 14,
                                               color: ColorRes.black),
@@ -258,8 +241,7 @@ Widget advertisementList() {
                                   id: 'more',
                                   builder: (controller) {
                                     return controller.moreOption[index] == true
-                                        ? (controller.myAdvertiserModel
-                                                    .data?[index].adminStatus ==
+                                        ? (controller.myAdList[index].adminStatus ==
                                                 "approve")
                                             ? Align(
                                                 alignment: Alignment.topRight,
@@ -287,9 +269,7 @@ Widget advertisementList() {
                                                                       0) {
                                                                     Get.to(
                                                                         DeleteApprove(
-                                                                      idAdvertiser: controller
-                                                                          .myAdvertiserModel
-                                                                          .data![
+                                                                      idAdvertiser: controller.myAdList[
                                                                               index]
                                                                           .id
                                                                           .toString(),
@@ -297,17 +277,13 @@ Widget advertisementList() {
                                                                   } else if (index1 ==
                                                                       1) {
                                                                     Get.to(RenewSetupScreen(
-                                                                        idAdvertiser: controller
-                                                                            .myAdvertiserModel
-                                                                            .data![index]
+                                                                        idAdvertiser: controller.myAdList[index]
                                                                             .id));
                                                                   } else if (index1 ==
                                                                       2) {
                                                                     Get.to(
                                                                         CancelApprove(
-                                                                      idAdvertiser: controller
-                                                                          .myAdvertiserModel
-                                                                          .data![
+                                                                      idAdvertiser: controller.myAdList[
                                                                               index]
                                                                           .id
                                                                           .toString(),
@@ -397,9 +373,7 @@ Widget advertisementList() {
                                                             if (index1 == 0) {
                                                               Get.to(
                                                                   DeleteApprove(
-                                                                idAdvertiser: controller
-                                                                    .myAdvertiserModel
-                                                                    .data![
+                                                                idAdvertiser: controller.myAdList[
                                                                         index]
                                                                     .id
                                                                     .toString(),
@@ -407,9 +381,7 @@ Widget advertisementList() {
                                                             } else if (index1 ==
                                                                 1) {
                                                               controller.followUpAdvertiser(
-                                                                  controller
-                                                                      .myAdvertiserModel
-                                                                      .data![
+                                                                  controller.myAdList[
                                                                           index]
                                                                       .id
                                                                       .toString(),
