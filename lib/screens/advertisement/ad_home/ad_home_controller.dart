@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
@@ -83,22 +82,26 @@ class AdHomeController extends GetxController {
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
 
-          activeConnection = true;
-          T = "Turn off the data and repress again";
-       update(["network"]);
+        activeConnection = true;
+        T = "Turn off the data and repress again";
+        update(["network"]);
 
       }
     } on SocketException catch (_) {
 
-        activeConnection = false;
-        T = "Turn On the data and repress again";
-        update(["network"]);
+      activeConnection = false;
+      T = "Turn On the data and repress again";
+      update(["network"]);
     }
   }
 
   @override
   void onInit() async {
+    await myAdvertiserListData();
+    loader.value = false;
+    await myAdvertiserListData();
     await init();
+    update(["more"]);
     update(["dashBoard"]);
     update(["update"]);
     update();
@@ -106,15 +109,13 @@ class AdHomeController extends GetxController {
   }
 
   Future<void> onRefresh() async {
-    /*await init()*/
     await refreshCode();
-    // refreshController!.refreshCompleted();
   }
 
   Future<void> refreshCode() async {
     await viewAdvertiserData();
     loader.value = false;
-    await myAdvertiserListData();
+    //await myAdvertiserListData();
     loader.value = false;
   }
 
@@ -123,9 +124,12 @@ class AdHomeController extends GetxController {
     paymentController.transactionApi();
     paymentController.listCardModel;
 
+    await viewAdvertiserData();
+
+
     notificationsController.getNotifications;
     await viewAdvertiserData();
-    await myAdvertiserListData();
+
     await greeting();
   }
 

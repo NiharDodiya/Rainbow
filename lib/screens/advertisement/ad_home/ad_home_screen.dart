@@ -27,9 +27,9 @@ class _AdHomeScreenState extends State<AdHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    adHomeController.init();
+    //adHomeController.init();
     //adHomeController.myAdvertiserListDataWithOutPagination();
-    adHomeController.myAdvertiserListData();
+    //adHomeController.myAdvertiserListData();
     return Scaffold(
       body: SafeArea(
         child: Container(
