@@ -125,7 +125,9 @@ class AdHomeController extends GetxController {
     paymentController.listCardModel;
 
     await viewAdvertiserData();
-
+    /*await myAdvertiserListData();
+    loader.value = false;
+    await myAdvertiserListData();*/
 
     notificationsController.getNotifications;
     await viewAdvertiserData();
