@@ -14,11 +14,10 @@ import 'package:rainbow/utils/strings.dart';
 import '../../../../../utils/color_res.dart';
 import '../../../ad_dashboard/ad_dashboard.dart';
 
-class PaymentSuccessfulScreen extends StatelessWidget {
-  PaymentSuccessfulScreen({Key? key}) : super(key: key);
+class PaymentSuccessfulScreenR extends StatelessWidget {
+  PaymentSuccessfulScreenR({Key? key}) : super(key: key);
   final AdHomeController adHomeController = Get.put(AdHomeController());
-  PaymentController paymentController = Get.put(PaymentController());
-  CreateAdvertisementController createAdvertisementController = Get.put(CreateAdvertisementController());
+
   RenewAdSetupDateController renewAdSetupDateController = Get.put(RenewAdSetupDateController());
 
   @override
@@ -131,9 +130,8 @@ class PaymentSuccessfulScreen extends StatelessWidget {
                                 height: Get.height * 0.007389,
                               ),
                               Text(
-                                createAdvertisementController.advertisersCreateModel.data?.transactionId ?? "",
+                                renewAdSetupDateController.paymentAdvertiseModel.data?.transactionId ?? "",
                                 //paymentController.viewCardModel?.data?.tokenId ?? "",
-
                                 style: poppinsMediumBold(fontSize: 14),
                               ),
                               SizedBox(

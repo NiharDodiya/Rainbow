@@ -23,13 +23,28 @@ class _AdHomeScreenState extends State<AdHomeScreen> {
   AdHomeController adHomeController = Get.put(AdHomeController());
 
   UpdateAdvertiseController updateAdvertiseController =
-      Get.put(UpdateAdvertiseController());
+  Get.put(UpdateAdvertiseController());
+
+  myInit() async{
+
+   /* await adHomeController.myAdvertiserListData();
+
+    adHomeController.scrollController.addListener(adHomeController.pagination);*/
+
+
+
+    await adHomeController.viewAdvertiserData();
+  }
 
   @override
   Widget build(BuildContext context) {
+    myInit();
+
     //adHomeController.init();
+    //adHomeController.update(["more"]);
     //adHomeController.myAdvertiserListDataWithOutPagination();
     //adHomeController.myAdvertiserListData();
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -55,9 +70,9 @@ class _AdHomeScreenState extends State<AdHomeScreen> {
                     GetBuilder<AdHomeController>(
                         id: 'list',
                         builder: (controller) {
-                          return (controller.myAdvertiserModel.data == null ||
-                                  controller.myAdvertiserModel.data!.length ==
-                                      0)
+                          return (controller.myAdList == null ||
+                              controller.myAdList.length ==
+                                  0)
                               ? noAdvertisement()
                               : advertisementList();
                         }),

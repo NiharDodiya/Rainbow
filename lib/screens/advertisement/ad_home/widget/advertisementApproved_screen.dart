@@ -7,7 +7,8 @@ import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class AdvertisementApprovedScreen extends StatelessWidget {
-  const AdvertisementApprovedScreen({Key? key}) : super(key: key);
+  String? traId;
+   AdvertisementApprovedScreen({Key? key, required this.traId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +82,7 @@ class AdvertisementApprovedScreen extends StatelessWidget {
                         color: ColorRes.colorC4C4C4, fontSize: 12),
                   ),
                   Text(
-                    Strings.transactionHint,
+                    "$traId",
                     style: gilroyMediumTextStyle(fontSize: 14),
                   ),
                 ],

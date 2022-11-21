@@ -600,7 +600,7 @@ class ShowBottomNext extends StatelessWidget {
                               SizedBox(
                                 height: Get.height * 0.0209,
                               ),
-                              Text(
+                             /* Text(
                                 "Transaction Number",
                                 style: poppinsRegularBold(fontSize: 12),
                               ),
@@ -608,12 +608,13 @@ class ShowBottomNext extends StatelessWidget {
                                 height: Get.height * 0.007389,
                               ),
                               Text(
-                                paymentController.viewCardModel?.data?.tokenId ?? "",
+                               // paymentController.viewCardModel?.data?.tokenId ?? "",
+                                "id",
                                 style: poppinsMediumBold(fontSize: 14),
                               ),
                               SizedBox(
                                 height: Get.height * 0.0209,
-                              ),
+                              ),*/
                               Text(
                                 "Service",
                                 style: poppinsRegularBold(fontSize: 12),

@@ -896,8 +896,9 @@ class SupportDetailsScreen extends StatelessWidget {
                       height: Get.height * 0.0233,
                     ),
                     ReadMoreText(
-                      controller.viewSupportTicketModel.data![index].description
-                          .toString(),
+                        (controller.viewSupportTicketModel.data![index].description
+                            .toString() == 'null')? "" : controller.viewSupportTicketModel.data![index].description
+                            .toString(),
                       trimLines: 3,
                       style: gilroyMediumTextStyle(fontSize: 14),
                       trimMode: TrimMode.Line,

@@ -66,6 +66,7 @@ class AdHomeController extends GetxController {
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
       await myAdvertiserListData();
+      update(['more']);
     }
     update(['more']);
   }
@@ -97,10 +98,9 @@ class AdHomeController extends GetxController {
 
   @override
   void onInit() async {
-    await myAdvertiserListData();
-    loader.value = false;
-    await myAdvertiserListData();
-    await init();
+   await  init();
+
+
     update(["more"]);
     update(["dashBoard"]);
     update(["update"]);
@@ -115,7 +115,11 @@ class AdHomeController extends GetxController {
   Future<void> refreshCode() async {
     await viewAdvertiserData();
     loader.value = false;
-    //await myAdvertiserListData();
+
+    page = 1;
+    myAdList = [];
+    await myAdvertiserListData();
+    //await myAdvertiserListDataWithOutPagination();
     loader.value = false;
   }
 
@@ -123,14 +127,12 @@ class AdHomeController extends GetxController {
     await checkUserConnection();
     paymentController.transactionApi();
     paymentController.listCardModel;
-
+    await myAdvertiserListData();
+    scrollController.addListener(pagination);
     await viewAdvertiserData();
-    /*await myAdvertiserListData();
-    loader.value = false;
-    await myAdvertiserListData();*/
+    update(["more"]);
 
     notificationsController.getNotifications;
-    await viewAdvertiserData();
 
     await greeting();
   }
@@ -167,12 +169,12 @@ class AdHomeController extends GetxController {
   }
 
 
-
   Future<void> myAdvertiserListData() async {
     try {
       loader.value = true;
       myAdvertiserModel = await MyAdvertiserApi.myAdvertiserDataList(page, limit);
       page++;
+      print(page);
       myAdList.addAll(myAdvertiserModel.data!);
       moreOption = List.filled(myAdList.length, false);
       update(['more']);
@@ -190,6 +192,7 @@ class AdHomeController extends GetxController {
   Future<void> myAdvertiserListDataWithOutPagination({int? pageLength}) async {
     try {
       loader.value = true;
+
 
       myAdvertiserModel = await MyAdvertiserApi.myAdvertiserDataList(
           1, pageLength ?? myAdList.length);

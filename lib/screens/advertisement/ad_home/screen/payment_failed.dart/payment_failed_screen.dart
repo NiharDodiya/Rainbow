@@ -124,7 +124,7 @@ class PaymentFailedScreen extends StatelessWidget {
                             SizedBox(
                               height: Get.height * 0.0209,
                             ),
-                            Text(
+                            /*Text(
                               Strings.transactionNumber,
                               style: poppinsRegularBold(fontSize: 12),
                             ),
@@ -137,7 +137,7 @@ class PaymentFailedScreen extends StatelessWidget {
                             ),
                             SizedBox(
                               height: Get.height * 0.0209,
-                            ),
+                            ),*/
                             Text(
                               Strings.service,
                               style: poppinsRegularBold(fontSize: 12),

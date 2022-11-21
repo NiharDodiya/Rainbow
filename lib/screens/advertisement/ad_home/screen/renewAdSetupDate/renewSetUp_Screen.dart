@@ -17,6 +17,7 @@ import '../../../../../common/Widget/loaders.dart';
 import '../../../../../common/Widget/text_styles.dart';
 import '../../../../../utils/asset_res.dart';
 import '../../../../../utils/color_res.dart';
+import 'api/renewAd_api.dart';
 
 class RenewSetupScreen extends StatelessWidget {
   final int? idAdvertiser;
@@ -458,11 +459,11 @@ class RenewSetupScreen extends StatelessWidget {
   }
 }
 
-class ShowBottomNext extends StatelessWidget {
+class ShowBottomNextR extends StatelessWidget {
   final String? amount;
   final int? id;
 
-  const ShowBottomNext({Key? key, this.amount, this.id}) : super(key: key);
+  const ShowBottomNextR({Key? key, this.amount, this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -590,7 +591,7 @@ class ShowBottomNext extends StatelessWidget {
                               SizedBox(
                                 height: Get.height * 0.0209,
                               ),
-                              Text(
+                              /*Text(
                                 "Transaction Number",
                                 style: poppinsRegularBold(fontSize: 12),
                               ),
@@ -603,7 +604,7 @@ class ShowBottomNext extends StatelessWidget {
                               ),
                               SizedBox(
                                 height: Get.height * 0.0209,
-                              ),
+                              ),*/
                               Text(
                                 "Service",
                                 style: poppinsRegularBold(fontSize: 12),
@@ -626,8 +627,11 @@ class ShowBottomNext extends StatelessWidget {
                         height: Get.height * 0.0665,
                       ),
                       SubmitButton(
-                        onTap: () {
-                          renewAdSetupDateController.renewAdAPI(id: id);
+                        onTap: () async{
+
+                           renewAdSetupDateController.renewAdAPI(id: id);
+
+
 
                           // createAdvertisementController.loader.value = false;
 

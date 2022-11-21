@@ -116,11 +116,21 @@ logoutPopupAdvertise({required BuildContext context}) {
               child: const Text('yes'),
               onPressed: () async {
                 //await PrefService.clear();
+
+                //Get.offAndToNamed("/AuthDashboard");
+
+                //Get.offNamed("/AuthDashboard");
+                //Get.offNamedUntil("/AuthDashboard");
+                Get.deleteAll();
+
                 Get.offAll(() => AuthDashboard());
+
+                //Get.reset();
                 PrefService.setValue(PrefKeys.userId, "");
                 PrefService.setValue(PrefKeys.accessToken, "");
                 PrefService.setValue(PrefKeys.skipBoardingScreen, true);
-               // AdHomeController adHomeController = AdHomeController();
+                //AdHomeController adHomeController = AdHomeController();
+               // adHomeController.myAdvertiserModel.data = null;
                 PaymentController paymentController = Get.find();
                 //adHomeController.viewAdvertiserModel.data!.profileImage = '';
                 AccountInformationController accountController = AccountInformationController();
@@ -128,6 +138,11 @@ logoutPopupAdvertise({required BuildContext context}) {
                 //accountController.update(["Getpic"]);
                 paymentController.listCardModel.data = [];
                 paymentController.transactionModel.data = [];
+                AdHomeController adHomecon = Get.put(AdHomeController());
+
+                /*adHomecon.onClose();
+                adHomecon.page = 0;
+                adHomecon.myAdList = [];*/
               },
             ),
           ],

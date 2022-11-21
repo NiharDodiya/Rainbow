@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:rainbow/model/payment_advertise.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/payment_successful/renewPaymentSuc.dart';
 
 import 'package:rainbow/screens/advertisement/ad_home/screen/renewAdSetupDate/api/renewAd_api.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/renewAdSetupDate/renewSetUp_Screen.dart';
@@ -45,10 +47,12 @@ class RenewAdSetupDateController extends GetxController {
     update(['range']);
   }
 
-  void renewAdAPI({int? id}) async {
+  PaymentAdvertiseModel paymentAdvertiseModel = PaymentAdvertiseModel();
+
+  Future<void> renewAdAPI({int? id}) async {
     DateTime now = DateTime.now();
     loader.value = true;
-    await RenewAdApi.renewAdApi(
+   await RenewAdApi.renewAdApi(
       idAd: id,
       startDate: DateFormat().add_yMd().format(startTime!),
       //startTime!.add(Duration(days: 1))!
@@ -58,12 +62,19 @@ class RenewAdSetupDateController extends GetxController {
               .format(DateTime(now.year, now.month, now.day, 24, 00, 00))
           : DateFormat().add_yMd().format(endTime!),
       amount: (totalAmountApi == null || totalAmountApi == 0)?1000:totalAmountApi,
-    );
+    ).then((value) async{
+     loader.value = true;
+     paymentAdvertiseModel = await AdvPaymentApi.advPaymentApi(idAd: id);
+     loader.value = false;
+     Get.to(() => PaymentSuccessfulScreenR());
+   });
     totalAmount=0;
     totalAmountApi=0;
     loader.value = false;
     update(["advertiser"]);
   }
+
+
 
 /*  UploadImage uploadImage = UploadImage();
 
@@ -101,7 +112,7 @@ class RenewAdSetupDateController extends GetxController {
         ),
 
         // enableDrag: true,
-        builder: (_) => ShowBottomNext(
+        builder: (_) => ShowBottomNextR(
           amount:  (totalAmount.toString() == "" || totalAmount == null || totalAmount == 0)?"10":totalAmount.toString(),
           id: id,
         ),

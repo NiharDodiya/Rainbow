@@ -13,7 +13,9 @@ import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/helper.dart';
+import 'package:rainbow/model/create_advertiser_model.dart';
 import 'package:rainbow/model/list_user_tag_model.dart';
+import 'package:rainbow/model/my_advertiser_model.dart';
 
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/advertisement_deatail/advertisement_deatail_screen.dart';
@@ -351,10 +353,12 @@ int? totalAmountApi;
   List<int> imgIdList = [];
   AdHomeController adHomeController = Get.put(AdHomeController());
 
+  AdvertisersCreateModel advertisersCreateModel = AdvertisersCreateModel();
+
   void addAdvertisement(List imageId) async {
     DateTime now = DateTime.now();
     loader.value = true;
-    await AddAdvertisement.addAdvertisementApi(
+    advertisersCreateModel = await AddAdvertisement.addAdvertisementApi(
       tagUser: tags,
       idItem: imageId,
       title: titleController.text,
@@ -381,7 +385,7 @@ int? totalAmountApi;
     totalAmountApi=0;
     print(totalAmountApi);
     //adHomeController.myAdvertiserListData();
-    adHomeController.myAdvertiserListDataWithOutPagination();
+    //adHomeController.myAdvertiserListDataWithOutPagination();
     adHomeController.update(['more']);
     loader.value = false;
     update(["advertiser"]);

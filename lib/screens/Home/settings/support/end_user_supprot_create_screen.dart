@@ -878,7 +878,9 @@ class SupportCreateEndUserScreen extends StatelessWidget {
                 height: Get.height * 0.0233,
               ),
               ReadMoreText(
-                controller.viewSupportTicketModel.data![index].description
+
+                (controller.viewSupportTicketModel.data![index].description
+                    .toString() == 'null')? "" : controller.viewSupportTicketModel.data![index].description
                     .toString(),
                 trimLines: 3,
                 style: gilroyMediumTextStyle(fontSize: 14),

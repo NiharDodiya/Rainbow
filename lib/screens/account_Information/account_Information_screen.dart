@@ -542,10 +542,10 @@ class AccountInformationScreen extends StatelessWidget {
                   ),
                   Container(
                     height: 60,
-                    width: Get.width / 1.6,
+                    width: Get.width / 1.7,
                     padding: EdgeInsets.only(left: 5, top: 4),
                     decoration: BoxDecoration(
-                      color: ColorRes.white,
+                      color: Colors.transparent,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: TextField(
