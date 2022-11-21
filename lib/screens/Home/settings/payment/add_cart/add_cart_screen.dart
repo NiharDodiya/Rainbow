@@ -421,7 +421,10 @@ class AddCartScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(20),
                                       ),
                                       child: Padding(padding: const EdgeInsets.only(left: 20,top: 5),
-                                        child: TextField( controller: controller.cvvController,style: textFieldText,inputFormatters: [ LengthLimitingTextInputFormatter(3),],
+                                        child: TextField(
+                                            controller: controller.cvvController,
+                                            style: textFieldText,inputFormatters: [ LengthLimitingTextInputFormatter(3),],
+                                            keyboardType: TextInputType.number,
                                             decoration: InputDecoration(
                                               border: InputBorder.none,
                                               hintStyle: gilroyMediumTextStyle(

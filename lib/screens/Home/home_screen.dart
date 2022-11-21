@@ -978,7 +978,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 VisibilityDetector(
               key: Key(index.toString()),
               onVisibilityChanged: (info) {
-                if (info.visibleFraction == 1) {
+                if (info.visibleFraction == 0) {
                   controller.postViewData(
                       controller.friendPostListData[index].id.toString());
                 }

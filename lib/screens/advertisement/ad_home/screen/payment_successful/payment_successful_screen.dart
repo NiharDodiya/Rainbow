@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
+import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -14,6 +15,7 @@ import '../../../ad_dashboard/ad_dashboard.dart';
 class PaymentSuccessfulScreen extends StatelessWidget {
   PaymentSuccessfulScreen({Key? key}) : super(key: key);
   final AdHomeController adHomeController = Get.put(AdHomeController());
+  PaymentController paymentController = Get.put(PaymentController());
 
   @override
   Widget build(BuildContext context) {
@@ -118,14 +120,14 @@ class PaymentSuccessfulScreen extends StatelessWidget {
                                 height: Get.height * 0.0209,
                               ),
                               Text(
-                                Strings.transactionNumber,
+                                 Strings.transactionNumber,
                                 style: poppinsRegularBold(fontSize: 12),
                               ),
                               SizedBox(
                                 height: Get.height * 0.007389,
                               ),
                               Text(
-                                Strings.traNo,
+                                paymentController.viewCardModel?.data?.tokenId ?? "",
                                 style: poppinsMediumBold(fontSize: 14),
                               ),
                               SizedBox(

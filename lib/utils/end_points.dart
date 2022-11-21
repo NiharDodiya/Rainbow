@@ -103,4 +103,5 @@ class EndPoints {
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";
+  static const paymentAdvertise = "$baseUrl/admin/payment/adv";
 }

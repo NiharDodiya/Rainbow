@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/formatters/money_input_formatter.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
+import 'package:rainbow/model/view_cardM_model.dart';
+import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
@@ -482,6 +484,7 @@ class ShowBottomNext extends StatelessWidget {
     CreateAdvertisementController createAdvertisementController =
         Get.put(CreateAdvertisementController());
     AdHomeController adHomeController = Get.find<AdHomeController>();
+    PaymentController paymentController = Get.put(PaymentController());
     return Obx(
       () => Stack(
         children: [
@@ -605,7 +608,7 @@ class ShowBottomNext extends StatelessWidget {
                                 height: Get.height * 0.007389,
                               ),
                               Text(
-                                "122900083HN",
+                                paymentController.viewCardModel?.data?.tokenId ?? "",
                                 style: poppinsMediumBold(fontSize: 14),
                               ),
                               SizedBox(
@@ -634,6 +637,7 @@ class ShowBottomNext extends StatelessWidget {
                       ),
                       SubmitButton(
                         onTap: () async {
+
                           await createAdvertisementController.uploadImageApi();
 
                           // createAdvertisementController.loader.value = false;

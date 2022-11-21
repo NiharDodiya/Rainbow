@@ -54,6 +54,11 @@ class PaymentController extends GetxController {
     try {
       loader.value = true;
       listCardModel = await ListCartApi.listCardsApi(showToast: showToast);
+
+      if(listCardModel.data?[selectedIndex].isPrimary == true){
+        await PrefService.setValue(PrefKeys.defaultCard, listCardModel.data?[selectedIndex].id);
+      }
+
        viewCardApi();
       loader.value = false;
       update(['more']);
@@ -66,7 +71,7 @@ class PaymentController extends GetxController {
     } catch (e) {
       loader.value = false;
       //errorToast("No internet connection");
-
+      await PrefService.setValue(PrefKeys.defaultCard, listCardModel.data?[selectedIndex].id);
 
       debugPrint(e.toString());
     }
@@ -124,7 +129,7 @@ class PaymentController extends GetxController {
       } else {
         transactionModel = await ListCartApi.defaultCardApi(
             id: listCardModel.data?[selectedIndex].id ?? 0);
-        await PrefService.setValue(PrefKeys.defaultCard, listCardModel.data?[selectedIndex].id);
+        //await PrefService.setValue(PrefKeys.defaultCard, listCardModel.data?[selectedIndex].id);
         update(['more']);
         loader.value = false;
       }
