@@ -117,6 +117,8 @@ logoutPopupAdvertise({required BuildContext context}) {
               onPressed: () async {
                 //await PrefService.clear();
                 Get.offAll(() => AuthDashboard());
+                PrefService.setValue(PrefKeys.userId, "");
+                PrefService.setValue(PrefKeys.accessToken, "");
                 PrefService.setValue(PrefKeys.skipBoardingScreen, true);
                // AdHomeController adHomeController = AdHomeController();
                 PaymentController paymentController = Get.find();

@@ -120,7 +120,7 @@ class PaymentSuccessfulScreen extends StatelessWidget {
                                 height: Get.height * 0.0209,
                               ),
                               Text(
-                                 Strings.transactionNumber,
+                                Strings.transactionNumber,
                                 style: poppinsRegularBold(fontSize: 12),
                               ),
                               SizedBox(

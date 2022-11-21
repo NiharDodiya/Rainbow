@@ -100,12 +100,14 @@ class MyAdvertiserApi {
     }
   }
 
-  static Future myAdvertiserDataList() async {
+  static Future myAdvertiserDataList(int page, int limit) async {
     String accesToken = PrefService.getString(PrefKeys.registerToken);
     try {
       String url = EndPoints.myAdvertiserList;
 
-      Map<String, String> param = {};
+      Map<String, dynamic> param = {
+        "page": page, "limit": limit
+      };
 
       http.Response? response = await HttpService.postApi(
           url: url,
@@ -182,7 +184,8 @@ class MyAdvertiserApi {
 
       jsonDecode(response.body);
 
-      adHomeController.myAdvertiserListData();
+      //adHomeController.myAdvertiserListData();
+      adHomeController.myAdvertiserListDataWithOutPagination();
 
       flutterToast(jsonDecode(response.body)["message"]);
 
