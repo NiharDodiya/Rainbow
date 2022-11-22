@@ -341,7 +341,6 @@ class HomeController extends GetxController {
           1, pageLength ?? friendPostListData.length);
       friendPostListData = friendPostViewModel.data!;
       update(['home']);
-
       loader.value = false;
     } catch (e) {
       debugPrint(e.toString());
