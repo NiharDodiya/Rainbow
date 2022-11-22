@@ -37,7 +37,7 @@ Widget advertisementList() {
                   ),
                   InkWell(
                     onTap: () async{
-                     PaymentAdvertiseModel paymentAdvertiseModel = PaymentAdvertiseModel();
+                     /*PaymentAdvertiseModel paymentAdvertiseModel = PaymentAdvertiseModel();
 
                       paymentAdvertiseModel = await AdvPaymentApi.advPaymentApi(idAd: controller.myAdList[index].id ?? 0);
 
@@ -46,7 +46,7 @@ Widget advertisementList() {
                        id: controller.myAdList[index].id ?? 0, //controller.myAdvertiserModel.data?[index].id ?? 0,
                        traId: paymentAdvertiseModel.data?.transactionId ?? "",
                      ));
-
+*/
                     },
                     child: Container(
                       height: 202,
