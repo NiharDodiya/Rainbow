@@ -165,6 +165,7 @@ class PaymentSuccessfulScreenR extends StatelessWidget {
                     onTap: () {
                       AdHomeController adHomeController = Get.find();
                       adHomeController.update(["more"]);
+                      Get.deleteAll();
                       Get.to(() => AdvertisementDashBord());
                     },
                     text: Strings.backToHome,

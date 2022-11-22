@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:rainbow/model/payment_advertise.dart';
+import 'package:rainbow/model/renew_ad_model.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_successful/renewPaymentSuc.dart';
 
 import 'package:rainbow/screens/advertisement/ad_home/screen/renewAdSetupDate/api/renewAd_api.dart';
@@ -48,6 +49,7 @@ class RenewAdSetupDateController extends GetxController {
   }
 
   PaymentAdvertiseModel paymentAdvertiseModel = PaymentAdvertiseModel();
+  RenewAdModel renewAdModel = RenewAdModel();
 
   Future<void> renewAdAPI({int? id}) async {
     DateTime now = DateTime.now();

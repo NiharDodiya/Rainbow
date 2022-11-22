@@ -128,6 +128,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
     AdHomeController adHomeController = Get.put(AdHomeController());
     EditAdvertiesementController editAdvertiesementController =
         Get.put(EditAdvertiesementController());
+
     return Column(
       children: [
         GetBuilder<CreateAdvertisementController>(
@@ -180,6 +181,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                             children: [
                               InkWell(
                                 onTap: () {
+                                  adHomeController.loader.value = false;
                                   Get.back();
                                 },
                                 child: Container(

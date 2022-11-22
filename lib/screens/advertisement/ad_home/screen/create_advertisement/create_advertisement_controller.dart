@@ -355,7 +355,7 @@ int? totalAmountApi;
 
   AdvertisersCreateModel advertisersCreateModel = AdvertisersCreateModel();
 
-  void addAdvertisement(List imageId) async {
+ void addAdvertisement(List imageId) async {
     DateTime now = DateTime.now();
     loader.value = true;
     advertisersCreateModel = await AddAdvertisement.addAdvertisementApi(
@@ -380,13 +380,19 @@ int? totalAmountApi;
               .format(DateTime(now.year, now.month, now.day, 24, 00, 00))
           : DateFormat().add_yMd().format(endTime!),
       amount: (totalAmountApi == null || totalAmountApi == 0)?1000:totalAmountApi,
-    );
+    )/*.then((value) {
+      loader.value = true;
+      adHomeController.myAdvertiserListData();
+      loader.value = false;
+      return advertisersCreateModel;
+    })*/;
     totalAmount=0;
     totalAmountApi=0;
     print(totalAmountApi);
-    //adHomeController.myAdvertiserListData();
+   await adHomeController.myAdvertiserListData();
     //adHomeController.myAdvertiserListDataWithOutPagination();
-    adHomeController.update(['more']);
+    update(['more', 'list']);
+
     loader.value = false;
     update(["advertiser"]);
   }

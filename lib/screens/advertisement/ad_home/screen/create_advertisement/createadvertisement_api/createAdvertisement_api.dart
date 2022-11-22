@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/create_advertiser_model.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_successful/payment_successful_screen.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
@@ -65,7 +66,9 @@ class AddAdvertisement {
         bool? status = jsonDecode(response.body)["status"];
         if (status == true) {
           final PaymentController controller = Get.find();
+          AdHomeController adHomeController = Get.put(AdHomeController());
           await controller.transactionApi();
+          //adHomeController.myAdvertiserListData();
 
           Get.to(() => PaymentSuccessfulScreen());
 
