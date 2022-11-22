@@ -332,7 +332,7 @@ class Strings {
   static const advertisementApproved = "Advertisement has been approved";
   static const advertisementRejected = "Advertisement has been rejected";
   static const transactionNumber = "Transaction number";
-  static const transactionHint = "122900083HN";
+
   static const postAds = "Post Ads";
   static const approved = "Approved";
   static const rejected = "Rejected";

@@ -91,6 +91,7 @@ class AdvPaymentApi {
         if (status == true) {
           final PaymentController controller = Get.find();
           await controller.transactionApi();
+
           controller.loader.value = false;
         }
         return paymentAdvertiseModelFromJson(response.body);

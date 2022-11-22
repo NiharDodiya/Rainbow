@@ -68,19 +68,16 @@ Widget advertisementList() {
                                 errorToast("No internet connection");
                               }
                                   : () async{
-                                PaymentAdvertiseModel paymentAdvertiseModel = PaymentAdvertiseModel();
 
-
-                                paymentAdvertiseModel = await AdvPaymentApi.advPaymentApi(idAd: controller.myAdList[index].id ?? 0);
-
-
+                                controller.onCloseMenu();
+                               await controller.onMenuId(controller.myAdList[index].id);
                                 (controller.moreOption[index] == true)
                                     ? controller.onCloseMenu()
                                     : Get.to(
                                     AdvertisementDetailsApprovedScreen(
                                       i: index,
                                       id: controller.myAdList[index].id??0,//controller.myAdvertiserModel.data?[index].id ?? 0,
-                                      traId: paymentAdvertiseModel.data?.transactionId ?? "",
+                                      traId: controller.paymentAdvertiseModel.data?.transactionId ?? "",
                                     ));
                               },
                               child: Stack(

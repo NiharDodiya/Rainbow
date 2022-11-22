@@ -4,14 +4,18 @@ import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/create_advertiser_model.dart';
 import 'package:rainbow/model/my_advertiser_model.dart';
+import 'package:rainbow/model/payment_advertise.dart';
 import 'package:rainbow/model/view_advertiser_model.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/myAdvertiser_api/myAdvertiser_api.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_screen.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/renewAdSetupDate/api/renewAd_api.dart';
 import 'package:rainbow/screens/advertisement/ad_home/viewAdvertiserProfile_api/viewAdvertiser_api.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
+
+import '../../Profile/widget/profile_appbar.dart';
 
 class AdHomeController extends GetxController {
   //AdvertisementController advController = Get.put(AdvertisementController());
@@ -184,6 +188,12 @@ class AdHomeController extends GetxController {
 
   void onCloseMenu() {
     moreOption = List.filled(myAdList.length, false);
+    update(['more']);
+  }
+  PaymentAdvertiseModel paymentAdvertiseModel = PaymentAdvertiseModel();
+
+  Future<void> onMenuId(int? id) async {
+    paymentAdvertiseModel = await AdvPaymentApi.advPaymentApi(idAd: id ?? 0);
     update(['more']);
   }
 
