@@ -1,20 +1,23 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rainbow/model/acceptFriendRequest_model.dart';
+import 'package:rainbow/model/accept_friend_request_model.dart';
 import 'package:rainbow/model/block_model.dart';
-import 'package:rainbow/model/cancleFriedRequest_model.dart';
+import 'package:rainbow/model/cancle_fried_request_model.dart';
 import 'package:rainbow/model/profile_model.dart';
-import 'package:rainbow/model/sendFriendRequest_model.dart';
-import 'package:rainbow/model/unFriend_model.dart';
+import 'package:rainbow/model/send_friend_request_model.dart';
+import 'package:rainbow/model/unfriend_model.dart';
 import 'package:rainbow/model/unblock_model.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/api/OtherProfileApi.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_screen.dart';
-import 'package:rainbow/screens/Profile/acceptFriendRequest_api/accaeptFriedRequest_api.dart';
-import 'package:rainbow/screens/Profile/sendFriendRequest_api/sendFriendRequest_api.dart';
-import 'package:rainbow/screens/Profile/unFriendRequest_api/unFriendRequest_api.dart';
+import 'package:rainbow/screens/Profile/acceptFriendRequest_api/accaept_fried_request_api.dart';
+import 'package:rainbow/screens/Profile/profile_controller.dart';
+import 'package:rainbow/screens/Profile/sendFriendRequest_api/send_friend_request_api.dart';
+import 'package:rainbow/screens/Profile/unFriendRequest_api/unfriend_request_api.dart';
 import 'package:rainbow/screens/Profile/widget/block_unblock%20_Api/block_api.dart';
 import 'package:rainbow/screens/Profile/widget/block_unblock%20_Api/unblock_api.dart';
+
+ProfileController profileController = Get.put(ProfileController());
 
 class ConnectionsProfileController extends GetxController {
 /*
@@ -48,17 +51,19 @@ class ConnectionsProfileController extends GetxController {
   RxBool loader = false.obs;
 
   Future<void> callApi(String? userId) async {
-    loader.value = true;
+
+    profileController.loader.value = true;
     // int userId= PrefService.getInt(PrefKeys.userId);
-    Get.to(() => ConnectionsProfileScreen())?.then((value) {
+
+    /*Get.to(() => ConnectionsProfileScreen())?.then((value) {
       if (kDebugMode) {
         print("PROFILE SCREEN BACK 2");
       }
       profileModel = ProfileModel();
-    });
+    });*/
     profileModel = await OtherProfileApi.getOtherUerData(userId.toString())
         .then((value) => profileModel = value!);
-    loader.value = false;
+    profileController.loader.value = false;
   }
 
   Future<void> blockUserDetails(String? id) async {

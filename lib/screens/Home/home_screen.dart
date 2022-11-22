@@ -10,7 +10,7 @@ import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/model/request_user_model.dart';
 import 'package:rainbow/screens/Home/Story/story_screen.dart';
 import 'package:rainbow/screens/Home/ad_in_latest_feed/ad_in_latest_feed.dart';
-import 'package:rainbow/screens/Home/addStroy/addStory_screen.dart';
+import 'package:rainbow/screens/Home/addStroy/add_story_screen.dart';
 import 'package:rainbow/screens/Home/comments/comments_controller.dart';
 import 'package:rainbow/screens/Home/comments/comments_screen.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
@@ -81,100 +81,113 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                           const Spacer(),
                           const SizedBox(width: 10),
-                         GetBuilder<HomeController>(
-                           id: "network",
-                             builder: (homeController){
-                               homeController.CheckUserConnection();
-                           return  GestureDetector(
-                             onTap: homeController.ActiveConnection == false?(){
-                               errorToast("No internet connection");
-                             }:() {
-                               controller.onTapSetting();
-                             },
-                             child: const Image(
-                               image: AssetImage(
-                                 AssetRes.settings,
-                               ),
-                               height: 19.35,
-                               width: 19.35,
-                             ),
-                           );
-                         }),
+                          GetBuilder<HomeController>(
+                              id: "network",
+                              builder: (homeController) {
+                                homeController.checkUserConnection();
+                                return GestureDetector(
+                                  onTap: homeController.activeConnection ==
+                                          false
+                                      ? () {
+                                          errorToast("No internet connection");
+                                        }
+                                      : () {
+                                          controller.onTapSetting();
+                                        },
+                                  child: const Image(
+                                    image: AssetImage(
+                                      AssetRes.settings,
+                                    ),
+                                    height: 19.35,
+                                    width: 19.35,
+                                  ),
+                                );
+                              }),
                           SizedBox(
                             width: Get.width * 0.04,
                           ),
                           GetBuilder<HomeController>(
-                            id: "network",
-                              builder: (homeController){
-                                homeController.CheckUserConnection();
-                            return InkWell(
-                              onTap: homeController.ActiveConnection == false?(){
-                                errorToast("No internet connection");
-                              }:() {
-                                controller.onNotyIconBtnTap(context: context);
-                              },
-                              child: Stack(
-                                children: [
-                                  const SizedBox(
-                                    height: 25,
-                                    width: 25,
-                                  ),
-                                  const Positioned(
-                                    bottom: 0,
-                                    left: 0,
-                                    child: SizedBox(
-                                      height: 20,
-                                      width: 20,
-                                      child: Image(
-                                        image: AssetImage(AssetRes.notify),
-                                        height: 20,
-                                        width: 20,
+                              id: "network",
+                              builder: (homeController) {
+                                homeController.checkUserConnection();
+                                return InkWell(
+                                  onTap: homeController.activeConnection ==
+                                          false
+                                      ? () {
+                                          errorToast("No internet connection");
+                                        }
+                                      : () {
+                                          controller.onNotyIconBtnTap(
+                                              context: context);
+                                        },
+                                  child: Stack(
+                                    children: [
+                                      const SizedBox(
+                                        height: 25,
+                                        width: 25,
                                       ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    top: 0,
-                                    right: 0,
-                                    child: GetBuilder<HomeController>(
-                                      id: 'notification_badge',
-                                      builder: (controller) {
-                                        return homeController
-                                            .notificationModel!
-                                            .pendingCount
-                                            .toString() ==
-                                            "null" ||
-                                            homeController
-                                                .notificationModel!
-                                                .pendingCount
-                                                .toString() ==
-                                                "0"
-                                            ? const SizedBox()
-                                            : Container(
-                                          height: 16,
-                                          width: 16,
-                                          alignment: Alignment.center,
-                                          decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: ColorRes.color_FF6B97),
-                                          child: Text(
-                                            controller
-                                                .notificationModel!
-                                                .pendingCount
-                                                .toString(),
-                                            style: const TextStyle(
-                                              color: ColorRes.white,
-                                              fontSize: 8,
-                                              fontWeight: FontWeight.w800,
-                                            ),
+                                      const Positioned(
+                                        bottom: 0,
+                                        left: 0,
+                                        child: SizedBox(
+                                          height: 20,
+                                          width: 20,
+                                          child: Image(
+                                            image: AssetImage(AssetRes.notify),
+                                            height: 20,
+                                            width: 20,
                                           ),
-                                        );
-                                      },
-                                    ),
+                                        ),
+                                      ),
+                                      Positioned(
+                                        top: 0,
+                                        right: 0,
+                                        child: GetBuilder<HomeController>(
+                                          id: 'notification_badge',
+                                          builder: (controller) {
+                                            return homeController
+                                                            .notificationModel
+                                                             ==
+                                                        null || homeController
+                                                .notificationModel?.pendingCount.toString()
+                                                ==
+                                                'null'||
+                                                    homeController
+                                                            .notificationModel!
+                                                            .pendingCount
+                                                            .toString() ==
+                                                        "0"
+                                                ? const SizedBox()
+                                                : Container(
+                                                    height: 16,
+                                                    width: 16,
+                                                    alignment: Alignment.center,
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                            shape:
+                                                                BoxShape.circle,
+                                                            color: ColorRes
+                                                                .colorFF6B97),
+                                                    child: Text(
+                                                      controller
+                                                          .notificationModel!
+                                                          .pendingCount
+                                                          .toString(),
+                                                      style: const TextStyle(
+                                                        color: ColorRes.white,
+                                                        fontSize: 8,
+                                                        fontWeight:
+                                                            FontWeight.w800,
+                                                      ),
+                                                    ),
+                                                  );
+                                          },
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                            );
-                          }),
+                                );
+                              }),
                           SizedBox(
                             width: Get.width * 0.05,
                           ),
@@ -190,7 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     gradient: LinearGradient(
                       colors: [
                         ColorRes.color_50369C,
-                        ColorRes.color_D18EEE,
+                        ColorRes.colorD18EEE,
                       ],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
@@ -207,44 +220,53 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Stack(
                       children: [
                         GetBuilder<HomeController>(
-                          id: "network",
-                            builder: (homeController){
-                            homeController.CheckUserConnection();
-                          return FloatingActionButton(
-                            child: Image.asset(
-                              AssetRes.add,
-                              height: 24,
-                              width: 24,
-                            ),
-                            onPressed: homeController.ActiveConnection == false? (){
-                              errorToast("No internet connection");
-                            } : () async {
-                              //premiumPopUpBox(context: context);
-                              viewStoryController.resetAllData();
-                              // if user have not subcription show pop up
-                              controller.viewProfile.data!.userType == "free"
-                                  ? premiumPopUpBox(context: context)
-                                  : await Get.to(() => StoryScreen(
-                                image: controller.controller
-                                    .viewProfile.data!.profileImage
-                                    .toString(),
-                              ))!
-                                  .then((value) {
-                                if (value == true) {
-                                  Future.delayed(const Duration(seconds: 1))
-                                      .then((value) async {
-                                    await controller
-                                        .friendPostDataWithOutPagination(
-                                      pageLength: controller
-                                          .friendPostListData.length +
-                                          1,
-                                    );
-                                  });
-                                }
-                              });
-                            },
-                          );
-                        }),
+                            id: "network",
+                            builder: (homeController) {
+                              homeController.checkUserConnection();
+                              return FloatingActionButton(
+                                child: Image.asset(
+                                  AssetRes.add,
+                                  height: 24,
+                                  width: 24,
+                                ),
+                                onPressed: homeController.activeConnection ==
+                                        false
+                                    ? () {
+                                        errorToast("No internet connection");
+                                      }
+                                    : () async {
+                                        //premiumPopUpBox(context: context);
+                                        viewStoryController.resetAllData();
+                                        // if user have not subcription show pop up
+                                        controller.viewProfile.data!.userType ==
+                                                "free"
+                                            ? premiumPopUpBox(context: context)
+                                            : await Get.to(() => StoryScreen(
+                                                      image: controller
+                                                          .controller
+                                                          .viewProfile
+                                                          .data!
+                                                          .profileImage
+                                                          .toString(),
+                                                    ))!
+                                                .then((value) {
+                                                if (value == true) {
+                                                  Future.delayed(const Duration(
+                                                          seconds: 1))
+                                                      .then((value) async {
+                                                    await controller
+                                                        .friendPostDataWithOutPagination(
+                                                      pageLength: controller
+                                                              .friendPostListData
+                                                              .length +
+                                                          1,
+                                                    );
+                                                  });
+                                                }
+                                              });
+                                      },
+                              );
+                            }),
                         /*  subscribePopUp==true?Positioned(bottom: 0,
                             child: Image.asset(AssetRes.lockSub,height: 18,width: 18,)):const SizedBox()*/
                       ],
@@ -272,7 +294,7 @@ class _HomeScreenState extends State<HomeScreen> {
         gradient: LinearGradient(
           colors: [
             ColorRes.color_6753A3,
-            ColorRes.color_B9A2FD,
+            ColorRes.colorB9A2FD,
             ColorRes.color_6753A3,
           ],
           begin: Alignment.topCenter,
@@ -311,48 +333,59 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: Get.height * 0.02,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: GetBuilder<HomeController>(
-                          id: "network",
-                            builder: (homeController){
-                            homeController.CheckUserConnection();
-                          return InkWell(
-                            onTap: homeController.ActiveConnection == false? (){
-                              errorToast("No internet connection");
-                            } :() {
-                              // if user have not subcription show pop up
-                              controller.viewProfile.data!.userType ==
-                                  "free" //premium
-                                  ? premiumPopUpBox(context: context)
-                                  : Get.to(() => const AddStoryScreen());
-                            },
-                            child: SizedBox(
-                              width: 80,
-                              child: Stack(
-                                children: [
-                                  controller.controller.viewProfile.data ==
-                                      null ||
-                                      controller.controller.viewProfile.data!
-                                          .profileImage
-                                          .toString() ==
-                                          ""
-                                      ? Container(
-                                    height: 56,
-                                    width: 56,
-                                    decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        image: DecorationImage(
-                                            image: AssetImage(AssetRes
-                                                .portrait_placeholder),
-                                            fit: BoxFit.cover)),
-                                  )
-                                      : ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
-                                    child: SizedBox(
-                                      height: 56,
-                                      width: 56,
-                                      child:
-                                      /*Image.network(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: GetBuilder<HomeController>(
+                              id: "network",
+                              builder: (homeController) {
+                                homeController.checkUserConnection();
+                                return InkWell(
+                                  onTap: homeController.activeConnection ==
+                                          false
+                                      ? () {
+                                          errorToast("No internet connection");
+                                        }
+                                      : () {
+                                          // if user have not subcription show pop up
+                                          controller.viewProfile.data!
+                                                      .userType ==
+                                                  "free" //premium
+                                              ? premiumPopUpBox(
+                                                  context: context)
+                                              : Get.to(
+                                                  () => const AddStoryScreen());
+                                        },
+                                  child: SizedBox(
+                                    width: 80,
+                                    child: Stack(
+                                      children: [
+                                        controller.controller.viewProfile
+                                                        .data ==
+                                                    null ||
+                                                controller
+                                                        .controller
+                                                        .viewProfile
+                                                        .data!
+                                                        .profileImage
+                                                        .toString() ==
+                                                    ""
+                                            ? Container(
+                                                height: 56,
+                                                width: 56,
+                                                decoration: const BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    image: DecorationImage(
+                                                        image: AssetImage(AssetRes
+                                                            .portraitPlaceholder),
+                                                        fit: BoxFit.cover)),
+                                              )
+                                            : ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                child: SizedBox(
+                                                  height: 56,
+                                                  width: 56,
+                                                  child:
+                                                      /*Image.network(
                                             controller.controller.viewProfile
                                                 .data!.profileImage
                                                 .toString(),
@@ -360,35 +393,41 @@ class _HomeScreenState extends State<HomeScreen> {
                                             height: 56,
                                             width: 56,
                                             errorBuilder: ((context, error, stackTrace) => Image.asset(
-                                              AssetRes.portrait_placeholder,
+                                              AssetRes.portraitPlaceholder,
                                               fit: BoxFit.cover,
                                               height: 56,
                                               width: 56,
                                             )),
                                           ),*/
-                                      CachedNetworkImage(
-                                        imageUrl: controller.controller
-                                            .viewProfile.data!.profileImage
-                                            .toString(),
-                                        fit: BoxFit.cover,
-                                        placeholder: ((context, url) =>
-                                            Image.asset(
-                                              AssetRes.portrait_placeholder,
-                                              fit: BoxFit.cover,
-                                              height: 56,
-                                              width: 56,
-                                            )),
-                                        errorWidget: ((context, url,
-                                            error) =>
-                                            Image.asset(
-                                              AssetRes.portrait_placeholder,
-                                              fit: BoxFit.cover,
-                                              height: 56,
-                                              width: 56,
-                                            )),
-                                      ),
-                                    ),
-                                    /*Image.network(
+                                                      CachedNetworkImage(
+                                                    imageUrl: controller
+                                                        .controller
+                                                        .viewProfile
+                                                        .data!
+                                                        .profileImage
+                                                        .toString(),
+                                                    fit: BoxFit.cover,
+                                                    placeholder:
+                                                        ((context, url) =>
+                                                            Image.asset(
+                                                              AssetRes
+                                                                  .portraitPlaceholder,
+                                                              fit: BoxFit.cover,
+                                                              height: 56,
+                                                              width: 56,
+                                                            )),
+                                                    errorWidget: ((context, url,
+                                                            error) =>
+                                                        Image.asset(
+                                                          AssetRes
+                                                              .portraitPlaceholder,
+                                                          fit: BoxFit.cover,
+                                                          height: 56,
+                                                          width: 56,
+                                                        )),
+                                                  ),
+                                                ),
+                                                /*Image.network(
                                           controller.controller.viewProfile
                                               .data!.profileImage
                                               .toString(),
@@ -398,61 +437,61 @@ class _HomeScreenState extends State<HomeScreen> {
                                           errorBuilder:
                                               (context, error, stackTrace) {
                                             return Image.asset(
-                                              AssetRes.portrait_placeholder,
+                                              AssetRes.portraitPlaceholder,
                                               fit: BoxFit.cover,
                                               height: 56,
                                               width: 56,
                                             );
                                           },
                                         ),*/
-                                  ),
-                                  Positioned(
-                                      left: Get.width * 0.1,
-                                      bottom: 0,
-                                      child: const Image(
-                                        image: AssetImage(AssetRes.plusIcons),
-                                        height: 24,
-                                        width: 24,
-                                      )),
-                                  Positioned(
-                                    top: Get.height * 0.04,
-                                    child: Container(
-                                      height: 50,
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: ColorRes.color_B9A2FD
-                                                .withOpacity(0.3),
-                                            spreadRadius: 1,
-                                            blurRadius: 10,
-                                            offset: const Offset(4, 5),
+                                              ),
+                                        Positioned(
+                                            left: Get.width * 0.1,
+                                            bottom: 0,
+                                            child: const Image(
+                                              image: AssetImage(
+                                                  AssetRes.plusIcons),
+                                              height: 24,
+                                              width: 24,
+                                            )),
+                                        Positioned(
+                                          top: Get.height * 0.04,
+                                          child: Container(
+                                            height: 50,
+                                            width: 50,
+                                            decoration: BoxDecoration(
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: ColorRes.colorB9A2FD
+                                                      .withOpacity(0.3),
+                                                  spreadRadius: 1,
+                                                  blurRadius: 10,
+                                                  offset: const Offset(4, 5),
+                                                ),
+                                              ],
+                                              gradient: LinearGradient(
+                                                colors: [
+                                                  ColorRes.colorB9A2FD
+                                                      .withOpacity(0.1),
+                                                  ColorRes.colorB9A2FD
+                                                      .withOpacity(0.1),
+                                                  ColorRes.colorB9A2FD
+                                                      .withOpacity(0.1),
+                                                  ColorRes.colorB9A2FD
+                                                      .withOpacity(0.1),
+                                                ],
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.bottomCenter,
+                                              ),
+                                            ),
                                           ),
-                                        ],
-                                        gradient: LinearGradient(
-                                          colors: [
-                                            ColorRes.color_B9A2FD
-                                                .withOpacity(0.1),
-                                            ColorRes.color_B9A2FD
-                                                .withOpacity(0.1),
-                                            ColorRes.color_B9A2FD
-                                                .withOpacity(0.1),
-                                            ColorRes.color_B9A2FD
-                                                .withOpacity(0.1),
-                                          ],
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                        ),
-                                      ),
-                                    ),
-                                  ), /*subscribePopUp==true?Positioned(top: Get.height*0.058,
+                                        ), /*subscribePopUp==true?Positioned(top: Get.height*0.058,
                                     child: Image.asset(AssetRes.lockSub,height: 18,width: 18,)):const SizedBox()*/
-                                ],
-                              ),
-                            ),
-                          );
-                        })
-                      ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              })),
                       const SizedBox(
                         height: 12,
                       ),
@@ -499,7 +538,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 shape: BoxShape.circle,
                                                 image: DecorationImage(
                                                     image: AssetImage(AssetRes
-                                                        .portrait_placeholder))),
+                                                        .portraitPlaceholder))),
                                           )
                                         : ClipRRect(
                                             borderRadius:
@@ -510,13 +549,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                               placeholder: (context, url) =>
                                                   Image.asset(
                                                       AssetRes
-                                                          .portrait_placeholder,
+                                                          .portraitPlaceholder,
                                                       fit: BoxFit.fitWidth),
                                               errorWidget: ((context, url,
                                                       error) =>
                                                   Image.asset(
                                                       AssetRes
-                                                          .portrait_placeholder,
+                                                          .portraitPlaceholder,
                                                       fit: BoxFit.fitWidth)),
                                               imageUrl: controller
                                                   .controller
@@ -534,7 +573,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     //     decoration: BoxDecoration(
                                     //       boxShadow: [
                                     //         BoxShadow(
-                                    //           color: ColorRes.color_B9A2FD
+                                    //           color: ColorRes.colorB9A2FD
                                     //               .withOpacity(0.3),
                                     //           spreadRadius: 2,
                                     //           blurRadius: 10,
@@ -543,13 +582,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     //       ],
                                     //       gradient: LinearGradient(
                                     //         colors: [
-                                    //           ColorRes.color_B9A2FD
+                                    //           ColorRes.colorB9A2FD
                                     //               .withOpacity(0.1),
-                                    //           ColorRes.color_B9A2FD
+                                    //           ColorRes.colorB9A2FD
                                     //               .withOpacity(0.1),
-                                    //           ColorRes.color_B9A2FD
+                                    //           ColorRes.colorB9A2FD
                                     //               .withOpacity(0.1),
-                                    //           ColorRes.color_B9A2FD
+                                    //           ColorRes.colorB9A2FD
                                     //               .withOpacity(0.1),
                                     //         ],
                                     //         begin: Alignment.topCenter,
@@ -592,6 +631,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
+
+                SizedBox(
+                  width: Get.width * 0.03,
+                ),
+                //friends story
                 SizedBox(
                   height: 129,
                   child: ListView.builder(
@@ -615,36 +659,44 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: Get.height * 0.02,
                                 ),
                                 GetBuilder<HomeController>(
-                                  id: "network",
-                                    builder: (homeController){
-                                    homeController.CheckUserConnection();
-                                  return GestureDetector(
-                                    onTap: homeController.ActiveConnection == false ? ()=>errorToast("No internet connection") :
-                                        () =>
-                                        controller.onFriedStoryTap(index),
-                                    child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(50),
-                                        child: CachedNetworkImage(
-                                          height: 56,
-                                          width: 56,
-                                          placeholder: (context, url) =>
-                                              Image.asset(
-                                                  AssetRes.portrait_placeholder,
-                                                  fit: BoxFit.fitWidth),
-                                          errorWidget: ((context, url, error) =>
-                                              Image.asset(
-                                                  AssetRes.portrait_placeholder,
-                                                  fit: BoxFit.fitWidth)),
-                                          imageUrl: viewStoryController
-                                              .storyModel
-                                              .friendsStory![index]
-                                              .userDetail!
-                                              .profileImage
-                                              .toString(),
-                                          fit: BoxFit.cover,
-                                        )),
-                                  );
-                                }),
+                                    id: "network",
+                                    builder: (homeController) {
+                                      homeController.checkUserConnection();
+                                      return GestureDetector(
+                                        onTap:
+                                            homeController.activeConnection ==
+                                                    false
+                                                ? () => errorToast(
+                                                    "No internet connection")
+                                                : () => controller
+                                                    .onFriedStoryTap(index),
+                                        child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(50),
+                                            child: CachedNetworkImage(
+                                              height: 56,
+                                              width: 56,
+                                              placeholder: (context, url) =>
+                                                  Image.asset(
+                                                      AssetRes
+                                                          .portraitPlaceholder,
+                                                      fit: BoxFit.fitWidth),
+                                              errorWidget: ((context, url,
+                                                      error) =>
+                                                  Image.asset(
+                                                      AssetRes
+                                                          .portraitPlaceholder,
+                                                      fit: BoxFit.fitWidth)),
+                                              imageUrl: viewStoryController
+                                                  .storyModel
+                                                  .friendsStory![index]
+                                                  .userDetail!
+                                                  .profileImage
+                                                  .toString(),
+                                              fit: BoxFit.cover,
+                                            )),
+                                      );
+                                    }),
                                 const SizedBox(
                                   height: 12,
                                 ),
@@ -746,31 +798,31 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         left: 10, right: 10, bottom: 20),
-                                    child:  CachedNetworkImage(
+                                    child: CachedNetworkImage(
                                       height: 50,
                                       width: 50,
                                       imageUrl: user.profileImage.toString(),
                                       imageBuilder: (context, imageProvider) =>
                                           Container(
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              image: DecorationImage(
-                                                image: imageProvider,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                            image: imageProvider,
+                                            fit: BoxFit.cover,
                                           ),
+                                        ),
+                                      ),
                                       // placeholder: (context, url) =>const Center(child:CircularProgressIndicator(),),
                                       errorWidget: (context, url, error) =>
                                           Container(
-                                            height: 50,
-                                            width: 50,
-                                            decoration: const BoxDecoration(
-                                                shape: BoxShape.circle,
-                                                image: DecorationImage(
-                                                    image: AssetImage(
-                                                        AssetRes.portrait_placeholder))),
-                                          ),
+                                        height: 50,
+                                        width: 50,
+                                        decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                                image: AssetImage(AssetRes
+                                                    .portraitPlaceholder))),
+                                      ),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -926,7 +978,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 VisibilityDetector(
               key: Key(index.toString()),
               onVisibilityChanged: (info) {
-                if (info.visibleFraction == 1) {
+                if (info.visibleFraction == 0) {
                   controller.postViewData(
                       controller.friendPostListData[index].id.toString());
                 }
@@ -958,7 +1010,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               width: 40,
                                               placeholder: const AssetImage(
                                                   AssetRes
-                                                      .portrait_placeholder),
+                                                      .portraitPlaceholder),
                                               image: NetworkImage(controller
                                                   .friendPostListData[
                                                       index]
@@ -978,13 +1030,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                         fit: BoxFit.cover,
                                         placeholder: (context, url) =>
                                             Image.asset(
-                                          AssetRes.portrait_placeholder,
+                                          AssetRes.portraitPlaceholder,
                                           height: 40,
                                           width: 40,
                                         ),
                                         errorWidget: (context, url, error) =>
                                             Image.asset(
-                                          AssetRes.portrait_placeholder,
+                                          AssetRes.portraitPlaceholder,
                                           height: 40,
                                           width: 40,
                                         ),
@@ -1031,7 +1083,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           text: " @${e.name.toString()}",
                                           style: sfProTextReguler(
                                               fontSize: 16,
-                                              color: ColorRes.color_FED785)))
+                                              color: ColorRes.colorFED785)))
                                       .toList()
                                     ..add(TextSpan(
                                         text:
@@ -1047,7 +1099,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     text: "@",
                                     style: sfProTextReguler(
                                       fontSize: 16,
-                                      color: ColorRes.color_FED785,
+                                      color: ColorRes.colorFED785,
                                     ),
                                     onTap: (val) => controller.onTagTap(
                                         controller
@@ -1062,7 +1114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     text: "#",
                                     style: sfProTextReguler(
                                       fontSize: 16,
-                                      color: ColorRes.color_FED785,
+                                      color: ColorRes.colorFED785,
                                     ),
                                   ),
                                 ],
@@ -1086,7 +1138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 style: sfProTextReguler(
                                                     fontSize: 16,
                                                     color:
-                                                        ColorRes.color_FED785),
+                                                        ColorRes.colorFED785),
                                               );
                                             },
                                           ),
@@ -1136,10 +1188,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                             padding: const EdgeInsets.only(
                                                 left: 5, right: 5),
                                             child: controller
-                                                        .friendPostListData[
-                                                            index]
-                                                        .postList![index2] ==
-                                                    null
+                                                    .friendPostListData[index]
+                                                    .postList![index2]
+                                                    .isEmpty
                                                 ? const SizedBox()
                                                 : CachedNetworkImage(
                                                     height: 80,
@@ -1364,55 +1415,65 @@ class _HomeScreenState extends State<HomeScreen> {
                                     width: Get.width * 0.05,
                                   ),
                                   GetBuilder<HomeController>(
-                                    id: "network",
-                                      builder: (homeController){
-                                        homeController.CheckUserConnection();
+                                      id: "network",
+                                      builder: (homeController) {
+                                        homeController.checkUserConnection();
                                         return InkWell(
-                                    onTap: homeController.ActiveConnection == false
-                                        ? (){
-                                      errorToast("No internet connection");
-                                    }
-                                        :() async {
-                                      commentsController.commentPostListData(
-                                          idPost: controller
-                                              .friendPostListData[index].id
-                                              .toString());
-                                      Get.to(() => CommentScreen(
-                                        idPost: controller
-                                            .friendPostListData[index]
-                                            .id
-                                            .toString(),
-                                        fullName: controller
-                                            .friendPostListData[index]
-                                            .postUser!
-                                            .fullName
-                                            .toString(),
-                                        profileImage: controller
-                                            .friendPostListData[index]
-                                            .postUser!
-                                            .profileImage
-                                            .toString(),
-                                      ))!
-                                          .then((value) async {
-                                        Future.delayed(
-                                            const Duration(seconds: 1))
-                                            .then((value) async {
-                                          await controller
-                                              .friendPostDataWithOutPagination();
-                                        });
-                                      });
-                                    },
-                                    child: const SizedBox(
-                                      height: 18,
-                                      width: 18,
-                                      child: Image(
-                                        image: AssetImage(
-                                          AssetRes.comment,
-                                        ),
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  );
+                                          onTap: homeController
+                                                      .activeConnection ==
+                                                  false
+                                              ? () {
+                                                  errorToast(
+                                                      "No internet connection");
+                                                }
+                                              : () async {
+                                                  commentsController
+                                                      .commentPostListData(
+                                                          idPost: controller
+                                                              .friendPostListData[
+                                                                  index]
+                                                              .id
+                                                              .toString());
+                                                  Get.to(() => CommentScreen(
+                                                            idPost: controller
+                                                                .friendPostListData[
+                                                                    index]
+                                                                .id
+                                                                .toString(),
+                                                            fullName: controller
+                                                                .friendPostListData[
+                                                                    index]
+                                                                .postUser!
+                                                                .fullName
+                                                                .toString(),
+                                                            profileImage: controller
+                                                                .friendPostListData[
+                                                                    index]
+                                                                .postUser!
+                                                                .profileImage
+                                                                .toString(),
+                                                          ))!
+                                                      .then((value) async {
+                                                    Future.delayed(
+                                                            const Duration(
+                                                                seconds: 1))
+                                                        .then((value) async {
+                                                      await controller
+                                                          .friendPostDataWithOutPagination();
+                                                    });
+                                                  });
+                                                },
+                                          child: const SizedBox(
+                                            height: 18,
+                                            width: 18,
+                                            child: Image(
+                                              image: AssetImage(
+                                                AssetRes.comment,
+                                              ),
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        );
                                       }),
                                   const SizedBox(
                                     width: 2,

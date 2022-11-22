@@ -4,10 +4,11 @@ import 'package:rainbow/common/Widget/premiumPopUpBox/premium_pop_up_box.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
-import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
-import 'package:rainbow/screens/Profile/widget/edit_profile/editProfile_contoller.dart';
-import 'package:rainbow/screens/Profile/widget/edit_profile/edit_profile_Screen.dart';
-import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
+import 'package:rainbow/screens/Profile/profile_controller.dart';
+
+import 'package:rainbow/screens/Profile/widget/edit_profile/edit_profile_contoller.dart';
+import 'package:rainbow/screens/Profile/widget/edit_profile/edit_profile_screen.dart';
+
 import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/screens/notification/notification_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -15,6 +16,7 @@ import 'package:rainbow/utils/color_res.dart';
 
 ConnectionsController controller = Get.put(ConnectionsController());
 HomeController homeController = Get.put(HomeController());
+ProfileController profileController = Get.put(ProfileController());
 
 Widget profileAppbar(
     String text, bool show, context, int i, VoidCallback? onTap,
@@ -36,11 +38,13 @@ Widget profileAppbar(
           children: [
             InkWell(
               onTap: () {
+
                 if (i == 2) {
                   if (onTap2 == null) {
                     Navigator.of(context).pop();
                   } else {
-                    onTap2();
+                    profileController.screen.value = false;
+
                   }
                 } else if (i == 1) {
                   onTap!();
@@ -63,7 +67,7 @@ Widget profileAppbar(
                       EditProfileController editController =
                           Get.put(EditProfileController());
                       editController.init();
-                      homeController.viewProfile.data!.userType == "free"
+                      homeController.viewProfile.data?.userType == "free"
                           ? premiumPopUpBox(context: context)
                           : Get.to(() => const EditProfileScreen());
                       //Get.to(() => const EditProfileScreen());
@@ -83,7 +87,7 @@ Widget profileAppbar(
                 NotificationsController notificationController =
                     Get.put(NotificationsController());
                 notificationController.init();
-                homeController.viewProfile.data!.userType == "free"
+                homeController.viewProfile.data?.userType == "free"
                     ? premiumPopUpBox(context: context)
                     : Get.to(() => NotificationScreen());
               },
@@ -116,7 +120,7 @@ Widget profileAppbar(
                                 alignment: Alignment.center,
                                 decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: ColorRes.color_FF6B97),
+                                    color: ColorRes.colorFF6B97),
                                 child: Text(
                                   controller.requestUsers.length.toString(),
                                   style: const TextStyle(

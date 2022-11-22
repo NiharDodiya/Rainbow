@@ -9,9 +9,12 @@ import 'package:rainbow/utils/strings.dart';
 import '../../../../../utils/color_res.dart';
 
 class RemoveDialog extends StatelessWidget {
-  RemoveDialog({Key? key}) : super(key: key);
+  String? expiryDate;
+  String? expiryYear;
+  String? endingNumber;
+  RemoveDialog( {Key? key,this.expiryDate,this.expiryYear, this.endingNumber}) : super(key: key);
 
-  PaymentController paymentController = Get.put(PaymentController());
+  final PaymentController paymentController = Get.put(PaymentController());
 
   @override
   Widget build(BuildContext context) {
@@ -72,14 +75,14 @@ class RemoveDialog extends StatelessWidget {
                     //   width: Get.width * 0.0571733,
                     // ),
                     Text(
-                      Strings.endingIn0212,
+                     "Ending in ${endingNumber.toString()}",
                       style: montserratRegularTextStyle(
                         color: ColorRes.color_303030,
                         fontSize: 14,
                       ),
                     ),
                     Text(
-                      Strings.date,
+                      expiryDate.toString(),
                       style: montserratRegularTextStyle(
                         color: ColorRes.color_303030,
                         fontSize: 14,
@@ -103,8 +106,8 @@ class RemoveDialog extends StatelessWidget {
                                 const BorderRadius.all(Radius.circular(50)),
                             gradient: LinearGradient(
                               colors: [
-                                ColorRes.color_F86666.withOpacity(1),
-                                ColorRes.color_F82222.withOpacity(1),
+                                ColorRes.colorF86666.withOpacity(1),
+                                ColorRes.colorF82222.withOpacity(1),
                               ],
                             )),
                         child: Center(
@@ -128,8 +131,8 @@ class RemoveDialog extends StatelessWidget {
                                 const BorderRadius.all(Radius.circular(50)),
                             gradient: LinearGradient(
                               colors: [
-                                ColorRes.color_F6E24A.withOpacity(1),
-                                ColorRes.color_FEE000.withOpacity(1),
+                                ColorRes.colorF6E24A.withOpacity(1),
+                                ColorRes.colorFEE000.withOpacity(1),
                               ],
                             )),
                         child: Center(

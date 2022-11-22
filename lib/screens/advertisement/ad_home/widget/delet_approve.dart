@@ -9,12 +9,12 @@ import '../../../../common/Widget/text_styles.dart';
 import '../../../../utils/asset_res.dart';
 import '../../../../utils/color_res.dart';
 
-class DeletApprove extends StatelessWidget {
-  String? idAdvertiser;
+class DeleteApprove extends StatelessWidget {
+  final String? idAdvertiser;
 
-  DeletApprove({Key? key, this.idAdvertiser}) : super(key: key);
+  DeleteApprove({Key? key, this.idAdvertiser}) : super(key: key);
 
-  AdHomeController adHomeController = Get.put(AdHomeController());
+  final AdHomeController adHomeController = Get.put(AdHomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class DeletApprove extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [
                       ColorRes.color_50369C,
-                      ColorRes.color_D18EEE,
+                      ColorRes.colorD18EEE,
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -45,7 +45,7 @@ class DeletApprove extends StatelessWidget {
                       height: Get.height * 0.07881,
                     ),
                     Text(
-                      Strings.deletApprove,
+                      Strings.DeleteApprove,
                       style: gilroySemiBoldTextStyle(fontSize: 24),
                     ),
                     SizedBox(
@@ -55,10 +55,10 @@ class DeletApprove extends StatelessWidget {
                       height: Get.width * 0.472,
                       width: Get.width * 0.472,
                       decoration: BoxDecoration(
-                        color: ColorRes.color_F28D8D,
+                        color: ColorRes.colorF28D8D,
                         shape: BoxShape.circle,
                         border: Border.all(
-                            color: ColorRes.color_FFC9C9,
+                            color: ColorRes.colorFFC9C9,
                             width: Get.width * 0.0426),
                         // image:
                         //     DecorationImage(image: AssetImage(AssetRes.deleticon,))
@@ -70,7 +70,7 @@ class DeletApprove extends StatelessWidget {
                           padding: EdgeInsets.all(Get.width * 0.09),
                           child: Image.asset(
                             AssetRes.deleticon,
-                            color: ColorRes.color_C20606,
+                            color: ColorRes.colorC20606,
                           ),
                         ),
                       ),
@@ -81,7 +81,7 @@ class DeletApprove extends StatelessWidget {
                     SizedBox(
                       width: 210,
                       child: Text(
-                        Strings.deletApproveDes,
+                        Strings.DeleteApproveDes,
                         style: gilroyMediumTextStyle(fontSize: 16),
                         textAlign: TextAlign.center,
                       ),

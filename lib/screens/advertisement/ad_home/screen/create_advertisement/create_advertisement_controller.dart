@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:country_picker/country_picker.dart';
-import 'package:dropdown_textfield/dropdown_textfield.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
@@ -13,8 +13,10 @@ import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/helper.dart';
-import 'package:rainbow/model/listUserTag_model.dart';
-import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
+import 'package:rainbow/model/create_advertiser_model.dart';
+import 'package:rainbow/model/list_user_tag_model.dart';
+import 'package:rainbow/model/my_advertiser_model.dart';
+
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/advertisement_deatail/advertisement_deatail_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/createadvertisement_api/createAdvertisement_api.dart';
@@ -24,7 +26,7 @@ import 'package:rainbow/utils/color_res.dart';
 
 import '../../../../../common/popup.dart';
 import '../../../../../utils/strings.dart';
-import 'create_advertisement_screen.dart';
+
 
 class CreateAdvertisementController extends GetxController {
   List tags = [];
@@ -53,17 +55,18 @@ class CreateAdvertisementController extends GetxController {
   String flag = AssetRes.flag01;
   bool showDropDown = false;
   List<String> flagList = [AssetRes.flag01, AssetRes.flag02];
-  List<String> list = ["Caneda", "India"];
-  String currency = "\$";
+  List<String> list = ["canada", "India"];
+  String currency = "£";
   List<String> currencyList = ["\$", "₹"];
-  String select = 'Caneda';
-
+  String select = 'canada';
+int? totalAmount;
+int? totalAmountApi;
   int pageIndex = 0;
 
   RxBool loader = false.obs;
 
   TextEditingController amountController =
-      TextEditingController(text: "\$200.00");
+      TextEditingController(text: "£200.00");
 
   // File? imagePath;
   List<File> imagePath = [];
@@ -223,14 +226,14 @@ class CreateAdvertisementController extends GetxController {
     if (tagsController.text.isEmpty) {
       errorToast(Strings.tagsError);
       return false;
-    } else if (imagePath == null) {
+    } else if (imagePath.isEmpty) {
       errorToast(Strings.imageError);
       return false;
     } else if (titleController.text.isEmpty) {
       errorToast(Strings.titleError);
       return false;
     } else if (countryController.text.isEmpty) {
-      errorToast(Strings.canedaError);
+      errorToast(Strings.canadaError);
       return false;
     } else if (streetController.text.isEmpty) {
       errorToast(Strings.streetError);
@@ -350,10 +353,12 @@ class CreateAdvertisementController extends GetxController {
   List<int> imgIdList = [];
   AdHomeController adHomeController = Get.put(AdHomeController());
 
-  void addAdvertisement(List imageId) async {
+  AdvertisersCreateModel advertisersCreateModel = AdvertisersCreateModel();
+
+ void addAdvertisement(List imageId) async {
     DateTime now = DateTime.now();
     loader.value = true;
-    await AddAdvertisement.addAdvertisementApi(
+    advertisersCreateModel = await AddAdvertisement.addAdvertisementApi(
       tagUser: tags,
       idItem: imageId,
       title: titleController.text,
@@ -374,10 +379,20 @@ class CreateAdvertisementController extends GetxController {
               .add_yMd()
               .format(DateTime(now.year, now.month, now.day, 24, 00, 00))
           : DateFormat().add_yMd().format(endTime!),
-      amount: 200,
-    );
-    adHomeController.myAdvertiserListData();
-    adHomeController.update(['more']);
+      amount: (totalAmountApi == null || totalAmountApi == 0)?1000:totalAmountApi,
+    )/*.then((value) {
+      loader.value = true;
+      adHomeController.myAdvertiserListData();
+      loader.value = false;
+      return advertisersCreateModel;
+    })*/;
+    totalAmount=0;
+    totalAmountApi=0;
+    print(totalAmountApi);
+   await adHomeController.myAdvertiserListData();
+    //adHomeController.myAdvertiserListDataWithOutPagination();
+    update(['more', 'list']);
+
     loader.value = false;
     update(["advertiser"]);
   }
@@ -385,7 +400,14 @@ class CreateAdvertisementController extends GetxController {
   rangSelect(start, end, range) {
     startTime = start;
     endTime = end;
+    Duration diff = end.difference(start);
+    print(diff.inDays);
+    totalAmount = diff.inDays.toInt() * 10 + 10;
+    totalAmountApi = diff.inDays.toInt() * 1000 + 1000;
+    print(totalAmountApi);
+    print(totalAmount);
     update(['range']);
+    update(['selectC']);
   }
 
   showDrop() {
@@ -455,7 +477,7 @@ class CreateAdvertisementController extends GetxController {
 
           // enableDrag: true,
           builder: (_) => ShowBottomNext(
-            amount: currency,
+            amount: (totalAmount.toString() == "" || totalAmount == null || totalAmount == 0)?"10":totalAmount.toString(),
           ),
         ),
         isScrollControlled: true,

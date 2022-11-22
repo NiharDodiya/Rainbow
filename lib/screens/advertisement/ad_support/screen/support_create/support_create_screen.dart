@@ -31,8 +31,8 @@ class SupportcreateScreen extends StatelessWidget {
                   colors: [
                     ColorRes.color_50369C,
                     ColorRes.color_50369C,
-                    ColorRes.color_D18EEE,
-                    ColorRes.color_D18EEE,
+                    ColorRes.colorD18EEE,
+                    ColorRes.colorD18EEE,
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -91,7 +91,7 @@ class SupportcreateScreen extends StatelessWidget {
                 border: InputBorder.none,
                 hintStyle: gilroyMediumTextStyle(
                     fontSize: 16, color: ColorRes.black.withOpacity(0.3)),
-                hintText: Strings.writesomethinghere,
+                hintText: Strings.writeSomeThingHere,
               ),
             ),
           ),

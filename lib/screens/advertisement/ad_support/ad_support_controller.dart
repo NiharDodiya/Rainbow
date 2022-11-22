@@ -10,8 +10,8 @@ import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
 import 'package:rainbow/model/list_support_ticket_model.dart';
-import 'package:rainbow/model/ViewSupportTicketModel.dart';
-import 'package:rainbow/model/sendSupportModel.dart';
+import 'package:rainbow/model/View_support_ticket_model.dart';
+import 'package:rainbow/model/send_support_model.dart';
 import 'package:rainbow/screens/Home/settings/support/support_api/support_api.dart';
 import 'package:rainbow/screens/advertisement/ad_support/screen/support_details/support_details_screen.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -90,7 +90,7 @@ class AdSupportController extends GetxController {
 
   bool valid() {
     if (yourMsgSendController.text.isEmpty) {
-      errorToast(Strings.supporterror01);
+      errorToast(Strings.supportError01);
       return false;
     }
     return true;
@@ -142,6 +142,7 @@ class AdSupportController extends GetxController {
   Future<void> sendSupportApiData(String id) async {
     try {
       loader.value = true;
+      await uploadImageData();
       sendSupportModel = await SupportApi.sendSupportApi(
           id: id, description: yourMsgSendController.text, item: imgIdList);
       update(["Support"]);
@@ -158,7 +159,7 @@ class AdSupportController extends GetxController {
     loader.value = true;
     var response = await Dio()
         .get(url, options: Options(responseType: ResponseType.bytes));
-    final result = await ImageGallerySaver.saveImage(
+  await ImageGallerySaver.saveImage(
       Uint8List.fromList(response.data),
       quality: 60,
       name: "ra",

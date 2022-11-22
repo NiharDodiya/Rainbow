@@ -16,7 +16,7 @@ import '../../../../../utils/strings.dart';
 class CreateAdvertisementScreen extends StatelessWidget {
   CreateAdvertisementScreen({Key? key}) : super(key: key);
 
-  CreateAdvertisementController advertisementController =
+  final CreateAdvertisementController advertisementController =
       Get.put(CreateAdvertisementController());
 
   @override
@@ -33,8 +33,8 @@ class CreateAdvertisementScreen extends StatelessWidget {
                 colors: [
                   ColorRes.color_50369C,
                   ColorRes.color_50369C,
-                  ColorRes.color_D18EEE,
-                  ColorRes.color_D18EEE,
+                  ColorRes.colorD18EEE,
+                  ColorRes.colorD18EEE,
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -641,7 +641,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                               Text(
                                 Strings.uploadImage,
                                 style: gilroyMediumTextStyle(
-                                    fontSize: 16, color: ColorRes.color_ADB1B1),
+                                    fontSize: 16, color: ColorRes.colorADB1B1),
                               )
                             ],
                           ),
@@ -778,7 +778,9 @@ class CreateAdvertisementScreen extends StatelessWidget {
                               children: (controller
                                       .countryController.text.isEmpty)
                                   ? listNationalities.data!.map((e) {
-                                      return Padding(
+                                      return (listNationalities.data == null)?
+                                      const SizedBox():
+                                      Padding(
                                         padding: const EdgeInsets.only(
                                             left: 20, top: 7, bottom: 7),
                                         child: InkWell(
@@ -941,7 +943,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
               showTitle: false,
             ),
             Text(
-              Strings.plase,
+              Strings.place,
               style: gilroyBoldTextStyle(
                   fontSize: 14, color: Colors.white.withOpacity(0.5)),
             ),
@@ -957,7 +959,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
               controller: advertisementController.provinceController,
               title: "",
               titleBottomPadding: 0,
-              hintText: Strings.proviceHint,
+              hintText: Strings.provinceHint,
               showTitle: false,
             ),
             AppTextFiled(

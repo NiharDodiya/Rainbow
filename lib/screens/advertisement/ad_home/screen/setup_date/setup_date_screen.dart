@@ -1,14 +1,18 @@
 // ignore_for_file: avoid_print, sort_child_properties_last
 
+import 'package:currency_picker/currency_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/formatters/money_input_formatter.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
+import 'package:rainbow/model/view_cardM_model.dart';
+import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_failed.dart/payment_failed_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_successful/payment_successful_screen.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/setup_date/setup_date_controller.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../../common/Widget/loaders.dart';
@@ -18,8 +22,9 @@ import '../../../../../utils/color_res.dart';
 
 class SetupDateScreen extends StatelessWidget {
   SetupDateScreen({Key? key}) : super(key: key);
-  CreateAdvertisementController createAdvertisementController =
+  final CreateAdvertisementController createAdvertisementController =
       Get.put(CreateAdvertisementController());
+  SetupDateController setupDateController = Get.put(SetupDateController());
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +33,13 @@ class SetupDateScreen extends StatelessWidget {
         child: Container(
           width: Get.width,
           height: Get.height,
-          decoration: const BoxDecoration(
+          decoration:  BoxDecoration(
             gradient: LinearGradient(
               colors: [
                 ColorRes.color_50369C,
                 ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
-                ColorRes.color_D18EEE,
+                ColorRes.colorD18EEE,
+                ColorRes.colorD18EEE,
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -153,7 +158,7 @@ class SetupDateScreen extends StatelessWidget {
                     focusedDay: DateTime.now(),
                     calendarStyle: CalendarStyle(
                       isTodayHighlighted: false,
-                      rangeHighlightColor: ColorRes.color_F4F4F4,
+                      rangeHighlightColor: ColorRes.colorF4F4F4,
                       todayTextStyle: gilroyBoldTextStyle(fontSize: 11.43),
                       weekendTextStyle: gilroyMediumTextStyle(
                           fontSize: 11.43, color: ColorRes.color_27354C),
@@ -173,7 +178,7 @@ class SetupDateScreen extends StatelessWidget {
                       selectedDecoration: BoxDecoration(
                         color: ColorRes.black,
                         border: Border.all(
-                            color: ColorRes.color_FCE307, width: 1.46),
+                            color: ColorRes.colorFCE307, width: 1.46),
                       ),
                       // selectedTextStyle:
                       //     TextStyle(fontSize: 15, color: Colors.purple),
@@ -182,13 +187,13 @@ class SetupDateScreen extends StatelessWidget {
                         color: ColorRes.color_50369C,
                         shape: BoxShape.circle,
                         border: Border.all(
-                            color: ColorRes.color_FCE307, width: 1.5),
+                            color: ColorRes.colorFCE307, width: 1.5),
                       ),
                       rangeStartDecoration: BoxDecoration(
                         color: ColorRes.color_50369C,
                         shape: BoxShape.circle,
                         border: Border.all(
-                            color: ColorRes.color_FCE307, width: 1.5),
+                            color: ColorRes.colorFCE307, width: 1.5),
                       ),
                       withinRangeTextStyle: gilroyMediumTextStyle(
                           fontSize: 11.43, color: ColorRes.color_27354C),
@@ -250,7 +255,7 @@ class SetupDateScreen extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [
                       ColorRes.color_50369C.withOpacity(0.5),
-                      ColorRes.color_D18EEE.withOpacity(0.8),
+                      ColorRes.colorD18EEE.withOpacity(0.8),
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -265,7 +270,7 @@ class SetupDateScreen extends StatelessWidget {
                         child: GetBuilder<CreateAdvertisementController>(
                             id: 'selectC',
                             builder: (controller) {
-                              return TextField(
+                              return (controller.totalAmount == 0)? Text("£10",style: gilroySemiBoldTextStyle(fontSize: 24),):Text("£${controller.totalAmount??"10"}",style:  gilroySemiBoldTextStyle(fontSize: 24),)/*TextField(
                                 enabled: false,
                                 inputFormatters: [
                                   MoneyInputFormatter(
@@ -283,7 +288,7 @@ class SetupDateScreen extends StatelessWidget {
                                   hintStyle:
                                       gilroySemiBoldTextStyle(fontSize: 24),
                                 ),
-                              );
+                              )*/;
                             }),
                       ),
                     ),
@@ -298,8 +303,8 @@ class SetupDateScreen extends StatelessWidget {
                               "Amount",
                               style: gilroyMediumTextStyle(fontSize: 18),
                             ),
-                            const Spacer(),
-                            /* GetBuilder<SetupDateController>(
+                         /*   const Spacer(),
+                             GetBuilder<SetupDateController>(
                               id: 'selectC',
                               builder: (controller) => Column(
                                 children: [
@@ -315,14 +320,27 @@ class SetupDateScreen extends StatelessWidget {
                                     child: GestureDetector(
                                       onTap: () {
                                         controller.showDrop();
+                                        showCurrencyPicker(
+                                          context: context,
+                                          showFlag: true,
+                                          showSearchField: true,
+                                          showCurrencyName: true,
+                                          showCurrencyCode: true,
+                                          onSelect: (Currency currency) {
+                                            controller.countryName = currency.code;
+                                            controller.countryFlag = currency.flag.toString();
+                                            print('Select currency: ${currency.name}');
+                                          },
+                                          favorite: ['SEK'],
+                                        );
                                       },
                                       child: Row(
                                         children: [
                                           const SizedBox(
                                             width: 5,
                                           ),
-                                          Image.asset(
-                                            controller.flag,
+                                          Image.network(
+                                            controller.countryFlag.toString(),
                                             height: 20,
                                             width: 15,
                                           ),
@@ -330,7 +348,7 @@ class SetupDateScreen extends StatelessWidget {
                                             width: 5,
                                           ),
                                           Text(
-                                            controller.select,
+                                            controller.countryName.toString()??"",
                                             style: gilroyMediumTextStyle(
                                                 fontSize: 12,
                                                 color: ColorRes.black),
@@ -362,11 +380,12 @@ class SetupDateScreen extends StatelessWidget {
                                           ),
                                           child: ListView.builder(
                                             itemCount:
-                                                setupDateController.list.length,
+                                                controller.list.length,
                                             itemBuilder: (context, index) =>
                                                 GestureDetector(
                                               onTap: () {
                                                 controller.selectContry(index);
+
                                               },
                                               child: Container(
                                                 height: 20,
@@ -398,10 +417,10 @@ class SetupDateScreen extends StatelessWidget {
                                       : const SizedBox(),
                                 ],
                               ),
-                            ),*/
+                            ),
                             SizedBox(
                               width: Get.width * 0.0293,
-                            )
+                            )*/
                           ],
                         )
                       ],
@@ -465,6 +484,7 @@ class ShowBottomNext extends StatelessWidget {
     CreateAdvertisementController createAdvertisementController =
         Get.put(CreateAdvertisementController());
     AdHomeController adHomeController = Get.find<AdHomeController>();
+    PaymentController paymentController = Get.put(PaymentController());
     return Obx(
       () => Stack(
         children: [
@@ -495,13 +515,13 @@ class ShowBottomNext extends StatelessWidget {
                       ),
                       Container(
                         width: Get.width * 0.8293,
-                        decoration: const BoxDecoration(
+                        decoration:  BoxDecoration(
                           gradient: LinearGradient(
                             colors: [
                               ColorRes.color_50369C,
                               ColorRes.color_50369C,
-                              ColorRes.color_D18EEE,
-                              ColorRes.color_D18EEE,
+                              ColorRes.colorD18EEE,
+                              ColorRes.colorD18EEE,
                             ],
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
@@ -523,13 +543,29 @@ class ShowBottomNext extends StatelessWidget {
                                 "You have to pay",
                                 style: gilroySemiBoldTextStyle(fontSize: 12),
                               ),
-                              // SizedBox(
-                              //   height: Get.height * 0.0320,
-                              // ),
-                              Text(
-                                createAdvertisementController
-                                    .amountController.text,
-                                style: poppinsSemiBold(fontSize: 24),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                children: [
+                                  GetBuilder<CreateAdvertisementController>(id:"select",
+                                    builder: (controller) {
+                                      return  (controller.totalAmount == null || controller.totalAmount == 0)
+                                          ?Text(
+                                        "£10",
+                                        style: poppinsSemiBold(fontSize: 64),
+                                      ):Text(
+                                        "£${controller.totalAmount}",
+                                        style: poppinsSemiBold(fontSize: 64),
+                                      );
+                                    },
+                                  ),/*Padding(padding: EdgeInsets.only(top: 6),
+                                    child: Text(
+                                      "00USD",
+                                      style: poppinsSemiBold(fontSize: 12 ),
+                                    ),
+                                  ),*/
+                                ],
                               ),
                               // RichText(
                               //   text: TextSpan(children: [
@@ -558,13 +594,13 @@ class ShowBottomNext extends StatelessWidget {
                                 height: Get.height * 0.007389,
                               ),
                               Text(
-                                "${adHomeController.viewAdvertiserModel.data?.fullName ?? ""}",
+                                adHomeController.viewAdvertiserModel.data?.fullName ?? "",
                                 style: poppinsMediumBold(fontSize: 14),
                               ),
                               SizedBox(
                                 height: Get.height * 0.0209,
                               ),
-                              Text(
+                             /* Text(
                                 "Transaction Number",
                                 style: poppinsRegularBold(fontSize: 12),
                               ),
@@ -572,12 +608,13 @@ class ShowBottomNext extends StatelessWidget {
                                 height: Get.height * 0.007389,
                               ),
                               Text(
-                                "122900083HN",
+                               // paymentController.viewCardModel?.data?.tokenId ?? "",
+                                "id",
                                 style: poppinsMediumBold(fontSize: 14),
                               ),
                               SizedBox(
                                 height: Get.height * 0.0209,
-                              ),
+                              ),*/
                               Text(
                                 "Service",
                                 style: poppinsRegularBold(fontSize: 12),
@@ -601,6 +638,7 @@ class ShowBottomNext extends StatelessWidget {
                       ),
                       SubmitButton(
                         onTap: () async {
+
                           await createAdvertisementController.uploadImageApi();
 
                           // createAdvertisementController.loader.value = false;
@@ -610,7 +648,7 @@ class ShowBottomNext extends StatelessWidget {
                         },
                         child: Text(
                           /*"Pay ${setupDateController.amountController.text}",*/
-                          "Pay \$200.00",
+                          "Pay £$amount",
                           style: gilroyBoldTextStyle(
                             fontSize: 16,
                             color: ColorRes.black,
@@ -629,8 +667,8 @@ class ShowBottomNext extends StatelessWidget {
                           style: gilroySemiBoldTextStyle(fontSize: 16),
                         ),
                         colors: const [
-                          ColorRes.color_F86666,
-                          ColorRes.color_F82222,
+                          ColorRes.colorF86666,
+                          ColorRes.colorF82222,
                         ],
                       ),
                       SizedBox(

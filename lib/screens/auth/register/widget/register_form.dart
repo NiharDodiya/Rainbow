@@ -1,8 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rainbow/common/Widget/country_name.dart';
-import 'package:rainbow/common/Widget/country_name_controller/my_country_name.dart';
+
 import 'package:rainbow/common/Widget/text_field.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/common/helper.dart';
@@ -288,7 +287,7 @@ class RegisterForm extends StatelessWidget {
           Align(
             alignment: Alignment.topLeft,
             child: Text(
-              Strings.country,
+              Strings.ethnicity,
               style: gilroySemiBoldTextStyle(fontSize: 14),
             ),
           ),

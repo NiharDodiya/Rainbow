@@ -52,9 +52,16 @@ Widget otherVisitorsViewed() {
                     children: [
                       InkWell(
                         onTap: () {
+
                           connectionsProfileController.callApi(controller
                               .viewProfile.data!.userView![index].id
-                              .toString());
+                              .toString()).then((value) {
+
+                                  controller.screen.value = true;
+
+                              });
+
+
                         },
                         child: Container(
                           height: 60,
@@ -78,7 +85,7 @@ Widget otherVisitorsViewed() {
                             errorWidget: (context, url, error) => ClipRRect(
                                 borderRadius: BorderRadius.circular(50),
                                 child:
-                                    Image.asset(AssetRes.portrait_placeholder)),
+                                    Image.asset(AssetRes.portraitPlaceholder)),
                           ),
                         ),
                       ),

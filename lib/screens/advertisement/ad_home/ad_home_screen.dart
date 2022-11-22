@@ -25,10 +25,24 @@ class _AdHomeScreenState extends State<AdHomeScreen> {
   UpdateAdvertiseController updateAdvertiseController =
       Get.put(UpdateAdvertiseController());
 
+  myInit() async {
+
+    /*adHomeController.page = 1;
+    adHomeController.myAdList = [];
+    await adHomeController.myAdvertiserListData();*/
+
+    await adHomeController.viewAdvertiserData();
+
+  }
+
   @override
   Widget build(BuildContext context) {
-    adHomeController.init();
-    adHomeController.myAdvertiserListData();
+
+    myInit();
+
+    //adHomeController.init();
+    //adHomeController.myAdvertiserListData();
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -39,7 +53,7 @@ class _AdHomeScreenState extends State<AdHomeScreen> {
             gradient: LinearGradient(
               colors: [
                 ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
+                ColorRes.colorD18EEE,
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -54,9 +68,8 @@ class _AdHomeScreenState extends State<AdHomeScreen> {
                     GetBuilder<AdHomeController>(
                         id: 'list',
                         builder: (controller) {
-                          return (controller.myAdvertiserModel.data == null ||
-                                  controller.myAdvertiserModel.data!.length ==
-                                      0)
+                          return (controller.myAdList == null ||
+                                  controller.myAdList.length == 0)
                               ? noAdvertisement()
                               : advertisementList();
                         }),

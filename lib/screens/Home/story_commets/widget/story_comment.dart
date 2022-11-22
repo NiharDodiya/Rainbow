@@ -39,7 +39,7 @@ Widget storyComment(
             decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                    image: AssetImage(AssetRes.portrait_placeholder))),
+                    image: AssetImage(AssetRes.portraitPlaceholder))),
           ),
           fit: BoxFit.fill,
         ),

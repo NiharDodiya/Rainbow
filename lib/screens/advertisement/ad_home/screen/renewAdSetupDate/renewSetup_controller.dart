@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
-import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
+import 'package:rainbow/model/payment_advertise.dart';
+import 'package:rainbow/model/renew_ad_model.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/payment_successful/renewPaymentSuc.dart';
+
 import 'package:rainbow/screens/advertisement/ad_home/screen/renewAdSetupDate/api/renewAd_api.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/renewAdSetupDate/renewSetUp_Screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -17,12 +19,14 @@ class RenewAdSetupDateController extends GetxController {
   String flag = AssetRes.flag01;
   bool showDropDown = false;
   List<String> flagList = [AssetRes.flag01, AssetRes.flag02];
-  List<String> list = ["Caneda", "India"];
+  List<String> list = ["canada", "India"];
   String currency = "\$";
   List<String> currencyList = ["\$", "₹"];
-  String select = 'Caneda';
+  String select = 'canada';
   List<int> imgIdList = [];
   List<File> imagePath = [];
+  int? totalAmount;
+  int? totalAmountApi;
 
   int pageIndex = 0;
 
@@ -34,13 +38,23 @@ class RenewAdSetupDateController extends GetxController {
   rangSelect(start, end, range) {
     startTime = start;
     endTime = end;
+    Duration diff = end.difference(start);
+    print(diff.inDays);
+    totalAmount = diff.inDays.toInt() * 10 + 10;
+    totalAmountApi = diff.inDays.toInt() * 1000 + 1000;
+    print(totalAmountApi);
+    print(totalAmount);
+    update(['selectC']);
     update(['range']);
   }
 
-  void renewAdAPI({int? id}) async {
+  PaymentAdvertiseModel paymentAdvertiseModel = PaymentAdvertiseModel();
+  RenewAdModel renewAdModel = RenewAdModel();
+
+  Future<void> renewAdAPI({int? id}) async {
     DateTime now = DateTime.now();
     loader.value = true;
-    await RenewAdApi.renewAdApi(
+   await RenewAdApi.renewAdApi(
       idAd: id,
       startDate: DateFormat().add_yMd().format(startTime!),
       //startTime!.add(Duration(days: 1))!
@@ -49,12 +63,20 @@ class RenewAdSetupDateController extends GetxController {
               .add_yMd()
               .format(DateTime(now.year, now.month, now.day, 24, 00, 00))
           : DateFormat().add_yMd().format(endTime!),
-      amount: 3000,
-    );
-
+      amount: (totalAmountApi == null || totalAmountApi == 0)?1000:totalAmountApi,
+    ).then((value) async{
+     loader.value = true;
+     paymentAdvertiseModel = await AdvPaymentApi.advPaymentApi(idAd: id);
+     loader.value = false;
+     Get.to(() => PaymentSuccessfulScreenR());
+   });
+    totalAmount=0;
+    totalAmountApi=0;
     loader.value = false;
     update(["advertiser"]);
   }
+
+
 
 /*  UploadImage uploadImage = UploadImage();
 
@@ -92,8 +114,8 @@ class RenewAdSetupDateController extends GetxController {
         ),
 
         // enableDrag: true,
-        builder: (_) => ShowBottomNext(
-          amount: currency,
+        builder: (_) => ShowBottomNextR(
+          amount:  (totalAmount.toString() == "" || totalAmount == null || totalAmount == 0)?"10":totalAmount.toString(),
           id: id,
         ),
       ),

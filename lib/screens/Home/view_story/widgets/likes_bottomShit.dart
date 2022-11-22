@@ -65,7 +65,7 @@ class LikesBottomShit extends StatelessWidget {
                     decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                            image: AssetImage(AssetRes.homePro))),
+                            image: AssetImage(AssetRes.portraitPlaceholder))),
                   ),
                   fit: BoxFit.fill,
                 ),
@@ -154,7 +154,7 @@ class LikesBottomShit extends StatelessWidget {
                           decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               image: DecorationImage(
-                                  image: AssetImage(AssetRes.homePro))),
+                                  image: AssetImage(AssetRes.portraitPlaceholder))),
                         ),
                         fit: BoxFit.fill,
                       ),

@@ -8,9 +8,9 @@ import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 
 class PostViewBottomScreen extends StatelessWidget {
-  String? postId;
+  final String? postId;
 
-  PostViewBottomScreen({Key? key, this.postId}) : super(key: key);
+  const PostViewBottomScreen({Key? key, this.postId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -179,7 +179,7 @@ class PostViewBottomScreen extends StatelessWidget {
                                           shape: BoxShape.circle,
                                           image: DecorationImage(
                                               image: AssetImage(
-                                                  AssetRes.portrait_placeholder))),
+                                                  AssetRes.portraitPlaceholder))),
                                     ),
                                     fit: BoxFit.fill,
                                   ),

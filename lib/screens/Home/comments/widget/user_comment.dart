@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/model/postCommentList_model.dart';
+import 'package:rainbow/model/post_comment_list_model.dart';
 import 'package:rainbow/screens/Home/comments/comments_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -34,8 +34,8 @@ Widget userComment(
                           borderRadius: BorderRadius.all(Radius.circular(50)),
                           child: FadeInImage(
                             placeholder:
-                                AssetImage(AssetRes.portrait_placeholder),
-                            image: AssetImage(AssetRes.portrait_placeholder),
+                                AssetImage(AssetRes.portraitPlaceholder),
+                            image: AssetImage(AssetRes.portraitPlaceholder),
                             fit: BoxFit.cover,
                           ),
                         )
@@ -46,13 +46,13 @@ Widget userComment(
                             imageUrl: profileImage.toString(),
                             fit: BoxFit.cover,
                             errorWidget: ((context, url, error) => Image.asset(
-                                  AssetRes.portrait_placeholder,
+                                  AssetRes.portraitPlaceholder,
                                   height: 40,
                                   width: 40,
                                   fit: BoxFit.cover,
                                 )),
                             placeholder: ((context, url) => Image.asset(
-                                  AssetRes.portrait_placeholder,
+                                  AssetRes.portraitPlaceholder,
                                   height: 40,
                                   width: 40,
                                   fit: BoxFit.cover,
@@ -60,7 +60,7 @@ Widget userComment(
                           ),
                           /*FadeInImage(
                             placeholder:
-                                const AssetImage(AssetRes.portrait_placeholder),
+                                const AssetImage(AssetRes.portraitPlaceholder),
                             image: NetworkImage(profileImage.toString()),
                             fit: BoxFit.cover,
                           ),*/

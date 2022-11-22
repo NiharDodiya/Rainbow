@@ -41,7 +41,7 @@ Widget adInLatestFeed({int? index}) {
                           shape: BoxShape.circle,
                           image: DecorationImage(
                               image:
-                                  AssetImage(AssetRes.portrait_placeholder))),
+                                  AssetImage(AssetRes.portraitPlaceholder))),
                     )
                   : ClipRRect(
                       borderRadius: BorderRadius.circular(20),
@@ -53,9 +53,9 @@ Widget adInLatestFeed({int? index}) {
                                     .data?[index!].userDetails?.profileImage ??
                                 "",
                             placeholder: ((context, url) =>
-                                Image.asset(AssetRes.portrait_placeholder)),
+                                Image.asset(AssetRes.portraitPlaceholder)),
                             errorWidget: ((context, url, error) =>
-                                Image.asset(AssetRes.portrait_placeholder)),
+                                Image.asset(AssetRes.portraitPlaceholder)),
                             fit: BoxFit.cover),
                       ),
                     ),

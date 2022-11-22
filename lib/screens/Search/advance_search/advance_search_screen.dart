@@ -5,17 +5,17 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:rainbow/common/Widget/custom_marker.dart';
+
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_controller.dart';
-import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
+
 import 'package:rainbow/screens/Search/search_controller.dart';
 import 'package:rainbow/screens/notification/notification_screen.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
-import 'package:rainbow/utils/strings.dart';
+
 import 'package:search_map_place_updated/search_map_place_updated.dart';
 
 class AdvanceSearchScreen extends StatefulWidget {
@@ -144,7 +144,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                       gradient: LinearGradient(
                         colors: [
                           ColorRes.color_50369C,
-                          ColorRes.color_D18EEE,
+                          ColorRes.colorD18EEE,
                         ],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
@@ -252,7 +252,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                               alignment: Alignment.center,
                               decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: ColorRes.color_FF6B97),
+                                  color: ColorRes.colorFF6B97),
                               child: Text(
                                 "${controller.requestUsers.length}",
                                 style: const TextStyle(
@@ -392,7 +392,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) {
                           return Image.asset(
-                            AssetRes.portrait_placeholder,
+                            AssetRes.portraitPlaceholder,
                             height: 50,
                             width: 50,
                           );
@@ -581,7 +581,7 @@ class _AdvanceSearchScreenState extends State<AdvanceSearchScreen> {
           },
         ),
         markerLoader
-            ? const Center(child: CircularProgressIndicator())
+            ? const FullScreenLoader()
             : const SizedBox(),
       ],
     );

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/model/listCardModel.dart';
+import 'package:rainbow/model/list_card_model.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/utils/strings.dart';
 
@@ -78,7 +78,7 @@ class EditCardController extends GetxController {
       errorToast(Strings.fullNameError);
       return false;
     } else if (addressController.text.isEmpty) {
-      errorToast(Strings.addresserror);
+      errorToast(Strings.addressError);
       return false;
     } else if (cityController.text.isEmpty) {
       errorToast(Strings.cityeError);
@@ -90,14 +90,14 @@ class EditCardController extends GetxController {
       errorToast(Strings.countryError);
       return false;
     } else if (nameOnCardController.text.isEmpty) {
-      errorToast(Strings.nameonCardError);
+      errorToast(Strings.nameOnCardError);
       return false;
     }
     /*else if (cardNmberController.text.isEmpty) {
-      errorToast(Strings.cardnumberError);
+      errorToast(Strings.cardNumberError);
       return false;
     } else if (cardNmberController.text.length != 16) {
-      errorToast(Strings.cardnumberErrorValidation);
+      errorToast(Strings.cardNumberErrorValidation);
       return false;
     }*/
     else if (expiryYearController.text.isEmpty) {

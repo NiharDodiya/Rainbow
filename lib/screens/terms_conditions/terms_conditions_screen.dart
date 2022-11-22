@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
-import 'package:rainbow/screens/dashboard/dashBoard.dart';
+import 'package:rainbow/screens/dashboard/dash_board.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/pref_keys.dart';
@@ -12,7 +12,7 @@ class TermsConditionsScreen extends StatelessWidget {
   final bool? showBackBtn;
 
   TermsConditionsScreen({Key? key, this.showBackBtn}) : super(key: key);
-  HomeController homeController = Get.put(HomeController());
+  final HomeController homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +104,7 @@ class TermsConditionsScreen extends StatelessWidget {
                         width: Get.width * 0.84,
                         height: Get.height * 0.073,
                         decoration: BoxDecoration(
-                            color: ColorRes.color_E7D01F,
+                            color: ColorRes.colorE7D01F,
                             borderRadius: BorderRadius.circular(15)),
                         child: Center(
                             child: Text(

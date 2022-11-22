@@ -3,7 +3,9 @@ class EndPoints {
   static const apiKey = 'c6d805c8b0751dab4dfda08908b90ee0';
 
   ///---------------------------------------------- Base url ----------------------------------------------
-  static const baseUrl = 'https://rainbow-api-staging.herokuapp.com/api';
+  //static const baseUrl = 'https://rainbow-api-staging.herokuapp.com/api';
+  static const baseUrl = 'https://rainbowapi.herokuapp.com/api';
+
 
   ///---------------------------------------------- Keys ----------------------------------------------
   static const login = "$baseUrl/user/login";
@@ -97,7 +99,9 @@ class EndPoints {
   static const transaction = "$baseUrl/user/payment/list";
   static const defaultCard = "$baseUrl/user/card/set";
   static const advertiseListUser = "$baseUrl/advertisement/list";
+  static const subscriptionUser = "$baseUrl/user/subscription/details";
   static const lat = "lat=";
   static const lon = "lon=";
   static const appId = "appid=";
+  static const paymentAdvertise = "$baseUrl/admin/payment/adv";
 }

@@ -18,11 +18,12 @@ import 'package:readmore/readmore.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AdvertisementDetailsApprovedScreen extends StatelessWidget {
-  int i;
-  int id;
+  final int i;
+  final int id;
+  final String traId;
 
   AdvertisementDetailsApprovedScreen(
-      {Key? key, required this.i, required this.id})
+      {Key? key, required this.i, required this.id, required this.traId})
       : super(key: key);
 
   final List<DeveloperSeries> data = [
@@ -54,7 +55,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
   ];
   List<chart.Series<DeveloperSeries, String>> series = [];
 
-  CreateAdvertisementController createAdvertisementController =
+  final CreateAdvertisementController createAdvertisementController =
       Get.put(CreateAdvertisementController());
 
   void init() {
@@ -69,7 +70,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
     ];
   }
 
-  EditAdvertiesementController editAdvertiesementController =
+  final EditAdvertiesementController editAdvertiesementController =
       Get.put(EditAdvertiesementController());
 
   @override
@@ -88,13 +89,12 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                       child: Container(
                         width: Get.width,
                         height: 790,
-                        decoration: const BoxDecoration(
+                        decoration:  BoxDecoration(
                           gradient: LinearGradient(
                             colors: [
                               ColorRes.color_50369C,
-                              ColorRes.color_50369C,
-                              ColorRes.color_D18EEE,
-                              ColorRes.color_D18EEE,
+                              ColorRes.color_50369C.withOpacity(0.98),
+                              ColorRes.colorD18EEE,
                             ],
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
@@ -128,6 +128,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
     AdHomeController adHomeController = Get.put(AdHomeController());
     EditAdvertiesementController editAdvertiesementController =
         Get.put(EditAdvertiesementController());
+
     return Column(
       children: [
         GetBuilder<CreateAdvertisementController>(
@@ -138,7 +139,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                 height: 202,
                 child: Stack(
                   children: [
-                    (adHomeController.myAdvertiserModel.data?[index].itemsList!
+                    (adHomeController.myAdList[index].itemsList!
                                 .length ==
                             0)
                         ? Image.asset(
@@ -148,8 +149,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                           )
                         : PageView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: adHomeController.myAdvertiserModel
-                                .data?[index].itemsList!.length,
+                            itemCount: adHomeController.myAdList[index].itemsList!.length,
                             onPageChanged: (index) {
                               createAdvertisementController.pageIndex = index;
                               createAdvertisementController.update(["img"]);
@@ -161,8 +161,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                   placeholder: const AssetImage(
                                       AssetRes.placeholderImage),
                                   image: NetworkImage(
-                                    adHomeController.myAdvertiserModel
-                                        .data![index].itemsList![index1]
+                                    adHomeController.myAdList[index].itemsList![index1]
                                         .toString(),
                                   ),
                                   width: Get.width - 60,
@@ -182,6 +181,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                             children: [
                               InkWell(
                                 onTap: () {
+                                  adHomeController.loader.value = false;
                                   Get.back();
                                 },
                                 child: Container(
@@ -203,7 +203,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                 ),
                               ),
                               const Spacer(),
-                              (adHomeController.myAdvertiserModel.data?[index]
+                              (adHomeController.myAdList[index]
                                           .adminStatus
                                           .toString() ==
                                       'approve')
@@ -233,10 +233,10 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        (adHomeController.myAdvertiserModel.data?[index]
+                        (adHomeController.myAdList[index]
                                         .itemsList!.length ==
                                     1 ||
-                                adHomeController.myAdvertiserModel.data?[index]
+                                adHomeController.myAdList[index]
                                         .itemsList!.length ==
                                     0)
                             ? const SizedBox()
@@ -248,8 +248,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                     cornerRadius: 30,
                                     height: 6,
                                     width: 6,
-                                    count: adHomeController.myAdvertiserModel
-                                        .data?[index].itemsList!.length,
+                                    count: adHomeController.myAdList[index].itemsList!.length,
                                     index:
                                         createAdvertisementController.pageIndex,
                                   ),
@@ -278,19 +277,19 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
           Row(
             children: [
               Text(
-                adHomeController.myAdvertiserModel.data![index].title
+                adHomeController.myAdList[index].title
                     .toString(),
                 style: gilroySemiBoldTextStyle(
                   fontSize: 18,
                 ),
               ),
               const Spacer(),
-              (adHomeController.myAdvertiserModel.data?[index].adminStatus
+              (adHomeController.myAdList[index].adminStatus
                           .toString() ==
                       'approve')
                   ? InkWell(
                       onTap: () {
-                        Get.to(() => const AdvertisementApprovedScreen());
+                        Get.to(() =>  AdvertisementApprovedScreen(traId: traId,));
                       },
                       child: Text(
                         Strings.approved,
@@ -298,17 +297,17 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                             fontSize: 18, color: ColorRes.color_49A510),
                       ),
                     )
-                  : (adHomeController.myAdvertiserModel.data?[index].adminStatus
+                  : (adHomeController.myAdList[index].adminStatus
                               .toString() ==
                           'pending')
                       ? Text(
                           'Pending',
                           style: gilroySemiBoldTextStyle(
-                              fontSize: 18, color: ColorRes.color_EED82F),
+                              fontSize: 18, color: ColorRes.colorEED82F),
                         )
                       : InkWell(
                           onTap: () {
-                            Get.to(() => const AdvertisermentRejectedScreen());
+                            Get.to(() =>  AdvertisermentRejectedScreen(traId: traId,));
                           },
                           child: Text(
                             Strings.rejected,
@@ -318,12 +317,14 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                         ),
             ],
           ),
-
+          Text("£${adHomeController.myAdList[index].amount??""}",style:  gilroySemiBoldTextStyle(
+            fontSize: 18,
+          ),),
           const SizedBox(
             height: 20,
           ),
           ReadMoreText(
-            adHomeController.myAdvertiserModel.data![index].description
+            adHomeController.myAdList[index].description
                 .toString(),
             trimLines: 3,
             style: gilroyMediumTextStyle(fontSize: 14),
@@ -354,14 +355,15 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   itemCount: adHomeController
-                      .myAdvertiserModel.data![index].tagsList!.length,
+                      .myAdList[index].tagsList!.length,
                   itemBuilder: (context, index1) => Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Container(
+                    child:adHomeController
+                        .myAdList[index].tagsList![index1]== " "?const SizedBox() :Container(
                       height: 25,
                       width: 80,
                       decoration: const BoxDecoration(
-                        color: ColorRes.color_ECEFF0,
+                        color: ColorRes.colorECEFF0,
                         borderRadius: BorderRadius.all(
                           Radius.circular(4),
                         ),
@@ -375,8 +377,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                             child: Row(
                               children: [
                                 Text(
-                                  adHomeController.myAdvertiserModel
-                                      .data![index].tagsList![index1]
+                                  adHomeController.myAdList[index].tagsList![index1]
                                       .toString(),
                                   style: gilroyMediumTextStyle(
                                       fontSize: 12,
@@ -410,7 +411,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
             height: 10,
           ),
           Text(
-            adHomeController.myAdvertiserModel.data![index].callAction
+            adHomeController.myAdList[index].callAction
                 .toString(),
             style: gilroyRegularTextStyle(fontSize: 14),
           ),
@@ -427,7 +428,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
           InkWell(
             onTap: () async {
               final Uri _url = Uri.parse(
-                  'https://${adHomeController.myAdvertiserModel.data![index].urlLink.toString()}');
+                  'https://${adHomeController.myAdList[index].urlLink.toString()}');
               await launchUrl(_url);
               /* if (await launchUrl(_url)) {
                 await launchUrl(_url);
@@ -436,7 +437,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
               }*/
             },
             child: Text(
-              adHomeController.myAdvertiserModel.data![index].urlLink
+              adHomeController.myAdList[index].urlLink
                   .toString(),
               style: gilroyRegularTextStyle(fontSize: 14),
             ),
@@ -551,7 +552,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                     dropdownPadding: null,
                                     dropdownDecoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(14),
-                                      color: ColorRes.color_E4E4EC,
+                                      color: ColorRes.colorE4E4EC,
                                     ),
                                     // scrollbarRadius: const Radius.circular(40),
                                     scrollbarThickness: 6,
@@ -574,28 +575,28 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                 height: 10,
                                 width: 10,
                                 decoration: const BoxDecoration(
-                                    color: ColorRes.color_B180EF,
+                                    color: ColorRes.colorB180EF,
                                     shape: BoxShape.circle),
                               ),
                               Spacer(),
                               Text(
                                 Strings.sun,
                                 style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
+                                    color: ColorRes.colorC4C4C4, fontSize: 10),
                               ),
                               Spacer(),
                               Container(
                                 height: 10,
                                 width: 10,
                                 decoration: const BoxDecoration(
-                                    color: ColorRes.color_FF737D,
+                                    color: ColorRes.colorFF737D,
                                     shape: BoxShape.circle),
                               ),
                               Spacer(),
                               Text(
                                 Strings.mon,
                                 style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
+                                    color: ColorRes.colorC4C4C4, fontSize: 10),
                               ),
                               Spacer(),
                               Container(
@@ -609,7 +610,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                               Text(
                                 Strings.tue,
                                 style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
+                                    color: ColorRes.colorC4C4C4, fontSize: 10),
                               ),
                               Spacer(),
                               Container(
@@ -623,7 +624,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                               Text(
                                 Strings.wed,
                                 style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
+                                    color: ColorRes.colorC4C4C4, fontSize: 10),
                               ),
                               Spacer(),
                               Container(
@@ -637,7 +638,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                               Text(
                                 Strings.th,
                                 style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
+                                    color: ColorRes.colorC4C4C4, fontSize: 10),
                               ),
                               Spacer(),
                               Container(
@@ -651,21 +652,21 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                               Text(
                                 Strings.fri,
                                 style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
+                                    color: ColorRes.colorC4C4C4, fontSize: 10),
                               ),
                               Spacer(),
                               Container(
                                 height: 10,
                                 width: 10,
                                 decoration: const BoxDecoration(
-                                    color: ColorRes.color_FF61D3,
+                                    color: ColorRes.colorFF61D3,
                                     shape: BoxShape.circle),
                               ),
                               Spacer(),
                               Text(
                                 Strings.sat,
                                 style: gilroyMediumTextStyle(
-                                    color: ColorRes.color_C4C4C4, fontSize: 10),
+                                    color: ColorRes.colorC4C4C4, fontSize: 10),
                               ),
                               SizedBox(
                                 width: 25,
@@ -694,7 +695,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                           data.x,
                                           yValueMapper: (ChartData data, _) =>
                                           data.y,
-                                          color: ColorRes.color_B180EF,
+                                          color: ColorRes.colorB180EF,
                                         ),
                                         StackedBarSeries<ChartData, String>(
                                           dataSource: chartData,
@@ -703,7 +704,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                           data.x,
                                           yValueMapper: (ChartData data, _) =>
                                           data.y,
-                                          color: ColorRes.color_FF737D,
+                                          color: ColorRes.colorFF737D,
                                         ),
                                         StackedBarSeries<ChartData, String>(
                                           dataSource: chartData,
@@ -743,7 +744,7 @@ class AdvertisementDetailsApprovedScreen extends StatelessWidget {
                                           data.x,
                                           yValueMapper: (ChartData data, _) =>
                                           data.y,
-                                          color: ColorRes.color_FF61D3,
+                                          color: ColorRes.colorFF61D3,
                                         )
                                       ])),
 

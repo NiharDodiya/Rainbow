@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/model/listCardModel.dart';
+import 'package:rainbow/model/default_crad_model.dart';
+import 'package:rainbow/model/list_card_model.dart';
 import 'package:rainbow/model/remove_card_model.dart';
-import 'package:rainbow/model/transactionModel.dart';
+import 'package:rainbow/model/transaction_model.dart';
 
-import 'package:rainbow/model/viewCardModel.dart';
+import 'package:rainbow/model/view_cardM_model.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 import 'package:rainbow/screens/Home/settings/payment/widget/remove_dialog.dart';
 import 'package:rainbow/screens/advertisement/ad_payment/ad_payment_api/ad_payment_api.dart';
+import 'package:rainbow/service/pref_services.dart';
+import 'package:rainbow/utils/pref_keys.dart';
 import 'add_cart/add_cart_controller.dart';
 
 class PaymentController extends GetxController {
@@ -40,16 +43,23 @@ class PaymentController extends GetxController {
   ViewCardModel? viewCardModel = ViewCardModel();
   RemoveCardModel removeCardModel = RemoveCardModel();
   TransactionModel transactionModel = TransactionModel();
+  DefaultCradModel defaultCradModel =DefaultCradModel();
 
-  navigateToRemove(BuildContext context) async {
-    await showDialog(context: context, builder: (context) => RemoveDialog());
+  navigateToRemove(
+      {required BuildContext context, String? expiryDate, String? expiryYear, String? endingNumber}) async {
+    await showDialog(context: context, builder: (context) => RemoveDialog(expiryDate: expiryDate,expiryYear: expiryYear, endingNumber: endingNumber,));
   }
 
   listCardApi({required bool showToast}) async {
     try {
       loader.value = true;
       listCardModel = await ListCartApi.listCardsApi(showToast: showToast);
-      viewCardApi();
+
+      if(listCardModel.data?[selectedIndex].isPrimary == true){
+        await PrefService.setValue(PrefKeys.defaultCard, listCardModel.data?[selectedIndex].id);
+      }
+
+       viewCardApi();
       loader.value = false;
       update(['more']);
       HomeController homeController = Get.put(HomeController());
@@ -60,8 +70,10 @@ class PaymentController extends GetxController {
       update(['more']);
     } catch (e) {
       loader.value = false;
+      //errorToast("No internet connection");
+      await PrefService.setValue(PrefKeys.defaultCard, listCardModel.data?[selectedIndex].id);
 
-      //debugPrint(e.toString());
+      debugPrint(e.toString());
     }
   }
 
@@ -73,6 +85,8 @@ class PaymentController extends GetxController {
       loader.value = false;
       update(['more']);
     } catch (e) {
+      loader.value = false;
+     // errorToast("No internet connection");
       debugPrint(e.toString());
     }
   }
@@ -86,6 +100,8 @@ class PaymentController extends GetxController {
       loader.value = false;
       await listCardApi(showToast: false);
     } catch (e) {
+      loader.value = false;
+      errorToast("No internet connection");
       debugPrint(e.toString());
     }
   }
@@ -95,8 +111,11 @@ class PaymentController extends GetxController {
     try {
       transactionModel = await ListCartApi.transactionApi();
       update(['more']);
+      update(['payment']);
       loader.value = false;
     } catch (e) {
+      loader.value = false;
+     // errorToast("No internet connection");
       debugPrint(e.toString());
     }
   }
@@ -110,12 +129,14 @@ class PaymentController extends GetxController {
       } else {
         transactionModel = await ListCartApi.defaultCardApi(
             id: listCardModel.data?[selectedIndex].id ?? 0);
+        //await PrefService.setValue(PrefKeys.defaultCard, listCardModel.data?[selectedIndex].id);
         update(['more']);
         loader.value = false;
       }
     } catch (e) {
       debugPrint(e.toString());
       loader.value = false;
+      //errorToast("No internet connection");
     }
   }
 

@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/model/notification_model.dart';
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
-import 'package:rainbow/screens/Profile/profile_controller.dart';
+
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/utils/color_res.dart';
@@ -14,9 +14,9 @@ import '../../../utils/asset_res.dart';
 
 class AdNotificationsScreen extends StatelessWidget {
   AdNotificationsScreen({Key? key}) : super(key: key);
-  AdHomeController adHomeController = Get.find<AdHomeController>();
+  final AdHomeController adHomeController = Get.find<AdHomeController>();
   final NotificationsController controller = Get.put(NotificationsController());
-  ConnectionsProfileController connectionsProfileController =
+  final ConnectionsProfileController connectionsProfileController =
       Get.put(ConnectionsProfileController());
 
   @override
@@ -34,8 +34,8 @@ class AdNotificationsScreen extends StatelessWidget {
                   colors: [
                     ColorRes.color_50369C,
                     ColorRes.color_50369C,
-                    ColorRes.color_D18EEE,
-                    ColorRes.color_D18EEE,
+                    ColorRes.colorD18EEE,
+                    ColorRes.colorD18EEE,
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -109,7 +109,7 @@ class AdNotificationsScreen extends StatelessWidget {
                                                                   image:
                                                                       AssetImage(
                                                                     AssetRes
-                                                                        .portrait_placeholder,
+                                                                        .portraitPlaceholder,
                                                                   ),
                                                                   fit: BoxFit
                                                                       .cover),
@@ -135,7 +135,7 @@ class AdNotificationsScreen extends StatelessWidget {
                                                               ((context, url) =>
                                                                   Image.asset(
                                                                     AssetRes
-                                                                        .portrait_placeholder,
+                                                                        .portraitPlaceholder,
                                                                     height: 53,
                                                                     width: 53,
                                                                     fit: BoxFit
@@ -146,7 +146,7 @@ class AdNotificationsScreen extends StatelessWidget {
                                                                       error) =>
                                                                   Image.asset(
                                                                     AssetRes
-                                                                        .portrait_placeholder,
+                                                                        .portraitPlaceholder,
                                                                     height: 53,
                                                                     width: 53,
                                                                     fit: BoxFit
@@ -293,7 +293,7 @@ ListView.builder(
                                             shape: BoxShape.circle,
                                             image: DecorationImage(
                                               image: AssetImage(
-                                                AssetRes.portrait_placeholder,
+                                                AssetRes.portraitPlaceholder,
                                               ),
                                             ),
                                           ))

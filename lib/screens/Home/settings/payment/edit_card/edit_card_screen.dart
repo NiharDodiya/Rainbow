@@ -64,7 +64,7 @@ class EditCardScreen extends StatelessWidget {
                 gradient: LinearGradient(
                   colors: [
                     ColorRes.color_50369C,
-                    ColorRes.color_D18EEE,
+                    ColorRes.colorD18EEE,
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -339,7 +339,7 @@ class EditCardScreen extends StatelessWidget {
                                 ),
                                 AppTextFiled(
                                   controller: controller.nameOnCardController,
-                                  title: Strings.nameonCard,
+                                  title: Strings.nameOnCard,
                                   hintText: Strings.aycanDoganlar,
                                 ),
                                 /*AppTextFiled(

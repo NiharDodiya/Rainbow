@@ -4,7 +4,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/model/friendStroy_model.dart';
+import 'package:rainbow/model/friend_stroy_model.dart';
 import 'package:rainbow/screens/Home/my_story/my_story_controller.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -86,7 +86,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                             decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               image: DecorationImage(
-                                image: AssetImage(AssetRes.homePro),
+                                image: AssetImage(AssetRes.portraitPlaceholder),
                               ),
                             ),
                           ),
@@ -252,7 +252,7 @@ class _MyStoryScreenState extends State<MyStoryScreen> {
                                                 image: DecorationImage(
                                                   image: AssetImage(
                                                     AssetRes
-                                                        .portrait_placeholder,
+                                                        .portraitPlaceholder,
                                                   ),
                                                   fit: BoxFit.cover,
                                                 ),

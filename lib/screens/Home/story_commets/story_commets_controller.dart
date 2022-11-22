@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rainbow/model/friendStroy_model.dart';
+import 'package:rainbow/model/friend_stroy_model.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
 
 class StoryCommentsController extends GetxController {

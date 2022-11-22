@@ -146,7 +146,7 @@ class PhoneNumberApi {
           // await PrefService.setValue(PrefKeys.register, true);
           await PrefService.setValue(
               PrefKeys.phoneId, jsonDecode(response.body)["data"]["id"]);
-          ///todo: number exclamation mark
+
           flutterToast(jsonDecode(response.body)["message"]);
         }
         return phoneNumberFromJson(response.body);
@@ -156,7 +156,7 @@ class PhoneNumberApi {
           ? errorToast(message)
           : */
     } catch (e) {
-      print(e);
+
 
             //errorToast("No internet connection");
 

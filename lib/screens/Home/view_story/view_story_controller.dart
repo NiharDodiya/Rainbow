@@ -10,23 +10,23 @@ import 'package:rainbow/common/Widget/rich_text_controller.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
-import 'package:rainbow/model/StoryComment_model.dart';
-import 'package:rainbow/model/likeStory_model.dart';
-import 'package:rainbow/model/listUserTag_model.dart';
+import 'package:rainbow/model/story_comment_model.dart';
+import 'package:rainbow/model/like_story_model.dart';
+import 'package:rainbow/model/list_user_tag_model.dart';
 import 'package:rainbow/model/unlike_model.dart';
-import 'package:rainbow/screens/Home/Story/friendStory_api/friendStory_api.dart';
-import 'package:rainbow/screens/Home/Story/likeStory_api/likeStory_api.dart';
+import 'package:rainbow/screens/Home/Story/friendStory_api/friend_story_api.dart';
+import 'package:rainbow/screens/Home/Story/likeStory_api/like_story_api.dart';
 import 'package:rainbow/screens/Home/Story/unlike_api/unlike_api.dart';
-import 'package:rainbow/screens/Home/addStroy/ListStoryTag_api/listStoryTag_api.dart';
+import 'package:rainbow/screens/Home/addStroy/ListStoryTag_api/list_story_tag_api.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
-import 'package:rainbow/screens/Home/my_story/api/myStroy_api.dart';
+import 'package:rainbow/screens/Home/my_story/api/my_stroy_api.dart';
 import 'package:rainbow/screens/Home/story_commets/api/story_comment_api.dart';
 import 'package:rainbow/screens/Home/story_commets/story_comments_screen.dart';
 import 'package:rainbow/screens/Home/story_commets/story_commets_controller.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:story/story_page_view/story_page_view.dart';
 
-import '../../../model/friendStroy_model.dart';
+import '../../../model/friend_stroy_model.dart';
 
 class ViewStoryController extends GetxController {
   RxBool loader = false.obs;
@@ -63,7 +63,7 @@ class ViewStoryController extends GetxController {
         onMatch: onHashTagMatch,
         patternMatchMap: {
           RegExp(r"\B#[a-zA-Z0-9]+\b"):
-              const TextStyle(color: ColorRes.color_FED785),
+              const TextStyle(color: ColorRes.colorFED785),
         },
         deleteOnBack: true);
     super.onInit();

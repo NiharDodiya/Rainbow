@@ -11,7 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_api.dart';
 import 'package:rainbow/common/uploadimage_api/uploadimage_model.dart';
-import 'package:rainbow/model/listUserTag_model.dart';
+import 'package:rainbow/model/list_user_tag_model.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/myAdvertiser_api/myAdvertiser_api.dart';
@@ -42,20 +42,23 @@ class UpdateAdvertiseController extends GetxController {
   TextEditingController callToActionController = TextEditingController();
   List<String> dropDList = ["Learn More", "Contact Us"];
 
+
   DateTime startTime = DateTime.now();
   DateTime endTime = DateTime.now();
   String flag = AssetRes.flag01;
   bool showDropDown = false;
   List<String> flagList = [AssetRes.flag01, AssetRes.flag02];
-  List<String> list = ["Caneda", "India"];
+  List<String> list = ["canada", "India"];
   String currency = "\$";
   List<String> currencyList = ["\$", "₹"];
-  String select = 'Caneda';
+  String select = 'canada';
 
   TextEditingController amountController =
       TextEditingController(text: "\$200.00");
 
   // File? imagePath;
+  List images = [];
+  List idImg = [];
   List<File> imagePath = [];
   RxBool loader = false.obs;
 
@@ -158,14 +161,21 @@ class UpdateAdvertiseController extends GetxController {
 
   UploadImage uploadImage = UploadImage();
 
-  Future<void> uploadImageApi({int? id}) async {
+  Future<void> uploadImageApi({int? id, List? imgId}) async {
     try {
       imgIdList = [];
+
       for (var e in imagePath) {
         loader.value = true;
         uploadImage = await UploadImageApi.postRegister(e.path);
         imgIdList.add(uploadImage.data!.id!);
+       // imgIdList.add(imgId);
       }
+
+      for(var e in imgId!){
+        imgIdList.add(e);
+      }
+
       await updateApi(id: id);
       loader.value = false;
     } catch (e) {
@@ -201,10 +211,10 @@ class UpdateAdvertiseController extends GetxController {
   int? codeId;
   String? myId;
 
-  editAdvertisement({int? id}) async {
+  editAdvertisement({int? id, List? imgId}) async {
     tagsListSet();
     if (validation()) {
-      uploadImageApi(id: id);
+      uploadImageApi(id: id, imgId: imgId);
       for (int i = 0; i < listCountryModel.data!.length; i++) {
         if (listCountryModel.data![i].name == countryController.text) {
           codeId = listCountryModel.data![i].id;
@@ -216,24 +226,28 @@ class UpdateAdvertiseController extends GetxController {
     }
   }
 
+  int? count;
+
+
+
   bool validation() {
     for (int i = 0; i < listCountryModel.data!.length; i++) {
       if (listCountryModel.data![i].name == countryController.text) {
         myId = countryController.text;
       }
     }
-
+    count = imagePath.length+images.length;
     if (tagsController.text.isEmpty) {
       errorToast(Strings.tagsError);
       return false;
-    } else if (imagePath == null) {
+    } else if (count == 0) {
       errorToast(Strings.imageError);
       return false;
     } else if (titleController.text.isEmpty) {
       errorToast(Strings.titleError);
       return false;
     } else if (countryController.text.isEmpty) {
-      errorToast(Strings.canedaError);
+      errorToast(Strings.canadaError);
       return false;
     } else if (streetController.text.isEmpty) {
       errorToast(Strings.streetError);

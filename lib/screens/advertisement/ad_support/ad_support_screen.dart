@@ -16,8 +16,8 @@ import 'ad_support_controller.dart';
 
 class AdSupportScreen extends StatelessWidget {
   AdSupportScreen({Key? key}) : super(key: key);
-  AdSupportController controller = Get.put(AdSupportController());
-  ProfileController profileController = Get.put(ProfileController());
+  final AdSupportController controller = Get.put(AdSupportController());
+  final ProfileController profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +34,8 @@ class AdSupportScreen extends StatelessWidget {
                 colors: [
                   ColorRes.color_50369C,
                   ColorRes.color_50369C,
-                  ColorRes.color_D18EEE,
-                  ColorRes.color_D18EEE,
+                  ColorRes.colorD18EEE,
+                  ColorRes.colorD18EEE,
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -122,7 +122,7 @@ class AdSupportScreen extends StatelessWidget {
   }
 
   Widget supports() {
-    AdHomeController adHomeController = Get.find<AdHomeController>();
+
     return GetBuilder<AdSupportController>(
       id: "Support",
       builder: (controller) {
@@ -144,9 +144,9 @@ class AdSupportScreen extends StatelessWidget {
                         GetBuilder<AdHomeController>(
                           id: "network",
                             builder: (adHomeController){
-                            adHomeController.CheckUserConnection();
+                            adHomeController.checkUserConnection();
                               return InkWell(
-                          onTap: adHomeController.ActiveConnection == false?(){
+                          onTap: adHomeController.activeConnection == false?(){
                             errorToast("No internet connection");
                           }:() {
                             controller.onTap(
@@ -180,7 +180,7 @@ class AdSupportScreen extends StatelessWidget {
                                       shape: BoxShape.circle,
                                       image: DecorationImage(
                                           image: AssetImage(
-                                            AssetRes.portrait_placeholder,
+                                            AssetRes.portraitPlaceholder,
                                           ),
                                           fit: BoxFit.cover),
                                     ))
@@ -201,7 +201,7 @@ class AdSupportScreen extends StatelessWidget {
                                       fit: BoxFit.cover,
                                       placeholder: ((context, url) =>
                                           Image.asset(
-                                            AssetRes.portrait_placeholder,
+                                            AssetRes.portraitPlaceholder,
                                             height: 50,
                                             width: 50,
                                             fit: BoxFit.cover,
@@ -209,7 +209,7 @@ class AdSupportScreen extends StatelessWidget {
                                       errorWidget: ((context, url,
                                           error) =>
                                           Image.asset(
-                                            AssetRes.portrait_placeholder,
+                                            AssetRes.portraitPlaceholder,
                                             height: 50,
                                             width: 50,
                                             fit: BoxFit.cover,
@@ -263,7 +263,7 @@ class AdSupportScreen extends StatelessWidget {
                                         .toString() ==
                                         "pending"
                                         ? gilroyMediumTextStyle(
-                                        color: ColorRes.color_FFA800,
+                                        color: ColorRes.colorFFA800,
                                         fontSize: 16)
                                         : gilroyMediumTextStyle(
                                         color: ColorRes.color_49A510,
@@ -294,9 +294,9 @@ class AdSupportScreen extends StatelessWidget {
     return GetBuilder<AdHomeController>(
       id: "network",
         builder: (adHomeController){
-        adHomeController.CheckUserConnection();
+        adHomeController.checkUserConnection();
       return InkWell(
-        onTap: adHomeController.ActiveConnection == false?(){
+        onTap: adHomeController.activeConnection == false?(){
           errorToast("No internet connection");
         }:() {
           Get.to(() => SupportcreateScreen())!.then((value) async {
@@ -306,30 +306,20 @@ class AdSupportScreen extends StatelessWidget {
         child: Container(
           height: 60,
           width: 300,
+          alignment: Alignment.center,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: ColorRes.color_E7D01F,
+            color: ColorRes.colorE7D01F,
             gradient: const LinearGradient(
-              colors: [ColorRes.color_FFEC5C, ColorRes.color_DFC60B],
+              colors: [ColorRes.colorFFEC5C, ColorRes.colorDFC60B],
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
             ),
           ),
-          child: Center(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 18,
-                    width: 152,
-                    child: Text(
-                      Strings.sendNewMessage,
-                      style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
-                    ),
-                  ),
-                ],
-              )),
+          child: Text(
+            Strings.sendNewMessage,
+            style: gilroyBoldTextStyle(color: Colors.black, fontSize: 16),
+          ),
         ),
       );
     });

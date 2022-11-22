@@ -207,7 +207,7 @@ class UserDetails {
   String? compnayStreetName;
   String? compnayCity;
   String? companyCountry;
-  int? compnayIdCountry;
+  dynamic compnayIdCountry;
   String? compnayPostalCode;
   String? compnayWebsite;
 

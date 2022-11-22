@@ -4,6 +4,8 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
+import 'package:rainbow/screens/account_Information/account_information_controller.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/service/pref_services.dart';
@@ -113,14 +115,34 @@ logoutPopupAdvertise({required BuildContext context}) {
             TextButton(
               child: const Text('yes'),
               onPressed: () async {
-                await PrefService.clear();
+                //await PrefService.clear();
+
+                //Get.offAndToNamed("/AuthDashboard");
+
+                //Get.offNamed("/AuthDashboard");
+                //Get.offNamedUntil("/AuthDashboard");
+                Get.deleteAll();
+
                 Get.offAll(() => AuthDashboard());
+
+                //Get.reset();
+                PrefService.setValue(PrefKeys.userId, "");
+                PrefService.setValue(PrefKeys.accessToken, "");
                 PrefService.setValue(PrefKeys.skipBoardingScreen, true);
-
+                //AdHomeController adHomeController = AdHomeController();
+               // adHomeController.myAdvertiserModel.data = null;
                 PaymentController paymentController = Get.find();
-
+                //adHomeController.viewAdvertiserModel.data!.profileImage = '';
+                AccountInformationController accountController = AccountInformationController();
+                accountController.imagePath = null;
+                //accountController.update(["Getpic"]);
                 paymentController.listCardModel.data = [];
                 paymentController.transactionModel.data = [];
+                AdHomeController adHomecon = Get.put(AdHomeController());
+
+                /*adHomecon.onClose();
+                adHomecon.page = 0;
+                adHomecon.myAdList = [];*/
               },
             ),
           ],
@@ -195,7 +217,7 @@ logoutPopupAdvertise({required BuildContext context}) {
                       begin: Alignment.topRight,
                       end: Alignment.bottomLeft,
                       colors: [
-                        ColorRes.color_B279DB,
+                        ColorRes.colorB279DB,
                         ColorRes.color_4F359B,
                       ],
                     )),

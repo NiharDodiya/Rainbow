@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_api.dart';
 import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
-import 'package:rainbow/screens/Profile/widget/postTestimonials_api/postTestimonials_api.dart';
+import 'package:rainbow/screens/Profile/widget/postTestimonials_api/post_testimonials_api.dart';
 import 'package:rainbow/screens/Profile/widget/testimonials.dart';
 import 'package:rainbow/screens/dashboard/dashboard_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
@@ -16,6 +16,8 @@ class ProfileController extends GetxController {
   bool seeMoreAndLess = false;
   TextEditingController postTestimonials = TextEditingController();
   String? url;
+  bool change = false;
+
   List<String> image = [
     AssetRes.lt1,
     AssetRes.lt2,
@@ -33,6 +35,8 @@ class ProfileController extends GetxController {
     "Sally Wilson",
   ];
   ViewProfile viewProfile = ViewProfile();
+
+  RxBool screen = false.obs;
 
   @override
   void onInit() async {

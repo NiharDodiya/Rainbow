@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
@@ -6,6 +7,7 @@ import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_field.dart';
 import 'package:rainbow/common/helper.dart';
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/edit_advertisement/edit_advertisement_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/update_advertisement/update_advertisement_controller.dart';
 import 'package:rainbow/utils/color_res.dart';
 
@@ -16,13 +18,14 @@ import '../../../../../utils/color_res.dart';
 import '../../../../../utils/strings.dart';
 
 class UpdateAdvertiseScreen extends StatelessWidget {
-  int id;
+  final int id;
 
   UpdateAdvertiseScreen({Key? key, required this.id}) : super(key: key);
 
-  UpdateAdvertiseController updateAdvertiseController =
+  final UpdateAdvertiseController updateAdvertiseController =
       Get.put(UpdateAdvertiseController());
-
+  EditAdvertiesementController editAdvertiesementController =
+  Get.put(EditAdvertiesementController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,8 +40,8 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                 colors: [
                   ColorRes.color_50369C,
                   ColorRes.color_50369C,
-                  ColorRes.color_D18EEE,
-                  ColorRes.color_D18EEE,
+                  ColorRes.colorD18EEE,
+                  ColorRes.colorD18EEE,
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -57,7 +60,17 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                         body(context, controller),
                         SubmitButton(
                           onTap: () {
-                            updateAdvertiseController.editAdvertisement(id: id);
+
+                            updateAdvertiseController.editAdvertisement(
+
+                                id: id,
+
+                                imgId: (controller.idImg.length == 3)
+                                ?[controller.idImg[0], controller.idImg[1], controller.idImg[2]]
+                                :(controller.idImg.length == 2)
+                                ?[controller.idImg[0], controller.idImg[1]]
+                                :(controller.idImg.length == 1)
+                                ?[controller.idImg[0]]:[]);
                           },
                           child: Text(
                             "Edit Advertisement",
@@ -171,410 +184,800 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        (controller.imagePath.isEmpty)
-                            ? const SizedBox()
-                            : (controller.imagePath.length == 3)
-                                ? Row(
-                                    children: [
-                                      Stack(
-                                        alignment: const Alignment(1.2, -1.3),
-                                        children: [
-                                          Container(
-                                            height: Get.height / 12,
-                                            width: Get.width / 6,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(15),
-                                                image: DecorationImage(
-                                                    image: FileImage(controller
-                                                        .imagePath[0]),
-                                                    fit: BoxFit.cover)),
-                                          ),
-                                          InkWell(
-                                            onTap: () {
-                                              FocusScopeNode currentfocus =
-                                                  FocusScope.of(context);
-                                              if (!currentfocus
-                                                  .hasPrimaryFocus) {
-                                                currentfocus.unfocus();
-                                              }
-                                              controller.imagePath.removeAt(0);
-                                              controller.update(["img"]);
-                                            },
-                                            child: Container(
-                                                decoration: const BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    color: Colors.black),
-                                                child: const Icon(
-                                                  Icons.clear,
-                                                  color: Colors.white,
-                                                )),
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(width: 20),
-                                      Stack(
-                                        alignment: const Alignment(1.2, -1.3),
-                                        children: [
-                                          Container(
-                                            height: Get.height / 12,
-                                            width: Get.width / 6,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(15),
-                                                image: DecorationImage(
-                                                    image: FileImage(controller
-                                                        .imagePath[1]),
-                                                    fit: BoxFit.cover)),
-                                          ),
-                                          InkWell(
-                                            onTap: () {
-                                              FocusScopeNode currentfocus =
-                                                  FocusScope.of(context);
-                                              if (!currentfocus
-                                                  .hasPrimaryFocus) {
-                                                currentfocus.unfocus();
-                                              }
-                                              controller.imagePath.removeAt(1);
-                                              controller.update(["img"]);
-                                            },
-                                            child: Container(
-                                                decoration: const BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    color: Colors.black),
-                                                child: const Icon(
-                                                  Icons.clear,
-                                                  color: Colors.white,
-                                                )),
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(width: 20),
-                                      Stack(
-                                        alignment: const Alignment(1.2, -1.3),
-                                        children: [
-                                          Container(
-                                            height: Get.height / 12,
-                                            width: Get.width / 6,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(15),
-                                                image: DecorationImage(
-                                                    image: FileImage(controller
-                                                        .imagePath[2]),
-                                                    fit: BoxFit.cover)),
-                                          ),
-                                          InkWell(
-                                            onTap: () {
-                                              FocusScopeNode currentfocus =
-                                                  FocusScope.of(context);
-                                              if (!currentfocus
-                                                  .hasPrimaryFocus) {
-                                                currentfocus.unfocus();
-                                              }
-                                              controller.imagePath.removeAt(2);
-                                              controller.update(["img"]);
-                                            },
-                                            child: Container(
-                                                decoration: const BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    color: Colors.black),
-                                                child: const Icon(
-                                                  Icons.clear,
-                                                  color: Colors.white,
-                                                )),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  )
-                                : (controller.imagePath.length == 2)
-                                    ? Row(
-                                        children: [
-                                          Stack(
-                                            alignment:
-                                                const Alignment(1.2, -1.3),
-                                            children: [
-                                              Container(
-                                                height: Get.height / 12,
-                                                width: Get.width / 6,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            15),
-                                                    image: DecorationImage(
-                                                        image: FileImage(
-                                                            controller
-                                                                .imagePath[0]),
-                                                        fit: BoxFit.cover)),
-                                              ),
-                                              InkWell(
-                                                onTap: () {
-                                                  FocusScopeNode currentfocus =
-                                                      FocusScope.of(context);
-                                                  if (!currentfocus
-                                                      .hasPrimaryFocus) {
-                                                    currentfocus.unfocus();
-                                                  }
-                                                  controller.imagePath
-                                                      .removeAt(0);
-                                                  controller.update(["img"]);
-                                                },
-                                                child: Container(
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                            color:
-                                                                Colors.black),
-                                                    child: const Icon(
-                                                      Icons.clear,
-                                                      color: Colors.white,
-                                                    )),
-                                              ),
-                                            ],
-                                          ),
-                                          const SizedBox(width: 20),
-                                          Stack(
-                                            alignment:
-                                                const Alignment(1.2, -1.3),
-                                            children: [
-                                              Container(
-                                                height: Get.height / 12,
-                                                width: Get.width / 6,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            15),
-                                                    image: DecorationImage(
-                                                        image: FileImage(
-                                                            controller
-                                                                .imagePath[1]),
-                                                        fit: BoxFit.cover)),
-                                              ),
-                                              InkWell(
-                                                onTap: () {
-                                                  FocusScopeNode currentfocus =
-                                                      FocusScope.of(context);
-                                                  if (!currentfocus
-                                                      .hasPrimaryFocus) {
-                                                    currentfocus.unfocus();
-                                                  }
-                                                  controller.imagePath
-                                                      .removeAt(1);
-                                                  controller.update(["img"]);
-                                                },
-                                                child: Container(
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                            shape:
-                                                                BoxShape.circle,
-                                                            color:
-                                                                Colors.black),
-                                                    child: const Icon(
-                                                      Icons.clear,
-                                                      color: Colors.white,
-                                                    )),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      )
-                                    : (controller.imagePath.length == 1)
-                                        ? Row(
-                                            children: [
-                                              Stack(
-                                                alignment:
-                                                    const Alignment(1.2, -1.3),
-                                                children: [
-                                                  Container(
-                                                    height: Get.height / 12,
-                                                    width: Get.width / 6,
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(15),
-                                                        image: DecorationImage(
-                                                            image: FileImage(
-                                                                controller
-                                                                    .imagePath[0]),
-                                                            fit: BoxFit.cover)),
-                                                  ),
-                                                  InkWell(
-                                                    onTap: () {
-                                                      FocusScopeNode
-                                                          currentfocus =
-                                                          FocusScope.of(
-                                                              context);
-                                                      if (!currentfocus
-                                                          .hasPrimaryFocus) {
-                                                        currentfocus.unfocus();
-                                                      }
-                                                      controller.imagePath
-                                                          .removeAt(0);
-                                                      controller
-                                                          .update(["img"]);
-                                                    },
-                                                    child: Container(
-                                                        decoration:
-                                                            const BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                                color: Colors
-                                                                    .black),
-                                                        child: const Icon(
-                                                          Icons.clear,
-                                                          color: Colors.white,
-                                                        )),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          )
-                                        : Row(
-                                            children: [
-                                              Stack(
-                                                alignment:
-                                                    const Alignment(1.2, -1.3),
-                                                children: [
-                                                  Container(
-                                                    height: Get.height / 12,
-                                                    width: Get.width / 5,
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(15),
-                                                        image: DecorationImage(
-                                                            image: FileImage(
-                                                                controller
-                                                                    .imagePath[0]),
-                                                            fit: BoxFit.cover)),
-                                                  ),
-                                                  InkWell(
-                                                    onTap: () {
-                                                      FocusScopeNode
-                                                          currentfocus =
-                                                          FocusScope.of(
-                                                              context);
-                                                      if (!currentfocus
-                                                          .hasPrimaryFocus) {
-                                                        currentfocus.unfocus();
-                                                      }
-                                                      controller.imagePath
-                                                          .removeAt(0);
-                                                      controller
-                                                          .update(["img"]);
-                                                    },
-                                                    child: Container(
-                                                        decoration:
-                                                            const BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                                color: Colors
-                                                                    .black),
-                                                        child: const Icon(
-                                                          Icons.clear,
-                                                          color: Colors.white,
-                                                        )),
-                                                  ),
-                                                ],
-                                              ),
-                                              const SizedBox(width: 20),
-                                              Stack(
-                                                alignment:
-                                                    const Alignment(1.2, -1.3),
-                                                children: [
-                                                  Container(
-                                                    height: Get.height / 12,
-                                                    width: Get.width / 5,
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(15),
-                                                        image: DecorationImage(
-                                                            image: FileImage(
-                                                                controller
-                                                                    .imagePath[1]),
-                                                            fit: BoxFit.cover)),
-                                                  ),
-                                                  InkWell(
-                                                    onTap: () {
-                                                      FocusScopeNode
-                                                          currentfocus =
-                                                          FocusScope.of(
-                                                              context);
-                                                      if (!currentfocus
-                                                          .hasPrimaryFocus) {
-                                                        currentfocus.unfocus();
-                                                      }
-                                                      controller.imagePath
-                                                          .removeAt(1);
-                                                      controller
-                                                          .update(["img"]);
-                                                    },
-                                                    child: Container(
-                                                        decoration:
-                                                            const BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                                color: Colors
-                                                                    .black),
-                                                        child: const Icon(
-                                                          Icons.clear,
-                                                          color: Colors.white,
-                                                        )),
-                                                  ),
-                                                ],
-                                              ),
-                                              const SizedBox(width: 20),
-                                              Stack(
-                                                alignment:
-                                                    const Alignment(1.2, -1.3),
-                                                children: [
-                                                  Container(
-                                                    height: Get.height / 12,
-                                                    width: Get.width / 5,
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(15),
-                                                        image: DecorationImage(
-                                                            image: FileImage(
-                                                                controller
-                                                                    .imagePath[2]),
-                                                            fit: BoxFit.cover)),
-                                                  ),
-                                                  InkWell(
-                                                    onTap: () {
-                                                      FocusScopeNode
-                                                          currentfocus =
-                                                          FocusScope.of(
-                                                              context);
-                                                      if (!currentfocus
-                                                          .hasPrimaryFocus) {
-                                                        currentfocus.unfocus();
-                                                      }
-                                                      controller.imagePath
-                                                          .removeAt(2);
-                                                      controller
-                                                          .update(["img"]);
-                                                    },
-                                                    child: Container(
-                                                        decoration:
-                                                            const BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                                color: Colors
-                                                                    .black),
-                                                        child: const Icon(
-                                                          Icons.clear,
-                                                          color: Colors.white,
-                                                        )),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
+
+                        SingleChildScrollView(
+                         scrollDirection: Axis.horizontal,
+                         child: Row(
+                           mainAxisAlignment: MainAxisAlignment.start,
+                           children: [
+                             (controller.images.isEmpty)
+                                 ? const SizedBox()
+                                 : (controller.images.length == 3)
+                                 ? Row(
+                               children: [
+                                 Stack(
+                                   alignment: const Alignment(1.2, -1.3),
+                                   children: [
+                                     ClipRRect(
+                                       borderRadius: BorderRadius.circular(15),
+                                       child:  Container(
+                                         height: Get.height / 12,
+                                         width: Get.width / 6,
+                                         child: CachedNetworkImage(
+                                           imageUrl: controller.images[0],
+                                           fit: BoxFit.cover,
+                                           placeholder: ((context, url) => Image.asset(AssetRes.placeholderImage,
+                                             height: Get.height / 12,
+                                             width: Get.width / 6,
+                                             fit: BoxFit.cover,
+                                           )),
+                                           errorWidget: ((context, url, error) => Image.asset(AssetRes.placeholderImage,
+                                             height: Get.height / 12,
+                                             width: Get.width / 6,
+                                             fit: BoxFit.cover,
+                                           )),
+                                         ),
+                                       ),
+                                     ),
+                                     InkWell(
+                                       onTap: () {
+                                         FocusScopeNode currentfocus =
+                                         FocusScope.of(context);
+                                         if (!currentfocus
+                                             .hasPrimaryFocus) {
+                                           currentfocus.unfocus();
+                                         }
+                                         controller.images.removeAt(0);
+                                         controller.idImg.removeAt(0);
+                                         controller.update(["img"]);
+                                       },
+                                       child: Container(
+                                           decoration: const BoxDecoration(
+                                               shape: BoxShape.circle,
+                                               color: Colors.black),
+                                           child: const Icon(
+                                             Icons.clear,
+                                             color: Colors.white,
+                                           )),
+                                     ),
+                                   ],
+                                 ),
+                                 const SizedBox(width: 20),
+                                 Stack(
+                                   alignment: const Alignment(1.2, -1.3),
+                                   children: [
+                                     ClipRRect(
+                                       borderRadius: BorderRadius.circular(15),
+                                       child:  Container(
+                                         height: Get.height / 12,
+                                         width: Get.width / 6,
+                                         child: CachedNetworkImage(
+                                           imageUrl: controller.images[1],
+                                           fit: BoxFit.cover,
+                                           placeholder: ((context, url) => Image.asset(AssetRes.placeholderImage,
+                                             height: Get.height / 12,
+                                             width: Get.width / 6,
+                                             fit: BoxFit.cover,
+                                           )),
+                                           errorWidget: ((context, url, error) => Image.asset(AssetRes.placeholderImage,
+                                             height: Get.height / 12,
+                                             width: Get.width / 6,
+                                             fit: BoxFit.cover,
+                                           )),
+                                         ),
+                                       ),
+                                     ),
+                                     InkWell(
+                                       onTap: () {
+                                         FocusScopeNode currentfocus =
+                                         FocusScope.of(context);
+                                         if (!currentfocus
+                                             .hasPrimaryFocus) {
+                                           currentfocus.unfocus();
+                                         }
+                                         controller.images.removeAt(1);
+                                         controller.idImg.removeAt(1);
+                                         controller.update(["img"]);
+                                       },
+                                       child: Container(
+                                           decoration: const BoxDecoration(
+                                               shape: BoxShape.circle,
+                                               color: Colors.black),
+                                           child: const Icon(
+                                             Icons.clear,
+                                             color: Colors.white,
+                                           )),
+                                     ),
+                                   ],
+                                 ),
+                                 const SizedBox(width: 20),
+                                 Stack(
+                                   alignment: const Alignment(1.2, -1.3),
+                                   children: [
+                                     ClipRRect(
+                                       borderRadius: BorderRadius.circular(15),
+                                       child:  Container(
+                                         height: Get.height / 12,
+                                         width: Get.width / 6,
+                                         child: CachedNetworkImage(
+                                           imageUrl: controller.images[2],
+                                           fit: BoxFit.cover,
+                                           placeholder: ((context, url) => Image.asset(AssetRes.placeholderImage,
+                                             height: Get.height / 12,
+                                             width: Get.width / 6,
+                                             fit: BoxFit.cover,
+                                           )),
+                                           errorWidget: ((context, url, error) => Image.asset(AssetRes.placeholderImage,
+                                             height: Get.height / 12,
+                                             width: Get.width / 6,
+                                             fit: BoxFit.cover,
+                                           )),
+                                         ),
+                                       ),
+                                     ),
+                                     InkWell(
+                                       onTap: () {
+                                         FocusScopeNode currentfocus =
+                                         FocusScope.of(context);
+                                         if (!currentfocus
+                                             .hasPrimaryFocus) {
+                                           currentfocus.unfocus();
+                                         }
+                                         controller.images.removeAt(2);
+                                         controller.idImg.removeAt(2);
+                                         controller.update(["img"]);
+                                       },
+                                       child: Container(
+                                           decoration: const BoxDecoration(
+                                               shape: BoxShape.circle,
+                                               color: Colors.black),
+                                           child: const Icon(
+                                             Icons.clear,
+                                             color: Colors.white,
+                                           )),
+                                     ),
+                                   ],
+                                 ),
+                               ],
+                             )
+                                 : (controller.images.length == 2)
+                                 ? Row(
+                               children: [
+                                 Stack(
+                                   alignment:
+                                   const Alignment(1.2, -1.3),
+                                   children: [
+                                     ClipRRect(
+                                       borderRadius: BorderRadius.circular(15),
+                                       child:  Container(
+                                         height: Get.height / 12,
+                                         width: Get.width / 6,
+                                         child: CachedNetworkImage(
+                                           imageUrl: controller.images[0],
+                                           fit: BoxFit.cover,
+                                           placeholder: ((context, url) => Image.asset(AssetRes.placeholderImage,
+                                             height: Get.height / 12,
+                                             width: Get.width / 6,
+                                             fit: BoxFit.cover,
+                                           )),
+                                           errorWidget: ((context, url, error) => Image.asset(AssetRes.placeholderImage,
+                                             height: Get.height / 12,
+                                             width: Get.width / 6,
+                                             fit: BoxFit.cover,
+                                           )),
+                                         ),
+                                       ),
+                                     ),
+                                     InkWell(
+                                       onTap: () {
+                                         FocusScopeNode currentfocus =
+                                         FocusScope.of(context);
+                                         if (!currentfocus
+                                             .hasPrimaryFocus) {
+                                           currentfocus.unfocus();
+                                         }
+                                         controller.images.removeAt(0);
+                                         controller.idImg.removeAt(0);
+                                         controller.update(["img"]);
+                                       },
+                                       child: Container(
+                                           decoration:
+                                           const BoxDecoration(
+                                               shape:
+                                               BoxShape.circle,
+                                               color:
+                                               Colors.black),
+                                           child: const Icon(
+                                             Icons.clear,
+                                             color: Colors.white,
+                                           )),
+                                     ),
+                                   ],
+                                 ),
+                                 const SizedBox(width: 20),
+                                 Stack(
+                                   alignment:
+                                   const Alignment(1.2, -1.3),
+                                   children: [
+                                     ClipRRect(
+                                       borderRadius: BorderRadius.circular(15),
+                                       child:  Container(
+                                         height: Get.height / 12,
+                                         width: Get.width / 6,
+                                         child: CachedNetworkImage(
+                                           imageUrl: controller.images[1],
+                                           fit: BoxFit.cover,
+                                           placeholder: ((context, url) => Image.asset(AssetRes.placeholderImage,
+                                             height: Get.height / 12,
+                                             width: Get.width / 6,
+                                             fit: BoxFit.cover,
+                                           )),
+                                           errorWidget: ((context, url, error) => Image.asset(AssetRes.placeholderImage,
+                                             height: Get.height / 12,
+                                             width: Get.width / 6,
+                                             fit: BoxFit.cover,
+                                           )),
+                                         ),
+                                       ),
+                                     ),
+                                     InkWell(
+                                       onTap: () {
+                                         FocusScopeNode currentfocus =
+                                         FocusScope.of(context);
+                                         if (!currentfocus
+                                             .hasPrimaryFocus) {
+                                           currentfocus.unfocus();
+                                         }
+                                         controller.images
+                                             .removeAt(1);
+                                         controller.idImg.removeAt(1);
+                                         controller.update(["img"]);
+                                       },
+                                       child: Container(
+                                           decoration:
+                                           const BoxDecoration(
+                                               shape:
+                                               BoxShape.circle,
+                                               color:
+                                               Colors.black),
+                                           child: const Icon(
+                                             Icons.clear,
+                                             color: Colors.white,
+                                           )),
+                                     ),
+                                   ],
+                                 ),
+                               ],
+                             )
+                                 : (controller.images.length == 1)
+                                 ? Row(
+                               children: [
+                                 Stack(
+                                   alignment:
+                                   const Alignment(1.2, -1.3),
+                                   children: [
+                                     ClipRRect(
+                                       borderRadius: BorderRadius.circular(15),
+                                       child:  Container(
+                                         height: Get.height / 12,
+                                         width: Get.width / 6,
+                                         child: CachedNetworkImage(
+                                           imageUrl: controller.images[0],
+                                           fit: BoxFit.cover,
+                                           placeholder: ((context, url) => Image.asset(AssetRes.placeholderImage,
+                                             height: Get.height / 12,
+                                             width: Get.width / 6,
+                                             fit: BoxFit.cover,
+                                           )),
+                                           errorWidget: ((context, url, error) => Image.asset(AssetRes.placeholderImage,
+                                             height: Get.height / 12,
+                                             width: Get.width / 6,
+                                             fit: BoxFit.cover,
+                                           )),
+                                         ),
+                                       ),
+                                     ),
+                                     InkWell(
+                                       onTap: () {
+                                         FocusScopeNode
+                                         currentfocus =
+                                         FocusScope.of(
+                                             context);
+                                         if (!currentfocus
+                                             .hasPrimaryFocus) {
+                                           currentfocus.unfocus();
+                                         }
+                                         controller.images
+                                             .removeAt(0);
+                                         controller.idImg.removeAt(0);
+                                         controller
+                                             .update(["img"]);
+                                       },
+                                       child: Container(
+                                           decoration:
+                                           const BoxDecoration(
+                                               shape: BoxShape
+                                                   .circle,
+                                               color: Colors
+                                                   .black),
+                                           child: const Icon(
+                                             Icons.clear,
+                                             color: Colors.white,
+                                           )),
+                                     ),
+                                   ],
+                                 ),
+                               ],
+                             )
+                                 : Row(
+                               children: [
+                                 Stack(
+                                   alignment:
+                                   const Alignment(1.2, -1.3),
+                                   children: [
+                                     ClipRRect(
+                                       borderRadius: BorderRadius.circular(15),
+                                       child:  Container(
+                                         height: Get.height / 12,
+                                         width: Get.width / 6,
+                                         child: CachedNetworkImage(
+                                           imageUrl: controller.images[0],
+                                           fit: BoxFit.cover,
+                                           placeholder: ((context, url) => Image.asset(AssetRes.placeholderImage,
+                                             height: Get.height / 12,
+                                             width: Get.width / 6,
+                                             fit: BoxFit.cover,
+                                           )),
+                                           errorWidget: ((context, url, error) => Image.asset(AssetRes.placeholderImage,
+                                             height: Get.height / 12,
+                                             width: Get.width / 6,
+                                             fit: BoxFit.cover,
+                                           )),
+                                         ),
+                                       ),
+                                     ),
+                                     InkWell(
+                                       onTap: () {
+                                         FocusScopeNode
+                                         currentfocus =
+                                         FocusScope.of(
+                                             context);
+                                         if (!currentfocus
+                                             .hasPrimaryFocus) {
+                                           currentfocus.unfocus();
+                                         }
+                                         controller.images
+                                             .removeAt(0);
+                                         controller.idImg.removeAt(0);
+                                         controller
+                                             .update(["img"]);
+                                       },
+                                       child: Container(
+                                           decoration:
+                                           const BoxDecoration(
+                                               shape: BoxShape
+                                                   .circle,
+                                               color: Colors
+                                                   .black),
+                                           child: const Icon(
+                                             Icons.clear,
+                                             color: Colors.white,
+                                           )),
+                                     ),
+                                   ],
+                                 ),
+                               ],
+                             ),
+
+                               const SizedBox(width: 20),
+
+                             (controller.imagePath.isEmpty)
+                                 ? const SizedBox()
+                                 : (controller.imagePath.length == 3)
+                                 ? Row(
+                               children: [
+                                 Stack(
+                                   alignment: const Alignment(1.2, -1.3),
+                                   children: [
+                                     Container(
+                                       height: Get.height / 12,
+                                       width: Get.width / 6,
+                                       decoration: BoxDecoration(
+                                           borderRadius:
+                                           BorderRadius.circular(15),
+                                           image: DecorationImage(
+                                               image: FileImage(controller
+                                                   .imagePath[0]),
+                                               fit: BoxFit.cover)),
+                                     ),
+                                     InkWell(
+                                       onTap: () {
+                                         FocusScopeNode currentfocus =
+                                         FocusScope.of(context);
+                                         if (!currentfocus
+                                             .hasPrimaryFocus) {
+                                           currentfocus.unfocus();
+                                         }
+                                         controller.imagePath.removeAt(0);
+                                         controller.update(["img"]);
+                                       },
+                                       child: Container(
+                                           decoration: const BoxDecoration(
+                                               shape: BoxShape.circle,
+                                               color: Colors.black),
+                                           child: const Icon(
+                                             Icons.clear,
+                                             color: Colors.white,
+                                           )),
+                                     ),
+                                   ],
+                                 ),
+                                 const SizedBox(width: 20),
+                                 Stack(
+                                   alignment: const Alignment(1.2, -1.3),
+                                   children: [
+                                     Container(
+                                       height: Get.height / 12,
+                                       width: Get.width / 6,
+                                       decoration: BoxDecoration(
+                                           borderRadius:
+                                           BorderRadius.circular(15),
+                                           image: DecorationImage(
+                                               image: FileImage(controller
+                                                   .imagePath[1]),
+                                               fit: BoxFit.cover)),
+                                     ),
+                                     InkWell(
+                                       onTap: () {
+                                         FocusScopeNode currentfocus =
+                                         FocusScope.of(context);
+                                         if (!currentfocus
+                                             .hasPrimaryFocus) {
+                                           currentfocus.unfocus();
+                                         }
+                                         controller.imagePath.removeAt(1);
+                                         controller.update(["img"]);
+                                       },
+                                       child: Container(
+                                           decoration: const BoxDecoration(
+                                               shape: BoxShape.circle,
+                                               color: Colors.black),
+                                           child: const Icon(
+                                             Icons.clear,
+                                             color: Colors.white,
+                                           )),
+                                     ),
+                                   ],
+                                 ),
+                                 const SizedBox(width: 20),
+                                 Stack(
+                                   alignment: const Alignment(1.2, -1.3),
+                                   children: [
+                                     Container(
+                                       height: Get.height / 12,
+                                       width: Get.width / 6,
+                                       decoration: BoxDecoration(
+                                           borderRadius:
+                                           BorderRadius.circular(15),
+                                           image: DecorationImage(
+                                               image: FileImage(controller
+                                                   .imagePath[2]),
+                                               fit: BoxFit.cover)),
+                                     ),
+                                     InkWell(
+                                       onTap: () {
+                                         FocusScopeNode currentfocus =
+                                         FocusScope.of(context);
+                                         if (!currentfocus
+                                             .hasPrimaryFocus) {
+                                           currentfocus.unfocus();
+                                         }
+                                         controller.imagePath.removeAt(2);
+                                         controller.update(["img"]);
+                                       },
+                                       child: Container(
+                                           decoration: const BoxDecoration(
+                                               shape: BoxShape.circle,
+                                               color: Colors.black),
+                                           child: const Icon(
+                                             Icons.clear,
+                                             color: Colors.white,
+                                           )),
+                                     ),
+                                   ],
+                                 ),
+                               ],
+                             )
+                                 : (controller.imagePath.length == 2)
+                                 ? Row(
+                               children: [
+                                 Stack(
+                                   alignment:
+                                   const Alignment(1.2, -1.3),
+                                   children: [
+                                     Container(
+                                       height: Get.height / 12,
+                                       width: Get.width / 6,
+                                       decoration: BoxDecoration(
+                                           borderRadius:
+                                           BorderRadius.circular(
+                                               15),
+                                           image: DecorationImage(
+                                               image: FileImage(
+                                                   controller
+                                                       .imagePath[0]),
+                                               fit: BoxFit.cover)),
+                                     ),
+                                     InkWell(
+                                       onTap: () {
+                                         FocusScopeNode currentfocus =
+                                         FocusScope.of(context);
+                                         if (!currentfocus
+                                             .hasPrimaryFocus) {
+                                           currentfocus.unfocus();
+                                         }
+                                         controller.imagePath
+                                             .removeAt(0);
+                                         controller.update(["img"]);
+                                       },
+                                       child: Container(
+                                           decoration:
+                                           const BoxDecoration(
+                                               shape:
+                                               BoxShape.circle,
+                                               color:
+                                               Colors.black),
+                                           child: const Icon(
+                                             Icons.clear,
+                                             color: Colors.white,
+                                           )),
+                                     ),
+                                   ],
+                                 ),
+                                 const SizedBox(width: 20),
+                                 Stack(
+                                   alignment:
+                                   const Alignment(1.2, -1.3),
+                                   children: [
+                                     Container(
+                                       height: Get.height / 12,
+                                       width: Get.width / 6,
+                                       decoration: BoxDecoration(
+                                           borderRadius:
+                                           BorderRadius.circular(
+                                               15),
+                                           image: DecorationImage(
+                                               image: FileImage(
+                                                   controller
+                                                       .imagePath[1]),
+                                               fit: BoxFit.cover)),
+                                     ),
+                                     InkWell(
+                                       onTap: () {
+                                         FocusScopeNode currentfocus =
+                                         FocusScope.of(context);
+                                         if (!currentfocus
+                                             .hasPrimaryFocus) {
+                                           currentfocus.unfocus();
+                                         }
+                                         controller.imagePath
+                                             .removeAt(1);
+                                         controller.update(["img"]);
+                                       },
+                                       child: Container(
+                                           decoration:
+                                           const BoxDecoration(
+                                               shape:
+                                               BoxShape.circle,
+                                               color:
+                                               Colors.black),
+                                           child: const Icon(
+                                             Icons.clear,
+                                             color: Colors.white,
+                                           )),
+                                     ),
+                                   ],
+                                 ),
+                               ],
+                             )
+                                 : (controller.imagePath.length == 1)
+                                 ? Row(
+                               children: [
+                                 Stack(
+                                   alignment:
+                                   const Alignment(1.2, -1.3),
+                                   children: [
+                                     Container(
+                                       height: Get.height / 12,
+                                       width: Get.width / 6,
+                                       decoration: BoxDecoration(
+                                           borderRadius:
+                                           BorderRadius
+                                               .circular(15),
+                                           image: DecorationImage(
+                                               image: FileImage(
+                                                   controller
+                                                       .imagePath[0]),
+                                               fit: BoxFit.cover)),
+                                     ),
+                                     InkWell(
+                                       onTap: () {
+                                         FocusScopeNode
+                                         currentfocus =
+                                         FocusScope.of(
+                                             context);
+                                         if (!currentfocus
+                                             .hasPrimaryFocus) {
+                                           currentfocus.unfocus();
+                                         }
+                                         controller.imagePath
+                                             .removeAt(0);
+                                         controller
+                                             .update(["img"]);
+                                       },
+                                       child: Container(
+                                           decoration:
+                                           const BoxDecoration(
+                                               shape: BoxShape
+                                                   .circle,
+                                               color: Colors
+                                                   .black),
+                                           child: const Icon(
+                                             Icons.clear,
+                                             color: Colors.white,
+                                           )),
+                                     ),
+                                   ],
+                                 ),
+                               ],
+                             )
+                                 : Row(
+                               children: [
+                                 Stack(
+                                   alignment:
+                                   const Alignment(1.2, -1.3),
+                                   children: [
+                                     Container(
+                                       height: Get.height / 12,
+                                       width: Get.width / 5,
+                                       decoration: BoxDecoration(
+                                           borderRadius:
+                                           BorderRadius
+                                               .circular(15),
+                                           image: DecorationImage(
+                                               image: FileImage(
+                                                   controller
+                                                       .imagePath[0]),
+                                               fit: BoxFit.cover)),
+                                     ),
+                                     InkWell(
+                                       onTap: () {
+                                         FocusScopeNode
+                                         currentfocus =
+                                         FocusScope.of(
+                                             context);
+                                         if (!currentfocus
+                                             .hasPrimaryFocus) {
+                                           currentfocus.unfocus();
+                                         }
+                                         controller.imagePath
+                                             .removeAt(0);
+                                         controller
+                                             .update(["img"]);
+                                       },
+                                       child: Container(
+                                           decoration:
+                                           const BoxDecoration(
+                                               shape: BoxShape
+                                                   .circle,
+                                               color: Colors
+                                                   .black),
+                                           child: const Icon(
+                                             Icons.clear,
+                                             color: Colors.white,
+                                           )),
+                                     ),
+                                   ],
+                                 ),
+                                 const SizedBox(width: 20),
+                                 Stack(
+                                   alignment:
+                                   const Alignment(1.2, -1.3),
+                                   children: [
+                                     Container(
+                                       height: Get.height / 12,
+                                       width: Get.width / 5,
+                                       decoration: BoxDecoration(
+                                           borderRadius:
+                                           BorderRadius
+                                               .circular(15),
+                                           image: DecorationImage(
+                                               image: FileImage(
+                                                   controller
+                                                       .imagePath[1]),
+                                               fit: BoxFit.cover)),
+                                     ),
+                                     InkWell(
+                                       onTap: () {
+                                         FocusScopeNode
+                                         currentfocus =
+                                         FocusScope.of(
+                                             context);
+                                         if (!currentfocus
+                                             .hasPrimaryFocus) {
+                                           currentfocus.unfocus();
+                                         }
+                                         controller.imagePath
+                                             .removeAt(1);
+                                         controller
+                                             .update(["img"]);
+                                       },
+                                       child: Container(
+                                           decoration:
+                                           const BoxDecoration(
+                                               shape: BoxShape
+                                                   .circle,
+                                               color: Colors
+                                                   .black),
+                                           child: const Icon(
+                                             Icons.clear,
+                                             color: Colors.white,
+                                           )),
+                                     ),
+                                   ],
+                                 ),
+                                 const SizedBox(width: 20),
+                                 Stack(
+                                   alignment:
+                                   const Alignment(1.2, -1.3),
+                                   children: [
+                                     Container(
+                                       height: Get.height / 12,
+                                       width: Get.width / 5,
+                                       decoration: BoxDecoration(
+                                           borderRadius:
+                                           BorderRadius
+                                               .circular(15),
+                                           image: DecorationImage(
+                                               image: FileImage(
+                                                   controller
+                                                       .imagePath[2]),
+                                               fit: BoxFit.cover)),
+                                     ),
+                                     InkWell(
+                                       onTap: () {
+                                         FocusScopeNode
+                                         currentfocus =
+                                         FocusScope.of(
+                                             context);
+                                         if (!currentfocus
+                                             .hasPrimaryFocus) {
+                                           currentfocus.unfocus();
+                                         }
+                                         controller.imagePath
+                                             .removeAt(2);
+                                         controller
+                                             .update(["img"]);
+                                       },
+                                       child: Container(
+                                           decoration:
+                                           const BoxDecoration(
+                                               shape: BoxShape
+                                                   .circle,
+                                               color: Colors
+                                                   .black),
+                                           child: const Icon(
+                                             Icons.clear,
+                                             color: Colors.white,
+                                           )),
+                                     ),
+                                   ],
+                                 ),
+                               ],
+                             ),
+                           ],
+                         ),
+                       ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -583,9 +986,13 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
-                                if (controller.imagePath.length == 3) {
-                                  errorToast("you can take only 3 images");
-                                } else {
+                                int count;
+                                count = controller.images.length + controller.imagePath.length;
+
+                               if(count==3){
+                                  errorToast("You can take only 3 images");
+                                }
+                                else {
                                   showModalBottomSheet(
                                       elevation: 10,
                                       barrierColor:
@@ -639,7 +1046,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                             Text(
                               Strings.uploadImage,
                               style: gilroyMediumTextStyle(
-                                  fontSize: 16, color: ColorRes.color_ADB1B1),
+                                  fontSize: 16, color: ColorRes.colorADB1B1),
                             )
                           ],
                         ),
@@ -856,7 +1263,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
               showTitle: false,
             ),
             Text(
-              Strings.plase,
+              Strings.place,
               style: gilroyBoldTextStyle(
                   fontSize: 12, color: Colors.white.withOpacity(0.5)),
             ),
@@ -872,7 +1279,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
               controller: updateAdvertiseController.provinceController,
               title: "",
               titleBottomPadding: 0,
-              hintText: Strings.proviceHint,
+              hintText: Strings.provinceHint,
               showTitle: false,
             ),
             AppTextFiled(

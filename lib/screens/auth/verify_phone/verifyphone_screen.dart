@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/auth/phonenumber/phonenumber_Controller.dart';
+import 'package:rainbow/screens/auth/phonenumber/phonenumber_controller.dart';
 import 'package:rainbow/screens/auth/verify_phone/verify_controller.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
@@ -82,7 +82,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                         child: Row(
                                           children: [
                                             Text(
-                                              "${Strings.codeSent} (${controller.countryModel.phoneCode}  ${controller.phoneNumber.text.toString()})",
+                                              "${Strings.codeSent} +${controller.countryModel.phoneCode}  ${controller.phoneNumber.text.toString()}",
                                               style: TextStyle(
                                                   color: ColorRes.white
                                                       .withOpacity(0.5),
@@ -162,7 +162,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                 ),
                                 Center(
                                   child: Text(
-                                    Strings.reciveCode,
+                                    Strings.receivedCode,
                                     style: gilroyMediumTextStyle(
                                         color: ColorRes.white.withOpacity(0.5),
                                         fontSize: 16),
@@ -203,7 +203,7 @@ class _VerifyPhoneScreenState extends State<VerifyPhoneScreen> {
                                       width: Get.width * 0.84788,
                                       height: Get.height * 0.07575,
                                       decoration: BoxDecoration(
-                                          color: ColorRes.color_E7D01F,
+                                          color: ColorRes.colorE7D01F,
                                           borderRadius:
                                               BorderRadius.circular(15)),
                                       child: Center(

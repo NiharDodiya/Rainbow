@@ -11,6 +11,7 @@ import 'package:rainbow/screens/Home/settings/connections/connections_controller
 import 'package:rainbow/screens/Home/settings/connections/connections_screen.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/Home/settings/settings_controller.dart';
+import 'package:rainbow/screens/Home/settings/subscription/subscription_screen.dart';
 
 import 'package:rainbow/screens/Message/message_controller.dart';
 import 'package:rainbow/screens/Message/message_screen.dart';
@@ -22,10 +23,10 @@ import 'package:rainbow/utils/strings.dart';
 
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({Key? key}) : super(key: key);
-  SettingsController controller = Get.put(SettingsController());
-  ProfileController profileController = Get.put(ProfileController());
-  HomeController homeController = Get.put(HomeController());
-  MessageController messageController = Get.put(MessageController());
+  final SettingsController controller = Get.put(SettingsController());
+  final ProfileController profileController = Get.put(ProfileController());
+  final HomeController homeController = Get.put(HomeController());
+  final MessageController messageController = Get.put(MessageController());
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,7 @@ class SettingsScreen extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [
                       ColorRes.color_50369C,
-                      ColorRes.color_D18EEE,
+                      ColorRes.colorD18EEE,
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -149,7 +150,7 @@ class SettingsScreen extends StatelessWidget {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                                 image:
-                                    AssetImage(AssetRes.portrait_placeholder))),
+                                    AssetImage(AssetRes.portraitPlaceholder))),
                       )
                     : SizedBox(
                         height: 56,
@@ -162,9 +163,9 @@ class SettingsScreen extends StatelessWidget {
                                 .toString(),
                             fit: BoxFit.cover,
                             errorWidget: ((context, url, error) =>
-                                Image.asset(AssetRes.portrait_placeholder)),
+                                Image.asset(AssetRes.portraitPlaceholder)),
                             placeholder: (context, url) =>
-                                Image.asset(AssetRes.portrait_placeholder),
+                                Image.asset(AssetRes.portraitPlaceholder),
                           ),
                         ),
                       ),
@@ -241,7 +242,7 @@ class SettingsScreen extends StatelessWidget {
 
            await messageController.init();
 
-            homeController.viewProfile.data!.userType == "free"
+            homeController.viewProfile.data?.userType == "free"
                 ? premiumPopUpBox(context: context)
                 : Get.off(() => MessageScreen(
                       backArrow: true,
@@ -265,11 +266,10 @@ class SettingsScreen extends StatelessWidget {
                   Strings.messages,
                   style: textStyleFont15White,
                 ),
+               const Spacer(),
                 SizedBox(
-                  width: Get.width * 0.555,
-                ),
-                SizedBox(
-                    height: 10, width: 6, child: Image.asset(AssetRes.next))
+                    height: 10, width: 6, child: Image.asset(AssetRes.next)),
+                const SizedBox(width: 25,)
               ],
             ),
           ),
@@ -284,7 +284,7 @@ class SettingsScreen extends StatelessWidget {
             ConnectionsController connectionController =
                 Get.put(ConnectionsController());
             connectionController.init();
-            homeController.viewProfile.data!.userType == "free"
+            homeController.viewProfile.data?.userType == "free"
                 ? premiumPopUpBox(context: context)
                 : Get.to(() => ConnectionsScreen());
           },
@@ -306,11 +306,10 @@ class SettingsScreen extends StatelessWidget {
                   Strings.connections,
                   style: textStyleFont15White,
                 ),
+                const Spacer(),
                 SizedBox(
-                  width: Get.width * 0.5,
-                ),
-                SizedBox(
-                    height: 10, width: 6, child: Image.asset(AssetRes.next))
+                    height: 10, width: 6, child: Image.asset(AssetRes.next)),
+                const SizedBox(width: 25,)
               ],
             ),
           ),
@@ -322,7 +321,7 @@ class SettingsScreen extends StatelessWidget {
         //Support
         InkWell(
           onTap: () {
-            homeController.viewProfile.data!.userType == "free"
+            homeController.viewProfile.data?.userType == "free"
                 ? premiumPopUpBox(context: context)
                 : controller.onTapSupport();
           },
@@ -344,11 +343,10 @@ class SettingsScreen extends StatelessWidget {
                   Strings.support,
                   style: textStyleFont15White,
                 ),
+                const Spacer(),
                 SizedBox(
-                  width: Get.width * 0.59,
-                ),
-                SizedBox(
-                    height: 10, width: 6, child: Image.asset(AssetRes.next))
+                    height: 10, width: 6, child: Image.asset(AssetRes.next)),
+                const SizedBox(width: 25,)
               ],
             ),
           ),
@@ -380,14 +378,10 @@ class SettingsScreen extends StatelessWidget {
                   Strings.payment,
                   style: textStyleFont15White,
                 ),
+                const Spacer(),
                 SizedBox(
-                  width: Get.width * 0.57,
-                ),
-                SizedBox(
-                  height: 10,
-                  width: 6,
-                  child: Image.asset(AssetRes.next),
-                ),
+                    height: 10, width: 6, child: Image.asset(AssetRes.next)),
+                const SizedBox(width: 25,)
               ],
             ),
           ),
@@ -420,11 +414,10 @@ class SettingsScreen extends StatelessWidget {
                   Strings.privacy,
                   style: textStyleFont15White,
                 ),
+                const Spacer(),
                 SizedBox(
-                  width: Get.width * 0.6,
-                ),
-                SizedBox(
-                    height: 10, width: 6, child: Image.asset(AssetRes.next))
+                    height: 10, width: 6, child: Image.asset(AssetRes.next)),
+                const SizedBox(width: 25,)
               ],
             ),
           ),
@@ -478,9 +471,12 @@ class SettingsScreen extends StatelessWidget {
             ),
           ],
         ),
-
+        Divider(
+          thickness: 1,
+          color: ColorRes.color_4F359B.withOpacity(0.4),
+        ),
         //Subscription
-        /* InkWell(
+         InkWell(
             onTap: () {
               Get.to(() => SubscriptionScreen());
             },
@@ -516,8 +512,8 @@ class SettingsScreen extends StatelessWidget {
           ),
           SizedBox(
             height: Get.height * 0.03,
-          ),*/
-        /*Text(
+          ),
+        Text(
             Strings.yourReferralCode,
             style: textStyleFont15White,
           ),
@@ -547,7 +543,7 @@ class SettingsScreen extends StatelessWidget {
                 style: gilroyBoldTextStyle(fontSize: 11.9619),
               )),
             ),
-          ),*/
+          ),
         SizedBox(
           height: Get.height * 0.045,
         ),
@@ -560,8 +556,8 @@ class SettingsScreen extends StatelessWidget {
             height: 60,
             width: Get.width * 0.8,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(13.67),
-                color: ColorRes.color_FFEC5C),
+                borderRadius: BorderRadius.circular(15.67),
+                color: ColorRes.colorFFEC5C),
             child: Center(
                 child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,

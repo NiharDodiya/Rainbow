@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/model/notification_model.dart';
-import 'package:rainbow/screens/Home/home_screen.dart';
+
 import 'package:rainbow/screens/Home/settings/connections/connections_profile/connections_profile_controller.dart';
 import 'package:rainbow/screens/Profile/profile_controller.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
@@ -16,8 +16,8 @@ import '../../../utils/asset_res.dart';
 class NotificationScreen extends StatelessWidget {
   NotificationScreen({Key? key}) : super(key: key);
   final NotificationsController controller = Get.put(NotificationsController());
-  ProfileController profileController = Get.put(ProfileController());
-  ConnectionsProfileController connectionsProfileController =
+  final ProfileController profileController = Get.put(ProfileController());
+  final ConnectionsProfileController connectionsProfileController =
       Get.put(ConnectionsProfileController());
 
   @override
@@ -34,8 +34,8 @@ class NotificationScreen extends StatelessWidget {
                 colors: [
                   ColorRes.color_50369C,
                   ColorRes.color_50369C,
-                  ColorRes.color_D18EEE,
-                  ColorRes.color_D18EEE,
+                  ColorRes.colorD18EEE,
+                  ColorRes.colorD18EEE,
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -114,7 +114,7 @@ class NotificationScreen extends StatelessWidget {
                                                         image: DecorationImage(
                                                             image: AssetImage(
                                                               AssetRes
-                                                                  .portrait_placeholder,
+                                                                  .portraitPlaceholder,
                                                             ),
                                                             fit: BoxFit.cover),
                                                       ),
@@ -139,7 +139,7 @@ class NotificationScreen extends StatelessWidget {
                                                                 url) =>
                                                             Image.asset(
                                                               AssetRes
-                                                                  .portrait_placeholder,
+                                                                  .portraitPlaceholder,
                                                               height: 53,
                                                               width: 53,
                                                               fit: BoxFit.cover,
@@ -148,7 +148,7 @@ class NotificationScreen extends StatelessWidget {
                                                                 url, error) =>
                                                             Image.asset(
                                                               AssetRes
-                                                                  .portrait_placeholder,
+                                                                  .portraitPlaceholder,
                                                               height: 53,
                                                               width: 53,
                                                               fit: BoxFit.cover,

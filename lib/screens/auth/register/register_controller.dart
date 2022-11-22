@@ -330,12 +330,12 @@ class RegisterController extends GetxController {
           confirmPwdController.text,
           address1Controller.text,
           address2Controller.text,
-          "+${countryModel.phoneCode + phoneController.text}",
+          "+${countryModel.phoneCode} ${phoneController.text}",
           statusController.text,
           codeId.toString(),
           dobController.text,
           kidsController.text);
-      print(registerUser);
+      //print(registerUser);
       await PrefService.setValue(
           PrefKeys.registerToken, registerUser.token.toString());
 

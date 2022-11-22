@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/model/userSubscriptionAdd_model.dart';
+import 'package:rainbow/model/user_subscription_add_model.dart';
 import 'package:rainbow/screens/Home/settings/payment/add_cart/add_cart_controller.dart';
 import 'package:rainbow/screens/Home/settings/payment/add_cart/add_cart_screen.dart';
 import 'package:rainbow/service/http_services.dart';
@@ -25,7 +25,7 @@ class UserSubscriptionAddApi {
             "x-access-token": accesToken
           });
       if (response != null && response.statusCode == 200) {
-        flutterToast(jsonDecode(response.body)["message"]);
+        //flutterToast(jsonDecode(response.body)["message"]);
 
         return userSubscriptionAddModelFromJson(response.body);
       } else {
@@ -39,7 +39,7 @@ class UserSubscriptionAddApi {
         addCartController.nameOnCardController.clear();
         addCartController.cardNmberController.clear();
         addCartController.expiryYearController.clear();
-        addCartController.expiryMonthController.clear();
+     /*   addCartController.expiryMonthController.clear();*/
         addCartController.cvvController.clear();
         addCartController.selectCountry = null;
 

@@ -12,8 +12,8 @@ import 'package:rainbow/common/Widget/text_styles.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_dashboard/advertisement_controlle.dart';
-import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/AdvertiserVerifyController.dart';
-import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/AdvertiserVerifyOtpScreen.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/advertiser_verify_controller.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/change_password/advertiser_verify_otp_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_screen.dart';
 import 'package:rainbow/screens/advertisement/ad_notification/ad_notification_screen.dart';
@@ -113,7 +113,7 @@ class AdvertisementDashBord extends StatelessWidget {
                                                         .isEmpty
                                                     ? Image.asset(
                                                         AssetRes
-                                                            .portrait_placeholder,
+                                                            .portraitPlaceholder,
                                                         height:
                                                             Get.width * 0.1730,
                                                         width:
@@ -128,11 +128,11 @@ class AdvertisementDashBord extends StatelessWidget {
                                                         placeholder: ((context,
                                                                 url) =>
                                                             Image.asset(AssetRes
-                                                                .portrait_placeholder)),
+                                                                .portraitPlaceholder)),
                                                         errorWidget: ((context,
                                                                 url, error) =>
                                                             Image.asset(AssetRes
-                                                                .portrait_placeholder)),
+                                                                .portraitPlaceholder)),
                                                         fit: BoxFit.cover,
                                                         height:
                                                             Get.width * 0.1730,
@@ -243,9 +243,9 @@ class AdvertisementDashBord extends StatelessWidget {
                                GetBuilder<AdHomeController>(
                                  id: "network",
                                    builder: (controller){
-                                     adHomeController.CheckUserConnection();
+                                     adHomeController.checkUserConnection();
                                  return  InkWell(
-                                   onTap: adHomeController.ActiveConnection ==
+                                   onTap: adHomeController.activeConnection ==
                                        false
                                        ? () {
 
@@ -263,7 +263,7 @@ class AdvertisementDashBord extends StatelessWidget {
                                      adController.startTimer();
                                      adController.phoneNumberRegister();
                                      Get.to(() =>
-                                     const AdvertiserVerifyOtpScreen())!.then((value) =>  adHomeController.CheckUserConnection());
+                                     const AdvertiserVerifyOtpScreen())!.then((value) =>  adHomeController.checkUserConnection());
                                    },
                                    child: SizedBox(
                                      height: Get.height * 0.06,
@@ -292,9 +292,9 @@ class AdvertisementDashBord extends StatelessWidget {
                                 GetBuilder<AdHomeController>(
                                   id: "network",
                                     builder: (controller){
-                                      adHomeController.CheckUserConnection();
+                                      adHomeController.checkUserConnection();
                                   return InkWell(
-                                    onTap: adHomeController.ActiveConnection ==
+                                    onTap: adHomeController.activeConnection ==
                                         false?() =>  errorToast("No internet connection"):() => advertisementController.inTapAccountInfo(),
                                     child: SizedBox(
                                       height: Get.height * 0.06,
@@ -330,7 +330,7 @@ class AdvertisementDashBord extends StatelessWidget {
                                         children: [
                                           Image.asset(
                                             AssetRes.notificationicon,
-                                            color: ColorRes.color_EDB933,
+                                            color: ColorRes.colorEDB933,
                                             width: Get.width * 0.04706,
                                           ),
                                           SizedBox(
@@ -351,7 +351,7 @@ class AdvertisementDashBord extends StatelessWidget {
                                               scale: .7,
                                               child: CupertinoSwitch(
                                                 value: controller.isSwitched!,
-                                                onChanged: adHomeController.ActiveConnection ==
+                                                onChanged: adHomeController.activeConnection ==
                                                     false? (value){
                                                   errorToast("No internet connection");
                                                 }
@@ -363,7 +363,7 @@ class AdvertisementDashBord extends StatelessWidget {
                                                       .update(["settings"]);
                                                 },
                                                 activeColor:
-                                                    ColorRes.color_CE8CEC,
+                                                    ColorRes.colorCE8CEC,
                                                 trackColor:
                                                     Colors.grey.shade300,
                                               ),
@@ -423,7 +423,7 @@ class AdvertisementDashBord extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [
                       ColorRes.color_50369C,
-                      ColorRes.color_D18EEE,
+                      ColorRes.colorD18EEE,
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -444,7 +444,7 @@ class AdvertisementDashBord extends StatelessWidget {
                     } else if (controller.currentTab == 3) {
                       return AdSupportScreen();
                     } else {
-                      return AdHomeScreen();
+                      return const AdHomeScreen();
                     }
                   },
                 ),
@@ -452,7 +452,7 @@ class AdvertisementDashBord extends StatelessWidget {
               bottomNavigationBar: GetBuilder<AdHomeController>(
                 id: "network",
                   builder: (adHomeController){
-                  adHomeController.CheckUserConnection();
+                  adHomeController.checkUserConnection();
                 return GetBuilder<AdvertisementController>(
                   id: 'bottom_bar',
                   builder: (_) => SalomonBottomBar(
@@ -460,7 +460,7 @@ class AdvertisementDashBord extends StatelessWidget {
                     selectedItemColor: ColorRes.color_2F80ED,
                     unselectedItemColor: ColorRes.color_9597A1,
                     currentIndex: advertisementController.currentTab,
-                    onTap: adHomeController.ActiveConnection == false ? (i){
+                    onTap: adHomeController.activeConnection == false ? (i){
                       errorToast("No internet connection");
                     } :(i) => advertisementController.onBottomBarChange(i),
                     items: [

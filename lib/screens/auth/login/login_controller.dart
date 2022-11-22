@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/Home/home_controller.dart';
-import 'package:rainbow/screens/Home/view_story/view_story_controller.dart';
-import 'package:rainbow/screens/Profile/profile_api/profile_model.dart';
+import 'package:rainbow/screens/account_Information/account_information_controller.dart';
+
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_api.dart';
 import 'package:rainbow/screens/auth/login/login_api/login_json.dart';
-import 'package:rainbow/screens/auth/phonenumber/phonenumber_Screen.dart';
+import 'package:rainbow/screens/auth/phonenumber/phonenumber_screen.dart';
 import 'package:rainbow/screens/auth/register/register_screen.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/register_adviser.dart';
 import 'package:rainbow/screens/dashboard/dashboard_controller.dart';
@@ -47,14 +47,18 @@ class LoginController extends GetxController {
     // Get.off(() => AdviserRegisterScreen(), );
   }
 
+
   void onLoginTap(context) {
     HomeController homeController = Get.put(HomeController());
     AdHomeController adHomeController = Get.put(AdHomeController());
+    AccountInformationController accountInformationController = Get.put(AccountInformationController());
 
-    adHomeController.viewAdvertiserModel.data?.profilePhoto = null;
+    //adHomeController.viewAdvertiserModel.data?.profilePhoto = null;
     adHomeController.viewAdvertiserModel.data?.fullName = "";
-    adHomeController.viewAdvertiserModel.data?.profileImage = "";
+    //adHomeController.viewAdvertiserModel.data?.profileImage = "";
     adHomeController.viewAdvertiserModel.data?.email = "";
+    accountInformationController.imagePath = null;
+    
     homeController.viewProfile.data = null;
     homeController.controller.viewProfile.data?.profileImage = null;
     homeController.controller.viewProfile.data?.profileImage = null;

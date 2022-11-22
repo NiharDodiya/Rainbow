@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:rainbow/model/edit_advertise_model.dart';
@@ -63,9 +65,23 @@ class EditAdvertiesementController extends GetxController {
           editAdvertisementModel.data!.callAction.toString();
       updateAdvertiseController.urlLinkController.text =
           editAdvertisementModel.data!.urlLink.toString();
+
+      updateAdvertiseController.images = (editAdvertisementModel.data!.itemsList!.length == 3)
+      ?[editAdvertisementModel.data!.itemsList![0].itemUrl.toString(), editAdvertisementModel.data!.itemsList![1].itemUrl.toString(), editAdvertisementModel.data!.itemsList![2].itemUrl.toString()]
+    :(editAdvertisementModel.data!.itemsList!.length == 2)
+      ?[editAdvertisementModel.data!.itemsList![0].itemUrl.toString(), editAdvertisementModel.data!.itemsList![1].itemUrl.toString()]
+    :(editAdvertisementModel.data!.itemsList!.length == 1)?[editAdvertisementModel.data!.itemsList![0].itemUrl.toString()]:[];
+
+      updateAdvertiseController.idImg = (editAdvertisementModel.data!.itemsList!.length == 3)
+          ?[editAdvertisementModel.data!.itemsList![0].id, editAdvertisementModel.data!.itemsList![1].id, editAdvertisementModel.data!.itemsList![2].id]
+          :(editAdvertisementModel.data!.itemsList!.length == 2)
+          ?[editAdvertisementModel.data!.itemsList![0].id, editAdvertisementModel.data!.itemsList![1].id]
+          :(editAdvertisementModel.data!.itemsList!.length == 1)?[editAdvertisementModel.data!.itemsList![0].id]:[];
+
+      updateAdvertiseController.imagePath = [];
+
       /*   updateAdvertiseController.countryController.text =
-          editAdvertisementModel.data!.userDetail!.idCountry.toString();
-      updateAdvertiseController.selectedCity =
+          editAdvertisementModel.data!.userDetail!.idCountry.toString();      updateAdvertiseController.selectedCity =
           editAdvertisementModel.data!.userDetail!.idCountry.toString();*/
 
       update(['more']);

@@ -1,17 +1,21 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/popup.dart';
-import 'package:rainbow/model/myAdvertiser_model.dart';
-import 'package:rainbow/model/viewAdvertiserModel.dart';
+import 'package:rainbow/model/create_advertiser_model.dart';
+import 'package:rainbow/model/my_advertiser_model.dart';
+import 'package:rainbow/model/payment_advertise.dart';
+import 'package:rainbow/model/view_advertiser_model.dart';
 import 'package:rainbow/screens/Home/settings/payment/payment_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/myAdvertiser_api/myAdvertiser_api.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_screen.dart';
+import 'package:rainbow/screens/advertisement/ad_home/screen/renewAdSetupDate/api/renewAd_api.dart';
 import 'package:rainbow/screens/advertisement/ad_home/viewAdvertiserProfile_api/viewAdvertiser_api.dart';
 import 'package:rainbow/screens/auth/auth_dashboard/auth_dashboard.dart';
 import 'package:rainbow/screens/notification/notification_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
+
+import '../../Profile/widget/profile_appbar.dart';
 
 class AdHomeController extends GetxController {
   //AdvertisementController advController = Get.put(AdvertisementController());
@@ -56,32 +60,50 @@ class AdHomeController extends GetxController {
     "Breast Milk Donor",
   ];
 
+  List<MyAdvertiserData>  myAdList = [];
+
+  ScrollController scrollController = ScrollController();
+  int page = 1;
+  int limit = 10;
+
+  void pagination() async {
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent) {
+      await myAdvertiserListData();
+      update(['more']);
+    }
+    update(['more']);
+  }
+
   List<bool> moreOption = [];
 
-  bool ActiveConnection = false;
+  AdvertisersCreateModel advertisersCreateModel = AdvertisersCreateModel();
+
+  bool activeConnection = false;
 
   String T = "";
-  Future CheckUserConnection() async {
+  Future checkUserConnection() async {
     try {
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
 
-          ActiveConnection = true;
-          T = "Turn off the data and repress again";
-       update(["network"]);
+        activeConnection = true;
+        T = "Turn off the data and repress again";
+        update(["network"]);
 
       }
     } on SocketException catch (_) {
 
-        ActiveConnection = false;
-        T = "Turn On the data and repress again";
-        update(["network"]);
+      activeConnection = false;
+      T = "Turn On the data and repress again";
+      update(["network"]);
     }
   }
 
   @override
   void onInit() async {
-    await init();
+   await  init();
+   update(["more"]);
     update(["dashBoard"]);
     update(["update"]);
     update();
@@ -89,26 +111,31 @@ class AdHomeController extends GetxController {
   }
 
   Future<void> onRefresh() async {
-    /*await init()*/
     await refreshCode();
-    // refreshController!.refreshCompleted();
   }
 
   Future<void> refreshCode() async {
     await viewAdvertiserData();
     loader.value = false;
+
+    page = 1;
+    myAdList = [];
     await myAdvertiserListData();
+    //await myAdvertiserListDataWithOutPagination();
     loader.value = false;
   }
 
   Future<void> init() async {
-    await CheckUserConnection();
+    await checkUserConnection();
     paymentController.transactionApi();
     paymentController.listCardModel;
+    await myAdvertiserListData();
+    scrollController.addListener(pagination);
+    await viewAdvertiserData();
+    update(["more"]);
 
     notificationsController.getNotifications;
-    await viewAdvertiserData();
-    await myAdvertiserListData();
+
     await greeting();
   }
 
@@ -143,30 +170,60 @@ class AdHomeController extends GetxController {
     Get.offAll(() => AuthDashboard());
   }
 
-  void onCloseMenu() {
-    moreOption = List.filled(myAdvertiserModel.data!.length, false);
-    update(['more']);
-  }
 
   Future<void> myAdvertiserListData() async {
     try {
       loader.value = true;
-      myAdvertiserModel = await MyAdvertiserApi.myAdvertiserDataList();
-      moreOption = List.filled(myAdvertiserModel.data!.length, false);
+      myAdvertiserModel = await MyAdvertiserApi.myAdvertiserDataList(page, limit);
+      page++;
+      print(page);
+      myAdList.addAll(myAdvertiserModel.data!);
+      moreOption = List.filled(myAdList.length, false);
       update(['more']);
       loader.value = false;
     } catch (e) {
       loader.value = false;
-
-
     }
   }
+
+  void onCloseMenu() {
+    moreOption = List.filled(myAdList.length, false);
+    update(['more']);
+  }
+  PaymentAdvertiseModel paymentAdvertiseModel = PaymentAdvertiseModel();
+
+  Future<void> onMenuId(int? id) async {
+    paymentAdvertiseModel = await AdvPaymentApi.advPaymentApi(idAd: id ?? 0);
+    update(['more']);
+  }
+
+  Future<void> myAdvertiserListDataWithOutPagination({int? pageLength}) async {
+    try {
+      loader.value = true;
+
+
+      myAdvertiserModel = await MyAdvertiserApi.myAdvertiserDataList(
+          1, pageLength ?? myAdList.length);
+
+      myAdList = myAdvertiserModel.data!;
+
+      update(['more']);
+
+      loader.value = false;
+    } catch (e) {
+      debugPrint(e.toString());
+      loader.value = false;
+    }
+  }
+
+
+
 
   Future<void> deleteAdvertiser(id, context) async {
     try {
       loader.value = true;
       await MyAdvertiserApi.deleteAdvertiser(id, context);
-      await myAdvertiserListData();
+      await myAdvertiserListDataWithOutPagination();
       loader.value = false;
       update(['delete']);
     } catch (e) {
@@ -179,7 +236,7 @@ class AdHomeController extends GetxController {
     try {
       loader.value = true;
       await MyAdvertiserApi.cancelAdvertiser(id, context);
-      await myAdvertiserListData();
+      await myAdvertiserListDataWithOutPagination();
       loader.value = false;
       update(['cancel']);
     } catch (e) {
@@ -193,7 +250,7 @@ class AdHomeController extends GetxController {
     try {
       loader.value = true;
       await MyAdvertiserApi.followUpAdvertiser(id, context);
-      await myAdvertiserListData();
+      await myAdvertiserListDataWithOutPagination();
       loader.value = false;
       update(['followUp']);
     } catch (e) {
@@ -209,6 +266,7 @@ class AdHomeController extends GetxController {
       loader.value = true;
       viewAdvertiserModel = await ViewAdvertiserApi.viewAdvertiserData();
       loader.value = false;
+
       update(['cancel']);
       update(["dashBoard"]);
     } catch (e) {

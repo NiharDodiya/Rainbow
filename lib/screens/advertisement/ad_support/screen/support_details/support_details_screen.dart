@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/popup.dart';
 import 'package:rainbow/screens/advertisement/ad_support/ad_support_controller.dart';
 import 'package:readmore/readmore.dart';
@@ -13,12 +14,12 @@ import '../../../../../utils/color_res.dart';
 import '../../../../../utils/strings.dart';
 
 class SupportDetailsScreen extends StatelessWidget {
-  String? com;
-  String? code;
-  String? profileImage;
-  String? title;
-  String? time;
-  String? id;
+  final String? com;
+  final String? code;
+  final String? profileImage;
+  final String? title;
+  final String? time;
+  final String? id;
 
   SupportDetailsScreen(
       {Key? key,
@@ -48,8 +49,8 @@ class SupportDetailsScreen extends StatelessWidget {
                       colors: [
                         ColorRes.color_50369C,
                         ColorRes.color_50369C,
-                        ColorRes.color_D18EEE,
-                        ColorRes.color_D18EEE,
+                        ColorRes.colorD18EEE,
+                        ColorRes.colorD18EEE,
                       ],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
@@ -79,7 +80,7 @@ class SupportDetailsScreen extends StatelessWidget {
                                     com.toString(),
                                     style: gilroySemiBoldTextStyle(
                                         fontSize: 18,
-                                        color: ColorRes.color_FFA620),
+                                        color: ColorRes.colorFFA620),
                                   ),
                                   SizedBox(
                                     width: Get.width * 0.05,
@@ -769,10 +770,12 @@ class SupportDetailsScreen extends StatelessWidget {
                               ),
                               SubmitButton(
                                 onTap: () {
-                                  controller.image = [];
+
 
                                   controller.onTapSendMessage(
                                       id.toString(), context);
+
+                                  controller.image = [];
                                 },
                                 child: Text(
                                   Strings.sendMessage,
@@ -792,9 +795,7 @@ class SupportDetailsScreen extends StatelessWidget {
                 );
               }),
           controller.loader.value
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
+              ? const FullScreenLoader()
               : const SizedBox(),
         ],
       );
@@ -831,14 +832,14 @@ class SupportDetailsScreen extends StatelessWidget {
                                     .toString(),
                                 fit: BoxFit.cover,
                                 placeholder: ((context, url) => Image.asset(
-                                      AssetRes.portrait_placeholder,
+                                      AssetRes.portraitPlaceholder,
                                       fit: BoxFit.cover,
                                       height: 53,
                                       width: 53,
                                     )),
                                 errorWidget: ((context, url, error) =>
                                     Image.asset(
-                                      AssetRes.portrait_placeholder,
+                                      AssetRes.portraitPlaceholder,
                                       fit: BoxFit.cover,
                                       height: 53,
                                       width: 53,
@@ -895,8 +896,9 @@ class SupportDetailsScreen extends StatelessWidget {
                       height: Get.height * 0.0233,
                     ),
                     ReadMoreText(
-                      controller.viewSupportTicketModel.data![index].description
-                          .toString(),
+                        (controller.viewSupportTicketModel.data![index].description
+                            .toString() == 'null')? "" : controller.viewSupportTicketModel.data![index].description
+                            .toString(),
                       trimLines: 3,
                       style: gilroyMediumTextStyle(fontSize: 14),
                       trimMode: TrimMode.Line,
@@ -964,7 +966,7 @@ class SupportDetailsScreen extends StatelessWidget {
                                                       stackTrace) {
                                                     return Image.asset(
                                                       AssetRes
-                                                          .portrait_placeholder,
+                                                          .portraitPlaceholder,
                                                       fit: BoxFit.cover,
                                                     );
                                                   },
@@ -1023,7 +1025,7 @@ class SupportDetailsScreen extends StatelessWidget {
                                                       child: Image.network(
                                                         controller
                                                             .viewSupportTicketModel
-                                                            .data![0]
+                                                            .data![index]
                                                             .itmeList![index1]
                                                             .image
                                                             .toString(),
@@ -1032,7 +1034,7 @@ class SupportDetailsScreen extends StatelessWidget {
                                                             error, stackTrace) {
                                                           return Image.asset(
                                                             AssetRes
-                                                                .portrait_placeholder,
+                                                                .portraitPlaceholder,
                                                             fit: BoxFit.cover,
                                                           );
                                                         },
@@ -1092,7 +1094,7 @@ class SupportDetailsScreen extends StatelessWidget {
                                                               return Image
                                                                   .asset(
                                                                 AssetRes
-                                                                    .portrait_placeholder,
+                                                                    .portraitPlaceholder,
                                                                 fit: BoxFit
                                                                     .cover,
                                                               );

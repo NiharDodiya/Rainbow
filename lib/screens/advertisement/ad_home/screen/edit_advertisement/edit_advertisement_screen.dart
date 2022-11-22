@@ -23,13 +23,16 @@ class EditAdvertisementscreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           width: Get.width,
-          decoration: const BoxDecoration(
+          decoration:  const BoxDecoration(
             gradient: LinearGradient(
               colors: [
                 ColorRes.color_50369C,
                 ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
-                ColorRes.color_D18EEE,
+                ColorRes.colorD18EEE,
+                ColorRes.colorD18EEE,
+                ColorRes.color_50369C,
+                ColorRes.colorD18EEE,
+
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -143,11 +146,14 @@ class EditAdvertisementscreen extends StatelessWidget {
                           itemBuilder: (context, index) => Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Container(
+                            child: editAdvertiesementController
+                                .editAdvertisementModel
+                                .data
+                                ?.tagsList![index]==" "?const SizedBox():Container(
                               height: 25,
                               width: 80,
                               decoration: const BoxDecoration(
-                                color: ColorRes.color_ECEFF0,
+                                color: ColorRes.colorECEFF0,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(4),
                                 ),
@@ -210,7 +216,7 @@ class EditAdvertisementscreen extends StatelessWidget {
                                 editAdvertiesementController
                                         .editAdvertisementModel
                                         .data
-                                        ?.itemsList![index]
+                                        ?.itemsList![index].itemUrl
                                         .toString() ??
                                     "",
                                 style: poppinsRegularBold(

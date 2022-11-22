@@ -1,8 +1,12 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:rainbow/common/popup.dart';
+import 'package:rainbow/screens/account_Information/account_information_controller.dart';
 import 'package:rainbow/screens/account_Information/ad_information_api/ad_information_model.dart';
+import 'package:rainbow/screens/advertisement/ad_dashboard/ad_dashboard.dart';
+import 'package:rainbow/screens/advertisement/ad_home/ad_home_screen.dart';
 import 'package:rainbow/service/http_services.dart';
 import 'package:rainbow/service/pref_services.dart';
 import 'package:rainbow/utils/end_points.dart';
@@ -59,6 +63,11 @@ class AdInformationAPI {
           errorToast(jsonDecode(response.body)["message"]);
         } else if (status == true) {
           flutterToast(jsonDecode(response.body)["message"]);
+
+           AccountInformationController accountInformationController = Get.put(AccountInformationController());
+
+          Get.offAll( AdvertisementDashBord());
+          accountInformationController.img = false;
         }
 
         return adInformationModelFromJson(response.body);

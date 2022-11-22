@@ -43,9 +43,11 @@ class AccountInformationController extends GetxController {
   TextEditingController companyNumber = TextEditingController();
   TextEditingController website = TextEditingController();
   bool professions = false;
+  bool img = false;
   List<String> dropdownList = ["Doctor", "User", "Admin"];
   AdInformationModel adViewProfile = AdInformationModel();
   UploadImage uploadImage = UploadImage();
+  String? idCon="";
   Country countryModel = Country.from(json: {
     "e164_cc": "1",
     "iso2_cc": "CA",
@@ -76,9 +78,10 @@ class AccountInformationController extends GetxController {
       countryController.text = adViewProfile.data!.country!;
       selectCountry = adViewProfile.data!.country!;
       postalCodeController.text = adViewProfile.data!.postalCode!.toString();
+      idCon = adViewProfile.data!.phoneNumber!.split(' ').first;
+
       phoneNumberController.text =
           adViewProfile.data!.phoneNumber!.split(' ').last;
-
       userProfession = adViewProfile.data!.profession!;
       companyName.text = adViewProfile.data!.companyName!;
       companyNumber.text = adViewProfile.data!.companyPhoneNumber!;
@@ -90,10 +93,12 @@ class AccountInformationController extends GetxController {
       companyPostalCodeController.text =
           adViewProfile.data!.compnayPostalCode!.toString();
       website.text = adViewProfile.data!.compnayWebsite!;
+      //idCompany = adViewProfile.data!.idCountry!;
 
-      // countryModel = CountryParser.parseCountryCode("+91");
+
 
       update(['doctor']);
+      update(['phone']);
       update(['update']);
       update(['phone_filed']);
       update(['Getpic']);
@@ -168,7 +173,10 @@ class AccountInformationController extends GetxController {
 //account save
   accountSave() async {
     if (imageID == null) {
-      await uploadImageApi();
+     
+        await uploadImageApi();
+      
+     
     }
     if (accountValidation() && companyValidation()) {
       loader.value = true;
@@ -188,6 +196,9 @@ class AccountInformationController extends GetxController {
     for (int i = 0; i < listCountryModel.data!.length; i++) {
       if (listCountryModel.data![i].name == countryController.text) {
         idCountry = listCountryModel.data![i].id.toString();
+      }
+    }  for (int i = 0; i < listCountryModel.data!.length; i++) {
+      if (listCountryModel.data![i].name == companyCountryController.text) {
         idCompanyCountry = listCountryModel.data![i].id.toString();
       }
     }
@@ -340,7 +351,7 @@ class AccountInformationController extends GetxController {
       await UploadImageApi.postRegister(imagePath!.path.toString())
           .then((value) async {
         uploadImage = value!;
-        imageID = uploadImage.data?.id;
+        imageID = uploadImage.data?.id ;
         await PrefService.setValue(
             PrefKeys.advertiserProfileID, uploadImage.data!.id);
       });
@@ -375,7 +386,7 @@ class AccountInformationController extends GetxController {
         "email": emailController.text,
         "house_number": houseNumberController.text,
         "street_name": streetNumberController.text,
-        "phone_number": phoneNumberController.text,
+        "phone_number": "${idCon} ${phoneNumberController.text}",
         "city": cityController.text,
         "id_country": idCountry,
         "postal_code": postalCodeController.text,
@@ -391,15 +402,25 @@ class AccountInformationController extends GetxController {
         "website": website.text,
       }
     };
+    String phoneNumber = "${idCon} ${phoneNumberController.text}";
+    await PrefService.setValue(PrefKeys.phonSaveNumberAdvertiser,phoneNumber);
+
     update(["Getpic"]);
-    if (imageID != 0 || imageID != null) {
-      param1["advirtisersData"]!["id_item_profile"] = imageID;
-    }
-    update(["Getpic"]);
+
+ if(img == true){
+   update(["Getpic"]);
+   if (imageID != 0 || imageID != null) {
+     param1["advirtisersData"]!["id_item_profile"] = imageID;
+   }
+   update(["Getpic"]);
+ }
+
+
+
+
     await AdInformationAPI.adProfileEdit(param1).then(
       (value) {
         adViewProfile = value;
-
         fullNameController.text = adViewProfile.data!.fullName!;
         emailController.text = adViewProfile.data!.email!;
         houseNumberController.text = adViewProfile.data!.houseNumber!;
@@ -408,6 +429,7 @@ class AccountInformationController extends GetxController {
         countryController.text = adViewProfile.data!.country!;
         selectCountry = adViewProfile.data!.country!;
         postalCodeController.text = adViewProfile.data!.postalCode!.toString();
+        idCon = adViewProfile.data!.phoneNumber!.split(' ').first;
         phoneNumberController.text =
             adViewProfile.data!.phoneNumber!.split(' ').last;
 
@@ -425,11 +447,13 @@ class AccountInformationController extends GetxController {
         // countryModel = CountryParser.parseCountryCode("+91");
         update(['doctor']);
         update(['update']);
+        update(['phone']);
         update(['phone_filed']);
         update(['Getpic']);
         loader.value = false;
       },
     );
+
     loader.value = false;
     await adHomeController.viewAdvertiserData();
     adHomeController.update(["dashBoard"]);

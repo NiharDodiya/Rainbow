@@ -13,8 +13,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../create_advertisement/create_advertisement_controller.dart';
 
 class AdvertisementDeatailScreen extends StatelessWidget {
-  AdvertisementDeatailScreen({Key? key}) : super(key: key);
-  CreateAdvertisementController createAdvertisementController =
+   AdvertisementDeatailScreen({Key? key}) : super(key: key);
+   final CreateAdvertisementController createAdvertisementController =
       Get.put(CreateAdvertisementController());
 
   @override
@@ -32,8 +32,8 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                     colors: [
                       ColorRes.color_50369C,
                       ColorRes.color_50369C,
-                      ColorRes.color_D18EEE,
-                      ColorRes.color_D18EEE,
+                      ColorRes.colorD18EEE,
+                      ColorRes.colorD18EEE,
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -78,7 +78,7 @@ class AdvertisementDeatailScreen extends StatelessWidget {
               Text(
                 Strings.summary,
                 style: gilroySemiBoldTextStyle(
-                    fontSize: 18, color: ColorRes.color_EED82F),
+                    fontSize: 18, color: ColorRes.colorEED82F),
               ),
             ],
           ),
@@ -118,11 +118,11 @@ class AdvertisementDeatailScreen extends StatelessWidget {
                   itemCount: createAdvertisementController.tags.length,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Container(
+                    child:  createAdvertisementController.tags[index]== " "?const SizedBox():Container(
                       height: 25,
                       width: 80,
                       decoration: const BoxDecoration(
-                        color: ColorRes.color_ECEFF0,
+                        color: ColorRes.colorECEFF0,
                         borderRadius: BorderRadius.all(
                           Radius.circular(4),
                         ),

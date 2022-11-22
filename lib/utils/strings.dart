@@ -30,8 +30,8 @@ class Strings {
   static const website = 'Website';
   static const websiteError = 'please enter Website';
   static const websiteValidError = 'please enter valid Website';
-  static const websiteHint = 'www.mymom.com';
-  static const sign_Up = 'Signup';
+  static const websiteHint = 'www.myMom.com';
+  static const signUpc = 'Signup';
   static const forAdvertise = " for advertiser's account";
   static const forEndUserAccount = " for End-User account";
   static const termsServices =
@@ -43,10 +43,10 @@ class Strings {
   static const userName = 'User name';
   static const forgotPassword = 'Forgot password?';
   static const login = 'Login';
-  static const log_in = 'Log in';
+  static const logIn = 'Log in';
   static const loginAsAdvertiser = ' as advertiser';
   static const loginAsEndUser = ' as End-User';
-  static const dontHaveAccount = ' Don’t have an account ';
+  static const donNotHaveAccount = ' Don’t have an account ';
   static const getStarted = 'Get Started';
   static const notVerified = 'Your Account \nis not yet verified';
   static const completeYourProfile =
@@ -73,7 +73,7 @@ class Strings {
   static const permanentResident = "Permanent Resident Card";
   static const verifyPhone = "Verify Phone";
   static const verifyAccount = "Verify Account";
-  static const reciveCode = "Didn’t recive code?";
+  static const receivedCode = "Didn’t received code?";
   static const resendOtp = "Resend OTP";
   static const newPassword = "New Password";
   static const newPasswordChange =
@@ -112,7 +112,7 @@ class Strings {
   static const idNoT = 'CADL-1231231233';
   static const birthDate = 'Birth Date';
   static const birthDateHint = 'MM/DD/YYYY';
-  static const ontrario = "Ontrario";
+  static const ontario = "ontario";
   static const houseNumberHint = "123";
   static const noOfKids = 'No of Kids';
   static const noOfKidsHint = '0';
@@ -170,7 +170,7 @@ class Strings {
   static const privacyPolicy =
       'By using Rainbow™, you agree to\nour Terms and Condition and Privacy Policy';
   static const agreementTerms =
-      'By tapping accept and continue , I agree to the Terms and Condition and Privacy Policy and i am giving flighteno my concent to use my personal data to: facilitate my transaction and avail of products and services industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\nIt has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\nIt was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.';
+      'By tapping accept and continue , I agree to the Terms and Condition and Privacy Policy and i am giving flight my connect to use my personal data to: facilitate my transaction and avail of products and services industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\nIt has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\nIt was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.';
 
   ///___________________________________ Complete your profile ____________________________________
   static const naranataliEmail = 'naranatalie@gmail.com';
@@ -227,7 +227,7 @@ class Strings {
   static const seeAll = "See All";
   static const latestFeed = "Latest Feed";
   static const latestFeedDes =
-      "Lorem ipsum dolor sit amet, consectetur \nadipiscing elit, sed do eiusmod tempor \nincididunt ut labore et dolore magna aliqua.\n Lorem a commodo consequat ... more ";
+      "Lorem ipsum dolor sit amet, consecrated \nadvising elite, sed do emus temper \nincident ut labor et door magna alia.\n Lorem a commode consequent ... more ";
   static const likes = "Likes";
   static const comments = "Comments";
   static const learnMore = "LEARN MORE";
@@ -240,7 +240,7 @@ class Strings {
   static const unFriend = "Unfriend";
   static const accept = "accept";
   static const myCompanyDes =
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem a commodo consequat  ";
+      "Lorem ipsum dolor sit amet, consecrated advising elite, sed do emus temper incident ut labor et door magna alia. Lorem a commode consequent  ";
   static const typeYourReply = "Type your reply...";
   static const enterLocation = "Enter Location";
 
@@ -290,44 +290,36 @@ class Strings {
   static const endingIn0212 = "Ending in 0212";
   static const date = "01/23";
   static const cardAddress =
-      "3818 Lynden Road , Orono , Ontario , Canda , L0B 1M0";
-  static const setasDefaultPayment = "Set as Default Payment";
+      "3818 Lyndon Road , Orion , Ontario , Canada , L0B 1M0";
+  static const setAsDefaultPayment = "Set as Default Payment";
   static const remove = "Remove";
   static const edit = "Edit";
   static const card01 = "Fianna Wu";
-  static const cardminit01 = "2 hr ago";
-  static const cardDoller01 = "+\$600.00";
-  static const card02 = "Jolina Jones";
-  static const cardminit02 = "4 hr ago";
-  static const cardDoller02 = "-\$200.00";
-  static const card03 = "Wills Smith";
-  static const cardminit03 = "4 hr ago";
-  static const cardDoller03 = "+\$240.00";
-  static const cardobsecure = "• • • •";
-  static const carddigits = "0212";
+  static const card02 = "Joline Jones";
   static const billingInformation = "Billing Information";
   static const address = "Address";
-  static const addressHint = "3819 Lynden Road";
+  static const addressHint = "3819 Lyndon Road";
   static const cityHint = "Canada";
 
   static const postalCodeHint = "L0B 1M0";
   static const cardInformation = "Card Information";
-  static const nameonCard = "Name on card";
+  static const nameOnCard = "Name on card";
   static const aycanDoganlar = "Aycan Doganlar";
   static const cardNumber = "Card number";
   static const cardNumberHint = "1234 4567 7890 1234";
   static const expiryYear = "Expiry Year";
+  static const expiryDate = "Expiry date";
   static const expiryMonth = "Expiry Month";
   static const expiryDateHint = "..";
   static const cVV = "CVV";
   static const cVVHint = ". . .";
-  static const addresserror = 'Address is required';
+  static const addressError = 'Address is required';
   static const cityeError = 'City is required';
 
   static const countryError = 'Country is required';
-  static const nameonCardError = 'Name on card is required';
-  static const cardnumberError = 'Card number is required';
-  static const cardnumberErrorValidation = "Please correct card number";
+  static const nameOnCardError = 'Name on card is required';
+  static const cardNumberError = 'Card number is required';
+  static const cardNumberErrorValidation = "Please correct card number";
   static const expiryYearError = 'Expiry year is required';
   static const expiryMonthError = 'Expiry month is required';
   static const cVVError = 'Cvv is required';
@@ -340,7 +332,7 @@ class Strings {
   static const advertisementApproved = "Advertisement has been approved";
   static const advertisementRejected = "Advertisement has been rejected";
   static const transactionNumber = "Transaction number";
-  static const transactionHint = "122900083HN";
+
   static const postAds = "Post Ads";
   static const approved = "Approved";
   static const rejected = "Rejected";
@@ -377,7 +369,7 @@ class Strings {
   static const cardName03 = "Master Card Ending in 4151 ";
   static const cardDate01 = "06/25";
   static const subscriptionPaymenDes =
-      "By Clicking continue below, you accept to be charged at \$24.99/month for a minimum of 3months. You also accept the Terms and condition of Rainbow Love";
+      "By Clicking continue below, you accept to be charged at \$9.99/month for a minimum of 3months. You also accept the Terms and condition of Rainbow Love";
   static const continue01 = "Continue";
 
   ///---------------------------------Account Information ------------------------------
@@ -402,29 +394,24 @@ class Strings {
   static const sat = "Sat";
 
   //___________________________________Cancel approve_____________________________
-  static const cancelAprove = "Cancel Advertisement";
-  static const cancelAppoveDes =
+  static const cancelApprove = "Cancel Advertisement";
+  static const cancelApproveDes =
       "Are you sure you want to cancel this advertisement?";
 
   ///_____________________________________Delet Approve_______________________________
 
-  static const deletApprove = "Delete Advertisement";
-  static const deletApproveDes =
+  static const DeleteApprove = "Delete Advertisement";
+  static const DeleteApproveDes =
       "Are you sure you want to delete this advertisement?";
 
   ///____________________________________Support_______________________________________
-  static const attachImagesOrproof = "Attach images or proof";
+  static const attachImagesOrProof = "Attach images or proof";
   static const sendMessage = "Send Message";
-  static const writesomethinghere = "Write subject here...";
+  static const writeSomeThingHere = "Write subject here...";
   static const writeMessage = "What would you like to tell us?";
   static const yourMessage = "Your Message";
-  static const supportdeatailDEs =
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium sem sit amet venenatis commodo. Nullam aliquam lacus nisl, varius luctus mauris hendrerit ut. Etiam eros lectus, commodo nec nisl in, aliquet congue quam. Morbi condimentum lectus id urna gravida, at facilisis lectus consectetur. Nam viverra augue est, ut cursus mi bibendum sit amet. Duis hendrerit hendrerit molestie. Ut iaculis tellus risus, id facilisis purus finibus vel. In hac habitasse platea dictumst. Ut efficitur lacus eu risus aliquam mollis. Nullam gravida sit amet lorem vitae maximus. Nunc quis odio nec sapien ullamcorper eleifend a eget justo. In hac habitasse platea dictumst. Donec quis magna id libero consequat egestas eget ac felis.";
-  static const supportDate = "March 22, 2021 | 9:00am";
-  static const supportdeatailDEs02 =
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pretium sem sit amet venenatis commodo. Nullam aliquam lacus nisl, varius luctus mauris hendrerit ut. Etiam eros lectus, commodo nec nisl in, aliquet congue quam. Morbi condimentum lectus id urna gravida, at facilisis lectus consectetur. Nam viverra augue est, ut cursus mi bibendum sit amet. Duis hendrerit hendrerit molestie. Ut iaculis tellus risus, id facilisis purus finibus vel. In hac habitasse platea dictumst. Ut efficitur lacus eu risus aliquam mollis. Nullam gravida sit amet lorem vitae maximus.";
   static const supportCode = "1235CA2B2";
-  static const supporterror01 = "Please enter your message";
+  static const supportError01 = "Please enter your message";
   static const thankYouForSending =
       "Thank you for sending your concern, we will get back to you as soon as an agent comes in. ";
   static const subject = "Subject";
@@ -432,17 +419,12 @@ class Strings {
 
   ///____________________________________Support123__________________________________________
   static const delete = "Delete";
-
-  ///____________________________________Support_______________________________________
-
-  static const datesuppo = "12/30/2021";
-  static const seriz = "1235CA2B2";
+  
 
   ///-----------------------------------support creat ---------------------
   static const attachImage = "Attach images or proof";
   static const surrogateMom = "Surrogate Mom";
   static const summary = "Summary";
-  static const doller200 = "\$200";
   static const tags = "Tags";
   static const tagsUsers = "Tag users";
 
@@ -450,9 +432,9 @@ class Strings {
   static const callToAction = "Call to Action";
   static const urlLink = "URL Link";
   static const tagsError = "Please enter tags";
-  static const imageError = "please add image ";
+  static const imageError = "Please add image ";
   static const titleError = "Please enter title";
-  static const canedaError = "Please enter city";
+  static const canadaError = "Please enter city";
   static const provinceError = "Please enter province ";
   static const dateError = "Please enter date ";
   static const descriptionError = "Please enter description ";
@@ -462,9 +444,9 @@ class Strings {
   static const uploadImage = "Upload Images";
   static const title = "Title";
   static const useCurrentLocation = "Use current location";
-  static const caneda = "Canada";
-  static const plase = "Your place name/number + Street/ Road";
-  static const proviceHint = "Province / Territory (Canada)";
+  static const canada = "Canada";
+  static const place = "Your place name/number + Street/ Road";
+  static const provinceHint = "Province / Territory (Canada)";
   static const postalHint = "Postal Code (Canada)";
   static const description = "Description";
   static const urlHint = "URL link (www.mymom.com)";

@@ -4,15 +4,16 @@ import 'package:rainbow/common/Widget/app_dropdown.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
 import 'package:rainbow/common/Widget/loaders.dart';
 import 'package:rainbow/common/Widget/text_styles.dart';
-import 'package:rainbow/screens/auth/registerfor_adviser/adviserForm.dart';
+import 'package:rainbow/screens/auth/registerfor_adviser/adviser_form.dart';
 import 'package:rainbow/screens/auth/registerfor_adviser/registeradviser_controller.dart';
 import 'package:rainbow/utils/asset_res.dart';
 import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
-class AdviserRegisterScreen extends StatelessWidget {
+class
+AdviserRegisterScreen extends StatelessWidget {
   AdviserRegisterScreen({Key? key}) : super(key: key);
-  AdviserRegisterController controller = Get.put(AdviserRegisterController());
+  final AdviserRegisterController controller = Get.put(AdviserRegisterController());
 
   @override
   Widget build(BuildContext context) {

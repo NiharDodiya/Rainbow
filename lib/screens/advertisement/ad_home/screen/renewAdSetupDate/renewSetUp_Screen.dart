@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/formatters/money_input_formatter.dart';
 import 'package:get/get.dart';
 import 'package:rainbow/common/Widget/buttons.dart';
-import 'package:rainbow/screens/Profile/widget/profile_appbar.dart';
+
 import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_home/screen/create_advertisement/create_advertisement_controller.dart';
+
 import 'package:rainbow/screens/advertisement/ad_home/screen/payment_failed.dart/payment_failed_screen.dart';
-import 'package:rainbow/screens/advertisement/ad_home/screen/payment_successful/payment_successful_screen.dart';
+
 import 'package:rainbow/screens/advertisement/ad_home/screen/renewAdSetupDate/renewSetup_controller.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -16,13 +17,14 @@ import '../../../../../common/Widget/loaders.dart';
 import '../../../../../common/Widget/text_styles.dart';
 import '../../../../../utils/asset_res.dart';
 import '../../../../../utils/color_res.dart';
+import 'api/renewAd_api.dart';
 
 class RenewSetupScreen extends StatelessWidget {
-  int? idAdvertiser;
+  final int? idAdvertiser;
 
   RenewSetupScreen({Key? key, this.idAdvertiser}) : super(key: key);
 
-  RenewAdSetupDateController controller = Get.put(RenewAdSetupDateController());
+  final RenewAdSetupDateController controller = Get.put(RenewAdSetupDateController());
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +38,8 @@ class RenewSetupScreen extends StatelessWidget {
               colors: [
                 ColorRes.color_50369C,
                 ColorRes.color_50369C,
-                ColorRes.color_D18EEE,
-                ColorRes.color_D18EEE,
+                ColorRes.colorD18EEE,
+                ColorRes.colorD18EEE,
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -156,7 +158,7 @@ class RenewSetupScreen extends StatelessWidget {
                     focusedDay: DateTime.now(),
                     calendarStyle: CalendarStyle(
                       isTodayHighlighted: false,
-                      rangeHighlightColor: ColorRes.color_F4F4F4,
+                      rangeHighlightColor: ColorRes.colorF4F4F4,
                       todayTextStyle: gilroyBoldTextStyle(fontSize: 11.43),
                       weekendTextStyle: gilroyMediumTextStyle(
                           fontSize: 11.43, color: ColorRes.color_27354C),
@@ -176,7 +178,7 @@ class RenewSetupScreen extends StatelessWidget {
                       selectedDecoration: BoxDecoration(
                         color: ColorRes.black,
                         border: Border.all(
-                            color: ColorRes.color_FCE307, width: 1.46),
+                            color: ColorRes.colorFCE307, width: 1.46),
                       ),
                       // selectedTextStyle:
                       //     TextStyle(fontSize: 15, color: Colors.purple),
@@ -185,13 +187,13 @@ class RenewSetupScreen extends StatelessWidget {
                         color: ColorRes.color_50369C,
                         shape: BoxShape.circle,
                         border: Border.all(
-                            color: ColorRes.color_FCE307, width: 1.5),
+                            color: ColorRes.colorFCE307, width: 1.5),
                       ),
                       rangeStartDecoration: BoxDecoration(
                         color: ColorRes.color_50369C,
                         shape: BoxShape.circle,
                         border: Border.all(
-                            color: ColorRes.color_FCE307, width: 1.5),
+                            color: ColorRes.colorFCE307, width: 1.5),
                       ),
                       withinRangeTextStyle: gilroyMediumTextStyle(
                           fontSize: 11.43, color: ColorRes.color_27354C),
@@ -253,7 +255,7 @@ class RenewSetupScreen extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: [
                       ColorRes.color_50369C.withOpacity(0.5),
-                      ColorRes.color_D18EEE.withOpacity(0.8),
+                      ColorRes.colorD18EEE.withOpacity(0.8),
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -268,7 +270,7 @@ class RenewSetupScreen extends StatelessWidget {
                         child: GetBuilder<RenewAdSetupDateController>(
                             id: 'selectC',
                             builder: (controller) {
-                              return TextField(
+                              return (controller.totalAmount == 0 || controller.totalAmount == null)? Text("£10",style: gilroySemiBoldTextStyle(fontSize: 24),):Text("£${controller.totalAmount??"10"}",style:  gilroySemiBoldTextStyle(fontSize: 24),);/*TextField(
                                 enabled: false,
                                 inputFormatters: [
                                   MoneyInputFormatter(
@@ -285,7 +287,7 @@ class RenewSetupScreen extends StatelessWidget {
                                   hintStyle:
                                       gilroySemiBoldTextStyle(fontSize: 24),
                                 ),
-                              );
+                              );*/
                             }),
                       ),
                     ),
@@ -457,11 +459,11 @@ class RenewSetupScreen extends StatelessWidget {
   }
 }
 
-class ShowBottomNext extends StatelessWidget {
-  String? amount;
-  int? id;
+class ShowBottomNextR extends StatelessWidget {
+  final String? amount;
+  final int? id;
 
-  ShowBottomNext({Key? key, this.amount, this.id}) : super(key: key);
+  const ShowBottomNextR({Key? key, this.amount, this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -503,8 +505,8 @@ class ShowBottomNext extends StatelessWidget {
                             colors: [
                               ColorRes.color_50369C,
                               ColorRes.color_50369C,
-                              ColorRes.color_D18EEE,
-                              ColorRes.color_D18EEE,
+                              ColorRes.colorD18EEE,
+                              ColorRes.colorD18EEE,
                             ],
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
@@ -529,11 +531,33 @@ class ShowBottomNext extends StatelessWidget {
                               // SizedBox(
                               //   height: Get.height * 0.0320,
                               // ),
-                              Text(
+                              Row(
+                                children: [
+                                  GetBuilder<RenewAdSetupDateController>(
+                                    id:"select",
+                                    builder: (controller) {
+                                      return  (controller.totalAmount == null || controller.totalAmount == 0)
+                                          ?Text(
+                                        "£10",
+                                        style: poppinsSemiBold(fontSize: 64),
+                                      ):Text(
+                                        "£${controller.totalAmount}",
+                                        style: poppinsSemiBold(fontSize: 64),
+                                      );
+                                    },
+                                  ),/*Padding(padding: EdgeInsets.only(top: 6),
+                                    child: Text(
+                                      "00USD",
+                                      style: poppinsSemiBold(fontSize: 12 ),
+                                    ),
+                                  ),*/
+                                ],
+                              ),
+                             /* Text(
                                 renewAdSetupDateController
                                     .amountController.text,
                                 style: poppinsSemiBold(fontSize: 24),
-                              ),
+                              ),*/
                               // RichText(
                               //   text: TextSpan(children: [
                               //     TextSpan(
@@ -561,13 +585,13 @@ class ShowBottomNext extends StatelessWidget {
                                 height: Get.height * 0.007389,
                               ),
                               Text(
-                                "${adHomeController.viewAdvertiserModel.data?.fullName ?? ""}",
+                                adHomeController.viewAdvertiserModel.data?.fullName ?? "",
                                 style: poppinsMediumBold(fontSize: 14),
                               ),
                               SizedBox(
                                 height: Get.height * 0.0209,
                               ),
-                              Text(
+                              /*Text(
                                 "Transaction Number",
                                 style: poppinsRegularBold(fontSize: 12),
                               ),
@@ -580,7 +604,7 @@ class ShowBottomNext extends StatelessWidget {
                               ),
                               SizedBox(
                                 height: Get.height * 0.0209,
-                              ),
+                              ),*/
                               Text(
                                 "Service",
                                 style: poppinsRegularBold(fontSize: 12),
@@ -603,8 +627,11 @@ class ShowBottomNext extends StatelessWidget {
                         height: Get.height * 0.0665,
                       ),
                       SubmitButton(
-                        onTap: () {
-                          renewAdSetupDateController.renewAdAPI(id: id);
+                        onTap: () async{
+
+                           renewAdSetupDateController.renewAdAPI(id: id);
+
+
 
                           // createAdvertisementController.loader.value = false;
 
@@ -613,7 +640,7 @@ class ShowBottomNext extends StatelessWidget {
                         },
                         child: Text(
                           /*"Pay ${setupDateController.amountController.text}",*/
-                          "Pay \$3000.00",
+                          "Pay £$amount",
                           style: gilroyBoldTextStyle(
                             fontSize: 16,
                             color: ColorRes.black,
@@ -632,8 +659,8 @@ class ShowBottomNext extends StatelessWidget {
                           style: gilroySemiBoldTextStyle(fontSize: 16),
                         ),
                         colors: const [
-                          ColorRes.color_F86666,
-                          ColorRes.color_F82222,
+                          ColorRes.colorF86666,
+                          ColorRes.colorF82222,
                         ],
                       ),
                       SizedBox(
