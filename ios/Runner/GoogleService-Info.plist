@@ -3,27 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>442814978629-rpj573tdsiea798eku5jgiff8i2lb78f.apps.googleusercontent.com</string>
+	<string>496763375832-unl1utspsrm5luud154588t1pbl4j2i1.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.442814978629-rpj573tdsiea798eku5jgiff8i2lb78f</string>
+	<string>com.googleusercontent.apps.496763375832-unl1utspsrm5luud154588t1pbl4j2i1</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>442814978629-rumd5288h9o19v975r3ndvnbe2ff4tva.apps.googleusercontent.com</string>
+	<string>496763375832-0n4dl6o5uqbstg0mop7mc6mfbsc4moj0.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyB5wfej__gN4tmw17LzvDOKckRmgjV0vNE</string>
+	<string>AIzaSyB3ZwVit5YJ7uFUYDDQv7bl5RphwPYgp2Q</string>
 	<key>GCM_SENDER_ID</key>
-	<string>442814978629</string>
+	<string>496763375832</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.rainbow.app</string>
-	<key>NSCameraUsageDescription</key>
-    <string>camera description.</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string> photos description.</string>
+	<string>com.dateup.Impressions</string>
 	<key>PROJECT_ID</key>
-	<string>rainbow-convrtx</string>
+	<string>impression-42b34</string>
 	<key>STORAGE_BUCKET</key>
-	<string>rainbow-convrtx.appspot.com</string>
+	<string>impression-42b34.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -35,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:442814978629:ios:83c080169cf60c1a37e12c</string>
+	<string>1:496763375832:ios:e90ffd31803d773bac87ad</string>
 </dict>
 </plist>

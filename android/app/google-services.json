@@ -1,71 +1,49 @@
 {
   "project_info": {
-    "project_number": "115304537008",
-    "project_id": "rainbow-99314",
-    "storage_bucket": "rainbow-99314.appspot.com"
+    "project_number": "496763375832",
+    "project_id": "impression-42b34",
+    "storage_bucket": "impression-42b34.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:115304537008:android:b213c5b7bb420e58789475",
+        "mobilesdk_app_id": "1:496763375832:android:ce0ae57999832319ac87ad",
         "android_client_info": {
-          "package_name": "com.app.rainbow"
+          "package_name": "com.dateup.impressions"
         }
       },
       "oauth_client": [
         {
-          "client_id": "115304537008-8e67mdogp38lj06c7ofk0qds78vkhlei.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAHDoEBaS6zAHsNvEIvUnQI42mP6_rF10s"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "115304537008-8e67mdogp38lj06c7ofk0qds78vkhlei.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:115304537008:android:cd63c901542dc012789475",
-        "android_client_info": {
-          "package_name": "com.app.rainbow2"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "115304537008-ckafhee6pohan2tr3v9t5c7c97ss3a8m.apps.googleusercontent.com",
+          "client_id": "496763375832-lagudn4hg0r9r328k8c8d0r4od0gq5ng.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.app.rainbow2",
+            "package_name": "com.dateup.impressions",
             "certificate_hash": "63feff0c81384fea5c22092a51cd93463747d7e4"
           }
         },
         {
-          "client_id": "115304537008-8e67mdogp38lj06c7ofk0qds78vkhlei.apps.googleusercontent.com",
+          "client_id": "496763375832-hk20hgoccdducg72rpsa59dev8ue71hj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAHDoEBaS6zAHsNvEIvUnQI42mP6_rF10s"
+          "current_key": "AIzaSyAt6PbG1KfMVe2woxSWmIbk5cSrwg9oFqQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "115304537008-8e67mdogp38lj06c7ofk0qds78vkhlei.apps.googleusercontent.com",
+              "client_id": "496763375832-hk20hgoccdducg72rpsa59dev8ue71hj.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "496763375832-3hehf2uimf6bll8r6j8mrlmmoiaq2puk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dateup.impressions"
+              }
             }
           ]
         }
@@ -73,81 +51,43 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:115304537008:android:dd59caff4348780d789475",
+        "mobilesdk_app_id": "1:496763375832:android:f7cd659bbbee20c9ac87ad",
         "android_client_info": {
-          "package_name": "com.example.jv_google"
+          "package_name": "com.example.impression"
         }
       },
       "oauth_client": [
         {
-          "client_id": "115304537008-pr8mmvg6jsd3r1k08c12a6pfi8ppah8p.apps.googleusercontent.com",
+          "client_id": "496763375832-0n4dl6o5uqbstg0mop7mc6mfbsc4moj0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.jv_google",
-            "certificate_hash": "63feff0c81384fea5c22092a51cd93463747d7e4"
-          }
-        },
-        {
-          "client_id": "115304537008-8e67mdogp38lj06c7ofk0qds78vkhlei.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAHDoEBaS6zAHsNvEIvUnQI42mP6_rF10s"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "115304537008-8e67mdogp38lj06c7ofk0qds78vkhlei.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:115304537008:android:b1eb09b75b877ed5789475",
-        "android_client_info": {
-          "package_name": "com.rainbow.app"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "115304537008-7udakp002af508ju3oav2k42ge0aopb9.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.rainbow.app",
+            "package_name": "com.example.impression",
             "certificate_hash": "3d3c067f1f6e9e7b3e12628aad092eaf932dd30b"
           }
         },
         {
-          "client_id": "115304537008-hi5q5fner5ln4ls4kqin64d6nj2bp7ca.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.rainbow.app",
-            "certificate_hash": "63feff0c81384fea5c22092a51cd93463747d7e4"
-          }
-        },
-        {
-          "client_id": "115304537008-8e67mdogp38lj06c7ofk0qds78vkhlei.apps.googleusercontent.com",
+          "client_id": "496763375832-hk20hgoccdducg72rpsa59dev8ue71hj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAHDoEBaS6zAHsNvEIvUnQI42mP6_rF10s"
+          "current_key": "AIzaSyAt6PbG1KfMVe2woxSWmIbk5cSrwg9oFqQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "115304537008-8e67mdogp38lj06c7ofk0qds78vkhlei.apps.googleusercontent.com",
+              "client_id": "496763375832-hk20hgoccdducg72rpsa59dev8ue71hj.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "496763375832-3hehf2uimf6bll8r6j8mrlmmoiaq2puk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dateup.impressions"
+              }
             }
           ]
         }
