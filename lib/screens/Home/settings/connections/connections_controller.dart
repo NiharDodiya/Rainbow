@@ -26,7 +26,7 @@ class ConnectionsController extends GetxController {
         Get.put(ConnectionsProfileController());
     controller.callApi(userId);
 
-    Get.to(() => ConnectionsProfileScreen())?.then((value) {
+    Get.to(() => ConnectionsProfileScreen(show: false,))?.then((value) {
       if (kDebugMode) {
         print("PROFILE SCREEN BACK 3");
       }

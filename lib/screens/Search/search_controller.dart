@@ -358,7 +358,7 @@ class SearchController extends GetxController {
     connectionsProfileController.profileModel =
         (await OtherProfileApi.getOtherUerData(userId.toString()))!;
     loader.value = false;
-    Get.to(() => ConnectionsProfileScreen())?.then((value) {
+    Get.to(() => ConnectionsProfileScreen(show: true,))?.then((value) {
       if (kDebugMode) {
         print("PROFILE SCREEN BACK ");
       }
