@@ -366,7 +366,7 @@ class RegisterForm extends StatelessWidget {
                                       child: InkWell(
                                         onTap: () {
                                           controller.ethnicityController.text =
-                                              e.name!;
+                                              e.name ?? "";
                                           controller.countryBox = false;
                                           controller.update(["drop"]);
                                         },

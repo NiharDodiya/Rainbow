@@ -165,6 +165,7 @@ class AdvertisermentRejectedScreen extends StatelessWidget {
         const SizedBox(
           height: 25,
         ),
+
         Text(
           Strings.refundedPayment,
           style: gilroyRegularTextStyle(

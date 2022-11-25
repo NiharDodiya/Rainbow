@@ -19,7 +19,11 @@ HomeController homeController = Get.put(HomeController());
 ProfileController profileController = Get.put(ProfileController());
 
 Widget profileAppbar(
-    String text, bool show, context, int i, VoidCallback? onTap,
+    String text,
+    bool show,
+    context,
+    int i,
+    VoidCallback? onTap,
     {VoidCallback? onTap2}) {
   return Padding(
     padding: const EdgeInsets.only(top: 10, left: 18.50, right: 18.50),
@@ -38,16 +42,18 @@ Widget profileAppbar(
           children: [
             InkWell(
               onTap: () {
-
-                if (i == 2) {
-                  if (onTap2 == null) {
-                    Navigator.of(context).pop();
-                  } else {
-                    profileController.screen.value = false;
-
+                if(show == true){
+                  Get.back();
+                }else{
+                  if (i == 2) {
+                    if (onTap2 == null) {
+                      Navigator.of(context).pop();
+                    } else {
+                      profileController.screen.value = false;
+                    }
+                  } else if (i == 1) {
+                    onTap!();
                   }
-                } else if (i == 1) {
-                  onTap!();
                 }
               },
               child: Container(

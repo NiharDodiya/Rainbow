@@ -120,10 +120,8 @@ class ProfileController extends GetxController {
             title: testimonialsData[index].userSender!.fullName.toString(),
             subtitle: testimonialsData[index].userSender!.userStatus.toString(),
             descriptions: testimonialsData[index].testimonial.toString(),
-            date: DateFormat("dd/MM/yyyy")
-                .format(testimonialsData[index].createdAt!),
-            profile:
-                testimonialsData[index].userSender!.profileImage.toString());
+            date: DateFormat("dd/MM/yyyy").format(testimonialsData[index].createdAt!),
+            profile: testimonialsData[index].userSender!.profileImage.toString());
       },
       separatorBuilder: (context, index) {
         return Divider(

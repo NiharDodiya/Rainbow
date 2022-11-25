@@ -1187,7 +1187,7 @@ class UpdateAdvertiseScreen extends StatelessWidget {
                                         child: InkWell(
                                           onTap: () {
                                             controller.countryController.text =
-                                                e.name!;
+                                                e.name ?? "";
                                             controller.countryBox = false;
                                             controller.update(["drop"]);
                                           },

@@ -409,7 +409,7 @@ class AccountInformationScreen extends StatelessWidget {
                                     child: InkWell(
                                       onTap: () {
                                         controller.countryController.text =
-                                            e.name!;
+                                            e.name ?? "";
                                         controller.countryBox = false;
                                         controller.update(["drop"]);
                                       },
@@ -710,7 +710,7 @@ class AccountInformationScreen extends StatelessWidget {
                                     child: InkWell(
                                       onTap: () {
                                         controller.companyCountryController.text =
-                                            e.name!;
+                                            e.name ?? "";
                                         controller.countryBox = false;
                                         controller.update(["drop"]);
                                       },

@@ -10,6 +10,7 @@ import 'package:rainbow/screens/advertisement/ad_home/ad_home_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_notification/ad_notification_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_payment/ad_payment_controller.dart';
 import 'package:rainbow/screens/advertisement/ad_support/ad_support_controller.dart';
+import 'package:rainbow/screens/auth/register/list_nationalites/list_nationalites_api.dart';
 
 import 'package:rainbow/screens/auth/registerfor_adviser/listOfCountry/list_of_country_api.dart';
 import 'package:rainbow/service/pref_services.dart';
@@ -52,15 +53,17 @@ class AdvertisementController extends GetxController {
 
   Future<void> countryNationalites() async {
     try {
-      await ListOfCountryApi.postRegister()
-          .then((value) => listCountryModel = value!);
+      await ListOfNationalitiesApi.postRegister()
+          .then((value) => listNationalities = value!);
 
-      getCountry();
+      getCountryNation();
     } catch (e) {
       //errorToast("No internet connection");
       debugPrint(e.toString());
     }
   }
+
+
 
   void onBottomBarChange(int index) {
     currentTab = index;
