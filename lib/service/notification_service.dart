@@ -136,19 +136,10 @@ class NotificationService {
 
   static FirebaseMessaging message = FirebaseMessaging.instance;
 
-  ///old
-  // 'AAAAGtivm7A:APA91bE9gn9PIUo2AxRo8ADwUcYkiBFFg-XjKrlTok95L6rVdlwjseh-0HitR5rFt_hrAZUXFSxdlmfzGfG3UciEuAq4nTpumTsDOK35_ZVt0p-gKyrBQNomGROY5gkz7vUnVJFIenfv';
 
 
-///update
-  static const String serverToken ="AAAAc6lnkNg:APA91bGJCZtvmiP1htYJQZmZ4ucRub545c2kY33HeCoRhIgOP8rsrQkPYvvsIVoMXtZMGjxN7yE9T-fce50PySVxdaGViQsieTkn662Po4ZUl5TNWlNX491wJJ3bM_OPqxI6ViWcXR1S";
-
-
-
-
-
-
-
+///final
+  static const String serverToken = "AAAAGtivm7A:APA91bE9gn9PIUo2AxRo8ADwUcYkiBFFg-XjKrlTok95L6rVdlwjseh-0HitR5rFt_hrAZUXFSxdlmfzGfG3UciEuAq4nTpumTsDOK35_ZVt0p-gKyrBQNomGROY5gkz7vUnVJFIenfv";
 
 
   static Future<String?> getFcmToken() async {

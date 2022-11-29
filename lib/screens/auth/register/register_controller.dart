@@ -311,6 +311,7 @@ class RegisterController extends GetxController {
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
   RegisterUserModel registerUser = RegisterUserModel();
+
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;

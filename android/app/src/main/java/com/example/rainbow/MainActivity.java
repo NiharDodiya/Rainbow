@@ -1,4 +1,4 @@
-package com.dateup.impressions;
+package com.app.rainbow;
 
 import io.flutter.embedding.android.FlutterActivity;
 

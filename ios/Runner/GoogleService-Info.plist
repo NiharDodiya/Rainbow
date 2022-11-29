@@ -3,34 +3,34 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>496763375832-unl1utspsrm5luud154588t1pbl4j2i1.apps.googleusercontent.com</string>
+	<string>115304537008-phvvrarcd5k3aeikg4gaud8cm2odbt2h.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.496763375832-unl1utspsrm5luud154588t1pbl4j2i1</string>
+	<string>com.googleusercontent.apps.115304537008-phvvrarcd5k3aeikg4gaud8cm2odbt2h</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>496763375832-0n4dl6o5uqbstg0mop7mc6mfbsc4moj0.apps.googleusercontent.com</string>
+	<string>115304537008-7udakp002af508ju3oav2k42ge0aopb9.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyB3ZwVit5YJ7uFUYDDQv7bl5RphwPYgp2Q</string>
+	<string>AIzaSyCENhUU4dey2K_qyqOFbnzkC4se1zTbJVU</string>
 	<key>GCM_SENDER_ID</key>
-	<string>496763375832</string>
+	<string>115304537008</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.dateup.Impressions</string>
+	<string>com.application.rainbow</string>
 	<key>PROJECT_ID</key>
-	<string>impression-42b34</string>
+	<string>rainbow-99314</string>
 	<key>STORAGE_BUCKET</key>
-	<string>impression-42b34.appspot.com</string>
+	<string>rainbow-99314.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:496763375832:ios:e90ffd31803d773bac87ad</string>
+	<string>1:115304537008:ios:4ec55d4cc3b9a416789475</string>
 </dict>
 </plist>
