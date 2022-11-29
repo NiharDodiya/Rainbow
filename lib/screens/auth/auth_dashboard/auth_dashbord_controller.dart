@@ -86,6 +86,7 @@ String? token;
     homeController.viewStoryController.storyModel.friendsStory = null;
     homeController.viewStoryController.storyModel.friendsStory?.length = 0;
     homeController.friendPostListData = [];
+
     try {
       loading.value = true;
       token = await NotificationService.getFcmToken();
@@ -93,6 +94,7 @@ String? token;
         await googleSignIn.signOut();
         //flutterToast(Strings.googleLogOutSuccess);
       }
+
       loading.value = true;
       final GoogleSignInAccount? account = await googleSignIn.signIn();
       final GoogleSignInAuthentication authentication = await account!.authentication;
