@@ -21,8 +21,6 @@ import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 import 'package:readmore/readmore.dart';
 
-
-
 class ProfileScreen extends StatelessWidget {
   final int i;
 
@@ -82,8 +80,8 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         Expanded(
                           flex: 1,
-                          child: profileAppbar(Strings.profile, true, context, i,
-                              controller.onTapToHomeScreen),
+                          child: profileAppbar(Strings.profile, false, context, i,
+                              controller.onTapToHomeScreen, ),
                         ),
                         //controller.onTapToHomeScreen
                         Expanded(
