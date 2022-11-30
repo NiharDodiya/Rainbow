@@ -56,7 +56,9 @@ class PaymentController extends GetxController {
       listCardModel = await ListCartApi.listCardsApi(showToast: showToast);
 
       if(listCardModel.data?[selectedIndex].isPrimary == true){
+
         await PrefService.setValue(PrefKeys.defaultCard, listCardModel.data?[selectedIndex].id);
+
       }
 
        viewCardApi();

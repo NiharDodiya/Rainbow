@@ -402,7 +402,7 @@ class HomeController extends GetxController {
     countryName();
     countryNationalites();
    await getNotifications();
-    /*await friendPostDataWithOutPagination();*/
+    await friendPostDataWithOutPagination();
     await connectionsController.callRequestApi();
     /*  changeLoader(false);*/
   }
@@ -440,7 +440,6 @@ class HomeController extends GetxController {
     await refreshCode();
     // refreshController!.refreshCompleted();
   }
-
   void changeLoader(bool status) {
     /*if (refreshController == null || refreshController!.headerMode == null) {
       loader.value = status;

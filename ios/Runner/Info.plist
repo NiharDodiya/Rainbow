@@ -27,34 +27,28 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb799651911403399</string>
-			</array>
+			<string>fb799651911403399</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.rainbow.app</string>
-			</array>
+			<string>com.rainbow.app</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.googleusercontent.apps.496763375832-unl1utspsrm5luud154588t1pbl4j2i1</string>
-			</array>
+			<string>com.intercontinental.apps.115304537008-phvvrarcd5k3aeikg4gaud8cm2odbt2h</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>Sign in with Google</string>
-			</array>
+			<string>Sign in with Google</string>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
@@ -93,8 +87,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

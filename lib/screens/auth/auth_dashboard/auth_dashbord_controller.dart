@@ -75,17 +75,18 @@ String? token;
     adHomeController.viewAdvertiserModel.data?.fullName = "";
     adHomeController.viewAdvertiserModel.data?.profileImage = "";
     adHomeController.viewAdvertiserModel.data?.email = "";
-    homeController.viewProfile.data = null;
-    homeController.controller.viewProfile.data?.profileImage = null;
-    homeController.controller.viewProfile.data?.profileImage = null;
-    homeController.notificationModel?.pendingCount = 0;
-    homeController.controller.viewProfile.data?.profileImage = "";
-    connectionsController.requestUsers.length = 0;
-    connectionsController.requestUsers = [];
-    homeController.myStoryController.viewStoryController.storyModel.myStory = null;
-    homeController.viewStoryController.storyModel.friendsStory = null;
-    homeController.viewStoryController.storyModel.friendsStory?.length = 0;
-    homeController.friendPostListData = [];
+
+    // homeController.viewProfile.data = null;
+    // homeController.controller.viewProfile.data?.profileImage = null;
+    // homeController.controller.viewProfile.data?.profileImage = null;
+    // homeController.notificationModel?.pendingCount = 0;
+    // homeController.controller.viewProfile.data?.profileImage = "";
+    // connectionsController.requestUsers.length = 0;
+    // connectionsController.requestUsers = [];
+    // homeController.myStoryController.viewStoryController.storyModel.myStory = null;
+    // homeController.viewStoryController.storyModel.friendsStory = null;
+    // homeController.viewStoryController.storyModel.friendsStory?.length = 0;
+    // homeController.friendPostListData = [];
 
     try {
       loading.value = true;
