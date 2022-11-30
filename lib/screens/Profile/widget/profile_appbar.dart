@@ -21,6 +21,7 @@ ProfileController profileController = Get.put(ProfileController());
 Widget profileAppbar(
     String text,
     bool show,
+    bool show2,
     context,
     int i,
     VoidCallback? onTap,
@@ -43,7 +44,7 @@ Widget profileAppbar(
             InkWell(
               onTap: () {
 
-               if(show == true){
+               if(show2 == true){
                  Get.back();
                }
                else{

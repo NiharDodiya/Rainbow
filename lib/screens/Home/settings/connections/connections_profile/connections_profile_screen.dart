@@ -17,8 +17,8 @@ import 'package:rainbow/utils/color_res.dart';
 import 'package:rainbow/utils/strings.dart';
 
 class ConnectionsProfileScreen extends StatelessWidget {
-  bool show;
-  ConnectionsProfileScreen({Key? key, required this.show}) : super(key: key);
+  bool show2;
+  ConnectionsProfileScreen({Key? key, required this.show2}) : super(key: key);
 
   final ConnectionsProfileController controller =
       Get.put(ConnectionsProfileController());
@@ -74,7 +74,7 @@ class ConnectionsProfileScreen extends StatelessWidget {
                             )
                           : Column(
                               children: [
-                                profileAppbar(data.fullName.toString(), show,
+                                profileAppbar(data.fullName.toString(), false, show2,
                                     context, 2, controller.onTapGetBack,
                                     onTap2: () =>
                                         controller.onTapGetBack2(context)),

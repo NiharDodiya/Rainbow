@@ -80,7 +80,7 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         Expanded(
                           flex: 1,
-                          child: profileAppbar(Strings.profile, false, context, i,
+                          child: profileAppbar(Strings.profile, true, false, context, i,
                               controller.onTapToHomeScreen, ),
                         ),
                         //controller.onTapToHomeScreen
@@ -163,7 +163,7 @@ class ProfileScreen extends StatelessWidget {
                     : Column(
                   children: [
                     const SizedBox(height: 20),
-                    profileAppbar(data.fullName.toString(), false,
+                    profileAppbar(data.fullName.toString(), false, false,
                         context, 2, connectionsProfileController.onTapGetBack,
                         onTap2: () =>
                             connectionsProfileController.onTapGetBack2(context)),

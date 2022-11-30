@@ -203,7 +203,7 @@ class MessageController extends GetxController {
       //fcmTokens: [token.toString()],
       fcmTokens: [userToken.toString()],
     ));
-print("==================>>>>>>>>>.===========>>>>>>> ${userToken.toString()} <<<<<<<<<<========<<<<<<========");
+print("==================>>>>>>>>>{     ${userToken.toString()}    }<<<<<<========");
   }
 
   void gotoChatScreen(
