@@ -239,20 +239,20 @@ class ProfileScreen extends StatelessWidget {
                     imageUrl: controller.viewProfile.data == null
                         ? ""
                         : controller.viewProfile.data!.backgroundImage
-                            .toString(),
+                        .toString(),
                     fit: BoxFit.cover,
                     placeholder: ((context, url) => Image.asset(
-                          height: 160,
-                          width: 160,
-                          AssetRes.placeholderImage,
-                          fit: BoxFit.cover,
-                        )),
+                      height: 160,
+                      width: 160,
+                      AssetRes.placeholderImage,
+                      fit: BoxFit.cover,
+                    )),
                     errorWidget: ((context, url, error) => Image.asset(
-                          height: 160,
-                          width: 160,
-                          AssetRes.placeholderImage,
-                          fit: BoxFit.cover,
-                        )),
+                      height: 160,
+                      width: 160,
+                      AssetRes.placeholderImage,
+                      fit: BoxFit.cover,
+                    )),
                   ),
                   /*Image.network(
                     controller.viewProfile.data == null
@@ -321,17 +321,17 @@ class ProfileScreen extends StatelessWidget {
                     height: 151,
                     width: 151,
                     placeholder: ((context, url) => Image.asset(
-                          height: 151,
-                          width: 151,
-                          AssetRes.portraitPlaceholder,
-                          fit: BoxFit.cover,
-                        )),
+                      height: 151,
+                      width: 151,
+                      AssetRes.portraitPlaceholder,
+                      fit: BoxFit.cover,
+                    )),
                     errorWidget: ((context, url, error) => Image.asset(
-                          height: 151,
-                          width: 151,
-                          AssetRes.portraitPlaceholder,
-                          fit: BoxFit.cover,
-                        )),
+                      height: 151,
+                      width: 151,
+                      AssetRes.portraitPlaceholder,
+                      fit: BoxFit.cover,
+                    )),
                   ),
                 ),
                 Positioned(
@@ -361,82 +361,82 @@ class ProfileScreen extends StatelessWidget {
     return controller.viewProfile.data == null
         ? const SizedBox()
         : Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 28),
-                child: Text(
-                  Strings.hobbies,
-                  style: beVietnamProBoldTextStyle(fontSize: 18),
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(
+          height: 10,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 28),
+          child: Text(
+            Strings.hobbies,
+            style: beVietnamProBoldTextStyle(fontSize: 18),
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 15),
+          child: (controller.viewProfile.data!.hobbiesAndInterest
+              .toString() ==
+              '')
+              ? Center(
+            child: Text(
+              "-",
+              style: gilroyBoldTextStyle(fontSize: 18),
+            ),
+          )
+              : Padding(
+            padding: const EdgeInsets.only(left: 28),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: ReadMoreText(
+                controller.viewProfile.data!.hobbiesAndInterest
+                    .toString(),
+                /* aboutMe,*/
+                trimLines: 3,
+                trimMode: TrimMode.Line,
+                delimiter: " ",
+                trimCollapsedText: Strings.seeMore,
+                trimExpandedText: Strings.seeLess,
+                style: beVietnamProRegularTextStyle(
+                    color: ColorRes.white.withOpacity(0.70),
+                    fontSize: 18),
+                moreStyle: beVietnamProRegularTextStyle(
+                  color: ColorRes.colorFF6B97,
+                ),
+                lessStyle: beVietnamProRegularTextStyle(
+                  color: ColorRes.colorFF6B97,
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.only(top: 15),
-                child: (controller.viewProfile.data!.hobbiesAndInterest
-                            .toString() ==
-                        '')
-                    ? Center(
-                        child: Text(
-                          "-",
-                          style: gilroyBoldTextStyle(fontSize: 18),
-                        ),
-                      )
-                    : Padding(
-                        padding: const EdgeInsets.only(left: 28),
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: ReadMoreText(
-                            controller.viewProfile.data!.hobbiesAndInterest
-                                .toString(),
-                            /* aboutMe,*/
-                            trimLines: 3,
-                            trimMode: TrimMode.Line,
-                            delimiter: " ",
-                            trimCollapsedText: Strings.seeMore,
-                            trimExpandedText: Strings.seeLess,
-                            style: beVietnamProRegularTextStyle(
-                                color: ColorRes.white.withOpacity(0.70),
-                                fontSize: 18),
-                            moreStyle: beVietnamProRegularTextStyle(
-                              color: ColorRes.colorFF6B97,
-                            ),
-                            lessStyle: beVietnamProRegularTextStyle(
-                              color: ColorRes.colorFF6B97,
-                            ),
-                          ),
-                        ),
-                      ),
-                // child: ReadMoreText(
-                //   controller.viewProfile.data!.hobbiesAndInterest
-                //       .toString() ==
-                //       ""
-                //       ? "-": controller.viewProfile.data!.hobbiesAndInterest
-                //       .toString(),
-                //   /* aboutMe,*/
-                //   trimLines: 3,
-                //   trimMode: TrimMode.Line,
-                //   delimiter: " ",
-                //   trimCollapsedText: Strings.seeMore,
-                //   trimExpandedText: Strings.seeLess,
-                //   style: beVietnamProRegularTextStyle(
-                //       color: ColorRes.white.withOpacity(0.70),fontSize: 18
-                //   ),
-                //   moreStyle: beVietnamProRegularTextStyle(
-                //     color: ColorRes.colorFF6B97,
-                //   ),
-                //   lessStyle: beVietnamProRegularTextStyle(
-                //     color: ColorRes.colorFF6B97,
-                //   ),
-                // ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-            ],
-          );
+            ),
+          ),
+          // child: ReadMoreText(
+          //   controller.viewProfile.data!.hobbiesAndInterest
+          //       .toString() ==
+          //       ""
+          //       ? "-": controller.viewProfile.data!.hobbiesAndInterest
+          //       .toString(),
+          //   /* aboutMe,*/
+          //   trimLines: 3,
+          //   trimMode: TrimMode.Line,
+          //   delimiter: " ",
+          //   trimCollapsedText: Strings.seeMore,
+          //   trimExpandedText: Strings.seeLess,
+          //   style: beVietnamProRegularTextStyle(
+          //       color: ColorRes.white.withOpacity(0.70),fontSize: 18
+          //   ),
+          //   moreStyle: beVietnamProRegularTextStyle(
+          //     color: ColorRes.colorFF6B97,
+          //   ),
+          //   lessStyle: beVietnamProRegularTextStyle(
+          //     color: ColorRes.colorFF6B97,
+          //   ),
+          // ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+      ],
+    );
   }
 
   Widget testimonial(ProfileController controller) {

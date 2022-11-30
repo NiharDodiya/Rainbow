@@ -63,6 +63,18 @@ class AdvertisementController extends GetxController {
     }
   }
 
+  /*Future<void> countryNationalites() async {
+    try {
+      await ListOfNationalitiesApi.postRegister()
+          .then((value) => listNationalities = value!);
+
+      getCountryNation();
+    } catch (e) {
+      //errorToast("No internet connection");
+      debugPrint(e.toString());
+    }
+  }*/
+
 
 
   void onBottomBarChange(int index) {

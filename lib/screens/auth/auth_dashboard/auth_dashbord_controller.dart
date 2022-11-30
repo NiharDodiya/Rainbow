@@ -154,7 +154,8 @@ String? token;
   }
 
   void onSignInTap() {
-    Get.to(() => LoginScreen(), transition: Transition.cupertino);
+    Get.
+    to(() => LoginScreen(), transition: Transition.cupertino);
   }
 
   void faceBookSignIn() async {

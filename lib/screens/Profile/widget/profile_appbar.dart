@@ -42,19 +42,19 @@ Widget profileAppbar(
           children: [
             InkWell(
               onTap: () {
-                if(show == true){
-                  Get.back();
-                }else{
-                  if (i == 2) {
-                    if (onTap2 == null) {
-                      Navigator.of(context).pop();
-                    } else {
-                      profileController.screen.value = false;
-                    }
-                  } else if (i == 1) {
-                    onTap!();
-                  }
-                }
+
+               if(show == true){
+                 if (i == 2) {
+                   if (onTap2 == null) {
+                     Navigator.of(context).pop();
+                   } else {
+                     profileController.screen.value = false;
+                   }
+                 } else if (i == 1) {
+                   onTap!();
+                 }
+               }
+
               },
               child: Container(
                 padding: const EdgeInsets.all(7),
