@@ -1,4 +1,4 @@
-package com.rainbow.app;
+package com.app.rainbow;
 
 import io.flutter.embedding.android.FlutterActivity;
 

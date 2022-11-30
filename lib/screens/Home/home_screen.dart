@@ -359,7 +359,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Stack(
                                       children: [
                                         controller.controller.viewProfile
-                                                        .data ==
+                                                        ==
                                                     null ||
                                                 controller
                                                         .controller

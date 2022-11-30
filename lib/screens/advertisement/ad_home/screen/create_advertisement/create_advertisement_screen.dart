@@ -713,6 +713,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: Get.height * 0.0197),
+
             GetBuilder<CreateAdvertisementController>(
                 id: "drop",
                 builder: (controller) {
@@ -785,8 +786,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                                             left: 20, top: 7, bottom: 7),
                                         child: InkWell(
                                           onTap: () {
-                                            controller.countryController.text =
-                                                e.name!;
+                                            controller.countryController.text = e.name!;
                                             controller.countryBox = false;
                                             controller.update(["drop"]);
                                           },
@@ -796,7 +796,7 @@ class CreateAdvertisementScreen extends StatelessWidget {
                                             child: Align(
                                               alignment: Alignment.topLeft,
                                               child: Text(
-                                                e.name!,
+                                                e.name ?? "",
                                                 style: const TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 16),

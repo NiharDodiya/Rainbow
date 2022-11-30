@@ -478,7 +478,10 @@ class SettingsScreen extends StatelessWidget {
         //Subscription
          InkWell(
             onTap: () {
-              Get.to(() => SubscriptionScreen());
+              homeController.viewProfile.data?.userType == "free"
+                  ? premiumPopUpBox(context: context)
+                  : Get.to(() => SubscriptionScreen());
+
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 5, bottom: 5),

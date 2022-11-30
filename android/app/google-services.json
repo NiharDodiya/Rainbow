@@ -29,6 +29,13 @@
             {
               "client_id": "115304537008-8e67mdogp38lj06c7ofk0qds78vkhlei.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "115304537008-phvvrarcd5k3aeikg4gaud8cm2odbt2h.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.application.rainbow"
+              }
             }
           ]
         }
@@ -66,6 +73,13 @@
             {
               "client_id": "115304537008-8e67mdogp38lj06c7ofk0qds78vkhlei.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "115304537008-phvvrarcd5k3aeikg4gaud8cm2odbt2h.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.application.rainbow"
+              }
             }
           ]
         }
@@ -103,6 +117,13 @@
             {
               "client_id": "115304537008-8e67mdogp38lj06c7ofk0qds78vkhlei.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "115304537008-phvvrarcd5k3aeikg4gaud8cm2odbt2h.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.application.rainbow"
+              }
             }
           ]
         }
@@ -125,11 +146,27 @@
           }
         },
         {
+          "client_id": "115304537008-901v0nntnsej366odo5s9gtr5j7nst4t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rainbow.app",
+            "certificate_hash": "f197e3d3ff58fb925310246f4387329907cc64e1"
+          }
+        },
+        {
           "client_id": "115304537008-hi5q5fner5ln4ls4kqin64d6nj2bp7ca.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.rainbow.app",
             "certificate_hash": "63feff0c81384fea5c22092a51cd93463747d7e4"
+          }
+        },
+        {
+          "client_id": "115304537008-vatgispjhlrnkoqfria3jumg18liatl0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rainbow.app",
+            "certificate_hash": "97e84ef85a0748f72c7ded52f19638bb13b7aa27"
           }
         },
         {
@@ -148,6 +185,13 @@
             {
               "client_id": "115304537008-8e67mdogp38lj06c7ofk0qds78vkhlei.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "115304537008-phvvrarcd5k3aeikg4gaud8cm2odbt2h.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.application.rainbow"
+              }
             }
           ]
         }

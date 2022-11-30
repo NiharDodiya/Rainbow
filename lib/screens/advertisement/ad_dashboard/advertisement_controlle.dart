@@ -65,15 +65,17 @@ class AdvertisementController extends GetxController {
 
   /*Future<void> countryNationalites() async {
     try {
-      await ListOfCountryApi.postRegister()
-          .then((value) => listCountryModel = value!);
+      await ListOfNationalitiesApi.postRegister()
+          .then((value) => listNationalities = value!);
 
-      getCountry();
+      getCountryNation();
     } catch (e) {
       //errorToast("No internet connection");
       debugPrint(e.toString());
     }
   }*/
+
+
 
   void onBottomBarChange(int index) {
     currentTab = index;

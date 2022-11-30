@@ -75,6 +75,7 @@ class MessageController extends GetxController {
 
   Future<void> init() async {
     token = await NotificationService.getFcmToken();
+    print(token);
     loader.value = true;
     await getFriendListData();
     listScrollController.addListener(manageScrollDownBtn);
@@ -202,7 +203,7 @@ class MessageController extends GetxController {
       //fcmTokens: [token.toString()],
       fcmTokens: [userToken.toString()],
     ));
-
+print("==================>>>>>>>>>.===========>>>>>>> ${userToken.toString()} <<<<<<<<<<========<<<<<<========");
   }
 
   void gotoChatScreen(

@@ -154,7 +154,7 @@ class DoctorRegisterForm extends StatelessWidget {
                                             child: Align(
                                               alignment: Alignment.topLeft,
                                               child: Text(
-                                                e.name!,
+                                                e.name ?? "",
                                                 style: const TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 16),

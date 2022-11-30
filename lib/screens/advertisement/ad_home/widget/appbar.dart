@@ -34,7 +34,7 @@ Widget appbar({context}) {
                 children :[
                 InkWell(
                   onTap: () {
-                    advertisementController.key.currentState!.openDrawer();
+                    advertisementController.key.currentState?.openDrawer();
                     controller.update(["update"]);
                   },
                   child: Padding(

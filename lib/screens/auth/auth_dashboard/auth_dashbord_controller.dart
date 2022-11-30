@@ -86,6 +86,7 @@ String? token;
     homeController.viewStoryController.storyModel.friendsStory = null;
     homeController.viewStoryController.storyModel.friendsStory?.length = 0;
     homeController.friendPostListData = [];
+
     try {
       loading.value = true;
       token = await NotificationService.getFcmToken();
@@ -93,16 +94,17 @@ String? token;
         await googleSignIn.signOut();
         //flutterToast(Strings.googleLogOutSuccess);
       }
+
       loading.value = true;
       final GoogleSignInAccount? account = await googleSignIn.signIn();
-      final GoogleSignInAuthentication authentication =
-      await account!.authentication;
+      final GoogleSignInAuthentication authentication = await account!.authentication;
 
 
       final OAuthCredential credential = GoogleAuthProvider.credential(
         idToken: authentication.idToken,
         accessToken: authentication.accessToken,
       );
+
 
       final UserCredential authResult =
       await auth.signInWithCredential(credential);
@@ -172,20 +174,16 @@ String? token;
     homeController.viewStoryController.storyModel.friendsStory = null;
     homeController.viewStoryController.storyModel.friendsStory?.length = 0;
     homeController.friendPostListData = [];
+
     try {
       loading.value = true;
       token = await NotificationService.getFcmToken();
       final LoginResult loginResult = await FacebookAuth.instance
           .login(permissions: ["public_profile", "email"]);
-      await FacebookAuth.instance.getUserData().then((userData) {
+      await FacebookAuth.instance.getUserData();
+      final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token,);
 
-      });
-      final OAuthCredential facebookAuthCredential =
-      FacebookAuthProvider.credential(
-        loginResult.accessToken!.token,
-      );
-      UserCredential userCredential = await FirebaseAuth.instance
-          .signInWithCredential(facebookAuthCredential);
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
       final User? user = userCredential.user;
       try {
         await GoogleIdVerification.postRegister(userCredential.user!.uid,

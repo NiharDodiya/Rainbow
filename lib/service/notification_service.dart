@@ -136,8 +136,11 @@ class NotificationService {
 
   static FirebaseMessaging message = FirebaseMessaging.instance;
 
-  static const String serverToken =
-      'AAAAGtivm7A:APA91bE9gn9PIUo2AxRo8ADwUcYkiBFFg-XjKrlTok95L6rVdlwjseh-0HitR5rFt_hrAZUXFSxdlmfzGfG3UciEuAq4nTpumTsDOK35_ZVt0p-gKyrBQNomGROY5gkz7vUnVJFIenfv';
+
+
+///final
+  static const String serverToken = "AAAAGtivm7A:APA91bE9gn9PIUo2AxRo8ADwUcYkiBFFg-XjKrlTok95L6rVdlwjseh-0HitR5rFt_hrAZUXFSxdlmfzGfG3UciEuAq4nTpumTsDOK35_ZVt0p-gKyrBQNomGROY5gkz7vUnVJFIenfv";
+
 
   static Future<String?> getFcmToken() async {
     return await message.getToken();
@@ -145,6 +148,8 @@ class NotificationService {
 
   static Future<void> sendNotification(
       SendNotificationModel notification) async {
+
+
     await http.post(
       Uri.parse('https://fcm.googleapis.com/fcm/send'),
       headers: <String, String>{

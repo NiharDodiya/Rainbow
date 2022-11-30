@@ -3,27 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>442814978629-rpj573tdsiea798eku5jgiff8i2lb78f.apps.googleusercontent.com</string>
+	<string>115304537008-phvvrarcd5k3aeikg4gaud8cm2odbt2h.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.442814978629-rpj573tdsiea798eku5jgiff8i2lb78f</string>
+	<string>com.googleusercontent.apps.115304537008-phvvrarcd5k3aeikg4gaud8cm2odbt2h</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>442814978629-rumd5288h9o19v975r3ndvnbe2ff4tva.apps.googleusercontent.com</string>
+	<string>115304537008-7udakp002af508ju3oav2k42ge0aopb9.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyB5wfej__gN4tmw17LzvDOKckRmgjV0vNE</string>
+	<string>AIzaSyCENhUU4dey2K_qyqOFbnzkC4se1zTbJVU</string>
 	<key>GCM_SENDER_ID</key>
-	<string>442814978629</string>
+	<string>115304537008</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.rainbow.app</string>
-	<key>NSCameraUsageDescription</key>
-    <string>camera description.</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string> photos description.</string>
+	<string>com.application.rainbow</string>
 	<key>PROJECT_ID</key>
-	<string>rainbow-convrtx</string>
+	<string>rainbow-99314</string>
 	<key>STORAGE_BUCKET</key>
-	<string>rainbow-convrtx.appspot.com</string>
+	<string>rainbow-99314.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -35,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:442814978629:ios:83c080169cf60c1a37e12c</string>
+	<string>1:115304537008:ios:4ec55d4cc3b9a416789475</string>
 </dict>
 </plist>

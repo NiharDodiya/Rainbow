@@ -19,7 +19,11 @@ HomeController homeController = Get.put(HomeController());
 ProfileController profileController = Get.put(ProfileController());
 
 Widget profileAppbar(
-    String text, bool show, context, int i, VoidCallback? onTap,
+    String text,
+    bool show,
+    context,
+    int i,
+    VoidCallback? onTap,
     {VoidCallback? onTap2}) {
   return Padding(
     padding: const EdgeInsets.only(top: 10, left: 18.50, right: 18.50),
