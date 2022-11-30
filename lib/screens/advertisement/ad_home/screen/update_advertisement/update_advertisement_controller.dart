@@ -200,8 +200,6 @@ class UpdateAdvertiseController extends GetxController {
       "date": dateController.text,
       "description": descriptoionController.text,
       "call_action": callToActionController.text,
-      "start_date": DateFormat().add_yMd().format(startTime),
-      "end_date": DateFormat().add_yMd().format(endTime),
       "url_link": urlLinkController.text
     });
 
