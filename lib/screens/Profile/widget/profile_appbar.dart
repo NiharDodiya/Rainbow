@@ -44,6 +44,9 @@ Widget profileAppbar(
               onTap: () {
 
                if(show == true){
+                 Get.back();
+               }
+               else{
                  if (i == 2) {
                    if (onTap2 == null) {
                      Navigator.of(context).pop();
