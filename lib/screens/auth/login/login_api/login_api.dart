@@ -43,8 +43,9 @@ class LoginApi {
         if (status == false) {
           /*  errorToast(jsonDecode(response.body)["message"]);*/
         } else if (status == true) {
-          await PrefService.setValue(PrefKeys.referrallCode,
-              jsonDecode(response.body)["data"]["referrall_code"]);
+          jsonDecode(response.body)["data"]["role"] == "end_user"
+              ? await PrefService.setValue(PrefKeys.referrallCode, jsonDecode(response.body)["data"]["referrall_code"])
+              : SizedBox();
           await PrefService.setValue(
               PrefKeys.userId, jsonDecode(response.body)["data"]["id"]);
           await PrefService.setValue(PrefKeys.isLogin, true);
@@ -105,6 +106,7 @@ class LoginApi {
 
             // flutterToast(jsonDecode(response.body)["message"]);
 
+
             if (jsonDecode(response.body)["data"]["mobile_status"] ==
                 "pending") {
               advertiserVerifyController.phoneNumberRegister();
@@ -112,7 +114,8 @@ class LoginApi {
             } else {
               // flutterToast(jsonDecode(response.body)["message"]);
               HomeController homeController = Get.put(HomeController());
-              await homeController.init();
+
+              await homeController.init() ;
 
               flutterToast(jsonDecode(response.body)["message"]);
 
